@@ -1,0 +1,144 @@
+.rivalry {
+  margin-bottom: var(--gap-xl);
+}
+
+.rivalry__header {
+  margin-bottom: var(--gap-md);
+}
+
+.rivalry__title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  font-size: 1.25rem;
+  margin-bottom: 4px;
+}
+
+.rivalry__subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.rivalry__table {
+  padding: var(--gap-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  margin-bottom: var(--gap-md);
+}
+
+.rivalry__row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  padding: var(--gap-sm) var(--gap-md);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.rivalry__row--home {
+  background: rgba(0, 229, 255, 0.05);
+  border: 1px solid rgba(0, 229, 255, 0.12);
+}
+
+.rivalry__row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.rivalry__position {
+  width: 36px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.rivalry__medal {
+  font-size: 1.3rem;
+}
+
+.rivalry__town-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 160px;
+}
+
+.rivalry__town-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.rivalry__trend {
+  font-size: 0.7rem;
+  color: var(--accent-green);
+  font-weight: 500;
+}
+
+.rivalry__bar-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+}
+
+.rivalry__bar-track {
+  flex: 1;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.rivalry__bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 1.2s var(--ease-out);
+}
+
+.rivalry__percentage {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  min-width: 45px;
+  text-align: right;
+}
+
+.rivalry__percentage--home {
+  color: var(--accent-cyan);
+}
+
+.rivalry__cta {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-md);
+  padding: var(--gap-md) var(--gap-lg);
+  background: rgba(0, 229, 255, 0.04);
+  border: 1px solid rgba(0, 229, 255, 0.1);
+}
+
+.rivalry__cta-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.rivalry__cta-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.rivalry__cta-text strong {
+  color: var(--accent-cyan);
+}
+
+@media (max-width: 768px) {
+  .rivalry__row {
+    flex-wrap: wrap;
+  }
+  .rivalry__town-info {
+    min-width: 120px;
+  }
+  .rivalry__bar-section {
+    width: 100%;
+  }
+}
