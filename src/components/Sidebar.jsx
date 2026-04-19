@@ -9,6 +9,7 @@ export const NAV = [
   { to: '/cargos',      id: 'cargos',   label: 'Cargos',       icon: Ic.people, shortcut: 'G C' },
   { to: '/presupuesto', id: 'presup',   label: 'Presupuesto',  icon: Ic.coin,   shortcut: 'G P' },
   { to: '/plenos',      id: 'plenos',   label: 'Plenos',       icon: Ic.scale,  shortcut: 'G L' },
+  { to: '/promesas',    id: 'promesas', label: 'Promesas',     icon: Ic.scale,  shortcut: 'G R' },
   { to: '/datos',       id: 'datos',    label: 'Datos',        icon: Ic.chart,  shortcut: 'G D' },
 ]
 

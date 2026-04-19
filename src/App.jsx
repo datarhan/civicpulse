@@ -10,6 +10,9 @@ import Cargos from './pages/Cargos'
 import Presupuesto from './pages/Presupuesto'
 import Plenos from './pages/Plenos'
 import Datos from './pages/Datos'
+import Promesas from './pages/Promesas'
+import Metodologia from './pages/Metodologia'
+import AvisoLegal from './pages/AvisoLegal'
 import Ciudad from './pages/Ciudad'
 import Hud from './variants/Hud'
 import Briefing from './variants/Briefing'
@@ -51,6 +54,9 @@ function VariantA({ tweaks, updateTweaks, onOpenCmdK }) {
             <Route path="/presupuesto" element={<Presupuesto />} />
             <Route path="/plenos" element={<Plenos />} />
             <Route path="/datos" element={<Datos />} />
+            <Route path="/promesas" element={<Promesas />} />
+            <Route path="/metodologia" element={<Metodologia />} />
+            <Route path="/aviso-legal" element={<AvisoLegal />} />
             <Route path="*" element={<Overview cityId={tweaks.city} />} />
           </Routes>
         </div>
