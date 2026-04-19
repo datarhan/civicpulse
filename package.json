@@ -19,7 +19,8 @@
     "scrape:bdns": "npx tsx scripts/scrape-bdns.ts",
     "scrape:paro": "npx tsx scripts/scrape-paro.ts",
     "scrape:plenos": "npx tsx scripts/scrape-plenos.ts",
-    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos"
+    "scrape:wikidata": "npx tsx scripts/scrape-wikidata.ts",
+    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos && npm run scrape:wikidata"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

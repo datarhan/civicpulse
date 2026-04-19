@@ -2,6 +2,122 @@ import { Card, Pill, SectionHead } from '../components/Primitives'
 import { Ic } from '../components/Icons'
 import { DATASETS } from '../data/mockData'
 import { usePadron } from '../hooks/usePadron'
+import { useWikidata } from '../hooks/useWikidata'
+
+function WikidataCard() {
+  const { loading, error, data } = useWikidata()
+  if (loading || error || !data?.facts) return null
+  const f = data.facts
+  const generated = new Date(data.generatedAt).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+  const link = (href, label) =>
+    href ? (
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        style={{ color: 'var(--civic)', textDecoration: 'none' }}
+      >
+        {label}
+      </a>
+    ) : (
+      <span style={{ color: 'var(--ink50)' }}>—</span>
+    )
+  const stat = (label, value) => (
+    <div>
+      <div
+        className="mono"
+        style={{
+          fontSize: 10,
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.06em',
+        }}
+      >
+        {label}
+      </div>
+      <div className="mono" style={{ fontSize: 15, fontWeight: 700, marginTop: 3 }}>
+        {value}
+      </div>
+    </div>
+  )
+  return (
+    <Card>
+      <SectionHead
+        eyebrow={`Identidad del municipio · Wikidata ${f.qid}`}
+        title={f.label}
+      />
+      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 2, marginBottom: 12 }}>
+        {f.description} · actualizado {generated}
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
+          gap: 18,
+          marginBottom: 14,
+        }}
+      >
+        {stat('Población', f.population ? `${f.population.value.toLocaleString('es-ES')} (${f.population.year})` : '—')}
+        {stat('Superficie', f.areaKm2 ? `${f.areaKm2.toFixed(1)} km²` : '—')}
+        {stat('Altitud', f.elevation ? `${f.elevation} m` : '—')}
+        {stat(
+          'Coordenadas',
+          f.coordinates ? `${f.coordinates.lat.toFixed(4)}, ${f.coordinates.lng.toFixed(4)}` : '—'
+        )}
+        {stat('Densidad', f.population && f.areaKm2 ? `${Math.round(f.population.value / f.areaKm2)} hab/km²` : '—')}
+      </div>
+      <div
+        style={{
+          borderTop: '1px solid var(--border2)',
+          paddingTop: 12,
+          display: 'flex',
+          gap: 14,
+          flexWrap: 'wrap',
+          fontSize: 11.5,
+        }}
+      >
+        <div>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>INE: </span>
+          <span className="mono" style={{ fontWeight: 700 }}>{f.identifiers.ine || '—'}</span>
+        </div>
+        <div>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>OSM: </span>
+          {link(
+            f.identifiers.osmRelation
+              ? `https://www.openstreetmap.org/relation/${f.identifiers.osmRelation}`
+              : null,
+            f.identifiers.osmRelation ? `rel/${f.identifiers.osmRelation}` : '—'
+          )}
+        </div>
+        <div>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>GeoNames: </span>
+          {link(
+            f.identifiers.geonames
+              ? `https://www.geonames.org/${f.identifiers.geonames}`
+              : null,
+            f.identifiers.geonames || '—'
+          )}
+        </div>
+        <div>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>Commons: </span>
+          {link(
+            f.identifiers.commonsCat
+              ? `https://commons.wikimedia.org/wiki/Category:${encodeURIComponent(f.identifiers.commonsCat)}`
+              : null,
+            f.identifiers.commonsCat || '—'
+          )}
+        </div>
+        <div style={{ marginLeft: 'auto' }}>
+          {link(`https://www.wikidata.org/wiki/${f.qid}`, 'Wikidata ' + f.qid)}
+        </div>
+      </div>
+    </Card>
+  )
+}
 
 function PopulationChart() {
   const { loading, error, data } = usePadron()
@@ -184,6 +300,10 @@ export default function Datos() {
           Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo, investigación y
           transparencia.
         </div>
+      </div>
+
+      <div style={{ marginBottom: 16 }}>
+        <WikidataCard />
       </div>
 
       <div style={{ marginBottom: 18 }}>
