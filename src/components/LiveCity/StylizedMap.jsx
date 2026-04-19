@@ -16,6 +16,7 @@ import {
   RR_NEIGHBORHOODS,
   RR_INCIDENTS_SEED,
 } from '../../data/mockData'
+import { useGeo } from '../../hooks/useGeo'
 
 // ============================================================================
 // Palette
@@ -277,6 +278,51 @@ function HeatOverlay({ kind }) {
 }
 
 // --- Metro badge (top-right)
+// --- Real municipal boundary from OSM (relation 342356)
+function MunicipalBoundary() {
+  const { loading, error, data } = useGeo()
+  if (loading || error || !data?.boundary) return null
+  return (
+    <Polyline
+      positions={data.boundary.polygon}
+      pathOptions={{
+        color: '#C85A3A',
+        weight: 2,
+        opacity: 0.55,
+        dashArray: '6 4',
+        fill: false,
+      }}
+    />
+  )
+}
+
+// --- Real neighborhoods from OSM as tiny unobtrusive markers
+function OsmNeighborhoods() {
+  const { loading, error, data } = useGeo()
+  if (loading || error || !data?.neighborhoods) return null
+  const known = new Set(RR_NEIGHBORHOODS.map((n) => n.id))
+  // Only show OSM items that aren't already covered by the MHS cards (match
+  // loosely by name similarity to avoid double-tagging).
+  const known_names = new Set(RR_NEIGHBORHOODS.map((n) => n.name.toLowerCase()))
+  const extra = data.neighborhoods.filter(
+    (n) => !known.has(n.slug) && !known_names.has(n.name.toLowerCase())
+  )
+  return (
+    <>
+      {extra.map((n) => {
+        const icon = L.divIcon({
+          className: 'cp-osm-neigh',
+          html: `<div class="cp-osm-neigh-dot"></div>
+                 <div class="cp-osm-neigh-label">${n.name}</div>`,
+          iconSize: [140, 20],
+          iconAnchor: [6, 6],
+        })
+        return <Marker key={n.id} position={n.centroid} icon={icon} interactive={false} />
+      })}
+    </>
+  )
+}
+
 function MetroBadge({ now }) {
   const arrival = useMemo(() => {
     const total = now.getMinutes() * 60 + now.getSeconds()
@@ -361,8 +407,14 @@ export default function StylizedMap({ incidents = RR_INCIDENTS_SEED, layer = 'in
           attribution=''
         />
 
+        {/* Real municipal boundary polygon from OSM */}
+        <MunicipalBoundary />
+
         {/* Heat overlay (only when selected layer) */}
         <HeatOverlay kind={layer} />
+
+        {/* Real OSM neighborhoods (urbanizaciones + polígonos) */}
+        <OsmNeighborhoods />
 
         {/* Highway accents */}
         <Polyline

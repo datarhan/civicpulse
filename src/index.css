@@ -272,3 +272,29 @@ body.cp-kiosk .cp-live-container {
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.06); }
 }
+
+/* OSM neighborhoods — tiny dot + label (urbanizaciones, industrial estates) */
+.cp-osm-neigh { background: transparent !important; border: none !important; pointer-events: none; }
+.cp-osm-neigh-dot {
+  position: absolute;
+  top: 0; left: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(200, 90, 58, 0.65);
+  border: 1.5px solid rgba(255,255,255,0.85);
+  box-shadow: 0 1px 2px rgba(11,15,25,.25);
+}
+.cp-osm-neigh-label {
+  position: absolute;
+  top: -2px;
+  left: 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(11,15,25,.72);
+  background: rgba(255,255,255,0.78);
+  padding: 1px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+  letter-spacing: .02em;
+}
