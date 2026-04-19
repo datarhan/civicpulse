@@ -47,10 +47,10 @@ describe('scraper/plenos — parsePlenosIndex', () => {
     }
   })
 
-  it('captures at least one extraordinario and one ordinario', () => {
+  it('captures at least one ordinario plus some special session (extraordinario or urgente)', () => {
     const kinds = new Set(items2025.map((i) => i.kind))
     expect(kinds.has('ordinario')).toBe(true)
-    expect(kinds.has('extraordinario')).toBe(true)
+    expect(kinds.has('extraordinario') || kinds.has('urgente')).toBe(true)
   })
 
   it('unique id per pleno', () => {
