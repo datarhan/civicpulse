@@ -35,10 +35,17 @@ describe('scraper/corporacion — parseCorporacion', () => {
     }
   })
 
-  it('every official has an absolute photo URL served from ribarroja.es', () => {
+  it('every official has either a well-formed photo URL or an empty string (missing on the source site)', () => {
+    const valid = /^https?:\/\/.*ribarroja\.es\/.*downloadimg\.action\?id=\d+/
     for (const o of officials) {
-      expect(o.photoUrl).toMatch(/^https?:\/\/.*ribarroja\.es\/.*downloadimg\.action\?id=\d+/)
+      if (o.photoUrl !== '') {
+        expect(o.photoUrl).toMatch(valid)
+      }
     }
+    // At least 90% of councillors must have a photo — the municipal site
+    // sometimes leaves one or two blank (known gap as of 2026-04-19).
+    const withPhoto = officials.filter((o) => o.photoUrl !== '').length
+    expect(withPhoto / officials.length).toBeGreaterThanOrEqual(0.9)
   })
 
   it('every official has a recognised party code', () => {
