@@ -10,6 +10,7 @@ import {
   RR_SOCIAL_POOL,
   RR_WEATHER,
 } from '../data/mockData'
+import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 
 const fmtClock = (d) =>
   d.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
@@ -45,6 +46,7 @@ function useLiveMonitor() {
       ageSec: inc.age * 60,
     }))
   )
+  const realPress = usePress()
   const [press, setPress] = useState(() =>
     RR_PRESS_POOL.slice(0, 4).map((p, i) => ({
       id: 'seed-press-' + i,
@@ -53,6 +55,24 @@ function useLiveMonitor() {
       ...p,
     }))
   )
+
+  // Once the real press snapshot loads, replace the seeded mock list with
+  // real news aggregated from Levante-EMV, Las Provincias, Valencia Plaza, etc.
+  useEffect(() => {
+    if (!realPress.data || !realPress.data.items) return
+    setPress(
+      realPress.data.items.slice(0, 30).map((p) => ({
+        id: 'real-press-' + p.id,
+        kind: 'press',
+        ageSec: Math.max(60, Math.floor((Date.now() - new Date(p.date).getTime()) / 1000)),
+        headline: p.title,
+        src: p.source,
+        link: p.link,
+        cat: p.sourceHost || '',
+        tone: 'neutral',
+      }))
+    )
+  }, [realPress.data])
   const [social, setSocial] = useState(() =>
     RR_SOCIAL_POOL.slice(0, 6).map((s, i) => ({
       id: 'seed-social-' + i,
@@ -117,8 +137,10 @@ function useLiveMonitor() {
     return () => clearTimeout(timer)
   }, [])
 
-  // Press — a fresh headline every 30–75s
+  // Press — real data from usePress(); no simulator needed. Fallback to the
+  // mock pool simulator if /data/press.json hasn't loaded yet.
   useEffect(() => {
+    if (realPress.data) return // real data wins
     const schedule = () => {
       const delay = 30000 + Math.random() * 45000
       return setTimeout(() => {
@@ -130,7 +152,7 @@ function useLiveMonitor() {
     }
     let timer = schedule()
     return () => clearTimeout(timer)
-  }, [])
+  }, [realPress.data])
 
   // Social — a new post every 4–10s (chattier than press)
   useEffect(() => {
@@ -462,7 +484,18 @@ function PressItem({ p }) {
           </span>
         </div>
         <div style={{ fontSize: 12.5, fontWeight: 500, lineHeight: 1.35, marginTop: 3 }}>
-          {p.headline}
+          {p.link ? (
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              {p.headline}
+            </a>
+          ) : (
+            p.headline
+          )}
         </div>
       </div>
     </div>

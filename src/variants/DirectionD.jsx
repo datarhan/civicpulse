@@ -4,6 +4,7 @@ import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
 import { usePadron } from '../hooks/usePadron'
 import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
+import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { Ic } from '../components/Icons'
 import {
@@ -1118,6 +1119,84 @@ function ParticipaBlockD() {
   )
 }
 
+function PressBlockD() {
+  const { loading, error, data } = usePress()
+  if (loading || error || !data) return null
+  const items = (data.items || []).slice(0, 5)
+  if (items.length === 0) return null
+  return (
+    <div
+      style={{
+        marginBottom: 18,
+        borderTop: '1px solid ' + PALETTE.hair,
+        paddingTop: 14,
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          marginBottom: 8,
+        }}
+      >
+        <div
+          className="mono"
+          style={{
+            fontSize: 10,
+            color: PALETTE.ink60,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+          }}
+        >
+          Prensa · {data.stats.total} titulares
+        </div>
+        <div className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
+          {data.stats.sources} medios
+        </div>
+      </div>
+      {items.map((p, i) => (
+        <div
+          key={p.id}
+          style={{
+            padding: '10px 0',
+            borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 2 }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 10,
+                color: PALETTE.accent,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}
+            >
+              {p.source}
+            </span>
+            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
+              {pressTimeAgo(p.date)}
+            </span>
+          </div>
+          <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
+            <a
+              href={p.link}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              {p.title.length > 110 ? p.title.slice(0, 110) + '…' : p.title}
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function EditorialColumn({ events, now }) {
   return (
     <aside
@@ -1135,6 +1214,7 @@ function EditorialColumn({ events, now }) {
       <EditorialMasthead now={now} />
       <AlcaldeBox />
       <CoalitionRing />
+      <PressBlockD />
       <LiveContracts />
       <ParticipaBlockD />
       <LeadStory />
