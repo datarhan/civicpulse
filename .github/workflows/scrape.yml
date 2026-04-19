@@ -1,0 +1,87 @@
+name: Nightly real-data refresh
+
+on:
+  schedule:
+    # 04:30 UTC every day (06:30 Spanish summer, 05:30 winter) — before morning
+    - cron: '30 4 * * *'
+  workflow_dispatch:
+    inputs:
+      adapters:
+        description: 'Adapter set to run (all | officials | budget | tenders | padron | participa | press | geo)'
+        default: 'all'
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Run scraper(s)
+        run: |
+          set -euo pipefail
+          case "${{ inputs.adapters || 'all' }}" in
+            all)        npm run scrape:all ;;
+            officials)  npm run scrape:officials ;;
+            budget)     npm run scrape:budget ;;
+            tenders)    npm run scrape:tenders ;;
+            padron)     npm run scrape:padron ;;
+            participa)  npm run scrape:participa ;;
+            press)      npm run scrape:press ;;
+            geo)        npm run scrape:geo ;;
+            *) echo "unknown adapter set"; exit 1 ;;
+          esac
+
+      - name: Run tests
+        run: npm test
+
+      - name: Commit refreshed JSON
+        id: commit
+        run: |
+          set -euo pipefail
+          git config user.name  "civicpulse-bot"
+          git config user.email "bot@civicpulse"
+          git add public/data
+          if git diff --cached --quiet; then
+            echo "No upstream changes today."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            TODAY=$(date -u +%Y-%m-%d)
+            git commit -m "chore(data): nightly real-data refresh ($TODAY)
+
+Pipelines: ${{ inputs.adapters || 'all' }}
+Triggered: ${{ github.event_name }}
+"
+            git push origin HEAD
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Summary
+        run: |
+          echo "### Nightly scrape summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pipelines: \`${{ inputs.adapters || 'all' }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Changed: \`${{ steps.commit.outputs.changed }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "Public JSON files:" >> "$GITHUB_STEP_SUMMARY"
+          for f in public/data/*.json; do
+            echo "  - $f ($(du -h "$f" | cut -f1))" >> "$GITHUB_STEP_SUMMARY"
+          done
