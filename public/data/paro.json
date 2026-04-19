@@ -1,0 +1,156 @@
+{
+  "generatedAt": "2026-04-19T22:18:14.229Z",
+  "source": {
+    "platform": "SEPE Muniacteco 20-45",
+    "pattern": "https://sepe.es/SiteSepe/…/municipios_20_45/<YEAR>/<MES>_<YEAR>/Muniacteco_20-45_COM.VALENCIANA.xls"
+  },
+  "municipio": "Riba-roja de Túria",
+  "latestPeriod": "2026-03",
+  "latestTotal": 1192,
+  "series": [
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2024-09",
+      "total": 1272,
+      "men": 481,
+      "women": 791,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2024-10",
+      "total": 1268,
+      "men": 495,
+      "women": 773,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2024-11",
+      "total": 1269,
+      "men": 488,
+      "women": 781,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2024-12",
+      "total": 1281,
+      "men": 489,
+      "women": 792,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-01",
+      "total": 1289,
+      "men": 474,
+      "women": 815,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-02",
+      "total": 1255,
+      "men": 451,
+      "women": 804,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-03",
+      "total": 1223,
+      "men": 451,
+      "women": 772,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-05",
+      "total": 1195,
+      "men": 449,
+      "women": 746,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-06",
+      "total": 1211,
+      "men": 460,
+      "women": 751,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-07",
+      "total": 1178,
+      "men": 457,
+      "women": 721,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-08",
+      "total": 1196,
+      "men": 464,
+      "women": 732,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-09",
+      "total": 1157,
+      "men": 437,
+      "women": 720,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-10",
+      "total": 1159,
+      "men": 430,
+      "women": 729,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-11",
+      "total": 1153,
+      "men": 432,
+      "women": 721,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2025-12",
+      "total": 1156,
+      "men": 439,
+      "women": 717,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2026-01",
+      "total": 1183,
+      "men": 437,
+      "women": 746,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2026-02",
+      "total": 1180,
+      "men": 422,
+      "women": 758,
+      "source": "SEPE Muniacteco 20-45"
+    },
+    {
+      "municipio": "Riba-roja de Túria",
+      "period": "2026-03",
+      "total": 1192,
+      "men": 448,
+      "women": 744,
+      "source": "SEPE Muniacteco 20-45"
+    }
+  ]
+}

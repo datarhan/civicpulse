@@ -17,7 +17,8 @@
     "scrape:press": "npx tsx scripts/scrape-press.ts",
     "scrape:geo": "npx tsx scripts/scrape-geo.ts",
     "scrape:bdns": "npx tsx scripts/scrape-bdns.ts",
-    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:bdns"
+    "scrape:paro": "npx tsx scripts/scrape-paro.ts",
+    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:bdns && npm run scrape:paro"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

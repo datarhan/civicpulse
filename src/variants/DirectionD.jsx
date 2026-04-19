@@ -3,6 +3,7 @@ import StylizedMap from '../components/LiveCity/StylizedMap'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
 import { usePadron } from '../hooks/usePadron'
+import { useParo } from '../hooks/useParo'
 import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
@@ -1315,6 +1316,7 @@ function KpiStrip() {
   const padron = usePadron().data
   const budget = useBudget().data
   const tenders = useTenders().data
+  const paro = useParo().data
 
   // Population sparkline: last 10 years of total.
   const popSpark =
@@ -1387,6 +1389,26 @@ function KpiStrip() {
         delta={awardedCount ? '· ' + awardedCount : '—'}
         tone="ok"
         sub="Gobierto/PLACSP"
+      />
+      <Kpi
+        label={paro ? `Paro ${paro.latestPeriod || ''}` : 'Paro'}
+        value={paro ? paro.latestTotal.toLocaleString('es-ES') : '—'}
+        delta={(() => {
+          if (!paro?.series || paro.series.length < 2) return '—'
+          const last = paro.series[paro.series.length - 1].total
+          const prev = paro.series[paro.series.length - 2].total
+          const diff = last - prev
+          return (diff >= 0 ? '▲ +' : '▼ ') + diff
+        })()}
+        tone={(() => {
+          if (!paro?.series || paro.series.length < 2) return 'civic'
+          const last = paro.series[paro.series.length - 1].total
+          const prev = paro.series[paro.series.length - 2].total
+          return last < prev ? 'ok' : 'warn'
+        })()}
+        sub="SEPE · paro registrado"
+        spark={paro?.series?.slice(-12).map((p) => p.total) || [1183, 1180, 1192]}
+        sparkColor={PALETTE.accent}
       />
       <Kpi
         label="Pleno"
