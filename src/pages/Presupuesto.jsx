@@ -10,6 +10,7 @@ import {
 } from '../data/mockData'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
 import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
+import { useBdns } from '../hooks/useBdns'
 
 function KStrip({ label, value, delta, invert }) {
   const d = invert ? -delta : delta
@@ -207,6 +208,56 @@ function RealContracts() {
   )
 }
 
+function RealSubsidies() {
+  const { loading, error, data } = useBdns()
+  if (loading || error || !data) return null
+  const items = (data.items || []).filter((i) => i.direction === 'granted').slice(0, 6)
+  if (items.length === 0) return null
+  const fmt = (iso) =>
+    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  return (
+    <Card>
+      <SectionHead
+        eyebrow={`BDNS · ${data.stats.total} convocatorias · ${data.stats.granted} municipales`}
+        title="Subvenciones · Base Nacional"
+      />
+      <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2, marginBottom: 10 }}>
+        Datos reales de MinHac BDNS · pap.hacienda.gob.es
+      </div>
+      {items.map((s, i) => (
+        <div
+          key={s.bdnsCode}
+          style={{
+            padding: '10px 0',
+            borderBottom: i === items.length - 1 ? 'none' : '1px solid var(--border2)',
+          }}
+        >
+          <div style={{ display: 'flex', gap: 8, alignItems: 'baseline', marginBottom: 2 }}>
+            <Pill tone="civic" size="xs">
+              BDNS {s.bdnsCode}
+            </Pill>
+            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+              {fmt(s.date)}
+            </span>
+          </div>
+          <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
+            <a
+              href={s.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              {s.description.length > 180
+                ? s.description.slice(0, 180) + '…'
+                : s.description}
+            </a>
+          </div>
+        </div>
+      ))}
+    </Card>
+  )
+}
+
 function RealBudgetHeader() {
   const { loading, error, data } = useBudget()
   if (loading || error || !data) {
@@ -383,6 +434,10 @@ export default function Presupuesto() {
           <TaxFlow />
         </Card>
         <RealContracts />
+      </div>
+
+      <div style={{ marginBottom: 16 }}>
+        <RealSubsidies />
       </div>
 
       <Card>
