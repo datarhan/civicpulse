@@ -3,6 +3,7 @@ import StylizedMap from '../components/LiveCity/StylizedMap'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
 import { usePadron } from '../hooks/usePadron'
+import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { Ic } from '../components/Icons'
 import {
@@ -1043,6 +1044,80 @@ function LiveContracts() {
   )
 }
 
+function ParticipaBlockD() {
+  const { loading, error, data } = useParticipa()
+  if (loading || error || !data) return null
+  const items = (data.items || []).slice(0, 3)
+  if (items.length === 0) return null
+  const fmt = (iso) =>
+    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
+  return (
+    <div
+      style={{
+        marginBottom: 18,
+        borderTop: '1px solid ' + PALETTE.hair,
+        paddingTop: 14,
+      }}
+    >
+      <div
+        className="mono"
+        style={{
+          fontSize: 10,
+          color: PALETTE.ink60,
+          letterSpacing: '.12em',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          marginBottom: 8,
+        }}
+      >
+        Participación ciudadana · {data.stats.total}
+      </div>
+      {items.map((it, i) => (
+        <div
+          key={it.id}
+          style={{
+            display: 'flex',
+            gap: 10,
+            padding: '10px 0',
+            borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
+            alignItems: 'flex-start',
+          }}
+        >
+          <div
+            style={{
+              width: 28,
+              height: 28,
+              borderRadius: 6,
+              background: it.kind === 'survey' ? 'rgba(36,99,235,.12)' : 'rgba(22,163,74,.12)',
+              display: 'grid',
+              placeItems: 'center',
+              fontSize: 14,
+              flexShrink: 0,
+            }}
+          >
+            {KIND_ICON[it.kind] || '📢'}
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
+              <a
+                href={it.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                {it.title.length > 80 ? it.title.slice(0, 80) + '…' : it.title}
+              </a>
+            </div>
+            <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+              {fmt(it.date)} · {it.categories[0] || 'aviso'}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function EditorialColumn({ events, now }) {
   return (
     <aside
@@ -1061,6 +1136,7 @@ function EditorialColumn({ events, now }) {
       <AlcaldeBox />
       <CoalitionRing />
       <LiveContracts />
+      <ParticipaBlockD />
       <LeadStory />
       <SecondaryStories />
       <LiveStrip events={events} />

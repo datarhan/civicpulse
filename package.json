@@ -13,7 +13,8 @@
     "scrape:budget": "npx tsx scripts/scrape-budget.ts",
     "scrape:tenders": "npx tsx scripts/scrape-tenders.ts",
     "scrape:padron": "npx tsx scripts/scrape-padron.ts",
-    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron"
+    "scrape:participa": "npx tsx scripts/scrape-participa.ts",
+    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
