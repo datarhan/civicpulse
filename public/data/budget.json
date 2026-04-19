@@ -1,0 +1,135 @@
+{
+  "generatedAt": "2026-04-19T16:29:35.023Z",
+  "source": "https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero?CCAA=17&TipoDato=Presupuestos&Ejercicio=2025&TipoPublicacion=Definitiva",
+  "kind": "presupuesto-inicial",
+  "snapshot": {
+    "ineCode": "46214",
+    "name": "Riba-roja de Túria",
+    "year": 2025,
+    "population": 24616,
+    "totalRevenue": 43516817.13,
+    "totalExpense": 41578252.26,
+    "balance": 1938564.8700000048,
+    "revenueByEconomicChapter": [
+      {
+        "code": "1",
+        "label": "Impuestos directos",
+        "amount": 17907000
+      },
+      {
+        "code": "2",
+        "label": "Impuestos indirectos",
+        "amount": 2000000
+      },
+      {
+        "code": "3",
+        "label": "Tasas y otros ingresos",
+        "amount": 6877208.58
+      },
+      {
+        "code": "4",
+        "label": "Transferencias corrientes",
+        "amount": 14038355.2
+      },
+      {
+        "code": "5",
+        "label": "Ingresos patrimoniales",
+        "amount": 885688.62
+      },
+      {
+        "code": "6",
+        "label": "Enajenación de inversiones reales",
+        "amount": 0
+      },
+      {
+        "code": "7",
+        "label": "Transferencias de capital",
+        "amount": 0
+      },
+      {
+        "code": "8",
+        "label": "Activos financieros",
+        "amount": 25000
+      },
+      {
+        "code": "9",
+        "label": "Pasivos financieros",
+        "amount": 1783564.73
+      }
+    ],
+    "expenseByEconomicChapter": [
+      {
+        "code": "1",
+        "label": "Gastos de personal",
+        "amount": 20338112.65
+      },
+      {
+        "code": "2",
+        "label": "Gastos en bienes corrientes y servicios",
+        "amount": 16288669.58
+      },
+      {
+        "code": "3",
+        "label": "Gastos financieros",
+        "amount": 283520.17
+      },
+      {
+        "code": "4",
+        "label": "Transferencias corrientes",
+        "amount": 2595582.99
+      },
+      {
+        "code": "5",
+        "label": "Fondo de contingencia",
+        "amount": 0
+      },
+      {
+        "code": "6",
+        "label": "Inversiones reales",
+        "amount": 905517.35
+      },
+      {
+        "code": "7",
+        "label": "Transferencias de capital",
+        "amount": 246000
+      },
+      {
+        "code": "8",
+        "label": "Activos financieros",
+        "amount": 25000
+      },
+      {
+        "code": "9",
+        "label": "Pasivos financieros",
+        "amount": 895849.52
+      }
+    ],
+    "expenseByProgram": [
+      {
+        "label": "Deuda pública",
+        "amount": 1100009.69
+      },
+      {
+        "label": "Servicios públicos básicos",
+        "amount": 12492150.2
+      },
+      {
+        "label": "Actuaciones de protección y promoción social",
+        "amount": 5497311.39
+      },
+      {
+        "label": "Producción de bienes públicos de carácter preferente",
+        "amount": 11445298.85
+      },
+      {
+        "label": "Actuaciones de carácter económico",
+        "amount": 3386063.01
+      },
+      {
+        "label": "Actuaciones de carácter general",
+        "amount": 7657419.12
+      }
+    ],
+    "source": "https://serviciostelematicosext.hacienda.gob.es/SGFAL/CONPREL/Consulta/DescargaFichero?CCAA=17&TipoDato=Presupuestos&Ejercicio=2025&TipoPublicacion=Definitiva"
+  }
+}

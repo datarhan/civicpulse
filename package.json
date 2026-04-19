@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "scrape:officials": "npx tsx scripts/scrape-officials.ts"
+    "scrape:officials": "npx tsx scripts/scrape-officials.ts",
+    "scrape:budget": "npx tsx scripts/scrape-budget.ts",
+    "scrape:all": "npm run scrape:officials && npm run scrape:budget"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
