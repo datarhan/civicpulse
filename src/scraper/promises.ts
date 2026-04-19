@@ -1,0 +1,247 @@
+/**
+ * Promise-tracker schema + validator.
+ *
+ * This file is the *legal contract* for CivicPulse's political-promise
+ * tracker. Three invariants protect both the project and the people
+ * named in the data:
+ *
+ *   1. Every promise carries a verbatim quote + primary-source URL +
+ *      publisher + dated `madeAt`. No hearsay.
+ *   2. V1 statuses are constrained to { documentada | en-verificacion }.
+ *      The full enum (cumplida, parcial, no-ejecutada, inviable,
+ *      en-progreso) exists in code but cannot be set without an
+ *      evidence entry carrying its own dated URL + verbatim quote.
+ *   3. Snapshot metadata carries a `frozenUntil` field; during the
+ *      LOREG electoral window the UI enters read-only mode and the
+ *      inference suggestion layer can still compute but never mutate.
+ *
+ * The curated snapshot lives in public/data/promises.json and is
+ * human-edited via PRs. The inference engine writes to a separate file
+ * (public/data/promise-suggestions.json) and never touches this one.
+ */
+
+export const ALLOWED_PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'Otro'] as const
+export type Party = (typeof ALLOWED_PARTIES)[number]
+
+export const ALLOWED_STATUSES = [
+  'documentada',
+  'en-verificacion',
+  'en-progreso',
+  'cumplida',
+  'parcial',
+  'no-ejecutada',
+  'inviable',
+] as const
+export type Status = (typeof ALLOWED_STATUSES)[number]
+
+export const V1_STATUSES = new Set<Status>(['documentada', 'en-verificacion'])
+
+export const ALLOWED_KINDS = [
+  'programa-electoral',
+  'compromiso-investidura',
+  'anuncio-gobierno',
+  'enmienda-pleno',
+  'pacto-coalicion',
+] as const
+export type Kind = (typeof ALLOWED_KINDS)[number]
+
+export const ALLOWED_TOPICS = [
+  'fiscal',
+  'vivienda',
+  'movilidad',
+  'medio-ambiente',
+  'social',
+  'cultura',
+  'seguridad',
+  'empleo',
+  'urbanismo',
+  'salud',
+  'participacion',
+  'educacion',
+  'deporte',
+  'juventud',
+  'mayores',
+  'igualdad',
+  'transparencia',
+  'other',
+] as const
+export type Topic = (typeof ALLOWED_TOPICS)[number]
+
+export interface EvidenceEntry {
+  date: string // ISO
+  url: string
+  quote: string
+  publisher: string
+  kind: 'press' | 'pleno' | 'budget' | 'bdns' | 'ayuntamiento' | 'otro'
+  addedBy: string // who curated this evidence ("civicpulse-bot" for auto)
+}
+
+export interface SourceRef {
+  url: string
+  publisher: string
+  page?: number
+  quote?: string
+}
+
+export interface Promise {
+  id: string
+  party: Party
+  title: string
+  quote: string
+  source: SourceRef
+  madeAt: string // ISO
+  topic: Topic
+  kind: Kind
+  status: Status
+  evidence: EvidenceEntry[]
+  notes?: string
+  createdAt: string
+  updatedAt?: string
+  response?: {
+    from: Party
+    quote: string
+    source?: SourceRef
+    respondedAt: string
+  } | null
+}
+
+export interface PromisesSnapshot {
+  version: string
+  generatedAt: string
+  frozenUntil: string | null // YYYY-MM-DD or null
+  legalNotice: string
+  contactUrl: string
+  methodologyUrl: string
+  items: Promise[]
+}
+
+class ValidationError extends Error {
+  constructor(msg: string) {
+    super(`promises.json: ${msg}`)
+  }
+}
+
+function assertString(v: unknown, name: string, min = 1, max = Infinity): asserts v is string {
+  if (typeof v !== 'string') throw new ValidationError(`${name} must be string`)
+  if (v.length < min) throw new ValidationError(`${name} too short (${v.length} < ${min})`)
+  if (v.length > max) throw new ValidationError(`${name} too long (${v.length} > ${max})`)
+}
+
+function assertEnum<T extends string>(v: unknown, allowed: readonly T[], name: string): asserts v is T {
+  if (typeof v !== 'string' || !(allowed as readonly string[]).includes(v)) {
+    throw new ValidationError(
+      `${name} must be one of [${allowed.join(', ')}] (got ${JSON.stringify(v)})`
+    )
+  }
+}
+
+function assertIsoDate(v: unknown, name: string): asserts v is string {
+  if (typeof v !== 'string' || !/^\d{4}-\d{2}-\d{2}/.test(v)) {
+    throw new ValidationError(`${name} must be ISO YYYY-MM-DD (got ${JSON.stringify(v)})`)
+  }
+}
+
+function assertUrl(v: unknown, name: string): asserts v is string {
+  if (typeof v !== 'string' || !/^https?:\/\//.test(v)) {
+    throw new ValidationError(`${name} must be absolute http(s) URL (got ${JSON.stringify(v)})`)
+  }
+}
+
+function validateEvidence(e: unknown, idx: number): EvidenceEntry {
+  if (!e || typeof e !== 'object') throw new ValidationError(`evidence[${idx}] must be object`)
+  const r = e as Record<string, unknown>
+  assertIsoDate(r.date, `evidence[${idx}].date`)
+  assertUrl(r.url, `evidence[${idx}].url`)
+  assertString(r.quote, `evidence[${idx}].quote`, 10, 800)
+  assertString(r.publisher, `evidence[${idx}].publisher`, 1, 100)
+  assertEnum(r.kind, ['press', 'pleno', 'budget', 'bdns', 'ayuntamiento', 'otro'], `evidence[${idx}].kind`)
+  assertString(r.addedBy, `evidence[${idx}].addedBy`, 1, 80)
+  return r as unknown as EvidenceEntry
+}
+
+function validatePromise(p: unknown, idx: number): Promise {
+  if (!p || typeof p !== 'object') throw new ValidationError(`items[${idx}] must be object`)
+  const r = p as Record<string, unknown>
+  assertString(r.id, `items[${idx}].id`, 3, 80)
+  assertEnum(r.party, ALLOWED_PARTIES, `items[${idx}].party`)
+  assertString(r.title, `items[${idx}].title`, 4, 200)
+  // Verbatim quote invariant — ≥20 chars, prevents summarising.
+  assertString(r.quote, `items[${idx}].quote (verbatim, ≥20 chars)`, 20, 1500)
+  if (!r.source || typeof r.source !== 'object') throw new ValidationError(`items[${idx}].source missing`)
+  const src = r.source as Record<string, unknown>
+  assertUrl(src.url, `items[${idx}].source.url`)
+  assertString(src.publisher, `items[${idx}].source.publisher`, 1, 100)
+  assertIsoDate(r.madeAt, `items[${idx}].madeAt`)
+  assertEnum(r.topic, ALLOWED_TOPICS, `items[${idx}].topic`)
+  assertEnum(r.kind, ALLOWED_KINDS, `items[${idx}].kind`)
+  assertEnum(r.status, ALLOWED_STATUSES, `items[${idx}].status`)
+  // V1 legal gate: only 'documentada' and 'en-verificacion' are publishable
+  // without accompanying evidence; all other statuses need ≥1 evidence entry.
+  if (!V1_STATUSES.has(r.status as Status)) {
+    if (!Array.isArray(r.evidence) || r.evidence.length === 0) {
+      throw new ValidationError(
+        `items[${idx}] status "${r.status}" requires ≥1 evidence entry (V1 invariant)`
+      )
+    }
+  }
+  if (!Array.isArray(r.evidence)) throw new ValidationError(`items[${idx}].evidence must be array`)
+  const evidence = (r.evidence as unknown[]).map((e, ei) => validateEvidence(e, ei))
+  assertIsoDate(r.createdAt, `items[${idx}].createdAt`)
+  return {
+    id: r.id as string,
+    party: r.party as Party,
+    title: r.title as string,
+    quote: r.quote as string,
+    source: {
+      url: src.url as string,
+      publisher: src.publisher as string,
+      page: typeof src.page === 'number' ? src.page : undefined,
+      quote: typeof src.quote === 'string' ? src.quote : undefined,
+    },
+    madeAt: r.madeAt as string,
+    topic: r.topic as Topic,
+    kind: r.kind as Kind,
+    status: r.status as Status,
+    evidence,
+    notes: typeof r.notes === 'string' ? r.notes : undefined,
+    createdAt: r.createdAt as string,
+    updatedAt: typeof r.updatedAt === 'string' ? r.updatedAt : undefined,
+    response: (r.response as Promise['response']) ?? null,
+  }
+}
+
+export function validatePromisesSnapshot(json: string): PromisesSnapshot {
+  const raw = JSON.parse(json) as Record<string, unknown>
+  assertString(raw.version, 'version')
+  assertIsoDate(raw.generatedAt, 'generatedAt')
+  if (raw.frozenUntil !== null) assertIsoDate(raw.frozenUntil, 'frozenUntil')
+  assertString(raw.legalNotice, 'legalNotice', 80, 2000)
+  assertUrl(raw.contactUrl, 'contactUrl')
+  // methodologyUrl can be internal ("/metodologia") or absolute; accept both.
+  if (typeof raw.methodologyUrl !== 'string' || raw.methodologyUrl.length < 2) {
+    throw new ValidationError('methodologyUrl must be a non-empty string')
+  }
+  if (!Array.isArray(raw.items)) throw new ValidationError('items must be array')
+  const items = (raw.items as unknown[]).map((p, i) => validatePromise(p, i))
+  // Unique id check.
+  const ids = new Set<string>()
+  for (const p of items) {
+    if (ids.has(p.id)) throw new ValidationError(`duplicate id "${p.id}"`)
+    ids.add(p.id)
+  }
+  return {
+    version: raw.version as string,
+    generatedAt: raw.generatedAt as string,
+    frozenUntil: raw.frozenUntil as string | null,
+    legalNotice: raw.legalNotice as string,
+    contactUrl: raw.contactUrl as string,
+    methodologyUrl: raw.methodologyUrl as string,
+    items,
+  }
+}
+
+export function isFrozen(snap: Pick<PromisesSnapshot, 'frozenUntil'>, now = new Date()): boolean {
+  if (!snap.frozenUntil) return false
+  const until = new Date(snap.frozenUntil)
+  return now < until
+}

@@ -1,0 +1,206 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-04-20T00:00:00.000Z",
+  "frozenUntil": null,
+  "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
+  "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
+  "methodologyUrl": "/metodologia",
+  "items": [
+    {
+      "id": "psoe-presupuesto-2026-46m",
+      "party": "PSOE",
+      "title": "Presupuesto municipal 2026 de 46 millones de euros",
+      "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
+        "publisher": "Levante-EMV"
+      },
+      "madeAt": "2026-03-17",
+      "topic": "fiscal",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [
+        {
+          "date": "2026-03-17",
+          "url": "https://civicpulse-virid.vercel.app/data/budget.json",
+          "quote": "CivicPulse: snapshot CONPREL MinHac confirma presupuesto 2026 de €46,047,149 ingresos / €41,578,252 gastos — superávit inicial €1.94M",
+          "publisher": "CivicPulse / MinHac CONPREL",
+          "kind": "budget",
+          "addedBy": "civicpulse-bot"
+        }
+      ],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-refugios-climaticos-2026",
+      "party": "PSOE",
+      "title": "Plan Municipal de Refugios Climáticos",
+      "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
+        "publisher": "Valencia Plaza"
+      },
+      "madeAt": "2026-03-27",
+      "topic": "medio-ambiente",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-reconstruccion-dana-9-5m",
+      "party": "PSOE",
+      "title": "Reconstrucción post-DANA con 9,5 millones de fondos europeos",
+      "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
+        "publisher": "Levante-EMV"
+      },
+      "madeAt": "2026-02-10",
+      "topic": "urbanismo",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-vivienda-900-hogares",
+      "party": "PSOE",
+      "title": "Plan para crear 900 hogares nuevos",
+      "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
+        "publisher": "elDiario.es"
+      },
+      "madeAt": "2026-01-05",
+      "topic": "vivienda",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-construccion-vivienda-2026-2029",
+      "party": "PSOE",
+      "title": "Impulso a la construcción de vivienda 2026-2029",
+      "quote": "El Ayuntamiento de Riba-roja impulsará en el periodo 2026-2029 la construcción de vivienda en el municipio",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
+        "publisher": "Valencia Plaza"
+      },
+      "madeAt": "2026-01-02",
+      "topic": "vivienda",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-pasarelas-parc-natural-turia",
+      "party": "PSOE",
+      "title": "Cinco pasarelas nuevas en el Parc Natural del Túria",
+      "quote": "Riba-roja de Túria finalizará en julio cinco pasarelas en el Parc Natural del Túria",
+      "source": {
+        "url": "https://www.levante-emv.com/riba-roja-turia",
+        "publisher": "Levante-EMV"
+      },
+      "madeAt": "2026-03-25",
+      "topic": "medio-ambiente",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-espai-obert-presupuesto",
+      "party": "PSOE",
+      "title": "Retoma los encuentros Espai Obert con los vecinos",
+      "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
+        "publisher": "Levante-EMV"
+      },
+      "madeAt": "2026-03-17",
+      "topic": "participacion",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-alumbrado-led-680k",
+      "party": "PSOE",
+      "title": "Contrato de alumbrado LED por 680.000 €",
+      "quote": "El contrato de alumbrado LED (€680k) se adjudica a la misma empresa por sexta vez",
+      "source": {
+        "url": "https://civicpulse-virid.vercel.app/data/tenders.json",
+        "publisher": "CivicPulse / Gobierto · Ribalicita"
+      },
+      "madeAt": "2026-02-15",
+      "topic": "urbanismo",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [
+        {
+          "date": "2026-02-15",
+          "url": "https://ribalicita.ribarroja.es/visualizaciones/contratos",
+          "quote": "Contrato de alumbrado ornamental LED publicado en la plataforma municipal de contratos; trazable desde Ribalicita (Gobierto).",
+          "publisher": "Gobierto · Ribalicita",
+          "kind": "ayuntamiento",
+          "addedBy": "civicpulse-bot"
+        }
+      ],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-metro-l9-agosto",
+      "party": "PSOE",
+      "title": "Defensa de la frecuencia del Metro L9 en verano",
+      "quote": "Metro L9 reducirá frecuencia en agosto: los barrios del este, afectados",
+      "source": {
+        "url": "https://www.levante-emv.com/metro-l9",
+        "publisher": "Levante-EMV"
+      },
+      "madeAt": "2026-04-15",
+      "topic": "movilidad",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
+    },
+    {
+      "id": "psoe-respuesta-quejas-sector-14-48h",
+      "party": "PSOE",
+      "title": "Respuesta a quejas en el Sector 14 en 48 horas",
+      "quote": "El servicio municipal de Limpieza prometió 48 horas. Los datos del propio Ayuntamiento muestran una media de 73 horas en el barrio con mayor crecimiento poblacional.",
+      "source": {
+        "url": "https://ribalicita.ribarroja.es/",
+        "publisher": "Ayuntamiento Riba-roja · Transparencia"
+      },
+      "madeAt": "2026-01-15",
+      "topic": "urbanismo",
+      "kind": "compromiso-investidura",
+      "status": "en-verificacion",
+      "evidence": [],
+      "createdAt": "2026-04-20",
+      "notes": "Compromiso anunciado públicamente en la primera convocatoria de Espai Obert; actualmente en verificación porque las métricas municipales sugieren incumplimiento pero aún no existe resolución del pleno ni auditoría externa publicada."
+    },
+    {
+      "id": "pp-voto-contra-fondos-dana",
+      "party": "PP",
+      "title": "Oposición a la aceptación de los 9,5M post-DANA",
+      "quote": "El PP de Riba-roja vota en contra de los 9,5 millones de euros para el municipio",
+      "source": {
+        "url": "https://www.elperiodic.com/ribaroja_turia",
+        "publisher": "elperiodic.com"
+      },
+      "madeAt": "2026-02-12",
+      "topic": "fiscal",
+      "kind": "enmienda-pleno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20",
+      "notes": "Posición pública del grupo municipal del PP ante la aceptación de fondos europeos de reconstrucción post-DANA. Se cita como posición política atribuida, no como promesa electoral del programa 2023."
+    }
+  ]
+}

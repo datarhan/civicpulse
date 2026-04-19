@@ -57,13 +57,14 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
     )
   })
 
-  it('every status change must carry an evidence entry with url + date (invariant 8)', () => {
-    // Any promise whose status is beyond `documentada` must have ≥1 evidence row.
+  it('every status beyond the V1 safe set carries evidence (legal invariant)', () => {
+    // V1 legal safe set: documentada + en-verificacion may publish without
+    // evidence; everything else must have ≥1 dated, URL-backed evidence row.
+    const safe = new Set(['documentada', 'en-verificacion'])
     for (const p of snap.items) {
-      if (p.status !== 'documentada') {
+      if (!safe.has(p.status)) {
         expect(p.evidence.length).toBeGreaterThanOrEqual(1)
       }
-      // And every evidence entry has a url + date + verbatim quote itself.
       for (const e of p.evidence) {
         expect(e.url).toMatch(/^https?:\/\//)
         expect(e.date).toMatch(/^\d{4}-\d{2}-\d{2}/)
@@ -83,10 +84,16 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
   })
 
   it('rejects a snapshot whose record lacks a verbatim quote (legal invariant)', () => {
-    const bad = {
+    const base = {
       version: '1.0',
+      generatedAt: '2026-04-20',
       frozenUntil: null,
       legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+    }
+    const bad = {
+      ...base,
       items: [
         {
           id: 'bad-1',
@@ -106,27 +113,33 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
     expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/quote/)
   })
 
-  it('rejects a snapshot with a disallowed status in V1', () => {
-    const bad = {
+  it('rejects a non-safe-V1 status without any evidence entries', () => {
+    const base = {
       version: '1.0',
+      generatedAt: '2026-04-20',
       frozenUntil: null,
       legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+    }
+    const bad = {
+      ...base,
       items: [
         {
           id: 'bad-2',
           party: 'PP',
-          title: 'Accusatory',
+          title: 'Accusatory without evidence',
           quote: 'A verbatim quote that is at least twenty characters long.',
           source: { url: 'https://x.test', publisher: 'Test' },
           madeAt: '2025-06-01',
           topic: 'fiscal',
           kind: 'programa-electoral',
-          status: 'no-ejecutada', // VIOLATION — not allowed in V1 without evidence
+          status: 'no-ejecutada', // VIOLATION — requires ≥1 evidence entry
           evidence: [],
           createdAt: '2025-06-01',
         },
       ],
     }
-    expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow()
+    expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/evidence/)
   })
 })
