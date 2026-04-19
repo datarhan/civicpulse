@@ -1,0 +1,377 @@
+{
+  "generatedAt": "2026-04-19T21:28:30.635Z",
+  "source": "https://www.ine.es/jaxiT3/files/t/es/csv_bd/2903.csv?nocab=1",
+  "ineCode": "46214",
+  "name": "Riba-roja de Túria",
+  "latestYear": 2025,
+  "latestTotal": 24616,
+  "coverage": {
+    "fromYear": 1996,
+    "toYear": 2025,
+    "years": 29
+  },
+  "growth": {
+    "decadePct": 15.08,
+    "absSinceFirst": 13380
+  },
+  "series": {
+    "ineCode": "46214",
+    "name": "Riba-roja de Túria",
+    "total": [
+      {
+        "year": 1996,
+        "value": 11236
+      },
+      {
+        "year": 1998,
+        "value": 11671
+      },
+      {
+        "year": 1999,
+        "value": 12250
+      },
+      {
+        "year": 2000,
+        "value": 12908
+      },
+      {
+        "year": 2001,
+        "value": 13562
+      },
+      {
+        "year": 2002,
+        "value": 14261
+      },
+      {
+        "year": 2003,
+        "value": 14999
+      },
+      {
+        "year": 2004,
+        "value": 16262
+      },
+      {
+        "year": 2005,
+        "value": 17251
+      },
+      {
+        "year": 2006,
+        "value": 18329
+      },
+      {
+        "year": 2007,
+        "value": 19083
+      },
+      {
+        "year": 2008,
+        "value": 19938
+      },
+      {
+        "year": 2009,
+        "value": 20468
+      },
+      {
+        "year": 2010,
+        "value": 20755
+      },
+      {
+        "year": 2011,
+        "value": 21094
+      },
+      {
+        "year": 2012,
+        "value": 21349
+      },
+      {
+        "year": 2013,
+        "value": 21520
+      },
+      {
+        "year": 2014,
+        "value": 21499
+      },
+      {
+        "year": 2015,
+        "value": 21391
+      },
+      {
+        "year": 2016,
+        "value": 21521
+      },
+      {
+        "year": 2017,
+        "value": 21626
+      },
+      {
+        "year": 2018,
+        "value": 21992
+      },
+      {
+        "year": 2019,
+        "value": 22264
+      },
+      {
+        "year": 2020,
+        "value": 22761
+      },
+      {
+        "year": 2021,
+        "value": 22799
+      },
+      {
+        "year": 2022,
+        "value": 23050
+      },
+      {
+        "year": 2023,
+        "value": 23555
+      },
+      {
+        "year": 2024,
+        "value": 24230
+      },
+      {
+        "year": 2025,
+        "value": 24616
+      }
+    ],
+    "men": [
+      {
+        "year": 1996,
+        "value": 5582
+      },
+      {
+        "year": 1998,
+        "value": 5801
+      },
+      {
+        "year": 1999,
+        "value": 6114
+      },
+      {
+        "year": 2000,
+        "value": 6453
+      },
+      {
+        "year": 2001,
+        "value": 6772
+      },
+      {
+        "year": 2002,
+        "value": 7160
+      },
+      {
+        "year": 2003,
+        "value": 7569
+      },
+      {
+        "year": 2004,
+        "value": 8241
+      },
+      {
+        "year": 2005,
+        "value": 8720
+      },
+      {
+        "year": 2006,
+        "value": 9305
+      },
+      {
+        "year": 2007,
+        "value": 9686
+      },
+      {
+        "year": 2008,
+        "value": 10132
+      },
+      {
+        "year": 2009,
+        "value": 10415
+      },
+      {
+        "year": 2010,
+        "value": 10568
+      },
+      {
+        "year": 2011,
+        "value": 10771
+      },
+      {
+        "year": 2012,
+        "value": 10872
+      },
+      {
+        "year": 2013,
+        "value": 10950
+      },
+      {
+        "year": 2014,
+        "value": 10940
+      },
+      {
+        "year": 2015,
+        "value": 10866
+      },
+      {
+        "year": 2016,
+        "value": 10926
+      },
+      {
+        "year": 2017,
+        "value": 10961
+      },
+      {
+        "year": 2018,
+        "value": 11157
+      },
+      {
+        "year": 2019,
+        "value": 11271
+      },
+      {
+        "year": 2020,
+        "value": 11541
+      },
+      {
+        "year": 2021,
+        "value": 11553
+      },
+      {
+        "year": 2022,
+        "value": 11643
+      },
+      {
+        "year": 2023,
+        "value": 11887
+      },
+      {
+        "year": 2024,
+        "value": 12247
+      },
+      {
+        "year": 2025,
+        "value": 12440
+      }
+    ],
+    "women": [
+      {
+        "year": 1996,
+        "value": 5654
+      },
+      {
+        "year": 1998,
+        "value": 5870
+      },
+      {
+        "year": 1999,
+        "value": 6136
+      },
+      {
+        "year": 2000,
+        "value": 6455
+      },
+      {
+        "year": 2001,
+        "value": 6790
+      },
+      {
+        "year": 2002,
+        "value": 7101
+      },
+      {
+        "year": 2003,
+        "value": 7430
+      },
+      {
+        "year": 2004,
+        "value": 8021
+      },
+      {
+        "year": 2005,
+        "value": 8531
+      },
+      {
+        "year": 2006,
+        "value": 9024
+      },
+      {
+        "year": 2007,
+        "value": 9397
+      },
+      {
+        "year": 2008,
+        "value": 9806
+      },
+      {
+        "year": 2009,
+        "value": 10053
+      },
+      {
+        "year": 2010,
+        "value": 10187
+      },
+      {
+        "year": 2011,
+        "value": 10323
+      },
+      {
+        "year": 2012,
+        "value": 10477
+      },
+      {
+        "year": 2013,
+        "value": 10570
+      },
+      {
+        "year": 2014,
+        "value": 10559
+      },
+      {
+        "year": 2015,
+        "value": 10525
+      },
+      {
+        "year": 2016,
+        "value": 10595
+      },
+      {
+        "year": 2017,
+        "value": 10665
+      },
+      {
+        "year": 2018,
+        "value": 10835
+      },
+      {
+        "year": 2019,
+        "value": 10993
+      },
+      {
+        "year": 2020,
+        "value": 11220
+      },
+      {
+        "year": 2021,
+        "value": 11246
+      },
+      {
+        "year": 2022,
+        "value": 11407
+      },
+      {
+        "year": 2023,
+        "value": 11668
+      },
+      {
+        "year": 2024,
+        "value": 11983
+      },
+      {
+        "year": 2025,
+        "value": 12176
+      }
+    ],
+    "latestYear": 2025,
+    "latestTotal": 24616
+  }
+}

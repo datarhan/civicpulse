@@ -2,6 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import StylizedMap from '../components/LiveCity/StylizedMap'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
+import { usePadron } from '../hooks/usePadron'
+import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { Ic } from '../components/Icons'
 import {
   RIBA_ROJA,
@@ -1154,6 +1156,35 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
 }
 
 function KpiStrip() {
+  const padron = usePadron().data
+  const budget = useBudget().data
+  const tenders = useTenders().data
+
+  // Population sparkline: last 10 years of total.
+  const popSpark =
+    padron?.series?.total?.slice(-10).map((p) => p.value) || [78, 79, 79, 80, 80, 81, 81, 81, 81, 81]
+  const popLatest = padron ? Math.round(padron.latestTotal / 100) / 10 : 24.6 // thousands
+  const popDecade = padron ? padron.growth.decadePct : 0
+  const popDeltaStr = padron
+    ? (popDecade >= 0 ? '▲ ' : '▼ ') + Math.abs(popDecade).toFixed(1) + '%'
+    : '—'
+
+  // Budget numbers
+  const totalRevenue = budget?.snapshot?.totalRevenue
+  const totalExpense = budget?.snapshot?.totalExpense
+  const budgetYear = budget?.snapshot?.year
+  const budgetValue = totalExpense
+    ? formatBudgetEuros(totalExpense, { compact: true })
+    : '€47.3k'
+  const balance = budget?.snapshot?.balance || 0
+
+  // Tenders totals
+  const awardedTotal = tenders?.stats?.awardedTotalEuros
+  const awardedCount = tenders?.stats?.awardedContracts
+  const awardedValue = awardedTotal
+    ? formatBudgetEuros(awardedTotal, { compact: true })
+    : '—'
+
   return (
     <footer
       style={{
@@ -1166,19 +1197,48 @@ function KpiStrip() {
       }}
     >
       <Kpi
-        label="Salud municipal"
-        value="81.2"
-        delta="▲ 0.4"
-        tone="ok"
-        sub="p50 74.2"
-        spark={[78, 79, 78, 80, 79.5, 80, 81, 80.5, 81.2]}
+        label={padron ? `Población ${padron.latestYear}` : 'Población'}
+        value={padron ? popLatest.toFixed(1) + 'k' : '—'}
+        delta={popDeltaStr}
+        tone={popDecade > 0 ? 'ok' : 'warn'}
+        sub={padron ? `10 años` : 'INE Padrón'}
+        spark={popSpark}
         serif
       />
-      <Kpi label="Quejas activas" value="47" delta="▼ 3" tone="warn" sub="últ. 24 h" spark={[52, 50, 51, 49, 48, 47, 47]} />
-      <Kpi label="Resueltas hoy" value="31" delta="▲ 12" tone="ok" sub="del turno" spark={[18, 22, 25, 28, 29, 31]} />
-      <Kpi label="€ ejecutados" value="€47.3k" delta="▲ 0.4" sub="acumulado" spark={[20, 28, 32, 40, 42, 47]} sparkColor={PALETTE.civic} />
-      <Kpi label="Promesas" value="71%" delta="▲ 2" tone="ok" sub="cumpl. trim." spark={[62, 64, 66, 68, 69, 71]} />
-      <Kpi label="Pleno" value="18:00" delta="HOY" tone="crit" sub="2 calientes" />
+      <Kpi
+        label={budgetYear ? `Presup. ${budgetYear}` : 'Presupuesto'}
+        value={budgetValue}
+        delta={balance >= 0 ? '▲' : '▼'}
+        tone={balance >= 0 ? 'ok' : 'warn'}
+        sub="MinHac CONPREL"
+        spark={[20, 28, 32, 40, 42, 47]}
+        sparkColor={PALETTE.civic}
+      />
+      <Kpi
+        label="Gastos personal"
+        value={
+          budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
+            ? formatBudgetEuros(budget.snapshot.expenseByEconomicChapter[0].amount, { compact: true })
+            : '—'
+        }
+        delta={totalExpense ? ((budget.snapshot.expenseByEconomicChapter[0].amount / totalExpense) * 100).toFixed(0) + '%' : '—'}
+        tone="civic"
+        sub="Cap.1 económico"
+      />
+      <Kpi
+        label="Contratos adj."
+        value={awardedValue}
+        delta={awardedCount ? '· ' + awardedCount : '—'}
+        tone="ok"
+        sub="Gobierto/PLACSP"
+      />
+      <Kpi
+        label="Pleno"
+        value="18:00"
+        delta="HOY"
+        tone="crit"
+        sub="2 calientes"
+      />
       <div
         style={{
           padding: '0 18px',

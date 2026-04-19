@@ -67,7 +67,7 @@ export default function App() {
 
   const onVariantB = location.pathname.startsWith('/hud')
   const onVariantC = location.pathname.startsWith('/briefing')
-  const onVariantD = location.pathname.startsWith('/d')
+  const onVariantD = location.pathname === '/d' || location.pathname.startsWith('/d/')
   const onChooser = location.pathname === '/variants'
   const onVariantA = !onVariantB && !onVariantC && !onVariantD && !onChooser
 

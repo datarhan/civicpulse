@@ -1,6 +1,166 @@
-import { Card, Pill } from '../components/Primitives'
+import { Card, Pill, SectionHead } from '../components/Primitives'
 import { Ic } from '../components/Icons'
 import { DATASETS } from '../data/mockData'
+import { usePadron } from '../hooks/usePadron'
+
+function PopulationChart() {
+  const { loading, error, data } = usePadron()
+  if (loading) return <Card><div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando padrón INE…</div></Card>
+  if (error || !data) return null
+
+  const pts = data.series.total
+  const men = data.series.men
+  const women = data.series.women
+  const years = pts.map((p) => p.year)
+  const values = pts.map((p) => p.value)
+  const minV = Math.min(...values)
+  const maxV = Math.max(...values)
+  const W = 900
+  const H = 220
+  const PAD_L = 54
+  const PAD_R = 16
+  const PAD_T = 16
+  const PAD_B = 28
+  const innerW = W - PAD_L - PAD_R
+  const innerH = H - PAD_T - PAD_B
+  const xAt = (i) => PAD_L + (i / (pts.length - 1)) * innerW
+  const yAt = (v) => PAD_T + innerH - ((v - minV) / (maxV - minV || 1)) * innerH
+  const path = pts.map((p, i) => (i === 0 ? 'M' : 'L') + xAt(i).toFixed(1) + ',' + yAt(p.value).toFixed(1)).join(' ')
+  const area =
+    'M' +
+    xAt(0).toFixed(1) +
+    ',' +
+    (PAD_T + innerH).toFixed(1) +
+    ' ' +
+    pts
+      .map((p, i) => 'L' + xAt(i).toFixed(1) + ',' + yAt(p.value).toFixed(1))
+      .join(' ') +
+    ' L' +
+    xAt(pts.length - 1).toFixed(1) +
+    ',' +
+    (PAD_T + innerH).toFixed(1) +
+    ' Z'
+
+  // Axis ticks: 5 horizontal
+  const ticks = []
+  for (let i = 0; i <= 4; i++) {
+    const v = minV + (i / 4) * (maxV - minV)
+    ticks.push({ y: yAt(v), v: Math.round(v) })
+  }
+  // X axis: every 4 years
+  const xTicks = []
+  for (let i = 0; i < pts.length; i += Math.ceil(pts.length / 7)) {
+    xTicks.push({ x: xAt(i), y: pts[i].year })
+  }
+
+  const latest = pts[pts.length - 1]
+  const generated = new Date(data.generatedAt).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+
+  return (
+    <Card>
+      <SectionHead
+        eyebrow={`Padrón oficial INE · ${years[0]}–${years[years.length - 1]}`}
+        title="Población residente"
+      />
+      <div style={{ display: 'flex', gap: 20, alignItems: 'baseline', marginTop: 4, marginBottom: 4 }}>
+        <div>
+          <div className="mono" style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-.01em' }}>
+            {latest.value.toLocaleString('es-ES')}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>habitantes · {latest.year}</div>
+        </div>
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 14,
+              fontWeight: 700,
+              color: data.growth.decadePct >= 0 ? 'var(--ok)' : 'var(--crit)',
+            }}
+          >
+            {data.growth.decadePct >= 0 ? '+' : ''}
+            {data.growth.decadePct.toFixed(1)}%
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>10 años</div>
+        </div>
+        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+          actualizado {generated} · INE Tempus3 tabla 2903
+        </div>
+      </div>
+      <svg viewBox={`0 0 ${W} ${H}`} style={{ width: '100%', height: 'auto', display: 'block' }}>
+        {ticks.map((t, i) => (
+          <g key={i}>
+            <line
+              x1={PAD_L}
+              x2={W - PAD_R}
+              y1={t.y}
+              y2={t.y}
+              stroke="var(--border2)"
+              strokeWidth="0.5"
+            />
+            <text
+              x={PAD_L - 6}
+              y={t.y + 3}
+              textAnchor="end"
+              fontSize="10"
+              fontFamily="DM Mono, monospace"
+              fill="var(--ink50)"
+            >
+              {t.v.toLocaleString('es-ES')}
+            </text>
+          </g>
+        ))}
+        {xTicks.map((t, i) => (
+          <text
+            key={i}
+            x={t.x}
+            y={H - 10}
+            textAnchor="middle"
+            fontSize="10"
+            fontFamily="DM Mono, monospace"
+            fill="var(--ink50)"
+          >
+            {t.y}
+          </text>
+        ))}
+        <path d={area} fill="var(--civic)" opacity="0.08" />
+        <path d={path} fill="none" stroke="var(--civic)" strokeWidth="2" />
+        {pts.map((p, i) => (
+          <circle key={i} cx={xAt(i)} cy={yAt(p.value)} r="2" fill="var(--civic)" />
+        ))}
+      </svg>
+      <div style={{ display: 'flex', gap: 20, marginTop: 14, fontSize: 12 }}>
+        <div>
+          <span className="mono" style={{ fontWeight: 700 }}>
+            {men[men.length - 1]?.value.toLocaleString('es-ES')}
+          </span>{' '}
+          <span style={{ color: 'var(--ink50)' }}>hombres</span>
+        </div>
+        <div>
+          <span className="mono" style={{ fontWeight: 700 }}>
+            {women[women.length - 1]?.value.toLocaleString('es-ES')}
+          </span>{' '}
+          <span style={{ color: 'var(--ink50)' }}>mujeres</span>
+        </div>
+        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+          fuente:{' '}
+          <a
+            href={data.source}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            ine.es
+          </a>
+        </div>
+      </div>
+    </Card>
+  )
+}
 
 export default function Datos() {
   return (
@@ -26,6 +186,22 @@ export default function Datos() {
         </div>
       </div>
 
+      <div style={{ marginBottom: 18 }}>
+        <PopulationChart />
+      </div>
+
+      <div
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+          marginBottom: 8,
+        }}
+      >
+        Catálogo de datasets
+      </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
         {DATASETS.map((d, i) => (
           <Card key={i} hover>

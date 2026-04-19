@@ -63,11 +63,15 @@ export function parseInePadron(csv: string, opts: ParseOpts): PadronSeries | nul
     const muni = cols[0].trim()
     const sexo = cols[1].trim()
     const year = parseInt(cols[2].trim(), 10)
-    const value = parseEuroNumber(cols[3] || '')
+    const rawValue = (cols[3] || '').trim().replace(/^"|"$/g, '')
     // Muni format: "46214 Riba-roja de Túria"
     if (!muni.startsWith(opts.ineCode + ' ')) continue
     if (!name) name = muni.slice(opts.ineCode.length).trim()
     if (!Number.isFinite(year)) continue
+    // Skip rows with missing data (INE often leaves gaps, e.g. 1997 padrón).
+    if (rawValue === '' || rawValue === '..' || rawValue === '-') continue
+    const value = parseEuroNumber(rawValue)
+    if (!Number.isFinite(value) || value <= 0) continue
     const pt: PadronPoint = { year, value }
     if (sexo === 'Total') total.push(pt)
     else if (/hombre/i.test(sexo)) men.push(pt)
