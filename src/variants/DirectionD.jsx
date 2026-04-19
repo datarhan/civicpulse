@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import StylizedMap from '../components/LiveCity/StylizedMap'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
 import { Ic } from '../components/Icons'
 import {
   RIBA_ROJA,
@@ -956,6 +957,90 @@ function CoalitionRing() {
   )
 }
 
+function LiveContracts() {
+  const { loading, error, data } = useTenders()
+  if (loading || error || !data) return null
+  const recent = (data.top?.recentAwarded || []).slice(0, 4)
+  if (recent.length === 0) return null
+
+  const fmtEur = (n) =>
+    new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+      notation: n >= 100_000 ? 'compact' : 'standard',
+    }).format(n)
+
+  return (
+    <div style={{ marginBottom: 18, borderTop: '1px solid ' + PALETTE.hair, paddingTop: 14 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10,
+            color: PALETTE.ink60,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+          }}
+        >
+          Contratos adjudicados
+        </div>
+        <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+          {data.stats.totalContracts} · {fmtEur(data.stats.awardedTotalEuros)}
+        </div>
+      </div>
+      {recent.map((c, i) => (
+        <div
+          key={c.id}
+          style={{
+            padding: '10px 0',
+            borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 3 }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 10,
+                color: PALETTE.accent,
+                letterSpacing: '.1em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}
+            >
+              {c.categoryTitle || c.contractType || 'Contrato'}
+            </span>
+            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
+              {formatTenderDate(c.awardDate)}
+            </span>
+          </div>
+          <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, marginBottom: 2 }}>
+            {c.permalink ? (
+              <a
+                href={c.permalink}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
+              </a>
+            ) : (
+              c.title
+            )}
+          </div>
+          <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: PALETTE.ink60 }}>
+            <span>{c.contractor || 'Sin adjudicatario'}</span>
+            <span style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }} className="mono">
+              {fmtEur(c.finalAmount)}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 function EditorialColumn({ events, now }) {
   return (
     <aside
@@ -973,6 +1058,7 @@ function EditorialColumn({ events, now }) {
       <EditorialMasthead now={now} />
       <AlcaldeBox />
       <CoalitionRing />
+      <LiveContracts />
       <LeadStory />
       <SecondaryStories />
       <LiveStrip events={events} />

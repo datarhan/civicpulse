@@ -9,6 +9,7 @@ import {
   TOP_CONTRACTS,
 } from '../data/mockData'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
+import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
 
 function KStrip({ label, value, delta, invert }) {
   const d = invert ? -delta : delta
@@ -112,6 +113,97 @@ function ChapterRow({ label, amount, total, color }) {
         <div style={{ width: pct + '%', height: '100%', background: color }} />
       </div>
     </div>
+  )
+}
+
+function RealContracts() {
+  const { loading, error, data } = useTenders()
+  if (loading) {
+    return (
+      <Card>
+        <SectionHead eyebrow="Últimos contratos adjudicados" title="Cargando contratos…" />
+      </Card>
+    )
+  }
+  if (error || !data) {
+    return (
+      <Card>
+        <SectionHead eyebrow="Últimos contratos adjudicados" title="Contratos municipales" />
+        <div style={{ fontSize: 12.5, color: 'var(--warn)' }}>
+          Ejecuta <code>npm run scrape:tenders</code> para regenerar los datos.
+        </div>
+      </Card>
+    )
+  }
+  const recent = data.top?.recentAwarded || []
+  const generatedDate = new Date(data.generatedAt).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+  const formatEur = (n) =>
+    new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    }).format(n)
+
+  return (
+    <Card>
+      <SectionHead
+        eyebrow={`${data.stats.totalContracts} contratos totales · € ${new Intl.NumberFormat('es-ES', {
+          maximumFractionDigits: 0,
+        }).format(data.stats.awardedTotalEuros)} adjudicados`}
+        title="Últimos contratos adjudicados"
+      />
+      <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2, marginBottom: 10 }}>
+        Datos reales de ribalicita.ribarroja.es (Gobierto) · actualizado {generatedDate}
+      </div>
+      {recent.slice(0, 8).map((c, i) => (
+        <div
+          key={c.id}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 110px 100px',
+            padding: '10px 0',
+            borderBottom:
+              i === recent.slice(0, 8).length - 1 ? 'none' : '1px solid var(--border2)',
+            alignItems: 'center',
+            fontSize: 13,
+            gap: 10,
+          }}
+        >
+          <div style={{ minWidth: 0 }}>
+            <div style={{ fontWeight: 500, lineHeight: 1.3 }}>
+              {c.permalink ? (
+                <a
+                  href={c.permalink}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title}
+                </a>
+              ) : (
+                <span>{c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title}</span>
+              )}
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
+              {c.contractor || 'Sin adjudicatario'} ·{' '}
+              {c.awardDate ? formatDate(c.awardDate) : '—'}
+            </div>
+          </div>
+          <div className="mono" style={{ fontSize: 13, fontWeight: 700, textAlign: 'right' }}>
+            {formatEur(c.finalAmount)}
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
+              {STATUS_LABEL[c.status] || c.status}
+            </Pill>
+          </div>
+        </div>
+      ))}
+    </Card>
   )
 }
 
@@ -285,44 +377,12 @@ export default function Presupuesto() {
         Secciones en desarrollo · datos de demostración
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 16, marginBottom: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 16, marginBottom: 16 }}>
         <Card>
           <SectionHead eyebrow="Mi recibo del IBI" title="A dónde van tus €487" />
           <TaxFlow />
         </Card>
-        <Card>
-          <SectionHead eyebrow="Partidas grandes" title="Top contratos abiertos" />
-          {TOP_CONTRACTS.map((c, i) => (
-            <div
-              key={i}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 90px 100px',
-                padding: '10px 0',
-                borderBottom: i === TOP_CONTRACTS.length - 1 ? 'none' : '1px solid var(--border2)',
-                alignItems: 'center',
-                fontSize: 13,
-                gap: 10,
-              }}
-            >
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontWeight: 500 }}>{c.name}</div>
-                <div style={{ fontSize: 11, color: 'var(--ink50)' }}>{c.vendor}</div>
-              </div>
-              <div className="mono" style={{ fontSize: 13, fontWeight: 700, textAlign: 'right' }}>
-                {c.val}
-              </div>
-              <div style={{ textAlign: 'right' }}>
-                <Pill
-                  tone={c.status === 'en curso' ? 'civic' : c.status === 'adjudicado' ? 'ok' : 'intel'}
-                  size="xs"
-                >
-                  {c.status}
-                </Pill>
-              </div>
-            </div>
-          ))}
-        </Card>
+        <RealContracts />
       </div>
 
       <Card>
