@@ -1,0 +1,390 @@
+{
+  "generatedAt": "2026-04-19T22:22:21.836Z",
+  "source": {
+    "baseUrl": "http://www.ribarroja.es",
+    "platform": "Ayuntamiento de Riba-roja de Túria — /plenos/<year>"
+  },
+  "stats": {
+    "total": 53,
+    "byYear": {
+      "2023": 16,
+      "2024": 17,
+      "2025": 14,
+      "2026": 6
+    },
+    "latestDate": "2026-04-20"
+  },
+  "items": [
+    {
+      "id": "k4olcs",
+      "title": "Pleno ordinario 20 de abril de 2026",
+      "date": "2026-04-20",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821"
+    },
+    {
+      "id": "ma87e0",
+      "title": "Pleno extraordinario y urgente 16 de marzo de 2026",
+      "date": "2026-03-16",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333"
+    },
+    {
+      "id": "1sqj7is",
+      "title": "Pleno ordinario 9 de marzo de 2026",
+      "date": "2026-03-09",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821"
+    },
+    {
+      "id": "rx4hb4",
+      "title": "Pleno ordinario 9 de febrero de 2026",
+      "date": "2026-02-09",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_febrero_de_2026/contenidos/7240659/9323821"
+    },
+    {
+      "id": "19gax3o",
+      "title": "Pleno ordinario 19 de enero de 2026",
+      "date": "2026-01-19",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_19_de_enero_de_2026/contenidos/6449942/8465333"
+    },
+    {
+      "id": "1pe3qs8",
+      "title": "Pleno extraordinario y urgente 7 de enero de 2026",
+      "date": "2026-01-07",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_y_urgente_7_de_enero_de_2026/contenidos/5750799/8465333"
+    },
+    {
+      "id": "toa3rc",
+      "title": "Pleno extraordinario y urgente 26 de diciembre de 2025",
+      "date": "2025-12-26",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_y_urgente_26_de_diciembre_de_2025/contenidos/4809578/8465333"
+    },
+    {
+      "id": "1qi8axv",
+      "title": "Pleno extraordinario y urgente 23 de diciembre de 2025",
+      "date": "2025-12-23",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_extraordinario_y_urgente_23_de_diciembre_de_2025/contenidos/8801506/9323821"
+    },
+    {
+      "id": "qz6weg",
+      "title": "Pleno ordinario 1 de diciembre de 2025",
+      "date": "2025-12-01",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_1_de_diciembre_de_2025_contenidos_7426584_9323821_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_contenidos_7426584_8465333/contenidos/7426584/8465333"
+    },
+    {
+      "id": "1du4rf5",
+      "title": "Pleno ordinario 3 de noviembre de 2025",
+      "date": "2025-11-03",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_2_de_noviembre_de_2025/contenidos/9549928/8465333"
+    },
+    {
+      "id": "otxq2c",
+      "title": "Pleno ordinario 6 de octubre de 2025",
+      "date": "2025-10-06",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_6_de_octubre_de_2025/contenidos/9993001/9323821"
+    },
+    {
+      "id": "c8kr44",
+      "title": "Pleno ordinario 8 de septiembre de 2025",
+      "date": "2025-09-08",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_8_de_septiembre_de_2025_contenidos_9994299_8465333/contenidos/9994299"
+    },
+    {
+      "id": "rmtyr",
+      "title": "Pleno extraordinario y urgente 31 de julio de 2025",
+      "date": "2025-07-31",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_extraordinario_y_urgente_31_de_julio_de_2025/contenidos/6156620/9323821"
+    },
+    {
+      "id": "anrfd5",
+      "title": "Pleno ordinario 28 de julio de 2025",
+      "date": "2025-07-28",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_28_de_julio_de_2025/contenidos/5828886/8465333"
+    },
+    {
+      "id": "1sk3q3c",
+      "title": "Pleno ordinario 7 de julio de 2025",
+      "date": "2025-07-07",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_7_de_julio_de_2025/contenidos/918830/9323821"
+    },
+    {
+      "id": "1ci5p5s",
+      "title": "Pleno ordinario 2 de junio de 2025",
+      "date": "2025-06-02",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_2_de_junio_de_2025_contenidos_2653378_9323821/contenidos/2653378/8465333"
+    },
+    {
+      "id": "1uqimx0",
+      "title": "Pleno ordinario 12 de mayo de 2025",
+      "date": "2025-05-12",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_12_de_mayo_de_2025_contenidos_2684464_8465333_contenidos_2684464_9323821/contenidos/2684464"
+    },
+    {
+      "id": "hp3y4s",
+      "title": "Pleno ordinario 7 de abril de 2025",
+      "date": "2025-04-07",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_7_de_abril_de_2025_contenidos_752124_9323821/contenidos/752124/9323821"
+    },
+    {
+      "id": "11k71c8",
+      "title": "Pleno ordinario 10 de febrero de 2025",
+      "date": "2025-02-10",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_10_de_febrero_de_2025_contenidos_4250086_9323821_contenidos_4250086_9323821/contenidos/4250086"
+    },
+    {
+      "id": "of2npg",
+      "title": "Pleno ordinario 20 de enero de 2025",
+      "date": "2025-01-20",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos/pleno_ordinario_20_de_enero_de_2025/contenidos/5461004/9323821"
+    },
+    {
+      "id": "1e0jjw",
+      "title": "Pleno extraordinario 26 de diciembre de 2024",
+      "date": "2024-12-26",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/pleno_extraordinario_26_de_diciembre_de_2024_contenidos_8722152_contenidos_8722152/contenidos/8722152/9323821"
+    },
+    {
+      "id": "19m20g0",
+      "title": "Pleno ordinario 2 de diciembre de 2024",
+      "date": "2024-12-02",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_2_de_diciembre_de_2024_contenidos_4591316_9323821/contenidos/4591316/9323821"
+    },
+    {
+      "id": "o48cdr",
+      "title": "Pleno ordinario 4 de noviembre de 2024",
+      "date": "2024-11-04",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_4_de_noviembre_de_2024/contenidos/131394/9323821"
+    },
+    {
+      "id": "18ei96g",
+      "title": "Pleno extraordinario 21 de octubre de 2024",
+      "date": "2024-10-21",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_extraordinario_21_de_octubre_de_2024_contenidos_3575920_8465333_contenidos_3575920_9323821/contenidos/3575920"
+    },
+    {
+      "id": "lpwudo",
+      "title": "Pleno ordinario 7 de octubre de 2024",
+      "date": "2024-10-07",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_7_de_octubre_de_2024/contenidos/1330810/8465333"
+    },
+    {
+      "id": "19xkzxw",
+      "title": "Pleno ordinario 9 de septiembre de 2024",
+      "date": "2024-09-09",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_9_de_septiembre_de_2024/contenidos/8978627/8465333"
+    },
+    {
+      "id": "1tgd1h4",
+      "title": "Pleno ordinario 29 de julio de 2024",
+      "date": "2024-07-29",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_29_de_julio_de_2024/contenidos/368519/8465333"
+    },
+    {
+      "id": "1pe6awk",
+      "title": "Pleno extraordinario 22 de julio de 2024",
+      "date": "2024-07-22",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_22_de_julio_de_2024_contenidos_595237_9323821_contenidos_595237_9323821/contenidos/595237"
+    },
+    {
+      "id": "1pdx0lc",
+      "title": "Pleno ordinario 1 de julio de 2024",
+      "date": "2024-07-01",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_1_de_julio_de_2024/contenidos/5364051/8465333"
+    },
+    {
+      "id": "1wqaaog",
+      "title": "Pleno ordinario 3 de junio de 2024",
+      "date": "2024-06-03",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_3_de_junio_de_2024/contenidos/8058078/9323821"
+    },
+    {
+      "id": "yhp4sc",
+      "title": "Pleno extraordinario 13 de mayo de 2024",
+      "date": "2024-05-13",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_13_de_mayo_de_2024/contenidos/3911220/8465333"
+    },
+    {
+      "id": "fkwdd8",
+      "title": "Pleno ordinario 6 de mayo de 2024",
+      "date": "2024-05-06",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/plenos/2024/pleno_ordinario_6_de_mayo_de_2024/contenidos/4718345/6527233"
+    },
+    {
+      "id": "1080zow",
+      "title": "Pleno ordinario 15 de abril de 2024",
+      "date": "2024-04-15",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_15_de_abril_de_2024/contenidos/6898682/8465333"
+    },
+    {
+      "id": "1rb2dsm",
+      "title": "Pleno extraordinario y urgente 28 de marzo de 2024",
+      "date": "2024-03-28",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_28_de_marzo_de_2024_contenidos_8271467_9323821/contenidos/8271467/9323821"
+    },
+    {
+      "id": "umsqbk",
+      "title": "Pleno ordinario 4 de marzo de 2024",
+      "date": "2024-03-04",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_4_de_marzo_de_2024/contenidos/8281648/8465333"
+    },
+    {
+      "id": "1ue92u4",
+      "title": "Pleno ordinario 5 de febrero de 2024",
+      "date": "2024-02-05",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_5_de_febrero_de_2024/contenidos/80665/9323821"
+    },
+    {
+      "id": "1qisc4g",
+      "title": "Pleno ordinario 15 de enero de 2024",
+      "date": "2024-01-15",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_15_de_enero_de_2024/contenidos/5014586/8465333"
+    },
+    {
+      "id": "mvb5nl",
+      "title": "Pleno extraordinario y urgente 15 de diciembre de 2023",
+      "date": "2023-12-15",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_ordinario_15_de_diciembre_de_2023_contenidos_5391076_8465333_contenidos_5391076_9323821/contenidos/5391076/9783518"
+    },
+    {
+      "id": "1u4otgk",
+      "title": "Pleno ordinario 4 de diciembre de 2023",
+      "date": "2023-12-04",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_ordinario_4_de_diciembre_de_2023_contenidos_6906487_8465333/contenidos/6906487/9323821"
+    },
+    {
+      "id": "15158ww",
+      "title": "Pleno ordinario 6 de noviembre de 2023",
+      "date": "2023-11-06",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_6_de_noviembre_de_2023/contenidos/2391772/8465333"
+    },
+    {
+      "id": "z7prps",
+      "title": "Pleno extraordinario 24 de octubre de 2023",
+      "date": "2023-10-24",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_24_de_octubre_de_2023_contenidos_5577867_9323821/contenidos/5577867/9323821"
+    },
+    {
+      "id": "1ea8wn5",
+      "title": "Pleno ordinario 2 de octubre de 2023",
+      "date": "2023-10-02",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_2_de_octubre_de_2023/contenidos/4370892/8465333"
+    },
+    {
+      "id": "jpr4fk",
+      "title": "Pleno ordinario 24 de julio de 2023",
+      "date": "2023-07-24",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/plenos_2023_pleno_ordinario_24_de_julio_de_2023_contenidos_8757251_0768111_contenidos_8757251_0892965/contenidos/8757251/0892965"
+    },
+    {
+      "id": "16ujrlm",
+      "title": "Pleno extraordinario 7 de julio de 2023",
+      "date": "2023-07-07",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/plenos/2023/pleno_ordinario_7_de_julio_de_2023/contenidos/2172018/0768111"
+    },
+    {
+      "id": "9jatoj",
+      "title": "Pleno 17 de junio de 2023",
+      "date": "2023-06-17",
+      "kind": "otro",
+      "link": "http://www.ribarroja.es/plenos/2023/pleno_17_de_junio_de_2023/contenidos/8198854/0768111"
+    },
+    {
+      "id": "1ouu5s0",
+      "title": "Pleno extraordinario 14 de junio de 2023",
+      "date": "2023-06-14",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/plenos/2023/pleno_extraordinario_14_de_junio_de_2023/contenidos/9796286/0768111"
+    },
+    {
+      "id": "15000go",
+      "title": "Pleno ordinario 24 de mayo de 2023",
+      "date": "2023-05-24",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/plenos_2023_pleno_ordinario_24_de_mayo_de_2023_contenidos_6570023_0768111/contenidos/6570023/0892965"
+    },
+    {
+      "id": "67qdq8",
+      "title": "Pleno ordinario 8 de mayo de 2023",
+      "date": "2023-05-08",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/plenos_2023_pleno_ordinario_8_de_mayo_de_2023_contenidos_3744470_0768111_contenidos_3744470_0892965_contenidos_3744470/contenidos/3744470/0892965"
+    },
+    {
+      "id": "buag5g",
+      "title": "Pleno extraordinario 2 de mayo de 2023",
+      "date": "2023-05-02",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/plenos/2023/pleno_extraordinario_2_de_mayo_de_2023/contenidos/3393920/0768111"
+    },
+    {
+      "id": "1wum8h8",
+      "title": "Pleno ordinario 3 de abril de 2023",
+      "date": "2023-04-03",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_tv_riba_roja_pleno_ordinario_3_de_abril_de_2023_contenidos_6017366_0892965/contenidos/6017366/0892965"
+    },
+    {
+      "id": "1edrlv4",
+      "title": "Pleno ordinario 6 de marzo de 2023",
+      "date": "2023-03-06",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/tv_riba_roja/pleno_ordinario_6_de_marzo_de_2023/contenidos/6462601/0892965"
+    },
+    {
+      "id": "1l7hhu7",
+      "title": "Pleno ordinario 13 de febrero de 2023",
+      "date": "2023-02-13",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/tv_riba_roja/pleno_ordinario_13_de_febrero_de_2023/contenidos/4135040/0892965"
+    },
+    {
+      "id": "1r6yy0",
+      "title": "Pleno ordinario 23 de enero de 2023",
+      "date": "2023-01-23",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/plenos/2023/pleno_ordinario_23_de_enero_de_2023/contenidos/944276/0768111"
+    }
+  ]
+}

@@ -1,6 +1,72 @@
 import { Button, Card, Pill, SectionHead } from '../components/Primitives'
 import { AGENDA_PLENO, HISTORIC_VOTES } from '../data/mockData'
 import { useParticipa, KIND_ICON, KIND_LABEL } from '../hooks/useParticipa'
+import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
+
+function RealPlenosList() {
+  const { loading, error, data } = usePlenos()
+  if (loading) return null
+  if (error || !data) return null
+  const items = (data.items || []).slice(0, 12)
+  const fmt = (iso) =>
+    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
+  return (
+    <div style={{ marginTop: 28 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10.5,
+            color: 'var(--ink50)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
+          }}
+        >
+          Plenos recientes
+        </div>
+        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+          · {data.stats.total} sesiones · ribarroja.es/plenos
+        </div>
+      </div>
+      <Card>
+        {items.map((p, i) => (
+          <div
+            key={p.id}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '110px 1fr 110px',
+              padding: '10px 0',
+              borderBottom:
+                i === items.length - 1 ? 'none' : '1px solid var(--border2)',
+              alignItems: 'center',
+              gap: 12,
+              fontSize: 13,
+            }}
+          >
+            <div className="mono" style={{ fontSize: 12, color: 'var(--ink60)' }}>
+              {fmt(p.date)}
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none', fontWeight: 500 }}
+              >
+                {p.title}
+              </a>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <Pill tone={PLENO_TONE[p.kind] || 'ghost'} size="xs">
+                {PLENO_LABEL[p.kind] || p.kind}
+              </Pill>
+            </div>
+          </div>
+        ))}
+      </Card>
+    </div>
+  )
+}
 
 function ParticipaBlock() {
   const { loading, error, data } = useParticipa()
@@ -231,6 +297,7 @@ export default function Plenos() {
         </Card>
       </div>
 
+      <RealPlenosList />
       <ParticipaBlock />
     </div>
   )
