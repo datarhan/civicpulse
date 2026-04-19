@@ -48,6 +48,7 @@ export function Topbar({ cityId, crumb, onOpenCmdK }) {
   const city = CITIES.find((c) => c.id === cityId) || CITIES[0]
   return (
     <header
+      className="cp-shell-topbar"
       style={{
         position: 'sticky',
         top: 0,

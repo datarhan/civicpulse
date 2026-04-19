@@ -3,12 +3,13 @@ import { Ic } from './Icons'
 import { PERSONAS, CITIES } from '../data/mockData'
 
 export const NAV = [
-  { to: '/',            id: 'overview', label: 'Overview',    icon: Ic.home,   shortcut: 'G O' },
-  { to: '/quejas',      id: 'quejas',   label: 'Quejas',      icon: Ic.warn,   shortcut: 'G Q', badge: 312 },
-  { to: '/cargos',      id: 'cargos',   label: 'Cargos',      icon: Ic.people, shortcut: 'G C' },
-  { to: '/presupuesto', id: 'presup',   label: 'Presupuesto', icon: Ic.coin,   shortcut: 'G P' },
-  { to: '/plenos',      id: 'plenos',   label: 'Plenos',      icon: Ic.scale,  shortcut: 'G L' },
-  { to: '/datos',       id: 'datos',    label: 'Datos',       icon: Ic.chart,  shortcut: 'G D' },
+  { to: '/',            id: 'overview', label: 'Overview',     icon: Ic.home,   shortcut: 'G O' },
+  { to: '/ciudad',      id: 'ciudad',   label: 'Ciudad · vivo',icon: Ic.dot,    shortcut: 'G V', liveBadge: true },
+  { to: '/quejas',      id: 'quejas',   label: 'Quejas',       icon: Ic.warn,   shortcut: 'G Q', badge: 312 },
+  { to: '/cargos',      id: 'cargos',   label: 'Cargos',       icon: Ic.people, shortcut: 'G C' },
+  { to: '/presupuesto', id: 'presup',   label: 'Presupuesto',  icon: Ic.coin,   shortcut: 'G P' },
+  { to: '/plenos',      id: 'plenos',   label: 'Plenos',       icon: Ic.scale,  shortcut: 'G L' },
+  { to: '/datos',       id: 'datos',    label: 'Datos',        icon: Ic.chart,  shortcut: 'G D' },
 ]
 
 function CitySwitcher({ cityId }) {
@@ -55,6 +56,7 @@ function CitySwitcher({ cityId }) {
 export function Sidebar({ cityId, persona, onPersona }) {
   return (
     <aside
+      className="cp-shell-sidebar"
       style={{
         width: 232,
         background: 'var(--paper)',
@@ -138,7 +140,32 @@ export function Sidebar({ cityId, persona, onPersona }) {
           >
             <n.icon width={18} height={18} style={{ flexShrink: 0, opacity: 0.9 }} />
             <span style={{ flex: 1 }}>{n.label}</span>
-            {n.badge && (
+            {n.liveBadge && (
+              <span
+                className="mono"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 4,
+                  fontSize: 9,
+                  color: 'var(--crit)',
+                  fontWeight: 700,
+                  letterSpacing: '.08em',
+                }}
+              >
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: '50%',
+                    background: 'var(--crit)',
+                    animation: 'ribaPulse 1.5s infinite',
+                  }}
+                />
+                LIVE
+              </span>
+            )}
+            {n.badge && !n.liveBadge && (
               <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
                 {n.badge}
               </span>

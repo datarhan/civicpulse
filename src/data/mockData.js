@@ -138,4 +138,138 @@ export const DEFAULT_TWEAKS = {
   persona: 'citizen',
   dark: false,
   density: 'comfortable',
-};
+}
+
+// =============================================================================
+// Live City — Riba-roja de Túria (location-specific, always this municipality)
+// =============================================================================
+
+export const RIBA_ROJA = {
+  name: 'Riba-roja de Túria',
+  region: 'Valencia · Camp de Túria',
+  center: [39.5439, -0.5711],
+  zoom: 14,
+  mhsBase: 81.2,
+  population: '22,480',
+  bbox: { minLat: 39.532, maxLat: 39.558, minLng: -0.585, maxLng: -0.555 },
+}
+
+export const RR_NEIGHBORHOODS = [
+  { id: 'casco',     name: 'Casco Urbano',          center: [39.5439, -0.5711], pop: 8400, mhs: 83, color: '#60A5FA' },
+  { id: 'ermita',    name: 'Barrio de la Ermita',   center: [39.5463, -0.5688], pop: 2700, mhs: 79, color: '#7C3AED' },
+  { id: 'sector14',  name: 'Sector 14',             center: [39.5478, -0.5755], pop: 4100, mhs: 86, color: '#16A34A' },
+  { id: 'traver',    name: 'Masía de Traver',       center: [39.5505, -0.5660], pop: 1600, mhs: 88, color: '#22D3EE' },
+  { id: 'estacio',   name: 'Estación · Metro L9',   center: [39.5401, -0.5692], pop: 1800, mhs: 76, color: '#F59E0B' },
+  { id: 'poligono',  name: 'Polígono Industrial',   center: [39.5378, -0.5602], pop:  180, mhs: 64, color: '#EF4444' },
+  { id: 'conarda',   name: 'La Conarda',            center: [39.5420, -0.5770], pop: 2200, mhs: 81, color: '#84CC16' },
+  { id: 'vallbona',  name: 'Mont Cabrer',           center: [39.5500, -0.5780], pop: 1500, mhs: 78, color: '#F97316' },
+]
+
+export const RR_LANDMARKS = [
+  { id: 'ayto',    name: 'Ayuntamiento',             pos: [39.5439, -0.5711], kind: 'civic',  icon: '🏛' },
+  { id: 'metro',   name: 'Metro Línea 9',            pos: [39.5401, -0.5692], kind: 'transit', icon: '🚇' },
+  { id: 'pol',     name: 'Polígono Industrial Oeste',pos: [39.5378, -0.5602], kind: 'ind',    icon: '🏭' },
+  { id: 'parque',  name: 'Parc Cinturó Verd',        pos: [39.5470, -0.5730], kind: 'park',   icon: '🌳' },
+  { id: 'rio',     name: 'Río Túria',                pos: [39.5385, -0.5750], kind: 'river',  icon: '💧' },
+  { id: 'biblio',  name: 'Biblioteca Municipal',     pos: [39.5445, -0.5702], kind: 'civic',  icon: '📚' },
+]
+
+// Seed incidents with real-looking Riba-roja street names
+export const RR_INCIDENTS_SEED = [
+  { id: 'L-1204', pos: [39.5442, -0.5712], sev: 'crit', text: 'Bache profundo en C/ Cid',            dept: 'Obras',     age: 4,  status: 'asignada' },
+  { id: 'L-1203', pos: [39.5460, -0.5690], sev: 'warn', text: 'Contenedor desbordado C/ Mayor 34',    dept: 'Limpieza',  age: 11, status: 'abierta' },
+  { id: 'L-1202', pos: [39.5383, -0.5598], sev: 'warn', text: 'Olores en Polígono Industrial Oeste',  dept: 'Medio Amb.',age: 18, status: 'en curso' },
+  { id: 'L-1201', pos: [39.5478, -0.5755], sev: 'info', text: 'Señalización borrada Av. Sector 14',   dept: 'Obras',     age: 26, status: 'abierta' },
+  { id: 'L-1200', pos: [39.5419, -0.5694], sev: 'info', text: 'Farola averiada Pl. Constitució',      dept: 'Obras',     age: 34, status: 'abierta' },
+  { id: 'L-1199', pos: [39.5465, -0.5685], sev: 'ok',   text: 'Resuelto: banco roto Parc Ermita',     dept: 'Obras',     age: 45, status: 'resuelta' },
+  { id: 'L-1198', pos: [39.5506, -0.5658], sev: 'info', text: 'Pintadas fachada Masía Traver',        dept: 'Limpieza',  age: 52, status: 'abierta' },
+  { id: 'L-1197', pos: [39.5422, -0.5768], sev: 'warn', text: 'Acera rota C/ de la Pau',              dept: 'Obras',     age: 68, status: 'asignada' },
+  { id: 'L-1196', pos: [39.5402, -0.5690], sev: 'ok',   text: 'Resuelto: limpieza gran volumen',      dept: 'Limpieza',  age: 85, status: 'resuelta' },
+]
+
+// Live event pool — random events will be picked from this to simulate a live feed
+export const RR_EVENT_POOL = [
+  { sev: 'warn', ico: '⚑', text: 'Nueva queja: contenedor desbordado',      dept: 'Limpieza',   hoodId: 'casco'    },
+  { sev: 'crit', ico: '⚑', text: 'Queja crítica: bache grave',              dept: 'Obras',      hoodId: 'estacio'  },
+  { sev: 'info', ico: '€', text: 'Pago €8,420 — limpieza viaria',           dept: 'Limpieza',   hoodId: 'casco'    },
+  { sev: 'ok',   ico: '✓', text: 'Resuelto: 12 quejas en turno de tarde',   dept: 'Limpieza',   hoodId: 'ermita'   },
+  { sev: 'warn', ico: '⚑', text: 'Farola fundida notificada',               dept: 'Obras',      hoodId: 'conarda'  },
+  { sev: 'info', ico: '◊', text: 'Asistencia ciudadana al Consell de Barri',dept: 'Alcaldía',   hoodId: 'ermita'   },
+  { sev: 'ok',   ico: '✓', text: 'Punto de reciclaje instalado',            dept: 'Medio Amb.', hoodId: 'sector14' },
+  { sev: 'info', ico: '€', text: 'Pago €14,320 — asfaltado tramo 2',        dept: 'Obras',      hoodId: 'casco'    },
+  { sev: 'warn', ico: '⚑', text: 'Reporte de ruido nocturno',               dept: 'Seguridad',  hoodId: 'poligono' },
+  { sev: 'crit', ico: '⚠', text: 'Alerta calidad aire zona industrial',     dept: 'Medio Amb.', hoodId: 'poligono' },
+  { sev: 'ok',   ico: '✓', text: 'Resuelto: grafiti Biblioteca Municipal',  dept: 'Limpieza',   hoodId: 'casco'    },
+  { sev: 'info', ico: '📡',text: 'Autobús línea 3 — 4 min retraso',          dept: 'Movilidad',  hoodId: 'estacio'  },
+  { sev: 'warn', ico: '⚑', text: 'Aviso: hoja caída bloquea acera',         dept: 'Limpieza',   hoodId: 'traver'   },
+  { sev: 'info', ico: '€', text: 'Adjudicación €680k — alumbrado LED',      dept: 'Obras',      hoodId: 'casco'    },
+  { sev: 'ok',   ico: '✓', text: 'Queja validada por vecino verificado',    dept: 'Limpieza',   hoodId: 'conarda'  },
+]
+
+// Budget flow — from Ayuntamiento to neighborhood/department centers
+export const RR_BUDGET_FLOW = [
+  { to: 'casco',    color: '#60A5FA', label: 'Personal' },
+  { to: 'sector14', color: '#B084EE', label: 'Obras' },
+  { to: 'poligono', color: '#22D3EE', label: 'Servicios' },
+  { to: 'ermita',   color: '#4ADE80', label: 'Medio Amb.' },
+  { to: 'estacio',  color: '#FBBF24', label: 'Movilidad' },
+  { to: 'traver',   color: '#F97316', label: 'Cultura' },
+]
+
+export const RR_WEATHER = {
+  temp: 18,
+  min: 12,
+  max: 22,
+  condition: 'Despejado',
+  icon: '☀',
+  wind: 8,
+  humidity: 54,
+  aqi: 28,
+  aqiLabel: 'Buena',
+}
+
+export const RR_LAYERS = [
+  { id: 'incidencias', name: 'Incidencias', hint: 'Pins activos por gravedad' },
+  { id: 'flujo',       name: '€ Flujo',    hint: 'Presupuesto a barrios' },
+  { id: 'calor',       name: 'Salud',      hint: 'Índice por barrio' },
+  { id: 'aire',        name: 'Aire',       hint: 'Calidad del aire' },
+]
+
+// Local press — color per outlet matches their brand loosely
+export const RR_PRESS_POOL = [
+  { src: 'Las Provincias',   mono: 'LP', color: '#B0291F', cat: 'Local',    tone: 'info', headline: 'Riba-roja estrena riego inteligente en el Parc Cinturó Verd' },
+  { src: 'Levante-EMV',      mono: 'LE', color: '#D5A013', cat: 'Obras',    tone: 'info', headline: 'El Ayuntamiento aprueba 12 nuevas plazas de aparcamiento en el centro' },
+  { src: 'Valencia Plaza',   mono: 'VP', color: '#1E3A8A', cat: 'Movilidad',tone: 'warn', headline: 'Metro L9 modificará su frecuencia durante agosto' },
+  { src: 'Cadena SER',       mono: 'SR', color: '#0A0A0A', cat: 'Sucesos',  tone: 'warn', headline: 'Detenido un individuo por tentativa de robo en el Polígono Oeste' },
+  { src: 'ElDiario.es CV',   mono: 'ED', color: '#E43F3B', cat: 'Política', tone: 'warn', headline: 'El pleno de hoy debate la Zona de Bajas Emisiones' },
+  { src: 'À Punt',           mono: 'ÀP', color: '#FF6B00', cat: 'Medio Amb.',tone:'ok',   headline: 'Riba-roja instalará 4 nuevos puntos de reciclaje este mes' },
+  { src: '20minutos',        mono: '20', color: '#CC0000', cat: 'Local',    tone: 'info', headline: 'Convocatoria vecinal para el Consell de Barri del Sector 14' },
+  { src: 'El Mundo CV',      mono: 'EM', color: '#1C1C1C', cat: 'Local',    tone: 'warn', headline: 'Vecinos del Barrio de la Ermita reclaman más iluminación nocturna' },
+  { src: 'Levante-EMV',      mono: 'LE', color: '#D5A013', cat: 'Obras',    tone: 'info', headline: 'Licitación de alumbrado LED por €680.000 adjudicada' },
+  { src: 'RTVE L\'Horta',    mono: 'TV', color: '#004B8D', cat: 'Política', tone: 'info', headline: 'Abierto el plazo de alegaciones al PGOU — 30 días hábiles' },
+  { src: 'Las Provincias',   mono: 'LP', color: '#B0291F', cat: 'Medio Amb.',tone:'ok',   headline: 'El río Túria recupera caudal medio tras las últimas lluvias' },
+  { src: 'Levante-EMV',      mono: 'LE', color: '#D5A013', cat: 'Cultura',  tone: 'info', headline: 'Programa cultural de verano: 14 actividades gratuitas en el casco urbano' },
+  { src: 'Cadena SER',       mono: 'SR', color: '#0A0A0A', cat: 'Seguridad',tone: 'ok',   headline: 'La Policía Local refuerza el dispositivo de controles en el Polígono' },
+  { src: 'Valencia Plaza',   mono: 'VP', color: '#1E3A8A', cat: 'Economía', tone: 'ok',   headline: 'Tres empresas se instalan en el Polígono Industrial Oeste' },
+]
+
+// Social feed — mix of institutional accounts, citizens, journalists, opposition
+export const RR_SOCIAL_POOL = [
+  { handle: 'AytoRibaroja',    name: 'Ajuntament Riba-roja', verified: true,  bg: '#2463EB', initials: 'AR', platform: 'x',  tone: 'info', text: '🚧 Aviso: corte parcial en C/ Mayor hoy 16:00–19:00 por obras de reasfaltado. Desvíos señalizados.',     likes: 42, replies: 7, reposts: 12 },
+  { handle: 'PolLocal_Riba',   name: 'Policía Local',        verified: true,  bg: '#1E3A8A', initials: 'PL', platform: 'x',  tone: 'warn', text: 'Controles de velocidad en Avda. Constitución durante la mañana. ⚠ Circulen con prudencia.',           likes: 18, replies: 3, reposts:  5 },
+  { handle: 'MariaV_Riba',     name: 'María V.',             verified: false, bg: '#B084EE', initials: 'MV', platform: 'x',  tone: 'crit', text: 'Otro bache en C/ Cid sin arreglar. @AytoRibaroja van 3 semanas ya. 🕳️',                              likes:  9, replies: 2, reposts:  1 },
+  { handle: 'joan_ermita',     name: 'Joan M.',              verified: false, bg: '#4ADE80', initials: 'JM', platform: 'bluesky', tone: 'ok', text: '¡Al fin! Han arreglado el banco del Parc de la Ermita. Gracias a los que lo reportasteis 👏',     likes: 24, replies: 4, reposts:  2 },
+  { handle: 'VecinosSect14',   name: 'Vecinos Sector 14',    verified: false, bg: '#F5B544', initials: 'VS', platform: 'x',  tone: 'info', text: 'Recordad: mañana Consell de Barri a las 19h en el Salón de Actos. Vamos a dar la cara por la zona.',   likes: 31, replies: 8, reposts:  9 },
+  { handle: 'MetroValencia',   name: 'MetroValencia',        verified: true,  bg: '#E53935', initials: 'M', platform: 'x',  tone: 'info', text: 'L9 en servicio normal. Actualización: frecuencia 15 min en hora punta a partir de agosto.',         likes: 56, replies: 12, reposts: 18 },
+  { handle: 'paco_erm',        name: 'Paco R.',              verified: false, bg: '#94A3B8', initials: 'PR', platform: 'x',  tone: 'warn', text: 'El contenedor de C/ Pau lleva 3 días desbordado. Esto no es normal, @AytoRibaroja.',                  likes:  7, replies: 1, reposts:  0 },
+  { handle: 'LauraV_press',    name: 'Laura Vázquez',        verified: true,  bg: '#0EA5E9', initials: 'LV', platform: 'mastodon', tone: 'info', text: 'Mañana publicamos el análisis de 312 quejas de limpieza en Riba-roja. No os lo perdáis 📊',  likes: 88, replies: 11, reposts: 34 },
+  { handle: 'AytRiba_Obras',   name: 'Obras · Riba-roja',    verified: true,  bg: '#7C3AED', initials: 'OR', platform: 'x',  tone: 'ok',   text: 'Trabajos en curso en Avda. Primero de Mayo. Tramo 2 de 3 avanzando al 68%. Fin previsto: 12 ago.', likes: 14, replies: 2, reposts:  3 },
+  { handle: 'RibaInfo',        name: 'Riba-roja Info',       verified: false, bg: '#F97316', initials: 'RI', platform: 'x',  tone: 'info', text: '📢 Pleno hoy 18:00 — 2 puntos calientes: Ordenanza de ruidos y Moción ZBE. Sigue el directo.',     likes: 62, replies: 9, reposts: 22 },
+  { handle: 'PepeOliva_PSOE',  name: 'Pepe Oliva',           verified: true,  bg: '#E53935', initials: 'PO', platform: 'x',  tone: 'info', text: 'Hoy defenderé en el pleno el calendario de renovación del alumbrado LED. 680k€ bien invertidos.',  likes: 37, replies: 14, reposts:  6 },
+  { handle: 'VerdsRiba',       name: 'Verds Riba-roja',      verified: false, bg: '#16A34A', initials: 'VR', platform: 'mastodon', tone: 'warn', text: 'Pedimos que la ZBE entre en vigor antes de 2027. No podemos esperar 3 años más con el aire del Polígono.', likes: 28, replies: 6, reposts: 11 },
+  { handle: 'carolina_traver', name: 'Carolina B.',          verified: false, bg: '#22D3EE', initials: 'CB', platform: 'bluesky', tone: 'ok', text: 'Día soleado en Masía de Traver. El parque lleno de familias. Así da gusto ☀️',                        likes: 19, replies: 0, reposts:  1 },
+  { handle: 'transito_GV',     name: 'Tráfico GV',           verified: true,  bg: '#0A0A0A', initials: 'TG', platform: 'x',  tone: 'warn', text: 'CV-35 dirección Valencia — retenciones km 12 a km 16 por obras. Desvío por CV-370.',              likes: 11, replies: 3, reposts:  4 },
+  { handle: 'antonio_polig',   name: 'Antonio L.',           verified: false, bg: '#EF4444', initials: 'AL', platform: 'x',  tone: 'crit', text: 'Hay un olor terrible en el Polígono esta mañana. Alguien ha reportado? 😷',                           likes:  4, replies: 2, reposts:  0 },
+]
+
+;
