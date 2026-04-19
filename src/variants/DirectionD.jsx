@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import StylizedMap from '../components/LiveCity/StylizedMap'
+import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { Ic } from '../components/Icons'
 import {
   RIBA_ROJA,
@@ -811,6 +812,150 @@ function LiveStrip({ events }) {
   )
 }
 
+function AlcaldeBox() {
+  const { loading, error, data } = useOfficials()
+  if (loading || error || !data) return null
+  const mayor = data.officials.find((o) => o.role === 'alcalde')
+  if (!mayor) return null
+  return (
+    <div
+      style={{
+        display: 'flex',
+        gap: 12,
+        alignItems: 'center',
+        padding: '12px 0',
+        borderTop: '1px solid ' + PALETTE.hair,
+        borderBottom: '1px solid ' + PALETTE.hair,
+        margin: '14px 0',
+      }}
+    >
+      {mayor.photoUrl ? (
+        <img
+          src={mayor.photoUrl}
+          alt={mayor.name}
+          width={52}
+          height={52}
+          style={{
+            width: 52,
+            height: 52,
+            borderRadius: 8,
+            objectFit: 'cover',
+            border: `2px solid ${partyColor(mayor.party)}44`,
+            flexShrink: 0,
+          }}
+        />
+      ) : null}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 9.5,
+            color: PALETTE.ink60,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+          }}
+        >
+          Alcalde
+        </div>
+        <div style={{ fontSize: 15, fontWeight: 700, marginTop: 2, letterSpacing: '-.01em' }}>
+          {mayor.name}
+        </div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
+          <span
+            className="mono"
+            style={{
+              fontSize: 9,
+              fontWeight: 700,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              background: partyColor(mayor.party),
+              color: 'white',
+              padding: '2px 6px',
+              borderRadius: 3,
+            }}
+          >
+            {mayor.party}
+          </span>
+          <span className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+            {mayor.email}
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function CoalitionRing() {
+  const { loading, error, data } = useOfficials()
+  if (loading || error || !data) return null
+  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro']
+  const items = order.filter((p) => data.composition[p]).map((p) => ({ p, n: data.composition[p] }))
+  return (
+    <div style={{ marginBottom: 16 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 9.5,
+          color: PALETTE.ink60,
+          letterSpacing: '.12em',
+          textTransform: 'uppercase',
+          marginBottom: 6,
+        }}
+      >
+        Pleno · {data.count} escaños
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          height: 12,
+          borderRadius: 6,
+          overflow: 'hidden',
+          border: `1px solid ${PALETTE.hair}`,
+        }}
+      >
+        {items.map(({ p, n }) => (
+          <div
+            key={p}
+            title={`${p}: ${n}`}
+            style={{
+              flex: n,
+              background: partyColor(p),
+              display: 'grid',
+              placeItems: 'center',
+              color: 'white',
+              fontFamily: MONO,
+              fontSize: 8.5,
+              fontWeight: 700,
+            }}
+          >
+            {n}
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', gap: 10, marginTop: 6, flexWrap: 'wrap', fontSize: 10.5 }}>
+        {items.map(({ p, n }) => (
+          <span key={p} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: '50%',
+                background: partyColor(p),
+                display: 'inline-block',
+              }}
+            />
+            <span style={{ fontWeight: 600 }}>{p}</span>
+            <span className="mono" style={{ color: PALETTE.ink60 }}>
+              {n}
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function EditorialColumn({ events, now }) {
   return (
     <aside
@@ -826,6 +971,8 @@ function EditorialColumn({ events, now }) {
       }}
     >
       <EditorialMasthead now={now} />
+      <AlcaldeBox />
+      <CoalitionRing />
       <LeadStory />
       <SecondaryStories />
       <LiveStrip events={events} />

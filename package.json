@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "scrape:officials": "node scripts/scrape-officials.mjs"
+    "scrape:officials": "npx tsx scripts/scrape-officials.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

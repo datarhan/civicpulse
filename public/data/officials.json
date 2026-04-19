@@ -1,0 +1,317 @@
+{
+  "generatedAt": "2026-04-19T16:05:38.768Z",
+  "source": "http://www.ribarroja.es/ayuntamiento/corporacion_municipal",
+  "count": 21,
+  "composition": {
+    "PSOE": 11,
+    "PP": 7,
+    "VOX": 1,
+    "Otro": 1,
+    "Compromís": 1
+  },
+  "officials": [
+    {
+      "slug": "robert-raga-gadea",
+      "name": "Robert Raga Gadea",
+      "honorific": "Sr.",
+      "role": "alcalde",
+      "party": "PSOE",
+      "portfolios": [
+        "Alcaldía",
+        "Innovación",
+        "Planificación estratégica y grandes proyectos y cooperación nacional e internacional"
+      ],
+      "email": "rraga@ribarroja.es",
+      "photoUrl": "/data/photos/robert-raga-gadea.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "teresa-pozuelo-martin",
+      "name": "Teresa Pozuelo Martín",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Urbanismo",
+        "Vivienda",
+        "Obra Pública",
+        "Áreas Industriales y Cementerio"
+      ],
+      "email": "tpozuelo@ribarroja.es",
+      "photoUrl": "/data/photos/teresa-pozuelo-martin.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "jose-luis-ramos-march",
+      "name": "José Luis Ramos March",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Agenda 2030",
+        "Emergencia climática",
+        "Fondos Europeos",
+        "Integridad",
+        "Agricultura",
+        "Actividades y Edificios públicos"
+      ],
+      "email": "jlramos@ribarroja.es",
+      "photoUrl": "/data/photos/jose-luis-ramos-march.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "jose-angel-hernandez-carrizosa",
+      "name": "José Ángel Hernández Carrizosa",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Administración y Servicios Generales",
+        "Compra Pública",
+        "Recursos Humanos",
+        "Finanzas públicas y recaudación",
+        "Fomento económico",
+        "Empleo y Emprendimiento",
+        "y Comercio"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/jose-angel-hernandez-carrizosa.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "eva-lara-catala",
+      "name": "Eva Lara Catalá",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Educación",
+        "Infancia y Adolescencia y Memoria Histórica"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/eva-lara-catala.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "rafael-gomez-sanchez",
+      "name": "Rafael Gómez Sánchez",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Servicios públicos municipales",
+        "Urbanizaciones",
+        "barrios y diseminados",
+        "Movilidad y Deportes"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/rafael-gomez-sanchez.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "maria-esther-gomez-laredo",
+      "name": "María Esther Gómez Laredo",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Participación y transparencia",
+        "Atención a la ciudadanía",
+        "Turismo y patrimonio histórico",
+        "Promoción de la Salud e Infraestructuras sanitarias"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/maria-esther-gomez-laredo.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "jose-manuel-vila-oltra",
+      "name": "José Manuel Vila Oltra",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Arte y Cultura"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/jose-manuel-vila-oltra.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "raquel-pamblanco-paredes",
+      "name": "Raquel Pamblanco Paredes",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Seguridad y emergencias",
+        "Igualdad",
+        "Comunicación e información",
+        "Protocolo y Bienestar Animal"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/raquel-pamblanco-paredes.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "alfredo-pla-gimenez",
+      "name": "Alfredo Plá Gimenez",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Fallas",
+        "Fiestas y Tradiciones"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/alfredo-pla-gimenez.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "david-barbancho-martinez",
+      "name": "David Barbancho Martínez",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PSOE",
+      "portfolios": [
+        "Acción social y políticas inclusivas",
+        "Mayores",
+        "Juventud y Servicios Jurídicos"
+      ],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/david-barbancho-martinez.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1967",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "alberto-gimeno-calvo",
+      "name": "Alberto Gimeno Calvo",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmail.com",
+      "photoUrl": "/data/photos/alberto-gimeno-calvo.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "maria-jose-pradas-ramo",
+      "name": "María José Pradas Ramo",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmai.com",
+      "photoUrl": "/data/photos/maria-jose-pradas-ramo.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "salvador-evaristo-ferrer-cortina",
+      "name": "Salvador Evaristo Ferrer Cortina",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmail.com",
+      "photoUrl": "/data/photos/salvador-evaristo-ferrer-cortina.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "laura-guzman-bruno",
+      "name": "Laura Guzman Bruno",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmail.com",
+      "photoUrl": "/data/photos/laura-guzman-bruno.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "juan-boix-martinez",
+      "name": "Juan Boix Martínez",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmail.com",
+      "photoUrl": "/data/photos/juan-boix-martinez.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "paula-navarro-sanfeliu",
+      "name": "Paula Navarro Sanfeliu",
+      "honorific": "Sra.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmail.com",
+      "photoUrl": "/data/photos/paula-navarro-sanfeliu.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "pedro-tortajada-raga",
+      "name": "Pedro Tortajada Raga",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "PP",
+      "portfolios": [],
+      "email": "popularesribarroja@gmail.com",
+      "photoUrl": "",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=9886",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "jose-luis-fernandez-santamaria",
+      "name": "José Luis Fernández Santamaría",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "VOX",
+      "portfolios": [],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/jose-luis-fernandez-santamaria.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=10576",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "jose-manuel-gallardo-martinez",
+      "name": "José Manuel Gallardo Martínez",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "Otro",
+      "portfolios": [],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/jose-manuel-gallardo-martinez.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=11569",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    },
+    {
+      "slug": "rafael-folgado-navarro",
+      "name": "Rafael Folgado Navarro",
+      "honorific": "Sr.",
+      "role": "concejal",
+      "party": "Compromís",
+      "portfolios": [],
+      "email": "alcaldia@ribarroja.es",
+      "photoUrl": "/data/photos/rafael-folgado-navarro.jpg",
+      "partyLogoUrl": "http://www.ribarroja.es/contenidos.downloadimg.action?id=1970",
+      "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+    }
+  ]
+}
