@@ -1,6 +1,55 @@
 # CivicPulse — Real Data MVP Plan (Riba-roja de Túria)
 
-**Status:** planning · **Owner:** TBA · **Last update:** 2026-04-19
+**Status:** **shipped** · **Owner:** TBA · **Last update:** 2026-04-20
+
+> The plan below is kept for historical context. **All 8 sprints ship
+> end-to-end** on `civicpulse-virid.vercel.app` — plus four extra
+> adapters added after Sprint 7 (BDNS, SEPE, Plenos, Wikidata), a
+> nightly GitHub Actions refresh job, and 85 vitest checks green. See
+> `CLAUDE.md` → "Real data pipeline" for the authoritative current
+> state. The sprint-by-sprint section below is maintained only as a
+> reference for what was originally scoped vs. what was delivered.
+
+## Shipped inventory (as of 2026-04-20)
+
+| # | Domain | Records | Source | Surfaces |
+|---|---|---|---|---|
+| 1 | Officials | 21 councillors + photos | `ribarroja.es` HTML | `/cargos`, Direction D editorial column |
+| 2 | Budget | €43.5M / 9+9+6 chapters | MinHac CONPREL XLS | `/presupuesto`, Direction D KPI strip |
+| 3 | Tenders | 730 contratos / €16.5M | Gobierto API (PLACSP mirror) | `/presupuesto`, Direction D |
+| 4 | Padrón | 30 years (1996-2025) | INE Tempus3 table 2903 | `/datos`, Direction D KPI strip |
+| 5 | Participation | 6 posts | WP REST `participa.ribarroja.es` | `/plenos`, Direction D |
+| 6 | Press | 99 / 18 medios | Google News RSS | `/ciudad` Prensa tab, Direction D |
+| 7 | Geo | 484-pt boundary + 21 neighborhoods | OSM Overpass | StylizedMap boundary + labels |
+| + | BDNS | 171 convocatorias | MinHac BDNS API | `/presupuesto` subsidies card |
+| + | SEPE paro | 18 months (Sep 2024 → Mar 2026) | SEPE Muniacteco XLS | Direction D KPI strip (Paro) |
+| + | Plenos | 53 sessions (2023–2026) | `ribarroja.es/plenos/<year>` | `/plenos` "Plenos recientes" |
+| + | Wikidata | full facts card | `Special:EntityData/Q23701.json` | `/datos` WikidataCard |
+
+Totals: **11 adapters, ~3,200 real records, 85/85 vitest green,
+nightly refresh live, ~90 s full run.**
+
+## IVE BDT note
+
+The original Sprint 4 plan named a separate "IVE BDT" adapter that
+would parse the Valencian statistical portal's Banco de Datos
+Territorial. During implementation we discovered:
+
+- IVE publishes per-municipality **Fichas** as vector PDFs only (no
+  XLSX / CSV / JSON companion).
+- The BDT full-text query UI is a PHP form with no stable REST surface.
+- **Every indicator shown on the IVE Ficha for Riba-roja is already
+  sourced upstream via INE (population, households), SEPE (unemployment),
+  MinHac (budget), OSM (geography), and Wikidata (area, altitude,
+  coords, identifiers).**
+
+So the IVE-BDT adapter was retired in favour of the richer
+**Wikidata** fall-back (shipped — see the `wikidata.ts` adapter +
+`WikidataCard` on `/datos`). If IVE publishes a machine-readable
+endpoint in the future we can add it alongside without disrupting the
+existing pipelines.
+
+---
 
 This document maps the move from the current front-end-only prototype (all
 data mocked in `src/data/mockData.js`) to an MVP that runs on **real, authoritative

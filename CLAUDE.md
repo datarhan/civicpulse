@@ -12,12 +12,20 @@ npm run preview        # serve the production build locally
 npm test               # Vitest suite (runs all adapter tests once)
 npm run test:watch     # Vitest in watch mode
 
-# Real-data ingestion (re-run after any upstream change; all idempotent)
+# Real-data ingestion (re-run after any upstream change; all idempotent).
+# GitHub Actions runs scrape:all nightly at 04:30 UTC (see §Nightly refresh).
 npm run scrape:officials   # 21 councillors + photos from ribarroja.es
 npm run scrape:budget      # CONPREL municipal budget XLS (MinHac)
 npm run scrape:tenders     # Gobierto tender/contract feed (mirrors PLACSP)
 npm run scrape:padron      # INE Tempus3 30-year population series
-npm run scrape:all         # runs all four sequentially
+npm run scrape:participa   # Votiveu (WordPress) citizen-participation blog
+npm run scrape:press       # Google News RSS aggregator (99 headlines / 18 medios)
+npm run scrape:geo         # OSM Overpass boundary + 21 neighborhoods
+npm run scrape:bdns        # MinHac BDNS subsidies (171 convocatorias)
+npm run scrape:paro        # SEPE monthly unemployment XLS (18 months)
+npm run scrape:plenos      # Council-session index on ribarroja.es/plenos
+npm run scrape:wikidata    # Wikidata Q23701 facts + cross-references
+npm run scrape:all         # runs all 11 sequentially (~90 s)
 ```
 
 No linter or formatter is configured. The test suite is Vitest + happy-dom;
@@ -82,22 +90,31 @@ Leaflet + react-leaflet **are** installed and used by two real map surfaces:
 
 ## Real data pipeline
 
-Four Spanish public-sector sources are wired end-to-end for Riba-roja de
-Túria (INE code **46214**). Follow the same RED→GREEN→wire cadence for
-new adapters.
+**Eleven** Spanish/international public-sector sources are wired
+end-to-end for Riba-roja de Túria (INE **46214** · Wikidata **Q23701** ·
+OSM relation **342356**). All 11 refresh nightly via GitHub Actions at
+04:30 UTC. Follow the same RED→GREEN→wire cadence when adding the
+twelfth.
 
 **Architecture**: `scripts/scrape-*.ts` fetch the raw payload → call a
-pure TypeScript parser in `src/scraper/*.ts` → write a typed snapshot to
-`public/data/*.json`. The SPA loads JSON at runtime via one hook per
+pure TypeScript parser in `src/scraper/*.ts` → write a typed snapshot
+to `public/data/*.json`. The SPA loads JSON at runtime via one hook per
 domain (`src/hooks/useX.js`) so there is **no backend** — Vercel serves
 the static JSON next to the app. Re-running any `npm run scrape:*` is
-idempotent.
+idempotent; `npm run scrape:all` runs everything in ~90 s.
 
 ```
 scripts/scrape-officials.ts  →  src/scraper/corporacion.ts  →  public/data/officials.json
 scripts/scrape-budget.ts     →  src/scraper/budget.ts       →  public/data/budget.json
 scripts/scrape-tenders.ts    →  src/scraper/tenders.ts      →  public/data/tenders.json
 scripts/scrape-padron.ts     →  src/scraper/padron.ts       →  public/data/padron.json
+scripts/scrape-participa.ts  →  src/scraper/participa.ts    →  public/data/participa.json
+scripts/scrape-press.ts      →  src/scraper/press.ts        →  public/data/press.json
+scripts/scrape-geo.ts        →  src/scraper/geo.ts          →  public/data/geo.json
+scripts/scrape-bdns.ts       →  src/scraper/bdns.ts         →  public/data/bdns.json
+scripts/scrape-paro.ts       →  src/scraper/paro.ts         →  public/data/paro.json
+scripts/scrape-plenos.ts     →  src/scraper/plenos.ts       →  public/data/plenos.json
+scripts/scrape-wikidata.ts   →  src/scraper/wikidata.ts     →  public/data/wikidata.json
 ```
 
 ### Sources of truth
@@ -105,22 +122,51 @@ scripts/scrape-padron.ts     →  src/scraper/padron.ts       →  public/data/p
 | Domain | Scraper → JSON | Source | Wired surfaces |
 |---|---|---|---|
 | Mayor + 20 councillors + party + portfolios + photos + CV links | `corporacion.ts` → `officials.json` | Scraped HTML from `ribarroja.es/ayuntamiento/corporacion_municipal`; photos mirrored into `public/data/photos/<slug>.jpg` | `/cargos` "Corporación Municipal" section; Direction D editorial column (`AlcaldeBox` + `CoalitionRing`) |
-| Municipal budget (9 income + 9 expense chapters + 6 program groups) | `budget.ts` → `budget.json` | MinHac **CONPREL** XLS, sheet "Comunitat Valenciana" (`TipoDato=Presupuestos&Ejercicio=<year>&TipoPublicacion=Definitiva`). Parser tries 2025→2024→2023 | `/presupuesto` (KPIs + 3 chapter charts); Direction D KPI strip |
-| Contracts + tenders (730 + 449 at last snapshot, €16.5M awarded) | `tenders.ts` → `tenders.json` | **Gobierto** SQL-over-HTTP API at `ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select * from {contratos,licitaciones}` — a public mirror of what the Ayuntamiento publishes on PLACSP | `/presupuesto` (real `Últimos contratos adjudicados` card); Direction D editorial column (`LiveContracts`) |
-| Population (1996–2025, Total / Hombres / Mujeres) | `padron.ts` → `padron.json` | INE **Tempus3** CSV table 2903 (Valencia province) | `/datos` full-width SVG chart; Direction D KPI strip (Población panel) |
+| Municipal budget (9 income + 9 expense chapters + 6 program groups) | `budget.ts` → `budget.json` | MinHac **CONPREL** XLS, sheet "Comunitat Valenciana". Parser tries 2025→2024→2023 | `/presupuesto` (KPIs + 3 chapter charts); Direction D KPI strip |
+| Contracts + tenders (730 + 449 at last snapshot, €16.5M awarded) | `tenders.ts` → `tenders.json` | **Gobierto** SQL-over-HTTP API at `ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select * from {contratos,licitaciones}` — public mirror of PLACSP | `/presupuesto` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`) |
+| Subsidies (171 BDNS convocatorias, 153 granted by the Ayto) | `bdns.ts` → `bdns.json` | MinHac **BDNS** REST endpoint `/bdnstrans/api/convocatorias/busqueda?vpd=GE&descripcion=riba-roja`, paginated | `/presupuesto` (`Subvenciones · BDNS` card) |
+| Population (1996–2025, Total / Hombres / Mujeres) | `padron.ts` → `padron.json` | **INE Tempus3** CSV table 2903 (Valencia province) | `/datos` full-width SVG chart; Direction D KPI strip (Población panel) |
+| Registered unemployment (18 months 2024-09 → 2026-03) | `paro.ts` → `paro.json` | **SEPE** Muniacteco XLS feeds (3-sheet: AMBOS / HOMBRES / MUJERES); CLI walks back up to 24 months | Direction D KPI strip (Paro panel with MoM delta + 12-month sparkline) |
+| Plenos (53 sessions 2023–2026) | `plenos.ts` → `plenos.json` | Scraped HTML from `ribarroja.es/plenos/<year>`, Spanish-date → ISO, kind classifier (ordinario / extraordinario / urgente / otro) | `/plenos` "Plenos recientes" card with linked titles + kind pills |
+| Citizen participation (6 posts: 4 actividades + 2 encuestas) | `participa.ts` → `participa.json` | WordPress REST API at `participa.ribarroja.es/wp-json/wp/v2/posts` + `/categories` | `/plenos` "Participación ciudadana" grid; Direction D editorial column (`ParticipaBlockD`) |
+| Press (99 headlines from 18 outlets) | `press.ts` → `press.json` | Google News RSS `news.google.com/rss/search?q="Riba-roja de Túria"` with FNV fingerprint dedup; Spanish regional outlets (Levante-EMV, Las Provincias, Valencia Plaza, elDiario.es, Cadena SER, Comunica GVA, …) | `/ciudad` Prensa tab (replaces mock rotation); Direction D editorial column (`PressBlockD`) |
+| Geo (municipal boundary 484 pts + 21 neighborhoods) | `geo.ts` → `geo.json` | **OSM Overpass API** — relation 342356 stitched from outer ways + `place=neighbourhood/suburb/quarter/hamlet/village` inside the muni area | Direction D StylizedMap: dashed boundary polyline + OSM neighborhood dots/labels |
+| Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
 
 ### Hooks
 
 Every page loads its snapshot via a small hook that does `fetch()` +
 `useState` (`loading / error / data`). No data-fetching libraries are
 wired (yet) — React Query / SWR can be added when we hit a real refresh
-loop, but for now every snapshot is static until the next `scrape:*`
-run.
+loop.
 
-- `src/hooks/useOfficials.js` — councillors + `partyColor(party)`
-- `src/hooks/useBudget.js` — budget snapshot + `formatEuros` helper + `EXPENSE_COLORS` / `PROGRAM_COLORS`
-- `src/hooks/useTenders.js` — tenders + `STATUS_LABEL` / `STATUS_TONE` + `formatDate`
-- `src/hooks/usePadron.js` — padrón series
+- `useOfficials` + `partyColor()`
+- `useBudget` + `formatEuros()` + `EXPENSE_COLORS` / `PROGRAM_COLORS`
+- `useTenders` + `STATUS_LABEL` / `STATUS_TONE` + `formatDate()`
+- `usePadron`
+- `useParo`
+- `usePlenos` + `PLENO_TONE` / `PLENO_LABEL`
+- `useParticipa` + `KIND_ICON` / `KIND_LABEL`
+- `usePress` + `timeAgo()`
+- `useGeo`
+- `useBdns`
+- `useWikidata`
+
+### Nightly refresh
+
+`.github/workflows/scrape.yml` runs `npm run scrape:all` every day at
+**04:30 UTC** (06:30 Europe/Madrid summer, 05:30 winter). The job:
+
+1. Installs deps + runs the 11 adapters,
+2. Runs the vitest suite against the fresh fixtures,
+3. `git add public/data && git commit && git push` only if there's a
+   diff (no-op runs land a summary log but no commit),
+4. Vercel's GitHub integration picks up the push and redeploys.
+
+`workflow_dispatch` accepts an `adapters` input so a single pipeline
+can be re-run on demand (`all | officials | budget | tenders | padron
+| participa | press | geo`). Add new adapter names to the `case`
+switch when you add an eleventh.
 
 ### TDD cadence
 
@@ -130,19 +176,31 @@ Every new adapter lands in three commits:
    into `tests/fixtures/<source>_<date>.(html|csv|xls|json)`, pin the
    parser contract via vitest; should fail because the module doesn't
    exist yet.
-2. `fix: implement <adapter> (GREEN)` — minimal parser to make all tests
-   pass. Keep pure; `fetch` lives only in the CLI wrapper.
-3. Wire-up: `feat(<domain>): wire real <domain>` — build the CLI script,
-   produce the JSON, add the hook, wire the UI, commit the generated
-   `public/data/*.json` alongside the code change.
+2. `fix: implement <adapter> (GREEN)` — minimal parser to make all
+   tests pass. Keep pure; `fetch` lives only in the CLI wrapper.
+3. Wire-up: `feat(<domain>): wire real <domain>` — build the CLI
+   script, produce the JSON, add the hook, wire the UI, commit the
+   generated `public/data/*.json` alongside the code change.
 
 Fixtures are committed to the repo (they're the RED contract). Current
-coverage: **39 vitest checks green** across all four adapters.
+coverage: **85 vitest checks green** across 11 adapters.
+
+### What's still mocked
+
+`src/data/mockData.js` still drives purely-synthetic UI scaffolding
+(`FEED`, `PROMISES`, `AGENDA_CIVICA`, `RR_EVENT_POOL`,
+`RR_SOCIAL_POOL`, `RR_INCIDENTS_SEED`, `RR_WEATHER`, `MHS_15D`,
+`COMPLAINTS_30D`, `RESOLVED_30D`). These power the live-simulator
+animations in `/ciudad` and the Direction D editorial boilerplate —
+they have no upstream source. Replacing them would require either a
+backend that generates authentic citizen-complaint streams or leaving
+the simulation in place as a visible "demo" vs. "real" band.
 
 ### Legal / ethical guardrails
 
-All four sources are public-sector open data (Transparencia Act
-19/2013, datos.gob.es CC-BY 4.0, PLACSP/BDNS open reuse clauses).
+All 11 sources are public-sector / ODbL / CC-BY open data
+(Transparencia Act 19/2013, datos.gob.es CC-BY 4.0, PLACSP/BDNS open
+reuse clauses, OSM ODbL, Wikidata CC0).
 Councillor photos are re-hosted from the Ayuntamiento's own publication.
 Keep scrapers polite: every CLI sends a `User-Agent` identifying the
 project; never run them in a tight loop; cache raw payloads locally
