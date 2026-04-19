@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       adapters:
-        description: 'Adapter set to run (all | officials | budget | tenders | padron | participa | press | geo)'
+        description: 'Adapter set to run (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | wikidata | promise-suggestions)'
         default: 'all'
 
 concurrency:
@@ -39,14 +39,19 @@ jobs:
         run: |
           set -euo pipefail
           case "${{ inputs.adapters || 'all' }}" in
-            all)        npm run scrape:all ;;
-            officials)  npm run scrape:officials ;;
-            budget)     npm run scrape:budget ;;
-            tenders)    npm run scrape:tenders ;;
-            padron)     npm run scrape:padron ;;
-            participa)  npm run scrape:participa ;;
-            press)      npm run scrape:press ;;
-            geo)        npm run scrape:geo ;;
+            all)                   npm run scrape:all ;;
+            officials)             npm run scrape:officials ;;
+            budget)                npm run scrape:budget ;;
+            tenders)               npm run scrape:tenders ;;
+            padron)                npm run scrape:padron ;;
+            participa)             npm run scrape:participa ;;
+            press)                 npm run scrape:press ;;
+            geo)                   npm run scrape:geo ;;
+            bdns)                  npm run scrape:bdns ;;
+            paro)                  npm run scrape:paro ;;
+            plenos)                npm run scrape:plenos ;;
+            wikidata)              npm run scrape:wikidata ;;
+            promise-suggestions)   npm run scrape:promise-suggestions ;;
             *) echo "unknown adapter set"; exit 1 ;;
           esac
 

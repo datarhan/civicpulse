@@ -4,6 +4,7 @@ import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
 import { usePadron } from '../hooks/usePadron'
 import { useParo } from '../hooks/useParo'
+import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
@@ -1198,6 +1199,95 @@ function PressBlockD() {
   )
 }
 
+function PromesasBlockD() {
+  const { loading, error, data } = usePromises()
+  if (loading || error || !data) return null
+  const frozen = isPromiseFrozen(data)
+  const total = data.items?.length ?? 0
+  if (total === 0) return null
+  const byParty = (data.items || []).reduce((acc, p) => {
+    acc[p.party] = (acc[p.party] || 0) + 1
+    return acc
+  }, {})
+  const parties = Object.entries(byParty).sort((a, b) => b[1] - a[1])
+  return (
+    <div
+      style={{
+        marginBottom: 18,
+        borderTop: '1px solid ' + PALETTE.hair,
+        paddingTop: 14,
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10,
+            color: PALETTE.ink60,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+          }}
+        >
+          Seguimiento de promesas
+        </div>
+        {frozen && (
+          <span
+            className="mono"
+            style={{
+              fontSize: 9,
+              color: PALETTE.crit,
+              background: 'rgba(220,38,38,.08)',
+              padding: '1px 6px',
+              borderRadius: 3,
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+            }}
+          >
+            LOREG · congelado
+          </span>
+        )}
+        <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50, marginLeft: 'auto' }}>
+          {total}
+        </span>
+      </div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', fontSize: 11, marginBottom: 8 }}>
+        {parties.map(([party, n]) => (
+          <span
+            key={party}
+            style={{
+              fontFamily: MONO,
+              fontSize: 10.5,
+              fontWeight: 700,
+              color: 'white',
+              background:
+                party === 'PSOE' ? '#E8213A'
+                  : party === 'PP' ? '#2463EB'
+                  : party === 'VOX' ? '#63BE33'
+                  : party === 'Compromís' ? '#D4811E'
+                  : '#64748B',
+              padding: '2px 7px',
+              borderRadius: 3,
+            }}
+          >
+            {party} · {n}
+          </span>
+        ))}
+      </div>
+      <div style={{ fontSize: 11.5, color: PALETTE.ink70, lineHeight: 1.45, marginBottom: 6 }}>
+        Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.
+      </div>
+      <a
+        href="/promesas"
+        style={{ color: PALETTE.accent, textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}
+      >
+        Ver tracker completo →
+      </a>
+    </div>
+  )
+}
+
 function EditorialColumn({ events, now }) {
   return (
     <aside
@@ -1215,6 +1305,7 @@ function EditorialColumn({ events, now }) {
       <EditorialMasthead now={now} />
       <AlcaldeBox />
       <CoalitionRing />
+      <PromesasBlockD />
       <PressBlockD />
       <LiveContracts />
       <ParticipaBlockD />
