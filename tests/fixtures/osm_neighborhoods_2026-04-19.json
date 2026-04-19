@@ -1,0 +1,307 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-04-19T22:01:19Z",
+    "timestamp_areas_base": "2026-04-19T14:33:56Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 566999451,
+  "lat": 39.5233167,
+  "lon": -0.5191743,
+  "tags": {
+    "ele": "79",
+    "name": "Urbanització Els Pous",
+    "name:ca": "Urbanització Els Pous",
+    "name:es": "Urbanización Els Pous",
+    "official_name": "Urbanització Els Pous de Crisòstom",
+    "place": "neighbourhood",
+    "population": "500",
+    "population:date": "2024",
+    "ref:ine": "46214000203"
+  }
+},
+{
+  "type": "node",
+  "id": 569980825,
+  "lat": 39.5415070,
+  "lon": -0.5431676,
+  "tags": {
+    "name": "Urbanització Mas de Traver",
+    "name:ca": "Urbanització Mas de Traver",
+    "name:es": "Urbanización Mas de Traver",
+    "place": "suburb",
+    "population": "2338",
+    "population:date": "2024",
+    "ref:ine": "46214000202"
+  }
+},
+{
+  "type": "node",
+  "id": 615163560,
+  "lat": 39.5483742,
+  "lon": -0.5912189,
+  "tags": {
+    "name": "el Pou d'Escoto",
+    "name:es": "el Pozo de Escoto",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 615180643,
+  "lat": 39.5344276,
+  "lon": -0.5307458,
+  "tags": {
+    "ele": "92",
+    "name": "Urbanització València la Vella",
+    "name:ca": "Urbanització València la Vella",
+    "name:es": "Urbanización Valencia la Vieja",
+    "place": "neighbourhood",
+    "population": "845",
+    "population:date": "2024",
+    "ref:ine": "46214000204"
+  }
+},
+{
+  "type": "node",
+  "id": 615180659,
+  "lat": 39.5508312,
+  "lon": -0.5333969,
+  "tags": {
+    "name": "Santa Rosa",
+    "name:ca": "Santa Rosa",
+    "place": "neighbourhood",
+    "population": "375",
+    "population:date": "2024",
+    "ref:ine": "46214000105"
+  }
+},
+{
+  "type": "node",
+  "id": 615180665,
+  "lat": 39.5558464,
+  "lon": -0.5425281,
+  "tags": {
+    "ele": "98",
+    "name": "Monte Alcedo",
+    "place": "neighbourhood",
+    "population": "585",
+    "population:date": "2024",
+    "ref:ine": "46214000101"
+  }
+},
+{
+  "type": "node",
+  "id": 615180666,
+  "lat": 39.5533441,
+  "lon": -0.5383653,
+  "tags": {
+    "name": "Urbanització Entretarongers",
+    "name:ca": "Urbanització Entretarongers",
+    "name:es": "Urbanización Entrenaranjos",
+    "place": "neighbourhood",
+    "population": "633",
+    "population:date": "2024",
+    "ref:ine": "46214000103"
+  }
+},
+{
+  "type": "node",
+  "id": 768553215,
+  "lat": 39.5031867,
+  "lon": -0.5393298,
+  "tags": {
+    "name": "Carasoles",
+    "place": "hamlet"
+  }
+},
+{
+  "type": "node",
+  "id": 865432672,
+  "lat": 39.5577449,
+  "lon": -0.5539922,
+  "tags": {
+    "ele": "109",
+    "name": "Urbanització Santa Mònica",
+    "name:ca": "Urbanització Santa Mònica",
+    "name:es": "Santa Mónica",
+    "place": "neighbourhood",
+    "population": "346",
+    "population:date": "2024",
+    "ref:ine": "46214000402"
+  }
+},
+{
+  "type": "node",
+  "id": 865433770,
+  "lat": 39.5544196,
+  "lon": -0.5510476,
+  "tags": {
+    "ele": "104",
+    "name": "el Molinet",
+    "name:ca": "el Molinet",
+    "place": "neighbourhood",
+    "population": "361",
+    "population:date": "2024",
+    "ref:ine": "46214000401"
+  }
+},
+{
+  "type": "node",
+  "id": 2063696014,
+  "lat": 39.4786546,
+  "lon": -0.5334859,
+  "tags": {
+    "ele": "83",
+    "name": "Polígon Industrial L'Oliveral",
+    "name:ca": "Polígon Industrial L'Oliveral",
+    "name:es": "Polígono Industrial El Oliveral",
+    "place": "neighbourhood",
+    "population": "1",
+    "population:date": "2024",
+    "ref:ine": "46214000601"
+  }
+},
+{
+  "type": "node",
+  "id": 2063696042,
+  "lat": 39.4840972,
+  "lon": -0.5720730,
+  "tags": {
+    "ele": "104",
+    "name": "Urbanització La Reva",
+    "name:ca": "Urbanització La Reva",
+    "name:es": "Residencial La Reva",
+    "place": "neighbourhood",
+    "population": "1315",
+    "population:date": "2024",
+    "ref:ine": "46214000501"
+  }
+},
+{
+  "type": "node",
+  "id": 6088862590,
+  "lat": 39.5230963,
+  "lon": -0.5283896,
+  "tags": {
+    "name": "Urbanització El Terreno",
+    "name:ca": "Urbanització El Terreno",
+    "name:es": "Urbanización El Terreno",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 6915764190,
+  "lat": 39.5037159,
+  "lon": -0.5434885,
+  "tags": {
+    "name": "Urbanización Carasoles",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 12356664808,
+  "lat": 39.5487635,
+  "lon": -0.5280143,
+  "tags": {
+    "name": "Vallesa de Mandor",
+    "place": "neighbourhood"
+  }
+},
+{
+  "type": "node",
+  "id": 12358914834,
+  "lat": 39.4710524,
+  "lon": -0.5366921,
+  "tags": {
+    "ele": "84",
+    "name": "l'Oliveral",
+    "name:ca": "l'Oliveral",
+    "place": "neighbourhood",
+    "population": "60",
+    "population:date": "2024",
+    "ref:ine": "46214000301"
+  }
+},
+{
+  "type": "node",
+  "id": 12359042823,
+  "lat": 39.5405303,
+  "lon": -0.5508958,
+  "tags": {
+    "ele": "108",
+    "name": "Polígono Industrial Entrevías",
+    "place": "neighbourhood",
+    "population": "0",
+    "population:date": "2024",
+    "ref:ine": "46214000701"
+  }
+},
+{
+  "type": "node",
+  "id": 12359042824,
+  "lat": 39.4786172,
+  "lon": -0.5717290,
+  "tags": {
+    "ele": "104",
+    "name": "Polígon Industrial Poio de Reva",
+    "name:ca": "Polígon Industrial Poio de Reva",
+    "name:es": "Polígono Industrial Sector 12",
+    "place": "neighbourhood",
+    "population": "1",
+    "population:date": "2023",
+    "ref:ine": "46214000603"
+  }
+},
+{
+  "type": "node",
+  "id": 12359042825,
+  "lat": 39.5119251,
+  "lon": -0.5337693,
+  "tags": {
+    "ele": "112",
+    "name": "Urbanització La Llobatera",
+    "place": "neighbourhood",
+    "population": "240",
+    "population:date": "2024",
+    "ref:ine": "46214000205"
+  }
+},
+{
+  "type": "node",
+  "id": 12359042826,
+  "lat": 39.5502196,
+  "lon": -0.5446061,
+  "tags": {
+    "ele": "101",
+    "name": "Parque Monte Alcedo",
+    "place": "neighbourhood",
+    "population": "511",
+    "population:date": "2024",
+    "ref:ine": "46214000104"
+  }
+},
+{
+  "type": "node",
+  "id": 12359042827,
+  "lat": 39.5515004,
+  "lon": -0.5282362,
+  "tags": {
+    "ele": "82",
+    "name": "Clot de Navarrete",
+    "place": "neighbourhood",
+    "population": "283",
+    "population:date": "2024",
+    "ref:ine": "46214000102"
+  }
+}
+
+  ]
+}
