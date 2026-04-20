@@ -206,7 +206,22 @@ async function main() {
     console.log(`[bot] webhook mode · ${webhook} · :${port}`)
   } else {
     console.log('[bot] long-polling mode (dev). Press Ctrl+C to stop.')
-    await bot.start()
+    // Resilient start — transient 409 Conflict (another getUpdates
+    // caller) is common in dev; we back off and retry rather than die.
+    while (true) {
+      try {
+        await bot.start({ drop_pending_updates: true })
+        break
+      } catch (err: any) {
+        const code = err?.error_code
+        if (code === 409) {
+          console.warn('[bot] getUpdates conflict, retrying in 5s…')
+          await new Promise((r) => setTimeout(r, 5000))
+          continue
+        }
+        throw err
+      }
+    }
   }
 }
 

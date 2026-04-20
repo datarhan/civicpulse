@@ -9,8 +9,79 @@ import {
   timeAgo,
 } from '../hooks/useQuejas'
 import { useCtbg } from '../hooks/useCtbg'
+import {
+  useSindic,
+  SINDIC_MATERIA_LABEL,
+  SINDIC_SENTIDO_LABEL,
+  SINDIC_SENTIDO_TONE,
+} from '../hooks/useSindic'
 
 const TELEGRAM_BOT_URL = 'https://t.me/civicpulse_ribarroja_bot'
+
+function SindicCard() {
+  const { data } = useSindic()
+  if (!data) return null
+  const items = data.items || []
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <SectionHead
+        eyebrow="Escalado externo · Síndic de Greuges CV"
+        title="Resoluciones del Síndic sobre Riba-roja de Túria"
+      />
+      {items.length === 0 ? (
+        <div style={{ fontSize: 13, color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}>
+          Aún no hay resoluciones del Síndic de Greuges CV registradas contra el
+          Ayuntamiento de Riba-roja de Túria en nuestro registro curado. El Síndic
+          publica sus resoluciones en{' '}
+          <a href="https://www.elsindic.com/resolucions" target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+            elsindic.com
+          </a>
+          .
+        </div>
+      ) : (
+        <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {items.slice(0, 20).map((r) => (
+            <div key={r.id} style={{ padding: '10px 0', borderTop: '1px dotted var(--border2)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                <span className="mono" style={{ fontSize: 11, color: 'var(--civic)', fontWeight: 700 }}>
+                  Expte {r.expediente}
+                </span>
+                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)' }}>
+                  {new Date(r.fecha).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+                </span>
+                <Pill tone={SINDIC_SENTIDO_TONE[r.sentido] || 'ghost'} size="xs">
+                  {SINDIC_SENTIDO_LABEL[r.sentido] || r.sentido}
+                </Pill>
+                <Pill tone="ghost" size="xs">
+                  {SINDIC_MATERIA_LABEL[r.materia] || r.materia}
+                </Pill>
+              </div>
+              <div style={{ fontSize: 13.5, fontWeight: 500 }}>{r.titulo}</div>
+              <div style={{ fontSize: 12.5, color: 'var(--ink70)', marginTop: 4, lineHeight: 1.5 }}>
+                {r.resumen}
+              </div>
+              <div style={{ marginTop: 6, fontSize: 11, display: 'flex', gap: 14 }}>
+                <a href={r.urlPdf} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+                  PDF del Síndic →
+                </a>
+                {r.quejaIdRelacionada && (
+                  <Link to={`/quejas/${r.quejaIdRelacionada.toLowerCase()}`} style={{ color: 'var(--civic)' }}>
+                    Queja {r.quejaIdRelacionada} →
+                  </Link>
+                )}
+              </div>
+            </div>
+          ))}
+          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 6 }}>
+            Lista curada manualmente · actualizado{' '}
+            {new Date(data.generatedAt).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+            . Fuente: <a href="https://www.elsindic.com" target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>elsindic.com</a>.
+          </div>
+        </div>
+      )}
+    </Card>
+  )
+}
 
 function CtbgCard() {
   const { data } = useCtbg()
@@ -346,6 +417,7 @@ export default function Quejas() {
       )}
       {!loading && !error && data && (data.stats?.total ?? 0) === 0 && <EmptyState />}
       {!loading && !error && data && (data.stats?.total ?? 0) > 0 && <DashboardView data={data} />}
+      <SindicCard />
       <CtbgCard />
     </div>
   )
