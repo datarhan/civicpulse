@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import {
   useQuejas,
   STATE_LABEL,
@@ -439,7 +439,7 @@ function DashboardView({ data }) {
               to={`/quejas/${it.service_request_id.toLowerCase()}`}
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'min-content 1fr min-content min-content',
+                gridTemplateColumns: 'min-content 1fr min-content min-content min-content',
                 alignItems: 'center',
                 gap: 12,
                 padding: '10px 0',
@@ -464,6 +464,10 @@ function DashboardView({ data }) {
               <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)', textAlign: 'right' }}>
                 👍 {it.apoyos}
               </span>
+              <ShareWA
+                text={`Queja ${it.service_request_id} · ${CATEGORY_LABEL[it.service_code] || it.service_code}\n${it.description.slice(0, 140)}`}
+                url={`https://civicpulse-virid.vercel.app/quejas/${it.service_request_id.toLowerCase()}`}
+              />
               <Pill tone={STATE_TONE[it.status] || 'ghost'} size="xs">
                 {STATE_LABEL[it.status] || it.status}
               </Pill>

@@ -142,3 +142,49 @@ export function LegendDot({ color, label }) {
     </span>
   )
 }
+
+/**
+ * WhatsApp share deeplink. Spain-native distribution channel — most
+ * Riba-roja civic conversation happens in vecinos WhatsApp groups, not
+ * Telegram or email. Renders a tiny "wa" pill that opens wa.me with a
+ * pre-filled message + canonical link.
+ *
+ * `text` is the human message ("Queja pendiente · bache en calle Major").
+ * `url`  is the canonical page to share; if omitted, defaults to the
+ *        current URL at click time.
+ */
+export function ShareWA({ text, url, size = 10.5 }) {
+  const onClick = (e) => {
+    e.stopPropagation()
+    const targetUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
+    const body = encodeURIComponent(`${text}${targetUrl ? `\n${targetUrl}` : ''}`)
+    const href = `https://wa.me/?text=${body}`
+    if (typeof window !== 'undefined') window.open(href, '_blank', 'noopener,noreferrer')
+  }
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Compartir en WhatsApp"
+      title="Compartir en WhatsApp"
+      className="mono"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 4,
+        padding: '2px 7px',
+        borderRadius: 999,
+        background: '#DCFCE7',
+        color: '#15803D',
+        fontSize: size,
+        fontWeight: 700,
+        letterSpacing: '.04em',
+        cursor: 'pointer',
+        border: '1px solid #BBF7D0',
+      }}
+    >
+      <span aria-hidden="true">↗</span>
+      WA
+    </button>
+  )
+}

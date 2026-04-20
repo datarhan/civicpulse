@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import {
   useQuejas,
   useQuejaResponses,
@@ -248,9 +248,14 @@ export default function QuejaDetail() {
               {queja.description.split('\n')[0].slice(0, 120)}
             </div>
           </div>
-          <Pill tone={STATE_TONE[queja.status] || 'ghost'} size="xs">
-            {STATE_LABEL[queja.status] || queja.status}
-          </Pill>
+          <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+            <ShareWA
+              text={`Queja ${queja.service_request_id} · ${CATEGORY_LABEL[category] || category} · ${STATE_LABEL[queja.status] || queja.status}\n${queja.description.split('\n')[0].slice(0, 140)}`}
+            />
+            <Pill tone={STATE_TONE[queja.status] || 'ghost'} size="xs">
+              {STATE_LABEL[queja.status] || queja.status}
+            </Pill>
+          </div>
         </div>
 
         <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: 12, color: 'var(--ink60)' }}>
