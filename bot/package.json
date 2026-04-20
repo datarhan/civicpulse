@@ -1,0 +1,29 @@
+{
+  "name": "civicpulse-bot",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Telegram bot — quejas ciudadanas ingestion + social layer for Riba-roja de Túria",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "tsx src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "migrate": "tsx src/db/migrate.ts",
+    "export": "tsx src/services/export.ts"
+  },
+  "dependencies": {
+    "@grammyjs/conversations": "^2.1.0",
+    "better-sqlite3": "^11.5.0",
+    "dotenv": "^16.4.7",
+    "grammy": "^1.36.3",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.5"
+  }
+}

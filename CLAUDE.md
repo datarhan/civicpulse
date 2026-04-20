@@ -40,6 +40,11 @@ npm run reply -- <promise-id> <PARTY> "<verbatim quote>" [url publisher] [date]
 npm run route-queja -- "<title>" "<detail>" [category]
                                     # prints category → concejalía → plazos → escalado
 npm run route-queja -- --file queja.json --raw    # JSON output for piping
+
+# Telegram bot (Sprint A · capture + social) — sibling package under /bot
+cd bot && npm install && npm test   # 17 DB tests
+cd bot && npm run dev               # long-polling (set BOT_TOKEN in bot/.env)
+cd bot && npm run export            # SQLite → ../public/data/quejas.json
 ```
 
 No linter or formatter is configured. The test suite is Vitest + happy-dom;
