@@ -1,8 +1,196 @@
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { Ic } from '../components/Icons'
-import { DATASETS } from '../data/mockData'
 import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
+import { useOfficials } from '../hooks/useOfficials'
+import { useBudget } from '../hooks/useBudget'
+import { useTenders } from '../hooks/useTenders'
+import { useBdns } from '../hooks/useBdns'
+import { usePlenos } from '../hooks/usePlenos'
+import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
+import { usePress } from '../hooks/usePress'
+import { useParticipa } from '../hooks/useParticipa'
+import { useParo } from '../hooks/useParo'
+import { useGeo } from '../hooks/useGeo'
+import { usePromises } from '../hooks/usePromises'
+
+function formatDate(iso) {
+  if (!iso) return '—'
+  try {
+    return new Date(iso).toLocaleDateString('es-ES', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    })
+  } catch {
+    return '—'
+  }
+}
+
+function DatasetsCatalog() {
+  const officials = useOfficials().data
+  const budget = useBudget().data
+  const tenders = useTenders().data
+  const bdns = useBdns().data
+  const plenos = usePlenos().data
+  const agendas = usePlenoAgendas().data
+  const press = usePress().data
+  const participa = useParticipa().data
+  const padron = usePadron().data
+  const paro = useParo().data
+  const geo = useGeo().data
+  const wiki = useWikidata().data
+  const promises = usePromises().data
+
+  const items = [
+    {
+      name: 'Corporación municipal',
+      rows: officials ? `${officials.count} cargos` : '—',
+      updated: formatDate(officials?.generatedAt),
+      source: 'ribarroja.es · scraper',
+      path: '/data/officials.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Presupuesto municipal',
+      rows: budget?.snapshot?.year ? `Ejercicio ${budget.snapshot.year}` : '—',
+      updated: formatDate(budget?.generatedAt),
+      source: 'MinHac CONPREL',
+      path: '/data/budget.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Contratos públicos',
+      rows: tenders?.stats?.totalContracts ? `${tenders.stats.totalContracts.toLocaleString('es-ES')} contratos` : '—',
+      updated: formatDate(tenders?.generatedAt),
+      source: 'Gobierto · PLACSP',
+      path: '/data/tenders.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Subvenciones BDNS',
+      rows: bdns?.stats?.total ? `${bdns.stats.total.toLocaleString('es-ES')} convocatorias` : '—',
+      updated: formatDate(bdns?.generatedAt),
+      source: 'BDNS · pap.hacienda.gob.es',
+      path: '/data/bdns.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Plenos municipales',
+      rows: plenos?.stats?.total ? `${plenos.stats.total} sesiones` : '—',
+      updated: formatDate(plenos?.generatedAt),
+      source: 'ribarroja.es/plenos',
+      path: '/data/plenos.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Órdenes del día de pleno',
+      rows: agendas?.stats?.agendaItemsTotal ? `${agendas.stats.agendaItemsTotal} puntos` : '—',
+      updated: formatDate(agendas?.generatedAt),
+      source: 'ribarroja.es · convocatorias',
+      path: '/data/plenos-agendas.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Prensa local',
+      rows: press?.stats?.total ? `${press.stats.total} titulares` : '—',
+      updated: formatDate(press?.generatedAt),
+      source: `${press?.stats?.sources ?? '—'} medios · RSS + agregadores`,
+      path: '/data/press.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Participación ciudadana',
+      rows: participa?.stats?.total ? `${participa.stats.total} publicaciones` : '—',
+      updated: formatDate(participa?.generatedAt),
+      source: 'participa.ribarroja.es',
+      path: '/data/participa.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Padrón municipal',
+      rows: padron?.latestTotal ? `${padron.latestTotal.toLocaleString('es-ES')} hab. (${padron.latestYear})` : '—',
+      updated: formatDate(padron?.generatedAt),
+      source: 'INE · Tempus3 tabla 2903',
+      path: '/data/padron.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Paro registrado',
+      rows: paro?.latestTotal ? `${paro.latestTotal.toLocaleString('es-ES')} personas (${paro.latestPeriod})` : '—',
+      updated: formatDate(paro?.generatedAt),
+      source: 'SEPE · serie municipal',
+      path: '/data/paro.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Geografía del municipio',
+      rows: geo?.neighborhoods ? `${geo.neighborhoods.length} barrios OSM` : '—',
+      updated: formatDate(geo?.generatedAt),
+      source: 'OpenStreetMap · relación 342356',
+      path: '/data/geo.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Identidad Wikidata',
+      rows: wiki?.facts?.qid || '—',
+      updated: formatDate(wiki?.generatedAt),
+      source: 'wikidata.org',
+      path: '/data/wikidata.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Promesas políticas',
+      rows: promises?.items ? `${promises.items.length} compromisos` : '—',
+      updated: formatDate(promises?.generatedAt),
+      source: 'curación editorial · fuente primaria',
+      path: '/data/promises.json',
+      fmt: ['json'],
+    },
+  ]
+
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 14 }}>
+      {items.map((d) => (
+        <Card key={d.path} hover>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <div style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-.005em' }}>{d.name}</div>
+              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
+                {d.rows}
+              </div>
+              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+                Fuente: {d.source}
+              </div>
+              <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 2 }}>
+                Actualizado {d.updated}
+              </div>
+            </div>
+            <Ic.chart width={16} height={16} style={{ color: 'var(--ink40)', flexShrink: 0 }} />
+          </div>
+          <div style={{ display: 'flex', gap: 4, marginTop: 12, alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+              {d.fmt.map((f) => (
+                <Pill key={f} tone="ghost" size="xs">
+                  {f}
+                </Pill>
+              ))}
+            </div>
+            <a
+              href={d.path}
+              target="_blank"
+              rel="noreferrer"
+              className="mono"
+              style={{ fontSize: 10.5, color: 'var(--civic)', textDecoration: 'none', fontWeight: 600 }}
+            >
+              abrir →
+            </a>
+          </div>
+        </Card>
+      ))}
+    </div>
+  )
+}
 
 function WikidataCard() {
   const { loading, error, data } = useWikidata()
@@ -320,30 +508,9 @@ export default function Datos() {
           marginBottom: 8,
         }}
       >
-        Catálogo de datasets
+        Catálogo de datasets · snapshots JSON regenerados por el pipeline
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
-        {DATASETS.map((d, i) => (
-          <Card key={i} hover>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
-              <div style={{ minWidth: 0 }}>
-                <div style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-.005em' }}>{d.name}</div>
-                <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 3 }}>
-                  {d.rows} registros · {d.updated}
-                </div>
-              </div>
-              <Ic.chart width={16} height={16} style={{ color: 'var(--ink40)', flexShrink: 0 }} />
-            </div>
-            <div style={{ display: 'flex', gap: 4, marginTop: 14, flexWrap: 'wrap' }}>
-              {d.fmt.map((f) => (
-                <Pill key={f} tone="ghost" size="xs">
-                  {f}
-                </Pill>
-              ))}
-            </div>
-          </Card>
-        ))}
-      </div>
+      <DatasetsCatalog />
     </div>
   )
 }

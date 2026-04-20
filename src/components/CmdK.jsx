@@ -3,18 +3,33 @@ import { useNavigate } from 'react-router-dom'
 import { Ic } from './Icons'
 import { Pill } from './Primitives'
 import { NAV } from './Sidebar'
-import { DEPTS, PROMISES } from '../data/mockData'
+import { useOfficials } from '../hooks/useOfficials'
+import { usePromises } from '../hooks/usePromises'
 
 export function CmdK({ open, onClose, onOpen }) {
   const navigate = useNavigate()
   const [q, setQ] = useState('')
+  const { data: officials } = useOfficials()
+  const { data: promises } = usePromises()
 
   const all = [
     ...NAV.map((n) => ({ kind: 'Página', label: n.label, to: n.to, icon: n.icon })),
-    ...DEPTS.map((d) => ({ kind: 'Departamento', label: d.name, sub: d.lead, to: '/cargos', icon: Ic.people })),
-    { kind: 'Acción', label: 'Reportar nueva queja', icon: Ic.plus },
-    { kind: 'Acción', label: 'Exportar datos abiertos', icon: Ic.chart },
-    ...PROMISES.slice(0, 3).map((p) => ({ kind: 'Promesa', label: p.text, sub: p.owner, to: '/cargos', icon: Ic.check })),
+    ...(officials?.officials ?? []).map((o) => ({
+      kind: o.role === 'alcalde' ? 'Alcalde' : 'Concejal·a',
+      label: o.name,
+      sub: (o.party || '') + (o.portfolios?.length ? ' · ' + o.portfolios[0] : ''),
+      to: '/cargos',
+      icon: Ic.people,
+    })),
+    ...(promises?.items ?? []).slice(0, 10).map((p) => ({
+      kind: 'Promesa',
+      label: p.title,
+      sub: p.party,
+      to: '/promesas',
+      icon: Ic.check,
+    })),
+    { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
+    { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
   ]
   const filtered = q ? all.filter((x) => (x.label + ' ' + (x.sub || '')).toLowerCase().includes(q.toLowerCase())) : all
 

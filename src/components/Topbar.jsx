@@ -1,5 +1,4 @@
 import { Ic } from './Icons'
-import { CITIES } from '../data/mockData'
 
 function IconBtn({ icon: I, badge }) {
   return (
@@ -44,8 +43,7 @@ function IconBtn({ icon: I, badge }) {
   )
 }
 
-export function Topbar({ cityId, crumb, onOpenCmdK }) {
-  const city = CITIES.find((c) => c.id === cityId) || CITIES[0]
+export function Topbar({ crumb, onOpenCmdK }) {
   return (
     <header
       className="cp-shell-topbar"
@@ -73,7 +71,7 @@ export function Topbar({ cityId, crumb, onOpenCmdK }) {
             whiteSpace: 'nowrap',
           }}
         >
-          {city.name}
+          Riba-roja de Túria
         </span>
         <span style={{ color: 'var(--ink40)' }}>/</span>
         <span style={{ fontSize: 13.5, fontWeight: 500 }}>{crumb}</span>
@@ -109,10 +107,21 @@ export function Topbar({ cityId, crumb, onOpenCmdK }) {
         </span>
       </button>
 
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-        <IconBtn icon={Ic.bell} badge={3} />
-        <IconBtn icon={Ic.plus} />
-      </div>
+      <a
+        href="https://github.com/datarhan/civicpulse"
+        target="_blank"
+        rel="noreferrer"
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink50)',
+          textDecoration: 'none',
+          letterSpacing: '.06em',
+          textTransform: 'uppercase',
+        }}
+      >
+        GitHub →
+      </a>
     </header>
   )
 }

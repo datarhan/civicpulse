@@ -1,5 +1,4 @@
 import { Ic } from './Icons'
-import { CITIES, PERSONAS } from '../data/mockData'
 
 function TwkSelect({ label, value, onChange, opts }) {
   return (
@@ -107,18 +106,6 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
         </button>
       </div>
       <div style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 14, fontSize: 12.5 }}>
-        <TwkSelect
-          label="Ciudad"
-          value={state.city}
-          onChange={(v) => onChange({ city: v })}
-          opts={CITIES.map((c) => ({ v: c.id, l: c.name }))}
-        />
-        <TwkSelect
-          label="Persona"
-          value={state.persona}
-          onChange={(v) => onChange({ persona: v })}
-          opts={PERSONAS.map((p) => ({ v: p.id, l: p.name }))}
-        />
         <TwkSelect
           label="Densidad"
           value={state.density}

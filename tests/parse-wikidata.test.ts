@@ -15,7 +15,9 @@ describe('scraper/wikidata — parseWikidataEntity', () => {
   it('returns facts for Q23701 (Riba-roja de Túria)', () => {
     expect(facts).not.toBeNull()
     expect(facts!.qid).toBe('Q23701')
-    expect(facts!.label).toMatch(/Riba-roja/i)
+    // Wikidata ES label is "Ribarroja del Turia" (no hyphen), CA is
+    // "Riba-roja de Túria" — accept either.
+    expect(facts!.label).toMatch(/Riba[-]?roja|Ribarroja/i)
   })
 
   it('resolves INE code 46214', () => {

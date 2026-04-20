@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import StylizedMap from '../components/LiveCity/StylizedMap'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
@@ -8,15 +8,11 @@ import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
+import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
+import { useWikidata } from '../hooks/useWikidata'
 import { Ic } from '../components/Icons'
-import {
-  RIBA_ROJA,
-  RR_EVENT_POOL,
-  RR_INCIDENTS_SEED,
-  RR_LAYERS,
-  RR_NEIGHBORHOODS,
-  RR_PRESS_POOL,
-} from '../data/mockData'
+
+const RIBA_ROJA_CENTER = [39.5439, -0.5711]
 
 const SERIF = "'Fraunces', Georgia, serif"
 const SANS = "'Outfit', system-ui, -apple-system, sans-serif"
@@ -49,14 +45,6 @@ function fmtDateLong(d) {
   return d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
 }
 
-function formatAge(sec) {
-  if (sec < 60) return 'ahora'
-  const m = Math.floor(sec / 60)
-  if (m < 60) return `hace ${m} min`
-  const h = Math.floor(m / 60)
-  return `hace ${h} h`
-}
-
 function useClock(intervalMs = 30000) {
   const [now, setNow] = useState(() => new Date())
   useEffect(() => {
@@ -64,42 +52,6 @@ function useClock(intervalMs = 30000) {
     return () => clearInterval(id)
   }, [intervalMs])
   return now
-}
-
-// A slower, more editorial-paced live feed — one event every 20–45s
-function useSlowFeed() {
-  const [events, setEvents] = useState(() =>
-    RR_INCIDENTS_SEED.slice(0, 4).map((inc, i) => ({
-      id: 'seed-' + inc.id,
-      ageSec: 120 + i * 240,
-      sev: inc.sev,
-      text: inc.text,
-      dept: inc.dept,
-      ico: inc.sev === 'ok' ? '✓' : inc.sev === 'crit' ? '⚠' : '⚑',
-    }))
-  )
-  const idRef = useRef(1)
-
-  useEffect(() => {
-    const schedule = () => {
-      const delay = 20000 + Math.random() * 25000
-      return setTimeout(() => {
-        const pool = RR_EVENT_POOL[Math.floor(Math.random() * RR_EVENT_POOL.length)]
-        const next = { id: 'd-' + idRef.current++, ageSec: 0, ...pool }
-        setEvents((prev) => [next, ...prev].slice(0, 12))
-        timer = schedule()
-      }, delay)
-    }
-    let timer = schedule()
-    return () => clearTimeout(timer)
-  }, [])
-
-  useEffect(() => {
-    const id = setInterval(() => setEvents((prev) => prev.map((e) => ({ ...e, ageSec: e.ageSec + 1 }))), 1000)
-    return () => clearInterval(id)
-  }, [])
-
-  return events
 }
 
 /* ============================================================
@@ -314,7 +266,17 @@ function LeftRail() {
 /* ============================================================
    MAP OVERLAY BADGE
    ============================================================ */
-function StatusBadge({ mhs }) {
+function StatusBadge() {
+  const { data: wiki } = useWikidata()
+  const { data: plenos } = usePlenos()
+  const pop = wiki?.facts?.population?.value
+  const popYear = wiki?.facts?.population?.year
+  const nextPleno = (plenos?.items || [])[0]
+  const fmtPleno = (p) => {
+    if (!p) return null
+    const d = new Date(p.date)
+    return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  }
   return (
     <div
       style={{
@@ -337,65 +299,31 @@ function StatusBadge({ mhs }) {
     >
       <div>
         <div style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(255,255,255,.55)', letterSpacing: '.12em' }}>
-          SALUD MUNICIPAL
+          PADRÓN {popYear || ''}
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-          <span style={{ fontFamily: MONO, fontSize: 22, fontWeight: 800, color: '#4ADE80', lineHeight: 1 }}>
-            {mhs.toFixed(1)}
+          <span style={{ fontFamily: MONO, fontSize: 20, fontWeight: 800, color: '#E2E8F0', lineHeight: 1 }}>
+            {pop ? pop.toLocaleString('es-ES') : '—'}
           </span>
-          <span style={{ fontFamily: MONO, fontSize: 10, color: '#4ADE80', fontWeight: 700 }}>▲ 0.4</span>
+          <span style={{ fontFamily: MONO, fontSize: 10, color: 'rgba(255,255,255,.55)', fontWeight: 500 }}>
+            habitantes
+          </span>
         </div>
       </div>
       <span style={{ width: 1, height: 32, background: 'rgba(255,255,255,.12)' }} />
       <div>
         <div style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(255,255,255,.55)', letterSpacing: '.12em' }}>
-          PRÓXIMO PLENO
+          ÚLTIMO PLENO
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-          <span style={{ fontFamily: MONO, fontSize: 14, fontWeight: 700 }}>HOY 18:00</span>
-          <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>2 puntos calientes</span>
+          <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 700 }}>
+            {fmtPleno(nextPleno) || '—'}
+          </span>
+          <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>
+            {nextPleno ? PLENO_LABEL[nextPleno.kind] || nextPleno.kind : ''}
+          </span>
         </div>
       </div>
-    </div>
-  )
-}
-
-function LayerSwitcher({ layer, onLayer }) {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        bottom: 14,
-        left: 14,
-        zIndex: 400,
-        display: 'flex',
-        gap: 4,
-        padding: 5,
-        background: 'rgba(14,20,34,.82)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
-        border: '1px solid rgba(96,165,250,.18)',
-        borderRadius: 10,
-      }}
-    >
-      {RR_LAYERS.map((l) => (
-        <button
-          key={l.id}
-          onClick={() => onLayer(l.id)}
-          style={{
-            padding: '5px 10px',
-            borderRadius: 6,
-            background: layer === l.id ? '#F5B544' : 'transparent',
-            color: layer === l.id ? '#0B0F19' : 'rgba(255,255,255,.75)',
-            fontWeight: layer === l.id ? 700 : 500,
-            fontSize: 11.5,
-            fontFamily: SANS,
-            cursor: 'pointer',
-          }}
-        >
-          {l.name}
-        </button>
-      ))}
     </div>
   )
 }
@@ -408,7 +336,7 @@ function MapAttribution() {
         top: 82,
         right: 14,
         zIndex: 400,
-        maxWidth: 220,
+        maxWidth: 240,
         fontSize: 9.5,
         color: 'rgba(255,255,255,.5)',
         fontFamily: MONO,
@@ -419,9 +347,9 @@ function MapAttribution() {
         lineHeight: 1.4,
       }}
     >
-      Vista esquemática · geometría OSM
+      Límite OSM · relación 342356
       <br />
-      Tren L9 · horario MetroValencia
+      Barrios OSM · L9 MetroValencia
     </div>
   )
 }
@@ -503,117 +431,47 @@ function Kicker({ tone = 'ink', children }) {
 }
 
 function LeadStory() {
+  const { loading, error, data } = usePress()
+  if (loading || error || !data) return null
+  const top = (data.items || [])[0]
+  if (!top) return null
+  const excerpt = (top.excerpt || '').trim()
   return (
     <article style={{ paddingBottom: 22, borderBottom: '1px solid ' + PALETTE.hair }}>
-      <Kicker tone="red">Promesa incumplida</Kicker>
+      <Kicker tone="red">{top.source}</Kicker>
       <h1
         style={{
           fontFamily: SERIF,
-          fontSize: 30,
+          fontSize: 28,
           fontWeight: 800,
           letterSpacing: '-.02em',
-          lineHeight: 1.05,
-          margin: '8px 0 12px',
+          lineHeight: 1.1,
+          margin: '8px 0 10px',
         }}
       >
-        La respuesta a quejas del Sector 14 se ha duplicado este trimestre
+        <a
+          href={top.link}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'inherit', textDecoration: 'none' }}
+        >
+          {top.title}
+        </a>
       </h1>
-      <div
-        style={{
-          fontFamily: SERIF,
-          fontSize: 15,
-          color: PALETTE.ink80,
-          lineHeight: 1.45,
-          fontStyle: 'italic',
-          marginBottom: 14,
-        }}
-      >
-        El servicio municipal de Limpieza prometió 48 horas. Los datos del propio Ayuntamiento
-        muestran una media de 73 horas en el barrio con mayor crecimiento poblacional.
-      </div>
-
-      <div
-        style={{
-          display: 'flex',
-          gap: 18,
-          padding: '14px 16px',
-          background: PALETTE.paper,
-          border: '1px solid ' + PALETTE.hair,
-          marginBottom: 14,
-        }}
-      >
-        <div>
-          <div
-            style={{
-              fontFamily: SERIF,
-              fontSize: 36,
-              fontWeight: 800,
-              color: PALETTE.accent,
-              lineHeight: 1,
-              letterSpacing: '-.02em',
-            }}
-          >
-            73h
-          </div>
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 9.5,
-              color: PALETTE.ink60,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              marginTop: 3,
-            }}
-          >
-            Media real
-          </div>
+      {excerpt && (
+        <div
+          style={{
+            fontFamily: SERIF,
+            fontSize: 14.5,
+            color: PALETTE.ink80,
+            lineHeight: 1.45,
+            fontStyle: 'italic',
+            marginBottom: 12,
+          }}
+        >
+          {excerpt.length > 260 ? excerpt.slice(0, 260) + '…' : excerpt}
         </div>
-        <div style={{ width: 1, background: PALETTE.hair }} />
-        <div>
-          <div
-            style={{
-              fontFamily: SERIF,
-              fontSize: 36,
-              fontWeight: 800,
-              color: PALETTE.ok,
-              lineHeight: 1,
-              letterSpacing: '-.02em',
-            }}
-          >
-            48h
-          </div>
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 9.5,
-              color: PALETTE.ink60,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              marginTop: 3,
-            }}
-          >
-            Prometido
-          </div>
-        </div>
-        <div style={{ flex: 1 }} />
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3 }}>
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 9.5,
-              color: PALETTE.ink60,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-            }}
-          >
-            Δ trimestre
-          </div>
-          <div style={{ fontFamily: MONO, fontSize: 14, fontWeight: 700, color: PALETTE.crit }}>
-            ▲ 52%
-          </div>
-        </div>
-      </div>
-
+      )}
       <div
         style={{
           fontFamily: MONO,
@@ -622,200 +480,17 @@ function LeadStory() {
           letterSpacing: '.06em',
         }}
       >
-        POR <b style={{ color: PALETTE.ink }}>REDACCIÓN CIVICPULSE</b> · análisis de 312 quejas
-        {' '}·{' '}
-        <span style={{ color: PALETTE.civic, fontWeight: 600 }}>Leer completo →</span>
+        {pressTimeAgo(top.date).toUpperCase()} ·{' '}
+        <a
+          href={top.link}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: PALETTE.civic, textDecoration: 'none', fontWeight: 600 }}
+        >
+          Leer en {top.source} →
+        </a>
       </div>
     </article>
-  )
-}
-
-function SecondaryStories() {
-  const stories = [
-    {
-      kicker: 'Movilidad',
-      kTone: 'navy',
-      head: 'Metro L9 reducirá frecuencia en agosto: los barrios del este, afectados',
-      byline: 'M. Torres',
-      ago: 'hace 2 h',
-    },
-    {
-      kicker: 'Transparencia',
-      kTone: 'amber',
-      head: 'El contrato de alumbrado LED (€680k) se adjudicó a la misma empresa por sexta vez',
-      byline: 'Á. Núñez',
-      ago: 'hace 4 h',
-    },
-    {
-      kicker: 'Medio Ambiente',
-      kTone: 'green',
-      head: 'El río Túria recupera caudal medio tras las lluvias del fin de semana',
-      byline: 'Redacción',
-      ago: 'hace 6 h',
-    },
-  ]
-  return (
-    <section style={{ paddingTop: 18, paddingBottom: 18, borderBottom: '1px solid ' + PALETTE.hair }}>
-      <div
-        style={{
-          fontFamily: MONO,
-          fontSize: 10,
-          color: PALETTE.ink60,
-          letterSpacing: '.12em',
-          textTransform: 'uppercase',
-          marginBottom: 14,
-        }}
-      >
-        Secundarias
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        {stories.map((s, i) => (
-          <article
-            key={i}
-            style={{
-              paddingBottom: i < stories.length - 1 ? 14 : 0,
-              borderBottom: i < stories.length - 1 ? '1px dotted ' + PALETTE.hair : 'none',
-            }}
-          >
-            <Kicker tone={s.kTone}>{s.kicker}</Kicker>
-            <h2
-              style={{
-                fontFamily: SERIF,
-                fontSize: 17,
-                fontWeight: 700,
-                lineHeight: 1.2,
-                letterSpacing: '-.01em',
-                margin: '5px 0 6px',
-              }}
-            >
-              {s.head}
-            </h2>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 10.5,
-                color: PALETTE.ink60,
-                letterSpacing: '.05em',
-              }}
-            >
-              POR <b style={{ color: PALETTE.ink }}>{s.byline.toUpperCase()}</b> · {s.ago}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-function LiveStrip({ events }) {
-  return (
-    <section style={{ paddingTop: 18 }}>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: 12,
-        }}
-      >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 10,
-            color: PALETTE.ink60,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Ahora mismo
-        </div>
-        <span
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 5,
-            fontSize: 10,
-            color: PALETTE.ok,
-            fontFamily: MONO,
-            letterSpacing: '.06em',
-          }}
-        >
-          <span
-            style={{
-              width: 6,
-              height: 6,
-              borderRadius: '50%',
-              background: PALETTE.ok,
-              animation: 'ribaPulse 1.5s infinite',
-            }}
-          />
-          LIVE
-        </span>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {events.slice(0, 5).map((e) => (
-          <div
-            key={e.id}
-            style={{
-              display: 'flex',
-              gap: 10,
-              paddingBottom: 10,
-              borderBottom: '1px dotted ' + PALETTE.hair,
-              animation: e.ageSec < 2 ? 'ribaNew 500ms cubic-bezier(.2,.9,.2,1)' : 'none',
-            }}
-          >
-            <div
-              style={{
-                width: 20,
-                height: 20,
-                flexShrink: 0,
-                borderRadius: 4,
-                display: 'grid',
-                placeItems: 'center',
-                fontSize: 10,
-                background:
-                  e.sev === 'crit'
-                    ? 'rgba(220,38,38,.12)'
-                    : e.sev === 'warn'
-                    ? 'rgba(217,119,6,.12)'
-                    : e.sev === 'ok'
-                    ? 'rgba(22,163,74,.12)'
-                    : 'rgba(36,99,235,.12)',
-                color:
-                  e.sev === 'crit'
-                    ? PALETTE.crit
-                    : e.sev === 'warn'
-                    ? PALETTE.warn
-                    : e.sev === 'ok'
-                    ? PALETTE.ok
-                    : PALETTE.civic,
-              }}
-            >
-              {e.ico}
-            </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 12.5, fontWeight: 500, lineHeight: 1.35, color: PALETTE.ink }}>
-                {e.text}
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  gap: 6,
-                  marginTop: 2,
-                  fontFamily: MONO,
-                  fontSize: 10,
-                  color: PALETTE.ink50,
-                }}
-              >
-                <span>{formatAge(e.ageSec)}</span>
-                <span>·</span>
-                <span>{e.dept}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
   )
 }
 
@@ -1275,7 +950,7 @@ function PromesasBlockD() {
           </span>
         ))}
       </div>
-      <div style={{ fontSize: 11.5, color: PALETTE.ink70, lineHeight: 1.45, marginBottom: 6 }}>
+      <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
         Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.
       </div>
       <a
@@ -1288,7 +963,7 @@ function PromesasBlockD() {
   )
 }
 
-function EditorialColumn({ events, now }) {
+function EditorialColumn({ now }) {
   return (
     <aside
       style={{
@@ -1303,15 +978,13 @@ function EditorialColumn({ events, now }) {
       }}
     >
       <EditorialMasthead now={now} />
+      <LeadStory />
       <AlcaldeBox />
       <CoalitionRing />
       <PromesasBlockD />
       <PressBlockD />
       <LiveContracts />
       <ParticipaBlockD />
-      <LeadStory />
-      <SecondaryStories />
-      <LiveStrip events={events} />
     </aside>
   )
 }
@@ -1408,31 +1081,30 @@ function KpiStrip() {
   const budget = useBudget().data
   const tenders = useTenders().data
   const paro = useParo().data
+  const plenos = usePlenos().data
 
-  // Population sparkline: last 10 years of total.
-  const popSpark =
-    padron?.series?.total?.slice(-10).map((p) => p.value) || [78, 79, 79, 80, 80, 81, 81, 81, 81, 81]
-  const popLatest = padron ? Math.round(padron.latestTotal / 100) / 10 : 24.6 // thousands
+  const popSpark = padron?.series?.total?.slice(-10).map((p) => p.value) || null
+  const popLatest = padron ? Math.round(padron.latestTotal / 100) / 10 : null
   const popDecade = padron ? padron.growth.decadePct : 0
   const popDeltaStr = padron
     ? (popDecade >= 0 ? '▲ ' : '▼ ') + Math.abs(popDecade).toFixed(1) + '%'
     : '—'
 
-  // Budget numbers
-  const totalRevenue = budget?.snapshot?.totalRevenue
   const totalExpense = budget?.snapshot?.totalExpense
   const budgetYear = budget?.snapshot?.year
-  const budgetValue = totalExpense
-    ? formatBudgetEuros(totalExpense, { compact: true })
-    : '€47.3k'
+  const budgetValue = totalExpense ? formatBudgetEuros(totalExpense, { compact: true }) : '—'
   const balance = budget?.snapshot?.balance || 0
 
-  // Tenders totals
   const awardedTotal = tenders?.stats?.awardedTotalEuros
   const awardedCount = tenders?.stats?.awardedContracts
-  const awardedValue = awardedTotal
-    ? formatBudgetEuros(awardedTotal, { compact: true })
+  const awardedValue = awardedTotal ? formatBudgetEuros(awardedTotal, { compact: true }) : '—'
+
+  const nextPleno = (plenos?.items || [])[0]
+  const plenoDate = nextPleno
+    ? new Date(nextPleno.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
     : '—'
+  const plenoKind = nextPleno ? PLENO_LABEL[nextPleno.kind] || nextPleno.kind : ''
+  const totalPlenos = plenos?.stats?.total
 
   return (
     <footer
@@ -1447,21 +1119,19 @@ function KpiStrip() {
     >
       <Kpi
         label={padron ? `Población ${padron.latestYear}` : 'Población'}
-        value={padron ? popLatest.toFixed(1) + 'k' : '—'}
+        value={popLatest ? popLatest.toFixed(1) + 'k' : '—'}
         delta={popDeltaStr}
         tone={popDecade > 0 ? 'ok' : 'warn'}
-        sub={padron ? `10 años` : 'INE Padrón'}
+        sub={padron ? `10 años · INE` : 'INE Padrón'}
         spark={popSpark}
         serif
       />
       <Kpi
         label={budgetYear ? `Presup. ${budgetYear}` : 'Presupuesto'}
         value={budgetValue}
-        delta={balance >= 0 ? '▲' : '▼'}
+        delta={budget ? (balance >= 0 ? '▲' : '▼') : '—'}
         tone={balance >= 0 ? 'ok' : 'warn'}
         sub="MinHac CONPREL"
-        spark={[20, 28, 32, 40, 42, 47]}
-        sparkColor={PALETTE.civic}
       />
       <Kpi
         label="Gastos personal"
@@ -1470,7 +1140,11 @@ function KpiStrip() {
             ? formatBudgetEuros(budget.snapshot.expenseByEconomicChapter[0].amount, { compact: true })
             : '—'
         }
-        delta={totalExpense ? ((budget.snapshot.expenseByEconomicChapter[0].amount / totalExpense) * 100).toFixed(0) + '%' : '—'}
+        delta={
+          totalExpense && budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
+            ? ((budget.snapshot.expenseByEconomicChapter[0].amount / totalExpense) * 100).toFixed(0) + '%'
+            : '—'
+        }
         tone="civic"
         sub="Cap.1 económico"
       />
@@ -1498,51 +1172,16 @@ function KpiStrip() {
           return last < prev ? 'ok' : 'warn'
         })()}
         sub="SEPE · paro registrado"
-        spark={paro?.series?.slice(-12).map((p) => p.total) || [1183, 1180, 1192]}
+        spark={paro?.series?.slice(-12).map((p) => p.total) || null}
         sparkColor={PALETTE.accent}
       />
       <Kpi
-        label="Pleno"
-        value="18:00"
-        delta="HOY"
-        tone="crit"
-        sub="2 calientes"
+        label="Último pleno"
+        value={plenoDate}
+        delta={plenoKind || '—'}
+        tone="civic"
+        sub={totalPlenos ? `${totalPlenos} sesiones` : 'ribarroja.es'}
       />
-      <div
-        style={{
-          padding: '0 18px',
-          display: 'flex',
-          alignItems: 'center',
-          borderLeft: '1px solid ' + PALETTE.hair,
-          background: PALETTE.bg,
-        }}
-      >
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 9.5,
-            color: PALETTE.ink50,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Recibo
-          <br />
-          IBI
-        </div>
-        <div
-          style={{
-            fontFamily: SERIF,
-            fontSize: 24,
-            fontWeight: 800,
-            color: PALETTE.accent,
-            letterSpacing: '-.02em',
-            marginLeft: 10,
-          }}
-        >
-          €487
-        </div>
-      </div>
     </footer>
   )
 }
@@ -1551,13 +1190,7 @@ function KpiStrip() {
    APP
    ============================================================ */
 export default function DirectionD() {
-  const [layer, setLayer] = useState('incidencias')
-  const [mhs] = useState(RIBA_ROJA.mhsBase)
-  const events = useSlowFeed()
-  const now = useClock(1000) // 1s for live metro arrival countdown
-
-  // Memoized incidents — refined direction keeps pins stable
-  const incidents = useMemo(() => RR_INCIDENTS_SEED, [])
+  const now = useClock(60000)
 
   return (
     <div
@@ -1573,10 +1206,6 @@ export default function DirectionD() {
     >
       <style>{`
         @keyframes ribaPulse { 0%,100% { opacity: 1 } 50% { opacity: .3 } }
-        @keyframes ribaNew {
-          0%   { opacity: 0; transform: translateX(-8px); }
-          100% { opacity: 1; transform: translateX(0); }
-        }
         .d-root .leaflet-container { background: #0B0F19; }
         .d-root .leaflet-control-zoom { display: none; }
         .d-root .leaflet-tooltip {
@@ -1593,16 +1222,13 @@ export default function DirectionD() {
       <div style={{ flex: 1, display: 'flex', minHeight: 0 }} className="d-root">
         <LeftRail />
 
-        {/* Map column */}
         <div style={{ flex: 1, position: 'relative', minWidth: 0 }}>
-          <StylizedMap incidents={incidents} layer={layer} now={now} />
-          <StatusBadge mhs={mhs} />
-          <LayerSwitcher layer={layer} onLayer={setLayer} />
+          <StylizedMap center={RIBA_ROJA_CENTER} />
+          <StatusBadge />
           <MapAttribution />
         </div>
 
-        {/* Editorial column */}
-        <EditorialColumn events={events} now={now} />
+        <EditorialColumn now={now} />
       </div>
 
       <KpiStrip />

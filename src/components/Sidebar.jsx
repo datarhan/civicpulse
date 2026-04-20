@@ -1,20 +1,22 @@
 import { NavLink } from 'react-router-dom'
 import { Ic } from './Icons'
-import { PERSONAS, CITIES } from '../data/mockData'
+import { useWikidata } from '../hooks/useWikidata'
 
+// Landing (/) always renders Direction D — the map kiosk with real data.
+// Table-view pages below stay inside the Sidebar+Topbar shell.
 export const NAV = [
-  { to: '/',            id: 'overview', label: 'Overview',     icon: Ic.home,   shortcut: 'G O' },
-  { to: '/ciudad',      id: 'ciudad',   label: 'Ciudad · vivo',icon: Ic.dot,    shortcut: 'G V', liveBadge: true },
-  { to: '/quejas',      id: 'quejas',   label: 'Quejas',       icon: Ic.warn,   shortcut: 'G Q', badge: 312 },
+  { to: '/',            id: 'inicio',   label: 'Panel',        icon: Ic.home,   shortcut: 'G H' },
   { to: '/cargos',      id: 'cargos',   label: 'Cargos',       icon: Ic.people, shortcut: 'G C' },
   { to: '/presupuesto', id: 'presup',   label: 'Presupuesto',  icon: Ic.coin,   shortcut: 'G P' },
   { to: '/plenos',      id: 'plenos',   label: 'Plenos',       icon: Ic.scale,  shortcut: 'G L' },
   { to: '/promesas',    id: 'promesas', label: 'Promesas',     icon: Ic.scale,  shortcut: 'G R' },
   { to: '/datos',       id: 'datos',    label: 'Datos',        icon: Ic.chart,  shortcut: 'G D' },
+  { to: '/quejas',      id: 'quejas',   label: 'Quejas',       icon: Ic.warn,   shortcut: 'G Q' },
 ]
 
-function CitySwitcher({ cityId }) {
-  const city = CITIES.find((c) => c.id === cityId) || CITIES[0]
+function CityChip() {
+  const { data } = useWikidata()
+  const pop = data?.facts?.population?.value
   return (
     <div
       style={{
@@ -25,7 +27,6 @@ function CitySwitcher({ cityId }) {
         display: 'flex',
         alignItems: 'center',
         gap: 10,
-        cursor: 'pointer',
       }}
     >
       <div
@@ -41,20 +42,19 @@ function CitySwitcher({ cityId }) {
           color: '#6B4C2A',
         }}
       >
-        {city.code}
+        RR
       </div>
       <div style={{ flex: 1, minWidth: 0 }}>
-        <div style={{ fontSize: 12.5, fontWeight: 600 }}>{city.name}</div>
+        <div style={{ fontSize: 12.5, fontWeight: 600 }}>Riba-roja de Túria</div>
         <div className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)' }}>
-          {city.region} · {city.pop}
+          Camp de Túria · {pop ? pop.toLocaleString('es-ES') : '—'}
         </div>
       </div>
-      <Ic.chevron width={12} height={12} style={{ color: 'var(--ink40)' }} />
     </div>
   )
 }
 
-export function Sidebar({ cityId, persona, onPersona }) {
+export function Sidebar() {
   return (
     <aside
       className="cp-shell-sidebar"
@@ -93,7 +93,7 @@ export function Sidebar({ cityId, persona, onPersona }) {
         <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 15 }}>CivicPulse</div>
       </div>
 
-      <CitySwitcher cityId={cityId} />
+      <CityChip />
 
       <nav style={{ padding: '10px 10px', flex: 1, overflowY: 'auto' }}>
         <div
@@ -174,103 +174,32 @@ export function Sidebar({ cityId, persona, onPersona }) {
           </NavLink>
         ))}
 
-        <div
-          className="mono"
-          style={{
-            fontSize: 10,
-            color: 'var(--ink40)',
-            padding: '18px 8px 6px',
-            textTransform: 'uppercase',
-            letterSpacing: '.1em',
-          }}
-        >
-          Lentes
-        </div>
-        {PERSONAS.map((p) => {
-          const active = persona === p.id
-          return (
-            <button
-              key={p.id}
-              onClick={() => onPersona(p.id)}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 10,
-                width: '100%',
-                padding: '7px 10px',
-                borderRadius: 8,
-                background: active ? 'var(--soft)' : 'transparent',
-                textAlign: 'left',
-                fontSize: 13,
-              }}
-            >
-              <div
-                style={{
-                  width: 16,
-                  height: 16,
-                  borderRadius: '50%',
-                  border: active ? '2px solid var(--civic)' : '1.5px solid var(--border)',
-                  background: active ? 'var(--civic)' : 'transparent',
-                  flexShrink: 0,
-                  boxShadow: active ? 'inset 0 0 0 2px var(--paper)' : 'none',
-                }}
-              />
-              <div
-                style={{
-                  flex: 1,
-                  color: active ? 'var(--ink)' : 'var(--ink60)',
-                  fontWeight: active ? 500 : 400,
-                }}
-              >
-                {p.name}
-              </div>
-            </button>
-          )
-        })}
       </nav>
 
       <div
         style={{
           padding: '12px 14px',
           borderTop: '1px solid var(--border2)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: 10,
         }}
       >
-        <div
-          style={{
-            width: 28,
-            height: 28,
-            borderRadius: '50%',
-            background: 'linear-gradient(135deg,#2463EB,#7C3AED)',
-            color: 'white',
-            display: 'grid',
-            placeItems: 'center',
-            fontSize: 11,
-            fontWeight: 700,
-          }}
-        >
-          MP
+        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', letterSpacing: '.08em' }}>
+          MVP público · datos abiertos
         </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div
-            style={{
-              fontSize: 12.5,
-              fontWeight: 500,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            }}
+        <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 3 }}>
+          <a
+            href="/aviso-legal"
+            style={{ color: 'var(--civic)', textDecoration: 'none' }}
           >
-            María Pérez
-          </div>
-          <div style={{ fontSize: 10, color: 'var(--ink50)' }}>
-            {PERSONAS.find((p) => p.id === persona)?.name || 'Ciudadana'} ·{' '}
-            {CITIES.find((c) => c.id === cityId)?.name || ''}
-          </div>
+            Aviso legal
+          </a>{' '}
+          ·{' '}
+          <a
+            href="/metodologia"
+            style={{ color: 'var(--civic)', textDecoration: 'none' }}
+          >
+            Metodología
+          </a>
         </div>
-        <Ic.settings width={15} height={15} style={{ color: 'var(--ink50)' }} />
       </div>
     </aside>
   )

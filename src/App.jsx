@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Sidebar, NAV } from './components/Sidebar'
 import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
-import Overview from './pages/Overview'
 import Quejas from './pages/Quejas'
 import Cargos from './pages/Cargos'
 import Presupuesto from './pages/Presupuesto'
@@ -13,13 +12,13 @@ import Datos from './pages/Datos'
 import Promesas from './pages/Promesas'
 import Metodologia from './pages/Metodologia'
 import AvisoLegal from './pages/AvisoLegal'
-import Ciudad from './pages/Ciudad'
 import Hud from './variants/Hud'
 import Briefing from './variants/Briefing'
 import DirectionD from './variants/DirectionD'
 import Chooser from './variants/Chooser'
 import { VariantSwitcher } from './variants/VariantSwitcher'
-import { DEFAULT_TWEAKS } from './data/mockData'
+
+const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
 
 function loadTweaks() {
   try {
@@ -31,24 +30,20 @@ function loadTweaks() {
   return DEFAULT_TWEAKS
 }
 
-function VariantA({ tweaks, updateTweaks, onOpenCmdK }) {
+function VariantA({ onOpenCmdK }) {
   const location = useLocation()
-  const active = NAV.find((n) => (n.to === '/' ? location.pathname === '/' : location.pathname.startsWith(n.to)))
-  const crumb = active?.label || 'Overview'
+  const active = NAV.find((n) => location.pathname.startsWith(n.to))
+  const crumb = active?.label || 'CivicPulse'
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
-      <Sidebar
-        cityId={tweaks.city}
-        persona={tweaks.persona}
-        onPersona={(v) => updateTweaks({ persona: v })}
-      />
+      <Sidebar />
       <main style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-        <Topbar cityId={tweaks.city} crumb={crumb} onOpenCmdK={onOpenCmdK} />
+        <Topbar crumb={crumb} onOpenCmdK={onOpenCmdK} />
         <div style={{ flex: 1 }}>
           <Routes>
-            <Route path="/" element={<Overview cityId={tweaks.city} />} />
-            <Route path="/ciudad" element={<Ciudad />} />
+            <Route path="/ciudad" element={<Navigate to="/" replace />} />
+            <Route path="/overview" element={<Navigate to="/" replace />} />
             <Route path="/quejas" element={<Quejas />} />
             <Route path="/cargos" element={<Cargos />} />
             <Route path="/presupuesto" element={<Presupuesto />} />
@@ -57,7 +52,7 @@ function VariantA({ tweaks, updateTweaks, onOpenCmdK }) {
             <Route path="/promesas" element={<Promesas />} />
             <Route path="/metodologia" element={<Metodologia />} />
             <Route path="/aviso-legal" element={<AvisoLegal />} />
-            <Route path="*" element={<Overview cityId={tweaks.city} />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       </main>
@@ -73,7 +68,11 @@ export default function App() {
 
   const onVariantB = location.pathname.startsWith('/hud')
   const onVariantC = location.pathname.startsWith('/briefing')
-  const onVariantD = location.pathname === '/d' || location.pathname.startsWith('/d/')
+  // "/" (landing) + "/d" both render Direction D — it is the MVP entry point.
+  const onVariantD =
+    location.pathname === '/' ||
+    location.pathname === '/d' ||
+    location.pathname.startsWith('/d/')
   const onChooser = location.pathname === '/variants'
   const onVariantA = !onVariantB && !onVariantC && !onVariantD && !onChooser
 
@@ -141,7 +140,7 @@ export default function App() {
 
   return (
     <>
-      <VariantA tweaks={tweaks} updateTweaks={updateTweaks} onOpenCmdK={() => setCmdK(true)} />
+      <VariantA onOpenCmdK={() => setCmdK(true)} />
       <VariantSwitcher theme="light" />
       {!tweaksOpen && <TweaksButton onOpen={() => setTweaksOpen(true)} />}
       <TweaksPanel

@@ -1,81 +1,7 @@
-import { Card, Delta, Pill, SectionHead } from '../components/Primitives'
-import { BudgetBars } from '../components/Charts'
-import {
-  BUDGET_ACTUAL,
-  BUDGET_KPI,
-  BUDGET_MONTHS,
-  BUDGET_PLAN,
-  TAX_BREAKDOWN,
-  TOP_CONTRACTS,
-} from '../data/mockData'
+import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
 import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
-
-function KStrip({ label, value, delta, invert }) {
-  const d = invert ? -delta : delta
-  return (
-    <Card>
-      <div
-        className="mono"
-        style={{
-          fontSize: 10,
-          color: 'var(--ink50)',
-          textTransform: 'uppercase',
-          letterSpacing: '.06em',
-        }}
-      >
-        {label}
-      </div>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginTop: 4 }}>
-        <div className="mono" style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-.01em' }}>
-          {value}
-        </div>
-        <Delta v={d} />
-      </div>
-    </Card>
-  )
-}
-
-function TaxFlow() {
-  const rows = TAX_BREAKDOWN.map((s) => ({ ...s, eur: Math.round((487 * s.pct) / 100) }))
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 9, marginTop: 10 }}>
-      {rows.map((s, i) => (
-        <div key={i}>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, fontSize: 13 }}>
-            <span style={{ width: 10, height: 10, background: s.color, borderRadius: 2, flexShrink: 0 }} />
-            <span style={{ flex: 1, fontWeight: 500 }}>{s.cat}</span>
-            <span className="mono" style={{ fontSize: 14, fontWeight: 700 }}>
-              €{s.eur}
-            </span>
-            <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)', width: 40, textAlign: 'right' }}>
-              {s.pct}%
-            </span>
-          </div>
-          <div
-            style={{
-              height: 5,
-              background: 'var(--soft)',
-              borderRadius: 5,
-              marginTop: 5,
-              overflow: 'hidden',
-            }}
-          >
-            <div
-              style={{
-                height: '100%',
-                width: s.pct * 2.5 + '%',
-                background: s.color,
-                borderRadius: 5,
-              }}
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 function ChapterRow({ label, amount, total, color }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
@@ -421,29 +347,13 @@ export default function Presupuesto() {
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
       <RealBudgetHeader />
 
-      <div
-        className="mono"
-        style={{ fontSize: 10.5, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.08em', marginBottom: 8 }}
-      >
-        Secciones en desarrollo · datos de demostración
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 16, marginBottom: 16 }}>
-        <Card>
-          <SectionHead eyebrow="Mi recibo del IBI" title="A dónde van tus €487" />
-          <TaxFlow />
-        </Card>
+      <div style={{ marginBottom: 16 }}>
         <RealContracts />
       </div>
 
       <div style={{ marginBottom: 16 }}>
         <RealSubsidies />
       </div>
-
-      <Card>
-        <SectionHead eyebrow="Ejecución mensual" title="Gasto vs presupuesto 2026" />
-        <BudgetBars months={BUDGET_MONTHS} plan={BUDGET_PLAN} actual={BUDGET_ACTUAL} />
-      </Card>
     </div>
   )
 }
