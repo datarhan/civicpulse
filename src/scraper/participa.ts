@@ -73,7 +73,7 @@ export function parseParticipaPosts(
   opts: ParseOpts = {}
 ): ParticipaItem[] {
   const posts = JSON.parse(postsJson) as WpPost[]
-  let categories: Record<number, string> = {}
+  const categories: Record<number, string> = {}
   if (opts.categoriesJson) {
     const cats = JSON.parse(opts.categoriesJson) as WpCategory[]
     for (const c of cats) categories[c.id] = c.name

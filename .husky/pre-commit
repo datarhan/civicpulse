@@ -1,0 +1,4 @@
+# Fail closed on real errors; warnings stay warnings (by design).
+# If ESLint takes too long, consider 'lint-staged' to check only changed files.
+cd "$(git rev-parse --show-toplevel)"
+npm run lint --silent

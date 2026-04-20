@@ -55,7 +55,8 @@ export function CmdK({ open, onClose, onOpen }) {
     const onK = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
-        open ? onClose() : onOpen()
+        if (open) onClose()
+        else onOpen()
       }
       if (e.key === 'Escape' && open) onClose()
     }

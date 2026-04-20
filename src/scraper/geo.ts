@@ -185,7 +185,7 @@ export function parseOsmNeighborhoods(json: string): Neighborhood[] {
       centroid = centroidOf(pts)
     }
     if (!centroid) continue
-    let base = slugify(name)
+    const base = slugify(name)
     let slug = base
     let n = 1
     while (slugSeen.has(slug)) slug = `${base}-${n++}`

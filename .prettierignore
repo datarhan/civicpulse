@@ -1,0 +1,10 @@
+dist/
+node_modules/
+public/data/
+playwright-report/
+test-results/
+.llm-cache/
+bot/node_modules/
+bot/data/
+coverage/
+docs/ARCHIVE/
