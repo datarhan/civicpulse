@@ -73,11 +73,10 @@ jobs:
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             TODAY=$(date -u +%Y-%m-%d)
-            git commit -m "chore(data): nightly real-data refresh ($TODAY)
-
-Pipelines: ${{ inputs.adapters || 'all' }}
-Triggered: ${{ github.event_name }}
-"
+            git commit \
+              -m "chore(data): nightly real-data refresh ($TODAY)" \
+              -m "Pipelines: ${{ inputs.adapters || 'all' }}" \
+              -m "Triggered: ${{ github.event_name }}"
             git push origin HEAD
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
