@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19T23:16:15.146Z",
+  "generatedAt": "2026-04-20T06:01:23.823Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -153,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -189,7 +189,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -227,7 +227,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -249,10 +249,20 @@
             "periodo",
             "municipio"
           ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "SERVICIOS JURÍDICOS, Expediente 1562/2018/GEN, Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "2026",
+            "municipio"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -276,7 +286,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -314,7 +324,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -334,7 +344,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -342,15 +352,26 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
       "proposedStatus": "documentada",
       "confidence": 0,
-      "reasoning": [],
+      "reasoning": [
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_febrero_de_2026/contenidos/7240659/9323821",
+          "date": "2026-02-09",
+          "quote": "URBANISMO · Acuerdo relativo a Resolución de alegaciones al Inicio de la Resolución de la condición de agente urbanizador de la UE nº 2 del Sector NPR-1 LA GAVINA",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "sector",
+            "urbanismo"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -417,7 +438,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -437,7 +458,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -454,26 +475,120 @@
             "gestion",
             "municipio"
           ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "SERVICIOS JURÍDICOS, Expediente 1562/2018/GEN, Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "gestion",
+            "municipio",
+            "servicio"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_7_de_julio_de_2025/contenidos/918830/9323821",
+          "date": "2025-07-07",
+          "quote": "SERVICIOS PÚBLICOS · Aprobación revisión de precios solicitado por la concesionaria Hidraqua, Gestión de Aguas de Levante, S.A en relación al servicio de agua potable y alcantarillado del municipio de Riba-roja de Túria",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "gestion",
+            "municipio",
+            "servicio"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Asunto de Urgencia. Expediente 615/2025/GEN, Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "municipio",
+            "servicio"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
       "proposedStatus": "documentada",
       "confidence": 0,
-      "reasoning": [],
+      "reasoning": [
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
       "proposedStatus": "documentada",
       "confidence": 0,
-      "reasoning": [],
+      "reasoning": [
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+          "date": "2026-03-09",
+          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "mocion",
+            "grupo"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -490,10 +605,20 @@
             "ahorra",
             "euro"
           ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333",
+          "date": "2026-03-16",
+          "quote": "INTERVENCIÓN · Aprobación Inicial Presupuesto, ejercicio 2026.(Sin dictaminar) 2- RECURSOS HUMANOS, Expediente: 565/2026/GEN, Aprobación de la plantilla de personal, la relación de puestos de trabajo, la cifra global y estructura del capítulo I y el organigrama municipal para el ejercicio 2026 (Sin dictaminar) 3- RECURSOS HUMANOS, Expediente: 1462/2026/GEN, Actualización de cantidades del acuerdo plenario de 7 de julio 2023, por el que se fijaba el régimen económico de los concejales/as, determinación del número y retribuciones del personal eventual y asignación de dotación económica a los grupos políticos para la legislatura 2023-2027 (Sin dictaminar)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "concejal",
+            "numero"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T23:16:15.138Z"
+      "generatedAt": "2026-04-20T06:01:23.799Z"
     }
   ]
 }

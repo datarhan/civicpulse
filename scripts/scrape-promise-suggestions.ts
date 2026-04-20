@@ -40,10 +40,32 @@ async function main() {
 
   const press = await readJson(join(PROJECT_ROOT, 'public/data/press.json'))
   const plenos = await readJson(join(PROJECT_ROOT, 'public/data/plenos.json'))
+  const agendas = await readJson(join(PROJECT_ROOT, 'public/data/plenos-agendas.json'))
+
+  // Denormalise agenda items into synthetic pleno records so the inference
+  // engine matches against the full ORDEN DEL DÍA text, not just the session
+  // titles ("Pleno ordinario 9 de marzo"). Each agenda item becomes one
+  // virtual pleno with { title = expediente + dept + item title, link back
+  // to the session convocatoria, date from the session }.
+  const enrichedPlenosItems: Array<{ id: string; title: string; date: string; link: string }> = []
+  if (plenos?.items) enrichedPlenosItems.push(...plenos.items)
+  if (agendas?.plenos) {
+    for (const sess of agendas.plenos) {
+      for (const it of sess.agenda || []) {
+        enrichedPlenosItems.push({
+          id: `${sess.id}-${it.number}`,
+          title: `${it.department ? it.department + ' · ' : ''}${it.title}`,
+          date: sess.date,
+          link: sess.link,
+        })
+      }
+    }
+  }
+  const enrichedPlenos = { items: enrichedPlenosItems }
 
   const suggestions = frozen
     ? []
-    : inferPromiseSuggestions(snap.items, { press, plenos })
+    : inferPromiseSuggestions(snap.items, { press, plenos: enrichedPlenos })
 
   const payload = {
     generatedAt: new Date().toISOString(),

@@ -1,0 +1,2232 @@
+{
+  "generatedAt": "2026-04-20T05:59:39.126Z",
+  "source": {
+    "baseUrl": "http://www.ribarroja.es",
+    "description": "Ayuntamiento de Riba-roja de Túria — páginas individuales de 'Pleno ordinario/extraordinario' con la convocatoria y orden del día."
+  },
+  "stats": {
+    "plenosFetched": 30,
+    "agendaItemsTotal": 246,
+    "plenosWithRuegos": 19,
+    "uniqueDepartments": 27
+  },
+  "topDepartments": [
+    {
+      "department": "INTERVENCIÓN",
+      "count": 12
+    },
+    {
+      "department": "URBANISMO",
+      "count": 9
+    },
+    {
+      "department": "TESORERÍA",
+      "count": 8
+    },
+    {
+      "department": "CONTRATACIÓN",
+      "count": 7
+    },
+    {
+      "department": "SECRETARÍA",
+      "count": 5
+    },
+    {
+      "department": "RECURSOS HUMANOS",
+      "count": 5
+    },
+    {
+      "department": "MEDIO AMBIENTE",
+      "count": 3
+    },
+    {
+      "department": "TRANSPARENCIA",
+      "count": 2
+    },
+    {
+      "department": "INNOVACIÓN",
+      "count": 2
+    },
+    {
+      "department": "SERVICIOS SOCIALES",
+      "count": 2
+    },
+    {
+      "department": "INTEGRIDAD",
+      "count": 1
+    },
+    {
+      "department": "GESTIÓN PATRIMONIAL",
+      "count": 1
+    }
+  ],
+  "plenos": [
+    {
+      "id": "k4olcs",
+      "date": "2026-04-20",
+      "title": "Pleno ordinario 20 de abril de 2026",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 9 de marzo 2026 y 16 de marzo de 2026",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Carta de servicios 2026",
+          "section": "resolutiva",
+          "department": "TRANSPARENCIA",
+          "expediente": "1741/2026/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Nueva designación de la figura del responsable del sistema interno de información del Ayuntamiento de Riba-roja de Túria y modificación del documento referido a la Política del sistema interno de información del Ayuntamiento de Riba-roja de Turia",
+          "section": "resolutiva",
+          "department": "INTEGRIDAD",
+          "expediente": "4305/2024/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Actualización inventario municipal de bienes y derechos de la corporación",
+          "section": "resolutiva",
+          "department": "GESTIÓN PATRIMONIAL",
+          "expediente": "1827/2026/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Acuerdo relativo al Expediente de minimización de impacto territorial en Polígono 46 Parcela 39 con ref. cat: 46216A046000390000TZ",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "717/2026/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Moció del Grup Municipal Socialista de Riba-roja per a la defensa de l’educació pública",
+          "section": "informativa",
+          "department": null,
+          "expediente": "10/2026/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Dación cuenta de la VIII Memoria Anual de Gestión y Resultados de la Contratación Pública del Ayuntamiento de Riba-roja de Túria correspondiente al ejercicio 2025",
+          "section": "informativa",
+          "department": "CONTRATACIÓN",
+          "expediente": "1909/2026/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Dación cuenta al Pleno de la Liquidación del ejercicio 2025",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "121/2026/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Dacion cuenta Pleno resumen anual actuaciones control 2025 y fiscalización rd 424-17",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "1420/2026/GEN"
+        },
+        {
+          "number": 10,
+          "title": "Dar cuenta de las Resoluciones de la número 785/2026 a la 1261/2026",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 11,
+      "departments": [
+        "TRANSPARENCIA",
+        "INTEGRIDAD",
+        "GESTIÓN PATRIMONIAL",
+        "URBANISMO",
+        "CONTRATACIÓN",
+        "INTERVENCIÓN"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "ma87e0",
+      "date": "2026-03-16",
+      "title": "Pleno extraordinario y urgente 16 de marzo de 2026",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Inicial Presupuesto, ejercicio 2026.(Sin dictaminar) 2- RECURSOS HUMANOS, Expediente: 565/2026/GEN, Aprobación de la plantilla de personal, la relación de puestos de trabajo, la cifra global y estructura del capítulo I y el organigrama municipal para el ejercicio 2026 (Sin dictaminar) 3- RECURSOS HUMANOS, Expediente: 1462/2026/GEN, Actualización de cantidades del acuerdo plenario de 7 de julio 2023, por el que se fijaba el régimen económico de los concejales/as, determinación del número y retribuciones del personal eventual y asignación de dotación económica a los grupos políticos para la legislatura 2023-2027 (Sin dictaminar)",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "4916/2025/GEN"
+        }
+      ],
+      "agendaCount": 1,
+      "departments": [
+        "INTERVENCIÓN"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "1sqj7is",
+      "date": "2026-03-09",
+      "title": "Pleno ordinario 9 de marzo de 2026",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 09 de febrero 2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación Reconocimiento Extrajudicial nº 5/2026. Lista de facturas 12025000151 y 12026000008. (rel obligaciones 1202600045 y 44)",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "739/2026/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Aprobación del Plan Normativo anual del Ayuntamiento de Riba-Roja de Túria para el año 2026 alineado con los ODS",
+          "section": "apertura",
+          "department": "SECRETARÍA",
+          "expediente": "164/2026/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Aprobación de la Instrucción de regulación del Sistema de Racionalización Técnica: Sistema Dinámico de Adquisición del Ayuntamiento de Riba-roja de Túria",
+          "section": "apertura",
+          "department": "CONTRATACIÓN",
+          "expediente": "6321/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Acuerdo relativo al sometimiento a información pública de la versión inicial del PRI de la UE Casco 1",
+          "section": "apertura",
+          "department": "URBANISMO",
+          "expediente": "13/2019/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Adecuación al Esquema Nacional de Seguridad",
+          "section": "apertura",
+          "department": "SERVICIOS GENERALES",
+          "expediente": "1237/2026/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Reconocimiento público de la figura de Salvador Ronda Soriano, Alcalde de Riba-roja de Túria durante la II República Española, otorgándole el nombre de una vía urbana",
+          "section": "apertura",
+          "department": "MEMORIA HISTÓRICA",
+          "expediente": "1038/2026/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+          "section": "apertura",
+          "department": null,
+          "expediente": "07/2026/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+          "section": "apertura",
+          "department": null,
+          "expediente": "09/2026/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)",
+          "section": "apertura",
+          "department": null,
+          "expediente": "08/2026/PGRU"
+        },
+        {
+          "number": 11,
+          "title": "Asunto de Urgencia. Expediente 615/2025/GEN, Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Dación cuenta al Pleno de la información trimestral correspondiente al Cuarto Trimestre de 2025: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+          "section": "apertura",
+          "department": "TESORERÍA",
+          "expediente": "7077/2025/GEN"
+        },
+        {
+          "number": 13,
+          "title": "SERVICIOS JURÍDICOS, Expediente 1562/2018/GEN, Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Dar cuenta de las Resoluciones de la número 364/2026 a la 784/2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 15,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 15,
+      "departments": [
+        "INTERVENCIÓN",
+        "SECRETARÍA",
+        "CONTRATACIÓN",
+        "URBANISMO",
+        "SERVICIOS GENERALES",
+        "MEMORIA HISTÓRICA",
+        "TESORERÍA"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "rx4hb4",
+      "date": "2026-02-09",
+      "title": "Pleno ordinario 9 de febrero de 2026",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_febrero_de_2026/contenidos/7240659/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 19 de enero 2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Acuerdo relativo al sometimiento a información pública de la versión inicial del PRI de la UE Santa Rosa 2",
+          "section": "apertura",
+          "department": "URBANISMO",
+          "expediente": "5543/2020/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Desistir y dejar sin efecto parcialmente modificación de crédito del presupuesto nº 1-2026, Modalidad crédito extraordinario, financiado con bajas de otras aplicaciones - Dirección facultativa obras de instalación de pérgolas con vegetación autóctona como refugio climático",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "191/2026/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Acuerdo relativo a Resolución de alegaciones al Inicio de la Resolución de la condición de agente urbanizador de la UE nº 2 del Sector NPR-1 LA GAVINA",
+          "section": "apertura",
+          "department": "URBANISMO",
+          "expediente": "5490/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Traslado del Conservatorio Profesional Municipal de Danza de Riba-roja de Túria",
+          "section": "apertura",
+          "department": "EDUCACIÓN",
+          "expediente": "346/2026/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Moción del Grupo Municipal VOX Riba-roja de Túria para regular el acceso a dependencias municipales en casos de ocultación integral del rostro (niqab, burka u otras prendas equivalentes)",
+          "section": "apertura",
+          "department": null,
+          "expediente": "3/2026/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moción del Grupo Municipal Socialista de Riba-roja por la defensa del nuevo modelo de financiación autonómico propuesto por el Gobierno",
+          "section": "apertura",
+          "department": null,
+          "expediente": "4/2026/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja y EU-Podem Unides- Dia Internacional de las Mujeres 8M 2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": "5/2026/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para reclamar una financiación justa para la Comunitat Valenciana",
+          "section": "apertura",
+          "department": null,
+          "expediente": "2/2026/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja y Compromís per Riba-roja en defensa del bienestar y la tenencia responsable de los animales domésticos en Riba-roja de Túria",
+          "section": "apertura",
+          "department": null,
+          "expediente": "6/2026/PGRU"
+        },
+        {
+          "number": 11,
+          "title": "Asuntos de Urgencia – Expediente 647/2026/GEN, “Aprobación PAI EDIL y solicitud de la convocatoria de senda financiera”",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "INNOVACIÓN, Expediente 4959/2025/GEN, Dar cuenta de la adhesión del Ayuntamiento de Riba-roja de Túria a la Red Española de Ciudades Inteligentes (RECI)",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Dar cuenta de las Resoluciones de la número 47/2026 a la 363/2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 14,
+      "departments": [
+        "URBANISMO",
+        "INTERVENCIÓN",
+        "EDUCACIÓN"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "19gax3o",
+      "date": "2026-01-19",
+      "title": "Pleno ordinario 19 de enero de 2026",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_19_de_enero_de_2026/contenidos/6449942/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 01 de diciembre de 2025, 23 de diciembre de 2025, 26 de diciembre de 2025 y 07 de enero de 2026",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Solicitud al Tribunal Superior de Justicia de la Comunidad Valenciana la elección de Juez/a de Paz sustituto/a de Riba-roja de Túria para el Mandato 2025-2029 tras haber sido declarada por el Pleno Municipal desierta la convocatoria y haber resultado infructuoso el intento de hallar candidato posible",
+          "section": "resolutiva",
+          "department": "SECRETARÍA",
+          "expediente": "3567/2025/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Aprobación de la guía de RIBALICITA para facilitar el acceso a los sistemas dinámicos de adquisición (SDA) en la Plataforma de Contratación del Sector Público",
+          "section": "resolutiva",
+          "department": "CONTRATACIÓN",
+          "expediente": "5873/2025/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Aprobación del PLAN DE CONTRATACIÓN 2026 del Ayuntamiento de Riba-Roja de Túria",
+          "section": "resolutiva",
+          "department": "CONTRATACIÓN",
+          "expediente": "5712/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Aprobación Agenda Urbana de Reconstrucción",
+          "section": "resolutiva",
+          "department": "MEDIO AMBIENTE",
+          "expediente": "6267/2025/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Declaración Institucional de Felicitación al Dr. Pascual Sanz Bigorra",
+          "section": "informativa",
+          "department": null,
+          "expediente": "01/2026/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Dación cuenta de la ejecución presupuestaria (3t 2025) y la información a suministrar al Pleno Municipal",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "5396/2025/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Dar cuenta de las Resoluciones de la número 4195/2025 a la 46/2026",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 9,
+      "departments": [
+        "SECRETARÍA",
+        "CONTRATACIÓN",
+        "MEDIO AMBIENTE",
+        "INTERVENCIÓN"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "1pe3qs8",
+      "date": "2026-01-07",
+      "title": "Pleno extraordinario y urgente 7 de enero de 2026",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_y_urgente_7_de_enero_de_2026/contenidos/5750799/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar el carácter urgente de la sesión",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "CONTRATACIÓN y MEDIO AMBIENTE, Expediente 615/2025/GEN: Elevación a definitiva penalidad impuesta al contratista por incumplimiento de la adscripción de medios personales y materiales comprometidos desde el inicio del contrato (lote 1) para la prestación del servicio “Servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio; inicio resolución del contrato por continuar el incumplimiento del contrato; y desestimación de solicitud de sucesión en la posición de contratista del contrato de contrato (lote 1) para la prestación del servicio “Servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio (Expediente 136/2025), en virtud de operación de transmisión de rama de actividad mediante absorción de la empresa contratista Garbialdi, S.A. por la mercantil ISS Facility Services, S.A.U., en el marco del artículo 98 de la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 2,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "toa3rc",
+      "date": "2025-12-26",
+      "title": "Pleno extraordinario y urgente 26 de diciembre de 2025",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_y_urgente_26_de_diciembre_de_2025/contenidos/4809578/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar el carácter urgente de la sesión",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "TESORERÍA, Expediente 5267/2025/GEN: Propuesta de Acuerdo al Pleno Concertación Operación de Crédito",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 2,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "1qi8axv",
+      "date": "2025-12-23",
+      "title": "Pleno extraordinario y urgente 23 de diciembre de 2025",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_extraordinario_y_urgente_23_de_diciembre_de_2025/contenidos/8801506/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar el carácter urgente de la sesión",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "CONTRATACIÓN, Expediente 2989/2021/GEN: Aprobación de Primera y Única prórroga Ctto 17/2021. Servicio de conservación, mantenimiento, limpieza y mejora de los Parques, jardines, zonas verdes, interfaz, zonas de esparcimiento canino, zona ajardinada de la CV-370, carril bici, solares de propiedad municipal y todas aquellas que constan en el PPT del municipio de Riba-roja de Túria, adjudicado a favor de AGRICULTORES DE LA VEGA DE VALENCIA",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "CONTRATACIÓN, Expediente 615/2025/GEN: Propuesta de acuerdo de inicio de expediente de imposición de penalidades al contratista por incumplimiento de la adscripción de medios personales y materiales comprometidos desde el inicio del contrato (lote 1) para la prestación del servicio “Servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio (Expediente 136/2025)”",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "TESORERÍA, Expediente 5267/2025/GEN: Propuesta de Acuerdo al Pleno Concertación Operación de Crédito",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "TESORERÍA, Expediente 5477/2025/GEN: Propuesta de Acuerdo al Pleno Operación de Tesorería 2025-2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "INTERVENCIÓN, Expediente 6478/2025/GEN: Aprobación lista de facturas 135 – Reconocimiento Extrajudicial nº 49/2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "INTERVENCIÓN, Expediente 6787/2025/GEN: Aprobación lista de facturas 164 (ADO Prov 40725) –Reconocimiento Extrajudicial nº 53/2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 7,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "qz6weg",
+      "date": "2025-12-01",
+      "title": "Pleno ordinario 1 de diciembre de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_1_de_diciembre_de_2025_contenidos_7426584_9323821_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_contenidos_7426584_8465333/contenidos/7426584/8465333",
+      "agenda": [],
+      "agendaCount": 0,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "1du4rf5",
+      "date": "2025-11-03",
+      "title": "Pleno ordinario 3 de noviembre de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_2_de_noviembre_de_2025/contenidos/9549928/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 06 de octubre de 2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Declaración de convocatoria desierta de elección de Juez/a de Paz sustituto/a de Riba-roja de Túria para el Mandato 2025-2029",
+          "section": "apertura",
+          "department": "SECRETARIA",
+          "expediente": "3567/2025/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Minimización de impacto territorial a nombre de DAVID RAGA ROJAS en PL NUCLEOS NO URBANIZABLE 2 71(A) con ref. cat: 1883801YJ1718S0001PT",
+          "section": "apertura",
+          "department": "URBANISMO",
+          "expediente": "4115/2025/GEN"
+        },
+        {
+          "number": 4,
+          "title": "URBANISMO, Expediente 2032/2025/GEN, Acuerdo relativo al Estudio de Detalle de la Avda. Santiago Apostol-Els Pous de Riba-roja de Turia",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "Aprobación Reconocimiento Extrajudicial de créditos 37/2025, cuotas definitivas derivadas de la liquidación definitiva por las aportaciones a la Mancomunidad Camp de Túria 2023",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "5049/2025/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Aprobación Reconocimiento Extrajudicial 27B/2025. Lista de facturas 12025000090 – INVERSIÓN",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "4073/2025/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Moción conjunta de los Grupos Municipales Popular Riba-roja de Túria y VOX para exigir al Gobierno de España el cumplimiento y la financiación de la «ley para mejorar la calidad de vida de personas con esclerosis lateral amiotrófica y otras enfermedades o procesos de alta complejidad y curso irreversible»",
+          "section": "apertura",
+          "department": null,
+          "expediente": "26/2025/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Moción conjunta de los Grupos Municipales Compromís per Riba-roja y EU-Podem con motivo del primer aniversario de la DANA que sufrimos el 29 de octubre de 2024",
+          "section": "apertura",
+          "department": null,
+          "expediente": "30/2025/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Moción conjunta de los Grupos Municipales EU-Podem y Compromís per Riba-roja de apoyo a la ILP “No es és la meua cultura”",
+          "section": "apertura",
+          "department": null,
+          "expediente": "27/2025/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, EU-Podem y Compromís per Riba-roja por la defensa del programa de detección precoz de cáncer de mama y exigir responsabilidades a la Generalitat Valenciana",
+          "section": "apertura",
+          "department": null,
+          "expediente": "28/2025/PGRU"
+        },
+        {
+          "number": 11,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja y EU-Podem del 25 de noviembre dia internacional por la l’eliminación de la violencia contra las mujeres “25 años conmemorando el 25 de noviembre”",
+          "section": "apertura",
+          "department": null,
+          "expediente": "29/2025/PGRU"
+        },
+        {
+          "number": 12,
+          "title": "Asunto de Urgencia – 5559/2025/GEN, Aprobación reconocimiento extrajudicial 41/2025 - Aprobación lista de facturas 12025000087, relación de obligaciones 12025000844. 5901/2025/GEN, PROPUESTA AUMENTO CANTIDADES GRATIFICACIONES Y PRODUCTIVIDADES PRESUPUESTO 2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Dar cuenta de las Resoluciones de la número 3432/2025 a la 3731/2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 14,
+      "departments": [
+        "SECRETARIA",
+        "URBANISMO",
+        "INTERVENCIÓN"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "otxq2c",
+      "date": "2025-10-06",
+      "title": "Pleno ordinario 6 de octubre de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_6_de_octubre_de_2025/contenidos/9993001/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 08 de septiembre de 2025",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Declaración 25 de octubre Día del Comercio",
+          "section": "resolutiva",
+          "department": "COMERCIO",
+          "expediente": "4511/2025/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Solicitud de adhesión del Ayuntamiento de Riba-roja de Túria a la Red Española de Ciudades Inteligentes (RECI)",
+          "section": "resolutiva",
+          "department": "INNOVACIÓN",
+          "expediente": "4959/2025/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Aprobación inicial Ordenanza de Prestaciones Económicas de Urgencia",
+          "section": "resolutiva",
+          "department": "SERVICIOS SOCIALES",
+          "expediente": "3050/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Creación de la Comisión Técnica Interdisciplinar de Infancia y Adolescencia y Aprobación inicial de su reglamento regulador",
+          "section": "resolutiva",
+          "department": "SERVICIOS SOCIALES",
+          "expediente": "4041/2025/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para la efectiva seguridad de las mujeres víctimas de violencia de género",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "24/2025/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja i EU-Podem de rechazo al genocidio del pueblo palestino",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "25/2025/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Asuntos de urgencia",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": ", Dación cuenta de la concesión de prórroga de la Jueza de Paz sustituta de Riba-roja de Túria",
+          "section": "informativa",
+          "department": "SECRETARÍA",
+          "expediente": "3567/2025/GEN"
+        },
+        {
+          "number": 10,
+          "title": "Dación cuenta de la ejecución presupuestaria (2t 2025) y la información a suministrar al pleno municipal",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "3658/2025"
+        },
+        {
+          "number": 11,
+          "title": "Dar cuenta de las Resoluciones de la número 3111/2025 a la 3431/2025",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 12,
+      "departments": [
+        "COMERCIO",
+        "INNOVACIÓN",
+        "SERVICIOS SOCIALES",
+        "SECRETARÍA",
+        "INTERVENCIÓN"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "c8kr44",
+      "date": "2025-09-08",
+      "title": "Pleno ordinario 8 de septiembre de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_8_de_septiembre_de_2025_contenidos_9994299_8465333/contenidos/9994299",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 28 y 31 de julio de 2025",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Inicio elección del Juez de Paz sustituto y solicitud de prórroga del actual mientras se procede a la elección del nuevo/a",
+          "section": "resolutiva",
+          "department": "SECRETARÍA",
+          "expediente": "3567/2025/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Acuerdo del Pleno del Ayuntamiento de Riba-roja de Túria sobre modificación del vigente manual de productividades y gratificaciones del Ayuntamiento de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "2621/2025/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Acuerdo de Pleno relativo a autorización de compatibilidad para el desempeño de segunda actividad laboral para el ejercicio 2025/2026 AJMH",
+          "section": "resolutiva",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "4211/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Planteamiento de discrepancias al pleno de la corporación visto el reparo emitido en el informe FLP nº 573/2025",
+          "section": "resolutiva",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "2903/2025/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Adjudicación de ambos lotes del contrato para el servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes, tras procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución de carácter social, medioambiental y técnico, contribuyendo al cumplimiento del ODS 6.4 y ODS 12.2. Lote 1 ?Servicio prestación del contrato de recogida de RSU, poda y Voluminosos a favor de GARBIALDI, S.A. con CIF nº A48408769 y el lote 2 Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos a favor de AUDITESA, S.L. con CIF nº B12854840. (Ctto. 136/2025)",
+          "section": "resolutiva",
+          "department": "CONTRATACIÓN",
+          "expediente": "615/2025/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Acuerdo relativo al Levantamiento de la Suspensión de Licencias en el Ámbito de las Zonas Inundables de Riba-roja de Túria, como consecuencia de la DANA de 29 de octubre de 2024",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "88/2025/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Acuerdo relativo al sometimiento a información pública de la Propuesta de Plan para la Modificación Puntual nº 25 del Plan General de Ordenación Urbana de Riba-roja de Turia, relativa a determinados Usos Dotacionales",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "414/2024/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Propuesta de acuerdo al Pleno de aprobación de la Cuenta General correspondiente al ejercicio 2024",
+          "section": "resolutiva",
+          "department": "INTERVENCIÓN",
+          "expediente": "2445/2025/GEN"
+        },
+        {
+          "number": 10,
+          "title": "Moción del grupo municipal Partido Popular para la mejora del entorno urbano",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "23/2025/PRGU"
+        },
+        {
+          "number": 11,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Partido Popular Riba-roja de Túria, Vox, EU-Podem i Compromís per Riba- de felicitación en Elena Torres Ruiz, galardonada con el premio profesional autonómico de danza española",
+          "section": "informativa",
+          "department": null,
+          "expediente": "22/2025/PGRU"
+        },
+        {
+          "number": 12,
+          "title": "Dar cuenta al Pleno de la adhesión automática al convenio suscrito en fecha 15 de julio, que regula la posibilidad de efectuar embargos de deudas fuera de los respectivos ámbitos de competencia territorial, mediante los pertinentes convenios con la AEAT.- Dar cuenta del informe de 23 de julio de la Tesorera y Recaudadora municipal",
+          "section": "informativa",
+          "department": "RECAUDACIÓN",
+          "expediente": "7208/2022/GEN"
+        },
+        {
+          "number": 13,
+          "title": "Dación cuenta al Pleno de la información trimestral correspondiente al Segundo Trimestre de 2025: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+          "section": "informativa",
+          "department": "TESORERÍA",
+          "expediente": "3653/2025/GEN"
+        },
+        {
+          "number": 14,
+          "title": "Dación de cuentas al Pleno de la resolución nº 3040/2025 de 22/08/2025 para la modificación del presupuesto municipal mediante la generación de créditos número 34/2025/GEN para la actuación de Suministro con Instalación de 5 Lotes de Juegos Infantiles del Pla Obert d’ Inversions 24-27 de la Excelentísima Diputación Provincial de Valencia Nº Expte. POI/2024/1171/24",
+          "section": "informativa",
+          "department": "PARQUES Y JARDINES",
+          "expediente": "3644/2025/GEN"
+        },
+        {
+          "number": 15,
+          "title": "Dar cuenta de las Resoluciones de la número 2677/2025 a la 3110/2025",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 16,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 16,
+      "departments": [
+        "SECRETARÍA",
+        "RECURSOS HUMANOS",
+        "CONTRATACIÓN",
+        "URBANISMO",
+        "INTERVENCIÓN",
+        "RECAUDACIÓN",
+        "TESORERÍA",
+        "PARQUES Y JARDINES"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "rmtyr",
+      "date": "2025-07-31",
+      "title": "Pleno extraordinario y urgente 31 de julio de 2025",
+      "kind": "urgente",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_extraordinario_y_urgente_31_de_julio_de_2025/contenidos/6156620/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar el carácter urgente de la sesión",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación sobre medidas de actualización de la RPT y cifra global del capítulo I",
+          "section": "apertura",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "3947/2025/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Aprobación inicial Presupuesto 2025",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "5014/2024/GEN"
+        }
+      ],
+      "agendaCount": 3,
+      "departments": [
+        "RECURSOS HUMANOS",
+        "INTERVENCIÓN"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "anrfd5",
+      "date": "2025-07-28",
+      "title": "Pleno ordinario 28 de julio de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_28_de_julio_de_2025/contenidos/5828886/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 7 de julio de 2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "INTERVENCIÓN, Expediente 3586/2025/GEN, Aprobación del expediente de reconocimiento extrajudicial nº 26/2025: lista de facturas nº 12025000036 y relación de obligaciones nº 12025000388",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "EDUCACIÓN, Expediente 3904/2025/GEN, Aprobación del expediente de reconocimiento extrajudicial de créditos en relación a la factura nº12025000024 por un importe total de 53.457,47 euros. FACTURAS COMERCIOS CHEQUE BEBÉ",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "CONTRATACIÓN, Expediente 3913/2025/GEN, Inicio y aprobación de la implementación de un Sistema Dinámico de Adquisición para la contratación de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "URBANISMO, Expediente 2887/2025/GEN, Acuerdo relativo a la Aprobación del Convenio entre Diputación de Valencia y Ayuntamiento de Riba-roja de Túria para financiacion y ejecución de las obras de \"acondicionamiento nueva glorieta pk 0+315 CV 374.\"",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "FOMENTO ECONÓMICO, Expediente 3998/2025/GEN, Acuerdo plenario relativo a festividades locales, ejercicio 2026. (Sin dictaminar)",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "URBANISMO, Expediente 4490/2022/GEN, Reajuste de anualidades del Convenio entre Presidencia de la Generalitat y el Ayuntamiento de Riba-roja de Túria para la finalización del centro polivalente cultural en Riba-roja de Túria. (Sin dictaminar)",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "MEDIO AMBIENTE, Expediente 3932/2025/GEN, Propuesta al Pleno de la instalación de un badén inundable, en el tramo que comunica las urbanizaciones Masía de Traver, Val&egrave;ncia la Vella, Els Pous y las urbanizaciones de la zona norte que posibilite el acceso de vehículos de emergencia (bomberos, ambulancias, policía local) (Sin dictaminar)",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "Moción conjunta de los Grupos Municipales Socialista, Compromís per Riba-roja: Acord per Guanyar y EU-Unides Podem en apoyo a las reivindicaciones de los trabajadores del consorcio provincial de bomberos de Val&egrave;ncia y para garantizar un servicio adecuado de extinción de incendios en la Provincia de Val&egrave;ncia",
+          "section": "apertura",
+          "department": null,
+          "expediente": "19/2025/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Asuntos de Urgencia. -21/2025/PGRU, Moción conjunta del Grupo Político Compromís: Acord per Guanyar i EU-Unides Podem de condena del discurso de odio y la violencia y en favor de la convivencia y la democracia",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "INTERVENCIÓN, Expediente 1029/2025/GEN, Dación cuenta al Pleno de la corrección de errores del informe nº 220/2025 de evaluación del objetivo de estabilidad presupuestaria, de la regla de gasto y del límite de deuda emitido con motivo de la reformulación a la liquidación del presupuesto municipal correspondiente al ejercicio 2024",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "SECRETARÍA, Expediente 3855/2025/GEN, Dación cuenta del Programa de Formación en Inteligencia Artificial para los empleadas/os públicos del Ayuntamiento",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Dar cuenta de las Resoluciones de la número 2344/2025 a la 2676/2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 14,
+      "departments": [],
+      "hasRuegos": true
+    },
+    {
+      "id": "1sk3q3c",
+      "date": "2025-07-07",
+      "title": "Pleno ordinario 7 de julio de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_7_de_julio_de_2025/contenidos/918830/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 2 de junio de 2025",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "SECRETARÍA, Expediente 3400/2025/GEN, Toma de posesión Concejal de la corporación",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "SECRETARIA, Expediente 3400/2025/GEN, Dación cuenta de modificación de la composición y portavocía suplente del grupo político municipal del Partido Popular del Ayuntamiento de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "SECRETARIA, Expediente 3400/2025/GEN, Acuerdo relativo a la modificación de la composición de las Comisiones Informativas Permanentes correspondientes al Mandato 2023-2027",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "Aprobación convenio marco de colaboración para el desarrollo e implementación de entornos controlados de prueba en la ciudad de Riba-roja de Túria (RibaSandbox)",
+          "section": "resolutiva",
+          "department": "INNOVACIÓN",
+          "expediente": "3149/2025/GEN"
+        },
+        {
+          "number": 6,
+          "title": "SERVICOS PÚBLICOS, Expediente 615/2025/GEN, Aceptación de propuesta de adjudicación elevada por la mesa de contratación en la licitación del servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes, tras procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución de carácter social, medioambiental y técnico, contribuyendo al cumplimiento del ODS 6.4 y ODS 12.2 respecto al uso eficiente de los recursos, y mejoras vinculadas al objeto del contrato, sujeto a regulación armonizada. (Ctto. 136/2025)",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "Aprobación revisión de precios solicitado por la concesionaria Hidraqua, Gestión de Aguas de Levante, S.A en relación al servicio de agua potable y alcantarillado del municipio de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": "SERVICIOS PÚBLICOS",
+          "expediente": "1489/2025/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Propuesta de acuerdo relativa al Reconocimiento Extrajudicial nº4/2025",
+          "section": "resolutiva",
+          "department": "INTERVENCIÓN",
+          "expediente": "1439/2025/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Revisión de precios contrato recogida de RSU, poda y voluminosos",
+          "section": "resolutiva",
+          "department": "MEDIO AMBIENTE",
+          "expediente": "2754/2025/GEN"
+        },
+        {
+          "number": 10,
+          "title": "Aprobación de la modificación del actual Reglamento regulador de las condiciones generales del servicio de Catering Social y de acceso al mismo por parte de las personas interesadas",
+          "section": "resolutiva",
+          "department": "SERVICIOS SOCIALES",
+          "expediente": "2024/2025/GEN"
+        },
+        {
+          "number": 11,
+          "title": "Acuerdo relativo a la expropiación rogada de la parcela sita en Avda. Azorin nº 14",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "2637/2018/GEN"
+        },
+        {
+          "number": 12,
+          "title": "Aprobación de la modificación del actual Reglamento regulador de las condiciones generales del servicio de Ayuda a Domicilio y de acceso al mismo por parte de las personas interesadas",
+          "section": "resolutiva",
+          "department": "SERVICIOS SOCIALES",
+          "expediente": "2025/2025/GEN"
+        },
+        {
+          "number": 13,
+          "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para que se ponga en marcha un Plan Integral adecuado por barrios y urbanizaciones para el control de las plagas",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "18/2025/PGRU"
+        },
+        {
+          "number": 14,
+          "title": "Moción conjunta de los Grupos Municipales Compromís per Riba-roja y EU-Podem para la prevención y lucha contra la corrupción a las instituciones públicas",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "16/2025/PGRU"
+        },
+        {
+          "number": 15,
+          "title": "Moción conjunta de los Grupos Municipales Compromís per Riba-roja y EU-Podem de rechazo del genocidio al pueblo Palestino",
+          "section": "informativa",
+          "department": null,
+          "expediente": "17/2025/PGRU"
+        },
+        {
+          "number": 16,
+          "title": "Dación cuenta al Pleno del informe de auditoría de sistemas del registro contable de facturas previsto en el art. 12.3 de la Ley 25/2013 (ejercicio de referencia: 2024). Control Financiero Permanente Planificable derivado de una obligación legal",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "905/2025/GEN"
+        },
+        {
+          "number": 17,
+          "title": "Dación cuenta al Pleno del informe de control financiero permanente planificable derivado de una obligación legal: cuenta 413 Acreedores por obligaciones pendientes de aplicar a presupuesto (ejercicio de referencia 2024)",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "906/2025/GEN"
+        },
+        {
+          "number": 18,
+          "title": "Dación cuenta al Pleno dimisión y nombramiento Consejo Asesor del ECA",
+          "section": "informativa",
+          "department": "CULTURA",
+          "expediente": "2175/2019/GEN"
+        },
+        {
+          "number": 19,
+          "title": "Dar cuenta de las Resoluciones de la número 1851/2025 a la 2343/2025",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 20,
+          "title": "Ruegos y preguntas.",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 20,
+      "departments": [
+        "INNOVACIÓN",
+        "SERVICIOS PÚBLICOS",
+        "INTERVENCIÓN",
+        "MEDIO AMBIENTE",
+        "SERVICIOS SOCIALES",
+        "URBANISMO",
+        "CULTURA"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "1ci5p5s",
+      "date": "2025-06-02",
+      "title": "Pleno ordinario 2 de junio de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_2_de_junio_de_2025_contenidos_2653378_9323821/contenidos/2653378/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 12 de mayo de 2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": ". SECRETARÍA, Expediente: 2729/2025/GEN, Toma de razón renuncia Concejala de la Corporación",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "Dación cuenta de la VII Memoria Anual de Gestión y Resultados de la Contratación Pública del Ayuntamiento de Riba-roja de Túria correspondiente al ejercicio 2024",
+          "section": "apertura",
+          "department": "CONTRATACIÓN",
+          "expediente": "4264/2024/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Moció del Grup Municipal Socialista de Riba-roja, ni un pas enrere en la lluita contra la viol&egrave;ncia masclista 2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": "13/2025/PGRU"
+        },
+        {
+          "number": 5,
+          "title": "Moció conjunta dels Grups Municipals Socialista de Riba-roja, Compromís per Riba-roja i EU-Podem, Riba-roja Abandera: l’Orgull LGTBI+ 17 de maig Dia Internacional contra la LGTBI+f&ograve;bia i 28 de juny Dia Internacional de l’Orgull LGTBI+ 2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": "14/2025/PGRU"
+        },
+        {
+          "number": 6,
+          "title": "Moció conjunta dels Grups Municipals Socialista de Riba-roja, Compromís per Riba-roja i EU-Podem, per reivindicar la reactivació d’actuacions del Pla Edificant a Riba-roja de Túria",
+          "section": "apertura",
+          "department": null,
+          "expediente": "12/2025/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moció conjunta dels Grups Municipals Compromís per Riba-roja i EU-Podem per reclamar que la llengua vehicular d’&Agrave; Punt siga el valenci&agrave;",
+          "section": "apertura",
+          "department": null,
+          "expediente": "15/2025/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Dación cuenta al Pleno de la información trimestral correspondiente al Primer Trimestre de 2025: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+          "section": "apertura",
+          "department": "TESORERÍA",
+          "expediente": "2019/2025/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Dar cuenta de las Resoluciones de la número 1495/2025 a la 1850/2025",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 10,
+      "departments": [
+        "CONTRATACIÓN",
+        "TESORERÍA"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "1uqimx0",
+      "date": "2025-05-12",
+      "title": "Pleno ordinario 12 de mayo de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_12_de_mayo_de_2025_contenidos_2684464_8465333_contenidos_2684464_9323821/contenidos/2684464",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 7 de abril de 2025",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Carta de servicios 2025",
+          "section": "resolutiva",
+          "department": "TRANSPARENCIA",
+          "expediente": "1724/2025/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Implantación de Formación Profesional en Transporte y Logística y Enfermería",
+          "section": "resolutiva",
+          "department": "FOMENTO ECONOMICO",
+          "expediente": "2343/2025/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Acuerdo relativo a la aprobación definitiva del Convenio Urbanístico de construcción y gestión de la balsa de laminación 3 del sector 'Masiá de San Rafael' del PGOU de Riba-roja de Turia",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "756/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Cambio de nombre de calle. \"Calle Al Vol\" por \"Calle Fadrins”",
+          "section": "resolutiva",
+          "department": "JUVENTUD",
+          "expediente": "2321/2025/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Moción del Grupo Municipal Socialista de Riba-roja para la habilitación de créditos ICO sin interés para los municipios afectados por la Dana",
+          "section": "informativa",
+          "department": null,
+          "expediente": "11/2025/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Dación cuenta de la aprobación del Plan de Tesorería del Ayuntamiento de Riba-roja de Túria ejercicio económico 2025",
+          "section": "informativa",
+          "department": "TESORERÍA",
+          "expediente": "1883/2025/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Dar cuenta Resolución de Alcaldía 783/2025 que aprueba la liquidación del ejercicio 2024",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "1029/2025/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Dación de cuenta al Pleno de la Corporación de los informes 131/2025 e informe 132/2025 de la actuación de la función interventora, reparos y omisiones",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "1382/2025/GEN"
+        },
+        {
+          "number": 10,
+          "title": "Dación cuenta al pleno del informe anual de evaluación del cumplimiento de la normativa en materia de morosidad (ejercicio de referencia: 2024)",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "904/2025/GEN"
+        },
+        {
+          "number": 11,
+          "title": "Dar cuenta al Pleno de la Resolución de Alcaldía 1428/2025, que aprueba la reformulación de la liquidación del presupuesto 2024",
+          "section": "informativa",
+          "department": "INTERVENCIÓN",
+          "expediente": "1029/2025/GEN"
+        },
+        {
+          "number": 12,
+          "title": "Dación cuenta de la Resolución de Alcaldía nº 1314/2025, de 11 de abril, relativa a la modificación de las áreas de gestión política 2023-2027 y delegación en favor de Concejales",
+          "section": "informativa",
+          "department": "SECRETARÍA",
+          "expediente": "3979/2023/GEN"
+        },
+        {
+          "number": 13,
+          "title": "Dar cuenta de las Resoluciones de la número 1139/2025 a la 1494/2025",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 14,
+      "departments": [
+        "TRANSPARENCIA",
+        "FOMENTO ECONOMICO",
+        "URBANISMO",
+        "JUVENTUD",
+        "TESORERÍA",
+        "INTERVENCIÓN",
+        "SECRETARÍA"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "hp3y4s",
+      "date": "2025-04-07",
+      "title": "Pleno ordinario 7 de abril de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_7_de_abril_de_2025_contenidos_752124_9323821/contenidos/752124/9323821",
+      "agenda": [],
+      "agendaCount": 0,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "11k71c8",
+      "date": "2025-02-10",
+      "title": "Pleno ordinario 10 de febrero de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_10_de_febrero_de_2025_contenidos_4250086_9323821_contenidos_4250086_9323821/contenidos/4250086",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 20 de enero de 2025",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación Reglamento interno regulador de la mesa conjunta de negociación de personal laboral y funcionario",
+          "section": "resolutiva",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "3578/2024/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Inicio del expediente administrativo para la contratación del servicio público de recogida de residuos sólidos urbanos, poda y voluminosos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes, por procedimiento abierto, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, alineado con los objetivos ODS 8.8, ODS 11.6 y ODS 12.5 de la Agenda 2030, contrato sujeto a regulación armonizada (Ctto 136/2025)",
+          "section": "resolutiva",
+          "department": "CONTRATACIÓN",
+          "expediente": "615/2025/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Reglamento de funcionamiento de los servicios jurídicos del Ayuntamiento",
+          "section": "resolutiva",
+          "department": "SERVICIOS JURÍDICOS",
+          "expediente": "680/2025/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Acuerdo relativo al expediente de retasación de cargas de UE 1 del Sector Masia de Baló",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "2789/2023/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Acuerdo relativo al expediente de retasación de cargas de UE 2 del Sector Masia de Baló",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "2790/2023/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Acuerdo relativo al expediente de retasación de cargas de UE 3 del Sector Masia de Baló",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "2791/2023/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Acuerdo relativo a la suspensión de licencias en el ámbito de zonas inundables de Riba-roja de Turia como consecuencia de la DANA de 29 de octubre de 2024",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "88/2025"
+        },
+        {
+          "number": 9,
+          "title": "Moción del Grupo Municipal VOX Riba-roja de Túria para la creación de un “Hall of Fame” de deportistas de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "02/2025/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja y EUPV – Unides Podem per Riba-roja contra de la mal llamada “libertad educativa”",
+          "section": "informativa",
+          "department": null,
+          "expediente": "03/2025/PGRU"
+        },
+        {
+          "number": 11,
+          "title": "Dación cuenta de los informes de las distintas áreas del Departamento de Tesorería del Ejercicio 2024",
+          "section": "informativa",
+          "department": "TESORERÍA",
+          "expediente": "396/2025/GEN"
+        },
+        {
+          "number": 12,
+          "title": "Dar cuenta de las Resoluciones de la número 89/2024 a la 431/2025",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 13,
+      "departments": [
+        "RECURSOS HUMANOS",
+        "CONTRATACIÓN",
+        "SERVICIOS JURÍDICOS",
+        "URBANISMO",
+        "TESORERÍA"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "of2npg",
+      "date": "2025-01-20",
+      "title": "Pleno ordinario 20 de enero de 2025",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos/pleno_ordinario_20_de_enero_de_2025/contenidos/5461004/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta Ordinaria anterior de fecha 2 de diciembre de 2024 y Acta Extraordinaria de fecha 26 de diciembre de 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación del PLAN DE CONTRATACIÓN 2025 del Ayuntamiento de Riba-Roja de Túria",
+          "section": "resolutiva",
+          "department": "CONTRATACIÓN",
+          "expediente": "6079/2024/GEN"
+        },
+        {
+          "number": 3,
+          "title": "RECURSOS HUMANOS Expediente 6681/2024/GEN, Incremento partida presupuestaria para el pago de las dietas y asistencias de los Concejales pendientes de 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "RECURSOS HUMANOS Expediente: 5726/2024/GEN, Acuerdo de Pleno relativo a autorización de compatibilidad para el desempeño de segunda actividad laboral para el ejercicio 2024-2025 JGH",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "Moción del Grupo Municipal VOX Riba-roja de Túria de reconocimiento al esfuerzo y solidaridad de los voluntarios y vecinos durante la DANA en Valencia",
+          "section": "informativa",
+          "department": null,
+          "expediente": "01/2025/PGRU"
+        },
+        {
+          "number": 6,
+          "title": "Dación cuenta al Pleno de los contratos administrativos adjudicados en el segundo semestre de 2024 por el Ayuntamiento de Riba-Roja de Túria",
+          "section": "informativa",
+          "department": "CONTRATACIÓN",
+          "expediente": "4264/2024/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Dar cuenta de las Resoluciones de la número 4109/2024 a la 88/2025",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 8,
+      "departments": [
+        "CONTRATACIÓN"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "1e0jjw",
+      "date": "2024-12-26",
+      "title": "Pleno extraordinario 26 de diciembre de 2024",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/pleno_extraordinario_26_de_diciembre_de_2024_contenidos_8722152_contenidos_8722152/contenidos/8722152/9323821",
+      "agenda": [],
+      "agendaCount": 0,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "19m20g0",
+      "date": "2024-12-02",
+      "title": "Pleno ordinario 2 de diciembre de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_2_de_diciembre_de_2024_contenidos_4591316_9323821/contenidos/4591316/9323821",
+      "agenda": [],
+      "agendaCount": 0,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "o48cdr",
+      "date": "2024-11-04",
+      "title": "Pleno ordinario 4 de noviembre de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_4_de_noviembre_de_2024/contenidos/131394/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 7 de octubre de 2024, ordinaria, y de fecha 21 de octubre de 2024, extraordinaria",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "CALIDAD AMBIENTAL, Expediente 1798/2024/GEN, Aprobación definitiva de la ordenanza reguladora de la instalación de mesas y terrazas anejas a establecimientos hosteleros y de restauración",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "URBANISMO, Expediente 4836/2024/GEN, Acuerdo relativo al Expediente de minimización de impacto territorial en Polígono 58, Parcela 56 con ref. cat: 46216ª058000560000TW",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "Moción del Grupo Municipal Partido Popular Riba-roja de Túria para instar al Gobierno de España a paralizar la aplicación de la tasa de gestión de residuos a las entidades locales y al Gobierno de Riba-roja de Túria a una bajada de impuestos",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "29/2024/PGRU"
+        },
+        {
+          "number": 5,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, EUPodem y Compromís per Riba-roja por una sanidad pública y de calidad",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "27/2024/PGRU"
+        },
+        {
+          "number": 6,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja y EU-Podem relativa al 25 de noviembre, día internacional contra la violencia de género 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "28/2024/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Declaración Institucional en recuerdo y como reconocimiento a José Luis de Tomás García. 8- ASUNTOS DE URGENCIA. - Declaración Institucional de la Corporación de Riba-roja de Túria por la DANA. - Recursos Humanos, Expediente 5898/2024/GEN, Incremento del porcentaje límite de gratificaciones y productividades",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "30/2024/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "TESORERIA, Expediente 5420/2024/GEN, Dación cuenta al Pleno de la información trimestral correspondiente al tercer trimestre de 2024: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de la deuda comercial",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "Dar cuenta de las Resoluciones de la número 3250/2024 a la 3681/2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 10,
+      "departments": [],
+      "hasRuegos": true
+    },
+    {
+      "id": "18ei96g",
+      "date": "2024-10-21",
+      "title": "Pleno extraordinario 21 de octubre de 2024",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_extraordinario_21_de_octubre_de_2024_contenidos_3575920_8465333_contenidos_3575920_9323821/contenidos/3575920",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Imposición y Aprobación de la Ordenanza Fiscal Reguladora de la Tasa por prestación del Servicio de Recogida de Residuos Sólidos Urbanos, Poda y Voluminosos del municipio de Riba-roja de Túria",
+          "section": "apertura",
+          "department": "GESTIÓN TRIBUTARIA",
+          "expediente": "2699/2024/GEN"
+        }
+      ],
+      "agendaCount": 1,
+      "departments": [
+        "GESTIÓN TRIBUTARIA"
+      ],
+      "hasRuegos": false
+    },
+    {
+      "id": "lpwudo",
+      "date": "2024-10-07",
+      "title": "Pleno ordinario 7 de octubre de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_7_de_octubre_de_2024/contenidos/1330810/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 9 de septiembre de 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Acuerdo de Pleno relativo a autorización de compatibilidad para el desempeño de segunda actividad laboral de AJMH para el ejercicio 2024-2025",
+          "section": "resolutiva",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "4344/2024/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Aprobación de la Agenda Urbana del municipio de Riba-roja de Túria (Sin Dictaminar)",
+          "section": "resolutiva",
+          "department": "MEDIO AMBIENTE",
+          "expediente": "5234/2024/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Moción del Grupo Municipal Socialista de Riba-roja contra la explotación sexual y tráfico de mujeres, niños y niñas",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "22/2024/PGRU"
+        },
+        {
+          "number": 5,
+          "title": "Moción del Grupo Municipal Popular de Riba-roja de Túria solicitando el reembolso económico a todos los usuarios del complejo deportivo “La Mall&agrave;”",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "24/2024/PGRU"
+        },
+        {
+          "number": 6,
+          "title": "Moción del Grupo Municipal Popular de Riba-roja de Túria para la mejora de las instalaciones de las Escoletas Infantiles Municipales",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "25/2024/PGRU"
+        },
+        {
+          "number": 7,
+          "title": "Moción del Grupo Municipal Compromís por Riba-roja para la reversión del modelo actual del Circuito Cultural Valenciano",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "23/2024/PGRU"
+        },
+        {
+          "number": 8,
+          "title": "Moción del Grupo Socialista en apoyo a la senda de estabilidad aprobada por el Gobierno de España",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": "26/2024/PGRU"
+        },
+        {
+          "number": 9,
+          "title": "Despacho de Urgencia. 9.1 Previa declaración de urgencia. - SECRETARÍA, Expediente 5451/2024/GEN, Puesta a disposición de parcelas de titularidad municipal necesarias a favor de la GVA para ejecutar el proyecto de construcción de las obras de saneamiento y depuración del P.I. El Oliveral en Riba-roja de Túria. Ampliación de la EDAR SETRECE. (Expte. GP_3/2024). 9.2 Previa declaración de urgencia. - INTERVENCIÓN, Expediente 5423/2023/GEN, Acuerdo relativo a la modificación de crédito por suplemento núm 36-2024. 9.3 Previa declaración de urgencia. - INTERVENCIÓN, Expediente 4588/2024/GEN, Reconocimiento extrajudicial de crédito para la imputación al presupuesto del ejercicio corriente 2024 los gastos realizados en el ejercicio anterior y ejercicio 2024. 9.4 Previa declaración de urgencia. - RRHH, Expediente 5431/2024/GEN, Modificación acuerdo 7 de julio de 2023, Expediente 4533/2022/GEN, relativo a la asignación económica de los grupos políticos",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "Dación cuenta al PLENO de la información trimestral correspondiente al SEGUNDO TRIMESTRE de 2024: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+          "section": "informativa",
+          "department": "TESORERÍA",
+          "expediente": "4101/2024/GEN"
+        },
+        {
+          "number": 11,
+          "title": "CONTRATACIÓN, Expediente 4264/2024/GEN, Dación cuenta al Pleno de los contratos adjudicados en el primer semestre de 2024 por el Ayuntamiento de Riba-roja de Túria (Sin Dictaminar)",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Dar cuenta de las Resoluciones de la número 3001/2024 a la 3249/2024",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 13,
+      "departments": [
+        "RECURSOS HUMANOS",
+        "MEDIO AMBIENTE",
+        "TESORERÍA"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "19xkzxw",
+      "date": "2024-09-09",
+      "title": "Pleno ordinario 9 de septiembre de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_9_de_septiembre_de_2024/contenidos/8978627/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 29 de julio de 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Operación de Tesorería 2024-2025",
+          "section": "resolutiva",
+          "department": "TESORERÍA",
+          "expediente": "1964/2024/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Acuerdo relativo a la Declaración Individualizada de Minimización de impacto territorial en PARTIDA “LA LLOVATERA” POLÍGONO 40, PARCELA 9",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "6555/2023/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Acuerdo relativo a la Declaración Individualizada de Minimización de impacto territorial en Partida Pla de Tochar 102. Polígono Diseminados (P-42) 168",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "1424/2024/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Aprobación del expediente de reconocimiento extrajudicial nº 2-2024-PLENO",
+          "section": "resolutiva",
+          "department": "INTERVENCIÓN",
+          "expediente": "4204/2024/GEN"
+        },
+        {
+          "number": 6,
+          "title": "Aprobación de la Cuenta General correspondiente al ejercicio 2023",
+          "section": "resolutiva",
+          "department": "INTERVENCIÓN",
+          "expediente": "3281/2024/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Acuerdo relativo a la Declaración Individualizada de Minimización de impacto territorial en PL DISEMINADOS [[]P-68] 115[[]A] y 115[[]I]",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "2897/2023/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Acuerdo relativo a la Aprobación definitiva de la Actualización del Proyecto de construcción de nuevo acceso a la A-3 (Enlace Godelleta)",
+          "section": "resolutiva",
+          "department": "URBANISMO",
+          "expediente": "2123/2023/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Aprobación inicial del nuevo manual de productividades y gratificaciones del ayuntamiento de Riba-roja de Turia.  10- INTERVENCIÓN, Expediente: 2220/2024/GEN, Dación de cuenta al Pleno del informe definitivo de control financiero permanente planificable sobre la cuenta 413 en el ejercicio 2023, en cumplimiento de lo dispuesto en la DA TERCERA de la LO 9/2013",
+          "section": "informativa",
+          "department": "RECURSOS HUMANOS",
+          "expediente": "3903/2024/GEN"
+        },
+        {
+          "number": 11,
+          "title": "Dar cuenta de las Resoluciones de la número 2669/2024 a la 3000/2024",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Ruegos y Preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 11,
+      "departments": [
+        "TESORERÍA",
+        "URBANISMO",
+        "INTERVENCIÓN",
+        "RECURSOS HUMANOS"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "1tgd1h4",
+      "date": "2024-07-29",
+      "title": "Pleno ordinario 29 de julio de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_29_de_julio_de_2024/contenidos/368519/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 01 y 22 de julio de 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Actividades, Expediente 1798/2024/GEN – Aprobación inicial de la modificación de la Ordenanza municipal reguladora de la instalación de mesas y terrazas",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "Fomento Económico, Expediente 3830/2024/GEN – Aprobación del Reglamento de Funcionamiento de régimen interno de los programas mixtos de empleo-formación",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "Fomento Económico , Expediente 4147/2024/GEN – Acuerdo relativo a las Fiestas Locales, Calendario Laboral 2025",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "Secretaría, Expediente 4305/2024/GEN – Aprobación de la política del Sistema Interno de Información del Ayuntamiento de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Medio Ambiente, Expediente 4297/2024/GEN – Aprobación y remisión para homologación del Plan Territorial de emergencias y planes asociados",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "Cultura, Expediente 3051/2024/GEN – Aprobación de la denominación de la Plaza Banda Unió Musical de Riba-roja",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "Bienestar Animal, Expediente 3543/2024/GEN, Aprobación del Plan de Gestión Ética de Colonias Felinas del Ayuntamiento de Riba-roja de Túria",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "Moción conjunta del Grupo Municipal Socialista, del Grupo Municipal Compromís y del Grupo Municipal Esquerra Unida - Podem sobre el rechazo a la parálisis de la Generalitat Valenciana frente al machismo",
+          "section": "informativa",
+          "department": null,
+          "expediente": "21/2024/PGRU"
+        },
+        {
+          "number": 10,
+          "title": "Urbanismo, Expediente 4307/2024/GEN, Dación cuenta de la Calendarización de las prioridades en materia de Gestión Urbanística del Departamento de Urbanismo",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Servicios Jurídicos, Expediente 4343/2024/GEN, Dación cuenta de los antecedentes y pronunciamientos judiciales respecto al PAI en el Sector Más de Porxinos",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Servicios Jurídicos, Expediente 4358/2024/GEN, Dación cuenta del sobreseimiento del PA 1045/2017 instruido por el Juzgado de Primera Instancia e Instrucción nº4 de Llíria contra Roberto Raga y otros",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Contratación, Expediente 4264/2024/GEN, Dación cuenta al Pleno de los contratos administrativos adjudicados en el primer semestre de 2024 por el Ayuntamiento de Riba-roja de Túria",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Comercio, Expediente 4150/2024/GEN, Valoración de la campaña XXII Fira del Comer&ccedil; y GastroFira 2024",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 15,
+          "title": "Innovación. Expediente 4799/2023/GEN, Dación cuenta de la bitácora de la BOOTCAMP del Hub de Innovación RIBA_LAB en el Ayuntamiento de Riba-roja de Túria para potenciar las competencias en materia de colaboración, creatividad e innovación",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 16,
+          "title": "Dar cuenta de las Resoluciones de la número 2378/2024 a la 2668/2024",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 17,
+          "title": "Ruegos y Preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 17,
+      "departments": [],
+      "hasRuegos": true
+    },
+    {
+      "id": "1pe6awk",
+      "date": "2024-07-22",
+      "title": "Pleno extraordinario 22 de julio de 2024",
+      "kind": "extraordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_22_de_julio_de_2024_contenidos_595237_9323821_contenidos_595237_9323821/contenidos/595237",
+      "agenda": [],
+      "agendaCount": 0,
+      "departments": [],
+      "hasRuegos": false
+    },
+    {
+      "id": "1pdx0lc",
+      "date": "2024-07-01",
+      "title": "Pleno ordinario 1 de julio de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_1_de_julio_de_2024/contenidos/5364051/8465333",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 03 y 14 de junio de 2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Aprobación Plan Centinela",
+          "section": "informativa",
+          "department": "POLICÍA LOCAL",
+          "expediente": "3829/2024/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Dación cuenta de la aprobación del Plan de Tesorería del Ayuntamiento de Riba-roja de Túria ejercicio económico 2024",
+          "section": "informativa",
+          "department": "TESORERÍA",
+          "expediente": "876/2024/GEN"
+        },
+        {
+          "number": 4,
+          "title": "Dación cuenta de la Valoración campaña Ruta de la Tapa \"Riba-roja és la Canya 2024”",
+          "section": "informativa",
+          "department": "FOMENTO ECONÓMICO",
+          "expediente": "3629/2024/GEN"
+        },
+        {
+          "number": 5,
+          "title": "Dar cuenta de las Resoluciones de la número 2022/2024 a la 2377/2024",
+          "section": "informativa",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Ruegos y Preguntas. Descarga de archivos Borrador acta pleno 1 de julio de 2024",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 6,
+      "departments": [
+        "POLICÍA LOCAL",
+        "TESORERÍA",
+        "FOMENTO ECONÓMICO"
+      ],
+      "hasRuegos": true
+    },
+    {
+      "id": "1wqaaog",
+      "date": "2024-06-03",
+      "title": "Pleno ordinario 3 de junio de 2024",
+      "kind": "ordinario",
+      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_3_de_junio_de_2024/contenidos/8058078/9323821",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Actas anteriores de fecha 06 y 13 de mayo de 2024.  2 .- SECRETARÍA, Expediente: 377/2024/GEN, Dación cuenta de la Memoria de Secretaría de 2023 del Ayuntamiento de Riba-roja de Túria alineada con los Objetivos de Desarrollo Sostenible (ODS). 3 .- GESTIÓN TRIBUTARIA, Expediente: 1888/2024/GEN Modificación de la Ordenanza Fiscal Reguladora del Impuesto sobre el Incremento de Valor de los Terrenos de Naturaleza Urbana (IIVTNU). 4 .- POLICÍA LOCAL, Expediente: 6302/2022/GEN, Aprobación definitiva de la Ordenanza Municipal de Convivencia Ciudadana. 5 .- INTEGRIDAD, Expediente: 2723/2023/GEN, Dación cuenta del I Informe anual de seguimiento, supervisión y evaluación de las medidas recogidas en el Plan de Medidas Antifraude (PMA) del Ayuntamiento de Riba-roja de Turia. 6 .- URBANISMO, Expediente: 2715/2024/GEN, Acuerdo relativo a la adhesión del acuerdo marco de colaboración para impulso de la promoción de viviendas de protección pública, en suelo de las administraciones locales a través de la colaboración público - privada. 7 .- 18/2024/PGRU Moción conjunta de los Grupos Municipales Socialista de Riba-roja, EU-Podemos y Compromís per Riba-roja relativa a 17 de mayo día internacional contra la LGTBIfobia y 28 de junio día internacional del orgullo LGTBI. 8 .- 19/2024/PGRU Moción del Grupo Municipal Socialista de Riba-roja contra la ampliación del aeropuerto de Manises. 9 .- 20/2024/PGRU Moción del Grup Municipal Compromís per Riba-roja relativa al lawfare",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "Dar cuenta de las Resoluciones de la número 1596/2024 a la 2021/2024",
+          "section": "resolutiva",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Ruegos y Preguntas",
+          "section": "ruegos",
+          "department": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 3,
+      "departments": [],
+      "hasRuegos": true
+    }
+  ]
+}
