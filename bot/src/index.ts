@@ -11,8 +11,10 @@ import { registerMis } from './commands/mis.ts'
 import { registerBarrio } from './commands/barrio.ts'
 import { registerRanking } from './commands/ranking.ts'
 import { registerDigest } from './commands/digest.ts'
+import { registerBatchCommand } from './commands/batch.ts'
 import { makeChannel } from './services/channel.ts'
 import { buildSnapshot } from './services/snapshot.ts'
+import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
 
 function makeBot() {
   const token = process.env.BOT_TOKEN
@@ -35,6 +37,7 @@ function makeBot() {
   registerBarrio(bot, db)
   registerRanking(bot, db)
   registerDigest(bot, db)
+  registerBatchCommand(bot, db, channel)
 
   bot.catch((err) => {
     console.error('[bot] error:', err)
@@ -49,6 +52,8 @@ function makeBot() {
       { command: 'barrio', description: 'Quejas por barrio' },
       { command: 'ranking', description: 'Ranking de barrios (60 días)' },
       { command: 'digest', description: 'Resumen (últimos N días)' },
+      { command: 'batch', description: 'Lote semanal (admin)' },
+      { command: 'batch_register', description: 'Registrar lote tras firmar (admin)' },
       { command: 'help', description: 'Cómo funciona' },
     ])
     .catch(() => undefined)
@@ -91,6 +96,36 @@ async function main() {
       if (req.method === 'GET' && url.pathname === '/health') {
         res.statusCode = 200
         res.end('ok')
+        return
+      }
+
+      // Public (read-only) batch document. Renders the current top-10
+      // verified quejas as markdown / HTML. Protected by EXPORT_TOKEN if
+      // set — same auth as /export/quejas.json.
+      if (
+        req.method === 'GET' &&
+        (url.pathname === '/batch/current.md' || url.pathname === '/batch/current.html')
+      ) {
+        if (exportToken) {
+          const auth = req.headers.authorization ?? ''
+          const qp = url.searchParams.get('token') ?? ''
+          if (auth !== `Bearer ${exportToken}` && qp !== exportToken) {
+            res.statusCode = 401
+            res.end('unauthorized')
+            return
+          }
+        }
+        const moderator = process.env.MODERATOR_NAME ?? 'Vecino/a de Riba-roja'
+        const batch = buildBatch(db, moderator)
+        if (url.pathname === '/batch/current.md') {
+          res.setHeader('Content-Type', 'text/markdown; charset=utf-8')
+          res.setHeader('Cache-Control', 'no-store')
+          res.end(renderBatchMarkdown(batch))
+        } else {
+          res.setHeader('Content-Type', 'text/html; charset=utf-8')
+          res.setHeader('Cache-Control', 'no-store')
+          res.end(renderBatchHtml(batch))
+        }
         return
       }
 

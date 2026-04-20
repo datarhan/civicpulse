@@ -1,0 +1,39 @@
+name: Weekly batch reminder
+
+on:
+  schedule:
+    - cron: '0 8 * * 1' # Mondays 08:00 UTC (10:00 Madrid summer, 09:00 winter)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    if: ${{ vars.BOT_EXPORT_URL != '' && secrets.TELEGRAM_BOT_TOKEN != '' && vars.BATCH_REMINDER_CHAT_ID != '' }}
+    steps:
+      - name: Fetch current batch size
+        id: batch
+        env:
+          EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
+          EXPORT_TOKEN: ${{ secrets.BOT_EXPORT_TOKEN }}
+        run: |
+          if [ -n "$EXPORT_TOKEN" ]; then
+            total=$(curl -fsS -H "Authorization: Bearer $EXPORT_TOKEN" "$EXPORT_URL" | jq '[.items[] | select(.status == "apoyada_verificada")] | length')
+          else
+            total=$(curl -fsS "$EXPORT_URL" | jq '[.items[] | select(.status == "apoyada_verificada")] | length')
+          fi
+          echo "verified=$total" >> "$GITHUB_OUTPUT"
+
+      - name: Ping moderator
+        if: ${{ steps.batch.outputs.verified != '0' }}
+        env:
+          TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ vars.BATCH_REMINDER_CHAT_ID }}
+          VERIFIED: ${{ steps.batch.outputs.verified }}
+        run: |
+          curl -fsS "https://api.telegram.org/bot$TOKEN/sendMessage" \
+            -d "chat_id=$CHAT_ID" \
+            -d "parse_mode=Markdown" \
+            --data-urlencode "text=🗓 Lunes · hay *$VERIFIED* queja(s) verificadas listas para registro. Usa /batch para ver el lote y /batch_register tras firmar en sede.ribarroja.es."
