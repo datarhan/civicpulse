@@ -15,8 +15,9 @@ import {
   SINDIC_SENTIDO_LABEL,
   SINDIC_SENTIDO_TONE,
 } from '../hooks/useSindic'
+import QuejasHeatmap from '../components/QuejasHeatmap'
 
-const TELEGRAM_BOT_URL = 'https://t.me/civicpulse_ribarroja_bot'
+const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
 function SindicCard() {
   const { data } = useSindic()
@@ -188,7 +189,7 @@ function EmptyState() {
           <p>
             CivicPulse opera su propio canal de quejas ciudadanas vía el bot de Telegram{' '}
             <a href={TELEGRAM_BOT_URL} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
-              @civicpulse_ribarroja_bot
+              @munigraph_bot
             </a>
             . Cada vecino puede presentar una queja en 2 minutos y seguir su estado en tiempo real.
           </p>
@@ -264,7 +265,7 @@ function DashboardView({ data }) {
   const stats = data.stats || { total: 0, byState: {}, byNeighborhood: {}, byCategory: {} }
 
   const resueltas = stats.byState.resuelta || 0
-  const silencios = stats.byState.silencio_negativo || 0
+  const silencios = (stats.byState.silencio_negativo || 0) + (stats.byState.escalada_sindic || 0)
   const pendientes =
     (stats.byState.capturada || 0) +
     (stats.byState.apoyada_verificada || 0) +
@@ -282,11 +283,13 @@ function DashboardView({ data }) {
 
   return (
     <>
+      <QuejasHeatmap />
+
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12, marginBottom: 18 }}>
         <StatCard label="Total quejas" value={stats.total} sub="desde el inicio del canal" />
         <StatCard label="Resueltas" value={resueltas} tone="ok" sub={`${resolucionPct}% del total`} />
         <StatCard label="Pendientes" value={pendientes} tone="civic" sub="capturadas + en trámite" />
-        <StatCard label="Silencios" value={silencios} tone="warn" sub=">90 días sin respuesta" />
+        <StatCard label="Silencios + escaladas" value={silencios} tone="warn" sub=">plazo LPACAP" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 14, marginBottom: 18 }}>
@@ -401,9 +404,10 @@ export default function Quejas() {
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
           Canal público de quejas para Riba-roja. Presenta vía Telegram ·{' '}
           <a href={TELEGRAM_BOT_URL} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
-            @civicpulse_ribarroja_bot
+            @munigraph_bot
           </a>
-          . Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.
+          . Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.{' '}
+          <Link to="/quejas/dashboard" style={{ color: 'var(--civic)' }}>Dashboard analítico →</Link>
         </div>
       </div>
 

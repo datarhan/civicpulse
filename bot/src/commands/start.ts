@@ -1,7 +1,7 @@
 import type { Bot } from 'grammy'
 import type { MyContext } from '../types.ts'
 
-const WELCOME = `👋 *Bienvenido a CivicPulse Riba-roja*
+const WELCOME = `👋 *Bienvenido a MuniGraph · Riba-roja*
 
 Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 
