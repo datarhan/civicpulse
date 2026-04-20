@@ -30,6 +30,7 @@
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
     "llm:doctor": "npx tsx scripts/llm-doctor.ts",
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
+    "scrape:tender-queja-correlations": "npx tsx scripts/scrape-tender-queja-correlations.ts",
     "freeze:set": "npx tsx scripts/set-promises-freeze.ts set",
     "freeze:clear": "npx tsx scripts/set-promises-freeze.ts clear",
     "freeze:status": "npx tsx scripts/set-promises-freeze.ts status",
