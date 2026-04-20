@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-04-20T00:00:00.000Z",
+  "generatedAt": "2026-04-20T06:02:41.968Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -29,7 +29,8 @@
           "addedBy": "civicpulse-bot"
         }
       ],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-refugios-climaticos-2026",
@@ -45,7 +46,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-reconstruccion-dana-9-5m",
@@ -61,7 +63,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-vivienda-900-hogares",
@@ -77,7 +80,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-construccion-vivienda-2026-2029",
@@ -93,7 +97,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-pasarelas-parc-natural-turia",
@@ -109,7 +114,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-espai-obert-presupuesto",
@@ -125,7 +131,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-alumbrado-led-680k",
@@ -150,7 +157,8 @@
           "addedBy": "civicpulse-bot"
         }
       ],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-metro-l9-agosto",
@@ -166,7 +174,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     },
     {
       "id": "psoe-respuesta-quejas-sector-14-48h",
@@ -182,8 +191,9 @@
       "kind": "compromiso-investidura",
       "status": "en-verificacion",
       "evidence": [],
+      "notes": "Compromiso anunciado públicamente en la primera convocatoria de Espai Obert; actualmente en verificación porque las métricas municipales sugieren incumplimiento pero aún no existe resolución del pleno ni auditoría externa publicada.",
       "createdAt": "2026-04-20",
-      "notes": "Compromiso anunciado públicamente en la primera convocatoria de Espai Obert; actualmente en verificación porque las métricas municipales sugieren incumplimiento pero aún no existe resolución del pleno ni auditoría externa publicada."
+      "response": null
     },
     {
       "id": "pp-voto-contra-fondos-dana",
@@ -199,8 +209,9 @@
       "kind": "enmienda-pleno",
       "status": "documentada",
       "evidence": [],
+      "notes": "Posición pública del grupo municipal del PP ante la aceptación de fondos europeos de reconstrucción post-DANA. Se cita como posición política atribuida, no como promesa electoral del programa 2023.",
       "createdAt": "2026-04-20",
-      "notes": "Posición pública del grupo municipal del PP ante la aceptación de fondos europeos de reconstrucción post-DANA. Se cita como posición política atribuida, no como promesa electoral del programa 2023."
+      "response": null
     },
     {
       "id": "pp-gasto-innecesario-pacadar",
@@ -216,8 +227,9 @@
       "kind": "enmienda-pleno",
       "status": "documentada",
       "evidence": [],
+      "notes": "Cita directa del portavoz del grupo municipal del PP en el pleno extraordinario. Posición política sostenida, no promesa del programa electoral 2023.",
       "createdAt": "2026-04-20",
-      "notes": "Cita directa del portavoz del grupo municipal del PP en el pleno extraordinario. Posición política sostenida, no promesa del programa electoral 2023."
+      "response": null
     },
     {
       "id": "pp-critica-gestion-socialista",
@@ -233,8 +245,9 @@
       "kind": "programa-electoral",
       "status": "documentada",
       "evidence": [],
+      "notes": "Cita del portavoz del PP Alberto Gimeno en declaraciones públicas a medios. Marca la línea política del grupo municipal, útil como referencia para verificar coherencia futura.",
       "createdAt": "2026-04-20",
-      "notes": "Cita del portavoz del PP Alberto Gimeno en declaraciones públicas a medios. Marca la línea política del grupo municipal, útil como referencia para verificar coherencia futura."
+      "response": null
     },
     {
       "id": "vox-abstencion-pacadar",
@@ -250,8 +263,9 @@
       "kind": "enmienda-pleno",
       "status": "documentada",
       "evidence": [],
+      "notes": "VOX mantiene un único concejal en la corporación (José Luis Fernández Santamaría). Posición documentada como abstención en el pleno del Plan de Actuación Integrado 'Pacadar Avanza'. No se dispone aún de programa electoral 2023 de VOX Riba-roja extraído de forma verbatim.",
       "createdAt": "2026-04-20",
-      "notes": "VOX mantiene un único concejal en la corporación (José Luis Fernández Santamaría). Posición documentada como abstención en el pleno del Plan de Actuación Integrado 'Pacadar Avanza'. No se dispone aún de programa electoral 2023 de VOX Riba-roja extraído de forma verbatim."
+      "response": null
     },
     {
       "id": "compromis-apoyo-pacadar-coalicion",
@@ -267,8 +281,9 @@
       "kind": "pacto-coalicion",
       "status": "documentada",
       "evidence": [],
+      "notes": "Rafael Folgado (Compromís) forma parte de la Junta de Gobierno Local como socio de coalición con el PSPV-PSOE. Voto a favor del Plan Pacadar Avanza refleja el alineamiento del grupo municipal con el ejecutivo.",
       "createdAt": "2026-04-20",
-      "notes": "Rafael Folgado (Compromís) forma parte de la Junta de Gobierno Local como socio de coalición con el PSPV-PSOE. Voto a favor del Plan Pacadar Avanza refleja el alineamiento del grupo municipal con el ejecutivo."
+      "response": null
     },
     {
       "id": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -284,7 +299,8 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20"
+      "createdAt": "2026-04-20",
+      "response": null
     }
   ]
 }
