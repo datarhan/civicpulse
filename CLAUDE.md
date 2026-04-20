@@ -57,32 +57,49 @@ fixtures live in `tests/fixtures/`.
 
 ## Architecture
 
-CivicPulse is a **front-end-only prototype** (Vite + React 18 + React Router 6) styled as a **municipal data-OS dashboard** — sidebar + topbar shell with six surfaces: Overview, Quejas (complaints), Cargos (officials), Presupuesto (budget), Plenos (council sessions), Datos (open data).
+CivicPulse is a **front-end-only SPA** (Vite + React 18 + React Router 6)
+backed by a sibling **Node.js Telegram bot** (`/bot/`) that runs on
+macOS launchd as a local long-polling service. All primary data comes
+from static JSON in `/public/data/*.json`, produced by 15 nightly
+scrapers. The bot writes its own snapshot (`quejas.json`) to the same
+tree via a daily launchd export agent.
 
-**Two data layers coexist.** Sections we've already migrated to real data
-pull static JSON from `/public/data/*.json` (produced by the
-`scripts/scrape-*.ts` CLIs, TDD'd via `src/scraper/*.ts` parsers). The
-rest still reads from the seed in `src/data/mockData.js`. See §"Real data
-pipeline" below for what's wired; follow `docs/REAL_DATA_MVP_PLAN.md` for
-the remaining sprints and the sources of truth.
+**No external backend.** Vercel serves the static assets next to the
+JSON. The bot process reads + writes SQLite locally; exports are
+committed back to git (daily at 04:00 local, or on demand via
+`bash bot/scripts/local-export.sh`).
 
-The UI is derived from the "Direction A — Municipal Dashboard" handoff in the `civicpulse-design-system` bundle (Linear/Vercel data-OS feel, density 75, MHS score hero, map demoted to a widget inside Quejas). Don't reintroduce the old map-centric Dashboard/Scorecards shell — it was intentionally replaced.
+`src/data/mockData.js` is **retired** — every production surface now
+reads real JSON. The file is only kept as a compile reference.
 
 ### Layout
-- `src/App.jsx` owns persistent Sidebar + Topbar, routes, and three overlays: Cmd+K spotlight, Tweaks panel, SimCity toggle hook.
-- `tweaks` state (city, persona, dark mode, density) is persisted to `localStorage` under `cp:tweaks` and applied as `html.dark` class + `html` `font-size` (density maps to 13.5/14/15 px base).
-- Breadcrumb is derived from `useLocation()` matched against the `NAV` array exported from `components/Sidebar.jsx`.
+- `src/App.jsx` — SPA root. `/` renders `DirectionD` as the landing
+  page (full-bleed map + editorial column + KPI strip). Every other
+  route renders inside `InnerShell` (Sidebar + Topbar).
+- `tweaks` state (dark mode, density) persists to `localStorage` under
+  `cp:tweaks` and applies `html.dark` class + `html` font-size.
+- Breadcrumb derives from `useLocation()` matched against the `NAV`
+  array in `components/Sidebar.jsx`.
 
 ### Routes
-Direction A (Sidebar + Topbar shell): `/` Overview · `/quejas` · `/cargos` · `/presupuesto` · `/plenos` · `/promesas` · `/datos` · `/ciudad` (live Riba-roja map, Leaflet-based, kiosk-capable) · `/metodologia` · `/aviso-legal`. A catch-all `*` renders Overview.
+- `/` → `variants/DirectionD.jsx` — the MVP landing (no sidebar).
+  Map (`components/LiveCity/StylizedMap.jsx`) + editorial column
+  (Alcalde, CoalitionRing, PromesasBlockD, PressBlockD, LiveContracts,
+  ParticipaBlockD, LeadStory from press) + KPI strip (padrón, budget,
+  tenders, paro, último pleno).
+- `/cargos` — officials grid + QuejaBadge per concejal
+- `/presupuesto` — CONPREL + tenders + BDNS subsidies
+- `/plenos` — 53 sessions + orden del día + Participa block
+- `/promesas` — legal-chrome promise tracker + LOREG freeze
+- `/datos` — catálogo of every JSON snapshot w/ Wikidata + padrón charts
+- `/quejas` — public feed + heatmap + Síndic/CTBG resolution cards
+- `/quejas/dashboard` — analytics surface (KPIs, LPACAP lifecycle, per-concejalía SLA)
+- `/quejas/:id` — detail view (timeline, legal clock, right-of-reply)
+- `/metodologia` + `/aviso-legal` — editorial contract
+- catch-all → redirect to `/`
 
-Variant routes — each renders its own full-page shell and hides the Sidebar/Topbar:
-- `/hud` → `variants/Hud.jsx` (Direction B, dark SimCity-style HUD)
-- `/briefing` → `variants/Briefing.jsx` (Direction C, editorial "Civic Briefing")
-- `/d` → `variants/DirectionD.jsx` (Direction D, "El Mirador" — Leaflet map + editorial column + KPI strip)
-- `/variants` → `variants/Chooser.jsx` (landing to pick a direction)
-
-A floating `VariantSwitcher` (see `variants/VariantSwitcher.jsx`) is rendered on every variant page with per-variant `theme` and `position` props so it doesn't collide with that variant's layout (e.g. Direction D uses `position="bottom-right-d"` at `{bottom: 96, right: 440}` to sit inside the map column).
+Legacy routes `/hud`, `/briefing`, `/d`, `/variants`, `/ciudad`,
+`/overview` have been removed. Don't reintroduce them.
 
 ### Design tokens
 All tokens live in `src/index.css` as CSS variables, with a `html.dark` override block that remaps `--ink`, `--surf`, `--paper`, `--soft`, `--border*`, and the `--*-soft` tonal surfaces. Tone names (`civic`, `ok`, `warn`, `crit`, `intel`, `neutral`, `ghost`) flow through `Pill`, `Delta`, and page status logic — add new semantic colors here, not inline. The `.mono` class switches to DM Mono with `font-variant-numeric: tabular-nums` and is used for every numeric/KPI value.
@@ -90,44 +107,30 @@ All tokens live in `src/index.css` as CSS variables, with a `html.dark` override
 Components use **inline styles driven by CSS variables**, not per-component `.css` files. This matches the prototype's structure and keeps theming (dark mode, density) working through a single token layer — don't refactor to styled-components or CSS modules without the user asking.
 
 ### Charts & maps
-`src/components/Charts.jsx` contains all SVG viz — `Sparkline`, `DualLine`, `Donut`, `BudgetBars`, `Heatmap`, and a stylized pure-SVG `MiniMap` used as decoration inside Quejas.
+`src/components/Charts.jsx` holds SVG primitives (`Sparkline`, `DualLine`, `Donut`, `BudgetBars`, `Heatmap`).
 
-Leaflet + react-leaflet **are** installed and used by two real map surfaces:
-- `src/components/LiveCity/LiveMap.jsx` — powers `/ciudad` (kiosk live monitor). CartoDB Dark Matter tiles, heat zones, landmarks, pulsing incident pins, budget-particle flow.
-- `src/components/LiveCity/StylizedMap.jsx` — powers `/d` (Direction D "El Mirador"). **Deliberately minimal "information-first" map**. CartoDB Voyager (warm daytime) tiles + real OSM geometry, with a thin layer of overlays:
-  - Neighborhood cards (`NeighborhoodCard`) — divIcons with a breathing health-ring (CSS keyframe `cpHoodBreathe`) colored by MHS score via the `mhsColor()` helper, the MHS score as a big tabular number, and the neighborhood name below as a chip.
-  - Metro L9 animated train (`MetroTrain`) — position interpolated via haversine along a coord array (see `buildPathSegments`/`posAlongPath`) using `requestAnimationFrame`.
-  - Polyline accents for CV-35, CV-370, and the L9 track.
-  - Pulsing `IncidentPin`s (CSS `cpIncidentHalo`) and `BudgetParticles` (Leaflet `layerGroup` rebuilt on each tick).
-  - `HeatOverlay` circles shown only when `layer` is `calor` or `aire`.
-  - `MetroBadge` top-right with a 15-min cycle countdown.
-
-  Earlier iterations tried hand-drawn SVG rectangles, Dorfromantik cottages, Tropico haciendas/factories, SimCity grids, and Kenney CC0 isometric sprite tiles on top of the tile layer. **All were removed** — they looked procedural, cluttered the view, and did not convey real municipal data at a glance. The current minimal design (health ring + MHS number per neighborhood) is the chosen baseline. Do not reintroduce synthetic buildings without a clear brief.
-
-### Mock data structure
-`src/data/mockData.js` is the single source of truth. Key exports:
-- `CITIES` — city switcher items, each with `mhs`, `delta`, `pop`, `region`, and a 2-letter `code` used as the sidebar city avatar.
-- `DEPTS` — used by Overview leaderboard, Cargos grid, and CmdK search. The `lead` field is joined by initials to make the card avatar.
-- `PROMISES` — status is `'ok' | 'risk' | 'late'`, which maps to `ok / warn / crit` tones.
-- `FEED`, `COMPLAINT_ROWS`, `COMPLAINT_CATS`, `AGENDA_CIVICA`, `AGENDA_PLENO`, `HISTORIC_VOTES`, `TOP_CONTRACTS`, `DATASETS`, `TAX_BREAKDOWN`, `BUDGET_*`, `MHS_15D`, `COMPLAINTS_30D`, `RESOLVED_30D`.
-- Riba-roja / Direction-D data: `RIBA_ROJA` (center/zoom/bbox), `RR_NEIGHBORHOODS`, `RR_LANDMARKS`, `RR_INCIDENTS_SEED`, `RR_EVENT_POOL` (live-feed simulator pool), `RR_BUDGET_FLOW`, `RR_WEATHER`, `RR_LAYERS`, `RR_PRESS_POOL`, `RR_SOCIAL_POOL`. All coordinates are real lat/lng so they line up with the CartoDB tile base in `/d` and `/ciudad`.
+Leaflet + react-leaflet map surfaces:
+- `src/components/LiveCity/StylizedMap.jsx` — the `/` landing map. CartoDB Voyager tiles + real OSM geometry. Kept deliberately minimal: municipal boundary + OSM neighborhood dots + L9 metro geometry. No synthetic buildings, no fake scores.
+- `src/components/QuejasHeatmap.jsx` — `/quejas` heatmap. One `Circle` per OSM neighborhood with ≥1 queja; radius ∝ √count, color encodes health signal (silencio-rate → red/amber/green/civic-blue). Hidden when there's nothing to show.
 
 ## Real data pipeline
 
-**Thirteen** Spanish/international public-sector sources are wired
-end-to-end for Riba-roja de Túria (INE **46214** · Wikidata **Q23701** ·
-OSM relation **342356**). All 13 refresh nightly via GitHub Actions at
-04:30 UTC. Follow the same RED→GREEN→wire cadence when adding the
-fourteenth.
+**15 adapters** feed Riba-roja de Túria (INE **46214** · Wikidata
+**Q23701** · OSM relation **342356**). 14 are autonomous scrapers that
+refresh nightly via GitHub Actions at 04:30 UTC; 2 are curated files
+that only move via the `npm run reply` / `npm run sindic:add` / `npm
+run queja-reply` CLIs. Follow the RED→GREEN→wire TDD cadence when
+adding adapter #16.
 
 **Architecture**: `scripts/scrape-*.ts` fetch the raw payload → call a
 pure TypeScript parser in `src/scraper/*.ts` → write a typed snapshot
 to `public/data/*.json`. The SPA loads JSON at runtime via one hook per
-domain (`src/hooks/useX.js`) so there is **no backend** — Vercel serves
-the static JSON next to the app. Re-running any `npm run scrape:*` is
-idempotent; `npm run scrape:all` runs everything in ~90 s.
+domain (`src/hooks/useX.js`) — Vercel serves the static JSON next to
+the app. Re-running any `npm run scrape:*` is idempotent;
+`npm run scrape:all` walks the autonomous adapters in ~2 min.
 
 ```
+# Autonomous scrapers (14):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
@@ -140,10 +143,16 @@ scripts/scrape-paro.ts                →  src/scraper/paro.ts              → 
 scripts/scrape-plenos.ts              →  src/scraper/plenos.ts            →  public/data/plenos.json
 scripts/scrape-pleno-agendas.ts       →  src/scraper/pleno-agenda.ts      →  public/data/plenos-agendas.json
 scripts/scrape-wikidata.ts            →  src/scraper/wikidata.ts          →  public/data/wikidata.json
+scripts/scrape-ctbg.ts                →  src/scraper/ctbg.ts              →  public/data/ctbg.json
 scripts/scrape-promise-suggestions.ts →  src/scraper/promise-inference.ts →  public/data/promise-suggestions.json
 
-# Curated (human-edited) — NEVER touched by automated scrapers
-public/data/promises.json (schema: src/scraper/promises.ts)
+# Curated (human-edited) — NEVER touched by automated scrapers:
+public/data/promises.json            (schema: src/scraper/promises.ts)
+public/data/quejas-responses.json    (schema: scripts/apply-queja-response.ts)
+public/data/sindic.json              (schema: src/scraper/sindic.ts)
+
+# Bot-owned, exported daily by launchd agent:
+public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 ```
 
 ### Sources of truth
@@ -162,8 +171,12 @@ public/data/promises.json (schema: src/scraper/promises.ts)
 | Geo (municipal boundary 484 pts + 21 neighborhoods) | `geo.ts` → `geo.json` | **OSM Overpass API** — relation 342356 stitched from outer ways + `place=neighbourhood/suburb/quarter/hamlet/village` inside the muni area | Direction D StylizedMap: dashed boundary polyline + OSM neighborhood dots/labels |
 | Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
 | Pleno agendas (246 items, 27 departments, 30 sessions) | `pleno-agenda.ts` → `plenos-agendas.json` | Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples | `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session |
-| Promises (16 curated) — PSOE / PP / VOX / Compromís | **human-curated** · `promises.ts` validates the schema | Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date | `/promesas`, Direction D editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal` |
+| Promises (16 curated) — PSOE / PP / VOX / Compromís | **human-curated** · `promises.ts` validates the schema | Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date | `/promesas`, `/` landing editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal` |
 | Promise suggestions (inference layer) | `promise-inference.ts` → `promise-suggestions.json` | Scans `press.json` + `plenos-agendas.json` for keyword matches; light Spanish stemmer; conservative enum (never `inviable`, never publishes `cumplida`/`no-ejecutada` automatically) | `/promesas` — "propuesta automática · pendiente de revisión humana" block under each card |
+| CTBG resoluciones (state-level, 10,551 rows, 12 yearly sheets) | `ctbg.ts` → `ctbg.json` | MinHac **CTBG** official XLSX; parser flattens sheets + filters by orthographic variants of Riba-roja/Ribarroja de Túria with Ebro-dam disambiguation | `/quejas` `CtbgCard` — honest "0 matches" surface when nothing hits |
+| Síndic de Greuges CV resoluciones (curated) | **human-curated** · `sindic.ts` schema validator | Added via `npm run sindic:add` after the Síndic publishes a resolución naming Riba-roja; JS-POST portal makes automation brittle at this scale | `/quejas` `SindicCard` with expediente/fecha/materia/sentido/resumen + PDF link |
+| Quejas ciudadanas (Telegram-captured, SQLite-backed) | **bot-owned** · `bot/src/services/snapshot.ts` | Exported daily at 04:00 local by a launchd agent (`bot/scripts/local-export.sh`); writes an Open311 GeoReport v2-flavoured payload; only non-PII fields are published | `/quejas` feed + heatmap · `/quejas/dashboard` analytics · `/quejas/:id` detail view · `/cargos` QuejaBadge |
+| Queja responses (curated, right-of-reply) | **human-curated** · `apply-queja-response.ts` validator | Added via `npm run queja-reply` after receiving an official reply via the `.github/ISSUE_TEMPLATE/queja-response.yml` form | `/quejas/:id` verbatim response card under the timeline |
 
 ### Hooks
 
@@ -185,22 +198,73 @@ loop.
 - `useBdns`
 - `useWikidata`
 - `usePromises` + `usePromiseSuggestions` + `isPromiseFrozen()` + `PARTY_TONE` / `STATUS_LABEL` / `STATUS_TONE` / `TOPIC_LABEL`
+- `useQuejas` + `useQuejaResponses` + `STATE_LABEL` / `STATE_TONE` / `CATEGORY_LABEL` / `prettyNeighborhood` / `timeAgo`
+- `useCtbg`
+- `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
 
 ### Nightly refresh
 
 `.github/workflows/scrape.yml` runs `npm run scrape:all` every day at
 **04:30 UTC** (06:30 Europe/Madrid summer, 05:30 winter). The job:
 
-1. Installs deps + runs the 11 adapters,
+1. Installs deps + runs the 14 autonomous adapters in sequence,
 2. Runs the vitest suite against the fresh fixtures,
 3. `git add public/data && git commit && git push` only if there's a
    diff (no-op runs land a summary log but no commit),
 4. Vercel's GitHub integration picks up the push and redeploys.
 
 `workflow_dispatch` accepts an `adapters` input so a single pipeline
-can be re-run on demand (`all | officials | budget | tenders | padron
-| participa | press | geo`). Add new adapter names to the `case`
-switch when you add an eleventh.
+can be re-run on demand. Add new adapter names to the `case` switch
+when you add adapter #16+.
+
+A second workflow `.github/workflows/pull-quejas.yml` is feature-flagged
+by `vars.BOT_EXPORT_URL` — it's a no-op until a remote bot deploy
+(Fly.io etc.) is wired. The local Mac setup replaces it with a daily
+launchd agent; see `bot/LOCAL.md`.
+
+## Telegram bot (`/bot/`)
+
+Sibling Node.js package that captures quejas via Telegram, runs the
+batch registrar, and exposes the Síndic/CTBG escalation pipeline. See
+[`bot/README.md`](bot/README.md) for the full command list,
+[`bot/LOCAL.md`](bot/LOCAL.md) for the macOS launchd setup, and
+[`bot/DEPLOY.md`](bot/DEPLOY.md) for Fly.io.
+
+Key pieces worth knowing from this file:
+
+- **Entry:** `bot/src/index.ts`. Runs in long-polling or webhook mode
+  depending on `WEBHOOK_URL`. Resilient restart loop recovers from
+  transient 409 conflicts. Mounts HTTP endpoints in webhook mode
+  (`/health`, `/export/quejas.json`, `/batch/current.{md,html}`,
+  `/sindic/<id>.{md,html}`) bearer-auth'd by `EXPORT_TOKEN`.
+- **Queja router** (`src/scraper/queja-router.ts`, shared with the
+  front-end CLI `npm run route-queja`): pure function that classifies a
+  queja into one of 29 categorías, matches the concejalía responsible
+  by portfolio, cites the relevant LPACAP / Ley 19/2013 articles, and
+  composes the 6-step escalation ladder (sede → acuse 10d → silencio
+  90/30d → recurso reposición → Síndic de Greuges CV → contencioso).
+- **SQLite schema** (`bot/src/db/schema.sql`): quejas + apoyos + events
+  with WAL + foreign keys. Auto-emits `capturada` and `apoyada_verificada`
+  (at 10 apoyos) events.
+- **Silencio cron** (`bot/src/services/cron.ts`): hourly worker that
+  transitions registered quejas past their LPACAP plazo to
+  `silencio_negativo` and broadcasts `[SILENCIO]` to the public channel.
+  Paused during LOREG freeze windows.
+- **Batch registrar** (`bot/src/services/batch.ts`): `/batch` preview
+  + `/batch_register` admin command. Bundles the top 10 verified quejas
+  into one solicitud genérica Markdown/HTML document the moderator
+  signs at `sede.ribarroja.es` with Cl@ve. All 10 inherit the shared
+  asiento nº + CSV.
+- **Síndic template** (`bot/src/services/sindic.ts`): `/escalar Q-XXXX`
+  generates a pre-filled Queja al Síndic with hechos + solicitud + base
+  legal, served at `/sindic/<id>.{md,html}`.
+- **LOREG freeze** (`bot/src/services/freeze.ts`): reads the same
+  `promises.json frozenUntil` field as the front-end; gates broadcasts
+  AND silencio auto-transitions.
+
+Bot-side tests: **36** (17 db + 10 batch + 9 escalation). Front-end
+tests: **161** (parser schemas + inference engines + queja-router +
+sindic schema). `tsc --noEmit` must stay clean on both sides.
 
 ### TDD cadence
 
@@ -217,25 +281,23 @@ Every new adapter lands in three commits:
    generated `public/data/*.json` alongside the code change.
 
 Fixtures are committed to the repo (they're the RED contract). Current
-coverage: **106 vitest checks green** across 14 test files (13
-adapters + 1 schema validator + 1 inference engine).
+coverage: **161 front-end + 36 bot = 197 vitest checks green** across
+17 front test files (14 adapter parsers + promise schema/inference +
+queja-router + sindic schema) and 3 bot test files (db + batch +
+escalation).
 
-### What's still mocked
+### No more mocks
 
-`src/data/mockData.js` still drives purely-synthetic UI scaffolding
-(`FEED`, `PROMISES`, `AGENDA_CIVICA`, `RR_EVENT_POOL`,
-`RR_SOCIAL_POOL`, `RR_INCIDENTS_SEED`, `RR_WEATHER`, `MHS_15D`,
-`COMPLAINTS_30D`, `RESOLVED_30D`). These power the live-simulator
-animations in `/ciudad` and the Direction D editorial boilerplate —
-they have no upstream source. Replacing them would require either a
-backend that generates authentic citizen-complaint streams or leaving
-the simulation in place as a visible "demo" vs. "real" band.
+`src/data/mockData.js` is retired — every production surface reads
+real JSON now. The file is only still imported as a compile reference
+and contains no data a page actually renders. Queja capture streams
+come from the Telegram bot, not a simulator.
 
 ### Legal / ethical guardrails
 
-All 13 automated sources are public-sector / ODbL / CC-BY open data
+All 14 automated sources are public-sector / ODbL / CC-BY open data
 (Transparencia Act 19/2013, datos.gob.es CC-BY 4.0, PLACSP/BDNS open
-reuse clauses, OSM ODbL, Wikidata CC0).
+reuse clauses, OSM ODbL, Wikidata CC0, CTBG open XLSX).
 
 ### Promise tracker (sensitive subsystem)
 
@@ -302,12 +364,16 @@ landing in `public/data/*`.
 
 ## Cmd+K / shortcuts
 
-Cmd/Ctrl+K anywhere opens the spotlight in `components/CmdK.jsx`. It indexes `NAV`, all `DEPTS`, three most recent `PROMISES`, and a couple of action stubs. Navigation uses `react-router`'s `useNavigate`.
-
-## Design bundle
-
-`civicpulse-design-system/` (in `/tmp/civicpulse-design/` on dev machines, delivered as a tar.gz from Claude Design) ships three directions: A (Dashboard), B (City HUD / SimCity), C (Civic Briefing editorial). All three are implemented. Direction D ("El Mirador") is not in the bundle — it was added later as a fusion of A + C with a real map as the main canvas and a `/d` route. The README in the bundle says "recreate pixel-perfectly" for A/B/C — match the visual output, not the prototype's file structure.
+Cmd/Ctrl+K anywhere opens the spotlight in `components/CmdK.jsx`. It
+indexes `NAV` + real `useOfficials()` + the three most recent
+`usePromises()` items + action stubs. Navigation uses
+`react-router`'s `useNavigate`.
 
 ## Product context
 
-Spain-based civic monitor (Spanish UI, Castilian Spanish with some Valencian place names). Target personas per the PLAN: engaged citizen (default lens), journalist, municipal official, activist. The "Lentes" (lenses) section of the sidebar switches persona — right now it only changes the footer label, but future features should key off `tweaks.persona` to gate overlays. `first_description.md` describes the original intended FastAPI + PostGIS + pgvector backend — it's roadmap, not implemented.
+Spain-based civic monitor targeting Riba-roja de Túria (pop. ~24,600,
+Comunitat Valenciana). Spanish UI, Castilian Spanish with Valencian
+place names. Target personas: engaged citizen (default), journalist,
+municipal official, activist. The MVP runs locally via launchd
+(bot/LOCAL.md) with all data committed to git; `docs/QUEJAS_DESIGN.md`
+is the full architectural rationale for the Telegram-first Quejas OS.

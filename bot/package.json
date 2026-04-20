@@ -16,6 +16,7 @@
     "@grammyjs/conversations": "^2.1.0",
     "better-sqlite3": "^11.5.0",
     "dotenv": "^16.4.7",
+    "esbuild": "^0.28.0",
     "grammy": "^1.36.3",
     "tsx": "^4.19.2",
     "ulid": "^2.3.0"

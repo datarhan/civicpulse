@@ -1,108 +1,125 @@
-# CivicPulse bot — Quejas OS (Telegram)
+# MuniGraph bot — Quejas OS (Telegram)
 
 Telegram-native capture + social layer for Riba-roja de Túria's citizen
-complaints. This is **Sprint A** of the Telegram-first path defined in
-[`docs/QUEJAS_DESIGN.md`](../docs/QUEJAS_DESIGN.md).
+complaints. Full pipeline per [`docs/QUEJAS_DESIGN.md`](../docs/QUEJAS_DESIGN.md).
 
-## What's shipped (v0.1)
+Live as **[@munigraph_bot](https://t.me/munigraph_bot)** (bot id
+`8448334642`). Dashboard at
+[civicpulse-virid.vercel.app/quejas](https://civicpulse-virid.vercel.app/quejas).
 
-- `/queja` — guided flow: categoría → título → detalle → ubicación → foto.
-  On submit, the queja is classified with `src/scraper/queja-router.ts`,
-  the responsible concejal is named in the confirmation, legal deadlines
-  are cited, and the row is persisted in SQLite.
-- `/estado Q-XXXX` — full state + apoyos + timeline + legal basis.
-- `/apoyar Q-XXXX` — co-sign (1 per user, idempotent). At 10 apoyos the
-  queja is tagged `apoyada_verificada` and enters the weekly batch queue.
-- `/mis` — quejas filed by the current user.
-- `/start`, `/help` — onboarding.
+## Commands
 
-Not yet wired (future sprints): public channel broadcasts, weekly batch
-registrar, Síndic de Greuges escalation, `/barrio`, `/ranking`, `/digest`,
-front-end `quejas.json` hook.
+Citizen-facing:
+
+| Command | What it does |
+|---|---|
+| `/start`, `/help` | Onboarding + the 5-step pipeline explanation |
+| `/queja` | Guided flow: categoría (17 opts) → título → detalle → ubicación → foto. Confirms with classified concejalía, named concejal, legal plazo + base, and a `Q-XXXX` id |
+| `/estado Q-XXXX` | Full state + apoyos + timeline + legal basis |
+| `/apoyar Q-XXXX` | Co-sign a queja (idempotent, 1 per user). At 10 apoyos it enters the next weekly batch and `[APOYADA]` broadcasts to the public channel |
+| `/mis` | The user's own quejas |
+| `/barrio` `/barrio <slug>` | Aggregate per neighborhood or list a specific one |
+| `/ranking` | Top barrios by resolution rate (60d window) |
+| `/digest [N]` | Summary of last N days (default 7) |
+
+Admin-only (gated by `ADMIN_USER_IDS` env, comma-separated Telegram IDs):
+
+| Command | What it does |
+|---|---|
+| `/batch` | Preview the top 10 verified quejas ready to file |
+| `/batch_link` | URL of the auto-generated `current.md` / `current.html` solicitud |
+| `/batch_register <asiento> <CSV>` | After signing at `sede.ribarroja.es`, records the entry nº + CSV on every queja in the batch. Broadcasts `[REGISTRADA]` per queja |
+| `/escalar Q-XXXX` | Transitions a silencio-negativo queja to `escalada_sindic`, broadcasts `[ESCALADA]`, returns the Síndic de Greuges template URL |
 
 ## Architecture
 
 ```
-Telegram    →  grammy bot (Node 20)  →  SQLite (better-sqlite3)
-                   │
-                   └──→ queja-router.ts (src/scraper/)
-                           classification + legal routing
+Telegram  ──────→  grammy bot  ──────→  SQLite (WAL, FK)
+                      │                     │
+                      │                     └─→ daily launchd export →
+                      │                        public/data/quejas.json → Vercel
+                      │
+                      ├─→ queja-router.ts   (shared with front-end CLI)
+                      ├─→ channel.ts        (LOREG-gated broadcasts)
+                      ├─→ batch.ts          (weekly solicitud generator)
+                      ├─→ sindic.ts         (Síndic template generator)
+                      ├─→ cron.ts           (hourly silencio-negativo worker)
+                      └─→ freeze.ts         (reads promises.json frozenUntil)
 
-Nightly:   SQLite  →  tsx src/services/export.ts  →  public/data/quejas.json
-                                                     (read by /quejas page)
+HTTP (webhook mode only):
+  GET /health
+  GET /export/quejas.json    (bearer-auth via EXPORT_TOKEN)
+  GET /batch/current.{md,html}
+  GET /sindic/<q-id>.{md,html}
 ```
 
-Data lives in `data/bot.db` (gitignored). The front-end never reads SQLite
-directly — the nightly export produces a static JSON in the main
-`public/data/` tree.
+Runs in **long-polling** by default (`BOT_TOKEN` only) — no ingress
+required. Set `WEBHOOK_URL` to flip to webhook + HTTP server mode.
+
+## Running locally (macOS, no cloud)
+
+See [`LOCAL.md`](LOCAL.md) for the launchd install. TL;DR:
+
+```bash
+cp .env.example .env    # fill in BOT_TOKEN
+bash scripts/launchd-install.sh              # bot as user agent
+bash scripts/launchd-install-export.sh       # daily export → git push at 04:00 local
+```
+
+Status:
+```bash
+launchctl list | grep munigraph
+tail -f data/logs/bot.err.log
+```
+
+## Deploying to Fly.io
+
+See [`DEPLOY.md`](DEPLOY.md). Preview:
+
+```bash
+flyctl auth login
+flyctl launch --config bot/fly.toml --name munigraph-ribarroja \
+              --copy-config --no-deploy
+flyctl volumes create botdata --size 1 --region mad --app munigraph-ribarroja
+flyctl secrets set --app munigraph-ribarroja BOT_TOKEN=... EXPORT_TOKEN=... …
+flyctl deploy --config bot/fly.toml --dockerfile bot/Dockerfile --remote-only .
+```
 
 ## Development
 
 ```bash
-# First time
-cp .env.example .env
-# → paste BOT_TOKEN from @BotFather into .env
-
 npm install
-npm test              # DB tests against :memory: SQLite
-npm run dev           # watch mode, long-polling
+npm test            # 37 tests (db + batch + escalation), :memory: SQLite
+npm run dev         # tsx watch, long-polling (needs BOT_TOKEN)
+npm run export      # dump SQLite → ../public/data/quejas.json
 ```
 
-Then DM the bot on Telegram.
-
-## Deploy (Fly.io example)
-
-```bash
-fly launch --name civicpulse-bot-ribarroja
-fly secrets set BOT_TOKEN=... WEBHOOK_URL=https://civicpulse-bot-ribarroja.fly.dev
-fly volumes create botdata --size 1 --region mad
-fly deploy
-```
-
-A `fly.toml` + `Dockerfile` ship when sprint A is promoted to prod.
-
-## Environment variables
-
-| Var | Required | Default | Purpose |
-|---|---|---|---|
-| `BOT_TOKEN` | yes | — | from @BotFather |
-| `CHANNEL_ID` | no | — | public channel for broadcasts (sprint B) |
-| `DB_PATH` | no | `./data/bot.db` | SQLite file path |
-| `WEBHOOK_URL` | no | long-polling | full https URL → webhook mode |
-| `PORT` | no | `3000` | HTTP port when WEBHOOK_URL is set |
-| `OFFICIALS_JSON` | no | `../public/data/officials.json` | concejalía data |
-| `QUEJAS_JSON_OUT` | no | `../public/data/quejas.json` | nightly export target |
-
-## Tests
-
-```bash
-npm test
-```
-
-DB tests use `:memory:` SQLite — fast, no filesystem. Coverage target per
-the project TDD contract: 80%+ on `src/db/` + `src/commands/` business
-logic. Command handlers are tested against the grammy `RawApi` mock.
+TypeScript: `npx tsc --noEmit` must be clean before shipping.
 
 ## Legal contract
 
-Inherits the editorial guardrails from `docs/QUEJAS_DESIGN.md`:
+Inherits the editorial guardrails from `../docs/QUEJAS_DESIGN.md`:
 
-- Citizens are pseudonymised — the public JSON never contains
-  `telegram_user_id` or `telegram_username`.
-- Locations are truncated to neighborhood centroid before export — exact
+- Citizens pseudonymised — `telegram_user_id` + `telegram_username`
+  never cross into public JSON.
+- Locations truncated to neighborhood centroid before export; exact
   lat/lng never leave the DB.
 - Only the elected concejal (acting in their public capacity) is named
   on public output. Technical staff are never named.
-- Right-of-reply will land in sprint E as
-  `.github/ISSUE_TEMPLATE/queja-response.yml` with the curator CLI.
-- LOREG electoral freeze is honoured (reuses `isPromiseFrozen` logic in
-  sprint D — pauses broadcasts to the public channel).
+- Right-of-reply via `.github/ISSUE_TEMPLATE/queja-response.yml` +
+  `npm run queja-reply` CLI.
+- LOREG electoral freeze suspends all channel broadcasts and pauses
+  the silencio-cron — `freeze.ts` reads the same `frozenUntil` field
+  as the front-end's `/promesas` page.
 
-## Related files in the monorepo
+## Files outside this package
 
-- `src/scraper/queja-router.ts` — pure classifier + legal router.
-- `scripts/route-queja.ts` — CLI to test the router standalone.
-- `public/data/officials.json` — real corporación municipal.
-- `public/data/geo.json` — OSM boundary + neighborhoods for location
-  matching.
-- `docs/QUEJAS_DESIGN.md` — the 7-stage design + Sprint plan.
+Shared with the monorepo root — the bot imports them via relative path
+and needs them at runtime:
+
+- `../src/scraper/queja-router.ts` — classifier + legal routing
+- `../public/data/officials.json` — corporación municipal (for the
+  concejalía matcher)
+- `../public/data/geo.json` — OSM neighborhoods (for `matchNeighborhood`
+  via haversine)
+- `../public/data/promises.json` — reads `frozenUntil` for LOREG freeze
