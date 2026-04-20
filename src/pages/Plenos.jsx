@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoAgendas, SECTION_LABEL, SECTION_TONE } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE, DIRECTION_TONE } from '../hooks/usePlenoVotes'
+import { usePlenoVideos, usePlenoVoteSuggestions, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { partyColor } from '../hooks/useOfficials'
 import { useT } from '../i18n'
 
@@ -53,7 +54,7 @@ function AgendaRow({ item }) {
   )
 }
 
-function PlenoRow({ p, agenda, expanded, onToggle }) {
+function PlenoRow({ p, agenda, video, expanded, onToggle }) {
   const fmt = (iso) =>
     new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
   return (
@@ -100,6 +101,27 @@ function PlenoRow({ p, agenda, expanded, onToggle }) {
             >
               {expanded ? 'Ocultar' : 'Ver'}
             </button>
+          )}
+          {video && (
+            <a
+              href={video.url}
+              target="_blank"
+              rel="noreferrer"
+              title={video.title}
+              className="mono"
+              style={{
+                marginRight: 6,
+                padding: '2px 8px',
+                fontSize: 10.5,
+                background: 'transparent',
+                border: '1px solid var(--border2)',
+                borderRadius: 4,
+                color: 'var(--civic)',
+                textDecoration: 'none',
+              }}
+            >
+              ▸ vídeo
+            </a>
           )}
           <Pill tone={PLENO_TONE[p.kind] || 'ghost'} size="xs">
             {PLENO_LABEL[p.kind] || p.kind}
@@ -158,6 +180,7 @@ function TopDepartmentsCard({ agendas }) {
 function RealPlenosList() {
   const { loading, error, data } = usePlenos()
   const { data: agendas } = usePlenoAgendas()
+  const { data: videos } = usePlenoVideos()
   const [expanded, setExpanded] = useState({})
   const items = (data?.items || []).slice(0, 20)
   const agendasById = useMemo(() => {
@@ -165,6 +188,7 @@ function RealPlenosList() {
     for (const a of agendas?.plenos || []) m[a.id] = a
     return m
   }, [agendas])
+  const videosByPleno = useMemo(() => indexVideosByPleno(videos, data), [videos, data])
   if (loading || error || !data) return null
   return (
     <div style={{ marginTop: 28 }}>
@@ -191,6 +215,7 @@ function RealPlenosList() {
             key={p.id}
             p={p}
             agenda={agendasById[p.id]}
+            video={videosByPleno.get(p.id)}
             expanded={!!expanded[p.id]}
             onToggle={() => setExpanded((e) => ({ ...e, [p.id]: !e[p.id] }))}
           />
@@ -343,6 +368,92 @@ function PlenoVotesBlock() {
   )
 }
 
+function PlenoVoteSuggestionsBlock() {
+  const t = useT()
+  const { data } = usePlenoVoteSuggestions()
+  const items = data?.items || []
+  if (items.length === 0) return null  // hide entirely when there's nothing to surface
+  const fmtDate = (iso) =>
+    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+
+  return (
+    <div style={{ marginTop: 28 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10.5,
+            color: 'var(--warn-ink)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
+          }}
+        >
+          Propuestas automáticas · pendiente de revisión humana
+        </div>
+        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+          · transcritas de YouTube · {items.length} segmento{items.length === 1 ? '' : 's'}
+        </div>
+      </div>
+      <Card style={{ borderLeft: '3px solid var(--warn)' }}>
+        <div style={{ fontSize: 12, color: 'var(--ink60)', marginBottom: 12, lineHeight: 1.5 }}>
+          Estos votos han sido inferidos automáticamente a partir de la transcripción del vídeo del
+          pleno. <strong>No sustituyen al acta oficial.</strong> Un curador debe verificar cada caso
+          antes de publicarlo en el registro oficial. La precisión de Whisper sobre nombres propios
+          y jerga municipal ronda el 90 %.
+        </div>
+        {items.slice(0, 15).map((rec, i) => (
+          <div
+            key={`${rec.plenoId}-${i}`}
+            style={{
+              padding: '12px 0',
+              borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
+            }}
+          >
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
+              <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                {fmtDate(rec.plenoDate)}
+              </span>
+              {rec.itemNumber && (
+                <span className="mono" style={{ fontSize: 10, color: 'var(--ink60)' }}>
+                  Punto {rec.itemNumber}
+                </span>
+              )}
+              {rec.outcome && (
+                <Pill tone={OUTCOME_TONE[rec.outcome]} size="xs">{OUTCOME_LABEL[rec.outcome]}</Pill>
+              )}
+              <span
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  color: rec.confidence >= 0.8 ? 'var(--ok-ink)' : 'var(--warn-ink)',
+                }}
+              >
+                conf. {(rec.confidence * 100).toFixed(0)}%
+              </span>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 6 }}>
+              {rec.votes.map((v) => <VoteTuple key={v.bloc} v={v} />)}
+            </div>
+            <div
+              style={{
+                fontSize: 11.5,
+                color: 'var(--ink60)',
+                background: 'var(--soft)',
+                padding: '6px 9px',
+                borderRadius: 4,
+                lineHeight: 1.5,
+                fontStyle: 'italic',
+              }}
+            >
+              “{rec.excerpt}”
+            </div>
+          </div>
+        ))}
+      </Card>
+    </div>
+  )
+}
+
 function ParticipaBlock() {
   const { loading, error, data } = useParticipa()
   if (loading || error || !data) return null
@@ -470,6 +581,7 @@ export default function Plenos() {
 
       <RealPlenosList />
       <PlenoVotesBlock />
+      <PlenoVoteSuggestionsBlock />
       <ParticipaBlock />
     </div>
   )
