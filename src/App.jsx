@@ -12,11 +12,7 @@ import Datos from './pages/Datos'
 import Promesas from './pages/Promesas'
 import Metodologia from './pages/Metodologia'
 import AvisoLegal from './pages/AvisoLegal'
-import Hud from './variants/Hud'
-import Briefing from './variants/Briefing'
 import DirectionD from './variants/DirectionD'
-import Chooser from './variants/Chooser'
-import { VariantSwitcher } from './variants/VariantSwitcher'
 
 const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
 
@@ -30,7 +26,7 @@ function loadTweaks() {
   return DEFAULT_TWEAKS
 }
 
-function VariantA({ onOpenCmdK }) {
+function InnerShell({ onOpenCmdK }) {
   const location = useLocation()
   const active = NAV.find((n) => location.pathname.startsWith(n.to))
   const crumb = active?.label || 'CivicPulse'
@@ -42,14 +38,12 @@ function VariantA({ onOpenCmdK }) {
         <Topbar crumb={crumb} onOpenCmdK={onOpenCmdK} />
         <div style={{ flex: 1 }}>
           <Routes>
-            <Route path="/ciudad" element={<Navigate to="/" replace />} />
-            <Route path="/overview" element={<Navigate to="/" replace />} />
-            <Route path="/quejas" element={<Quejas />} />
             <Route path="/cargos" element={<Cargos />} />
             <Route path="/presupuesto" element={<Presupuesto />} />
             <Route path="/plenos" element={<Plenos />} />
             <Route path="/datos" element={<Datos />} />
             <Route path="/promesas" element={<Promesas />} />
+            <Route path="/quejas" element={<Quejas />} />
             <Route path="/metodologia" element={<Metodologia />} />
             <Route path="/aviso-legal" element={<AvisoLegal />} />
             <Route path="*" element={<Navigate to="/" replace />} />
@@ -66,28 +60,24 @@ export default function App() {
   const [tweaksOpen, setTweaksOpen] = useState(false)
   const location = useLocation()
 
-  const onVariantB = location.pathname.startsWith('/hud')
-  const onVariantC = location.pathname.startsWith('/briefing')
-  // "/" (landing) + "/d" both render Direction D — it is the MVP entry point.
-  const onVariantD =
-    location.pathname === '/' ||
-    location.pathname === '/d' ||
-    location.pathname.startsWith('/d/')
-  const onChooser = location.pathname === '/variants'
-  const onVariantA = !onVariantB && !onVariantC && !onVariantD && !onChooser
+  const onLanding = location.pathname === '/'
 
   useEffect(() => {
-    const darkActive = tweaks.dark && onVariantA
+    const darkActive = tweaks.dark && !onLanding
     document.documentElement.classList.toggle('dark', darkActive)
     return () => document.documentElement.classList.remove('dark')
-  }, [tweaks.dark, onVariantA])
+  }, [tweaks.dark, onLanding])
 
   useEffect(() => {
-    const size = onVariantA
-      ? tweaks.density === 'compact' ? '13.5px' : tweaks.density === 'spacious' ? '15px' : '14px'
+    const size = !onLanding
+      ? tweaks.density === 'compact'
+        ? '13.5px'
+        : tweaks.density === 'spacious'
+        ? '15px'
+        : '14px'
       : '14px'
     document.documentElement.style.fontSize = size
-  }, [tweaks.density, onVariantA])
+  }, [tweaks.density, onLanding])
 
   useEffect(() => {
     try {
@@ -99,49 +89,11 @@ export default function App() {
 
   const updateTweaks = (patch) => setTweaks((prev) => ({ ...prev, ...patch }))
 
-  // Switcher theming: B is dark HUD; everything else uses the light chip.
-  const switcherTheme = onVariantB ? 'dark' : 'light'
-
-  if (onChooser) {
-    return (
-      <>
-        <Chooser />
-        <VariantSwitcher theme={switcherTheme} />
-      </>
-    )
-  }
-
-  if (onVariantB) {
-    return (
-      <>
-        <Hud />
-        <VariantSwitcher theme="dark" position="top-right-b" />
-      </>
-    )
-  }
-
-  if (onVariantC) {
-    return (
-      <>
-        <Briefing />
-        <VariantSwitcher theme="light" />
-      </>
-    )
-  }
-
-  if (onVariantD) {
-    return (
-      <>
-        <DirectionD />
-        <VariantSwitcher theme="dark" position="bottom-right-d" />
-      </>
-    )
-  }
+  if (onLanding) return <DirectionD />
 
   return (
     <>
-      <VariantA onOpenCmdK={() => setCmdK(true)} />
-      <VariantSwitcher theme="light" />
+      <InnerShell onOpenCmdK={() => setCmdK(true)} />
       {!tweaksOpen && <TweaksButton onOpen={() => setTweaksOpen(true)} />}
       <TweaksPanel
         open={tweaksOpen}
