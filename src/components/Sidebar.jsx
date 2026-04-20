@@ -9,6 +9,7 @@ import { useT } from '../i18n'
 // breadcrumb matching when the key is not loaded (e.g. during SSR/hydration).
 export const NAV = [
   { to: '/',            id: 'inicio',   labelKey: 'nav.inicio',   label: 'Panel',       icon: Ic.home,   shortcut: 'G H' },
+  { to: '/cambios',     id: 'cambios',  labelKey: 'nav.cambios',  label: 'Novedades',   icon: Ic.chart,  shortcut: 'G N' },
   { to: '/cargos',      id: 'cargos',   labelKey: 'nav.cargos',   label: 'Cargos',      icon: Ic.people, shortcut: 'G C' },
   { to: '/presupuesto', id: 'presup',   labelKey: 'nav.presup',   label: 'Presupuesto', icon: Ic.coin,   shortcut: 'G P' },
   { to: '/plenos',      id: 'plenos',   labelKey: 'nav.plenos',   label: 'Plenos',      icon: Ic.scale,  shortcut: 'G L' },

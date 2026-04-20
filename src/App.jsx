@@ -20,6 +20,7 @@ const Datos           = lazy(() => import('./pages/Datos'))
 const Promesas        = lazy(() => import('./pages/Promesas'))
 const Metodologia     = lazy(() => import('./pages/Metodologia'))
 const AvisoLegal      = lazy(() => import('./pages/AvisoLegal'))
+const Cambios         = lazy(() => import('./pages/Cambios'))
 
 const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
 
@@ -81,6 +82,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas" element={<Quejas />} />
               <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
               <Route path="/quejas/:id" element={<QuejaDetail />} />
+              <Route path="/cambios" element={<Cambios />} />
               <Route path="/metodologia" element={<Metodologia />} />
               <Route path="/aviso-legal" element={<AvisoLegal />} />
               <Route path="*" element={<Navigate to="/" replace />} />

@@ -22,6 +22,7 @@ const CATALOGUE = {
   es: {
     // Navigation
     'nav.inicio':     'Panel',
+    'nav.cambios':    'Novedades',
     'nav.cargos':     'Cargos',
     'nav.presup':     'Presupuesto',
     'nav.plenos':     'Plenos',
@@ -82,11 +83,16 @@ const CATALOGUE = {
     // Quejas empty state
     'quejas.empty.title':    'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
     'dashboard.empty.title': 'El canal está abierto, aún no hay quejas',
+
+    // Cambios · delta-digest page
+    'cambios.eyebrow': 'Esta semana en Riba-roja',
+    'cambios.title':   'Novedades',
   },
 
   // Valencià (estàndard oficial — Acadèmia Valenciana de la Llengua / GVA)
   ca: {
     'nav.inicio':     'Inici',
+    'nav.cambios':    'Novetats',
     'nav.cargos':     'Càrrecs',
     'nav.presup':     'Pressupost',
     'nav.plenos':     'Plens',
@@ -140,6 +146,9 @@ const CATALOGUE = {
 
     'quejas.empty.title':    'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
     'dashboard.empty.title': 'El canal està obert, encara no hi ha queixes',
+
+    'cambios.eyebrow': 'Esta setmana a Riba-roja',
+    'cambios.title':   'Novetats',
   },
 }
 

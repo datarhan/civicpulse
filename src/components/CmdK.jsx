@@ -45,7 +45,9 @@ export function CmdK({ open, onClose, onOpen }) {
     { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
     { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
   ]
-  const filtered = q ? all.filter((x) => (x.label + ' ' + (x.sub || '')).toLowerCase().includes(q.toLowerCase())) : all
+  const filtered = q
+    ? all.filter((x) => (x.label + ' ' + (x.sub || '')).toLowerCase().includes(q.toLowerCase()))
+    : all
 
   useEffect(() => {
     if (open) setQ('')
@@ -164,7 +166,14 @@ export function CmdK({ open, onClose, onOpen }) {
             </button>
           ))}
           {filtered.length === 0 && (
-            <div style={{ padding: '24px 16px', textAlign: 'center', color: 'var(--ink50)', fontSize: 13 }}>
+            <div
+              style={{
+                padding: '24px 16px',
+                textAlign: 'center',
+                color: 'var(--ink50)',
+                fontSize: 13,
+              }}
+            >
               Sin resultados para "{q}"
             </div>
           )}
