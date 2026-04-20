@@ -15,8 +15,13 @@ export function registerMis(bot: Bot<MyContext>, db: Db) {
         day: 'numeric',
         month: 'short',
       })
-      return `\`${q.id}\` · ${date} · ${q.state}\n  ${q.title.slice(0, 80)}`
+      const deletedMark = q.deleted_at ? ' · 🗑 *eliminada*' : ''
+      return `\`${q.id}\` · ${date} · ${q.state}${deletedMark}\n  ${q.title.slice(0, 80)}`
     })
-    await ctx.reply(`📋 *Tus quejas:*\n\n${lines.join('\n\n')}`, { parse_mode: 'Markdown' })
+    await ctx.reply(
+      `📋 *Tus quejas:*\n\n${lines.join('\n\n')}\n\n` +
+        `_Para borrar una queja y ejercer tu derecho al olvido (RGPD): /olvidar Q-XXXX_`,
+      { parse_mode: 'Markdown' },
+    )
   })
 }

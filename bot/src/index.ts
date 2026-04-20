@@ -8,6 +8,7 @@ import { registerQueja } from './commands/queja.ts'
 import { registerEstado } from './commands/estado.ts'
 import { registerApoyar } from './commands/apoyar.ts'
 import { registerMis } from './commands/mis.ts'
+import { registerOlvidar } from './commands/olvidar.ts'
 import { registerBarrio } from './commands/barrio.ts'
 import { registerRanking } from './commands/ranking.ts'
 import { registerDigest } from './commands/digest.ts'
@@ -39,6 +40,7 @@ function makeBot() {
   registerEstado(bot, db)
   registerApoyar(bot, db, channel)
   registerMis(bot, db)
+  registerOlvidar(bot, db)
   registerBarrio(bot, db)
   registerRanking(bot, db)
   registerDigest(bot, db)
@@ -59,6 +61,7 @@ function makeBot() {
       { command: 'estado', description: 'Ver el estado de una queja' },
       { command: 'apoyar', description: 'Apoyar una queja existente' },
       { command: 'mis', description: 'Mis quejas' },
+      { command: 'olvidar', description: 'Eliminar una queja mía (RGPD art. 17)' },
       { command: 'barrio', description: 'Quejas por barrio' },
       { command: 'ranking', description: 'Ranking de barrios (60 días)' },
       { command: 'digest', description: 'Resumen (últimos N días)' },

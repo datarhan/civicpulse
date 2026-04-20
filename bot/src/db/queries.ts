@@ -34,6 +34,10 @@ export interface QuejaRow {
   resolved_at: string | null
   created_at: string
   updated_at: string
+  // LOPD/GDPR right-to-be-forgotten: when set, the row stays for audit but
+  // every exporter + public renderer filters it out. See schema.sql for the
+  // full retention rationale.
+  deleted_at: string | null
 }
 
 export interface NewQuejaInput {
@@ -117,7 +121,37 @@ export function getQueja(db: Db, id: string): QuejaRow | null {
   return row ?? null
 }
 
+/**
+ * LOPD/GDPR right-to-be-forgotten. Soft-delete: the row stays for audit
+ * (5-year retention window per Art. 55 LOPD-GDD public-interest processing),
+ * but every list/export helper below filters out rows with a deleted_at
+ * timestamp. The citizen retains the ability to see their own deleted rows
+ * via /mis (so they can confirm the deletion actually took effect).
+ *
+ * Returns true if a row was deleted, false if the id was missing OR not
+ * owned by the requesting user (never leaks existence to unauthorised users).
+ */
+export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
+  const row = db.prepare('SELECT telegram_user_id, deleted_at FROM quejas WHERE id = ?').get(id) as
+    | { telegram_user_id: number; deleted_at: string | null }
+    | undefined
+  if (!row) return false
+  if (row.telegram_user_id !== userId) return false  // never confirm existence cross-user
+  if (row.deleted_at) return true  // idempotent — already deleted counts as success
+  const tx = db.transaction(() => {
+    db.prepare(`UPDATE quejas SET deleted_at = datetime('now'), updated_at = datetime('now') WHERE id = ?`).run(id)
+    db.prepare(`INSERT INTO events (queja_id, kind, payload) VALUES (?, 'anonymised', ?)`).run(
+      id,
+      JSON.stringify({ reason: 'user_requested_deletion' }),
+    )
+  })
+  tx()
+  return true
+}
+
 export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
+  // Includes soft-deleted rows so the citizen can confirm their /olvidar
+  // request took effect. The UI marks them visually.
   return db
     .prepare('SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, id DESC LIMIT ?')
     .all(userId, limit) as QuejaRow[]
@@ -125,13 +159,13 @@ export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
 
 export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
   return db
-    .prepare('SELECT * FROM quejas ORDER BY created_at DESC, id DESC LIMIT ?')
+    .prepare('SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, id DESC LIMIT ?')
     .all(limit) as QuejaRow[]
 }
 
 export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): QuejaRow[] {
   return db
-    .prepare('SELECT * FROM quejas WHERE neighborhood = ? ORDER BY created_at DESC, id DESC LIMIT ?')
+    .prepare('SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, id DESC LIMIT ?')
     .all(neighborhood, limit) as QuejaRow[]
 }
 
@@ -213,9 +247,12 @@ export function setState(
 }
 
 export function aggregateStats(db: Db): AggregateStats {
-  const total = (db.prepare('SELECT COUNT(*) as n FROM quejas').get() as { n: number }).n
+  // All public-facing aggregates EXCLUDE soft-deleted rows. The audit trail
+  // in `events` keeps the record, but every public surface (UI stats, snapshot
+  // export, dashboard) must look through a deleted_at filter.
+  const total = (db.prepare('SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL').get() as { n: number }).n
   const byState = Object.fromEntries(
-    (db.prepare('SELECT state, COUNT(*) as n FROM quejas GROUP BY state').all() as Array<{
+    (db.prepare('SELECT state, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY state').all() as Array<{
       state: string
       n: number
     }>).map((r) => [r.state, r.n])
@@ -224,13 +261,13 @@ export function aggregateStats(db: Db): AggregateStats {
     (
       db
         .prepare(
-          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE neighborhood IS NOT NULL GROUP BY neighborhood`
+          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND neighborhood IS NOT NULL GROUP BY neighborhood`
         )
         .all() as Array<{ neighborhood: string; n: number }>
     ).map((r) => [r.neighborhood, r.n])
   )
   const byCategory = Object.fromEntries(
-    (db.prepare('SELECT category, COUNT(*) as n FROM quejas GROUP BY category').all() as Array<{
+    (db.prepare('SELECT category, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY category').all() as Array<{
       category: string
       n: number
     }>).map((r) => [r.category, r.n])
@@ -243,7 +280,7 @@ export function aggregateStats(db: Db): AggregateStats {
               SUM(CASE WHEN state = 'silencio_negativo' OR state = 'escalada_sindic' THEN 1 ELSE 0 END) as silencios,
               SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
        FROM quejas
-       WHERE concejal_slug IS NOT NULL AND concejal_slug != ''
+       WHERE deleted_at IS NULL AND concejal_slug IS NOT NULL AND concejal_slug != ''
        GROUP BY concejal_slug`
     )
     .all() as Array<{

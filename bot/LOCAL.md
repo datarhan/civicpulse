@@ -84,6 +84,36 @@ bash bot/scripts/launchd-install-export.sh uninstall
 ```
 SQLite data in `bot/data/bot.db` is kept — remove it by hand if you want.
 
+## RGPD / right-to-be-forgotten verification
+
+Every citizen can delete their own queja with `/olvidar Q-XXXXXXXX`. The
+mechanic is soft-delete: the row stays in SQLite for the 5-year retention
+window (Art. 55 LOPD-GDD), but every public surface filters it out. To
+verify the flow end-to-end after deployment:
+
+```bash
+# Pick a test queja id you've submitted yourself
+TEST_ID=Q-ABC12301
+
+# 1. From a test Telegram account, send: /olvidar Q-ABC12301
+#    You should see: ✅ Queja Q-ABC12301 eliminada.
+
+# 2. Confirm soft-delete marker in SQLite
+sqlite3 bot/data/bot.db "SELECT id, state, deleted_at FROM quejas WHERE id = '$TEST_ID';"
+# deleted_at should be a recent UTC timestamp
+
+# 3. Run an export manually and confirm the row is NOT in the public snapshot
+bash bot/scripts/local-export.sh
+jq '.items[] | select(.service_request_id == "'"$TEST_ID"'")' public/data/quejas.json
+# Expected: empty output
+
+# 4. The user can still see their own deleted queja (marked with 🗑 eliminada)
+#    via /mis — this is by design so they can confirm the deletion worked.
+```
+
+If any of these steps fail, the `/olvidar` pipeline is broken and citizen
+rights are being violated — treat as P0.
+
 ## When to graduate to always-on hosting
 
 Cases where this setup is no longer enough:

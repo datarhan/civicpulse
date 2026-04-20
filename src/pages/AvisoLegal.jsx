@@ -77,12 +77,37 @@ export default function AvisoLegal() {
       </Card>
 
       <Card style={{ marginTop: 14 }}>
-        <SectionHead eyebrow="Privacidad / protección de datos" title="Datos personales tratados" />
+        <SectionHead eyebrow="Privacidad / protección de datos" title="Datos personales de cargos electos" />
         <p>
-          Los únicos datos personales tratados en CivicPulse son los publicados por el propio Ayuntamiento de Riba-roja de Túria sobre sus cargos electos (nombre, fotografía pública, correo institucional, concejalía asignada) y las menciones en prensa pública. No se rastrea a los visitantes del sitio ni se usa analítica invasiva.
+          Los datos personales tratados sobre cargos electos (nombre, fotografía pública, correo institucional, concejalía asignada) provienen de publicaciones del propio Ayuntamiento de Riba-roja de Túria y menciones en prensa pública. No se rastrea a los visitantes del sitio ni se usa analítica invasiva.
         </p>
         <p>
           Los titulares de cargo pueden solicitar la eliminación de su fotografía concreta manteniendo el resto del registro (nombre, concejalía). Canal: el mismo de rectificación.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead eyebrow="Quejas ciudadanas · RGPD" title="Qué hacemos con las quejas que envías" />
+        <p>
+          Cuando presentas una queja a través del bot de Telegram, los datos recogidos son:
+        </p>
+        <ul>
+          <li><strong>Texto de la queja</strong>, categoría y barrio aproximado — se publican en el dashboard</li>
+          <li><strong>Coordenadas exactas</strong> (si las envías) — <strong>nunca</strong> se publican; se agregan a nivel de barrio</li>
+          <li><strong>Tu identidad de Telegram</strong> (ID numérico + nombre de usuario) — <strong>nunca</strong> se publica; sólo sirve para que puedas consultar, apoyar o eliminar tus propias quejas</li>
+          <li><strong>Fotografía adjunta</strong> (si la envías) — se almacena internamente para el expediente; puede publicarse en el dashboard tras revisión si el contenido lo permite</li>
+        </ul>
+        <p>
+          <strong>Base jurídica</strong>: Art. 6.1.e del Reglamento (UE) 2016/679 (RGPD) — tratamiento necesario para el cumplimiento de una misión realizada en interés público (fiscalización ciudadana del servicio municipal). <strong>Responsable del tratamiento</strong>: el proyecto CivicPulse, sin fines comerciales.
+        </p>
+        <p>
+          <strong>Plazo de conservación</strong>: 5 años desde la resolución de la queja o su última actualización (Art. 55 de la Ley Orgánica 3/2018, LOPD-GDD, para fines de interés público + garantía del derecho a la tutela judicial efectiva). Al cumplirse el plazo, el registro interno se destruye. Las estadísticas agregadas anonimizadas pueden conservarse indefinidamente.
+        </p>
+        <p>
+          <strong>Derecho al olvido (RGPD art. 17)</strong>: en cualquier momento puedes enviar <code>/olvidar Q-XXXXXXXX</code> al bot para eliminar tu queja del dashboard, del heatmap, del feed público y del snapshot abierto. La queja desaparece inmediatamente de todas las superficies públicas; queda un registro anónimo interno durante el plazo legal de conservación, y después se destruye. Sólo el autor original puede ejercer este derecho sobre su propia queja.
+        </p>
+        <p>
+          <strong>Derechos adicionales</strong> (acceso, rectificación, oposición, portabilidad): contacto igual que la vía de rectificación de esta página. Reclamación ante autoridad de control: <a href="https://www.aepd.es" target="_blank" rel="noreferrer">Agencia Española de Protección de Datos</a> (AEPD) o <a href="https://avpd.euskadi.eus" target="_blank" rel="noreferrer">Autoridad Valenciana de Protección de Datos</a>.
         </p>
       </Card>
 

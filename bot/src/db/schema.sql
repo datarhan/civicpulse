@@ -20,13 +20,20 @@ CREATE TABLE IF NOT EXISTS quejas (
   registered_at           TEXT,
   resolved_at             TEXT,
   created_at              TEXT NOT NULL DEFAULT (datetime('now')),
-  updated_at              TEXT NOT NULL DEFAULT (datetime('now'))
+  updated_at              TEXT NOT NULL DEFAULT (datetime('now')),
+  -- LOPD/GDPR: soft-delete. When a citizen invokes /olvidar, the row stays
+  -- in the audit trail but every exporter + renderer filters out rows where
+  -- deleted_at IS NOT NULL. Physical deletion is out of scope — we need the
+  -- audit trail for the 5-year retention window (Art. 55 LOPD-GDD) while
+  -- still honouring the individual's right to be forgotten on public surfaces.
+  deleted_at              TEXT
 );
 
 CREATE INDEX IF NOT EXISTS idx_quejas_state         ON quejas(state);
 CREATE INDEX IF NOT EXISTS idx_quejas_neighborhood  ON quejas(neighborhood);
 CREATE INDEX IF NOT EXISTS idx_quejas_user          ON quejas(telegram_user_id);
 CREATE INDEX IF NOT EXISTS idx_quejas_concejal      ON quejas(concejal_slug);
+CREATE INDEX IF NOT EXISTS idx_quejas_deleted       ON quejas(deleted_at);
 
 CREATE TABLE IF NOT EXISTS apoyos (
   queja_id          TEXT NOT NULL,

@@ -10,6 +10,7 @@ import {
   countApoyos,
   listEvents,
   setState,
+  softDeleteQueja,
   aggregateStats,
   type NewQuejaInput,
 } from '../src/db/queries'
@@ -173,6 +174,75 @@ describe('bot db — setState transitions', () => {
     const events = listEvents(db, quejaId)
     const kinds = events.map((e) => e.kind)
     expect(kinds).toEqual(['capturada', 'en_tramite', 'resuelta'])
+  })
+})
+
+describe('bot db — softDeleteQueja (RGPD art. 17 right-to-be-forgotten)', () => {
+  let db: Db
+  let quejaId: string
+
+  beforeEach(() => {
+    db = openDb(':memory:')
+    quejaId = createQueja(db, sampleQueja()).id
+  })
+
+  it('soft-deletes the queja (row survives, deleted_at set)', () => {
+    const ok = softDeleteQueja(db, quejaId, 42)
+    expect(ok).toBe(true)
+    const row = getQueja(db, quejaId)
+    expect(row).not.toBeNull()
+    expect(row!.deleted_at).toBeTruthy()
+  })
+
+  it('emits an anonymised audit event', () => {
+    softDeleteQueja(db, quejaId, 42)
+    const kinds = listEvents(db, quejaId).map((e) => e.kind)
+    expect(kinds).toContain('anonymised')
+  })
+
+  it('is idempotent — second call on an already-deleted row succeeds', () => {
+    expect(softDeleteQueja(db, quejaId, 42)).toBe(true)
+    expect(softDeleteQueja(db, quejaId, 42)).toBe(true)
+    // And only emits one anonymised event
+    const events = listEvents(db, quejaId).filter((e) => e.kind === 'anonymised')
+    expect(events.length).toBe(1)
+  })
+
+  it('refuses deletion from the wrong user (no enumeration leak)', () => {
+    const ok = softDeleteQueja(db, quejaId, 999) // wrong user id
+    expect(ok).toBe(false)
+    const row = getQueja(db, quejaId)
+    expect(row!.deleted_at).toBeNull()
+  })
+
+  it('returns false for a non-existent queja id', () => {
+    expect(softDeleteQueja(db, 'Q-NOPE0000', 42)).toBe(false)
+  })
+
+  it('hides deleted rows from listRecentQuejas (public feed)', () => {
+    const kept = createQueja(db, sampleQueja({ title: 'Kept' })).id
+    softDeleteQueja(db, quejaId, 42)
+    const ids = listRecentQuejas(db, 10).map((r) => r.id)
+    expect(ids).toContain(kept)
+    expect(ids).not.toContain(quejaId)
+  })
+
+  it('hides deleted rows from listByNeighborhood', () => {
+    softDeleteQueja(db, quejaId, 42)
+    expect(listByNeighborhood(db, 'casco').map((r) => r.id)).not.toContain(quejaId)
+  })
+
+  it('still exposes deleted rows to the owner via listUserQuejas (so they can confirm)', () => {
+    softDeleteQueja(db, quejaId, 42)
+    const own = listUserQuejas(db, 42).find((r) => r.id === quejaId)
+    expect(own).toBeTruthy()
+    expect(own!.deleted_at).toBeTruthy()
+  })
+
+  it('excludes deleted rows from aggregateStats.total', () => {
+    createQueja(db, sampleQueja({ title: 'Also kept' }))
+    softDeleteQueja(db, quejaId, 42)
+    expect(aggregateStats(db).total).toBe(1)
   })
 })
 
