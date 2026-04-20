@@ -9,6 +9,7 @@ import { registerEstado } from './commands/estado.ts'
 import { registerApoyar } from './commands/apoyar.ts'
 import { registerMis } from './commands/mis.ts'
 import { registerOlvidar } from './commands/olvidar.ts'
+import { registerSubscribe } from './commands/subscribe.ts'
 import { registerBarrio } from './commands/barrio.ts'
 import { registerRanking } from './commands/ranking.ts'
 import { registerDigest } from './commands/digest.ts'
@@ -19,6 +20,7 @@ import { buildSnapshot } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
 import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './services/sindic.ts'
 import { startSilencioCron } from './services/cron.ts'
+import { startDigestCron } from './services/digest.ts'
 import { getQueja } from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
@@ -42,6 +44,7 @@ function makeBot() {
   registerApoyar(bot, db, channel)
   registerMis(bot, db)
   registerOlvidar(bot, db)
+  registerSubscribe(bot, db)
   registerBarrio(bot, db)
   registerRanking(bot, db)
   registerDigest(bot, db)
@@ -51,6 +54,11 @@ function makeBot() {
   // Silencio cron — hourly tick that auto-transitions aged registered
   // quejas to silencio_negativo. Paused during LOREG freeze.
   startSilencioCron(db, channel)
+
+  // Weekly-digest cron — hourly tick that fires exactly once at Monday
+  // 09:00 local. DMs each subscribed user with the past-7-days quejas
+  // matching their filters. Paused during LOREG freeze.
+  startDigestCron(bot, db)
 
   bot.catch((err) => {
     console.error('[bot] error:', err)
@@ -63,6 +71,9 @@ function makeBot() {
       { command: 'apoyar', description: 'Apoyar una queja existente' },
       { command: 'mis', description: 'Mis quejas' },
       { command: 'olvidar', description: 'Eliminar una queja mía (RGPD art. 17)' },
+      { command: 'subscribe', description: 'Suscribirse a resumen semanal (barrio/concejalía/categoría)' },
+      { command: 'unsubscribe', description: 'Cancelar una suscripción' },
+      { command: 'subscriptions', description: 'Ver mis suscripciones activas' },
       { command: 'barrio', description: 'Quejas por barrio' },
       { command: 'ranking', description: 'Ranking de barrios (60 días)' },
       { command: 'digest', description: 'Resumen (últimos N días)' },

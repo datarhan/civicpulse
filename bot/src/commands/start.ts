@@ -10,6 +10,8 @@ Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 • /estado Q-XXXX — Ver el estado de una queja
 • /mis — Tus quejas
 • /olvidar Q-XXXX — Eliminar una queja tuya (derecho al olvido, RGPD art. 17)
+• /subscribe barrio X — Resumen semanal por barrio, concejalía o categoría
+• /subscriptions — Ver tus suscripciones activas
 
 *Cómo funciona*
 

@@ -56,3 +56,19 @@ CREATE TABLE IF NOT EXISTS events (
 );
 
 CREATE INDEX IF NOT EXISTS idx_events_queja ON events(queja_id);
+
+-- Weekly-digest subscriptions. A user can subscribe multiple filters.
+-- filter_kind ∈ { barrio, concejalia, categoria }. filter_value is
+-- free-form (we match case-insensitively against the current snapshot
+-- field — e.g. 'barrio' matches queja.address_string / neighborhood
+-- slug). Every Monday at 09:00 the digest cron emits a DM per user
+-- with matching deltas from the past 7 days.
+CREATE TABLE IF NOT EXISTS subscriptions (
+  telegram_user_id  INTEGER NOT NULL,
+  filter_kind       TEXT NOT NULL,
+  filter_value      TEXT NOT NULL,
+  created_at        TEXT NOT NULL DEFAULT (datetime('now')),
+  PRIMARY KEY (telegram_user_id, filter_kind, filter_value)
+);
+
+CREATE INDEX IF NOT EXISTS idx_subscriptions_user ON subscriptions(telegram_user_id);

@@ -246,6 +246,96 @@ export function setState(
   return getQueja(db, id)
 }
 
+// ─── Subscriptions (weekly digest) ─────────────────────────────────────────
+
+export type FilterKind = 'barrio' | 'concejalia' | 'categoria'
+
+export interface SubscriptionRow {
+  telegram_user_id: number
+  filter_kind: FilterKind
+  filter_value: string
+  created_at: string
+}
+
+export const ALLOWED_FILTER_KINDS: FilterKind[] = ['barrio', 'concejalia', 'categoria']
+
+/** Upsert a subscription. Idempotent — primary key covers the triple. */
+export function addSubscription(
+  db: Db,
+  userId: number,
+  kind: FilterKind,
+  value: string,
+): { added: boolean } {
+  const normalised = value.trim().toLowerCase()
+  if (!normalised) return { added: false }
+  const r = db
+    .prepare(
+      `INSERT OR IGNORE INTO subscriptions (telegram_user_id, filter_kind, filter_value)
+       VALUES (?, ?, ?)`,
+    )
+    .run(userId, kind, normalised)
+  return { added: r.changes > 0 }
+}
+
+export function removeSubscription(
+  db: Db,
+  userId: number,
+  kind: FilterKind,
+  value: string,
+): { removed: boolean } {
+  const r = db
+    .prepare(
+      `DELETE FROM subscriptions
+       WHERE telegram_user_id = ? AND filter_kind = ? AND filter_value = ?`,
+    )
+    .run(userId, kind, value.trim().toLowerCase())
+  return { removed: r.changes > 0 }
+}
+
+export function listUserSubscriptions(db: Db, userId: number): SubscriptionRow[] {
+  return db
+    .prepare('SELECT * FROM subscriptions WHERE telegram_user_id = ? ORDER BY created_at DESC')
+    .all(userId) as SubscriptionRow[]
+}
+
+export function listAllSubscriptions(db: Db): SubscriptionRow[] {
+  return db.prepare('SELECT * FROM subscriptions').all() as SubscriptionRow[]
+}
+
+/**
+ * Find all recent (past `days`) non-deleted quejas matching the given filter.
+ * Case-insensitive substring match on the relevant column:
+ *   - barrio     → neighborhood (OR address_string via fallback)
+ *   - concejalia → concejalia_area
+ *   - categoria  → category
+ */
+export function findMatchingQuejas(
+  db: Db,
+  kind: FilterKind,
+  value: string,
+  days: number,
+  nowIso: string = new Date().toISOString(),
+): QuejaRow[] {
+  const cutoff = new Date(nowIso)
+  cutoff.setUTCDate(cutoff.getUTCDate() - days)
+  const cutoffIso = cutoff.toISOString()
+  const pattern = `%${value.trim().toLowerCase()}%`
+  const col =
+    kind === 'barrio'     ? 'LOWER(COALESCE(neighborhood, \'\'))' :
+    kind === 'concejalia' ? 'LOWER(COALESCE(concejalia_area, \'\'))' :
+                            'LOWER(category)'
+  return db
+    .prepare(
+      `SELECT * FROM quejas
+       WHERE deleted_at IS NULL
+         AND created_at >= ?
+         AND ${col} LIKE ?
+       ORDER BY created_at DESC
+       LIMIT 50`,
+    )
+    .all(cutoffIso, pattern) as QuejaRow[]
+}
+
 export function aggregateStats(db: Db): AggregateStats {
   // All public-facing aggregates EXCLUDE soft-deleted rows. The audit trail
   // in `events` keeps the record, but every public surface (UI stats, snapshot
