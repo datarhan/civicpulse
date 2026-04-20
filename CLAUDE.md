@@ -41,10 +41,15 @@ npm run route-queja -- "<title>" "<detail>" [category]
                                     # prints category → concejalía → plazos → escalado
 npm run route-queja -- --file queja.json --raw    # JSON output for piping
 
-# Telegram bot (Sprint A · capture + social) — sibling package under /bot
-cd bot && npm install && npm test   # 17 DB tests
+# Queja right-of-reply (schema-validated, PR-safe edits to quejas-responses.json)
+npm run queja-reply -- <Q-ID> "<role>" "<firmante>" "<verbatim text>" [source-url]
+
+# Telegram bot (sibling package under /bot — Sprints A→E)
+cd bot && npm install && npm test   # 36 tests (db + batch + escalation)
 cd bot && npm run dev               # long-polling (set BOT_TOKEN in bot/.env)
 cd bot && npm run export            # SQLite → ../public/data/quejas.json
+# Admin-only bot commands (ADMIN_USER_IDS env):
+#   /batch  /batch_register  /escalar  — weekly batch to sede + Síndic escalation
 ```
 
 No linter or formatter is configured. The test suite is Vitest + happy-dom;

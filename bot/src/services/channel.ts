@@ -10,6 +10,7 @@ import type { Bot } from 'grammy'
 import type { MyContext } from '../types.ts'
 import type { QuejaRow } from '../db/queries.ts'
 import type { QuejaRouting } from '../../../src/scraper/queja-router.ts'
+import { isLoregFrozen } from './freeze.ts'
 
 function formatNeighborhood(slug: string | null | undefined): string {
   if (!slug) return 'Riba-roja'
@@ -45,6 +46,13 @@ class TelegramChannel implements Channel {
   constructor(private bot: Bot<MyContext>, private chatId: string) {}
 
   private async send(text: string) {
+    // LOREG art. 50 — during the electoral freeze window all institutional
+    // broadcasts pause. Exception: already-active legal deadlines continue
+    // to be tracked internally; only the public channel stays quiet.
+    if (isLoregFrozen()) {
+      console.log('[channel] suppressed (LOREG freeze active):', text.slice(0, 60) + '…')
+      return
+    }
     try {
       await this.bot.api.sendMessage(this.chatId, text, {
         parse_mode: 'Markdown',

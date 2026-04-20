@@ -12,9 +12,14 @@ import { registerBarrio } from './commands/barrio.ts'
 import { registerRanking } from './commands/ranking.ts'
 import { registerDigest } from './commands/digest.ts'
 import { registerBatchCommand } from './commands/batch.ts'
+import { registerEscalar } from './commands/escalar.ts'
 import { makeChannel } from './services/channel.ts'
 import { buildSnapshot } from './services/snapshot.ts'
 import { buildBatch, renderBatchHtml, renderBatchMarkdown } from './services/batch.ts'
+import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './services/sindic.ts'
+import { startSilencioCron } from './services/cron.ts'
+import { getQueja } from './db/queries.ts'
+import { routeUsingLocalOfficials } from './services/router.ts'
 
 function makeBot() {
   const token = process.env.BOT_TOKEN
@@ -38,6 +43,11 @@ function makeBot() {
   registerRanking(bot, db)
   registerDigest(bot, db)
   registerBatchCommand(bot, db, channel)
+  registerEscalar(bot, db, channel)
+
+  // Silencio cron — hourly tick that auto-transitions aged registered
+  // quejas to silencio_negativo. Paused during LOREG freeze.
+  startSilencioCron(db, channel)
 
   bot.catch((err) => {
     console.error('[bot] error:', err)
@@ -54,6 +64,7 @@ function makeBot() {
       { command: 'digest', description: 'Resumen (últimos N días)' },
       { command: 'batch', description: 'Lote semanal (admin)' },
       { command: 'batch_register', description: 'Registrar lote tras firmar (admin)' },
+      { command: 'escalar', description: 'Escalar al Síndic (admin)' },
       { command: 'help', description: 'Cómo funciona' },
     ])
     .catch(() => undefined)
@@ -96,6 +107,44 @@ async function main() {
       if (req.method === 'GET' && url.pathname === '/health') {
         res.statusCode = 200
         res.end('ok')
+        return
+      }
+
+      // Per-queja Síndic de Greuges escalation template (md + html).
+      // Path: /sindic/q-abc12301.md | /sindic/q-abc12301.html
+      const sindicMatch = url.pathname.match(/^\/sindic\/(q-[a-z0-9]+)\.(md|html)$/)
+      if (req.method === 'GET' && sindicMatch) {
+        if (exportToken) {
+          const auth = req.headers.authorization ?? ''
+          const qp = url.searchParams.get('token') ?? ''
+          if (auth !== `Bearer ${exportToken}` && qp !== exportToken) {
+            res.statusCode = 401
+            res.end('unauthorized')
+            return
+          }
+        }
+        const quejaId = sindicMatch[1].toUpperCase()
+        const q = getQueja(db, quejaId)
+        if (!q) {
+          res.statusCode = 404
+          res.end('not found')
+          return
+        }
+        const routing = routeUsingLocalOfficials({
+          title: q.title,
+          detail: q.detail,
+          category: q.category as never,
+        })
+        const template = buildSindicTemplate(q, routing)
+        if (sindicMatch[2] === 'md') {
+          res.setHeader('Content-Type', 'text/markdown; charset=utf-8')
+          res.setHeader('Cache-Control', 'no-store')
+          res.end(renderSindicMarkdown(template))
+        } else {
+          res.setHeader('Content-Type', 'text/html; charset=utf-8')
+          res.setHeader('Cache-Control', 'no-store')
+          res.end(renderSindicHtml(template))
+        }
         return
       }
 

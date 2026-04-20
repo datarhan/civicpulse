@@ -1,0 +1,83 @@
+name: Respuesta oficial a una queja
+description: |
+  Para responsables políticos, técnicos o departamentos del Ayuntamiento que quieran
+  responder públicamente a una queja ciudadana trackeada en CivicPulse.
+title: "[Respuesta] <Q-XXXXXXX>"
+labels: ["queja-response"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        # Derecho de réplica · Quejas ciudadanas CivicPulse
+
+        Este formulario permite a responsables del Ayuntamiento de Riba-roja de Túria
+        o a personas nombradas en una queja añadir una respuesta oficial que se publicará
+        **verbatim** junto a la queja original. El equipo editorial aplica la respuesta
+        mediante `npm run queja-reply` — no se edita su texto.
+
+        **Plazo orientativo:** 7 días naturales. Pasado ese plazo no se eliminan quejas
+        publicadas, pero la respuesta sigue siendo aceptada en cualquier momento.
+
+  - type: input
+    id: queja_id
+    attributes:
+      label: ID de la queja
+      description: "Formato `Q-XXXXXXXX` (visible en /quejas o en el bot)."
+      placeholder: Q-ABC12301
+    validations:
+      required: true
+
+  - type: dropdown
+    id: rol
+    attributes:
+      label: Rol del firmante
+      options:
+        - Concejalía responsable
+        - Departamento técnico
+        - Alcaldía
+        - Grupo municipal
+        - Otro (explicar en el cuerpo)
+    validations:
+      required: true
+
+  - type: input
+    id: firmante
+    attributes:
+      label: Nombre del firmante
+      description: "Persona u órgano que emite la respuesta oficial."
+    validations:
+      required: true
+
+  - type: textarea
+    id: respuesta
+    attributes:
+      label: Texto de la respuesta (verbatim)
+      description: |
+        Se publicará tal cual aparece aquí, sin edición. Máx. 2000 caracteres.
+        Evita adjetivos sobre la persona denunciante; céntrate en los hechos y en las
+        actuaciones municipales.
+      placeholder: |
+        "El Servicio de Obras ha programado la reparación para la semana del X de Y.
+        El expediente interno es OBR-2026-0123. La ejecución está pendiente de la
+        retirada previa por la empresa contratista."
+    validations:
+      required: true
+
+  - type: input
+    id: fuente_url
+    attributes:
+      label: URL de fuente primaria (opcional)
+      description: |
+        Si la respuesta remite a un acuerdo de pleno, BOE/BOP, contrato, o resolución
+        publicada, añade aquí el enlace.
+      placeholder: https://www.ribarroja.es/...
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmaciones
+      options:
+        - label: "Confirmo que el texto es verbatim y que autorizo su publicación sin edición."
+          required: true
+        - label: "El firmante asume la responsabilidad sobre la veracidad de los hechos."
+          required: true
