@@ -14,18 +14,27 @@ npm run test:watch     # Vitest in watch mode
 
 # Real-data ingestion (re-run after any upstream change; all idempotent).
 # GitHub Actions runs scrape:all nightly at 04:30 UTC (see §Nightly refresh).
-npm run scrape:officials   # 21 councillors + photos from ribarroja.es
-npm run scrape:budget      # CONPREL municipal budget XLS (MinHac)
-npm run scrape:tenders     # Gobierto tender/contract feed (mirrors PLACSP)
-npm run scrape:padron      # INE Tempus3 30-year population series
-npm run scrape:participa   # Votiveu (WordPress) citizen-participation blog
-npm run scrape:press       # Google News RSS aggregator (99 headlines / 18 medios)
-npm run scrape:geo         # OSM Overpass boundary + 21 neighborhoods
-npm run scrape:bdns        # MinHac BDNS subsidies (171 convocatorias)
-npm run scrape:paro        # SEPE monthly unemployment XLS (18 months)
-npm run scrape:plenos      # Council-session index on ribarroja.es/plenos
-npm run scrape:wikidata    # Wikidata Q23701 facts + cross-references
-npm run scrape:all         # runs all 11 sequentially (~90 s)
+npm run scrape:officials            # 21 councillors + photos from ribarroja.es
+npm run scrape:budget               # CONPREL municipal budget XLS (MinHac)
+npm run scrape:tenders              # Gobierto tender/contract feed (mirrors PLACSP)
+npm run scrape:padron               # INE Tempus3 30-year population series
+npm run scrape:participa            # Votiveu (WordPress) citizen-participation blog
+npm run scrape:press                # Google News RSS aggregator
+npm run scrape:geo                  # OSM Overpass boundary + 21 neighborhoods
+npm run scrape:bdns                 # MinHac BDNS subsidies
+npm run scrape:paro                 # SEPE monthly unemployment XLS
+npm run scrape:plenos               # Council-session index on ribarroja.es/plenos
+npm run scrape:pleno-agendas        # Agenda items per pleno (orden del día)
+npm run scrape:wikidata             # Wikidata Q23701 facts + cross-references
+npm run scrape:promise-suggestions  # Inference engine (never mutates promises)
+npm run scrape:all                  # runs all 13 sequentially (~2 min)
+
+# Promise-tracker administration (schema-validated, PR-safe edits)
+npm run freeze:status               # inspect LOREG electoral-freeze state
+npm run freeze:set -- YYYY-MM-DD    # freeze /promesas until the given date
+npm run freeze:clear                # lift the freeze (explicit action)
+npm run reply -- <promise-id> <PARTY> "<verbatim quote>" [url publisher] [date]
+                                    # apply an approved right-of-reply
 ```
 
 No linter or formatter is configured. The test suite is Vitest + happy-dom;
@@ -50,7 +59,7 @@ The UI is derived from the "Direction A — Municipal Dashboard" handoff in the 
 - Breadcrumb is derived from `useLocation()` matched against the `NAV` array exported from `components/Sidebar.jsx`.
 
 ### Routes
-Direction A (Sidebar + Topbar shell): `/` Overview · `/quejas` · `/cargos` · `/presupuesto` · `/plenos` · `/datos` · `/ciudad` (live Riba-roja map, Leaflet-based, kiosk-capable). A catch-all `*` renders Overview.
+Direction A (Sidebar + Topbar shell): `/` Overview · `/quejas` · `/cargos` · `/presupuesto` · `/plenos` · `/promesas` · `/datos` · `/ciudad` (live Riba-roja map, Leaflet-based, kiosk-capable) · `/metodologia` · `/aviso-legal`. A catch-all `*` renders Overview.
 
 Variant routes — each renders its own full-page shell and hides the Sidebar/Topbar:
 - `/hud` → `variants/Hud.jsx` (Direction B, dark SimCity-style HUD)
@@ -90,11 +99,11 @@ Leaflet + react-leaflet **are** installed and used by two real map surfaces:
 
 ## Real data pipeline
 
-**Eleven** Spanish/international public-sector sources are wired
+**Thirteen** Spanish/international public-sector sources are wired
 end-to-end for Riba-roja de Túria (INE **46214** · Wikidata **Q23701** ·
-OSM relation **342356**). All 11 refresh nightly via GitHub Actions at
+OSM relation **342356**). All 13 refresh nightly via GitHub Actions at
 04:30 UTC. Follow the same RED→GREEN→wire cadence when adding the
-twelfth.
+fourteenth.
 
 **Architecture**: `scripts/scrape-*.ts` fetch the raw payload → call a
 pure TypeScript parser in `src/scraper/*.ts` → write a typed snapshot
@@ -104,17 +113,22 @@ the static JSON next to the app. Re-running any `npm run scrape:*` is
 idempotent; `npm run scrape:all` runs everything in ~90 s.
 
 ```
-scripts/scrape-officials.ts  →  src/scraper/corporacion.ts  →  public/data/officials.json
-scripts/scrape-budget.ts     →  src/scraper/budget.ts       →  public/data/budget.json
-scripts/scrape-tenders.ts    →  src/scraper/tenders.ts      →  public/data/tenders.json
-scripts/scrape-padron.ts     →  src/scraper/padron.ts       →  public/data/padron.json
-scripts/scrape-participa.ts  →  src/scraper/participa.ts    →  public/data/participa.json
-scripts/scrape-press.ts      →  src/scraper/press.ts        →  public/data/press.json
-scripts/scrape-geo.ts        →  src/scraper/geo.ts          →  public/data/geo.json
-scripts/scrape-bdns.ts       →  src/scraper/bdns.ts         →  public/data/bdns.json
-scripts/scrape-paro.ts       →  src/scraper/paro.ts         →  public/data/paro.json
-scripts/scrape-plenos.ts     →  src/scraper/plenos.ts       →  public/data/plenos.json
-scripts/scrape-wikidata.ts   →  src/scraper/wikidata.ts     →  public/data/wikidata.json
+scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
+scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
+scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
+scripts/scrape-padron.ts              →  src/scraper/padron.ts            →  public/data/padron.json
+scripts/scrape-participa.ts           →  src/scraper/participa.ts         →  public/data/participa.json
+scripts/scrape-press.ts               →  src/scraper/press.ts             →  public/data/press.json
+scripts/scrape-geo.ts                 →  src/scraper/geo.ts               →  public/data/geo.json
+scripts/scrape-bdns.ts                →  src/scraper/bdns.ts              →  public/data/bdns.json
+scripts/scrape-paro.ts                →  src/scraper/paro.ts              →  public/data/paro.json
+scripts/scrape-plenos.ts              →  src/scraper/plenos.ts            →  public/data/plenos.json
+scripts/scrape-pleno-agendas.ts       →  src/scraper/pleno-agenda.ts      →  public/data/plenos-agendas.json
+scripts/scrape-wikidata.ts            →  src/scraper/wikidata.ts          →  public/data/wikidata.json
+scripts/scrape-promise-suggestions.ts →  src/scraper/promise-inference.ts →  public/data/promise-suggestions.json
+
+# Curated (human-edited) — NEVER touched by automated scrapers
+public/data/promises.json (schema: src/scraper/promises.ts)
 ```
 
 ### Sources of truth
@@ -132,6 +146,9 @@ scripts/scrape-wikidata.ts   →  src/scraper/wikidata.ts     →  public/data/w
 | Press (99 headlines from 18 outlets) | `press.ts` → `press.json` | Google News RSS `news.google.com/rss/search?q="Riba-roja de Túria"` with FNV fingerprint dedup; Spanish regional outlets (Levante-EMV, Las Provincias, Valencia Plaza, elDiario.es, Cadena SER, Comunica GVA, …) | `/ciudad` Prensa tab (replaces mock rotation); Direction D editorial column (`PressBlockD`) |
 | Geo (municipal boundary 484 pts + 21 neighborhoods) | `geo.ts` → `geo.json` | **OSM Overpass API** — relation 342356 stitched from outer ways + `place=neighbourhood/suburb/quarter/hamlet/village` inside the muni area | Direction D StylizedMap: dashed boundary polyline + OSM neighborhood dots/labels |
 | Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
+| Pleno agendas (246 items, 27 departments, 30 sessions) | `pleno-agenda.ts` → `plenos-agendas.json` | Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples | `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session |
+| Promises (16 curated) — PSOE / PP / VOX / Compromís | **human-curated** · `promises.ts` validates the schema | Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date | `/promesas`, Direction D editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal` |
+| Promise suggestions (inference layer) | `promise-inference.ts` → `promise-suggestions.json` | Scans `press.json` + `plenos-agendas.json` for keyword matches; light Spanish stemmer; conservative enum (never `inviable`, never publishes `cumplida`/`no-ejecutada` automatically) | `/promesas` — "propuesta automática · pendiente de revisión humana" block under each card |
 
 ### Hooks
 
@@ -146,11 +163,13 @@ loop.
 - `usePadron`
 - `useParo`
 - `usePlenos` + `PLENO_TONE` / `PLENO_LABEL`
+- `usePlenoAgendas` + `SECTION_LABEL` / `SECTION_TONE`
 - `useParticipa` + `KIND_ICON` / `KIND_LABEL`
 - `usePress` + `timeAgo()`
 - `useGeo`
 - `useBdns`
 - `useWikidata`
+- `usePromises` + `usePromiseSuggestions` + `isPromiseFrozen()` + `PARTY_TONE` / `STATUS_LABEL` / `STATUS_TONE` / `TOPIC_LABEL`
 
 ### Nightly refresh
 
@@ -183,7 +202,8 @@ Every new adapter lands in three commits:
    generated `public/data/*.json` alongside the code change.
 
 Fixtures are committed to the repo (they're the RED contract). Current
-coverage: **85 vitest checks green** across 11 adapters.
+coverage: **106 vitest checks green** across 14 test files (13
+adapters + 1 schema validator + 1 inference engine).
 
 ### What's still mocked
 
@@ -198,9 +218,66 @@ the simulation in place as a visible "demo" vs. "real" band.
 
 ### Legal / ethical guardrails
 
-All 11 sources are public-sector / ODbL / CC-BY open data
+All 13 automated sources are public-sector / ODbL / CC-BY open data
 (Transparencia Act 19/2013, datos.gob.es CC-BY 4.0, PLACSP/BDNS open
 reuse clauses, OSM ODbL, Wikidata CC0).
+
+### Promise tracker (sensitive subsystem)
+
+`/promesas` is the one place where the project makes potentially
+defamatory claims about named elected officials. Treat every change to
+this subsystem as legally material.
+
+**Two-file architecture — do not merge them:**
+
+- `public/data/promises.json` is **curated, human-edited only**. The
+  schema validator in `src/scraper/promises.ts` enforces at runtime
+  that every record has: verbatim quote (≥20 chars), source URL +
+  publisher, ISO `madeAt`, unique id, allowed party/topic/kind/status
+  enums. Any status beyond the V1 safe set (`documentada` +
+  `en-verificacion`) requires ≥1 dated + URL-backed evidence entry
+  with its own quote — enforced by test + at write time by the admin
+  CLIs.
+- `public/data/promise-suggestions.json` is **machine-written** by the
+  inference engine. The engine's return type excludes `inviable` at
+  the type level; it never proposes `cumplida` or `no-ejecutada`;
+  every record has `requiresHumanApproval: true`. Suggestions render
+  in the UI as "propuesta automática · pendiente de revisión" and
+  *never* substitute for the published status.
+
+**LOREG freeze mode** (`frozenUntil: string | null` in
+`promises.json`): when set and in the future, `isFrozen(snap)` returns
+true. The UI enters read-only mode (`FreezeBanner` + hides the
+suggestion block), and `scrape-promise-suggestions.ts` emits an empty
+suggestion set with a banner referencing LOREG art. 50. Toggle only
+via `npm run freeze:set -- YYYY-MM-DD` / `freeze:clear` — these CLIs
+mutate *only* `frozenUntil` + `generatedAt` and re-validate the whole
+snapshot before writing.
+
+**Right-of-reply flow** is end-to-end:
+
+- `.github/ISSUE_TEMPLATE/promise-response.yml` structured form for
+  affected parties,
+- "Responder como partido →" deep-link on every promise card
+  (pre-fills `promise-id` + `party` fields),
+- `npm run reply -- <id> <PARTY> "quote" [url publisher] [date]`
+  applies an approved reply into the `response` field only and
+  re-validates.
+
+**When a future session needs to extend this subsystem**, the three
+non-obvious rules are:
+
+1. The suggestion engine never writes to `promises.json`. If you need
+   to change a status based on algorithmic output, route it through
+   the curator CLIs so the schema validator and git history stay
+   authoritative.
+2. Don't loosen the V1 status gate (`V1_STATUSES` set in
+   `promises.ts`) without an explicit editorial decision — the gate
+   is what keeps `no-ejecutada` / `cumplida` / `inviable` from
+   shipping without evidence, which is the libel-risk boundary.
+3. `/metodologia` + `/aviso-legal` are not marketing copy; they are
+   the published editorial contract. Update them via PR whenever the
+   tracker's behavior changes, not whenever UX copy is reworded.
 Councillor photos are re-hosted from the Ayuntamiento's own publication.
 Keep scrapers polite: every CLI sends a `User-Agent` identifying the
 project; never run them in a tight loop; cache raw payloads locally

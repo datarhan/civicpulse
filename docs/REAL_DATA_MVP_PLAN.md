@@ -1,11 +1,12 @@
 # CivicPulse — Real Data MVP Plan (Riba-roja de Túria)
 
-**Status:** **shipped** · **Owner:** TBA · **Last update:** 2026-04-20
+**Status:** **shipped + expanded** · **Owner:** TBA · **Last update:** 2026-04-20
 
 > The plan below is kept for historical context. **All 8 sprints ship
-> end-to-end** on `civicpulse-virid.vercel.app` — plus four extra
-> adapters added after Sprint 7 (BDNS, SEPE, Plenos, Wikidata), a
-> nightly GitHub Actions refresh job, and 85 vitest checks green. See
+> end-to-end** on `civicpulse-virid.vercel.app` — plus six extra
+> subsystems added after Sprint 7 (BDNS, SEPE, Plenos, Wikidata, pleno
+> agendas, promise tracker with legal-safe inference), a nightly
+> GitHub Actions refresh job, and 106 vitest checks green. See
 > `CLAUDE.md` → "Real data pipeline" for the authoritative current
 > state. The sprint-by-sprint section below is maintained only as a
 > reference for what was originally scoped vs. what was delivered.
@@ -24,10 +25,34 @@
 | + | BDNS | 171 convocatorias | MinHac BDNS API | `/presupuesto` subsidies card |
 | + | SEPE paro | 18 months (Sep 2024 → Mar 2026) | SEPE Muniacteco XLS | Direction D KPI strip (Paro) |
 | + | Plenos | 53 sessions (2023–2026) | `ribarroja.es/plenos/<year>` | `/plenos` "Plenos recientes" |
+| + | Pleno agendas | 246 items / 27 departments / 30 sessions | `ribarroja.es/…/pleno_<date>` individual convocatorias | `/plenos` `TopDepartmentsCard` + inline orden-del-día expander |
 | + | Wikidata | full facts card | `Special:EntityData/Q23701.json` | `/datos` WikidataCard |
+| + | **Promises** (curated) | 16 · PSOE 10 · PP 3 · VOX 1 · Compromís 1 · Otros 1 | Hand-seeded, schema-validated, press-cited; freezable | `/promesas`, `/metodologia`, `/aviso-legal`, Direction D `PromesasBlockD` |
+| + | Promise suggestions | 16 auto-proposals (2 `en-progreso`, rest `documentada`) | `promise-inference.ts` over press + pleno agendas | `/promesas` per-card "propuesta automática" block |
 
-Totals: **11 adapters, ~3,200 real records, 85/85 vitest green,
-nightly refresh live, ~90 s full run.**
+Totals: **13 adapters + 1 curated dataset, ~3,500 real records,
+106/106 vitest green, nightly refresh live, ~2 min full run.**
+
+## Pre-election safeguards (LOREG-aware)
+
+The promise tracker adds a second layer of discipline beyond the
+scraper cadence:
+
+- Schema validator (`src/scraper/promises.ts`) enforces verbatim-quote
+  + primary-source-URL + dated-evidence invariants at runtime.
+- Inference engine output (`promise-suggestions.json`) is never merged
+  into the curated snapshot; its proposedStatus enum cannot include
+  `inviable`; every record carries `requiresHumanApproval: true`.
+- `frozenUntil` field + `isFrozen(snap)` helper + `npm run
+  freeze:set/clear/status` admin CLI puts `/promesas` in read-only
+  mode during the LOREG official campaign window.
+- Right-of-reply is formalised via a GitHub issue template
+  (`.github/ISSUE_TEMPLATE/promise-response.yml`) + deep-linked CTAs
+  on every promise card + a curator-side `npm run reply` CLI that
+  mutates only the `response` field and re-validates the snapshot.
+- `/metodologia` and `/aviso-legal` are the public editorial contract;
+  any change to the tracker's classification behavior must land as a
+  PR that touches those pages.
 
 ## IVE BDT note
 
