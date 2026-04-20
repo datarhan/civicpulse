@@ -12,7 +12,7 @@ on:
 
 concurrency:
   group: scrape
-  cancel-in-progress: false
+  cancel-in-progress: false  # guard against overlapping runs
 
 jobs:
   scrape:
