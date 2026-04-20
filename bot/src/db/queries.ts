@@ -63,6 +63,10 @@ export interface AggregateStats {
   byState: Record<string, number>
   byNeighborhood: Record<string, number>
   byCategory: Record<string, number>
+  byConcejal: Record<
+    string,
+    { total: number; resueltas: number; silencios: number; pendientes: number }
+  >
 }
 
 // Minimum apoyos to tag a queja as community-verified.
@@ -231,5 +235,34 @@ export function aggregateStats(db: Db): AggregateStats {
       n: number
     }>).map((r) => [r.category, r.n])
   )
-  return { total, byState, byNeighborhood, byCategory }
+  const concejalRows = db
+    .prepare(
+      `SELECT concejal_slug,
+              COUNT(*) as total,
+              SUM(CASE WHEN state = 'resuelta' THEN 1 ELSE 0 END) as resueltas,
+              SUM(CASE WHEN state = 'silencio_negativo' OR state = 'escalada_sindic' THEN 1 ELSE 0 END) as silencios,
+              SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
+       FROM quejas
+       WHERE concejal_slug IS NOT NULL AND concejal_slug != ''
+       GROUP BY concejal_slug`
+    )
+    .all() as Array<{
+    concejal_slug: string
+    total: number
+    resueltas: number
+    silencios: number
+    pendientes: number
+  }>
+  const byConcejal = Object.fromEntries(
+    concejalRows.map((r) => [
+      r.concejal_slug,
+      {
+        total: r.total,
+        resueltas: r.resueltas,
+        silencios: r.silencios,
+        pendientes: r.pendientes,
+      },
+    ])
+  )
+  return { total, byState, byNeighborhood, byCategory, byConcejal }
 }

@@ -186,11 +186,12 @@ describe('bot db — aggregateStats', () => {
     const s = aggregateStats(db)
     expect(s.total).toBe(0)
     expect(s.byState).toEqual({})
+    expect(s.byConcejal).toEqual({})
   })
 
-  it('groups by state + neighborhood + category', () => {
+  it('groups by state + neighborhood + category + concejal', () => {
     const a = createQueja(db, sampleQueja({ neighborhood: 'casco', category: 'via_publica' }))
-    const b = createQueja(db, sampleQueja({ neighborhood: 'casco', category: 'limpieza' }))
+    const b = createQueja(db, sampleQueja({ neighborhood: 'casco', category: 'limpieza', concejal_slug: 'rafael-gomez-sanchez' }))
     const c = createQueja(db, sampleQueja({ neighborhood: 'sector14', category: 'via_publica' }))
     setState(db, b.id, 'resuelta')
     const s = aggregateStats(db)
@@ -199,6 +200,10 @@ describe('bot db — aggregateStats', () => {
     expect(s.byState.resuelta).toBe(1)
     expect(s.byNeighborhood.casco).toBe(2)
     expect(s.byCategory.via_publica).toBe(2)
+    expect(s.byConcejal['teresa-pozuelo-martin'].total).toBe(2)
+    expect(s.byConcejal['teresa-pozuelo-martin'].pendientes).toBe(2)
+    expect(s.byConcejal['rafael-gomez-sanchez'].total).toBe(1)
+    expect(s.byConcejal['rafael-gomez-sanchez'].resueltas).toBe(1)
     expect(a.id).toBeTruthy()
     expect(c.id).toBeTruthy()
   })

@@ -1,5 +1,41 @@
+import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { useQuejas } from '../hooks/useQuejas'
+
+function QuejaBadge({ slug }) {
+  const { data } = useQuejas()
+  const stats = data?.stats?.byConcejal?.[slug]
+  if (!stats || stats.total === 0) return null
+  const ok = stats.resueltas
+  const pending = stats.pendientes
+  const silencios = stats.silencios
+  return (
+    <div
+      style={{
+        marginTop: 10,
+        paddingTop: 10,
+        borderTop: '1px dashed var(--border2)',
+        display: 'flex',
+        gap: 12,
+        alignItems: 'center',
+        fontSize: 11.5,
+      }}
+    >
+      <Link
+        to="/quejas"
+        className="mono"
+        style={{ color: 'var(--ink60)', letterSpacing: '.06em', textTransform: 'uppercase', textDecoration: 'none' }}
+      >
+        Quejas asignadas
+      </Link>
+      <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>{stats.total}</span>
+      <span style={{ color: 'var(--ok)' }}>✓ {ok}</span>
+      <span style={{ color: 'var(--civic)' }}>⏳ {pending}</span>
+      {silencios > 0 && <span style={{ color: 'var(--crit)' }}>⚠ {silencios}</span>}
+    </div>
+  )
+}
 
 function OfficialCard({ o, big = false }) {
   const color = partyColor(o.party)
@@ -122,6 +158,7 @@ function OfficialCard({ o, big = false }) {
           </a>
         )}
       </div>
+      <QuejaBadge slug={o.slug} />
     </Card>
   )
 }

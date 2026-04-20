@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import {
   useQuejas,
@@ -171,8 +172,9 @@ function DashboardView({ data }) {
             <div style={{ fontSize: 13, color: 'var(--ink50)' }}>Aún no hay quejas registradas.</div>
           )}
           {items.slice(0, 30).map((it) => (
-            <div
+            <Link
               key={it.service_request_id}
+              to={`/quejas/${it.service_request_id.toLowerCase()}`}
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'min-content 1fr min-content min-content',
@@ -180,6 +182,8 @@ function DashboardView({ data }) {
                 gap: 12,
                 padding: '10px 0',
                 borderBottom: '1px dotted var(--border2)',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
               <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
@@ -201,7 +205,7 @@ function DashboardView({ data }) {
               <Pill tone={STATE_TONE[it.status] || 'ghost'} size="xs">
                 {STATE_LABEL[it.status] || it.status}
               </Pill>
-            </div>
+            </Link>
           ))}
         </div>
         <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 12 }}>

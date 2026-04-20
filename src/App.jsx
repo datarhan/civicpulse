@@ -5,6 +5,7 @@ import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import Quejas from './pages/Quejas'
+import QuejaDetail from './pages/QuejaDetail'
 import Cargos from './pages/Cargos'
 import Presupuesto from './pages/Presupuesto'
 import Plenos from './pages/Plenos'
@@ -44,6 +45,7 @@ function InnerShell({ onOpenCmdK }) {
             <Route path="/datos" element={<Datos />} />
             <Route path="/promesas" element={<Promesas />} />
             <Route path="/quejas" element={<Quejas />} />
+            <Route path="/quejas/:id" element={<QuejaDetail />} />
             <Route path="/metodologia" element={<Metodologia />} />
             <Route path="/aviso-legal" element={<AvisoLegal />} />
             <Route path="*" element={<Navigate to="/" replace />} />

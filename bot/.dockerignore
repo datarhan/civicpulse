@@ -1,0 +1,15 @@
+node_modules
+bot/node_modules
+bot/data
+bot/*.db
+bot/*.db-wal
+bot/*.db-shm
+bot/.env
+bot/.env.local
+.git
+.github
+dist
+civicpulse-design-system
+docs
+tests
+.vercel

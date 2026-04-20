@@ -8,7 +8,8 @@
     "total": 0,
     "byState": {},
     "byNeighborhood": {},
-    "byCategory": {}
+    "byCategory": {},
+    "byConcejal": {}
   },
   "items": []
 }
