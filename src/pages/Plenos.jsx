@@ -430,6 +430,24 @@ function PlenoVoteSuggestionsBlock() {
               >
                 conf. {(rec.confidence * 100).toFixed(0)}%
               </span>
+              {rec.engine && (
+                <span
+                  className="mono"
+                  title={rec.engine === 'llm' ? 'Sugerencia generada por el motor LLM (Qwen/GPT-4o-mini)' : 'Sugerencia generada por el motor de expresiones regulares'}
+                  style={{
+                    fontSize: 9.5,
+                    padding: '1px 6px',
+                    borderRadius: 3,
+                    textTransform: 'uppercase',
+                    letterSpacing: '.08em',
+                    fontWeight: 700,
+                    background: rec.engine === 'llm' ? 'var(--intel-soft)' : 'var(--soft)',
+                    color: rec.engine === 'llm' ? 'var(--intel-ink)' : 'var(--ink60)',
+                  }}
+                >
+                  {rec.engine}
+                </span>
+              )}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 6 }}>
               {rec.votes.map((v) => <VoteTuple key={v.bloc} v={v} />)}

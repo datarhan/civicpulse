@@ -45,6 +45,8 @@ export interface InferredVote {
   confidence: number
   /** Always true; a marker for the UI + validator. */
   requiresHumanApproval: true
+  /** Which engine produced this suggestion — rendered as a pill on the UI. */
+  engine?: 'regex' | 'llm'
 }
 
 export interface InferenceResult {
@@ -94,7 +96,7 @@ const DIRECTION_PHRASES: [RegExp, VoteDirection][] = [
  * precedes the vote is inside the segment) plus up to 900 chars after. This
  * lets inferItemNumber() see the header without losing any vote detail.
  */
-function splitSegments(transcript: string): string[] {
+export function splitSegments(transcript: string): string[] {
   const boundary = /(?:s['’]assotmet a votaci[óo]|se somete a votaci[óo]n|pasamos a la votaci[óo]n|passem a la votaci[óo])/gi
   const segments: string[] = []
   let match: RegExpExecArray | null
