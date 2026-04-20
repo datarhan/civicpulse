@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-04-20T10:00:00.000Z",
+  "source": {
+    "platform": "CivicPulse bot · Telegram capture",
+    "spec": "Open311 GeoReport v2 (extended)"
+  },
+  "stats": {
+    "total": 0,
+    "byState": {},
+    "byNeighborhood": {},
+    "byCategory": {}
+  },
+  "items": []
+}

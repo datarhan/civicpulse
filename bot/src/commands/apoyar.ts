@@ -1,6 +1,7 @@
 import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import { addApoyo, getQueja, VERIFIED_THRESHOLD } from '../db/queries.ts'
+import type { Channel } from '../services/channel.ts'
 import type { MyContext } from '../types.ts'
 
 function parseQuejaId(raw: string | undefined): string | null {
@@ -10,7 +11,7 @@ function parseQuejaId(raw: string | undefined): string | null {
   return 'Q-' + trimmed
 }
 
-export function registerApoyar(bot: Bot<MyContext>, db: Db) {
+export function registerApoyar(bot: Bot<MyContext>, db: Db, channel: Channel) {
   const handler = async (ctx: MyContext, raw: string | undefined) => {
     const id = parseQuejaId(raw)
     if (!id) {
@@ -42,6 +43,10 @@ export function registerApoyar(bot: Bot<MyContext>, db: Db) {
         ? '🎯 *Verificada* — entra en el próximo lote semanal al Registro Electrónico.'
         : `Faltan *${remaining}* apoyos para que entre al lote oficial.`)
     await ctx.reply(body, { parse_mode: 'Markdown' })
+    // Broadcast once, exactly when we cross the threshold.
+    if (count === VERIFIED_THRESHOLD) {
+      await channel.postApoyoMilestone(q, count)
+    }
   }
 
   bot.command('apoyar', async (ctx) => handler(ctx, ctx.match as string))

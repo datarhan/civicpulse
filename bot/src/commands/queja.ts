@@ -6,6 +6,7 @@ import type { Db } from '../db/client.ts'
 import { createQueja, type NewQuejaInput } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from '../services/router.ts'
 import { matchNeighborhood } from '../services/neighborhoods.ts'
+import type { Channel } from '../services/channel.ts'
 import type { QuejaCategory } from '../../../src/scraper/queja-router.ts'
 import type { MyContext, MyConversation } from '../types.ts'
 
@@ -40,7 +41,7 @@ function categoryKeyboard(): InlineKeyboard {
   return kb
 }
 
-export function quejaConversationBuilder(db: Db) {
+export function quejaConversationBuilder(db: Db, channel: Channel) {
   return async function quejaConversation(conv: MyConversation, ctx: MyContext) {
     await ctx.reply(
       '📝 *Nueva queja ciudadana*\n\n' +
@@ -124,6 +125,9 @@ export function quejaConversationBuilder(db: Db) {
     }
     const saved = createQueja(db, payload)
 
+    // Broadcast to public channel (no-op when CHANNEL_ID unset).
+    await channel.postNuevaQueja(saved, routing)
+
     const responsible = routing.concejalia.responsible
     const confirmation =
       `✅ *Queja registrada:* \`${saved.id}\`\n\n` +
@@ -143,8 +147,8 @@ export function quejaConversationBuilder(db: Db) {
   }
 }
 
-export function registerQueja(bot: Bot<MyContext>, db: Db) {
-  bot.use(createConversation(quejaConversationBuilder(db), 'queja'))
+export function registerQueja(bot: Bot<MyContext>, db: Db, channel: Channel) {
+  bot.use(createConversation(quejaConversationBuilder(db, channel), 'queja'))
   bot.command('queja', async (ctx) => {
     await ctx.conversation.enter('queja')
   })

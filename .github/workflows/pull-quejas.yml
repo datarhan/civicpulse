@@ -1,0 +1,44 @@
+name: Pull quejas.json from bot
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # daily 04:00 UTC (before the scrape cron at 04:30)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    # Skip if the bot host isn't configured yet (feature-flagged rollout).
+    if: ${{ vars.BOT_EXPORT_URL != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull snapshot
+        env:
+          EXPORT_URL: ${{ vars.BOT_EXPORT_URL }}
+          EXPORT_TOKEN: ${{ secrets.BOT_EXPORT_TOKEN }}
+        run: |
+          mkdir -p public/data
+          if [ -n "$EXPORT_TOKEN" ]; then
+            curl -fsS -H "Authorization: Bearer $EXPORT_TOKEN" "$EXPORT_URL" \
+              -o public/data/quejas.json
+          else
+            curl -fsS "$EXPORT_URL" -o public/data/quejas.json
+          fi
+          node -e "JSON.parse(require('fs').readFileSync('public/data/quejas.json'))"
+          echo "Pulled $(jq '.stats.total' public/data/quejas.json) quejas"
+
+      - name: Commit diff (only if changed)
+        run: |
+          git config user.name 'civicpulse-bot'
+          git config user.email 'bot@civicpulse.local'
+          if git diff --quiet public/data/quejas.json; then
+            echo "no changes"
+            exit 0
+          fi
+          git add public/data/quejas.json
+          git commit -m "chore(quejas): daily snapshot from bot"
+          git push
