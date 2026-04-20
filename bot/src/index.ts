@@ -21,6 +21,7 @@ import { buildSindicTemplate, renderSindicHtml, renderSindicMarkdown } from './s
 import { startSilencioCron } from './services/cron.ts'
 import { getQueja } from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
+import { logger } from './util/log.ts'
 
 function makeBot() {
   const token = process.env.BOT_TOKEN
@@ -208,7 +209,27 @@ async function main() {
     await bot.api.setWebhook(webhook)
     console.log(`[bot] webhook mode · ${webhook} · :${port}`)
   } else {
-    console.log('[bot] long-polling mode (dev). Press Ctrl+C to stop.')
+    logger.info('bot.started', { mode: 'long-polling', pid: process.pid })
+
+    // Standalone /health HTTP endpoint alongside long-polling so uptime-kuma
+    // or any pinger can detect silent crashes. Binds to the same PORT as
+    // webhook mode (3000 by default); doesn't conflict because this branch
+    // never enters webhook mode.
+    const http = await import('node:http')
+    const healthServer = http.createServer((req, res) => {
+      if (req.method === 'GET' && (req.url === '/health' || req.url === '/')) {
+        const uptimeSec = Math.round(process.uptime())
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json')
+        res.end(JSON.stringify({ status: 'ok', mode: 'long-polling', uptimeSec, pid: process.pid }))
+        return
+      }
+      res.statusCode = 404
+      res.end('not found')
+    })
+    healthServer.on('error', (err) => logger.error('health.server', { err: String(err) }))
+    healthServer.listen(port, () => logger.info('health.listening', { port }))
+
     // Resilient start — transient 409 Conflict (another getUpdates
     // caller) is common in dev; we back off and retry rather than die.
     while (true) {
@@ -218,7 +239,7 @@ async function main() {
       } catch (err: any) {
         const code = err?.error_code
         if (code === 409) {
-          console.warn('[bot] getUpdates conflict, retrying in 5s…')
+          logger.warn('getUpdates.conflict', { backoffSec: 5 })
           await new Promise((r) => setTimeout(r, 5000))
           continue
         }
@@ -229,6 +250,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error('[bot] fatal:', err)
+  logger.error('bot.fatal', { err: err instanceof Error ? err.message : String(err), stack: err instanceof Error ? err.stack : undefined })
   process.exit(1)
 })
