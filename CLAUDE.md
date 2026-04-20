@@ -35,6 +35,11 @@ npm run freeze:set -- YYYY-MM-DD    # freeze /promesas until the given date
 npm run freeze:clear                # lift the freeze (explicit action)
 npm run reply -- <promise-id> <PARTY> "<verbatim quote>" [url publisher] [date]
                                     # apply an approved right-of-reply
+
+# Queja legal router (pure fn · no network)
+npm run route-queja -- "<title>" "<detail>" [category]
+                                    # prints category → concejalía → plazos → escalado
+npm run route-queja -- --file queja.json --raw    # JSON output for piping
 ```
 
 No linter or formatter is configured. The test suite is Vitest + happy-dom;
