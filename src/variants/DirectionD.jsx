@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import StylizedMap from '../components/LiveCity/StylizedMap'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
@@ -196,13 +197,14 @@ function Header({ now }) {
    LEFT RAIL
    ============================================================ */
 const RAIL_ITEMS = [
-  { id: 'mirador', label: 'Mirador', icon: Ic.home,   active: true },
-  { id: 'boletin', label: 'Boletín', icon: Ic.chart },
-  { id: 'quejas',  label: 'Quejas',  icon: Ic.warn },
-  { id: 'cargos',  label: 'Cargos',  icon: Ic.people },
-  { id: 'presup',  label: 'Presup.', icon: Ic.coin },
-  { id: 'plenos',  label: 'Plenos',  icon: Ic.scale },
-  { id: 'datos',   label: 'Datos',   icon: Ic.cmd },
+  { to: '/',            label: 'Mirador',    icon: Ic.home },
+  { to: '/promesas',    label: 'Promesas',   icon: Ic.scale },
+  { to: '/cargos',      label: 'Cargos',     icon: Ic.people },
+  { to: '/presupuesto', label: 'Presupuesto',icon: Ic.coin },
+  { to: '/plenos',      label: 'Plenos',     icon: Ic.scale },
+  { to: '/datos',       label: 'Datos',      icon: Ic.chart },
+  { to: '/quejas',      label: 'Quejas',     icon: Ic.warn },
+  { to: '/metodologia', label: 'Metodología',icon: Ic.cmd },
 ]
 
 function LeftRail() {
@@ -222,42 +224,53 @@ function LeftRail() {
       }}
     >
       {RAIL_ITEMS.map((n) => (
-        <div
-          key={n.id}
+        <NavLink
+          key={n.to}
+          to={n.to}
+          end={n.to === '/'}
           title={n.label}
-          style={{
+          style={({ isActive }) => ({
             width: 40,
             height: 40,
             display: 'grid',
             placeItems: 'center',
             borderRadius: 8,
-            background: n.active ? '#EEF4FF' : 'transparent',
-            color: n.active ? PALETTE.civic : PALETTE.ink60,
+            background: isActive ? '#EEF4FF' : 'transparent',
+            color: isActive ? PALETTE.civic : PALETTE.ink60,
             cursor: 'pointer',
             position: 'relative',
-          }}
+            textDecoration: 'none',
+          })}
           onMouseEnter={(e) => {
-            if (!n.active) e.currentTarget.style.background = PALETTE.bg
+            if (e.currentTarget.getAttribute('aria-current') !== 'page') {
+              e.currentTarget.style.background = PALETTE.bg
+            }
           }}
           onMouseLeave={(e) => {
-            if (!n.active) e.currentTarget.style.background = 'transparent'
+            if (e.currentTarget.getAttribute('aria-current') !== 'page') {
+              e.currentTarget.style.background = 'transparent'
+            }
           }}
         >
-          <n.icon width={18} height={18} />
-          {n.active && (
-            <span
-              style={{
-                position: 'absolute',
-                left: -1,
-                top: 8,
-                bottom: 8,
-                width: 3,
-                borderRadius: '0 3px 3px 0',
-                background: PALETTE.civic,
-              }}
-            />
+          {({ isActive }) => (
+            <>
+              <n.icon width={18} height={18} />
+              {isActive && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    left: -1,
+                    top: 8,
+                    bottom: 8,
+                    width: 3,
+                    borderRadius: '0 3px 3px 0',
+                    background: PALETTE.civic,
+                  }}
+                />
+              )}
+            </>
           )}
-        </div>
+        </NavLink>
       ))}
     </aside>
   )
