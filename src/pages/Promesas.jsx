@@ -287,6 +287,41 @@ function PromiseCard({ p, suggestion, frozen }) {
           )}
         </div>
       )}
+
+      <div
+        style={{
+          marginTop: 10,
+          paddingTop: 8,
+          borderTop: '1px solid var(--border2)',
+          display: 'flex',
+          gap: 12,
+          fontSize: 11,
+        }}
+      >
+        <a
+          href={`https://github.com/datarhan/civicpulse/issues/new?template=promise-response.yml&title=${encodeURIComponent(
+            `[derecho-replica] ${p.id} · `
+          )}`}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+        >
+          Responder como partido →
+        </a>
+        <a
+          href={`https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa&title=${encodeURIComponent(
+            `[corrección] ${p.id}`
+          )}`}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'var(--ink60)', textDecoration: 'none' }}
+        >
+          Proponer corrección
+        </a>
+        <span style={{ marginLeft: 'auto', color: 'var(--ink50)' }} className="mono">
+          id: {p.id}
+        </span>
+      </div>
     </Card>
   )
 }

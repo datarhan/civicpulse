@@ -1,0 +1,79 @@
+name: Derecho de réplica — promesa
+description: Formaliza la respuesta oficial de un partido o cargo a una promesa publicada en /promesas.
+title: "[derecho-replica] <promesa-id> · <partido>"
+labels: [derecho-replica, promesa]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Si tu partido o grupo municipal ha sido citado en el tracker de promesas de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Todas las respuestas se insertan íntegras y verbatim en el JSON publicado en `/promesas` y se muestran en la ficha correspondiente como *"Respuesta del grupo X"*.
+
+        Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
+
+  - type: input
+    id: promise-id
+    attributes:
+      label: ID de la promesa
+      description: Copia el identificador que aparece al final de la URL de la ficha o en el HTML (`data-promise-id`).
+      placeholder: psoe-presupuesto-2026-46m
+    validations:
+      required: true
+
+  - type: dropdown
+    id: party
+    attributes:
+      label: Grupo que responde
+      options:
+        - PSOE
+        - PP
+        - VOX
+        - Compromís
+        - Otro
+    validations:
+      required: true
+
+  - type: textarea
+    id: quote
+    attributes:
+      label: Respuesta oficial (verbatim)
+      description: Será publicada tal cual entre comillas. Indica la persona o cargo que firma la respuesta al final si procede.
+      placeholder: |
+        "Como portavoz del grupo municipal del PP, matizamos que la cifra citada..."
+    validations:
+      required: true
+
+  - type: input
+    id: source-url
+    attributes:
+      label: URL de la fuente (opcional)
+      description: Si la respuesta ya está publicada en nota de prensa, web del grupo, etc., enlázala aquí para reforzar la trazabilidad.
+      placeholder: https://...
+    validations:
+      required: false
+
+  - type: input
+    id: source-publisher
+    attributes:
+      label: Medio o canal de publicación de la fuente (opcional)
+      placeholder: "Nota de prensa del grupo municipal / tweet oficial / etc."
+    validations:
+      required: false
+
+  - type: input
+    id: responded-at
+    attributes:
+      label: Fecha de la respuesta (YYYY-MM-DD)
+      description: Fecha en que el grupo emitió la declaración.
+      placeholder: "2026-04-20"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Autorización
+      options:
+        - label: Soy portavoz, cargo electo o persona autorizada del grupo citado para emitir esta respuesta oficial.
+          required: true
+        - label: Entiendo que la respuesta se publicará verbatim en /promesas y quedará en el historial público del repositorio.
+          required: true
