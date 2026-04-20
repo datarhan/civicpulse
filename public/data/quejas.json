@@ -1,44 +1,15 @@
 {
-  "generatedAt": "2026-04-20T11:12:24.953Z",
+  "generatedAt": "2026-04-20T11:12:41.125Z",
   "source": {
     "platform": "CivicPulse bot · Telegram capture",
     "spec": "Open311 GeoReport v2 (extended)"
   },
   "stats": {
-    "total": 1,
-    "byState": {
-      "capturada": 1
-    },
+    "total": 0,
+    "byState": {},
     "byNeighborhood": {},
-    "byCategory": {
-      "otros": 1
-    },
-    "byConcejal": {
-      "robert-raga-gadea": {
-        "total": 1,
-        "resueltas": 0,
-        "silencios": 0,
-        "pendientes": 1
-      }
-    }
+    "byCategory": {},
+    "byConcejal": {}
   },
-  "items": [
-    {
-      "service_request_id": "Q-0TTZRBBJ",
-      "status": "capturada",
-      "service_code": "otros",
-      "service_name": "otros",
-      "description": "temporary test injection to verify export pipeline detects new content",
-      "requested_datetime": "2026-04-20 11:12:20",
-      "updated_datetime": "2026-04-20 11:12:20",
-      "lat": null,
-      "long": null,
-      "address_string": null,
-      "apoyos": 0,
-      "concejalia_area": "Alcaldía",
-      "concejal_slug": "robert-raga-gadea",
-      "registro_entry_number": null,
-      "registered_at": null
-    }
-  ]
+  "items": []
 }
