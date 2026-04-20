@@ -1,6 +1,11 @@
 # CivicPulse — Real Data MVP Plan (Riba-roja de Túria)
 
-**Status:** **shipped + expanded** · **Owner:** TBA · **Last update:** 2026-04-20
+**Status:** **closed · superseded** · **Owner:** TBA · **Last update:** 2026-04-20
+
+> This plan is closed. The MVP shipped in full plus 6 additional adapters
+> plus the LLM advisory layer (Phase 0–3). Next-horizon work is tracked in
+> [`docs/ROADMAP.md`](./ROADMAP.md). Keep this file for historical context
+> of what was originally scoped.
 
 > The plan below is kept for historical context. **All 8 sprints ship
 > end-to-end** on `civicpulse-virid.vercel.app` — plus six extra

@@ -1,3 +1,11 @@
+> ⚠️ **ARCHIVED — pre-build mindmap kept for history only.**
+>
+> This document describes the original Python/Postgres vision before the
+> project was built. The shipped stack is Vite + React 18 + Node Telegram
+> bot — see `../../CLAUDE.md` for the authoritative architecture and
+> `../ROADMAP.md` for the current roadmap. Preserved to trace how
+> thinking evolved, not to be used as a reference.
+
 This is the CivicPulse Master Handbook. It is designed to be the "source of truth" for any developer, designer, or stakeholder joining the team. It integrates our Silicon Valley "Move Fast" philosophy with the hyper-local needs of Riba-roja de Túria.
 
 🗺️ The CivicPulse Roadmap (Mindmap)
