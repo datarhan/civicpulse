@@ -8,3 +8,4 @@ dist/
 .claude/scheduled_tasks.lock
 playwright-report/
 test-results/
+.llm-cache/

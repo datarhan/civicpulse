@@ -28,6 +28,7 @@
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
     "scrape:pleno-videos": "npx tsx scripts/scrape-pleno-videos.ts",
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
+    "llm:doctor": "npx tsx scripts/llm-doctor.ts",
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
     "freeze:set": "npx tsx scripts/set-promises-freeze.ts set",
     "freeze:clear": "npx tsx scripts/set-promises-freeze.ts clear",
@@ -58,6 +59,7 @@
     "happy-dom": "^20.9.0",
     "vite": "^6.0.0",
     "vitest": "^4.1.4",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "zod": "^4.3.6"
   }
 }

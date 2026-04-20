@@ -49,6 +49,13 @@ process.stdout.write(v.url)
 echo "[transcribe] pleno $PLENO_ID → $VIDEO_URL"
 echo "[transcribe] workdir: $WORKDIR"
 
+# Reject live streams — yt-dlp would loop indefinitely on an ongoing broadcast.
+IS_LIVE=$(yt-dlp --print "%(is_live)s" --skip-download "$VIDEO_URL" 2>/dev/null | head -1)
+if [ "$IS_LIVE" = "True" ]; then
+  echo "[transcribe] video is still LIVE — can't transcribe an ongoing stream. Retry once the recording is archived." >&2
+  exit 1
+fi
+
 echo "[transcribe] downloading audio via yt-dlp…"
 yt-dlp \
   -x --audio-format mp3 --audio-quality 5 \
@@ -64,7 +71,14 @@ fi
 echo "[transcribe] audio size: $(du -h "$AUDIO" | cut -f1)"
 
 echo "[transcribe] running faster-whisper (large-v3)…"
-python3 - "$AUDIO" "$TRANSCRIPT_DIR/$PLENO_ID.txt" <<'PYEOF'
+# Use the dedicated venv if it exists (avoids PEP 668 on system Python);
+# fall back to python3 if the user prefers global installs.
+if [ -x "$HOME/.local/civicpulse-whisper/venv/bin/python" ]; then
+  PY="$HOME/.local/civicpulse-whisper/venv/bin/python"
+else
+  PY="python3"
+fi
+"$PY" - "$AUDIO" "$TRANSCRIPT_DIR/$PLENO_ID.txt" <<'PYEOF'
 import sys, os
 from faster_whisper import WhisperModel
 
