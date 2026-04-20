@@ -201,6 +201,90 @@
       "evidence": [],
       "createdAt": "2026-04-20",
       "notes": "Posición pública del grupo municipal del PP ante la aceptación de fondos europeos de reconstrucción post-DANA. Se cita como posición política atribuida, no como promesa electoral del programa 2023."
+    },
+    {
+      "id": "pp-gasto-innecesario-pacadar",
+      "party": "PP",
+      "title": "Voto contra Pacadar Avanza por gasto innecesario",
+      "quote": "El portavoz popular, Alberto Gimeno, justificó su voto en contra calificando la inversión de 'gasto innecesario' al tratarse de una zona con riesgo de inundabilidad",
+      "source": {
+        "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
+        "publisher": "El Periódico de Aquí"
+      },
+      "madeAt": "2026-02-12",
+      "topic": "fiscal",
+      "kind": "enmienda-pleno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20",
+      "notes": "Cita directa del portavoz del grupo municipal del PP en el pleno extraordinario. Posición política sostenida, no promesa del programa electoral 2023."
+    },
+    {
+      "id": "pp-critica-gestion-socialista",
+      "party": "PP",
+      "title": "Crítica a la gestión socialista del Ayuntamiento",
+      "quote": "Han hipotecado el municipio y dejado sin servicios básicos a los vecinos",
+      "source": {
+        "url": "https://esradiovalencia.com/noticias/alberto-gimeno-pp-critica-la-gestion-socialista-en-riba-roja-han-hipotecado-el-municipio-y-dejado-sin-servicios-basicos-a-los-vecinos/",
+        "publisher": "esRadio Valencia"
+      },
+      "madeAt": "2024-11-05",
+      "topic": "fiscal",
+      "kind": "programa-electoral",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20",
+      "notes": "Cita del portavoz del PP Alberto Gimeno en declaraciones públicas a medios. Marca la línea política del grupo municipal, útil como referencia para verificar coherencia futura."
+    },
+    {
+      "id": "vox-abstencion-pacadar",
+      "party": "VOX",
+      "title": "Abstención sobre el Plan Pacadar Avanza",
+      "quote": "La moción fue votada a favor por el grupo socialista, Compromís, Eu-Podem y la abstención de Vox",
+      "source": {
+        "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
+        "publisher": "El Periódico de Aquí"
+      },
+      "madeAt": "2026-02-12",
+      "topic": "fiscal",
+      "kind": "enmienda-pleno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20",
+      "notes": "VOX mantiene un único concejal en la corporación (José Luis Fernández Santamaría). Posición documentada como abstención en el pleno del Plan de Actuación Integrado 'Pacadar Avanza'. No se dispone aún de programa electoral 2023 de VOX Riba-roja extraído de forma verbatim."
+    },
+    {
+      "id": "compromis-apoyo-pacadar-coalicion",
+      "party": "Compromís",
+      "title": "Apoyo a Pacadar Avanza como socio de gobierno",
+      "quote": "La moción fue votada a favor por el grupo socialista, Compromís, Eu-Podem y la abstención de Vox",
+      "source": {
+        "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
+        "publisher": "El Periódico de Aquí"
+      },
+      "madeAt": "2026-02-12",
+      "topic": "medio-ambiente",
+      "kind": "pacto-coalicion",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20",
+      "notes": "Rafael Folgado (Compromís) forma parte de la Junta de Gobierno Local como socio de coalición con el PSPV-PSOE. Voto a favor del Plan Pacadar Avanza refleja el alineamiento del grupo municipal con el ejecutivo."
+    },
+    {
+      "id": "psoe-reduce-concejales-dedicacion-exclusiva",
+      "party": "PSOE",
+      "title": "Reducción de concejales con dedicación exclusiva (ahorro 42k/año)",
+      "quote": "Riba-roja reduce el número de concejales con dedicación exclusiva y ahorra 42.000 euros anuales",
+      "source": {
+        "url": "https://valenciaplaza.com/riba-roja-reduce-el-numero-de-concejales-con-dedicacion-exclusiva-y-ahorra-42000-euros-anuales",
+        "publisher": "Valencia Plaza"
+      },
+      "madeAt": "2025-08-15",
+      "topic": "transparencia",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-04-20"
     }
   ]
 }

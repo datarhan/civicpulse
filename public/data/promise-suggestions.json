@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-19T22:52:33.591Z",
+  "generatedAt": "2026-04-19T23:16:15.146Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
-    "total": 11,
+    "total": 16,
     "byProposedStatus": {
-      "documentada": 10,
-      "en-progreso": 1
+      "documentada": 14,
+      "en-progreso": 2
     }
   },
   "suggestions": [
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -153,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -189,7 +189,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -227,7 +227,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -252,7 +252,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -276,7 +276,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -314,7 +314,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -334,7 +334,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -342,7 +342,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -350,7 +350,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -417,7 +417,83 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-19T22:52:33.586Z"
+      "generatedAt": "2026-04-19T23:16:15.138Z"
+    },
+    {
+      "promiseId": "pp-gasto-innecesario-pacadar",
+      "proposedStatus": "documentada",
+      "confidence": 0.175,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "avanza",
+            "inversion"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-04-19T23:16:15.138Z"
+    },
+    {
+      "promiseId": "pp-critica-gestion-socialista",
+      "proposedStatus": "documentada",
+      "confidence": 0.175,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
+          "date": "2026-03-17",
+          "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "gestion",
+            "municipio"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-04-19T23:16:15.138Z"
+    },
+    {
+      "promiseId": "vox-abstencion-pacadar",
+      "proposedStatus": "documentada",
+      "confidence": 0,
+      "reasoning": [],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-04-19T23:16:15.138Z"
+    },
+    {
+      "promiseId": "compromis-apoyo-pacadar-coalicion",
+      "proposedStatus": "documentada",
+      "confidence": 0,
+      "reasoning": [],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-04-19T23:16:15.138Z"
+    },
+    {
+      "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
+      "proposedStatus": "en-progreso",
+      "confidence": 0.35,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUnZSUFExcEE5eW45OVNPbFJtZng4RGQ4MzhSNm51dFlYUGkzT3ZfTUdvTWZDdGFlZFdqd2o5MjJNb1Z5RFpMNHktbEJzUExaVnFBa2dCRG9ITVdBVmc5N3pGSHlqSVByMDVuTXZ5cFo0bFVrM1A3akl3X0h6Qzk2MDlvMHJUMVl2em14djE0UlE2MUxYdUR2T3c5d3A2OUxETHZ5S2E1RGJMRmxVdndteWNuN0FnU2pSTWZycTc2M2drNFHSAcgBQVVfeXFMTm9qWkRyeERlUUd4SWhOY0dObERxSHU1VVFpRl9vYTlTZ01yOHIwa2R1TUNyZjB5Y1lOdDdtbnNHTUFmbElkUmZockc4STFHY2t1QW5jbjBMWFVpbm5XR1ZubXUzaWl5QnVERXhGZk9aQjd1WWVQbFpiZi1pV0NqU3dUdFRTV1FmVWJnSGktNC11c1ZQLUxCNk9jNlFjYVE0ZUxEMnEta29Ib3lNa2pWaUN4eW5QWTJuTEpMTU5ldnpOOS0tU214bWo?oc=5",
+          "date": "2025-09-10",
+          "quote": "Riba-roja ahorra 731.000 euros en la adjudicación del servicio de recogida de residuos sólidos",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "ahorra",
+            "euro"
+          ]
+        }
+      ],
+      "requiresHumanApproval": true,
+      "generatedAt": "2026-04-19T23:16:15.138Z"
     }
   ]
 }
