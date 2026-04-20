@@ -17,6 +17,8 @@ import {
   SINDIC_SENTIDO_TONE,
 } from '../hooks/useSindic'
 import QuejasHeatmap from '../components/QuejasHeatmap'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { useT } from '../i18n'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -478,6 +480,8 @@ function DashboardView({ data }) {
 }
 
 export default function Quejas() {
+  const t = useT()
+  useDocumentTitle(t('quejas.title'))
   const { loading, error, data } = useQuejas()
 
   return (
@@ -492,10 +496,10 @@ export default function Quejas() {
             letterSpacing: '.08em',
           }}
         >
-          Voz ciudadana
+          {t('quejas.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
-          Quejas ciudadanas
+          {t('quejas.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
           Canal público de quejas para Riba-roja. Presenta vía Telegram ·{' '}
@@ -503,7 +507,7 @@ export default function Quejas() {
             @munigraph_bot
           </a>
           . Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.{' '}
-          <Link to="/quejas/dashboard" style={{ color: 'var(--civic)' }}>Dashboard analítico →</Link>
+          <Link to="/quejas/dashboard" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>Dashboard analítico →</Link>
         </div>
       </div>
 

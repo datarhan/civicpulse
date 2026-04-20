@@ -9,6 +9,7 @@ import {
   STATUS_TONE,
   TOPIC_LABEL,
 } from '../hooks/usePromises'
+import { useT } from '../i18n'
 
 function FreezeBanner({ snap }) {
   if (!isPromiseFrozen(snap)) return null
@@ -327,6 +328,7 @@ function PromiseCard({ p, suggestion, frozen }) {
 }
 
 export default function Promesas() {
+  const t = useT()
   const { loading, error, data } = usePromises()
   const { data: sugg } = usePromiseSuggestions()
   const [partyFilter, setPartyFilter] = useState('all')
@@ -382,10 +384,10 @@ export default function Promesas() {
             letterSpacing: '.08em',
           }}
         >
-          Rendición de cuentas · seguimiento público de compromisos
+          {t('promesas.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
-          Promesas y compromisos
+          {t('promesas.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 780 }}>
           Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los estados se mantienen en{' '}
@@ -399,6 +401,7 @@ export default function Promesas() {
 
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 14 }}>
         <select
+          aria-label="Filtrar por partido"
           value={partyFilter}
           onChange={(e) => setPartyFilter(e.target.value)}
           style={{
@@ -417,6 +420,7 @@ export default function Promesas() {
           ))}
         </select>
         <select
+          aria-label="Filtrar por área temática"
           value={topicFilter}
           onChange={(e) => setTopicFilter(e.target.value)}
           style={{

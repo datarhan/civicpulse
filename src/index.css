@@ -12,19 +12,24 @@
 
   --civic: #2463EB;
   --civic-soft: #EEF4FF;
+  --civic-ink: #1E4FBB;
   --ok: #16A34A;
   --ok-soft: #ECFDF3;
+  --ok-ink: #15803D;
   --warn: #D97706;
   --warn-soft: #FFF7ED;
+  --warn-ink: #B45309;
   --crit: #DC2626;
   --crit-soft: #FEF2F2;
+  --crit-ink: #B91C1C;
   --intel: #7C3AED;
   --intel-soft: #F5F0FF;
+  --intel-ink: #6D28D9;
 
   --ink80: rgba(11, 15, 25, 0.80);
-  --ink60: rgba(11, 15, 25, 0.60);
-  --ink50: rgba(11, 15, 25, 0.50);
-  --ink40: rgba(11, 15, 25, 0.40);
+  --ink60: rgba(11, 15, 25, 0.62);
+  --ink50: rgba(11, 15, 25, 0.62);
+  --ink40: rgba(11, 15, 25, 0.60);
   --ink20: rgba(11, 15, 25, 0.12);
   --ink10: rgba(11, 15, 25, 0.06);
 
@@ -42,15 +47,20 @@ html.dark {
 
   --civic: #5B8DEF;
   --civic-soft: #1E2A4A;
+  --civic-ink: #9BB7F5;
   --ok-soft: #0F2A1C;
+  --ok-ink: #8BEBB0;
   --warn-soft: #2A1E0F;
+  --warn-ink: #F5C17C;
   --crit-soft: #2A1212;
+  --crit-ink: #F5A0A0;
   --intel-soft: #1F1830;
+  --intel-ink: #C8AEF5;
 
-  --ink80: rgba(241, 245, 249, 0.85);
-  --ink60: rgba(241, 245, 249, 0.62);
-  --ink50: rgba(241, 245, 249, 0.50);
-  --ink40: rgba(241, 245, 249, 0.35);
+  --ink80: rgba(241, 245, 249, 0.88);
+  --ink60: rgba(241, 245, 249, 0.72);
+  --ink50: rgba(241, 245, 249, 0.68);
+  --ink40: rgba(241, 245, 249, 0.58);
   --ink20: rgba(241, 245, 249, 0.14);
   --ink10: rgba(241, 245, 249, 0.07);
 }
@@ -89,6 +99,16 @@ button {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Inline body-text links get an underline so they're distinguishable without color (WCAG 1.4.1). */
+p a[href],
+li a[href],
+dd a[href],
+.cp-body a[href],
+.cp-page a[target="_blank"][rel*="noreferrer"] {
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 input,
@@ -271,6 +291,68 @@ body.cp-kiosk .cp-live-container {
 @keyframes cpHoodBreathe {
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.06); }
+}
+
+/* Mobile shell — sidebar collapses into a slide-in drawer below 720px.
+   Landing (/) uses DirectionD with position:fixed and opts out of the shell. */
+.cp-hamburger { display: none; }
+.cp-sidebar-backdrop { display: none; }
+
+@media (max-width: 720px) {
+  .cp-shell-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0;
+    height: 100vh !important;
+    width: 260px !important;
+    transform: translateX(-100%);
+    transition: transform .22s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, .24);
+    z-index: 20 !important;
+  }
+  .cp-shell-sidebar.cp-sidebar-open {
+    transform: translateX(0);
+  }
+  .cp-sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 15, 25, 0.46);
+    z-index: 15;
+    animation: cp-fade-in 160ms ease;
+  }
+  .cp-hamburger {
+    display: grid !important;
+  }
+  .cp-shell-topbar {
+    padding: 10px 14px !important;
+    gap: 10px !important;
+  }
+  .cp-topbar-search {
+    min-width: 0 !important;
+    flex: 1 !important;
+  }
+  .cp-topbar-search-hint,
+  .cp-topbar-search-kbd,
+  .cp-topbar-github {
+    display: none !important;
+  }
+  .cp-topbar-crumb {
+    font-size: 12.5px !important;
+  }
+  .cp-topbar-muni {
+    display: none !important;
+  }
+}
+
+/* Generic horizontal-scroll fallback for wide content blocks (tables, KPI strips)
+   that would otherwise force the document wider than the viewport. */
+@media (max-width: 720px) {
+  .cp-scroll-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* OSM neighborhoods — tiny dot + label (urbanizaciones, industrial estates) */

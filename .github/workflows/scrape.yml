@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       adapters:
-        description: 'Adapter set to run (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | wikidata | promise-suggestions)'
+        description: 'Adapter set (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | pleno-agendas | wikidata | ctbg | consell-cv | promise-suggestions)'
         default: 'all'
 
 concurrency:
@@ -50,6 +50,7 @@ jobs:
             bdns)                  npm run scrape:bdns ;;
             paro)                  npm run scrape:paro ;;
             plenos)                npm run scrape:plenos ;;
+            pleno-agendas)         npm run scrape:pleno-agendas ;;
             wikidata)              npm run scrape:wikidata ;;
             ctbg)                  npm run scrape:ctbg ;;
             consell-cv)            npm run scrape:consell-cv ;;

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useQuejas } from '../hooks/useQuejas'
+import { useT } from '../i18n'
 
 function QuejaBadge({ slug }) {
   const { data } = useQuejas()
@@ -298,6 +299,7 @@ function CorporacionMunicipal() {
 }
 
 export default function Cargos() {
+  const t = useT()
   return (
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
       <div style={{ marginBottom: 18 }}>
@@ -310,10 +312,10 @@ export default function Cargos() {
             letterSpacing: '.08em',
           }}
         >
-          Rendición de cuentas
+          {t('cargos.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
-          Cargos y departamentos
+          {t('cargos.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
           Titulares del Ayuntamiento, sus departamentos, presupuesto asignado, promesas adquiridas y rendimiento

@@ -11,6 +11,8 @@ npm run build          # production build to dist/
 npm run preview        # serve the production build locally
 npm test               # Vitest suite (runs all adapter tests once)
 npm run test:watch     # Vitest in watch mode
+npm run test:e2e       # Playwright e2e (landing + quejas + mobile + axe a11y)
+npm run test:e2e:ui    # Playwright in headed UI mode
 
 # Real-data ingestion (re-run after any upstream change; all idempotent).
 # GitHub Actions runs scrape:all nightly at 04:30 UTC (see §Nightly refresh).
@@ -44,6 +46,11 @@ npm run route-queja -- --file queja.json --raw    # JSON output for piping
 # Queja right-of-reply (schema-validated, PR-safe edits to quejas-responses.json)
 npm run queja-reply -- <Q-ID> "<role>" "<firmante>" "<verbatim text>" [source-url]
 
+# Pleno vote transcription (schema-validated, PR-safe edits to pleno-votes.json)
+npm run pleno-vote -- <pleno-id> <item#> <outcome> "<title>" <source-url> \
+                     "PSOE:a_favor:11,PP:en_contra:7,VOX:abstencion:2,Compromís:a_favor:1"
+npm run pleno-vote -- --file /path/to/vote.json         # JSON variant (for GH Issue ingestion)
+
 # Telegram bot (sibling package under /bot — Sprints A→E)
 cd bot && npm install && npm test   # 36 tests (db + batch + escalation)
 cd bot && npm run dev               # long-polling (set BOT_TOKEN in bot/.env)
@@ -52,8 +59,12 @@ cd bot && npm run export            # SQLite → ../public/data/quejas.json
 #   /batch  /batch_register  /escalar  — weekly batch to sede + Síndic escalation
 ```
 
-No linter or formatter is configured. The test suite is Vitest + happy-dom;
-fixtures live in `tests/fixtures/`.
+No linter or formatter is configured. The unit/integration suite is Vitest +
+happy-dom; fixtures live in `tests/fixtures/`. The end-to-end suite is
+Playwright (`tests/e2e/*.spec.ts`): landing smoke test, quejas empty-state,
+mobile viewport checks across 7 routes + hamburger drawer, and axe-core WCAG
+2.1 AA scans across all 10 public routes. CI runs E2E on every push/PR via
+`.github/workflows/e2e.yml`.
 
 ## Architecture
 
@@ -177,6 +188,7 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Síndic de Greuges CV resoluciones (curated) | **human-curated** · `sindic.ts` schema validator | Added via `npm run sindic:add` after the Síndic publishes a resolución naming Riba-roja; JS-POST portal makes automation brittle at this scale | `/quejas` `SindicCard` with expediente/fecha/materia/sentido/resumen + PDF link |
 | Quejas ciudadanas (Telegram-captured, SQLite-backed) | **bot-owned** · `bot/src/services/snapshot.ts` | Exported daily at 04:00 local by a launchd agent (`bot/scripts/local-export.sh`); writes an Open311 GeoReport v2-flavoured payload; only non-PII fields are published | `/quejas` feed + heatmap · `/quejas/dashboard` analytics · `/quejas/:id` detail view · `/cargos` QuejaBadge |
 | Queja responses (curated, right-of-reply) | **human-curated** · `apply-queja-response.ts` validator | Added via `npm run queja-reply` after receiving an official reply via the `.github/ISSUE_TEMPLATE/queja-response.yml` form | `/quejas/:id` verbatim response card under the timeline |
+| Pleno votes (curated, transcribed from actas) | **human-curated** · `pleno-votes.ts` schema validator | Added via `npm run pleno-vote` or the `.github/ISSUE_TEMPLATE/pleno-vote.yml` form ingested by `ingest-pleno-votes.yml`. Each record cites the acta URL + retrieval date; misattribution is a libel risk, so the schema enforces verbatim ≥20 char title + per-bloc tuple with duplicate-bloc detection | `/plenos` — `PlenoVotesBlock` (empty-state honest when no votes registered) |
 
 ### Hooks
 
@@ -199,6 +211,7 @@ loop.
 - `useWikidata`
 - `usePromises` + `usePromiseSuggestions` + `isPromiseFrozen()` + `PARTY_TONE` / `STATUS_LABEL` / `STATUS_TONE` / `TOPIC_LABEL`
 - `useQuejas` + `useQuejaResponses` + `STATE_LABEL` / `STATE_TONE` / `CATEGORY_LABEL` / `prettyNeighborhood` / `timeAgo`
+- `usePlenoVotes` + `OUTCOME_LABEL` / `OUTCOME_TONE` / `DIRECTION_LABEL` / `DIRECTION_TONE` + `tallyByBloc()`
 - `useCtbg`
 - `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
 
@@ -372,8 +385,13 @@ indexes `NAV` + real `useOfficials()` + the three most recent
 ## Product context
 
 Spain-based civic monitor targeting Riba-roja de Túria (pop. ~24,600,
-Comunitat Valenciana). Spanish UI, Castilian Spanish with Valencian
-place names. Target personas: engaged citizen (default), journalist,
+Comunitat Valenciana). Bilingual UI via `src/i18n.jsx` — Castilian Spanish
+(default) and Valencià (standard AVL/GVA spelling). Only **chrome strings**
+(nav, topbar, page headings, empty states, tweaks panel) are translated;
+**data content** (press headlines, acta titles, official names, promise
+quotes, legal citations) stays in the source language to preserve verbatim
+accuracy. The toggle lives in the TweaksPanel, persists to
+`localStorage['cp:lang']`, and updates `<html lang>` for a11y. Target personas: engaged citizen (default), journalist,
 municipal official, activist. The MVP runs locally via launchd
 (bot/LOCAL.md) with all data committed to git; `docs/QUEJAS_DESIGN.md`
 is the full architectural rationale for the Telegram-first Quejas OS.

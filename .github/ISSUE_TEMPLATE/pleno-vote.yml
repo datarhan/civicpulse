@@ -1,0 +1,93 @@
+name: Registrar voto de pleno
+description: Transcribir un acuerdo votado en pleno con cita al acta oficial.
+title: "[Voto pleno] "
+labels: ["pleno-vote"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por colaborar. Este formulario ingresa transcripciones de votos
+        registrados en actas oficiales del Pleno de Riba-roja de Túria. El dato
+        se valida con el esquema en `src/scraper/pleno-votes.ts` y se publica
+        tras revisión humana. No aceptamos interpretaciones, sólo la cita
+        literal del acta.
+
+  - type: input
+    id: pleno-id
+    attributes:
+      label: "ID del pleno"
+      description: "El id que aparece en public/data/plenos.json (columna `id`), e.g. `k4olcs`."
+      placeholder: "k4olcs"
+    validations:
+      required: true
+
+  - type: input
+    id: item-number
+    attributes:
+      label: "Número de punto en el orden del día"
+      placeholder: "3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: "Resultado de la votación"
+      options:
+        - aprobado
+        - rechazado
+        - retirado
+        - aplazado
+    validations:
+      required: true
+
+  - type: textarea
+    id: title
+    attributes:
+      label: "Título del acuerdo (verbatim)"
+      description: "Cita literal del punto tal y como aparece en el acta."
+      placeholder: "Aprobación inicial del presupuesto municipal para el ejercicio 2026."
+    validations:
+      required: true
+
+  - type: textarea
+    id: votes
+    attributes:
+      label: "Votos por grupo"
+      description: |
+        Un grupo por línea en formato `BLOC:direction[:seats]`, por ejemplo:
+        ```
+        PSOE:a_favor:11
+        PP:en_contra:7
+        VOX:abstencion:2
+        Compromís:a_favor:1
+        ```
+        Direcciones admitidas: `a_favor`, `en_contra`, `abstencion`, `ausente`.
+    validations:
+      required: true
+
+  - type: input
+    id: source-url
+    attributes:
+      label: "URL del acta oficial"
+      placeholder: "http://www.ribarroja.es/plenos/2026/acta-20-abril.pdf"
+    validations:
+      required: true
+
+  - type: input
+    id: department
+    attributes:
+      label: "Departamento / concejalía (opcional)"
+      placeholder: "Hacienda"
+
+  - type: input
+    id: expediente
+    attributes:
+      label: "Expediente (opcional)"
+      placeholder: "4305/2026/GEN"
+
+  - type: textarea
+    id: note
+    attributes:
+      label: "Nota editorial (opcional)"
+      description: "Por ejemplo: «Votación nominal» o «Con voto de calidad del Alcalde»."

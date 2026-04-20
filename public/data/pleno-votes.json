@@ -1,0 +1,13 @@
+{
+  "generatedAt": "2026-04-20T00:00:00.000Z",
+  "source": {
+    "description": "Curated voting records transcribed verbatim from published pleno actas (Ayuntamiento de Riba-roja de Túria). Each record cites the source acta URL and the retrieval date.",
+    "contract": "Human-edited, schema-validated. Mutations only via npm run pleno-vote CLI or GH Issue ingestion workflow."
+  },
+  "stats": {
+    "total": 0,
+    "byOutcome": { "aprobado": 0, "rechazado": 0, "retirado": 0, "aplazado": 0 },
+    "byPleno": {}
+  },
+  "items": []
+}

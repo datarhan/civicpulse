@@ -5,12 +5,14 @@ import { Pill } from './Primitives'
 import { NAV } from './Sidebar'
 import { useOfficials } from '../hooks/useOfficials'
 import { usePromises } from '../hooks/usePromises'
+import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from '../hooks/useQuejas'
 
 export function CmdK({ open, onClose, onOpen }) {
   const navigate = useNavigate()
   const [q, setQ] = useState('')
   const { data: officials } = useOfficials()
   const { data: promises } = usePromises()
+  const { data: quejas } = useQuejas()
 
   const all = [
     ...NAV.map((n) => ({ kind: 'Página', label: n.label, to: n.to, icon: n.icon })),
@@ -28,6 +30,18 @@ export function CmdK({ open, onClose, onOpen }) {
       to: '/promesas',
       icon: Ic.check,
     })),
+    ...(quejas?.items ?? []).slice(0, 40).map((qu) => ({
+      kind: 'Queja',
+      label: `${qu.service_request_id} · ${(qu.description || '').slice(0, 80)}`,
+      sub:
+        (CATEGORY_LABEL[qu.service_code] || qu.service_code) +
+        ' · ' +
+        (STATE_LABEL[qu.status] || qu.status) +
+        (qu.concejalia_area ? ' · ' + qu.concejalia_area : ''),
+      to: `/quejas/${qu.service_request_id.toLowerCase()}`,
+      icon: Ic.warn,
+    })),
+    { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },
     { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
     { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
   ]

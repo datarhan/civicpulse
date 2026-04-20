@@ -2,11 +2,11 @@ import { Ic } from './Icons'
 
 const TONES = {
   neutral: { bg: 'var(--soft)',       fg: 'var(--ink)' },
-  civic:   { bg: 'var(--civic-soft)', fg: 'var(--civic)' },
-  ok:      { bg: 'var(--ok-soft)',    fg: 'var(--ok)' },
-  warn:    { bg: 'var(--warn-soft)',  fg: 'var(--warn)' },
-  crit:    { bg: 'var(--crit-soft)',  fg: 'var(--crit)' },
-  intel:   { bg: 'var(--intel-soft)', fg: 'var(--intel)' },
+  civic:   { bg: 'var(--civic-soft)', fg: 'var(--civic-ink)' },
+  ok:      { bg: 'var(--ok-soft)',    fg: 'var(--ok-ink)' },
+  warn:    { bg: 'var(--warn-soft)',  fg: 'var(--warn-ink)' },
+  crit:    { bg: 'var(--crit-soft)',  fg: 'var(--crit-ink)' },
+  intel:   { bg: 'var(--intel-soft)', fg: 'var(--intel-ink)' },
   ghost:   { bg: 'transparent',       fg: 'var(--ink60)', border: '1px solid var(--border)' },
 }
 

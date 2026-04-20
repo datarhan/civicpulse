@@ -9,6 +9,7 @@ import {
   prettyNeighborhood,
 } from '../hooks/useQuejas'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
@@ -90,6 +91,7 @@ export default function QuejaDetail() {
 
   const id = (rawId || '').toUpperCase()
   const queja = (data?.items || []).find((q) => q.service_request_id === id)
+  useDocumentTitle(queja ? `${id} · ${queja.description?.slice(0, 60)}` : id)
   const qResponses = (responses?.items || []).filter((r) => r.queja_id === id)
   const concejal = officials?.officials?.find((o) => o.slug === queja?.concejal_slug)
 

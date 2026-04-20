@@ -6,3 +6,5 @@ dist/
 *.log
 .vercel
 .claude/scheduled_tasks.lock
+playwright-report/
+test-results/

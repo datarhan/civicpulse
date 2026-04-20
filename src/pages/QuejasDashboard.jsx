@@ -8,6 +8,8 @@ import {
   prettyNeighborhood,
 } from '../hooks/useQuejas'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { useT } from '../i18n'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
@@ -185,6 +187,105 @@ function NeighborhoodBreakdown({ byNeighborhood }) {
   )
 }
 
+function plazoForCategory(cat) {
+  if (cat === 'transparencia') return 30
+  return 90
+}
+
+function ReadyToEscalate({ items }) {
+  const now = Date.now()
+  const urgent = (items || [])
+    .filter((q) => q.registered_at && (q.status === 'registrada' || q.status === 'notificada_10d' || q.status === 'en_tramite' || q.status === 'silencio_negativo'))
+    .map((q) => {
+      const plazo = plazoForCategory(q.service_code)
+      const regMs = new Date(q.registered_at).getTime()
+      const ageDays = (now - regMs) / (1000 * 60 * 60 * 24)
+      const pct = plazo > 0 ? ageDays / plazo : 0
+      return { q, plazo, ageDays, pct }
+    })
+    .filter(({ pct }) => pct >= 0.8) // ≥80% of legal plazo consumed
+    .sort((a, b) => b.pct - a.pct)
+    .slice(0, 10)
+
+  if (urgent.length === 0) return null
+
+  return (
+    <Card style={{ marginTop: 14, borderLeft: '3px solid var(--warn)' }}>
+      <SectionHead
+        eyebrow="Acción urgente · moderador"
+        title="Quejas cerca de o en silencio administrativo"
+      />
+      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.5 }}>
+        Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas
+        para <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento —
+        se generará el template para el Síndic de Greuges CV.
+      </div>
+      <div style={{ marginTop: 10 }}>
+        {urgent.map(({ q, plazo, ageDays, pct }) => {
+          const remaining = Math.max(0, plazo - Math.floor(ageDays))
+          const overBy = Math.max(0, Math.floor(ageDays) - plazo)
+          const tone = overBy > 0 ? 'crit' : 'warn'
+          return (
+            <Link
+              key={q.service_request_id}
+              to={`/quejas/${q.service_request_id.toLowerCase()}`}
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'min-content 1fr min-content min-content',
+                alignItems: 'center',
+                gap: 12,
+                padding: '10px 0',
+                borderBottom: '1px dotted var(--border2)',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+                {q.service_request_id}
+              </span>
+              <div style={{ minWidth: 0 }}>
+                <div
+                  style={{
+                    fontSize: 13.5,
+                    fontWeight: 500,
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {q.description}
+                </div>
+                <div
+                  className="mono"
+                  style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}
+                >
+                  {CATEGORY_LABEL[q.service_code] || q.service_code}
+                  {q.concejalia_area ? ' · ' + q.concejalia_area : ''}
+                  {' · plazo ' + plazo + ' días'}
+                </div>
+              </div>
+              <span
+                className="mono"
+                style={{
+                  fontSize: 12,
+                  color: overBy > 0 ? 'var(--crit)' : 'var(--warn)',
+                  fontWeight: 700,
+                  textAlign: 'right',
+                }}
+              >
+                {overBy > 0 ? `+${overBy}d` : `${remaining}d`}
+              </span>
+              <Pill tone={tone} size="xs">
+                {overBy > 0 ? 'Silencio' : `${Math.round(pct * 100)}%`}
+              </Pill>
+            </Link>
+          )
+        })}
+      </div>
+    </Card>
+  )
+}
+
 function TopPending({ items }) {
   const pending = (items || [])
     .filter((q) =>
@@ -238,6 +339,8 @@ function TopPending({ items }) {
 }
 
 export default function QuejasDashboard() {
+  const t = useT()
+  useDocumentTitle(t('dashboard.title'))
   const { loading, error, data } = useQuejas()
   const { data: officials } = useOfficials()
 
@@ -274,10 +377,10 @@ export default function QuejasDashboard() {
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}>
       <div style={{ marginBottom: 18 }}>
         <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
-          Voz ciudadana · dashboard
+          {t('dashboard.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
-          Salud del canal de quejas
+          {t('dashboard.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 720 }}>
           Vista agregada de todas las quejas capturadas vía{' '}
@@ -285,7 +388,7 @@ export default function QuejasDashboard() {
             Telegram
           </a>
           . Métricas LPACAP, concejalía responsable y presión vecinal.{' '}
-          <Link to="/quejas" style={{ color: 'var(--civic)' }}>← Feed público</Link>
+          <Link to="/quejas" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>← Feed público</Link>
         </div>
       </div>
 
@@ -313,6 +416,7 @@ export default function QuejasDashboard() {
             <NeighborhoodBreakdown byNeighborhood={stats.byNeighborhood} />
           </div>
 
+          <ReadyToEscalate items={items} />
           <SlaPanel byConcejal={stats.byConcejal} officials={officials} />
           <TopPending items={items} />
         </>

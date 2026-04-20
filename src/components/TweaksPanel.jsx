@@ -1,4 +1,5 @@
 import { Ic } from './Icons'
+import { useLocale, useT, LOCALES } from '../i18n'
 
 function TwkSelect({ label, value, onChange, opts }) {
   return (
@@ -70,6 +71,8 @@ function TwkToggle({ label, value, onChange }) {
 }
 
 export function TweaksPanel({ open, onClose, state, onChange }) {
+  const t = useT()
+  const { locale, setLocale } = useLocale()
   if (!open) return null
   return (
     <div
@@ -96,28 +99,34 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
         }}
       >
         <Ic.settings width={14} height={14} style={{ color: 'var(--ink50)' }} />
-        <div style={{ fontSize: 12.5, fontWeight: 600, flex: 1 }}>Ajustes</div>
+        <div style={{ fontSize: 12.5, fontWeight: 600, flex: 1 }}>{t('tweaks.title')}</div>
         <button
           onClick={onClose}
           className="mono"
           style={{ fontSize: 10, color: 'var(--ink40)' }}
         >
-          cerrar
+          {t('tweaks.close')}
         </button>
       </div>
       <div style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 14, fontSize: 12.5 }}>
         <TwkSelect
-          label="Densidad"
+          label={t('tweaks.lang.label')}
+          value={locale}
+          onChange={setLocale}
+          opts={LOCALES.map((code) => ({ v: code, l: t(`tweaks.lang.${code}`) }))}
+        />
+        <TwkSelect
+          label={t('tweaks.density.label')}
           value={state.density}
           onChange={(v) => onChange({ density: v })}
           opts={[
-            { v: 'compact', l: 'Compacta' },
-            { v: 'comfortable', l: 'Cómoda' },
-            { v: 'spacious', l: 'Espaciosa' },
+            { v: 'compact', l: t('tweaks.density.compact') },
+            { v: 'comfortable', l: t('tweaks.density.comfortable') },
+            { v: 'spacious', l: t('tweaks.density.spacious') },
           ]}
         />
         <TwkToggle
-          label="Modo oscuro"
+          label={t('tweaks.dark')}
           value={state.dark}
           onChange={(v) => onChange({ dark: v })}
         />
@@ -127,10 +136,11 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
 }
 
 export function TweaksButton({ onOpen }) {
+  const t = useT()
   return (
     <button
       onClick={onOpen}
-      aria-label="Ajustes"
+      aria-label={t('tweaks.open.aria')}
       style={{
         position: 'fixed',
         bottom: 20,

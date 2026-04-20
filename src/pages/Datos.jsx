@@ -6,6 +6,7 @@ import { useOfficials } from '../hooks/useOfficials'
 import { useBudget } from '../hooks/useBudget'
 import { useTenders } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
+import { useT } from '../i18n'
 import { usePlenos } from '../hooks/usePlenos'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePress } from '../hooks/usePress'
@@ -383,7 +384,7 @@ function PopulationChart() {
             style={{
               fontSize: 14,
               fontWeight: 700,
-              color: data.growth.decadePct >= 0 ? 'var(--ok)' : 'var(--crit)',
+              color: data.growth.decadePct >= 0 ? 'var(--ok-ink)' : 'var(--crit-ink)',
             }}
           >
             {data.growth.decadePct >= 0 ? '+' : ''}
@@ -467,6 +468,7 @@ function PopulationChart() {
 }
 
 export default function Datos() {
+  const t = useT()
   return (
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
       <div style={{ marginBottom: 18 }}>
@@ -479,10 +481,10 @@ export default function Datos() {
             letterSpacing: '.08em',
           }}
         >
-          Datos abiertos
+          {t('datos.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
-          Datasets y APIs
+          {t('datos.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
           Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo, investigación y

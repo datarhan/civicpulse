@@ -54,10 +54,10 @@ export function isPromiseFrozen(snap, now = new Date()) {
 }
 
 export const PARTY_TONE = {
-  PSOE: '#E8213A',
+  PSOE: '#D01832',
   PP: '#2463EB',
-  VOX: '#63BE33',
-  'Compromís': '#D4811E',
+  VOX: '#3A8018',
+  'Compromís': '#A06116',
   Otro: '#64748B',
 }
 

@@ -1,17 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import { Ic } from './Icons'
 import { useWikidata } from '../hooks/useWikidata'
+import { useT } from '../i18n'
 
 // Landing (/) always renders Direction D — the map kiosk with real data.
 // Table-view pages below stay inside the Sidebar+Topbar shell.
+// `labelKey` is an i18n key; `label` is the fallback display string used by
+// breadcrumb matching when the key is not loaded (e.g. during SSR/hydration).
 export const NAV = [
-  { to: '/',            id: 'inicio',   label: 'Panel',        icon: Ic.home,   shortcut: 'G H' },
-  { to: '/cargos',      id: 'cargos',   label: 'Cargos',       icon: Ic.people, shortcut: 'G C' },
-  { to: '/presupuesto', id: 'presup',   label: 'Presupuesto',  icon: Ic.coin,   shortcut: 'G P' },
-  { to: '/plenos',      id: 'plenos',   label: 'Plenos',       icon: Ic.scale,  shortcut: 'G L' },
-  { to: '/promesas',    id: 'promesas', label: 'Promesas',     icon: Ic.scale,  shortcut: 'G R' },
-  { to: '/datos',       id: 'datos',    label: 'Datos',        icon: Ic.chart,  shortcut: 'G D' },
-  { to: '/quejas',      id: 'quejas',   label: 'Quejas',       icon: Ic.warn,   shortcut: 'G Q' },
+  { to: '/',            id: 'inicio',   labelKey: 'nav.inicio',   label: 'Panel',       icon: Ic.home,   shortcut: 'G H' },
+  { to: '/cargos',      id: 'cargos',   labelKey: 'nav.cargos',   label: 'Cargos',      icon: Ic.people, shortcut: 'G C' },
+  { to: '/presupuesto', id: 'presup',   labelKey: 'nav.presup',   label: 'Presupuesto', icon: Ic.coin,   shortcut: 'G P' },
+  { to: '/plenos',      id: 'plenos',   labelKey: 'nav.plenos',   label: 'Plenos',      icon: Ic.scale,  shortcut: 'G L' },
+  { to: '/promesas',    id: 'promesas', labelKey: 'nav.promesas', label: 'Promesas',    icon: Ic.scale,  shortcut: 'G R' },
+  { to: '/datos',       id: 'datos',    labelKey: 'nav.datos',    label: 'Datos',       icon: Ic.chart,  shortcut: 'G D' },
+  { to: '/quejas',      id: 'quejas',   labelKey: 'nav.quejas',   label: 'Quejas',      icon: Ic.warn,   shortcut: 'G Q' },
 ]
 
 function CityChip() {
@@ -54,10 +57,11 @@ function CityChip() {
   )
 }
 
-export function Sidebar() {
+export function Sidebar({ open = false, onClose }) {
+  const t = useT()
   return (
     <aside
-      className="cp-shell-sidebar"
+      className={`cp-shell-sidebar${open ? ' cp-sidebar-open' : ''}`}
       style={{
         width: 232,
         background: 'var(--paper)',
@@ -69,6 +73,10 @@ export function Sidebar() {
         top: 0,
         height: '100vh',
         zIndex: 5,
+      }}
+      onClick={(e) => {
+        // Close drawer when a nav link inside the sidebar is clicked (mobile)
+        if (onClose && e.target.closest('a')) onClose()
       }}
     >
       <div
@@ -106,7 +114,7 @@ export function Sidebar() {
             letterSpacing: '.1em',
           }}
         >
-          Navegación
+          {t('nav.section')}
         </div>
         {NAV.map((n) => (
           <NavLink
@@ -140,7 +148,7 @@ export function Sidebar() {
             }}
           >
             <n.icon width={18} height={18} style={{ flexShrink: 0, opacity: 0.9 }} />
-            <span style={{ flex: 1 }}>{n.label}</span>
+            <span style={{ flex: 1 }}>{t(n.labelKey)}</span>
             {n.liveBadge && (
               <span
                 className="mono"
@@ -183,21 +191,21 @@ export function Sidebar() {
         }}
       >
         <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', letterSpacing: '.08em' }}>
-          MVP público · datos abiertos
+          {t('sidebar.footer.tag')}
         </div>
         <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 3 }}>
           <a
             href="/aviso-legal"
             style={{ color: 'var(--civic)', textDecoration: 'none' }}
           >
-            Aviso legal
+            {t('sidebar.footer.legal')}
           </a>{' '}
           ·{' '}
           <a
             href="/metodologia"
             style={{ color: 'var(--civic)', textDecoration: 'none' }}
           >
-            Metodología
+            {t('sidebar.footer.method')}
           </a>
         </div>
       </div>

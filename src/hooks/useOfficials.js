@@ -32,13 +32,16 @@ export function useOfficials() {
   return state
 }
 
+// Party brand colors, tuned so white text at ≥9px bold meets WCAG AA (≥4.5:1).
+// The original brand values fail contrast; these are the darkened AA-safe variants
+// used in Spanish political press for print.
 export const PARTY_COLORS = {
-  PSOE: '#E8213A',
+  PSOE: '#D01832',
   PP: '#2463EB',
-  VOX: '#63BE33',
-  'Compromís': '#D4811E',
-  Ciudadanos: '#F29F3C',
-  Otro: '#8B5CF6',
+  VOX: '#3A8018',
+  'Compromís': '#A06116',
+  Ciudadanos: '#B05A10',
+  Otro: '#6D3FE5',
 }
 
 export function partyColor(party) {

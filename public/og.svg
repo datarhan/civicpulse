@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- CivicPulse mark -->
+  <rect x="80" y="80" width="80" height="80" rx="18" fill="#2463EB"/>
+  <path d="M110 110 Q 120 110, 124 98 T 140 86 Q 146 82, 150 100 T 166 122 Q 172 128, 182 110"
+        fill="none" stroke="white" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Brand -->
+  <text x="190" y="120" font-family="Outfit, system-ui, sans-serif" font-size="44" font-weight="700" fill="white"
+        letter-spacing="-1">CivicPulse</text>
+  <text x="190" y="152" font-family="DM Mono, ui-monospace, monospace" font-size="18" fill="#60A5FA"
+        letter-spacing="2">RIBA-ROJA DE TÚRIA · MVP</text>
+
+  <!-- Main title -->
+  <text x="80" y="310" font-family="Fraunces, Georgia, serif" font-size="76" font-weight="800" fill="white"
+        letter-spacing="-2">
+    Tus quejas ciudadanas,
+  </text>
+  <text x="80" y="400" font-family="Fraunces, Georgia, serif" font-size="76" font-weight="800" fill="#F5B544"
+        letter-spacing="-2">
+    con reloj legal.
+  </text>
+
+  <!-- Sub -->
+  <text x="80" y="475" font-family="Outfit, system-ui, sans-serif" font-size="26" fill="#E2E8F0">
+    Telegram → sede electrónica → Síndic de Greuges CV
+  </text>
+  <text x="80" y="510" font-family="DM Mono, ui-monospace, monospace" font-size="18" fill="#94A3B8"
+        letter-spacing="1">
+    LPACAP · Ley 19/2013 · datos abiertos · bot @munigraph_bot
+  </text>
+
+  <!-- Footer chip -->
+  <rect x="80" y="545" width="450" height="38" rx="6" fill="rgba(36,99,235,.25)" stroke="#60A5FA" stroke-width="1"/>
+  <text x="100" y="570" font-family="DM Mono, ui-monospace, monospace" font-size="14" fill="#60A5FA"
+        letter-spacing="2">
+    CIVICPULSE-VIRID.VERCEL.APP
+  </text>
+</svg>

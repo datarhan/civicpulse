@@ -3,6 +3,9 @@ import { useParticipa, KIND_ICON, KIND_LABEL } from '../hooks/useParticipa'
 import { useMemo, useState } from 'react'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoAgendas, SECTION_LABEL, SECTION_TONE } from '../hooks/usePlenoAgendas'
+import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE, DIRECTION_TONE } from '../hooks/usePlenoVotes'
+import { partyColor } from '../hooks/useOfficials'
+import { useT } from '../i18n'
 
 function AgendaRow({ item }) {
   return (
@@ -197,6 +200,149 @@ function RealPlenosList() {
   )
 }
 
+function VoteTuple({ v }) {
+  const tone = DIRECTION_TONE[v.direction] || 'neutral'
+  const toneVar = tone === 'ok' ? 'var(--ok-ink)'
+    : tone === 'crit' ? 'var(--crit-ink)'
+    : tone === 'warn' ? 'var(--warn-ink)'
+    : 'var(--ink60)'
+  const bg = tone === 'ok' ? 'var(--ok-soft)'
+    : tone === 'crit' ? 'var(--crit-soft)'
+    : tone === 'warn' ? 'var(--warn-soft)'
+    : 'var(--soft)'
+  return (
+    <span
+      className="mono"
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 6,
+        padding: '2px 8px',
+        borderRadius: 999,
+        fontSize: 10.5,
+        background: bg,
+        color: toneVar,
+        fontWeight: 600,
+      }}
+    >
+      <span style={{ width: 6, height: 6, borderRadius: '50%', background: partyColor(v.bloc) }} />
+      {v.bloc} · {v.direction === 'a_favor' ? '✓' : v.direction === 'en_contra' ? '✗' : v.direction === 'abstencion' ? '○' : '—'}
+    </span>
+  )
+}
+
+function PlenoVotesBlock() {
+  const t = useT()
+  const { loading, error, data } = usePlenoVotes()
+  if (loading) return null
+  const items = data?.items || []
+  const fmtDate = (iso) =>
+    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+
+  return (
+    <div style={{ marginTop: 28 }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10.5,
+            color: 'var(--ink50)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
+          }}
+        >
+          {t('plenos.votes.heading')}
+        </div>
+        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+          · transcrito verbatim del acta · {items.length} acuerdo{items.length === 1 ? '' : 's'}
+        </div>
+      </div>
+
+      {error && (
+        <Card>
+          <div style={{ fontSize: 13, color: 'var(--ink60)' }}>
+            No se pudo cargar /data/pleno-votes.json.
+          </div>
+        </Card>
+      )}
+
+      {!error && items.length === 0 && (
+        <Card>
+          <SectionHead
+            eyebrow={t('plenos.votes.empty.eyebrow')}
+            title={t('plenos.votes.empty.title')}
+          />
+          <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.55 }}>
+            Este módulo transcribe el sentido del voto de cada grupo municipal sobre los
+            acuerdos del pleno. Las transcripciones se incorporan a partir del acta oficial
+            publicada por la secretaría del ayuntamiento — manual y verificable. Cuando se
+            publique el primer acuerdo votado, aparecerá aquí con cita a la fuente.
+          </div>
+          <div style={{ marginTop: 10, fontSize: 12 }}>
+            <a
+              href="https://github.com/datarhan/civicpulse/issues/new?template=pleno-vote.yml"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+            >
+              Enviar acta con voto registrado →
+            </a>
+          </div>
+        </Card>
+      )}
+
+      {!error && items.length > 0 && (
+        <Card>
+          {items.slice(0, 20).map((rec, i) => (
+            <div
+              key={rec.id}
+              style={{
+                padding: i === 0 ? '0 0 14px' : '14px 0',
+                borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
+                <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
+                  {fmtDate(rec.plenoDate)}
+                </span>
+                <Pill tone={OUTCOME_TONE[rec.outcome]} size="xs">
+                  {OUTCOME_LABEL[rec.outcome]}
+                </Pill>
+                {rec.department && (
+                  <span className="mono" style={{ fontSize: 9.5, color: 'var(--civic)', textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 700 }}>
+                    {rec.department}
+                  </span>
+                )}
+                {rec.expediente && (
+                  <span className="mono" style={{ fontSize: 9.5, color: 'var(--ink50)' }}>
+                    Expte. {rec.expediente}
+                  </span>
+                )}
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 600, lineHeight: 1.35, marginBottom: 8 }}>
+                {rec.itemNumber}. {rec.title}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 6 }}>
+                {rec.votes.map((v) => <VoteTuple key={v.bloc} v={v} />)}
+              </div>
+              <div style={{ fontSize: 11, color: 'var(--ink60)' }}>
+                <a
+                  href={rec.sourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+                >
+                  Ver acta en {rec.sourcePublisher} →
+                </a>
+              </div>
+            </div>
+          ))}
+        </Card>
+      )}
+    </div>
+  )
+}
+
 function ParticipaBlock() {
   const { loading, error, data } = useParticipa()
   if (loading || error || !data) return null
@@ -302,6 +448,7 @@ function ParticipaBlock() {
 }
 
 export default function Plenos() {
+  const t = useT()
   return (
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
       <div style={{ marginBottom: 18 }}>
@@ -314,14 +461,15 @@ export default function Plenos() {
             letterSpacing: '.08em',
           }}
         >
-          Órganos de gobierno
+          {t('plenos.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
-          Plenos municipales
+          {t('plenos.title')}
         </div>
       </div>
 
       <RealPlenosList />
+      <PlenoVotesBlock />
       <ParticipaBlock />
     </div>
   )

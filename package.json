@@ -9,6 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
     "scrape:officials": "npx tsx scripts/scrape-officials.ts",
     "scrape:budget": "npx tsx scripts/scrape-budget.ts",
     "scrape:tenders": "npx tsx scripts/scrape-tenders.ts",
@@ -31,7 +33,8 @@
     "route-queja": "npx tsx scripts/route-queja.ts",
     "queja-reply": "npx tsx scripts/apply-queja-response.ts",
     "sindic:add": "npx tsx scripts/add-sindic-resolucion.ts",
-    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos && npm run scrape:wikidata && npm run scrape:ctbg && npm run scrape:consell-cv && npm run scrape:promise-suggestions"
+    "pleno-vote": "npx tsx scripts/apply-pleno-vote.ts",
+    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos && npm run scrape:pleno-agendas && npm run scrape:wikidata && npm run scrape:ctbg && npm run scrape:consell-cv && npm run scrape:promise-suggestions"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
@@ -41,6 +44,8 @@
     "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.2",
+    "@playwright/test": "^1.59.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@vitejs/plugin-react": "^4.3.4",

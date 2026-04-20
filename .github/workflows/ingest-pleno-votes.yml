@@ -1,0 +1,137 @@
+name: Ingest pleno votes
+
+on:
+  issues:
+    types: [labeled, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to re-process
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.label.name == 'pleno-vote') ||
+      (github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'pleno-vote'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Extract fields from issue body into vote.json
+        id: parse
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          set -euo pipefail
+          BODY=$(gh issue view "$ISSUE_NUMBER" --json body -q .body)
+
+          field() {
+            awk -v h="$1" 'BEGIN{cap=0} $0 == "### " h {cap=1; next} /^### /{cap=0} cap' <<< "$BODY" | sed '/^$/d' | awk '{$1=$1;print}' | head -n 20
+          }
+
+          PLENO_ID=$(field 'ID del pleno' | head -n1)
+          ITEM=$(field 'Número de punto en el orden del día' | head -n1)
+          OUTCOME=$(field 'Resultado de la votación' | head -n1)
+          TITLE=$(field 'Título del acuerdo (verbatim)' | tr '\n' ' ' | sed 's/  */ /g' | awk '{$1=$1;print}')
+          VOTES_RAW=$(field 'Votos por grupo')
+          URL=$(field 'URL del acta oficial' | head -n1)
+          DEPT=$(field 'Departamento / concejalía (opcional)' | head -n1)
+          EXP=$(field 'Expediente (opcional)' | head -n1)
+          NOTE=$(field 'Nota editorial (opcional)' | tr '\n' ' ' | sed 's/  */ /g' | awk '{$1=$1;print}')
+
+          if [ -z "$PLENO_ID" ] || [ -z "$ITEM" ] || [ -z "$OUTCOME" ] || [ -z "$TITLE" ] || [ -z "$VOTES_RAW" ] || [ -z "$URL" ]; then
+            echo "::error::Missing required fields (pleno-id / item / outcome / title / votes / source url)"
+            gh issue comment "$ISSUE_NUMBER" --body ":warning: No se pudieron extraer todos los campos obligatorios. Revisa la plantilla y vuelve a enviar."
+            exit 1
+          fi
+
+          PLENO_DATE=$(node -e "const d = JSON.parse(require('node:fs').readFileSync('public/data/plenos.json','utf8')).items.find(x => x.id === process.argv[1]); if(!d){process.exit(42)}; process.stdout.write(d.date)" "$PLENO_ID") || {
+            gh issue comment "$ISSUE_NUMBER" --body ":x: Pleno id \`$PLENO_ID\` no encontrado en \`public/data/plenos.json\`. Comprueba el id."
+            exit 1
+          }
+
+          VOTE_JSON=$(node -e "
+            const raw = process.argv[1].trim().split(/[\r\n]+/).filter(Boolean)
+            const out = raw.map((line) => {
+              const parts = line.split(':').map((s) => s.trim())
+              const [bloc, direction, seats] = parts
+              const rec = { bloc, direction }
+              if (seats) rec.seats = Number(seats)
+              return rec
+            })
+            process.stdout.write(JSON.stringify(out))
+          " "$VOTES_RAW")
+
+          PADDED_ITEM=$(printf '%02d' "$ITEM")
+          node -e "
+            const fs = require('node:fs')
+            const rec = {
+              id: process.argv[1] + '-' + process.argv[2],
+              plenoId: process.argv[1],
+              plenoDate: process.argv[3],
+              itemNumber: Number(process.argv[4]),
+              title: process.argv[5],
+              outcome: process.argv[6],
+              votes: JSON.parse(process.argv[7]),
+              sourceUrl: process.argv[8],
+              sourcePublisher: 'Ayuntamiento de Riba-roja de Túria',
+              retrievedAt: new Date().toISOString().slice(0, 10),
+            }
+            if (process.argv[9]) rec.department = process.argv[9]
+            if (process.argv[10]) rec.expediente = process.argv[10]
+            if (process.argv[11]) rec.note = process.argv[11]
+            fs.writeFileSync('/tmp/vote.json', JSON.stringify(rec, null, 2))
+          " "$PLENO_ID" "$PADDED_ITEM" "$PLENO_DATE" "$ITEM" "$TITLE" "$OUTCOME" "$VOTE_JSON" "$URL" "$DEPT" "$EXP" "$NOTE"
+
+          echo "pleno_id=$PLENO_ID" >> "$GITHUB_OUTPUT"
+          echo "item=$PADDED_ITEM" >> "$GITHUB_OUTPUT"
+
+      - name: Apply via curator CLI
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          set -euo pipefail
+          if ! npm run pleno-vote -- --file /tmp/vote.json; then
+            gh issue comment "$ISSUE_NUMBER" --body ":x: CLI validación fallida. Verifica enums (outcome / direction / bloc) y formato de la URL."
+            exit 1
+          fi
+
+      - name: Commit + push if diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet public/data/pleno-votes.json; then
+            echo "No diff to commit."
+            exit 0
+          fi
+          git config user.name  "civicpulse-bot"
+          git config user.email "bot@civicpulse"
+          git add public/data/pleno-votes.json
+          git commit -m "feat(pleno-vote): ingest from #${{ github.event.issue.number || inputs.issue_number }}"
+          git push
+
+      - name: Close the issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+          PLENO_ID: ${{ steps.parse.outputs.pleno_id }}
+          ITEM: ${{ steps.parse.outputs.item }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Voto \`${PLENO_ID}-${ITEM}\` incorporado a \`public/data/pleno-votes.json\`. Visible en https://civicpulse-virid.vercel.app/plenos"
+          gh issue close "$ISSUE_NUMBER" --reason completed

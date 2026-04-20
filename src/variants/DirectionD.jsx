@@ -23,10 +23,10 @@ const PALETTE = {
   bg: '#FAF8F2',
   paper: '#FFFFFF',
   ink: '#0B0F19',
-  ink80: 'rgba(11,15,25,.80)',
-  ink60: 'rgba(11,15,25,.60)',
-  ink50: 'rgba(11,15,25,.50)',
-  ink40: 'rgba(11,15,25,.40)',
+  ink80: 'rgba(11,15,25,.82)',
+  ink60: 'rgba(11,15,25,.68)',
+  ink50: 'rgba(11,15,25,.65)',
+  ink40: 'rgba(11,15,25,.60)',
   rule: '#1F1F1F',
   hair: '#DCD7C8',
   civic: '#2463EB',
@@ -950,10 +950,10 @@ function PromesasBlockD() {
               fontWeight: 700,
               color: 'white',
               background:
-                party === 'PSOE' ? '#E8213A'
+                party === 'PSOE' ? '#D01832'
                   : party === 'PP' ? '#2463EB'
-                  : party === 'VOX' ? '#63BE33'
-                  : party === 'Compromís' ? '#D4811E'
+                  : party === 'VOX' ? '#3A8018'
+                  : party === 'Compromís' ? '#A06116'
                   : '#64748B',
               padding: '2px 7px',
               borderRadius: 3,
