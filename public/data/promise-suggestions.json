@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-04-20T06:01:23.823Z",
+  "generatedAt": "2026-04-20T16:01:08.315Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 16,
     "byProposedStatus": {
-      "documentada": 14,
-      "en-progreso": 2
+      "documentada": 12,
+      "en-progreso": 4
     }
   },
   "suggestions": [
@@ -32,8 +32,8 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxOTmhwZl9xdno5RnI4ajBwTUFWTmdMdjBnNlkxb0VBdUQ2Z3FKeFd2YzFKOEhib3JrNkFDYnAtclJyMFFQQk0xYlpaZDZ2TVRPTWFnQk4waE9lRDVhYTdtcDYzSE9TaWZXbGdzejdqeWRDQkppSVY2ZkVsb1hxZnpaMUxfQVNtOXBiWVUtSi1TNl93aGhXelZnaHJ0a3l2VnRQeTRGNjRSWlZZb3liWDlMR1R3MVl4U1oteVdERVlHYi1vcjlfLXIzaHJWVmMwYVF4Yjc2T2dMQVZfQi1QbG8tU0RDQVpVd0JMdEZwMDJZc0JCUDlTc1hMdDExeUFybk1fUlBDQWN2V0hkV1drMGtPQjgyUUlDWGFNaS1oaGswYmVackRYa0FLX0RubWF6Z1BVcVBvMkpTZndFOGFIa0tmQUxLYmlzbWdyaXN3b0FhaHI1TTI1aWdDaFFucllubk5MSFd0VnpIS1o1T0lRUnYw?oc=5",
-          "date": "2026-04-15",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQOVp0N3ZEU19kVDlpX1JYcnI2aGppNmFldjJHanlPWWFaSGtidVNCLUVHeTVZM3duS3lialgxWFBLSGZnRU1pNl85TE04NldUTzJkaFQzaTMwZDQwdmJPZW9yeHRuc1VCeUR1TU5RcGlXOHJGQUd6bTU5WW5ZYjBKYVAyZE5SWGxqd01DTHprOWU0MzlZY2E4VGNZQ19QV1N6OU9TWkRiZWlwZU5jdUVJUHZ0V1ZJcE10aFNsWnFDbmFnaW1ObHNScFhvVVZwal9ZeGc3WlE3RXE?oc=5",
+          "date": "2026-04-19",
           "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
           "kind": "press",
           "publisher": "MSN",
@@ -80,7 +80,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -106,8 +106,8 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxOTmhwZl9xdno5RnI4ajBwTUFWTmdMdjBnNlkxb0VBdUQ2Z3FKeFd2YzFKOEhib3JrNkFDYnAtclJyMFFQQk0xYlpaZDZ2TVRPTWFnQk4waE9lRDVhYTdtcDYzSE9TaWZXbGdzejdqeWRDQkppSVY2ZkVsb1hxZnpaMUxfQVNtOXBiWVUtSi1TNl93aGhXelZnaHJ0a3l2VnRQeTRGNjRSWlZZb3liWDlMR1R3MVl4U1oteVdERVlHYi1vcjlfLXIzaHJWVmMwYVF4Yjc2T2dMQVZfQi1QbG8tU0RDQVpVd0JMdEZwMDJZc0JCUDlTc1hMdDExeUFybk1fUlBDQWN2V0hkV1drMGtPQjgyUUlDWGFNaS1oaGswYmVackRYa0FLX0RubWF6Z1BVcVBvMkpTZndFOGFIa0tmQUxLYmlzbWdyaXN3b0FhaHI1TTI1aWdDaFFucllubk5MSFd0VnpIS1o1T0lRUnYw?oc=5",
-          "date": "2026-04-15",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQOVp0N3ZEU19kVDlpX1JYcnI2aGppNmFldjJHanlPWWFaSGtidVNCLUVHeTVZM3duS3lialgxWFBLSGZnRU1pNl85TE04NldUTzJkaFQzaTMwZDQwdmJPZW9yeHRuc1VCeUR1TU5RcGlXOHJGQUd6bTU5WW5ZYjBKYVAyZE5SWGxqd01DTHprOWU0MzlZY2E4VGNZQ19QV1N6OU9TWkRiZWlwZU5jdUVJUHZ0V1ZJcE10aFNsWnFDbmFnaW1ObHNScFhvVVZwal9ZeGc3WlE3RXE?oc=5",
+          "date": "2026-04-19",
           "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
           "kind": "press",
           "publisher": "MSN",
@@ -153,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -189,7 +189,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -227,7 +227,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -262,7 +262,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -286,7 +286,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -324,7 +324,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -344,7 +344,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -352,7 +352,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -371,12 +371,12 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
-      "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.7,
       "reasoning": [
         {
           "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMGRHc0hETGtMNWVEUGdUYjY5Ny1Wb1hYdGlmMzNOTW9xX2ZhbmNGekZ1QlpvRTFuX3NPV2RJZUhNOEliSGxyb1c1eEZ6QlVjT2E2MUpETGczSGEyM2EwUVY5VW9DV296QTJReEZicVVvN0ZFa18wVlhsbml0ZV9nczRuTllNdGtRSGFaX1E2VVFWcmV2NXVsYTdiY1ZicGZWUDhv?oc=5",
@@ -393,8 +393,8 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7wJBVV95cUxOTmhwZl9xdno5RnI4ajBwTUFWTmdMdjBnNlkxb0VBdUQ2Z3FKeFd2YzFKOEhib3JrNkFDYnAtclJyMFFQQk0xYlpaZDZ2TVRPTWFnQk4waE9lRDVhYTdtcDYzSE9TaWZXbGdzejdqeWRDQkppSVY2ZkVsb1hxZnpaMUxfQVNtOXBiWVUtSi1TNl93aGhXelZnaHJ0a3l2VnRQeTRGNjRSWlZZb3liWDlMR1R3MVl4U1oteVdERVlHYi1vcjlfLXIzaHJWVmMwYVF4Yjc2T2dMQVZfQi1QbG8tU0RDQVpVd0JMdEZwMDJZc0JCUDlTc1hMdDExeUFybk1fUlBDQWN2V0hkV1drMGtPQjgyUUlDWGFNaS1oaGswYmVackRYa0FLX0RubWF6Z1BVcVBvMkpTZndFOGFIa0tmQUxLYmlzbWdyaXN3b0FhaHI1TTI1aWdDaFFucllubk5MSFd0VnpIS1o1T0lRUnYw?oc=5",
-          "date": "2026-04-15",
+          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQOVp0N3ZEU19kVDlpX1JYcnI2aGppNmFldjJHanlPWWFaSGtidVNCLUVHeTVZM3duS3lialgxWFBLSGZnRU1pNl85TE04NldUTzJkaFQzaTMwZDQwdmJPZW9yeHRuc1VCeUR1TU5RcGlXOHJGQUd6bTU5WW5ZYjBKYVAyZE5SWGxqd01DTHprOWU0MzlZY2E4VGNZQ19QV1N6OU9TWkRiZWlwZU5jdUVJUHZ0V1ZJcE10aFNsWnFDbmFnaW1ObHNScFhvVVZwal9ZeGc3WlE3RXE?oc=5",
+          "date": "2026-04-19",
           "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
           "kind": "press",
           "publisher": "MSN",
@@ -435,10 +435,20 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
+          "date": "2026-04-20",
+          "quote": "ASUNTO DE URGENCIA, Expediente 1562/2018/GEN, Aceptación propuesta de adjudicación mesa de contratación relativo al contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "aceptacion",
+            "municipio"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -458,13 +468,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
-      "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
+          "date": "2026-04-13",
+          "quote": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "servicio",
+            "vecino"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
           "date": "2026-03-17",
@@ -474,6 +495,17 @@
           "matchedKeywords": [
             "gestion",
             "municipio"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
+          "date": "2026-04-20",
+          "quote": "ASUNTO DE URGENCIA, Expediente 1562/2018/GEN, Aceptación propuesta de adjudicación mesa de contratación relativo al contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "gestion",
+            "municipio",
+            "servicio"
           ]
         },
         {
@@ -497,20 +529,10 @@
             "municipio",
             "servicio"
           ]
-        },
-        {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Asunto de Urgencia. Expediente 615/2025/GEN, Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
-          "kind": "pleno",
-          "matchedKeywords": [
-            "municipio",
-            "servicio"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -549,7 +571,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -588,7 +610,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -618,7 +640,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-20T06:01:23.799Z"
+      "generatedAt": "2026-04-20T16:01:08.239Z"
     }
   ]
 }

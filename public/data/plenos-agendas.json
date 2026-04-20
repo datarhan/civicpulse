@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-04-20T05:59:39.126Z",
+  "generatedAt": "2026-04-20T16:00:54.888Z",
   "source": {
     "baseUrl": "http://www.ribarroja.es",
     "description": "Ayuntamiento de Riba-roja de Túria — páginas individuales de 'Pleno ordinario/extraordinario' con la convocatoria y orden del día."
   },
   "stats": {
     "plenosFetched": 30,
-    "agendaItemsTotal": 246,
+    "agendaItemsTotal": 247,
     "plenosWithRuegos": 19,
     "uniqueDepartments": 27
   },
@@ -71,82 +71,89 @@
         {
           "number": 1,
           "title": "Aprobación Actas anteriores de fecha 9 de marzo 2026 y 16 de marzo de 2026",
-          "section": "resolutiva",
+          "section": "apertura",
           "department": null,
           "expediente": null
         },
         {
           "number": 2,
           "title": "Carta de servicios 2026",
-          "section": "resolutiva",
+          "section": "apertura",
           "department": "TRANSPARENCIA",
           "expediente": "1741/2026/GEN"
         },
         {
           "number": 3,
           "title": "Nueva designación de la figura del responsable del sistema interno de información del Ayuntamiento de Riba-roja de Túria y modificación del documento referido a la Política del sistema interno de información del Ayuntamiento de Riba-roja de Turia",
-          "section": "resolutiva",
+          "section": "apertura",
           "department": "INTEGRIDAD",
           "expediente": "4305/2024/GEN"
         },
         {
           "number": 4,
           "title": "Actualización inventario municipal de bienes y derechos de la corporación",
-          "section": "resolutiva",
+          "section": "apertura",
           "department": "GESTIÓN PATRIMONIAL",
           "expediente": "1827/2026/GEN"
         },
         {
           "number": 5,
           "title": "Acuerdo relativo al Expediente de minimización de impacto territorial en Polígono 46 Parcela 39 con ref. cat: 46216A046000390000TZ",
-          "section": "resolutiva",
+          "section": "apertura",
           "department": "URBANISMO",
           "expediente": "717/2026/GEN"
         },
         {
           "number": 6,
           "title": "Moció del Grup Municipal Socialista de Riba-roja per a la defensa de l’educació pública",
-          "section": "informativa",
+          "section": "apertura",
           "department": null,
           "expediente": "10/2026/PGRU"
         },
         {
           "number": 7,
-          "title": "Dación cuenta de la VIII Memoria Anual de Gestión y Resultados de la Contratación Pública del Ayuntamiento de Riba-roja de Túria correspondiente al ejercicio 2025",
-          "section": "informativa",
-          "department": "CONTRATACIÓN",
-          "expediente": "1909/2026/GEN"
-        },
-        {
-          "number": 8,
-          "title": "Dación cuenta al Pleno de la Liquidación del ejercicio 2025",
-          "section": "informativa",
-          "department": "INTERVENCIÓN",
-          "expediente": "121/2026/GEN"
-        },
-        {
-          "number": 9,
-          "title": "Dacion cuenta Pleno resumen anual actuaciones control 2025 y fiscalización rd 424-17",
-          "section": "informativa",
-          "department": "INTERVENCIÓN",
-          "expediente": "1420/2026/GEN"
-        },
-        {
-          "number": 10,
-          "title": "Dar cuenta de las Resoluciones de la número 785/2026 a la 1261/2026",
-          "section": "informativa",
+          "title": "ASUNTO DE URGENCIA, Expediente 1562/2018/GEN, Aceptación propuesta de adjudicación mesa de contratación relativo al contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
+          "section": "apertura",
           "department": null,
           "expediente": null
         },
         {
+          "number": 8,
+          "title": "Dación cuenta de la VIII Memoria Anual de Gestión y Resultados de la Contratación Pública del Ayuntamiento de Riba-roja de Túria correspondiente al ejercicio 2025",
+          "section": "apertura",
+          "department": "CONTRATACIÓN",
+          "expediente": "1909/2026/GEN"
+        },
+        {
+          "number": 9,
+          "title": "Dación cuenta al Pleno de la Liquidación del ejercicio 2025",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "121/2026/GEN"
+        },
+        {
+          "number": 10,
+          "title": "Dacion cuenta Pleno resumen anual actuaciones control 2025 y fiscalización rd 424-17",
+          "section": "apertura",
+          "department": "INTERVENCIÓN",
+          "expediente": "1420/2026/GEN"
+        },
+        {
           "number": 11,
+          "title": "Dar cuenta de las Resoluciones de la número 785/2026 a la 1261/2026",
+          "section": "apertura",
+          "department": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
           "title": "Ruegos y preguntas",
           "section": "ruegos",
           "department": null,
           "expediente": null
         }
       ],
-      "agendaCount": 11,
+      "agendaCount": 12,
       "departments": [
         "TRANSPARENCIA",
         "INTEGRIDAD",
