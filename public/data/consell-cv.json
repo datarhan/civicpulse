@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-04-20T11:31:08.930Z",
+  "source": {
+    "portal": "https://conselltransparencia.gva.es",
+    "platform": "Consell de Transparència, Accés a la Informació Pública i Bon Govern · Comunitat Valenciana",
+    "tables": [
+      {
+        "year": 2026,
+        "url": "https://conselltransparencia.gva.es/documents/163244115/178037184/TABLA+RELACI%C3%93N+RESOLUCIONES+RECLAMACIONES+2026/ef19184b-d40f-49a0-8182-3484d29a78cc"
+      },
+      {
+        "year": 2025,
+        "url": "https://conselltransparencia.gva.es/documents/163244115/177340111/TABLA+RELACI%C3%93N+RESOLUCIONES+RECLAMACIONES+2025/b6ef0402-cd92-4d12-b72a-3d15a9b2c132"
+      }
+    ]
+  },
+  "query": "Riba-roja de Túria | Riba-roja del Turia | Ribarroja de Túria | Ribarroja del Turia",
+  "stats": {
+    "totalEntries": 393,
+    "matchedEntries": 0,
+    "years": [
+      2025,
+      2026
+    ],
+    "bySentido": {},
+    "byMateria": {}
+  },
+  "matched": []
+}

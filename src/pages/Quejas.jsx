@@ -9,6 +9,7 @@ import {
   timeAgo,
 } from '../hooks/useQuejas'
 import { useCtbg } from '../hooks/useCtbg'
+import { useConsellCv } from '../hooks/useConsellCv'
 import {
   useSindic,
   SINDIC_MATERIA_LABEL,
@@ -78,6 +79,101 @@ function SindicCard() {
             {new Date(data.generatedAt).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
             . Fuente: <a href="https://www.elsindic.com" target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>elsindic.com</a>.
           </div>
+        </div>
+      )}
+    </Card>
+  )
+}
+
+function ConsellCvCard() {
+  const { data } = useConsellCv()
+  if (!data) return null
+  const { stats, matched } = data
+  const when = data.generatedAt
+    ? new Date(data.generatedAt).toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      })
+    : ''
+  const sentidoColor = (s) => {
+    if (/estimatoria/i.test(s)) return 'var(--warn)'
+    if (/desestimat/i.test(s)) return 'var(--ok)'
+    return 'var(--ink60)'
+  }
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <SectionHead
+        eyebrow="Escalado externo · Consell de Transparència CV"
+        title="Resoluciones autonómicas de transparencia"
+      />
+      <div style={{ display: 'flex', gap: 20, marginTop: 10, flexWrap: 'wrap' }}>
+        <div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Registro analizado
+          </div>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>
+            {stats.totalEntries.toLocaleString('es-ES')}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            resoluciones · {stats.years.length} año(s)
+          </div>
+        </div>
+        <div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Contra Riba-roja
+          </div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 18,
+              fontWeight: 800,
+              marginTop: 2,
+              color: stats.matchedEntries > 0 ? 'var(--crit)' : 'var(--ok)',
+            }}
+          >
+            {stats.matchedEntries}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            {stats.matchedEntries === 0
+              ? 'sin reclamaciones transparencia resueltas'
+              : `${Object.keys(stats.bySentido).length} sentidos distintos`}
+          </div>
+        </div>
+        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+          Comprobado {when} ·{' '}
+          <a
+            href={data.source?.portal || 'https://conselltransparencia.gva.es'}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            conselltransparencia.gva.es
+          </a>
+        </div>
+      </div>
+      {matched && matched.length > 0 && (
+        <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 10 }}>
+          {matched.slice(0, 10).map((m, i) => (
+            <div
+              key={i}
+              style={{ padding: '10px 0', borderTop: '1px dotted var(--border2)' }}
+            >
+              <div className="mono" style={{ fontSize: 11, color: 'var(--civic)', fontWeight: 700 }}>
+                Nº {m.numero} · Expte {m.expediente} · {m.fecha}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 500, marginTop: 2 }}>{m.motivo || '—'}</div>
+              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+                <span style={{ color: sentidoColor(m.sentido), fontWeight: 600 }}>{m.sentido}</span>
+                {m.materia && <> · {m.materia}</>}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {stats.matchedEntries === 0 && (
+        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.55 }}>
+          El Consell de Transparència CV es el órgano autonómico que resuelve reclamaciones municipales de transparencia (art. 24 Ley 19/2013 + Ley 1/2022). Un "0" aquí es un dato en sí mismo: no se ha escalado formalmente ningún silencio del Ayuntamiento de Riba-roja en el periodo verificado.
         </div>
       )}
     </Card>
@@ -422,6 +518,7 @@ export default function Quejas() {
       {!loading && !error && data && (data.stats?.total ?? 0) === 0 && <EmptyState />}
       {!loading && !error && data && (data.stats?.total ?? 0) > 0 && <DashboardView data={data} />}
       <SindicCard />
+      <ConsellCvCard />
       <CtbgCard />
     </div>
   )
