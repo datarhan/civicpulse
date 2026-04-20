@@ -1,30 +1,42 @@
-# Fly.io deploy config for the CivicPulse bot.
+# Fly.io deploy config for the MuniGraph / CivicPulse bot.
 #
-# One-time setup:
-#   fly launch --name civicpulse-bot-ribarroja --no-deploy --copy-config
-#   fly volumes create botdata --size 1 --region mad
-#   fly secrets set \
-#     BOT_TOKEN=xxx \
-#     CHANNEL_ID=-100xxxx \
-#     ADMIN_USER_IDS=123,456 \
-#     MODERATOR_NAME="Vecino/a moderador/a" \
-#     EXPORT_TOKEN=some-random-string \
-#     PUBLIC_BASE_URL=https://civicpulse-virid.vercel.app
-#   fly deploy
+# Build context: this Dockerfile reads files from the MONOREPO ROOT
+# (queja-router + officials.json live in ../src and ../public), so both
+# launch + deploy must be run from the project root with explicit paths:
 #
-# After first deploy, set GitHub repo vars so the nightly cron can reach
-# the bot:
-#   gh variable set BOT_EXPORT_URL --body https://civicpulse-bot-ribarroja.fly.dev/export/quejas.json
-#   gh secret   set BOT_EXPORT_TOKEN --body <same-EXPORT_TOKEN>
+#   # One-time app creation (run from repo root):
+#   flyctl auth login
+#   flyctl launch --config bot/fly.toml --name munigraph-ribarroja \
+#                 --copy-config --no-deploy
+#
+#   # Persistent volume for SQLite:
+#   flyctl volumes create botdata --size 1 --region mad --app munigraph-ribarroja
+#
+#   # Secrets (paste the values you need; leave out what you don't use yet):
+#   flyctl secrets set --app munigraph-ribarroja \
+#     BOT_TOKEN=... \
+#     EXPORT_TOKEN=$(openssl rand -hex 16) \
+#     PUBLIC_BASE_URL=https://civicpulse-virid.vercel.app \
+#     WEBHOOK_URL=https://munigraph-ribarroja.fly.dev \
+#     MODERATOR_NAME="Tu nombre" \
+#     # CHANNEL_ID=-100xxxx   (set later once channel exists)
+#     # ADMIN_USER_IDS=123,456 (set later for /batch + /escalar)
+#
+#   # Deploy — must pass explicit paths so the monorepo root is the build context:
+#   flyctl deploy --config bot/fly.toml \
+#                 --dockerfile bot/Dockerfile \
+#                 --remote-only .
+#
+# After first deploy, wire the nightly export cron:
+#   gh variable set BOT_EXPORT_URL --body https://munigraph-ribarroja.fly.dev/export/quejas.json
+#   gh secret   set BOT_EXPORT_TOKEN --body <same value you set for EXPORT_TOKEN>
 
-app = "civicpulse-bot-ribarroja"
+app = "munigraph-ribarroja"
 primary_region = "mad"
 
 [build]
-  dockerfile = "Dockerfile"
-  # Build from the monorepo root so the Dockerfile can COPY ../src + ../public/data.
-  # `fly deploy` from the /bot directory uses --dockerfile=Dockerfile and
-  # --build-arg to select this context via our .dockerignore layout.
+  dockerfile = "bot/Dockerfile"
+  ignorefile = "bot/.dockerignore"
 
 [env]
   PORT = "3000"
