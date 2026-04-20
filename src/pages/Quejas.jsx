@@ -8,8 +8,98 @@ import {
   prettyNeighborhood,
   timeAgo,
 } from '../hooks/useQuejas'
+import { useCtbg } from '../hooks/useCtbg'
 
 const TELEGRAM_BOT_URL = 'https://t.me/civicpulse_ribarroja_bot'
+
+function CtbgCard() {
+  const { data } = useCtbg()
+  if (!data) return null
+  const { stats, matched } = data
+  const when = data.generatedAt
+    ? new Date(data.generatedAt).toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      })
+    : ''
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <SectionHead
+        eyebrow="Escalado externo · CTBG"
+        title="Resoluciones estatales sobre Riba-roja"
+      />
+      <div style={{ display: 'flex', gap: 20, marginTop: 10, flexWrap: 'wrap' }}>
+        <div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Registro analizado
+          </div>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>
+            {stats.totalEntries.toLocaleString('es-ES')}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>resoluciones · {stats.years.length} años</div>
+        </div>
+        <div>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+            Mencionan Riba-roja
+          </div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 18,
+              fontWeight: 800,
+              marginTop: 2,
+              color: stats.matchedEntries > 0 ? 'var(--crit)' : 'var(--ok)',
+            }}
+          >
+            {stats.matchedEntries}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            {stats.matchedEntries === 0
+              ? 'sin resoluciones (ámbito estatal)'
+              : `${Object.keys(stats.bySentido).length} sentidos distintos`}
+          </div>
+        </div>
+        <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
+          Comprobado {when} ·{' '}
+          <a
+            href={data.source?.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            XLSX oficial
+          </a>
+        </div>
+      </div>
+      {matched && matched.length > 0 && (
+        <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 8 }}>
+          {matched.slice(0, 5).map((m, i) => (
+            <div
+              key={i}
+              style={{ padding: '10px 0', borderTop: '1px dotted var(--border2)' }}
+            >
+              <div className="mono" style={{ fontSize: 11, color: 'var(--civic)', fontWeight: 700 }}>
+                {m.resolucion} · {m.mesResolucion} {m.sheetYear}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 500, marginTop: 2 }}>{m.asunto}</div>
+              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+                {m.sentido} · {m.organismo}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {stats.matchedEntries === 0 && (
+        <div style={{ marginTop: 12, fontSize: 12.5, color: 'var(--ink60)', lineHeight: 1.55 }}>
+          El CTBG gestiona reclamaciones de ámbito estatal. Las reclamaciones municipales se tramitan ante el
+          <strong> Consell de Transparència de la Comunitat Valenciana</strong>. El Síndic de Greuges CV es la vía de
+          escalado general cuando el Ayuntamiento no responde (3 meses LPACAP).
+        </div>
+      )}
+    </Card>
+  )
+}
 
 function EmptyState() {
   return (
@@ -256,6 +346,7 @@ export default function Quejas() {
       )}
       {!loading && !error && data && (data.stats?.total ?? 0) === 0 && <EmptyState />}
       {!loading && !error && data && (data.stats?.total ?? 0) > 0 && <DashboardView data={data} />}
+      <CtbgCard />
     </div>
   )
 }

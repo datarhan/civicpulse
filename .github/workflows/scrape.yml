@@ -51,6 +51,7 @@ jobs:
             paro)                  npm run scrape:paro ;;
             plenos)                npm run scrape:plenos ;;
             wikidata)              npm run scrape:wikidata ;;
+            ctbg)                  npm run scrape:ctbg ;;
             promise-suggestions)   npm run scrape:promise-suggestions ;;
             *) echo "unknown adapter set"; exit 1 ;;
           esac
