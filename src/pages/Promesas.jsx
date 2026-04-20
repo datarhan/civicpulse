@@ -300,18 +300,32 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
             un curador debe verificarlas antes de incorporarlas al registro.
           </div>
           <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
-            {llmItems.slice(0, 4).map((ev, i) => (
-              <li key={i} style={{ marginBottom: 4 }}>
-                <span className="mono" style={{ color: 'var(--intel-ink)', fontWeight: 600 }}>{ev.corpus}</span>{' · '}
-                <span className="mono">{ev.date}</span> · {ev.publisher} ·{' '}
-                <a href={ev.evidenceUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
-                  {ev.quote.length > 90 ? ev.quote.slice(0, 90) + '…' : ev.quote}
-                </a>{' '}
-                <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10 }}>
-                  (conf. {(ev.confidence * 100).toFixed(0)}%)
-                </span>
-              </li>
-            ))}
+            {llmItems.slice(0, 4).map((ev, i) => {
+              const isTranscript = ev.corpus === 'pleno_transcript'
+              return (
+                <li key={i} style={{ marginBottom: 4 }}>
+                  <span
+                    className="mono"
+                    title={isTranscript ? 'Transcripción automática del vídeo del pleno. El orador NO está atribuido (riesgo de difamación por errores de transcripción).' : undefined}
+                    style={{ color: 'var(--intel-ink)', fontWeight: 600 }}
+                  >
+                    {isTranscript ? '🎙 transcript' : ev.corpus}
+                  </span>{' · '}
+                  <span className="mono">{ev.date}</span> · {ev.publisher} ·{' '}
+                  <a href={ev.evidenceUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+                    {ev.quote.length > 90 ? ev.quote.slice(0, 90) + '…' : ev.quote}
+                  </a>{' '}
+                  <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10 }}>
+                    (conf. {(ev.confidence * 100).toFixed(0)}%)
+                  </span>
+                  {isTranscript && (
+                    <span style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 4 }}>
+                      · sin atribución de orador
+                    </span>
+                  )}
+                </li>
+              )
+            })}
           </ul>
         </div>
       )}

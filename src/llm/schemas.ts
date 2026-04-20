@@ -53,6 +53,7 @@ export const PromiseEvidenceKind = z.enum([
   'press',
   'pleno_agenda',
   'pleno_vote',
+  'pleno_transcript',  // YouTube-derived Whisper transcript — speaker NEVER attributed
   'tender',
   'bdns',
   'budget',

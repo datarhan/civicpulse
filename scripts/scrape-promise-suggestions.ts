@@ -83,6 +83,38 @@ async function main() {
     const tenders = await readJson(join(PROJECT_ROOT, 'public/data/tenders.json'))
     const bdns = await readJson(join(PROJECT_ROOT, 'public/data/bdns.json'))
     const budget = await readJson(join(PROJECT_ROOT, 'public/data/budget.json'))
+    const plenoVideos = await readJson(join(PROJECT_ROOT, 'public/data/pleno-videos.json'))
+
+    // Load every cached Whisper transcript as a corpus entry. One document
+    // per pleno session, with the full text. The LLM is explicitly forbidden
+    // (see prompts.ts PROMISE_EVIDENCE_PROMPT_VERSION v2) from naming any
+    // speaker — Whisper WER on proper nouns is ~10% and attributed citations
+    // are a defamation risk.
+    const transcriptDir = join(PROJECT_ROOT, 'public/data/pleno-transcripts')
+    const { readdirSync, readFileSync: readFileSyncImpl, existsSync } = await import('node:fs')
+    const transcripts: Array<{ url: string; title: string; date: string; publisher: string; text: string }> = []
+    if (existsSync(transcriptDir) && plenoVideos?.items) {
+      const videosByPlenoDate = new Map<string, { url: string; title: string; plenoDate: string }>()
+      for (const v of plenoVideos.items) videosByPlenoDate.set(v.plenoDate, v)
+      const plenosById = new Map<string, { id: string; date: string; title: string }>()
+      for (const p of (plenos?.items ?? [])) plenosById.set(p.id, p)
+      for (const f of readdirSync(transcriptDir)) {
+        if (!f.endsWith('.txt')) continue
+        const id = f.replace(/\.txt$/, '')
+        const pleno = plenosById.get(id)
+        if (!pleno) continue
+        const video = videosByPlenoDate.get(pleno.date)
+        const text = readFileSyncImpl(join(transcriptDir, f), 'utf8')
+        if (text.length < 500) continue  // empty or tiny → skip
+        transcripts.push({
+          url: video?.url ?? pleno.link ?? `https://civicpulse-virid.vercel.app/plenos`,
+          title: pleno.title,
+          date: pleno.date,
+          publisher: 'Ayuntamiento Riba-roja de Túria · transcripción automática',
+          text: text.slice(0, 120_000),  // cap per-document size so the retriever BM25 scoring isn't dominated by one huge transcript
+        })
+      }
+    }
 
     for (const promise of snap.items) {
       llmStats.processed += 1
@@ -94,6 +126,7 @@ async function main() {
           tenders?.contracts ? { corpus: 'tender' as const, documents: tenders.contracts.slice(0, 500).map((c: { permalink: string; title: string; awardDate: string | null; assignee: string; categoryTitle: string }) => ({ url: c.permalink, title: c.title, date: c.awardDate || '2020-01-01', publisher: c.assignee, text: `${c.title} ${c.categoryTitle}` })) } : null,
           bdns?.items ? { corpus: 'bdns' as const, documents: bdns.items.map((b: { sourceUrl: string; description: string; date: string; organ: string }) => ({ url: b.sourceUrl, title: b.description, date: b.date, publisher: b.organ, text: b.description })) } : null,
           budget?.snapshot ? { corpus: 'budget' as const, documents: [{ url: budget.source?.url ?? 'https://hacienda.gob.es/conprel', title: `Presupuesto municipal ${budget.snapshot.year}`, date: `${budget.snapshot.year}-01-01`, publisher: 'MinHac CONPREL', text: `Presupuesto ${budget.snapshot.year} · ${budget.snapshot.totalExpense}€ gasto total` }] } : null,
+          transcripts.length > 0 ? { corpus: 'pleno_transcript' as const, documents: transcripts } : null,
         ].filter((x): x is NonNullable<typeof x> => x !== null),
       }
       const result = await minePromiseEvidence(input, { snapshot: { frozenUntil: snap.frozenUntil } })

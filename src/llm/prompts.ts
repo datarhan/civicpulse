@@ -66,7 +66,7 @@ export function buildPlenoVoteUserPrompt(segment: string): string {
 
 // ─── Phase 2 · Promise evidence mining ──────────────────────────────────────
 
-export const PROMISE_EVIDENCE_PROMPT_VERSION = 'promise-evidence-v1'
+export const PROMISE_EVIDENCE_PROMPT_VERSION = 'promise-evidence-v2'
 
 export interface PromiseEvidenceInput {
   promise: {
@@ -106,6 +106,12 @@ Reglas duras:
 - NO inventes URLs. Sólo URLs que aparezcan en los candidatos.
 - NO propongas "cumplida", "no-ejecutada", ni "inviable" — sólo humanos pueden hacerlo.
 - Cada cita debe ser literal del candidato, no una paráfrasis.
+- Para el corpus "pleno_transcript" (transcripción automática de vídeo del pleno):
+  * El "quote" DEBE incluir el timestamp original, formato "[HH.H → HH.H] …"
+  * NUNCA nombres al orador. Usa únicamente términos genéricos como "un edil",
+    "un representante del pleno", "un interviniente". La transcripción puede
+    tener errores (~10% WER sobre nombres propios); atribuir una cita al
+    alcalde o a un concejal concreto es un riesgo de difamación inaceptable.
 
 ${SAFETY_FOOTER}
 `.trim()
