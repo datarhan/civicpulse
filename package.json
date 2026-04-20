@@ -28,6 +28,7 @@
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
     "scrape:pleno-videos": "npx tsx scripts/scrape-pleno-videos.ts",
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
+    "transcribe:batch": "bash scripts/transcribe-pleno-batch.sh",
     "llm:doctor": "npx tsx scripts/llm-doctor.ts",
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
     "scrape:tender-queja-correlations": "npx tsx scripts/scrape-tender-queja-correlations.ts",
