@@ -32,7 +32,10 @@ const OFFICIALS_PATH = resolve('public/data/officials.json')
 type Engine = 'regex' | 'llm' | 'both'
 
 interface PlenoMeta { id: string; date: string; title?: string }
-interface Officials { items: Array<{ party: string }> }
+interface Officials {
+  officials?: Array<{ party: string }>
+  composition?: Record<string, number>
+}
 
 function loadPlenos(): PlenoMeta[] {
   if (!existsSync(PLENOS_PATH)) throw new Error('plenos.json not found — run scrape:plenos first')
@@ -42,8 +45,13 @@ function loadPlenos(): PlenoMeta[] {
 function loadCurrentSeats(): { bloc: string; seats: number }[] {
   if (!existsSync(OFFICIALS_PATH)) throw new Error('officials.json not found — run scrape:officials first')
   const officials = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials
+  // Prefer the pre-aggregated composition map (single source of truth inside the file).
+  if (officials.composition) {
+    return Object.entries(officials.composition).map(([bloc, seats]) => ({ bloc, seats }))
+  }
+  // Fallback: aggregate from the officials list.
   const counts = new Map<string, number>()
-  for (const o of officials.items) {
+  for (const o of officials.officials ?? []) {
     counts.set(o.party, (counts.get(o.party) ?? 0) + 1)
   }
   return [...counts.entries()].map(([bloc, seats]) => ({ bloc, seats }))

@@ -2,6 +2,7 @@ import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
 import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
+import { useCorrelationMaps } from '../hooks/useTenderQuejaCorrelations'
 
 function ChapterRow({ label, amount, total, color }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
@@ -45,6 +46,7 @@ function ChapterRow({ label, amount, total, color }) {
 
 function RealContracts() {
   const { loading, error, data } = useTenders()
+  const { byTender } = useCorrelationMaps()
   if (loading) {
     return (
       <Card>
@@ -123,7 +125,24 @@ function RealContracts() {
           <div className="mono" style={{ fontSize: 13, fontWeight: 700, textAlign: 'right' }}>
             {formatEur(c.finalAmount)}
           </div>
-          <div style={{ textAlign: 'right' }}>
+          <div style={{ textAlign: 'right', display: 'flex', gap: 6, justifyContent: 'flex-end', alignItems: 'center' }}>
+            {(byTender.get(c.permalink) || []).length > 0 && (
+              <span
+                className="mono"
+                title={`${byTender.get(c.permalink).length} queja(s) posiblemente relacionadas — requiere verificación humana`}
+                style={{
+                  fontSize: 9.5,
+                  padding: '1px 6px',
+                  borderRadius: 3,
+                  background: 'var(--intel-soft)',
+                  color: 'var(--intel-ink)',
+                  fontWeight: 700,
+                  letterSpacing: '.04em',
+                }}
+              >
+                ↔ {byTender.get(c.permalink).length} queja{byTender.get(c.permalink).length === 1 ? '' : 's'}
+              </span>
+            )}
             <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
               {STATUS_LABEL[c.status] || c.status}
             </Pill>

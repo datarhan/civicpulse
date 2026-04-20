@@ -97,7 +97,11 @@ const DIRECTION_PHRASES: [RegExp, VoteDirection][] = [
  * lets inferItemNumber() see the header without losing any vote detail.
  */
 export function splitSegments(transcript: string): string[] {
-  const boundary = /(?:s['’]assotmet a votaci[óo]|se somete a votaci[óo]n|pasamos a la votaci[óo]n|passem a la votaci[óo])/gi
+  // Boundary matches BOTH formal secretaría phrasings AND colloquial ones that
+  // Whisper produces from natural speech. "Votemos"/"Vamos a votar" are as
+  // common as the formal "Se somete a votación" in small-town municipal
+  // recordings.
+  const boundary = /(?:s['’]assotmet a votaci[óo]|se somete a votaci[óo]n|pasamos a la votaci[óo]n|passem a la votaci[óo]|\bvamos a votar\b|\bvotaremos\b|\bvotemos\b|\bpassem al punt\b|\bpasamos al punto\b|\bvamos a votar a (?:la )?mano\b)/gi
   const segments: string[] = []
   let match: RegExpExecArray | null
   while ((match = boundary.exec(transcript)) !== null) {
