@@ -70,7 +70,7 @@ const STOP_WORDS = new Set([
   'ribarroja', 'riba', 'roja', 'turia', 'túria', 'ayuntamiento', 'municipal',
 ])
 
-function normalize(s: string): string {
+export function normalize(s: string): string {
   return s
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
@@ -82,7 +82,7 @@ function normalize(s: string): string {
 
 // Very light Spanish stemming — strip common plural / adjective suffixes so
 // "refugios" / "refugio" and "climáticos" / "climatico" match the same root.
-function stem(w: string): string {
+export function stem(w: string): string {
   let s = w
   if (s.endsWith('es') && s.length > 4) s = s.slice(0, -2)
   else if (s.endsWith('s') && s.length > 4) s = s.slice(0, -1)
@@ -91,7 +91,7 @@ function stem(w: string): string {
   return s
 }
 
-function extractKeywords(text: string): string[] {
+export function extractKeywords(text: string): string[] {
   const tokens = normalize(text).split(' ')
   return Array.from(
     new Set(

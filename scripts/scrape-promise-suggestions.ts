@@ -18,6 +18,9 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { inferPromiseSuggestions } from '../src/scraper/promise-inference'
 import { validatePromisesSnapshot, isFrozen } from '../src/scraper/promises'
+import { minePromiseEvidence } from '../src/scraper/promise-llm-inference'
+import { resetBudget } from '../src/llm/client'
+import type { RetrievalInput } from '../src/llm/retriever'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -63,9 +66,44 @@ async function main() {
   }
   const enrichedPlenos = { items: enrichedPlenosItems }
 
-  const suggestions = frozen
+  const regexSuggestions = frozen
     ? []
     : inferPromiseSuggestions(snap.items, { press, plenos: enrichedPlenos })
+
+  // LLM evidence mining pass — optional, enabled when `--llm` flag is passed.
+  // Falls back to regex-only when the LLM backend is offline or the flag is
+  // absent (keeps the nightly cron working even if Ollama isn't running on
+  // the CI runner).
+  const enableLlm = process.argv.includes('--llm') && !frozen
+  const llmEvidence: Array<{ promiseId: string; evidenceUrl: string; publisher: string; date: string; quote: string; reasoning: string; confidence: number; corpus: string }> = []
+  const llmStats = { processed: 0, emitted: 0, frozen: 0, hallucinated: 0, invalidStatus: 0 }
+
+  if (enableLlm) {
+    resetBudget()
+    const tenders = await readJson(join(PROJECT_ROOT, 'public/data/tenders.json'))
+    const bdns = await readJson(join(PROJECT_ROOT, 'public/data/bdns.json'))
+    const budget = await readJson(join(PROJECT_ROOT, 'public/data/budget.json'))
+
+    for (const promise of snap.items) {
+      llmStats.processed += 1
+      const input: RetrievalInput = {
+        promise: { id: promise.id, title: promise.title, quote: promise.quote, topic: promise.topic },
+        corpora: [
+          press?.items ? { corpus: 'press' as const, documents: press.items.map((i: { link: string; title: string; date: string; source: string }) => ({ url: i.link, title: i.title, date: i.date, publisher: i.source, text: i.title })) } : null,
+          agendas?.plenos ? { corpus: 'pleno_agenda' as const, documents: agendas.plenos.flatMap((s: { id: string; date: string; link: string; agenda?: { title: string; department?: string; expediente?: string }[] }) => (s.agenda || []).map((a) => ({ url: s.link, title: `${a.department ?? ''} · ${a.title}`, date: s.date, publisher: 'Ayuntamiento Riba-roja', text: `${a.department ?? ''} ${a.title} ${a.expediente ?? ''}` }))) } : null,
+          tenders?.contracts ? { corpus: 'tender' as const, documents: tenders.contracts.slice(0, 500).map((c: { permalink: string; title: string; awardDate: string | null; assignee: string; categoryTitle: string }) => ({ url: c.permalink, title: c.title, date: c.awardDate || '2020-01-01', publisher: c.assignee, text: `${c.title} ${c.categoryTitle}` })) } : null,
+          bdns?.items ? { corpus: 'bdns' as const, documents: bdns.items.map((b: { sourceUrl: string; description: string; date: string; organ: string }) => ({ url: b.sourceUrl, title: b.description, date: b.date, publisher: b.organ, text: b.description })) } : null,
+          budget?.snapshot ? { corpus: 'budget' as const, documents: [{ url: budget.source?.url ?? 'https://hacienda.gob.es/conprel', title: `Presupuesto municipal ${budget.snapshot.year}`, date: `${budget.snapshot.year}-01-01`, publisher: 'MinHac CONPREL', text: `Presupuesto ${budget.snapshot.year} · ${budget.snapshot.totalExpense}€ gasto total` }] } : null,
+        ].filter((x): x is NonNullable<typeof x> => x !== null),
+      }
+      const result = await minePromiseEvidence(input, { snapshot: { frozenUntil: snap.frozenUntil } })
+      if (result.stats.frozen) { llmStats.frozen += 1; continue }
+      llmStats.emitted += result.items.length
+      llmStats.hallucinated += result.stats.itemsRejected.hallucinatedUrl
+      llmStats.invalidStatus += result.stats.itemsRejected.invalidStatus
+      for (const ev of result.items) llmEvidence.push({ ...ev })
+    }
+  }
 
   const payload = {
     generatedAt: new Date().toISOString(),
@@ -75,13 +113,16 @@ async function main() {
       ? 'Estado congelado durante el periodo electoral oficial (LOREG art. 50). El motor de sugerencias no actualiza estados hasta la proclamación definitiva.'
       : 'Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.',
     counts: {
-      total: suggestions.length,
-      byProposedStatus: suggestions.reduce<Record<string, number>>((a, s) => {
+      total: regexSuggestions.length,
+      byProposedStatus: regexSuggestions.reduce<Record<string, number>>((a, s) => {
         a[s.proposedStatus] = (a[s.proposedStatus] || 0) + 1
         return a
       }, {}),
+      llmEvidence: llmEvidence.length,
     },
-    suggestions,
+    suggestions: regexSuggestions,
+    llmEvidence,
+    llmStats: enableLlm ? llmStats : null,
   }
 
   await mkdir(dirname(OUT), { recursive: true })

@@ -128,11 +128,13 @@ function CompositionBar({ items }) {
   )
 }
 
-function PromiseCard({ p, suggestion, frozen }) {
+function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
   const color = PARTY_TONE[p.party] || '#64748B'
   const fmt = (iso) =>
     new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
   const showSuggestion = suggestion && !frozen && suggestion.reasoning.length > 0
+  const llmItems = (llmEvidence || []).filter((e) => e.promiseId === p.id)
+  const showLlm = !frozen && llmItems.length > 0
   return (
     <Card hover>
       <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', marginBottom: 6 }}>
@@ -261,6 +263,53 @@ function PromiseCard({ p, suggestion, frozen }) {
                 <a href={r.url} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
                   {r.quote.length > 80 ? r.quote.slice(0, 80) + '…' : r.quote}
                 </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {showLlm && (
+        <div
+          style={{
+            marginTop: 10,
+            padding: 10,
+            borderLeft: '3px solid var(--intel)',
+            background: 'var(--intel-soft)',
+            borderRadius: 4,
+            fontSize: 12,
+            color: 'var(--ink80)',
+          }}
+        >
+          <div
+            className="mono"
+            style={{
+              fontSize: 9.5,
+              color: 'var(--intel-ink)',
+              letterSpacing: '.1em',
+              textTransform: 'uppercase',
+              marginBottom: 5,
+              fontWeight: 700,
+            }}
+          >
+            Evidencia sugerida por LLM · {llmItems.length} fuente{llmItems.length === 1 ? '' : 's'} · pendiente de revisión
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink60)', marginBottom: 5, lineHeight: 1.45 }}>
+            Estas citas han sido identificadas automáticamente por el modelo a partir de prensa,
+            actas de pleno, licitaciones, subvenciones y presupuesto. <strong>No publican estado</strong>;
+            un curador debe verificarlas antes de incorporarlas al registro.
+          </div>
+          <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
+            {llmItems.slice(0, 4).map((ev, i) => (
+              <li key={i} style={{ marginBottom: 4 }}>
+                <span className="mono" style={{ color: 'var(--intel-ink)', fontWeight: 600 }}>{ev.corpus}</span>{' · '}
+                <span className="mono">{ev.date}</span> · {ev.publisher} ·{' '}
+                <a href={ev.evidenceUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+                  {ev.quote.length > 90 ? ev.quote.slice(0, 90) + '…' : ev.quote}
+                </a>{' '}
+                <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10 }}>
+                  (conf. {(ev.confidence * 100).toFixed(0)}%)
+                </span>
               </li>
             ))}
           </ul>
@@ -455,6 +504,7 @@ export default function Promesas() {
             key={p.id}
             p={p}
             suggestion={suggestionsById[p.id]}
+            llmEvidence={sugg?.llmEvidence || []}
             frozen={frozen}
           />
         ))}
