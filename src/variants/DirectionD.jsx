@@ -10,6 +10,7 @@ import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
 import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
+import { useBdns } from '../hooks/useBdns'
 import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
@@ -1087,9 +1088,22 @@ function AlcaldeBox() {
   const { loading, error, data } = useOfficials()
   const { data: promisesData } = usePromises()
   const { data: agendasData } = usePlenoAgendas()
+  const { data: budgetData } = useBudget()
+  const { data: tendersData } = useTenders()
+  const { data: bdnsData } = useBdns()
   if (loading || error || !data) return null
   const mayor = data.officials.find((o) => o.role === 'alcalde')
   if (!mayor) return null
+
+  // Municipal-government-level stats for the mandate. These are NOT
+  // attributed personally to the mayor — they are the numbers of the
+  // government he presides over. The strip label "Gobierno municipal ·
+  // <year>" makes this explicit.
+  const budgetYear = budgetData?.snapshot?.year
+  const budgetEuros = budgetData?.snapshot?.totalExpense
+  const tendersAwarded = tendersData?.stats?.awardedContracts
+  const tendersEuros = tendersData?.stats?.awardedTotalEuros
+  const bdnsGranted = bdnsData?.stats?.granted
 
   // Canonicalise mayor's portfolios to dept slugs (dedup). The mayor owns
   // several concejalías; surface all of them as chips so the reader can
@@ -1201,9 +1215,7 @@ function AlcaldeBox() {
               title={`Promesas documentadas del grupo ${mayor.party}`}
             >
               <span style={{ fontWeight: 700 }}>{partyPromises}</span>
-              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>
-                promesas · {mayor.party}
-              </span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>promesas · {mayor.party}</span>
             </a>
           )}
           {agendaHits > 0 && slugs[0] && (
@@ -1247,6 +1259,68 @@ function AlcaldeBox() {
               {DEPARTMENT_LABEL[slug].es} →
             </a>
           ))}
+        </div>
+      )}
+
+      {(budgetEuros || tendersAwarded || bdnsGranted) && (
+        <div style={{ marginTop: 10, paddingTop: 8, borderTop: '1px dashed ' + PALETTE.hair }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 8.5,
+              color: PALETTE.ink50,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              marginBottom: 4,
+            }}
+          >
+            Gobierno municipal{budgetYear ? ` · ${budgetYear}` : ''}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              columnGap: 14,
+              rowGap: 4,
+              fontSize: 10.5,
+              fontFamily: MONO,
+              color: PALETTE.ink60,
+            }}
+          >
+            {budgetEuros && (
+              <a
+                href="/presupuesto"
+                style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                title="Presupuesto municipal total de gasto"
+              >
+                <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
+                <span style={{ color: PALETTE.ink50 }}>presupuesto</span>
+              </a>
+            )}
+            {tendersAwarded && (
+              <a
+                href="/presupuesto"
+                style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                title="Contratos adjudicados por el Ayuntamiento durante el mandato"
+              >
+                <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
+                <span style={{ color: PALETTE.ink50 }}>
+                  contratos
+                  {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
+                </span>
+              </a>
+            )}
+            {bdnsGranted && (
+              <a
+                href="/presupuesto"
+                style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                title="Subvenciones concedidas por el Ayuntamiento (registro BDNS)"
+              >
+                <span style={{ fontWeight: 700 }}>{bdnsGranted}</span>{' '}
+                <span style={{ color: PALETTE.ink50 }}>subvenciones</span>
+              </a>
+            )}
+          </div>
         </div>
       )}
     </div>
