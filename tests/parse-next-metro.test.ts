@@ -9,7 +9,7 @@ import { describe, it, expect } from 'vitest'
 // @ts-expect-error — JS module, tsx resolves types at runtime
 import { __internal } from '../src/hooks/useNextMetro.js'
 
-const { computeNext, scheduleForDate, SCHEDULE } = __internal
+const { computeNextTerminusDeparture: computeNext, scheduleForDate, SCHEDULE } = __internal
 
 function at(iso: string): Date {
   // Avoid TZ drift: interpret as local time-of-day string like
@@ -85,5 +85,49 @@ describe('next-metro · computeNext · after-hours Sunday → Monday', () => {
     expect(next.at.getDate()).toBe(27) // Monday
     expect(next.at.getHours()).toBe(5) // weekday first
     expect(next.at.getMinutes()).toBe(51)
+  })
+})
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { computeStationSchedule, L9_STATIONS } from '../src/hooks/useNextMetro.js'
+
+describe('next-metro · computeStationSchedule · intermediate station', () => {
+  const masia = L9_STATIONS.find((s) => s.id === 'masia-de-traver')!
+
+  it('outbound at Masia is 2 min after Riba-roja terminus departure', () => {
+    const now = at('2026-04-21T08:00:00') // Tuesday weekday, mid-service
+    const sched = computeStationSchedule(masia, now)
+    // Terminus next departure after 08:00 is 08:21 (05:51 + 30*5). Masia is
+    // at offset 2 min from terminus, so outbound passes at 08:23.
+    expect(sched.outbound.at.getHours()).toBe(8)
+    expect(sched.outbound.at.getMinutes()).toBe(23)
+    expect(sched.outbound.heading).toBe('València')
+  })
+
+  it('inbound at Masia is 13 min after a terminus tick (phase 15 - offset 2)', () => {
+    const now = at('2026-04-21T08:00:00')
+    const sched = computeStationSchedule(masia, now)
+    // Inbound train matching terminus tick 07:51 arrives Riba-roja at 08:06
+    // and was at Masia 2 min earlier → 08:04, the first ≥ 08:00.
+    expect(sched.inbound.at.getHours()).toBe(8)
+    expect(sched.inbound.at.getMinutes()).toBe(4)
+    expect(sched.inbound.heading).toBe('Riba-roja')
+  })
+
+  it('returns approximateInbound honesty flag', () => {
+    const now = at('2026-04-21T08:00:00')
+    const sched = computeStationSchedule(masia, now)
+    expect(sched.approximateInbound).toBe(true)
+  })
+})
+
+describe('next-metro · computeStationSchedule · terminus', () => {
+  const riba = L9_STATIONS.find((s) => s.id === 'riba-roja-de-turia')!
+
+  it('outbound at Riba-roja terminus matches computeNext departure', () => {
+    const now = at('2026-04-21T08:00:00')
+    const sched = computeStationSchedule(riba, now)
+    const direct = computeNext(now)
+    expect(sched.outbound.at.getTime()).toBe(direct.at.getTime())
   })
 })

@@ -346,6 +346,9 @@ function LiveStrip() {
             >
               L9
             </span>
+            <span className="mono" style={{ fontSize: 10.5, color: PALETTE.ink50 }}>
+              → {metro.heading || 'València'}
+            </span>
             <span className="mono" style={{ fontSize: 12, fontWeight: 700 }}>
               {metro.departureLabel}
             </span>
@@ -468,12 +471,24 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
           k="Próximo tren"
           v={`${metro.departureLabel}${metro.afterMidnight ? ' (mañana)' : ''}`}
         />
-        <DetailRow
-          k="Faltan"
-          v={metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`}
-        />
-        <DetailRow k="Sentido" v="València Sant Isidre" />
+        <DetailRow k="Faltan" v={metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`} />
+        <DetailRow k="Sentido" v={`Hacia ${metro.heading || 'València'}`} />
+        <DetailRow k="Estación" v={`${metro.stationName} (terminus)`} />
         <DetailRow k="Fuente" v="FGV · fgv.es" />
+        <div
+          style={{
+            marginTop: 6,
+            padding: '6px 8px',
+            background: '#FFF7E6',
+            border: '1px solid #F3D9A8',
+            borderRadius: 6,
+            fontSize: 11.5,
+            color: '#7C4A00',
+          }}
+        >
+          Pulsa cualquier estación de L9 en el mapa para ver los próximos
+          trenes en ambos sentidos.
+        </div>
         <div style={{ marginTop: 10 }}>
           <a
             href="https://www.metrovalencia.es"

@@ -1,8 +1,17 @@
 // @ts-check
-import { useEffect } from 'react'
-import { CircleMarker, MapContainer, Marker, Polyline, TileLayer, useMap } from 'react-leaflet'
+import { useEffect, useState } from 'react'
+import {
+  CircleMarker,
+  MapContainer,
+  Marker,
+  Polyline,
+  Popup,
+  TileLayer,
+  useMap,
+} from 'react-leaflet'
 import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
+import { L9_STATIONS, computeStationSchedule } from '../../hooks/useNextMetro'
 
 // Metrovalencia L9 light-rail colour (close to their brand palette); Adif
 // heavy-rail uses a muted grey so it reads as secondary. Stations share the
@@ -97,20 +106,146 @@ function Railways() {
           </div>
         )
       })}
-      {stations.map((s) => (
-        <CircleMarker
-          key={s.id}
-          center={s.centroid}
-          radius={7}
-          pathOptions={{
-            color: '#0B0F19',
-            weight: 2,
-            fillColor: METRO_COLOR,
-            fillOpacity: 1,
-          }}
-        />
-      ))}
+      {stations.map((s) => {
+        const meta = L9_STATIONS.find((m) => m.osmName === s.name)
+        return (
+          <CircleMarker
+            key={s.id}
+            center={s.centroid}
+            radius={7}
+            pathOptions={{
+              color: '#0B0F19',
+              weight: 2,
+              fillColor: METRO_COLOR,
+              fillOpacity: 1,
+            }}
+          >
+            <Popup closeButton={true} autoPan={true}>
+              <StationSchedulePopup name={s.name} meta={meta} />
+            </Popup>
+          </CircleMarker>
+        )
+      })}
     </>
+  )
+}
+
+function StationSchedulePopup({ name, meta }) {
+  // Tick every 30s so the popup stays fresh while open. Cheap — no network.
+  const [tick, setTick] = useState(() => Date.now())
+  useEffect(() => {
+    const id = setInterval(() => setTick(Date.now()), 30_000)
+    return () => clearInterval(id)
+  }, [])
+
+  if (!meta) {
+    return (
+      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', fontSize: 13 }}>
+        <div style={{ fontWeight: 700, marginBottom: 4 }}>{name}</div>
+        <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 11.5 }}>
+          Estación no incluida en el horario de referencia.
+        </div>
+      </div>
+    )
+  }
+
+  const now = new Date(tick)
+  const sched = computeStationSchedule(meta, now)
+  const row = (dirLabel, dep, isApprox) => (
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}>
+      <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 96 }}>
+        → {dirLabel}
+      </span>
+      <span
+        style={{ fontFamily: 'DM Mono, monospace', fontSize: 13, fontWeight: 700, color: '#0B0F19' }}
+      >
+        {dep.label}
+        {dep.afterMidnight ? ' (mañana)' : ''}
+      </span>
+      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: '#B45309' }}>
+        {dep.minutesAway === 0 ? 'ahora' : `${dep.minutesAway} min`}
+      </span>
+      {isApprox && (
+        <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>
+      )}
+    </div>
+  )
+
+  return (
+    <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 240 }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          marginBottom: 4,
+        }}
+      >
+        <span
+          style={{
+            width: 16,
+            height: 16,
+            borderRadius: '50%',
+            background: '#F5B544',
+            color: '#0B0F19',
+            display: 'grid',
+            placeItems: 'center',
+            fontFamily: 'DM Mono, monospace',
+            fontSize: 8,
+            fontWeight: 800,
+          }}
+        >
+          L9
+        </span>
+        <span style={{ fontWeight: 700, fontSize: 14 }}>{meta.label}</span>
+        {meta.terminus && (
+          <span
+            style={{
+              fontSize: 9,
+              fontFamily: 'DM Mono, monospace',
+              background: '#EEF4FF',
+              color: '#2463EB',
+              padding: '2px 5px',
+              borderRadius: 3,
+              letterSpacing: '.06em',
+              textTransform: 'uppercase',
+              marginLeft: 'auto',
+            }}
+          >
+            Terminus
+          </span>
+        )}
+      </div>
+      <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 4 }}>
+        {row(sched.outbound.heading, sched.outbound, false)}
+        {!meta.terminus && row(sched.inbound.heading, sched.inbound, sched.approximateInbound)}
+      </div>
+      <div
+        style={{
+          marginTop: 6,
+          fontSize: 10,
+          color: 'rgba(11,15,25,.55)',
+          fontFamily: 'DM Mono, monospace',
+          letterSpacing: '.04em',
+        }}
+      >
+        Horario transcrito de fgv.es · válido hasta {sched.scheduleValidUntil}
+      </div>
+      <a
+        href="https://www.metrovalencia.es"
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          marginTop: 4,
+          display: 'inline-block',
+          fontSize: 12,
+          color: '#2463EB',
+          textDecoration: 'none',
+        }}
+      >
+        Ver horario oficial →
+      </a>
+    </div>
   )
 }
 
