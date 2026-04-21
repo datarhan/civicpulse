@@ -85,6 +85,13 @@ export async function inferVotesWithLlm(
       votes: vote.votes,
       confidence: vote.confidence,
       requiresHumanApproval: true,
+      // Pass-through the plazo fields when both are present. dueBy without
+      // dueBySource is dropped (the pleno-votes.ts validator would reject
+      // the promotion anyway — better to strip here than surface a broken
+      // suggestion to the curator).
+      ...(vote.dueBy && vote.dueBySource
+        ? { dueBy: vote.dueBy, dueBySource: vote.dueBySource }
+        : {}),
     })
   }
 

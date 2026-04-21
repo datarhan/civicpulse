@@ -47,6 +47,16 @@ export interface InferredVote {
   requiresHumanApproval: true
   /** Which engine produced this suggestion — rendered as a pill on the UI. */
   engine?: 'regex' | 'llm'
+  /**
+   * Optional: ISO date by which the approved motion is supposed to complete,
+   * computed from a "con plazo de N meses/días" phrase near the vote. Always
+   * paired with dueBySource (the verbatim clause that produced it). Both
+   * fields are suggestions — the human curator still approves them, but no
+   * longer has to type them. Missing when the transcript doesn't state a plazo.
+   */
+  dueBy?: string
+  /** Verbatim clause from the transcript that fixes the plazo (≥20 chars). */
+  dueBySource?: string
 }
 
 export interface InferenceResult {
@@ -224,6 +234,118 @@ function inferItemNumber(segment: string): number | null {
   return n > 0 && n < 50 ? n : null
 }
 
+// ─── Plazo / dueBy extraction ────────────────────────────────────────────────
+// Conservative: only surface a dueBy when the transcript carries a verbatim
+// plazo clause, and always attach the verbatim source so the ≥20-char
+// dueBySource invariant in pleno-votes.ts validator passes on promotion.
+//
+// Shapes we match:
+//   "con plazo de ejecución de 6 meses"         (→ plenoDate + 6 months)
+//   "en el plazo máximo de 90 días"             (→ plenoDate + 90 days)
+//   "antes del 31 de diciembre de 2026"         (→ 2026-12-31)
+//   "no más tarde del 1 de junio de 2026"       (→ 2026-06-01)
+// Valencian equivalents ("termini", "abans del") also covered.
+
+const SPANISH_MONTHS: Record<string, number> = {
+  enero: 1, gener: 1,
+  febrero: 2, febrer: 2,
+  marzo: 3, març: 3,
+  abril: 4,
+  mayo: 5, maig: 5,
+  junio: 6, juny: 6,
+  julio: 7, juliol: 7,
+  agosto: 8, agost: 8,
+  septiembre: 9, setembre: 9, setiembre: 9,
+  octubre: 10,
+  noviembre: 11, novembre: 11,
+  diciembre: 12, desembre: 12,
+}
+
+/** Add N months to an ISO YYYY-MM-DD string (calendar-safe). */
+function addMonths(iso: string, months: number): string {
+  const [y, m, d] = iso.slice(0, 10).split('-').map(Number)
+  const base = new Date(Date.UTC(y, m - 1, d))
+  base.setUTCMonth(base.getUTCMonth() + months)
+  return base.toISOString().slice(0, 10)
+}
+
+function addDays(iso: string, days: number): string {
+  const [y, m, d] = iso.slice(0, 10).split('-').map(Number)
+  const base = new Date(Date.UTC(y, m - 1, d))
+  base.setUTCDate(base.getUTCDate() + days)
+  return base.toISOString().slice(0, 10)
+}
+
+/**
+ * Scan a vote segment for a plazo phrase. Returns both the computed
+ * ISO dueBy and the verbatim source clause, or null when nothing matches.
+ * The returned source is padded to ≥20 chars by including surrounding
+ * context — the pleno-votes.ts validator enforces that floor.
+ */
+export function inferPlazoFromSegment(
+  segment: string,
+  plenoDate: string,
+): { dueBy: string; dueBySource: string } | null {
+  // 1. Relative offset: "plazo ... de N días|meses|años"
+  const relRx =
+    /((?:con\s+)?(?:un\s+)?plazo[^.]*?(?:de\s+ejecuci[oó]n\s+)?de\s+(\d{1,3})\s+(d[ií]as|meses|mes|a[ñn]os|a[ñn]o)[^.]{0,40})/i
+  const relCa =
+    /((?:amb\s+)?(?:un\s+)?termini[^.]*?(?:d['’]execuci[oó]\s+)?de\s+(\d{1,3})\s+(dies|mesos|mes|anys|any)[^.]{0,40})/i
+  const rel = segment.match(relRx) || segment.match(relCa)
+  if (rel) {
+    const n = Number(rel[2])
+    const unit = rel[3].toLowerCase()
+    if (!Number.isInteger(n) || n <= 0 || n > 365 * 5) return null
+    let dueBy: string
+    if (unit.startsWith('d')) dueBy = addDays(plenoDate, n)
+    else if (unit.startsWith('me') || unit === 'mesos' || unit === 'mes')
+      dueBy = addMonths(plenoDate, n)
+    else dueBy = addMonths(plenoDate, n * 12)
+    return { dueBy, dueBySource: padSource(rel[1], segment, rel.index ?? 0) }
+  }
+
+  // 2. Absolute date: "antes del 31 de diciembre de 2026"
+  const absRx =
+    /((?:antes\s+del|no\s+m[aá]s\s+tarde\s+del|a\s+m[aá]s\s+tardar\s+el)\s+(\d{1,2})\s+de\s+([a-zá-úñ]+)\s+de\s+(\d{4}))/i
+  const absCa =
+    /((?:abans\s+del|no\s+m[eé]s\s+tard\s+del|a\s+tot\s+estirar\s+el)\s+(\d{1,2})\s+d[e']\s*([a-zà-úñç]+)\s+de\s+(\d{4}))/i
+  const abs = segment.match(absRx) || segment.match(absCa)
+  if (abs) {
+    const day = Number(abs[2])
+    const monthRaw = stripDiacriticsLocal(abs[3].toLowerCase())
+    const year = Number(abs[4])
+    const month = SPANISH_MONTHS[monthRaw]
+    if (!month || !Number.isInteger(day) || day < 1 || day > 31 || year < 2020 || year > 2100) {
+      return null
+    }
+    const dueBy = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`
+    return { dueBy, dueBySource: padSource(abs[1], segment, abs.index ?? 0) }
+  }
+
+  return null
+}
+
+// Local copy — pleno-vote-inference.ts is loaded by pure-function tests and
+// we don't want it to drag the normalize module into contexts that don't need
+// it. (Same shape as src/scraper/normalize.ts#stripDiacritics.)
+function stripDiacriticsLocal(s: string): string {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '')
+}
+
+/**
+ * Ensure the source clause is ≥20 chars by extending with surrounding
+ * context from the segment. Trims whitespace but preserves the verbatim
+ * substring so the curator can verify it matches the acta.
+ */
+function padSource(match: string, segment: string, matchIndex: number): string {
+  const trimmed = match.trim()
+  if (trimmed.length >= 20) return trimmed
+  // Expand ±40 chars, trim at word boundaries, keep verbatim subsequence.
+  const start = Math.max(0, matchIndex - 20)
+  const end = Math.min(segment.length, matchIndex + match.length + 20)
+  return segment.slice(start, end).trim().replace(/\s+/g, ' ')
+}
+
 export interface InferOptions {
   plenoId: string
   plenoDate: string
@@ -246,6 +368,7 @@ export function inferVotesFromTranscript(
     const confidence = scoreConfidence(segment, votes, outcome)
     if (confidence < minConfidence) { dropped += 1; continue }
 
+    const plazo = inferPlazoFromSegment(segment, opts.plenoDate)
     suggestions.push({
       plenoId: opts.plenoId,
       plenoDate: opts.plenoDate,
@@ -255,6 +378,7 @@ export function inferVotesFromTranscript(
       votes,
       confidence: Math.round(confidence * 100) / 100,
       requiresHumanApproval: true,
+      ...(plazo ? { dueBy: plazo.dueBy, dueBySource: plazo.dueBySource } : {}),
     })
   }
 

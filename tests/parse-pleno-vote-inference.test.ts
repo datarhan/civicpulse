@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest'
-import { inferVotesFromTranscript } from '../src/scraper/pleno-vote-inference'
+import {
+  inferVotesFromTranscript,
+  inferPlazoFromSegment,
+} from '../src/scraper/pleno-vote-inference'
 
 // A canonical Spanish pleno phrasing used by Spanish municipal secretarías.
 // The "Se somete a votación" phrase is the segment boundary.
@@ -118,5 +121,89 @@ describe('pleno-vote-inference · confidence gating', () => {
     })
     expect(res.suggestions).toHaveLength(0)
     expect(res.stats.droppedLowConfidence).toBeGreaterThan(0)
+  })
+})
+
+describe('inferPlazoFromSegment · relative offsets', () => {
+  it('extracts months offset: "con plazo de ejecución de 6 meses"', () => {
+    const seg = 'Se aprueba el punto con plazo de ejecución de 6 meses desde la publicación.'
+    const p = inferPlazoFromSegment(seg, '2026-04-20')
+    expect(p).not.toBeNull()
+    expect(p!.dueBy).toBe('2026-10-20')
+    expect(p!.dueBySource.length).toBeGreaterThanOrEqual(20)
+    expect(p!.dueBySource.toLowerCase()).toContain('6 meses')
+  })
+
+  it('extracts days offset: "en el plazo máximo de 90 días"', () => {
+    const seg = 'Queda aprobado en el plazo máximo de 90 días para su ejecución.'
+    const p = inferPlazoFromSegment(seg, '2026-04-20')
+    expect(p).not.toBeNull()
+    expect(p!.dueBy).toBe('2026-07-19')
+  })
+
+  it('extracts Valencian relative offset: "termini de 6 mesos"', () => {
+    const seg = "S'aprova el punt amb un termini d'execució de 6 mesos des de la publicació."
+    const p = inferPlazoFromSegment(seg, '2026-04-20')
+    expect(p).not.toBeNull()
+    expect(p!.dueBy).toBe('2026-10-20')
+    expect(p!.dueBySource.length).toBeGreaterThanOrEqual(20)
+  })
+
+  it('extracts absolute Spanish date: "antes del 31 de diciembre de 2026"', () => {
+    const seg = 'El acuerdo deberá ejecutarse antes del 31 de diciembre de 2026 según consta.'
+    const p = inferPlazoFromSegment(seg, '2026-04-20')
+    expect(p).not.toBeNull()
+    expect(p!.dueBy).toBe('2026-12-31')
+  })
+
+  it('extracts absolute Valencian date: "abans del 15 de juny de 2027"', () => {
+    const seg = 'El compromís ha de complir-se abans del 15 de juny de 2027 segons acord.'
+    const p = inferPlazoFromSegment(seg, '2026-04-20')
+    expect(p).not.toBeNull()
+    expect(p!.dueBy).toBe('2027-06-15')
+  })
+
+  it('returns null when no plazo phrase is present', () => {
+    const seg = 'Se aprueba el punto por mayoría de votos a favor.'
+    expect(inferPlazoFromSegment(seg, '2026-04-20')).toBeNull()
+  })
+
+  it('rejects invalid month names in absolute dates', () => {
+    const seg = 'antes del 10 de fantasmember de 2026'
+    expect(inferPlazoFromSegment(seg, '2026-04-20')).toBeNull()
+  })
+
+  it('rejects absurd relative offsets (>5 years worth of days)', () => {
+    const seg = 'con plazo de ejecución de 9999 días'
+    expect(inferPlazoFromSegment(seg, '2026-04-20')).toBeNull()
+  })
+})
+
+describe('inferVotesFromTranscript · plazo flows through to suggestions', () => {
+  const TRANSCRIPT_WITH_PLAZO = `
+Punto 6.— Aprobación del convenio de colaboración.
+Se somete a votación el punto. Votan a favor PSOE y Compromís, 12 votos. En
+contra el PP, 7 votos. Se abstiene VOX, 2 abstenciones. Queda aprobado con
+plazo de ejecución de 12 meses desde la publicación del acuerdo.
+`
+
+  it('attaches dueBy + dueBySource to the suggestion when the segment carries a plazo', () => {
+    const res = inferVotesFromTranscript(TRANSCRIPT_WITH_PLAZO, {
+      plenoId: 'test-plazo',
+      plenoDate: '2026-04-20',
+    })
+    expect(res.suggestions.length).toBeGreaterThanOrEqual(1)
+    const withPlazo = res.suggestions.find((s) => s.dueBy)
+    expect(withPlazo).toBeDefined()
+    expect(withPlazo!.dueBy).toBe('2027-04-20')
+    expect(withPlazo!.dueBySource?.length ?? 0).toBeGreaterThanOrEqual(20)
+  })
+
+  it('leaves dueBy undefined on segments without a plazo phrase', () => {
+    const res = inferVotesFromTranscript(CASTILIAN_PLENO, {
+      plenoId: 'test-noplazo',
+      plenoDate: '2026-04-20',
+    })
+    expect(res.suggestions.every((s) => s.dueBy === undefined)).toBe(true)
   })
 })

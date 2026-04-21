@@ -34,6 +34,16 @@ export const PlenoVoteSuggestionSchema = z.object({
   excerpt: z.string().min(10).max(600),
   confidence: z.number().min(0).max(1),
   reasoning: z.string().min(5).max(500),
+  // Optional dueBy + dueBySource — the LLM fills these when a plazo phrase
+  // appears near the vote in the transcript. Curator still approves before
+  // promotion to pleno-votes.json, but no longer types the fields by hand.
+  // dueBySource ≥20 chars mirrors the pleno-votes.ts validator invariant.
+  dueBy: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable()
+    .optional(),
+  dueBySource: z.string().min(20).max(500).nullable().optional(),
 })
 
 export type PlenoVoteSuggestion = z.infer<typeof PlenoVoteSuggestionSchema>

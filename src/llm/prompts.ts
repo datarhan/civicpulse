@@ -24,7 +24,7 @@ IMPORTANT SAFETY RULES — apply to every response:
 
 // ─── Phase 1 · Pleno vote extraction ────────────────────────────────────────
 
-export const PLENO_VOTE_PROMPT_VERSION = 'pleno-vote-v1'
+export const PLENO_VOTE_PROMPT_VERSION = 'pleno-vote-v2'
 
 export function buildPlenoVoteSystemPrompt(opts: {
   plenoDate: string
@@ -53,6 +53,17 @@ Tu tarea: decidir si el segmento describe UNA votación concreta de un punto del
 - excerpt: cita textual del fragmento (máx 600 chars)
 - confidence: 0..1. Exige ≥0.6 para incluir una votación; si no, devuelve \`{"vote": null}\`.
 - reasoning: una frase explicando la extracción
+- dueBy: fecha ISO YYYY-MM-DD si el segmento indica un plazo concreto de ejecución,
+    calculada desde la fecha del pleno. Ejemplos:
+      "con plazo de ejecución de 6 meses"  → fecha_pleno + 6 meses
+      "antes del 31 de diciembre de 2026"   → 2026-12-31
+      "termini de 90 dies"                  → fecha_pleno + 90 días
+    Si no hay plazo explícito, pon \`null\`. NUNCA lo inventes ni lo infieras
+    desde temas relacionados — sólo cuando el texto lo dice literalmente.
+- dueBySource: la frase literal del segmento que fija ese plazo (≥20 caracteres,
+    verbatim, tal y como aparece). Obligatoria si rellenas \`dueBy\`. Si no hay
+    plazo, pon \`null\`. Esta cita literal es el guardraíl legal: sin ella no se
+    publica el plazo.
 
 Si el segmento es debate, preámbulo, o no hay votación clara, devuelve \`{"vote": null}\`.
 
