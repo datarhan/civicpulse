@@ -25,6 +25,7 @@ const COMPARISON_PATH = resolve('public/data/pleno-votes-engine-comparison.json'
 const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
 const PLENOS_PATH = resolve('public/data/plenos.json')
 const OFFICIALS_PATH = resolve('public/data/officials.json')
+const AGENDAS_PATH = resolve('public/data/plenos-agendas.json')
 
 type Engine = 'regex' | 'llm' | 'both'
 
@@ -32,6 +33,30 @@ interface PlenoMeta {
   id: string
   date: string
   title?: string
+}
+
+interface AgendaPlenoDoc {
+  plenos?: Array<{
+    id: string
+    agenda?: Array<{
+      number: number
+      title: string
+      department?: string | null
+      expediente?: string | null
+    }>
+  }>
+}
+
+function loadAgendaFor(plenoId: string): Array<{
+  number: number
+  title: string
+  department?: string | null
+  expediente?: string | null
+}> {
+  if (!existsSync(AGENDAS_PATH)) return []
+  const doc = JSON.parse(readFileSync(AGENDAS_PATH, 'utf8')) as AgendaPlenoDoc
+  const p = doc.plenos?.find((x) => x.id === plenoId)
+  return p?.agenda ?? []
 }
 interface Officials {
   officials?: Array<{ party: string }>
@@ -103,10 +128,12 @@ async function runLlm(
     return []
   }
   const transcript = readFileSync(path, 'utf8')
+  const agendaItems = loadAgendaFor(plenoId)
   const res = await inferVotesWithLlm(transcript, {
     plenoId,
     plenoDate: pleno.date,
     currentSeats,
+    agendaItems,
     minConfidence,
   })
   process.stdout.write(

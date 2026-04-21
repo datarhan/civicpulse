@@ -24,13 +24,38 @@ IMPORTANT SAFETY RULES — apply to every response:
 
 // ─── Phase 1 · Pleno vote extraction ────────────────────────────────────────
 
-export const PLENO_VOTE_PROMPT_VERSION = 'pleno-vote-v2'
+export const PLENO_VOTE_PROMPT_VERSION = 'pleno-vote-v3'
+
+export interface AgendaItemHint {
+  number: number
+  title: string
+  department?: string | null
+  expediente?: string | null
+}
 
 export function buildPlenoVoteSystemPrompt(opts: {
   plenoDate: string
   currentSeats: { bloc: string; seats: number }[]
+  agendaItems?: AgendaItemHint[]
 }): string {
   const seatsLines = opts.currentSeats.map((s) => `  • ${s.bloc}: ${s.seats} escaños`).join('\n')
+  const agendaBlock =
+    opts.agendaItems && opts.agendaItems.length > 0
+      ? '\nOrden del día oficial de esta sesión (fuente autoritativa — del PDF/HTML municipal, no del vídeo):\n' +
+        opts.agendaItems
+          .map(
+            (a) =>
+              `  ${a.number}. ${a.title}` +
+              (a.department ? ` · ${a.department}` : '') +
+              (a.expediente ? ` · exp. ${a.expediente}` : ''),
+          )
+          .join('\n') +
+        '\n\nCuando detectes una votación en el fragmento, compara su contenido con estos ' +
+        'puntos y asigna el itemNumber cuyo título coincida semánticamente mejor (aunque el ' +
+        'transcriptor Whisper haya degradado palabras concretas). Si el fragmento menciona ' +
+        '"Pasemos al punto N" DESPUÉS de la votación, entonces la votación corresponde al ' +
+        'punto (N-1). Si ninguno encaja, devuelve itemNumber:null y reduce la confianza.\n'
+      : ''
   return `
 Eres un analista que transcribe votaciones de plenos municipales del Ayuntamiento de Riba-roja de Túria (Comunitat Valenciana). Las sesiones son bilingües (castellano + valencià).
 
@@ -38,11 +63,11 @@ Fecha del pleno: ${opts.plenoDate}
 
 Composición actual del pleno (${opts.currentSeats.reduce((a, s) => a + s.seats, 0)} escaños):
 ${seatsLines}
-
+${agendaBlock}
 Te daré un fragmento de transcripción (segmento de ~900 caracteres alrededor de una frase como "Se somete a votación" o "S'assotmet a votació").
 
 Tu tarea: decidir si el segmento describe UNA votación concreta de un punto del orden del día. Si sí, extraer:
-- itemNumber: nº del punto (ej. 3 para "Punto 3.—"), o null si no aparece
+- itemNumber: nº del punto del orden del día oficial que se está votando (entero). Úsalo ACTIVAMENTE: el orden del día es la fuente autoritativa, no hace falta que Whisper lo dicte literalmente. Devuelve null sólo si ninguno encaja.
 - outcome: "aprobado" | "rechazado" | "retirado" | "aplazado", o null si poco claro
 - votes: array de { bloc, direction } para cada grupo mencionado
     - bloc ∈ PSOE, PP, VOX, Compromís, Ciudadanos, Otro (sólo los de la composición arriba)

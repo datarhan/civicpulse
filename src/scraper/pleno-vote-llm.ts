@@ -24,6 +24,7 @@ import {
   PLENO_VOTE_PROMPT_VERSION,
   buildPlenoVoteSystemPrompt,
   buildPlenoVoteUserPrompt,
+  type AgendaItemHint,
 } from '../llm/prompts'
 import type { ZodTypeAny, z } from 'zod'
 import { splitSegments, type InferenceResult, type InferredVote } from './pleno-vote-inference'
@@ -34,6 +35,13 @@ export interface LlmInferOptions {
   plenoDate: string
   /** Current council composition — LLM prompt includes this to anchor bloc/seat expectations. */
   currentSeats: { bloc: string; seats: number }[]
+  /**
+   * Orden del día scraped from the municipal site (authoritative source of
+   * what should be discussed). When provided the LLM attributes each vote to
+   * the best-matching agenda item instead of guessing itemNumber from Whisper
+   * context — fixes the 0-itemNumber gap we hit on colloquial transcripts.
+   */
+  agendaItems?: AgendaItemHint[]
   /** Segments below this confidence are dropped. */
   minConfidence?: number
 }
@@ -61,6 +69,7 @@ export async function inferVotesWithLlm(
   const systemPrompt = buildPlenoVoteSystemPrompt({
     plenoDate: opts.plenoDate,
     currentSeats: opts.currentSeats,
+    agendaItems: opts.agendaItems,
   })
 
   for (const segment of segments) {
