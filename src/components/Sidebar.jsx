@@ -50,6 +50,14 @@ export const NAV = [
     shortcut: 'G R',
   },
   {
+    to: '/departamentos',
+    id: 'depts',
+    labelKey: 'nav.departamentos',
+    label: 'Departamentos',
+    icon: Ic.building,
+    shortcut: 'G E',
+  },
+  {
     to: '/datos',
     id: 'datos',
     labelKey: 'nav.datos',

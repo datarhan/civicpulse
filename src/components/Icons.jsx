@@ -26,4 +26,5 @@ export const Ic = {
   settings: (p) => <svg {...p} viewBox="0 0 20 20" {...common}><circle cx="10" cy="10" r="2.5"/><path d="M10 2v2M10 16v2M18 10h-2M4 10H2M15.5 4.5l-1.4 1.4M5.9 14.1l-1.4 1.4M15.5 15.5l-1.4-1.4M5.9 5.9 4.5 4.5"/></svg>,
   check:    (p) => <svg {...p} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="m5 10 3 3 7-7"/></svg>,
   chevron:  (p) => <svg {...p} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="m3 5 3-3 3 3M3 7l3 3 3-3"/></svg>,
+  building: (p) => <svg {...p} viewBox="0 0 20 20" {...common}><path d="M4 17V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v12M4 17h12M7 8h1M12 8h1M7 11h1M12 11h1M9 17v-3h2v3"/></svg>,
 }

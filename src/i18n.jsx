@@ -27,6 +27,7 @@ const CATALOGUE = {
     'nav.presup': 'Presupuesto',
     'nav.plenos': 'Plenos',
     'nav.promesas': 'Promesas',
+    'nav.departamentos': 'Departamentos',
     'nav.datos': 'Datos',
     'nav.quejas': 'Quejas',
     'nav.section': 'Navegación',
@@ -87,6 +88,31 @@ const CATALOGUE = {
     // Cambios · delta-digest page
     'cambios.eyebrow': 'Esta semana en Riba-roja',
     'cambios.title': 'Novedades',
+
+    // Departamentos — per-concejalía accountability dashboard
+    'departamentos.eyebrow': 'Rendición de cuentas',
+    'departamentos.title': 'Departamentos · compromisos y plazos',
+    'departamentos.subtitle':
+      'Seguimiento por concejalía de los acuerdos aprobados en pleno y las promesas con plazo. Las votaciones transcritas son el hecho primario; las promesas son secundarias.',
+    'departamentos.card.responsable': 'Responsable',
+    'departamentos.card.sinResponsable': 'Sin concejal asignado',
+    'departamentos.card.votes': 'Votos',
+    'departamentos.card.aprobados': 'Aprobados',
+    'departamentos.card.vencidos': 'Plazos vencidos',
+    'departamentos.card.promesas': 'Promesas',
+    'departamentos.card.quejas': 'Quejas abiertas',
+    'departamentos.detalle.back': '← Todos los departamentos',
+    'departamentos.detalle.compromisos': 'Compromisos plenarios',
+    'departamentos.detalle.promesas': 'Promesas electorales',
+    'departamentos.detalle.agendas': 'Puntos debatidos sin voto transcrito',
+    'departamentos.detalle.quejas': 'Quejas ciudadanas activas',
+    'departamentos.detalle.empty.votes': '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
+    'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
+    'departamentos.detalle.empty.quejas': 'Sin quejas ciudadanas activas para esta concejalía.',
+    'plazo.vencido': 'plazo vencido · sin evidencia de ejecución',
+    'plazo.hint': 'Fecha de compromiso superada sin que se haya registrado evidencia de ejecución. El estado editorial NO cambia automáticamente.',
+    'liveTicker.plazosVencidos': 'plazos vencidos',
+    'liveTicker.plazosVencidos.none': 'sin plazos vencidos · todo en regla',
   },
 
   // Valencià (estàndard oficial — Acadèmia Valenciana de la Llengua / GVA)
@@ -97,6 +123,7 @@ const CATALOGUE = {
     'nav.presup': 'Pressupost',
     'nav.plenos': 'Plens',
     'nav.promesas': 'Promeses',
+    'nav.departamentos': 'Departaments',
     'nav.datos': 'Dades',
     'nav.quejas': 'Queixes',
     'nav.section': 'Navegació',
@@ -149,6 +176,30 @@ const CATALOGUE = {
 
     'cambios.eyebrow': 'Esta setmana a Riba-roja',
     'cambios.title': 'Novetats',
+
+    'departamentos.eyebrow': 'Rendició de comptes',
+    'departamentos.title': 'Departaments · compromisos i terminis',
+    'departamentos.subtitle':
+      "Seguiment per regidoria dels acords aprovats en ple i de les promeses amb termini. Les votacions transcrites són el fet primari; les promeses són secundàries.",
+    'departamentos.card.responsable': 'Responsable',
+    'departamentos.card.sinResponsable': 'Sense regidor/a assignat',
+    'departamentos.card.votes': 'Vots',
+    'departamentos.card.aprobados': 'Aprovats',
+    'departamentos.card.vencidos': 'Terminis vençuts',
+    'departamentos.card.promesas': 'Promeses',
+    'departamentos.card.quejas': 'Queixes obertes',
+    'departamentos.detalle.back': '← Tots els departaments',
+    'departamentos.detalle.compromisos': 'Compromisos plenaris',
+    'departamentos.detalle.promesas': 'Promeses electorals',
+    'departamentos.detalle.agendas': 'Punts debatuts sense vot transcrit',
+    'departamentos.detalle.quejas': 'Queixes ciutadanes actives',
+    'departamentos.detalle.empty.votes': "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
+    'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
+    'departamentos.detalle.empty.quejas': 'Sense queixes ciutadanes actives per a aquesta regidoria.',
+    'plazo.vencido': 'termini vençut · sense evidència d\'execució',
+    'plazo.hint': "Data de compromís superada sense que s'haja registrat evidència d'execució. L'estat editorial NO canvia automàticament.",
+    'liveTicker.plazosVencidos': 'terminis vençuts',
+    'liveTicker.plazosVencidos.none': 'sense terminis vençuts · tot en regla',
   },
 }
 

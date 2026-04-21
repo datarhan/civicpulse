@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useParticipa, KIND_ICON, KIND_LABEL } from '../hooks/useParticipa'
 import { useMemo, useState } from 'react'
@@ -153,11 +154,20 @@ function TopDepartmentsCard({ agendas }) {
       <SectionHead
         eyebrow={`Plenos analizados · ${agendas.stats.plenosFetched} sesiones · ${agendas.stats.agendaItemsTotal} puntos`}
         title="Departamentos con más presencia en el pleno"
+        right={
+          <Link
+            to="/departamentos"
+            style={{ fontSize: 12, color: 'var(--civic)', textDecoration: 'none' }}
+          >
+            Ver dashboard por departamento →
+          </Link>
+        }
       />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 8 }}>
         {agendas.topDepartments.map((d) => (
-          <span
+          <Link
             key={d.department}
+            to={d.departmentSlug ? `/departamentos/${d.departmentSlug}` : '/departamentos'}
             className="mono"
             style={{
               fontSize: 11,
@@ -166,11 +176,12 @@ function TopDepartmentsCard({ agendas }) {
               color: 'var(--civic)',
               borderRadius: 3,
               letterSpacing: '.05em',
+              textDecoration: 'none',
             }}
           >
             {d.department}
             <span style={{ marginLeft: 5, color: 'var(--ink60)' }}>· {d.count}</span>
-          </span>
+          </Link>
         ))}
       </div>
     </Card>
