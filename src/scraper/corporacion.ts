@@ -28,7 +28,7 @@ const NAME_RE = /(Sr\.|Sra\.)\s*D[a\u00aa]?\.?\s+([^.]+?)\.\s*(?:\u00c1reas|Corr
 // Map party logo image IDs (from alt + src) to canonical party codes.
 // Source: inspected live HTML on 2026-04-19.
 function partyFromLogo($img: AnyNode, $: CheerioAPI): Party {
-  const el = $(($img as unknown) as AnyNode)
+  const el = $($img as unknown as AnyNode)
   const alt = (el.attr('alt') || '').toLowerCase()
   const src = el.attr('src') || ''
   const idMatch = src.match(/id=(\d+)/)
@@ -55,7 +55,10 @@ function makeSlug(name: string): string {
 
 function extractPortfolios(text: string): string[] {
   // The "Áreas" block runs until the next "Correo electrónico" or end-of-cell.
-  const cleaned = text.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim()
+  const cleaned = text
+    .replace(/\u00a0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
   const m = cleaned.match(/\u00c1reas[:\s]*(.*?)(?:Correo electr\u00f3nico|$)/i)
   if (!m) return []
   const raw = m[1].replace(/\s*\.?\s*$/, '').trim()
@@ -86,7 +89,10 @@ function extractName(text: string): { honorific: 'Sr.' | 'Sra.'; name: string } 
   // Cells contain concatenated paragraphs (cheerio .text() drops tag
   // boundaries), so match anywhere in the flattened string and stop at the
   // first period before "Áreas", "Correo", or end-of-string.
-  const cleaned = text.replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim()
+  const cleaned = text
+    .replace(/\u00a0/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
   const m = cleaned.match(NAME_RE)
   if (!m) return null
   const honorific = m[1] === 'Sra.' ? 'Sra.' : 'Sr.'
@@ -122,14 +128,20 @@ export function parseCorporacion(html: string, opts: ParseOptions = {}): Officia
     if (cells.length < 1) return
 
     const infoCell = $(cells[0])
-    const cellText = infoCell.text().replace(/\u00a0/g, ' ').trim()
+    const cellText = infoCell
+      .text()
+      .replace(/\u00a0/g, ' ')
+      .trim()
 
     // Section marker rows contain just "Alcalde" or "Concejales" — no person data
     if (/^\s*alcalde\s*$/i.test(cellText)) {
       currentRole = 'alcalde'
       return
     }
-    if (/^\s*concejales\s*$/i.test(cellText) || /concejales/i.test(cellText) && cellText.length < 30) {
+    if (
+      /^\s*concejales\s*$/i.test(cellText) ||
+      (/concejales/i.test(cellText) && cellText.length < 30)
+    ) {
       currentRole = 'concejal'
       return
     }
@@ -176,26 +188,28 @@ export function parseCorporacion(html: string, opts: ParseOptions = {}): Officia
         const alt = ($img.attr('alt') || '').toLowerCase()
         if (/^cv\b/.test(alt) || /agenda/i.test(alt)) return
         const src = $img.attr('src') || ''
-        const isLogo = /psoe|logo pp|vox|compromis/i.test(alt) || /id=(1967|9886|10576|1970|11569)\b/.test(src)
+        const isLogo =
+          /psoe|logo pp|vox|compromis/i.test(alt) || /id=(1967|9886|10576|1970|11569)\b/.test(src)
         if (!isLogo && !photoUrl) photoUrl = absolutise(src, base)
       })
     }
 
     // Special-case the "Otro" party row where logo id is 11569 and alt is empty
     if (party === 'Otro') {
-      const anyLogo = imgs
-        .filter((_, img) => /id=11569/.test($(img).attr('src') || ''))
-        .first()
+      const anyLogo = imgs.filter((_, img) => /id=11569/.test($(img).attr('src') || '')).first()
       if (anyLogo.length > 0 && !partyLogoUrl) {
         partyLogoUrl = absolutise(anyLogo.attr('src'), base)
       }
     }
 
     // CV link — anchor wrapping the CV icon
-    const cvAnchor = infoCell.find('a').filter((_, a) => {
-      const href = $(a).attr('href') || ''
-      return /portal_de_transparencia.*dades_biografiques/i.test(href)
-    }).first()
+    const cvAnchor = infoCell
+      .find('a')
+      .filter((_, a) => {
+        const href = $(a).attr('href') || ''
+        return /portal_de_transparencia.*dades_biografiques/i.test(href)
+      })
+      .first()
     const cvUrl = cvAnchor.attr('href') ? absolutise(cvAnchor.attr('href'), base) : null
 
     const name = parsed.name

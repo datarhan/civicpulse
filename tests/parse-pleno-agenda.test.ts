@@ -36,9 +36,7 @@ describe('scraper/pleno-agenda — parsePlenoAgenda', () => {
     const sections = new Set(result!.items.map((i) => i.section))
     // At least one of these three known sections should appear
     expect(
-      sections.has('resolutiva') ||
-        sections.has('informativa') ||
-        sections.has('ruegos')
+      sections.has('resolutiva') || sections.has('informativa') || sections.has('ruegos'),
     ).toBe(true)
   })
 

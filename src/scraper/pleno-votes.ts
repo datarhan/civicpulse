@@ -130,14 +130,35 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
 
   must(typeof o.id === 'string' && ID_RE.test(o.id), `id must match /^[a-z0-9]+-\\d{2,}$/${ctx}`)
   must(typeof o.plenoId === 'string' && o.plenoId.length > 0, `plenoId required${ctx}`)
-  must(typeof o.plenoDate === 'string' && ISO_DATE.test(o.plenoDate), `plenoDate must be ISO date${ctx}`)
-  must(Number.isInteger(o.itemNumber) && (o.itemNumber as number) > 0, `itemNumber must be positive int${ctx}`)
+  must(
+    typeof o.plenoDate === 'string' && ISO_DATE.test(o.plenoDate),
+    `plenoDate must be ISO date${ctx}`,
+  )
+  must(
+    Number.isInteger(o.itemNumber) && (o.itemNumber as number) > 0,
+    `itemNumber must be positive int${ctx}`,
+  )
   must(typeof o.title === 'string' && o.title.trim().length >= 20, `title must be ≥20 chars${ctx}`)
-  must(typeof o.outcome === 'string' && ALLOWED_OUTCOMES.includes(o.outcome as VoteOutcome), `outcome must be one of ${ALLOWED_OUTCOMES.join(',')}${ctx}`)
-  must(Array.isArray(o.votes) && (o.votes as unknown[]).length > 0, `votes must be non-empty array${ctx}`)
-  must(typeof o.sourceUrl === 'string' && URL_RE.test(o.sourceUrl), `sourceUrl must be http(s) URL${ctx}`)
-  must(typeof o.sourcePublisher === 'string' && o.sourcePublisher.trim().length > 0, `sourcePublisher required${ctx}`)
-  must(typeof o.retrievedAt === 'string' && ISO_DATE.test(o.retrievedAt), `retrievedAt must be ISO date${ctx}`)
+  must(
+    typeof o.outcome === 'string' && ALLOWED_OUTCOMES.includes(o.outcome as VoteOutcome),
+    `outcome must be one of ${ALLOWED_OUTCOMES.join(',')}${ctx}`,
+  )
+  must(
+    Array.isArray(o.votes) && (o.votes as unknown[]).length > 0,
+    `votes must be non-empty array${ctx}`,
+  )
+  must(
+    typeof o.sourceUrl === 'string' && URL_RE.test(o.sourceUrl),
+    `sourceUrl must be http(s) URL${ctx}`,
+  )
+  must(
+    typeof o.sourcePublisher === 'string' && o.sourcePublisher.trim().length > 0,
+    `sourcePublisher required${ctx}`,
+  )
+  must(
+    typeof o.retrievedAt === 'string' && ISO_DATE.test(o.retrievedAt),
+    `retrievedAt must be ISO date${ctx}`,
+  )
 
   if (o.dueBy !== undefined) {
     must(typeof o.dueBy === 'string' && ISO_DATE.test(o.dueBy), `dueBy must be ISO date${ctx}`)
@@ -157,14 +178,28 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
     const vc = ` (items[${idx}].votes[${i}])`
     must(typeof raw === 'object' && raw !== null, `vote tuple must be object${vc}`)
     const vo = raw as Record<string, unknown>
-    must(typeof vo.bloc === 'string' && ALLOWED_BLOCS.includes(vo.bloc as VoteBloc), `bloc must be one of ${ALLOWED_BLOCS.join(',')}${vc}`)
-    must(typeof vo.direction === 'string' && ALLOWED_DIRECTIONS.includes(vo.direction as VoteDirection), `direction must be one of ${ALLOWED_DIRECTIONS.join(',')}${vc}`)
+    must(
+      typeof vo.bloc === 'string' && ALLOWED_BLOCS.includes(vo.bloc as VoteBloc),
+      `bloc must be one of ${ALLOWED_BLOCS.join(',')}${vc}`,
+    )
+    must(
+      typeof vo.direction === 'string' &&
+        ALLOWED_DIRECTIONS.includes(vo.direction as VoteDirection),
+      `direction must be one of ${ALLOWED_DIRECTIONS.join(',')}${vc}`,
+    )
     must(!seenBlocs.has(vo.bloc as string), `bloc ${vo.bloc} listed more than once${vc}`)
     seenBlocs.add(vo.bloc as string)
     if (vo.seats !== undefined) {
-      must(Number.isInteger(vo.seats) && (vo.seats as number) >= 0, `seats must be non-negative int${vc}`)
+      must(
+        Number.isInteger(vo.seats) && (vo.seats as number) >= 0,
+        `seats must be non-negative int${vc}`,
+      )
     }
-    return { bloc: vo.bloc as VoteBloc, direction: vo.direction as VoteDirection, ...(vo.seats !== undefined ? { seats: vo.seats as number } : {}) }
+    return {
+      bloc: vo.bloc as VoteBloc,
+      direction: vo.direction as VoteDirection,
+      ...(vo.seats !== undefined ? { seats: vo.seats as number } : {}),
+    }
   })
 
   return {
@@ -201,7 +236,12 @@ export function validateSnapshot(raw: unknown): PlenoVotesSnapshot {
     return v
   })
 
-  const byOutcome: Record<VoteOutcome, number> = { aprobado: 0, rechazado: 0, retirado: 0, aplazado: 0 }
+  const byOutcome: Record<VoteOutcome, number> = {
+    aprobado: 0,
+    rechazado: 0,
+    retirado: 0,
+    aplazado: 0,
+  }
   const byPleno: Record<string, number> = {}
   for (const it of items) {
     byOutcome[it.outcome] += 1

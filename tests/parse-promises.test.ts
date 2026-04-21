@@ -53,7 +53,7 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
         'parcial',
         'no-ejecutada',
         'inviable',
-      ])
+      ]),
     )
   })
 

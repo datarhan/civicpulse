@@ -145,9 +145,9 @@ describe('pleno-votes validator', () => {
   })
 
   it('rejects dueBy with a too-short dueBySource', () => {
-    expect(() =>
-      validateVote({ ...baseVote, dueBy: '2026-10-20', dueBySource: 'corto' }),
-    ).toThrow(/≥20|20 chars/)
+    expect(() => validateVote({ ...baseVote, dueBy: '2026-10-20', dueBySource: 'corto' })).toThrow(
+      /≥20|20 chars/,
+    )
   })
 
   it('rejects non-ISO dueBy', () => {

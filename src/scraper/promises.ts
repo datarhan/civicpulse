@@ -143,10 +143,14 @@ function assertString(v: unknown, name: string, min = 1, max = Infinity): assert
   if (v.length > max) throw new ValidationError(`${name} too long (${v.length} > ${max})`)
 }
 
-function assertEnum<T extends string>(v: unknown, allowed: readonly T[], name: string): asserts v is T {
+function assertEnum<T extends string>(
+  v: unknown,
+  allowed: readonly T[],
+  name: string,
+): asserts v is T {
   if (typeof v !== 'string' || !(allowed as readonly string[]).includes(v)) {
     throw new ValidationError(
-      `${name} must be one of [${allowed.join(', ')}] (got ${JSON.stringify(v)})`
+      `${name} must be one of [${allowed.join(', ')}] (got ${JSON.stringify(v)})`,
     )
   }
 }
@@ -170,7 +174,11 @@ function validateEvidence(e: unknown, idx: number): EvidenceEntry {
   assertUrl(r.url, `evidence[${idx}].url`)
   assertString(r.quote, `evidence[${idx}].quote`, 10, 800)
   assertString(r.publisher, `evidence[${idx}].publisher`, 1, 100)
-  assertEnum(r.kind, ['press', 'pleno', 'budget', 'bdns', 'ayuntamiento', 'otro'], `evidence[${idx}].kind`)
+  assertEnum(
+    r.kind,
+    ['press', 'pleno', 'budget', 'bdns', 'ayuntamiento', 'otro'],
+    `evidence[${idx}].kind`,
+  )
   assertString(r.addedBy, `evidence[${idx}].addedBy`, 1, 80)
   return r as unknown as EvidenceEntry
 }
@@ -183,7 +191,8 @@ function validatePromise(p: unknown, idx: number): Promise {
   assertString(r.title, `items[${idx}].title`, 4, 200)
   // Verbatim quote invariant — ≥20 chars, prevents summarising.
   assertString(r.quote, `items[${idx}].quote (verbatim, ≥20 chars)`, 20, 1500)
-  if (!r.source || typeof r.source !== 'object') throw new ValidationError(`items[${idx}].source missing`)
+  if (!r.source || typeof r.source !== 'object')
+    throw new ValidationError(`items[${idx}].source missing`)
   const src = r.source as Record<string, unknown>
   assertUrl(src.url, `items[${idx}].source.url`)
   assertString(src.publisher, `items[${idx}].source.publisher`, 1, 100)
@@ -196,7 +205,7 @@ function validatePromise(p: unknown, idx: number): Promise {
   if (!V1_STATUSES.has(r.status as Status)) {
     if (!Array.isArray(r.evidence) || r.evidence.length === 0) {
       throw new ValidationError(
-        `items[${idx}] status "${r.status}" requires ≥1 evidence entry (V1 invariant)`
+        `items[${idx}] status "${r.status}" requires ≥1 evidence entry (V1 invariant)`,
       )
     }
   }

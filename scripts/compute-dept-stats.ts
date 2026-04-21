@@ -35,7 +35,9 @@ async function main() {
   ])
 
   if (!agendas) {
-    console.error('[compute-dept-stats] plenos-agendas.json not found — run npm run scrape:pleno-agendas first')
+    console.error(
+      '[compute-dept-stats] plenos-agendas.json not found — run npm run scrape:pleno-agendas first',
+    )
     process.exit(1)
   }
 
@@ -48,9 +50,11 @@ async function main() {
   })
 
   const next = agendas as Record<string, unknown>
-  const statsBlock = (next.stats && typeof next.stats === 'object'
-    ? { ...(next.stats as Record<string, unknown>) }
-    : {}) as Record<string, unknown>
+  const statsBlock = (
+    next.stats && typeof next.stats === 'object'
+      ? { ...(next.stats as Record<string, unknown>) }
+      : {}
+  ) as Record<string, unknown>
   statsBlock.plazosVencidosCount = stats.plazosVencidosCount
   statsBlock.deptCoverage = stats.list.filter((b) => b.responsableOfficial != null).length
   next.stats = statsBlock

@@ -57,10 +57,7 @@ function decodeBuffer(buf: Buffer | string): string {
   }
   // If the document declares latin-1 explicitly and the utf-8 decode produced
   // none of the accented Spanish characters we'd expect, also fall back.
-  if (
-    /charset=ISO-8859-1/i.test(asUtf) &&
-    !/[áéíóúñÁÉÍÓÚÑ]/.test(asUtf)
-  ) {
+  if (/charset=ISO-8859-1/i.test(asUtf) && !/[áéíóúñÁÉÍÓÚÑ]/.test(asUtf)) {
     return buf.toString('latin1')
   }
   return asUtf
@@ -73,20 +70,39 @@ const NAMED_ENTITIES: Record<string, string> = {
   gt: '>',
   quot: '"',
   apos: "'",
-  aacute: 'á', eacute: 'é', iacute: 'í', oacute: 'ó', uacute: 'ú',
-  Aacute: 'Á', Eacute: 'É', Iacute: 'Í', Oacute: 'Ó', Uacute: 'Ú',
-  ntilde: 'ñ', Ntilde: 'Ñ',
-  ordm: 'º', ordf: 'ª',
+  aacute: 'á',
+  eacute: 'é',
+  iacute: 'í',
+  oacute: 'ó',
+  uacute: 'ú',
+  Aacute: 'Á',
+  Eacute: 'É',
+  Iacute: 'Í',
+  Oacute: 'Ó',
+  Uacute: 'Ú',
+  ntilde: 'ñ',
+  Ntilde: 'Ñ',
+  ordm: 'º',
+  ordf: 'ª',
   middot: '·',
-  uuml: 'ü', Uuml: 'Ü',
-  iquest: '¿', iexcl: '¡',
+  uuml: 'ü',
+  Uuml: 'Ü',
+  iquest: '¿',
+  iexcl: '¡',
   euro: '€',
   deg: '°',
-  ldquo: '“', rdquo: '”', lsquo: '‘', rsquo: '’',
-  laquo: '«', raquo: '»',
-  ndash: '–', mdash: '—',
+  ldquo: '“',
+  rdquo: '”',
+  lsquo: '‘',
+  rsquo: '’',
+  laquo: '«',
+  raquo: '»',
+  ndash: '–',
+  mdash: '—',
   hellip: '…',
-  trade: '™', copy: '©', reg: '®',
+  trade: '™',
+  copy: '©',
+  reg: '®',
 }
 
 function htmlToText(html: string): string {
@@ -97,9 +113,7 @@ function htmlToText(html: string): string {
     .replace(/&#(\d+);/g, (_, n) => String.fromCharCode(parseInt(n, 10)))
     .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCharCode(parseInt(n, 16)))
     .replace(/&([a-zA-Z]+);/g, (whole, name: string) =>
-      Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, name)
-        ? NAMED_ENTITIES[name]
-        : whole
+      Object.prototype.hasOwnProperty.call(NAMED_ENTITIES, name) ? NAMED_ENTITIES[name] : whole,
     )
     .replace(/\s+/g, ' ')
     .trim()
@@ -138,13 +152,16 @@ function parseItems(text: string): { items: PlenoAgendaItem[]; raw: string } {
     const sectionBefore = /PARTE\s+RESOLUTIVA/i.test(raw)
       ? 'resolutiva'
       : /PARTE\s+DE\s+INFORMACI[ÓO]N/i.test(raw)
-      ? 'informativa'
-      : null
+        ? 'informativa'
+        : null
 
     // Strip out the section header if it's embedded.
     const cleaned = raw
       .replace(/PARTE\s+RESOLUTIVA/gi, '')
-      .replace(/PARTE\s+DE\s+INFORMACI[ÓO]N[,\s]*IMPULSO\s+Y\s+CONTROL\s+DE\s+LOS\s+[OÓ]RGANOS\s+DE\s+GOBIERNO/gi, '')
+      .replace(
+        /PARTE\s+DE\s+INFORMACI[ÓO]N[,\s]*IMPULSO\s+Y\s+CONTROL\s+DE\s+LOS\s+[OÓ]RGANOS\s+DE\s+GOBIERNO/gi,
+        '',
+      )
       .trim()
 
     // Department + expediente extraction. Typical shapes:
@@ -155,7 +172,7 @@ function parseItems(text: string): { items: PlenoAgendaItem[]; raw: string } {
     let expediente: string | null = null
     let title = cleaned
     const headerMatch = cleaned.match(
-      /^([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\s]{2,30}?),\s*Expediente:\s*([0-9]+\/[0-9]{4}[A-Z/0-9]*),?\s*(.*)$/i
+      /^([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\s]{2,30}?),\s*Expediente:\s*([0-9]+\/[0-9]{4}[A-Z/0-9]*),?\s*(.*)$/i,
     )
     if (headerMatch) {
       department = headerMatch[1].trim()

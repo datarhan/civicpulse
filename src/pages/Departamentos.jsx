@@ -13,10 +13,7 @@ function DepartmentCard({ bucket, frozen }) {
   const vencidos = bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos
 
   return (
-    <Link
-      to={`/departamentos/${bucket.slug}`}
-      style={{ textDecoration: 'none', color: 'inherit' }}
-    >
+    <Link to={`/departamentos/${bucket.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
       <Card hover style={{ height: '100%' }}>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
           <div style={{ flex: 1, minWidth: 0 }}>
@@ -95,11 +92,7 @@ function DepartmentCard({ bucket, frozen }) {
 
 function Stat({ label, value, tone, muted }) {
   const color =
-    tone === 'warn'
-      ? 'var(--warn-ink)'
-      : tone === 'crit'
-        ? 'var(--crit-ink)'
-        : 'var(--ink)'
+    tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
   return (
     <div style={{ opacity: muted ? 0.55 : 1 }}>
       <div
@@ -128,16 +121,12 @@ export default function Departamentos() {
 
   if (stats.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>
-        {t('common.loading')}
-      </div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
     )
   }
   if (stats.error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>
-        {stats.error.message}
-      </div>
+      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>{stats.error.message}</div>
     )
   }
 

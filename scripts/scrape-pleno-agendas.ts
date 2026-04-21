@@ -69,7 +69,7 @@ async function main() {
       agenda = parsed?.items ?? []
     }
     const departments = Array.from(
-      new Set(agenda.map((a) => a.department).filter(Boolean) as string[])
+      new Set(agenda.map((a) => a.department).filter(Boolean) as string[]),
     )
     const hasRuegos = agenda.some((a) => a.section === 'ruegos')
     console.log(`${agenda.length} items`)
@@ -122,7 +122,7 @@ async function main() {
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(
-    `[pleno-agendas] wrote ${OUT} — ${results.length} plenos · ${itemCount} items · ${Object.keys(deptCount).length} departamentos`
+    `[pleno-agendas] wrote ${OUT} — ${results.length} plenos · ${itemCount} items · ${Object.keys(deptCount).length} departamentos`,
   )
 }
 

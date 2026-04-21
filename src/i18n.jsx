@@ -106,11 +106,13 @@ const CATALOGUE = {
     'departamentos.detalle.promesas': 'Promesas electorales',
     'departamentos.detalle.agendas': 'Puntos debatidos sin voto transcrito',
     'departamentos.detalle.quejas': 'Quejas ciudadanas activas',
-    'departamentos.detalle.empty.votes': '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
+    'departamentos.detalle.empty.votes':
+      '0 votos transcritos para esta concejalía — contribuye vía `npm run pleno-vote` o la plantilla de issue.',
     'departamentos.detalle.empty.promesas': 'Sin promesas registradas para esta concejalía.',
     'departamentos.detalle.empty.quejas': 'Sin quejas ciudadanas activas para esta concejalía.',
     'plazo.vencido': 'plazo vencido · sin evidencia de ejecución',
-    'plazo.hint': 'Fecha de compromiso superada sin que se haya registrado evidencia de ejecución. El estado editorial NO cambia automáticamente.',
+    'plazo.hint':
+      'Fecha de compromiso superada sin que se haya registrado evidencia de ejecución. El estado editorial NO cambia automáticamente.',
     'liveTicker.plazosVencidos': 'plazos vencidos',
     'liveTicker.plazosVencidos.none': 'sin plazos vencidos · todo en regla',
   },
@@ -180,7 +182,7 @@ const CATALOGUE = {
     'departamentos.eyebrow': 'Rendició de comptes',
     'departamentos.title': 'Departaments · compromisos i terminis',
     'departamentos.subtitle':
-      "Seguiment per regidoria dels acords aprovats en ple i de les promeses amb termini. Les votacions transcrites són el fet primari; les promeses són secundàries.",
+      'Seguiment per regidoria dels acords aprovats en ple i de les promeses amb termini. Les votacions transcrites són el fet primari; les promeses són secundàries.',
     'departamentos.card.responsable': 'Responsable',
     'departamentos.card.sinResponsable': 'Sense regidor/a assignat',
     'departamentos.card.votes': 'Vots',
@@ -193,11 +195,14 @@ const CATALOGUE = {
     'departamentos.detalle.promesas': 'Promeses electorals',
     'departamentos.detalle.agendas': 'Punts debatuts sense vot transcrit',
     'departamentos.detalle.quejas': 'Queixes ciutadanes actives',
-    'departamentos.detalle.empty.votes': "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
+    'departamentos.detalle.empty.votes':
+      "0 vots transcrits per a aquesta regidoria — contribueix via `npm run pleno-vote` o la plantilla d'issue.",
     'departamentos.detalle.empty.promesas': 'Sense promeses registrades per a aquesta regidoria.',
-    'departamentos.detalle.empty.quejas': 'Sense queixes ciutadanes actives per a aquesta regidoria.',
-    'plazo.vencido': 'termini vençut · sense evidència d\'execució',
-    'plazo.hint': "Data de compromís superada sense que s'haja registrat evidència d'execució. L'estat editorial NO canvia automàticament.",
+    'departamentos.detalle.empty.quejas':
+      'Sense queixes ciutadanes actives per a aquesta regidoria.',
+    'plazo.vencido': "termini vençut · sense evidència d'execució",
+    'plazo.hint':
+      "Data de compromís superada sense que s'haja registrat evidència d'execució. L'estat editorial NO canvia automàticament.",
     'liveTicker.plazosVencidos': 'terminis vençuts',
     'liveTicker.plazosVencidos.none': 'sense terminis vençuts · tot en regla',
   },

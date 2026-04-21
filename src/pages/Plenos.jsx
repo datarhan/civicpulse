@@ -5,7 +5,11 @@ import { useMemo, useState } from 'react'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoAgendas, SECTION_LABEL, SECTION_TONE } from '../hooks/usePlenoAgendas'
 import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE, DIRECTION_TONE } from '../hooks/usePlenoVotes'
-import { usePlenoVideos, usePlenoVoteSuggestions, indexVideosByPleno } from '../hooks/usePlenoVideos'
+import {
+  usePlenoVideos,
+  usePlenoVoteSuggestions,
+  indexVideosByPleno,
+} from '../hooks/usePlenoVideos'
 import { partyColor } from '../hooks/useOfficials'
 import { useT } from '../i18n'
 
@@ -238,14 +242,22 @@ function RealPlenosList() {
 
 function VoteTuple({ v }) {
   const tone = DIRECTION_TONE[v.direction] || 'neutral'
-  const toneVar = tone === 'ok' ? 'var(--ok-ink)'
-    : tone === 'crit' ? 'var(--crit-ink)'
-    : tone === 'warn' ? 'var(--warn-ink)'
-    : 'var(--ink60)'
-  const bg = tone === 'ok' ? 'var(--ok-soft)'
-    : tone === 'crit' ? 'var(--crit-soft)'
-    : tone === 'warn' ? 'var(--warn-soft)'
-    : 'var(--soft)'
+  const toneVar =
+    tone === 'ok'
+      ? 'var(--ok-ink)'
+      : tone === 'crit'
+        ? 'var(--crit-ink)'
+        : tone === 'warn'
+          ? 'var(--warn-ink)'
+          : 'var(--ink60)'
+  const bg =
+    tone === 'ok'
+      ? 'var(--ok-soft)'
+      : tone === 'crit'
+        ? 'var(--crit-soft)'
+        : tone === 'warn'
+          ? 'var(--warn-soft)'
+          : 'var(--soft)'
   return (
     <span
       className="mono"
@@ -262,7 +274,14 @@ function VoteTuple({ v }) {
       }}
     >
       <span style={{ width: 6, height: 6, borderRadius: '50%', background: partyColor(v.bloc) }} />
-      {v.bloc} · {v.direction === 'a_favor' ? '✓' : v.direction === 'en_contra' ? '✗' : v.direction === 'abstencion' ? '○' : '—'}
+      {v.bloc} ·{' '}
+      {v.direction === 'a_favor'
+        ? '✓'
+        : v.direction === 'en_contra'
+          ? '✗'
+          : v.direction === 'abstencion'
+            ? '○'
+            : '—'}
     </span>
   )
 }
@@ -277,7 +296,15 @@ function PlenoVotesBlock() {
 
   return (
     <div style={{ marginTop: 28 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: 10,
+          marginBottom: 8,
+          flexWrap: 'wrap',
+        }}
+      >
         <div
           className="mono"
           style={{
@@ -309,10 +336,10 @@ function PlenoVotesBlock() {
             title={t('plenos.votes.empty.title')}
           />
           <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.55 }}>
-            Este módulo transcribe el sentido del voto de cada grupo municipal sobre los
-            acuerdos del pleno. Las transcripciones se incorporan a partir del acta oficial
-            publicada por la secretaría del ayuntamiento — manual y verificable. Cuando se
-            publique el primer acuerdo votado, aparecerá aquí con cita a la fuente.
+            Este módulo transcribe el sentido del voto de cada grupo municipal sobre los acuerdos
+            del pleno. Las transcripciones se incorporan a partir del acta oficial publicada por la
+            secretaría del ayuntamiento — manual y verificable. Cuando se publique el primer acuerdo
+            votado, aparecerá aquí con cita a la fuente.
           </div>
           <div style={{ marginTop: 10, fontSize: 12 }}>
             <a
@@ -337,7 +364,15 @@ function PlenoVotesBlock() {
                 borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  gap: 8,
+                  flexWrap: 'wrap',
+                  marginBottom: 6,
+                }}
+              >
                 <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
                   {fmtDate(rec.plenoDate)}
                 </span>
@@ -345,7 +380,16 @@ function PlenoVotesBlock() {
                   {OUTCOME_LABEL[rec.outcome]}
                 </Pill>
                 {rec.department && (
-                  <span className="mono" style={{ fontSize: 9.5, color: 'var(--civic)', textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 700 }}>
+                  <span
+                    className="mono"
+                    style={{
+                      fontSize: 9.5,
+                      color: 'var(--civic)',
+                      textTransform: 'uppercase',
+                      letterSpacing: '.08em',
+                      fontWeight: 700,
+                    }}
+                  >
                     {rec.department}
                   </span>
                 )}
@@ -359,14 +403,20 @@ function PlenoVotesBlock() {
                 {rec.itemNumber}. {rec.title}
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 6 }}>
-                {rec.votes.map((v) => <VoteTuple key={v.bloc} v={v} />)}
+                {rec.votes.map((v) => (
+                  <VoteTuple key={v.bloc} v={v} />
+                ))}
               </div>
               <div style={{ fontSize: 11, color: 'var(--ink60)' }}>
                 <a
                   href={rec.sourceUrl}
                   target="_blank"
                   rel="noreferrer"
-                  style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+                  style={{
+                    color: 'var(--civic)',
+                    textDecoration: 'underline',
+                    textUnderlineOffset: 2,
+                  }}
                 >
                   Ver acta en {rec.sourcePublisher} →
                 </a>
@@ -383,13 +433,21 @@ function PlenoVoteSuggestionsBlock() {
   const t = useT()
   const { data } = usePlenoVoteSuggestions()
   const items = data?.items || []
-  if (items.length === 0) return null  // hide entirely when there's nothing to surface
+  if (items.length === 0) return null // hide entirely when there's nothing to surface
   const fmtDate = (iso) =>
     new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
 
   return (
     <div style={{ marginTop: 28 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8, flexWrap: 'wrap' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          gap: 10,
+          marginBottom: 8,
+          flexWrap: 'wrap',
+        }}
+      >
         <div
           className="mono"
           style={{
@@ -420,7 +478,15 @@ function PlenoVoteSuggestionsBlock() {
               borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap', marginBottom: 6 }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 8,
+                flexWrap: 'wrap',
+                marginBottom: 6,
+              }}
+            >
               <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
                 {fmtDate(rec.plenoDate)}
               </span>
@@ -430,7 +496,9 @@ function PlenoVoteSuggestionsBlock() {
                 </span>
               )}
               {rec.outcome && (
-                <Pill tone={OUTCOME_TONE[rec.outcome]} size="xs">{OUTCOME_LABEL[rec.outcome]}</Pill>
+                <Pill tone={OUTCOME_TONE[rec.outcome]} size="xs">
+                  {OUTCOME_LABEL[rec.outcome]}
+                </Pill>
               )}
               <span
                 className="mono"
@@ -444,7 +512,11 @@ function PlenoVoteSuggestionsBlock() {
               {rec.engine && (
                 <span
                   className="mono"
-                  title={rec.engine === 'llm' ? 'Sugerencia generada por el motor LLM (Qwen/GPT-4o-mini)' : 'Sugerencia generada por el motor de expresiones regulares'}
+                  title={
+                    rec.engine === 'llm'
+                      ? 'Sugerencia generada por el motor LLM (Qwen/GPT-4o-mini)'
+                      : 'Sugerencia generada por el motor de expresiones regulares'
+                  }
                   style={{
                     fontSize: 9.5,
                     padding: '1px 6px',
@@ -461,7 +533,9 @@ function PlenoVoteSuggestionsBlock() {
               )}
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 6 }}>
-              {rec.votes.map((v) => <VoteTuple key={v.bloc} v={v} />)}
+              {rec.votes.map((v) => (
+                <VoteTuple key={v.bloc} v={v} />
+              ))}
             </div>
             <div
               style={{
@@ -511,10 +585,17 @@ function ParticipaBlock() {
           Participación ciudadana
         </div>
         <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
-          · datos reales de participa.ribarroja.es · {data.stats.total} posts · actualizado {generated}
+          · datos reales de participa.ribarroja.es · {data.stats.total} posts · actualizado{' '}
+          {generated}
         </div>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 12 }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: 12,
+        }}
+      >
         {items.map((i) => (
           <Card key={i.id} hover>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, marginBottom: 8 }}>
@@ -590,7 +671,10 @@ function ParticipaBlock() {
 export default function Plenos() {
   const t = useT()
   return (
-    <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
+    <div
+      className="cp-page"
+      style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
+    >
       <div style={{ marginBottom: 18 }}>
         <div
           className="mono"

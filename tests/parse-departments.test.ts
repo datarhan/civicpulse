@@ -103,7 +103,10 @@ const PORTFOLIO_FIXTURE: Array<[string, DepartmentSlug | null]> = [
   ['Servicios públicos municipales', 'servicios-generales'],
   ['Protocolo y Bienestar Animal', 'bienestar-animal'],
   ['Innovación', 'innovacion'],
-  ['Planificación estratégica y grandes proyectos y cooperación nacional e internacional', 'innovacion'],
+  [
+    'Planificación estratégica y grandes proyectos y cooperación nacional e internacional',
+    'innovacion',
+  ],
   ['Acción social y políticas inclusivas', 'servicios-sociales'],
   ['Infancia y Adolescencia y Memoria Histórica', 'servicios-sociales'],
   ['Promoción de la Salud e Infraestructuras sanitarias', 'salud'],

@@ -54,10 +54,7 @@ function VotesSection({ slug, frozen }) {
           >
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 13.5, fontWeight: 600, lineHeight: 1.4 }}>{v.title}</div>
-              <div
-                className="mono"
-                style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 4 }}
-              >
+              <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 4 }}>
                 {v.plenoDate} · punto {v.itemNumber}
                 {v.expediente ? ` · exp. ${v.expediente}` : ''}
               </div>
@@ -159,10 +156,7 @@ function PromisesSection({ slug, frozen }) {
                 <PlazoVencidoBadge dueBy={p.dueBy} frozen={frozen} />
               </div>
             )}
-            <div
-              className="mono"
-              style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}
-            >
+            <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
               {p.madeAt} · {p.source.publisher}
             </div>
           </Card>
@@ -266,9 +260,7 @@ export default function DepartamentoDetalle() {
 
   if (stats.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>
-        {t('common.loading')}
-      </div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
     )
   }
 
@@ -339,10 +331,7 @@ export default function DepartamentoDetalle() {
             </div>
             <div style={{ fontSize: 14, fontWeight: 600 }}>{official.name}</div>
           </div>
-          <span
-            className="mono"
-            style={{ fontSize: 11, fontWeight: 700, color: partyColor }}
-          >
+          <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: partyColor }}>
             {official.party}
           </span>
         </div>
@@ -375,7 +364,11 @@ export default function DepartamentoDetalle() {
         <MiniStat
           label={t('departamentos.card.vencidos')}
           value={frozen ? '—' : bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos}
-          tone={!frozen && (bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos) > 0 ? 'warn' : undefined}
+          tone={
+            !frozen && bucket.plenoVotes.plazosVencidos + bucket.promesas.plazosVencidos > 0
+              ? 'warn'
+              : undefined
+          }
         />
         <MiniStat label={t('departamentos.card.quejas')} value={bucket.quejas.abiertas} />
       </div>
@@ -412,9 +405,9 @@ export default function DepartamentoDetalle() {
         }}
       >
         <strong style={{ color: 'var(--ink)' }}>Metodología.</strong> Los votos transcritos
-        provienen de actas oficiales del pleno y son el hecho primario. Las promesas electorales
-        son secundarias y nunca cambian de estado de forma automática. Un plazo vencido sin
-        evidencia de ejecución se marca como aviso editorial, no como juicio.{' '}
+        provienen de actas oficiales del pleno y son el hecho primario. Las promesas electorales son
+        secundarias y nunca cambian de estado de forma automática. Un plazo vencido sin evidencia de
+        ejecución se marca como aviso editorial, no como juicio.{' '}
         <a href="/metodologia" style={{ color: 'var(--civic)' }}>
           Leer metodología →
         </a>
@@ -425,11 +418,7 @@ export default function DepartamentoDetalle() {
 
 function MiniStat({ label, value, tone }) {
   const color =
-    tone === 'warn'
-      ? 'var(--warn-ink)'
-      : tone === 'crit'
-        ? 'var(--crit-ink)'
-        : 'var(--ink)'
+    tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
   return (
     <div
       style={{
@@ -440,7 +429,12 @@ function MiniStat({ label, value, tone }) {
     >
       <div
         className="mono"
-        style={{ fontSize: 9.5, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}
+        style={{
+          fontSize: 9.5,
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.06em',
+        }}
       >
         {label}
       </div>

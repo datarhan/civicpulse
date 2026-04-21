@@ -177,9 +177,7 @@ function useTickerItems() {
   const { data: agendas } = usePlenoAgendas()
   const { data: promises } = usePromises()
   const frozen = isPromiseFrozen(promises)
-  const plazosVencidos = frozen
-    ? 0
-    : (agendas?.stats?.plazosVencidosCount ?? 0)
+  const plazosVencidos = frozen ? 0 : (agendas?.stats?.plazosVencidosCount ?? 0)
   return useMemo(() => {
     if (!data?.sources) return []
     const s = data.sources
