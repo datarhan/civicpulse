@@ -486,8 +486,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
             color: '#7C4A00',
           }}
         >
-          Pulsa cualquier estación de L9 en el mapa para ver los próximos
-          trenes en ambos sentidos.
+          Pulsa cualquier estación de L9 en el mapa para ver los próximos trenes en ambos sentidos.
         </div>
         <div style={{ marginTop: 10 }}>
           <a

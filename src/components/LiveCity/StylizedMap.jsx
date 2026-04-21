@@ -108,20 +108,21 @@ function Railways() {
       })}
       {stations.map((s) => {
         const meta = L9_STATIONS.find((m) => m.osmName === s.name)
+        const isL9 = Boolean(meta) || s.network === 'Metrovalencia'
         return (
           <CircleMarker
             key={s.id}
             center={s.centroid}
-            radius={7}
+            radius={isL9 ? 7 : 5}
             pathOptions={{
               color: '#0B0F19',
-              weight: 2,
-              fillColor: METRO_COLOR,
-              fillOpacity: 1,
+              weight: isL9 ? 2 : 1.5,
+              fillColor: isL9 ? METRO_COLOR : HEAVY_RAIL_COLOR,
+              fillOpacity: isL9 ? 1 : 0.85,
             }}
           >
             <Popup closeButton={true} autoPan={true}>
-              <StationSchedulePopup name={s.name} meta={meta} />
+              <StationSchedulePopup name={s.name} meta={meta} rawStation={s} />
             </Popup>
           </CircleMarker>
         )
@@ -130,7 +131,7 @@ function Railways() {
   )
 }
 
-function StationSchedulePopup({ name, meta }) {
+function StationSchedulePopup({ name, meta, rawStation }) {
   // Tick every 30s so the popup stays fresh while open. Cheap — no network.
   const [tick, setTick] = useState(() => Date.now())
   useEffect(() => {
@@ -139,12 +140,55 @@ function StationSchedulePopup({ name, meta }) {
   }, [])
 
   if (!meta) {
+    // Not an L9 station — likely Adif heavy-rail (RENFE Cercanías C3
+    // Valencia-Utiel passes through the municipality). We don't have a
+    // schedule for it; honest fallback directs the user to Renfe.
     return (
-      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', fontSize: 13 }}>
-        <div style={{ fontWeight: 700, marginBottom: 4 }}>{name}</div>
-        <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 11.5 }}>
-          Estación no incluida en el horario de referencia.
+      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 220 }}>
+        <div
+          style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}
+        >
+          <span
+            style={{
+              width: 16,
+              height: 16,
+              borderRadius: '50%',
+              background: '#6B7280',
+              color: 'white',
+              display: 'grid',
+              placeItems: 'center',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: 8,
+              fontWeight: 800,
+            }}
+          >
+            RE
+          </span>
+          <span style={{ fontWeight: 700, fontSize: 14 }}>{name}</span>
         </div>
+        <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6, fontSize: 12 }}>
+          <div style={{ color: 'rgba(11,15,25,.75)', marginBottom: 4 }}>
+            Estación sobre la línea de Adif (ferrocarril convencional).
+            No forma parte de L9 Metrovalencia.
+          </div>
+          <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 11.5 }}>
+            {rawStation?.operator || 'Adif · Red convencional'}
+          </div>
+        </div>
+        <a
+          href="https://www.renfe.com/es/es/cercanias/cercanias-valencia"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            marginTop: 8,
+            display: 'inline-block',
+            fontSize: 12,
+            color: '#2463EB',
+            textDecoration: 'none',
+          }}
+        >
+          Horarios Renfe Cercanías València →
+        </a>
       </div>
     )
   }
@@ -153,11 +197,14 @@ function StationSchedulePopup({ name, meta }) {
   const sched = computeStationSchedule(meta, now)
   const row = (dirLabel, dep, isApprox) => (
     <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}>
-      <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 96 }}>
-        → {dirLabel}
-      </span>
+      <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 96 }}>→ {dirLabel}</span>
       <span
-        style={{ fontFamily: 'DM Mono, monospace', fontSize: 13, fontWeight: 700, color: '#0B0F19' }}
+        style={{
+          fontFamily: 'DM Mono, monospace',
+          fontSize: 13,
+          fontWeight: 700,
+          color: '#0B0F19',
+        }}
       >
         {dep.label}
         {dep.afterMidnight ? ' (mañana)' : ''}
@@ -165,9 +212,7 @@ function StationSchedulePopup({ name, meta }) {
       <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: '#B45309' }}>
         {dep.minutesAway === 0 ? 'ahora' : `${dep.minutesAway} min`}
       </span>
-      {isApprox && (
-        <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>
-      )}
+      {isApprox && <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>}
     </div>
   )
 

@@ -39,10 +39,12 @@ const SCHEDULE = {
  *  Published as "aproximado" in the UI. */
 const INBOUND_PHASE_MIN = 15
 
-/** Stations along L9 between Riba-roja (terminus) and the first station
- *  outside the municipality (El Clot is still inside but near the edge).
- *  `offsetFromTerminusMin` is travel time in minutes for a train that
- *  left Riba-roja heading towards València. */
+/** L9 Metrovalencia stations inside the municipality, with travel-time
+ *  offsets from the Riba-roja terminus. OSM tags `network=Metrovalencia`
+ *  + `operator=FGV` are the source of truth — stations on the Adif
+ *  heavy-rail line that share the map (e.g. "El Clot") are deliberately
+ *  *not* in this list. They get a generic popup redirecting users to
+ *  renfe.com/cercanias. */
 export const L9_STATIONS = [
   {
     id: 'riba-roja-de-turia',
@@ -63,13 +65,6 @@ export const L9_STATIONS = [
     osmName: 'València la Vella',
     label: 'València la Vella',
     offsetFromTerminusMin: 4,
-    terminus: false,
-  },
-  {
-    id: 'el-clot',
-    osmName: 'El Clot',
-    label: 'El Clot',
-    offsetFromTerminusMin: 6,
     terminus: false,
   },
 ]
@@ -149,9 +144,8 @@ function computeStationNext(stationOffsetMin, direction, now) {
   // T + stationOffset.
   // Direction='inbound'  — train arrives terminus at T + PHASE, and was
   // at station at (T + PHASE) - stationOffset.
-  const addPerDeparture = direction === 'outbound'
-    ? stationOffsetMin
-    : INBOUND_PHASE_MIN - stationOffsetMin
+  const addPerDeparture =
+    direction === 'outbound' ? stationOffsetMin : INBOUND_PHASE_MIN - stationOffsetMin
 
   // Walk today's terminus departures in order; first one whose station-time
   // is ≥ now wins.
