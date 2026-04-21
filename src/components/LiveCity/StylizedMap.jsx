@@ -13,19 +13,11 @@ import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
 import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMetro'
 
-// Metrovalencia line brand colours. L9 runs yellow-orange; L2 is the
-// pink/magenta line (Llíria ↔ Torrent). Adif heavy rail stays muted grey.
-const METRO_L9_COLOR = '#F5B544'
-const METRO_L2_COLOR = '#E94F96'
-const METRO_DEFAULT_COLOR = '#F5B544'
+// Metrovalencia light-rail colour (shared across L9 and L2 in-municipality);
+// Adif heavy-rail uses a muted grey so it reads as secondary.
+const METRO_COLOR = '#F5B544'
 const HEAVY_RAIL_COLOR = '#6B7280'
 const BOUNDARY_COLOR = '#C85A3A'
-
-function colorForMetroRef(ref) {
-  if (ref === 'VT-005') return METRO_L9_COLOR
-  if (ref === 'VT-012') return METRO_L2_COLOR
-  return METRO_DEFAULT_COLOR
-}
 
 const DEFAULT_CENTER = [39.5439, -0.5711]
 
@@ -90,7 +82,7 @@ function Railways() {
     <>
       {ways.map((w) => {
         const isMetro = w.kind === 'subway' || w.kind === 'light_rail' || w.kind === 'tram'
-        const color = isMetro ? colorForMetroRef(w.ref) : HEAVY_RAIL_COLOR
+        const color = isMetro ? METRO_COLOR : HEAVY_RAIL_COLOR
         return (
           <div key={w.id} style={{ display: 'contents' }}>
             {/* halo for the metro only — keeps heavy rail discreet */}
@@ -118,12 +110,8 @@ function Railways() {
         let fill = HEAVY_RAIL_COLOR
         let radius = 5
         let weight = 1.5
-        if (match?.kind === 'l9') {
-          fill = METRO_L9_COLOR
-          radius = 7
-          weight = 2
-        } else if (match?.kind === 'other') {
-          fill = match.station.lineColor
+        if (match?.kind === 'l9' || match?.kind === 'other') {
+          fill = METRO_COLOR
           radius = 7
           weight = 2
         }
@@ -205,8 +193,8 @@ function StationSchedulePopup({ name, match, rawStation }) {
             color: 'rgba(11,15,25,.65)',
           }}
         >
-          Línea {station.line} — Metrovalencia (FGV). Esta línea no pasa
-          por el terminal de Riba-roja; horario no transcrito.
+          Línea {station.line} — Metrovalencia (FGV). Esta línea no pasa por el terminal de
+          Riba-roja; horario no transcrito.
         </div>
         <a
           href={station.scheduleUrl}
@@ -232,9 +220,7 @@ function StationSchedulePopup({ name, match, rawStation }) {
     // schedule for it; honest fallback directs the user to Renfe.
     return (
       <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 220 }}>
-        <div
-          style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}
-        >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
           <span
             style={{
               width: 16,
@@ -255,8 +241,8 @@ function StationSchedulePopup({ name, match, rawStation }) {
         </div>
         <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6, fontSize: 12 }}>
           <div style={{ color: 'rgba(11,15,25,.75)', marginBottom: 4 }}>
-            Estación sobre la línea de Adif (ferrocarril convencional).
-            No forma parte de L9 Metrovalencia.
+            Estación sobre la línea de Adif (ferrocarril convencional). No forma parte de L9
+            Metrovalencia.
           </div>
           <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 11.5 }}>
             {rawStation?.operator || 'Adif · Red convencional'}
