@@ -11,13 +11,11 @@ import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
-import { useWikidata } from '../hooks/useWikidata'
 import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
 import { useNextMetro } from '../hooks/useNextMetro'
 import { useMetroSchedule } from '../hooks/useMetroSchedule'
 import { useAirQuality, describeAqi } from '../hooks/useAirQuality'
 import { useTodayEvents } from '../hooks/useTodayEvents'
-import { useTodayPleno } from '../hooks/useTodayPleno'
 import { Ic } from '../components/Icons'
 
 const RIBA_ROJA_CENTER = [39.5439, -0.5711]
@@ -671,144 +669,6 @@ function LeftRail() {
         </NavLink>
       ))}
     </aside>
-  )
-}
-
-/* ============================================================
-   MAP OVERLAY BADGE
-   ============================================================ */
-function StatusBadge() {
-  const { data: wiki } = useWikidata()
-  const { data: plenos } = usePlenos()
-  const { inSession, pleno: todayPleno, video: todayVideo } = useTodayPleno()
-  const pop = wiki?.facts?.population?.value
-  const popYear = wiki?.facts?.population?.year
-  const nextPleno = (plenos?.items || [])[0]
-  const fmtPleno = (p) => {
-    if (!p) return null
-    const d = new Date(p.date)
-    return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
-  }
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 14,
-        left: 14,
-        zIndex: 400,
-        display: 'flex',
-        gap: 12,
-        alignItems: 'center',
-        background: 'rgba(14,20,34,.82)',
-        backdropFilter: 'blur(14px)',
-        WebkitBackdropFilter: 'blur(14px)',
-        border: '1px solid rgba(96,165,250,.22)',
-        borderRadius: 10,
-        padding: '10px 14px',
-        color: 'white',
-        fontFamily: SANS,
-      }}
-    >
-      <div>
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 9,
-            color: 'rgba(255,255,255,.55)',
-            letterSpacing: '.12em',
-          }}
-        >
-          PADRÓN {popYear || ''}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 20,
-              fontWeight: 800,
-              color: '#E2E8F0',
-              lineHeight: 1,
-            }}
-          >
-            {pop ? pop.toLocaleString('es-ES') : '—'}
-          </span>
-          <span
-            style={{
-              fontFamily: MONO,
-              fontSize: 10,
-              color: 'rgba(255,255,255,.55)',
-              fontWeight: 500,
-            }}
-          >
-            habitantes
-          </span>
-        </div>
-      </div>
-      <span style={{ width: 1, height: 32, background: 'rgba(255,255,255,.12)' }} />
-      {inSession ? (
-        <a
-          href={todayVideo?.url || todayPleno?.link || '#'}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}
-          title={`Pleno ${PLENO_LABEL[todayPleno?.kind] || todayPleno?.kind || ''} hoy — click para ver el vídeo`}
-        >
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 9,
-              color: '#FCA5A5',
-              letterSpacing: '.12em',
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-            }}
-          >
-            <span
-              style={{
-                width: 7,
-                height: 7,
-                borderRadius: '50%',
-                background: '#DC2626',
-                animation: 'ribaPulse 1.2s infinite',
-                display: 'inline-block',
-              }}
-              aria-hidden="true"
-            />
-            PLENO EN SESIÓN · HOY
-          </div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-            <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 700 }}>
-              {PLENO_LABEL[todayPleno?.kind] || todayPleno?.kind || '—'}
-            </span>
-            <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>
-              {todayVideo ? 'ver vídeo en vivo ›' : 'ver convocatoria ›'}
-            </span>
-          </div>
-        </a>
-      ) : (
-        <div>
-          <div
-            style={{
-              fontFamily: MONO,
-              fontSize: 9,
-              color: 'rgba(255,255,255,.55)',
-              letterSpacing: '.12em',
-            }}
-          >
-            ÚLTIMO PLENO
-          </div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-            <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 700 }}>
-              {fmtPleno(nextPleno) || '—'}
-            </span>
-            <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>
-              {nextPleno ? PLENO_LABEL[nextPleno.kind] || nextPleno.kind : ''}
-            </span>
-          </div>
-        </div>
-      )}
-    </div>
   )
 }
 
@@ -1982,7 +1842,6 @@ export default function DirectionD() {
 
         <div style={{ flex: 1, position: 'relative', minWidth: 0 }}>
           <StylizedMap center={RIBA_ROJA_CENTER} />
-          <StatusBadge />
           <LiveTicker />
           <EventTicker />
           <MapAttribution />
