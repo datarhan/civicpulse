@@ -11,6 +11,8 @@ import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
 import { useWikidata } from '../hooks/useWikidata'
+import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
+import { useNextMetro } from '../hooks/useNextMetro'
 import { Ic } from '../components/Icons'
 
 const RIBA_ROJA_CENTER = [39.5439, -0.5711]
@@ -371,6 +373,158 @@ function StatusBadge() {
           </span>
         </div>
       </div>
+    </div>
+  )
+}
+
+/**
+ * Live overlay pinned top-right of the map. Two blocks stacked:
+ *   1. Real-time weather for Riba-roja (Open-Meteo, no API key)
+ *   2. Next L9 Metrovalencia departure from Riba-roja station
+ *        (static schedule computed client-side — FGV has no free realtime API)
+ *
+ * Renders nothing if both data sources are unavailable (graceful degrade).
+ * Updates: weather every 10 min, metro countdown every 15 s.
+ */
+function LiveOverlay() {
+  const { data: weather } = useLiveWeather()
+  const metro = useNextMetro()
+  if (!weather && !metro) return null
+  const [emoji, wmoLabel] = weather ? describeWmo(weather.weatherCode) : ['', '']
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        top: 14,
+        right: 14,
+        zIndex: 400,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 8,
+        pointerEvents: 'none',
+        fontFamily: SANS,
+      }}
+    >
+      {weather && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 12,
+            background: 'rgba(14,20,34,.82)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            border: '1px solid rgba(96,165,250,.22)',
+            borderRadius: 10,
+            padding: '10px 14px',
+            color: 'white',
+            pointerEvents: 'auto',
+          }}
+          title={`${wmoLabel} · humedad ${weather.humidity ?? '—'}% · viento ${weather.windKmh ?? '—'} km/h`}
+        >
+          <span style={{ fontSize: 22, lineHeight: 1 }} aria-hidden="true">{emoji}</span>
+          <div>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 9,
+                color: 'rgba(255,255,255,.55)',
+                letterSpacing: '.12em',
+              }}
+            >
+              AHORA · RIBA-ROJA
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
+              <span
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 20,
+                  fontWeight: 800,
+                  color: '#E2E8F0',
+                  lineHeight: 1,
+                }}
+              >
+                {weather.tempC != null ? `${weather.tempC}°` : '—'}
+              </span>
+              {weather.todayMin != null && weather.todayMax != null && (
+                <span
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: 10,
+                    color: 'rgba(255,255,255,.55)',
+                  }}
+                >
+                  {Math.round(weather.todayMin)}° / {Math.round(weather.todayMax)}°
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {metro && (
+        <a
+          href="https://www.metrovalencia.es"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            background: 'rgba(14,20,34,.82)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            border: '1px solid rgba(96,165,250,.22)',
+            borderRadius: 10,
+            padding: '10px 14px',
+            color: 'white',
+            textDecoration: 'none',
+            pointerEvents: 'auto',
+          }}
+          title={`Horario transcrito de fgv.es · válido hasta ${metro.scheduleValidUntil}`}
+        >
+          <span
+            style={{
+              width: 22,
+              height: 22,
+              borderRadius: '50%',
+              background: '#F5B544',
+              color: '#0B0F19',
+              display: 'grid',
+              placeItems: 'center',
+              fontFamily: MONO,
+              fontSize: 11,
+              fontWeight: 800,
+              flexShrink: 0,
+            }}
+            aria-hidden="true"
+          >
+            L9
+          </span>
+          <div>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 9,
+                color: 'rgba(255,255,255,.55)',
+                letterSpacing: '.12em',
+              }}
+            >
+              PRÓXIMO TREN · RIBA-ROJA
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
+              <span style={{ fontFamily: MONO, fontSize: 15, fontWeight: 700, color: '#E2E8F0' }}>
+                {metro.departureLabel}
+              </span>
+              <span style={{ fontFamily: MONO, fontSize: 10.5, color: '#F5B544' }}>
+                {metro.minutesAway === 0 ? 'ahora' : `en ${metro.minutesAway} min`}
+                {metro.afterMidnight ? ' (mañana)' : ''}
+              </span>
+            </div>
+          </div>
+        </a>
+      )}
     </div>
   )
 }
@@ -1409,6 +1563,7 @@ export default function DirectionD() {
         <div style={{ flex: 1, position: 'relative', minWidth: 0 }}>
           <StylizedMap center={RIBA_ROJA_CENTER} />
           <StatusBadge />
+          <LiveOverlay />
           <MapAttribution />
         </div>
 

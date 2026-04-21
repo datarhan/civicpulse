@@ -139,7 +139,7 @@ export function parseOsmBoundary(json: string): Boundary | null {
   const data = JSON.parse(json) as OverpassResponse
   const rel = data.elements.find(
     (e): e is OverpassRelation =>
-      e.type === 'relation' && e.tags?.['boundary'] === 'administrative'
+      e.type === 'relation' && e.tags?.['boundary'] === 'administrative',
   )
   if (!rel) return null
   const polygon = stitchRelation(rel)
@@ -159,13 +159,7 @@ export function parseOsmBoundary(json: string): Boundary | null {
   }
 }
 
-const NEIGH_KINDS = new Set<NeighKind>([
-  'neighbourhood',
-  'suburb',
-  'quarter',
-  'hamlet',
-  'village',
-])
+const NEIGH_KINDS = new Set<NeighKind>(['neighbourhood', 'suburb', 'quarter', 'hamlet', 'village'])
 
 // ─── Railways ───────────────────────────────────────────────────────────────
 
@@ -178,7 +172,7 @@ export interface RailwayWay {
   name?: string
   operator?: string
   network?: string
-  line: [number, number][]  // ordered [lat, lng] path
+  line: [number, number][] // ordered [lat, lng] path
 }
 
 export interface RailwayStation {
