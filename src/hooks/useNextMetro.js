@@ -25,9 +25,9 @@ const STATION_NAME = 'Riba-roja de Túria'
 
 const SCHEDULE = {
   validUntil: '2026-12-31',
-  weekday: { firstHour: 5,  firstMin: 51, lastHour: 22, lastMin: 51, intervalMin: 30 },
-  saturday: { firstHour: 7, firstMin: 3,  lastHour: 22, lastMin: 33, intervalMin: 30 },
-  sunday: { firstHour: 7,   firstMin: 33, lastHour: 22, lastMin: 33, intervalMin: 30 },
+  weekday: { firstHour: 5, firstMin: 51, lastHour: 22, lastMin: 51, intervalMin: 30 },
+  saturday: { firstHour: 7, firstMin: 3, lastHour: 22, lastMin: 33, intervalMin: 30 },
+  sunday: { firstHour: 7, firstMin: 33, lastHour: 22, lastMin: 33, intervalMin: 30 },
 }
 
 /** 0=Sunday, 1..5=Weekday, 6=Saturday. Spanish public holidays are NOT

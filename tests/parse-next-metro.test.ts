@@ -19,22 +19,22 @@ function at(iso: string): Date {
 
 describe('next-metro · scheduleForDate', () => {
   it('returns the weekday table Mon–Fri', () => {
-    const mon = new Date('2026-04-20T10:00:00')  // Monday
+    const mon = new Date('2026-04-20T10:00:00') // Monday
     expect(scheduleForDate(mon)).toBe(SCHEDULE.weekday)
   })
   it('returns the saturday table on Saturdays', () => {
-    const sat = new Date('2026-04-25T10:00:00')  // Saturday
+    const sat = new Date('2026-04-25T10:00:00') // Saturday
     expect(scheduleForDate(sat)).toBe(SCHEDULE.saturday)
   })
   it('returns the sunday table on Sundays', () => {
-    const sun = new Date('2026-04-26T10:00:00')  // Sunday
+    const sun = new Date('2026-04-26T10:00:00') // Sunday
     expect(scheduleForDate(sun)).toBe(SCHEDULE.sunday)
   })
 })
 
 describe('next-metro · computeNext · weekday', () => {
   it('before the first train returns today’s first train', () => {
-    const now = at('2026-04-21T04:30:00')  // Tuesday, pre-service
+    const now = at('2026-04-21T04:30:00') // Tuesday, pre-service
     const next = computeNext(now)
     expect(next.at.getHours()).toBe(5)
     expect(next.at.getMinutes()).toBe(51)
@@ -50,7 +50,7 @@ describe('next-metro · computeNext · weekday', () => {
   })
 
   it('returns the last train when queried right before it', () => {
-    const now = at('2026-04-21T22:45:00')  // Tuesday, 6 min before last
+    const now = at('2026-04-21T22:45:00') // Tuesday, 6 min before last
     const next = computeNext(now)
     expect(next.at.getHours()).toBe(22)
     expect(next.at.getMinutes()).toBe(51)
@@ -58,7 +58,7 @@ describe('next-metro · computeNext · weekday', () => {
   })
 
   it('past last train returns tomorrow’s first train', () => {
-    const now = at('2026-04-21T23:30:00')  // Tuesday post-service
+    const now = at('2026-04-21T23:30:00') // Tuesday post-service
     const next = computeNext(now)
     // Wednesday weekday first train.
     expect(next.afterMidnight).toBe(true)
@@ -70,7 +70,7 @@ describe('next-metro · computeNext · weekday', () => {
 
 describe('next-metro · computeNext · saturday', () => {
   it('first train is later on Saturday', () => {
-    const now = at('2026-04-25T06:00:00')  // Saturday
+    const now = at('2026-04-25T06:00:00') // Saturday
     const next = computeNext(now)
     expect(next.at.getHours()).toBe(7)
     expect(next.at.getMinutes()).toBe(3)
@@ -79,11 +79,11 @@ describe('next-metro · computeNext · saturday', () => {
 
 describe('next-metro · computeNext · after-hours Sunday → Monday', () => {
   it('Sunday 23:00 rolls over to Monday weekday first train', () => {
-    const now = at('2026-04-26T23:00:00')  // Sunday post-service
+    const now = at('2026-04-26T23:00:00') // Sunday post-service
     const next = computeNext(now)
     expect(next.afterMidnight).toBe(true)
-    expect(next.at.getDate()).toBe(27)          // Monday
-    expect(next.at.getHours()).toBe(5)          // weekday first
+    expect(next.at.getDate()).toBe(27) // Monday
+    expect(next.at.getHours()).toBe(5) // weekday first
     expect(next.at.getMinutes()).toBe(51)
   })
 })

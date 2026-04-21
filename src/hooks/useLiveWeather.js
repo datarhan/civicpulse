@@ -21,7 +21,7 @@ const LNG = -0.5711
 const URL =
   `https://api.open-meteo.com/v1/forecast` +
   `?latitude=${LAT}&longitude=${LNG}` +
-  `&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m` +
+  `&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,relative_humidity_2m` +
   `&daily=temperature_2m_min,temperature_2m_max,precipitation_probability_max` +
   `&timezone=Europe%2FMadrid&forecast_days=2`
 
@@ -30,26 +30,26 @@ const REFRESH_MS = 10 * 60 * 1000
 /** WMO weather codes → emoji + short Spanish label. Not exhaustive; unknown
  *  codes fall back to the catch-all sun+cloud icon. */
 const WMO = {
-  0:  ['☀️',  'Despejado'],
-  1:  ['🌤',  'Mayormente despejado'],
-  2:  ['⛅',  'Parcialmente nublado'],
-  3:  ['☁️',  'Nublado'],
-  45: ['🌫',  'Niebla'],
-  48: ['🌫',  'Niebla helada'],
-  51: ['🌦',  'Llovizna ligera'],
-  53: ['🌦',  'Llovizna'],
-  55: ['🌧',  'Llovizna intensa'],
-  61: ['🌦',  'Lluvia ligera'],
-  63: ['🌧',  'Lluvia'],
-  65: ['🌧',  'Lluvia intensa'],
-  71: ['🌨',  'Nieve ligera'],
-  73: ['🌨',  'Nieve'],
-  75: ['❄️',  'Nieve intensa'],
-  80: ['🌦',  'Chubascos'],
-  81: ['🌧',  'Chubascos fuertes'],
-  82: ['⛈',  'Aguacero violento'],
-  95: ['⛈',  'Tormenta'],
-  96: ['⛈',  'Tormenta con granizo'],
+  0: ['☀️', 'Despejado'],
+  1: ['🌤', 'Mayormente despejado'],
+  2: ['⛅', 'Parcialmente nublado'],
+  3: ['☁️', 'Nublado'],
+  45: ['🌫', 'Niebla'],
+  48: ['🌫', 'Niebla helada'],
+  51: ['🌦', 'Llovizna ligera'],
+  53: ['🌦', 'Llovizna'],
+  55: ['🌧', 'Llovizna intensa'],
+  61: ['🌦', 'Lluvia ligera'],
+  63: ['🌧', 'Lluvia'],
+  65: ['🌧', 'Lluvia intensa'],
+  71: ['🌨', 'Nieve ligera'],
+  73: ['🌨', 'Nieve'],
+  75: ['❄️', 'Nieve intensa'],
+  80: ['🌦', 'Chubascos'],
+  81: ['🌧', 'Chubascos fuertes'],
+  82: ['⛈', 'Aguacero violento'],
+  95: ['⛈', 'Tormenta'],
+  96: ['⛈', 'Tormenta con granizo'],
 }
 
 export function describeWmo(code) {
@@ -76,8 +76,10 @@ export function useLiveWeather() {
           error: null,
           data: {
             tempC: typeof cur.temperature_2m === 'number' ? Math.round(cur.temperature_2m) : null,
+            feelsLikeC: typeof cur.apparent_temperature === 'number' ? Math.round(cur.apparent_temperature) : null,
             weatherCode: typeof cur.weather_code === 'number' ? cur.weather_code : null,
-            humidity: typeof cur.relative_humidity_2m === 'number' ? cur.relative_humidity_2m : null,
+            humidity:
+              typeof cur.relative_humidity_2m === 'number' ? cur.relative_humidity_2m : null,
             windKmh: typeof cur.wind_speed_10m === 'number' ? Math.round(cur.wind_speed_10m) : null,
             todayMin: daily.temperature_2m_min?.[0] ?? null,
             todayMax: daily.temperature_2m_max?.[0] ?? null,
@@ -91,7 +93,11 @@ export function useLiveWeather() {
         if (!alive) return
         // Treat every failure as "don't render" — never show a stale or
         // wrong-looking value to citizens reading the map.
-        setState({ loading: false, error: err instanceof Error ? err.message : String(err), data: null })
+        setState({
+          loading: false,
+          error: err instanceof Error ? err.message : String(err),
+          data: null,
+        })
       }
     }
 

@@ -13,6 +13,8 @@ import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
 import { useWikidata } from '../hooks/useWikidata'
 import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
 import { useNextMetro } from '../hooks/useNextMetro'
+import { useAirQuality, describeAqi } from '../hooks/useAirQuality'
+import { useTodayEvents } from '../hooks/useTodayEvents'
 import { Ic } from '../components/Icons'
 
 const RIBA_ROJA_CENTER = [39.5439, -0.5711]
@@ -389,8 +391,10 @@ function StatusBadge() {
 function LiveOverlay() {
   const { data: weather } = useLiveWeather()
   const metro = useNextMetro()
-  if (!weather && !metro) return null
+  const { data: air } = useAirQuality()
+  if (!weather && !metro && !air) return null
   const [emoji, wmoLabel] = weather ? describeWmo(weather.weatherCode) : ['', '']
+  const aqi = air ? describeAqi(air.eaqi) : null
 
   return (
     <div
@@ -423,7 +427,9 @@ function LiveOverlay() {
           }}
           title={`${wmoLabel} · humedad ${weather.humidity ?? '—'}% · viento ${weather.windKmh ?? '—'} km/h`}
         >
-          <span style={{ fontSize: 22, lineHeight: 1 }} aria-hidden="true">{emoji}</span>
+          <span style={{ fontSize: 22, lineHeight: 1 }} aria-hidden="true">
+            {emoji}
+          </span>
           <div>
             <div
               style={{
@@ -456,6 +462,89 @@ function LiveOverlay() {
                   }}
                 >
                   {Math.round(weather.todayMin)}° / {Math.round(weather.todayMax)}°
+                </span>
+              )}
+            </div>
+            {weather.feelsLikeC != null && weather.feelsLikeC !== weather.tempC && (
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 9.5,
+                  color: 'rgba(255,255,255,.55)',
+                  marginTop: 3,
+                  letterSpacing: '.04em',
+                }}
+              >
+                sensación térmica {weather.feelsLikeC}°
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {air && aqi && (
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            background: 'rgba(14,20,34,.82)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            border: '1px solid rgba(96,165,250,.22)',
+            borderRadius: 10,
+            padding: '10px 14px',
+            color: 'white',
+            pointerEvents: 'auto',
+          }}
+          title={
+            `PM2.5 ${air.pm25 ?? '—'} µg/m³ · PM10 ${air.pm10 ?? '—'} µg/m³ · ` +
+            `NO₂ ${air.no2 ?? '—'} µg/m³ · O₃ ${air.ozone ?? '—'} µg/m³`
+          }
+        >
+          <span
+            style={{
+              width: 22,
+              height: 22,
+              borderRadius: '50%',
+              background: aqi.color,
+              display: 'grid',
+              placeItems: 'center',
+              fontFamily: MONO,
+              fontSize: 10,
+              fontWeight: 800,
+              color: 'white',
+              flexShrink: 0,
+            }}
+            aria-hidden="true"
+          >
+            {air.eaqi ?? '–'}
+          </span>
+          <div>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 9,
+                color: 'rgba(255,255,255,.55)',
+                letterSpacing: '.12em',
+              }}
+            >
+              CALIDAD DEL AIRE · EAQI
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
+              <span
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 13,
+                  fontWeight: 700,
+                  color: '#E2E8F0',
+                }}
+              >
+                {aqi.label}
+              </span>
+              {air.pm25 != null && (
+                <span style={{ fontFamily: MONO, fontSize: 10, color: 'rgba(255,255,255,.55)' }}>
+                  PM₂.₅ {air.pm25.toFixed(1)}
                 </span>
               )}
             </div>
@@ -525,6 +614,100 @@ function LiveOverlay() {
           </div>
         </a>
       )}
+    </div>
+  )
+}
+
+/**
+ * Docked ticker bottom-center of the map — "Hoy en Riba-roja". Surfaces
+ * events and consultations from participa.ribarroja.es happening today
+ * or tomorrow. Silently hidden when there's nothing (most days).
+ */
+function EventTicker() {
+  const { events } = useTodayEvents()
+  if (events.length === 0) return null
+  // Keep it to the top 2 so the card never dominates the map.
+  const top = events.slice(0, 2)
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        bottom: 36,
+        zIndex: 400,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 6,
+        pointerEvents: 'none',
+        fontFamily: SANS,
+        maxWidth: 560,
+        width: 'calc(100% - 64px)',
+      }}
+    >
+      {top.map((ev) => (
+        <a
+          key={ev.id}
+          href={ev.url}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            background: 'rgba(14,20,34,.82)',
+            backdropFilter: 'blur(14px)',
+            WebkitBackdropFilter: 'blur(14px)',
+            border: '1px solid rgba(96,165,250,.22)',
+            borderRadius: 10,
+            padding: '9px 13px',
+            color: 'white',
+            textDecoration: 'none',
+            pointerEvents: 'auto',
+            minWidth: 0,
+          }}
+          title={`${ev.kindLabel} · ${ev.date}`}
+        >
+          <span style={{ fontSize: 16, lineHeight: 1 }} aria-hidden="true">{ev.icon}</span>
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div
+              style={{
+                fontFamily: MONO,
+                fontSize: 9,
+                color: 'rgba(255,255,255,.55)',
+                letterSpacing: '.12em',
+              }}
+            >
+              {ev.isToday ? 'HOY EN RIBA-ROJA' : 'MAÑANA EN RIBA-ROJA'} · {ev.kindLabel.toUpperCase()}
+            </div>
+            <div
+              style={{
+                fontFamily: SANS,
+                fontSize: 13,
+                fontWeight: 600,
+                color: '#E2E8F0',
+                marginTop: 2,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {ev.title}
+            </div>
+          </div>
+          <span
+            style={{
+              fontFamily: MONO,
+              fontSize: 10,
+              color: '#F5B544',
+              letterSpacing: '.06em',
+              flexShrink: 0,
+            }}
+          >
+            participa ›
+          </span>
+        </a>
+      ))}
     </div>
   )
 }
@@ -1564,6 +1747,7 @@ export default function DirectionD() {
           <StylizedMap center={RIBA_ROJA_CENTER} />
           <StatusBadge />
           <LiveOverlay />
+          <EventTicker />
           <MapAttribution />
         </div>
 
