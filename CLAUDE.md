@@ -105,6 +105,8 @@ reads real JSON. The file is only kept as a compile reference.
 - `/presupuesto` — CONPREL + tenders + BDNS subsidies
 - `/plenos` — 53 sessions + orden del día + Participa block
 - `/promesas` — legal-chrome promise tracker + LOREG freeze
+- `/departamentos` — per-concejalía accountability (pleno votes primary + promesas secondary + plazos vencidos soft flag)
+- `/departamentos/:slug` — detail view (compromisos plenarios + promesas + puntos sin voto + quejas activas)
 - `/datos` — catálogo of every JSON snapshot w/ Wikidata + padrón charts
 - `/quejas` — public feed + heatmap + Síndic/CTBG resolution cards
 - `/quejas/dashboard` — analytics surface (KPIs, LPACAP lifecycle, per-concejalía SLA)
@@ -384,6 +386,54 @@ non-obvious rules are:
 3. `/metodologia` + `/aviso-legal` are not marketing copy; they are
    the published editorial contract. Update them via PR whenever the
    tracker's behavior changes, not whenever UX copy is reworded.
+
+### Department accountability (`/departamentos`)
+
+`/departamentos` cross-references three legally-material streams per
+concejalía: pleno votes (auditable), electoral promises (softer), and
+citizen quejas (routed).
+
+**Canonical taxonomy.** `src/scraper/departments.ts` owns the 28-slug
+canonical enum. `canonicalizeDepartment(raw)` folds the three upstream
+namespaces (officials portfolios, agenda raw UPPERCASE depts, queja
+snake_case categories) onto one slug. `resolveResponsibleOfficial`
+returns the first-matching concejal or null — the UI must render a
+"sin concejal asignado" state, never fabricate one.
+
+**Libel boundary.** Two invariants protect the dashboard:
+
+1. An agenda item is **only** a "commitment" when a matching pleno-vote
+   exists (join on `plenoId + itemNumber`). Agenda items without a
+   matching vote surface as "debatido, sin voto transcrito" — never
+   counted as overdue.
+2. A `dueBy` on a pleno-vote requires a verbatim `dueBySource` clause
+   from the acta (≥20 chars, enforced by `pleno-votes.ts` validator).
+   Machine-inferred deadlines would reintroduce the exact libel risk
+   the curated-file contract blocks.
+
+Overdue flags never flip status. `V1_STATUSES` gate in `promises.ts`
+still controls publishable promise statuses. The `PlazoVencidoBadge`
+component is hidden entirely when `isPromiseFrozen(snap)` is true —
+the overdue narrative reuses the same LOREG electoral freeze as
+`/promesas`, no second freeze.
+
+**Aggregation lives client-side.** `src/hooks/useDepartmentStats.js`
+reads the 5 snapshots and memoizes via `src/lib/department-stats.js`
+(pure fn, unit-tested). For the landing-page LiveTicker chip, a
+single `plazosVencidosCount` scalar is precomputed at build time by
+`scripts/compute-dept-stats.ts` and written to
+`plenos-agendas.json.stats` — the landing route reads one number,
+not five JSONs.
+
+**Sources and curation paths:**
+
+- `pleno-votes.json` (curated) — `npm run pleno-vote` CLI / GH Issue
+  `pleno-vote.yml` — now accepts `dueBy` + `dueBySource` optionally.
+- `plenos-agendas.json` (scraped) — `npm run scrape:pleno-agendas`
+  now attaches `departmentSlug` at parse time.
+- `promises.json` (curated) — hand-edited PRs; optional `dueBy` +
+  `departmentSlug` fields, neither required on existing records.
+
 Councillor photos are re-hosted from the Ayuntamiento's own publication.
 Keep scrapers polite: every CLI sends a `User-Agent` identifying the
 project; never run them in a tight loop; cache raw payloads locally

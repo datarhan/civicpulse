@@ -80,6 +80,26 @@ export default function Metodologia() {
         </ul>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="plazos-vencidos">
+        <SectionHead eyebrow="Verificación de compromisos públicos" title="Plazos vencidos · señalización editorial" />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          El dashboard <a href="/departamentos" style={{ color: 'var(--civic)' }}>/departamentos</a>{' '}
+          cruza promesas electorales, votos de pleno y quejas ciudadanas por
+          concejalía. Cuando un compromiso con fecha (<code>dueBy</code>)
+          supera su plazo sin que se haya registrado evidencia de ejecución,
+          se muestra el aviso <strong>«plazo vencido · sin evidencia de
+          ejecución»</strong>. Reglas que rigen este aviso:
+        </p>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
+          <li><strong>Los votos de pleno son el hecho primario.</strong> Se transcriben del acta oficial y son el material más verificable. Las promesas electorales son secundarias.</li>
+          <li><strong>El plazo debe venir del acta.</strong> Para los votos de pleno, un <code>dueBy</code> sólo se publica acompañado de una cita verbatim del acuerdo (<code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo.</li>
+          <li><strong>No cambiamos estados automáticamente.</strong> El aviso de plazo vencido es una señalización editorial; el estado de la promesa o del voto no pasa a <em>no-ejecutada</em> sin curación humana (mismo principio que la sección anterior).</li>
+          <li><strong>Derecho de réplica intacto.</strong> Cualquier persona o grupo afectado puede responder con una cita textual a través de la <a href="https://github.com/datarhan/civicpulse/issues/new/choose" target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>plantilla de respuesta</a>.</li>
+          <li><strong>Suspensión durante el periodo electoral.</strong> Bajo la LOREG art. 50, el aviso de plazo vencido se oculta en todo el dashboard mientras <code>frozenUntil</code> esté activo, igual que los estados del tracker de promesas.</li>
+          <li><strong>Los puntos debatidos sin voto transcrito NO son compromisos.</strong> Un punto en el orden del día sólo se cuenta como compromiso cuando existe una transcripción de voto emparejada (por <code>plenoId + itemNumber</code>).</li>
+        </ul>
+      </Card>
+
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Proceso de corrección" title="Cómo pedir una rectificación" />
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
@@ -97,7 +117,7 @@ export default function Metodologia() {
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 20 de abril de 2026. Cambios futuros sólo mediante PR público.
+        Última revisión de este documento: 21 de abril de 2026 (añadida la sección "Plazos vencidos · señalización editorial"). Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )
