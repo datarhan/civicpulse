@@ -203,9 +203,7 @@ function GtfsSchedulePopup({ gtfs, match, name }) {
             {ln}
           </span>
         ))}
-        <span style={{ fontWeight: 700, fontSize: 14 }}>
-          {station?.label || name}
-        </span>
+        <span style={{ fontWeight: 700, fontSize: 14 }}>{station?.label || name}</span>
         {isTerminus && (
           <span
             style={{
@@ -230,7 +228,17 @@ function GtfsSchedulePopup({ gtfs, match, name }) {
             key={`${d.line}-${d.heading}`}
             style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}
           >
-            <span style={{ fontSize: 10.5, color: '#FFFFFF', background: d.line === 'L2' ? '#B4397F' : '#A47E52', padding: '1px 5px', borderRadius: 3, fontFamily: 'DM Mono, monospace', fontWeight: 700 }}>
+            <span
+              style={{
+                fontSize: 10.5,
+                color: '#FFFFFF',
+                background: d.line === 'L2' ? '#B4397F' : '#A47E52',
+                padding: '1px 5px',
+                borderRadius: 3,
+                fontFamily: 'DM Mono, monospace',
+                fontWeight: 700,
+              }}
+            >
               {d.line}
             </span>
             <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 128 }}>
@@ -618,16 +626,29 @@ function FullNetwork() {
         const ref = t.lineRefs[0]
         const color = colors[ref] || '#64748B'
         return (
-          <Polyline
-            key={t.id}
-            positions={t.line}
-            pathOptions={{
-              color,
-              weight: 2,
-              opacity: 0.82,
-              lineCap: 'round',
-            }}
-          />
+          <div key={t.id} style={{ display: 'contents' }}>
+            {/* Dark casing so the coloured line reads as rail infrastructure,
+                not a road marking — especially important for tram segments
+                (L4/L6/L8/L10) whose tracks lie inside the street. */}
+            <Polyline
+              positions={t.line}
+              pathOptions={{
+                color: '#0B0F19',
+                weight: 4,
+                opacity: 0.55,
+                lineCap: 'round',
+              }}
+            />
+            <Polyline
+              positions={t.line}
+              pathOptions={{
+                color,
+                weight: 2.2,
+                opacity: 0.95,
+                lineCap: 'round',
+              }}
+            />
+          </div>
         )
       })}
       {data.stations.map((s) => {

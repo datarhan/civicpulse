@@ -290,7 +290,14 @@ async function main() {
 
   // Quick summary for the console.
   for (const [slug, data] of Object.entries(stops)) {
-    const byLine = (data as { lines: Record<string, { directions: Array<{ heading: string; departures: Record<DayType, string[]> }> }> }).lines
+    const byLine = (
+      data as {
+        lines: Record<
+          string,
+          { directions: Array<{ heading: string; departures: Record<DayType, string[]> }> }
+        >
+      }
+    ).lines
     const parts: string[] = []
     for (const [line, info] of Object.entries(byLine)) {
       for (const d of info.directions) {

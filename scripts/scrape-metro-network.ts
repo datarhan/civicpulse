@@ -145,7 +145,11 @@ async function main() {
     }
   }
 
-  // Emit tracks — one entry per way that has geometry + is part of ≥1 line.
+  // Emit tracks — one entry per track-carrying way that has geometry and is
+  // part of ≥1 line. OSM route relations routinely include platform ways
+  // (railway=platform, closed polygons representing station footprints)
+  // and occasionally access nodes; we only want actual running track.
+  const TRACK_KINDS = new Set(['subway', 'light_rail', 'tram', 'rail', 'monorail', 'narrow_gauge'])
   const tracks: Array<{
     id: string
     kind: string
@@ -155,9 +159,11 @@ async function main() {
   for (const [wayId, refs] of wayLines) {
     const w = wayById.get(wayId)
     if (!w || !w.geometry || w.geometry.length < 2) continue
+    const kind = w.tags?.railway
+    if (!kind || !TRACK_KINDS.has(kind)) continue
     tracks.push({
       id: `way-${wayId}`,
-      kind: w.tags?.railway || 'rail',
+      kind,
       lineRefs: [...refs].sort(),
       line: w.geometry.map((p) => [p.lat, p.lon] as [number, number]),
     })
