@@ -1,0 +1,1426 @@
+{
+  "generatedAt": "2026-04-21T22:01:18.015Z",
+  "source": {
+    "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
+    "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
+  },
+  "stats": {
+    "total": 45,
+    "byVerdict": {
+      "verificado": 0,
+      "parcial": 0,
+      "contradicho": 0,
+      "sin-datos": 45,
+      "promesa-repetida": 0
+    }
+  },
+  "items": [
+    {
+      "claim": {
+        "id": "1sqj7is-000-afi-a9546e",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 0,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "se trata de un expediente de gastos por importe total de 242.255 euros, correspondientes a gastos realizados a finales del pasado año",
+        "context": "Presentación del segundo punto del orden del día: reconocimiento extrajudicial de créditos nº 5/2026. El ponente (José Ángel) expone el importe del expediente ante el pleno.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 242255,
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 (rel. obligaciones 1202600045 y 44)"
+        },
+        "confidence": 0.88,
+        "reasoning": "Cifra concreta de un expediente de reconocimiento extrajudicial de créditos identificado por número. Verificable cruzando el importe con las listas de facturas 12025000151 y 12026000008 mencionadas en el orden del día oficial.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-000-afi-a9546e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-000-afi-de8696",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 0,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "La aprobamos con unanimidad.",
+        "context": "El presidente del pleno anuncia el resultado de la votación del primer punto del orden del día: aprobación del acta anterior de fecha 09 de febrero de 2026.",
+        "topic": "other",
+        "entities": {
+          "date": "2026-02-09",
+          "referencedEntity": "acta del pleno ordinario de 09 de febrero de 2026"
+        },
+        "confidence": 0.8,
+        "reasoning": "El resultado de una votación plenaria es verificable mediante el acta certificada que debe quedar depositada en el registro municipal; la unanimidad implica cero votos en contra y cero abstenciones.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-000-afi-de8696",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-000-pro-c8815f",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 0,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "aprobar, disponer y reconocer las obligaciones económicas y, por cierto, realizar el pago a la mayor brevedad posible",
+        "context": "El ponente concluye la presentación del reconocimiento extrajudicial nº 5/2026 proponiendo al pleno convalidar el gasto de 242.255 € y comprometiéndose a ejecutar el pago sin demora.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 242255,
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.62,
+        "reasoning": "Compromiso explícito de pago inmediato tras la aprobación plenaria; verificable consultando el período medio de pago a proveedores (PMP) del municipio y el informe trimestral de seguimiento de deuda comercial (punto 12 del mismo pleno). La vaguedad de 'mayor brevedad' reduce la confianza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-000-pro-c8815f",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-001-afi-07f459",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "proponemos al pleno convalidar y aprobar el expediente de reconocimiento extrajudicial de créditos por importe de 242.255 euros.",
+        "context": "El concejal presenta el expediente de reconocimiento extrajudicial nº 5/2026 correspondiente a gastos realizados a finales del pasado año, proponiendo su convalidación en sesión plenaria por importe de 242.255 euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 242255,
+          "referencedEntity": "reconocimiento extrajudicial de créditos nº 5/2026"
+        },
+        "confidence": 0.95,
+        "reasoning": "El importe exacto del reconocimiento extrajudicial de créditos (242.255 €) es verificable en el expediente plenario nº 5/2026 y en las relaciones de obligaciones 1202600045 y 44, citadas en el orden del día.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-001-afi-07f459",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-001-afi-6cb6b2",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "es un reconocimiento extrajudicial. Estamos hablando de 242.000 euros.",
+        "context": "Saúl, al tomar la palabra como concejal que revisa el expediente, confirma que se trata de un reconocimiento extrajudicial y redondea el importe a 242.000 euros, añadiendo que ha revisado el expediente.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 242000,
+          "referencedEntity": "reconocimiento extrajudicial de créditos nº 5/2026"
+        },
+        "confidence": 0.88,
+        "reasoning": "Saúl cita el mismo expediente pero redondea a 242.000 €; la diferencia con los 242.255 € del proponente es un dato verificable contra el expediente oficial que podría indicar redondeo o error de transcripción de Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-001-afi-6cb6b2",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-001-afi-30654e",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "prácticamente está todos los gastos de la campaña de Navidad",
+        "context": "Saúl, revisando el expediente de reconocimiento extrajudicial de 242.000 euros, afirma que prácticamente la totalidad de los gastos incluidos corresponden a la campaña de Navidad.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "campaña de navidad"
+        },
+        "confidence": 0.78,
+        "reasoning": "La afirmación de que la práctica totalidad del reconocimiento extrajudicial cubre gastos de la campaña de Navidad es verificable cruzando las facturas del expediente (listas 12025000151 y 12026000008) con la naturaleza de los proveedores y conceptos incluidos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-001-afi-30654e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-002-afi-eaf360",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 2,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Estamos hablando de 242.000 euros.",
+        "context": "En este caso, como bien ha apuntado el concejal, es un reconocimiento extrajudicial. Estamos hablando de 242.000 euros. ¿Vale? Revisando el expediente, sí que, bueno, estuvimos comentando,",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 242000,
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.92,
+        "reasoning": "Cifra concreta del importe total del reconocimiento extrajudicial nº 5/2026; verificable contra el expediente 12025000151/12026000008 y las relaciones de obligaciones 1202600045 y 44 citadas en el orden del día.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-002-afi-eaf360",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-002-afi-c6306c",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 2,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "estos gastos sí que tenían partida presupuestaria",
+        "context": "En este expediente, entendemos que estos gastos sí que tenían partida presupuestaria y nos extraña el verlos como extrajudiciales.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.8,
+        "reasoning": "Afirma la existencia de dotación presupuestaria previa para los gastos incluidos en el reconocimiento extrajudicial; verificable consultando el presupuesto municipal vigente y las aplicaciones presupuestarias de las facturas del expediente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-002-afi-c6306c",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-002-acu-a57dc0",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 2,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "pleno tras pleno estamos viendo que en todos los plenos hay reconocimiento de facturas extrajudiciales.",
+        "context": "Si bien es cierto, es que pleno tras pleno estamos viendo que en todos los plenos hay reconocimiento de facturas extrajudiciales. Es una manera de",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "reconocimientos extrajudiciales recurrentes"
+        },
+        "confidence": 0.82,
+        "reasoning": "Denuncia un patrón sistemático de reconocimientos extrajudiciales en sesiones plenarias sucesivas; verificable revisando los órdenes del día de los plenos de 2025-2026 en el archivo municipal de ribarroja.es/plenos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-002-acu-a57dc0",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-003-acu-2dc8c0",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 3,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "pleno tras pleno estamos viendo que en todos los plenos hay reconocimiento de facturas extrajudiciales. Es una manera de, ya de casi estructural, de ir pagando facturas.",
+        "context": "Intervención sobre el punto 2 (Reconocimiento Extrajudicial nº 5/2026). El portavoz critica que el reconocimiento extrajudicial de facturas se ha convertido en una práctica sistemática en todos los plenos del ayuntamiento.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.82,
+        "reasoning": "Afirmación verificable cruzando las actas de los plenos de 2024–2026 para comprobar si efectivamente cada pleno incluye reconocimientos extrajudiciales, lo que confirmaría o refutaría el patrón estructural alegado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-003-acu-2dc8c0",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-003-afi-beffcd",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 3,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "las facturas, sí que es verdad que son relativamente recientes, relativamente, estamos hablando de diciembre",
+        "context": "El portavoz señala que las facturas del Reconocimiento Extrajudicial nº 5/2026 (expedientes 12025000151 y 12026000008) son de fecha diciembre, relativizando así el retraso respecto a otras facturas que han pasado por pleno.",
+        "topic": "fiscal",
+        "entities": {
+          "date": "2025-12-01",
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 · facturas 12025000151 y 12026000008"
+        },
+        "confidence": 0.72,
+        "reasoning": "La fecha de las facturas es un dato objetivo que figura en los propios documentos del expediente 5/2026; puede verificarse consultando las facturas 12025000151 y 12026000008 en el registro contable municipal. La fecha exacta de diciembre (¿2025?) es inferible del contexto pero Whisper no la precisa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-003-afi-beffcd",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-003-acu-d629ea",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 3,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "en todos los informes que emiten los habilitados, todos coinciden en lo mismo, que hay gastos que tenían que haber sido a través de objeto de licitación pública",
+        "context": "El portavoz afirma que los informes de los funcionarios habilitados (secretario-interventor o interventor) son unánimes en señalar que determinados gastos incluidos en reconocimientos extrajudiciales deberían haber sido objeto de licitación pública conforme a la LCSP.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "informes de habilitados · reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.85,
+        "reasoning": "Afirmación directamente verificable: los informes de intervención adjuntos al expediente de reconocimiento extrajudicial son documentos públicos y deben constar en el expediente administrativo; se puede comprobar si efectivamente todos recogen el reparo sobre la ausencia de licitación previa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-003-acu-d629ea",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-004-acu-603194",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 4,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "todos coinciden en lo mismo, que hay gastos que tenían que haber sido a través de objeto de licitación pública, que no han sido",
+        "context": "El portavoz afirma que en todos los informes emitidos por los habilitados (interventores/secretarios con habilitación nacional) se concluye reiteradamente que determinados gastos aprobados en reconocimientos extrajudiciales debieron someterse a licitación pública y no se hizo.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "informes de habilitados nacionales, reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.82,
+        "reasoning": "Verificable accediendo a los informes de intervención o secretaría incorporados al expediente de reconocimiento extrajudicial; su contenido es un documento administrativo público consultable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-004-acu-603194",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-004-acu-216876",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 4,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "gastos que son repetitivos y continuados, en el tiempo gastos que no corresponden a contrato menor",
+        "context": "El portavoz reproduce el diagnóstico reiterado de los habilitados: los gastos aprobados vía reconocimiento extrajudicial son de naturaleza repetitiva y continuada, lo que legalmente impediría su tramitación como contrato menor (umbral: 15.000 € en servicios según LCSP art. 118).",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "contratos menores, lcsp art. 118, informes de habilitados"
+        },
+        "confidence": 0.8,
+        "reasoning": "La calificación jurídica de un gasto como contrato menor (o no) es verificable cotejando el importe, la periodicidad y el objeto de las facturas del expediente con los límites de la LCSP.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-004-acu-216876",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-004-acu-9d8633",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 4,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "hay facturas que están solo firmadas por los responsables políticos en ciertos casos, y no por el técnico adscrito",
+        "context": "El portavoz denuncia que algunas facturas incluidas en el reconocimiento extrajudicial carecen de la firma del técnico municipal adscrito al expediente, estando firmadas únicamente por cargos políticos, lo que los habilitados señalan en sus informes como irregularidad procedimental.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "facturas reconocimiento extrajudicial nº 5/2026, técnico adscrito"
+        },
+        "confidence": 0.79,
+        "reasoning": "La existencia o ausencia de firma técnica en las facturas es un hecho documental verificable inspeccionando el expediente administrativo; los informes de los habilitados citados por el portavoz también son documentos públicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-004-acu-9d8633",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-005-acu-30534f",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 5,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "estamos viendo este tipo de puntos, pleno tras pleno, pero lo que echamos en falta es medidas correctivas para poder solucionar esto",
+        "context": "El interviniente sostiene que los reconocimientos extrajudiciales por gastos irregulares se repiten en todos los plenos sin que el equipo de gobierno haya adoptado medidas correctivas.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "reconocimientos extrajudiciales recurrentes"
+        },
+        "confidence": 0.68,
+        "reasoning": "Verificable revisando el orden del día de plenos anteriores para comprobar la frecuencia con que aparecen reconocimientos extrajudiciales y si existe algún plan de acción aprobado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-005-acu-30534f",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-005-acu-a59dbf",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 5,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "tengamos extrajudiciales a estos niveles en todos los plenos",
+        "context": "El interviniente pregunta si el equipo de gobierno tiene prevista alguna propuesta correctiva para evitar que los reconocimientos extrajudiciales aparezcan de forma sistemática en todos los plenos a los niveles actuales.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimientos extrajudiciales"
+        },
+        "confidence": 0.62,
+        "reasoning": "La referencia a 'estos niveles' implica una magnitud económica concreta que puede cotejarse con el importe acumulado de reconocimientos extrajudiciales aprobados en la legislatura actual (datos de las actas).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-005-acu-a59dbf",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-006-afi-20b011",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 6,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PP",
+        "verbatim": "en todos los plenos, y estamos hablando de 240.000 euros, entendemos que hay que solucionarlo.",
+        "context": "El portavoz critica la recurrencia de reconocimientos extrajudiciales y cifra el total acumulado discutido en plenos en 240.000 euros, instando a encontrar una solución estructural.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 240000,
+          "referencedEntity": "reconocimientos extrajudiciales de crédito nº 5/2026"
+        },
+        "confidence": 0.82,
+        "reasoning": "Cifra concreta de 240.000 euros atribuida a los reconocimientos extrajudiciales acumulados en plenos. Verificable contrastando los expedientes de reconocimiento extrajudicial aprobados (rel. obligaciones 12026000045 y 44 del orden del día).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-006-afi-20b011",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-006-acu-ecd0aa",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 6,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "Gastos repetitivos, falta de licitaciones, entonces, no sé si tienen pensada o ya tienen en marcha alguna… alguna propuesta correctiva para evitar que tengamos extrajudiciales a estos niveles en todos los plenos.",
+        "context": "El portavoz denuncia que el equipo de gobierno recurre sistemáticamente a reconocimientos extrajudiciales para cubrir gastos que deberían haberse licitado formalmente, preguntando si existe alguna medida correctora.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimientos extrajudiciales de crédito"
+        },
+        "confidence": 0.78,
+        "reasoning": "Acusación de falta de licitaciones y uso reiterado de extrajudiciales. Verificable revisando el historial de contratos menores y licitaciones publicadas en la plataforma de contratación del ayuntamiento frente a los sucesivos reconocimientos extrajudiciales aprobados en plenos anteriores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-006-acu-ecd0aa",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-006-acu-c78880",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 6,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "lo que hace el Partido Socialista es normalizar una herramienta que habría de ser puntual,",
+        "context": "El portavoz afirma compartir el rechazo del Partido Popular y acusa al Partido Socialista de convertir en práctica habitual el uso de los reconocimientos extrajudiciales, una herramienta que debería ser excepcional.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "partido socialista · reconocimientos extrajudiciales"
+        },
+        "confidence": 0.72,
+        "reasoning": "Acusación directa de conducta política: el PSOE habría institucionalizado un mecanismo de gasto excepcional. Verificable comparando la frecuencia de reconocimientos extrajudiciales aprobados en la legislatura actual con las legislaturas anteriores y con otros municipios similares.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-006-acu-c78880",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-007-afi-191742",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 7,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PP",
+        "verbatim": "do de 240.000 euros, entendemos que hay que solucionarlo.",
+        "context": "Inicio del fragmento, probablemente cierre de frase anterior referida al importe del reconocimiento extrajudicial nº 5/2026. El interviniente de PP habla del importe de 240.000 euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 240000,
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.62,
+        "reasoning": "Cifra concreta de 240.000 € vinculada al punto 2 del orden del día (Reconocimiento Extrajudicial nº 5/2026); verificable en el expediente y la lista de facturas 12025000151 y 12026000008. Baja confianza porque el inicio de la frase está truncado por Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-007-afi-191742",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-007-acu-3f3d81",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 7,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "lo que hace el Partido Socialista es normalizar una herramienta que habría de ser puntual,",
+        "context": "El portavoz del PP argumenta el voto de rechazo del grupo: acusa al PSOE de usar el reconocimiento extrajudicial de crédito como práctica habitual en lugar de como recurso excepcional.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial de crédito"
+        },
+        "confidence": 0.85,
+        "reasoning": "Afirmación de conducta política del PSOE verificable revisando cuántos reconocimientos extrajudiciales ha aprobado el Ayuntamiento en legislaturas anteriores y si su frecuencia es inusual.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-007-acu-3f3d81",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-007-acu-1d5586",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 7,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "los informes técnicos lo que dicen es que hay una falta de planificación de la tramitación administrativa,",
+        "context": "El portavoz del PP cita el contenido de los informes técnicos incluidos en el expediente del reconocimiento extrajudicial para fundamentar el voto en contra.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "informes técnicos expediente reconocimiento extrajudicial"
+        },
+        "confidence": 0.82,
+        "reasoning": "Los informes técnicos son documentos del expediente administrativo consultables; su contenido exacto es verificable por cualquier interesado mediante solicitud de acceso o en el tablón de plenos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-007-acu-1d5586",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-007-acu-0033f2",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 7,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "la adjudicación de contratos verbales sin que haya… Y ha habido un expediente administrativo previo a eso, comporta los informes, la falta de procedimiento de licitación pública,",
+        "context": "El portavoz PP enumera irregularidades que describe como recogidas en los informes técnicos del expediente: contratos verbales adjudicados sin licitación previa.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "contratos verbales sin licitación pública"
+        },
+        "confidence": 0.72,
+        "reasoning": "Denuncia de contratación verbal sin procedimiento de licitación, verificable cotejando el registro de contratos de Gobierto/PLACSP contra los pagos incluidos en el reconocimiento extrajudicial.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-007-acu-0033f2",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-007-acu-7f3b54",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 7,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "la continuidad de algunos proveedores que siguen siempre estando en servicio sin regulación administrativa,",
+        "context": "Continuación de la enumeración de irregularidades citadas por el PP: proveedores que prestan servicio de forma continuada sin contrato administrativo vigente.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "proveedores sin regulación administrativa"
+        },
+        "confidence": 0.8,
+        "reasoning": "Verificable cruzando los NIF de los proveedores incluidos en las facturas del reconocimiento extrajudicial con el registro de contratos activos (Gobierto/PLACSP) para detectar ausencia de contrato.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-007-acu-7f3b54",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-007-acu-e8fb6a",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 7,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "la omisión de la función interventora, el gasto sin procedimiento de contratación,",
+        "context": "El portavoz PP culmina la enumeración de faltas señaladas en los informes técnicos: ausencia de fiscalización previa por parte de la Intervención municipal y gasto ejecutado sin contrato.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "función interventora municipal"
+        },
+        "confidence": 0.83,
+        "reasoning": "La omisión de la función interventora es un hecho administrativo constatable en los propios informes del expediente; su existencia o ausencia figura en el expediente 12025000151/12026000008.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-007-acu-e8fb6a",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-008-acu-81b8c9",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 8,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "adjudicación de contratos verbales sin que haya… Y ha habido un expediente administrativo previo a eso, comporta los informes, la falta de procedimiento de licitación pública",
+        "context": "El orador enumera irregularidades detectadas por técnicos: contratos verbales adjudicados sin expediente administrativo previo ni procedimiento de licitación pública.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "procedimiento de licitación pública"
+        },
+        "confidence": 0.75,
+        "reasoning": "Afirmación verificable en los expedientes de contratación del Ayuntamiento: si existen contratos verbales sin expediente previo, constará en el reconocimiento extrajudicial o en informes de intervención.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-008-acu-81b8c9",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-008-acu-18204b",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 8,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "de especies facturadas en el ámbito de la contratación menor que no responden a la naturaleza propia del contrato menor",
+        "context": "Se alega que determinadas facturas han sido tramitadas como contrato menor cuando por su cuantía o naturaleza habrían debido someterse a licitación ordinaria.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "contratación menor"
+        },
+        "confidence": 0.74,
+        "reasoning": "Verificable auditando las facturas del reconocimiento extrajudicial contra los umbrales legales de contrato menor (≤15.000 € para servicios, LCSP art. 118): si superan el umbral o forman fraccionamiento ilícito, la afirmación es constatable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-008-acu-18204b",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-008-acu-73f30d",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 8,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "los informes no son positivos y, sinceramente, es una práctica que el Partido Socialista hace como norma",
+        "context": "Tras enumerar las deficiencias técnicas detectadas, el orador concluye que los informes técnicos son desfavorables y atribuye estas irregularidades al Partido Socialista como pauta sistemática de gobierno.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "partido socialista"
+        },
+        "confidence": 0.82,
+        "reasoning": "La existencia de informes técnicos desfavorables es verificable accediendo al expediente del reconocimiento extrajudicial; la acusación de patrón sistemático al PSOE es verificable comparando reconocimientos extrajudiciales de legislaturas anteriores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-008-acu-73f30d",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-009-acu-8fd54b",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 9,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "de especies facturadas en el ámbito de la contratación menor que no responden a la naturaleza propia del contrato menor",
+        "context": "El interviniente enumera deficiencias detectadas: facturas en contratación menor que no responden a la naturaleza propia del contrato menor, y facturas sin justificación suficiente.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "contratación menor ayuntamiento de riba-roja de túria"
+        },
+        "confidence": 0.72,
+        "reasoning": "Afirmación sobre facturas en contratación menor que no cumplen los requisitos legales; verificable cruzando los informes de intervención o fiscalización con el registro de contratos menores adjudicados.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-009-acu-8fd54b",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-011-afi-aa6423",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 11,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el segundo expediente de facturas, son todas del 2026",
+        "context": "Podréis ver, sobre todo, por el segundo expediente de facturas, son todas del 2026. Tenéis que ver también cuáles se asignan esas facturas, porque a veces, si llega el tiempo antes de...",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "expediente de facturas 12026000008 / rel obligaciones 1202600044"
+        },
+        "confidence": 0.78,
+        "reasoning": "El orador afirma que la totalidad de las facturas del segundo expediente (12026000008, referenciado en el orden del día como punto 2) corresponden al ejercicio 2026; verificable cruzando las fechas de factura del expediente con el acta o el reconocimiento extrajudicial nº 5/2026.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-011-afi-aa6423",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-011-afi-2702fa",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 11,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Hay una instrucción que todos estos años hacemos... Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas",
+        "context": "Bueno, hay una instrucción que todos estos años hacemos desde... Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas, pero claro, si la despesa es a final del ejercic",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "instrucción interna de intervención municipal – cierre presupuestario 10 diciembre"
+        },
+        "confidence": 0.65,
+        "reasoning": "El orador afirma la existencia de una instrucción formal de la Intervención municipal que fija el 10 de diciembre como fecha límite para el registro de facturas del ejercicio; verificable solicitando al Ayuntamiento la instrucción o circular de Intervención correspondiente (transparencia activa o solicitud de acceso a la información).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-011-afi-2702fa",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-011-afi-0465f0",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 11,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "vayan asignadas por el regidor y por el técnico y, como sí que está ahí en el propio informe, que sigan precios de mercado",
+        "context": "Lo importante es que vayan asignadas por el regidor y por el técnico y, como sí que está ahí en el propio informe, que sigan precios de mercado. Ahí nadie podrá decir nada, todo está establecido en precios de mercado y está asignado en el propio informe.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "informe técnico reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.62,
+        "reasoning": "El orador afirma que el informe adjunto al reconocimiento extrajudicial acredita que los precios de las facturas son de mercado; verificable consultando el informe técnico/económico que obra en el expediente 12025000151 / 12026000008.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-011-afi-0465f0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-011-afi-c66348",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 11,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "en algunas ocasiones, y para no retrasarlo, está asignado solo por el regidor, pero muchas veces se da el caso de que el técnico está de vacaciones y no está para asignar el servicio",
+        "context": "En algunas ocasiones, y para no retrasarlo, está asignado solo por el regidor, pero muchas veces se da el caso de que el técnico está de vacaciones y no está para asignar el servicio. Y en los otros casos, las facturas se aplican en el año 2026.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 – ausencia de visado técnico en parte de las facturas"
+        },
+        "confidence": 0.55,
+        "reasoning": "El orador reconoce que parte de las facturas incluidas en el reconocimiento extrajudicial carecen de la firma del técnico y fueron autorizadas únicamente por el concejal responsable; verificable revisando los documentos de conformidad adjuntos al expediente y comparando cuántas facturas llevan sólo la rúbrica del regidor.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-011-afi-c66348",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-012-afi-c379ef",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 12,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "las facturas se aplican en el año 2026. Podréis ver, sobre todo, por el segundo expediente de facturas, son todas del 2026.",
+        "context": "Explicación sobre el Reconocimiento Extrajudicial nº 5/2026: el interviniente indica que las facturas del segundo expediente (rel obligaciones 12026000008) pertenecen íntegramente al ejercicio 2026.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 — segundo expediente de facturas 12026000008"
+        },
+        "confidence": 0.82,
+        "reasoning": "Afirmación factual verificable cruzando el expediente 12026000008 (rel obligaciones 1202600044) con las fechas de emisión de las facturas incluidas en el reconocimiento extrajudicial aprobado en el pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-012-afi-c379ef",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-012-afi-8a2fe1",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 12,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Hay una intervención para que antes del día 10 de diciembre se intenten hacer todas las facturas",
+        "context": "El interviniente explica que existe una instrucción interna de la Intervención municipal por la que se exige tramitar todas las facturas antes del 10 de diciembre de cada ejercicio, aunque reconoce que no siempre es posible si el gasto se produce en Navidad.",
+        "topic": "fiscal",
+        "entities": {
+          "date": "2025-12-10",
+          "referencedEntity": "instrucción de la intervención municipal — plazo 10 de diciembre"
+        },
+        "confidence": 0.72,
+        "reasoning": "La existencia de una instrucción de la Intervención con ese plazo es verificable mediante solicitud del documento a través del portal de transparencia del Ayuntamiento o revisión del expediente de control interno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-012-afi-8a2fe1",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-012-afi-70ee81",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 12,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "en ningún momento, dejemos en duda que el servicio no se haya hecho y no se haya contratado a precio de mercado.",
+        "context": "Un concejal de otro grupo (diferente al que explica el expediente) interviene para aclarar que su grupo no cuestiona que el servicio se haya prestado ni que se haya contratado a precio de mercado, circunscribiendo así el debate a aspectos formales del reconocimiento extrajudicial.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 — contratación a precio de mercado"
+        },
+        "confidence": 0.65,
+        "reasoning": "La afirmación de que el servicio se contrató a precio de mercado es verificable cotejando los importes de las facturas reconocidas con tarifas de mercado para servicios equivalentes en la misma fecha; la doble negación es transcripción fiel de Whisper.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-012-afi-70ee81",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-013-pro-ce8b37",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 13,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "en nuestro grupo vamos a votar a favor de que se paguen estas facturas",
+        "context": "En nuestro grupo, en ningún momento, dejemos en duda que el servicio no se haya hecho y no se haya contratado a precio de mercado. Es más, por estos motivos, en nuestro grupo vamos a votar a favor de que se paguen estas facturas. No vamos a bloquear el pagamiento.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.82,
+        "reasoning": "Compromiso explícito de voto a favor del punto del orden del día relativo al reconocimiento extrajudicial de facturas; verificable contra el acta de votación del pleno del 09-03-2026.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-013-pro-ce8b37",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-013-afi-8fb901",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 13,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el servicio no se haya hecho y no se haya contratado a precio de mercado",
+        "context": "En nuestro grupo, en ningún momento, dejemos en duda que el servicio no se haya hecho y no se haya contratado a precio de mercado. Es más, por estos motivos, en nuestro grupo vamos a votar a favor de que se paguen estas facturas.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "facturas extrajudiciales reconocimiento extrajudicial nº 5/2026"
+        },
+        "confidence": 0.62,
+        "reasoning": "El orador afirma que el servicio fue prestado y contratado a precio de mercado; verificable cruzando los expedientes 12025000151 y 12026000008 con las tarifas de mercado del servicio correspondiente y el importe facturado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-013-afi-8fb901",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-013-acu-d786f4",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 13,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "lo extraordinario es que tengamos un pleno sin facturas extrajudiciales",
+        "context": "el argumentario para mí se queda un poco chustado. [...] lo extraordinario es que tengamos un pleno sin facturas extrajudiciales. Usted me ha traído el porcentaje de estas facturas extrajudiciales respect[o]",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "reconocimientos extrajudiciales de crédito"
+        },
+        "confidence": 0.7,
+        "reasoning": "El orador insinúa que los reconocimientos extrajudiciales son recurrentes en cada pleno, lo cual es verificable revisando el historial de órdenes del día de plenos anteriores para cuantificar la frecuencia de este tipo de puntos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-013-acu-d786f4",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-014-acu-c11acc",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 14,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "cuando los regidores del gobierno y del Partido Socialista que coinciden, gastan después, pasan las facturas y llegan a los departamentos de pago y es donde vienen los problemas",
+        "context": "El orador argumenta que el problema de las facturas extrajudiciales se origina en una práctica de los concejales del PSOE: gastar sin tener claro primero de qué partida se pagará, generando problemas en los departamentos de pago.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "partido socialista - regidores del gobierno"
+        },
+        "confidence": 0.78,
+        "reasoning": "Afirmación controvertida y verificable sobre la práctica presupuestaria del grupo de gobierno (PSOE): contratar/gastar sin cobertura presupuestaria previa, lo que genera reconocimientos extrajudiciales. Contrastable con los expedientes de reconocimiento extrajudicial y las actas de pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-014-acu-c11acc",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-015-acu-b288ab",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 15,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "los regidores del gobierno y del Partido Socialista que coinciden, gastan después, pasan las facturas y llegan a los departamentos de pago y es donde vienen los problemas",
+        "context": "Intervención sobre reconocimientos extrajudiciales (punto 2 del orden del día): el orador critica el procedimiento habitual del equipo de gobierno PSOE, según el cual los concejales contraen gastos sin asegurarse antes de la disponibilidad presupuestaria, generando facturas que acaban en el departamento de pagos como deudas no previstas.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "reconocimientos extrajudiciales — gestión presupuestaria"
+        },
+        "confidence": 0.72,
+        "reasoning": "Acusación de mala praxis presupuestaria sistémica contra concejales PSOE: verificable cruzando los expedientes de reconocimientos extrajudiciales aprobados (nº 5/2026 y anteriores) con las actas de intervención municipal que documenten objeciones por insuficiencia de consignación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-015-acu-b288ab",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-015-acu-f88951",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 15,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "de manera reiterada un regidor está contratando las cosas de forma incorrecta",
+        "context": "El orador sostiene que un concejal del equipo de gobierno incurre de forma repetida en contratación irregular y que nadie dentro del gobierno le corrige ni le exige que cambie el procedimiento, lo que genera los reconocimientos extrajudiciales que se traen a pleno.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "contratación irregular reiterada — reconocimientos extrajudiciales"
+        },
+        "confidence": 0.68,
+        "reasoning": "Acusación concreta de irregularidad reiterada en contratación atribuida a un concejal del gobierno; verificable mediante los expedientes de contratación directa, los informes de la Intervención municipal y la serie histórica de reconocimientos extrajudiciales presentados a pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-015-acu-f88951",
+        "verdict": "sin-datos",
+        "summary": "Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-016-afi-6fb5b2",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 16,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "hay facturas que tardan en pagarse 9 meses o 80 y pico días según el periodo de medio de pago",
+        "context": "El interviniente argumenta que no es válido que un técnico esté de vacaciones para firmar una factura, y señala que hay facturas que tardan en pagarse 9 meses o 80 y pico días según el período medio de pago, concluyendo que el técnico no puede estar 80 días de vacaciones.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "período medio de pago a proveedores"
+        },
+        "confidence": 0.78,
+        "reasoning": "El período medio de pago a proveedores es un indicador oficial publicado trimestralmente por el Ayuntamiento (punto 12 del orden del día); los datos del 4T 2025 permiten contrastar si se superan los 9 meses o los ~80 días mencionados.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-016-afi-6fb5b2",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1sqj7is-017-afi-591454",
+        "plenoId": "1sqj7is",
+        "plenoDate": "2026-03-09",
+        "segmentIndex": 17,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "hay facturas que tardan en pagarse 9 meses o 80 y pico días según el periodo de medio de pago",
+        "context": "El orador critica los retrasos en el pago de facturas municipales, argumentando que la demora no puede justificarse por las vacaciones de un técnico cuando el período medio de pago es de 80 y pico días o incluso 9 meses en algunos casos.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 80,
+          "countUnit": "días (período medio de pago)",
+          "referencedEntity": "período medio de pago a proveedores — cuarto trimestre 2025"
+        },
+        "confidence": 0.72,
+        "reasoning": "La cifra de '80 y pico días' remite directamente al informe trimestral del Período Medio de Pago (PMP) del Q4 2025, que es el punto 12 del orden del día; verificable contra los datos oficiales del Ministerio de Hacienda / MFOM publicados por el ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sqj7is-017-afi-591454",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    }
+  ]
+}

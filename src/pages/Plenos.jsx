@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import { ClaimLedgerSection } from '../components/ClaimLedger'
 import { useParticipa, KIND_ICON, KIND_LABEL } from '../hooks/useParticipa'
 import { useMemo, useState } from 'react'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
@@ -695,6 +696,12 @@ export default function Plenos() {
       <RealPlenosList />
       <PlenoVotesBlock />
       <PlenoVoteSuggestionsBlock />
+      <ClaimLedgerSection
+        eyebrow="Verificación automática de declaraciones"
+        title="Declaraciones hechas en el pleno · contraste con los datos"
+        hint="Los concejales hacen afirmaciones en las intervenciones: cifras presupuestarias, obras en marcha, convenios cerrados, promesas. Esta página cruza cada declaración con los datos municipales (contratos publicados, subvenciones BDNS, presupuesto, promesas ya documentadas) y emite un veredicto: verificado, parcial, sin datos, o promesa repetida. Todas las citas son verbatim; la atribución se queda a nivel de grupo municipal nunca a personas."
+        limit={30}
+      />
       <ParticipaBlock />
     </div>
   )

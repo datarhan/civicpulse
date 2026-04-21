@@ -51,6 +51,9 @@
     "compute:dept-stats": "npx tsx scripts/compute-dept-stats.ts",
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
     "extract:all-pleno-votes": "npx tsx scripts/extract-pleno-votes.ts --all --engine llm --min-confidence 0.5",
+    "extract:pleno-claims": "npx tsx scripts/extract-pleno-claims.ts",
+    "extract:all-pleno-claims": "npx tsx scripts/extract-pleno-claims.ts --all --min-confidence 0.5",
+    "verify:pleno-claims": "npx tsx scripts/verify-pleno-claims.ts",
     "llm:cost": "npx tsx scripts/llm-cost-report.ts",
     "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:metro-network && npm run scrape:fgv-gtfs && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos && npm run scrape:pleno-agendas && npm run scrape:wikidata && npm run scrape:ctbg && npm run scrape:consell-cv && npm run scrape:spain-ticker && npm run scrape:promise-suggestions && npm run extract:all-pleno-votes || true ; npm run compute:dept-stats",
     "prepare": "husky || true"

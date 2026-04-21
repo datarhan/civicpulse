@@ -11,6 +11,7 @@
  */
 import { z } from 'zod'
 import { ALLOWED_BLOCS, ALLOWED_DIRECTIONS, ALLOWED_OUTCOMES } from '../scraper/pleno-votes'
+import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../scraper/pleno-claim'
 
 // Mirrors src/scraper/promises.ts V1_STATUSES set. Kept as an array because
 // zod.enum() needs a tuple of literals at build time, not a runtime Set.
@@ -51,6 +52,42 @@ export type PlenoVoteSuggestion = z.infer<typeof PlenoVoteSuggestionSchema>
 /** Wrapper for batch responses: "either a vote or explicit null". */
 export const PlenoVoteResponseSchema = z.object({
   vote: PlenoVoteSuggestionSchema.nullable(),
+})
+
+// ─── Phase 1b · Pleno claim extraction ──────────────────────────────────────
+// Free-form assertions made in the floor of a pleno — promesas, numeric
+// claims, work citations, grant citations. Always speaker-group attributed,
+// never individual (libel line). See src/scraper/pleno-claim.ts for the
+// rendered schema.
+
+export const ClaimEntitiesSchema = z.object({
+  amountEuros: z.number().nonnegative().max(1e12).nullable().optional(),
+  count: z.number().int().nonnegative().max(1e9).nullable().optional(),
+  countUnit: z.string().min(1).max(60).nullable().optional(),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable()
+    .optional(),
+  referencedEntity: z.string().min(1).max(200).nullable().optional(),
+})
+
+export const PlenoClaimSuggestionSchema = z.object({
+  type: z.enum([...ALLOWED_CLAIM_TYPES] as [(typeof ALLOWED_CLAIM_TYPES)[number]]),
+  speakerGroup: z.enum([...ALLOWED_BLOCS] as [(typeof ALLOWED_BLOCS)[number]]).nullable(),
+  verbatim: z.string().min(20).max(500),
+  context: z.string().min(20).max(500),
+  topic: z.enum([...ALLOWED_CLAIM_TOPICS] as [(typeof ALLOWED_CLAIM_TOPICS)[number]]),
+  entities: ClaimEntitiesSchema,
+  confidence: z.number().min(0).max(1),
+  reasoning: z.string().min(5).max(400),
+})
+
+export type PlenoClaimExtraction = z.infer<typeof PlenoClaimSuggestionSchema>
+
+/** A segment may contain 0..N claims — the LLM returns an array. */
+export const PlenoClaimResponseSchema = z.object({
+  claims: z.array(PlenoClaimSuggestionSchema).max(8),
 })
 
 // ─── Phase 2 · Promise evidence suggestion ──────────────────────────────────

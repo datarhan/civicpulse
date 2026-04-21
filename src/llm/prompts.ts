@@ -98,6 +98,65 @@ export function buildPlenoVoteUserPrompt(segment: string): string {
   return `Transcripción (fragmento):\n\n${segment}\n\nExtrae la votación en JSON.`
 }
 
+// ─── Phase 1b · Pleno claim extraction ──────────────────────────────────────
+
+export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v1'
+
+export function buildPlenoClaimSystemPrompt(opts: {
+  plenoDate: string
+  currentSeats: { bloc: string; seats: number }[]
+  agendaItems?: AgendaItemHint[]
+}): string {
+  const seatsLines = opts.currentSeats.map((s) => `  • ${s.bloc}: ${s.seats} escaños`).join('\n')
+  const agendaBlock =
+    opts.agendaItems && opts.agendaItems.length > 0
+      ? '\nOrden del día oficial (contexto, no es la fuente de las afirmaciones):\n' +
+        opts.agendaItems.map((a) => `  ${a.number}. ${a.title}`).join('\n') +
+        '\n'
+      : ''
+  return `
+Eres un analista que busca AFIRMACIONES VERIFICABLES en las intervenciones del pleno municipal de Riba-roja de Túria (Comunitat Valenciana). Las sesiones son bilingües (castellano + valencià) y el audio está transcrito por Whisper (WER ~5-10% en nombres propios).
+
+Fecha del pleno: ${opts.plenoDate}
+
+Composición del pleno (${opts.currentSeats.reduce((a, s) => a + s.seats, 0)} escaños):
+${seatsLines}
+${agendaBlock}
+Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmaciones verificables de ese fragmento, hasta un máximo de 8. Cada una debe entrar en una de estas categorías:
+
+- "promesa": compromiso futuro concreto ("construiremos 500 viviendas sociales antes de 2027")
+- "afirmacion_numerica": cifra citada como hecho ("hemos asignado 46 millones al presupuesto", "el paro bajó un 12%")
+- "cita_obra": obra o proyecto referenciado ("la reconstrucción tras la DANA está terminada", "el colegio nuevo de X")
+- "cita_convenio": subvención, convenio, fondo europeo ("recibimos 9,5 millones de fondos europeos", "firmamos convenio con la Generalitat")
+- "acusacion_publica": afirmación controvertida sobre conducta política ("el partido X incumplió Y"). Extrae pero NO verifiques.
+
+Para cada afirmación extrae:
+- type: una de las cinco categorías
+- speakerGroup: PSOE | PP | VOX | Compromís | Ciudadanos | Otro, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
+- verbatim: cita literal (≥20 caracteres, máx 500), tal y como aparece en la transcripción aunque Whisper la haya degradado. Esta es la responsabilidad legal — no la parafrasees.
+- context: el párrafo breve (≥20 caracteres) alrededor de la verbatim para que el curador humano pueda juzgar.
+- topic: fiscal | vivienda | movilidad | medio-ambiente | social | cultura | seguridad | empleo | urbanismo | salud | transparencia | educacion | other
+- entities: objeto con los datos estructurados que puedas extraer (todos opcionales, null cuando no aplique):
+    · amountEuros (número entero en €; "46 millones" → 46000000, "9,5M" → 9500000)
+    · count + countUnit ("500 viviendas" → count:500, countUnit:"viviendas")
+    · date (ISO YYYY-MM-DD si la afirmación fija una fecha concreta)
+    · referencedEntity (entidad citada: "reconstrucción post-DANA", "fondos europeos Next Generation", "convenio Generalitat")
+- confidence: 0..1. <0.5 si Whisper distorsionó la frase.
+- reasoning: una frase explicando por qué es verificable y qué esperarías encontrar en los datos.
+
+Importante:
+- Si el fragmento es sólo protocolo ("pasamos al punto X", "gracias señor concejal") y no contiene afirmaciones verificables, devuelve { "claims": [] }.
+- Si una frase es meramente opinativa ("creemos que esto es positivo"), NO es verificable — no la incluyas.
+- Verbatim SIEMPRE literal. No normalices números, no arregles errores de Whisper. El valor estructurado (amountEuros) sí normaliza — pero verbatim conserva la forma original.
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildPlenoClaimUserPrompt(segment: string): string {
+  return `Intervención (fragmento):\n\n${segment}\n\nExtrae las afirmaciones verificables en JSON.`
+}
+
 // ─── Phase 2 · Promise evidence mining ──────────────────────────────────────
 
 export const PROMISE_EVIDENCE_PROMPT_VERSION = 'promise-evidence-v2'
