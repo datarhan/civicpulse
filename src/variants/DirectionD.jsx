@@ -126,6 +126,7 @@ function Header({ now }) {
         </span>
       </div>
 
+      <LiveStrip />
       <div style={{ flex: 1 }} />
 
       <button
@@ -200,6 +201,149 @@ function Header({ now }) {
         MP
       </div>
     </header>
+  )
+}
+
+/* ============================================================
+   LIVE STRIP — compact weather / air / L9 metro for the topbar
+   Replaces the old absolute-positioned map overlay so the map
+   surface stays clean. Rich context lives in the `title` tooltip.
+   ============================================================ */
+function LiveStrip() {
+  const { data: weather } = useLiveWeather()
+  const metro = useNextMetro()
+  const { data: air } = useAirQuality()
+  if (!weather && !metro && !air) return null
+  const [emoji, wmoLabel] = weather ? describeWmo(weather.weatherCode) : ['', '']
+  const aqi = air ? describeAqi(air.eaqi) : null
+
+  const divider = (
+    <span style={{ width: 1, height: 18, background: PALETTE.hair, flexShrink: 0 }} aria-hidden />
+  )
+
+  return (
+    <div
+      className="cp-livestrip"
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 10,
+        padding: '4px 10px',
+        borderRadius: 7,
+        background: PALETTE.bg,
+        border: '1px solid ' + PALETTE.hair,
+        fontFamily: SANS,
+        flexShrink: 0,
+      }}
+    >
+      {weather && (
+        <span
+          title={
+            `${wmoLabel}` +
+            (weather.feelsLikeC != null ? ` · sensación ${weather.feelsLikeC}°` : '') +
+            (weather.sunriseIso ? ` · ↑ ${formatLocalHm(weather.sunriseIso)}` : '') +
+            (weather.sunsetIso ? ` · ↓ ${formatLocalHm(weather.sunsetIso)}` : '') +
+            (weather.humidity != null ? ` · humedad ${weather.humidity}%` : '') +
+            (weather.windKmh != null ? ` · viento ${weather.windKmh} km/h` : '')
+          }
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'help' }}
+        >
+          <span style={{ fontSize: 15, lineHeight: 1 }} aria-hidden="true">
+            {emoji}
+          </span>
+          <span
+            className="mono"
+            style={{ fontSize: 12, fontWeight: 700, color: PALETTE.ink }}
+          >
+            {weather.tempC != null ? `${weather.tempC}°` : '—'}
+          </span>
+          {weather.todayMin != null && weather.todayMax != null && (
+            <span className="mono" style={{ fontSize: 10.5, color: PALETTE.ink50 }}>
+              {Math.round(weather.todayMin)}°/{Math.round(weather.todayMax)}°
+            </span>
+          )}
+        </span>
+      )}
+
+      {air && aqi && (
+        <>
+          {weather && divider}
+          <span
+            title={
+              `PM2.5 ${air.pm25 ?? '—'} µg/m³ · PM10 ${air.pm10 ?? '—'} µg/m³ · ` +
+              `NO₂ ${air.no2 ?? '—'} µg/m³ · O₃ ${air.ozone ?? '—'} µg/m³`
+            }
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'help' }}
+          >
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: aqi.color,
+                flexShrink: 0,
+              }}
+              aria-hidden="true"
+            />
+            <span
+              className="mono"
+              style={{ fontSize: 11, fontWeight: 700, color: PALETTE.ink }}
+            >
+              AQI {air.eaqi ?? '–'}
+            </span>
+            <span style={{ fontSize: 11.5, color: PALETTE.ink50 }}>{aqi.label}</span>
+            {Array.isArray(air.pm25Last24h) && air.pm25Last24h.length > 4 && (
+              <Pm25Sparkline values={air.pm25Last24h} color={aqi.color} />
+            )}
+          </span>
+        </>
+      )}
+
+      {metro && (
+        <>
+          {(weather || air) && divider}
+          <a
+            href="https://www.metrovalencia.es"
+            target="_blank"
+            rel="noreferrer"
+            title={`L9 — horario transcrito de fgv.es · válido hasta ${metro.scheduleValidUntil}`}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              textDecoration: 'none',
+              color: PALETTE.ink,
+            }}
+          >
+            <span
+              style={{
+                width: 18,
+                height: 18,
+                borderRadius: '50%',
+                background: '#F5B544',
+                color: '#0B0F19',
+                display: 'grid',
+                placeItems: 'center',
+                fontFamily: MONO,
+                fontSize: 9,
+                fontWeight: 800,
+                flexShrink: 0,
+              }}
+              aria-hidden="true"
+            >
+              L9
+            </span>
+            <span className="mono" style={{ fontSize: 12, fontWeight: 700 }}>
+              {metro.departureLabel}
+            </span>
+            <span className="mono" style={{ fontSize: 10.5, color: PALETTE.ink50 }}>
+              {metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`}
+              {metro.afterMidnight ? ' (mañana)' : ''}
+            </span>
+          </a>
+        </>
+      )}
+    </div>
   )
 }
 
@@ -464,262 +608,6 @@ function Pm25Sparkline({ values, color }) {
   )
 }
 
-/**
- * Live overlay pinned top-right of the map. Two blocks stacked:
- *   1. Real-time weather for Riba-roja (Open-Meteo, no API key)
- *   2. Next L9 Metrovalencia departure from Riba-roja station
- *        (static schedule computed client-side — FGV has no free realtime API)
- *
- * Renders nothing if both data sources are unavailable (graceful degrade).
- * Updates: weather every 10 min, metro countdown every 15 s.
- */
-function LiveOverlay() {
-  const { data: weather } = useLiveWeather()
-  const metro = useNextMetro()
-  const { data: air } = useAirQuality()
-  if (!weather && !metro && !air) return null
-  const [emoji, wmoLabel] = weather ? describeWmo(weather.weatherCode) : ['', '']
-  const aqi = air ? describeAqi(air.eaqi) : null
-
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 14,
-        right: 14,
-        zIndex: 400,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 8,
-        pointerEvents: 'none',
-        fontFamily: SANS,
-      }}
-    >
-      {weather && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            background: 'rgba(14,20,34,.82)',
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
-            border: '1px solid rgba(96,165,250,.22)',
-            borderRadius: 10,
-            padding: '10px 14px',
-            color: 'white',
-            pointerEvents: 'auto',
-          }}
-          title={`${wmoLabel} · humedad ${weather.humidity ?? '—'}% · viento ${weather.windKmh ?? '—'} km/h`}
-        >
-          <span style={{ fontSize: 22, lineHeight: 1 }} aria-hidden="true">
-            {emoji}
-          </span>
-          <div>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 9,
-                color: 'rgba(255,255,255,.55)',
-                letterSpacing: '.12em',
-              }}
-            >
-              AHORA · RIBA-ROJA
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 20,
-                  fontWeight: 800,
-                  color: '#E2E8F0',
-                  lineHeight: 1,
-                }}
-              >
-                {weather.tempC != null ? `${weather.tempC}°` : '—'}
-              </span>
-              {weather.todayMin != null && weather.todayMax != null && (
-                <span
-                  style={{
-                    fontFamily: MONO,
-                    fontSize: 10,
-                    color: 'rgba(255,255,255,.55)',
-                  }}
-                >
-                  {Math.round(weather.todayMin)}° / {Math.round(weather.todayMax)}°
-                </span>
-              )}
-            </div>
-            {weather.feelsLikeC != null && weather.feelsLikeC !== weather.tempC && (
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 9.5,
-                  color: 'rgba(255,255,255,.55)',
-                  marginTop: 3,
-                  letterSpacing: '.04em',
-                }}
-              >
-                sensación térmica {weather.feelsLikeC}°
-              </div>
-            )}
-            {(weather.sunriseIso || weather.sunsetIso) && (
-              <div
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 9.5,
-                  color: 'rgba(255,255,255,.55)',
-                  marginTop: 3,
-                  letterSpacing: '.04em',
-                }}
-              >
-                ↑ {formatLocalHm(weather.sunriseIso)} · ↓ {formatLocalHm(weather.sunsetIso)}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {air && aqi && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            background: 'rgba(14,20,34,.82)',
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
-            border: '1px solid rgba(96,165,250,.22)',
-            borderRadius: 10,
-            padding: '10px 14px',
-            color: 'white',
-            pointerEvents: 'auto',
-          }}
-          title={
-            `PM2.5 ${air.pm25 ?? '—'} µg/m³ · PM10 ${air.pm10 ?? '—'} µg/m³ · ` +
-            `NO₂ ${air.no2 ?? '—'} µg/m³ · O₃ ${air.ozone ?? '—'} µg/m³`
-          }
-        >
-          <span
-            style={{
-              width: 22,
-              height: 22,
-              borderRadius: '50%',
-              background: aqi.color,
-              display: 'grid',
-              placeItems: 'center',
-              fontFamily: MONO,
-              fontSize: 10,
-              fontWeight: 800,
-              color: 'white',
-              flexShrink: 0,
-            }}
-            aria-hidden="true"
-          >
-            {air.eaqi ?? '–'}
-          </span>
-          <div>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 9,
-                color: 'rgba(255,255,255,.55)',
-                letterSpacing: '.12em',
-              }}
-            >
-              CALIDAD DEL AIRE · EAQI
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-              <span
-                style={{
-                  fontFamily: MONO,
-                  fontSize: 13,
-                  fontWeight: 700,
-                  color: '#E2E8F0',
-                }}
-              >
-                {aqi.label}
-              </span>
-              {air.pm25 != null && (
-                <span style={{ fontFamily: MONO, fontSize: 10, color: 'rgba(255,255,255,.55)' }}>
-                  PM₂.₅ {air.pm25.toFixed(1)}
-                </span>
-              )}
-            </div>
-            {Array.isArray(air.pm25Last24h) && air.pm25Last24h.length > 4 && (
-              <div style={{ marginTop: 4, lineHeight: 0 }}>
-                <Pm25Sparkline values={air.pm25Last24h} color={aqi.color} />
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {metro && (
-        <a
-          href="https://www.metrovalencia.es"
-          target="_blank"
-          rel="noreferrer"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 10,
-            background: 'rgba(14,20,34,.82)',
-            backdropFilter: 'blur(14px)',
-            WebkitBackdropFilter: 'blur(14px)',
-            border: '1px solid rgba(96,165,250,.22)',
-            borderRadius: 10,
-            padding: '10px 14px',
-            color: 'white',
-            textDecoration: 'none',
-            pointerEvents: 'auto',
-          }}
-          title={`Horario transcrito de fgv.es · válido hasta ${metro.scheduleValidUntil}`}
-        >
-          <span
-            style={{
-              width: 22,
-              height: 22,
-              borderRadius: '50%',
-              background: '#F5B544',
-              color: '#0B0F19',
-              display: 'grid',
-              placeItems: 'center',
-              fontFamily: MONO,
-              fontSize: 11,
-              fontWeight: 800,
-              flexShrink: 0,
-            }}
-            aria-hidden="true"
-          >
-            L9
-          </span>
-          <div>
-            <div
-              style={{
-                fontFamily: MONO,
-                fontSize: 9,
-                color: 'rgba(255,255,255,.55)',
-                letterSpacing: '.12em',
-              }}
-            >
-              PRÓXIMO TREN · RIBA-ROJA
-            </div>
-            <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-              <span style={{ fontFamily: MONO, fontSize: 15, fontWeight: 700, color: '#E2E8F0' }}>
-                {metro.departureLabel}
-              </span>
-              <span style={{ fontFamily: MONO, fontSize: 10.5, color: '#F5B544' }}>
-                {metro.minutesAway === 0 ? 'ahora' : `en ${metro.minutesAway} min`}
-                {metro.afterMidnight ? ' (mañana)' : ''}
-              </span>
-            </div>
-          </div>
-        </a>
-      )}
-    </div>
-  )
-}
 
 /**
  * Docked ticker bottom-center of the map — "Hoy en Riba-roja". Surfaces
@@ -1852,7 +1740,6 @@ export default function DirectionD() {
         <div style={{ flex: 1, position: 'relative', minWidth: 0 }}>
           <StylizedMap center={RIBA_ROJA_CENTER} />
           <StatusBadge />
-          <LiveOverlay />
           <EventTicker />
           <MapAttribution />
         </div>
