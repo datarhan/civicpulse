@@ -142,4 +142,94 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
     }
     expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/evidence/)
   })
+
+  it('accepts optional dueBy + departmentSlug when provided', () => {
+    const base = {
+      version: '1.0',
+      generatedAt: '2026-04-20',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+    }
+    const withOpt = {
+      ...base,
+      items: [
+        {
+          id: 'opt-1',
+          party: 'PSOE',
+          title: 'Compromiso con plazo',
+          quote: 'A verbatim quote that is at least twenty characters long.',
+          source: { url: 'https://x.test', publisher: 'Test' },
+          madeAt: '2024-06-01',
+          topic: 'vivienda',
+          kind: 'programa-electoral',
+          status: 'en-verificacion',
+          evidence: [],
+          createdAt: '2024-06-01',
+          dueBy: '2026-12-31',
+          departmentSlug: 'vivienda',
+        },
+      ],
+    }
+    const snap = validatePromisesSnapshot(JSON.stringify(withOpt))
+    expect(snap.items[0].dueBy).toBe('2026-12-31')
+    expect(snap.items[0].departmentSlug).toBe('vivienda')
+  })
+
+  it('rejects a dueBy that is not ISO YYYY-MM-DD', () => {
+    const bad = {
+      version: '1.0',
+      generatedAt: '2026-04-20',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+      items: [
+        {
+          id: 'bad-3',
+          party: 'PSOE',
+          title: 'Fecha inválida',
+          quote: 'A verbatim quote that is at least twenty characters long.',
+          source: { url: 'https://x.test', publisher: 'Test' },
+          madeAt: '2024-06-01',
+          topic: 'fiscal',
+          kind: 'anuncio-gobierno',
+          status: 'documentada',
+          evidence: [],
+          createdAt: '2024-06-01',
+          dueBy: '31/12/2026',
+        },
+      ],
+    }
+    expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/dueBy/)
+  })
+
+  it('rejects a departmentSlug that is not kebab-case', () => {
+    const bad = {
+      version: '1.0',
+      generatedAt: '2026-04-20',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+      items: [
+        {
+          id: 'bad-4',
+          party: 'PSOE',
+          title: 'Slug inválido',
+          quote: 'A verbatim quote that is at least twenty characters long.',
+          source: { url: 'https://x.test', publisher: 'Test' },
+          madeAt: '2024-06-01',
+          topic: 'fiscal',
+          kind: 'anuncio-gobierno',
+          status: 'documentada',
+          evidence: [],
+          createdAt: '2024-06-01',
+          departmentSlug: 'URBANISMO',
+        },
+      ],
+    }
+    expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/kebab/)
+  })
 })

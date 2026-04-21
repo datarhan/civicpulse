@@ -103,6 +103,22 @@ export interface Promise {
     source?: SourceRef
     respondedAt: string
   } | null
+  /**
+   * Optional: the canonical department slug (from src/scraper/departments.ts)
+   * responsible for delivering this promise. Optional because most
+   * electoral promises span multiple concejalías. Only set by hand in a
+   * curated PR — the inference engine never writes this field.
+   */
+  departmentSlug?: string
+  /**
+   * Optional: ISO date by which the promise is supposed to be
+   * delivered. When set, the /departamentos dashboard renders a
+   * "plazo vencido" flag after the date passes with no fulfilment
+   * evidence. Status is NEVER auto-flipped — the V1 gate still
+   * requires human-curated evidence to publish
+   * cumplida/parcial/no-ejecutada/inviable.
+   */
+  dueBy?: string
 }
 
 export interface PromisesSnapshot {
@@ -187,6 +203,17 @@ function validatePromise(p: unknown, idx: number): Promise {
   if (!Array.isArray(r.evidence)) throw new ValidationError(`items[${idx}].evidence must be array`)
   const evidence = (r.evidence as unknown[]).map((e, ei) => validateEvidence(e, ei))
   assertIsoDate(r.createdAt, `items[${idx}].createdAt`)
+  if (r.dueBy !== undefined && r.dueBy !== null) {
+    assertIsoDate(r.dueBy, `items[${idx}].dueBy`)
+  }
+  if (r.departmentSlug !== undefined && r.departmentSlug !== null) {
+    assertString(r.departmentSlug, `items[${idx}].departmentSlug`, 2, 40)
+    if (!/^[a-z][a-z0-9-]*$/.test(r.departmentSlug as string)) {
+      throw new ValidationError(
+        `items[${idx}].departmentSlug must be kebab-case (got ${JSON.stringify(r.departmentSlug)})`,
+      )
+    }
+  }
   return {
     id: r.id as string,
     party: r.party as Party,
@@ -207,6 +234,8 @@ function validatePromise(p: unknown, idx: number): Promise {
     createdAt: r.createdAt as string,
     updatedAt: typeof r.updatedAt === 'string' ? r.updatedAt : undefined,
     response: (r.response as Promise['response']) ?? null,
+    ...(typeof r.dueBy === 'string' ? { dueBy: r.dueBy } : {}),
+    ...(typeof r.departmentSlug === 'string' ? { departmentSlug: r.departmentSlug } : {}),
   }
 }
 
