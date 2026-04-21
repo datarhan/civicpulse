@@ -20,13 +20,24 @@
  *   "1.- Aprobación Actas anteriores de fecha 9 de marzo 2026…"
  */
 
+import { canonicalizeDepartment, type DepartmentSlug } from './departments'
+
 export type PlenoSection = 'resolutiva' | 'informativa' | 'ruegos' | 'apertura' | 'otro'
 
 export interface PlenoAgendaItem {
   number: number
   title: string
   section: PlenoSection
+  /** Raw department string as it appears in the acta (kept for traceability). */
   department: string | null
+  /**
+   * Canonical kebab-case department slug (via canonicalizeDepartment).
+   * Null when the raw department is missing or doesn't match any rule.
+   * Derived at parse time — never used as a fact-check claim on its own;
+   * the aggregator only counts agenda items as "commitments" when a
+   * matching pleno-vote exists.
+   */
+  departmentSlug: DepartmentSlug | null
   expediente: string | null
 }
 
@@ -174,6 +185,7 @@ function parseItems(text: string): { items: PlenoAgendaItem[]; raw: string } {
       title: title.replace(/\.$/, '').trim(),
       section: itemSection,
       department,
+      departmentSlug: canonicalizeDepartment(department),
       expediente,
     })
   }

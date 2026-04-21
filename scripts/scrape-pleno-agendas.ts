@@ -12,6 +12,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parsePlenoAgenda, type PlenoAgendaItem } from '../src/scraper/pleno-agenda'
+import { canonicalizeDepartment } from '../src/scraper/departments'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -95,7 +96,11 @@ async function main() {
   const topDepartments = Object.entries(deptCount)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 12)
-    .map(([department, count]) => ({ department, count }))
+    .map(([department, count]) => ({
+      department,
+      count,
+      departmentSlug: canonicalizeDepartment(department),
+    }))
 
   const payload = {
     generatedAt: new Date().toISOString(),

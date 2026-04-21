@@ -63,4 +63,23 @@ describe('scraper/pleno-agenda — parsePlenoAgenda', () => {
       expect(it.department).toMatch(/^[A-ZÁÉÍÓÚÑ\s]+$/i)
     }
   })
+
+  it('resolves a canonical departmentSlug for every recognised raw department', () => {
+    const withDept = result!.items.filter((i) => i.department)
+    for (const it of withDept) {
+      // Every recognised uppercase department in the acta should map to a
+      // canonical slug. If a new department appears on the fixture that
+      // canonicalizeDepartment doesn't know about, extend departments.ts —
+      // don't silently drop it.
+      expect(it.departmentSlug, `no canonical slug for ${it.department}`).not.toBeNull()
+      expect(it.departmentSlug).toMatch(/^[a-z-]+$/)
+    }
+  })
+
+  it('items without a raw department leave departmentSlug null (never fabricated)', () => {
+    const withoutDept = result!.items.filter((i) => !i.department)
+    for (const it of withoutDept) {
+      expect(it.departmentSlug).toBeNull()
+    }
+  })
 })
