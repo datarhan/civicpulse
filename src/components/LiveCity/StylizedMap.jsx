@@ -391,15 +391,25 @@ function StationSchedulePopup({ name, match, rawStation }) {
  * `Railways()` component above, so we drop our own track render for
  * L9+L2 refs (VT-005/VT-012) to avoid double-stroking near Riba-roja.
  */
+function normaliseStationName(n) {
+  return (n || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '') // strip diacritics: Masía → Masia
+    .toLowerCase()
+    .trim()
+}
+
 function FullNetwork() {
   const { loading, error, data } = useMetroNetwork()
   const { data: geo } = useGeo()
   if (loading || error || !data) return null
   const colors = indexLineColors(data)
   // Stations already rendered at full size by the local Railways() layer.
-  // Skip them here to avoid double-markers on top of each other.
-  const localStationNames = new Set(
-    (geo?.railways?.stations || []).map((s) => s.name),
+  // Skip them here to avoid double-markers. Match on a diacritic-stripped,
+  // case-folded key since OSM carries both "Masia de Traver" and
+  // "Masía de Traver" as separate nodes.
+  const localStationKeys = new Set(
+    (geo?.railways?.stations || []).map((s) => normaliseStationName(s.name)),
   )
   return (
     <>
@@ -423,7 +433,7 @@ function FullNetwork() {
         )
       })}
       {data.stations.map((s) => {
-        if (localStationNames.has(s.name)) return null
+        if (localStationKeys.has(normaliseStationName(s.name))) return null
         const refs = s.lineRefs
         const fill = colors[refs[0]] || '#64748B'
         return (
