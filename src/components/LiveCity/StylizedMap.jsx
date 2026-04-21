@@ -13,11 +13,18 @@ import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
 import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMetro'
 
-// Metrovalencia light-rail colour (shared across L9 and L2 in-municipality);
-// Adif heavy-rail uses a muted grey so it reads as secondary.
-const METRO_COLOR = '#F5B544'
+// Metrovalencia line brand colours. L9 stays yellow-orange; L2 picks up
+// the pink/magenta badge colour so the popup's line badge and the map
+// track match. Adif heavy-rail uses a muted grey to read as secondary.
+const METRO_COLOR = '#F5B544' // L9 default
+const METRO_L2_COLOR = '#E94F96' // matches OTHER_METRO_STATIONS[*].lineColor
 const HEAVY_RAIL_COLOR = '#6B7280'
 const BOUNDARY_COLOR = '#C85A3A'
+
+function colorForMetroRef(ref) {
+  if (ref === 'VT-012') return METRO_L2_COLOR
+  return METRO_COLOR
+}
 
 const DEFAULT_CENTER = [39.5439, -0.5711]
 
@@ -82,7 +89,7 @@ function Railways() {
     <>
       {ways.map((w) => {
         const isMetro = w.kind === 'subway' || w.kind === 'light_rail' || w.kind === 'tram'
-        const color = isMetro ? METRO_COLOR : HEAVY_RAIL_COLOR
+        const color = isMetro ? colorForMetroRef(w.ref) : HEAVY_RAIL_COLOR
         return (
           <div key={w.id} style={{ display: 'contents' }}>
             {/* halo for the metro only — keeps heavy rail discreet */}
@@ -110,8 +117,12 @@ function Railways() {
         let fill = HEAVY_RAIL_COLOR
         let radius = 5
         let weight = 1.5
-        if (match?.kind === 'l9' || match?.kind === 'other') {
+        if (match?.kind === 'l9') {
           fill = METRO_COLOR
+          radius = 7
+          weight = 2
+        } else if (match?.kind === 'other') {
+          fill = match.station.lineColor
           radius = 7
           weight = 2
         }
