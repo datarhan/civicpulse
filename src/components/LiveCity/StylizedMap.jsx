@@ -15,14 +15,17 @@ import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMet
 
 // Metrovalencia official line brand colours (sourced from
 // metrovalencia.es icon SVGs, April 2026). Adif heavy-rail uses a muted
-// grey to read as secondary.
+// grey to read as secondary. OSM ref tags on the track ways:
+//   VT-012 → Metrovalencia L9 (Riba-roja terminus line, 3 local stops)
+//   VT-005 → Metrovalencia L2 (Llíria line; El Clot is the local stop)
+// Verified by geographic-nearest mapping between stations and ways.
 const METRO_COLOR = '#A47E52' // L9 (icono--linea-9.svg)
 const METRO_L2_COLOR = '#B4397F' // L2 (icono--linea-2.svg)
 const HEAVY_RAIL_COLOR = '#6B7280'
 const BOUNDARY_COLOR = '#C85A3A'
 
 function colorForMetroRef(ref) {
-  if (ref === 'VT-012') return METRO_L2_COLOR
+  if (ref === 'VT-005') return METRO_L2_COLOR
   return METRO_COLOR
 }
 
