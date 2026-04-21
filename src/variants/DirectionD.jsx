@@ -12,6 +12,7 @@ import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
+import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
 import { useNextMetro } from '../hooks/useNextMetro'
 import { useMetroSchedule } from '../hooks/useMetroSchedule'
@@ -1084,73 +1085,170 @@ function LeadStory() {
 
 function AlcaldeBox() {
   const { loading, error, data } = useOfficials()
+  const { data: promisesData } = usePromises()
+  const { data: agendasData } = usePlenoAgendas()
   if (loading || error || !data) return null
   const mayor = data.officials.find((o) => o.role === 'alcalde')
   if (!mayor) return null
+
+  // Canonicalise mayor's portfolios to dept slugs (dedup). The mayor owns
+  // several concejalías; surface all of them as chips so the reader can
+  // drill into any of his accountability surfaces.
+  const slugs = []
+  const seenSlugs = new Set()
+  for (const p of mayor.portfolios ?? []) {
+    const slug = canonicalizeDepartment(p)
+    if (slug && !seenSlugs.has(slug)) {
+      slugs.push(slug)
+      seenSlugs.add(slug)
+    }
+  }
+
+  const partyPromises = (promisesData?.items ?? []).filter((p) => p.party === mayor.party).length
+
+  // Count agenda items that fall inside the mayor's portfolio slugs — these
+  // are the pleno points his concejalías proposed. Doesn't attribute votes
+  // to him personally (that's a libel line), just "items from his areas".
+  let agendaHits = 0
+  if (agendasData?.plenos && seenSlugs.size > 0) {
+    for (const p of agendasData.plenos) {
+      for (const it of p.agenda || []) {
+        const s = it.departmentSlug || canonicalizeDepartment(it.department)
+        if (s && seenSlugs.has(s)) agendaHits += 1
+      }
+    }
+  }
+
   return (
     <div
       style={{
-        display: 'flex',
-        gap: 12,
-        alignItems: 'center',
         padding: '12px 0',
         borderTop: '1px solid ' + PALETTE.hair,
         borderBottom: '1px solid ' + PALETTE.hair,
         margin: '14px 0',
       }}
     >
-      {mayor.photoUrl ? (
-        <img
-          src={mayor.photoUrl}
-          alt={mayor.name}
-          width={52}
-          height={52}
-          style={{
-            width: 52,
-            height: 52,
-            borderRadius: 8,
-            objectFit: 'cover',
-            border: `2px solid ${partyColor(mayor.party)}44`,
-            flexShrink: 0,
-          }}
-        />
-      ) : null}
-      <div style={{ flex: 1, minWidth: 0 }}>
-        <div
-          className="mono"
-          style={{
-            fontSize: 9.5,
-            color: PALETTE.ink60,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-          }}
-        >
-          Alcalde
-        </div>
-        <div style={{ fontSize: 15, fontWeight: 700, marginTop: 2, letterSpacing: '-.01em' }}>
-          {mayor.name}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
-          <span
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        {mayor.photoUrl ? (
+          <img
+            src={mayor.photoUrl}
+            alt={mayor.name}
+            width={52}
+            height={52}
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: 8,
+              objectFit: 'cover',
+              border: `2px solid ${partyColor(mayor.party)}44`,
+              flexShrink: 0,
+            }}
+          />
+        ) : null}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div
             className="mono"
             style={{
-              fontSize: 9,
-              fontWeight: 700,
+              fontSize: 9.5,
+              color: PALETTE.ink60,
               letterSpacing: '.12em',
               textTransform: 'uppercase',
-              background: partyColor(mayor.party),
-              color: 'white',
-              padding: '2px 6px',
-              borderRadius: 3,
             }}
           >
-            {mayor.party}
-          </span>
-          <span className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
-            {mayor.email}
-          </span>
+            Alcalde
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 700, marginTop: 2, letterSpacing: '-.01em' }}>
+            {mayor.name}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 9,
+                fontWeight: 700,
+                letterSpacing: '.12em',
+                textTransform: 'uppercase',
+                background: partyColor(mayor.party),
+                color: 'white',
+                padding: '2px 6px',
+                borderRadius: 3,
+              }}
+            >
+              {mayor.party}
+            </span>
+            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+              {mayor.email}
+            </span>
+          </div>
         </div>
       </div>
+
+      {(partyPromises > 0 || agendaHits > 0) && (
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            marginTop: 10,
+            fontSize: 11,
+            color: PALETTE.ink80,
+            fontFamily: MONO,
+          }}
+        >
+          {partyPromises > 0 && (
+            <a
+              href="/promesas"
+              style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+              title={`Promesas documentadas del grupo ${mayor.party}`}
+            >
+              <span style={{ fontWeight: 700 }}>{partyPromises}</span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>
+                promesas · {mayor.party}
+              </span>
+            </a>
+          )}
+          {agendaHits > 0 && slugs[0] && (
+            <a
+              href={`/departamentos/${slugs[0]}`}
+              style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+              title="Puntos de orden del día gestionados por concejalías del Alcalde"
+            >
+              <span style={{ fontWeight: 700 }}>{agendaHits}</span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>puntos en pleno</span>
+            </a>
+          )}
+        </div>
+      )}
+
+      {slugs.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 5,
+            marginTop: 8,
+          }}
+        >
+          {slugs.map((slug) => (
+            <a
+              key={slug}
+              href={`/departamentos/${slug}`}
+              className="mono"
+              style={{
+                fontSize: 9.5,
+                padding: '2px 7px',
+                background: '#EEF4FF',
+                color: PALETTE.civic,
+                borderRadius: 3,
+                letterSpacing: '.04em',
+                textDecoration: 'none',
+                fontWeight: 600,
+              }}
+            >
+              {DEPARTMENT_LABEL[slug].es} →
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
