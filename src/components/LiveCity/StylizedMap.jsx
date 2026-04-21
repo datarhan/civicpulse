@@ -1,27 +1,15 @@
+// @ts-check
 import { useEffect } from 'react'
-import {
-  CircleMarker,
-  MapContainer,
-  Marker,
-  Polyline,
-  TileLayer,
-  useMap,
-} from 'react-leaflet'
+import { CircleMarker, MapContainer, Marker, Polyline, TileLayer, useMap } from 'react-leaflet'
 import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
 
+// Metrovalencia L9 light-rail colour (close to their brand palette); Adif
+// heavy-rail uses a muted grey so it reads as secondary. Stations share the
+// metro colour with a dark stroke for contrast against cream tiles.
 const METRO_COLOR = '#F5B544'
+const HEAVY_RAIL_COLOR = '#6B7280'
 const BOUNDARY_COLOR = '#C85A3A'
-
-// Real geometry — Riba-roja L9 Metro Valencia track (OSM-approximated)
-const METRO_L9_TRACK = [
-  [39.5355, -0.5595],
-  [39.5368, -0.5628],
-  [39.5383, -0.5655],
-  [39.5395, -0.5680],
-  [39.5402, -0.5695],
-]
-const METRO_STATION = [39.5402, -0.5695]
 
 const DEFAULT_CENTER = [39.5439, -0.5711]
 
@@ -70,6 +58,62 @@ function OsmNeighborhoods() {
   )
 }
 
+/**
+ * Render railway tracks + stations from the real OSM geometry stored in
+ * public/data/geo.json. Each way is a separate polyline so branch points
+ * render correctly (we don't try to stitch disjoint segments into one ring).
+ * Subway/light_rail gets the Metrovalencia yellow; heavy rail gets a muted
+ * grey to distinguish Adif's Aranjuez–Valencia line from the passenger metro.
+ */
+function Railways() {
+  const { loading, error, data } = useGeo()
+  if (loading || error || !data?.railways) return null
+  const ways = data.railways.ways || []
+  const stations = data.railways.stations || []
+  return (
+    <>
+      {ways.map((w) => {
+        const isMetro = w.kind === 'subway' || w.kind === 'light_rail' || w.kind === 'tram'
+        const color = isMetro ? METRO_COLOR : HEAVY_RAIL_COLOR
+        return (
+          <div key={w.id} style={{ display: 'contents' }}>
+            {/* halo for the metro only — keeps heavy rail discreet */}
+            {isMetro && (
+              <Polyline
+                positions={w.line}
+                pathOptions={{ color, weight: 9, opacity: 0.18, lineCap: 'round' }}
+              />
+            )}
+            <Polyline
+              positions={w.line}
+              pathOptions={{
+                color,
+                weight: isMetro ? 2.5 : 1.5,
+                opacity: isMetro ? 0.9 : 0.55,
+                lineCap: 'round',
+                dashArray: isMetro ? undefined : '4 3',
+              }}
+            />
+          </div>
+        )
+      })}
+      {stations.map((s) => (
+        <CircleMarker
+          key={s.id}
+          center={s.centroid}
+          radius={7}
+          pathOptions={{
+            color: '#0B0F19',
+            weight: 2,
+            fillColor: METRO_COLOR,
+            fillOpacity: 1,
+          }}
+        />
+      ))}
+    </>
+  )
+}
+
 function MapAttribution() {
   return (
     <div
@@ -86,7 +130,7 @@ function MapAttribution() {
         pointerEvents: 'none',
       }}
     >
-      OSM · CARTO Voyager · L9 MetroValencia
+      OSM · CARTO Voyager · L9 MetroValencia + Adif
     </div>
   )
 }
@@ -116,20 +160,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
 
         <MunicipalBoundary />
         <OsmNeighborhoods />
-
-        <Polyline
-          positions={METRO_L9_TRACK}
-          pathOptions={{ color: METRO_COLOR, weight: 9, opacity: 0.2, lineCap: 'round' }}
-        />
-        <Polyline
-          positions={METRO_L9_TRACK}
-          pathOptions={{ color: METRO_COLOR, weight: 2.5, opacity: 0.9, lineCap: 'round' }}
-        />
-        <CircleMarker
-          center={METRO_STATION}
-          radius={8}
-          pathOptions={{ color: '#0B0F19', weight: 2, fillColor: METRO_COLOR, fillOpacity: 1 }}
-        />
+        <Railways />
       </MapContainer>
 
       <MapAttribution />

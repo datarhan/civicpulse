@@ -167,6 +167,74 @@ const NEIGH_KINDS = new Set<NeighKind>([
   'village',
 ])
 
+// ─── Railways ───────────────────────────────────────────────────────────────
+
+export type RailwayKind = 'subway' | 'light_rail' | 'tram' | 'rail'
+
+export interface RailwayWay {
+  id: string
+  kind: RailwayKind
+  ref?: string
+  name?: string
+  operator?: string
+  network?: string
+  line: [number, number][]  // ordered [lat, lng] path
+}
+
+export interface RailwayStation {
+  id: string
+  name: string
+  kind: 'station' | 'halt'
+  network?: string
+  operator?: string
+  centroid: [number, number]
+}
+
+export interface RailwayData {
+  ways: RailwayWay[]
+  stations: RailwayStation[]
+}
+
+const RAILWAY_KINDS = new Set<RailwayKind>(['subway', 'light_rail', 'tram', 'rail'])
+const ABANDONED_RAIL_TAGS = new Set(['abandoned', 'disused', 'construction', 'razed'])
+
+export function parseOsmRailways(json: string): RailwayData {
+  const data = JSON.parse(json) as OverpassResponse
+  const ways: RailwayWay[] = []
+  const stations: RailwayStation[] = []
+  for (const el of data.elements) {
+    const tags = el.tags || {}
+    if (el.type === 'way') {
+      const kind = tags['railway'] as RailwayKind | undefined
+      if (!kind || !RAILWAY_KINDS.has(kind)) continue
+      if (ABANDONED_RAIL_TAGS.has(tags['railway:abandoned'] ?? '')) continue
+      if (!el.geometry || el.geometry.length < 2) continue
+      ways.push({
+        id: `way-${el.id}`,
+        kind,
+        ref: tags['ref'],
+        name: tags['name'],
+        operator: tags['operator'],
+        network: tags['network'],
+        line: el.geometry.map((p) => [p.lat, p.lon] as [number, number]),
+      })
+    } else if (el.type === 'node') {
+      const rail = tags['railway']
+      if (rail !== 'station' && rail !== 'halt') continue
+      if (!tags['name']) continue
+      stations.push({
+        id: `node-${el.id}`,
+        name: tags['name'],
+        kind: rail,
+        network: tags['network'],
+        operator: tags['operator'],
+        centroid: [el.lat, el.lon],
+      })
+    }
+  }
+  return { ways, stations }
+}
+
 export function parseOsmNeighborhoods(json: string): Neighborhood[] {
   const data = JSON.parse(json) as OverpassResponse
   const out: Neighborhood[] = []

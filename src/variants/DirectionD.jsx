@@ -43,7 +43,12 @@ function fmtClock(d) {
 }
 
 function fmtDateLong(d) {
-  return d.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })
+  return d.toLocaleDateString('es-ES', {
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
 }
 
 function useClock(intervalMs = 30000) {
@@ -197,14 +202,14 @@ function Header({ now }) {
    LEFT RAIL
    ============================================================ */
 const RAIL_ITEMS = [
-  { to: '/',            label: 'Mirador',    icon: Ic.home },
-  { to: '/promesas',    label: 'Promesas',   icon: Ic.scale },
-  { to: '/cargos',      label: 'Cargos',     icon: Ic.people },
-  { to: '/presupuesto', label: 'Presupuesto',icon: Ic.coin },
-  { to: '/plenos',      label: 'Plenos',     icon: Ic.scale },
-  { to: '/datos',       label: 'Datos',      icon: Ic.chart },
-  { to: '/quejas',      label: 'Quejas',     icon: Ic.warn },
-  { to: '/metodologia', label: 'Metodología',icon: Ic.cmd },
+  { to: '/', label: 'Mirador', icon: Ic.home },
+  { to: '/promesas', label: 'Promesas', icon: Ic.scale },
+  { to: '/cargos', label: 'Cargos', icon: Ic.people },
+  { to: '/presupuesto', label: 'Presupuesto', icon: Ic.coin },
+  { to: '/plenos', label: 'Plenos', icon: Ic.scale },
+  { to: '/datos', label: 'Datos', icon: Ic.chart },
+  { to: '/quejas', label: 'Quejas', icon: Ic.warn },
+  { to: '/metodologia', label: 'Metodología', icon: Ic.cmd },
 ]
 
 function LeftRail() {
@@ -311,21 +316,50 @@ function StatusBadge() {
       }}
     >
       <div>
-        <div style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(255,255,255,.55)', letterSpacing: '.12em' }}>
+        <div
+          style={{
+            fontFamily: MONO,
+            fontSize: 9,
+            color: 'rgba(255,255,255,.55)',
+            letterSpacing: '.12em',
+          }}
+        >
           PADRÓN {popYear || ''}
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-          <span style={{ fontFamily: MONO, fontSize: 20, fontWeight: 800, color: '#E2E8F0', lineHeight: 1 }}>
+          <span
+            style={{
+              fontFamily: MONO,
+              fontSize: 20,
+              fontWeight: 800,
+              color: '#E2E8F0',
+              lineHeight: 1,
+            }}
+          >
             {pop ? pop.toLocaleString('es-ES') : '—'}
           </span>
-          <span style={{ fontFamily: MONO, fontSize: 10, color: 'rgba(255,255,255,.55)', fontWeight: 500 }}>
+          <span
+            style={{
+              fontFamily: MONO,
+              fontSize: 10,
+              color: 'rgba(255,255,255,.55)',
+              fontWeight: 500,
+            }}
+          >
             habitantes
           </span>
         </div>
       </div>
       <span style={{ width: 1, height: 32, background: 'rgba(255,255,255,.12)' }} />
       <div>
-        <div style={{ fontFamily: MONO, fontSize: 9, color: 'rgba(255,255,255,.55)', letterSpacing: '.12em' }}>
+        <div
+          style={{
+            fontFamily: MONO,
+            fontSize: 9,
+            color: 'rgba(255,255,255,.55)',
+            letterSpacing: '.12em',
+          }}
+        >
           ÚLTIMO PLENO
         </div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
@@ -490,8 +524,19 @@ function QuejaCTA() {
         Denuncia un bache en 10 segundos.
       </div>
       <div style={{ fontSize: 12.5, color: PALETTE.ink60, marginBottom: 12, lineHeight: 1.45 }}>
-        Abre el bot de Telegram, envía <span style={{ fontFamily: MONO, background: '#fff', padding: '1px 5px', borderRadius: 3, border: '1px solid #DDE3EA' }}>/queja</span>,
-        adjunta foto y ubicación. Si 10 vecinos la apoyan, entra al Registro Electrónico del
+        Abre el bot de Telegram, envía{' '}
+        <span
+          style={{
+            fontFamily: MONO,
+            background: '#fff',
+            padding: '1px 5px',
+            borderRadius: 3,
+            border: '1px solid #DDE3EA',
+          }}
+        >
+          /queja
+        </span>
+        , adjunta foto y ubicación. Si 10 vecinos la apoyan, entra al Registro Electrónico del
         Ayuntamiento como solicitud oficial. Reloj legal público, sin coste, sin datos personales
         publicados.
       </div>
@@ -756,7 +801,14 @@ function LiveContracts() {
 
   return (
     <div style={{ marginBottom: 18, borderTop: '1px solid ' + PALETTE.hair, paddingTop: 14 }}>
-      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 8 }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'baseline',
+          justifyContent: 'space-between',
+          marginBottom: 8,
+        }}
+      >
         <div
           className="mono"
           style={{
@@ -814,7 +866,10 @@ function LiveContracts() {
           </div>
           <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: PALETTE.ink60 }}>
             <span>{c.contractor || 'Sin adjudicatario'}</span>
-            <span style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }} className="mono">
+            <span
+              style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }}
+              className="mono"
+            >
               {fmtEur(c.finalAmount)}
             </span>
           </div>
@@ -829,8 +884,7 @@ function ParticipaBlockD() {
   if (loading || error || !data) return null
   const items = (data.items || []).slice(0, 3)
   if (items.length === 0) return null
-  const fmt = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
+  const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
     <div
       style={{
@@ -1039,11 +1093,15 @@ function PromesasBlockD() {
               fontWeight: 700,
               color: 'white',
               background:
-                party === 'PSOE' ? '#D01832'
-                  : party === 'PP' ? '#2463EB'
-                  : party === 'VOX' ? '#3A8018'
-                  : party === 'Compromís' ? '#A06116'
-                  : '#64748B',
+                party === 'PSOE'
+                  ? '#D01832'
+                  : party === 'PP'
+                    ? '#2463EB'
+                    : party === 'VOX'
+                      ? '#3A8018'
+                      : party === 'Compromís'
+                        ? '#A06116'
+                        : '#64748B',
               padding: '2px 7px',
               borderRadius: 3,
             }}
@@ -1053,7 +1111,8 @@ function PromesasBlockD() {
         ))}
       </div>
       <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
-        Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios automáticos de cumplimiento.
+        Compromisos públicos documentados con cita verbatim y fuente primaria. Sin juicios
+        automáticos de cumplimiento.
       </div>
       <a
         href="/promesas"
@@ -1104,17 +1163,35 @@ function MiniSpark({ data, color }) {
     (i / (data.length - 1)) * W,
     H - ((v - min) / (max - min || 1)) * (H - 2) - 1,
   ])
-  const path = pts.map((p, i) => (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1)).join(' ')
+  const path = pts
+    .map((p, i) => (i === 0 ? 'M' : 'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1))
+    .join(' ')
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ width: 60, height: 20, display: 'block' }}>
-      <path d={path} stroke={color} strokeWidth="1.25" fill="none" vectorEffect="non-scaling-stroke" />
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      preserveAspectRatio="none"
+      style={{ width: 60, height: 20, display: 'block' }}
+    >
+      <path
+        d={path}
+        stroke={color}
+        strokeWidth="1.25"
+        fill="none"
+        vectorEffect="non-scaling-stroke"
+      />
     </svg>
   )
 }
 
 function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
   const color =
-    tone === 'ok' ? PALETTE.ok : tone === 'warn' ? PALETTE.warn : tone === 'crit' ? PALETTE.crit : PALETTE.ink
+    tone === 'ok'
+      ? PALETTE.ok
+      : tone === 'warn'
+        ? PALETTE.warn
+        : tone === 'crit'
+          ? PALETTE.crit
+          : PALETTE.ink
   return (
     <div
       style={{
@@ -1159,8 +1236,8 @@ function Kpi({ label, value, delta, tone, sub, spark, sparkColor, serif }) {
               color: delta.startsWith('▲')
                 ? PALETTE.ok
                 : delta.startsWith('▼')
-                ? PALETTE.crit
-                : PALETTE.ink50,
+                  ? PALETTE.crit
+                  : PALETTE.ink50,
             }}
           >
             {delta}
@@ -1240,12 +1317,16 @@ function KpiStrip() {
         label="Gastos personal"
         value={
           budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
-            ? formatBudgetEuros(budget.snapshot.expenseByEconomicChapter[0].amount, { compact: true })
+            ? formatBudgetEuros(budget.snapshot.expenseByEconomicChapter[0].amount, {
+                compact: true,
+              })
             : '—'
         }
         delta={
           totalExpense && budget?.snapshot?.expenseByEconomicChapter?.[0]?.amount
-            ? ((budget.snapshot.expenseByEconomicChapter[0].amount / totalExpense) * 100).toFixed(0) + '%'
+            ? ((budget.snapshot.expenseByEconomicChapter[0].amount / totalExpense) * 100).toFixed(
+                0,
+              ) + '%'
             : '—'
         }
         tone="civic"
