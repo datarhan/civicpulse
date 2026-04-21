@@ -207,12 +207,29 @@ function Header({ now }) {
 /* ============================================================
    LIVE STRIP — compact weather / air / L9 metro for the topbar
    Replaces the old absolute-positioned map overlay so the map
-   surface stays clean. Rich context lives in the `title` tooltip.
+   surface stays clean. Clicking any segment opens a details panel
+   docked under the topbar with the full hourly + legal-cite context.
    ============================================================ */
 function LiveStrip() {
   const { data: weather } = useLiveWeather()
   const metro = useNextMetro()
   const { data: air } = useAirQuality()
+  const [expanded, setExpanded] = useState(null) // 'weather' | 'air' | 'metro' | null
+
+  useEffect(() => {
+    if (!expanded) return
+    const onKey = (e) => e.key === 'Escape' && setExpanded(null)
+    const onClick = (e) => {
+      if (!e.target.closest('[data-livestrip]')) setExpanded(null)
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('mousedown', onClick)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('mousedown', onClick)
+    }
+  }, [expanded])
+
   if (!weather && !metro && !air) return null
   const [emoji, wmoLabel] = weather ? describeWmo(weather.weatherCode) : ['', '']
   const aqi = air ? describeAqi(air.eaqi) : null
@@ -221,10 +238,25 @@ function LiveStrip() {
     <span style={{ width: 1, height: 18, background: PALETTE.hair, flexShrink: 0 }} aria-hidden />
   )
 
+  const chipStyle = (active) => ({
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: 6,
+    cursor: 'pointer',
+    background: active ? '#EEF4FF' : 'transparent',
+    border: 'none',
+    padding: '2px 6px',
+    borderRadius: 5,
+    font: 'inherit',
+    color: 'inherit',
+  })
+
   return (
     <div
+      data-livestrip
       className="cp-livestrip"
       style={{
+        position: 'relative',
         display: 'flex',
         alignItems: 'center',
         gap: 10,
@@ -237,24 +269,17 @@ function LiveStrip() {
       }}
     >
       {weather && (
-        <span
-          title={
-            `${wmoLabel}` +
-            (weather.feelsLikeC != null ? ` · sensación ${weather.feelsLikeC}°` : '') +
-            (weather.sunriseIso ? ` · ↑ ${formatLocalHm(weather.sunriseIso)}` : '') +
-            (weather.sunsetIso ? ` · ↓ ${formatLocalHm(weather.sunsetIso)}` : '') +
-            (weather.humidity != null ? ` · humedad ${weather.humidity}%` : '') +
-            (weather.windKmh != null ? ` · viento ${weather.windKmh} km/h` : '')
-          }
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'help' }}
+        <button
+          type="button"
+          aria-expanded={expanded === 'weather'}
+          aria-label="Clima — detalles"
+          onClick={() => setExpanded(expanded === 'weather' ? null : 'weather')}
+          style={chipStyle(expanded === 'weather')}
         >
           <span style={{ fontSize: 15, lineHeight: 1 }} aria-hidden="true">
             {emoji}
           </span>
-          <span
-            className="mono"
-            style={{ fontSize: 12, fontWeight: 700, color: PALETTE.ink }}
-          >
+          <span className="mono" style={{ fontSize: 12, fontWeight: 700, color: PALETTE.ink }}>
             {weather.tempC != null ? `${weather.tempC}°` : '—'}
           </span>
           {weather.todayMin != null && weather.todayMax != null && (
@@ -262,18 +287,18 @@ function LiveStrip() {
               {Math.round(weather.todayMin)}°/{Math.round(weather.todayMax)}°
             </span>
           )}
-        </span>
+        </button>
       )}
 
       {air && aqi && (
         <>
           {weather && divider}
-          <span
-            title={
-              `PM2.5 ${air.pm25 ?? '—'} µg/m³ · PM10 ${air.pm10 ?? '—'} µg/m³ · ` +
-              `NO₂ ${air.no2 ?? '—'} µg/m³ · O₃ ${air.ozone ?? '—'} µg/m³`
-            }
-            style={{ display: 'inline-flex', alignItems: 'center', gap: 6, cursor: 'help' }}
+          <button
+            type="button"
+            aria-expanded={expanded === 'air'}
+            aria-label="Calidad del aire — detalles"
+            onClick={() => setExpanded(expanded === 'air' ? null : 'air')}
+            style={chipStyle(expanded === 'air')}
           >
             <span
               style={{
@@ -285,35 +310,23 @@ function LiveStrip() {
               }}
               aria-hidden="true"
             />
-            <span
-              className="mono"
-              style={{ fontSize: 11, fontWeight: 700, color: PALETTE.ink }}
-            >
+            <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: PALETTE.ink }}>
               AQI {air.eaqi ?? '–'}
             </span>
             <span style={{ fontSize: 11.5, color: PALETTE.ink50 }}>{aqi.label}</span>
-            {Array.isArray(air.pm25Last24h) && air.pm25Last24h.length > 4 && (
-              <Pm25Sparkline values={air.pm25Last24h} color={aqi.color} />
-            )}
-          </span>
+          </button>
         </>
       )}
 
       {metro && (
         <>
           {(weather || air) && divider}
-          <a
-            href="https://www.metrovalencia.es"
-            target="_blank"
-            rel="noreferrer"
-            title={`L9 — horario transcrito de fgv.es · válido hasta ${metro.scheduleValidUntil}`}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 6,
-              textDecoration: 'none',
-              color: PALETTE.ink,
-            }}
+          <button
+            type="button"
+            aria-expanded={expanded === 'metro'}
+            aria-label="Metro L9 — detalles"
+            onClick={() => setExpanded(expanded === 'metro' ? null : 'metro')}
+            style={chipStyle(expanded === 'metro')}
           >
             <span
               style={{
@@ -340,9 +353,201 @@ function LiveStrip() {
               {metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`}
               {metro.afterMidnight ? ' (mañana)' : ''}
             </span>
-          </a>
+          </button>
         </>
       )}
+
+      {expanded && (
+        <LiveDetails
+          section={expanded}
+          weather={weather}
+          wmoLabel={wmoLabel}
+          emoji={emoji}
+          air={air}
+          aqi={aqi}
+          metro={metro}
+          onClose={() => setExpanded(null)}
+        />
+      )}
+    </div>
+  )
+}
+
+function DetailRow({ k, v }) {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        gap: 12,
+        padding: '3px 0',
+        fontSize: 12.5,
+        borderBottom: '1px dashed ' + PALETTE.hair,
+      }}
+    >
+      <span style={{ color: PALETTE.ink50 }}>{k}</span>
+      <span className="mono" style={{ color: PALETTE.ink, fontWeight: 600 }}>
+        {v}
+      </span>
+    </div>
+  )
+}
+
+function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClose }) {
+  let title = ''
+  let body = null
+  let source = ''
+  if (section === 'weather' && weather) {
+    title = `${emoji} ${wmoLabel}`
+    source = 'Open-Meteo · actualizado cada 10 min'
+    body = (
+      <>
+        {weather.tempC != null && (
+          <DetailRow
+            k="Temperatura"
+            v={`${weather.tempC}° ${weather.todayMin != null && weather.todayMax != null ? `(${Math.round(weather.todayMin)}°/${Math.round(weather.todayMax)}°)` : ''}`}
+          />
+        )}
+        {weather.feelsLikeC != null && (
+          <DetailRow k="Sensación térmica" v={`${weather.feelsLikeC}°`} />
+        )}
+        {weather.humidity != null && <DetailRow k="Humedad" v={`${weather.humidity}%`} />}
+        {weather.windKmh != null && <DetailRow k="Viento" v={`${weather.windKmh} km/h`} />}
+        {weather.precipProbMax != null && (
+          <DetailRow k="Prob. lluvia (hoy)" v={`${weather.precipProbMax}%`} />
+        )}
+        {weather.sunriseIso && (
+          <DetailRow k="Amanece" v={`↑ ${formatLocalHm(weather.sunriseIso)}`} />
+        )}
+        {weather.sunsetIso && (
+          <DetailRow k="Anochece" v={`↓ ${formatLocalHm(weather.sunsetIso)}`} />
+        )}
+        {weather.tomorrowMin != null && weather.tomorrowMax != null && (
+          <DetailRow
+            k="Mañana"
+            v={`${Math.round(weather.tomorrowMin)}° / ${Math.round(weather.tomorrowMax)}°`}
+          />
+        )}
+      </>
+    )
+  } else if (section === 'air' && air && aqi) {
+    title = `Calidad del aire · ${aqi.label}`
+    source = 'Open-Meteo Air Quality · EAQI (EEA) · actualizado cada 15 min'
+    body = (
+      <>
+        <DetailRow k="EAQI" v={`${air.eaqi ?? '—'} · ${aqi.label}`} />
+        {air.pm25 != null && <DetailRow k="PM₂.₅" v={`${air.pm25.toFixed(1)} µg/m³`} />}
+        {air.pm10 != null && <DetailRow k="PM₁₀" v={`${air.pm10.toFixed(1)} µg/m³`} />}
+        {air.no2 != null && <DetailRow k="NO₂" v={`${air.no2.toFixed(1)} µg/m³`} />}
+        {air.ozone != null && <DetailRow k="O₃" v={`${air.ozone.toFixed(1)} µg/m³`} />}
+        {Array.isArray(air.pm25Last24h) && air.pm25Last24h.length > 4 && (
+          <div style={{ padding: '8px 0 2px' }}>
+            <div
+              style={{
+                fontSize: 10.5,
+                color: PALETTE.ink50,
+                marginBottom: 4,
+                letterSpacing: '.06em',
+                textTransform: 'uppercase',
+                fontFamily: MONO,
+              }}
+            >
+              PM₂.₅ · últimas 24 h
+            </div>
+            <Pm25Sparkline values={air.pm25Last24h} color={aqi.color} width={260} height={36} />
+          </div>
+        )}
+      </>
+    )
+  } else if (section === 'metro' && metro) {
+    title = `Metro L9 · ${metro.stationName}`
+    source = `Horario transcrito de fgv.es · válido hasta ${metro.scheduleValidUntil}`
+    body = (
+      <>
+        <DetailRow
+          k="Próximo tren"
+          v={`${metro.departureLabel}${metro.afterMidnight ? ' (mañana)' : ''}`}
+        />
+        <DetailRow
+          k="Faltan"
+          v={metro.minutesAway === 0 ? 'ahora' : `${metro.minutesAway} min`}
+        />
+        <DetailRow k="Sentido" v="València Sant Isidre" />
+        <DetailRow k="Fuente" v="FGV · fgv.es" />
+        <div style={{ marginTop: 10 }}>
+          <a
+            href="https://www.metrovalencia.es"
+            target="_blank"
+            rel="noreferrer"
+            style={{ fontSize: 12, color: PALETTE.civic }}
+          >
+            Ver horario oficial →
+          </a>
+        </div>
+      </>
+    )
+  }
+  return (
+    <div
+      role="dialog"
+      aria-label={title}
+      style={{
+        position: 'absolute',
+        top: 'calc(100% + 8px)',
+        right: 0,
+        zIndex: 500,
+        minWidth: 300,
+        maxWidth: 340,
+        background: PALETTE.paper,
+        border: '1px solid ' + PALETTE.hair,
+        borderRadius: 10,
+        boxShadow: '0 12px 32px rgba(11,15,25,.12)',
+        padding: '14px 16px 12px',
+        fontFamily: SANS,
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          marginBottom: 8,
+        }}
+      >
+        <div style={{ fontSize: 13, fontWeight: 700, color: PALETTE.ink }}>{title}</div>
+        <button
+          type="button"
+          aria-label="Cerrar"
+          onClick={onClose}
+          style={{
+            width: 22,
+            height: 22,
+            borderRadius: 5,
+            display: 'grid',
+            placeItems: 'center',
+            color: PALETTE.ink50,
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+          }}
+        >
+          ×
+        </button>
+      </div>
+      {body}
+      <div
+        style={{
+          fontSize: 10.5,
+          color: PALETTE.ink50,
+          fontFamily: MONO,
+          letterSpacing: '.04em',
+          marginTop: 10,
+          paddingTop: 8,
+          borderTop: '1px solid ' + PALETTE.hair,
+        }}
+      >
+        {source}
+      </div>
     </div>
   )
 }
@@ -579,11 +784,11 @@ function formatLocalHm(iso) {
   })
 }
 
-function Pm25Sparkline({ values, color }) {
+function Pm25Sparkline({ values, color, width = 96, height = 18 }) {
   const nums = values.filter((v) => typeof v === 'number' && Number.isFinite(v))
   if (nums.length < 2) return null
-  const w = 96
-  const h = 18
+  const w = width
+  const h = height
   const min = Math.min(...nums)
   const max = Math.max(...nums)
   const span = max - min || 1
@@ -607,7 +812,6 @@ function Pm25Sparkline({ values, color }) {
     </svg>
   )
 }
-
 
 /**
  * Docked ticker bottom-center of the map — "Hoy en Riba-roja". Surfaces
