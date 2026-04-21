@@ -4,6 +4,8 @@
  *   - `parseOsmNeighborhoods(json)` → list of neighborhoods/suburbs/hamlets
  */
 
+import { slugify } from './normalize'
+
 export interface BBox {
   south: number
   west: number
@@ -56,15 +58,6 @@ interface OverpassRelation {
 }
 interface OverpassResponse {
   elements: Array<OverpassNode | OverpassWay | OverpassRelation>
-}
-
-function slugify(s: string): string {
-  return s
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
 }
 
 function bboxOf(points: [number, number][]): BBox {

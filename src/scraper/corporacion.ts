@@ -1,4 +1,5 @@
 import { load, type CheerioAPI, type AnyNode } from 'cheerio'
+import { slugify } from './normalize'
 
 export type Party = 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
 export type Role = 'alcalde' | 'concejal'
@@ -49,12 +50,7 @@ function absolutise(url: string | undefined, base: string): string {
 }
 
 function makeSlug(name: string): string {
-  return name
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+  return slugify(name)
 }
 
 function extractPortfolios(text: string): string[] {
