@@ -8,7 +8,9 @@
     "plenosFetched": 30,
     "agendaItemsTotal": 247,
     "plenosWithRuegos": 19,
-    "uniqueDepartments": 27
+    "uniqueDepartments": 27,
+    "plazosVencidosCount": 0,
+    "deptCoverage": 26
   },
   "topDepartments": [
     {
