@@ -52,7 +52,15 @@ npm run queja-reply -- <Q-ID> "<role>" "<firmante>" "<verbatim text>" [source-ur
 # Pleno vote transcription (schema-validated, PR-safe edits to pleno-votes.json)
 npm run pleno-vote -- <pleno-id> <item#> <outcome> "<title>" <source-url> \
                      "PSOE:a_favor:11,PP:en_contra:7,VOX:abstencion:2,Compromís:a_favor:1"
-npm run pleno-vote -- --file /path/to/vote.json         # JSON variant (for GH Issue ingestion)
+npm run pleno-vote -- --file /path/to/vote.json         # JSON variant; file may include
+                                                         # optional dueBy + dueBySource (≥20
+                                                         # chars verbatim from the acta)
+# One-shot promote: pick an LLM-extracted suggestion, fill title from agendas,
+# inherit dueBy + dueBySource, validate, and call pleno-vote.
+npm run promote-vote -- <pleno-id> <item#> [source-url] [--edit]
+
+# Cross-source department accountability scalar (runs inside scrape:all)
+npm run compute:dept-stats          # writes plazosVencidosCount into plenos-agendas.json.stats
 
 # Telegram bot (sibling package under /bot — Sprints A→E)
 cd bot && npm install && npm test   # 36 tests (db + batch + escalation)
@@ -312,10 +320,11 @@ Every new adapter lands in three commits:
    generated `public/data/*.json` alongside the code change.
 
 Fixtures are committed to the repo (they're the RED contract). Current
-coverage: **161 front-end + 36 bot = 197 vitest checks green** across
-17 front test files (14 adapter parsers + promise schema/inference +
-queja-router + sindic schema) and 3 bot test files (db + batch +
-escalation).
+coverage: **448 front-end + 36 bot = 484 vitest checks green** across
+34 front test files (adapter parsers + promise schema/inference +
+queja-router + sindic schema + department taxonomy + stats aggregator
++ pleno-vote inference with dueBy extraction) and 3 bot test files
+(db + batch + escalation).
 
 ### No more mocks
 
