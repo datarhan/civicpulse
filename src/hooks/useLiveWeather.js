@@ -22,7 +22,7 @@ const URL =
   `https://api.open-meteo.com/v1/forecast` +
   `?latitude=${LAT}&longitude=${LNG}` +
   `&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,relative_humidity_2m` +
-  `&daily=temperature_2m_min,temperature_2m_max,precipitation_probability_max` +
+  `&daily=temperature_2m_min,temperature_2m_max,precipitation_probability_max,sunrise,sunset` +
   `&timezone=Europe%2FMadrid&forecast_days=2`
 
 const REFRESH_MS = 10 * 60 * 1000
@@ -76,7 +76,10 @@ export function useLiveWeather() {
           error: null,
           data: {
             tempC: typeof cur.temperature_2m === 'number' ? Math.round(cur.temperature_2m) : null,
-            feelsLikeC: typeof cur.apparent_temperature === 'number' ? Math.round(cur.apparent_temperature) : null,
+            feelsLikeC:
+              typeof cur.apparent_temperature === 'number'
+                ? Math.round(cur.apparent_temperature)
+                : null,
             weatherCode: typeof cur.weather_code === 'number' ? cur.weather_code : null,
             humidity:
               typeof cur.relative_humidity_2m === 'number' ? cur.relative_humidity_2m : null,
@@ -86,6 +89,8 @@ export function useLiveWeather() {
             tomorrowMin: daily.temperature_2m_min?.[1] ?? null,
             tomorrowMax: daily.temperature_2m_max?.[1] ?? null,
             precipProbMax: daily.precipitation_probability_max?.[0] ?? null,
+            sunriseIso: daily.sunrise?.[0] ?? null,
+            sunsetIso: daily.sunset?.[0] ?? null,
             fetchedAt: new Date().toISOString(),
           },
         })

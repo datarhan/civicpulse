@@ -15,6 +15,7 @@ import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
 import { useNextMetro } from '../hooks/useNextMetro'
 import { useAirQuality, describeAqi } from '../hooks/useAirQuality'
 import { useTodayEvents } from '../hooks/useTodayEvents'
+import { useTodayPleno } from '../hooks/useTodayPleno'
 import { Ic } from '../components/Icons'
 
 const RIBA_ROJA_CENTER = [39.5439, -0.5711]
@@ -291,6 +292,7 @@ function LeftRail() {
 function StatusBadge() {
   const { data: wiki } = useWikidata()
   const { data: plenos } = usePlenos()
+  const { inSession, pleno: todayPleno, video: todayVideo } = useTodayPleno()
   const pop = wiki?.facts?.population?.value
   const popYear = wiki?.facts?.population?.year
   const nextPleno = (plenos?.items || [])[0]
@@ -355,27 +357,110 @@ function StatusBadge() {
         </div>
       </div>
       <span style={{ width: 1, height: 32, background: 'rgba(255,255,255,.12)' }} />
-      <div>
-        <div
-          style={{
-            fontFamily: MONO,
-            fontSize: 9,
-            color: 'rgba(255,255,255,.55)',
-            letterSpacing: '.12em',
-          }}
+      {inSession ? (
+        <a
+          href={todayVideo?.url || todayPleno?.link || '#'}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'inherit', textDecoration: 'none', display: 'block' }}
+          title={`Pleno ${PLENO_LABEL[todayPleno?.kind] || todayPleno?.kind || ''} hoy — click para ver el vídeo`}
         >
-          ÚLTIMO PLENO
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: 9,
+              color: '#FCA5A5',
+              letterSpacing: '.12em',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+            }}
+          >
+            <span
+              style={{
+                width: 7,
+                height: 7,
+                borderRadius: '50%',
+                background: '#DC2626',
+                animation: 'ribaPulse 1.2s infinite',
+                display: 'inline-block',
+              }}
+              aria-hidden="true"
+            />
+            PLENO EN SESIÓN · HOY
+          </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
+            <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 700 }}>
+              {PLENO_LABEL[todayPleno?.kind] || todayPleno?.kind || '—'}
+            </span>
+            <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>
+              {todayVideo ? 'ver vídeo en vivo ›' : 'ver convocatoria ›'}
+            </span>
+          </div>
+        </a>
+      ) : (
+        <div>
+          <div
+            style={{
+              fontFamily: MONO,
+              fontSize: 9,
+              color: 'rgba(255,255,255,.55)',
+              letterSpacing: '.12em',
+            }}
+          >
+            ÚLTIMO PLENO
+          </div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
+            <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 700 }}>
+              {fmtPleno(nextPleno) || '—'}
+            </span>
+            <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>
+              {nextPleno ? PLENO_LABEL[nextPleno.kind] || nextPleno.kind : ''}
+            </span>
+          </div>
         </div>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginTop: 2 }}>
-          <span style={{ fontFamily: MONO, fontSize: 13, fontWeight: 700 }}>
-            {fmtPleno(nextPleno) || '—'}
-          </span>
-          <span style={{ fontFamily: MONO, fontSize: 10, color: '#F5B544' }}>
-            {nextPleno ? PLENO_LABEL[nextPleno.kind] || nextPleno.kind : ''}
-          </span>
-        </div>
-      </div>
+      )}
     </div>
+  )
+}
+
+function formatLocalHm(iso) {
+  if (!iso) return '—'
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return '—'
+  return d.toLocaleTimeString('es-ES', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'Europe/Madrid',
+  })
+}
+
+function Pm25Sparkline({ values, color }) {
+  const nums = values.filter((v) => typeof v === 'number' && Number.isFinite(v))
+  if (nums.length < 2) return null
+  const w = 96
+  const h = 18
+  const min = Math.min(...nums)
+  const max = Math.max(...nums)
+  const span = max - min || 1
+  const step = w / (nums.length - 1)
+  const d = nums
+    .map((v, i) => {
+      const x = i * step
+      const y = h - ((v - min) / span) * (h - 2) - 1
+      return `${i === 0 ? 'M' : 'L'}${x.toFixed(1)},${y.toFixed(1)}`
+    })
+    .join(' ')
+  return (
+    <svg
+      width={w}
+      height={h}
+      viewBox={`0 0 ${w} ${h}`}
+      style={{ display: 'block' }}
+      aria-hidden="true"
+    >
+      <path d={d} fill="none" stroke={color} strokeWidth="1.4" opacity="0.85" />
+    </svg>
   )
 }
 
@@ -478,6 +563,19 @@ function LiveOverlay() {
                 sensación térmica {weather.feelsLikeC}°
               </div>
             )}
+            {(weather.sunriseIso || weather.sunsetIso) && (
+              <div
+                style={{
+                  fontFamily: MONO,
+                  fontSize: 9.5,
+                  color: 'rgba(255,255,255,.55)',
+                  marginTop: 3,
+                  letterSpacing: '.04em',
+                }}
+              >
+                ↑ {formatLocalHm(weather.sunriseIso)} · ↓ {formatLocalHm(weather.sunsetIso)}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -548,6 +646,11 @@ function LiveOverlay() {
                 </span>
               )}
             </div>
+            {Array.isArray(air.pm25Last24h) && air.pm25Last24h.length > 4 && (
+              <div style={{ marginTop: 4, lineHeight: 0 }}>
+                <Pm25Sparkline values={air.pm25Last24h} color={aqi.color} />
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -668,7 +771,9 @@ function EventTicker() {
           }}
           title={`${ev.kindLabel} · ${ev.date}`}
         >
-          <span style={{ fontSize: 16, lineHeight: 1 }} aria-hidden="true">{ev.icon}</span>
+          <span style={{ fontSize: 16, lineHeight: 1 }} aria-hidden="true">
+            {ev.icon}
+          </span>
           <div style={{ minWidth: 0, flex: 1 }}>
             <div
               style={{
@@ -678,7 +783,8 @@ function EventTicker() {
                 letterSpacing: '.12em',
               }}
             >
-              {ev.isToday ? 'HOY EN RIBA-ROJA' : 'MAÑANA EN RIBA-ROJA'} · {ev.kindLabel.toUpperCase()}
+              {ev.isToday ? 'HOY EN RIBA-ROJA' : 'MAÑANA EN RIBA-ROJA'} ·{' '}
+              {ev.kindLabel.toUpperCase()}
             </div>
             <div
               style={{

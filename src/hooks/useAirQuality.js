@@ -20,6 +20,8 @@ const URL =
   `https://air-quality-api.open-meteo.com/v1/air-quality` +
   `?latitude=${LAT}&longitude=${LNG}` +
   `&current=pm2_5,pm10,nitrogen_dioxide,ozone,european_aqi` +
+  `&hourly=pm2_5` +
+  `&past_days=1&forecast_days=1` +
   `&timezone=Europe%2FMadrid`
 
 const REFRESH_MS = 15 * 60 * 1000
@@ -27,11 +29,11 @@ const REFRESH_MS = 15 * 60 * 1000
 /** EAQI band → Spanish label + tone. Thresholds per EEA guidelines. */
 export function describeAqi(eaqi) {
   if (eaqi == null || Number.isNaN(eaqi)) return { label: '—', tone: 'neutral', color: '#64748B' }
-  if (eaqi <= 20) return { label: 'Buena',           tone: 'ok',   color: '#15803D' }
-  if (eaqi <= 40) return { label: 'Razonable',       tone: 'ok',   color: '#65A30D' }
-  if (eaqi <= 60) return { label: 'Moderada',        tone: 'warn', color: '#CA8A04' }
-  if (eaqi <= 80) return { label: 'Mala',            tone: 'warn', color: '#EA580C' }
-  if (eaqi <= 100) return { label: 'Muy mala',       tone: 'crit', color: '#DC2626' }
+  if (eaqi <= 20) return { label: 'Buena', tone: 'ok', color: '#15803D' }
+  if (eaqi <= 40) return { label: 'Razonable', tone: 'ok', color: '#65A30D' }
+  if (eaqi <= 60) return { label: 'Moderada', tone: 'warn', color: '#CA8A04' }
+  if (eaqi <= 80) return { label: 'Mala', tone: 'warn', color: '#EA580C' }
+  if (eaqi <= 100) return { label: 'Muy mala', tone: 'crit', color: '#DC2626' }
   return { label: 'Extremadamente mala', tone: 'crit', color: '#7F1D1D' }
 }
 
@@ -49,6 +51,10 @@ export function useAirQuality() {
         const raw = await r.json()
         if (!alive) return
         const cur = raw.current || {}
+        const hourly = raw.hourly || {}
+        // Trim hourly PM2.5 to the trailing 24 hours ending "now" so the
+        // mini sparkline is always a rolling day, not a calendar-day slice.
+        const pm25Series = Array.isArray(hourly.pm2_5) ? hourly.pm2_5.slice(-24) : []
         setState({
           loading: false,
           error: null,
@@ -56,14 +62,19 @@ export function useAirQuality() {
             eaqi: typeof cur.european_aqi === 'number' ? Math.round(cur.european_aqi) : null,
             pm25: typeof cur.pm2_5 === 'number' ? cur.pm2_5 : null,
             pm10: typeof cur.pm10 === 'number' ? cur.pm10 : null,
-            no2:  typeof cur.nitrogen_dioxide === 'number' ? cur.nitrogen_dioxide : null,
+            no2: typeof cur.nitrogen_dioxide === 'number' ? cur.nitrogen_dioxide : null,
             ozone: typeof cur.ozone === 'number' ? cur.ozone : null,
+            pm25Last24h: pm25Series,
             fetchedAt: new Date().toISOString(),
           },
         })
       } catch (err) {
         if (!alive) return
-        setState({ loading: false, error: err instanceof Error ? err.message : String(err), data: null })
+        setState({
+          loading: false,
+          error: err instanceof Error ? err.message : String(err),
+          data: null,
+        })
       }
     }
 
