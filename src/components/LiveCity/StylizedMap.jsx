@@ -12,6 +12,7 @@ import {
 import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
 import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMetro'
+import { useMetroNetwork, indexLineColors } from '../../hooks/useMetroNetwork'
 
 // Metrovalencia official line brand colours (sourced from
 // metrovalencia.es icon SVGs, April 2026). Adif heavy-rail uses a muted
@@ -382,6 +383,153 @@ function StationSchedulePopup({ name, match, rawStation }) {
   )
 }
 
+/**
+ * Render the whole Metrovalencia + FGV network (10 lines · ~1k tracks ·
+ * ~215 stations). Tracks are colour-coded by the line ref (L1..L10); a
+ * station that serves multiple lines gets a concentric-ring look. Tracks
+ * inside the Riba-roja municipality are also rendered by the local
+ * `Railways()` component above, so we drop our own track render for
+ * L9+L2 refs (VT-005/VT-012) to avoid double-stroking near Riba-roja.
+ */
+function FullNetwork() {
+  const { loading, error, data } = useMetroNetwork()
+  if (loading || error || !data) return null
+  const colors = indexLineColors(data)
+  return (
+    <>
+      {data.tracks.map((t) => {
+        // Colour = the first line's colour (when a track is shared by
+        // multiple lines, the brand colour matches either — picking the
+        // lowest-numbered line keeps things deterministic).
+        const ref = t.lineRefs[0]
+        const color = colors[ref] || '#64748B'
+        return (
+          <Polyline
+            key={t.id}
+            positions={t.line}
+            pathOptions={{
+              color,
+              weight: 2,
+              opacity: 0.82,
+              lineCap: 'round',
+            }}
+          />
+        )
+      })}
+      {data.stations.map((s) => {
+        const refs = s.lineRefs
+        const fill = colors[refs[0]] || '#64748B'
+        return (
+          <CircleMarker
+            key={s.id}
+            center={s.centroid}
+            radius={3.5}
+            pathOptions={{
+              color: '#0B0F19',
+              weight: 1,
+              fillColor: fill,
+              fillOpacity: 1,
+            }}
+          >
+            <Popup closeButton={true} autoPan={true}>
+              <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 180 }}>
+                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 6 }}>{s.name}</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                  {refs.map((r) => (
+                    <span
+                      key={r}
+                      style={{
+                        background: colors[r] || '#64748B',
+                        color: '#FFFFFF',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: 10,
+                        fontWeight: 800,
+                        padding: '2px 6px',
+                        borderRadius: 3,
+                      }}
+                    >
+                      {r}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href="https://www.metrovalencia.es"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{
+                    marginTop: 8,
+                    display: 'inline-block',
+                    fontSize: 12,
+                    color: '#2463EB',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Ver horarios en metrovalencia.es →
+                </a>
+              </div>
+            </Popup>
+          </CircleMarker>
+        )
+      })}
+    </>
+  )
+}
+
+function NetworkLegend() {
+  const { data } = useMetroNetwork()
+  if (!data?.lines) return null
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        bottom: 28,
+        right: 12,
+        background: 'rgba(255,255,255,.92)',
+        border: '1px solid #DCD7C8',
+        borderRadius: 8,
+        padding: '8px 10px',
+        fontFamily: "'Outfit', system-ui, sans-serif",
+        fontSize: 11,
+        zIndex: 400,
+        boxShadow: '0 6px 18px rgba(11,15,25,.10)',
+        maxWidth: 180,
+      }}
+    >
+      <div
+        style={{
+          fontFamily: "'DM Mono', monospace",
+          fontSize: 9,
+          color: 'rgba(11,15,25,.55)',
+          letterSpacing: '.1em',
+          marginBottom: 5,
+          textTransform: 'uppercase',
+        }}
+      >
+        Metrovalencia
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+        {data.lines.map((l) => (
+          <span
+            key={l.ref}
+            title={l.name}
+            style={{
+              background: l.color,
+              color: '#FFFFFF',
+              fontFamily: "'DM Mono', monospace",
+              fontSize: 10,
+              fontWeight: 800,
+              padding: '2px 6px',
+              borderRadius: 3,
+            }}
+          >
+            {l.ref}
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function MapAttribution() {
   return (
     <div
@@ -398,7 +546,7 @@ function MapAttribution() {
         pointerEvents: 'none',
       }}
     >
-      OSM · CARTO Voyager · L9 MetroValencia + Adif
+      OSM · CARTO Voyager · Metrovalencia (L1–L10) + Adif
     </div>
   )
 }
@@ -408,8 +556,8 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
     <div style={{ position: 'relative', width: '100%', height: '100%', background: '#EFE9D9' }}>
       <MapContainer
         center={center}
-        zoom={14}
-        minZoom={13}
+        zoom={13}
+        minZoom={10}
         maxZoom={17}
         className="cp-stylized-map"
         zoomControl
@@ -426,11 +574,13 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           attribution=""
         />
 
+        <FullNetwork />
         <MunicipalBoundary />
         <OsmNeighborhoods />
         <Railways />
       </MapContainer>
 
+      <NetworkLegend />
       <MapAttribution />
     </div>
   )

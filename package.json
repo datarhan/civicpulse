@@ -22,6 +22,7 @@
     "scrape:participa": "npx tsx scripts/scrape-participa.ts",
     "scrape:press": "npx tsx scripts/scrape-press.ts",
     "scrape:geo": "npx tsx scripts/scrape-geo.ts",
+    "scrape:metro-network": "npx tsx scripts/scrape-metro-network.ts",
     "scrape:bdns": "npx tsx scripts/scrape-bdns.ts",
     "scrape:paro": "npx tsx scripts/scrape-paro.ts",
     "scrape:plenos": "npx tsx scripts/scrape-plenos.ts",
