@@ -33,7 +33,12 @@ interface AgendaPleno {
   id: string
   date: string
   link: string
-  agenda: Array<{ number: number; title: string; department?: string | null; expediente?: string | null }>
+  agenda: Array<{
+    number: number
+    title: string
+    department?: string | null
+    expediente?: string | null
+  }>
 }
 
 function usage(): never {
@@ -68,7 +73,10 @@ function main() {
   const itemNumber = Number(itemStr)
   if (!Number.isInteger(itemNumber) || itemNumber <= 0) usage()
 
-  const suggestions = loadJson<{ items: InferredVote[] }>(SUGGESTIONS, 'pleno-votes-suggestions.json')
+  const suggestions = loadJson<{ items: InferredVote[] }>(
+    SUGGESTIONS,
+    'pleno-votes-suggestions.json',
+  )
   const agendasDoc = loadJson<{ plenos: AgendaPleno[] }>(AGENDAS, 'plenos-agendas.json')
   const plenosDoc = loadJson<{ items: Array<{ id: string; date: string; link: string }> }>(
     PLENOS,

@@ -39,7 +39,9 @@ export interface LlmInferOptions {
 }
 
 /** Optional dependency injection for testing — default is the real callLLM. */
-export type LlmCaller = <TSchema extends ZodTypeAny>(opts: CallLlmOptions<TSchema>) => Promise<z.infer<TSchema> | null>
+export type LlmCaller = <TSchema extends ZodTypeAny>(
+  opts: CallLlmOptions<TSchema>,
+) => Promise<z.infer<TSchema> | null>
 
 /**
  * Run each vote-segment through the LLM and collect the valid suggestions.
@@ -74,7 +76,10 @@ export async function inferVotesWithLlm(
 
     const vote = sanitize(response.vote, opts.currentSeats)
     if (!vote) continue
-    if (vote.confidence < minConfidence) { droppedLowConfidence += 1; continue }
+    if (vote.confidence < minConfidence) {
+      droppedLowConfidence += 1
+      continue
+    }
 
     suggestions.push({
       plenoId: opts.plenoId,
@@ -119,7 +124,7 @@ function sanitize(
   const seatMap = new Map(currentSeats.map((s) => [s.bloc, s.seats]))
   const cleaned = vote.votes.filter((v) => {
     if (!(ALLOWED_BLOCS as readonly string[]).includes(v.bloc)) return false
-    if (!seatMap.has(v.bloc)) return false  // bloc not in current council
+    if (!seatMap.has(v.bloc)) return false // bloc not in current council
     if (v.seats !== undefined && v.seats > (seatMap.get(v.bloc) ?? 0)) return false
     return true
   })

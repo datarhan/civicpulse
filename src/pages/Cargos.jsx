@@ -27,11 +27,18 @@ function QuejaBadge({ slug }) {
       <Link
         to="/quejas"
         className="mono"
-        style={{ color: 'var(--ink60)', letterSpacing: '.06em', textTransform: 'uppercase', textDecoration: 'none' }}
+        style={{
+          color: 'var(--ink60)',
+          letterSpacing: '.06em',
+          textTransform: 'uppercase',
+          textDecoration: 'none',
+        }}
       >
         Quejas asignadas
       </Link>
-      <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>{stats.total}</span>
+      <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
+        {stats.total}
+      </span>
       <span style={{ color: 'var(--ok)' }}>✓ {ok}</span>
       <span style={{ color: 'var(--civic)' }}>⏳ {pending}</span>
       {silencios > 0 && <span style={{ color: 'var(--crit)' }}>⚠ {silencios}</span>}
@@ -173,9 +180,7 @@ function OfficialCard({ o, big = false }) {
               </span>
             )}
           </div>
-          <div style={{ fontSize: big ? 17 : 14, fontWeight: 600, lineHeight: 1.2 }}>
-            {o.name}
-          </div>
+          <div style={{ fontSize: big ? 17 : 14, fontWeight: 600, lineHeight: 1.2 }}>{o.name}</div>
           {o.portfolios.length > 0 && (
             <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.35 }}>
               {o.portfolios.slice(0, 4).join(' · ')}
@@ -225,7 +230,9 @@ function CompositionBar({ composition, total }) {
   const items = order.filter((p) => composition[p]).map((p) => ({ p, n: composition[p] }))
   return (
     <div style={{ marginTop: 14 }}>
-      <div style={{ display: 'flex', width: '100%', height: 14, borderRadius: 7, overflow: 'hidden' }}>
+      <div
+        style={{ display: 'flex', width: '100%', height: 14, borderRadius: 7, overflow: 'hidden' }}
+      >
         {items.map(({ p, n }) => (
           <div
             key={p}
@@ -285,8 +292,8 @@ function CorporacionMunicipal() {
           fontSize: 13,
         }}
       >
-        No se pudo cargar la Corporación Municipal. Ejecuta{' '}
-        <code>npm run scrape:officials</code> para regenerar los datos.
+        No se pudo cargar la Corporación Municipal. Ejecuta <code>npm run scrape:officials</code>{' '}
+        para regenerar los datos.
       </div>
     )
   }
@@ -357,7 +364,10 @@ function CorporacionMunicipal() {
 export default function Cargos() {
   const t = useT()
   return (
-    <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
+    <div
+      className="cp-page"
+      style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
+    >
       <div style={{ marginBottom: 18 }}>
         <div
           className="mono"
@@ -374,8 +384,8 @@ export default function Cargos() {
           {t('cargos.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
-          Titulares del Ayuntamiento, sus departamentos, presupuesto asignado, promesas adquiridas y rendimiento
-          operacional.
+          Titulares del Ayuntamiento, sus departamentos, presupuesto asignado, promesas adquiridas y
+          rendimiento operacional.
         </div>
       </div>
 

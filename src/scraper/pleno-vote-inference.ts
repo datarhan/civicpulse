@@ -82,7 +82,7 @@ const BLOC_ALIASES: Record<VoteBloc, RegExp> = {
   PP: /\bPP\b|popular(?:es)?\b|partido popular\b|partit popular\b/i,
   VOX: /\bVOX\b/i,
   // Compromís has Valencian/Castilian spelling variants + common accent-less Whisper output.
-  'Compromís': /\bcompromís\b|\bcompromis\b/i,
+  Compromís: /\bcompromís\b|\bcompromis\b/i,
   Ciudadanos: /\bCiudadanos\b|\bC['’]s\b|\bciutadans\b/i,
   Otro: /\bNo adscrito\b|\bno adscrit\b|\bgrupo mixto\b|\bgrup mixt\b/i,
 }
@@ -97,7 +97,10 @@ const BLOC_ALIASES: Record<VoteBloc, RegExp> = {
 const DIRECTION_PHRASES: [RegExp, VoteDirection][] = [
   [/\ba\s+favor\b|\bvot(?:o|os|s|a|an|aron|en)\s+a\s+favor\b|\bvots?\s+favorables?\b/i, 'a_favor'],
   [/\ben\s+contra\b|\bvot(?:o|os|s|a|an|aron|en)\s+en\s+contra\b/i, 'en_contra'],
-  [/\babstenci(?:ón|ó)n(?:es)?\b|\babstenci(?:ó|o)(?:ns)?\b|\bs['’]abst(?:é|e)n\b|\bse\s+abstien(?:e|en)\b/i, 'abstencion'],
+  [
+    /\babstenci(?:ón|ó)n(?:es)?\b|\babstenci(?:ó|o)(?:ns)?\b|\bs['’]abst(?:é|e)n\b|\bse\s+abstien(?:e|en)\b/i,
+    'abstencion',
+  ],
 ]
 
 /**
@@ -111,7 +114,8 @@ export function splitSegments(transcript: string): string[] {
   // Whisper produces from natural speech. "Votemos"/"Vamos a votar" are as
   // common as the formal "Se somete a votación" in small-town municipal
   // recordings.
-  const boundary = /(?:s['’]assotmet a votaci[óo]|se somete a votaci[óo]n|pasamos a la votaci[óo]n|passem a la votaci[óo]|\bvamos a votar\b|\bvotaremos\b|\bvotemos\b|\bpassem al punt\b|\bpasamos al punto\b|\bvamos a votar a (?:la )?mano\b)/gi
+  const boundary =
+    /(?:s['’]assotmet a votaci[óo]|se somete a votaci[óo]n|pasamos a la votaci[óo]n|passem a la votaci[óo]|\bvamos a votar\b|\bvotaremos\b|\bvotemos\b|\bpassem al punt\b|\bpasamos al punto\b|\bvamos a votar a (?:la )?mano\b)/gi
   const segments: string[] = []
   let match: RegExpExecArray | null
   while ((match = boundary.exec(transcript)) !== null) {
@@ -125,10 +129,7 @@ export function splitSegments(transcript: string): string[] {
 /** Extract an integer vote count that appears near a direction phrase. */
 function countNear(segment: string, directionRx: RegExp): number | null {
   // Look for "\d+ vot[os] a favor" etc.
-  const rx = new RegExp(
-    `(\\d{1,2})\\s+(?:vot(?:os|s|o)?\\s+)?${directionRx.source}`,
-    'i',
-  )
+  const rx = new RegExp(`(\\d{1,2})\\s+(?:vot(?:os|s|o)?\\s+)?${directionRx.source}`, 'i')
   const m = segment.match(rx)
   if (!m) return null
   const n = Number(m[1])
@@ -154,21 +155,22 @@ function inferOutcome(segment: string): VoteOutcome | null {
  * Directional proximity is preferred over listing order: if "a favor" is 15
  * chars from PSOE and "en contra" is 60 chars from PSOE, PSOE gets a_favor.
  */
-function inferBlocDirections(
-  segment: string,
-): { bloc: VoteBloc; direction: VoteDirection }[] {
+function inferBlocDirections(segment: string): { bloc: VoteBloc; direction: VoteDirection }[] {
   const out: { bloc: VoteBloc; direction: VoteDirection }[] = []
   const seen = new Set<VoteBloc>()
 
   // Collect every (position, direction) pair so we can measure proximity.
-  interface DirHit { pos: number; direction: VoteDirection }
+  interface DirHit {
+    pos: number
+    direction: VoteDirection
+  }
   const dirHits: DirHit[] = []
   for (const [rx, direction] of DIRECTION_PHRASES) {
     const g = new RegExp(rx.source, rx.flags.includes('g') ? rx.flags : rx.flags + 'g')
     let m: RegExpExecArray | null
     while ((m = g.exec(segment)) !== null) {
       dirHits.push({ pos: m.index, direction })
-      if (m.index === g.lastIndex) g.lastIndex += 1  // avoid infinite loop on zero-width
+      if (m.index === g.lastIndex) g.lastIndex += 1 // avoid infinite loop on zero-width
     }
   }
   if (dirHits.length === 0) return out
@@ -176,7 +178,10 @@ function inferBlocDirections(
   // For each bloc mention in the segment, attach the closest direction hit
   // within 80 chars. Only the first (bloc, direction) wins.
   for (const [bloc, blocRx] of Object.entries(BLOC_ALIASES) as [VoteBloc, RegExp][]) {
-    const g = new RegExp(blocRx.source, blocRx.flags.includes('g') ? blocRx.flags : blocRx.flags + 'g')
+    const g = new RegExp(
+      blocRx.source,
+      blocRx.flags.includes('g') ? blocRx.flags : blocRx.flags + 'g',
+    )
     let blocMatch: RegExpExecArray | null
     while ((blocMatch = g.exec(segment)) !== null) {
       if (seen.has(bloc)) break
@@ -202,7 +207,11 @@ function inferBlocDirections(
   return out
 }
 
-function scoreConfidence(segment: string, inferredVotes: InferredVote['votes'], outcome: VoteOutcome | null): number {
+function scoreConfidence(
+  segment: string,
+  inferredVotes: InferredVote['votes'],
+  outcome: VoteOutcome | null,
+): number {
   let score = 0
 
   // Outcome phrase present → +0.3
@@ -247,18 +256,29 @@ function inferItemNumber(segment: string): number | null {
 // Valencian equivalents ("termini", "abans del") also covered.
 
 const SPANISH_MONTHS: Record<string, number> = {
-  enero: 1, gener: 1,
-  febrero: 2, febrer: 2,
-  marzo: 3, març: 3,
+  enero: 1,
+  gener: 1,
+  febrero: 2,
+  febrer: 2,
+  marzo: 3,
+  març: 3,
   abril: 4,
-  mayo: 5, maig: 5,
-  junio: 6, juny: 6,
-  julio: 7, juliol: 7,
-  agosto: 8, agost: 8,
-  septiembre: 9, setembre: 9, setiembre: 9,
+  mayo: 5,
+  maig: 5,
+  junio: 6,
+  juny: 6,
+  julio: 7,
+  juliol: 7,
+  agosto: 8,
+  agost: 8,
+  septiembre: 9,
+  setembre: 9,
+  setiembre: 9,
   octubre: 10,
-  noviembre: 11, novembre: 11,
-  diciembre: 12, desembre: 12,
+  noviembre: 11,
+  novembre: 11,
+  diciembre: 12,
+  desembre: 12,
 }
 
 /** Add N months to an ISO YYYY-MM-DD string (calendar-safe). */
@@ -349,13 +369,10 @@ function padSource(match: string, segment: string, matchIndex: number): string {
 export interface InferOptions {
   plenoId: string
   plenoDate: string
-  minConfidence?: number  // default 0.6
+  minConfidence?: number // default 0.6
 }
 
-export function inferVotesFromTranscript(
-  transcript: string,
-  opts: InferOptions,
-): InferenceResult {
+export function inferVotesFromTranscript(transcript: string, opts: InferOptions): InferenceResult {
   const minConfidence = opts.minConfidence ?? 0.6
   const segments = splitSegments(transcript)
   const suggestions: InferredVote[] = []
@@ -363,10 +380,13 @@ export function inferVotesFromTranscript(
 
   for (const segment of segments) {
     const votes = inferBlocDirections(segment)
-    if (votes.length === 0) continue   // no bloc → nothing actionable
+    if (votes.length === 0) continue // no bloc → nothing actionable
     const outcome = inferOutcome(segment)
     const confidence = scoreConfidence(segment, votes, outcome)
-    if (confidence < minConfidence) { dropped += 1; continue }
+    if (confidence < minConfidence) {
+      dropped += 1
+      continue
+    }
 
     const plazo = inferPlazoFromSegment(segment, opts.plenoDate)
     suggestions.push({

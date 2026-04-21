@@ -22,14 +22,14 @@ const V1_STATUSES = ['documentada', 'en-verificacion'] as const
 // `null` if the segment is preamble, debate, or a non-vote decision.
 
 export const VoteTupleSchema = z.object({
-  bloc: z.enum([...ALLOWED_BLOCS] as [typeof ALLOWED_BLOCS[number]]),
-  direction: z.enum([...ALLOWED_DIRECTIONS] as [typeof ALLOWED_DIRECTIONS[number]]),
+  bloc: z.enum([...ALLOWED_BLOCS] as [(typeof ALLOWED_BLOCS)[number]]),
+  direction: z.enum([...ALLOWED_DIRECTIONS] as [(typeof ALLOWED_DIRECTIONS)[number]]),
   seats: z.number().int().min(0).max(21).optional(),
 })
 
 export const PlenoVoteSuggestionSchema = z.object({
   itemNumber: z.number().int().positive().nullable(),
-  outcome: z.enum([...ALLOWED_OUTCOMES] as [typeof ALLOWED_OUTCOMES[number]]).nullable(),
+  outcome: z.enum([...ALLOWED_OUTCOMES] as [(typeof ALLOWED_OUTCOMES)[number]]).nullable(),
   votes: z.array(VoteTupleSchema).max(6),
   excerpt: z.string().min(10).max(600),
   confidence: z.number().min(0).max(1),
@@ -63,7 +63,7 @@ export const PromiseEvidenceKind = z.enum([
   'press',
   'pleno_agenda',
   'pleno_vote',
-  'pleno_transcript',  // YouTube-derived Whisper transcript — speaker NEVER attributed
+  'pleno_transcript', // YouTube-derived Whisper transcript — speaker NEVER attributed
   'tender',
   'bdns',
   'budget',
@@ -74,7 +74,7 @@ export const PromiseEvidenceItemSchema = z.object({
   // The LLM is explicitly ALLOWED to propose only the safe V1 statuses —
   // everything else must come from a curator reading the evidence. Any output
   // attempting to promote past the gate is rejected post-parse.
-  proposedStatus: z.enum([...V1_STATUSES] as [typeof V1_STATUSES[number]]).optional(),
+  proposedStatus: z.enum([...V1_STATUSES] as [(typeof V1_STATUSES)[number]]).optional(),
   corpus: PromiseEvidenceKind,
   evidenceUrl: z.string().url(),
   publisher: z.string().min(1).max(120),

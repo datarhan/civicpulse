@@ -30,9 +30,7 @@ export function buildPlenoVoteSystemPrompt(opts: {
   plenoDate: string
   currentSeats: { bloc: string; seats: number }[]
 }): string {
-  const seatsLines = opts.currentSeats
-    .map((s) => `  • ${s.bloc}: ${s.seats} escaños`)
-    .join('\n')
+  const seatsLines = opts.currentSeats.map((s) => `  • ${s.bloc}: ${s.seats} escaños`).join('\n')
   return `
 Eres un analista que transcribe votaciones de plenos municipales del Ayuntamiento de Riba-roja de Túria (Comunitat Valenciana). Las sesiones son bilingües (castellano + valencià).
 
