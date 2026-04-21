@@ -40,11 +40,7 @@ const SCHEDULE = {
 const INBOUND_PHASE_MIN = 15
 
 /** L9 Metrovalencia stations inside the municipality, with travel-time
- *  offsets from the Riba-roja terminus. OSM tags `network=Metrovalencia`
- *  + `operator=FGV` are the source of truth — stations on the Adif
- *  heavy-rail line that share the map (e.g. "El Clot") are deliberately
- *  *not* in this list. They get a generic popup redirecting users to
- *  renfe.com/cercanias. */
+ *  offsets from the Riba-roja terminus. OSM ref VT-005. */
 export const L9_STATIONS = [
   {
     id: 'riba-roja-de-turia',
@@ -68,6 +64,32 @@ export const L9_STATIONS = [
     terminus: false,
   },
 ]
+
+/** Other Metrovalencia stations that cross the municipality but belong
+ *  to a different line (e.g. L2 Llíria ↔ Torrent Avinguda, OSM ref
+ *  VT-012). We don't encode the L2 schedule — the popup shows the line
+ *  name + both direction labels and points users to metrovalencia.es. */
+export const OTHER_METRO_STATIONS = [
+  {
+    id: 'el-clot',
+    osmName: 'El Clot',
+    label: 'El Clot',
+    line: 'L2',
+    lineColor: '#E94F96',
+    lineBadgeBg: '#E94F96',
+    lineBadgeColor: '#FFFFFF',
+    headings: ['Llíria', 'Torrent Avinguda'],
+    scheduleUrl: 'https://www.metrovalencia.es/linea/linea-2',
+  },
+]
+
+export function findMetroStation(osmName) {
+  const l9 = L9_STATIONS.find((m) => m.osmName === osmName)
+  if (l9) return { kind: 'l9', station: l9 }
+  const other = OTHER_METRO_STATIONS.find((m) => m.osmName === osmName)
+  if (other) return { kind: 'other', station: other }
+  return null
+}
 
 /** 0=Sunday, 1..5=Weekday, 6=Saturday. Spanish public holidays are NOT
  *  handled — users reading on a festivo get the weekday schedule which

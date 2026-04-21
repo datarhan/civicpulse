@@ -11,14 +11,21 @@ import {
 } from 'react-leaflet'
 import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
-import { L9_STATIONS, computeStationSchedule } from '../../hooks/useNextMetro'
+import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMetro'
 
-// Metrovalencia L9 light-rail colour (close to their brand palette); Adif
-// heavy-rail uses a muted grey so it reads as secondary. Stations share the
-// metro colour with a dark stroke for contrast against cream tiles.
-const METRO_COLOR = '#F5B544'
+// Metrovalencia line brand colours. L9 runs yellow-orange; L2 is the
+// pink/magenta line (Llíria ↔ Torrent). Adif heavy rail stays muted grey.
+const METRO_L9_COLOR = '#F5B544'
+const METRO_L2_COLOR = '#E94F96'
+const METRO_DEFAULT_COLOR = '#F5B544'
 const HEAVY_RAIL_COLOR = '#6B7280'
 const BOUNDARY_COLOR = '#C85A3A'
+
+function colorForMetroRef(ref) {
+  if (ref === 'VT-005') return METRO_L9_COLOR
+  if (ref === 'VT-012') return METRO_L2_COLOR
+  return METRO_DEFAULT_COLOR
+}
 
 const DEFAULT_CENTER = [39.5439, -0.5711]
 
@@ -83,7 +90,7 @@ function Railways() {
     <>
       {ways.map((w) => {
         const isMetro = w.kind === 'subway' || w.kind === 'light_rail' || w.kind === 'tram'
-        const color = isMetro ? METRO_COLOR : HEAVY_RAIL_COLOR
+        const color = isMetro ? colorForMetroRef(w.ref) : HEAVY_RAIL_COLOR
         return (
           <div key={w.id} style={{ display: 'contents' }}>
             {/* halo for the metro only — keeps heavy rail discreet */}
@@ -107,22 +114,33 @@ function Railways() {
         )
       })}
       {stations.map((s) => {
-        const meta = L9_STATIONS.find((m) => m.osmName === s.name)
-        const isL9 = Boolean(meta) || s.network === 'Metrovalencia'
+        const match = findMetroStation(s.name)
+        let fill = HEAVY_RAIL_COLOR
+        let radius = 5
+        let weight = 1.5
+        if (match?.kind === 'l9') {
+          fill = METRO_L9_COLOR
+          radius = 7
+          weight = 2
+        } else if (match?.kind === 'other') {
+          fill = match.station.lineColor
+          radius = 7
+          weight = 2
+        }
         return (
           <CircleMarker
             key={s.id}
             center={s.centroid}
-            radius={isL9 ? 7 : 5}
+            radius={radius}
             pathOptions={{
               color: '#0B0F19',
-              weight: isL9 ? 2 : 1.5,
-              fillColor: isL9 ? METRO_COLOR : HEAVY_RAIL_COLOR,
-              fillOpacity: isL9 ? 1 : 0.85,
+              weight,
+              fillColor: fill,
+              fillOpacity: match ? 1 : 0.85,
             }}
           >
             <Popup closeButton={true} autoPan={true}>
-              <StationSchedulePopup name={s.name} meta={meta} rawStation={s} />
+              <StationSchedulePopup name={s.name} match={match} rawStation={s} />
             </Popup>
           </CircleMarker>
         )
@@ -131,7 +149,7 @@ function Railways() {
   )
 }
 
-function StationSchedulePopup({ name, meta, rawStation }) {
+function StationSchedulePopup({ name, match, rawStation }) {
   // Tick every 30s so the popup stays fresh while open. Cheap — no network.
   const [tick, setTick] = useState(() => Date.now())
   useEffect(() => {
@@ -139,7 +157,76 @@ function StationSchedulePopup({ name, meta, rawStation }) {
     return () => clearInterval(id)
   }, [])
 
-  if (!meta) {
+  if (match?.kind === 'other') {
+    // Metrovalencia station on a different line (currently L2). We don't
+    // encode that schedule — show the line brand + both direction labels
+    // and link to the authoritative metrovalencia.es page.
+    const { station } = match
+    return (
+      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 240 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+          <span
+            style={{
+              width: 18,
+              height: 18,
+              borderRadius: '50%',
+              background: station.lineBadgeBg,
+              color: station.lineBadgeColor,
+              display: 'grid',
+              placeItems: 'center',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: 9,
+              fontWeight: 800,
+            }}
+          >
+            {station.line}
+          </span>
+          <span style={{ fontWeight: 700, fontSize: 14 }}>{station.label}</span>
+        </div>
+        <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6 }}>
+          {station.headings.map((h) => (
+            <div
+              key={h}
+              style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '3px 0' }}
+            >
+              <span style={{ fontSize: 11.5, color: 'rgba(11,15,25,.55)', minWidth: 110 }}>
+                → {h}
+              </span>
+              <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', fontStyle: 'italic' }}>
+                ver horario en metrovalencia.es
+              </span>
+            </div>
+          ))}
+        </div>
+        <div
+          style={{
+            marginTop: 8,
+            fontSize: 11,
+            color: 'rgba(11,15,25,.65)',
+          }}
+        >
+          Línea {station.line} — Metrovalencia (FGV). Esta línea no pasa
+          por el terminal de Riba-roja; horario no transcrito.
+        </div>
+        <a
+          href={station.scheduleUrl}
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            marginTop: 6,
+            display: 'inline-block',
+            fontSize: 12,
+            color: '#2463EB',
+            textDecoration: 'none',
+          }}
+        >
+          Horario oficial {station.line} →
+        </a>
+      </div>
+    )
+  }
+
+  if (!match || match.kind !== 'l9') {
     // Not an L9 station — likely Adif heavy-rail (RENFE Cercanías C3
     // Valencia-Utiel passes through the municipality). We don't have a
     // schedule for it; honest fallback directs the user to Renfe.
@@ -193,6 +280,7 @@ function StationSchedulePopup({ name, meta, rawStation }) {
     )
   }
 
+  const meta = match.station
   const now = new Date(tick)
   const sched = computeStationSchedule(meta, now)
   const row = (dirLabel, dep, isApprox) => (
