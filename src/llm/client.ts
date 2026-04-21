@@ -1,9 +1,16 @@
 /**
  * LLM client abstraction.
  *
- * Two backends, same call signature:
- *   - Ollama (default, local, free) — POST http://localhost:11434/api/chat
- *   - OpenAI (fallback, cloud, paid) — direct fetch to the chat-completions API
+ * Three backends, same call signature:
+ *   - Ollama     (default, local, free)      — POST /api/chat
+ *   - OpenAI     (cloud, paid)               — /v1/chat/completions (json_schema)
+ *   - Anthropic  (cloud, paid, recommended)  — /v1/messages (tool_use forced)
+ *
+ * Anthropic is the recommended backend for the vote-extraction pipeline:
+ * it handles noisy Spanish/Valencian Whisper transcripts better than a
+ * local quant, and its prompt-cache feature means the (long, identical)
+ * pleno-vote system prompt is re-used at 0.10× cost across every segment
+ * of a given pleno.
  *
  * The public entrypoint `callLLM<T>` does:
  *   1. Compute a content-addressed cache key (model + promptVersion + schema + input)
@@ -24,7 +31,7 @@ import { zodToJsonSchema } from './schemas'
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
-export type Backend = 'ollama' | 'openai'
+export type Backend = 'ollama' | 'openai' | 'anthropic'
 
 export interface ClientConfig {
   backend: Backend
@@ -32,6 +39,8 @@ export interface ClientConfig {
   ollamaModel: string
   openaiModel: string
   openaiApiKey?: string
+  anthropicModel: string
+  anthropicApiKey?: string
   cacheDir: string
   maxTokensPerRun: number
 }
@@ -43,9 +52,20 @@ export function loadConfigFromEnv(): ClientConfig {
     ollamaModel: process.env.OLLAMA_MODEL || 'qwen2.5:14b-instruct',
     openaiModel: process.env.OPENAI_MODEL || 'gpt-4o-mini',
     openaiApiKey: process.env.OPENAI_API_KEY,
+    // Haiku 4.5 — fast, cheap, excellent for structured extraction. Upgrade
+    // to claude-sonnet-4-6 if precision on noisy Whisper transcripts proves
+    // inadequate; drop back to claude-haiku-4-5-20251001 once stable.
+    anthropicModel: process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001',
+    anthropicApiKey: process.env.ANTHROPIC_API_KEY,
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
   }
+}
+
+function backendModel(config: ClientConfig): string {
+  if (config.backend === 'ollama') return config.ollamaModel
+  if (config.backend === 'openai') return config.openaiModel
+  return config.anthropicModel
 }
 
 // ─── Telemetry + token budget ───────────────────────────────────────────────
@@ -192,6 +212,96 @@ const OPENAI_PRICING: Record<string, { in: number; out: number }> = {
   'gpt-4.1-mini': { in: 0.40, out: 1.60 },
 }
 
+// Anthropic pricing per 1M tokens (claude-haiku-4-5 launched Oct-2025).
+// input_cache_read is priced at 0.10× base input, input_cache_write at 1.25×.
+// Update when Anthropic publishes newer models.
+const ANTHROPIC_PRICING: Record<string, { in: number; out: number; cacheRead: number; cacheWrite: number }> = {
+  'claude-haiku-4-5-20251001': { in: 1.00, out: 5.00, cacheRead: 0.10, cacheWrite: 1.25 },
+  'claude-sonnet-4-6': { in: 3.00, out: 15.00, cacheRead: 0.30, cacheWrite: 3.75 },
+  'claude-opus-4-7': { in: 15.00, out: 75.00, cacheRead: 1.50, cacheWrite: 18.75 },
+}
+
+/**
+ * Anthropic Messages API via tool_use. The zod schema becomes the forced
+ * tool's input_schema, so the model returns structured JSON exactly matching
+ * the contract — same guarantee as OpenAI's json_schema mode.
+ *
+ * Prompt cache: the system block is marked cacheable. Vote-extraction batches
+ * reuse the same system prompt for every segment of a pleno (typically 5–20
+ * calls within the 5-min cache TTL), so cached reads dominate — the total
+ * cost per pleno drops to roughly one full write + N× cheap reads.
+ */
+async function callAnthropic(req: RawCall): Promise<RawResult> {
+  if (!req.config.anthropicApiKey) throw new Error('ANTHROPIC_API_KEY not set')
+  const toolInputSchema = zodToJsonSchema(req.schema) as Record<string, unknown>
+  const body = {
+    model: req.config.anthropicModel,
+    max_tokens: 1024,
+    system: [
+      {
+        type: 'text',
+        text: req.systemPrompt,
+        // 5-minute ephemeral cache — the API will read it back at 10%
+        // cost on every call within the TTL. No-op on the first call of
+        // a batch (cache write) but dominant savings after that.
+        cache_control: { type: 'ephemeral' },
+      },
+    ],
+    messages: [{ role: 'user', content: req.userPrompt }],
+    tools: [
+      {
+        name: 'emit_structured_output',
+        description:
+          'Emit the structured output matching the schema. Always call this tool; never respond in prose.',
+        input_schema: toolInputSchema,
+      },
+    ],
+    tool_choice: { type: 'tool', name: 'emit_structured_output' },
+    temperature: 0,
+  }
+  const res = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'x-api-key': req.config.anthropicApiKey,
+      'anthropic-version': '2023-06-01',
+    },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) throw new Error(`Anthropic ${res.status}: ${await res.text()}`)
+  const data = (await res.json()) as {
+    content: Array<{ type: string; name?: string; input?: unknown; text?: string }>
+    usage: {
+      input_tokens: number
+      output_tokens: number
+      cache_creation_input_tokens?: number
+      cache_read_input_tokens?: number
+    }
+  }
+  const toolBlock = data.content.find((c) => c.type === 'tool_use')
+  if (!toolBlock || !toolBlock.input) {
+    throw new Error(
+      `Anthropic response missing forced tool_use block (got ${data.content.map((c) => c.type).join(',')})`,
+    )
+  }
+  const raw = JSON.stringify(toolBlock.input)
+  const pricing =
+    ANTHROPIC_PRICING[req.config.anthropicModel] ?? { in: 0, out: 0, cacheRead: 0, cacheWrite: 0 }
+  const u = data.usage
+  const costUSD =
+    (u.input_tokens * pricing.in +
+      u.output_tokens * pricing.out +
+      (u.cache_creation_input_tokens ?? 0) * pricing.cacheWrite +
+      (u.cache_read_input_tokens ?? 0) * pricing.cacheRead) /
+    1_000_000
+  const tokenCount =
+    u.input_tokens +
+    u.output_tokens +
+    (u.cache_creation_input_tokens ?? 0) +
+    (u.cache_read_input_tokens ?? 0)
+  return { raw, tokenCount, costUSD }
+}
+
 async function callOpenAI(req: RawCall): Promise<RawResult> {
   if (!req.config.openaiApiKey) throw new Error('OPENAI_API_KEY not set')
   const body = {
@@ -254,7 +364,7 @@ export async function callLLM<TSchema extends ZodTypeAny>(
 
   const key = cacheKey({
     backend: config.backend,
-    model: config.backend === 'ollama' ? config.ollamaModel : config.openaiModel,
+    model: backendModel(config),
     promptVersion: opts.promptVersion,
     schema: opts.schema,
     input: opts.input,
@@ -279,9 +389,12 @@ export async function callLLM<TSchema extends ZodTypeAny>(
 
   while (attempt <= maxRetries) {
     try {
-      const raw: RawResult = config.backend === 'ollama'
-        ? await callOllama({ ...opts, config })
-        : await callOpenAI({ ...opts, config })
+      const raw: RawResult =
+        config.backend === 'ollama'
+          ? await callOllama({ ...opts, config })
+          : config.backend === 'anthropic'
+            ? await callAnthropic({ ...opts, config })
+            : await callOpenAI({ ...opts, config })
       tokenCount += raw.tokenCount
       costUSD += raw.costUSD
       // Charge the real token count (minus the pre-estimate).
@@ -302,7 +415,7 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   const entry: CacheEntry<z.infer<TSchema>> = {
     result,
     backend: config.backend,
-    model: config.backend === 'ollama' ? config.ollamaModel : config.openaiModel,
+    model: backendModel(config),
     promptVersion: opts.promptVersion,
     tokenCount,
     latencyMs: Date.now() - t0,
