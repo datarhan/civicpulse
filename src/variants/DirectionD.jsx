@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import StylizedMap from '../components/LiveCity/StylizedMap'
+import LiveTicker from '../components/LiveTicker'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useTenders, formatDate as formatTenderDate } from '../hooks/useTenders'
 import { usePadron } from '../hooks/usePadron'
@@ -1982,6 +1983,7 @@ export default function DirectionD() {
         <div style={{ flex: 1, position: 'relative', minWidth: 0 }}>
           <StylizedMap center={RIBA_ROJA_CENTER} />
           <StatusBadge />
+          <LiveTicker />
           <EventTicker />
           <MapAttribution />
         </div>

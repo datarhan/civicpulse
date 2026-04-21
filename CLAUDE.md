@@ -30,6 +30,7 @@ npm run scrape:paro                 # SEPE monthly unemployment XLS
 npm run scrape:plenos               # Council-session index on ribarroja.es/plenos
 npm run scrape:pleno-agendas        # Agenda items per pleno (orden del día)
 npm run scrape:wikidata             # Wikidata Q23701 facts + cross-references
+npm run scrape:spain-ticker         # Spain-wide live feeds (REE PVPC, Minetur carburantes, ECB Euribor+MRO, INE IPC, AEMET avisos, DGT DATEX-II)
 npm run scrape:promise-suggestions  # Inference engine (never mutates promises)
 npm run scrape:all                  # walks every autonomous scraper (~3 min)
 
@@ -128,8 +129,8 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**17 adapters** feed Riba-roja de Túria (INE **46214** · Wikidata
-**Q23701** · OSM relation **342356**). 16 are autonomous scrapers that
+**18 adapters** feed Riba-roja de Túria (INE **46214** · Wikidata
+**Q23701** · OSM relation **342356**). 17 are autonomous scrapers that
 refresh nightly via GitHub Actions at 04:30 UTC; 2 are curated files
 that only move via the `npm run reply` / `npm run sindic:add` / `npm
 run queja-reply` CLIs. Follow the RED→GREEN→wire TDD cadence when
@@ -158,6 +159,7 @@ scripts/scrape-paro.ts                →  src/scraper/paro.ts              → 
 scripts/scrape-plenos.ts              →  src/scraper/plenos.ts            →  public/data/plenos.json
 scripts/scrape-pleno-agendas.ts       →  src/scraper/pleno-agenda.ts      →  public/data/plenos-agendas.json
 scripts/scrape-wikidata.ts            →  src/scraper/wikidata.ts          →  public/data/wikidata.json
+scripts/scrape-spain-ticker.ts        →  src/scraper/spain-ticker.ts      →  public/data/spain-ticker.json
 scripts/scrape-ctbg.ts                →  src/scraper/ctbg.ts              →  public/data/ctbg.json
 scripts/scrape-promise-suggestions.ts →  src/scraper/promise-inference.ts →  public/data/promise-suggestions.json
 
@@ -187,6 +189,7 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Full Metrovalencia network (10 lines L1–L10, ~1k tracks, 215 stations) | `scrape-metro-network.ts` → `metro-network.json` | **OSM Overpass API** — every `route=subway\|tram\|light_rail` relation tagged `network=Metrovalencia`/`operator=FGV`; platform polygons filtered out. Brand colours sourced from metrovalencia.es icon SVGs | Direction D StylizedMap `FullNetwork` layer: thin coloured polylines + small station dots across the whole region, plus a line-legend pill row |
 | Metrovalencia GTFS static schedule (L9 + L2 at 4 local stations) | `scrape-fgv-gtfs.ts` → `metro-schedule.json` | **MobilityDatabase mdb-1054** mirror of FGV's Google-Transit feed (FGV's own URL is inside-CDN only). Parses `calendar_dates.txt` + `stop_times.txt` + `trips.txt`; services classified by dominant day-of-week | Direction D topbar L9 chip (real next departure) + StylizedMap `GtfsSchedulePopup` (both directions per line on click) |
 | Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
+| Spain-wide live ticker (Luz PVPC · Gasolina 95 · Diésel · Euribor 12m · BCE MRO · IPC interanual · AEMET avisos · DGT tráfico) | `spain-ticker.ts` → `spain-ticker.json` | **REE apidatos** (`apidatos.ree.es/precios-mercados-tiempo-real`) · **Minetur Carburantes** REST (municipio `7177`) · **ECB SDMX** (`FM/M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA` + `FM/D.U2.EUR.4F.KR.MRR_FR.LEV`) · **INE Tempus3** (serie `IPC251856`) · **AEMET** avisos HTML (`p=46`) · **DGT DATEX II v3.6** XML filtered to Valencia-area roads `A-3 / A-7 / CV-35 / V-30 / V-31 / V-11` | Direction D `LiveTicker` — Bloomberg-style auto-scrolling marquee overlaying the top-center of the map. Press headlines interleaved every 3 chips. Each chip opens a details popover with source + citation. |
 | Pleno agendas (246 items, 27 departments, 30 sessions) | `pleno-agenda.ts` → `plenos-agendas.json` | Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples | `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session |
 | Promises (16 curated) — PSOE / PP / VOX / Compromís | **human-curated** · `promises.ts` validates the schema | Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date | `/promesas`, `/` landing editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal` |
 | Promise suggestions (inference layer) | `promise-inference.ts` → `promise-suggestions.json` | Scans `press.json` + `plenos-agendas.json` for keyword matches; light Spanish stemmer; conservative enum (never `inviable`, never publishes `cumplida`/`no-ejecutada` automatically) | `/promesas` — "propuesta automática · pendiente de revisión humana" block under each card |
@@ -215,6 +218,7 @@ loop.
 - `useGeo`
 - `useMetroNetwork` + `indexLineColors`
 - `useMetroSchedule` + `findNext(slug, now)`
+- `useSpainTicker` + `formatEur` / `formatPct` / `signArrow` / `citizenTone`
 - `useLiveWeather` + `describeWmo`
 - `useAirQuality` + `describeAqi`
 - `useNextMetro` + `computeStationSchedule` / `computeOtherStationSchedule` / `findMetroStation` + `L9_STATIONS` / `OTHER_METRO_STATIONS`

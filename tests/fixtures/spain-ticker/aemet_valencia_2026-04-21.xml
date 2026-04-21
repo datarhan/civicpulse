@@ -1,0 +1,949 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+<meta name="description" content="Avisos de fenómenos meteorológicos adversos" />
+<meta name="keywords" content="AEMET,Estatal,Meteorología,España,Agencia,Nacional,El Tiempo,Tiempo,predicción,avisos,aviso,riesgo,bajo,importante,extremo,tiempo" />
+<meta name="author" content="Agencia Estatal de Meteorología" />
+
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+
+<meta name="title" content="Avisos meteorológicos - Agencia Estatal de Meteorología - AEMET. Gobierno de España" />
+<meta name="DC.title" content="Avisos meteorológicos - Agencia Estatal de Meteorología - AEMET. Gobierno de España" />
+<meta name="distribution" content="global" />
+
+<meta name="lang" content="es" />
+<meta name="language" content="es" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-15" />
+
+<meta property="og:title" content="Avisos meteorológicos - Agencia Estatal de Meteorología - AEMET. Gobierno de España"/>
+<meta property="og:image" content="https://www.aemet.es/imagenes/gif/logo_AEMET_og.gif"/>
+<meta name="application-name" content="Agencia Estatal de Meteorología - AEMET. Gobierno de España" />
+<meta name="msapplication-tooltip" content="Agencia Estatal de Meteorología - AEMET. Gobierno de España" />
+<meta name="msapplication-starturl" content="https://www.aemet.es/es/portada" />
+<meta name="msapplication-navbutton-color" content="#4F86D9" />
+<meta name="msapplication-window" content="width=1024;height=768" /> 
+<meta name="msapplication-task"
+      content="name=Inicio, Agencia Estatal de Meteorología;
+      action-uri=https://www.aemet.es/es/portada;
+      icon-uri=https://www.aemet.es/favicon.ico" />
+<meta name="msapplication-task"
+      content="name=El tiempo, España;
+      action-uri=https://www.aemet.es/es/eltiempo/prediccion/espana;
+      icon-uri=https://www.aemet.es/imagenes/ico/ico_municipios.ico" />
+<meta name="msapplication-task"
+      content="name=El tiempo, Búsqueda por municipios españoles;
+      action-uri=https://www.aemet.es/es/eltiempo/prediccion/municipios;
+      icon-uri=https://www.aemet.es/imagenes/ico/ico_municipios.ico" />
+<meta name="msapplication-task" 
+      content="name=Avisos;
+      action-uri=https://www.aemet.es/es/eltiempo/prediccion/avisos;
+      icon-uri=https://www.aemet.es/imagenes/ico/ico_avisos.ico" />
+<meta name="msapplication-task" 
+      content="name=Noticias;
+      action-uri=https://www.aemet.es/es/noticias;
+      icon-uri=https://www.aemet.es/favicon.ico" />      
+<meta name="msapplication-task" 
+      content="name=Hoy y últimos días;
+      action-uri=https://www.aemet.es/es/eltiempo/observacion/ultimosdatos;
+      icon-uri=https://www.aemet.es/favicon.ico" />
+<title>Avisos meteorológicos - Agencia Estatal de Meteorología - AEMET. Gobierno de España</title>
+<!-- <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css' /> -->
+<script type="text/javascript" src="/ruxitagentjs_ICA7NVfqrux_10335260306043831.js" data-dtconfig="app=ea7c4b59f27d43eb|cuc=v6ogc8fs|owasp=1|mel=100000|expw=1|featureHash=ICA7NVfqrux|dpvc=1|lastModification=1776661465999|tp=500,50,0|rdnt=1|uxrgce=1|srbbv=2|agentUri=/ruxitagentjs_ICA7NVfqrux_10335260306043831.js|reportUrl=/rb_bf68775ubu|rid=RID_-185968526|rpid=-1681827055|domain=aemet.es"></script><link rel="stylesheet" type="text/css" href="/css/fonts.css"  />
+<link rel="stylesheet" type="text/css" media="screen" href="/css/estilos_202602231302.css" />
+<link rel="stylesheet" type="text/css" media="print" href="/css/printer_friendly_202602231302.css" />
+<link rel="stylesheet" type="text/css" href="/css/jquery-ui.css"  />
+<link rel="stylesheet" type="text/css" href="/css/animate.css"  />
+<link rel="stylesheet" type="text/css" href="/css/portlets/portlets.css"  />
+<!-- Important Owl stylesheet -->
+<link rel="stylesheet" type="text/css" href="/css/owl-carousel/owl.carousel.css" />
+<!-- Default Theme -->
+<link rel="stylesheet" type="text/css" href="/css/owl-carousel/owl.theme.css" />
+<!-- MediaElement -->
+<link rel="stylesheet" type="text/css" href="/css/mediaelements/mediaelementplayer.min.css" />
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+
+<!-- Include js owl plugin -->
+<script type="text/javascript" src="/js/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/js/wow/wow.min.js" ></script>
+<link rel="bookmark" href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=rss&amp;p=46" />
+<link rel="canonical" href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=rss&amp;p=46" />
+<link rel="help" href="/es/ayuda" />
+<link rel="copyright" href="/es/nota_legal" />
+<link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" href="/apple-touch-icon-precomposed.png"/>
+<link rel="alternate" type="text/html" href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="es" lang="es" />
+<link rel="alternate" type="text/html" href="https://www.aemet.es/ca/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="ca" lang="ca" />
+<link rel="alternate" type="text/html" href="https://www.aemet.es/gl/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="gl" lang="gl" />
+<link rel="alternate" type="text/html" href="https://www.aemet.es/va/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="ca-valencia" lang="ca-valencia" />
+<link rel="alternate" type="text/html" href="https://www.aemet.es/eu/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="eu" lang="eu" />
+<link rel="alternate" type="text/html" href="https://www.aemet.es/en/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="en" lang="en" />
+<link rel="alternate" type="text/html" href="https://www.aemet.es/fr/eltiempo/prediccion/avisos?w=rss&amp;p=46" hreflang="fr" lang="fr" />
+</head>
+<body>
+<div id="capa_global"></div>
+<div id="popup_cookies" class="pop_up_cookies">
+	<div>
+		<div class="padding_popup contenido_popup_cookies">
+			<div class="marginbottom15px">
+			<button class="boton_cookies" onclick="aceptaCookies();$('#popup_cookies').remove();">Aceptar cookies</button>
+			<div class="texto_entradilla">Información sobre uso de cookies</div>
+			</div>
+			<div class="notas_tabla"><p>Este sitio web utiliza cookies propias y de terceros para mejorar la experiencia de navegación, y ofrecer contenidos y funcionalidades de interés. Para más información sobre las cookies utilizadas consulta nuestra&nbsp;
+				<a class="enlace_informacion enlace_ver_politica_cookies" href="/es/politica_cookies">política de cookies</a>
+				</p>
+			</div>	
+		</div>
+	</div>
+</div>
+<div class="fondo_cabecera" data-hide-print="true">
+	<div class="cabecera_transp">
+		<div class="fuera">
+			<h1>
+				Agencia Estatal de Meteorología</h1>
+			<ul>
+			 	<li>
+			 		<a href="#contenido" accesskey="c">C&nbsp;-&nbsp;Ir a contenido</a>
+			 	</li>
+	    		<li>
+	    			<a href="/es/accesibilidad" accesskey="0">0&nbsp;-&nbsp;Accesibilidad web</a></li>
+	    		<li>
+	    			<a href="/es/portada" accesskey="1">1&nbsp;-&nbsp;Inicio</a></li>    		
+	    		<li>
+	    			<a href="/es/mapaweb" accesskey="2">2&nbsp;-&nbsp;Mapa web</a></li>
+		   		<li>
+		   			<a href="/es/ayuda" accesskey="3">3&nbsp;-&nbsp;Ayuda web</a></li>    		
+		   		<li>
+	<a href="/es/contactar" accesskey="4">4&nbsp;-&nbsp;Contactar - Atención al ciudadano</a></li>
+		   		<li>
+		   			<a href="/es/eltiempo/prediccion/municipios" accesskey="5">5&nbsp;-&nbsp;Municipios</a></li>
+		   		<li>
+		   			<a href="/es/eltiempo/prediccion/avisos" accesskey="6">6&nbsp;-&nbsp;Avisos</a></li>	   			   				  	
+			</ul>
+		</div>
+		<div class="logo">
+			<div class="logo1">
+			 	<a aria-label="Agencia Estatal de Meteorología" class="enlace_aemet" title="Agencia Estatal de Meteorología" href="/es/portada"></a> 
+			    <a aria-label="Ministerio para la Transición Ecológica y el Reto Demográfico.&nbsp;(se abrirá en una ventana nueva)" target="_blank" class="enlace_magrama" title="Ministerio para la Transición Ecológica y el Reto Demográfico.&nbsp;(se abrirá en una ventana nueva)" href="https://www.miteco.gob.es"></a>
+
+
+				<picture>
+					<source media="(max-width: 999px)" srcset="/imagenes/svg/logo_AEMET_web_cabecera1_mov.svg">
+					<source media="(min-width: 1000px)" srcset="/es/imagen-logo1">
+					<img id="logo-principal" src="/es/imagen-logo1" alt="Agencia Estatal de Meteorología" title="Agencia Estatal de Meteorología"/>
+				</picture>
+
+			</div>
+			<div class="logo2">
+				</div>
+		</div>
+		<div class="menu_cabecera">
+			<ul>	
+	    		<li>
+					<div class="contenedor_idiomas_mini">
+						<input type="checkbox" id="idiomas_mini" class="checkbox_oculto_idiomas" /><label for="idiomas_mini" class="nav_select_idiomas">					
+						
+							es
+							<span class="arrow-down_white margin_combo_mini_idioma">&nbsp;</span></label>
+					   <ul class="nav_idiomas">
+							<li><a class="separador_idiomas" lang="es" hreflang="es" href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Español">es</a></li>
+							<li><a class="separador_idiomas" lang="ca" hreflang="ca" href="https://www.aemet.es/ca/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Català">ca</a></li>
+							<li><a class="separador_idiomas" lang="gl" hreflang="gl" href="https://www.aemet.es/gl/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Galego">gl</a></li>
+							<li><a class="separador_idiomas" lang="ca-valencia" hreflang="ca" href="https://www.aemet.es/va/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Valencià">va</a></li>
+							<li><a class="separador_idiomas" lang="eu" hreflang="eu" href="https://www.aemet.es/eu/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Euskara">eu</a></li>
+							<li><a class="separador_idiomas" lang="en" hreflang="en" href="https://www.aemet.es/en/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="English">en</a></li>
+							<li><a class="separador_idiomas" lang="fr" hreflang="fr" href="https://www.aemet.es/fr/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Français">fr</a></li>					
+					   </ul>
+					</div>	    		
+					<div class="contenedor_idiomas">
+						<input type="checkbox" id="idiomas" class="checkbox_oculto_idiomas" /><label for="idiomas" class="nav_select_idiomas">					
+						Bienvenido<span class="arrow-down_white">&nbsp;</span></label>
+					   <ul class="nav_idiomas">
+							<li><a class="separador_idiomas" lang="es" hreflang="es" href="https://www.aemet.es/es/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Español">Bienvenido</a></li>
+							<li><a class="separador_idiomas" lang="ca" hreflang="ca" href="https://www.aemet.es/ca/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Català">Benvinguts</a></li>
+							<li><a class="separador_idiomas" lang="gl" hreflang="gl" href="https://www.aemet.es/gl/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Galego">Benvidos</a></li>
+							<li><a class="separador_idiomas" lang="ca-valencia" hreflang="ca" href="https://www.aemet.es/va/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Valencià">Benvinguts</a></li>
+							<li><a class="separador_idiomas" lang="eu" hreflang="eu" href="https://www.aemet.es/eu/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Euskara">Ongi etorri</a></li>
+							<li><a class="separador_idiomas" lang="en" hreflang="en" href="https://www.aemet.es/en/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="English">Welcome</a></li>
+							<li><a class="separador_idiomas" lang="fr" hreflang="fr" href="https://www.aemet.es/fr/eltiempo/prediccion/avisos?w=rss&amp;p=46" title="Français">Bienvenue</a></li>					
+					   </ul>
+					</div>
+	    		</li>
+<!-- 				<li class="barra_separadora">|</li>			 -->
+	    		<li>
+	    			<label for="buscador_oculto" class="nav_select_buscador"><span class="fuera">Buscador oculto</span></label>
+					<input type="checkbox" id="buscador_oculto" class="checkbox_oculto_buscador" />
+					<div class="caja_contenedor_busqueda icono_red_social_cabecera">	
+						<form id="FrmBuscador" method="get" action="/es/buscador"><div class="contenedor_buscador">									
+								<input class="texto_buscador" value="Introduzca texto" aria-label ="Introduzca texto" name="str" id="buscar" onfocus="this.value=(this.value=='Introduzca texto') ? '' : this.value;" onblur="this.value=(this.value=='') ? 'Introduzca texto' : this.value;"/>
+								<input type="hidden" name="modo" value="and" /><input type="hidden" name="orden" value="n" /><input type="hidden" name="tipo" value="sta" /><input type="submit" value=" " class="boton_buscar_cabecera" title="Buscar" alt="Buscar" /></div>	
+						</form></div>     			
+		   		</li>
+			</ul>
+		</div>
+	</div>
+<div class="contenedor_menu_web">
+<div class="inner">
+	    <div class="div_nav">
+			<label class="label_checkbox_menu" for="nav"><span class="fuera">Menú</span></label>
+			<input class="checkbox_menu" type="checkbox" id="nav" />
+		<ul class="nav nav_ul"><!--
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/eltiempo">El tiempo</a>
+<ul>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/eltiempo/observacion">Observación</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/ultimosdatos"  >Hoy y últimos días</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/sinobas"  >SINOBAS</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/radar"  >Radar</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/satelite/infra"  >Satélites</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/rayos"  >Rayos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/radiacion/radiacion"  >Radiación y ozono</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/contaminacionfondo"  >Contaminación de fondo</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/camp_antarticas"  >Campañas Antárticas</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/observacion/tiempo_espacial"  >Tiempo espacial</a></li>
+
+</ul>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/eltiempo/prediccion">Predicción</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/avisos"  >Avisos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/municipios"  >Municipios</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/playas"  >Playas</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/montana"  >Montaña</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/comunidades"  >CC. AA.</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/espana"  >España</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/mundo"  >Ciudades del mundo</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/maritima"  >Marítima</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/aeronautica"  >Aeronáutica</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/mapa_frentes"  >Mapas con frentes</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/temperaturas"  >Temperaturas máx/mín</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/modelosnumericos/harmonie_arome"  >Modelos numéricos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/mapas_probabilisticos"  >Mapas probabilísticos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/radiacionuv"  >Radiación ultravioleta</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/calidad_del_aire"  >Composición química de la atmósfera</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/incendios"  >Incendios</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/meteoruta"  >MeteoRuta</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/eltiempo/prediccion/polvo_mineral"  >Intrusiones de polvo mineral sahariano</a></li>
+
+</ul>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/serviciosclimaticos">Servicios climáticos</a>
+<ul>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/serviciosclimaticos/datosclimatologicos">Datos climatológicos</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/valoresclimatologicos"  >Valores normales</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/efemerides_extremos"  >Valores extremos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/superacion_umbrales"  >Superación de umbrales</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/efemerides_sucesos"  >Efemérides</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/fenologia"  >Fenología</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/atlas_climatico"  >Atlas climáticos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/datosclimatologicos/series-centenarias"  >Series centenarias</a></li>
+
+</ul>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/serviciosclimaticos/vigilancia_clima">Vigilancia del clima</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/resumenes"  >Resúmenes climatológicos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/analisis_estacional"  >Análisis estacional</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/vigilancia_sequia"  >Vigilancia de la sequía meteorológica</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/balancehidrico"  >Balance hídrico</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/resumen_precipitaciones"  >Resumen de precipitaciones</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/radiacion_ozono"  >Radiación y ozono</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/vigilancia_clima/composicion-atmosferica-izana"  >Composición atmosférica en Izaña</a></li>
+
+</ul>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/prediccion_estacional"  >Predicción estacional</a>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/serviciosclimaticos/cambio_climat">Proyecciones climáticas para el siglo XXI</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/cambio_climat/proyecciones-AR6"  >AR6: Escenarios PNACC</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/cambio_climat/visor-AdapteCCa"  >Visor AdapteCCa</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/cambio_climat/proyecciones-AR5-y-anteriores"  >AR5 y anteriores</a></li>
+
+</ul>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/apoyo_gestion_embalses"  >Apoyo a la gestión de embalses</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/monitor_sequia_met"  >Monitor de la sequía meteorológica</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/serviciosclimaticos/catalogo"  >Catálogo</a>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/conocenos">Conócenos</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/quienes_somos"  >Quiénes somos</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/a_que_nos_dedicamos"  >A qué nos dedicamos</a>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/conocenos/transparencia">Transparencia</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/transparencia/institucional-organizativa-planificacion"  >Institucional, Organizativa y de Planificación</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocenos/transparencia/relevancia-juridica"  >Jurídica</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocenos/transparencia/economica-presupuestaria-estadistica"  >Económica, Presupuestaria y Estadística</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocenos/transparencia/solicitudes-accesos-inf-publica"  >Solicitudes de accesos a la información pública</a></li>
+
+</ul>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/recursos"  >Nuestros recursos</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/nuestra_historia"  >Nuestra historia</a>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/conocenos/congresos_y_conferencias">Congresos y conferencias</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/congresos_y_conferencias/congresos"  >Anuncios</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocenos/congresos_y_conferencias/reuniones"  >Reuniones y conferencias</a></li>
+
+</ul>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/colaboracion_institucional/convenios"  >Colaboración institucional</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/cursos"  >Cursos</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocenos/actividad_internacional"  >Actividad internacional</a>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/idi">I+D+i</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/idi/transformacion_digital"  >Transformación digital</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/prediccion"  >Predicción</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/clima"  >Clima </a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/medio_ambiente"  >Medio ambiente</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/tic"  >Innovación tecnológica</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/observacion"  >Observación</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/SAF_Nowcasting"  >SAF de Nowcasting</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/CIAI"  >CIAI</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/SDS-WAS"  >SDS-WAS</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/idi/publicaciones_cientificas"  >Publicaciones científicas</a>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/conocermas">Conocer más</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/aeronautica"  >Aeronáutica</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/maritima"  >Marítima</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/montana"  >Montaña</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/archivo_documental_Arcimis"  >Archivo documental Arcimis</a>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/conocermas/biblioteca">Biblioteca</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/biblioteca/catalogo"  >Catálogo</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/biblioteca/boletines"  >Boletín meteorológico</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/biblioteca/exposiciones"  >Exposiciones</a></li>
+
+</ul>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/conocermas/recursos_en_linea">Recursos en línea</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/recursos_en_linea/publicaciones_y_estudios"  >Publicaciones y estudios</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/recursos_en_linea/calendarios"  >Calendario meteorológico</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/recursos_en_linea/elobservador"  >El Observador</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/recursos_en_linea/selecciones_del_blog"  >Selecciones del blog</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/recursos_en_linea/simposios_prediccion"  >Simposios de predicción</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/conocermas/recursos_en_linea/modulos-tempo"  >Biblioteca de módulos TEMPO</a></li>
+
+</ul>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/aemet-divulga"  >AEMET Divulga</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/dia_meteorologico"  >Día Meteorológico Mundial</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/modificacion_artificial_tiempo"  >Modificación artificial del tiempo</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/meteo_glosario_visual"  >MeteoGlosario Visual</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/conocermas/borrascas/2025-2026"  >Borrascas y danas con gran impacto</a>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/empleo_y_becas">Empleo público y becas</a>
+<ul>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/empleo_y_becas/empleo_publico">Empleo público</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/empleo_publico/ingresar_en_la_aemet"  >Ingresar en AEMET</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/empleo_publico/oposiciones"  >Oposiciones</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/empleo_publico/funcionarios_interinos"  >Funcionarios interinos</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/empleo_publico/personal_laboral"  >Personal laboral</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/empleo_publico/condiciones_de_trabajo"  >Condiciones de trabajo</a></li>
+
+</ul>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/concursos"  >Concursos</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/libre_designacion"  >Libre designación</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/practicas"  >Prácticas</a>
+</li>
+<li class="menu_segundo_nivel"><a class="enlace_menuweb_2o_nvl" href="/es/empleo_y_becas/becas">Becas</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/becas/informacion_de_interes"  >Información de interés</a></li>
+
+<li><a class="enlace_3er_nvl" href="/es/empleo_y_becas/becas/convocatorias"  >Convocatorias</a></li>
+
+</ul>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_menuweb_1er_nvl" href="/es/datos_abiertos">Datos abiertos</a>
+<ul>
+<li><a class="enlace_3er_nvl" href="/es/datos_abiertos/catalogo"  >Catálogo. Plan RISP</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/datos_abiertos/AEMET_OpenData"  >AEMET OpenData</a>
+</li>
+<li><a class="enlace_3er_nvl" href="/es/datos_abiertos/estadisticas"  >Estadísticas</a>
+</li>
+</ul>
+</li><!--
+
+
+
+
+--><li><a class="enlace_3er_nvl" href="/es/sede_electronica"  >Sede electrónica</a></li><!--
+
+
+
+--></ul></div>
+	  </div>	
+<script src="/js/doubletaptogo.min.js"></script>
+<script>
+	$(function(){
+		$('.div_nav li:has(ul)').doubleTapToGo();
+	});
+</script>
+
+
+</div>	
+</div>
+<div id="cabecera" class="cabecera_primavera">	
+	<div class="contenedor_cabecera_menu_iconos">
+		<div>	
+	 	<ul class="listado_avisos_cabecera">
+			<li>
+			 		<img class="icono_avisos_cabecera" src="/imagenes/png/iconos/ico-avisos.png" alt="METEOALERTA" title="METEOALERTA"/>
+			 		</li>
+				<li>				
+				<a href="/es/eltiempo/prediccion/avisos?w=hoy" id="url-ver-avisos-cabecera" title="mar. 21 - Niveles de aviso: Peligro bajo"><div class="texto_icon_aviso_cabecera color_blanco inline_block vertical_align_mid texto_aviso_cabecera_web">mar. 21</div>
+						<div class="tamano_icon_aviso_cabecera ico_redondeado_aviso_amarillo"><div class="texto_icon_aviso_cabecera texto_aviso_cabecera_movil">mar. 21</div></div></a></li>
+	          <li>				
+				<a href="/es/eltiempo/prediccion/avisos?w=mna" id="url-ver-avisos-cabecera" title="mié. 22 - Niveles de aviso: Peligro bajo"><div class="texto_icon_aviso_cabecera color_blanco inline_block vertical_align_mid texto_aviso_cabecera_web">mié. 22</div>
+						<div class="tamano_icon_aviso_cabecera ico_redondeado_aviso_amarillo"><div class="texto_icon_aviso_cabecera texto_aviso_cabecera_movil">mié. 22</div></div></a></li>
+	          <li>				
+				<a href="/es/eltiempo/prediccion/avisos?w=pmna" id="url-ver-avisos-cabecera" title="jue. 23 - Niveles de aviso: Sin peligro"><div class="texto_icon_aviso_cabecera color_blanco inline_block vertical_align_mid texto_aviso_cabecera_web">jue. 23</div>
+						<div class="tamano_icon_aviso_cabecera ico_redondeado_aviso_verde"><div class="texto_icon_aviso_cabecera texto_aviso_cabecera_movil">jue. 23</div></div></a></li>
+	          </ul>
+
+	</div>
+</div>	
+	<div id="contenedor" class="contenedor fade">
+		<div>
+			<link rel="stylesheet" href="/css/leaflet/leaflet.css" />
+<link rel="stylesheet" href="/css/jquery-ui.css"/>
+<link rel="stylesheet" href="/css/api/variables.css"/> 
+<link rel="stylesheet" href="/css/api/avisos.css"/> 
+<link rel="stylesheet" href="/css/api/tabs.css"/>
+<link rel="stylesheet" href="/css/api/timeline.css"/>
+<link rel="stylesheet" href="/css/api/resumen_avisos.css"/>
+
+<script type="text/javascript" src="/js/animacion.js"></script>
+
+<script src="/js/leaflet/leaflet.js"></script>
+<script src="/js/leaflet/Leaflet.CanvasImageOverlay.js"></script>
+<script src="/js/leaflet/leaflet-extend.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/topojson/topojson.min.js"></script>
+<script src='/js/maps/maps.js'></script>
+<script src="/js/mpb/mpb_avisos.js"></script>
+
+<div class="rastro">
+	<div class="rastro_enlaces_largo">
+			<a href="/es/portada">Inicio</a><span> &rsaquo; </span><a href="/es/eltiempo">El tiempo</a><span> &rsaquo; </span><a href="/es/eltiempo/prediccion">Predicción</a><span> &rsaquo; </span><a href="/es/eltiempo/prediccion/avisos">Avisos</a></div>
+		</div>
+<a id="contenido"></a><div id="contenedor" class="contenedor fade">
+	<ul class="content-iconos-info">
+		<li>
+			<a href="#enlaces_asociados">
+				<img src="/imagenes/svg/ico_enlaces_asociados.svg" alt="Enlaces asociados" title="Enlaces asociados">
+			</a>
+		</li>
+		<li>
+			<a href="/es/eltiempo/prediccion/avisos/ayuda/">
+				<img src="/imagenes/svg/ico_ayuda.svg" alt="+Info" title="+Info">
+			</a>
+		</li>
+	</ul>
+	<h2 class="titulo">
+		Avisos meteorológicos</h2>
+	<a href="#" class="scrollToTop" title="Subir a la cabecera">
+		<span class="fuera">Subir a la cabecera</span>
+	</a>
+	<input id="fecha-inicio-PB" type="hidden" value="2026-04-21T12:00:00+02:00" />
+	<input id="fecha-inicio-CAN" type="hidden" value="2026-04-21T11:00:00+01:00" />
+	<input id="locale-id" type="hidden" value="es" />
+	
+	<input id="initZoom" type="hidden" value="8" />
+	<input id="initLocation" type="hidden"  data-init-location="7746" data-init-zona=""/>
+	<input id="initLocationName" type="hidden" value="46"/>
+	<div class="contenedor_izq">
+		<div class="aemet_fila">
+			<div id="contenedor-opciones" class="aemet_col30 nomargen" data-hide-print="true">
+				<div id="selector-ambito" data-ambito="PB" class="aemet"></div>
+				<div id="maximizar"	style="background-color: #ededed; text-align: right">
+					<img id="img_maximar" src="/imagenes/png/btn_max_1.png"
+						class="btn_visor" title="Maximizar Visor"> <img
+						id="img_minimizar" src="/imagenes/png/btn_min_1.png"
+						class="btn_visor" title="Minimizar Visor" style="display: none;">
+				</div>
+				<div class="secciones separador-secciones">
+					<div id="pestanas-dias" class="seccion-menu aemet"></div>
+					<div id="menu-fenomenos" class="seccion-menu aemet">
+						<div class="timeline-dias font-size-14px" id="pestana-tipo-aviso"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="aemet_col70 nomargen">
+				<div class="menu-mapa">
+					<ul class="tabs_descarga">
+						<li>
+							<p id="variable-seleccionada" class="variable-selec" data-hide-print="false"></p>
+						</li>
+						<li data-hide-print="true">
+							<img id="descarga_mapa" class="icono-descarga-geotopo" src="/imagenes/svg/ico_descarga_mapa.svg" alt="icono-mapa" title="Descarga de Mapa">
+						</li>
+						<li data-hide-print="true">
+							<a href="/es/geojson/download/avisos/geojson_1776765600.tar.gz" target="_new"> 
+								<img class="icono-descarga-geotopo" src="/imagenes/svg/ico_descarga.svg" alt="icono_descarga" 
+									title="Descarga de datos georeferenciados">
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="mapa" class="content-mapa"></div>
+				<div id="opciones-layers-map" data-hide-print="true"></div>
+				<div id="fecha-seleccionada" class="hide centrado cap-first pt-1" data-hide-print="false"></div>
+			</div>
+		</div>
+		<div class="aemet_fila avisos" data-hide-print="true">
+			<div id="speed-control" class="aemet_col10">
+				<div class="media-control">
+					<img src="/imagenes/png/iconos/ico_play.png" id="img-animacion">
+					<div class="speed-control">
+						<span class="speed-value">1x</span>
+						<div class="speed-button"></div>
+					</div>
+				</div>
+			</div>
+			<div id="horas-control" class="aemet_col90">
+				<div id="pestanas-horas" class="scrolltimeline"></div>
+			</div>
+		</div>
+		<div class="aemet_fila">
+			<div class="aemet_col100 row title pre-localizacion">
+				<h3 id="msg-localizacion">46</h3>
+			</div>
+		</div>
+		<div class="aemet_fila">
+			<div class="aemet_col100">
+				<div class="row title">
+					<h3>
+						Avisos meteorológicos</h3>
+				</div>
+				<div id="resumen-avisos"></div>
+			</div>
+		</div>
+		<div id="logo-aemet" class="ocultar">
+			<input id="ruta-logo-aemet" type="hidden" value="/imagenes/gif/aemet_mapa.gif" />
+		</div>
+		<div class="aemet_fila">
+			<div class="aemet_col100">
+				<div class="row title">
+					<h3 class="">Detalle de avisos</h3>
+					<img id="icono-imprimir" class="ico_fondo_redondeado icono_red_social_cabecera boton_red_soc_der"
+						src="/imagenes/png/iconos/ico-impresora.png" title="Imprimir">
+				</div>
+				<div class="contenedor-tabla" id="listado-avisos"></div>
+			</div>
+		</div>
+		<div>
+			<input id="fecha-seleccionada-origen" type="hidden" value="2026-04-21T12:00:00+02:00" />
+				<input id="dia-seleccionado-origen" type="hidden" value="" />
+			</div>
+		
+		<div class="aemet_fila">
+        	<div id="selector-ubicacion"></div>
+		</div>
+    </div>
+
+	<div class="contenedor_central_izq contenedor_contenido marginbottom35px">
+    <h3 class="titulo">
+        <a id="enlaces_asociados"  class="font_bold">
+            Enlaces relacionados:</a>
+    </h3>
+
+    <ul class="lincks">
+    <li>
+            <a href="https://meteoalarm.org/es/live/" title="Meteoalarm (se abrirá en una ventana nueva)" target="_blank">
+                Meteoalarm: Servicio de alerta meteorológica en Europa</a>
+        </li>
+    </ul>
+</div>
+</div>
+ 
+ <script>
+	$(document).ready(function() {
+		//Check to see if the window is top if not then display button
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 100) {
+				$('.scrollToTop').fadeIn();
+			} else {
+				$('.scrollToTop').fadeOut();
+			}
+		});
+
+		//Click event to scroll to top
+		$('.scrollToTop').click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 800);
+			return false;
+		});
+
+	});
+
+	var literalesJS = {"avisos.boletin.horacomienzo":"Hora de comienzo","674202":"Meseta de Soria","674201":"Ibérica de Soria","674203":"Sistema Central de Soria","avisos.boletin.nivelriesgo":"Nivel de aviso","bal":"Illes Balears","690804":"Litoral de Barcelona","avisos.rojo.desc":"Peligro extraordinario","690803":"Prelitoral de Barcelona","6908":"Barcelona","690802":"Depresión central de Barcelona","690801":"Prepirineo de Barcelona","ultimos.literal.seleccione_opcion":"Seleccione una opción","6917":"Girona","avisos.boletin.valor":"Valor","752001":"Gipuzkoa litoral","752002":"Gipuzkoa interior","avisos.boletin.ambgeo":"Ámbito geográfico","712701":"A Mariña","712702":"Centro de Lugo","712703":"Montaña de Lugo","712704":"Sur de Lugo","ceu":"Ciudad de Ceuta","711501":"Noroeste de A Coruña","6802":"Albacete","6925":"Lleida","625003":"Ribera del Ebro de Zaragoza","625002":"Ibérica zaragozana","625001":"Cinco Villas de Zaragoza","mapaprob.literal.mapa.cambiar.fondo":"Cambiar fondo","6819":"Guadalajara","700602":"La Siberia extremeña","700601":"Vegas del Guadiana","700604":"Sur de Badajoz","700603":"Barros y Serena","6813":"Ciudad Real","6816":"Cuenca","avisos.literal.noinfo":"No hay avisos meteorológicos.","avisos.boletin.niebla":"Nieblas","614101":"Sierra norte de Sevilla","614102":"Campiña sevillana","691701":"Pirineo de Girona","614103":"Sierra sur de Sevilla","691702":"Prelitoral de Girona","avisos.boletin.temp_min":"Temperaturas m&iacute;nimas","691703":"Ampurdán","avisos.literal.seleccionezona":"Seleccione zona de aviso:","691704":"Litoral sur de Girona","722801":"Sierra de Madrid","722802":"Metropolitana y Henares","6709":"Burgos","722803":"Sur, Vegas y Oeste","6943":"Tarragona","6705":"Ávila","avisos.boletin.aludes.img":"aludes","avisos.boletin.tormentas.img":"tormentas","681901":"Serranía de Guadalajara","avisos.boletin.polvo_suspension":"Polvo en suspensi&oacute;n","681903":"Alcarria de Guadalajara","681902":"Parameras de Molina","avisos.boletin.niebla.img":"niebla","avisos.amarillo.desc":"Peligro bajo","6724":"León","6845":"Toledo","6740":"Segovia","6742":"Soria","7952":"Melilla","674002":"Sistema Central de Segovia","7703":"Alacant\/Alicante","6734":"Palencia","674001":"Meseta de Segovia","6737":"Salamanca","avisos.boletin.rissagas":"Rissagas","7712":"Castelló\/Castellón","rio":"La Rioja","cle":"Castilla y León","6747":"Valladolid","6749":"Zamora","673402":"Meseta de Palencia","nav":"Comunidad Foral de Navarra","7851":"Ceuta","clm":"Castilla-La Mancha","713603":"Miño de Pontevedra","673401":"Cordillera Cantábrica de Palencia","612904":"Axarquía","612903":"Sol y Guadalhorce","612902":"Ronda","612901":"Antequera","659201":"Fuerteventura","733002":"Noroeste de Murcia","733001":"Altiplano de Murcia","733004":"Valle del Guadalentín, Lorca y Águilas","733003":"Vega del Segura","6639":"Cantabria","733005":"Campo de Cartagena y Mazarrón","672401":"Cordillera Cantábrica de León","674701":"Meseta de Valladolid","672402":"Bierzo de León","avisos.boletin.lluvias":"Lluvias","672403":"Meseta de León","avisos.boletin.RI":"Rissagas","7501":"Araba\/Álava","611804":"Costa granadina","611803":"Nevada y Alpujarras","611802":"Guadix y Baza","611801":"Cuenca del Genil","mad":"Comunidad de Madrid","684504":"La Mancha toledana","684503":"Montes de Toledo","684502":"Valle del Tajo","684501":"Sierra de San Vicente","avisos.boletin.viento":"Viento","694301":"Depresión central de Tarragona","694303":"Litoral norte de Tarragona","694302":"Prelitoral norte de Tarragona","694305":"Prelitoral sur de Tarragona","694304":"Litoral sur de Tarragona","avisos.boletin.PR":"Lluvias","659101":"Lanzarote","7626":"La Rioja","7746":"València\/Valencia","coo":"Canarias","avisos.boletin.comentario":"Comentario","7520":"Gipuzkoa","avisos.literal.sufijo_dias":"horario","avisos.boletin.polvo_suspension.img":"polvo_suspension","avisos.boletin.nevadas":"Nevadas","711502":"Oeste de A Coruña","711503":"Interior de A Coruña","avisos.boletin.observados":"Fenómenos observados","711504":"Suroeste de A Coruña","avisos.boletin.aludes":"Aludes","659004":"Este, sur y oeste de Gran Canaria","659003":"Cumbres de Gran Canaria","avisos.boletin.previstos":"Fenómenos previstos","avisos.boletin.VS":"Polvo en suspensi&oacute;n","659001":"Norte de Gran Canaria","avisos.boletin.VI":"Viento","6333":"Asturias","6454":"Mallorca","6453":"Ibiza y Formentera","6455":"Menorca","mel":"Ciudad de Melilla","and":"Andalucía","713602":"Interior de Pontevedra","713601":"Rias Baixas","avisos.boletin.deshielos.img":"deshielos","7431":"Navarra","6222":"Huesca","mapaprob.literal.mapa.sin.fondo":"Ocultar fondo","6104":"Almería","avisos.literal.todos":"Todos","743104":"Ribera del Ebro de Navarra","743103":"Pirineo navarro","743102":"Centro de Navarra","743101":"Vertiente cantábrica de Navarra","avisos.boletin.TO":"Tormentas","7548":"Bizkaia","ultimos.literal.seleccioncomunidad":"Comunidad autónoma o ciudad autónoma:","622201":"Pirineo oscense","6593":"La Palma","01":"Araba\/Álava","6592":"Fuerteventura","02":"Albacete","6111":"Cádiz","622203":"Sur de Huesca","6595":"El Hierro","03":"Alacant\/Alicante","622202":"Centro de Huesca","6594":"La Gomera","04":"Almería","05":"Ávila","6596":"Tenerife","06":"Badajoz","6114":"Córdoba","08":"Barcelona","09":"Burgos","6591":"Lanzarote","351":"Las Palmas (Lanzarote)","6590":"Gran Canaria","352":"Las Palmas (Fuerteventura)","353":"Las Palmas (Gran Canaria)","680201":"La Mancha albaceteña","680203":"Hellín y Almansa","680202":"Alcaraz y Segura","774601":"Interior norte de Valencia","774604":"Litoral sur de Valencia","774602":"Litoral norte de Valencia","10":"Cáceres","774603":"Interior sur de Valencia","ext":"Extremadura","11":"Cádiz","7330":"Murcia","12":"Castelló\/Castellón","13":"Ciudad Real","14":"Córdoba","6121":"Huelva","15":"A Coruña","16":"Cuenca","6123":"Jaén","6244":"Teruel","17":"Girona","18":"Granada","19":"Guadalajara","701004":"Villuercas y Montánchez","701001":"Norte de Cáceres","701003":"Meseta cacereña","701002":"Tajo y Alagón","659603":"Este, sur y oeste de Tenerife","681301":"Montes del norte y Anchuras","659602":"Área metropolitana de Tenerife","659601":"Norte de Tenerife","681303":"Valle del Guadiana","681302":"La Mancha de Ciudad Real","ultimos.literal.seleccion.provincia.isla":"Provincia, ciudad autónoma o isla:","681304":"Sierras de Alcudia y Madrona","771201":"Interior norte de Castellón","6118":"Granada","771202":"Litoral norte de Castellón","771203":"Interior sur de Castellón","771204":"Litoral sur de Castellón","20":"Gipuzkoa","21":"Huelva","22":"Huesca","23":"Jaén","24":"León","25":"Lleida","26":"La Rioja","670501":"Meseta de Ávila","27":"Lugo","28":"Madrid","29":"Málaga","670503":"Sur de Ávila","670502":"Sistema Central de Ávila","611403":"Subbética cordobesa","6250":"Zaragoza","762602":"Ibérica riojana","611402":"Campiña cordobesa","762601":"Ribera del Ebro de La Rioja","795201":"Melilla","avisos.boletin.rissagas.img":"rissagas","6129":"Málaga","arn":"Aragón","30":"Murcia","avisos.boletin.fenomeno":"Fenómeno","31":"Navarra","avisos.boletin.viento.img":"viento","32":"Ourense","33":"Asturias","34":"Palencia","6141":"Sevilla","36":"Pontevedra","37":"Salamanca","39":"Cantabria","7115":"A Coruña","381":"Santa Cruz de Tenerife (Tenerife)","382":"Santa Cruz de Tenerife (La Gomera)","383":"Santa Cruz de Tenerife (La Palma)","384":"Santa Cruz de Tenerife (El Hierro)","611401":"Sierra y Pedroches","avisos.boletin.naranyrojprov":"Fenómenos rojos y naranjas en","avisos.boletin.probabilidad":"Probabilidad","659501":"El Hierro","7228":"Madrid","40":"Segovia","41":"Sevilla","42":"Soria","43":"Tarragona","44":"Teruel","45":"Toledo","46":"València\/Valencia","ast":"Principado de Asturias","47":"Valladolid","48":"Bizkaia","49":"Zamora","7006":"Badajoz","7127":"Lugo","663901":"Litoral cántabro","50":"Zaragoza","51":"Ceuta","663904":"Cantabria del Ebro","52":"Melilla","663902":"Liébana","663903":"Centro y valle de Villaverde","7132":"Ourense","7010":"Cáceres","7136":"Pontevedra","avisos.boletin.lluvias.img":"lluvias","610403":"Poniente y Almería Capital","610404":"Levante almeriense","610401":"Valle del Almanzora y Los Vélez","610402":"Nacimiento y Campo de Tabernas","659401":"La Gomera","avisos.literal.resumen":"Resumen","avisos.boletin.NI":"Nieblas","esp1":"España","674901":"Sanabria","avisos.boletin.NE":"Nevadas","674902":"Meseta de Zamora","gal":"Galicia","avisos.boletin.temp_max.img":"temp_max","avisos.boletin.nevadas.img":"nevadas","713203":"Sur de Ourense","713204":"Montaña de Ourense","713205":"Valdeorras","770301":"Litoral norte de Alicante","770302":"Interior de Alicante","713201":"Noroeste de Ourense","770303":"Litoral sur de Alicante","713202":"Miño de Ourense","673701":"Meseta de Salamanca","673702":"Sistema Central de Salamanca","avisos.naranja.desc":"Peligro importante","avisos.boletin.evolucion":"Evolución","avisos.boletin.horafin":"Hora de finalización","673703":"Sur de Salamanca","659302":"Cumbres de La Palma","659304":"Oeste de La Palma","785101":"Ceuta","659303":"Este de La Palma","071":"Illes Balears (Menorca)","072":"Illes Balears (Mallorca)","avisos.boletin.CO":"Costeros","073":"Illes Balears (Ibiza-Formentera)","mapaprob.literal.mapa.sin.nombres":"Ocultar nombres","pva":"País Vasco","val":"Comunitat Valenciana","avisos.boletin.costeros.img":"costeros","avisos.boletin.BT":"Temperaturas m&iacute;nimas","localidades.literal.zona_avisos":"Zona de avisos","mapaprob.literal.mapa.sin.limites":"Ocultar límites","avisos.boletin.AT":"Temperaturas m&aacute;ximas","avisos.literal.sufijo_resumen":"diario","645501":"Menorca","670901":"Cordillera Cantábrica de Burgos","avisos.boletin.AL":"Aludes","670905":"Ibérica de Burgos","670904":"Meseta de Burgos","670903":"Condado de Treviño","670902":"Norte de Burgos","avisos.boletin.galernas":"Galernas","612103":"Litoral de Huelva","612102":"Andévalo y Condado","612101":"Aracena","avisos.boletin.deshielos":"Deshielos","750103":"Rioja alavesa","750102":"Llanada alavesa","750101":"Cuenca del Nervión","ultimos.literal.seleccioneestacion":"Estación:","645402":"Norte y nordeste de Mallorca","645401":"Sierra Tramontana","avisos.boletin.tormentas":"Tormentas","633301":"Litoral occidental asturiano","633302":"Litoral oriental asturiano","avisos.boletin.galernas.img":"galernas","avisos.boletin.temp_max":"Temperaturas m&aacute;ximas","avisos.boletin.GA":"Galernas","692501":"Valle de Arán","692502":"Pirineo de Lleida","692503":"Depresión central de Lleida","633303":"Suroccidental asturiana","633304":"Central y Valles Mineros","633305":"Cordillera y Picos de Europa","612304":"Capital y Montes de Jaén","611104":"Estrecho","611103":"Litoral gaditano","611102":"Campiña gaditana","611101":"Grazalema","645405":"Levante mallorquín","754802":"Bizkaia interior","645404":"Sur de Mallorca","645403":"Interior de Mallorca","754801":"Bizkaia litoral","avisos.boletin.naranyrojos":"Peligros importantes y extraordinarios","624402":"Gúdar y Maestrazgo","624403":"Bajo Aragón de Teruel","624401":"Albarracín y Jiloca","645301":"Ibiza y Formentera","mur":"Región de Murcia","avisos.boletin.costeros":"Costeros","612303":"Valle del Guadalquivir de Jaén","can":"Cantabria","612302":"Cazorla y Segura","612301":"Morena y Condado","cat":"Cataluña","avisos.boletin.temp_min.img":"temp_min","avisos.boletin.DH":"Deshielos","681602":"Serranía de Cuenca","681601":"Alcarria conquense","681603":"La Mancha conquense"};
+	var comunidades = [{"provincias":[{"idLocation":"6104","idccaa":"and","zonasAvisos":[{"id":"610404","nombre":"Levante almeriense"},{"id":"610404C","nombre":"Levante almeriense - Costa"},{"id":"610402","nombre":"Nacimiento y Campo de Tabernas"},{"id":"610403","nombre":"Poniente y Almería Capital"},{"id":"610403C","nombre":"Poniente y Almería Capital - Costa"},{"id":"610401","nombre":"Valle del Almanzora y Los Vélez"}],"id":"04","nombre":"Almería"},{"idLocation":"6111","idccaa":"and","zonasAvisos":[{"id":"611102","nombre":"Campiña gaditana"},{"id":"611104","nombre":"Estrecho"},{"id":"611104C","nombre":"Estrecho - Costa"},{"id":"611101","nombre":"Grazalema"},{"id":"611103","nombre":"Litoral gaditano"},{"id":"611103C","nombre":"Litoral gaditano - Costa"}],"id":"11","nombre":"Cádiz"},{"idLocation":"6114","idccaa":"and","zonasAvisos":[{"id":"611402","nombre":"Campiña cordobesa"},{"id":"611401","nombre":"Sierra y Pedroches"},{"id":"611403","nombre":"Subbética cordobesa"}],"id":"14","nombre":"Córdoba"},{"idLocation":"6118","idccaa":"and","zonasAvisos":[{"id":"611804","nombre":"Costa granadina"},{"id":"611804C","nombre":"Costa granadina - Costa"},{"id":"611801","nombre":"Cuenca del Genil"},{"id":"611802","nombre":"Guadix y Baza"},{"id":"611803","nombre":"Nevada y Alpujarras"}],"id":"18","nombre":"Granada"},{"idLocation":"6121","idccaa":"and","zonasAvisos":[{"id":"612102","nombre":"Andévalo y Condado"},{"id":"612101","nombre":"Aracena"},{"id":"612103","nombre":"Litoral de Huelva"},{"id":"612103C","nombre":"Litoral de Huelva - Costa"}],"id":"21","nombre":"Huelva"},{"idLocation":"6123","idccaa":"and","zonasAvisos":[{"id":"612304","nombre":"Capital y Montes de Jaén"},{"id":"612302","nombre":"Cazorla y Segura"},{"id":"612301","nombre":"Morena y Condado"},{"id":"612303","nombre":"Valle del Guadalquivir de Jaén"}],"id":"23","nombre":"Jaén"},{"idLocation":"6129","idccaa":"and","zonasAvisos":[{"id":"612901","nombre":"Antequera"},{"id":"612904","nombre":"Axarquía"},{"id":"612904C","nombre":"Axarquía - Costa"},{"id":"612902","nombre":"Ronda"},{"id":"612903","nombre":"Sol y Guadalhorce"},{"id":"612903C","nombre":"Sol y Guadalhorce - Costa"}],"id":"29","nombre":"Málaga"},{"idLocation":"6141","idccaa":"and","zonasAvisos":[{"id":"614102","nombre":"Campiña sevillana"},{"id":"614101","nombre":"Sierra norte de Sevilla"},{"id":"614103","nombre":"Sierra sur de Sevilla"}],"id":"41","nombre":"Sevilla"}],"idLocation":"61","id":"and","nombre":"Andalucía"},{"provincias":[{"idLocation":"6222","idccaa":"arn","zonasAvisos":[{"id":"622202","nombre":"Centro de Huesca"},{"id":"622201","nombre":"Pirineo oscense"},{"id":"622203","nombre":"Sur de Huesca"}],"id":"22","nombre":"Huesca"},{"idLocation":"6244","idccaa":"arn","zonasAvisos":[{"id":"624401","nombre":"Albarracín y Jiloca"},{"id":"624403","nombre":"Bajo Aragón de Teruel"},{"id":"624402","nombre":"Gúdar y Maestrazgo"}],"id":"44","nombre":"Teruel"},{"idLocation":"6250","idccaa":"arn","zonasAvisos":[{"id":"625001","nombre":"Cinco Villas de Zaragoza"},{"id":"625002","nombre":"Ibérica zaragozana"},{"id":"625003","nombre":"Ribera del Ebro de Zaragoza"}],"id":"50","nombre":"Zaragoza"}],"idLocation":"62","id":"arn","nombre":"Aragón"},{"provincias":[{"idLocation":"65352","idccaa":"coo","zonasAvisos":[{"id":"659201","nombre":"Fuerteventura"},{"id":"659201C","nombre":"Fuerteventura - Costa"}],"id":"352","nombre":"Las Palmas (Fuerteventura)"},{"idLocation":"65353","idccaa":"coo","zonasAvisos":[{"id":"659003","nombre":"Cumbres de Gran Canaria"},{"id":"659004","nombre":"Este, sur y oeste de Gran Canaria"},{"id":"659004C","nombre":"Este, sur y oeste de Gran Canaria - Costa"},{"id":"659001","nombre":"Norte de Gran Canaria"},{"id":"659001C","nombre":"Norte de Gran Canaria - Costa"}],"id":"353","nombre":"Las Palmas (Gran Canaria)"},{"idLocation":"65351","idccaa":"coo","zonasAvisos":[{"id":"659101","nombre":"Lanzarote"},{"id":"659101C","nombre":"Lanzarote - Costa"}],"id":"351","nombre":"Las Palmas (Lanzarote)"},{"idLocation":"65384","idccaa":"coo","zonasAvisos":[{"id":"659501","nombre":"El Hierro"},{"id":"659501C","nombre":"El Hierro - Costa"}],"id":"384","nombre":"Santa Cruz de Tenerife (El Hierro)"},{"idLocation":"65382","idccaa":"coo","zonasAvisos":[{"id":"659401","nombre":"La Gomera"},{"id":"659401C","nombre":"La Gomera - Costa"}],"id":"382","nombre":"Santa Cruz de Tenerife (La Gomera)"},{"idLocation":"65383","idccaa":"coo","zonasAvisos":[{"id":"659302","nombre":"Cumbres de La Palma"},{"id":"659303","nombre":"Este de La Palma"},{"id":"659303C","nombre":"Este de La Palma - Costa"},{"id":"659304","nombre":"Oeste de La Palma"},{"id":"659304C","nombre":"Oeste de La Palma - Costa"}],"id":"383","nombre":"Santa Cruz de Tenerife (La Palma)"},{"idLocation":"65381","idccaa":"coo","zonasAvisos":[{"id":"659602","nombre":"Área metropolitana de Tenerife"},{"id":"659602C","nombre":"Área metropolitana de Tenerife - Costa"},{"id":"659603","nombre":"Este, sur y oeste de Tenerife"},{"id":"659603C","nombre":"Este, sur y oeste de Tenerife - Costa"},{"id":"659601","nombre":"Norte de Tenerife"},{"id":"659601C","nombre":"Norte de Tenerife - Costa"}],"id":"381","nombre":"Santa Cruz de Tenerife (Tenerife)"}],"idLocation":"65","id":"coo","nombre":"Canarias"},{"provincias":[{"idLocation":"6639","idccaa":"can","zonasAvisos":[{"id":"663904","nombre":"Cantabria del Ebro"},{"id":"663903","nombre":"Centro y valle de Villaverde"},{"id":"663902","nombre":"Liébana"},{"id":"663901","nombre":"Litoral cántabro"},{"id":"663901C","nombre":"Litoral cántabro - Costa"}],"id":"39","nombre":"Cantabria"}],"idLocation":"66","id":"can","nombre":"Cantabria"},{"provincias":[{"idLocation":"6802","idccaa":"clm","zonasAvisos":[{"id":"680202","nombre":"Alcaraz y Segura"},{"id":"680203","nombre":"Hellín y Almansa"},{"id":"680201","nombre":"La Mancha albaceteña"}],"id":"02","nombre":"Albacete"},{"idLocation":"6813","idccaa":"clm","zonasAvisos":[{"id":"681302","nombre":"La Mancha de Ciudad Real"},{"id":"681301","nombre":"Montes del norte y Anchuras"},{"id":"681304","nombre":"Sierras de Alcudia y Madrona"},{"id":"681303","nombre":"Valle del Guadiana"}],"id":"13","nombre":"Ciudad Real"},{"idLocation":"6816","idccaa":"clm","zonasAvisos":[{"id":"681601","nombre":"Alcarria conquense"},{"id":"681603","nombre":"La Mancha conquense"},{"id":"681602","nombre":"Serranía de Cuenca"}],"id":"16","nombre":"Cuenca"},{"idLocation":"6819","idccaa":"clm","zonasAvisos":[{"id":"681903","nombre":"Alcarria de Guadalajara"},{"id":"681902","nombre":"Parameras de Molina"},{"id":"681901","nombre":"Serranía de Guadalajara"}],"id":"19","nombre":"Guadalajara"},{"idLocation":"6845","idccaa":"clm","zonasAvisos":[{"id":"684504","nombre":"La Mancha toledana"},{"id":"684503","nombre":"Montes de Toledo"},{"id":"684501","nombre":"Sierra de San Vicente"},{"id":"684502","nombre":"Valle del Tajo"}],"id":"45","nombre":"Toledo"}],"idLocation":"68","id":"clm","nombre":"Castilla-La Mancha"},{"provincias":[{"idLocation":"6705","idccaa":"cle","zonasAvisos":[{"id":"670501","nombre":"Meseta de Ávila"},{"id":"670502","nombre":"Sistema Central de Ávila"},{"id":"670503","nombre":"Sur de Ávila"}],"id":"05","nombre":"Ávila"},{"idLocation":"6709","idccaa":"cle","zonasAvisos":[{"id":"670903","nombre":"Condado de Treviño"},{"id":"670901","nombre":"Cordillera Cantábrica de Burgos"},{"id":"670905","nombre":"Ibérica de Burgos"},{"id":"670904","nombre":"Meseta de Burgos"},{"id":"670902","nombre":"Norte de Burgos"}],"id":"09","nombre":"Burgos"},{"idLocation":"6724","idccaa":"cle","zonasAvisos":[{"id":"672402","nombre":"Bierzo de León"},{"id":"672401","nombre":"Cordillera Cantábrica de León"},{"id":"672403","nombre":"Meseta de León"}],"id":"24","nombre":"León"},{"idLocation":"6734","idccaa":"cle","zonasAvisos":[{"id":"673401","nombre":"Cordillera Cantábrica de Palencia"},{"id":"673402","nombre":"Meseta de Palencia"}],"id":"34","nombre":"Palencia"},{"idLocation":"6737","idccaa":"cle","zonasAvisos":[{"id":"673701","nombre":"Meseta de Salamanca"},{"id":"673702","nombre":"Sistema Central de Salamanca"},{"id":"673703","nombre":"Sur de Salamanca"}],"id":"37","nombre":"Salamanca"},{"idLocation":"6740","idccaa":"cle","zonasAvisos":[{"id":"674001","nombre":"Meseta de Segovia"},{"id":"674002","nombre":"Sistema Central de Segovia"}],"id":"40","nombre":"Segovia"},{"idLocation":"6742","idccaa":"cle","zonasAvisos":[{"id":"674201","nombre":"Ibérica de Soria"},{"id":"674202","nombre":"Meseta de Soria"},{"id":"674203","nombre":"Sistema Central de Soria"}],"id":"42","nombre":"Soria"},{"idLocation":"6747","idccaa":"cle","zonasAvisos":[{"id":"674701","nombre":"Meseta de Valladolid"}],"id":"47","nombre":"Valladolid"},{"idLocation":"6749","idccaa":"cle","zonasAvisos":[{"id":"674902","nombre":"Meseta de Zamora"},{"id":"674901","nombre":"Sanabria"}],"id":"49","nombre":"Zamora"}],"idLocation":"67","id":"cle","nombre":"Castilla y León"},{"provincias":[{"idLocation":"6908","idccaa":"cat","zonasAvisos":[{"id":"690802","nombre":"Depresión central de Barcelona"},{"id":"690804","nombre":"Litoral de Barcelona"},{"id":"690804C","nombre":"Litoral de Barcelona - Costa"},{"id":"690803","nombre":"Prelitoral de Barcelona"},{"id":"690801","nombre":"Prepirineo de Barcelona"}],"id":"08","nombre":"Barcelona"},{"idLocation":"6917","idccaa":"cat","zonasAvisos":[{"id":"691703","nombre":"Ampurdán"},{"id":"691703C","nombre":"Ampurdán - Costa"},{"id":"691704","nombre":"Litoral sur de Girona"},{"id":"691704C","nombre":"Litoral sur de Girona - Costa"},{"id":"691701","nombre":"Pirineo de Girona"},{"id":"691702","nombre":"Prelitoral de Girona"}],"id":"17","nombre":"Girona"},{"idLocation":"6925","idccaa":"cat","zonasAvisos":[{"id":"692503","nombre":"Depresión central de Lleida"},{"id":"692502","nombre":"Pirineo de Lleida"},{"id":"692501","nombre":"Valle de Arán"}],"id":"25","nombre":"Lleida"},{"idLocation":"6943","idccaa":"cat","zonasAvisos":[{"id":"694301","nombre":"Depresión central de Tarragona"},{"id":"694303","nombre":"Litoral norte de Tarragona"},{"id":"694303C","nombre":"Litoral norte de Tarragona - Costa"},{"id":"694304","nombre":"Litoral sur de Tarragona"},{"id":"694304C","nombre":"Litoral sur de Tarragona - Costa"},{"id":"694302","nombre":"Prelitoral norte de Tarragona"},{"id":"694305","nombre":"Prelitoral sur de Tarragona"}],"id":"43","nombre":"Tarragona"}],"idLocation":"69","id":"cat","nombre":"Cataluña"},{"provincias":[{"idLocation":"7851","idccaa":"ceu","zonasAvisos":[{"id":"785101","nombre":"Ceuta"},{"id":"785101C","nombre":"Ceuta - Costa"}],"id":"51","nombre":"Ceuta"}],"idLocation":"78","id":"ceu","nombre":"Ciudad de Ceuta"},{"provincias":[{"idLocation":"7952","idccaa":"mel","zonasAvisos":[{"id":"795201","nombre":"Melilla"},{"id":"795201C","nombre":"Melilla - Costa"}],"id":"52","nombre":"Melilla"}],"idLocation":"79","id":"mel","nombre":"Ciudad de Melilla"},{"provincias":[{"idLocation":"7228","idccaa":"mad","zonasAvisos":[{"id":"722802","nombre":"Metropolitana y Henares"},{"id":"722801","nombre":"Sierra de Madrid"},{"id":"722803","nombre":"Sur, Vegas y Oeste"}],"id":"28","nombre":"Madrid"}],"idLocation":"72","id":"mad","nombre":"Comunidad de Madrid"},{"provincias":[{"idLocation":"7431","idccaa":"nav","zonasAvisos":[{"id":"743102","nombre":"Centro de Navarra"},{"id":"743103","nombre":"Pirineo navarro"},{"id":"743104","nombre":"Ribera del Ebro de Navarra"},{"id":"743101","nombre":"Vertiente cantábrica de Navarra"}],"id":"31","nombre":"Navarra"}],"idLocation":"74","id":"nav","nombre":"Comunidad Foral de Navarra"},{"provincias":[{"idLocation":"7703","idccaa":"val","zonasAvisos":[{"id":"770302","nombre":"Interior de Alicante"},{"id":"770301","nombre":"Litoral norte de Alicante"},{"id":"770301C","nombre":"Litoral norte de Alicante - Costa"},{"id":"770303","nombre":"Litoral sur de Alicante"},{"id":"770303C","nombre":"Litoral sur de Alicante - Costa"}],"id":"03","nombre":"Alacant\/Alicante"},{"idLocation":"7712","idccaa":"val","zonasAvisos":[{"id":"771201","nombre":"Interior norte de Castellón"},{"id":"771203","nombre":"Interior sur de Castellón"},{"id":"771202","nombre":"Litoral norte de Castellón"},{"id":"771202C","nombre":"Litoral norte de Castellón - Costa"},{"id":"771204","nombre":"Litoral sur de Castellón"},{"id":"771204C","nombre":"Litoral sur de Castellón - Costa"}],"id":"12","nombre":"Castelló\/Castellón"},{"idLocation":"7746","idccaa":"val","zonasAvisos":[{"id":"774601","nombre":"Interior norte de Valencia"},{"id":"774603","nombre":"Interior sur de Valencia"},{"id":"774602","nombre":"Litoral norte de Valencia"},{"id":"774602C","nombre":"Litoral norte de Valencia - Costa"},{"id":"774604","nombre":"Litoral sur de Valencia"},{"id":"774604C","nombre":"Litoral sur de Valencia - Costa"}],"id":"46","nombre":"València\/Valencia"}],"idLocation":"77","id":"val","nombre":"Comunitat Valenciana"},{"provincias":[{"idLocation":"7006","idccaa":"ext","zonasAvisos":[{"id":"700603","nombre":"Barros y Serena"},{"id":"700602","nombre":"La Siberia extremeña"},{"id":"700604","nombre":"Sur de Badajoz"},{"id":"700601","nombre":"Vegas del Guadiana"}],"id":"06","nombre":"Badajoz"},{"idLocation":"7010","idccaa":"ext","zonasAvisos":[{"id":"701003","nombre":"Meseta cacereña"},{"id":"701001","nombre":"Norte de Cáceres"},{"id":"701002","nombre":"Tajo y Alagón"},{"id":"701004","nombre":"Villuercas y Montánchez"}],"id":"10","nombre":"Cáceres"}],"idLocation":"70","id":"ext","nombre":"Extremadura"},{"provincias":[{"idLocation":"7115","idccaa":"gal","zonasAvisos":[{"id":"711503","nombre":"Interior de A Coruña"},{"id":"711501","nombre":"Noroeste de A Coruña"},{"id":"711501C","nombre":"Noroeste de A Coruña - Costa"},{"id":"711502","nombre":"Oeste de A Coruña"},{"id":"711502C","nombre":"Oeste de A Coruña - Costa"},{"id":"711504","nombre":"Suroeste de A Coruña"},{"id":"711504C","nombre":"Suroeste de A Coruña - Costa"}],"id":"15","nombre":"A Coruña"},{"idLocation":"7127","idccaa":"gal","zonasAvisos":[{"id":"712701","nombre":"A Mariña"},{"id":"712701C","nombre":"A Mariña - Costa"},{"id":"712702","nombre":"Centro de Lugo"},{"id":"712703","nombre":"Montaña de Lugo"},{"id":"712704","nombre":"Sur de Lugo"}],"id":"27","nombre":"Lugo"},{"idLocation":"7132","idccaa":"gal","zonasAvisos":[{"id":"713202","nombre":"Miño de Ourense"},{"id":"713204","nombre":"Montaña de Ourense"},{"id":"713201","nombre":"Noroeste de Ourense"},{"id":"713203","nombre":"Sur de Ourense"},{"id":"713205","nombre":"Valdeorras"}],"id":"32","nombre":"Ourense"},{"idLocation":"7136","idccaa":"gal","zonasAvisos":[{"id":"713602","nombre":"Interior de Pontevedra"},{"id":"713603","nombre":"Miño de Pontevedra"},{"id":"713603C","nombre":"Miño de Pontevedra - Costa"},{"id":"713601","nombre":"Rias Baixas"},{"id":"713601C","nombre":"Rias Baixas - Costa"}],"id":"36","nombre":"Pontevedra"}],"idLocation":"71","id":"gal","nombre":"Galicia"},{"provincias":[{"idLocation":"64073","idccaa":"bal","zonasAvisos":[{"id":"645301","nombre":"Ibiza y Formentera"},{"id":"645301C","nombre":"Ibiza y Formentera - Costa"}],"id":"073","nombre":"Illes Balears (Ibiza-Formentera)"},{"idLocation":"64072","idccaa":"bal","zonasAvisos":[{"id":"645403","nombre":"Interior de Mallorca"},{"id":"645405","nombre":"Levante mallorquín"},{"id":"645405C","nombre":"Levante mallorquín - Costa"},{"id":"645402","nombre":"Norte y nordeste de Mallorca"},{"id":"645402C","nombre":"Norte y nordeste de Mallorca - Costa"},{"id":"645401","nombre":"Sierra Tramontana"},{"id":"645401C","nombre":"Sierra Tramontana - Costa"},{"id":"645404","nombre":"Sur de Mallorca"},{"id":"645404C","nombre":"Sur de Mallorca - Costa"}],"id":"072","nombre":"Illes Balears (Mallorca)"},{"idLocation":"64071","idccaa":"bal","zonasAvisos":[{"id":"645501","nombre":"Menorca"},{"id":"645501C","nombre":"Menorca - Costa"}],"id":"071","nombre":"Illes Balears (Menorca)"}],"idLocation":"64","id":"bal","nombre":"Illes Balears"},{"provincias":[{"idLocation":"7626","idccaa":"rio","zonasAvisos":[{"id":"762602","nombre":"Ibérica riojana"},{"id":"762601","nombre":"Ribera del Ebro de La Rioja"}],"id":"26","nombre":"La Rioja"}],"idLocation":"76","id":"rio","nombre":"La Rioja"},{"provincias":[{"idLocation":"7501","idccaa":"pva","zonasAvisos":[{"id":"750101","nombre":"Cuenca del Nervión"},{"id":"750102","nombre":"Llanada alavesa"},{"id":"750103","nombre":"Rioja alavesa"}],"id":"01","nombre":"Araba\/Álava"},{"idLocation":"7548","idccaa":"pva","zonasAvisos":[{"id":"754802","nombre":"Bizkaia interior"},{"id":"754801","nombre":"Bizkaia litoral"},{"id":"754801C","nombre":"Bizkaia litoral - Costa"}],"id":"48","nombre":"Bizkaia"},{"idLocation":"7520","idccaa":"pva","zonasAvisos":[{"id":"752002","nombre":"Gipuzkoa interior"},{"id":"752001","nombre":"Gipuzkoa litoral"},{"id":"752001C","nombre":"Gipuzkoa litoral - Costa"}],"id":"20","nombre":"Gipuzkoa"}],"idLocation":"75","id":"pva","nombre":"País Vasco"},{"provincias":[{"idLocation":"6333","idccaa":"ast","zonasAvisos":[{"id":"633304","nombre":"Central y Valles Mineros"},{"id":"633305","nombre":"Cordillera y Picos de Europa"},{"id":"633301","nombre":"Litoral occidental asturiano"},{"id":"633301C","nombre":"Litoral occidental asturiano - Costa"},{"id":"633302","nombre":"Litoral oriental asturiano"},{"id":"633302C","nombre":"Litoral oriental asturiano - Costa"},{"id":"633303","nombre":"Suroccidental asturiana"}],"id":"33","nombre":"Asturias"}],"idLocation":"63","id":"ast","nombre":"Principado de Asturias"},{"provincias":[{"idLocation":"7330","idccaa":"mur","zonasAvisos":[{"id":"733001","nombre":"Altiplano de Murcia"},{"id":"733005","nombre":"Campo de Cartagena y Mazarrón"},{"id":"733005C","nombre":"Campo de Cartagena y Mazarrón - Costa"},{"id":"733002","nombre":"Noroeste de Murcia"},{"id":"733004","nombre":"Valle del Guadalentín, Lorca y Águilas"},{"id":"733004C","nombre":"Valle del Guadalentín, Lorca y Águilas - Costa"},{"id":"733003","nombre":"Vega del Segura"}],"id":"30","nombre":"Murcia"}],"idLocation":"73","id":"mur","nombre":"Región de Murcia"}];
+	var ambitos = [
+	    {
+	        id:'PB', 
+	        nombre: 'Península y Baleares',
+	        zoom: 6
+	    }, {
+	        id:'CAN', 
+	        nombre: 'Canarias',
+	        zoom: 8
+	    }, {
+	        id:'CEU', 
+	        nombre: 'Ceuta',
+	        zoom: 8
+	    },{
+	        id:'MEL', 
+	        nombre: 'Melilla',
+	        zoom: 8
+	    }
+	];
+</script>
+
+<div class="contenedor_central_izq">
+	<div class="disclaimer">
+		El Plan Nacional de Predicción y Vigilancia de Fenómenos Meteorológicos Adversos (Meteoalerta), pretende facilitar la más detallada y actualizada información posible sobre los fenómenos atmosféricos adversos que puedan afectar a España hasta un plazo máximo de 72 horas, así como mantener una información continuada de su evolución una vez que han iniciado su desarrollo.</div>
+</div>
+
+<div class="contenedor_redes_sociales">
+
+	 <div class="icono_red_social_cabecera">
+  		<a href="mailto:?subject=&amp;body=:%20http%3A%2F%2Fwww.aemet.es" target="_blank" title="Email" onclick="window.open('mailto:?subject=' + encodeURIComponent(document.title) + '&amp;body=' +  encodeURIComponent(document.URL)); return false;"><img src="/imagenes/png/redes_sociales/Email.png" alt="Email"/></a>
+  	</div>
+  	
+	<div class="like">
+  		<a class="message" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.aemet.es&amp;t=" title="Compartir en Facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(document.URL) + '&amp;t=' + encodeURIComponent(document.URL)); return false;">
+  			<img class="vertical_align_mid" src="/imagenes/png/redes_sociales/Facebook.png" alt="Compartir en Facebook"/>
+  			<span class="fb_count vertical_align_mid">0</span>
+  		</a>
+  	</div>
+  	
+  	<div class="tweet">
+	  <a href="#" class="message vertical_align_mid" title="Compartir en Twitter" data-via="AEMET_Esp" data-lang="es" data-hashtags="aemet"><img src="/imagenes/png/redes_sociales/Twitter.png" alt="Compartir en Twitter"/></a>
+    </div>
+
+  	<div class="icono_red_social_cabecera ver_movil">
+	  <a href="whatsapp://send?text=https://www.aemet.es/es/eltiempo/prediccion/avisos?w=rss&amp;p=46" class="message" target="_blank" title="Whatsapp">
+	  <img class="vertical_align_mid" src="/imagenes/png/redes_sociales/Whatsapp.png" alt="Whatsapp"/>
+	  </a>       		
+    </div>    
+  	
+	<div class="ico_fondo_redondeado icono_red_social_cabecera boton_red_soc_der" id="ico_imprimir">
+		<img id="link2_imprimir" src="/imagenes/png/iconos/ico-impresora.png" alt="Versión para imprimir (se abrirá en una ventana nueva)" title="Versión para imprimir (se abrirá en una ventana nueva)"/>
+	</div>
+	
+<script type="text/javascript">
+	var API_URL = "http://cdn.api.twitter.com/1/urls/count.json",
+	TWEET_URL = "https://twitter.com/intent/tweet",
+	SEARCH_URL = "https://twitter.com/search";
+	
+	
+	$(".tweet").each(function() {
+		var elem = $(this);
+		
+		url = encodeURIComponent(elem.attr("data-url") || document.URL),
+		
+		text = document.title,
+		via = elem.find(".message").attr("data-via") || "";
+			 
+		elem.find(".message").attr({
+		    href: TWEET_URL + "?source=http%3A%2F%2Fwww.aemet.es&text=" + text + "&url=" + url + "&via=" + via,
+		    target: "_blank"
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	var FB_API_URL = "https://api.facebook.com/restserver.php";
+	
+	
+	$(".like").each(function() {
+		var elem = $(this);
+		
+		url = encodeURIComponent(elem.attr("data-url") || document.URL),
+					
+		
+		$.getJSON(FB_API_URL +"?method=links.getStats&format=json&urls=" + url, function(data) {
+			if(data && data[0]){
+		    	elem.find(".fb_count").html(data[0].total_count);
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$("#ico_imprimir").on("click", function() {
+	    window.print();
+	});
+</script>
+
+</div></div>
+		</div>
+</div>
+<div class="contenedor_pie">
+		<div class="texto_copy">
+			&copy; AEMET. Autorizado el uso de la información y su reproducción citando a AEMET como autora de la misma.</div>
+		<div class="texto_pie">
+			<ul>
+				<li><a href="/es/mapaweb">Mapa web</a></li>
+					<li class="barra_separadora">|</li>
+					<li><a href="/es/nota_legal">Nota legal</a></li>
+					<li class="barra_separadora">|</li>
+					<li><a href="/es/accesibilidad">Accesibilidad web</a></li>
+					<li class="barra_separadora">|</li>
+					<li><a href="/es/enlaces">Enlaces</a></li>
+					<li class="barra_separadora">|</li>
+					<li><a href="/es/ayuda">Ayuda web</a></li>
+					</ul>
+		</div>		
+		
+		<div class="pie_movil">
+			<div class="pie-ico"> 
+				<p>Widget</p>
+				<div class="d-flex fondo_blanco">
+					<img src="/imagenes/svg/icoconfig.svg"/ alt="ico-widget"> 
+					<a href="/es/eltiempo/widgets"><span>El tiempo en tu web</span></a></div>
+			</div>
+			<div class="pie-ico">
+				<p>Descarga nuestra App</p>
+				<div class="d-flex fondo_blanco">
+					<img src="/imagenes/svg/icono_app.svg" alt="Aplicación oficial 'El Tiempo de AEMET' (Android e iOS) " title="Aplicación oficial 'El Tiempo de AEMET' (Android e iOS) " /> 
+					<a href="/es/app/eltiempodeAEMET"><span>App Oficial Android e iOS</span></a></div>
+			</div>
+			<div class="pie-ico pie-redes">
+				<p>Síguenos</p>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/facebook/AEMET_facebook"  class="red_social">
+							<img src="/imagenes/svg/Facebook-c.svg" alt="Facebook" title="Facebook" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/X/AEMET_X"  class="red_social">
+							<img src="/imagenes/svg/X-c.svg" alt="X" title="X" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/instagram/AEMET_Instagram"  class="red_social">
+							<img src="/imagenes/svg/Instagram-c.svg" alt="Instagram" title="Instagram" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/threads/AEMET_Threads"  class="red_social">
+							<img src="/imagenes/svg/Threads-c.svg" alt="Threads" title="Threads" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/bluesky/AEMET_Bluesky"  class="red_social">
+							<img src="/imagenes/svg/Bluesky-c.svg" alt="Bluesky" title="Bluesky" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/linkedin/AEMET_LinkedIn"  class="red_social">
+							<img src="/imagenes/svg/Linkedin-c.svg" alt="LinkedIn" title="LinkedIn" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/redes_sociales/youtube/AEMET_YouTube"  class="red_social">
+							<img src="/imagenes/svg/Youtube-c.svg" alt="YouTube" title="YouTube" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="https://aemetblog.wordpress.com" target="_blank" class="red_social">
+							<img src="/imagenes/svg/ico-blog2-c.svg" alt="Blog" title="Blog" />
+						</a>
+					</div>
+				<div class="icono_red_social_cabecera">
+						<a href="/es/rss_info"  class="red_social">
+							<img src="/imagenes/svg/Rss-c.svg" alt="RSS" title="RSS" />
+						</a>
+					</div>
+				</div>
+		</div>	
+		
+		<div class="pie_home">
+			<ul>
+				<li>
+					<a target="_blank" href="http://validator.w3.org/check?uri=referer" >
+						<img src="/imagenes/png/certificados/w3c_xhtml10.png" title="Valida XHTML 1.0 Transicional. (se abrirá en una ventana nueva)" alt="Valida XHTML 1.0 Transicional. (se abrirá en una ventana nueva)"/>
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3&amp;usermedium=all&amp;warning=no">
+						<img src="/imagenes/png/certificados/w3c_vcss.gif" title="Certificado W3C Valid CSS. (se abrirá en una ventana nueva)" alt="Certificado W3C Valid CSS. (se abrirá en una ventana nueva)" />
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="http://www.w3.org/WAI/WCAG1AA-Conformance"	>
+						<img src="/imagenes/png/certificados/w3c_waiAA.gif" title="Icono de conformidad WCAG 1.0 (Nivel AA) del W3C-WAI. Se abrirá en una ventana nueva." alt="Icono de conformidad WCAG 1.0 (Nivel AA) del W3C-WAI. Se abrirá en una ventana nueva."/>
+					</a>
+				</li>
+			
+			</ul>
+			
+		</div>		
+	</div>
+<script type="text/javascript">	
+	function aceptaCookies() 
+	{ 
+		 $.cookie("accept_cookies", "ok", { expires: 1095 ,path: '/' });
+	}
+	
+	var cookie_aemet = $.cookie("accept_cookies");
+	if(cookie_aemet == null)
+	{
+		 $("#popup_cookies").show();
+	}	
+	
+    $(document).ready(function () {
+        	var isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0;
+        	if (isSafari){
+        		$aspectRatio = "xMidYMid meet";
+        		var svg = document.getElementsByClassName("svg")[0];
+        		if (svg != null && svg !='') {
+	        		svg=svg.setAttribute("preserveAspectRatio", $aspectRatio);
+	        		svg = document.getElementsByClassName("svg_maritima")[0];
+	        		svg=svg.setAttribute("preserveAspectRatio", $aspectRatio);
+	        		svg = document.getElementsByClassName("svg_satelite")[0];
+	        		svg=svg.setAttribute("preserveAspectRatio", $aspectRatio);
+	        		svg = document.getElementsByClassName("svg_alta_mar")[0];
+	        		svg=svg.setAttribute("preserveAspectRatio", $aspectRatio);
+        		}
+        	}
+    });
+	
+	 new WOW().init();
+	</script>
+</body>
+</html>

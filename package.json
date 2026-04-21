@@ -33,6 +33,7 @@
     "scrape:ctbg": "npx tsx scripts/scrape-ctbg.ts",
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
     "scrape:pleno-videos": "npx tsx scripts/scrape-pleno-videos.ts",
+    "scrape:spain-ticker": "npx tsx scripts/scrape-spain-ticker.ts",
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
     "transcribe:batch": "bash scripts/transcribe-pleno-batch.sh",
     "llm:doctor": "npx tsx scripts/llm-doctor.ts",
@@ -46,7 +47,7 @@
     "queja-reply": "npx tsx scripts/apply-queja-response.ts",
     "sindic:add": "npx tsx scripts/add-sindic-resolucion.ts",
     "pleno-vote": "npx tsx scripts/apply-pleno-vote.ts",
-    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:metro-network && npm run scrape:fgv-gtfs && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos && npm run scrape:pleno-agendas && npm run scrape:wikidata && npm run scrape:ctbg && npm run scrape:consell-cv && npm run scrape:promise-suggestions",
+    "scrape:all": "npm run scrape:officials && npm run scrape:budget && npm run scrape:tenders && npm run scrape:padron && npm run scrape:participa && npm run scrape:press && npm run scrape:geo && npm run scrape:metro-network && npm run scrape:fgv-gtfs && npm run scrape:bdns && npm run scrape:paro && npm run scrape:plenos && npm run scrape:pleno-agendas && npm run scrape:wikidata && npm run scrape:ctbg && npm run scrape:consell-cv && npm run scrape:spain-ticker && npm run scrape:promise-suggestions",
     "prepare": "husky || true"
   },
   "dependencies": {

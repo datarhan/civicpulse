@@ -193,6 +193,31 @@ body.cp-kiosk .cp-live-container {
   50%      { opacity: 0.3; }
 }
 
+/* Bloomberg-style live ticker at top of the Direction D map.
+   Two identical chip lists are rendered back-to-back and we translate -50%
+   for a seamless loop. Pause on hover so readers can select a chip. */
+@keyframes cp-ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.cp-ticker-track { animation: cp-ticker-scroll 90s linear infinite; }
+[data-live-ticker]:hover .cp-ticker-track { animation-play-state: paused; }
+.cp-ticker-chip:hover {
+  background: rgba(96,165,250,.12) !important;
+  border-radius: 4px;
+}
+.cp-ticker-chip:focus-visible {
+  outline: 2px solid #60A5FA;
+  outline-offset: 1px;
+  border-radius: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cp-ticker-track {
+    animation: none !important;
+    overflow-x: auto;
+  }
+}
+
 /* Direction D — Clean Leaflet map */
 .cp-stylized-map {
   background: #EFE9D9 !important;

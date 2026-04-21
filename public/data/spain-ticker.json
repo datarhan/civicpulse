@@ -1,0 +1,797 @@
+{
+  "generatedAt": "2026-04-21T10:08:39.891Z",
+  "sources": {
+    "luz": {
+      "ok": true,
+      "asOf": "2026-04-21",
+      "unit": "€/kWh",
+      "currentValue": 0.12932,
+      "currentHour": 12,
+      "dayMin": 0.06067,
+      "dayMax": 0.24412,
+      "hourlyCurve": [
+        0.12813,
+        0.12329999999999999,
+        0.12099,
+        0.11921999999999999,
+        0.11723,
+        0.1174,
+        0.11859,
+        0.12822,
+        0.1434,
+        0.0988,
+        0.13312000000000002,
+        0.12897999999999998,
+        0.12932,
+        0.12894999999999998,
+        0.06067,
+        0.061259999999999995,
+        0.06175,
+        0.06157,
+        0.13541,
+        0.17611000000000002,
+        0.23159,
+        0.24412,
+        0.16823,
+        0.1576
+      ],
+      "deltaVsYesterdayPct": -5.884858034568154,
+      "sourceUrl": "https://www.ree.es/es/datos/mercados/precios-mercados-tiempo-real"
+    },
+    "gasolina": {
+      "ok": true,
+      "asOf": "2026-04-21",
+      "unit": "€/L",
+      "gasolina95": 1.4635,
+      "diesel": 1.7322777777777776,
+      "stationCount": 20,
+      "sourceUrl": "https://geoportalgasolineras.es"
+    },
+    "euribor12m": {
+      "ok": true,
+      "asOf": "2026-03",
+      "value": 2.5651364,
+      "unit": "%",
+      "history": [
+        {
+          "period": "2024-04",
+          "value": 3.7033333
+        },
+        {
+          "period": "2024-05",
+          "value": 3.6801364
+        },
+        {
+          "period": "2024-06",
+          "value": 3.6496
+        },
+        {
+          "period": "2024-07",
+          "value": 3.525913
+        },
+        {
+          "period": "2024-08",
+          "value": 3.1661364
+        },
+        {
+          "period": "2024-09",
+          "value": 2.9360476
+        },
+        {
+          "period": "2024-10",
+          "value": 2.6913043
+        },
+        {
+          "period": "2024-11",
+          "value": 2.5055714
+        },
+        {
+          "period": "2024-12",
+          "value": 2.43605
+        },
+        {
+          "period": "2025-01",
+          "value": 2.5252273
+        },
+        {
+          "period": "2025-02",
+          "value": 2.40695
+        },
+        {
+          "period": "2025-03",
+          "value": 2.398381
+        },
+        {
+          "period": "2025-04",
+          "value": 2.1434
+        },
+        {
+          "period": "2025-05",
+          "value": 2.0805714
+        },
+        {
+          "period": "2025-06",
+          "value": 2.0809048
+        },
+        {
+          "period": "2025-07",
+          "value": 2.079087
+        },
+        {
+          "period": "2025-08",
+          "value": 2.1139048
+        },
+        {
+          "period": "2025-09",
+          "value": 2.1715
+        },
+        {
+          "period": "2025-10",
+          "value": 2.1873043
+        },
+        {
+          "period": "2025-11",
+          "value": 2.2169
+        },
+        {
+          "period": "2025-12",
+          "value": 2.2671429
+        },
+        {
+          "period": "2026-01",
+          "value": 2.2453182
+        },
+        {
+          "period": "2026-02",
+          "value": 2.2207
+        },
+        {
+          "period": "2026-03",
+          "value": 2.5651364
+        }
+      ]
+    },
+    "bceMRO": {
+      "ok": true,
+      "asOf": "2026-04-21",
+      "value": 2.15,
+      "unit": "%",
+      "history": [
+        {
+          "period": "2026-04-10",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-11",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-12",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-13",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-14",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-15",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-16",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-17",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-18",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-19",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-20",
+          "value": 2.15
+        },
+        {
+          "period": "2026-04-21",
+          "value": 2.15
+        }
+      ]
+    },
+    "ipc": {
+      "ok": true,
+      "period": "2025-12",
+      "yoyChange": 2.9,
+      "unit": "%",
+      "history": [
+        {
+          "period": "2025-01",
+          "value": 2.9
+        },
+        {
+          "period": "2025-02",
+          "value": 3
+        },
+        {
+          "period": "2025-03",
+          "value": 2.3
+        },
+        {
+          "period": "2025-04",
+          "value": 2.2
+        },
+        {
+          "period": "2025-05",
+          "value": 2
+        },
+        {
+          "period": "2025-06",
+          "value": 2.3
+        },
+        {
+          "period": "2025-07",
+          "value": 2.7
+        },
+        {
+          "period": "2025-08",
+          "value": 2.7
+        },
+        {
+          "period": "2025-09",
+          "value": 3
+        },
+        {
+          "period": "2025-10",
+          "value": 3.1
+        },
+        {
+          "period": "2025-11",
+          "value": 3
+        },
+        {
+          "period": "2025-12",
+          "value": 2.9
+        }
+      ],
+      "sourceUrl": "https://www.ine.es/dynt3/inebase/es/index.htm?padre=1894"
+    },
+    "aemet": {
+      "ok": true,
+      "asOf": "2026-04-21T10:08:39.449Z",
+      "active": true,
+      "highestLevel": "amarillo",
+      "counts": {
+        "amarillo": 2,
+        "naranja": 0,
+        "rojo": 0
+      },
+      "sourceUrl": "https://www.aemet.es/es/eltiempo/prediccion/avisos?p=46"
+    },
+    "dgt": {
+      "ok": true,
+      "asOf": "2026-04-21T12:07:55.959+02:00",
+      "incidents": [
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "high",
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-11",
+          "description": "V-11",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-11",
+          "description": "V-11",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "high",
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "high",
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "high",
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "high",
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": "highest",
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "CV-35",
+          "description": "CV-35",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-31",
+          "description": "V-31",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "CV-35",
+          "description": "CV-35",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-31",
+          "description": "V-31",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": "medium",
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "medium",
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "CV-35",
+          "description": "CV-35",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        }
+      ],
+      "sourceUrl": "https://infocar.dgt.es"
+    }
+  }
+}
