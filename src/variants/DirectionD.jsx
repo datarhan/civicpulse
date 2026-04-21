@@ -593,13 +593,18 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
 /* ============================================================
    LEFT RAIL
    ============================================================ */
+// Order mirrors the wide Sidebar's NAV (src/components/Sidebar.jsx) so the
+// two navigation surfaces don't disagree on the progression. Metodología is
+// rail-only — it's an always-available link to the editorial contract on the
+// landing, where the wide sidebar isn't rendered.
 const RAIL_ITEMS = [
   { to: '/', label: 'Mirador', icon: Ic.home },
-  { to: '/promesas', label: 'Promesas', icon: Ic.scale },
-  { to: '/departamentos', label: 'Departamentos', icon: Ic.building },
+  { to: '/cambios', label: 'Novedades', icon: Ic.bell },
   { to: '/cargos', label: 'Cargos', icon: Ic.people },
   { to: '/presupuesto', label: 'Presupuesto', icon: Ic.coin },
   { to: '/plenos', label: 'Plenos', icon: Ic.scale },
+  { to: '/promesas', label: 'Promesas', icon: Ic.scale },
+  { to: '/departamentos', label: 'Departamentos', icon: Ic.building },
   { to: '/datos', label: 'Datos', icon: Ic.chart },
   { to: '/quejas', label: 'Quejas', icon: Ic.warn },
   { to: '/metodologia', label: 'Metodología', icon: Ic.cmd },
