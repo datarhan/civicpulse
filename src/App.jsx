@@ -9,18 +9,18 @@ import { useT } from './i18n'
 // Route-level code-split. DirectionD is the landing page and carries
 // Leaflet + CartoDB tile deps — lazy-loading drops initial JS to
 // the shell + sidebar + topbar until the user actually navigates.
-const DirectionD      = lazy(() => import('./variants/DirectionD'))
-const Quejas          = lazy(() => import('./pages/Quejas'))
+const DirectionD = lazy(() => import('./variants/DirectionD'))
+const Quejas = lazy(() => import('./pages/Quejas'))
 const QuejasDashboard = lazy(() => import('./pages/QuejasDashboard'))
-const QuejaDetail     = lazy(() => import('./pages/QuejaDetail'))
-const Cargos          = lazy(() => import('./pages/Cargos'))
-const Presupuesto     = lazy(() => import('./pages/Presupuesto'))
-const Plenos          = lazy(() => import('./pages/Plenos'))
-const Datos           = lazy(() => import('./pages/Datos'))
-const Promesas        = lazy(() => import('./pages/Promesas'))
-const Metodologia     = lazy(() => import('./pages/Metodologia'))
-const AvisoLegal      = lazy(() => import('./pages/AvisoLegal'))
-const Cambios         = lazy(() => import('./pages/Cambios'))
+const QuejaDetail = lazy(() => import('./pages/QuejaDetail'))
+const Cargos = lazy(() => import('./pages/Cargos'))
+const Presupuesto = lazy(() => import('./pages/Presupuesto'))
+const Plenos = lazy(() => import('./pages/Plenos'))
+const Datos = lazy(() => import('./pages/Datos'))
+const Promesas = lazy(() => import('./pages/Promesas'))
+const Metodologia = lazy(() => import('./pages/Metodologia'))
+const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
+const Cambios = lazy(() => import('./pages/Cambios'))
 
 const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
 
@@ -50,11 +50,15 @@ function InnerShell({ onOpenCmdK }) {
   const crumb = active ? t(active.labelKey) : 'CivicPulse'
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
-  useEffect(() => { setSidebarOpen(false) }, [location.pathname])
+  useEffect(() => {
+    setSidebarOpen(false)
+  }, [location.pathname])
 
   useEffect(() => {
     if (!sidebarOpen) return
-    const onKey = (e) => { if (e.key === 'Escape') setSidebarOpen(false) }
+    const onKey = (e) => {
+      if (e.key === 'Escape') setSidebarOpen(false)
+    }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
   }, [sidebarOpen])
@@ -113,8 +117,8 @@ export default function App() {
       ? tweaks.density === 'compact'
         ? '13.5px'
         : tweaks.density === 'spacious'
-        ? '15px'
-        : '14px'
+          ? '15px'
+          : '14px'
       : '14px'
     document.documentElement.style.fontSize = size
   }, [tweaks.density, onLanding])

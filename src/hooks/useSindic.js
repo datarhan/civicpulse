@@ -1,3 +1,4 @@
+// @ts-check
 import { useEffect, useState } from 'react'
 
 export const SINDIC_MATERIA_LABEL = {

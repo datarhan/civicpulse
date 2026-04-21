@@ -1,3 +1,4 @@
+// @ts-check
 import { useEffect } from 'react'
 
 const DEFAULT_TITLE = 'CivicPulse · Riba-roja de Túria'

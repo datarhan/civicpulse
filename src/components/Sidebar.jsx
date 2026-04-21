@@ -8,14 +8,63 @@ import { useT } from '../i18n'
 // `labelKey` is an i18n key; `label` is the fallback display string used by
 // breadcrumb matching when the key is not loaded (e.g. during SSR/hydration).
 export const NAV = [
-  { to: '/',            id: 'inicio',   labelKey: 'nav.inicio',   label: 'Panel',       icon: Ic.home,   shortcut: 'G H' },
-  { to: '/cambios',     id: 'cambios',  labelKey: 'nav.cambios',  label: 'Novedades',   icon: Ic.chart,  shortcut: 'G N' },
-  { to: '/cargos',      id: 'cargos',   labelKey: 'nav.cargos',   label: 'Cargos',      icon: Ic.people, shortcut: 'G C' },
-  { to: '/presupuesto', id: 'presup',   labelKey: 'nav.presup',   label: 'Presupuesto', icon: Ic.coin,   shortcut: 'G P' },
-  { to: '/plenos',      id: 'plenos',   labelKey: 'nav.plenos',   label: 'Plenos',      icon: Ic.scale,  shortcut: 'G L' },
-  { to: '/promesas',    id: 'promesas', labelKey: 'nav.promesas', label: 'Promesas',    icon: Ic.scale,  shortcut: 'G R' },
-  { to: '/datos',       id: 'datos',    labelKey: 'nav.datos',    label: 'Datos',       icon: Ic.chart,  shortcut: 'G D' },
-  { to: '/quejas',      id: 'quejas',   labelKey: 'nav.quejas',   label: 'Quejas',      icon: Ic.warn,   shortcut: 'G Q' },
+  { to: '/', id: 'inicio', labelKey: 'nav.inicio', label: 'Panel', icon: Ic.home, shortcut: 'G H' },
+  {
+    to: '/cambios',
+    id: 'cambios',
+    labelKey: 'nav.cambios',
+    label: 'Novedades',
+    icon: Ic.chart,
+    shortcut: 'G N',
+  },
+  {
+    to: '/cargos',
+    id: 'cargos',
+    labelKey: 'nav.cargos',
+    label: 'Cargos',
+    icon: Ic.people,
+    shortcut: 'G C',
+  },
+  {
+    to: '/presupuesto',
+    id: 'presup',
+    labelKey: 'nav.presup',
+    label: 'Presupuesto',
+    icon: Ic.coin,
+    shortcut: 'G P',
+  },
+  {
+    to: '/plenos',
+    id: 'plenos',
+    labelKey: 'nav.plenos',
+    label: 'Plenos',
+    icon: Ic.scale,
+    shortcut: 'G L',
+  },
+  {
+    to: '/promesas',
+    id: 'promesas',
+    labelKey: 'nav.promesas',
+    label: 'Promesas',
+    icon: Ic.scale,
+    shortcut: 'G R',
+  },
+  {
+    to: '/datos',
+    id: 'datos',
+    labelKey: 'nav.datos',
+    label: 'Datos',
+    icon: Ic.chart,
+    shortcut: 'G D',
+  },
+  {
+    to: '/quejas',
+    id: 'quejas',
+    labelKey: 'nav.quejas',
+    label: 'Quejas',
+    icon: Ic.warn,
+    shortcut: 'G Q',
+  },
 ]
 
 function CityChip() {
@@ -182,7 +231,6 @@ export function Sidebar({ open = false, onClose }) {
             )}
           </NavLink>
         ))}
-
       </nav>
 
       <div
@@ -191,21 +239,18 @@ export function Sidebar({ open = false, onClose }) {
           borderTop: '1px solid var(--border2)',
         }}
       >
-        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', letterSpacing: '.08em' }}>
+        <div
+          className="mono"
+          style={{ fontSize: 10, color: 'var(--ink50)', letterSpacing: '.08em' }}
+        >
           {t('sidebar.footer.tag')}
         </div>
         <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 3 }}>
-          <a
-            href="/aviso-legal"
-            style={{ color: 'var(--civic)', textDecoration: 'none' }}
-          >
+          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
             {t('sidebar.footer.legal')}
           </a>{' '}
           ·{' '}
-          <a
-            href="/metodologia"
-            style={{ color: 'var(--civic)', textDecoration: 'none' }}
-          >
+          <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
             {t('sidebar.footer.method')}
           </a>
         </div>

@@ -6,14 +6,22 @@ import { useT } from '../i18n'
 import { useState } from 'react'
 
 const WINDOW_OPTIONS = [
-  { days: 7,  label: '7 días' },
+  { days: 7, label: '7 días' },
   { days: 14, label: '14 días' },
   { days: 30, label: '30 días' },
 ]
 
 function WindowToggle({ current, onChange }) {
   return (
-    <div style={{ display: 'inline-flex', gap: 4, background: 'var(--soft)', padding: 2, borderRadius: 7 }}>
+    <div
+      style={{
+        display: 'inline-flex',
+        gap: 4,
+        background: 'var(--soft)',
+        padding: 2,
+        borderRadius: 7,
+      }}
+    >
       {WINDOW_OPTIONS.map((o) => (
         <button
           key={o.days}
@@ -42,7 +50,11 @@ function KindCard({ kind, items, formatDate }) {
       <SectionHead
         eyebrow={`${items.length} ${items.length === 1 ? 'cambio' : 'cambios'}`}
         title={KIND_LABEL_ES[kind] || kind}
-        right={<Pill tone={KIND_TONE[kind] || 'ghost'} size="xs">{items.length}</Pill>}
+        right={
+          <Pill tone={KIND_TONE[kind] || 'ghost'} size="xs">
+            {items.length}
+          </Pill>
+        }
       />
       <div style={{ marginTop: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
         {items.slice(0, 10).map((it, i) => (
@@ -66,22 +78,41 @@ function KindCard({ kind, items, formatDate }) {
                   href={it.url}
                   target="_blank"
                   rel="noreferrer"
-                  style={{ color: 'var(--ink80)', textDecoration: 'none', fontSize: 13, fontWeight: 500 }}
+                  style={{
+                    color: 'var(--ink80)',
+                    textDecoration: 'none',
+                    fontSize: 13,
+                    fontWeight: 500,
+                  }}
                 >
                   {it.title}
                 </a>
               ) : (
-                <Link to={it.url} style={{ color: 'var(--ink80)', textDecoration: 'none', fontSize: 13, fontWeight: 500 }}>
+                <Link
+                  to={it.url}
+                  style={{
+                    color: 'var(--ink80)',
+                    textDecoration: 'none',
+                    fontSize: 13,
+                    fontWeight: 500,
+                  }}
+                >
                   {it.title}
                 </Link>
               )}
               {it.subtitle && (
-                <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+                <div
+                  className="mono"
+                  style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}
+                >
                   {it.subtitle}
                 </div>
               )}
             </div>
-            <ShareWA text={it.shareText} url={it.external ? it.url : `https://civicpulse-virid.vercel.app${it.url}`} />
+            <ShareWA
+              text={it.shareText}
+              url={it.external ? it.url : `https://civicpulse-virid.vercel.app${it.url}`}
+            />
           </div>
         ))}
         {items.length > 10 && (
@@ -103,19 +134,39 @@ export default function Cambios() {
   const kinds = ['queja', 'pleno', 'licitacion', 'subvencion', 'prensa', 'participa']
 
   return (
-    <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}>
-      <div style={{ marginBottom: 18, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 12, flexWrap: 'wrap' }}>
+    <div
+      className="cp-page"
+      style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
+    >
+      <div
+        style={{
+          marginBottom: 18,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+          gap: 12,
+          flexWrap: 'wrap',
+        }}
+      >
         <div>
-          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 10.5,
+              color: 'var(--ink50)',
+              textTransform: 'uppercase',
+              letterSpacing: '.08em',
+            }}
+          >
             {t('cambios.eyebrow') || 'Esta semana en Riba-roja'}
           </div>
           <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
             {t('cambios.title') || 'Novedades'}
           </div>
           <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 720 }}>
-            Todo lo que ha cambiado en los últimos {windowDays} días: quejas nuevas, plenos, contratos
-            adjudicados, subvenciones, prensa y participación ciudadana. Cada tarjeta lleva un botón
-            verde (WA) para compartir por WhatsApp.
+            Todo lo que ha cambiado en los últimos {windowDays} días: quejas nuevas, plenos,
+            contratos adjudicados, subvenciones, prensa y participación ciudadana. Cada tarjeta
+            lleva un botón verde (WA) para compartir por WhatsApp.
           </div>
         </div>
         <WindowToggle current={days} onChange={setDays} />
@@ -123,7 +174,10 @@ export default function Cambios() {
 
       {!loading && totalCount === 0 && (
         <Card>
-          <SectionHead eyebrow="Sin cambios" title={`Sin novedades en los últimos ${windowDays} días`} />
+          <SectionHead
+            eyebrow="Sin cambios"
+            title={`Sin novedades en los últimos ${windowDays} días`}
+          />
           <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 6 }}>
             No se han registrado quejas, plenos, contratos, subvenciones ni prensa en este periodo.
             Prueba a ampliar la ventana a 14 o 30 días.
@@ -134,11 +188,13 @@ export default function Cambios() {
       {!loading && totalCount > 0 && (
         <>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 14 }}>
-            {kinds.filter((k) => byKind[k]?.length).map((k) => (
-              <Pill key={k} tone={KIND_TONE[k]} size="sm">
-                {KIND_LABEL_ES[k]} · {byKind[k].length}
-              </Pill>
-            ))}
+            {kinds
+              .filter((k) => byKind[k]?.length)
+              .map((k) => (
+                <Pill key={k} tone={KIND_TONE[k]} size="sm">
+                  {KIND_LABEL_ES[k]} · {byKind[k].length}
+                </Pill>
+              ))}
           </div>
           <div style={{ display: 'grid', gap: 14 }}>
             {kinds.map((k) => (

@@ -32,11 +32,13 @@ mkdir -p "$TRANSCRIPT_DIR" "$LOG_DIR"
 LIMIT=0          # 0 = no limit
 DRY_RUN=0
 FORCE=0
+SKIP=""          # comma-separated plenoIds to defer (e.g. long live-archived ones)
 while [ $# -gt 0 ]; do
   case "$1" in
     --limit)   shift; LIMIT="${1:-0}" ;;
     --dry-run) DRY_RUN=1 ;;
     --force)   FORCE=1 ;;
+    --skip)    shift; SKIP="${1:-}" ;;
     -h|--help)
       sed -n '1,/^# Exit codes/p' "$0" | sed 's/^# \{0,1\}//'
       exit 0 ;;
@@ -57,7 +59,7 @@ fi
 # transcripts, and emits one plenoId per line.
 plenos_json="$REPO_ROOT/public/data/plenos.json"
 targets=$(node "$REPO_ROOT/scripts/transcribe-pleno-batch-list.mjs" \
-  "$VIDEOS_JSON" "$plenos_json" "$TRANSCRIPT_DIR" "$FORCE")
+  "$VIDEOS_JSON" "$plenos_json" "$TRANSCRIPT_DIR" "$FORCE" "$SKIP")
 
 if [ -z "$targets" ]; then
   echo "[batch] nothing to do — every pleno with a matched video already has a transcript"

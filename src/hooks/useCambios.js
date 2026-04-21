@@ -1,3 +1,4 @@
+// @ts-check
 import { useMemo } from 'react'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL, prettyNeighborhood } from './useQuejas'
 import { usePlenos } from './usePlenos'
@@ -62,7 +63,9 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
           CATEGORY_LABEL[q.service_code] || q.service_code,
           q.address_string ? prettyNeighborhood(q.address_string) : null,
           STATE_LABEL[q.status] || q.status,
-        ].filter(Boolean).join(' · '),
+        ]
+          .filter(Boolean)
+          .join(' · '),
         url: `/quejas/${q.service_request_id.toLowerCase()}`,
         shareText: `Queja ${q.service_request_id} · ${CATEGORY_LABEL[q.service_code] || q.service_code}\n${(q.description || '').slice(0, 160)}`,
       })
@@ -99,7 +102,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     // Tenders — new adjudications (awardDate fresh).
     for (const c of tenders?.contracts || []) {
       if (!inWindow(c.awardDate, cut)) continue
-      const amount = typeof c.finalAmount === 'number' ? `€${c.finalAmount.toLocaleString('es-ES')}` : ''
+      const amount =
+        typeof c.finalAmount === 'number' ? `€${c.finalAmount.toLocaleString('es-ES')}` : ''
       out.push({
         kind: 'licitacion',
         date: c.awardDate,
