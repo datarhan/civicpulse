@@ -13,6 +13,7 @@ import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
 import { useWikidata } from '../hooks/useWikidata'
 import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
 import { useNextMetro } from '../hooks/useNextMetro'
+import { useMetroSchedule } from '../hooks/useMetroSchedule'
 import { useAirQuality, describeAqi } from '../hooks/useAirQuality'
 import { useTodayEvents } from '../hooks/useTodayEvents'
 import { useTodayPleno } from '../hooks/useTodayPleno'
@@ -212,9 +213,32 @@ function Header({ now }) {
    ============================================================ */
 function LiveStrip() {
   const { data: weather } = useLiveWeather()
-  const metro = useNextMetro()
+  const fallbackMetro = useNextMetro()
+  const { findNext } = useMetroSchedule()
   const { data: air } = useAirQuality()
   const [expanded, setExpanded] = useState(null) // 'weather' | 'air' | 'metro' | null
+  const [nowTick, setNowTick] = useState(() => Date.now())
+  useEffect(() => {
+    const id = setInterval(() => setNowTick(Date.now()), 15_000)
+    return () => clearInterval(id)
+  }, [])
+
+  // Prefer real GTFS data for Riba-roja terminus; fall back to the
+  // hardcoded hook when the JSON hasn't loaded yet.
+  const gtfsRibaRoja = findNext('riba-roja-de-turia', new Date(nowTick))
+  const gtfsNext = gtfsRibaRoja?.departures.find((d) => d.line === 'L9' && d.heading === 'València')
+  const metro = gtfsNext
+    ? {
+        stationName: 'Riba-roja de Túria',
+        departureLabel: gtfsNext.label,
+        minutesAway: gtfsNext.minutesAway,
+        afterMidnight: gtfsNext.afterMidnight,
+        heading: 'València',
+        scheduleValidUntil: gtfsRibaRoja.validThrough,
+        scheduleSource: 'FGV GTFS',
+        isRealtime: true,
+      }
+    : fallbackMetro
 
   useEffect(() => {
     if (!expanded) return
