@@ -596,6 +596,7 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
 const RAIL_ITEMS = [
   { to: '/', label: 'Mirador', icon: Ic.home },
   { to: '/promesas', label: 'Promesas', icon: Ic.scale },
+  { to: '/departamentos', label: 'Departamentos', icon: Ic.building },
   { to: '/cargos', label: 'Cargos', icon: Ic.people },
   { to: '/presupuesto', label: 'Presupuesto', icon: Ic.coin },
   { to: '/plenos', label: 'Plenos', icon: Ic.scale },
@@ -1670,9 +1671,8 @@ function DepartamentosBlockD() {
         )}
       </div>
       <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
-        Cruza votos de pleno, promesas electorales y quejas ciudadanas por concejalía. Un
-        plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma
-        automática.
+        Cruza votos de pleno, promesas electorales y quejas ciudadanas por concejalía. Un plazo
+        vencido se marca como aviso editorial — el estado nunca se modifica de forma automática.
       </div>
       <a
         href="/departamentos"
