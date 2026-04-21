@@ -627,15 +627,16 @@ function FullNetwork() {
         const color = colors[ref] || '#64748B'
         return (
           <div key={t.id} style={{ display: 'contents' }}>
-            {/* Dark casing so the coloured line reads as rail infrastructure,
-                not a road marking — especially important for tram segments
-                (L4/L6/L8/L10) whose tracks lie inside the street. */}
+            {/* Thin treatment for the whole regional network. Tracks
+                inside the municipality get over-drawn by Railways() below
+                with a bolder halo + stroke so local detail still reads as
+                dominant — the user's civic focus area.  */}
             <Polyline
               positions={t.line}
               pathOptions={{
                 color: '#0B0F19',
-                weight: 4,
-                opacity: 0.55,
+                weight: 2.4,
+                opacity: 0.42,
                 lineCap: 'round',
               }}
             />
@@ -643,8 +644,8 @@ function FullNetwork() {
               positions={t.line}
               pathOptions={{
                 color,
-                weight: 2.2,
-                opacity: 0.95,
+                weight: 1.3,
+                opacity: 0.9,
                 lineCap: 'round',
               }}
             />
