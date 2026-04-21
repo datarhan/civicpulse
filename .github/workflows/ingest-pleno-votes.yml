@@ -53,6 +53,8 @@ jobs:
           URL=$(field 'URL del acta oficial' | head -n1)
           DEPT=$(field 'Departamento / concejalía (opcional)' | head -n1)
           EXP=$(field 'Expediente (opcional)' | head -n1)
+          DUE_BY=$(field 'Plazo de ejecución (opcional, ISO YYYY-MM-DD)' | head -n1)
+          DUE_BY_SOURCE=$(field 'Cita literal del plazo (obligatoria si hay fecha, ≥20 caracteres)' | tr '\n' ' ' | sed 's/  */ /g' | awk '{$1=$1;print}')
           NOTE=$(field 'Nota editorial (opcional)' | tr '\n' ' ' | sed 's/  */ /g' | awk '{$1=$1;print}')
 
           if [ -z "$PLENO_ID" ] || [ -z "$ITEM" ] || [ -z "$OUTCOME" ] || [ -z "$TITLE" ] || [ -z "$VOTES_RAW" ] || [ -z "$URL" ]; then
@@ -96,8 +98,10 @@ jobs:
             if (process.argv[9]) rec.department = process.argv[9]
             if (process.argv[10]) rec.expediente = process.argv[10]
             if (process.argv[11]) rec.note = process.argv[11]
+            if (process.argv[12]) rec.dueBy = process.argv[12]
+            if (process.argv[13]) rec.dueBySource = process.argv[13]
             fs.writeFileSync('/tmp/vote.json', JSON.stringify(rec, null, 2))
-          " "$PLENO_ID" "$PADDED_ITEM" "$PLENO_DATE" "$ITEM" "$TITLE" "$OUTCOME" "$VOTE_JSON" "$URL" "$DEPT" "$EXP" "$NOTE"
+          " "$PLENO_ID" "$PADDED_ITEM" "$PLENO_DATE" "$ITEM" "$TITLE" "$OUTCOME" "$VOTE_JSON" "$URL" "$DEPT" "$EXP" "$NOTE" "$DUE_BY" "$DUE_BY_SOURCE"
 
           echo "pleno_id=$PLENO_ID" >> "$GITHUB_OUTPUT"
           echo "item=$PADDED_ITEM" >> "$GITHUB_OUTPUT"

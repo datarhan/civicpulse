@@ -86,6 +86,27 @@ body:
       label: "Expediente (opcional)"
       placeholder: "4305/2026/GEN"
 
+  - type: input
+    id: due-by
+    attributes:
+      label: "Plazo de ejecución (opcional, ISO YYYY-MM-DD)"
+      description: |
+        Fecha por la que el acuerdo debe estar ejecutado, si el acta lo indica
+        explícitamente. Si rellenas este campo, es obligatorio rellenar también
+        la cita literal del plazo en el campo siguiente.
+      placeholder: "2026-10-20"
+
+  - type: textarea
+    id: due-by-source
+    attributes:
+      label: "Cita literal del plazo (obligatoria si hay fecha, ≥20 caracteres)"
+      description: |
+        Texto exacto del acta que fija el plazo, por ejemplo:
+        «con plazo de ejecución de 6 meses desde la aprobación». Sin cita
+        verbatim el plazo no se publica — es una garantía editorial contra
+        las atribuciones sin base documental.
+      placeholder: "con plazo de ejecución de 6 meses desde la aprobación"
+
   - type: textarea
     id: note
     attributes:

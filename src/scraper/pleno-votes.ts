@@ -51,6 +51,21 @@ export interface PlenoVote {
   department?: string
   /** Optional: expediente number referenced in the acta. */
   expediente?: string
+  /**
+   * Optional: ISO date by which the approved motion is supposed to
+   * complete. Sourced verbatim from the acta (e.g. "con plazo de
+   * ejecución de 6 meses"). If present, `dueBySource` MUST also be set
+   * and contain the ≥20-char verbatim clause. The CLI does not
+   * synthesize this — a human curator types it from the acta.
+   */
+  dueBy?: string
+  /**
+   * Verbatim clause from the acta stating the plazo. Invariant: if
+   * `dueBy` is set, this must be ≥20 chars. Mirrors the verbatim-quote
+   * requirement on promises.ts evidence entries — stating a deadline
+   * is legally material.
+   */
+  dueBySource?: string
   /** Source citation — URL to the acta or a scanned PDF. Required. */
   sourceUrl: string
   /** Publisher of the source (typically "Ayuntamiento de Riba-roja de Túria"). */
@@ -124,6 +139,19 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
   must(typeof o.sourcePublisher === 'string' && o.sourcePublisher.trim().length > 0, `sourcePublisher required${ctx}`)
   must(typeof o.retrievedAt === 'string' && ISO_DATE.test(o.retrievedAt), `retrievedAt must be ISO date${ctx}`)
 
+  if (o.dueBy !== undefined) {
+    must(typeof o.dueBy === 'string' && ISO_DATE.test(o.dueBy), `dueBy must be ISO date${ctx}`)
+    must(
+      typeof o.dueBySource === 'string' && o.dueBySource.trim().length >= 20,
+      `dueBySource must be ≥20-char verbatim clause when dueBy is set${ctx}`,
+    )
+  } else if (o.dueBySource !== undefined) {
+    must(
+      typeof o.dueBySource === 'string' && o.dueBySource.trim().length >= 20,
+      `dueBySource must be ≥20 chars when present${ctx}`,
+    )
+  }
+
   const seenBlocs = new Set<string>()
   const votes: VoteByBloc[] = (o.votes as unknown[]).map((raw, i) => {
     const vc = ` (items[${idx}].votes[${i}])`
@@ -149,6 +177,8 @@ export function validateVote(v: unknown, idx = -1): PlenoVote {
     votes,
     ...(o.department ? { department: String(o.department) } : {}),
     ...(o.expediente ? { expediente: String(o.expediente) } : {}),
+    ...(o.dueBy ? { dueBy: o.dueBy as string } : {}),
+    ...(o.dueBySource ? { dueBySource: (o.dueBySource as string).trim() } : {}),
     sourceUrl: o.sourceUrl as string,
     sourcePublisher: (o.sourcePublisher as string).trim(),
     retrievedAt: o.retrievedAt as string,

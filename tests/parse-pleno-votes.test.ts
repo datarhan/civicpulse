@@ -129,4 +129,34 @@ describe('pleno-votes validator', () => {
     expect(snap.stats.total).toBe(0)
     expect(snap.items).toEqual([])
   })
+
+  it('accepts dueBy when accompanied by a ≥20-char dueBySource verbatim clause', () => {
+    const v = validateVote({
+      ...baseVote,
+      dueBy: '2026-10-20',
+      dueBySource: 'con plazo de ejecución de 6 meses desde la aprobación',
+    })
+    expect(v.dueBy).toBe('2026-10-20')
+    expect(v.dueBySource).toMatch(/plazo de ejecución/)
+  })
+
+  it('rejects dueBy without dueBySource (libel guardrail)', () => {
+    expect(() => validateVote({ ...baseVote, dueBy: '2026-10-20' })).toThrow(/dueBySource/)
+  })
+
+  it('rejects dueBy with a too-short dueBySource', () => {
+    expect(() =>
+      validateVote({ ...baseVote, dueBy: '2026-10-20', dueBySource: 'corto' }),
+    ).toThrow(/≥20|20 chars/)
+  })
+
+  it('rejects non-ISO dueBy', () => {
+    expect(() =>
+      validateVote({
+        ...baseVote,
+        dueBy: '20/10/2026',
+        dueBySource: 'con plazo de ejecución de 6 meses desde la aprobación',
+      }),
+    ).toThrow(/ISO/)
+  })
 })
