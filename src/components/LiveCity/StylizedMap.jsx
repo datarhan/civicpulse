@@ -13,11 +13,11 @@ import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
 import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMetro'
 
-// Metrovalencia line brand colours. L9 stays yellow-orange; L2 picks up
-// the pink/magenta badge colour so the popup's line badge and the map
-// track match. Adif heavy-rail uses a muted grey to read as secondary.
-const METRO_COLOR = '#F5B544' // L9 default
-const METRO_L2_COLOR = '#E94F96' // matches OTHER_METRO_STATIONS[*].lineColor
+// Metrovalencia official line brand colours (sourced from
+// metrovalencia.es icon SVGs, April 2026). Adif heavy-rail uses a muted
+// grey to read as secondary.
+const METRO_COLOR = '#A47E52' // L9 (icono--linea-9.svg)
+const METRO_L2_COLOR = '#B4397F' // L2 (icono--linea-2.svg)
 const HEAVY_RAIL_COLOR = '#6B7280'
 const BOUNDARY_COLOR = '#C85A3A'
 
@@ -316,8 +316,8 @@ function StationSchedulePopup({ name, match, rawStation }) {
             width: 16,
             height: 16,
             borderRadius: '50%',
-            background: '#F5B544',
-            color: '#0B0F19',
+            background: METRO_COLOR,
+            color: '#FFFFFF',
             display: 'grid',
             placeItems: 'center',
             fontFamily: 'DM Mono, monospace',
