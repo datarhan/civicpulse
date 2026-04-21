@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useQuejas } from '../hooks/useQuejas'
-import { useT } from '../i18n'
+import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
+import { useT, useLocale } from '../i18n'
 
 function QuejaBadge({ slug }) {
   const { data } = useQuejas()
@@ -34,6 +35,60 @@ function QuejaBadge({ slug }) {
       <span style={{ color: 'var(--ok)' }}>✓ {ok}</span>
       <span style={{ color: 'var(--civic)' }}>⏳ {pending}</span>
       {silencios > 0 && <span style={{ color: 'var(--crit)' }}>⚠ {silencios}</span>}
+    </div>
+  )
+}
+
+function primaryDepartmentSlug(portfolios) {
+  for (const p of portfolios ?? []) {
+    const slug = canonicalizeDepartment(p)
+    if (slug) return slug
+  }
+  return null
+}
+
+function DepartmentLinks({ portfolios }) {
+  const { locale } = useLocale()
+  // Collect unique slugs from all portfolios — some officials own 3-4
+  // concejalías and the user should be able to jump to any of them.
+  const slugs = []
+  const seen = new Set()
+  for (const p of portfolios ?? []) {
+    const s = canonicalizeDepartment(p)
+    if (s && !seen.has(s)) {
+      slugs.push(s)
+      seen.add(s)
+    }
+  }
+  if (slugs.length === 0) return null
+  return (
+    <div
+      style={{
+        marginTop: 8,
+        display: 'flex',
+        flexWrap: 'wrap',
+        gap: 6,
+        fontSize: 11,
+      }}
+    >
+      {slugs.slice(0, 4).map((slug) => (
+        <Link
+          key={slug}
+          to={`/departamentos/${slug}`}
+          className="mono"
+          style={{
+            fontSize: 10.5,
+            padding: '2px 7px',
+            background: 'var(--civic-soft)',
+            color: 'var(--civic)',
+            borderRadius: 3,
+            letterSpacing: '.04em',
+            textDecoration: 'none',
+          }}
+        >
+          {locale === 'ca' ? DEPARTMENT_LABEL[slug].ca : DEPARTMENT_LABEL[slug].es} →
+        </Link>
+      ))}
     </div>
   )
 }
@@ -159,6 +214,7 @@ function OfficialCard({ o, big = false }) {
           </a>
         )}
       </div>
+      <DepartmentLinks portfolios={o.portfolios} />
       <QuejaBadge slug={o.slug} />
     </Card>
   )
