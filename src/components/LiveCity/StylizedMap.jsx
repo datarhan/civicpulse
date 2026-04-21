@@ -393,8 +393,14 @@ function StationSchedulePopup({ name, match, rawStation }) {
  */
 function FullNetwork() {
   const { loading, error, data } = useMetroNetwork()
+  const { data: geo } = useGeo()
   if (loading || error || !data) return null
   const colors = indexLineColors(data)
+  // Stations already rendered at full size by the local Railways() layer.
+  // Skip them here to avoid double-markers on top of each other.
+  const localStationNames = new Set(
+    (geo?.railways?.stations || []).map((s) => s.name),
+  )
   return (
     <>
       {data.tracks.map((t) => {
@@ -417,6 +423,7 @@ function FullNetwork() {
         )
       })}
       {data.stations.map((s) => {
+        if (localStationNames.has(s.name)) return null
         const refs = s.lineRefs
         const fill = colors[refs[0]] || '#64748B'
         return (

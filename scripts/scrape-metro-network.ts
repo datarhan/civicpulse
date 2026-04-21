@@ -78,8 +78,7 @@ async function runQuery(ql: string): Promise<string> {
   const res = await fetch(OVERPASS, {
     method: 'POST',
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       'Content-Type': 'application/x-www-form-urlencoded',
       Accept: 'application/json',
     },
@@ -135,7 +134,10 @@ async function main() {
         const set = wayLines.get(m.ref) || new Set<string>()
         set.add(ref)
         wayLines.set(m.ref, set)
-      } else if (m.type === 'node' && (m.role === 'stop' || m.role === 'station' || m.role === 'platform')) {
+      } else if (
+        m.type === 'node' &&
+        (m.role === 'stop' || m.role === 'station' || m.role === 'platform')
+      ) {
         const set = stationLines.get(m.ref) || new Set<string>()
         set.add(ref)
         stationLines.set(m.ref, set)
