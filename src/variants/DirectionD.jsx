@@ -11,6 +11,7 @@ import { useParticipa, KIND_ICON } from '../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { useBudget, formatEuros as formatBudgetEuros } from '../hooks/useBudget'
 import { usePlenos, PLENO_LABEL } from '../hooks/usePlenos'
+import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useLiveWeather, describeWmo } from '../hooks/useLiveWeather'
 import { useNextMetro } from '../hooks/useNextMetro'
 import { useMetroSchedule } from '../hooks/useMetroSchedule'
@@ -1558,6 +1559,131 @@ function PromesasBlockD() {
   )
 }
 
+function DepartamentosBlockD() {
+  const { data: agendas } = usePlenoAgendas()
+  const officialsSnap = useOfficials()
+  const promisesSnap = usePromises()
+  if (!agendas?.stats) return null
+  const frozen = isPromiseFrozen(promisesSnap.data)
+  const vencidos = frozen ? 0 : (agendas.stats.plazosVencidosCount ?? 0)
+  const coverage = agendas.stats.deptCoverage ?? null
+  const totalDepts = 28
+  const totalOfficials = officialsSnap.data?.officials?.length ?? null
+  return (
+    <div
+      style={{
+        marginBottom: 18,
+        borderTop: '1px solid ' + PALETTE.hair,
+        paddingTop: 14,
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10,
+            color: PALETTE.ink60,
+            letterSpacing: '.12em',
+            textTransform: 'uppercase',
+            fontWeight: 700,
+          }}
+        >
+          Rendición de cuentas por concejalía
+        </div>
+        {!frozen && vencidos > 0 && (
+          <span
+            className="mono"
+            style={{
+              fontSize: 9.5,
+              color: PALETTE.warn,
+              background: 'rgba(217,119,6,.10)',
+              padding: '1px 6px',
+              borderRadius: 3,
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              fontWeight: 700,
+            }}
+          >
+            ⚠ {vencidos} plazos vencidos
+          </span>
+        )}
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+          gap: 8,
+          marginBottom: 10,
+        }}
+      >
+        <div>
+          <div
+            className="mono"
+            style={{
+              fontSize: 9,
+              color: PALETTE.ink50,
+              textTransform: 'uppercase',
+              letterSpacing: '.1em',
+            }}
+          >
+            Concejalías
+          </div>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 700, color: PALETTE.ink }}>
+            {totalDepts}
+          </div>
+        </div>
+        {coverage !== null && (
+          <div>
+            <div
+              className="mono"
+              style={{
+                fontSize: 9,
+                color: PALETTE.ink50,
+                textTransform: 'uppercase',
+                letterSpacing: '.1em',
+              }}
+            >
+              Con responsable
+            </div>
+            <div className="mono" style={{ fontSize: 18, fontWeight: 700, color: PALETTE.ink }}>
+              {coverage}/{totalDepts}
+            </div>
+          </div>
+        )}
+        {totalOfficials !== null && (
+          <div>
+            <div
+              className="mono"
+              style={{
+                fontSize: 9,
+                color: PALETTE.ink50,
+                textTransform: 'uppercase',
+                letterSpacing: '.1em',
+              }}
+            >
+              Concejales
+            </div>
+            <div className="mono" style={{ fontSize: 18, fontWeight: 700, color: PALETTE.ink }}>
+              {totalOfficials}
+            </div>
+          </div>
+        )}
+      </div>
+      <div style={{ fontSize: 11.5, color: PALETTE.ink80, lineHeight: 1.45, marginBottom: 6 }}>
+        Cruza votos de pleno, promesas electorales y quejas ciudadanas por concejalía. Un
+        plazo vencido se marca como aviso editorial — el estado nunca se modifica de forma
+        automática.
+      </div>
+      <a
+        href="/departamentos"
+        style={{ color: PALETTE.accent, textDecoration: 'none', fontSize: 11.5, fontWeight: 600 }}
+      >
+        Ver dashboard por departamento →
+      </a>
+    </div>
+  )
+}
+
 function EditorialColumn({ now }) {
   return (
     <aside
@@ -1578,6 +1704,7 @@ function EditorialColumn({ now }) {
       <AlcaldeBox />
       <CoalitionRing />
       <PromesasBlockD />
+      <DepartamentosBlockD />
       <PressBlockD />
       <LiveContracts />
       <ParticipaBlockD />
