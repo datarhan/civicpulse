@@ -180,7 +180,14 @@ function OfficialCard({ o, big = false }) {
               </span>
             )}
           </div>
-          <div style={{ fontSize: big ? 17 : 14, fontWeight: 600, lineHeight: 1.2 }}>{o.name}</div>
+          <div style={{ fontSize: big ? 17 : 14, fontWeight: 600, lineHeight: 1.2 }}>
+            <Link
+              to={`/cargos/${o.slug}`}
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              {o.name}
+            </Link>
+          </div>
           {o.portfolios.length > 0 && (
             <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.35 }}>
               {o.portfolios.slice(0, 4).join(' · ')}

@@ -14,6 +14,7 @@ const Quejas = lazy(() => import('./pages/Quejas'))
 const QuejasDashboard = lazy(() => import('./pages/QuejasDashboard'))
 const QuejaDetail = lazy(() => import('./pages/QuejaDetail'))
 const Cargos = lazy(() => import('./pages/Cargos'))
+const CargoDetalle = lazy(() => import('./pages/CargoDetalle'))
 const Presupuesto = lazy(() => import('./pages/Presupuesto'))
 const Plenos = lazy(() => import('./pages/Plenos'))
 const Datos = lazy(() => import('./pages/Datos'))
@@ -81,6 +82,7 @@ function InnerShell({ onOpenCmdK }) {
           <Suspense fallback={<Loading />}>
             <Routes>
               <Route path="/cargos" element={<Cargos />} />
+              <Route path="/cargos/:slug" element={<CargoDetalle />} />
               <Route path="/presupuesto" element={<Presupuesto />} />
               <Route path="/plenos" element={<Plenos />} />
               <Route path="/datos" element={<Datos />} />

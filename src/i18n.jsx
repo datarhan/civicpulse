@@ -90,6 +90,31 @@ const CATALOGUE = {
     'cambios.title': 'Novedades',
 
     // Departamentos — per-concejalía accountability dashboard
+    // Cargo (per-concejal) detail
+    'cargos.detalle.notFound': 'Concejal no encontrado.',
+    'cargos.detalle.stat.portfolios': 'Concejalías',
+    'cargos.detalle.stat.partyPromises': 'Promesas · grupo',
+    'cargos.detalle.stat.agendaItems': 'Puntos en pleno',
+    'cargos.detalle.stat.quejas': 'Quejas pendientes',
+    'cargos.detalle.portfolios.eyebrow': 'Áreas asignadas',
+    'cargos.detalle.portfolios.title': 'Concejalías que gestiona',
+    'cargos.detalle.promesas.eyebrow': 'Atribución de grupo',
+    'cargos.detalle.promesas.title': 'Promesas del grupo parlamentario',
+    'cargos.detalle.promesas.viewAll': 'Ver tracker completo →',
+    'cargos.detalle.promesas.empty': 'Sin promesas documentadas para este grupo.',
+    'cargos.detalle.promesas.more': 'Ver {n} promesas más →',
+    'cargos.detalle.agenda.eyebrow': 'Puntos de orden del día',
+    'cargos.detalle.agenda.title': 'Asuntos llevados al pleno por sus concejalías',
+    'cargos.detalle.agenda.empty': 'Sin puntos registrados en las áreas que gestiona.',
+    'cargos.detalle.agenda.more': '+ {n} puntos anteriores',
+    'cargos.detalle.quejas.eyebrow': 'Canal ciudadano',
+    'cargos.detalle.quejas.title': 'Quejas asignadas por el router',
+    'cargos.detalle.quejas.viewAll': 'Ver canal completo →',
+    'cargos.detalle.quejas.empty': 'Sin quejas asignadas actualmente.',
+    'cargos.detalle.methodology':
+      'Las promesas se atribuyen a nivel de grupo parlamentario, no a personas. Los puntos de orden del día se cuentan cuando la concejalía proponente coincide con un área asignada.',
+    'cargos.detalle.methodology.link': 'Leer metodología →',
+
     'departamentos.eyebrow': 'Rendición de cuentas',
     'departamentos.title': 'Departamentos · compromisos y plazos',
     'departamentos.subtitle':
@@ -178,6 +203,30 @@ const CATALOGUE = {
 
     'cambios.eyebrow': 'Esta setmana a Riba-roja',
     'cambios.title': 'Novetats',
+
+    'cargos.detalle.notFound': 'Regidor/a no trobat/da.',
+    'cargos.detalle.stat.portfolios': 'Regidories',
+    'cargos.detalle.stat.partyPromises': 'Promeses · grup',
+    'cargos.detalle.stat.agendaItems': 'Punts al ple',
+    'cargos.detalle.stat.quejas': 'Queixes pendents',
+    'cargos.detalle.portfolios.eyebrow': 'Àrees assignades',
+    'cargos.detalle.portfolios.title': 'Regidories que gestiona',
+    'cargos.detalle.promesas.eyebrow': 'Atribució de grup',
+    'cargos.detalle.promesas.title': 'Promeses del grup parlamentari',
+    'cargos.detalle.promesas.viewAll': 'Veure tracker complet →',
+    'cargos.detalle.promesas.empty': 'Sense promeses documentades per a este grup.',
+    'cargos.detalle.promesas.more': 'Veure {n} promeses més →',
+    'cargos.detalle.agenda.eyebrow': "Punts de l'ordre del dia",
+    'cargos.detalle.agenda.title': 'Assumptes portats al ple per les seues regidories',
+    'cargos.detalle.agenda.empty': 'Sense punts registrats en les àrees que gestiona.',
+    'cargos.detalle.agenda.more': '+ {n} punts anteriors',
+    'cargos.detalle.quejas.eyebrow': 'Canal ciutadà',
+    'cargos.detalle.quejas.title': 'Queixes assignades pel router',
+    'cargos.detalle.quejas.viewAll': 'Veure canal complet →',
+    'cargos.detalle.quejas.empty': 'Sense queixes assignades actualment.',
+    'cargos.detalle.methodology':
+      "Les promeses s'atribueixen a nivell de grup parlamentari, no a persones. Els punts de l'ordre del dia es compten quan la regidoria proposant coincideix amb una àrea assignada.",
+    'cargos.detalle.methodology.link': 'Llegir metodologia →',
 
     'departamentos.eyebrow': 'Rendició de comptes',
     'departamentos.title': 'Departaments · compromisos i terminis',
