@@ -23,13 +23,15 @@ npm run scrape:padron               # INE Tempus3 30-year population series
 npm run scrape:participa            # Votiveu (WordPress) citizen-participation blog
 npm run scrape:press                # Google News RSS aggregator
 npm run scrape:geo                  # OSM Overpass boundary + 21 neighborhoods
+npm run scrape:metro-network        # OSM Metrovalencia L1–L10 full network + stations
+npm run scrape:fgv-gtfs             # FGV GTFS static schedule (4 local L9/L2 stops)
 npm run scrape:bdns                 # MinHac BDNS subsidies
 npm run scrape:paro                 # SEPE monthly unemployment XLS
 npm run scrape:plenos               # Council-session index on ribarroja.es/plenos
 npm run scrape:pleno-agendas        # Agenda items per pleno (orden del día)
 npm run scrape:wikidata             # Wikidata Q23701 facts + cross-references
 npm run scrape:promise-suggestions  # Inference engine (never mutates promises)
-npm run scrape:all                  # runs all 13 sequentially (~2 min)
+npm run scrape:all                  # walks every autonomous scraper (~3 min)
 
 # Promise-tracker administration (schema-validated, PR-safe edits)
 npm run freeze:status               # inspect LOREG electoral-freeze state
@@ -126,22 +128,22 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**15 adapters** feed Riba-roja de Túria (INE **46214** · Wikidata
-**Q23701** · OSM relation **342356**). 14 are autonomous scrapers that
+**17 adapters** feed Riba-roja de Túria (INE **46214** · Wikidata
+**Q23701** · OSM relation **342356**). 16 are autonomous scrapers that
 refresh nightly via GitHub Actions at 04:30 UTC; 2 are curated files
 that only move via the `npm run reply` / `npm run sindic:add` / `npm
 run queja-reply` CLIs. Follow the RED→GREEN→wire TDD cadence when
-adding adapter #16.
+adding adapter #18.
 
 **Architecture**: `scripts/scrape-*.ts` fetch the raw payload → call a
 pure TypeScript parser in `src/scraper/*.ts` → write a typed snapshot
 to `public/data/*.json`. The SPA loads JSON at runtime via one hook per
 domain (`src/hooks/useX.js`) — Vercel serves the static JSON next to
 the app. Re-running any `npm run scrape:*` is idempotent;
-`npm run scrape:all` walks the autonomous adapters in ~2 min.
+`npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (14):
+# Autonomous scrapers (16):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
@@ -149,6 +151,8 @@ scripts/scrape-padron.ts              →  src/scraper/padron.ts            → 
 scripts/scrape-participa.ts           →  src/scraper/participa.ts         →  public/data/participa.json
 scripts/scrape-press.ts               →  src/scraper/press.ts             →  public/data/press.json
 scripts/scrape-geo.ts                 →  src/scraper/geo.ts               →  public/data/geo.json
+scripts/scrape-metro-network.ts       →  (inline parser)                  →  public/data/metro-network.json
+scripts/scrape-fgv-gtfs.ts            →  (inline parser)                  →  public/data/metro-schedule.json
 scripts/scrape-bdns.ts                →  src/scraper/bdns.ts              →  public/data/bdns.json
 scripts/scrape-paro.ts                →  src/scraper/paro.ts              →  public/data/paro.json
 scripts/scrape-plenos.ts              →  src/scraper/plenos.ts            →  public/data/plenos.json
@@ -180,6 +184,8 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Citizen participation (6 posts: 4 actividades + 2 encuestas) | `participa.ts` → `participa.json` | WordPress REST API at `participa.ribarroja.es/wp-json/wp/v2/posts` + `/categories` | `/plenos` "Participación ciudadana" grid; Direction D editorial column (`ParticipaBlockD`) |
 | Press (99 headlines from 18 outlets) | `press.ts` → `press.json` | Google News RSS `news.google.com/rss/search?q="Riba-roja de Túria"` with FNV fingerprint dedup; Spanish regional outlets (Levante-EMV, Las Provincias, Valencia Plaza, elDiario.es, Cadena SER, Comunica GVA, …) | `/ciudad` Prensa tab (replaces mock rotation); Direction D editorial column (`PressBlockD`) |
 | Geo (municipal boundary 484 pts + 21 neighborhoods) | `geo.ts` → `geo.json` | **OSM Overpass API** — relation 342356 stitched from outer ways + `place=neighbourhood/suburb/quarter/hamlet/village` inside the muni area | Direction D StylizedMap: dashed boundary polyline + OSM neighborhood dots/labels |
+| Full Metrovalencia network (10 lines L1–L10, ~1k tracks, 215 stations) | `scrape-metro-network.ts` → `metro-network.json` | **OSM Overpass API** — every `route=subway\|tram\|light_rail` relation tagged `network=Metrovalencia`/`operator=FGV`; platform polygons filtered out. Brand colours sourced from metrovalencia.es icon SVGs | Direction D StylizedMap `FullNetwork` layer: thin coloured polylines + small station dots across the whole region, plus a line-legend pill row |
+| Metrovalencia GTFS static schedule (L9 + L2 at 4 local stations) | `scrape-fgv-gtfs.ts` → `metro-schedule.json` | **MobilityDatabase mdb-1054** mirror of FGV's Google-Transit feed (FGV's own URL is inside-CDN only). Parses `calendar_dates.txt` + `stop_times.txt` + `trips.txt`; services classified by dominant day-of-week | Direction D topbar L9 chip (real next departure) + StylizedMap `GtfsSchedulePopup` (both directions per line on click) |
 | Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
 | Pleno agendas (246 items, 27 departments, 30 sessions) | `pleno-agenda.ts` → `plenos-agendas.json` | Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples | `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session |
 | Promises (16 curated) — PSOE / PP / VOX / Compromís | **human-curated** · `promises.ts` validates the schema | Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date | `/promesas`, `/` landing editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal` |
@@ -207,6 +213,12 @@ loop.
 - `useParticipa` + `KIND_ICON` / `KIND_LABEL`
 - `usePress` + `timeAgo()`
 - `useGeo`
+- `useMetroNetwork` + `indexLineColors`
+- `useMetroSchedule` + `findNext(slug, now)`
+- `useLiveWeather` + `describeWmo`
+- `useAirQuality` + `describeAqi`
+- `useNextMetro` + `computeStationSchedule` / `computeOtherStationSchedule` / `findMetroStation` + `L9_STATIONS` / `OTHER_METRO_STATIONS`
+- `useTodayEvents` · `useTodayPleno`
 - `useBdns`
 - `useWikidata`
 - `usePromises` + `usePromiseSuggestions` + `isPromiseFrozen()` + `PARTY_TONE` / `STATUS_LABEL` / `STATUS_TONE` / `TOPIC_LABEL`
