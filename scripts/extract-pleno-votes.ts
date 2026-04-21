@@ -13,13 +13,10 @@
  */
 import { readFileSync, writeFileSync, existsSync, readdirSync } from 'node:fs'
 import { resolve, basename } from 'node:path'
-import {
-  inferVotesFromTranscript,
-  type InferredVote,
-} from '../src/scraper/pleno-vote-inference'
+import { inferVotesFromTranscript, type InferredVote } from '../src/scraper/pleno-vote-inference'
 import { inferVotesWithLlm } from '../src/scraper/pleno-vote-llm'
 import { resetBudget } from '../src/llm/client'
-import { partyColor } from '../src/hooks/useOfficials.js'  // JS module; imported for PARTY_COLORS keys
+import { partyColor } from '../src/hooks/useOfficials.js' // JS module; imported for PARTY_COLORS keys
 // We only need bloc names here — read the officials JSON directly to derive
 // current seat counts, rather than depending on the React hooks.
 
@@ -31,7 +28,11 @@ const OFFICIALS_PATH = resolve('public/data/officials.json')
 
 type Engine = 'regex' | 'llm' | 'both'
 
-interface PlenoMeta { id: string; date: string; title?: string }
+interface PlenoMeta {
+  id: string
+  date: string
+  title?: string
+}
 interface Officials {
   officials?: Array<{ party: string }>
   composition?: Record<string, number>
@@ -43,7 +44,8 @@ function loadPlenos(): PlenoMeta[] {
 }
 
 function loadCurrentSeats(): { bloc: string; seats: number }[] {
-  if (!existsSync(OFFICIALS_PATH)) throw new Error('officials.json not found — run scrape:officials first')
+  if (!existsSync(OFFICIALS_PATH))
+    throw new Error('officials.json not found — run scrape:officials first')
   const officials = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials
   // Prefer the pre-aggregated composition map (single source of truth inside the file).
   if (officials.composition) {
@@ -57,53 +59,104 @@ function loadCurrentSeats(): { bloc: string; seats: number }[] {
   return [...counts.entries()].map(([bloc, seats]) => ({ bloc, seats }))
 }
 
-async function runRegex(plenoId: string, plenos: PlenoMeta[]): Promise<InferredVote[]> {
+async function runRegex(
+  plenoId: string,
+  plenos: PlenoMeta[],
+  minConfidence: number,
+): Promise<InferredVote[]> {
   const path = resolve(TRANSCRIPT_DIR, `${plenoId}.txt`)
-  if (!existsSync(path)) { process.stderr.write(`[extract·regex] transcript missing: ${path}\n`); return [] }
+  if (!existsSync(path)) {
+    process.stderr.write(`[extract·regex] transcript missing: ${path}\n`)
+    return []
+  }
   const pleno = plenos.find((p) => p.id === plenoId)
-  if (!pleno) { process.stderr.write(`[extract·regex] plenoId "${plenoId}" not in plenos.json\n`); return [] }
+  if (!pleno) {
+    process.stderr.write(`[extract·regex] plenoId "${plenoId}" not in plenos.json\n`)
+    return []
+  }
   const transcript = readFileSync(path, 'utf8')
-  const res = inferVotesFromTranscript(transcript, { plenoId, plenoDate: pleno.date, minConfidence: 0.6 })
-  process.stdout.write(`[extract·regex] ${plenoId}: ${res.stats.segmentsScanned} seg · ${res.stats.suggestionsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`)
+  const res = inferVotesFromTranscript(transcript, {
+    plenoId,
+    plenoDate: pleno.date,
+    minConfidence,
+  })
+  process.stdout.write(
+    `[extract·regex] ${plenoId}: ${res.stats.segmentsScanned} seg · ${res.stats.suggestionsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`,
+  )
   return res.suggestions.map((s) => ({ ...s, engine: 'regex' as const }))
 }
 
-async function runLlm(plenoId: string, plenos: PlenoMeta[], currentSeats: { bloc: string; seats: number }[]): Promise<InferredVote[]> {
+async function runLlm(
+  plenoId: string,
+  plenos: PlenoMeta[],
+  currentSeats: { bloc: string; seats: number }[],
+  minConfidence: number,
+): Promise<InferredVote[]> {
   const path = resolve(TRANSCRIPT_DIR, `${plenoId}.txt`)
-  if (!existsSync(path)) { process.stderr.write(`[extract·llm] transcript missing: ${path}\n`); return [] }
+  if (!existsSync(path)) {
+    process.stderr.write(`[extract·llm] transcript missing: ${path}\n`)
+    return []
+  }
   const pleno = plenos.find((p) => p.id === plenoId)
-  if (!pleno) { process.stderr.write(`[extract·llm] plenoId "${plenoId}" not in plenos.json\n`); return [] }
+  if (!pleno) {
+    process.stderr.write(`[extract·llm] plenoId "${plenoId}" not in plenos.json\n`)
+    return []
+  }
   const transcript = readFileSync(path, 'utf8')
   const res = await inferVotesWithLlm(transcript, {
     plenoId,
     plenoDate: pleno.date,
     currentSeats,
-    minConfidence: 0.6,
+    minConfidence,
   })
-  process.stdout.write(`[extract·llm] ${plenoId}: ${res.stats.segmentsScanned} seg · ${res.stats.suggestionsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`)
+  process.stdout.write(
+    `[extract·llm] ${plenoId}: ${res.stats.segmentsScanned} seg · ${res.stats.suggestionsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`,
+  )
   return res.suggestions.map((s) => ({ ...s, engine: 'llm' as const }))
 }
 
 async function main() {
   const args = process.argv.slice(2)
   let engine: Engine = 'regex'
+  let minConfidence = 0.6
   const targets: string[] = []
   for (let i = 0; i < args.length; i++) {
     const a = args[i]
-    if (a === '--engine') { engine = args[++i] as Engine; continue }
-    if (a === '--all') { targets.push('--all'); continue }
+    if (a === '--engine') {
+      engine = args[++i] as Engine
+      continue
+    }
+    if (a === '--min-confidence') {
+      minConfidence = Number(args[++i])
+      continue
+    }
+    if (a === '--all') {
+      targets.push('--all')
+      continue
+    }
     targets.push(a)
   }
   if (targets.length !== 1 || !['regex', 'llm', 'both'].includes(engine)) {
-    process.stderr.write('usage: extract-pleno-votes.ts <plenoId|--all> [--engine regex|llm|both]\n')
+    process.stderr.write(
+      'usage: extract-pleno-votes.ts <plenoId|--all> [--engine regex|llm|both] [--min-confidence 0.4]\n',
+    )
+    process.exit(2)
+  }
+  if (!Number.isFinite(minConfidence) || minConfidence < 0 || minConfidence > 1) {
+    process.stderr.write('--min-confidence must be between 0 and 1\n')
     process.exit(2)
   }
 
   const plenos = loadPlenos()
   let ids: string[]
   if (targets[0] === '--all') {
-    if (!existsSync(TRANSCRIPT_DIR)) { process.stderr.write('[extract] no transcripts on disk yet\n'); process.exit(0) }
-    ids = readdirSync(TRANSCRIPT_DIR).filter((f) => f.endsWith('.txt')).map((f) => basename(f, '.txt'))
+    if (!existsSync(TRANSCRIPT_DIR)) {
+      process.stderr.write('[extract] no transcripts on disk yet\n')
+      process.exit(0)
+    }
+    ids = readdirSync(TRANSCRIPT_DIR)
+      .filter((f) => f.endsWith('.txt'))
+      .map((f) => basename(f, '.txt'))
   } else {
     ids = [targets[0]]
   }
@@ -112,13 +165,17 @@ async function main() {
 
   if (engine === 'llm' || engine === 'both') {
     resetBudget()
-    process.stdout.write(`[extract] LLM engine active · seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')}\n`)
+    process.stdout.write(
+      `[extract] LLM engine active · seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')}\n`,
+    )
   }
 
   const fresh: InferredVote[] = []
   for (const id of ids) {
-    if (engine === 'regex' || engine === 'both') fresh.push(...(await runRegex(id, plenos)))
-    if (engine === 'llm' || engine === 'both') fresh.push(...(await runLlm(id, plenos, currentSeats)))
+    if (engine === 'regex' || engine === 'both')
+      fresh.push(...(await runRegex(id, plenos, minConfidence)))
+    if (engine === 'llm' || engine === 'both')
+      fresh.push(...(await runLlm(id, plenos, currentSeats, minConfidence)))
   }
 
   // Merge with existing suggestions, filtering out anything from the same
@@ -166,7 +223,11 @@ async function main() {
       regex: fresh.filter((s) => s.plenoId === id && s.engine === 'regex'),
       llm: fresh.filter((s) => s.plenoId === id && s.engine === 'llm'),
     }))
-    writeFileSync(COMPARISON_PATH, JSON.stringify({ generatedAt: new Date().toISOString(), comparison }, null, 2) + '\n', 'utf8')
+    writeFileSync(
+      COMPARISON_PATH,
+      JSON.stringify({ generatedAt: new Date().toISOString(), comparison }, null, 2) + '\n',
+      'utf8',
+    )
     process.stdout.write(`[extract] wrote A/B comparison → ${COMPARISON_PATH}\n`)
   }
 }

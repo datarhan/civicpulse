@@ -1,13 +1,220 @@
 {
-  "generatedAt": "2026-04-21T09:05:36.379Z",
+  "generatedAt": "2026-04-21T18:42:12.842Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 0,
-    "byEngine": {},
-    "byPleno": {}
+    "total": 6,
+    "byEngine": {
+      "llm": 6
+    },
+    "byPleno": {
+      "1sqj7is": 6
+    }
   },
-  "items": []
+  "items": [
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": null,
+      "excerpt": "Pasemos a la votación, si lo queréis. ¿Alguna cosa más? Pasemos a votar. Vamos a votar. Pues acá se ha aprobado por unanimidad. Pasemos al punto 4.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": null,
+      "excerpt": "pasemos al punto este del cinquero del casco a votarlo / vamos a votar / 20 votos a favor / una abstención / globalista a favor / Partido Popular a favor / Vox a favor / el Primer Podem compromiso",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": null,
+      "excerpt": "pasemos a la segunda votación para ellos vamos a votar falta Raquel que no está pues se ha aprobado por unanimidad ¿vale? de todos los grupos políticos pasemos al 7 que es memoria histórica o memoria democrática",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": null,
+      "excerpt": "Pasemos a las votaciones de la moción. [...] 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. Es que ahora ya pasaremos. Compromiso.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": null,
+      "excerpt": "Pasemos a las votaciones de la moción. Falta, me falta un voto. Mireu tu y su voto. Ya está. 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. Es que ahora ya pasaremos. Compromiso.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.62,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": null,
+      "excerpt": "Pasemos a las votaciones de la moción. Falta, me falta un voto. Mireu tu y su voto. Ya está. 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. Es que ahora ya pasaremos. Compromiso.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.65,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    }
+  ]
 }

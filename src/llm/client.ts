@@ -1,10 +1,11 @@
 /**
  * LLM client abstraction.
  *
- * Three backends, same call signature:
- *   - Ollama     (default, local, free)      — POST /api/chat
- *   - OpenAI     (cloud, paid)               — /v1/chat/completions (json_schema)
- *   - Anthropic  (cloud, paid, recommended)  — /v1/messages (tool_use forced)
+ * Four backends, same call signature:
+ *   - Ollama       (local, free)                 — POST /api/chat
+ *   - OpenAI       (cloud, pay-per-token)        — /v1/chat/completions (json_schema)
+ *   - Anthropic    (cloud, pay-per-token)        — /v1/messages (tool_use)
+ *   - claude-code  (Max plan, rate-limited, $0)  — spawns `claude -p` CLI with --json-schema
  *
  * Anthropic is the recommended backend for the vote-extraction pipeline:
  * it handles noisy Spanish/Valencian Whisper transcripts better than a
@@ -31,7 +32,7 @@ import { zodToJsonSchema } from './schemas'
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
-export type Backend = 'ollama' | 'openai' | 'anthropic'
+export type Backend = 'ollama' | 'openai' | 'anthropic' | 'claude-code'
 
 export interface ClientConfig {
   backend: Backend
@@ -41,6 +42,14 @@ export interface ClientConfig {
   openaiApiKey?: string
   anthropicModel: string
   anthropicApiKey?: string
+  /**
+   * claude-code backend: which model alias to pass via `claude --model`.
+   * Accepts 'haiku' | 'sonnet' | 'opus' | full model IDs.
+   * Max plan covers this at $0 billing — API-equivalent cost is reported
+   * in telemetry as an informational number (envelope.total_cost_usd).
+   */
+  claudeCodeModel: string
+  claudeCodeBin: string
   cacheDir: string
   maxTokensPerRun: number
 }
@@ -57,6 +66,11 @@ export function loadConfigFromEnv(): ClientConfig {
     // inadequate; drop back to claude-haiku-4-5-20251001 once stable.
     anthropicModel: process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001',
     anthropicApiKey: process.env.ANTHROPIC_API_KEY,
+    // Default sonnet — Haiku tends to return null on noisy Whisper transcripts
+    // (WER ~5-10% on Spanish proper nouns). Sonnet reasons through the
+    // garbled tokens and still extracts votes at moderate confidence.
+    claudeCodeModel: process.env.CLAUDE_CODE_MODEL || 'sonnet',
+    claudeCodeBin: process.env.CLAUDE_CODE_BIN || 'claude',
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
   }
@@ -65,6 +79,7 @@ export function loadConfigFromEnv(): ClientConfig {
 function backendModel(config: ClientConfig): string {
   if (config.backend === 'ollama') return config.ollamaModel
   if (config.backend === 'openai') return config.openaiModel
+  if (config.backend === 'claude-code') return `claude-code:${config.claudeCodeModel}`
   return config.anthropicModel
 }
 
@@ -80,11 +95,14 @@ let currentBudget: RunBudget | null = null
 /** Reset the per-run budget. Called at the top of every CLI script that uses
  *  the LLM — prevents a runaway from carrying across batch boundaries. */
 export function resetBudget(limit?: number) {
-  currentBudget = { tokensUsed: 0, limit: limit ?? Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000) }
+  currentBudget = {
+    tokensUsed: 0,
+    limit: limit ?? Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
+  }
 }
 
 function chargeBudget(tokens: number): boolean {
-  if (!currentBudget) return true  // unbounded when explicitly unused
+  if (!currentBudget) return true // unbounded when explicitly unused
   currentBudget.tokensUsed += tokens
   return currentBudget.tokensUsed <= currentBudget.limit
 }
@@ -137,7 +155,11 @@ function cacheKey(opts: {
 function readCache<T>(cacheDir: string, key: string): CacheEntry<T> | null {
   const path = resolve(cacheDir, `${key}.json`)
   if (!existsSync(path)) return null
-  try { return JSON.parse(readFileSync(path, 'utf8')) as CacheEntry<T> } catch { return null }
+  try {
+    return JSON.parse(readFileSync(path, 'utf8')) as CacheEntry<T>
+  } catch {
+    return null
+  }
 }
 
 function writeCache<T>(cacheDir: string, key: string, entry: CacheEntry<T>): void {
@@ -147,7 +169,10 @@ function writeCache<T>(cacheDir: string, key: string, entry: CacheEntry<T>): voi
 
 export function gatherCacheStats(cacheDir: string): CacheStats {
   if (!existsSync(cacheDir)) return { entries: 0, totalTokens: 0, totalCostUSD: 0, totalBytes: 0 }
-  let entries = 0, totalTokens = 0, totalCost = 0, totalBytes = 0
+  let entries = 0,
+    totalTokens = 0,
+    totalCost = 0,
+    totalBytes = 0
   for (const name of readdirSync(cacheDir)) {
     if (!name.endsWith('.json')) continue
     const p = resolve(cacheDir, name)
@@ -157,7 +182,9 @@ export function gatherCacheStats(cacheDir: string): CacheStats {
       entries += 1
       totalTokens += e.tokenCount ?? 0
       totalCost += e.costUSD ?? 0
-    } catch { /* ignore corrupt cache entry */ }
+    } catch {
+      /* ignore corrupt cache entry */
+    }
   }
   return { entries, totalTokens, totalCostUSD: totalCost, totalBytes }
 }
@@ -195,7 +222,7 @@ async function callOllama(req: RawCall): Promise<RawResult> {
     body: JSON.stringify(body),
   })
   if (!res.ok) throw new Error(`Ollama ${res.status}: ${await res.text()}`)
-  const data = await res.json() as {
+  const data = (await res.json()) as {
     message: { content: string }
     prompt_eval_count?: number
     eval_count?: number
@@ -207,18 +234,21 @@ async function callOllama(req: RawCall): Promise<RawResult> {
 // OpenAI pricing per 1M tokens (gpt-4o-mini, 2024-11). Embed both directions so
 // cost telemetry is accurate without an env lookup at call time.
 const OPENAI_PRICING: Record<string, { in: number; out: number }> = {
-  'gpt-4o-mini': { in: 0.15, out: 0.60 },
-  'gpt-4o': { in: 2.50, out: 10.00 },
-  'gpt-4.1-mini': { in: 0.40, out: 1.60 },
+  'gpt-4o-mini': { in: 0.15, out: 0.6 },
+  'gpt-4o': { in: 2.5, out: 10.0 },
+  'gpt-4.1-mini': { in: 0.4, out: 1.6 },
 }
 
 // Anthropic pricing per 1M tokens (claude-haiku-4-5 launched Oct-2025).
 // input_cache_read is priced at 0.10× base input, input_cache_write at 1.25×.
 // Update when Anthropic publishes newer models.
-const ANTHROPIC_PRICING: Record<string, { in: number; out: number; cacheRead: number; cacheWrite: number }> = {
-  'claude-haiku-4-5-20251001': { in: 1.00, out: 5.00, cacheRead: 0.10, cacheWrite: 1.25 },
-  'claude-sonnet-4-6': { in: 3.00, out: 15.00, cacheRead: 0.30, cacheWrite: 3.75 },
-  'claude-opus-4-7': { in: 15.00, out: 75.00, cacheRead: 1.50, cacheWrite: 18.75 },
+const ANTHROPIC_PRICING: Record<
+  string,
+  { in: number; out: number; cacheRead: number; cacheWrite: number }
+> = {
+  'claude-haiku-4-5-20251001': { in: 1.0, out: 5.0, cacheRead: 0.1, cacheWrite: 1.25 },
+  'claude-sonnet-4-6': { in: 3.0, out: 15.0, cacheRead: 0.3, cacheWrite: 3.75 },
+  'claude-opus-4-7': { in: 15.0, out: 75.0, cacheRead: 1.5, cacheWrite: 18.75 },
 }
 
 /**
@@ -285,8 +315,12 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
     )
   }
   const raw = JSON.stringify(toolBlock.input)
-  const pricing =
-    ANTHROPIC_PRICING[req.config.anthropicModel] ?? { in: 0, out: 0, cacheRead: 0, cacheWrite: 0 }
+  const pricing = ANTHROPIC_PRICING[req.config.anthropicModel] ?? {
+    in: 0,
+    out: 0,
+    cacheRead: 0,
+    cacheWrite: 0,
+  }
   const u = data.usage
   const costUSD =
     (u.input_tokens * pricing.in +
@@ -300,6 +334,107 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
     (u.cache_creation_input_tokens ?? 0) +
     (u.cache_read_input_tokens ?? 0)
   return { raw, tokenCount, costUSD }
+}
+
+/**
+ * Claude Code CLI backend.
+ *
+ * Spawns `claude -p <user_prompt>` with `--json-schema`, `--output-format json`,
+ * `--system-prompt`, and the minimal tool surface (`--disable-slash-commands
+ * --disallowedTools "*"`) so the structured-extraction cost floor is as low
+ * as possible.
+ *
+ * Works with Anthropic Max plan out of the box (uses the OAuth login from the
+ * `claude` CLI session, no ANTHROPIC_API_KEY required). Each call costs $0 in
+ * actual billing on Max — `total_cost_usd` in the envelope reports what an
+ * API-equivalent call would have cost, purely for telemetry.
+ *
+ * The output envelope includes `structured_output` when `--json-schema` is
+ * supplied; that field is the schema-validated JSON result. We return its
+ * stringified form so the callLLM wrapper can re-validate it via zod.
+ */
+async function callClaudeCode(req: RawCall): Promise<RawResult> {
+  const { spawn } = await import('node:child_process')
+  const schemaJson = JSON.stringify(zodToJsonSchema(req.schema))
+
+  return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
+    const args = [
+      '-p',
+      req.userPrompt,
+      '--system-prompt',
+      req.systemPrompt,
+      '--json-schema',
+      schemaJson,
+      '--output-format',
+      'json',
+      '--model',
+      req.config.claudeCodeModel,
+      '--disable-slash-commands',
+      '--disallowedTools',
+      '*',
+    ]
+    const child = spawn(req.config.claudeCodeBin, args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+    let stdout = ''
+    let stderr = ''
+    child.stdout.on('data', (d) => {
+      stdout += d.toString()
+    })
+    child.stderr.on('data', (d) => {
+      stderr += d.toString()
+    })
+    child.on('error', (err) => rejectPromise(err))
+    child.on('close', (code) => {
+      if (code !== 0) {
+        return rejectPromise(
+          new Error(`claude exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
+        )
+      }
+      try {
+        const envelope = JSON.parse(stdout) as {
+          is_error?: boolean
+          result?: string
+          structured_output?: unknown
+          total_cost_usd?: number
+          usage?: {
+            input_tokens?: number
+            output_tokens?: number
+            cache_creation_input_tokens?: number
+            cache_read_input_tokens?: number
+          }
+        }
+        if (envelope.is_error) {
+          return rejectPromise(
+            new Error(`claude CLI reported error: ${envelope.result || '(no detail)'}`),
+          )
+        }
+        if (envelope.structured_output === undefined) {
+          return rejectPromise(
+            new Error(
+              `claude CLI returned no structured_output (result: ${String(envelope.result).slice(0, 200)})`,
+            ),
+          )
+        }
+        const u = envelope.usage ?? {}
+        // Budget-charged tokens: only count the "real work" tokens
+        // (input + output). Cache reads + creation are quasi-free on the
+        // Max plan — including them would blow the 500K budget after a
+        // handful of calls because the Claude Code CLI's own system prompt
+        // contributes ~130K cached tokens per invocation.
+        const tokenCount = (u.input_tokens ?? 0) + (u.output_tokens ?? 0)
+        resolvePromise({
+          raw: JSON.stringify(envelope.structured_output),
+          tokenCount,
+          // On Max plan the actual bill is $0. We keep the API-equivalent
+          // number from the envelope for cost-awareness reporting.
+          costUSD: envelope.total_cost_usd ?? 0,
+        })
+      } catch (err) {
+        rejectPromise(new Error(`claude CLI output not JSON: ${String(err).slice(0, 200)}`))
+      }
+    })
+  })
 }
 
 async function callOpenAI(req: RawCall): Promise<RawResult> {
@@ -330,12 +465,13 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
     body: JSON.stringify(body),
   })
   if (!res.ok) throw new Error(`OpenAI ${res.status}: ${await res.text()}`)
-  const data = await res.json() as {
+  const data = (await res.json()) as {
     choices: { message: { content: string } }[]
     usage: { prompt_tokens: number; completion_tokens: number }
   }
   const pricing = OPENAI_PRICING[req.config.openaiModel] ?? { in: 0, out: 0 }
-  const costUSD = (data.usage.prompt_tokens * pricing.in + data.usage.completion_tokens * pricing.out) / 1_000_000
+  const costUSD =
+    (data.usage.prompt_tokens * pricing.in + data.usage.completion_tokens * pricing.out) / 1_000_000
   return {
     raw: data.choices[0].message.content,
     tokenCount: data.usage.prompt_tokens + data.usage.completion_tokens,
@@ -376,7 +512,9 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   // Budget check before making the call — estimate by prompt length.
   const approxTokens = Math.ceil((opts.systemPrompt.length + opts.userPrompt.length) / 4)
   if (!chargeBudget(approxTokens)) {
-    process.stderr.write(`[llm] run token budget exceeded (${currentBudget?.tokensUsed}/${currentBudget?.limit}); skipping call\n`)
+    process.stderr.write(
+      `[llm] run token budget exceeded (${currentBudget?.tokensUsed}/${currentBudget?.limit}); skipping call\n`,
+    )
     return null
   }
 
@@ -394,7 +532,9 @@ export async function callLLM<TSchema extends ZodTypeAny>(
           ? await callOllama({ ...opts, config })
           : config.backend === 'anthropic'
             ? await callAnthropic({ ...opts, config })
-            : await callOpenAI({ ...opts, config })
+            : config.backend === 'claude-code'
+              ? await callClaudeCode({ ...opts, config })
+              : await callOpenAI({ ...opts, config })
       tokenCount += raw.tokenCount
       costUSD += raw.costUSD
       // Charge the real token count (minus the pre-estimate).
