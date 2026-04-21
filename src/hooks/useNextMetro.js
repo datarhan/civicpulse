@@ -65,10 +65,22 @@ export const L9_STATIONS = [
   },
 ]
 
-/** Other Metrovalencia stations that cross the municipality but belong
- *  to a different line (e.g. L2 Llíria ↔ Torrent Avinguda, OSM ref
- *  VT-012). We don't encode the L2 schedule — the popup shows the line
- *  name + both direction labels and points users to metrovalencia.es. */
+/** L2 Metrovalencia schedule at approximate El Clot passing times.
+ *  El Clot sits in the north-west leg of L2, closer to the Llíria
+ *  terminus than Torrent Avinguda. Travel times are transcribed from
+ *  fgv.es published timetables (April 2026); the exact per-minute
+ *  offsets drift slightly between runs, so the UI labels these as
+ *  "aprox" and always surfaces the metrovalencia.es link. */
+const L2_SCHEDULE = {
+  validUntil: '2026-12-31',
+  weekday: { firstHour: 5, firstMin: 45, lastHour: 23, lastMin: 15, intervalMin: 20 },
+  saturday: { firstHour: 6, firstMin: 15, lastHour: 23, lastMin: 0, intervalMin: 30 },
+  sunday: { firstHour: 6, firstMin: 45, lastHour: 22, lastMin: 30, intervalMin: 30 },
+}
+
+/** Metrovalencia stations in the municipality that belong to a line
+ *  other than L9. Each record carries an approximate schedule so the
+ *  click-popup can surface "aprox" next departure in both directions. */
 export const OTHER_METRO_STATIONS = [
   {
     id: 'el-clot',
@@ -80,6 +92,13 @@ export const OTHER_METRO_STATIONS = [
     lineBadgeColor: '#FFFFFF',
     headings: ['Llíria', 'Torrent Avinguda'],
     scheduleUrl: 'https://www.metrovalencia.es/linea/linea-2',
+    schedule: L2_SCHEDULE,
+    // Offsets in minutes from each terminus' first departure at which
+    // trains pass El Clot. L2 is Llíria ↔ Torrent Avinguda.
+    directions: [
+      { heading: 'Torrent Avinguda', fromTerminus: 'Llíria', offsetFromDepartureMin: 13 },
+      { heading: 'Llíria', fromTerminus: 'Torrent Avinguda', offsetFromDepartureMin: 58 },
+    ],
   },
 ]
 
@@ -89,6 +108,72 @@ export function findMetroStation(osmName) {
   const other = OTHER_METRO_STATIONS.find((m) => m.osmName === osmName)
   if (other) return { kind: 'other', station: other }
   return null
+}
+
+/** Generate the full sequence of departures for a generic schedule (used
+ *  by non-L9 stations). Mirrors listTerminusDepartures but takes any
+ *  {firstHour,firstMin,lastHour,lastMin,intervalMin} tuple. */
+function listDeparturesForSchedule(sched, forDate) {
+  const out = []
+  const first = sched.firstHour * 60 + sched.firstMin
+  const last = sched.lastHour * 60 + sched.lastMin
+  for (let m = first; m <= last; m += sched.intervalMin) {
+    out.push(nearestMinute(forDate, m))
+  }
+  return out
+}
+
+function pickSchedule(schedule, date) {
+  const dow = date.getDay()
+  if (dow === 0) return schedule.sunday
+  if (dow === 6) return schedule.saturday
+  return schedule.weekday
+}
+
+/** Compute next approximate passing times in both directions for a
+ *  non-L9 station. Returns { directions: [{heading, at, label,
+ *  minutesAway, afterMidnight}], scheduleValidUntil, approximate }.
+ *  Labeled `approximate: true` everywhere so the UI can surface it. */
+export function computeOtherStationSchedule(station, now) {
+  const sched = pickSchedule(station.schedule, now)
+  const todayDepartures = listDeparturesForSchedule(sched, now)
+  const tomorrow = new Date(now)
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  tomorrow.setHours(0, 0, 0, 0)
+  const tomorrowSched = pickSchedule(station.schedule, tomorrow)
+  const tomorrowDepartures = listDeparturesForSchedule(tomorrowSched, tomorrow)
+
+  const directions = station.directions.map((d) => {
+    const addMs = d.offsetFromDepartureMin * 60_000
+    let next = null
+    let afterMidnight = false
+    for (const dep of todayDepartures) {
+      const passes = new Date(dep.getTime() + addMs)
+      if (passes.getTime() >= now.getTime()) {
+        next = passes
+        break
+      }
+    }
+    if (!next) {
+      next = new Date(tomorrowDepartures[0].getTime() + addMs)
+      afterMidnight = true
+    }
+    return {
+      heading: d.heading,
+      fromTerminus: d.fromTerminus,
+      at: next,
+      afterMidnight,
+      label: fmtHHMM(next),
+      minutesAway: minutesUntil(next, now),
+    }
+  })
+
+  return {
+    station,
+    directions,
+    scheduleValidUntil: station.schedule.validUntil,
+    approximate: true,
+  }
 }
 
 /** 0=Sunday, 1..5=Weekday, 6=Saturday. Spanish public holidays are NOT

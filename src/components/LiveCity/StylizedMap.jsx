@@ -11,7 +11,11 @@ import {
 } from 'react-leaflet'
 import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
-import { computeStationSchedule, findMetroStation } from '../../hooks/useNextMetro'
+import {
+  computeOtherStationSchedule,
+  computeStationSchedule,
+  findMetroStation,
+} from '../../hooks/useNextMetro'
 import { useMetroNetwork, indexLineColors } from '../../hooks/useMetroNetwork'
 
 // Metrovalencia official line brand colours (sourced from
@@ -161,12 +165,14 @@ function StationSchedulePopup({ name, match, rawStation }) {
   }, [])
 
   if (match?.kind === 'other') {
-    // Metrovalencia station on a different line (currently L2). We don't
-    // encode that schedule — show the line brand + both direction labels
-    // and link to the authoritative metrovalencia.es page.
+    // Metrovalencia station on a different line (currently L2). Schedule
+    // is approximate — computed from published headway + our transcribed
+    // station offset; labelled clearly so users verify on fgv.es.
     const { station } = match
+    const now = new Date(tick)
+    const sched = station.schedule ? computeOtherStationSchedule(station, now) : null
     return (
-      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 240 }}>
+      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 260 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
           <span
             style={{
@@ -186,21 +192,59 @@ function StationSchedulePopup({ name, match, rawStation }) {
           </span>
           <span style={{ fontWeight: 700, fontSize: 14 }}>{station.label}</span>
         </div>
-        <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6 }}>
-          {station.headings.map((h) => (
-            <div
-              key={h}
-              style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '3px 0' }}
-            >
-              <span style={{ fontSize: 11.5, color: 'rgba(11,15,25,.55)', minWidth: 110 }}>
-                → {h}
-              </span>
-              <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', fontStyle: 'italic' }}>
-                ver horario en metrovalencia.es
-              </span>
-            </div>
-          ))}
-        </div>
+        {sched ? (
+          <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 4 }}>
+            {sched.directions.map((d) => (
+              <div
+                key={d.heading}
+                style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}
+              >
+                <span
+                  style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 120 }}
+                >
+                  → {d.heading}
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: '#0B0F19',
+                  }}
+                >
+                  {d.label}
+                  {d.afterMidnight ? ' (mañana)' : ''}
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: 11,
+                    color: '#B45309',
+                  }}
+                >
+                  {d.minutesAway === 0 ? 'ahora' : `${d.minutesAway} min`}
+                </span>
+                <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6 }}>
+            {station.headings.map((h) => (
+              <div
+                key={h}
+                style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '3px 0' }}
+              >
+                <span style={{ fontSize: 11.5, color: 'rgba(11,15,25,.55)', minWidth: 110 }}>
+                  → {h}
+                </span>
+                <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', fontStyle: 'italic' }}>
+                  ver horario en metrovalencia.es
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
         <div
           style={{
             marginTop: 8,
@@ -208,9 +252,23 @@ function StationSchedulePopup({ name, match, rawStation }) {
             color: 'rgba(11,15,25,.65)',
           }}
         >
-          Línea {station.line} — Metrovalencia (FGV). Esta línea no pasa por el terminal de
-          Riba-roja; horario no transcrito.
+          {sched
+            ? `Línea ${station.line} — horario aproximado (headway ${station.schedule.weekday.intervalMin} min).`
+            : `Línea ${station.line} — Metrovalencia (FGV).`}
         </div>
+        {sched && (
+          <div
+            style={{
+              marginTop: 4,
+              fontSize: 10,
+              color: 'rgba(11,15,25,.55)',
+              fontFamily: 'DM Mono, monospace',
+              letterSpacing: '.04em',
+            }}
+          >
+            Válido hasta {sched.scheduleValidUntil} · confirma en fgv.es
+          </div>
+        )}
         <a
           href={station.scheduleUrl}
           target="_blank"
