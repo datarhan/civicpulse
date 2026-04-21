@@ -1,6 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useSpainTicker, formatEur, formatPct, signArrow } from '../hooks/useSpainTicker'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
+import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
+import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
+import { useT } from '../i18n'
 
 /* ============================================================
    Bloomberg-style auto-scrolling data ticker.
@@ -170,10 +174,31 @@ function Sparkline24({ values, width = 180, height = 36, color = CIVIC }) {
 function useTickerItems() {
   const { data } = useSpainTicker()
   const { data: press } = usePress()
+  const { data: agendas } = usePlenoAgendas()
+  const { data: promises } = usePromises()
+  const frozen = isPromiseFrozen(promises)
+  const plazosVencidos = frozen
+    ? 0
+    : (agendas?.stats?.plazosVencidosCount ?? 0)
   return useMemo(() => {
     if (!data?.sources) return []
     const s = data.sources
     const items = []
+
+    // Municipal accountability chip — always first when there are overdue
+    // commitments. Suppressed during LOREG freeze (handled above).
+    if (plazosVencidos > 0) {
+      items.push({
+        key: 'dept-vencidos',
+        icon: '⚠',
+        label: 'Riba-roja',
+        value: `${plazosVencidos}`,
+        extra: 'plazos vencidos',
+        accent: WARN,
+        navTo: '/departamentos',
+        ariaLabel: `${plazosVencidos} compromisos municipales con plazo vencido sin evidencia de ejecución — abrir dashboard de departamentos`,
+      })
+    }
 
     if (s.luz?.ok && typeof s.luz.currentValue === 'number') {
       const delta = s.luz.deltaVsYesterdayPct
@@ -299,7 +324,7 @@ function useTickerItems() {
       pi++
     }
     return woven
-  }, [data, press])
+  }, [data, press, plazosVencidos])
 }
 
 function PressChip({ p, onClick }) {
@@ -568,6 +593,15 @@ export default function LiveTicker() {
   const items = useTickerItems()
   const [expanded, setExpanded] = useState(null)
   const containerRef = useRef(null)
+  const navigate = useNavigate()
+
+  const handleChipClick = (it) => {
+    if (it.navTo) {
+      navigate(it.navTo)
+    } else {
+      setExpanded(it)
+    }
+  }
 
   useEffect(() => {
     if (!expanded) return
@@ -686,7 +720,7 @@ export default function LiveTicker() {
                     extra={it.extra}
                     accent={it.accent}
                     ariaLabel={it.ariaLabel}
-                    onClick={() => setExpanded(it)}
+                    onClick={() => handleChipClick(it)}
                   />
                 )}
               </span>
