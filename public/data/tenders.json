@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T15:57:21.801Z",
+  "generatedAt": "2026-04-22T06:16:56.159Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -7,14 +7,39 @@
     "host": "https://ribalicita.ribarroja.es"
   },
   "stats": {
-    "totalContracts": 730,
+    "totalContracts": 732,
     "totalTenders": 449,
-    "awardedContracts": 362,
+    "awardedContracts": 364,
     "openTenders": 0,
-    "awardedTotalEuros": 16478265.989999995
+    "awardedTotalEuros": 16509439
   },
   "top": {
     "recentAwarded": [
+      {
+        "id": "auto-1phjee0",
+        "title": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto94/2026).",
+        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+        "status": "awarded",
+        "contractType": "services",
+        "processType": "restricted",
+        "minorContract": false,
+        "startDate": null,
+        "endDate": "2026-10-14",
+        "awardDate": "2026-04-20",
+        "formalizedDate": null,
+        "assignee": "José Luis Moreno Delgado",
+        "contractor": "Ayuntamiento de Riba-roja de Túria",
+        "categoryTitle": "architecture",
+        "cpvs": [
+          "71200000",
+          "71000000"
+        ],
+        "initialAmount": 3514.64,
+        "initialAmountNoTaxes": 2904.66,
+        "finalAmount": 2107.82,
+        "finalAmountNoTaxes": 1742,
+        "numberOfProposals": 8
+      },
       {
         "id": "9895895",
         "title": "Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal (Ctto99-2026)",
@@ -85,7 +110,7 @@
         "endDate": "2026-05-09",
         "awardDate": "2026-04-01",
         "formalizedDate": null,
-        "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+        "assignee": "URBEADAPTA, S.L.",
         "contractor": "Ayuntamiento de Riba-roja de Túria",
         "categoryTitle": "culture",
         "cpvs": [
@@ -119,7 +144,7 @@
         "endDate": "2026-05-30",
         "awardDate": "2026-04-01",
         "formalizedDate": null,
-        "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+        "assignee": "URBEADAPTA, S.L.",
         "contractor": "Ayuntamiento de Riba-roja de Túria",
         "categoryTitle": "culture",
         "cpvs": [
@@ -221,7 +246,7 @@
         "endDate": "2027-03-11",
         "awardDate": "2026-03-13",
         "formalizedDate": null,
-        "assignee": "BL ESPAÑA SOFTWARE SLU",
+        "assignee": "AYTOS SOLUCIONES INFORMÁTICAS, S.L.U",
         "contractor": "Ayuntamiento de Riba-roja de Túria",
         "categoryTitle": "it",
         "cpvs": [
@@ -269,7 +294,7 @@
         "endDate": "2029-02-16",
         "awardDate": "2026-02-18",
         "formalizedDate": null,
-        "assignee": "SEÑALIZACIONES TRILLO SOCIEDAD LIMITADA",
+        "assignee": "Señalizaciones Trillo S.L.",
         "contractor": "Ayuntamiento de Riba-roja de Túria",
         "categoryTitle": "maintenance",
         "cpvs": [
@@ -294,7 +319,7 @@
         "endDate": "2025-09-06",
         "awardDate": "2026-02-02",
         "formalizedDate": null,
-        "assignee": "NORTHGATE RENTING FLEXIBLE, S.A.",
+        "assignee": "NORTHGATE ESPAÑA RENTING FLEXIBLE SAU",
         "contractor": "Ayuntamiento de Riba-roja de Túria",
         "categoryTitle": "transportation",
         "cpvs": [
@@ -328,30 +353,6 @@
         "initialAmountNoTaxes": 14942.94,
         "finalAmount": 18080.96,
         "finalAmountNoTaxes": 14942.94,
-        "numberOfProposals": 1
-      },
-      {
-        "id": "9492697",
-        "title": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814.",
-        "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-        "status": "awarded",
-        "contractType": "supplies",
-        "processType": "minor_contract",
-        "minorContract": true,
-        "startDate": null,
-        "endDate": "2025-09-06",
-        "awardDate": "2026-02-02",
-        "formalizedDate": null,
-        "assignee": "TRANSTEL SA",
-        "contractor": "Ayuntamiento de Riba-roja de Túria",
-        "categoryTitle": "transportation",
-        "cpvs": [
-          "34115200"
-        ],
-        "initialAmount": 6292,
-        "initialAmountNoTaxes": 5200,
-        "finalAmount": 6292,
-        "finalAmountNoTaxes": 5200,
         "numberOfProposals": 1
       }
     ],
@@ -445,7 +446,7 @@
       "endDate": "2023-09-01",
       "awardDate": "2021-06-30",
       "formalizedDate": "2021-09-03",
-      "assignee": "VARESER 96, SL",
+      "assignee": "UTE VARESER 96- COMAPÑIA ESPECIAL DE EMPLEO E INTEGRACION",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -456,34 +457,6 @@
       "finalAmount": 300678.21,
       "finalAmountNoTaxes": 248494.39,
       "numberOfProposals": 2
-    },
-    {
-      "id": "5106922",
-      "title": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-      "status": "unknown",
-      "contractType": "construction",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": null,
-      "awardDate": null,
-      "formalizedDate": null,
-      "assignee": null,
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45111000",
-        "45262310",
-        "45232130",
-        "45317000",
-        "45237000"
-      ],
-      "initialAmount": 128695.18,
-      "initialAmountNoTaxes": 106359.65,
-      "finalAmount": 0,
-      "finalAmountNoTaxes": 0,
-      "numberOfProposals": 0
     },
     {
       "id": "4996875",
@@ -530,30 +503,6 @@
       "finalAmount": 9982.5,
       "finalAmountNoTaxes": 8250,
       "numberOfProposals": 1
-    },
-    {
-      "id": "5106848",
-      "title": "UE casco 5",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": null,
-      "awardDate": null,
-      "formalizedDate": null,
-      "assignee": null,
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "architecture",
-      "cpvs": [
-        "71000000"
-      ],
-      "initialAmount": 10448.5,
-      "initialAmountNoTaxes": 8635.12,
-      "finalAmount": 0,
-      "finalAmountNoTaxes": 0,
-      "numberOfProposals": 0
     },
     {
       "id": "2801214",
@@ -796,7 +745,7 @@
       "endDate": "2019-02-21",
       "awardDate": "2018-04-11",
       "formalizedDate": "2018-04-11",
-      "assignee": "COMPANIA DE TRATAMIENTOS LEVANTE, S.L.",
+      "assignee": "COMPAÑÍA DE TRATAMIENTOS DE LEVANTE S.L. (CTL SANIDAD AMBIENTAL)",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -820,7 +769,7 @@
       "endDate": "2019-12-01",
       "awardDate": "2018-01-18",
       "formalizedDate": "2018-01-18",
-      "assignee": "COMPANIA DE TRATAMIENTOS LEVANTE, S.L.",
+      "assignee": "COMPAÑÍA DE TRATAMIENTOS DE LEVANTE S.L. (CTL SANIDAD AMBIENTAL)",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -869,7 +818,7 @@
       "endDate": "2020-08-19",
       "awardDate": "2020-03-06",
       "formalizedDate": "2020-03-06",
-      "assignee": "COMPANIA DE TRATAMIENTOS LEVANTE, S.L.",
+      "assignee": "COMPAÑÍA DE TRATAMIENTOS DE LEVANTE S.L. (CTL SANIDAD AMBIENTAL)",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -919,7 +868,7 @@
       "endDate": "2027-07-01",
       "awardDate": "2025-05-08",
       "formalizedDate": "2025-07-01",
-      "assignee": "OTIS MOBILITY S.A.",
+      "assignee": "ZARDOYA OTIS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "maintenance",
       "cpvs": [
@@ -946,7 +895,7 @@
       "endDate": "2023-12-11",
       "awardDate": "2023-09-11",
       "formalizedDate": "2023-09-18",
-      "assignee": "OTIS MOBILITY S.A.",
+      "assignee": "ZARDOYA OTIS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "industry",
       "cpvs": [
@@ -970,7 +919,7 @@
       "endDate": "2020-05-21",
       "awardDate": "2018-08-14",
       "formalizedDate": "2018-08-14",
-      "assignee": "OTIS MOBILITY S.A.",
+      "assignee": "ZARDOYA OTIS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "maintenance",
       "cpvs": [
@@ -1029,30 +978,6 @@
       "finalAmount": 0,
       "finalAmountNoTaxes": 0,
       "numberOfProposals": 2
-    },
-    {
-      "id": "1701582",
-      "title": "Suscripciones Autodesk",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2023-09-20",
-      "endDate": "2023-09-09",
-      "awardDate": "2022-08-10",
-      "formalizedDate": "2022-10-04",
-      "assignee": "Aplicaciones de cad y gis SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "it",
-      "cpvs": [
-        "72500000"
-      ],
-      "initialAmount": 5378.45,
-      "initialAmountNoTaxes": 4445,
-      "finalAmount": 5387.45,
-      "finalAmountNoTaxes": 4445,
-      "numberOfProposals": 1
     },
     {
       "id": "26345",
@@ -1422,6 +1347,54 @@
       "numberOfProposals": 1
     },
     {
+      "id": "60362",
+      "title": "El objeto del contrato es la contratación del servicio de mantenimiento y revisión de las instalaciones eléctricas en locales de pública concurrencia de titularidad municipal, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U4dsi0TCfMuiEJrVRqloyA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2018-11-22",
+      "endDate": "2022-11-21",
+      "awardDate": "2018-11-26",
+      "formalizedDate": "2018-11-26",
+      "assignee": "ELECNOR SERVICIOS Y PROYECTOS, S.A.U",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "maintenance",
+      "cpvs": [
+        "50711000"
+      ],
+      "initialAmount": 144719.97,
+      "initialAmountNoTaxes": 119603.28,
+      "finalAmount": 61974.42,
+      "finalAmountNoTaxes": 51218.53,
+      "numberOfProposals": 17
+    },
+    {
+      "id": "1554203",
+      "title": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
+      "status": "unknown",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2022-01-21",
+      "awardDate": "2022-01-11",
+      "formalizedDate": "2022-01-11",
+      "assignee": "ELECNOR SERVICIOS Y PROYECTOS, S.A.U",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45316000"
+      ],
+      "initialAmount": 89999.96,
+      "initialAmountNoTaxes": 74380.13,
+      "finalAmount": 66008.77,
+      "finalAmountNoTaxes": 54552.7,
+      "numberOfProposals": 7
+    },
+    {
       "id": "72576",
       "title": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
@@ -1705,30 +1678,6 @@
       "finalAmount": 16940,
       "finalAmountNoTaxes": 14000,
       "numberOfProposals": 3
-    },
-    {
-      "id": "1701582#1",
-      "title": "Servicio meteorológico municipal personalizado.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2023-09-20",
-      "endDate": "2023-09-09",
-      "awardDate": "2022-08-10",
-      "formalizedDate": "2022-10-05",
-      "assignee": "INFORATGE SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "it",
-      "cpvs": [
-        "72500000"
-      ],
-      "initialAmount": 5082,
-      "initialAmountNoTaxes": 4200,
-      "finalAmount": 5082,
-      "finalAmountNoTaxes": 4200,
-      "numberOfProposals": 1
     },
     {
       "id": "101090",
@@ -2413,6 +2362,54 @@
       "numberOfProposals": 1
     },
     {
+      "id": "1701582",
+      "title": "Suscripciones Autodesk",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2023-09-20",
+      "endDate": "2023-09-09",
+      "awardDate": "2022-08-10",
+      "formalizedDate": "2022-10-04",
+      "assignee": "Aplicaciones de cad y gis SL",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "it",
+      "cpvs": [
+        "72500000"
+      ],
+      "initialAmount": 5378.45,
+      "initialAmountNoTaxes": 4445,
+      "finalAmount": 5387.45,
+      "finalAmountNoTaxes": 4445,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "1701582#1",
+      "title": "Servicio meteorológico municipal personalizado.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2023-09-20",
+      "endDate": "2023-09-09",
+      "awardDate": "2022-08-10",
+      "formalizedDate": "2022-10-05",
+      "assignee": "INFORATGE SL",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "it",
+      "cpvs": [
+        "72500000"
+      ],
+      "initialAmount": 5082,
+      "initialAmountNoTaxes": 4200,
+      "finalAmount": 5082,
+      "finalAmountNoTaxes": 4200,
+      "numberOfProposals": 1
+    },
+    {
       "id": "1701582#2",
       "title": "Mantenimiento gestor de contenidos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
@@ -2825,28 +2822,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "329952",
-      "title": "Redacción y dirección del proyecto de obras de movilidad vial de Riba-roja de Túria",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2017-07-07",
-      "endDate": "2018-04-19",
-      "awardDate": "2018-01-24",
-      "formalizedDate": null,
-      "assignee": "CPS INFRAESTRUCTURAS MOVILIDAD Y MEDIO AMBIENTE, S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 20207,
-      "initialAmountNoTaxes": 16700,
-      "finalAmount": 20207,
-      "finalAmountNoTaxes": 16700,
-      "numberOfProposals": 1
-    },
-    {
       "id": "4482899",
       "title": "Contrato de servicio prestación del servicio para la organización y desarrollo del ESCUELA DE VERANO 2024, meses julio y agosto de 2024. Ctto. 43/2024.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RKVUYa5%2F1yDCfVQHDepjGQ%3D%3D",
@@ -2982,6 +2957,30 @@
       "initialAmountNoTaxes": 6000,
       "finalAmount": 6897,
       "finalAmountNoTaxes": 5700,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "9975923",
+      "title": "Contrato menor de obras referentes a la modificación de instalación de ACS con mezcladores para duchas en complejo deportivo municipal La Malla de Riba-roja de Túria. Ctto101-2026.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TxQvZ6saR0ScCF8sV%2BqtYA%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": null,
+      "endDate": "2026-05-15",
+      "awardDate": null,
+      "formalizedDate": null,
+      "assignee": "Elecnor Servicios y Proyectos SAU",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45212290"
+      ],
+      "initialAmount": 29065.19,
+      "initialAmountNoTaxes": 24020.82,
+      "finalAmount": 29065.19,
+      "finalAmountNoTaxes": 24020.82,
       "numberOfProposals": 1
     },
     {
@@ -3388,6 +3387,31 @@
       "numberOfProposals": 8
     },
     {
+      "id": "auto-1phjee0",
+      "title": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto94/2026).",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "restricted",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2026-10-14",
+      "awardDate": "2026-04-20",
+      "formalizedDate": null,
+      "assignee": "José Luis Moreno Delgado",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "architecture",
+      "cpvs": [
+        "71200000",
+        "71000000"
+      ],
+      "initialAmount": 3514.64,
+      "initialAmountNoTaxes": 2904.66,
+      "finalAmount": 2107.82,
+      "finalAmountNoTaxes": 1742,
+      "numberOfProposals": 8
+    },
+    {
       "id": "1936305",
       "title": "Contrato menor relativo al suministro de equipos informáticos para dotar un aula de la EPA (Educación de Personas Adultas)",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0lbYlZNLiayrz3GQd5r6SQ%3D%3D",
@@ -3484,28 +3508,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "599169",
-      "title": "Amplicación parque Generalitat",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2018-07-01",
-      "endDate": "2018-11-01",
-      "awardDate": "2018-11-04",
-      "formalizedDate": null,
-      "assignee": "Llop Proyectos Integrales SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 43841.36,
-      "initialAmountNoTaxes": 36232.53,
-      "finalAmount": 39435.3,
-      "finalAmountNoTaxes": 32591.16,
-      "numberOfProposals": 6
-    },
-    {
       "id": "1399533",
       "title": "contrato mediante tramitación anticipada de servicio de limpieza CEIP Cervantes, por proc. abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud. y con CEE de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato contrib. al cumplim. del ODS 8.8, ODS 5.1 y ODS 12.2. SARA",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TX%2BFGG9n8SDnSoTX3z%2F7wA%3D%3D",
@@ -3541,7 +3543,7 @@
       "endDate": "2024-12-11",
       "awardDate": "2024-11-27",
       "formalizedDate": null,
-      "assignee": "RAVI OBRAS TRANSPORTES Y EXCAVACIONES",
+      "assignee": "RAVI OBRAS TRASNPORTES Y EXCAVACIONES, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -3578,32 +3580,6 @@
       "initialAmountNoTaxes": 28164.42,
       "finalAmount": 33759,
       "finalAmountNoTaxes": 33759,
-      "numberOfProposals": 1
-    },
-    {
-      "id": "1524361",
-      "title": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fzebv5hGIqaiEJrVRqloyA%3D%3D",
-      "status": "awarded",
-      "contractType": "supplies",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2020-02-28",
-      "endDate": "2025-10-20",
-      "awardDate": "2021-11-15",
-      "formalizedDate": null,
-      "assignee": "CANVA PTY. LTD.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "furniture",
-      "cpvs": [
-        "39293400",
-        "45212200",
-        "45212290"
-      ],
-      "initialAmount": 239937.57,
-      "initialAmountNoTaxes": 198295.51,
-      "finalAmount": 235992.4,
-      "finalAmountNoTaxes": 195035.04,
       "numberOfProposals": 1
     },
     {
@@ -3723,7 +3699,7 @@
       "endDate": "2026-05-09",
       "awardDate": "2026-04-01",
       "formalizedDate": null,
-      "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+      "assignee": "URBEADAPTA, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "culture",
       "cpvs": [
@@ -3770,6 +3746,32 @@
       "numberOfProposals": 12
     },
     {
+      "id": "4571013",
+      "title": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Obras y Servicios Sercyoval, S.L. con CIF B96852876",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XxhtCkJuMDVVkTabT%2FRM8A%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2024-12-04",
+      "awardDate": "2024-11-21",
+      "formalizedDate": null,
+      "assignee": "OBRAS Y SERVICIOS SERCYOVAL S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "environment",
+      "cpvs": [
+        "90611000",
+        "63111000",
+        "90500000"
+      ],
+      "initialAmount": 291573.07,
+      "initialAmountNoTaxes": 240969.48,
+      "finalAmount": 291573.07,
+      "finalAmountNoTaxes": 240969.48,
+      "numberOfProposals": 1
+    },
+    {
       "id": "1404560",
       "title": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
@@ -3781,7 +3783,7 @@
       "endDate": "2025-10-17",
       "awardDate": "2022-03-03",
       "formalizedDate": "2022-03-03",
-      "assignee": "TICSMART SL",
+      "assignee": "TICSMART S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -3839,6 +3841,28 @@
       "finalAmount": 71269,
       "finalAmountNoTaxes": 58900,
       "numberOfProposals": 3
+    },
+    {
+      "id": "329952",
+      "title": "Redacción y dirección del proyecto de obras de movilidad vial de Riba-roja de Túria",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2017-07-07",
+      "endDate": "2018-04-19",
+      "awardDate": "2018-01-24",
+      "formalizedDate": null,
+      "assignee": "CPS INFRAESTRUCTURAS MOVILIDAD Y MEDIO AMBIENTE, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 20207,
+      "initialAmountNoTaxes": 16700,
+      "finalAmount": 20207,
+      "finalAmountNoTaxes": 16700,
+      "numberOfProposals": 1
     },
     {
       "id": "266371",
@@ -4033,30 +4057,26 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4571013",
-      "title": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Obras y Servicios Sercyoval, S.L. con CIF B96852876",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XxhtCkJuMDVVkTabT%2FRM8A%3D%3D",
+      "id": "506691",
+      "title": "Obras de acondicionamiento parcela 481 en P.I. El Oliveral",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=D4mlhF3eeDx7h85%2Fpmmsfw%3D%3D",
       "status": "awarded",
-      "contractType": "services",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2024-12-04",
-      "awardDate": "2024-11-21",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2018-12-28",
+      "endDate": "2019-01-17",
+      "awardDate": "2019-01-17",
       "formalizedDate": null,
-      "assignee": "OBRAS Y SERVICIOS SERCYOVAL S.L.",
+      "assignee": "SEOP PROYECTOS Y CONTRATAS S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "environment",
-      "cpvs": [
-        "90611000",
-        "63111000",
-        "90500000"
-      ],
-      "initialAmount": 291573.07,
-      "initialAmountNoTaxes": 240969.48,
-      "finalAmount": 291573.07,
-      "finalAmountNoTaxes": 240969.48,
-      "numberOfProposals": 1
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 48217.28,
+      "initialAmountNoTaxes": 39848.99,
+      "finalAmount": 47735.11,
+      "finalAmountNoTaxes": 39450.5,
+      "numberOfProposals": 3
     },
     {
       "id": "4571476",
@@ -4111,28 +4131,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "713082",
-      "title": "Urbanización del Carreró de unión Ctra. Vilamarxant a C/ Sagunt",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qYSPRMIxoMaiEJrVRqloyA%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2018-07-01",
-      "endDate": "2018-12-13",
-      "awardDate": "2018-11-26",
-      "formalizedDate": null,
-      "assignee": "LDG OBRAS Y SERVICIOS SLU",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 10329.69,
-      "initialAmountNoTaxes": 8536.93,
-      "finalAmount": 8876.56,
-      "finalAmountNoTaxes": 7336,
-      "numberOfProposals": 4
-    },
-    {
       "id": "4572480",
       "title": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de ENRIQUE DESCO S.L. con CIF B96020763",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yFLk9B3E0JQmMOlAXxDEjw%3D%3D",
@@ -4144,7 +4142,7 @@
       "endDate": "2024-12-05",
       "awardDate": "2024-11-25",
       "formalizedDate": null,
-      "assignee": "ENRIQUE DESCO SOCIEDAD LIMITADA",
+      "assignee": "Enrique Desco S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -4246,7 +4244,7 @@
       "endDate": "2025-07-16",
       "awardDate": "2023-07-27",
       "formalizedDate": "2023-08-08",
-      "assignee": "VIVA AQUASERVICE SPAIN, S.A.",
+      "assignee": "VIVA AQUA SERVICE SPAIN, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "catering",
       "cpvs": [
@@ -4475,6 +4473,28 @@
       "finalAmount": 0,
       "finalAmountNoTaxes": 0,
       "numberOfProposals": 0
+    },
+    {
+      "id": "713082",
+      "title": "Urbanización del Carreró de unión Ctra. Vilamarxant a C/ Sagunt",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qYSPRMIxoMaiEJrVRqloyA%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2018-07-01",
+      "endDate": "2018-12-13",
+      "awardDate": "2018-11-26",
+      "formalizedDate": null,
+      "assignee": "LDG OBRAS Y SERVICIOS SLU",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 10329.69,
+      "initialAmountNoTaxes": 8536.93,
+      "finalAmount": 8876.56,
+      "finalAmountNoTaxes": 7336,
+      "numberOfProposals": 4
     },
     {
       "id": "311298",
@@ -4770,28 +4790,6 @@
       "finalAmount": 0,
       "finalAmountNoTaxes": 0,
       "numberOfProposals": 3
-    },
-    {
-      "id": "555236",
-      "title": "Servicios de redacción proyecto de evaluación ambiental y territorio estratégica para reclasificar las zonas de la Sargueta y Pozalet como suelo urbanizable",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wVAIKDGLCDsQK2TEfXGy%2BA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2018-03-23",
-      "endDate": "2018-07-06",
-      "awardDate": "2018-04-11",
-      "formalizedDate": null,
-      "assignee": "Vetges Tu i Mediterrània SLP",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 9680,
-      "initialAmountNoTaxes": 8000,
-      "finalAmount": 9680,
-      "finalAmountNoTaxes": 8000,
-      "numberOfProposals": 1
     },
     {
       "id": "1610101",
@@ -5092,28 +5090,6 @@
       "numberOfProposals": 5
     },
     {
-      "id": "506691",
-      "title": "Obras de acondicionamiento parcela 481 en P.I. El Oliveral",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=D4mlhF3eeDx7h85%2Fpmmsfw%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2018-12-28",
-      "endDate": "2019-01-17",
-      "awardDate": "2019-01-17",
-      "formalizedDate": null,
-      "assignee": "SEOP PROYECTOS Y CONTRATAS S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 48217.28,
-      "initialAmountNoTaxes": 39848.99,
-      "finalAmount": 47735.11,
-      "finalAmountNoTaxes": 39450.5,
-      "numberOfProposals": 3
-    },
-    {
       "id": "543930",
       "title": "Servicio interposición recurso de casación y de defensa procesal en juicio dimanante del PO 1605/2015 acumulado en 1766/2015",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Xz6z6OoRct2iEJrVRqloyA%3D%3D",
@@ -5156,6 +5132,50 @@
       "finalAmount": 9619.5,
       "finalAmountNoTaxes": 7950,
       "numberOfProposals": 1
+    },
+    {
+      "id": "555236",
+      "title": "Servicios de redacción proyecto de evaluación ambiental y territorio estratégica para reclasificar las zonas de la Sargueta y Pozalet como suelo urbanizable",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wVAIKDGLCDsQK2TEfXGy%2BA%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2018-03-23",
+      "endDate": "2018-07-06",
+      "awardDate": "2018-04-11",
+      "formalizedDate": null,
+      "assignee": "Vetges Tu i Mediterrània SLP",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 9680,
+      "initialAmountNoTaxes": 8000,
+      "finalAmount": 9680,
+      "finalAmountNoTaxes": 8000,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "599169",
+      "title": "Amplicación parque Generalitat",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2018-07-01",
+      "endDate": "2018-11-01",
+      "awardDate": "2018-11-04",
+      "formalizedDate": null,
+      "assignee": "Llop Proyectos Integrales SL",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 43841.36,
+      "initialAmountNoTaxes": 36232.53,
+      "finalAmount": 39435.3,
+      "finalAmountNoTaxes": 32591.16,
+      "numberOfProposals": 6
     },
     {
       "id": "649188",
@@ -5648,7 +5668,7 @@
       "endDate": "2019-06-04",
       "awardDate": "2019-01-16",
       "formalizedDate": "2019-01-16",
-      "assignee": "SEROVIAL,S.L.",
+      "assignee": "SEROVIAL SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -5672,7 +5692,7 @@
       "endDate": "2021-12-24",
       "awardDate": "2021-11-04",
       "formalizedDate": "2021-11-04",
-      "assignee": "SEROVIAL,S.L.",
+      "assignee": "SEROVIAL SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -5686,31 +5706,7 @@
       "numberOfProposals": 5
     },
     {
-      "id": "5106848#1",
-      "title": "UE vella 6",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": null,
-      "awardDate": null,
-      "formalizedDate": null,
-      "assignee": null,
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "architecture",
-      "cpvs": [
-        "71000000"
-      ],
-      "initialAmount": 40033,
-      "initialAmountNoTaxes": 33085.12,
-      "finalAmount": 0,
-      "finalAmountNoTaxes": 0,
-      "numberOfProposals": 0
-    },
-    {
-      "id": "5106848#2",
+      "id": "5106848",
       "title": "UE pous 6",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
       "status": "unknown",
@@ -5948,7 +5944,7 @@
       "endDate": "2023-05-20",
       "awardDate": "2023-03-22",
       "formalizedDate": "2023-05-09",
-      "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+      "assignee": "URBEADAPTA, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "culture",
       "cpvs": [
@@ -5978,7 +5974,7 @@
       "endDate": "2023-05-20",
       "awardDate": "2023-03-22",
       "formalizedDate": "2023-05-09",
-      "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+      "assignee": "URBEADAPTA, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "culture",
       "cpvs": [
@@ -6088,7 +6084,7 @@
       "endDate": "2022-03-14",
       "awardDate": "2021-12-13",
       "formalizedDate": "2021-12-15",
-      "assignee": "EIFFAGE ENERGÍA, S.L.U.",
+      "assignee": "EIFFAGE ENERGIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "security",
       "cpvs": [
@@ -6137,7 +6133,7 @@
       "endDate": "2023-08-07",
       "awardDate": "2021-06-21",
       "formalizedDate": "2021-10-29",
-      "assignee": "EIFFAGE ENERGÍA, S.L.U.",
+      "assignee": "EIFFAGE ENERGIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "maintenance",
       "cpvs": [
@@ -6161,7 +6157,7 @@
       "endDate": "2023-04-29",
       "awardDate": "2022-05-10",
       "formalizedDate": null,
-      "assignee": "ESPUBLICO SERVICIOS PARA LA ADMINISTRACIÓN S.A.",
+      "assignee": "ESPUBLICO SERVICIOS PARA LA ADMINSITRACIÓN S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "legal",
       "cpvs": [
@@ -6185,7 +6181,7 @@
       "endDate": "2023-09-09",
       "awardDate": "2022-08-10",
       "formalizedDate": "2022-10-04",
-      "assignee": "T-Systems ITC Iberia, S.A.U.",
+      "assignee": "T-Systems ITC Iberia SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -6196,56 +6192,6 @@
       "finalAmount": 79812.3,
       "finalAmountNoTaxes": 65960.58,
       "numberOfProposals": 1
-    },
-    {
-      "id": "86822",
-      "title": "Construcción cubierta en pista deportiva CEIP Camp de Túria",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BzzNdz%2BdkwEQK2TEfXGy%2BA%3D%3D",
-      "status": "unknown",
-      "contractType": "construction",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": "2017-12-25",
-      "endDate": "2018-02-08",
-      "awardDate": "2018-01-18",
-      "formalizedDate": "2018-01-18",
-      "assignee": "Raser servicios electrotécnicos, S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45261000"
-      ],
-      "initialAmount": 127050,
-      "initialAmountNoTaxes": 105000,
-      "finalAmount": 99825,
-      "finalAmountNoTaxes": 82500,
-      "numberOfProposals": 9
-    },
-    {
-      "id": "84588",
-      "title": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2018-03-01",
-      "endDate": "2020-02-29",
-      "awardDate": "2018-03-13",
-      "formalizedDate": "2018-03-13",
-      "assignee": "Irispress Social Media, S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "culture",
-      "cpvs": [
-        "92312211",
-        "79340000",
-        "79342200"
-      ],
-      "initialAmount": 68970,
-      "initialAmountNoTaxes": 57000,
-      "finalAmount": 60500,
-      "finalAmountNoTaxes": 50000,
-      "numberOfProposals": 3
     },
     {
       "id": "1557347",
@@ -6406,7 +6352,7 @@
       "endDate": "2023-07-08",
       "awardDate": "2023-05-10",
       "formalizedDate": "2023-05-11",
-      "assignee": "SEÑALIZACIONES TRILLO SOCIEDAD LIMITADA",
+      "assignee": "Señalizaciones Trillo S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "security",
       "cpvs": [
@@ -6431,7 +6377,7 @@
       "endDate": "2023-06-18",
       "awardDate": "2023-05-10",
       "formalizedDate": "2023-05-11",
-      "assignee": "SEÑALIZACIONES TRILLO SOCIEDAD LIMITADA",
+      "assignee": "Señalizaciones Trillo S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "maintenance",
       "cpvs": [
@@ -6466,6 +6412,28 @@
       "initialAmountNoTaxes": 14876.03,
       "finalAmount": 17968.5,
       "finalAmountNoTaxes": 14850,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "1566052",
+      "title": "dirección facultativa de las obras correspondientes a varias actuaciones en CEIP Eres Altes",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Z8Cv031VpdWiEJrVRqloyA%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": null,
+      "endDate": "2020-10-20",
+      "awardDate": "2019-12-08",
+      "formalizedDate": null,
+      "assignee": "CARMONA REQUENI FRANCISCO JOSE",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 17968,
+      "initialAmountNoTaxes": 14850,
+      "finalAmount": 16940,
+      "finalAmountNoTaxes": 14000,
       "numberOfProposals": 1
     },
     {
@@ -6818,7 +6786,7 @@
       "endDate": "2025-09-06",
       "awardDate": "2026-02-02",
       "formalizedDate": null,
-      "assignee": "NORTHGATE RENTING FLEXIBLE, S.A.",
+      "assignee": "NORTHGATE ESPAÑA RENTING FLEXIBLE SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "transportation",
       "cpvs": [
@@ -7286,7 +7254,7 @@
       "endDate": "2019-01-03",
       "awardDate": "2019-01-10",
       "formalizedDate": null,
-      "assignee": "Sociedad Ibérica de Construcciones Eléctricas, S.A. (SICE)",
+      "assignee": "SOCIEDAD IBÉRICA DE CONSTRUCCIONES ELÉCTRICAS, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "other",
       "cpvs": [],
@@ -7308,7 +7276,7 @@
       "endDate": "2017-10-13",
       "awardDate": "2017-09-05",
       "formalizedDate": "2017-09-05",
-      "assignee": "Sociedad Ibérica de Construcciones Eléctricas, S.A. (SICE)",
+      "assignee": "SOCIEDAD IBÉRICA DE CONSTRUCCIONES ELÉCTRICAS, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -7634,7 +7602,7 @@
       "endDate": "2025-05-28",
       "awardDate": "2024-05-29",
       "formalizedDate": null,
-      "assignee": "VODAFONE ESPAÑA, S.A.U.",
+      "assignee": "Vodafone España, S.A.U.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -7659,7 +7627,7 @@
       "endDate": "2025-05-28",
       "awardDate": "2024-05-29",
       "formalizedDate": null,
-      "assignee": "VODAFONE ESPAÑA, S.A.U.",
+      "assignee": "Vodafone España, S.A.U.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -7684,7 +7652,7 @@
       "endDate": "2022-11-27",
       "awardDate": "2021-01-24",
       "formalizedDate": "2021-01-24",
-      "assignee": "VODAFONE ESPAÑA, S.A.U.",
+      "assignee": "Vodafone España, S.A.U.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "telecom",
       "cpvs": [
@@ -7870,28 +7838,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "554907",
-      "title": "Redacción anteproyecto de reurbanización y mejora de zonas verdes en los polígonos industriales",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YFPkOlMzZjIQK2TEfXGy%2BA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2018-03-23",
-      "endDate": "2018-08-29",
-      "awardDate": "2018-04-11",
-      "formalizedDate": null,
-      "assignee": "ELENA MARÍA JIMÉNEZ GARRIDO",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 21175,
-      "initialAmountNoTaxes": 17500,
-      "finalAmount": 21175,
-      "finalAmountNoTaxes": 17500,
-      "numberOfProposals": 1
-    },
-    {
       "id": "4581670",
       "title": "Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado a favor la mercantil TRANS SABATER, S.A. con CIF nº A46351300",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RyCJypUtnGrua%2Fi14w%2FPLA%3D%3D",
@@ -8059,7 +8005,7 @@
       "endDate": "2025-08-06",
       "awardDate": "2025-02-20",
       "formalizedDate": null,
-      "assignee": "Aranzadi La Ley SAU",
+      "assignee": "ARANZADI LA LEY SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "print",
       "cpvs": [
@@ -8177,7 +8123,7 @@
       "endDate": "2020-05-14",
       "awardDate": "2019-11-08",
       "formalizedDate": "2020-01-02",
-      "assignee": "SOCIEDAD DE AGRICULTORES DE LA VEGA DE VALENCIA",
+      "assignee": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -8188,30 +8134,6 @@
       "finalAmount": 185517.37,
       "finalAmountNoTaxes": 168652.15,
       "numberOfProposals": 3
-    },
-    {
-      "id": "78144",
-      "title": "Servicio de mantenimiento de la calidad del agua de las piscinas municipales del CD La Mallá y del Polideportivo",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jPftQNYOGpWrz3GQd5r6SQ%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": "2018-05-30",
-      "endDate": "2019-05-30",
-      "awardDate": "2018-06-06",
-      "formalizedDate": "2018-06-06",
-      "assignee": "MANTENIMIENTO DE PISCINAS E INSTALACIONES DEPORTIVAS GRUPO MOSA, S.L.U.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "it",
-      "cpvs": [
-        "51514110"
-      ],
-      "initialAmount": 55297,
-      "initialAmountNoTaxes": 45700,
-      "finalAmount": 52368.8,
-      "finalAmountNoTaxes": 43280,
-      "numberOfProposals": 1
     },
     {
       "id": "1499883",
@@ -8225,7 +8147,7 @@
       "endDate": "2026-03-14",
       "awardDate": "2022-01-24",
       "formalizedDate": "2022-03-14",
-      "assignee": "SOCIEDAD DE AGRICULTORES DE LA VEGA DE VALENCIA",
+      "assignee": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "architecture",
       "cpvs": [
@@ -8249,7 +8171,7 @@
       "endDate": "2025-11-04",
       "awardDate": "2021-08-04",
       "formalizedDate": "2022-01-11",
-      "assignee": "SOCIEDAD DE AGRICULTORES DE LA VEGA DE VALENCIA",
+      "assignee": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -8273,7 +8195,7 @@
       "endDate": "2023-01-21",
       "awardDate": "2023-02-06",
       "formalizedDate": null,
-      "assignee": "SOCIEDAD DE AGRICULTORES DE LA VEGA DE VALENCIA",
+      "assignee": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "other",
       "cpvs": [],
@@ -8295,7 +8217,7 @@
       "endDate": "2025-02-07",
       "awardDate": "2024-12-12",
       "formalizedDate": null,
-      "assignee": "SOCIEDAD DE AGRICULTORES DE LA VEGA DE VALENCIA",
+      "assignee": "S.A. AGRICULTORES DE LA VEGA DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "transportation",
       "cpvs": [
@@ -8320,7 +8242,7 @@
       "endDate": "2028-05-03",
       "awardDate": "2024-04-18",
       "formalizedDate": "2024-06-28",
-      "assignee": "SAVIA, S.L.",
+      "assignee": "SAVIA Soluciones Avanzadas en Informática Aplicada SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "software",
       "cpvs": [
@@ -8344,7 +8266,7 @@
       "endDate": "2020-11-14",
       "awardDate": "2020-01-15",
       "formalizedDate": "2020-01-15",
-      "assignee": "SAVIA, S.L.",
+      "assignee": "SAVIA Soluciones Avanzadas en Informática Aplicada SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -8552,26 +8474,78 @@
       "numberOfProposals": 2
     },
     {
-      "id": "632446",
-      "title": "Obras de reforma segunda planta mercado municipal",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BECD%2FdwxZPKXQV0WE7lYPw%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2019-09-20",
-      "endDate": "2019-11-14",
-      "awardDate": "2019-12-18",
-      "formalizedDate": null,
-      "assignee": "Joao 2000, S.L.",
+      "id": "78144",
+      "title": "Servicio de mantenimiento de la calidad del agua de las piscinas municipales del CD La Mallá y del Polideportivo",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jPftQNYOGpWrz3GQd5r6SQ%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2018-05-30",
+      "endDate": "2019-05-30",
+      "awardDate": "2018-06-06",
+      "formalizedDate": "2018-06-06",
+      "assignee": "MANTENIMIENTO DE PISCINAS E INSTALACIONES DEPORTIVAS GRUPO MOSA, S.L.U.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 40000,
-      "initialAmountNoTaxes": 33057.85,
-      "finalAmount": 35995.99,
-      "finalAmountNoTaxes": 29748.76,
-      "numberOfProposals": 7
+      "categoryTitle": "it",
+      "cpvs": [
+        "51514110"
+      ],
+      "initialAmount": 55297,
+      "initialAmountNoTaxes": 45700,
+      "finalAmount": 52368.8,
+      "finalAmountNoTaxes": 43280,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "86822",
+      "title": "Construcción cubierta en pista deportiva CEIP Camp de Túria",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BzzNdz%2BdkwEQK2TEfXGy%2BA%3D%3D",
+      "status": "unknown",
+      "contractType": "construction",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2017-12-25",
+      "endDate": "2018-02-08",
+      "awardDate": "2018-01-18",
+      "formalizedDate": "2018-01-18",
+      "assignee": "Raser servicios electrotécnicos, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45261000"
+      ],
+      "initialAmount": 127050,
+      "initialAmountNoTaxes": 105000,
+      "finalAmount": 99825,
+      "finalAmountNoTaxes": 82500,
+      "numberOfProposals": 9
+    },
+    {
+      "id": "84588",
+      "title": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2018-03-01",
+      "endDate": "2020-02-29",
+      "awardDate": "2018-03-13",
+      "formalizedDate": "2018-03-13",
+      "assignee": "Irispress Social Media, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "culture",
+      "cpvs": [
+        "92312211",
+        "79340000",
+        "79342200"
+      ],
+      "initialAmount": 68970,
+      "initialAmountNoTaxes": 57000,
+      "finalAmount": 60500,
+      "finalAmountNoTaxes": 50000,
+      "numberOfProposals": 3
     },
     {
       "id": "115596",
@@ -8895,28 +8869,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "632456",
-      "title": "Obras de reforma de aseos en CEIP Mas d'escoto",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mbYyMjsxWu7nSoTX3z%2F7wA%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2019-09-20",
-      "endDate": "2019-09-21",
-      "awardDate": "2019-12-18",
-      "formalizedDate": null,
-      "assignee": "HIDROLOGÍA, PROYECTOS, DESARROLLO Y GESTIÓN, S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 29282,
-      "initialAmountNoTaxes": 24200,
-      "finalAmount": 29282,
-      "finalAmountNoTaxes": 24200,
-      "numberOfProposals": 1
-    },
-    {
       "id": "269744",
       "title": "Contrato de obras de impermeabilización cubierta Edificio Polivalente por procedimiento abierto súper simplificado",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JZ%2F2pX4u%2B497h85%2Fpmmsfw%3D%3D",
@@ -9216,6 +9168,28 @@
       "numberOfProposals": 3
     },
     {
+      "id": "1598936",
+      "title": "Obra de reposición de cableado eléctrico en polígono industrial casanova",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rpDCBf9pcXiiEJrVRqloyA%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": null,
+      "endDate": "2020-02-21",
+      "awardDate": "2020-01-15",
+      "formalizedDate": null,
+      "assignee": "INSDAGAR SOCIEDAD LIMITADA",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 29999.01,
+      "initialAmountNoTaxes": 24792.57,
+      "finalAmount": 21859.86,
+      "finalAmountNoTaxes": 18066,
+      "numberOfProposals": 2
+    },
+    {
       "id": "554861",
       "title": "Redacción proyecto de expropiación por tasación conjunta de los terrenos afectados por las obras de enlace del P.I. Masía de Baló con la A-3",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ntYxT%2FeMPG8QK2TEfXGy%2BA%3D%3D",
@@ -9258,6 +9232,72 @@
       "finalAmount": 15999.52,
       "finalAmountNoTaxes": 13222.74,
       "numberOfProposals": 3
+    },
+    {
+      "id": "554907",
+      "title": "Redacción anteproyecto de reurbanización y mejora de zonas verdes en los polígonos industriales",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YFPkOlMzZjIQK2TEfXGy%2BA%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2018-03-23",
+      "endDate": "2018-08-29",
+      "awardDate": "2018-04-11",
+      "formalizedDate": null,
+      "assignee": "ELENA MARÍA JIMÉNEZ GARRIDO",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 21175,
+      "initialAmountNoTaxes": 17500,
+      "finalAmount": 21175,
+      "finalAmountNoTaxes": 17500,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "632446",
+      "title": "Obras de reforma segunda planta mercado municipal",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BECD%2FdwxZPKXQV0WE7lYPw%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2019-09-20",
+      "endDate": "2019-11-14",
+      "awardDate": "2019-12-18",
+      "formalizedDate": null,
+      "assignee": "Joao 2000, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 40000,
+      "initialAmountNoTaxes": 33057.85,
+      "finalAmount": 35995.99,
+      "finalAmountNoTaxes": 29748.76,
+      "numberOfProposals": 7
+    },
+    {
+      "id": "632456",
+      "title": "Obras de reforma de aseos en CEIP Mas d'escoto",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mbYyMjsxWu7nSoTX3z%2F7wA%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2019-09-20",
+      "endDate": "2019-09-21",
+      "awardDate": "2019-12-18",
+      "formalizedDate": null,
+      "assignee": "HIDROLOGÍA, PROYECTOS, DESARROLLO Y GESTIÓN, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 29282,
+      "initialAmountNoTaxes": 24200,
+      "finalAmount": 29282,
+      "finalAmountNoTaxes": 24200,
+      "numberOfProposals": 1
     },
     {
       "id": "632465",
@@ -9510,50 +9550,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1566052",
-      "title": "dirección facultativa de las obras correspondientes a varias actuaciones en CEIP Eres Altes",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Z8Cv031VpdWiEJrVRqloyA%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": null,
-      "endDate": "2020-10-20",
-      "awardDate": "2019-12-08",
-      "formalizedDate": null,
-      "assignee": "CARMONA REQUENI FRANCISCO JOSE",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 17968,
-      "initialAmountNoTaxes": 14850,
-      "finalAmount": 16940,
-      "finalAmountNoTaxes": 14000,
-      "numberOfProposals": 1
-    },
-    {
-      "id": "1598936",
-      "title": "Obra de reposición de cableado eléctrico en polígono industrial casanova",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rpDCBf9pcXiiEJrVRqloyA%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": null,
-      "endDate": "2020-02-21",
-      "awardDate": "2020-01-15",
-      "formalizedDate": null,
-      "assignee": "INSDAGAR SOCIEDAD LIMITADA",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 29999.01,
-      "initialAmountNoTaxes": 24792.57,
-      "finalAmount": 21859.86,
-      "finalAmountNoTaxes": 18066,
-      "numberOfProposals": 2
-    },
-    {
       "id": "839880",
       "title": "Contrato de\nsuministro de mobiliario para la Escuela para Adultos de Riba-roja de Túria, por lotes -2\nlotes- por procedimiento abierto súper simplificado, mejor relación calidad-precio,\nvarios criterios de adjudicación, con cláusulas medioambientales como criterio de\nadjudicación y con condiciones especiales de ejecución de carácter medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bYoSN0aijdJ7h85%2Fpmmsfw%3D%3D",
@@ -9599,55 +9595,6 @@
       "finalAmount": 31898.07,
       "finalAmountNoTaxes": 26362.04,
       "numberOfProposals": 2
-    },
-    {
-      "id": "2520567",
-      "title": "Contrato menor relativo al servicio de señalización horizontal, pintura vial en Camino Valencia, Ctra de Villamarchante y C/ Mayor.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HH80l6iyhM%2Brz3GQd5r6SQ%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2021-06-29",
-      "endDate": "2021-04-01",
-      "awardDate": "2021-07-07",
-      "formalizedDate": null,
-      "assignee": "SEÑALIZACIONES TRILLO SOCIEDAD LIMITADA",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "maintenance",
-      "cpvs": [
-        "50232200",
-        "45233221"
-      ],
-      "initialAmount": 18137.9,
-      "initialAmountNoTaxes": 14990,
-      "finalAmount": 14399,
-      "finalAmountNoTaxes": 11900,
-      "numberOfProposals": 2
-    },
-    {
-      "id": "1498554",
-      "title": "contrato de obras de REFORMA DEL MERCADO MUNICIPAL por procedimiento abierto súper simplificado,",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=T1bL0AozFsh7h85%2Fpmmsfw%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": "2021-12-01",
-      "endDate": "2021-12-07",
-      "awardDate": "2021-10-21",
-      "formalizedDate": null,
-      "assignee": "CONSTRUMAR XATIVA S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45213140"
-      ],
-      "initialAmount": 70000,
-      "initialAmountNoTaxes": 57851.24,
-      "finalAmount": 64555,
-      "finalAmountNoTaxes": 53351.24,
-      "numberOfProposals": 3
     },
     {
       "id": "838291",
@@ -9952,7 +9899,7 @@
       "endDate": "2021-11-15",
       "awardDate": "2021-07-06",
       "formalizedDate": null,
-      "assignee": "SEÑALIZACIONES TRILLO SOCIEDAD LIMITADA",
+      "assignee": "Señalizaciones Trillo S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "other",
       "cpvs": [],
@@ -9983,6 +9930,55 @@
       "finalAmount": 4840,
       "finalAmountNoTaxes": 4000,
       "numberOfProposals": 1
+    },
+    {
+      "id": "2520567",
+      "title": "Contrato menor relativo al servicio de señalización horizontal, pintura vial en Camino Valencia, Ctra de Villamarchante y C/ Mayor.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HH80l6iyhM%2Brz3GQd5r6SQ%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2021-06-29",
+      "endDate": "2021-04-01",
+      "awardDate": "2021-07-07",
+      "formalizedDate": null,
+      "assignee": "Señalizaciones Trillo S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "maintenance",
+      "cpvs": [
+        "50232200",
+        "45233221"
+      ],
+      "initialAmount": 18137.9,
+      "initialAmountNoTaxes": 14990,
+      "finalAmount": 14399,
+      "finalAmountNoTaxes": 11900,
+      "numberOfProposals": 2
+    },
+    {
+      "id": "1498554",
+      "title": "contrato de obras de REFORMA DEL MERCADO MUNICIPAL por procedimiento abierto súper simplificado,",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=T1bL0AozFsh7h85%2Fpmmsfw%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": "2021-12-01",
+      "endDate": "2021-12-07",
+      "awardDate": "2021-10-21",
+      "formalizedDate": null,
+      "assignee": "CONSTRUMAR XATIVA S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45213140"
+      ],
+      "initialAmount": 70000,
+      "initialAmountNoTaxes": 57851.24,
+      "finalAmount": 64555,
+      "finalAmountNoTaxes": 53351.24,
+      "numberOfProposals": 3
     },
     {
       "id": "1608883",
@@ -10234,50 +10230,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4210348",
-      "title": "Contrato emergencia  acondicionamiento de caminos con realización de muro en camino el Quint con motivo \ndel episodio de lluvias torrenciales acontecido en noviembre de 2022.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jr9F%2FjUT2RSrz3GQd5r6SQ%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2022-09-14",
-      "endDate": "2023-01-20",
-      "awardDate": "2023-02-07",
-      "formalizedDate": null,
-      "assignee": "PROMOCIONES Y CONSTRUCCIONES CORPOAL 2018 S.L",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 7894.08,
-      "initialAmountNoTaxes": 6524.03,
-      "finalAmount": 7894.08,
-      "finalAmountNoTaxes": 6524.03,
-      "numberOfProposals": 1
-    },
-    {
-      "id": "4210493",
-      "title": "contrato de emergencia  acondicionamiento de caminos con realización de muro en camino \nCarrasquereta con motivo del episodio de lluvias torrenciales acontecido en noviembre \nde 2022.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PPeJKwzZVaB7h85%2Fpmmsfw%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2022-09-14",
-      "endDate": "2023-01-20",
-      "awardDate": "2023-02-07",
-      "formalizedDate": null,
-      "assignee": "PROMOCIONES Y CONSTRUCCIONES CORPOAL 2018 S.L",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 9045.96,
-      "initialAmountNoTaxes": 7476,
-      "finalAmount": 9045.96,
-      "finalAmountNoTaxes": 7476,
-      "numberOfProposals": 1
-    },
-    {
       "id": "1866888",
       "title": "Contrato de obras de creación de acondicionamiento acústico de las aulas de ensayo del Conservatorio municipal en Riba-roja de Túria, por procedimiento abierto súper simplificado de tramitación ordinaria, un solo criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 4 educación de calidad, ODS 8 trabajo decente y crecimiento económico, y ODS 11 ciudades y comunidades sostenibles.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TQzSkcsMF8xvYnTkQN0%2FZA%3D%3D",
@@ -10339,7 +10291,7 @@
       "endDate": "2023-09-09",
       "awardDate": "2022-08-10",
       "formalizedDate": "2022-10-05",
-      "assignee": "SEMICONDUCTORES Y SISTEMAS SA",
+      "assignee": "Semiconductores y sistemas, s.a.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -10594,6 +10546,31 @@
       "numberOfProposals": 1
     },
     {
+      "id": "4718596",
+      "title": "Contrato para el suministro de elementos para la sustitución, por reparación, de las puertas de salida de emergencia en el auditorio municipal, del Ayuntamiento de Riba-roja de Túria.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9TcmWcPo2P4mMOlAXxDEjw%3D%3D",
+      "status": "awarded",
+      "contractType": "supplies",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2023-05-01",
+      "endDate": "2053-05-29",
+      "awardDate": "2023-06-09",
+      "formalizedDate": null,
+      "assignee": "REVA SERVICIOS INTEGRALES SL",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "security",
+      "cpvs": [
+        "35113300",
+        "44221220"
+      ],
+      "initialAmount": 12069.75,
+      "initialAmountNoTaxes": 9975,
+      "finalAmount": 12069.75,
+      "finalAmountNoTaxes": 9975,
+      "numberOfProposals": 1
+    },
+    {
       "id": "1951719",
       "title": "Contratación administrativa del servicio municipal para la gestión de actividades deportivas; programas “Calistenia, Ribasaludable y Esport Actiu” con el objetivo de ampliar la oferta deportiva municipal, incorporando actividades deportivas al aire libre, a adjudicar por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y específico, contribuyendo ODS 8 “Trabajo decente y crecimiento económico”, siendo su tramitación anticipada (Ctto. 55/2022).",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dz5SuseqJAjnSoTX3z%2F7wA%3D%3D",
@@ -10618,27 +10595,47 @@
       "numberOfProposals": 2
     },
     {
-      "id": "84498",
-      "title": "Servicio de actividades acuáticas adaptada a menores con diversidad funcional",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N%2FaqxPea5wuiEJrVRqloyA%3D%3D",
-      "status": "unknown",
+      "id": "4210348",
+      "title": "Contrato emergencia  acondicionamiento de caminos con realización de muro en camino el Quint con motivo \ndel episodio de lluvias torrenciales acontecido en noviembre de 2022.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jr9F%2FjUT2RSrz3GQd5r6SQ%3D%3D",
+      "status": "awarded",
       "contractType": "services",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": "2018-05-03",
-      "endDate": "2019-05-03",
-      "awardDate": "2018-05-08",
-      "formalizedDate": "2018-05-08",
-      "assignee": "Esther Alba Navarro",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2022-09-14",
+      "endDate": "2023-01-20",
+      "awardDate": "2023-02-07",
+      "formalizedDate": null,
+      "assignee": "PROMOCIONES Y CONSTRUCCIONES CORPOAL 2018 S.L",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "security",
-      "cpvs": [
-        "75310000"
-      ],
-      "initialAmount": 1936,
-      "initialAmountNoTaxes": 1600,
-      "finalAmount": 1160.92,
-      "finalAmountNoTaxes": 959.44,
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 7894.08,
+      "initialAmountNoTaxes": 6524.03,
+      "finalAmount": 7894.08,
+      "finalAmountNoTaxes": 6524.03,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "4210493",
+      "title": "contrato de emergencia  acondicionamiento de caminos con realización de muro en camino \nCarrasquereta con motivo del episodio de lluvias torrenciales acontecido en noviembre \nde 2022.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PPeJKwzZVaB7h85%2Fpmmsfw%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2022-09-14",
+      "endDate": "2023-01-20",
+      "awardDate": "2023-02-07",
+      "formalizedDate": null,
+      "assignee": "PROMOCIONES Y CONSTRUCCIONES CORPOAL 2018 S.L",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 9045.96,
+      "initialAmountNoTaxes": 7476,
+      "finalAmount": 9045.96,
+      "finalAmountNoTaxes": 7476,
       "numberOfProposals": 1
     },
     {
@@ -10813,7 +10810,7 @@
       "endDate": "2026-06-26",
       "awardDate": "2023-05-11",
       "formalizedDate": "2023-06-27",
-      "assignee": "GRUPO CONSIDERA S.L.",
+      "assignee": "GRUPO CONSIDERA SOCIEDAD LIMITADA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "legal",
       "cpvs": [
@@ -10852,31 +10849,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4718596",
-      "title": "Contrato para el suministro de elementos para la sustitución, por reparación, de las puertas de salida de emergencia en el auditorio municipal, del Ayuntamiento de Riba-roja de Túria.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9TcmWcPo2P4mMOlAXxDEjw%3D%3D",
-      "status": "awarded",
-      "contractType": "supplies",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2023-05-01",
-      "endDate": "2053-05-29",
-      "awardDate": "2023-06-09",
-      "formalizedDate": null,
-      "assignee": "REVA SERVICIOS INTEGRALES SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "security",
-      "cpvs": [
-        "35113300",
-        "44221220"
-      ],
-      "initialAmount": 12069.75,
-      "initialAmountNoTaxes": 9975,
-      "finalAmount": 12069.75,
-      "finalAmountNoTaxes": 9975,
-      "numberOfProposals": 1
-    },
-    {
       "id": "auto-1353xo3",
       "title": "Contrato derivado del sistema dinámico de adquisición, para el servicio de Divulgación, Capacitación y Formación a los distintos actores implicados en los procedimientos de gestión y en el modelo de control de las iniciativas planteadas en el marco del PRTR sobre la base del Plan de Medidas Antifraude municipal derivado del SDA de servicios de diversa índole de utilización diaria.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N5CjtrgWr3%2FI8aL3PRS10Q%3D%3D",
@@ -10900,30 +10872,6 @@
       "initialAmountNoTaxes": 12700,
       "finalAmount": 15367,
       "finalAmountNoTaxes": 12700,
-      "numberOfProposals": 1
-    },
-    {
-      "id": "4583737",
-      "title": "Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado a favor la mercantil mercantil OBRAS PUBLICAS MONTANER 1, S.L. con CIF B97668875 (47V/2024– SIGA 6520/2024/GEN)",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UYoYKOBJcDM%2B1TMyIiZmzw%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2024-12-19",
-      "awardDate": "2024-12-12",
-      "formalizedDate": null,
-      "assignee": "Obras Públicas Montaner 1, S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "environment",
-      "cpvs": [
-        "90610000"
-      ],
-      "initialAmount": 15805.63,
-      "initialAmountNoTaxes": 13062.5,
-      "finalAmount": 15805.63,
-      "finalAmountNoTaxes": 13062.5,
       "numberOfProposals": 1
     },
     {
@@ -11113,30 +11061,6 @@
       "numberOfProposals": 5
     },
     {
-      "id": "1701582#22",
-      "title": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2023-09-20",
-      "endDate": "2023-09-09",
-      "awardDate": "2022-08-10",
-      "formalizedDate": "2022-10-05",
-      "assignee": "TELEFONICA SOLUCIONES DE INFORMATICA Y COMUNICACIONES DE ESPAÑA S.A.U.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "it",
-      "cpvs": [
-        "72500000"
-      ],
-      "initialAmount": 23948.93,
-      "initialAmountNoTaxes": 19792.5,
-      "finalAmount": 17686.26,
-      "finalAmountNoTaxes": 14616.75,
-      "numberOfProposals": 1
-    },
-    {
       "id": "3733477",
       "title": "Contrato Menor de Base de Datos Jurídica El Consultor",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9ZDftrijnUGiEJrVRqloyA%3D%3D",
@@ -11148,7 +11072,7 @@
       "endDate": "2023-07-07",
       "awardDate": "2022-08-30",
       "formalizedDate": null,
-      "assignee": "Aranzadi La Ley SAU",
+      "assignee": "ARANZADI LA LEY SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "legal",
       "cpvs": [
@@ -11197,7 +11121,7 @@
       "endDate": "2026-02-27",
       "awardDate": "2025-03-05",
       "formalizedDate": null,
-      "assignee": "Aranzadi La Ley SAU",
+      "assignee": "ARANZADI LA LEY SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "print",
       "cpvs": [
@@ -11222,7 +11146,7 @@
       "endDate": "2026-03-04",
       "awardDate": "2026-02-02",
       "formalizedDate": "2026-02-02",
-      "assignee": "Techfriendly SL",
+      "assignee": "TECHFRIENDLY, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "architecture",
       "cpvs": [
@@ -11260,27 +11184,27 @@
       "numberOfProposals": 1
     },
     {
-      "id": "86508",
-      "title": "Servicio para la realización de programas de embarazo, parto y crianza en el Espai de la Dona",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=48O%2BFjg6Mdkuf4aBO%2BvQlQ%3D%3D",
-      "status": "unknown",
+      "id": "4583737",
+      "title": "Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado a favor la mercantil mercantil OBRAS PUBLICAS MONTANER 1, S.L. con CIF B97668875 (47V/2024– SIGA 6520/2024/GEN)",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UYoYKOBJcDM%2B1TMyIiZmzw%3D%3D",
+      "status": "awarded",
       "contractType": "services",
       "processType": "negotiated_without_publicity",
       "minorContract": false,
-      "startDate": "2018-05-04",
-      "endDate": "2019-05-04",
-      "awardDate": "2018-05-07",
-      "formalizedDate": "2018-05-07",
-      "assignee": "Asociación Astarte",
+      "startDate": null,
+      "endDate": "2024-12-19",
+      "awardDate": "2024-12-12",
+      "formalizedDate": null,
+      "assignee": "Obras Públicas Montaner 1, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "health",
+      "categoryTitle": "environment",
       "cpvs": [
-        "85322000"
+        "90610000"
       ],
-      "initialAmount": 36300,
-      "initialAmountNoTaxes": 30000,
-      "finalAmount": 36300,
-      "finalAmountNoTaxes": 30000,
+      "initialAmount": 15805.63,
+      "initialAmountNoTaxes": 13062.5,
+      "finalAmount": 15805.63,
+      "finalAmountNoTaxes": 13062.5,
       "numberOfProposals": 1
     },
     {
@@ -11420,7 +11344,7 @@
       "endDate": "2023-02-18",
       "awardDate": "2022-02-16",
       "formalizedDate": "2022-02-18",
-      "assignee": "Grado Informática y Gestión",
+      "assignee": "GRADO INFORMATICA I GESTION S.L.U",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "education",
       "cpvs": [
@@ -11588,7 +11512,7 @@
       "endDate": "2022-05-30",
       "awardDate": "2018-06-06",
       "formalizedDate": "2018-06-06",
-      "assignee": "MARCO TALLER CERRAJERIA S L",
+      "assignee": "MARCO TALLER CERRAJERIA SOCIEDAD LIMITADA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "maintenance",
       "cpvs": [
@@ -11598,6 +11522,54 @@
       "initialAmountNoTaxes": 5830,
       "finalAmount": 7048.25,
       "finalAmountNoTaxes": 5825,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "84498",
+      "title": "Servicio de actividades acuáticas adaptada a menores con diversidad funcional",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N%2FaqxPea5wuiEJrVRqloyA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2018-05-03",
+      "endDate": "2019-05-03",
+      "awardDate": "2018-05-08",
+      "formalizedDate": "2018-05-08",
+      "assignee": "Esther Alba Navarro",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "security",
+      "cpvs": [
+        "75310000"
+      ],
+      "initialAmount": 1936,
+      "initialAmountNoTaxes": 1600,
+      "finalAmount": 1160.92,
+      "finalAmountNoTaxes": 959.44,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "86508",
+      "title": "Servicio para la realización de programas de embarazo, parto y crianza en el Espai de la Dona",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=48O%2BFjg6Mdkuf4aBO%2BvQlQ%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2018-05-04",
+      "endDate": "2019-05-04",
+      "awardDate": "2018-05-07",
+      "formalizedDate": "2018-05-07",
+      "assignee": "Asociación Astarte",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "health",
+      "cpvs": [
+        "85322000"
+      ],
+      "initialAmount": 36300,
+      "initialAmountNoTaxes": 30000,
+      "finalAmount": 36300,
+      "finalAmountNoTaxes": 30000,
       "numberOfProposals": 1
     },
     {
@@ -11623,6 +11595,30 @@
       "finalAmount": 51534.73,
       "finalAmountNoTaxes": 51534.73,
       "numberOfProposals": 2
+    },
+    {
+      "id": "1701582#22",
+      "title": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2023-09-20",
+      "endDate": "2023-09-09",
+      "awardDate": "2022-08-10",
+      "formalizedDate": "2022-10-05",
+      "assignee": "Telefonica Soluciones de informática y comunicaciones de España SAU",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "it",
+      "cpvs": [
+        "72500000"
+      ],
+      "initialAmount": 23948.93,
+      "initialAmountNoTaxes": 19792.5,
+      "finalAmount": 17686.26,
+      "finalAmountNoTaxes": 14616.75,
+      "numberOfProposals": 1
     },
     {
       "id": "129175",
@@ -11846,6 +11842,28 @@
       "numberOfProposals": 1
     },
     {
+      "id": "329628",
+      "title": "Pavimentación pista deportiva en CEIP Más d'Escoto",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wJn4tYrb58kQK2TEfXGy%2BA%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2017-07-07",
+      "endDate": "2017-08-19",
+      "awardDate": "2018-01-24",
+      "formalizedDate": null,
+      "assignee": "AGLOMERADOS LOS SERRANOS SAU",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 30148.75,
+      "initialAmountNoTaxes": 24916.32,
+      "finalAmount": 30148.75,
+      "finalAmountNoTaxes": 24916.32,
+      "numberOfProposals": 1
+    },
+    {
       "id": "1401120",
       "title": "servicio de desratización, desinsectación y desinfección de la red pública de saneamiento municipal y dependencias municipales y el tratamiento de simúlidos en el término municipal de Riba-roja de Túria por procedimiento abierto súper simplificado, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 12.2 modalidades de consumo y producción sostenibles, y al ODS 8.8 relativo a lograr trabajo decente.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bm2zmDzxCfVvYnTkQN0%2FZA%3D%3D",
@@ -11894,52 +11912,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "65245",
-      "title": "Urbanización acera zona entrada desde Villamarchante",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WRil3xaM4Rt7h85%2Fpmmsfw%3D%3D",
-      "status": "unknown",
-      "contractType": "construction",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": "2018-05-28",
-      "endDate": "2018-08-27",
-      "awardDate": "2018-05-08",
-      "formalizedDate": "2018-05-08",
-      "assignee": "SEOP PROYECTOS Y CONTRATAS S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45233223"
-      ],
-      "initialAmount": 135670.93,
-      "initialAmountNoTaxes": 112124.74,
-      "finalAmount": 99983.47,
-      "finalAmountNoTaxes": 82630.97,
-      "numberOfProposals": 7
-    },
-    {
-      "id": "737827",
-      "title": "Obra de pavimentación del Camí del conde, reparación de aceras, calzada y zanja polígonos",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FAlHwbbdt%2BSmq21uxhbaVQ%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2018-11-13",
-      "endDate": "2018-12-02",
-      "awardDate": "2018-11-23",
-      "formalizedDate": null,
-      "assignee": "PAVASAL EMPRESA CONSTRUCTORA, S.A.U.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 58521.42,
-      "initialAmountNoTaxes": 48364.81,
-      "finalAmount": 38064.18,
-      "finalAmountNoTaxes": 31458,
-      "numberOfProposals": 2
-    },
-    {
       "id": "24098",
       "title": "obras de ampliación del Cementerio Municipal, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental y de carácter socio-laboral",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BLiIBIfG7gZvYnTkQN0%2FZA%3D%3D",
@@ -11986,30 +11958,6 @@
       "finalAmount": 9900,
       "finalAmountNoTaxes": 9000,
       "numberOfProposals": 2
-    },
-    {
-      "id": "1554203",
-      "title": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
-      "status": "unknown",
-      "contractType": "construction",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2022-01-21",
-      "awardDate": "2022-01-11",
-      "formalizedDate": "2022-01-11",
-      "assignee": "ELECNOR SERVICIOS Y PROYECTOS, S.A.U",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45316000"
-      ],
-      "initialAmount": 89999.96,
-      "initialAmountNoTaxes": 74380.13,
-      "finalAmount": 66008.77,
-      "finalAmountNoTaxes": 54552.7,
-      "numberOfProposals": 7
     },
     {
       "id": "7483528",
@@ -12238,31 +12186,6 @@
       "finalAmount": 1160667.75,
       "finalAmountNoTaxes": 1055152.5,
       "numberOfProposals": 2
-    },
-    {
-      "id": "1719226",
-      "title": "Suministros software",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i2r6gJMFJ6lvYnTkQN0%2FZA%3D%3D",
-      "status": "unknown",
-      "contractType": "supplies",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2022-11-01",
-      "endDate": "2026-08-21",
-      "awardDate": "2022-07-22",
-      "formalizedDate": "2022-09-05",
-      "assignee": "FORMACIÓN INFORMÁTICA DESARROLLO Y COMUNICACIONES S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "print",
-      "cpvs": [
-        "30200000",
-        "48000000"
-      ],
-      "initialAmount": 68143.05,
-      "initialAmountNoTaxes": 56316.57,
-      "finalAmount": 68143.05,
-      "finalAmountNoTaxes": 56316.57,
-      "numberOfProposals": 1
     },
     {
       "id": "1764467",
@@ -12524,7 +12447,7 @@
       "endDate": "2019-04-22",
       "awardDate": "2018-11-26",
       "formalizedDate": "2018-11-26",
-      "assignee": "AGLOMERADOS LOS SERRANOS, SAU",
+      "assignee": "AGLOMERADOS LOS SERRANOS SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -12538,28 +12461,6 @@
       "numberOfProposals": 5
     },
     {
-      "id": "329628",
-      "title": "Pavimentación pista deportiva en CEIP Más d'Escoto",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wJn4tYrb58kQK2TEfXGy%2BA%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": "2017-07-07",
-      "endDate": "2017-08-19",
-      "awardDate": "2018-01-24",
-      "formalizedDate": null,
-      "assignee": "AGLOMERADOS LOS SERRANOS, SAU",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 30148.75,
-      "initialAmountNoTaxes": 24916.32,
-      "finalAmount": 30148.75,
-      "finalAmountNoTaxes": 24916.32,
-      "numberOfProposals": 1
-    },
-    {
       "id": "649191",
       "title": "Obras pavimentación zona aparcamiento c/ Cronista cerveró",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FQysQwFNf3UBPRBxZ4nJ%2Fg%3D%3D",
@@ -12571,7 +12472,7 @@
       "endDate": "2019-04-03",
       "awardDate": "2019-03-30",
       "formalizedDate": null,
-      "assignee": "AGLOMERADOS LOS SERRANOS, SAU",
+      "assignee": "AGLOMERADOS LOS SERRANOS SAU",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "other",
       "cpvs": [],
@@ -12580,6 +12481,30 @@
       "finalAmount": 9676.37,
       "finalAmountNoTaxes": 7997,
       "numberOfProposals": 2
+    },
+    {
+      "id": "65245",
+      "title": "Urbanización acera zona entrada desde Villamarchante",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WRil3xaM4Rt7h85%2Fpmmsfw%3D%3D",
+      "status": "unknown",
+      "contractType": "construction",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2018-05-28",
+      "endDate": "2018-08-27",
+      "awardDate": "2018-05-08",
+      "formalizedDate": "2018-05-08",
+      "assignee": "SEOP PROYECTOS Y CONTRATAS S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45233223"
+      ],
+      "initialAmount": 135670.93,
+      "initialAmountNoTaxes": 112124.74,
+      "finalAmount": 99983.47,
+      "finalAmountNoTaxes": 82630.97,
+      "numberOfProposals": 7
     },
     {
       "id": "4579648",
@@ -12879,6 +12804,30 @@
       "numberOfProposals": 2
     },
     {
+      "id": "4892112",
+      "title": "Contrato administrativo de servicios para el desarrollo del servicio de informes de movilidad para la recopilación y el análisis de datos turísticos relativos al perfil y comportamiento de la demanda turística en Riba-roja de Túria, acción incluida en el Plan de Sostenibilidad turística en Destino (PSTD/22) - Ctto.101/2025.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6iplwbLBriGdkQsA7ROvsg%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2026-07-15",
+      "awardDate": "2025-12-16",
+      "formalizedDate": "2026-01-15",
+      "assignee": "MOVEA CONSULTING",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "it",
+      "cpvs": [
+        "72000000"
+      ],
+      "initialAmount": 44000,
+      "initialAmountNoTaxes": 36363.64,
+      "finalAmount": 31339,
+      "finalAmountNoTaxes": 25900,
+      "numberOfProposals": 2
+    },
+    {
       "id": "26720",
       "title": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
@@ -12890,7 +12839,7 @@
       "endDate": "2019-12-15",
       "awardDate": "2019-08-17",
       "formalizedDate": "2019-08-17",
-      "assignee": "COLIN BUCHANAN CONSULTORES S.A.",
+      "assignee": "COLIN BUCHANAN CONSULTORES, S.A.U.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "architecture",
       "cpvs": [
@@ -12901,30 +12850,6 @@
       "finalAmount": 35695,
       "finalAmountNoTaxes": 29500,
       "numberOfProposals": 16
-    },
-    {
-      "id": "9023884",
-      "title": "Contrato menor de suministro e instalación de barreras para el control de acceso en la Urbanización la Reva. (Ctto. 88M/2025).",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=s7lv1R0XugLua%2Fi14w%2FPLA%3D%3D",
-      "status": "awarded",
-      "contractType": "supplies",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": null,
-      "endDate": "2025-11-28",
-      "awardDate": "2025-10-30",
-      "formalizedDate": null,
-      "assignee": "Dicaba Instalaciones Automáticas S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "transportation",
-      "cpvs": [
-        "34928300"
-      ],
-      "initialAmount": 15197.6,
-      "initialAmountNoTaxes": 12560,
-      "finalAmount": 13651.87,
-      "finalAmountNoTaxes": 11282.54,
-      "numberOfProposals": 1
     },
     {
       "id": "4402625",
@@ -13114,7 +13039,7 @@
       "endDate": "2022-02-21",
       "awardDate": "2021-12-28",
       "formalizedDate": null,
-      "assignee": "IMESAPI, S.A.",
+      "assignee": "Imesapi S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "audiovisual",
       "cpvs": [
@@ -13138,7 +13063,7 @@
       "endDate": "2019-09-15",
       "awardDate": "2020-01-15",
       "formalizedDate": null,
-      "assignee": "IMESAPI, S.A.",
+      "assignee": "Imesapi S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "other",
       "cpvs": [],
@@ -13197,30 +13122,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "4892112",
-      "title": "Contrato administrativo de servicios para el desarrollo del servicio de informes de movilidad para la recopilación y el análisis de datos turísticos relativos al perfil y comportamiento de la demanda turística en Riba-roja de Túria, acción incluida en el Plan de Sostenibilidad turística en Destino (PSTD/22) - Ctto.101/2025.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6iplwbLBriGdkQsA7ROvsg%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2026-07-15",
-      "awardDate": "2025-12-16",
-      "formalizedDate": "2026-01-15",
-      "assignee": "MOVEA CONSULTING MOBILITY SL",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "it",
-      "cpvs": [
-        "72000000"
-      ],
-      "initialAmount": 44000,
-      "initialAmountNoTaxes": 36363.64,
-      "finalAmount": 31339,
-      "finalAmountNoTaxes": 25900,
-      "numberOfProposals": 2
-    },
-    {
       "id": "77637",
       "title": "Suministro e instalación alumbrado urbanización Entrenaranjos",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GhlQpXEdp4amq21uxhbaVQ%3D%3D",
@@ -13245,7 +13146,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "1719226#1",
+      "id": "1719226",
       "title": "Suministros hardware",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i2r6gJMFJ6lvYnTkQN0%2FZA%3D%3D",
       "status": "unknown",
@@ -13267,6 +13168,31 @@
       "initialAmountNoTaxes": 311217.16,
       "finalAmount": 367820.64,
       "finalAmountNoTaxes": 303984,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "1719226#1",
+      "title": "Suministros software",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i2r6gJMFJ6lvYnTkQN0%2FZA%3D%3D",
+      "status": "unknown",
+      "contractType": "supplies",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2022-11-01",
+      "endDate": "2026-08-21",
+      "awardDate": "2022-07-22",
+      "formalizedDate": "2022-09-05",
+      "assignee": "FORMACIÓN INFORMÁTICA DESARROLLO Y COMUNICACIONES S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "print",
+      "cpvs": [
+        "30200000",
+        "48000000"
+      ],
+      "initialAmount": 68143.05,
+      "initialAmountNoTaxes": 56316.57,
+      "finalAmount": 68143.05,
+      "finalAmountNoTaxes": 56316.57,
       "numberOfProposals": 1
     },
     {
@@ -13331,7 +13257,7 @@
       "endDate": "2024-11-14",
       "awardDate": "2024-12-10",
       "formalizedDate": null,
-      "assignee": "ENRIQUE DESCO SOCIEDAD LIMITADA",
+      "assignee": "Enrique Desco S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -13428,7 +13354,7 @@
       "endDate": "2024-03-22",
       "awardDate": "2022-03-03",
       "formalizedDate": "2022-03-03",
-      "assignee": "SATARA SEGURIDAD, SL",
+      "assignee": "SATARA SEGURIDAD SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "security",
       "cpvs": [
@@ -13454,7 +13380,7 @@
       "endDate": "2024-03-22",
       "awardDate": "2022-03-03",
       "formalizedDate": "2022-03-03",
-      "assignee": "SATARA SEGURIDAD, SL",
+      "assignee": "SATARA SEGURIDAD SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "security",
       "cpvs": [
@@ -13480,7 +13406,7 @@
       "endDate": "2024-03-22",
       "awardDate": "2022-03-03",
       "formalizedDate": "2022-03-03",
-      "assignee": "SATARA SEGURIDAD, SL",
+      "assignee": "SATARA SEGURIDAD SL",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "security",
       "cpvs": [
@@ -13570,6 +13496,31 @@
       "numberOfProposals": 9
     },
     {
+      "id": "99432",
+      "title": "Ejecución programa Obrim Portes",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xyj5yGj1qc4QK2TEfXGy%2BA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2017-05-16",
+      "endDate": "2018-11-16",
+      "awardDate": "2018-01-24",
+      "formalizedDate": "2018-01-24",
+      "assignee": "Ribamon. Actividades lúdicas de ocio y tiempo libre",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "culture",
+      "cpvs": [
+        "37416000",
+        "79714000"
+      ],
+      "initialAmount": 51700,
+      "initialAmountNoTaxes": 47000,
+      "finalAmount": 33583,
+      "finalAmountNoTaxes": 30530,
+      "numberOfProposals": 3
+    },
+    {
       "id": "1571783",
       "title": "contrato de obras de ADECUACIÓN ACCESIBILIDAD CAMPO DE FÚTBOL Y ASEOS por procedimiento abierto súper simplificado, un solo criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=omgMUlKYys7nSoTX3z%2F7wA%3D%3D",
@@ -13591,31 +13542,6 @@
       "initialAmountNoTaxes": 71074.38,
       "finalAmount": 81699.99,
       "finalAmountNoTaxes": 67520.66,
-      "numberOfProposals": 1
-    },
-    {
-      "id": "4660874",
-      "title": "Contrato de servicio de producción, programación, redacción y realización de contenidos multimedia mediante contrato derivado del SDA de servicios de diversa índole (Ctto. 27/2025)",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LteuAvKVc7QeIBJRHQiPkQ%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "restricted",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2026-06-03",
-      "awardDate": "2025-06-03",
-      "formalizedDate": null,
-      "assignee": "Joan Miquel Gonçales i Nogueroles",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "health",
-      "cpvs": [
-        "98300000",
-        "92000000"
-      ],
-      "initialAmount": 36227.4,
-      "initialAmountNoTaxes": 29940,
-      "finalAmount": 35937,
-      "finalAmountNoTaxes": 29700,
       "numberOfProposals": 1
     },
     {
@@ -13681,7 +13607,7 @@
       "endDate": "2019-03-08",
       "awardDate": "2018-08-14",
       "formalizedDate": null,
-      "assignee": "Las Provincias",
+      "assignee": "FEDERICO DOMENECH, S.A",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "other",
       "cpvs": [],
@@ -13888,53 +13814,53 @@
       "numberOfProposals": 3
     },
     {
-      "id": "99432",
-      "title": "Ejecución programa Obrim Portes",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xyj5yGj1qc4QK2TEfXGy%2BA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "startDate": "2017-05-16",
-      "endDate": "2018-11-16",
-      "awardDate": "2018-01-24",
-      "formalizedDate": "2018-01-24",
-      "assignee": "Ribamon. Actividades lúdicas de ocio y tiempo libre",
+      "id": "9023884",
+      "title": "Contrato menor de suministro e instalación de barreras para el control de acceso en la Urbanización la Reva. (Ctto. 88M/2025).",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=s7lv1R0XugLua%2Fi14w%2FPLA%3D%3D",
+      "status": "awarded",
+      "contractType": "supplies",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": null,
+      "endDate": "2025-11-28",
+      "awardDate": "2025-10-30",
+      "formalizedDate": null,
+      "assignee": "Dicaba Instalaciones Automáticas S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "culture",
+      "categoryTitle": "transportation",
       "cpvs": [
-        "37416000",
-        "79714000"
+        "34928300"
       ],
-      "initialAmount": 51700,
-      "initialAmountNoTaxes": 47000,
-      "finalAmount": 33583,
-      "finalAmountNoTaxes": 30530,
-      "numberOfProposals": 3
+      "initialAmount": 15197.6,
+      "initialAmountNoTaxes": 12560,
+      "finalAmount": 13651.87,
+      "finalAmountNoTaxes": 11282.54,
+      "numberOfProposals": 1
     },
     {
-      "id": "77392",
-      "title": "Suministro e instalación alumbrado en urbanización Pla de la Vallesa",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1gC5u%2FCbz5OXQV0WE7lYPw%3D%3D",
-      "status": "unknown",
-      "contractType": "supplies",
-      "processType": "negotiated_without_publicity",
+      "id": "4660874",
+      "title": "Contrato de servicio de producción, programación, redacción y realización de contenidos multimedia mediante contrato derivado del SDA de servicios de diversa índole (Ctto. 27/2025)",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LteuAvKVc7QeIBJRHQiPkQ%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "restricted",
       "minorContract": false,
-      "startDate": "2018-05-28",
-      "endDate": "2018-06-27",
-      "awardDate": "2018-06-06",
-      "formalizedDate": "2018-06-06",
-      "assignee": "Raser servicios electrotécnicos, S.L.",
+      "startDate": null,
+      "endDate": "2026-06-03",
+      "awardDate": "2025-06-03",
+      "formalizedDate": null,
+      "assignee": "Joan Miquel Gonçales i Nogueroles",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
+      "categoryTitle": "health",
       "cpvs": [
-        "45316000"
+        "98300000",
+        "92000000"
       ],
-      "initialAmount": 45455.34,
-      "initialAmountNoTaxes": 37566.4,
-      "finalAmount": 40910.1,
-      "finalAmountNoTaxes": 33810,
-      "numberOfProposals": 2
+      "initialAmount": 36227.4,
+      "initialAmountNoTaxes": 29940,
+      "finalAmount": 35937,
+      "finalAmountNoTaxes": 29700,
+      "numberOfProposals": 1
     },
     {
       "id": "4581791",
@@ -14047,7 +13973,7 @@
       "endDate": "2023-09-09",
       "awardDate": "2022-08-10",
       "formalizedDate": "2022-10-04",
-      "assignee": "CANON ESPAÑA, SAU",
+      "assignee": "CANON ESPAÑA, S.A.U.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -14252,30 +14178,6 @@
       "finalAmount": 73661.25,
       "finalAmountNoTaxes": 60877.07,
       "numberOfProposals": 3
-    },
-    {
-      "id": "4558191",
-      "title": "Obras de equipamiento",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2025-09-22",
-      "awardDate": "2024-12-26",
-      "formalizedDate": null,
-      "assignee": "BECSA SAU",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45233161"
-      ],
-      "initialAmount": 142347.15,
-      "initialAmountNoTaxes": 117642.27,
-      "finalAmount": 141834.35,
-      "finalAmountNoTaxes": 117218.47,
-      "numberOfProposals": 2
     },
     {
       "id": "4584116",
@@ -14491,7 +14393,7 @@
       "endDate": "2021-11-27",
       "awardDate": "2021-10-22",
       "formalizedDate": null,
-      "assignee": "Licuas, S.A.",
+      "assignee": "LICUAS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -14599,6 +14501,30 @@
       "initialAmountNoTaxes": 82644.62,
       "finalAmount": 90629,
       "finalAmountNoTaxes": 74900,
+      "numberOfProposals": 2
+    },
+    {
+      "id": "77392",
+      "title": "Suministro e instalación alumbrado en urbanización Pla de la Vallesa",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1gC5u%2FCbz5OXQV0WE7lYPw%3D%3D",
+      "status": "unknown",
+      "contractType": "supplies",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "startDate": "2018-05-28",
+      "endDate": "2018-06-27",
+      "awardDate": "2018-06-06",
+      "formalizedDate": "2018-06-06",
+      "assignee": "Raser servicios electrotécnicos, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45316000"
+      ],
+      "initialAmount": 45455.34,
+      "initialAmountNoTaxes": 37566.4,
+      "finalAmount": 40910.1,
+      "finalAmountNoTaxes": 33810,
       "numberOfProposals": 2
     },
     {
@@ -15256,30 +15182,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1999",
-      "title": "Adecuación Paseo Molinet",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2019-06-19",
-      "awardDate": "2019-06-05",
-      "formalizedDate": null,
-      "assignee": "OBRAS Y SERVICIOS SERCYOVAL S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45233140"
-      ],
-      "initialAmount": 32000,
-      "initialAmountNoTaxes": 26446.28,
-      "finalAmount": 31805.27,
-      "finalAmountNoTaxes": 26285.35,
-      "numberOfProposals": 1
-    },
-    {
       "id": "4379130",
       "title": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del sistema dinámico de adquisición para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. Ctto151/2023.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
@@ -15636,30 +15538,6 @@
       "numberOfProposals": 3
     },
     {
-      "id": "873123#1",
-      "title": "Mantenimiento césped artificial campos de fútbol",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
-      "status": "awarded",
-      "contractType": "services",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": "2021-04-01",
-      "endDate": "2022-03-10",
-      "awardDate": "2021-03-06",
-      "formalizedDate": null,
-      "assignee": "INSTALACIONES Y MANTENIMIENTOS DEL CESPED ARTIFICIAL SOCIEDAD LIMITADA",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "agriculture",
-      "cpvs": [
-        "77320000"
-      ],
-      "initialAmount": 10406,
-      "initialAmountNoTaxes": 8600,
-      "finalAmount": 4700.85,
-      "finalAmountNoTaxes": 3885,
-      "numberOfProposals": 3
-    },
-    {
       "id": "4829621",
       "title": "Contrato Administrativo Obras de recuperación de instalación cultural con el cambio de tarima de los aularios del conservatorio de danza por daños sufridos tras la DANA 2024",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bMD1Euh1sIz10HRJw8TEnQ%3D%3D",
@@ -15684,7 +15562,55 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1999#1",
+      "id": "5106848#1",
+      "title": "UE casco 5",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": null,
+      "awardDate": null,
+      "formalizedDate": null,
+      "assignee": null,
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "architecture",
+      "cpvs": [
+        "71000000"
+      ],
+      "initialAmount": 10448.5,
+      "initialAmountNoTaxes": 8635.12,
+      "finalAmount": 0,
+      "finalAmountNoTaxes": 0,
+      "numberOfProposals": 0
+    },
+    {
+      "id": "5106848#2",
+      "title": "UE vella 6",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": null,
+      "awardDate": null,
+      "formalizedDate": null,
+      "assignee": null,
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "architecture",
+      "cpvs": [
+        "71000000"
+      ],
+      "initialAmount": 40033,
+      "initialAmountNoTaxes": 33085.12,
+      "finalAmount": 0,
+      "finalAmountNoTaxes": 0,
+      "numberOfProposals": 0
+    },
+    {
+      "id": "1999",
       "title": "Mejora accesibilidad C/ Cronista Cerveró",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -15754,6 +15680,34 @@
       "finalAmount": 32990.65,
       "finalAmountNoTaxes": 27265,
       "numberOfProposals": 2
+    },
+    {
+      "id": "5106922",
+      "title": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
+      "status": "unknown",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": null,
+      "awardDate": null,
+      "formalizedDate": null,
+      "assignee": null,
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45111000",
+        "45262310",
+        "45232130",
+        "45317000",
+        "45237000"
+      ],
+      "initialAmount": 128695.18,
+      "initialAmountNoTaxes": 106359.65,
+      "finalAmount": 0,
+      "finalAmountNoTaxes": 0,
+      "numberOfProposals": 0
     },
     {
       "id": "8678128",
@@ -16068,7 +16022,7 @@
       "endDate": "2022-07-09",
       "awardDate": "2022-03-29",
       "formalizedDate": "2022-05-10",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16083,7 +16037,7 @@
       "numberOfProposals": 3
     },
     {
-      "id": "4558191#1",
+      "id": "4558191",
       "title": "Obra completa",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
       "status": "awarded",
@@ -16094,7 +16048,7 @@
       "endDate": "2025-09-22",
       "awardDate": "2024-12-26",
       "formalizedDate": null,
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16104,6 +16058,30 @@
       "initialAmountNoTaxes": 640082.64,
       "finalAmount": 760217.67,
       "finalAmountNoTaxes": 628279.07,
+      "numberOfProposals": 2
+    },
+    {
+      "id": "4558191#1",
+      "title": "Obras de equipamiento",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2025-09-22",
+      "awardDate": "2024-12-26",
+      "formalizedDate": null,
+      "assignee": "BECSA, S.A.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45233161"
+      ],
+      "initialAmount": 142347.15,
+      "initialAmountNoTaxes": 117642.27,
+      "finalAmount": 141834.35,
+      "finalAmountNoTaxes": 117218.47,
       "numberOfProposals": 2
     },
     {
@@ -16118,7 +16096,7 @@
       "endDate": "2024-11-09",
       "awardDate": "2025-01-15",
       "formalizedDate": null,
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -16142,7 +16120,7 @@
       "endDate": "2024-02-08",
       "awardDate": "2024-01-02",
       "formalizedDate": "2024-01-10",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16166,7 +16144,7 @@
       "endDate": "2023-01-13",
       "awardDate": "2022-12-01",
       "formalizedDate": "2022-12-19",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16192,7 +16170,7 @@
       "endDate": "2023-08-11",
       "awardDate": "2023-07-27",
       "formalizedDate": null,
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16216,7 +16194,7 @@
       "endDate": "2024-02-08",
       "awardDate": "2024-01-02",
       "formalizedDate": "2024-01-10",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16240,7 +16218,7 @@
       "endDate": "2018-12-12",
       "awardDate": "2018-11-23",
       "formalizedDate": "2018-11-23",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16264,7 +16242,7 @@
       "endDate": "2024-02-08",
       "awardDate": "2024-01-02",
       "formalizedDate": "2024-01-10",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16288,7 +16266,7 @@
       "endDate": "2018-10-21",
       "awardDate": "2018-10-04",
       "formalizedDate": "2018-10-04",
-      "assignee": "BECSA SAU",
+      "assignee": "BECSA, S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16299,6 +16277,28 @@
       "finalAmount": 34984.73,
       "finalAmountNoTaxes": 28913,
       "numberOfProposals": 3
+    },
+    {
+      "id": "9049099",
+      "title": "Contrato menor de suministro de dos kits de pistola eléctrica y sus complementos para la Policía Local, a favor de Viatorplusultra S.L. con CIF B04709390 (Ctto. 85M/2025)",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qyOlqtKQoGQ2wEhQbcAqug%3D%3D",
+      "status": "awarded",
+      "contractType": "supplies",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": null,
+      "endDate": "2025-12-04",
+      "awardDate": "2025-11-04",
+      "formalizedDate": null,
+      "assignee": "Viatorplusultra S.L",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 15472.71,
+      "initialAmountNoTaxes": 12787.36,
+      "finalAmount": 15472.71,
+      "finalAmountNoTaxes": 12787.36,
+      "numberOfProposals": 1
     },
     {
       "id": "414235",
@@ -16384,7 +16384,7 @@
       "endDate": "2021-09-12",
       "awardDate": "2021-09-09",
       "formalizedDate": null,
-      "assignee": "GESTION INTEGRAL DE RESIDUOS SÓLIDOS, S.A.",
+      "assignee": "GESTIÓN INTEGRAL DE RESIDUOS SÓLIDOS SA (GIRSA)",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16395,30 +16395,6 @@
       "finalAmount": 60325.1,
       "finalAmountNoTaxes": 49855.45,
       "numberOfProposals": 3
-    },
-    {
-      "id": "29500",
-      "title": "Obras de pavimentación de caminos rurales: Cami de Borreguillo, Tramo cami  que enlaza Camí de Xest con Campo Tiro Olímpico. Goncelo y Pla de Nadal.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
-      "status": "awarded",
-      "contractType": "construction",
-      "processType": "open_simplified",
-      "minorContract": false,
-      "startDate": "2019-07-12",
-      "endDate": "2019-07-14",
-      "awardDate": "2019-12-28",
-      "formalizedDate": "2019-12-28",
-      "assignee": "GUEROLA  INFRAESTRUCTURAS S.L.U.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "construction",
-      "cpvs": [
-        "45233000"
-      ],
-      "initialAmount": 95795.88,
-      "initialAmountNoTaxes": 79170.15,
-      "finalAmount": 59119.19,
-      "finalAmountNoTaxes": 48858.84,
-      "numberOfProposals": 6
     },
     {
       "id": "1841182",
@@ -16432,7 +16408,7 @@
       "endDate": "2022-12-01",
       "awardDate": "2022-08-19",
       "formalizedDate": "2022-09-01",
-      "assignee": "GESTION INTEGRAL DE RESIDUOS SÓLIDOS, S.A.",
+      "assignee": "GESTIÓN INTEGRAL DE RESIDUOS SÓLIDOS SA (GIRSA)",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16457,7 +16433,7 @@
       "endDate": "2019-04-30",
       "awardDate": "2019-03-30",
       "formalizedDate": "2019-03-30",
-      "assignee": "EIFFAGE ENERGÍA, S.L.U.",
+      "assignee": "EIFFAGE ENERGIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -16603,7 +16579,7 @@
       "endDate": "2025-01-13",
       "awardDate": null,
       "formalizedDate": null,
-      "assignee": "Techfriendly SL",
+      "assignee": "TECHFRIENDLY, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "architecture",
       "cpvs": [
@@ -16639,28 +16615,6 @@
       "initialAmountNoTaxes": 59900,
       "finalAmount": 72479,
       "finalAmountNoTaxes": 59900,
-      "numberOfProposals": 1
-    },
-    {
-      "id": "9049099",
-      "title": "Contrato menor de suministro de dos kits de pistola eléctrica y sus complementos para la Policía Local, a favor de Viatorplusultra S.L. con CIF B04709390 (Ctto. 85M/2025)",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qyOlqtKQoGQ2wEhQbcAqug%3D%3D",
-      "status": "awarded",
-      "contractType": "supplies",
-      "processType": "minor_contract",
-      "minorContract": true,
-      "startDate": null,
-      "endDate": "2025-12-04",
-      "awardDate": "2025-11-04",
-      "formalizedDate": null,
-      "assignee": "VIATORPLUSULTRA, S.L.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "other",
-      "cpvs": [],
-      "initialAmount": 15472.71,
-      "initialAmountNoTaxes": 12787.36,
-      "finalAmount": 15472.71,
-      "finalAmountNoTaxes": 12787.36,
       "numberOfProposals": 1
     },
     {
@@ -16713,7 +16667,7 @@
       "numberOfProposals": 4
     },
     {
-      "id": "29500#1",
+      "id": "29500",
       "title": "Obras de pavimentación c/ Toledo y camí urbanización Els pous",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
       "status": "awarded",
@@ -16761,7 +16715,7 @@
       "numberOfProposals": 1
     },
     {
-      "id": "1999#2",
+      "id": "1999#1",
       "title": "Adecuación urbanización Masía de Traver",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
       "status": "unknown",
@@ -16783,6 +16737,78 @@
       "finalAmount": 0,
       "finalAmountNoTaxes": 0,
       "numberOfProposals": 1
+    },
+    {
+      "id": "1999#2",
+      "title": "Adecuación Paseo Molinet",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uhl7Dr7kScguf4aBO%2BvQlQ%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2019-06-19",
+      "awardDate": "2019-06-05",
+      "formalizedDate": null,
+      "assignee": "OBRAS Y SERVICIOS SERCYOVAL S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45233140"
+      ],
+      "initialAmount": 32000,
+      "initialAmountNoTaxes": 26446.28,
+      "finalAmount": 31805.27,
+      "finalAmountNoTaxes": 26285.35,
+      "numberOfProposals": 1
+    },
+    {
+      "id": "29500#1",
+      "title": "Obras de pavimentación de caminos rurales: Cami de Borreguillo, Tramo cami  que enlaza Camí de Xest con Campo Tiro Olímpico. Goncelo y Pla de Nadal.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": "2019-07-12",
+      "endDate": "2019-07-14",
+      "awardDate": "2019-12-28",
+      "formalizedDate": "2019-12-28",
+      "assignee": "GUEROLA  INFRAESTRUCTURAS S.L.U.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "construction",
+      "cpvs": [
+        "45233000"
+      ],
+      "initialAmount": 95795.88,
+      "initialAmountNoTaxes": 79170.15,
+      "finalAmount": 59119.19,
+      "finalAmountNoTaxes": 48858.84,
+      "numberOfProposals": 6
+    },
+    {
+      "id": "873123#1",
+      "title": "Mantenimiento césped artificial campos de fútbol",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=hFrradR5sN8BPRBxZ4nJ%2Fg%3D%3D",
+      "status": "awarded",
+      "contractType": "services",
+      "processType": "open_simplified",
+      "minorContract": false,
+      "startDate": "2021-04-01",
+      "endDate": "2022-03-10",
+      "awardDate": "2021-03-06",
+      "formalizedDate": null,
+      "assignee": "INSTALACIONES Y MANTENIMIENTOS DEL CESPED ARTIFICIAL SOCIEDAD LIMITADA",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "agriculture",
+      "cpvs": [
+        "77320000"
+      ],
+      "initialAmount": 10406,
+      "initialAmountNoTaxes": 8600,
+      "finalAmount": 4700.85,
+      "finalAmountNoTaxes": 3885,
+      "numberOfProposals": 3
     },
     {
       "id": "5036428",
@@ -16912,6 +16938,33 @@
       "numberOfProposals": 1
     },
     {
+      "id": "4363449#1",
+      "title": "Equipamiento de cardio",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SafzgnHFCyq5HQrHoP3G5A%3D%3D",
+      "status": "unknown",
+      "contractType": "supplies",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2028-05-14",
+      "awardDate": "2024-05-03",
+      "formalizedDate": "2024-06-05",
+      "assignee": "EXERCYCLE, S.L.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "culture",
+      "cpvs": [
+        "37400000",
+        "37441300",
+        "37441900",
+        "37441100"
+      ],
+      "initialAmount": 131509.87,
+      "initialAmountNoTaxes": 108685.84,
+      "finalAmount": 82088.6,
+      "finalAmountNoTaxes": 67841.82,
+      "numberOfProposals": 2
+    },
+    {
       "id": "4321164",
       "title": "Contrato suministro de 40 terminales portátiles de comunicaciones, accesorios y servicios asociados para la RED COMDES destinados al cuerpo de policía local de Riba-roja de Túria, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter medioambiental y técnica, contribuyendo al ODS 11.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z7DQk7wlPT6cCF8sV%2BqtYA%3D%3D",
@@ -16987,6 +17040,32 @@
       "numberOfProposals": 0
     },
     {
+      "id": "1524361",
+      "title": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fzebv5hGIqaiEJrVRqloyA%3D%3D",
+      "status": "awarded",
+      "contractType": "supplies",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": "2020-02-28",
+      "endDate": "2025-10-20",
+      "awardDate": "2021-11-15",
+      "formalizedDate": null,
+      "assignee": "CANVA PTY. LTD.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "furniture",
+      "cpvs": [
+        "39293400",
+        "45212200",
+        "45212290"
+      ],
+      "initialAmount": 239937.57,
+      "initialAmountNoTaxes": 198295.51,
+      "finalAmount": 235992.4,
+      "finalAmountNoTaxes": 195035.04,
+      "numberOfProposals": 1
+    },
+    {
       "id": "131615",
       "title": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EPfBoyapDZkQK2TEfXGy%2BA%3D%3D",
@@ -16998,7 +17077,7 @@
       "endDate": "2018-04-22",
       "awardDate": "2017-07-13",
       "formalizedDate": "2017-07-13",
-      "assignee": "UNIVERSITAT DE VALENCIA (ESTUDI GENERAL DE VALENCIA)",
+      "assignee": "UNIVERSITAT DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "legal",
       "cpvs": [
@@ -17022,7 +17101,7 @@
       "endDate": "2026-03-28",
       "awardDate": "2022-03-04",
       "formalizedDate": "2022-03-29",
-      "assignee": "UNIVERSITAT DE VALENCIA (ESTUDI GENERAL DE VALENCIA)",
+      "assignee": "UNIVERSITAT DE VALENCIA",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "environment",
       "cpvs": [
@@ -17046,7 +17125,7 @@
       "endDate": "2024-06-16",
       "awardDate": "2024-02-28",
       "formalizedDate": null,
-      "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+      "assignee": "URBEADAPTA, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "culture",
       "cpvs": [
@@ -17085,32 +17164,6 @@
       "finalAmount": 0,
       "finalAmountNoTaxes": 0,
       "numberOfProposals": 2
-    },
-    {
-      "id": "4802817",
-      "title": "Contrato administrativo para el servicio de transporte urbano colectivo de viajeros “ARRIBABUS” Riba-roja de Túria – Loriguilla – Reva”.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0Km073bkp%2FcaF6cS8TCh%2FA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2027-03-13",
-      "awardDate": "2026-02-10",
-      "formalizedDate": "2026-03-16",
-      "assignee": "CASTROMIL S.A.",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "transportation",
-      "cpvs": [
-        "60000000",
-        "60100000",
-        "60112000"
-      ],
-      "initialAmount": 286192.7,
-      "initialAmountNoTaxes": 260175.18,
-      "finalAmount": 207489.7,
-      "finalAmountNoTaxes": 207489.7,
-      "numberOfProposals": 3
     },
     {
       "id": "4368813",
@@ -17184,33 +17237,6 @@
       "initialAmountNoTaxes": 11212.32,
       "finalAmount": 11972.95,
       "finalAmountNoTaxes": 9895,
-      "numberOfProposals": 2
-    },
-    {
-      "id": "4363449#1",
-      "title": "Equipamiento de cardio",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SafzgnHFCyq5HQrHoP3G5A%3D%3D",
-      "status": "unknown",
-      "contractType": "supplies",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": null,
-      "endDate": "2028-05-14",
-      "awardDate": "2024-05-03",
-      "formalizedDate": "2024-06-05",
-      "assignee": "EXERCYCLE,S.L",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "culture",
-      "cpvs": [
-        "37400000",
-        "37441300",
-        "37441900",
-        "37441100"
-      ],
-      "initialAmount": 131509.87,
-      "initialAmountNoTaxes": 108685.84,
-      "finalAmount": 82088.6,
-      "finalAmountNoTaxes": 67841.82,
       "numberOfProposals": 2
     },
     {
@@ -17298,7 +17324,7 @@
       "endDate": "2029-02-16",
       "awardDate": "2026-02-18",
       "formalizedDate": null,
-      "assignee": "SEÑALIZACIONES TRILLO SOCIEDAD LIMITADA",
+      "assignee": "Señalizaciones Trillo S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "maintenance",
       "cpvs": [
@@ -17323,7 +17349,7 @@
       "endDate": "2023-01-16",
       "awardDate": "2022-07-19",
       "formalizedDate": "2022-07-19",
-      "assignee": "GESTION Y EVENTOS LAZARO",
+      "assignee": "Ramón Lázaro Martínez",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "culture",
       "cpvs": [
@@ -17350,7 +17376,7 @@
       "endDate": "2023-10-04",
       "awardDate": "2023-07-05",
       "formalizedDate": null,
-      "assignee": "GESTION Y EVENTOS LAZARO",
+      "assignee": "Ramón Lázaro Martínez",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "health",
       "cpvs": [
@@ -17380,7 +17406,7 @@
       "endDate": "2027-03-11",
       "awardDate": "2026-03-13",
       "formalizedDate": null,
-      "assignee": "BL ESPAÑA SOFTWARE SLU",
+      "assignee": "AYTOS SOLUCIONES INFORMÁTICAS, S.L.U",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "it",
       "cpvs": [
@@ -17497,6 +17523,32 @@
       "numberOfProposals": 1
     },
     {
+      "id": "4802817",
+      "title": "Contrato administrativo para el servicio de transporte urbano colectivo de viajeros “ARRIBABUS” Riba-roja de Túria – Loriguilla – Reva”.",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0Km073bkp%2FcaF6cS8TCh%2FA%3D%3D",
+      "status": "unknown",
+      "contractType": "services",
+      "processType": "open",
+      "minorContract": false,
+      "startDate": null,
+      "endDate": "2027-03-13",
+      "awardDate": "2026-02-10",
+      "formalizedDate": "2026-03-16",
+      "assignee": "CASTROMIL S.A.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "transportation",
+      "cpvs": [
+        "60000000",
+        "60100000",
+        "60112000"
+      ],
+      "initialAmount": 286192.7,
+      "initialAmountNoTaxes": 260175.18,
+      "finalAmount": 207489.7,
+      "finalAmountNoTaxes": 207489.7,
+      "numberOfProposals": 3
+    },
+    {
       "id": "4069",
       "title": "Contrato de obra de estabilización de talud y vía peatonal del Castillo, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qEs9BRux5y2XQV0WE7lYPw%3D%3D",
@@ -17546,30 +17598,6 @@
       "numberOfProposals": 1
     },
     {
-      "id": "60362",
-      "title": "El objeto del contrato es la contratación del servicio de mantenimiento y revisión de las instalaciones eléctricas en locales de pública concurrencia de titularidad municipal, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental.",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U4dsi0TCfMuiEJrVRqloyA%3D%3D",
-      "status": "unknown",
-      "contractType": "services",
-      "processType": "open",
-      "minorContract": false,
-      "startDate": "2018-11-22",
-      "endDate": "2022-11-21",
-      "awardDate": "2018-11-26",
-      "formalizedDate": "2018-11-26",
-      "assignee": "ELECNOR SERVICIOS Y PROYECTOS, S.A.U",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "categoryTitle": "maintenance",
-      "cpvs": [
-        "50711000"
-      ],
-      "initialAmount": 144719.97,
-      "initialAmountNoTaxes": 119603.28,
-      "finalAmount": 61974.42,
-      "finalAmountNoTaxes": 51218.53,
-      "numberOfProposals": 17
-    },
-    {
       "id": "4569293",
       "title": "Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término municipal de Riba-roja, en la zona afectada como consecuencia del temporal de lluvias producido el pasado 29 de octubre.",
       "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h0Wq%2FwLPQPVPpzdqOdhuWg%3D%3D",
@@ -17581,7 +17609,7 @@
       "endDate": "2025-05-21",
       "awardDate": "2024-11-20",
       "formalizedDate": null,
-      "assignee": "OTIS MOBILITY S.A.",
+      "assignee": "ZARDOYA OTIS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "industry",
       "cpvs": [
@@ -17605,7 +17633,7 @@
       "endDate": "2019-07-03",
       "awardDate": "2019-05-22",
       "formalizedDate": "2019-05-22",
-      "assignee": "Licuas, S.A.",
+      "assignee": "LICUAS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -17629,7 +17657,7 @@
       "endDate": "2019-07-23",
       "awardDate": "2019-03-30",
       "formalizedDate": "2019-03-30",
-      "assignee": "Licuas, S.A.",
+      "assignee": "LICUAS S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "construction",
       "cpvs": [
@@ -17706,7 +17734,7 @@
       "endDate": "2025-05-09",
       "awardDate": "2021-05-13",
       "formalizedDate": null,
-      "assignee": "GAS NATURAL COMERCIALIZADORA S.A",
+      "assignee": "GAS NATURAL COMERCIALIZADORA S.A.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "energy",
       "cpvs": [
@@ -17792,6 +17820,28 @@
       "finalAmount": 95849.84,
       "finalAmountNoTaxes": 79214.74,
       "numberOfProposals": 1
+    },
+    {
+      "id": "737827",
+      "title": "Obra de pavimentación del Camí del conde, reparación de aceras, calzada y zanja polígonos",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FAlHwbbdt%2BSmq21uxhbaVQ%3D%3D",
+      "status": "awarded",
+      "contractType": "construction",
+      "processType": "minor_contract",
+      "minorContract": true,
+      "startDate": "2018-11-13",
+      "endDate": "2018-12-02",
+      "awardDate": "2018-11-23",
+      "formalizedDate": null,
+      "assignee": "PAVASAL EMPRESA CONSTRUCTORA, S.A.U.",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "categoryTitle": "other",
+      "cpvs": [],
+      "initialAmount": 58521.42,
+      "initialAmountNoTaxes": 48364.81,
+      "finalAmount": 38064.18,
+      "finalAmountNoTaxes": 31458,
+      "numberOfProposals": 2
     },
     {
       "id": "1561143#4",
@@ -18280,7 +18330,7 @@
       "endDate": "2026-05-30",
       "awardDate": "2026-04-01",
       "formalizedDate": null,
-      "assignee": "URBEADAPTA SOCIEDAD LIMITADA",
+      "assignee": "URBEADAPTA, S.L.",
       "contractor": "Ayuntamiento de Riba-roja de Túria",
       "categoryTitle": "culture",
       "cpvs": [
@@ -18415,14 +18465,14 @@
       "categoryTitle": "textile",
       "cpvs": [
         "18100000",
-        "33600000",
+        "39000000",
         "39220000",
-        "22000000",
         "39800000",
-        "15000000",
-        "39830000",
         "22462000",
-        "39000000"
+        "33600000",
+        "15000000",
+        "22000000",
+        "39830000"
       ],
       "numberOfBatches": 8
     },

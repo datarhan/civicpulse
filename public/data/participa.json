@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T15:57:29.622Z",
+  "generatedAt": "2026-04-22T06:17:03.510Z",
   "source": {
     "posts": "https://participa.ribarroja.es/wp-json/wp/v2/posts?per_page=100&_fields=id,date,title,link,excerpt,content,categories,slug,status",
     "categories": "https://participa.ribarroja.es/wp-json/wp/v2/categories?per_page=100",
@@ -7,13 +7,25 @@
     "platform": "WordPress (Votiveu)"
   },
   "stats": {
-    "total": 6,
+    "total": 7,
     "activities": 4,
-    "surveys": 2,
+    "surveys": 3,
     "other": 0,
-    "latestDate": "2025-10-02T14:50:17"
+    "latestDate": "2026-04-21T13:19:25"
   },
   "items": [
+    {
+      "id": 3167,
+      "slug": "barometro-de-servicios-publicos-riba-roja-1t-2026",
+      "title": "Barometro de Servicios Públicos Riba-roja 1T-2026",
+      "link": "https://participa.ribarroja.es/barometro-de-servicios-publicos-riba-roja-1t-2026/",
+      "date": "2026-04-21T13:19:25",
+      "excerpt": "El Barómetro de Servicios Públicos de Riba-roja da voz a la ciudadanía para entender como se vive, qué preocupa y que se puede mejorar en el municipio. Realizado durante el primer trimestre de 2026, este estudio ofrece una mirada actual y directa sobre la calidad de vida y el funcionamiento de los servicios públicos. Más [&hellip;]",
+      "categories": [
+        "Encuestas"
+      ],
+      "kind": "survey"
+    },
     {
       "id": 3130,
       "slug": "ii-jornadas-dinamizacion-consejos-sectoriales-carta-de-servicios-ods",
