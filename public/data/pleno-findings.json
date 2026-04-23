@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-04-23T20:21:31.530Z",
+  "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
+  "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
+  "methodologyUrl": "/metodologia",
+  "items": [
+    {
+      "id": "f-2026-03-09-afi-a9546e",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "title": "Reconocimiento extrajudicial de 242.255 € sin rastro en contratación",
+      "summary": "El pleno de 9 de marzo de 2026 convalidó un reconocimiento extrajudicial de crédito por 242.255 euros, correspondientes a gastos realizados a finales del ejercicio anterior. Nuestra base de datos municipal de contratos y de subvenciones BDNS no registra ninguna operación de ese importe, lo que es consistente con la naturaleza de un reconocimiento extrajudicial (facturación interna convalidada a posteriori, no una licitación pública). Sin contraste automático: la traza queda en el acta y el expediente interno, no en contratacion.es.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1sqj7is-000-afi-a9546e"
+      ],
+      "quotes": [
+        {
+          "text": "se trata de un expediente de gastos por importe total de 242.255 euros, correspondientes a gastos realizados a finales del pasado año",
+          "speakerGroup": null,
+          "sourceClaimId": "1sqj7is-000-afi-a9546e"
+        }
+      ],
+      "corroboration": [],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "ejemplo-curador",
+      "publishedAt": "2026-04-23",
+      "response": null
+    }
+  ]
+}
