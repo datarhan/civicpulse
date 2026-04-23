@@ -214,6 +214,90 @@ export default function Metodologia() {
         </ul>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="verificacion-declaraciones">
+        <SectionHead
+          eyebrow="Verificación de declaraciones de pleno"
+          title="Del discurso al contraste documental"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Los concejales hacen afirmaciones en las intervenciones del pleno: cifras
+          presupuestarias, obras en marcha, convenios cerrados, promesas futuras. Algunas son
+          verificables contra documentos públicos; otras son opinión política. Este sistema,
+          visible en el apartado{' '}
+          <a href="/plenos" style={{ color: 'var(--civic)' }}>
+            /plenos
+          </a>
+          , procesa cada declaración en tres pasos:
+        </p>
+        <ol style={{ margin: '10px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Extracción automática</strong> (LLM, requiere aprobación humana). Sobre la
+            transcripción del vídeo del pleno, el modelo extrae <em>verbatim</em> las
+            afirmaciones y las clasifica en cinco tipos:{' '}
+            <code>promesa</code> · <code>afirmacion_numerica</code> · <code>cita_obra</code> ·{' '}
+            <code>cita_convenio</code> · <code>acusacion_publica</code>. Cada registro se guarda
+            en <code>pleno-claims-suggestions.json</code> con atribución a nivel de grupo
+            municipal (nunca a personas — por fiabilidad de la transcripción Whisper).
+          </li>
+          <li>
+            <strong>Contraste determinista</strong> (sin LLM) contra la base de datos municipal:
+            contratos (<code>tenders.json</code>), subvenciones (<code>bdns.json</code>),
+            presupuesto (<code>budget.json</code>) y promesas documentadas (
+            <code>promises.json</code>). El verificador emite uno de cinco veredictos:
+            <ul style={{ marginTop: 6 }}>
+              <li>
+                <strong>verificado</strong> — coincidencia fuerte (importe + entidad) en alguna
+                base documental.
+              </li>
+              <li>
+                <strong>parcial</strong> — coincidencia moderada; entidad o importe difieren
+                algo.
+              </li>
+              <li>
+                <strong>contradicho</strong> — la base documental registra un importe distinto,
+                o el discurso afirma «obra terminada» cuando la licitación sigue abierta.
+              </li>
+              <li>
+                <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
+                cierto, pero no atestado (muy frecuente: reconocimientos extrajudiciales,
+                operaciones internas).
+              </li>
+              <li>
+                <strong>promesa-repetida</strong> — la promesa coincide con una ya documentada
+                en el tracker de años anteriores.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Hallazgos editoriales</strong> curados por una persona. Cuando un veredicto
+            merece contexto, un curador escribe un hallazgo en{' '}
+            <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas
+            verbatim y referencias explícitas de corroboración o contradicción. Los hallazgos
+            se publican con derecho de réplica literal para el grupo afectado.
+          </li>
+        </ol>
+        <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
+          <strong>Frontera legal para las acusaciones.</strong> El LLM clasifica cada acusación
+          pública en tres subtipos:
+        </p>
+        <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>factual</strong> — cita cifras, contratos o entidades concretas. Se
+            contrasta con la base documental igual que una afirmación numérica.
+          </li>
+          <li>
+            <strong>contra-datos</strong> — afirma algo directamente contradictorio con los
+            datos publicados (p. ej. «X votó en contra de Y» cuando el registro de votos dice
+            lo contrario). El verificador lo marca como <em>contradicho</em>.
+          </li>
+          <li>
+            <strong>opinativa</strong> — valoración de carácter, intención o estilo («nunca
+            escuchan», «siempre improvisan»). <strong>Nunca</strong> se verifica
+            automáticamente. Sólo revisión editorial.
+          </li>
+        </ul>
+      </Card>
+
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Proceso de corrección" title="Cómo pedir una rectificación" />
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
