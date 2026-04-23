@@ -29,7 +29,13 @@ interface CacheEntry {
 }
 
 function euro(n: number): string {
-  return '$' + n.toFixed(4).replace(/(\..*?)0+$/, '$1').replace(/\.$/, '')
+  return (
+    '$' +
+    n
+      .toFixed(4)
+      .replace(/(\..*?)0+$/, '$1')
+      .replace(/\.$/, '')
+  )
 }
 
 function pct(x: number): string {

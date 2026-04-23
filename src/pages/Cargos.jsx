@@ -181,10 +181,7 @@ function OfficialCard({ o, big = false }) {
             )}
           </div>
           <div style={{ fontSize: big ? 17 : 14, fontWeight: 600, lineHeight: 1.2 }}>
-            <Link
-              to={`/cargos/${o.slug}`}
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
+            <Link to={`/cargos/${o.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
               {o.name}
             </Link>
           </div>

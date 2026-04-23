@@ -78,9 +78,7 @@ export default function CargoDetalle() {
 
   if (officialsSnap.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>
-        {t('common.loading')}
-      </div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
     )
   }
 
@@ -242,10 +240,7 @@ export default function CargoDetalle() {
         }}
       >
         <MiniStat label={t('cargos.detalle.stat.portfolios')} value={slugs.length} />
-        <MiniStat
-          label={t('cargos.detalle.stat.partyPromises')}
-          value={partyPromises.length}
-        />
+        <MiniStat label={t('cargos.detalle.stat.partyPromises')} value={partyPromises.length} />
         <MiniStat label={t('cargos.detalle.stat.agendaItems')} value={agendaItems.length} />
         <MiniStat
           label={t('cargos.detalle.stat.quejas')}
@@ -390,10 +385,7 @@ export default function CargoDetalle() {
               </div>
             ))}
             {agendaItems.length > 12 && (
-              <div
-                className="mono"
-                style={{ fontSize: 11, color: 'var(--ink50)', paddingTop: 4 }}
-              >
+              <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)', paddingTop: 4 }}>
                 {t('cargos.detalle.agenda.more').replace('{n}', agendaItems.length - 12)}
               </div>
             )}
@@ -454,8 +446,7 @@ export default function CargoDetalle() {
         }}
       >
         <strong style={{ color: 'var(--ink)' }}>Atribución.</strong>{' '}
-        {t('cargos.detalle.methodology')}
-        {' '}
+        {t('cargos.detalle.methodology')}{' '}
         <a href="/metodologia" style={{ color: 'var(--civic)' }}>
           {t('cargos.detalle.methodology.link')}
         </a>
