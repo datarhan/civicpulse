@@ -1,0 +1,261 @@
+/**
+ * Curator CLI: promote one or more machine-extracted claims into a
+ * human-edited editorial finding in public/data/pleno-findings.json.
+ *
+ *   npm run promote-claim -- <claimId> [claimId ...] \
+ *       --title "<≥10-char title>" \
+ *       --summary "<≥40-char editorial paragraph>" \
+ *       [--severity informational|notable|critical] \
+ *       [--curator "<name>"] \
+ *       [--related-promise <id> ...] \
+ *       [--edit]    # write /tmp/finding-*.json for review, don't persist
+ *
+ * The script:
+ *   1. Looks up each claimId in pleno-claims-verified.json to pull
+ *      verbatim quotes + verifier evidence + sourceRefs.
+ *   2. Assembles a PlenoFinding candidate and validates it against the
+ *      full schema (verbatim ≥20, summary ≥40, critical requires ≥1
+ *      evidence ref, etc.).
+ *   3. Merges into pleno-findings.json (dedup by id; reject duplicates
+ *      unless --force is passed).
+ *
+ * Every promotion creates a git-auditable record. Mutations only via
+ * this CLI or by PR-editing pleno-findings.json directly.
+ */
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { resolve } from 'node:path'
+import {
+  validateFindingsSnapshot,
+  type PlenoFinding,
+  type FindingQuote,
+  type FindingRef,
+  type FindingSeverity,
+  type PlenoFindingsSnapshot,
+} from '../src/scraper/pleno-finding'
+import type { PlenoClaim } from '../src/scraper/pleno-claim'
+import type { ClaimVerification } from '../src/scraper/claim-verifier'
+
+const VERIFIED = resolve('public/data/pleno-claims-verified.json')
+const FINDINGS = resolve('public/data/pleno-findings.json')
+
+interface VerifiedSnapshot {
+  items: Array<{ claim: PlenoClaim; verification: ClaimVerification }>
+}
+
+function usage(): never {
+  process.stderr.write(
+    'Usage:\n' +
+      '  npm run promote-claim -- <claimId> [claimId ...] \\\n' +
+      '      --title "<title>" --summary "<summary>" \\\n' +
+      '      [--severity informational|notable|critical] \\\n' +
+      '      [--curator "<name>"] [--related-promise <id>] [--edit] [--force]\n',
+  )
+  process.exit(2)
+}
+
+function loadVerified(): VerifiedSnapshot {
+  if (!existsSync(VERIFIED)) {
+    process.stderr.write(
+      `[promote-claim] ${VERIFIED} missing — run extract:pleno-claims + verify:pleno-claims first\n`,
+    )
+    process.exit(1)
+  }
+  return JSON.parse(readFileSync(VERIFIED, 'utf8')) as VerifiedSnapshot
+}
+
+function loadFindings(): PlenoFindingsSnapshot {
+  if (!existsSync(FINDINGS)) {
+    return {
+      version: '1.0',
+      generatedAt: new Date().toISOString(),
+      legalNotice:
+        'Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.',
+      contactUrl: 'https://github.com/datarhan/civicpulse/issues/new/choose',
+      methodologyUrl: '/metodologia',
+      items: [],
+    }
+  }
+  return validateFindingsSnapshot(readFileSync(FINDINGS, 'utf8'))
+}
+
+function evidenceToRefs(ev: ClaimVerification['evidence']): {
+  corroboration: FindingRef[]
+  contradiction: FindingRef[]
+} {
+  const corroboration: FindingRef[] = []
+  const contradiction: FindingRef[] = []
+  for (const e of ev) {
+    if (e.kind === 'prior-claim') continue // not representable as a findings ref
+    const ref: FindingRef = { kind: e.kind, ref: e.ref, snippet: e.snippet }
+    // Heuristic — very strong matches or high-similarity rows corroborate;
+    // rows with low similarity or mismatched-amount notes contradict.
+    if ((e.similarity ?? 0) >= 0.65 && !e.snippet.includes('no coincide')) {
+      corroboration.push(ref)
+    } else if (e.snippet.includes('no coincide')) {
+      contradiction.push(ref)
+    } else {
+      corroboration.push(ref) // default: treat as supporting reference
+    }
+  }
+  return { corroboration, contradiction }
+}
+
+function parseArgs(argv: string[]): {
+  claimIds: string[]
+  title: string
+  summary: string
+  severity: FindingSeverity
+  curator: string
+  relatedPromises: string[]
+  edit: boolean
+  force: boolean
+} {
+  const opts = {
+    claimIds: [] as string[],
+    title: '',
+    summary: '',
+    severity: 'notable' as FindingSeverity,
+    curator: 'civicpulse-curator',
+    relatedPromises: [] as string[],
+    edit: false,
+    force: false,
+  }
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i]
+    if (a === '--title') opts.title = argv[++i]
+    else if (a === '--summary') opts.summary = argv[++i]
+    else if (a === '--severity') opts.severity = argv[++i] as FindingSeverity
+    else if (a === '--curator') opts.curator = argv[++i]
+    else if (a === '--related-promise') opts.relatedPromises.push(argv[++i])
+    else if (a === '--edit') opts.edit = true
+    else if (a === '--force') opts.force = true
+    else if (a.startsWith('--')) {
+      process.stderr.write(`[promote-claim] unknown flag ${a}\n`)
+      process.exit(2)
+    } else opts.claimIds.push(a)
+  }
+  if (opts.claimIds.length === 0) usage()
+  if (opts.title.length < 10) {
+    process.stderr.write('[promote-claim] --title must be ≥10 chars\n')
+    process.exit(2)
+  }
+  if (opts.summary.length < 40) {
+    process.stderr.write('[promote-claim] --summary must be ≥40 chars\n')
+    process.exit(2)
+  }
+  return opts
+}
+
+function main() {
+  const opts = parseArgs(process.argv.slice(2))
+  const verified = loadVerified()
+  const findings = loadFindings()
+
+  // Resolve every claimId
+  const rows = opts.claimIds.map((id) => {
+    const row = verified.items.find((r) => r.claim.id === id)
+    if (!row) {
+      process.stderr.write(`[promote-claim] claimId ${id} not found in ${VERIFIED}\n`)
+      process.exit(1)
+    }
+    return row
+  })
+  const anchor = rows[0].claim
+  const plenoId = anchor.plenoId
+  const plenoDate = anchor.plenoDate
+  for (const r of rows) {
+    if (r.claim.plenoId !== plenoId) {
+      process.stderr.write(
+        '[promote-claim] all claims must belong to the same pleno — mixing is not supported\n',
+      )
+      process.exit(1)
+    }
+  }
+
+  // Assemble quotes + evidence rolls
+  const quotes: FindingQuote[] = rows.map((r) => ({
+    text: r.claim.verbatim,
+    speakerGroup: r.claim.speakerGroup,
+    sourceClaimId: r.claim.id,
+  }))
+  const corroboration: FindingRef[] = []
+  const contradiction: FindingRef[] = []
+  for (const r of rows) {
+    const split = evidenceToRefs(r.verification.evidence)
+    corroboration.push(...split.corroboration)
+    contradiction.push(...split.contradiction)
+    if (r.verification.verdict === 'contradicho') {
+      // Ensure at least one contradiction ref is present (the verifier's
+      // summary is cited as a synthetic ref).
+      if (split.contradiction.length === 0) {
+        contradiction.push({
+          kind: 'tender',
+          ref: `verdict:${r.claim.id}`,
+          snippet: r.verification.summary.slice(0, 240),
+        })
+      }
+    }
+  }
+
+  // Deterministic finding id: f-<plenoDate>-<first-claim-id-short>
+  const shortAnchor = anchor.id.split('-').slice(-2).join('-')
+  const id = `f-${plenoDate}-${shortAnchor}`
+
+  const finding: PlenoFinding = {
+    id,
+    plenoId,
+    plenoDate,
+    title: opts.title,
+    summary: opts.summary,
+    severity: opts.severity,
+    sourceClaimIds: rows.map((r) => r.claim.id),
+    quotes,
+    corroboration,
+    contradiction,
+    relatedPromiseIds: opts.relatedPromises,
+    curatorName: opts.curator,
+    publishedAt: new Date().toISOString().slice(0, 10),
+    response: null,
+  }
+
+  // Dedup by id — reject or merge via --force
+  const existingIdx = findings.items.findIndex((f) => f.id === id)
+  if (existingIdx >= 0 && !opts.force) {
+    process.stderr.write(
+      `[promote-claim] finding ${id} already exists; pass --force to overwrite\n`,
+    )
+    process.exit(1)
+  }
+
+  const nextItems = [...findings.items]
+  if (existingIdx >= 0) nextItems[existingIdx] = finding
+  else nextItems.push(finding)
+  nextItems.sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
+
+  const snapshot: PlenoFindingsSnapshot = {
+    ...findings,
+    generatedAt: new Date().toISOString(),
+    items: nextItems,
+  }
+  const serialized = JSON.stringify(snapshot, null, 2) + '\n'
+  // Re-validate before writing (defence-in-depth).
+  validateFindingsSnapshot(serialized)
+
+  if (opts.edit) {
+    const tmp = `/tmp/finding-${id}.json`
+    writeFileSync(tmp, JSON.stringify(finding, null, 2) + '\n')
+    process.stdout.write(
+      `[promote-claim] EDIT MODE — wrote ${tmp} (not applied).\n` +
+        `  Review, then: cp ${tmp} public/data/pleno-findings.json.partial && ...\n`,
+    )
+    return
+  }
+
+  writeFileSync(FINDINGS, serialized, 'utf8')
+  process.stdout.write(
+    `[promote-claim] ${existingIdx >= 0 ? 'updated' : 'promoted'} finding ${id} ` +
+      `(${rows.length} claim(s), ${corroboration.length} corroboration, ${contradiction.length} contradiction) → ${FINDINGS}\n`,
+  )
+}
+
+main()

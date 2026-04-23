@@ -57,7 +57,7 @@ describe('verifyClaim — verificado on tender exact match', () => {
 })
 
 describe('verifyClaim — parcial on near-match', () => {
-  it('returns parcial when tender is same entity but different amount', () => {
+  it('returns parcial when tender is same entity but amount only partially agrees', () => {
     const v = verifyClaim({
       claim: baseClaim({
         type: 'cita_obra',
@@ -71,7 +71,11 @@ describe('verifyClaim — parcial on near-match', () => {
           {
             permalink: 'https://contrataciones.example/r02',
             title: 'Reconstrucción post-DANA fase preliminar',
-            award_amount_eur: 7_800_000, // similarAmount(9.5M, 7.8M) ≈ 0.68
+            // similarAmount(9.5M, 7M) ≈ 0.54. Passes the 0.5 amount gate
+            // so the tender registers as evidence, but combined with a 1.0
+            // entity text-sim yields 0.72 — above the 0.6 weak threshold
+            // (parcial) yet below the 0.8 strong threshold (verificado).
+            award_amount_eur: 7_000_000,
           },
         ],
       },
@@ -110,17 +114,108 @@ describe('verifyClaim — promesa-repetida on quote overlap', () => {
   })
 })
 
-describe('verifyClaim — acusacion_publica always sin-datos', () => {
-  it('does not try to verify political accusations', () => {
+describe('verifyClaim — acusacion_publica opinativa stays sin-datos', () => {
+  it('returns sin-datos for opinativa subtype even with strong evidence nearby', () => {
     const v = verifyClaim({
       claim: baseClaim({
         type: 'acusacion_publica',
-        verbatim: 'el partido de la oposición incumplió su programa',
+        accusationSubtype: 'opinativa',
+        verbatim: 'el equipo de gobierno nunca escucha a los vecinos',
       }),
       tenders: { contracts: [{ title: 'cualquier cosa', award_amount_eur: 46_000_000 }] },
     })
     expect(v.verdict).toBe('sin-datos')
-    expect(v.summary).toContain('acusaciones')
+    expect(v.summary).toContain('carácter')
+  })
+
+  it('defaults to opinativa when subtype is missing (safe default)', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        verbatim: 'algo controvertido sin cifras ni entidades',
+      }),
+    })
+    expect(v.verdict).toBe('sin-datos')
+  })
+})
+
+describe('verifyClaim — acusacion_publica factual is verified against data', () => {
+  it('returns verificado when a factual accusation matches a tender', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'acusacion_publica',
+        accusationSubtype: 'factual',
+        topic: 'fiscal',
+        verbatim: 'gastaron 9,5 millones en la reconstrucción sin licitar',
+        entities: {
+          amountEuros: 9_500_000,
+          referencedEntity: 'reconstruccion dana',
+        },
+      }),
+      tenders: {
+        contracts: [
+          {
+            permalink: 'https://contrataciones.example/r01',
+            title: 'Reconstrucción post-DANA fase 1',
+            award_amount_eur: 9_500_000,
+          },
+        ],
+      },
+    })
+    expect(v.verdict).toBe('verificado')
+  })
+})
+
+describe('verifyClaim — contradicho on amount mismatch with same entity', () => {
+  it('emits contradicho when a claim cites an amount that disagrees with the matching tender', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'afirmacion_numerica',
+        topic: 'urbanismo',
+        verbatim: 'hemos invertido 20 millones en la reconstrucción',
+        entities: {
+          amountEuros: 20_000_000,
+          referencedEntity: 'reconstruccion dana',
+        },
+      }),
+      tenders: {
+        contracts: [
+          {
+            permalink: 'https://contrataciones.example/r02',
+            title: 'Reconstrucción post-DANA fase 1',
+            award_amount_eur: 9_500_000,
+          },
+        ],
+      },
+    })
+    expect(v.verdict).toBe('contradicho')
+    expect(v.summary).toContain('Discrepancia material')
+  })
+})
+
+describe('verifyClaim — contradicho on completion vs tender status', () => {
+  it('emits contradicho when the speaker says "terminada" but tender is open', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        topic: 'urbanismo',
+        verbatim: 'la reconstrucción post-DANA está terminada y entregada',
+        entities: {
+          referencedEntity: 'reconstruccion dana',
+        },
+      }),
+      tenders: {
+        contracts: [
+          {
+            permalink: 'https://contrataciones.example/r03',
+            title: 'Reconstrucción post-DANA fase 1',
+            status: 'open',
+          },
+        ],
+      },
+    })
+    expect(v.verdict).toBe('contradicho')
+    expect(v.summary).toContain('terminada')
   })
 })
 

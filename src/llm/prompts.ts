@@ -100,7 +100,7 @@ export function buildPlenoVoteUserPrompt(segment: string): string {
 
 // ─── Phase 1b · Pleno claim extraction ──────────────────────────────────────
 
-export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v1'
+export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v2'
 
 export function buildPlenoClaimSystemPrompt(opts: {
   plenoDate: string
@@ -128,7 +128,10 @@ Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmacione
 - "afirmacion_numerica": cifra citada como hecho ("hemos asignado 46 millones al presupuesto", "el paro bajó un 12%")
 - "cita_obra": obra o proyecto referenciado ("la reconstrucción tras la DANA está terminada", "el colegio nuevo de X")
 - "cita_convenio": subvención, convenio, fondo europeo ("recibimos 9,5 millones de fondos europeos", "firmamos convenio con la Generalitat")
-- "acusacion_publica": afirmación controvertida sobre conducta política ("el partido X incumplió Y"). Extrae pero NO verifiques.
+- "acusacion_publica": afirmación controvertida sobre conducta política ("el partido X incumplió Y"). Clasifica en \`accusationSubtype\`:
+    · "factual": cita entidades verificables (nº de votos, importe concreto, contrato, convenio). El verificador las contrastará contra tenders/BDNS/pleno-votes.
+    · "contra-datos": afirma algo directamente contradictorio con nuestros datos publicados (ej. "PSOE votó en contra del presupuesto 2026" cuando el pleno-vote dice a_favor). El verificador las marcará como contradicho.
+    · "opinativa": valoración de carácter/intención/estilo sin cifras ni entidades ("nunca escuchan", "siempre improvisan"). NUNCA se verifica automáticamente — sólo revisión editorial.
 
 Para cada afirmación extrae:
 - type: una de las cinco categorías
@@ -136,6 +139,7 @@ Para cada afirmación extrae:
 - verbatim: cita literal (≥20 caracteres, máx 500), tal y como aparece en la transcripción aunque Whisper la haya degradado. Esta es la responsabilidad legal — no la parafrasees.
 - context: el párrafo breve (≥20 caracteres) alrededor de la verbatim para que el curador humano pueda juzgar.
 - topic: fiscal | vivienda | movilidad | medio-ambiente | social | cultura | seguridad | empleo | urbanismo | salud | transparencia | educacion | other
+- accusationSubtype: factual | contra-datos | opinativa — SOLO cuando type === "acusacion_publica". null en todos los demás casos.
 - entities: objeto con los datos estructurados que puedas extraer (todos opcionales, null cuando no aplique):
     · amountEuros (número entero en €; "46 millones" → 46000000, "9,5M" → 9500000)
     · count + countUnit ("500 viviendas" → count:500, countUnit:"viviendas")

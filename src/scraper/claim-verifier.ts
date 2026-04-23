@@ -32,6 +32,33 @@
 import { stripDiacritics } from './normalize'
 import type { PlenoClaim, ClaimTopic } from './pleno-claim'
 
+// ─── Completion signal keywords ─────────────────────────────────────────────
+// A cita_obra whose verbatim asserts the work is finished/done/completed,
+// when the matching tender is still open/pending/planned, is a contradicho.
+const COMPLETION_PATTERNS = [
+  /\btermin(ad[oa]|aron|amos|ada s)\b/i,
+  /\bfinaliz(ad[oa]|aron|amos)\b/i,
+  /\bcompletad[oa]\b/i,
+  /\becha[da]?\s+(y[a]?\s+)?hecha?\b/i,
+  /\binaugurad[oa]\b/i,
+  /\babierta\s+al\s+p[uú]blico\b/i,
+  /\bobra\s+entregada\b/i,
+  /\bestá\s+funcionando\b/i,
+]
+
+const TENDER_NOT_DONE_STATUSES = new Set([
+  'open',
+  'pending',
+  'planning',
+  'in_planning',
+  'published',
+  'abierta',
+  'licitación',
+  'pendiente',
+  'en tramitación',
+  'en curso',
+])
+
 export type ClaimVerdict =
   | 'verificado'
   | 'parcial'
@@ -124,7 +151,14 @@ interface PromiseRow {
 
 function norm(s: string | undefined | null): string {
   if (!s) return ''
-  return stripDiacritics(s).toLowerCase().replace(/\s+/g, ' ').trim()
+  // Hyphens, slashes, periods, etc. are word boundaries for our overlap
+  // score (so "post-DANA" tokenizes to {post, dana}, matching "DANA" in
+  // the verbatim). Preserves letters, numbers, spaces, and ñ.
+  return stripDiacritics(s)
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
 }
 
 /** Very cheap word-overlap score between two normalized strings. */
@@ -248,12 +282,17 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   }
 
   // 2. Amount-based cross-reference for afirmacion_numerica, cita_obra,
-  //    cita_convenio.
+  //    cita_convenio, and the verifiable subset of acusacion_publica
+  //    (factual | contra-datos).
+  const isVerifiableAccusation =
+    claim.type === 'acusacion_publica' &&
+    (claim.accusationSubtype === 'factual' || claim.accusationSubtype === 'contra-datos')
   if (
     claim.entities.amountEuros != null &&
     (claim.type === 'afirmacion_numerica' ||
       claim.type === 'cita_obra' ||
-      claim.type === 'cita_convenio')
+      claim.type === 'cita_convenio' ||
+      isVerifiableAccusation)
   ) {
     const amount = claim.entities.amountEuros
     const entity = claim.entities.referencedEntity
@@ -261,13 +300,24 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // Tenders lookup (cita_obra or numeric with entity hint)
     if (tenderList.length > 0) {
       let best: { row: TenderRow; sim: number } | null = null
+      // Also look for strong-entity / weak-amount matches → potential contradicho
+      let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
       for (const t of tenderList) {
         const tAmount = tenderAmount(t)
         if (tAmount == null) continue
-        const amountSim = similarAmount(amount, tAmount)
-        if (amountSim < 0.5) continue
-        // Also require some text match if the claim cites an entity
         const textSim = entity ? overlapScore(entity, tenderTitle(t)) : 1
+        const amountSim = similarAmount(amount, tAmount)
+        // contradicho-candidate: the entity matches strongly but the amount
+        // cited is materially different (<0.3 sim ≈ 2× disparity)
+        if (entity && textSim >= 0.7 && amountSim < 0.3) {
+          if (
+            entityMatchMismatchedAmount === null ||
+            textSim > entityMatchMismatchedAmount.textSim
+          ) {
+            entityMatchMismatchedAmount = { row: t, textSim }
+          }
+        }
+        if (amountSim < 0.5) continue
         const combined = amountSim * 0.6 + textSim * 0.4
         if (combined >= 0.6 && (best === null || combined > best.sim)) {
           best = { row: t, sim: combined }
@@ -282,6 +332,26 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
           )} €`,
           similarity: Math.round(best.sim * 100) / 100,
         })
+      } else if (entityMatchMismatchedAmount) {
+        // No strong (amount + entity) match, but an entity match with a
+        // mismatched amount — that's a candidate contradiction.
+        const t = entityMatchMismatchedAmount.row
+        evidence.push({
+          kind: 'tender',
+          ref: t.permalink ?? '',
+          snippet: `${tenderTitle(t)} · ${Math.round(tenderAmount(t)!).toLocaleString('es-ES')} € (no coincide con el importe citado)`,
+          similarity: Math.round(entityMatchMismatchedAmount.textSim * 100) / 100,
+        })
+        return {
+          claimId: claim.id,
+          verdict: 'contradicho',
+          summary:
+            `La afirmación cita ${Math.round(amount).toLocaleString('es-ES')} € para «${entity}», ` +
+            `pero el contrato más parecido en la BD municipal registra ${Math.round(tenderAmount(t)!).toLocaleString('es-ES')} €. ` +
+            'Discrepancia material — revisión editorial.',
+          evidence,
+          checkedAgainst: checked,
+        }
       }
     }
 
@@ -337,42 +407,71 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     }
   }
 
-  // 3. Entity-only match (cita_obra without amount): look for any tender
-  //    whose title contains the referencedEntity.
+  // 3. Entity-only match (cita_obra): look for any tender whose title
+  //    contains the referencedEntity. Skip if section 2 already pushed
+  //    a tender evidence row for this claim — otherwise we'd double-count.
+  const alreadyHasTenderEvidence = evidence.some((e) => e.kind === 'tender')
   if (
+    !alreadyHasTenderEvidence &&
     claim.type === 'cita_obra' &&
-    claim.entities.amountEuros == null &&
     claim.entities.referencedEntity &&
     tenderList.length > 0
   ) {
+    // Did the speaker claim the work is COMPLETED?
+    const claimsCompleted = COMPLETION_PATTERNS.some((rx) => rx.test(claim.verbatim))
     for (const t of tenderList) {
       const textSim = overlapScore(claim.entities.referencedEntity, tenderTitle(t))
       if (textSim >= 0.5) {
         evidence.push({
           kind: 'tender',
           ref: t.permalink ?? '',
-          snippet: tenderTitle(t),
+          snippet: `${tenderTitle(t)} · estado: ${t.status ?? 'desconocido'}`,
           similarity: Math.round(textSim * 100) / 100,
         })
-        break // one match is enough
+        // Contradicho: speaker says "completed" but tender is open/pending.
+        if (claimsCompleted && t.status && TENDER_NOT_DONE_STATUSES.has(t.status.toLowerCase())) {
+          return {
+            claimId: claim.id,
+            verdict: 'contradicho',
+            summary:
+              `El discurso afirma que la obra «${claim.entities.referencedEntity}» está ` +
+              `terminada, pero el contrato en la base municipal aún figura como «${t.status}». ` +
+              'Revisión editorial antes de contrastar públicamente.',
+            evidence,
+            checkedAgainst: checked,
+          }
+        }
+        break // one entity match is enough unless we already returned
       }
     }
   }
 
-  // 4. Compose verdict. Discipline:
-  //    · ≥1 strong-match (similarity≥0.8) → verificado
-  //    · ≥1 weak-match (similarity≥0.5)   → parcial
-  //    · no matches but the claim type is numeric/work/convenio → sin-datos
-  //    · acusacion_publica always sin-datos (we don't verify accusations)
+  // 4. Accusations — narrow auto-verification window.
+  //
+  //    · opinativa (character / intent / style) → sin-datos, ALWAYS. No
+  //      amount of cross-referencing can settle "they never listen".
+  //    · factual (cites a specific verifiable entity) → fall through to the
+  //      normal strong/weak verdict logic below, using the evidence
+  //      collected by the amount + entity lookups above.
+  //    · contra-datos (claim directly contradicts a published record) → if
+  //      we found a strong entity match but no amount match that IS the
+  //      contradiction, and the branch above already returned. If nothing
+  //      was found, we can't confirm the contradiction — fall through.
+  //    · subtype missing → treat as opinativa (safe default).
   if (claim.type === 'acusacion_publica') {
-    return {
-      claimId: claim.id,
-      verdict: 'sin-datos',
-      summary:
-        'Las acusaciones políticas no se verifican automáticamente — revisión editorial manual.',
-      evidence,
-      checkedAgainst: checked,
+    const subtype = claim.accusationSubtype ?? 'opinativa'
+    if (subtype === 'opinativa') {
+      return {
+        claimId: claim.id,
+        verdict: 'sin-datos',
+        summary:
+          'Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. ' +
+          'Revisión editorial manual.',
+        evidence,
+        checkedAgainst: checked,
+      }
     }
+    // factual / contra-datos fall through to the strong/weak verdict below
   }
 
   const strong = evidence.some((e) => (e.similarity ?? 0) >= 0.8)

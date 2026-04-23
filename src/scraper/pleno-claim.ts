@@ -41,6 +41,29 @@ export const ALLOWED_CLAIM_TYPES: readonly ClaimType[] = [
   'acusacion_publica',
 ]
 
+/**
+ * Narrow subtype for accusations. Split at extraction time so the verifier
+ * knows which ones are safely verifiable against the paper trail.
+ *
+ *   · factual      — accusation cites specific verifiable entities: a vote
+ *                    count, an amount, a contract, a BDNS grant. SAFE to
+ *                    auto-verify against tenders/BDNS/budget/pleno-votes.
+ *   · opinativa    — accusation about character, intent, style of governance,
+ *                    or general behaviour ("nunca escuchan a los vecinos").
+ *                    NEVER auto-verified — flagged for editorial review only.
+ *   · contra-datos — accusation that directly contradicts our own published
+ *                    data ("X partido votó en contra de Y" when pleno-votes
+ *                    shows the opposite). Verifier will test this and can
+ *                    emit a contradicho verdict.
+ */
+export type AccusationSubtype = 'factual' | 'opinativa' | 'contra-datos'
+
+export const ALLOWED_ACCUSATION_SUBTYPES: readonly AccusationSubtype[] = [
+  'factual',
+  'opinativa',
+  'contra-datos',
+]
+
 export type ClaimTopic =
   | 'fiscal'
   | 'vivienda'
@@ -94,6 +117,12 @@ export interface PlenoClaim {
   topic: ClaimTopic
   /** Structured entities the LLM extracted from the claim. */
   entities: ClaimEntities
+  /**
+   * Present only when type === 'acusacion_publica'. Classifies whether the
+   * accusation is safely auto-verifiable (factual / contra-datos) or
+   * opinion-only (opinativa, stays sin-datos by policy).
+   */
+  accusationSubtype?: AccusationSubtype
   /** 0..1 LLM confidence. */
   confidence: number
   /** One-sentence reasoning (kept for audit). */
@@ -134,6 +163,12 @@ export interface PlenoClaimsSnapshot {
     byType: Record<ClaimType, number>
     byPleno: Record<string, number>
     byTopic: Record<ClaimTopic, number>
+    /**
+     * Distribution of accusation subtypes across the snapshot. Useful
+     * for operators — a pleno with 40 opinativa accusations and 0
+     * factual is likely a heated debate, not a scandal.
+     */
+    byAccusationSubtype?: Record<AccusationSubtype, number>
   }
   items: PlenoClaim[]
 }

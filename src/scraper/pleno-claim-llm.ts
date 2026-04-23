@@ -53,17 +53,75 @@ export type LlmCaller = <TSchema extends ZodTypeAny>(
   opts: CallLlmOptions<TSchema>,
 ) => Promise<z.infer<TSchema> | null>
 
+/**
+ * Round a number to N significant figures so LLM-variant amounts
+ * (242000 vs 242255) collapse to the same dedup bucket.
+ */
+function roundSig(n: number | null | undefined, sig = 3): string {
+  if (n == null || !Number.isFinite(n) || n === 0) return ''
+  const d = Math.ceil(Math.log10(Math.abs(n)))
+  const power = sig - d
+  const factor = Math.pow(10, power)
+  return String(Math.round(n * factor) / factor)
+}
+
+function normForKey(s: string): string {
+  // NFD diacritic strip + lowercase + collapse whitespace + strip punctuation
+  // so variant transcripts of the same utterance collapse.
+  return s
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s]/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 function claimKey(c: PlenoClaimExtraction): string {
-  // Dedup by (type, topic, first-40-chars-of-verbatim, amount, count). The
-  // sliding windows overlap, so the same claim can surface twice — we keep
-  // the first occurrence.
+  // Semantic dedup — the sliding windows overlap and the LLM paraphrases
+  // the same utterance slightly differently across windows. We collapse
+  // by (type, topic, rounded-amount, rounded-count, 25-char-verbatim-prefix).
+  // Amount is rounded to 3 significant figures so 242000 and 242255 collide.
   return [
     c.type,
     c.topic,
-    c.verbatim.toLowerCase().trim().slice(0, 40).replace(/\s+/g, ' '),
-    c.entities.amountEuros ?? '',
-    c.entities.count ?? '',
+    normForKey(c.verbatim).slice(0, 25),
+    roundSig(c.entities.amountEuros ?? null, 3),
+    c.entities.count != null ? Math.round(c.entities.count / 10) * 10 : '',
   ].join('|')
+}
+
+/**
+ * Second-pass semantic collapse — if two claims share type + topic +
+ * rounded amount (regardless of verbatim prefix), keep the one with the
+ * highest confidence. Runs after the per-window dedup.
+ */
+function semanticCollapse<
+  T extends {
+    type: string
+    topic: string
+    entities: { amountEuros?: number; count?: number }
+    confidence: number
+  },
+>(items: T[]): T[] {
+  const byBucket = new Map<string, T>()
+  for (const it of items) {
+    const bucket = [
+      it.type,
+      it.topic,
+      roundSig(it.entities.amountEuros ?? null, 3),
+      it.entities.count != null ? Math.round(it.entities.count / 10) * 10 : '',
+    ].join('|')
+    // Buckets with no numeric anchor (both amount + count absent) aren't
+    // safe to collapse semantically — keep them all.
+    if (!it.entities.amountEuros && !it.entities.count) {
+      byBucket.set(bucket + '|' + Math.random(), it)
+      continue
+    }
+    const prev = byBucket.get(bucket)
+    if (!prev || it.confidence > prev.confidence) byBucket.set(bucket, it)
+  }
+  return [...byBucket.values()]
 }
 
 function splitClaimWindows(transcript: string, windowChars: number, step: number): string[] {
@@ -147,12 +205,15 @@ export async function extractClaimsWithLlm(
     }
   }
 
+  // Second-pass collapse across window boundaries — keep the highest-
+  // confidence representative of each (type, topic, rounded-amount) bucket.
+  const collapsed = semanticCollapse(items)
   return {
-    items,
+    items: collapsed,
     stats: {
       transcriptLength: transcript.length,
       segmentsScanned: windows.length,
-      claimsEmitted: items.length,
+      claimsEmitted: collapsed.length,
       droppedLowConfidence,
     },
   }

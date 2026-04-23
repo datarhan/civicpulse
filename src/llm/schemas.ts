@@ -11,7 +11,11 @@
  */
 import { z } from 'zod'
 import { ALLOWED_BLOCS, ALLOWED_DIRECTIONS, ALLOWED_OUTCOMES } from '../scraper/pleno-votes'
-import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../scraper/pleno-claim'
+import {
+  ALLOWED_CLAIM_TYPES,
+  ALLOWED_CLAIM_TOPICS,
+  ALLOWED_ACCUSATION_SUBTYPES,
+} from '../scraper/pleno-claim'
 
 // Mirrors src/scraper/promises.ts V1_STATUSES set. Kept as an array because
 // zod.enum() needs a tuple of literals at build time, not a runtime Set.
@@ -79,6 +83,12 @@ export const PlenoClaimSuggestionSchema = z.object({
   context: z.string().min(20).max(500),
   topic: z.enum([...ALLOWED_CLAIM_TOPICS] as [(typeof ALLOWED_CLAIM_TOPICS)[number]]),
   entities: ClaimEntitiesSchema,
+  // Optional — only meaningful when type==='acusacion_publica'. When absent
+  // the verifier treats accusations as opinativa (safe default).
+  accusationSubtype: z
+    .enum([...ALLOWED_ACCUSATION_SUBTYPES] as [(typeof ALLOWED_ACCUSATION_SUBTYPES)[number]])
+    .nullable()
+    .optional(),
   confidence: z.number().min(0).max(1),
   reasoning: z.string().min(5).max(400),
 })

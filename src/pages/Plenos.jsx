@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { ClaimLedgerSection } from '../components/ClaimLedger'
+import { PlenoFindingsSection } from '../components/PlenoFindings'
 import { useParticipa, KIND_ICON, KIND_LABEL } from '../hooks/useParticipa'
 import { useMemo, useState } from 'react'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
@@ -696,6 +697,7 @@ export default function Plenos() {
       <RealPlenosList />
       <PlenoVotesBlock />
       <PlenoVoteSuggestionsBlock />
+      <PlenoFindingsSection />
       <ClaimLedgerSection
         eyebrow="Verificación automática de declaraciones"
         title="Declaraciones hechas en el pleno · contraste con los datos"
