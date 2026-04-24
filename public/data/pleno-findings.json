@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-24T07:07:29.661Z",
+  "generatedAt": "2026-04-24T15:49:39.531Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -183,6 +183,48 @@
       "relatedPromiseIds": [],
       "curatorName": "ejemplo-curador",
       "publishedAt": "2026-04-23",
+      "response": null
+    },
+    {
+      "id": "f-2026-03-09-acu-d94904",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "title": "Debate sobre irregularidades procedimentales en reconocimientos extrajudiciales",
+      "summary": "En la sesión de marzo 2026 el PP acusa al equipo de gobierno de adjudicar contratos verbales sin expediente administrativo previo, de omitir la función interventora y de falta de planificación en la tramitación administrativa de expedientes de reconocimiento extrajudicial de créditos. PSOE responde que el PP 'en contadas ocasiones vota a favor de pagar a los proveedores'. No se incluye corroboración documental directa: los datos municipales publicados (PLACSP, BDNS, presupuesto) no permiten verificar ni contradecir las acusaciones procedimentales, que quedan como debate entre grupos pendiente de informe de fiscalización.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1sqj7is-008-acu-d94904",
+        "1sqj7is-008-acu-4a7fa7",
+        "1sqj7is-007-acu-e23010",
+        "1sqj7is-021-acu-84150b"
+      ],
+      "quotes": [
+        {
+          "text": "la adjudicación de contratos verbales sin que haya… Y ha habido un expediente administrativo previo a eso, comporta los informes, la falta de procedimiento de licitación pública",
+          "speakerGroup": "PP",
+          "sourceClaimId": "1sqj7is-008-acu-d94904"
+        },
+        {
+          "text": "la omisión de la función interventora, el gasto sin procedimiento de contratación",
+          "speakerGroup": "PP",
+          "sourceClaimId": "1sqj7is-008-acu-4a7fa7"
+        },
+        {
+          "text": "los informes técnicos lo que dicen es que hay una falta de planificación de la tramitación administrativa,",
+          "speakerGroup": "PP",
+          "sourceClaimId": "1sqj7is-007-acu-e23010"
+        },
+        {
+          "text": "en contadas ocasiones voten a favor de pagar a los proveedores, en contadas ocasiones. Hoy parece que han despertado y parece que hoy van a votar a favor, pero en contadas ocasiones.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "1sqj7is-021-acu-84150b"
+        }
+      ],
+      "corroboration": [],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-curator",
+      "publishedAt": "2026-04-24",
       "response": null
     }
   ]

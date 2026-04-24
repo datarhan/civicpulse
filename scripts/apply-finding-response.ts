@@ -46,9 +46,10 @@ function main() {
     process.exit(1)
   }
 
-  const respondedAt = maybeDate && /^\d{4}-\d{2}-\d{2}$/.test(maybeDate)
-    ? maybeDate
-    : new Date().toISOString().slice(0, 10)
+  const respondedAt =
+    maybeDate && /^\d{4}-\d{2}-\d{2}$/.test(maybeDate)
+      ? maybeDate
+      : new Date().toISOString().slice(0, 10)
   const sourceUrl =
     maybeUrl && maybeUrl.trim().length > 0 && /^https?:\/\//.test(maybeUrl)
       ? maybeUrl.trim()
