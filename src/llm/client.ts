@@ -465,6 +465,28 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
   })
 }
 
+/**
+ * Rewrite a JSON schema for OpenAI's strict mode. In strict:true every key
+ * listed in an object's `properties` must also be in its `required` array,
+ * and `additionalProperties` must be false. Zod's `.optional()` → JSON
+ * schema omits the key from required, which strict mode rejects. We fix
+ * that up post-hoc so callers can keep using `.nullable().optional()` in
+ * their Zod definitions without special-casing OpenAI.
+ */
+function toOpenAIStrictSchema(schema: unknown): unknown {
+  if (!schema || typeof schema !== 'object') return schema
+  const obj = schema as Record<string, unknown>
+  if (Array.isArray(obj)) return obj.map(toOpenAIStrictSchema)
+  const out: Record<string, unknown> = {}
+  for (const [k, v] of Object.entries(obj)) out[k] = toOpenAIStrictSchema(v)
+  // Object schemas: force required=all-keys and additionalProperties=false.
+  if (out.type === 'object' && out.properties && typeof out.properties === 'object') {
+    out.required = Object.keys(out.properties as Record<string, unknown>)
+    out.additionalProperties = false
+  }
+  return out
+}
+
 async function callOpenAI(req: RawCall): Promise<RawResult> {
   if (!req.config.openaiApiKey) throw new Error('OPENAI_API_KEY not set')
   const body = {
@@ -478,7 +500,7 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
       json_schema: {
         name: 'civicpulse_llm_response',
         strict: true,
-        schema: zodToJsonSchema(req.schema),
+        schema: toOpenAIStrictSchema(zodToJsonSchema(req.schema)),
       },
     },
     temperature: 0,
