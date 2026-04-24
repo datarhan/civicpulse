@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-24T15:49:39.531Z",
+  "generatedAt": "2026-04-24T15:55:40.646Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -218,6 +218,48 @@
           "text": "en contadas ocasiones voten a favor de pagar a los proveedores, en contadas ocasiones. Hoy parece que han despertado y parece que hoy van a votar a favor, pero en contadas ocasiones.",
           "speakerGroup": "PSOE",
           "sourceClaimId": "1sqj7is-021-acu-84150b"
+        }
+      ],
+      "corroboration": [],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-curator",
+      "publishedAt": "2026-04-24",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-23-acu-a1ba00",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "title": "Sesión urgente sobre incumplimiento del contrato de recogida de residuos",
+      "summary": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según Otro (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1qi8axv-068-acu-a1ba00",
+        "1qi8axv-020-acu-75c8b8",
+        "1qi8axv-023-acu-3aa6fd",
+        "1qi8axv-024-acu-2778ad"
+      ],
+      "quotes": [
+        {
+          "text": "el pleno este se convoca fundamentalmente por el incumplimiento del contrato de la basura.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-068-acu-a1ba00"
+        },
+        {
+          "text": "Aquí hay dos cuestiones, un incumplimiento del contrato, pero también tiene una responsabilidad política el equipo de gobierno.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-020-acu-75c8b8"
+        },
+        {
+          "text": "este incumplimiento del contrato va en contra de los vecinos y vecinas de nuestro municipio.",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "1qi8axv-023-acu-3aa6fd"
+        },
+        {
+          "text": "Es culpa de la empresa. Ni el veinte y veinte de Riva Rocha tienen cap culpa.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "1qi8axv-024-acu-2778ad"
         }
       ],
       "corroboration": [],
