@@ -1,0 +1,79 @@
+[0.0 → 0.0] ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL
+[0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE MAYO DE 2024
+[0.0 → 0.0] Lugar: Sesión telemática a distancia.
+[0.0 → 0.0] Fecha: 15 de mayo de 2024
+[0.0 → 0.0] Hora: 09:00
+[0.0 → 0.0] CARÁCTER DE LA SESION: EXTRAORDINARIA
+[0.0 → 0.0] ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA
+[0.0 → 0.0] CONCEJALES ASISTENTES:
+[0.0 → 0.0] Partido Socialista Obrero Español (PSOE) Partido Popular (PP)
+[0.0 → 0.0] Maria Teresa Pozuelo Martin Alberto Jose Gimeno Calvo
+[0.0 → 0.0] Jose Luis Ramos March Soraya Trejo Delgado
+[0.0 → 0.0] Jose Angel Hernandez Carrizosa Maria Jose Pradas Ramo
+[0.0 → 0.0] Eva Lara Catalá Salvador Evaristo Ferrer Cortina
+[0.0 → 0.0] Rafael Gomez Sanchez Laura Guzman Bruno
+[0.0 → 0.0] Maria Esther Gomez Laredo Juan Boix Martínez
+[0.0 → 0.0] Jose Manuel Vila Oltra Paula Navarro Sanfeliu
+[0.0 → 0.0] Raquel Pamblanco Paredes
+[0.0 → 0.0] Alfredo Pla Gimenez
+[0.0 → 0.0] David Barbancho Martínez
+[0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER
+[0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD
+[0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR
+[0.0 → 0.0] (ACORD PER
+[0.0 → 0.0] GUANYAR)
+[0.0 → 0.0] Jose Luis Fernández Jose Manuel Gallardo Martínez Rafael Folgado Navarro
+[0.0 → 0.0] Santamaria
+[0.0 → 0.0] Concejales ausentes: Ninguno
+[0.0 → 0.0] Actúa como Secretaria: Ylenia Díaz Morán .
+[0.0 → 0.0] El 15 de mayo de 2024, siendo las 09:00 horas, se reunieron en primera convocatoria
+[0.0 → 0.0] las señoras y señores concejales indicados, habiendo excusado su asistencia los igualmente
+[0.0 → 0.0] marginados a los efectos de celebrar sesión ordinaria telemática a distancia. Todo ello bajo la
+[0.0 → 0.0] Presidencia del Sr. Alcalde Roberto Raga Gadea, asistido de la Secretaria General, la Sra.
+[0.0 → 0.0] Ylenia Díaz Morán.
+[0.0 → 0.0] Declarado abierto el acto por la presidencia, se pasa al estudio y acuerdo de los
+[0.0 → 0.0] asuntos consignados en el Orden del Día.
+[0.0 → 0.0] 1.- Confirmación de asistencia y declaración de encontrarse en territorio nacional.
+[0.0 → 0.0] Por parte de la Secretaria se procede a pasar lista de los asistentes declarando todos ellos bajo
+[0.0 → 0.0] su responsabilidad que se encuentran en territorio nacional. Por lo que una vez cumplido este
+[0.0 → 0.0] trámite de identificación y declaración de encontrarse en territorio nacional se procede a
+[0.0 → 0.0] continuar con los asuntos consignados en el Orden del Día.
+[0.0 → 0.0] 2.- SECRETARÍA, Expediente: 1061/2024/GEN, Acuerdo relativo al Sorteo de Miembros de
+[0.0 → 0.0] Mesa para las Elecciones de diputados y diputadas al Parlamento Europeo a celebrar el 9
+[0.0 → 0.0] de junio de 2024.
+[0.0 → 0.0] En relación a las próximas Elecciones Parlamento Europeo a celebrar el día 09 de junio de
+[0.0 → 0.0] 2024, se da cuenta por Secretaría que, de conformidad con lo previsto en el artículo 26,
+[0.0 → 0.0] apartado 2 de la vigente Ley Orgánica de Régimen Electoral 5/1985, la Corporación debe
+[0.0 → 0.0] proceder a realizar sorteo público para el nombramiento de los miembros componentes
+[0.0 → 0.0] de las Mesas Electorales con motivo de las Elecciones citadas.
+[0.0 → 0.0] Conforme el informe de fecha 07 de mayo de 2024 del Técnico Medio de Informática,
+[0.0 → 0.0] se seguirá un proceso automático de designación cuyo proceso es el siguiente:
+[0.0 → 0.0] La aplicación informática con la que se va a realizar el sorteo automático realiza este proceso
+[0.0 → 0.0] de forma masiva seleccionando los presidentes, vocales y suplentes de una forma aleatoria
+[0.0 → 0.0] mediante procedimientos informáticos.
+[0.0 → 0.0] Para dicho sorteo se va a utilizar la aplicación informática que desde la Oficina del Censo
+[0.0 → 0.0] Electoral se ha suministrado a todos los municipios para tal efecto, “Aplicación
+[0.0 → 0.0] IDA_Celec de Sorteo para seleccionar los miembros de las Mesas electorales.”.
+[0.0 → 0.0] El sorteo se realiza por selección aleatoria entre los electores que cumplen las condiciones
+[0.0 → 0.0] requeridas por la ley electoral:
+[0.0 → 0.0] En el artículo 26.2 de la Ley Orgánica del Régimen Electoral General (LOREG) determina que
+[0.0 → 0.0] “El Presidente y los vocales de cada Mesa son designados por sorteo público entre la totalidad
+[0.0 → 0.0] de las personas incluidas en la lista de electores de la Mesa correspondiente, que sepan leer y
+[0.0 → 0.0] escribir y sean menores de setenta años, si bien a partir de los sesenta y cinco años podrán
+[0.0 → 0.0] manifestar su renuncia en el plazo de siete días. El Presidente deberá tener el título de
+[0.0 → 0.0] Bachiller o el de Formación Profesional de segundo Grado, o subsidiariamente el de Graduado
+[0.0 → 0.0] Escolar o equivalente”.
+[0.0 → 0.0] Se propone al Pleno la adopción del siguiente Acuerdo:
+[0.0 → 0.0] PRIMERO. Aprobar la utilización del Proceso automático de designación de los
+[0.0 → 0.0] miembros de las mesas electorales correspondiente a las elecciones al Parlamento
+[0.0 → 0.0] Europeo convocadas por el Real Decreto 363/2024, de 9 de abril, por el que se
+[0.0 → 0.0] convocan elecciones de diputados y diputadas al Parlamento Europeo.
+[0.0 → 0.0] SEGUNDO. Aprobar las designaciones de miembros de mesa que resulten del citado sorteo
+[0.0 → 0.0] automático que se realiza por selección aleatoria entre los electores que cumplen las
+[0.0 → 0.0] condiciones requeridas por la ley electoral.
+[0.0 → 0.0] TERCERO. Notificar la designación a los interesados en el plazo de tres días y remitir a la
+[0.0 → 0.0] Junta Electoral de Zona los nombramientos respectivos a los efectos oportunos.
+[0.0 → 0.0] AUDIO: 01.mp3
+[0.0 → 0.0] VIDEO: http://videople.es/7027
+[0.0 → 0.0] Y no habiendo otros asuntos que tratar por el Sr. Presidente se levantó la sesión siendo las
+[0.0 → 0.0] 21:39 horas del mismo día de su inicio.

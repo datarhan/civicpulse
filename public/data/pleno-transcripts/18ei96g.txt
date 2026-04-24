@@ -1,0 +1,782 @@
+[0.0 → 0.0] ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL
+[0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 21 DE OCTUBRE DE 2024
+[0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento
+[0.0 → 0.0] Fecha: 21 de octubre de 2024
+[0.0 → 0.0] Hora: 09:00
+[0.0 → 0.0] CARÁCTER DE LA SESION: EXTRAORDINARIA
+[0.0 → 0.0] ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA
+[0.0 → 0.0] CONCEJALES ASISTENTES:
+[0.0 → 0.0] Partido Socialista Obrero Español (PSOE) Partido Popular (PP)
+[0.0 → 0.0] Maria Teresa Pozuelo Martin Alberto Jose Gimeno Calvo
+[0.0 → 0.0] Jose Luis Ramos March Soraya Trejo Delgado
+[0.0 → 0.0] Jose Angel Hernandez Carrizosa Maria Jose Pradas Ramo
+[0.0 → 0.0] Eva Lara Catalá Salvador Evaristo Ferrer Cortina
+[0.0 → 0.0] Rafael Gomez Sanchez Laura Guzman Bruno
+[0.0 → 0.0] Maria Esther Gomez Laredo Juan Boix Martínez
+[0.0 → 0.0] Jose Manuel Vila Oltra Paula Navarro Sanfeliu
+[0.0 → 0.0] Raquel Pamblanco Paredes
+[0.0 → 0.0] Alfredo Pla Gimenez
+[0.0 → 0.0] David Barbancho Martínez
+[0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER
+[0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD
+[0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR
+[0.0 → 0.0] (ACORD PER
+[0.0 → 0.0] GUANYAR)
+[0.0 → 0.0] Jose Luis Fernández Jose Manuel Gallardo Martínez Rafael Folgado Navarro
+[0.0 → 0.0] Santamaria
+[0.0 → 0.0] Concejales ausentes: David Barbancho Martínez.
+[0.0 → 0.0] Actúa como Secretario: José Luís Serrano Borraz.
+[0.0 → 0.0] El 21 de octubre de 2024, siendo las 09:00 horas, se reunieron en primera convocatoria
+[0.0 → 0.0] las señoras y señores concejales indicados, habiendo excusado su asistencia los igualmente
+[0.0 → 0.0] marginados a los efectos de celebrar sesión ordinaria en el Salón de Plenos del Ayuntamiento.
+[0.0 → 0.0] Todo ello bajo la Presidencia del Sr. Alcalde Roberto Raga Gadea, asistido del Vicesecretario
+[0.0 → 0.0] de la corporación Sr. José Luís Serrano Borraz.
+[0.0 → 0.0] Declarado abierto el acto por la presidencia, se pasa al estudio y acuerdo de los
+[0.0 → 0.0] asuntos consignados en el Orden del Día.
+[0.0 → 0.0] PARTE RESOLUTIVA
+[0.0 → 0.0] 1.GESTIÓN TRIBUTARIA, Expediente 2699/2024/GEN, Imposición y Aprobación de la
+[0.0 → 0.0] Ordenanza Fiscal Reguladora de la Tasa por prestación del Servicio de Recogida de
+[0.0 → 0.0] Residuos Sólidos Urbanos, Poda y Voluminosos del municipio de Riba-roja de Túria.
+[0.0 → 0.0] Expte 2699/2024/GEN.
+[0.0 → 0.0] Vista la propuesta de la Concejalía de Hacienda de fecha 4 de Octubre de 2024,
+[0.0 → 0.0] relativa a la Propuesta de imposición y ordenación de la Tasa por prestación del servicio de
+[0.0 → 0.0] recogida de residuos sólidos urbanos así como la recogida domiciliaria de poda y voluminosos,
+[0.0 → 0.0] tramitada en virtud de Expte 2699/2024/GEN.
+[0.0 → 0.0] Atendiendo que dicho expediente viene a cumplir la imposición normativa contenida
+[0.0 → 0.0] tanto en Directivas Europeas como en las propias Normas Estatales; en concreto, y como se
+[0.0 → 0.0] señala en el preámbulo de la norma cuya aprobación se propone; con ella se pretende dar
+[0.0 → 0.0] cumplimiento tanto a la Directiva Europea 2008/98/CE (en la que se establecieron objetivos de
+[0.0 → 0.0] preparación para la reutilización y reciclado de los residuos municipales, y entre cuyas
+[0.0 → 0.0] recomendaciones se encontraba la introducción de determinados instrumentos económicos;
+[0.0 → 0.0] entre ellos: el establecimiento de tasas obligatorias sobre los residuos municipales para los
+[0.0 → 0.0] hogares), como asimismo dar cumplimiento a la Ley 7/2022 de 8 de abril de residuos y suelos
+[0.0 → 0.0] contaminados para la economía circular, que incluyó tanto las obligaciones de recogida
+[0.0 → 0.0] separada, como la obligación de revisar las ordenanzas municipales (disposición final octava) y
+[0.0 → 0.0] los contratos en el plazo de tres años (disposición adicional undécima); con la obligación
+[0.0 → 0.0] asimismo para las entidades locales a efectos de que establezcan en el plazo de tres años
+[0.0 → 0.0] (antes de 10 de abril de 2025), una TASA/PPPNT específica, diferenciada y no deficitaria, que
+[0.0 → 0.0] permita implantar sistemas de pago por generación, tasas que al devengarse el 1 de enero de
+[0.0 → 0.0] acuerdo con el R.D.L.2/2004 de 5 de marzo, por el que se aprueba el Texto refundido de la Ley
+[0.0 → 0.0] Reguladora de las Haciendas Locales, deben estar en vigor el 1 de enero de 2025.
+[0.0 → 0.0] En consecuencia de lo expuesto y en este contexto; se propone la creación de la Tasa
+[0.0 → 0.0] por prestación del servicio de recogida de residuos sólidos urbanos, así como la recogida
+[0.0 → 0.0] domiciliaria de poda y de voluminosos de Riba-roja de Turia (en adelante TRRSU), en la que se
+[0.0 → 0.0] establecen dos fases:
+[0.0 → 0.0] La primera fase será la de necesaria implantación ex novo de una Tasa, hasta ahora
+[0.0 → 0.0] inexistente en Riba-roja de Turia; y que por supuesto tendrá un carácter transitorio, en tanto se
+[0.0 → 0.0] alcanza una futura fase.
+[0.0 → 0.0] En una segunda fase, la tasa implantada en una primera fase, depurada y ponderada
+[0.0 → 0.0] en base a parámetros justos y reales, será revisada por una estructura tarifaria que dependerá
+[0.0 → 0.0] directamente del comportamiento individual de la ciudadanía en cuanto a la generación y la
+[0.0 → 0.0] separación de residuos, dando cumplimiento con ello a la normativa anteriormente citada.
+[0.0 → 0.0] En el momento en que estos sistemas estén implantados, consolidados y con la tecnología
+[0.0 → 0.0] lista, la ratificación deberá derivar hacia estos parámetros directamente relacionados con la
+[0.0 → 0.0] individualización de las recogidas, que hagan más efectivo el conocido pago por generación.
+[0.0 → 0.0] Visto el Estudio de Costes elaborado por la Tesorera Municipal y el Técnico de Medio
+[0.0 → 0.0] Ambiente en fecha 04 de octubre de 2024 y que forma parte del expediente.
+[0.0 → 0.0] Visto el Informe Jurídico Técnico, INF-TES 01/29/24, emitido por la Tesorera Municipal
+[0.0 → 0.0] en fecha 4 de Octubre de 2024.
+[0.0 → 0.0] Visto el Informe Jurídico favorable emitido por el Vicesecretario Municipal al respecto
+[0.0 → 0.0] en fecha 4 de Octubre de 2024.
+[0.0 → 0.0] Visto el Informe nº 676/2024 emitido por la Viceinterventora Municipal en fecha 10 de
+[0.0 → 0.0] Octubre de 2024 sobre la propuesta de aprobación de la citada Ordenanza Fiscal.
+[0.0 → 0.0] El Pleno, tras el debate que obra en su integridad en el Diario de Sesiones, por 10
+[0.0 → 0.0] votos a favor (10 PSOE), 8 votos en contra (7 PP y 1 VOX) y 2 abstenciones (1 EUPV –
+[0.0 → 0.0] Unides Podem per Riba-roja y 1 Compromís per Riba-roja: Acord per Guanyar ), acordó:
+[0.0 → 0.0] PRIMERO: IMPONER la Tasa por prestación del servicio de recogida de residuos sólidos
+[0.0 → 0.0] urbanos, así como la recogida domiciliaria de poda y voluminosos que se contiene en la
+[0.0 → 0.0] Ordenanza Fiscal que a continuación se propone.
+[0.0 → 0.0] SEGUNDO: APROBAR la Ordenanza Fiscal Reguladora de la Tasa por prestación del Servicio
+[0.0 → 0.0] de Recogida de Residuos Sólidos Urbanos, así como la recogida domiciliaria de poda y
+[0.0 → 0.0] voluminosos que literalmente trascrita dice:
+[0.0 → 0.0] "2.39.- ORDENANZA FISCAL REGULADORA DE LA TASA POR PRESTACIÓN DEL
+[0.0 → 0.0] SERVICIO DE RECOGIDA DE RESIDUOS SOLIDOS URBANOS, PODA Y VOLUMINOSOS
+[0.0 → 0.0] DEL MUNICIPIO DE RIBA-ROJA DE TURIA.
+[0.0 → 0.0] PREAMBULO
+[0.0 → 0.0] La Directiva Europea 2008/98/CE; estableció objetivos de preparación para la
+[0.0 → 0.0] reutilización y reciclado de los residuos municipales, estos si bien eran muy ambiciosos, diez
+[0.0 → 0.0] años después, en el 2018; la Comisión Europea alertó a España indicándole que estaba en
+[0.0 → 0.0] riesgo de incumplimiento del objetivo de reciclado para 2020, haciendo un total de ocho
+[0.0 → 0.0] recomendaciones.
+[0.0 → 0.0] Entre dichas recomendaciones se encontraba la introducción de instrumentos
+[0.0 → 0.0] económicos. En concreto entre los propuestos se encontraba el establecimiento de tasas
+[0.0 → 0.0] obligatorias sobre los residuos municipales para los hogares; a efectos de disponer de recursos
+[0.0 → 0.0] financieros que respalden los cambios en la gestión y el tratamiento de residuos, y permita
+[0.0 → 0.0] alcanzar los objetivos; además de un sistema fiscal armonizado para la eliminación de los
+[0.0 → 0.0] residuos (es decir, el vertido y la incineración) que fuera operativo en todas las Comunidades
+[0.0 → 0.0] Autónomas.
+[0.0 → 0.0] En respuesta de ello y en cumplimiento de las obligaciones comunitarias; se aprobó la
+[0.0 → 0.0] Ley 7/2022 de 8 de abril de residuos y suelos contaminados para la economía circular (en
+[0.0 → 0.0] adelante Ley 7/2022); que incluyó tanto las obligaciones de recogida separada y la obligación
+[0.0 → 0.0] de revisar las ordenanzas municipales (disposición final octava) y los contratos en el plazo de
+[0.0 → 0.0] tres años (disposición adicional undécima); como los dos instrumentos económicos,
+[0.0 → 0.0] cumpliendo así las recomendaciones de la Comisión; por un lado, el impuesto estatal al
+[0.0 → 0.0] depósito de residuos en vertedero, incineración y coincineración de residuos, y por otro la
+[0.0 → 0.0] obligatoriedad de que las entidades locales establezcan en el plazo de tres años (antes de 10
+[0.0 → 0.0] de abril de 2025), una TASA/PPPNT específica, diferenciada y no deficitaria, que permita
+[0.0 → 0.0] implantar sistemas de pago por generación.
+[0.0 → 0.0] En consecuencia de lo expuesto y en este contexto; se crea la Tasa por prestación de
+[0.0 → 0.0] servicios de recogida de residuos sólidos urbanos, así como la recogida domiciliaria poda y
+[0.0 → 0.0] voluminosos; de Riba-roja de Turia (en adelante TTRSU), en la que se establecen dos fases:
+[0.0 → 0.0] La primera fase será la de necesaria implantación ex novo de una Tasa, hasta ahora
+[0.0 → 0.0] inexistente en Riba-roja de Turia; y que, por supuesto tendrá un carácter transitorio, en tanto se
+[0.0 → 0.0] alcanzan una futura fase.
+[0.0 → 0.0] En esta primera fase la estructura tarifaria de la tasa se fija según el tipo y uso concreto
+[0.0 → 0.0] del inmueble receptor del servicio de recogida de residuos sólidos urbanos, poda y
+[0.0 → 0.0] voluminosos; y de los costes que por dichos servicios soporta el Ayuntamiento de Riba-roja del
+[0.0 → 0.0] Turia según el tipo y uso del inmueble sobre el que se presta el servicio; y se modula en
+[0.0 → 0.0] función de parámetros tales como; el valor catastral del inmueble (consagrando con ello el
+[0.0 → 0.0] principio de capacidad económica como determinante del importe en la denominada Cuota de
+[0.0 → 0.0] Disponibilidad); así como para la denominada Cuota de Generación; por el número de
+[0.0 → 0.0] habitantes, consumo de agua y superficie de parcela para viviendas, y por la superficie del
+[0.0 → 0.0] inmueble en el resto de usos diferentes al de vivienda; parámetros que asimismo son
+[0.0 → 0.0] claramente determinantes de un índice de consumo que varía en función de éstos.
+[0.0 → 0.0] La relación entre tipo y uso del inmueble, consumo de agua, número de habitantes y
+[0.0 → 0.0] extensión de la parcela/inmueble; asociados todos ellos a una mayor generación de residuos,
+[0.0 → 0.0] se establece a la vista de los resultados de estudios llevados a cabo en el ámbito municipal; en
+[0.0 → 0.0] concreto en el Área de Medio Ambiente (y como asimismo consta en la previsión de Estudio de
+[0.0 → 0.0] Costes que precede a esta Ordenanza Fiscal, "Criterios y parámetros que deben ser tenidos en
+[0.0 → 0.0] cuenta en el cálculo de la tasa"); y donde se pone de manifiesto la correlación existente entre
+[0.0 → 0.0] estos parámetros y una mayor generación de residuos.
+[0.0 → 0.0] Esta primera fase de implantación de la TTRSU supone un primer reto a desarrollar por
+[0.0 → 0.0] el Ayuntamiento de Riba-roja de Turia; que con la regulación propuesta en esta Ordenanza
+[0.0 → 0.0] Fiscal; pretende iniciar la creación de una Tasa que se module en función de diversos
+[0.0 → 0.0] parámetros tales como; tipos de usos, valores catastrales, superficies afectadas/construidas,
+[0.0 → 0.0] habitantes del inmueble, consumo domiciliario de agua, etc...; parámetros que para ser justos y
+[0.0 → 0.0] reales, van a requerir de una labor especifica con dedicación de medios materiales y
+[0.0 → 0.0] especialmente humanos. La gestión de esta tasa, por tanto; va a requerir de una continua
+[0.0 → 0.0] dedicación de medios humanos para su depuración y adecuada exacción, a efectos de que la
+[0.0 → 0.0] misma responda a los propósitos de la Ley 7/2022 de 8 de abril, y pueda ser adecuada al
+[0.0 → 0.0] principio de "quien más contamina, más paga", y todo ello sin perjuicio de las actuaciones que
+[0.0 → 0.0] en una segunda fase se deban llevar a cabo.
+[0.0 → 0.0] En una segunda fase, la tasa implantada en una primera fase, depurada y ponderada
+[0.0 → 0.0] en base a parámetros justos y reales, será revisada por una estructura tarifaria que dependerá
+[0.0 → 0.0] directamente del comportamiento individual de la ciudadanía en cuanto a la generación y la
+[0.0 → 0.0] separación de residuos, dando cumplimiento con ello a la normativa anteriormente citada.
+[0.0 → 0.0] En el momento en que estos sistemas estén implantados, consolidados y con la
+[0.0 → 0.0] tecnología lista, la ratificación deberá derivar hacia estos parámetros directamente relacionados
+[0.0 → 0.0] con la individualización de las recogidas, que hagan más efectivo el conocido pago por
+[0.0 → 0.0] generación.
+[0.0 → 0.0] En atención a todos los hechos y fundamentos jurídicos expuestos; y en virtud de las
+[0.0 → 0.0] potestades reglamentaria y tributaria de que gozan las entidades locales, con el presente
+[0.0 → 0.0] cuerpo normativo se pretende crear una Ordenanza Fiscal que regule adecuadamente, el
+[0.0 → 0.0] establecimiento y ordenación de una tasa para la prestación del servicio de recogida de
+[0.0 → 0.0] residuos sólidos urbanos, dado que por su naturaleza se trata de una materia reservada a
+[0.0 → 0.0] ordenanza fiscal.
+[0.0 → 0.0] Esta Ordenanza consta de 13 artículos, 3 disposiciones adicionales, 1 disposición
+[0.0 → 0.0] transitoria y 1 disposición final.
+[0.0 → 0.0] En el artículo 1 se define el Fundamento y Naturaleza de la Tasa, de acuerdo con la
+[0.0 → 0.0] Ley 7/2022 de 8 de abril de residuos y suelos contaminados para una economía circular. El art.
+[0.0 → 0.0] 2 regula el hecho imponible como la recogida de basuras domiciliarias y residuos sólidos
+[0.0 → 0.0] urbanos de viviendas, alojamientos y locales o establecimientos donde se ejercen actividades
+[0.0 → 0.0] industriales, comerciales, profesionales, artísticas y de servicios, así como los residuos que por
+[0.0 → 0.0] poda y elementos voluminosos se recojan de forma domiciliaria. En el art. 3 se regula el
+[0.0 → 0.0] nacimiento de la obligación de contribuir, referenciando la misma al momento de inicio de la
+[0.0 → 0.0] prestación del servicio con independencia de que los mismos se encuentren habitados o no.
+[0.0 → 0.0] Los arts. 4 y 5 regulan los supuestos de no sujeción, así como los beneficios fiscales a efectos
+[0.0 → 0.0] de incluir incentivos a las buenas prácticas y con ello incluir las previsiones de la Ley 7/2022 en
+[0.0 → 0.0] cuanto a la modulación de prácticas que tiendan al compostaje doméstico y a la adhesión a
+[0.0 → 0.0] sistemas de recogidas selectivas de Biorresiduos. Los arts. 6 y 7 regulan los distintos obligados
+[0.0 → 0.0] tributarios, sujeto pasivo contribuyente, sujeto pasivo sustituto del contribuyente, así como los
+[0.0 → 0.0] responsables. En el art. 8 se establecen las distintas tarifas que integran la tasa, de acuerdo
+[0.0 → 0.0] con los diferentes tipos de uso (residencial, actividades/industriales o resto de usos)
+[0.0 → 0.0] ponderados según diversos parámetros tales como; valor catastral, metros cuadrados de
+[0.0 → 0.0] parcela, metros cúbicos consumidos, habitantes empadronados en las viviendas o tipologías de
+[0.0 → 0.0] actividades desarrolladas en los inmuebles. El art. 9 establece las normas comunes para
+[0.0 → 0.0] determinar la cuota de disponibilidad y la de generación de la citada tasa, mientras que el art.
+[0.0 → 0.0] 10 define el devengo y el período impositivo. En el art. 11 se regulan las normas de gestión
+[0.0 → 0.0] establecidas tanto para la gestión de la citada tasa en el primer ejercicio de su implantación, es
+[0.0 → 0.0] decir en el 2025; así como las normas de gestión a aplicar en todos los ejercicios de vigencia
+[0.0 → 0.0] de la tasa (2025 y siguientes); el art. 12 regula la recaudación de cuotas en periodo voluntario
+[0.0 → 0.0] y, por último, el artículo 13 se refiere a las infracciones y sanciones, remitiéndose a la
+[0.0 → 0.0] regulación contenida en la Ley General Tributaria.
+[0.0 → 0.0] Por lo que respecta a la parte final, la disposición adicional primera se refiere a la
+[0.0 → 0.0] determinación de forma anual del plazo de ingreso de las deudas de cobro por recibo
+[0.0 → 0.0] notificadas colectivamente; la disposición adicional segunda se refiere a la aplicación
+[0.0 → 0.0] automática de las modificaciones derivadas de cualquier norma de rango legal que afecten a
+[0.0 → 0.0] las disposiciones de la Ordenanza; la disposición adicional segunda recoge la posibilidad de
+[0.0 → 0.0] notificación colectiva a través de la modificación de la correspondiente Ordenanza para futuras
+[0.0 → 0.0] notificaciones que se recoge en la DA 14 TRLHL, la Disposición Transitoria recoge los
+[0.0 → 0.0] procedimientos de notificación individual regulados para el 2025, y por último la disposición
+[0.0 → 0.0] final fija la entrada en vigor de la norma.
+[0.0 → 0.0] La Ordenanza de la TRRSU de Riba-roja de Turia que a continuación se contiene;
+[0.0 → 0.0] cumple los principios de buena regulación, establecidos en el artículo 129 de la Ley 39/2015,
+[0.0 → 0.0] de 1 de octubre, de procedimiento administrativo común de las administraciones públicas: con
+[0.0 → 0.0] los principios de necesidad y eficacia, porque su aprobación se justifica por razones de interés
+[0.0 → 0.0] general así como de exigencia preceptiva en virtud de la Ley 7/2022, y su finalidad está
+[0.0 → 0.0] claramente identificada, siendo el instrumento más adecuado para garantizar su consecución.
+[0.0 → 0.0] Con el principio de proporcionalidad, porque contiene sólo la regulación imprescindible para
+[0.0 → 0.0] atender a la necesidad que quiere cubrir la norma; pero sin embargo regula especialidades a
+[0.0 → 0.0] efectos de la primera implantación de la misma. Con el principio de seguridad jurídica, porque
+[0.0 → 0.0] la regulación contenida en el reglamento es plenamente coherente con el resto del
+[0.0 → 0.0] ordenamiento jurídico. Con el principio de transparencia, puesto que quedan definidos en la
+[0.0 → 0.0] misma norma sus objetivos y su justificación, y porque las potenciales personas destinatarias,
+[0.0 → 0.0] han tenido la posibilidad de participar en su elaboración, a través de la Consulta Pública previa
+[0.0 → 0.0] que en virtud del art. 133 de la Ley de Procedimiento Administrativo; se ha celebrado sin
+[0.0 → 0.0] perjuicio de que el citado tramite en virtud de la última Jurisprudencia del Tribunal Supremo
+[0.0 → 0.0] contenida en STS 31-01-2023; no es preceptivo para las ordenanzas fiscales. Asimismo, la
+[0.0 → 0.0] ordenanza respeta el principio de eficiencia, pues la norma no impone cargas administrativas
+[0.0 → 0.0] innecesarias o accesorias.
+[0.0 → 0.0] Artículo 1º - FUNDAMENTO Y NATURALEZA
+[0.0 → 0.0] En uso de las facultades concedidas por los arts. 133.2 y 142 de la Constitución, arts. 4
+[0.0 → 0.0] y 106 de la Ley 7/1985, de 2 de abril, Ley Reguladora de las Bases de Régimen Local, y de
+[0.0 → 0.0] acuerdo con los arts. 15 al 19 del R.D.L.2/2004 de 5 de marzo, por el que se aprueba el Texto
+[0.0 → 0.0] refundido de la Ley Reguladora de las Haciendas Locales (TRLHL), este Ayuntamiento
+[0.0 → 0.0] establece la "Tasa por prestación de servicios de recogida de residuos sólidos urbanos así
+[0.0 → 0.0] como la recogida domiciliaria poda y voluminosos; en adelante TRRSU", que se regirá por la
+[0.0 → 0.0] presente Ordenanza Fiscal, cuyas normas atienden a lo prevenido en el art. 57 del citado
+[0.0 → 0.0] TRLHL y en especial a la Ley 7/2022 de 8 de abril de residuos y suelos contaminados para una
+[0.0 → 0.0] economía circular.
+[0.0 → 0.0] Artículo 2º - HECHO IMPONIBLE
+[0.0 → 0.0] 1.- Constituye el hecho imponible de la Tasa la prestación del servicio de recogida
+[0.0 → 0.0] obligatoria de recogida de basuras domiciliarias y residuos sólidos urbanos de viviendas,
+[0.0 → 0.0] alojamientos y locales o establecimientos donde se ejercen actividades industriales,
+[0.0 → 0.0] comerciales, profesionales, artísticas y de servicios; así como los residuos que; por poda y
+[0.0 → 0.0] elementos voluminosos se recojan de forma domiciliaria en las viviendas, siempre que cumplan
+[0.0 → 0.0] la normativa municipal para su recogida.
+[0.0 → 0.0] 2.- A tal efecto, se consideran basuras domiciliarias y residuos sólidos urbanos; los
+[0.0 → 0.0] restos y desperdicios de alimentación o detritus procedentes de la limpieza normal de
+[0.0 → 0.0] viviendas, alojamientos y locales o establecimientos donde se ejercen actividades industriales,
+[0.0 → 0.0] comerciales, profesionales, artísticas y de servicios.
+[0.0 → 0.0] 3.- No constituyen el hecho imponible y a tal efecto se excluyen del concepto de
+[0.0 → 0.0] basuras domiciliarias o residuos sólidos urbanos; los residuos de tipo industrial, escombros de
+[0.0 → 0.0] obras, detritus humanos, materias contaminados, corrosivos, peligrosos o cuya recogida o
+[0.0 → 0.0] vertido exija la adopción de especiales medidas higiénicas, profilácticas o de seguridad.
+[0.0 → 0.0] 4.- No constituye el hecho imponible de esta tasa; los servicios de trasferencia,
+[0.0 → 0.0] valoración y eliminación de residuos urbanos, servicios de recogida selectiva en ecoparque,
+[0.0 → 0.0] recogida contenerizada de vidrio, envases y papel/cartón, así como resto de servicios que se
+[0.0 → 0.0] integran dentro de la Ordenanza fiscal reguladora de la Tasa de servicios ambientales del
+[0.0 → 0.0] Consorcio Valencia Interior, al que el Ayuntamiento de Riba-roja de Turia pertenece.
+[0.0 → 0.0] Artículo 3º - OBLIGACION DE CONTRIBUIR
+[0.0 → 0.0] 1.- La obligación de contribuir nace con la prestación del servicio, que al tener la
+[0.0 → 0.0] condición general y obligatoria, se entenderá utilizado por todos los titulares, de viviendas,
+[0.0 → 0.0] locales y demás inmuebles existentes dentro del término municipal, con independencia de que
+[0.0 → 0.0] los mismos se encuentren habitados o no, así como con independencia de que en los mismos
+[0.0 → 0.0] se desarrollen o no las actividades en que en dichos inmuebles estén habilitadas.
+[0.0 → 0.0] 2.- Este servicio que tiene la consideración de esencial para la vida social de los
+[0.0 → 0.0] ciudadanos, es de carácter general y de recepción y uso obligatorio, para cualquier vivienda,
+[0.0 → 0.0] local o establecimiento que esté situado en los lugares en donde se presta efectivamente el
+[0.0 → 0.0] servicio, por lo que la no utilización del servicio, sea cual sea el motivo; no exime de la
+[0.0 → 0.0] obligación de contribuir.
+[0.0 → 0.0] 3.- No obstante lo dispuesto en el apartado anterior, y para el supuesto exclusivo de
+[0.0 → 0.0] actividades comerciales o industriales en los que el titular de la misma acredite que posee un
+[0.0 → 0.0] gestor o transportista autorizado, distinto al adjudicatario municipal, que recoge y gestiona
+[0.0 → 0.0] todos y cada uno de los residuos sólidos urbanos que constituyen el hecho imponible de esta
+[0.0 → 0.0] ordenanza; sin que por tanto precisen evacuar residuos para su recogida por el servicio
+[0.0 → 0.0] municipal, podrán solicitar la aplicación única y exclusivamente de la cuota disponibilidad sin
+[0.0 → 0.0] tener que abonar cuota de generación en las tasas del servicio que corresponda.
+[0.0 → 0.0] Artículo 4º - SUPUESTOS DE NO SUJECCION
+[0.0 → 0.0] No estarán sujetos a la Tasa:
+[0.0 → 0.0] *Los solares, en los que no exista edificación o construcción alguna, y en los que se
+[0.0 → 0.0] constate la inexistencia de actividad alguna.
+[0.0 → 0.0] *Los garajes y trasteros, siempre que en ambos casos se encuentren asociados a
+[0.0 → 0.0] viviendas.
+[0.0 → 0.0] *Los inmuebles declarados en estado de ruina, desde el ejercicio siguiente al de la
+[0.0 → 0.0] declaración y en tanto se mantenga dicha situación.
+[0.0 → 0.0] Artículo 5º - BENEFICIOS FISCALES
+[0.0 → 0.0] 5.1.- Se establecen las siguientes Bonificaciones que se aplicaran directamente en la
+[0.0 → 0.0] CUOTA DE GENERACIÓN, que tiene por finalidad incentivar buenas prácticas por la
+[0.0 → 0.0] realización de las siguientes actuaciones:
+[0.0 → 0.0] a) BONIFICACION 20% EN LA CUOTA GENERACION; por el uso de técnicas de
+[0.0 → 0.0] compostaje: tendrán derecho a esta bonificación; los contribuyentes-usuarios que
+[0.0 → 0.0] participen en los programas de formación municipal sobre compostaje, una vez
+[0.0 → 0.0] implantados éstos y previa comprobación municipal de que efectivamente se están
+[0.0 → 0.0] realizando las técnicas de compostaje en su vivienda. La bonificación se aplicará
+[0.0 → 0.0] previa solicitud a instancia de parte y una vez obtenida la misma, ésta se aplicará a
+[0.0 → 0.0] la anualidad siguiente al de la concesión.
+[0.0 → 0.0] Esta bonificación se aplicará a una sola vivienda por titular; salvo que en otras
+[0.0 → 0.0] viviendas del mismo titular, se justifique que los Sujetos pasivos contribuyentes; cumplen
+[0.0 → 0.0] asimismo todos y cada uno de los requisitos establecidos para la concesión de la bonificación.
+[0.0 → 0.0] b) BONIFICACION 20% EN LA CUOTA GENERACION; por la Adhesión a sistemas
+[0.0 → 0.0] de recogidas selectivas de Biorresiduos: tendrán derecho a esta bonificación; los
+[0.0 → 0.0] contribuyentes-usuarios participen en el programa municipal de recogida del
+[0.0 → 0.0] biorresiduo, una vez instaurado. A tales efectos el usuario deberá figurar en el
+[0.0 → 0.0] censo de recogida de biorresiduo y cumplir con los requisitos y obligaciones del
+[0.0 → 0.0] programa. La bonificación se aplicará previa solicitud a instancia de parte y una vez
+[0.0 → 0.0] obtenida la misma, ésta se aplicará a la anualidad siguiente al de la concesión.
+[0.0 → 0.0] 5.2.- No se conceden más exenciones o bonificaciones que las expresamente previstas
+[0.0 → 0.0] en esta Ordenanza; así como en las demás normas tanto Estatales como las derivadas de la
+[0.0 → 0.0] aplicación de Tratados Internacionales.
+[0.0 → 0.0] Artículo 6º - SUJETOS PASIVOS
+[0.0 → 0.0] 1.- Son sujetos pasivos contribuyentes las personas físicas o jurídicas y las entidades a
+[0.0 → 0.0] que se refiere el artículo 35.4 de la Ley General Tributaria, beneficiarias de los servicios y que
+[0.0 → 0.0] por tanto ocupen o utilicen los inmuebles viviendas y locales ubicados en los lugares, plazas,
+[0.0 → 0.0] calles, o vías públicas donde se presten dichos servicios, ya sea a título de propietario o de
+[0.0 → 0.0] usufructuario, concesionario, habitacionista, arrendatario o, incluso de precario.
+[0.0 → 0.0] 2.- Tendrá la consideración de sujeto pasivo sustituto del contribuyente y por tanto el
+[0.0 → 0.0] que por imposición de ley, según lo dispuesto en el artículo 23.2.a del RDL 2/2004 por el que
+[0.0 → 0.0] se aprueba el TRLHL; está obligado a cumplir con la obligación tributaria principal; es decir el
+[0.0 → 0.0] pago de la Tasa; el propietario de las viviendas o locales, tomando como referencia el sujeto
+[0.0 → 0.0] que figure en el padrón del Impuesto sobre Bienes Inmuebles a 1 de enero del ejercicio del
+[0.0 → 0.0] devengo de la tasa, que podrá repercutir, en su caso las cuotas satisfechas sobre los usuarios
+[0.0 → 0.0] de aquéllas, beneficiarios del servicio.
+[0.0 → 0.0] 3.- En el supuesto de bienes inmuebles de titularidad municipal en que la condición de
+[0.0 → 0.0] sujeto pasivo recaiga en el propio Ayuntamiento; tales como concesiones, arrendamientos etc..:
+[0.0 → 0.0] el Ayuntamiento exigirá a los sujetos pasivos contribuyentes el abono de las Tasas, quien
+[0.0 → 0.0] deberán abonarla en la forma y plazos que el Ayuntamiento determine para el resto de sujetos
+[0.0 → 0.0] pasivos sustitutos de los contribuyentes. En estos casos con independencia de imputarles la
+[0.0 → 0.0] correspondiente Tasa de generación que según el Uso les corresponda; asimismo se les
+[0.0 → 0.0] aplicará la Tasa de Disponibilidad que proporcionalmente les corresponda.
+[0.0 → 0.0] 4.- No obstante, en aquellos casos en los que, por confusión de sujetos, no pueda
+[0.0 → 0.0] producirse la sustitución, la tasa será exigible directamente al sujeto pasivo contribuyente
+[0.0 → 0.0] señalado en el primer apartado de este artículo.
+[0.0 → 0.0] Artículo 7º - RESPONSABLES
+[0.0 → 0.0] Responderán solidariamente de las obligaciones tributarias del sujeto pasivo las
+[0.0 → 0.0] personas físicas y jurídicas a que se refieren los arts. 41 y 42 de la Ley 58/2003 de 17 de
+[0.0 → 0.0] diciembre General Tributaria.
+[0.0 → 0.0] Serán responsables subsidiarios los administradores de las sociedades y los síndicos,
+[0.0 → 0.0] interventores o liquidadores de quiebras, concursos, sociedades y entidades en general, en los
+[0.0 → 0.0] supuestos y con el alcance que señala el art. 43 de la Ley 58/2003 de 17 de diciembre General
+[0.0 → 0.0] Tributaria.
+[0.0 → 0.0] Artículo 8º.- CUOTA TRIBUTARIA
+[0.0 → 0.0] La cuota tributaria por la prestación de estos servicios; viene constituida por la suma de
+[0.0 → 0.0] dos cuotas; Cuota de Disponibilidad y Cuota de Generación.
+[0.0 → 0.0] 8.1.- CUOTA DE DISPONIBILIDAD: Esta tiene por objeto repercutir los costes de
+[0.0 → 0.0] disponibilidad del servicio; y se fijará según el tipo de inmueble y uso real al que el mismo se
+[0.0 → 0.0] destine, y variará en función del valor catastral del inmueble; siendo dicha cuota independiente
+[0.0 → 0.0] de la utilización real o no del servicio, e incluso de la intensidad del mismo.
+[0.0 → 0.0] 8.2.-CUOTA DE GENERACION: Esta tiene por objeto repercutir los costes efectivos de
+[0.0 → 0.0] prestación del servicio; y asimismo se fijará según el tipo de inmueble y uso real al que el
+[0.0 → 0.0] mismo se destine, y se ponderará en base a los diferentes parámetros según los distintos tipos
+[0.0 → 0.0] de usos.
+[0.0 → 0.0] 8.3.- CUOTAS TRIBUTARIAS POR USOS:
+[0.0 → 0.0] 8.3.1.- USO RESIDENCIAL: Se considerará uso residencial cualquier inmueble que
+[0.0 → 0.0] pueda servir de alojamiento permanente a las personas, incluidos aquellos inmuebles situados
+[0.0 → 0.0] en parcelas de zonas pendientes de gestión urbanística.
+[0.0 → 0.0] Los propietarios de estos inmuebles tributaran por esta tasa con independencia de si
+[0.0 → 0.0] los mismos se encuentran habitados o no, y por la cantidad resultante de sumar las cuotas de
+[0.0 → 0.0] disponibilidad y generación que a continuación se detallan:
+[0.0 → 0.0] 8.3.1.A).- CUOTA DISPONIBILIDAD USO RESIDENCIAL: Esta se fijará en función del
+[0.0 → 0.0] valor catastral del inmueble a fecha del devengo de la Tasa, de acuerdo con el siguientes
+[0.0 → 0.0] tramos:
+[0.0 → 0.0] Valor Catastral Total Tasas
+[0.0 → 0.0] Inferior a 50.000 € 18,40 €
+[0.0 → 0.0] Igual o superior a 50.000 € e inferior a 100.000 € 27,60 €
+[0.0 → 0.0] Igual o superior a 100.000 € e inferior a 200.000 € 33,12 €
+[0.0 → 0.0] Igual o superior a 200.000 € e inferior a 500.000 € 36,80 €
+[0.0 → 0.0] Igual o superior a 500.000 € e inferior a 1.000.000 € 46,00 €
+[0.0 → 0.0] Igual o superior a 1.000.000 € 55,20 €
+[0.0 → 0.0] 8.3.1.B).- CUOTA GENERACION USO RESIDENCIAL: Ésta se ponderará en base a
+[0.0 → 0.0] los siguientes parámetros:
+[0.0 → 0.0] a) Metros cuadrados del suelo: Se tomará exclusivamente la extensión total de la
+[0.0 → 0.0] parcela matriz, con independencia de los metros cuadrados construidos o no;
+[0.0 → 0.0] diferenciando 3 tramos, uno inferior a 400 m2, otro de superficie igual o
+[0.0 → 0.0] superior a 400 m2 e inferior a 1.000 m2 y otro para parcelas con extensión
+[0.0 → 0.0] igual o superior a 1.000 metros cuadrados:
+[0.0 → 0.0] Metros cuadrados del suelo Tasas
+[0.0 → 0.0] Inferior a 400 m2 0,00 €
+[0.0 → 0.0] Igual o superior a 400 m2 e inferior a 1.000 m2 55,40 €
+[0.0 → 0.0] Igual o superior a 1.000 m2 110,80 €
+[0.0 → 0.0] Este parámetro tiene por finalidad repercutir (en aquellas parcelas que susceptibles de
+[0.0 → 0.0] generar poda); los mayores costes que soporta el Ayuntamiento por la prestación de estos
+[0.0 → 0.0] servicios.
+[0.0 → 0.0] b) Consumo de Agua (m3): Se tomará el consumo de agua potable domiciliaria
+[0.0 → 0.0] del inmueble a grabar y ello referenciado al ejercicio anterior al de la fecha de
+[0.0 → 0.0] devengo de la Tasa; y ello sin perjuicio de lo regulado en el art. 9 de esta
+[0.0 → 0.0] ordenanza fiscal; relativo a los supuestos de cambio de titularidad del
+[0.0 → 0.0] inmueble.
+[0.0 → 0.0] Los tramos a aplicar serán los siguientes:
+[0.0 → 0.0] Metros cúbicos consumidos Tarifas
+[0.0 → 0.0] Inferior a 20 m3 0,00 €
+[0.0 → 0.0] Igual o superior a 20 m3 e inferior a 100 m3 20,70 €
+[0.0 → 0.0] Igual o superior a 100 m3 e inferior a 200 m3 31,05 €
+[0.0 → 0.0] Igual o superior a 200 m3 e inferior a 500 m3 41,40 €
+[0.0 → 0.0] Igual o superior a 500 m3 e inferior a 1.000 m3 51,75 €
+[0.0 → 0.0] Igual o superior a 1.000 m3 82,80 €
+[0.0 → 0.0] En caso de inexistencia de datos de consumo; la tarifa a aplicar será la comprendida en
+[0.0 → 0.0] el tramo 3 (Consumo igual o superior a 100 m3 e inferior a 200 m3).
+[0.0 → 0.0] Este parámetro tiene por finalidad repercutir una mayor intensidad de uso del servicio
+[0.0 → 0.0] que regula la presente ordenanza fiscal, ponderada en virtud de un mayor consumo de agua
+[0.0 → 0.0] potable domiciliaria, y con ello la asunción de mayores costes que soporta el Ayuntamiento por
+[0.0 → 0.0] la prestación de estos servicios.
+[0.0 → 0.0] c) Habitantes del Inmueble: Se tomará como dato el número de habitantes que,
+[0.0 → 0.0] efectivamente, consten empadronados en el Padrón Municipal de Habitantes; a
+[0.0 → 0.0] fecha del devengo de la Tasa.
+[0.0 → 0.0] Los tramos a aplicar serán los siguientes:
+[0.0 → 0.0] Habitantes del Inmueble Tarifas
+[0.0 → 0.0] Igual a 0 (inmueble deshabitado) 0,00 €
+[0.0 → 0.0] De 1 a 2 habitantes 19,50 €
+[0.0 → 0.0] De 3 a 6 habitantes 29,25 €
+[0.0 → 0.0] De 6 a 10 habitantes 39,00 €
+[0.0 → 0.0] Más de 10 habitantes 58,50 €
+[0.0 → 0.0] En caso de inexistencia de datos de habitantes empadronados, la tarifa a aplicar será
+[0.0 → 0.0] la comprendida en el tramo 3 (de 3 a 6 habitantes empadronados), al ser el tramo de mayor
+[0.0 → 0.0] aplicabilidad en este municipio.
+[0.0 → 0.0] Este parámetro tiene por finalidad repercutir una mayor intensidad de uso del servicio
+[0.0 → 0.0] que regula la presente ordenanza fiscal, ponderada en virtud de un mayor número de
+[0.0 → 0.0] habitantes en la vivienda, con ello se permite grabar la mayor intensidad de uso de los servicios
+[0.0 → 0.0] regulados en esta ordenanza y con ello la repercusión de forma equitativa de los mayores
+[0.0 → 0.0] costes que soporta el Ayuntamiento por la prestación de los mismos.
+[0.0 → 0.0] La cuota de Generación del Uso residencial estará integrada por la suma de las
+[0.0 → 0.0] subcuotas que se determinen en base a los 3 parámetros anteriormente citados.
+[0.0 → 0.0] 8.3.2.- USO ACTIVIDADES ECONOMICAS: Se considera uso de Actividades
+[0.0 → 0.0] Económicas a los Locales u otros inmuebles en los que se ejerzan actividades industriales,
+[0.0 → 0.0] profesionales, comerciales, artísticas, administrativas o de servicios.
+[0.0 → 0.0] Los propietarios de estos inmuebles tributarán por esta tasa cuando en la misma se
+[0.0 → 0.0] ejerza algún tipo de actividad; por la cantidad resultante de sumar las cuotas de disponibilidad y
+[0.0 → 0.0] generación que a continuación se detallan:
+[0.0 → 0.0] 8.3.2.A).- CUOTA DISPONIBILIDAD USO ACTIVIDADES ECONOMICAS: Esta se
+[0.0 → 0.0] fijará en función del valor catastral del inmueble afecto a la actividad, de acuerdo con el
+[0.0 → 0.0] siguientes tramos:
+[0.0 → 0.0] Valor Catastral Total Tasas
+[0.0 → 0.0] Inferior a 50.000 € 18,40 €
+[0.0 → 0.0] Igual o superior a 50.000 € e inferior a 100.000 € 27,60 €
+[0.0 → 0.0] Igual o superior a 100.000 € e inferior a 200.000 € 33,12 €
+[0.0 → 0.0] Igual o superior a 200.000 € e inferior a 500.000 € 36,80 €
+[0.0 → 0.0] Igual o superior a 500.000 € e inferior a 1.000.000 € 46,00 €
+[0.0 → 0.0] Igual o superior a 1.000.000 € 55,20 €
+[0.0 → 0.0] 8.3.2.B).- CUOTA GENERACION USO ACTIVIDADES ECONOMICAS: Estará
+[0.0 → 0.0] integrada por una única cuota que se determine en función del tipo de actividad (uso) y m2 de
+[0.0 → 0.0] actividad, de acuerdo con los tramos que a continuación se señalan:
+[0.0 → 0.0] A efectos del cómputo de los m2 afectos a una actividad, se entenderán los metros
+[0.0 → 0.0] cuadrados que, estando construidos, estén afectos a la actividad. Sin perjuicio de ello; para
+[0.0 → 0.0] supuesto de Uso 4; referente a ocio y hostelería computarán asimismo como metros cuadrados
+[0.0 → 0.0] afectos a la actividad; la superficie autorizada como terrazas y cenadores.
+[0.0 → 0.0] USO 1: Comercios al por menor establecimientos de alimentación: Se incluirán
+[0.0 → 0.0] dentro de este uso las actividades destinadas a Hipermercados, Supermercados, Carnicerías,
+[0.0 → 0.0] pescaderías, fruterías, verdulerías, pastelerías, hornos, y demás comercios destinados a la
+[0.0 → 0.0] venta al por menor de productos alimentarios.
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 187,20 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 205,92 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 226,51 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 249,16 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 274,08 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 328,90 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 394,67 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 473,61 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 568,33 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 682,00 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 886,60 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 1.152,58 €
+[0.0 → 0.0] Más de 5.000,00 metros 1.498,35 €
+[0.0 → 0.0] USO 2: Resto de Comercios al por menor: Se incluirán dentro de este uso las
+[0.0 → 0.0] actividades destinadas al Comercio al por menor no expresamente detallados en el USO 1.
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 117,00 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 128,70 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 141,57 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 155,73 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 171,30 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 205,56 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 246,67 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 296,01 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 355,21 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 426,25 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 554,12 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 720,36 €
+[0.0 → 0.0] Más de 5.000,00 metros 936,47 €
+[0.0 → 0.0] USO 3: Comercio al por mayor: Se incluirán dentro de este uso todas las actividades
+[0.0 → 0.0] destinadas al Comercio al por mayor.
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 187,20 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 205,92 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 226,51 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 249,16 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 274,08 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 328,90 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 394,67 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 473,61 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 568,33 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 682,00 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 886,60 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 1.152,58 €
+[0.0 → 0.0] Más de 5.000,00 metros 1.498,35 €
+[0.0 → 0.0] USO 4: Ocio y Hostelería: Se incluirán dentro de este uso los inmuebles destinados a
+[0.0 → 0.0] Hoteles, Hostales, Bed and Breakfast, Pensiones, Restaurantes, Cafeterías, Bares, Pubs,
+[0.0 → 0.0] Salones de banquetes y celebraciones, discotecas y demás inmuebles donde se desarrollen
+[0.0 → 0.0] actividades de ocio, entretenimiento, hostelería y restauración.
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 245,70 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 270,27 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 297,30 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 327,03 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 359,73 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 431,68 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 518,01 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 621,61 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 745,93 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 895,12 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 1.163,66 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 1.512,76 €
+[0.0 → 0.0] Más de 5.000,00 metros 1.966,58 €
+[0.0 → 0.0] USO 5: Actividades industriales, profesionales, artísticas, administrativas o de
+[0.0 → 0.0] servicios: Se incluirán dentro de este uso todos los inmuebles donde se ejerzan actividades
+[0.0 → 0.0] industriales, profesionales, artísticas, administrativas o de servicios no detalladas de forma
+[0.0 → 0.0] expresa en otros usos. Así como resto de inmuebles no integrados en ninguna de las
+[0.0 → 0.0] categorías expresamente descritas en esta ordenanza fiscal; tales como Estacionamientos,
+[0.0 → 0.0] Locales afectos o destinados a actividades económicas en los que no se esté realizando dicha
+[0.0 → 0.0] actividad, Edificios singulares como Cementerios, Crematorios, Estaciones de servicio,
+[0.0 → 0.0] Instalaciones Fotovoltaicas, Suelos edificados catalogados como "sin edificar".
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 117,00 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 128,70 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 141,57 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 155,73 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 171,30 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 205,56 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 246,67 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 296,01 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 355,21 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 426,25 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 554,12 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 720,36 €
+[0.0 → 0.0] Más de 5.000,00 metros 936,47 €
+[0.0 → 0.0] USO 6: Centros de enseñanza, estética, asistencia sanitaria, residencias, centros
+[0.0 → 0.0] de día SIN SERVICIOS DE RESTAURACIÓN: Se incluirán dentro de este uso los inmuebles
+[0.0 → 0.0] en los que se desarrollen actividades de enseñanza, estética, asistencia sanitaria, residencias,
+[0.0 → 0.0] así como centros de día en los que no se presten servicios de restauración.
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 117,00 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 128,70 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 141,57 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 155,73 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 171,30 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 205,56 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 246,67 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 296,01 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 355,21 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 426,25 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 554,12 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 720,36 €
+[0.0 → 0.0] Más de 5.000,00 metros 936,47 €
+[0.0 → 0.0] USO 7: Centros de enseñanza, asistencia sanitaria, residencias, centros de día
+[0.0 → 0.0] CON SERVICIOS DE RESTAURACIÓN: Se incluirán dentro de este uso los inmuebles en los
+[0.0 → 0.0] que se desarrollen actividades de enseñanza, estética, asistencia sanitaria, residencias, así
+[0.0 → 0.0] como centros de día en los que si se presten servicios de restauración.
+[0.0 → 0.0] Metros cuadrados Tarifas
+[0.0 → 0.0] Hasta 50 metros 245,70 €
+[0.0 → 0.0] Desde 50,00 hasta 100 metros 270,27 €
+[0.0 → 0.0] Desde 100,00 hasta 200 metros 297,30 €
+[0.0 → 0.0] Desde 200,00 hasta 300 metros 327,03 €
+[0.0 → 0.0] Desde 300,00 hasta 400 metros 359,73 €
+[0.0 → 0.0] Desde 400,00 hasta 500 metros 431,68 €
+[0.0 → 0.0] Desde 500,00 hasta 750 metros 518,01 €
+[0.0 → 0.0] Desde 750,00 hasta 1000 metros 621,61 €
+[0.0 → 0.0] Desde 1000,00 hasta 2000 metros 745,93 €
+[0.0 → 0.0] Desde 2000,00 hasta 3000 metros 895,12 €
+[0.0 → 0.0] Desde 3000,00 hasta 4000 metros 1.163,66 €
+[0.0 → 0.0] Desde 4000,00 hasta 5000 metros 1.512,76 €
+[0.0 → 0.0] Más de 5.000,00 metros 1.966,58 €
+[0.0 → 0.0] Artículo 9º.- NORMAS COMUNES A LAS CUOTAS GENERACION Y CUOTAS
+[0.0 → 0.0] DISPONIBILIDAD:
+[0.0 → 0.0] 9.1.- A efectos de la identificación del inmueble, de su titular catastral/ Propietario, así
+[0.0 → 0.0] como a efectos de la determinación de las características del mismo como: valor catastral,
+[0.0 → 0.0] metros cuadrados de la parcela, metros construidos o metros afectos a actividad, número de
+[0.0 → 0.0] habitantes empadronados en una vivienda/inmueble, usos asignados y cualquiera otros
+[0.0 → 0.0] elementos que sean necesarios a efectos del establecimiento tanto de las Cuotas de
+[0.0 → 0.0] Generación como de las Cuotas de Disponibilidad; se atenderá a su situación real a la fecha
+[0.0 → 0.0] del devengo de la Tasa, primando la realidad efectivamente comprobada por la Administración,
+[0.0 → 0.0] sobre cualquier parámetro registrado administrativamente, incluso primando el uso real y
+[0.0 → 0.0] efectivo, sobre cualquier otro que pueda tener asignado, incluso a efectos catastrales.
+[0.0 → 0.0] A tales efectos se podrán hacer valer cualquiera de los medios de prueba válidos,
+[0.0 → 0.0] siendo perfectamente admisible informe de servicios técnicos municipales sobre el destino,
+[0.0 → 0.0] realidad, superficie etc.
+[0.0 → 0.0] 9.2.- Sin perjuicio de lo establecido en el apartado anterior, a efectos de determinar los
+[0.0 → 0.0] parámetros relativos al consumo de agua; se tomarán los datos relativos al consumo del
+[0.0 → 0.0] ejercicio anterior al devengo de la Tasa, tomándose por tanto el consumo del inmueble en el
+[0.0 → 0.0] ejercicio anterior al devengo. Este criterio será aplicable siempre que se mantenga la titularidad
+[0.0 → 0.0] del mismo, en caso contrario al nuevo sujeto pasivo se le aplicará la tarifa comprendida en el
+[0.0 → 0.0] tramo 3 (Consumo igual o superior a 100 m3 e inferior a 200 m3), salvo que se trate de
+[0.0 → 0.0] parcelas superiores a 400 m2 en cuyo caso se le aplicará el consumo real de agua domiciliaria
+[0.0 → 0.0] del ejercicio anterior, con independencia del cambio de titularidad.
+[0.0 → 0.0] 9.3.-En el caso de que un inmueble (con una única referencia catastral) tenga varios
+[0.0 → 0.0] usos asignados; se aplicará una única Cuota de Disponibilidad que será la más elevada según
+[0.0 → 0.0] tipo de inmueble y uso, y asimismo se le aplicarán tantas cuotas de generación como usos
+[0.0 → 0.0] tenga el inmueble.
+[0.0 → 0.0] Artículo 10º.- DEVENGO
+[0.0 → 0.0] 1.- Al ser un servicio que el Ayuntamiento de Riba-roja de Turia viene prestando, sin
+[0.0 → 0.0] perjuicio de que por la prestación del mismo no ha tenido remuneración a través de una tarifa;
+[0.0 → 0.0] siendo por tanto a fecha actual un servicio establecido y en funcionamiento, las cuotas se
+[0.0 → 0.0] devengarán el 1 de Enero de cada ejercicio, fecha en la que se entenderá iniciada la prestación
+[0.0 → 0.0] del mismo.
+[0.0 → 0.0] 2.- Las cuotas serán anuales e irreductibles, se devengan de acuerdo con la situación a
+[0.0 → 0.0] 1 de enero, y solo serán prorrateables semestralmente en caso de altas posteriores al 1 de julio
+[0.0 → 0.0] de cada año, en cuyo caso se tomarán los datos referenciados al momento del alta.
+[0.0 → 0.0] Artículo 11º.- NORMAS DE GESTIÓN
+[0.0 → 0.0] 11.1. NORMAS ESPECIALES GESTIÓN TRRSU EJERCICIO 2025.
+[0.0 → 0.0] Al ser la anualidad del 2025 el primer ejercicio económico de imposición y vigencia de
+[0.0 → 0.0] esta Tasa; se establecen las siguientes normas de gestión a efectos de organizar y programar
+[0.0 → 0.0] las múltiples Tareas de Gestión que se van a tener que asumir desde el Área de Gestión
+[0.0 → 0.0] Tributaria y Recaudación del Ayuntamiento de Riba-roja de Turia; en adelante (AGTR).
+[0.0 → 0.0] 11.1.1.- Iniciada la vigencia de la OOFF reguladora de la TRRSU; se procederá por el
+[0.0 → 0.0] AGTR a elaborar el Padrón en base a los preceptos contenidos en esta Ordenanza Fiscal; el
+[0.0 → 0.0] cual será aprobado por Resolución de Alcaldía, al ser el órgano competente.
+[0.0 → 0.0] Dado que dicho Padrón va a estar sujeto en este primer año vigencia; a un
+[0.0 → 0.0] procedimiento especial de comprobación de valores, al que denominaremos en adelante:
+[0.0 → 0.0] "COMPROBACION PARAMETROS TRRSU" CPT; la Resolución aprobatoria del Padrón, no
+[0.0 → 0.0] implicará un reconocimiento de derechos en contabilidad, produciéndose dicho reconocimiento
+[0.0 → 0.0] una vez finalizado el periodo de CPT y depuradas y aprobadas las variaciones detectadas por
+[0.0 → 0.0] nueva Resolución de Alcaldía, la cual ya determinará el importe total efectivo que por TRRSU
+[0.0 → 0.0] aprobará el Ayuntamiento en el ejercicio económico 2025 y ello sin perjuicio de la posibilidad de
+[0.0 → 0.0] revisión en base al art. 14.2 TRLHL y 217 y SS de la LGT.
+[0.0 → 0.0] 11.1.2.-PROCEDIMIENTO ESPECIAL CPT 2025:
+[0.0 → 0.0] Aprobado el padrón por Resolución; se procederá a publicitar el mismo mediante
+[0.0 → 0.0] anuncios en la Web Municipal, Redes Sociales Municipales, Bandos, etc... a efectos de
+[0.0 → 0.0] programar la recepción de los sujetos pasivos sustitutos de los contribuyentes (es decir los
+[0.0 → 0.0] propietarios de las viviendas, locales y demás inmuebles sujetos a la Tasa, en adelante SPSC),
+[0.0 → 0.0] con la finalidad de que en los periodos señalados por el Ayuntamiento, puedan proceder a la
+[0.0 → 0.0] realización de las siguientes actuaciones denominadas CPT, a efectos de:
+[0.0 → 0.0] A) Proceder a la comprobación de los datos y parámetros que el Ayuntamiento ha
+[0.0 → 0.0] aplicado a efectos de determinar su Liquidación por TRRSU.
+[0.0 → 0.0] B) Asimismo tramitar en su caso, una solicitud de domiciliación de la TRRSU, según lo
+[0.0 → 0.0] regulado en el artículo 8 de la Ordenanza Fiscal General de Gestión, Inspección y Recaudación
+[0.0 → 0.0] de Tributos Locales de este Ayuntamiento; para que el importe de la Liquidación definitiva se
+[0.0 → 0.0] abone en la forma y plazos que el Ayuntamiento determine en cada ejercicio económico;
+[0.0 → 0.0] incluido el 2025.
+[0.0 → 0.0] 11.1.3.-REPRESENTACION EN EL PROCEDIMIENTO CPT 2025:
+[0.0 → 0.0] Este procedimiento que se desarrollará en las dependencias municipales indicadas al
+[0.0 → 0.0] efecto; será única y exclusivamente desarrollado de forma presencial, mediante la personación
+[0.0 → 0.0] en estas dependencias del SPSC o su representante.
+[0.0 → 0.0] En el supuesto de que el SPSC no pueda personarse presencialmente ante los
+[0.0 → 0.0] funcionarios del AGTR; se admitirá la comparecencia de persona debidamente autorizada al
+[0.0 → 0.0] efecto, y que en calidad de representante del mismo; se personará aportando el modelo que
+[0.0 → 0.0] facilitará el AGTR y se requerirá que asimismo se aporte a tales efectos la documentación
+[0.0 → 0.0] acreditativa necesaria.
+[0.0 → 0.0] No obstante lo anterior, y exclusivamente para las personas obligadas a relacionarse
+[0.0 → 0.0] electrónicamente con las Administraciones Públicas; las actuaciones en este CPT se podrán
+[0.0 → 0.0] realizar o bien presencialmente ante los funcionarios del AGTR o bien a través de la sede
+[0.0 → 0.0] electrónica; por representante legal de la misma debidamente autorizado.
+[0.0 → 0.0] Este procedimiento se establece sin perjuicio de los derechos que derivados de la
+[0.0 → 0.0] posibilidad de revisión de actos tributarios conforme los art. 14 del TRLHL y 219 y ss de la LGT;
+[0.0 → 0.0] le corresponden a los obligados tributarios.
+[0.0 → 0.0] 11.1.4.- EFECTOS DE LA COMPARECENCIA EN EL CPT 2025.
+[0.0 → 0.0] La comparecencia del SPSC o su representante a efectos de la comprobación de los
+[0.0 → 0.0] datos; implicará que como trámite previo el Ayuntamiento proceda a la notificación fehaciente
+[0.0 → 0.0] de la liquidación de la Tasa al SPSC o representante debidamente autorizado; teniendo esta
+[0.0 → 0.0] notificación los efectos del art. 102.3 Ley 58/2003 de 17 de diciembre; Ley General Tributaria
+[0.0 → 0.0] (en adelante LGT); es decir será considerada como primera notificación del alta de dicho
+[0.0 → 0.0] inmueble en el padrón de la TRRSU del Ayuntamiento de Riba- roja del Turia, pudiendo las
+[0.0 → 0.0] notificaciones de los ejercicios siguientes, realizarse de acuerdo con dicho precepto mediante
+[0.0 → 0.0] Edictos en el BOP.
+[0.0 → 0.0] Si de la comprobación realizada se determina la necesidad de modificar la liquidación
+[0.0 → 0.0] notificada, se establecen los siguientes protocolos de actuación a efectos de una mayor
+[0.0 → 0.0] eficacia y eficiencia administrativa:
+[0.0 → 0.0] 11.1.4 a) Si el SPSC o su representante aceptan las alteraciones a aplicar, (incluyendo
+[0.0 → 0.0] la posibilidad de que derivado de la comprobación de datos se produzcan alta de nuevas
+[0.0 → 0.0] TRRSU); prestaran en dicho momento su conformidad por escrito, procediendo los funcionarios
+[0.0 → 0.0] de la AGTR a facilitar en dicho momento nueva liquidación de Tasa, la cual implicará asimismo
+[0.0 → 0.0] los efectos del art. 102.3 LGT anteriormente citados; y comenzando desde dicho momento los
+[0.0 → 0.0] plazos a los efectos del art. 62.2 LGT; salvo que el SPSC o su representante hubieran
+[0.0 → 0.0] formulado solicitud de domiciliación de la TRRSU, en cuyo caso el importe de la Liquidación
+[0.0 → 0.0] definitiva se recaudará mediante domiciliación en la forma y plazos que el Ayuntamiento
+[0.0 → 0.0] determine en cada ejercicio económico, incluido el primer ejercicio 2025.
+[0.0 → 0.0] Dichas variaciones se aprobarán mediante una única Resolución de Alcaldía y se
+[0.0 → 0.0] incluirán en la base de datos de la TRRSU, no siendo necesaria la notificación de la misma al
+[0.0 → 0.0] haberse aceptado expresamente por el SPSC o su representante.
+[0.0 → 0.0] 11.1.4 b) Si el SPSC o su representante NO aceptan las alteraciones a aplicar, deberán
+[0.0 → 0.0] presentar a través del registro de entrada municipal o electrónico en su caso; el oportuno
+[0.0 → 0.0] recurso de reposición del art. 14.2 del Real Decreto Legislativo 2/2004 de 5 de marzo (en
+[0.0 → 0.0] adelante TRLHL), en el plazo de 1 mes a contar desde el siguiente al del día de la personación
+[0.0 → 0.0] en las dependencias de la AGTR, al ser el día de la notificación de la primera liquidación de la
+[0.0 → 0.0] TRRSU de Riba-roja del Turia.
+[0.0 → 0.0] 11.1.5.- TRAMITES POSTERIOTES AL CPT:
+[0.0 → 0.0] Concluido el periodo de CPT; el AGTR procederá a la notificación individualizada (bien
+[0.0 → 0.0] sea de forma física o través de la sede electrónica según proceda) de todos y cada una de las
+[0.0 → 0.0] liquidaciones contenidas en el citado padrón que no han podido notificarse mediante el
+[0.0 → 0.0] procedimiento de CPT, y comenzando desde dicho momento para los SPSC los plazos a los
+[0.0 → 0.0] efectos del art. 62.2 LGT; así como el plazo de 1 mes del art. 14.2 del Real Decreto Legislativo
+[0.0 → 0.0] 2/2004 de 5 de marzo (en adelante TRLHL), a efectos de la interposición del recurso de
+[0.0 → 0.0] reposición.
+[0.0 → 0.0] Los SPSC que hayan sido notificados de acuerdo con el art. 102.3 LGT fuera del
+[0.0 → 0.0] procedimiento de CPT; podrán domiciliar los pagos de la TRRSU de Riba- roja del Turia para
+[0.0 → 0.0] los ejercicios 2026 y siguientes; pero en ningún caso se les aplicará dicha solicitud a la TRRSU
+[0.0 → 0.0] del ejercicio económico 2025, la cual deberá ser abonada dentro de los plazos del art. 62.2
+[0.0 → 0.0] LGT.
+[0.0 → 0.0] 11.2. NORMAS DE GESTIÓN APLICABLES A TODOS LOS EJERCICIOS DE
+[0.0 → 0.0] VIGENCIA DE LA TRRSU.
+[0.0 → 0.0] 1.- En los casos de inicio en el uso del servicio, la tasa se exigirá en régimen de
+[0.0 → 0.0] autoliquidación. Dentro de los 30 días hábiles siguientes a la fecha en que se devengue por vez
+[0.0 → 0.0] primera la Tasa, los sujetos pasivos formalizarán su inscripción en matrícula, presentando, al
+[0.0 → 0.0] efecto la correspondiente declaración de alta e ingresando simultáneamente la cuota
+[0.0 → 0.0] prorrateada por semestres.
+[0.0 → 0.0] 2.- El pago de la autoliquidación presentada por el interesado tendrá carácter
+[0.0 → 0.0] provisional y será a cuenta de la liquidación definitiva que proceda.
+[0.0 → 0.0] 3.- El Ayuntamiento actuará de oficio si el sujeto pasivo no formaliza su inscripción en
+[0.0 → 0.0] el plazo establecido, notificando al contribuyente, en este caso, dichas altas y la
+[0.0 → 0.0] correspondiente cuota, para su ingreso.
+[0.0 → 0.0] 4.- Las declaraciones de Altas surtirán efecto dentro del mismo ejercicio en que se
+[0.0 → 0.0] produzca el devengo. La cuota se prorrateará por semestres naturales y se satisfará la que
+[0.0 → 0.0] corresponda a los semestres que resten por transcurrir en el año, incluido aquel en que se
+[0.0 → 0.0] produce el alta.
+[0.0 → 0.0] 5.- Una vez notificadas las liquidaciones resultantes de la primera alta de los inmuebles
+[0.0 → 0.0] en el padrón de la TRRSU en virtud del art. 102.3 de la LGT; las siguientes notificaciones se
+[0.0 → 0.0] realizarán de acuerdo con dicho precepto mediante edictos en el BOP. La obligatoriedad de
+[0.0 → 0.0] estas notificaciones individualizadas del art. 102.3 LGT se requerirá exclusivamente en caso de
+[0.0 → 0.0] alta de inmuebles (referencia catastral) en el padrón de la TTRSU, no considerándose alta en
+[0.0 → 0.0] el padrón de la TTRSU la alteración de otros elementos como cambios de titularidad, usos etc.
+[0.0 → 0.0] 6.- Cuando se conozca, ya de oficio o por comunicación de los interesados cualquier
+[0.0 → 0.0] variación de los datos figurados en la matricula, se llevarán a cabo en ésta las modificaciones
+[0.0 → 0.0] correspondientes, que surtirán efectos a partir del periodo de cobranza siguiente al de la fecha
+[0.0 → 0.0] en que se haya efectuado la declaración.
+[0.0 → 0.0] 7.- Las declaraciones de baja, así como las variaciones deberán comunicarse a este
+[0.0 → 0.0] Excmo. Ayuntamiento en el plazo de treinta días hábiles a la fecha en que se produzca y
+[0.0 → 0.0] surtirán los efectos fiscales a partir del día primero del ejercicio inmediato siguiente a aquél en
+[0.0 → 0.0] el que se comunique tal circunstancia.
+[0.0 → 0.0] 8.- Las modificaciones en el uso de los locales que deban producir cambios en las
+[0.0 → 0.0] cuotas, de acuerdo con el cuadro de tarifas vigentes, tendrán efecto el ejercicio siguiente a
+[0.0 → 0.0] aquél en el que se comunique a la Administración tal circunstancia.
+[0.0 → 0.0] 9- Los cambios de titularidad en la propiedad de los inmuebles a los que se presta el
+[0.0 → 0.0] servicio, surtirán efectos el ejercicio siguiente a aquél en que se produce la transmisión.
+[0.0 → 0.0] 10.- Para aquellos supuestos en los que se preste el servicio por un período de tiempo
+[0.0 → 0.0] inferior al año natural, se prorrateará la cuota tributaria por días naturales, desde el día de inicio
+[0.0 → 0.0] de la prestación del servicio hasta 31/12 de dicho ejercicio. En estos casos, las declaraciones
+[0.0 → 0.0] de alta que se produzcan durante el período de prestación del servicio, no les será de
+[0.0 → 0.0] aplicación la regla prevista en el apartado 4 de este mismo artículo y, por tanto, se les aplicará
+[0.0 → 0.0] la cuota tributaria de acuerdo con lo establecido al inicio de este apartado.
+[0.0 → 0.0] Una vez producida el alta, el cobro de las cuotas se efectuará anualmente, mediante
+[0.0 → 0.0] recibo derivado de la matrícula.
+[0.0 → 0.0] Artículo 12.- RECAUDACION EJECUTIVA.
+[0.0 → 0.0] Las cuotas liquidadas y no satisfechas en periodo voluntario de harán efectivas por vía
+[0.0 → 0.0] de apremio, con arreglo a las normas establecidas en los art 167 a 173 de la LGT y art 70 y
+[0.0 → 0.0] siguientes del Reglamento General de Recaudación.
+[0.0 → 0.0] Artículo 13.- INFRACCIONES Y SANCIONES
+[0.0 → 0.0] En todo lo relativo a la calificación de infracciones tributarias, así como de las
+[0.0 → 0.0] sanciones que a las mismas correspondan en cada caso, se estará a lo dispuesto en la Ley
+[0.0 → 0.0] General Tributaria.
+[0.0 → 0.0] DISPOSICION ADICIONAL PRIMERA
+[0.0 → 0.0] El plazo de ingreso de las deudas de cobro por recibo notificadas colectivamente se
+[0.0 → 0.0] determinará cada año y se anunciará públicamente en el Boletín Oficial de la Provincia y el
+[0.0 → 0.0] tablón de anuncios del Ayuntamiento.
+[0.0 → 0.0] DISPOSICION ADICIONAL SEGUNDA
+[0.0 → 0.0] Las modificaciones derivadas de cualquier norma de rango legal que afecten a las
+[0.0 → 0.0] disposiciones de esta ordenanza son de aplicación automática.
+[0.0 → 0.0] DISPOSICION ADICIONAL TERCERA
+[0.0 → 0.0] Sin perjuicio de la necesidad de primera notificación de la liquidación de la TTRSU al
+[0.0 → 0.0] SPSC o representante debidamente autorizado; a que se refiere el art. 11 de esta Ordenanza
+[0.0 → 0.0] Fiscal a los efectos de ser considerada como primera notificación del alta de dicho inmueble en
+[0.0 → 0.0] el padrón de la TRRSU del Ayuntamiento de Riba- roja del Turia, pudiendo las notificaciones de
+[0.0 → 0.0] los ejercicios siguientes, realizarse de acuerdo con dicho precepto mediante edictos en el BOP
+[0.0 → 0.0] (conforme permite el art. 102.3 LGT); se establece que asimismo y conforme dispone la
+[0.0 → 0.0] Disposición Adicional 14 del TRLHL; Cuando se produzcan modificaciones de carácter general
+[0.0 → 0.0] de los elementos integrantes de las presentes TTRSU, a través de las correspondiente
+[0.0 → 0.0] ordenanza fiscal; no será necesaria la notificación individual de las liquidaciones resultantes,
+[0.0 → 0.0] salvo en los supuestos establecidos en el art. 103.2 LGT anteriormente citado.
+[0.0 → 0.0] DISPOSICIÓN TRANSITORIA
+[0.0 → 0.0] Durante el ejercicio 2025; las liquidaciones resultantes de la aplicación de las tarifas contenidas
+[0.0 → 0.0] en esta Ordenanza serán notificadas conforme dispone el art.11.1 de esta ordenanza, bien a
+[0.0 → 0.0] través del procedimiento denominado CPT o bien una vez finalizado el mismo mediante
+[0.0 → 0.0] notificación individual expresa al efecto; y una vez notificadas por cualquiera de los dos medios,
+[0.0 → 0.0] se incluirán en el correspondiente padrón y se notificarán colectivamente los sucesivos recibos
+[0.0 → 0.0] mediante edictos que así lo adviertan.
+[0.0 → 0.0] DISPOSICION FINAL
+[0.0 → 0.0] La presente modificación entrará en vigor al día siguiente de su publicación en el Boletín Oficial
+[0.0 → 0.0] de la Provincia y será de aplicación a partir del día 1 de enero de 2025 y hasta su modificación
+[0.0 → 0.0] o derogación expresa."
+[0.0 → 0.0] TERCERO: APROBAR el Estudio de Costes elaborado por la Tesorera Municipal y el Técnico
+[0.0 → 0.0] de Medio Ambiente en fecha 04 de octubre de 2024 y que forma parte del expediente.
+[0.0 → 0.0] CUARTO: SOMETER el acuerdo provisional a información pública por un periodo de 30 días
+[0.0 → 0.0] hábiles como mínimo, en el Tablón de anuncios del Ayuntamiento y en el Boletín Oficial de la
+[0.0 → 0.0] Provincia, y además en un diario de los de mayor difusión de la provincia. Si no se hubiesen
+[0.0 → 0.0] presentado reclamaciones, se entenderá definitivamente aprobado los acuerdos hasta
+[0.0 → 0.0] entonces provisional.
+[0.0 → 0.0] QUINTO: PUBLICAR los acuerdos definitivos, o los provisionales elevados a definitivos, en el
+[0.0 → 0.0] Boletín Oficial de la Provincia, así como del texto íntegro de la Ordenanza Fiscal y del Estudio
+[0.0 → 0.0] de Costes aprobados y que les sirve de base para el establecimiento de las tasas en ella
+[0.0 → 0.0] contenidas, comenzando a aplicarse a partir del 1 de enero de 2025 siempre que se haya
+[0.0 → 0.0] producido la publicación íntegra de estos acuerdos y de los Textos de la Ordenanza Fiscal y
+[0.0 → 0.0] Estudio de Costes.
+[0.0 → 0.0] AUDIO: 01.mp3
+[0.0 → 0.0] VIDEO: http://videople.es/7008
+[0.0 → 0.0] Y no habiendo otros asuntos que tratar por el Sr. Presidente se levantó la sesión siendo las
+[0.0 → 0.0] 10:18 horas del mismo día de su inicio.
