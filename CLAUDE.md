@@ -69,7 +69,29 @@ npm run compute:dept-stats          # writes plazosVencidosCount into plenos-age
 # ollama/openai backend. See src/scraper/pleno-claim.ts + claim-verifier.ts +
 # pleno-finding.ts for the schema contracts. Surfaces on /plenos and
 # /departamentos/:slug.
-npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5]
+npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concurrency 3]
+# Default concurrency=3 runs 3 LLM calls in parallel per batch. Env:
+# LLM_CONCURRENCY=N. Writes a per-pleno checkpoint to
+# pleno-claims-suggestions.json so a rate-limit crash mid-batch preserves
+# completed plenos (SIGINT flushes too).
+
+# Transcription engine (only affects bash scripts/transcribe-pleno.sh and
+# npm run transcribe:batch; see script header for the full help):
+#   WHISPER_ENGINE=mlx    · lightning-whisper-mlx on Apple Neural Engine.
+#                           ~5-10× realtime, $0, local. Better WER on technical
+#                           terms than OpenAI whisper-1 in our benchmark
+#                           (correctly transcribes "UNE 93200:2008" where
+#                           OpenAI mangles it to "norma 1 en 93.200"). Default
+#                           choice for nightly batches.
+#   WHISPER_ENGINE=openai · OpenAI API, ~$0.006/min (~$0.72 per 2h pleno),
+#                           done in 30-60s. Requires OPENAI_API_KEY in .env
+#                           or shell env. Audio re-encoded to 16kbps opus so a
+#                           3h pleno fits under the 25 MB upload cap.
+#   WHISPER_ENGINE=local  · faster-whisper CPU int8, $0, ~0.3× realtime
+#                           (default — fallback when MLX isn't bootstrapped).
+#   WHISPER_MODEL env chooses the Whisper weights (large-v3 default,
+#   medium/small for speed at the cost of WER).
+
 npm run verify:pleno-claims               # pure local pass · tenders + BDNS + budget + promises
 npm run extract-and-verify:pleno-claims -- <plenoId|--all>  # both in one go
 npm run promote-claim -- <claimId> [claimId ...] \
