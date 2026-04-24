@@ -161,17 +161,18 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
       cat "$RESP_JSON" >&2 || true
       exit 1
     fi
-    # Append segments with cumulative time offset.
-    node -e "
-      const fs = require('fs')
-      const data = JSON.parse(fs.readFileSync('$RESP_JSON', 'utf8'))
+    # Append segments with cumulative time offset. Node invocation runs
+    # under env vars so bash doesn't try to expand JS template literals.
+    OFFSET_S="$OFFSET" CHUNK_IDX="$IDX" N_CHUNKS="$N_CHUNKS" RESP_JSON="$RESP_JSON" OUT_PATH="$OUT_PATH" node -e '
+      const fs = require("fs")
+      const data = JSON.parse(fs.readFileSync(process.env.RESP_JSON, "utf8"))
       const segs = data.segments || []
-      const offset = $OFFSET
-      const out = fs.createWriteStream('$OUT_PATH', { flags: 'a' })
-      for (const s of segs) out.write(\`[\${(s.start + offset).toFixed(1)} → \${(s.end + offset).toFixed(1)}] \${s.text.trim()}\n\`)
+      const offset = Number(process.env.OFFSET_S)
+      const out = fs.createWriteStream(process.env.OUT_PATH, { flags: "a" })
+      for (const s of segs) out.write(`[${(s.start + offset).toFixed(1)} → ${(s.end + offset).toFixed(1)}] ${s.text.trim()}\n`)
       out.end()
-      console.error(\`[transcribe]   chunk \${$IDX + 1}/${N_CHUNKS}: \${segs.length} segs · ±${offset}s offset · lang=\${data.language || 'n/a'}\`)
-    "
+      console.error(`[transcribe]   chunk ${Number(process.env.CHUNK_IDX) + 1}/${process.env.N_CHUNKS}: ${segs.length} segs · +${offset}s offset · lang=${data.language || "n/a"}`)
+    '
     IDX=$(( IDX + 1 ))
   done
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
