@@ -115,14 +115,22 @@ let currentBudget: RunBudget | null = null
  *  the LLM — prevents a runaway from carrying across batch boundaries.
  *
  *  Defaults:
- *    500K tokens for metered backends (anthropic/openai) — cost guard.
- *    4M tokens for claude-code (Max plan, $0 billed) — large enough to
- *    cover one full pleno (~1M tokens for a 6K-line transcript at 1200-char
- *    windows). Claude Code's own rate-limit is the real ceiling, not this.
+ *    500K tokens for ollama (local, no billing; conservative loop-guard)
+ *    2M tokens for metered backends (openai/anthropic) — a full pleno
+ *      (~400 windows × ~4K tokens) needs ~1.5M. At gpt-5.4-mini rates
+ *      this is ~$3 worst-case per run, down to ~$0.40 with prompt caching.
+ *    4M tokens for claude-code (Max plan, $0 billed) — the CLI's own
+ *      rate-limit is the real ceiling.
  *  Override via env LLM_MAX_TOKENS_PER_RUN or the function arg. */
 export function resetBudget(limit?: number) {
   const envLimit = Number(process.env.LLM_MAX_TOKENS_PER_RUN || 0)
-  const defaultLimit = process.env.LLM_BACKEND === 'claude-code' ? 4_000_000 : 500_000
+  const backend = process.env.LLM_BACKEND
+  const defaultLimit =
+    backend === 'claude-code'
+      ? 4_000_000
+      : backend === 'openai' || backend === 'anthropic'
+        ? 2_000_000
+        : 500_000
   currentBudget = {
     tokensUsed: 0,
     limit: limit ?? (envLimit > 0 ? envLimit : defaultLimit),
