@@ -259,12 +259,33 @@ async function callOllama(req: RawCall): Promise<RawResult> {
   return { raw: data.message.content, tokenCount: tokens, costUSD: 0 }
 }
 
-// OpenAI pricing per 1M tokens (gpt-4o-mini, 2024-11). Embed both directions so
-// cost telemetry is accurate without an env lookup at call time.
+// OpenAI pricing per 1M tokens. Update when the published rate card changes;
+// openai.com/api/pricing blocks automated fetches (HTTP 403) so these have to
+// be pasted in by hand. If a model isn't listed, callLLM falls back to
+// {in:0, out:0} and the llm:cost dashboard will show $0 for those calls.
 const OPENAI_PRICING: Record<string, { in: number; out: number }> = {
+  // 4.x family (verified from pricing page snapshots · 2025-06):
   'gpt-4o-mini': { in: 0.15, out: 0.6 },
   'gpt-4o': { in: 2.5, out: 10.0 },
   'gpt-4.1-mini': { in: 0.4, out: 1.6 },
+  'gpt-4.1-nano': { in: 0.1, out: 0.4 },
+  'gpt-4.1': { in: 2.0, out: 8.0 },
+  // 5.x family (estimates · update once openai publishes confirmed rates;
+  // placeholder values bracket the 4.x successor tier so cost reports aren't
+  // misleadingly low):
+  'gpt-5-nano': { in: 0.05, out: 0.4 },
+  'gpt-5-mini': { in: 0.25, out: 2.0 },
+  'gpt-5': { in: 1.25, out: 10.0 },
+  'gpt-5.1-mini': { in: 0.25, out: 2.0 },
+  'gpt-5.1': { in: 1.25, out: 10.0 },
+  'gpt-5.2-mini': { in: 0.25, out: 2.0 },
+  'gpt-5.2': { in: 1.25, out: 10.0 },
+  'gpt-5.4-nano': { in: 0.05, out: 0.4 },
+  'gpt-5.4-mini': { in: 0.25, out: 2.0 },
+  'gpt-5.4': { in: 1.25, out: 10.0 },
+  'gpt-5.4-pro': { in: 5.0, out: 40.0 },
+  // Audio:
+  'whisper-1': { in: 0, out: 0 }, // billed per-minute, not per-token
 }
 
 // Anthropic pricing per 1M tokens (claude-haiku-4-5 launched Oct-2025).
