@@ -22,11 +22,16 @@ beforeEach(() => {
   // @ts-expect-error — override global fetch for tests
   globalThis.fetch = fetchSpy
   resetBudget(1_000_000)
+  // Point GEMINI_BIN at a non-existent path so tests isolate from any real
+  // local gemini-cli install on the developer's machine (fallback chain
+  // adds gemini only when its binary exists on disk).
+  process.env.GEMINI_BIN = '/nonexistent/gemini'
 })
 
 afterEach(() => {
   rmSync(cacheDir, { recursive: true, force: true })
   vi.restoreAllMocks()
+  delete process.env.GEMINI_BIN
 })
 
 function ollamaSuccess(content: string, tokens = 50) {
@@ -34,7 +39,11 @@ function ollamaSuccess(content: string, tokens = 50) {
     ok: true,
     status: 200,
     text: async () => '',
-    json: async () => ({ message: { content }, prompt_eval_count: Math.floor(tokens / 2), eval_count: Math.ceil(tokens / 2) }),
+    json: async () => ({
+      message: { content },
+      prompt_eval_count: Math.floor(tokens / 2),
+      eval_count: Math.ceil(tokens / 2),
+    }),
   })
 }
 
@@ -96,7 +105,10 @@ describe('LLM client · caching', () => {
       .mockReturnValueOnce(ollamaSuccess(JSON.stringify({ reply: 'v2' })))
 
     const base = {
-      systemPrompt: 'sys', userPrompt: 'same', schema: TestSchema, input: { x: 1 },
+      systemPrompt: 'sys',
+      userPrompt: 'same',
+      schema: TestSchema,
+      input: { x: 1 },
       config: { ...loadConfigFromEnv(), backend: 'ollama' as const, cacheDir },
     }
 
@@ -158,7 +170,12 @@ describe('LLM client · OpenAI backend', () => {
       promptVersion: 'oa-v1',
       schema: TestSchema,
       input: { x: 1 },
-      config: { ...loadConfigFromEnv(), backend: 'openai' as const, openaiApiKey: 'sk-test', cacheDir },
+      config: {
+        ...loadConfigFromEnv(),
+        backend: 'openai' as const,
+        openaiApiKey: 'sk-test',
+        cacheDir,
+      },
     })
 
     expect(result).toEqual({ reply: 'hello' })
@@ -175,9 +192,18 @@ describe('LLM client · OpenAI backend', () => {
     fetchSpy.mockReturnValueOnce(openaiSuccess(JSON.stringify({ reply: 'ok' }), 1000))
 
     await callLLM({
-      systemPrompt: 's', userPrompt: 'u', promptVersion: 'oa-cost-v1',
-      schema: TestSchema, input: { x: 1 },
-      config: { ...loadConfigFromEnv(), backend: 'openai' as const, openaiApiKey: 'sk-test', cacheDir, openaiModel: 'gpt-4o-mini' },
+      systemPrompt: 's',
+      userPrompt: 'u',
+      promptVersion: 'oa-cost-v1',
+      schema: TestSchema,
+      input: { x: 1 },
+      config: {
+        ...loadConfigFromEnv(),
+        backend: 'openai' as const,
+        openaiApiKey: 'sk-test',
+        cacheDir,
+        openaiModel: 'gpt-4o-mini',
+      },
     })
 
     const stats = gatherCacheStats(cacheDir)
@@ -189,7 +215,7 @@ describe('LLM client · OpenAI backend', () => {
 
 describe('LLM client · token budget', () => {
   it('short-circuits further calls when budget is breached', async () => {
-    resetBudget(200)  // tiny budget
+    resetBudget(200) // tiny budget
     fetchSpy.mockReturnValueOnce(ollamaSuccess(JSON.stringify({ reply: 'a' }), 300))
 
     // First call consumes 300 tokens, exceeds the 200 budget.
@@ -261,9 +287,17 @@ describe('LLM client · resilience', () => {
       .mockReturnValueOnce(openaiSuccess(JSON.stringify({ reply: 'finally' })))
 
     const result = await callLLM({
-      systemPrompt: 's', userPrompt: 'u', promptVersion: 'rate-v1',
-      schema: TestSchema, input: { x: 1 },
-      config: { ...loadConfigFromEnv(), backend: 'openai' as const, openaiApiKey: 'sk-test', cacheDir },
+      systemPrompt: 's',
+      userPrompt: 'u',
+      promptVersion: 'rate-v1',
+      schema: TestSchema,
+      input: { x: 1 },
+      config: {
+        ...loadConfigFromEnv(),
+        backend: 'openai' as const,
+        openaiApiKey: 'sk-test',
+        cacheDir,
+      },
     })
     expect(result).toEqual({ reply: 'finally' })
     expect(fetchSpy).toHaveBeenCalledTimes(2)
@@ -279,8 +313,11 @@ describe('LLM client · resilience', () => {
       .mockReturnValueOnce(anthropicSuccess({ reply: 'claude rescue' }))
 
     const result = await callLLM({
-      systemPrompt: 's', userPrompt: 'u', promptVersion: 'fb-v1',
-      schema: TestSchema, input: { x: 1 },
+      systemPrompt: 's',
+      userPrompt: 'u',
+      promptVersion: 'fb-v1',
+      schema: TestSchema,
+      input: { x: 1 },
       config: {
         ...loadConfigFromEnv(),
         backend: 'openai' as const,
@@ -303,9 +340,17 @@ describe('LLM client · resilience', () => {
 
     const t0 = Date.now()
     const result = await callLLM({
-      systemPrompt: 's', userPrompt: 'u', promptVersion: 'perm-v1',
-      schema: TestSchema, input: { x: 1 },
-      config: { ...loadConfigFromEnv(), backend: 'openai' as const, openaiApiKey: 'sk-test', cacheDir },
+      systemPrompt: 's',
+      userPrompt: 'u',
+      promptVersion: 'perm-v1',
+      schema: TestSchema,
+      input: { x: 1 },
+      config: {
+        ...loadConfigFromEnv(),
+        backend: 'openai' as const,
+        openaiApiKey: 'sk-test',
+        cacheDir,
+      },
     })
     const elapsed = Date.now() - t0
 
@@ -334,16 +379,24 @@ describe('LLM client · resilience', () => {
     // Issue enough failing calls to push consecutiveFailures past the threshold.
     for (let i = 0; i < 11; i++) {
       await callLLM({
-        systemPrompt: 's', userPrompt: `u-${i}`, promptVersion: 'cb-v1',
-        schema: TestSchema, input: { i }, config,
+        systemPrompt: 's',
+        userPrompt: `u-${i}`,
+        promptVersion: 'cb-v1',
+        schema: TestSchema,
+        input: { i },
+        config,
       })
     }
     const callsAfterTrip = fetchSpy.mock.calls.length
 
     // One more call — should short-circuit entirely, no fetch.
     const result = await callLLM({
-      systemPrompt: 's', userPrompt: 'u-last', promptVersion: 'cb-v1',
-      schema: TestSchema, input: { i: 99 }, config,
+      systemPrompt: 's',
+      userPrompt: 'u-last',
+      promptVersion: 'cb-v1',
+      schema: TestSchema,
+      input: { i: 99 },
+      config,
     })
     expect(result).toBeNull()
     expect(fetchSpy).toHaveBeenCalledTimes(callsAfterTrip)

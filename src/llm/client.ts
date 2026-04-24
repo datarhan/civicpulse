@@ -1,17 +1,19 @@
 /**
  * LLM client abstraction.
  *
- * Four backends, same call signature:
+ * Five backends, same call signature:
  *   - Ollama       (local, free)                 — POST /api/chat
  *   - OpenAI       (cloud, pay-per-token)        — /v1/chat/completions (json_schema)
  *   - Anthropic    (cloud, pay-per-token)        — /v1/messages (tool_use)
+ *   - gemini       (Pro subscription, $0)        — spawns `gemini -p` CLI (prompt-engineered JSON)
  *   - claude-code  (Max plan, rate-limited, $0)  — spawns `claude -p` CLI with --json-schema
  *
- * Anthropic is the recommended backend for the vote-extraction pipeline:
- * it handles noisy Spanish/Valencian Whisper transcripts better than a
- * local quant, and its prompt-cache feature means the (long, identical)
- * pleno-vote system prompt is re-used at 0.10× cost across every segment
- * of a given pleno.
+ * Default auto-select + fallback chain (when LLM_BACKEND is unset or the
+ * primary exhausts retries):
+ *   openai → anthropic → gemini → ollama
+ * Each step is skipped when its key/binary isn't available. claude-code is
+ * opt-in only (higher-tier subscription concern) — must be set explicitly
+ * via LLM_BACKEND=claude-code.
  *
  * The public entrypoint `callLLM<T>` does:
  *   1. Compute a content-addressed cache key (model + promptVersion + schema + input)
@@ -129,15 +131,19 @@ export interface ClientConfig {
 }
 
 export function loadConfigFromEnv(): ClientConfig {
-  // Backend auto-selection hierarchy when LLM_BACKEND is unset:
-  //   1. openai       — if OPENAI_API_KEY is exported (metered, no subscription burn)
-  //   2. anthropic    — if ANTHROPIC_API_KEY is exported (metered, no subscription burn)
-  //   3. ollama       — local fallback
-  // Explicitly NOT auto-selecting `claude-code` — that backend burns the user's
-  // Max-plan quota (the same quota powering interactive Claude Code sessions)
-  // and one full-pleno extract can torch a 5-hour window. It must be opted
-  // into via LLM_BACKEND=claude-code.
+  // Backend auto-selection hierarchy when LLM_BACKEND is unset. Matches the
+  // cross-backend fallback order in callLLM.
+  //   1. openai       — if OPENAI_API_KEY is set (metered, fastest)
+  //   2. anthropic    — if ANTHROPIC_API_KEY is set (metered)
+  //   3. gemini       — if gemini CLI is installed (Pro subscription, $0)
+  //   4. ollama       — local fallback, always
+  // Explicitly NOT auto-selecting `claude-code`. Max-plan quota is higher-
+  // tier and a runaway extract could lock out interactive Claude sessions;
+  // opt-in via LLM_BACKEND=claude-code only.
   const envBackend = process.env.LLM_BACKEND as Backend | undefined
+  const geminiBinPath =
+    process.env.GEMINI_BIN ||
+    (process.env.HOME || '') + '/.local/civicpulse-gemini/node_modules/.bin/gemini'
   let backend: Backend
   if (envBackend) {
     backend = envBackend
@@ -145,6 +151,8 @@ export function loadConfigFromEnv(): ClientConfig {
     backend = 'openai'
   } else if (process.env.ANTHROPIC_API_KEY) {
     backend = 'anthropic'
+  } else if (existsSync(geminiBinPath)) {
+    backend = 'gemini'
   } else {
     backend = 'ollama'
   }
@@ -642,15 +650,7 @@ async function callGemini(req: RawCall): Promise<RawResult> {
     schemaJson
 
   return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
-    const args = [
-      '-p',
-      mergedPrompt,
-      '-m',
-      req.config.geminiModel,
-      '-o',
-      'json',
-      '--yolo',
-    ]
+    const args = ['-p', mergedPrompt, '-m', req.config.geminiModel, '-o', 'json', '--yolo']
     const child = spawn(req.config.geminiBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
     let stderr = ''
@@ -835,16 +835,22 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   }
 
   // Build the ordered list of backends to try. Primary is whatever the
-  // config says; fallbacks are the other auto-eligible ones in priority
-  // order that have a key/endpoint configured. claude-code is never auto-
-  // used as a fallback (would burn Max subscription quota silently); the
-  // caller has to ask for it explicitly via LLM_BACKEND.
+  // config says; fallbacks are the other configured backends in priority
+  // order:
+  //   openai (metered) → anthropic (metered) → gemini (Pro subscription)
+  //   → ollama (local)
+  // gemini is auto-used as a fallback when its CLI binary exists on disk —
+  // assumed to mean the user has opted in by installing it. claude-code is
+  // STILL never auto-chained: Max-plan quota is higher-tier and an errant
+  // extract could lock out interactive Claude sessions; opt-in via
+  // LLM_BACKEND=claude-code only.
   const attemptedBackends: Backend[] = [config.backend]
-  const fallbackOrder: Backend[] = ['openai', 'anthropic', 'ollama']
+  const fallbackOrder: Backend[] = ['openai', 'anthropic', 'gemini', 'ollama']
   for (const b of fallbackOrder) {
     if (b === config.backend) continue
     if (b === 'openai' && !config.openaiApiKey) continue
     if (b === 'anthropic' && !config.anthropicApiKey) continue
+    if (b === 'gemini' && !existsSync(config.geminiBin)) continue
     attemptedBackends.push(b)
   }
 
