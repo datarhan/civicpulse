@@ -170,16 +170,23 @@ elif [ "$WHISPER_ENGINE" = "mlx" ]; then
     echo "[transcribe]   ~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx" >&2
     exit 1
   fi
-  echo "[transcribe] running lightning-whisper-mlx (model=$WHISPER_MODEL on Apple Neural Engine)…"
-  WHISPER_MODEL="$WHISPER_MODEL" "$MLX_PY" - "$AUDIO" "$OUT_PATH" <<'PYEOF'
+  WHISPER_BATCH_SIZE="${WHISPER_BATCH_SIZE:-12}"
+  echo "[transcribe] running lightning-whisper-mlx (model=$WHISPER_MODEL batch_size=$WHISPER_BATCH_SIZE on Apple Neural Engine)…"
+  WHISPER_MODEL="$WHISPER_MODEL" WHISPER_BATCH_SIZE="$WHISPER_BATCH_SIZE" "$MLX_PY" - "$AUDIO" "$OUT_PATH" <<'PYEOF'
 import sys, os, time, json
 from lightning_whisper_mlx import LightningWhisperMLX
 
 audio_path, out_path = sys.argv[1], sys.argv[2]
 model_name = os.environ.get('WHISPER_MODEL', 'large-v3')
+# batch_size controls how many 30s audio windows MLX pipelines through
+# Metal simultaneously. Default 12 is fast but can overwhelm the Neural
+# Engine's command-buffer timeout on very long audio (>4h). Drop to 4
+# via WHISPER_BATCH_SIZE=4 env for sessions that fail with a Metal GPU
+# Timeout Error (libc++abi terminating on kIOGPUCommandBufferCallbackErrorTimeout).
+batch_size = int(os.environ.get('WHISPER_BATCH_SIZE', '12'))
 
 t0 = time.time()
-whisper = LightningWhisperMLX(model=model_name, batch_size=12, quant=None)
+whisper = LightningWhisperMLX(model=model_name, batch_size=batch_size, quant=None)
 print(f'[transcribe]   model load: {time.time()-t0:.1f}s', flush=True)
 
 t1 = time.time()
