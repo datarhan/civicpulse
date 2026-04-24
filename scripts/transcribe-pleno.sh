@@ -123,40 +123,57 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     "$OPUS"
   echo "[transcribe] opus size: $(du -h "$OPUS" | cut -f1)"
 
-  # Hard-guard the 25 MB limit.
   SIZE_BYTES=$(stat -f%z "$OPUS" 2>/dev/null || stat -c%s "$OPUS")
-  if [ "$SIZE_BYTES" -gt 26214400 ]; then
-    echo "[transcribe] opus exceeds 25 MB ($SIZE_BYTES bytes). Pleno is unusually long — add chunking." >&2
-    exit 1
+  # Chunk threshold: 24 MB (1 MB safety margin under OpenAI's 25 MB upload cap).
+  # Each chunk is ~1200 seconds (20 minutes) @ 16 kbps opus ≈ 2.4 MB — well
+  # under the cap but long enough that segment boundaries don't cut mid-
+  # utterance too often.
+  CHUNK_SECS=1200
+  CHUNK_DIR="$WORKDIR/chunks"
+  mkdir -p "$CHUNK_DIR"
+  if [ "$SIZE_BYTES" -gt 25165824 ]; then
+    echo "[transcribe] opus ${SIZE_BYTES} bytes > 24 MB — splitting into ${CHUNK_SECS}s chunks…"
+    ffmpeg -hide_banner -loglevel error -y \
+      -i "$OPUS" -f segment -segment_time "$CHUNK_SECS" -c copy \
+      "$CHUNK_DIR/chunk-%03d.ogg"
+  else
+    cp "$OPUS" "$CHUNK_DIR/chunk-000.ogg"
+    CHUNK_SECS=0  # marker: single chunk, no time offset needed
   fi
+  N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
+  echo "[transcribe] uploading ${N_CHUNKS} chunk(s) to OpenAI…"
 
-  echo "[transcribe] POST /v1/audio/transcriptions (verbose_json, language=es)…"
-  RESP_JSON="$WORKDIR/response.json"
-  HTTP_CODE=$(curl -fsS -w "%{http_code}" -o "$RESP_JSON" \
-    https://api.openai.com/v1/audio/transcriptions \
-    -H "Authorization: Bearer $OPENAI_API_KEY" \
-    -F file="@$OPUS" \
-    -F model="whisper-1" \
-    -F language="es" \
-    -F response_format="verbose_json" \
-    -F "timestamp_granularities[]=segment" 2>&1 || echo "000")
-
-  if [ "$HTTP_CODE" != "200" ]; then
-    echo "[transcribe] OpenAI API returned HTTP $HTTP_CODE" >&2
-    cat "$RESP_JSON" >&2 || true
-    exit 1
-  fi
-
-  # Convert verbose_json segments to [start → end] text\n format.
-  node -e "
-    const fs = require('fs')
-    const data = JSON.parse(fs.readFileSync('$RESP_JSON', 'utf8'))
-    const segs = data.segments || []
-    const out = fs.createWriteStream('$OUT_PATH')
-    for (const s of segs) out.write(\`[\${s.start.toFixed(1)} → \${s.end.toFixed(1)}] \${s.text.trim()}\n\`)
-    out.end()
-    console.error('[transcribe]   segments=' + segs.length + ' duration=' + (data.duration || 'n/a') + 's language=' + (data.language || 'n/a'))
-  "
+  # Post each chunk and collect verbose_json responses. Chunk index → file.
+  : > "$OUT_PATH"
+  IDX=0
+  for CHUNK in "$CHUNK_DIR"/chunk-*.ogg; do
+    OFFSET=$(( IDX * CHUNK_SECS ))
+    RESP_JSON="$WORKDIR/response-${IDX}.json"
+    HTTP_CODE=$(curl -fsS -o "$RESP_JSON" -w "%{http_code}" \
+      https://api.openai.com/v1/audio/transcriptions \
+      -H "Authorization: Bearer $OPENAI_API_KEY" \
+      -F file="@$CHUNK" \
+      -F model="whisper-1" \
+      -F language="es" \
+      -F response_format="verbose_json" 2>&1 || echo "000")
+    if [ "$HTTP_CODE" != "200" ]; then
+      echo "[transcribe] chunk ${IDX} failed with HTTP $HTTP_CODE" >&2
+      cat "$RESP_JSON" >&2 || true
+      exit 1
+    fi
+    # Append segments with cumulative time offset.
+    node -e "
+      const fs = require('fs')
+      const data = JSON.parse(fs.readFileSync('$RESP_JSON', 'utf8'))
+      const segs = data.segments || []
+      const offset = $OFFSET
+      const out = fs.createWriteStream('$OUT_PATH', { flags: 'a' })
+      for (const s of segs) out.write(\`[\${(s.start + offset).toFixed(1)} → \${(s.end + offset).toFixed(1)}] \${s.text.trim()}\n\`)
+      out.end()
+      console.error(\`[transcribe]   chunk \${$IDX + 1}/${N_CHUNKS}: \${segs.length} segs · ±${offset}s offset · lang=\${data.language || 'n/a'}\`)
+    "
+    IDX=$(( IDX + 1 ))
+  done
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
   # ── Apple Neural Engine (lightning-whisper-mlx) branch ───────────────────
   # 5-10× realtime, \$0, local. Better WER on technical/legal terms than
