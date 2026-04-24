@@ -1,0 +1,2660 @@
+[30.0 → 48.0] Más información www.alimmenta.com
+[60.0 → 70.0] Más información www.alimmenta.com
+[90.0 → 100.0] Más información www.alimmenta.com
+[100.0 → 110.0] Más información www.alimmenta.com
+[110.0 → 120.0] Más información www.alimmenta.com
+[120.0 → 130.0] Más información www.alimmenta.com
+[130.0 → 140.0] Más información www.alimmenta.com
+[140.0 → 150.0] Más información www.alimmenta.com
+[150.0 → 160.0] Más información www.alimmenta.com
+[160.0 → 170.0] Más información www.alimmenta.com
+[170.0 → 180.0] Más información www.alimmenta.com
+[180.0 → 190.0] Más información www.alimmenta.com
+[190.0 → 200.0] Más información www.alimmenta.com
+[200.0 → 210.0] Más información www.alimmenta.com
+[210.0 → 220.0] Más información www.alimmenta.com
+[220.0 → 230.0] Más información www.alimmenta.com
+[230.0 → 240.0] Más información www.alimmenta.com
+[240.0 → 250.0] Más información www.alimmenta.com
+[250.0 → 260.0] Más información www.alimmenta.com
+[260.0 → 270.0] Más información www.alimmenta.com
+[270.0 → 280.0] Más información www.alimmenta.com
+[280.0 → 290.0] Más información www.alimmenta.com
+[290.0 → 300.0] Más información www.alimmenta.com
+[300.0 → 310.0] Más información www.alimmenta.com
+[310.0 → 320.0] Más información www.alimmenta.com
+[320.0 → 330.0] Más información www.alimmenta.com
+[330.0 → 340.0] Más información www.alimmenta.com
+[340.0 → 350.0] Más información www.alimmenta.com
+[350.0 → 360.0] Más información www.alimmenta.com
+[360.0 → 370.0] Más información www.alimmenta.com
+[370.0 → 380.0] Más información www.alimmenta.com
+[380.0 → 390.0] Más información www.alimmenta.com
+[390.0 → 400.0] Más información www.alimmenta.com
+[400.0 → 410.0] Más información www.alimmenta.com
+[410.0 → 420.0] Más información www.alimmenta.com
+[420.0 → 430.0] Más información www.alimmenta.com
+[430.0 → 440.0] Más información www.alimmenta.com
+[440.0 → 450.0] Más información www.alimmenta.com
+[450.0 → 460.0] Más información www.alimmenta.com
+[460.0 → 470.0] Más información www.alimmenta.com
+[470.0 → 480.0] Más información www.alimmenta.com
+[480.0 → 490.0] Más información www.alimmenta.com
+[490.0 → 500.0] Más información www.alimmenta.com
+[500.0 → 510.0] Más información www.alimmenta.com
+[510.0 → 520.0] Más información www.alimmenta.com
+[520.0 → 530.0] Más información www.alimmenta.com
+[530.0 → 540.0] Más información www.alimmenta.com
+[540.0 → 550.0] Más información www.alimmenta.com
+[550.0 → 560.0] Más información www.alimmenta.com
+[560.0 → 570.0] Más información www.alimmenta.com
+[570.0 → 580.0] Más información www.alimmenta.com
+[580.0 → 590.0] Más información www.alimmenta.com
+[590.0 → 600.0] Más información www.alimmenta.com
+[600.0 → 610.0] Más información www.alimmenta.com
+[610.0 → 620.0] Más información www.alimmenta.com
+[620.0 → 630.0] Más información www.alimmenta.com
+[630.0 → 640.0] Más información www.alimmenta.com
+[640.0 → 650.0] Más información www.alimmenta.com
+[650.0 → 660.0] Más información www.alimmenta.com
+[660.0 → 670.0] Más información www.alimmenta.com
+[670.0 → 680.0] Más información www.alimmenta.com
+[680.0 → 690.0] Más información www.alimmenta.com
+[690.0 → 700.0] Más información www.alimmenta.com
+[700.0 → 710.0] Más información www.alimmenta.com
+[710.0 → 720.0] Más información www.alimmenta.com
+[720.0 → 730.0] Más información www.alimmenta.com
+[730.0 → 740.0] Más información www.alimmenta.com
+[740.0 → 750.0] Más información www.alimmenta.com
+[750.0 → 760.0] Más información www.alimmenta.com
+[780.0 → 790.0] Más información www.alimmenta.com
+[790.0 → 800.0] Más información www.alimmenta.com
+[800.0 → 810.0] Más información www.alimmenta.com
+[810.0 → 820.0] Más información www.alimmenta.com
+[820.0 → 830.0] Más información www.alimmenta.com
+[830.0 → 840.0] Más información www.alimmenta.com
+[840.0 → 850.0] Más información www.alimmenta.com
+[850.0 → 860.0] Más información www.alimmenta.com
+[860.0 → 870.0] Más información www.alimmenta.com
+[870.0 → 880.0] Más información www.alimmenta.com
+[880.0 → 890.0] Más información www.alimmenta.com
+[890.0 → 900.0] Más información www.alimmenta.com
+[900.0 → 910.0] Más información www.alimmenta.com
+[910.0 → 920.0] Más información www.alimmenta.com
+[920.0 → 930.0] Más información www.alimmenta.com
+[930.0 → 940.0] Más información www.alimmenta.com
+[940.0 → 950.0] Más información www.alimmenta.com
+[950.0 → 960.0] Más información www.alimmenta.com
+[960.0 → 970.0] Más información www.alimmenta.com
+[970.0 → 980.0] Más información www.alimmenta.com
+[980.0 → 990.0] Más información www.alimmenta.com
+[990.0 → 1000.0] Más información www.alimmenta.com
+[1000.0 → 1010.0] Más información www.alimmenta.com
+[1010.0 → 1020.0] Más información www.alimmenta.com
+[1020.0 → 1030.0] Más información www.alimmenta.com
+[1030.0 → 1040.0] Más información www.alimmenta.com
+[1040.0 → 1050.0] Más información www.alimmenta.com
+[1050.0 → 1060.0] Más información www.alimmenta.com
+[1060.0 → 1070.0] Más información www.alimmenta.com
+[1070.0 → 1080.0] Más información www.alimmenta.com
+[1080.0 → 1090.0] Más información www.alimmenta.com
+[1090.0 → 1100.0] Más información www.alimmenta.com
+[1100.0 → 1110.0] Más información www.alimmenta.com
+[1110.0 → 1120.0] Más información www.alimmenta.com
+[1120.0 → 1130.0] Más información www.alimmenta.com
+[1130.0 → 1140.0] Más información www.alimmenta.com
+[1140.0 → 1150.0] Más información www.alimmenta.com
+[1150.0 → 1160.0] Más información www.alimmenta.com
+[1160.0 → 1170.0] Más información www.alimmenta.com
+[1170.0 → 1180.0] Más información www.alimmenta.com
+[1180.0 → 1190.0] Más información www.alimmenta.com
+[1200.0 → 1207.8] objetos de informe. En referencia a esto, como bien comunicáis, pregunté en
+[1207.8 → 1213.1] comisiones informativas, me dijisteis que sí que existía un informe, lo pedí,
+[1213.1 → 1217.7] ayer lo volví a pedir por escrito, hoy me has llamado Teresa y me has comentado
+[1217.7 → 1223.7] que me lo enviaban, me lo han enviado y el informe existe, siendo las comisiones
+[1223.7 → 1230.1] informativas el día 28, el informe primero consta de ese mismo día, del 28,
+[1230.1 → 1234.7] el informe del arquitecta municipal en referencia al informe del inspector
+[1234.7 → 1240.3] municipal del día siguiente a las comisiones y la resolución de alcaldía
+[1240.3 → 1248.1] para remitir el expediente de disciplina urbanístico fecha de hoy, día 3, o sea que
+[1248.1 → 1251.8] pudiera ser que estuviera en marcha pero estar no estaba el día de las
+[1251.8 → 1256.5] comisiones informativas, de hecho aquí está la resolución de alcaldía
+[1256.5 → 1263.8] informando de hecho, luego en el punto 7 pone que habla sobre las condiciones
+[1263.8 → 1269.6] edificatorias, se dice que existen elementos impropios de la visita
+[1269.6 → 1278.4] realizada por la arquitecta, hay dos elementos que son impropios de
+[1278.4 → 1283.7] dicha edificación, ¿dónde está ese expediente de disciplina urbanística?, puede
+[1283.7 → 1290.5] ser que sea al que hace mención esta resolución, en el informe no existía.
+[1290.5 → 1299.5] Luego hay otras obras que dice se han realizado obras de reforma en la
+[1299.5 → 1305.1] edificación existente, siendo que éstas se permiten con la
+[1305.1 → 1310.3] minimización tramitada, es decir, que no se permiten hasta que no esté la
+[1310.3 → 1316.5] minimización tramitada, deberán ser objeto de legalización, deberán, a día de hoy
+[1316.5 → 1323.8] no pueden ser legalizadas, son ilegales y parece ser que tampoco hay expediente
+[1323.8 → 1329.2] de disciplina urbanística respecto a esto. Después la ley de ordenación del
+[1329.2 → 1335.6] territorio urbanístico, de urbanismo y paisaje, en su artículo 231, cita que el
+[1335.6 → 1341.3] plan y la licencia de minimización podrán regular la autorización futura
+[1341.3 → 1348.4] de reformas de interior o para ejecución de pequeños elementos auxiliares, la
+[1348.4 → 1354.5] autorización futura de obras de reforma, ¿qué ocurre?, que aquí las obras no son
+[1354.5 → 1359.9] futuras, las obras ya están realizadas. En el informe también se declara por
+[1359.9 → 1365.0] parte del promotor, a sabiendas que es así, que
+[1365.0 → 1369.2] en el que él mismo, el promotor, incide en que no existe ningún expediente de
+[1369.2 → 1373.4] infracción ni de restauración ni sancionador ni resolución judicial de
+[1373.4 → 1378.5] ningún tipo en dicha parcela, entonces por eso nosotros pensamos que la
+[1378.5 → 1386.0] minimización es viable, es válida, pero si traes por urgencia un expediente que
+[1386.0 → 1392.1] no ataña a una pluralidad de vecinos, sino a un único vecino
+[1392.1 → 1398.1] y encima no traes los expedientes de disciplina urbanística anteriores a este
+[1398.1 → 1403.2] expediente urbanístico, algo falla aquí y no queremos decir que porque sea
+[1403.2 → 1408.0] familiar de nadie, pero algo falla en este expediente, debería existir uno o
+[1408.2 → 1412.5] varios expedientes de disciplina urbanística cuando la visita, parece ser,
+[1412.5 → 1417.0] del inspector de obras se realizó y cuando la visita del arquitecta se
+[1417.0 → 1421.0] realizó porque el informe está realizado. Eso es, gracias.
+[1421.0 → 1425.2] ¿Más palabras, José Luis?
+[1425.2 → 1441.4] Ya, gracias, buenas tardes. En la comisión informativa votamos a favor de que se
+[1441.4 → 1445.6] tramitara por urgencia porque entendemos que esté en urbanismo todo lo que se
+[1445.6 → 1449.5] pueda agilizar mejor y esa es la intención nuestra.
+[1449.5 → 1454.7] Una vez revisado el expediente y con lo que ha estado comentando Alberto, sobre
+[1454.7 → 1459.3] todo en el punto, en un punto quinto donde dice que hay eliminación de
+[1459.3 → 1463.8] elementos impropios y de una inspección realizada el día 8 de noviembre que se
+[1463.8 → 1467.8] tiene que eliminar, pero por contra no hay expediente sancionador, la intención
+[1467.8 → 1473.3] nuestra es que esta minimización se apruebe, pero yo creo que
+[1473.3 → 1478.3] deberíamos, no sé si tener alguna posibilidad de aplazarla para el pleno
+[1478.3 → 1483.5] siguiente para que de verdad se explique en todo porque aquí hay algo
+[1483.5 → 1488.5] que no nos cuadra excesivamente. Entonces, como ha sido con urgencia y ha
+[1488.5 → 1495.1] sido un tiempo muy corto, no sé si hay alguna posibilidad de aplazarla para
+[1495.1 → 1500.8] otro pleno y también hay que ver todas las contestaciones que se van a decir
+[1500.8 → 1503.5] ahora. Gracias.
+[1503.5 → 1505.5] ¿Primeras palabras?
+[1505.5 → 1507.5] Teresa.
+[1513.0 → 1518.5] Bueno, pues voy a empezar por lo primero. Se ha llevado, el pleno no viene por
+[1518.5 → 1523.2] urgencia, fue a comisiones informativas y como trasladé allí ha ido ese, otros
+[1523.2 → 1527.5] anteriores y seguiremos llevando todos los que podamos porque los tiempos son
+[1527.5 → 1531.3] los que son y los trabajo, cuanto más podamos agilizar en el urbanismo es
+[1531.3 → 1537.5] mejor. Con respecto a la urgencia, tengo que deciros que las minimizaciones de
+[1537.5 → 1544.1] las 11, 10 que he traído han durado un minuto y medio de exposición. Esta
+[1544.1 → 1548.2] parece ser que es un caso especial y yo quiero decir que nosotros tratamos a
+[1548.2 → 1553.5] todos los vecinos por igual. Sería injusto que fuese tratado de otra
+[1553.5 → 1559.3] manera como veo que parece ser que salta más el interés. Urgencia ninguna en el
+[1559.3 → 1563.6] expediente, el expediente está totalmente correcto. Desde el martes que fue a la
+[1563.6 → 1567.7] comisión informativa, conmigo no habéis venido a hablar de este punto, con las
+[1567.7 → 1570.3] arquitectas creo que tampoco. Quiero decir que si hubiese tenido alguna
+[1570.3 → 1577.0] preocupación podéis haberlo expresado en ese aspecto. El expediente para nada es
+[1577.0 → 1581.7] erróneo, o sea, la documentación que le hemos facilitado Alberto que la solicitó
+[1581.7 → 1586.3] es un expediente independiente de esto. Este señor que presenta la
+[1586.3 → 1591.5] minimización pues como otros muchos tiene este suelo y otro. Este suelo ha
+[1591.5 → 1594.5] solicitado una minimización y en otro suelo tiene que hacer unas regularizaciones
+[1594.5 → 1598.9] que es el suelo no urbanizable se trasladan a la agencia valenciana de
+[1598.9 → 1602.7] territorio. Esa diferencia que no tuvo la documentación a tiempos porque
+[1602.7 → 1607.1] precisamente al no poder ser él tenía que haberlo firmado yo y ha habido ahí un
+[1607.1 → 1613.1] poco de despiste por mi parte porque si no lo hubieses lo hubieses tenido antes.
+[1613.1 → 1617.6] Con respecto a los elementos impropios que comenta Alberto, de los 11
+[1617.6 → 1622.7] expedientes que hemos presentado de minimización, el 50% tiene elementos
+[1622.7 → 1626.9] impropios que tiene que retirar por desconocimiento o porque en este caso es
+[1626.9 → 1631.1] una pérgola, en otros casos es una casetita de no sé qué, pero este si veis
+[1631.1 → 1637.0] los 11 expedientes de minimización, el más del 60% tiene elementos impropios a
+[1637.0 → 1640.5] retirar y además lo que garantiza la minimización es que aquellas
+[1640.5 → 1644.3] actuaciones que se han hecho, si la minimización se lo permite, se
+[1644.3 → 1648.1] regularizan con la minimización. Si hemos ido a ver una vivienda de
+[1648.1 → 1652.5] minimización y se ha arreglado la cocina, se han cambiado los alicatados, se han
+[1652.5 → 1658.9] cambiado los ventanales, ¿qué pasa? Si la minimización le es favorable eso lo
+[1658.9 → 1663.1] regulariza en ese momento. Si la minimización le es desfavorable tiene
+[1663.1 → 1666.3] que solicitarlo y si puede se regularizará y si no tendrá que seguir
+[1666.3 → 1670.4] el trámite que toca. Pero el expediente no está para nada erróneo, la
+[1670.4 → 1673.7] documentación que hemos facilitado Alberto es de otro expediente
+[1673.7 → 1678.4] independiente, que no tiene nada que ver con este y la urgencia ya os expliqué lo
+[1678.4 → 1683.4] que era, era simplemente porque habíamos preparado unos puntos y como me parece
+[1683.4 → 1687.3] que a todo el mundo se le tiene que tratar por igual, me parecía injusto que
+[1687.3 → 1691.4] por un tema nuestro de a lo mejor no tenerlo en el tiempo correspondiente
+[1691.4 → 1696.0] se hubiese afectado, ni más ni menos que eso, nada más.
+[1696.0 → 1699.1] ¿Veas palabras Alberto?
+[1701.4 → 1705.7] A ver Teresa, de tus palabras se desprenden que la arquitecta ha hecho un
+[1705.7 → 1713.7] informe de otra parcela, porque si en esta parcela pone que hay elementos
+[1713.7 → 1719.1] impropios y ningún expediente de disciplina urbanística, entiendo que tú
+[1719.2 → 1723.9] lo que me has pasado son el expediente de disciplina urbanística de esta
+[1723.9 → 1729.8] parcela y de estos elementos, porque si no, si me has pasado de otra edificación,
+[1729.8 → 1734.7] yo no he pedido nada de otra edificación, yo he pedido el expediente
+[1734.7 → 1740.8] urbanístico que haya referente a esta edificación y tú estás tergiversando
+[1740.8 → 1744.9] diciendo que hay dos edificaciones, no hay dos, hay una.
+[1744.9 → 1750.9] Una que requiere la minimización y en esa única que requiere la minimización
+[1750.9 → 1755.6] existen elementos impropios y elementos que no caben en la minimización.
+[1755.6 → 1761.6] ¿Que se pueden regularizar? Sí. ¿Que se deberían realizar una vez tenida la
+[1761.6 → 1767.6] minimización? También. Lo plasma el informe y lo plasma la ley. ¿Que están
+[1767.6 → 1772.7] hechos ya con anterioridad? Sí. ¿Que yo te pedí?
+[1772.7 → 1777.9] Hablé con la arquitecta para que lo tengas en cuenta. ¿Que yo te pedí en
+[1777.9 → 1784.7] comisiones el expediente urbanístico que hubiera en referencia a esta declaración
+[1784.7 → 1789.3] de minimización? ¿Hay que volver a reunirse para volver a
+[1789.3 → 1793.3] pedírtela? Es que no lo entiendo, si ya la pedí en su día en comisiones, que
+[1793.3 → 1796.3] siempre remarcáis que pidamos toda la documentación que necesitamos en
+[1796.3 → 1803.7] comisiones, la pedí y ayer revisando el pleno no la tenía en el correo, ningún
+[1803.7 → 1807.3] correo y la solicité por escrito para que quedara constancia que la necesitaba
+[1807.3 → 1814.7] y tú en teoría me envías una información referente a esta edificación
+[1814.7 → 1818.8] porque si me has enviado otra vuelvo a realizar el escrito y me envía
+[1818.8 → 1823.0] referente a esta edificación, yo otra edificación ni me consta ni estamos
+[1823.0 → 1827.0] tratándola. Gracias.
+[1827.8 → 1836.4] José Luis Tere. Pues mira, me dejas más tranquila porque el expediente de la
+[1836.4 → 1841.7] minimización de lo que traemos que son 125 páginas lo tenéis desde las
+[1841.7 → 1846.1] comisiones informativas todo el mundo. O sea, todo el expediente completo de todo
+[1846.1 → 1850.3] lo de esta minimización lo tienes ya desde antes de las comisiones
+[1850.3 → 1854.0] informativas, el jueves antes de la convocatoria se entregó el expediente y
+[1854.0 → 1861.0] este estaba, vosotros lo tuvisteis el día lunes cuando lo incorporamos, cuando se
+[1861.0 → 1864.4] envió un correo electrónico a todos en el que iba por urgencia la minimización
+[1864.4 → 1869.4] antes de la comisión informativa tenías el expediente que era desde el lunes
+[1869.4 → 1875.0] pasado, así que tienes toda la documentación está aquí, la que tú me
+[1875.0 → 1890.7] estás pidiendo, yo te digo que sí, te lo he enviado porque en la explicación que dio
+[1890.7 → 1894.5] el arquitecto municipal habló que el propietario de la minimización tenía
+[1894.5 → 1899.1] dos parcelas independientes, una en la que pedía la minimización y otra en la
+[1899.1 → 1902.7] que iba a ir a la agencia valenciana de territorio, de protección del territorio
+[1902.7 → 1907.4] porque entre una parte y la otra tenía una puerta que comunica una parcela con
+[1907.4 → 1910.8] la otra, entre las condiciones que le pide la minimización es que tiene que
+[1910.8 → 1915.4] tener cerrada esa valla, ni más ni menos, entonces tanto el arquitecto como yo cuando
+[1915.4 → 1918.8] tú pedisteis en la comisión informativa esa información pensábamos que te
+[1918.8 → 1922.7] referías a la otra porque esta la tenías desde el lunes tú y todos los 21
+[1922.7 → 1927.4] concejales del ayuntamiento, la información de la minimización con
+[1927.4 → 1930.8] todos los informes, el informe del inspector, el informe del arquitecto
+[1930.8 → 1938.3] está aquí, está aquí todo, aquí tienes el informe que hace el arquitecta
+[1938.3 → 1944.4] tienes en base al informe que hizo el inspector, el inspector de obra
+[1944.4 → 1948.5] aquí la página del informe, mira el informe del arquitecto es la página 94
+[1948.5 → 1954.7] donde hace alusión al informe del inspector, en la página 122 el informe jurídico
+[1954.9 → 1959.9] y todo lo demás relacionado con el inspector, usted dice que el informe está ahí
+[1964.5 → 1969.1] Yo pregaría que no faz mal, que cuando te están explicando atengas la
+[1969.1 → 1972.8] explicación, que después demanes la palabra al presidente y que el presidente no
+[1972.8 → 1976.9] haga la palabra y puedas tener la alusión solo, pero estás interrumpiendo
+[1976.9 → 1981.1] que te está diciendo que queda preocupado, después votará lo que tienes que votar
+[1981.4 → 1985.1] de la manera que quieras votar, pero te está definiendo claramente que hay un
+[1985.1 → 1988.9] expediente que tú tienes, tú y tus archivos, si tú dejas el expediente no
+[1988.9 → 1993.8] tienes un fin, el voto será libre, pero estás interrumpiendo la intervención
+[1993.8 → 1998.0] cuando no te ocurre nada, ya me ha acabado el uso de la palabra, las explicaciones
+[1998.0 → 2001.7] están donadas, hay un expediente, yo predico a cada grupo que haga lo que
+[2001.7 → 2007.1] considere oportuno, que es lo importante, el expediente está intensiforme y lo
+[2007.1 → 2010.2] que se refiere a tener es una ampliación de una trapasada que consta en el
+[2010.2 → 2015.1] acta sanitaria, estamos hablando de la ampliación de una trapasada que el expediente de la
+[2015.1 → 2018.7] trapasada que están refiriendo está donada intensiforme, que es lo importante
+[2018.7 → 2021.1] ¿Esto no tiene que ser de la intervención en el punto?
+[2021.1 → 2023.1] Que baje Dios y lo vea
+[2023.1 → 2027.8] No, yo lo que estoy donando es la explicación del punto, si tú tienes que
+[2027.8 → 2031.7] impugnar algo en algún escenario, ves que es lo que quieres, pero yo estoy diciendo
+[2031.7 → 2035.7] exactamente como al presidente del pleno lo que tengo que decir, ni a favor ni en
+[2035.7 → 2040.7] contra, ni entre minutos, ahí están los expedientes, hay un intensiforme, nos hacen costar y a partir de ahí
+[2040.7 → 2046.2] cada uno que decida hay que decidir, ya está, está explicado y a partir de ahí
+[2046.2 → 2051.0] vamos a votar, yo más tendré, como hemos dicho y tenía este expediente, lo escribí
+[2051.0 → 2055.9] ya, que no lo habías visto, pero a mi parte me dijeron que no iba a votar, está en tu
+[2055.9 → 2061.9] expediente que no lo habías visto, pasemos a la votación y cada uno que vota, el que tenga que votar
+[2066.7 → 2069.7] Estoy preparándolo al 0
+[2090.7 → 2093.7] Vale ya fue votar
+[2095.7 → 2103.7] Aprobar, perdón, se vota a favor, se hace en contra y una abstención, Grupo Socialista, Partido Popular, Vox, Esquerra Republicana, Podemos, Compromiso, Unidas Podemos,
+[2125.7 → 2132.7] Bueno, pues muchas gracias, pasemos al cien punto del día, que es el punto cinco,
+[2136.7 → 2142.7] que es el urbanismo, acuerdo relativo al estudio de detalle de la avenida de Santiago Apóstol, Paus, de Rivarocheturia, Teresa.
+[2142.7 → 2160.7] Bueno, tristemente se ven cosas sorprendentes en este pleno, pasaremos al siguiente punto que sería el estudio de detalle de la avenida de Santiago Apóstol en el Paus,
+[2160.7 → 2168.7] con fecha tres de abril del dos mil veinticinco se solicita la tramitación de un estudio de detalle en la avenida de Santiago Apóstol,
+[2168.7 → 2181.7] el ayuntamiento, como sabéis, es competente para la formulación y tramitación de los planes de ámbito municipal y la aprobación de aquellos que con el presente estudio de detalle fijen o modifiquen siempre una ordenación pormenorizada,
+[2181.7 → 2189.7] mediante resolución de alcaldía se inició el trámite en fecha dos de mayo del veinticinco, el primero era admitir el estudio de detalle,
+[2189.7 → 2205.7] haber un periodo de información de veinte días de dicho estudio, notificar a los propietarios y demás interesados, publicarlo el anuncio en el diario oficial, la publicación se realizó el 3 de julio en el DOJ número 10.143.
+[2205.7 → 2217.7] Habiendo finalizado el plazo de información el 30 de septiembre de este año, del 25, y no constando alegaciones algunas al documento, procede continuar con la tramitación sometiendo el plan a aprobación definitiva.
+[2217.7 → 2225.7] En el periodo de información pública, que finalizó, como os he comentado, el día 30, no se han presentado alegaciones ninguna.
+[2225.7 → 2233.7] Este estudio de detalle de avenida Santiago Apóstol del Spous, limita su acción a la modificación de las alineaciones,
+[2233.7 → 2242.7] con la finalidad de dar realidad a las parcelas edificables clasificadas como urbana y calificadas como residencial extensivo dentro de la zona de ordenación Spous,
+[2242.7 → 2252.7] sino incluidas en unidad de ejecución, no modificando ni las edificabilidades totales del ámbito ni la cantidad total de espacios libres dotacionales existentes ni su carácter de diario público,
+[2252.7 → 2256.7] por lo que se adapta plenamente a los requisitos establecidos.
+[2256.7 → 2271.7] Por todo esto, es por lo que traemos al pleno los cinco puntos, que serían aprobar definitivamente el estudio de detalle, remitir una copia digital a la Consellería de Territorio y Urbanismo para la inscripción en el registro autonómico,
+[2271.7 → 2278.7] en el tercer punto, publicar el acuerdo de aprobación definitiva junto con sus normas urbanísticas en el Boletín Oficial de la provincia,
+[2278.7 → 2284.7] notificar al promotor del estudio de detalle y comunicar este acuerdo a las áreas de urbanismo y calidad ambiental.
+[2284.7 → 2285.7] Nada más.
+[2285.7 → 2287.7] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[2287.7 → 2290.7] ¿Habrá palabras al respecto de alguna cuestión, Teresa?
+[2291.7 → 2301.7] Sí, este punto es uno más del esfuerzo que se hace desde el Departamento de Urbanismo, que quiero agradecer tanto a Urbanismo como a Secretaría,
+[2301.7 → 2307.7] porque sí que es verdad que sin uno y otro no podríamos seguir adelante en estos trámites.
+[2307.7 → 2312.7] Pedir paciencia a nuestros vecinos por las 22 unidades de ejecución que tenemos pendientes.
+[2312.7 → 2317.7] Siempre decimos que nos gustaría ir más rápido, pero las circunstancias son las que son.
+[2317.7 → 2323.7] Sabéis que os lo he comentado una vez, que tenemos cinco o seis que son las que están delante y vamos ahí trabajando.
+[2323.7 → 2330.7] También esperamos poder tener algún movimiento externo que no sea gestión directa del Ayuntamiento
+[2330.7 → 2337.7] y que pueda poner en marcha ciertos suelos en nuestro municipio, porque también somos conocedores de la necesidad de la vivienda,
+[2337.7 → 2343.7] de la vivienda asequible para nuestros jóvenes, y en esa misma línea iremos trabajando.
+[2343.7 → 2350.7] Y quiero decir que, como dije que era en el 2015 cuando entré, cuando entramos en este Ayuntamiento atendemos a todos los vecinos igual.
+[2350.7 → 2356.7] Aquí los concejales que trabajamos ni somos padres de, ni hijos de, ni hermanos de.
+[2356.7 → 2364.7] Y en esa misma línea atendemos a todos los vecinos, y como tienen los mismos derechos y deberes, así lo hacemos constar.
+[2364.7 → 2371.7] Lamentamos que ciertos componentes de la corporación municipal no lo vean así. Nada más.
+[2373.7 → 2375.7] Pasemos a la votación.
+[2400.0 → 2426.6] En este caso, llevamos la aprobación del expediente de la liquidación de las cuotas
+[2426.6 → 2432.0] definitivas de 2023 a la Mancomunitat Camp de Turia. Este expediente no tiene efectos
+[2432.0 → 2437.0] económicos en cuanto a que los pagos se efectuaron ya en su día. Ahora bien, dada la forma en
+[2437.0 → 2442.5] que se realizaron mediante las entregas a cuenta y debido al saldo de la aplicación
+[2442.5 → 2447.7] presupuestaria en su momento, se debe contabilizar la obligación y el pago por la modalidad
+[2447.7 → 2452.0] extrajudicial. Y me explico. La liquidación del ejercicio
+[2452.0 → 2460.5] de 2022 fue a nuestro favor por 86.532 euros. Se realizaron entregas a cuenta en 2023 por
+[2460.5 → 2468.4] importe de 101.000 euros, es decir, se pagaron en total 187.620 euros, y el resultado de
+[2468.4 → 2475.1] la liquidación definitiva de la mancomunidad con el ayuntamiento fue de 164.948 euros.
+[2475.1 → 2482.2] Era, por tanto, un saldo a nuestro favor de 22.671 euros y que se compensaba con las
+[2482.2 → 2487.3] cuotas definitivas del 2024. Por lo tanto, lo que traemos es aprobar el reconocimiento
+[2487.3 → 2490.9] extrajudicial para poderlo contabilizar, básicamente. Gracias.
+[2490.9 → 2493.5] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[2493.5 → 2497.9] Para hablarles al respecto de este punto, una cuestión. José Manuel.
+[2497.9 → 2500.9] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA Voy a hacer una pregunta sobre este punto,
+[2500.9 → 2509.5] y es en lo que fue referencia al presupuesto del año 2024. En esta partida presupuestaria,
+[2509.5 → 2514.7] lo que yo tinque antes es que se va a quedar…, la partida que estaba en el 2023 se va a atender
+[2514.7 → 2519.1] en el año 2024. Aleshores, yo lo que voy a preguntar es por qué no se va a puchar
+[2519.1 → 2526.3] la partida presupuestaria. ¿Saben la información que van a enviar en March sobre el costo total
+[2526.3 → 2534.7] que va a atender este coste? ¿Y por qué no se va a puchar esa partida presupuestaria
+[2534.7 → 2539.8] en el presupuesto del año 2024? SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[2539.8 → 2543.1] José Ángel. SEÑOR ÁNGEL BARBADO Bueno, pregunta para las
+[2543.1 → 2547.8] comisiones informativas que están en ese intervento. Pero, bueno, según el caso, son
+[2547.8 → 2554.2] entregas a conter que se fan, y es previsible. Un año es de una manera y otro año es de
+[2554.2 → 2559.6] otra manera, porque se tiene en cuenta todos los achundamientos de la mancomunidad. En
+[2559.6 → 2565.7] lo cual, la previsión que tenían cuando estaba el presupuesto en el día del 24 era
+[2565.7 → 2570.9] la parecida a la que tenían en el 23. Fija que en el 2022 nada menos que añadían a
+[2570.9 → 2578.9] nuestro favor 86.000 euros. Las diferencias de un año al otro pueden ser grandes. Igual
+[2579.1 → 2586.1] hay presupuestos de 300.000 euros y se quedan 200, o 300 y se quedan 350. Esas diferencias
+[2587.8 → 2590.8] no… Más o menos busquemos un equilibrio, pero no es fácil.
+[2590.8 → 2595.8] Gracias. SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[2595.8 → 2602.8] He hecho esta pregunta por los informes técnicos que lo que plantean es que no se ha hecho
+[2609.1 → 2616.1] ningún cambio y por eso lo he planteado. Y no lo he planteado en las comisiones informativas
+[2617.2 → 2622.1] porque este dato no lo tenía. Igualmente, si cualquier cosa que se plantee en las comisiones
+[2622.7 → 2628.7] informativas, cada intervención se solucionara, seguramente, como ha dado Auriemco Bratt y
+[2628.7 → 2633.7] los grupos municipales, por ejemplo, que es una cosa que, voy a decir, aprovechando que
+[2633.7 → 2636.7] después hay una intervención… SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[2636.7 → 2641.3] Y sino que, en este sentido, en las comisiones informativas muchas veces se plantean muchas
+[2641.3 → 2647.0] cosas que después no tienen una respuesta. Por lo tanto, no me servís el que no lo comparta
+[2647.0 → 2649.8] en las comisiones informativas y que lo comparta así.
+[2650.8 → 2653.8] Gracias, señor. Una cuestión más, rápido.
+[2654.8 → 2656.8] Que el pisuelo ha pasado, pero gran.
+[2659.8 → 2663.8] Pero la información es la misma que estaba en las comisiones informativas, no se ha hecho
+[2663.8 → 2672.8] ni nada más. Pero bueno, en cualquier caso, varían las liquidaciones de un ejercicio
+[2672.8 → 2674.8] y de otro. Gracias.
+[2674.8 → 2676.8] Pasemos a la votación.
+[2680.8 → 2683.8] Estamos votando, estamos votando.
+[2689.8 → 2691.8] Faltan dos votos.
+[2695.8 → 2697.8] Queda aprobado el pronunciamiento de los votos a favor.
+[2697.8 → 2707.8] Diez abstenciones. Grupo Socialista, Partido Popular, Vox, Podemos-Carnidad y Compromiso.
+[2708.8 → 2712.8] Pasemos al punto de orden del día, que es la aprobación de la constitución de Estado
+[2712.8 → 2715.8] judicial. Lista de facturas, José Ángel.
+[2717.8 → 2724.8] Se trata de aprobar el pago de varias facturas de inversión por importe de 14.442,55 euros.
+[2724.8 → 2729.8] Consta de los informes preceptivos y explicaciones de los gastos realizados y se han considerado
+[2729.8 → 2734.8] como inversión. Estos gastos se han realizado en el ejercicio actual, en el 2025.
+[2735.8 → 2739.8] Y se realizaron, a su vez, con el presupuesto prorrogado del 2024 al 2025.
+[2740.8 → 2745.8] Estos gastos de inversión han sido debidamente conformados por el empleado público responsable,
+[2745.8 → 2750.8] que se apunta también a un informe justificativo. Queda también constatado que se han recibido
+[2750.8 → 2753.8] los bienes indicados y que los precios facturados son precios de mercado.
+[2753.8 → 2758.8] Con lo que proponemos al Pleno aprobar el reconocimiento extrajudicial de créditos
+[2758.8 → 2761.8] y aprobar el pago de la relación de facturas aquí indicada.
+[2761.8 → 2762.8] Gracias.
+[2762.8 → 2764.8] ¿Hables al respecto, Salva?
+[2792.8 → 2793.8] Sí.
+[2822.8 → 2828.8] Entendemos que en algunas, como la compra de un banco o de una fonte que no tenga proveedor,
+[2828.8 → 2837.8] pero que tenga que comprar muebles en paterna o tenga que buscar a un equipo de aire acondicionado en La Liana,
+[2837.8 → 2841.8] pues me parece que en el pueblo no hay empresas que puedan dar este servicio.
+[2841.8 → 2849.8] En cuanto a las justificaciones, hay dos facturas, que es la de compra de un banco y una fonte,
+[2849.8 → 2855.8] que en ningún caso fija la justificación de por qué se due como extrajudicial.
+[2855.8 → 2859.8] No se sabe si es porque no falta nota partida, si es que hay una reparación…
+[2859.8 → 2861.8] No tiene ninguna justificación.
+[2861.8 → 2866.8] Me gustaría saber, y ese banco, a dónde se ha colocado y cuál es la justificación.
+[2866.8 → 2867.8] Gracias.
+[2867.8 → 2884.8] Muchas gracias. Independientemente de compartir lo que el rechidor del PP acaba de comentar,
+[2884.8 → 2891.8] nosotros sí que vamos a apoyar, vamos a dar un voto a favor, porque al final hay que pagar.
+[2891.8 → 2893.8] Esto es un servicio que hay que pagar.
+[2893.8 → 2900.8] Entonces, todo lo que se pueda acortar, y como bien ha comentado, todo lo que se pueda contratar en Riva Roja, mejor.
+[2900.8 → 2902.8] Simplemente era eso. Gracias.
+[2902.8 → 2904.8] Muchas gracias, José.
+[2913.8 → 2919.8] Yo volvía a comentar, también voy a dar el suporte al rechidor del PP a lo que ha comentado,
+[2919.8 → 2921.8] para que coincidís en ella en ese sentido.
+[2921.8 → 2928.8] Y también lo que volvía a compartir es que estos gastos que aparecen en el Estatuto Judicial
+[2928.8 → 2934.8] son gastos que supuestamente están planificados porque no son cosas que tienen que ver con algo extraordinario
+[2934.8 → 2938.8] o emergencias o alguna cosa que ha surgido de res.
+[2938.8 → 2943.8] Yo entiendo que todas las facturas que están así, todos los gastos que están así,
+[2943.8 → 2947.8] que hablemos de lo que ha comentado Salva, una fonda, desvigilador,
+[2947.8 → 2954.8] diferentes cosas que entiendo que han de estar en un plan de inversiones que se hacen por el Estatuto Judicial
+[2954.8 → 2961.8] y consideremos que en estos puntos sí que habría de plantearse algún punto o algún anexo
+[2961.8 → 2966.8] que valore el por qué se hace de esta forma el Estatuto Judicial y por qué no está dentro de esa programación
+[2966.8 → 2970.8] o de una forma en que se pague correctamente.
+[2970.8 → 2976.8] Entendemos que eso es una herramienta legal, yo ya lo sé, pero también sé que es una herramienta extraordinaria
+[2976.8 → 2982.8] y que es verdad que muchas veces lo que vemos así es que se hace de manera ordinaria esta herramienta
+[2982.8 → 2986.8] porque de hecho hoy tenemos tres puntos de reconocimiento del Estatuto Judicial.
+[2986.8 → 2989.8] Por lo tanto, quería saber ese punto. Gracias.
+[2990.8 → 2994.8] Mis palabras.
+[2994.8 → 3000.8] Os falta la pregunta del millón. La pregunta del millón es cómo puede ser que son facturadas en 2025
+[3000.8 → 3004.8] y se lleven por la modalidad extrajudicial cuando no son del ejercicio anterior,
+[3004.8 → 3010.8] salvo si efectivamente hay una factura, y lo explico, del 2024 rechazada por los técnicos
+[3010.8 → 3018.8] y vuelta a enviar en el 2025 y entonces ya sí que ha sido conformada por el técnico del área,
+[3018.8 → 3022.8] mientras el técnico del área no conforme en algo, aquí se rechaza todo.
+[3022.8 → 3028.8] Por eso, cuando veis los informes de las extrajudiciales tiene que ir conformado por los técnicos correspondientes
+[3028.8 → 3035.8] y el área correspondiente. En cualquier caso, son buenas preguntas para la gestión de cada área
+[3035.8 → 3041.8] también que en su momento al igual necesitan, precisan de hacer cosas que uno muchas veces no tiene la bola de cristal
+[3041.8 → 3047.8] y no sabe lo que necesita en un momento dado. Y otras veces que es necesario porque te lo piden
+[3047.8 → 3053.8] y esto es la gestión del día a día de un ayuntamiento este y todos los municipios de España.
+[3053.8 → 3059.8] Y hay otra cuestión a tener en cuenta en este detalle, y es que estábamos en un presupuesto prórroga
+[3059.8 → 3064.8] y eso también hay que tenerlo en cuenta. Y hay otro detalle a tener en cuenta, no en todas las facturas,
+[3064.8 → 3072.8] pero en la mayoría, y es que las bases de ejecución hasta este presupuesto último que hemos aprobado en septiembre
+[3072.8 → 3080.8] cuando entró en vigor, antes hasta 3.000 euros no hacía falta hacer ERC, con lo cual muchos de los técnicos
+[3080.8 → 3087.8] pensaban que podían hacerlo sí o sí. En otros casos sí que hay, dice que era urgente realizar la compra.
+[3087.8 → 3094.8] Y también ha habido dudas, por eso he hecho yo hincapié al principio de decir que se han declarado inversiones,
+[3094.8 → 3102.8] porque a veces hasta que intervención no lo dicen no se sabe si son inversión o son un gasto de servicio corriente,
+[3102.8 → 3110.8] según la durabilidad de lo que se vaya a hacer o cómo se vaya a hacer. Entonces también surgen esas dudas de parte de los departamentos.
+[3110.8 → 3117.8] Ahora bien, lo importante es que aquí no se debate si lo que hemos comprado está bien, si lo hemos comprado en el pueblo o no.
+[3118.8 → 3126.8] Las cosas se compran en el municipio, la mayoría de cosas, y siempre que se puede, pero si el servicio que lo necesitas rápido
+[3126.8 → 3133.8] y si el coste es diferente, pues también tienes que velar por la parte económica del servicio.
+[3133.8 → 3139.8] Y siempre contamos con los proveedores del municipio, pero también hay que valorar el coste de ese servicio
+[3139.8 → 3146.8] y si lo pueden hacer en el momento que se precisa. Y esas variables hay que tenerlas en cuenta a la hora de decidir cómo hacerlo.
+[3146.8 → 3153.8] En cualquier caso, lo traemos a pleno para que se apruebe, si ustedes lo consideran oportuno,
+[3153.8 → 3161.8] y se pague, como dice José Luis, a los proveedores en la máxima diligencia posible. Gracias.
+[3162.8 → 3164.8] ¿Alguna cosa que se haga según la intervención?
+[3164.8 → 3171.8] Gracias. Pues hablando de costes, lo que me llama la atención es el coste del banco.
+[3171.8 → 3180.8] Hay una factura de 1.971 euros de Banco Brick Macizo, de la empresa CM Plastic Recycling.
+[3180.8 → 3189.8] Yo tengo un presupuesto de hoy, de esta misma empresa, por este mismo banco, de 440 euros, iba incluido.
+[3189.8 → 3195.8] Entonces, no sé si es la urgencia de traerlo de al chinés o que está mal mecanizado y en vez de un banco se compraron cuatro,
+[3195.8 → 3203.8] pero la diferencia es notable de 440 euros que pasa el presupuesto de la misma empresa, el mismo banco, mismo modelo, mismo color.
+[3203.8 → 3211.8] Y aquí son 1.900 euros. Por eso le preguntaba si era un banco, eran dos o dónde estaban colocados, porque la diferencia…
+[3211.8 → 3218.8] Perdón, son cerca de 1.500 euros y no creo que el transporte del chineta aquí y la colocación sea ese importe.
+[3218.8 → 3231.8] Entonces, sí que me gustaría que, si no usted, porque entiendo que a usted le llega la factura al área que nos haga llegar la factura de este suministro y colocación de bancos,
+[3231.8 → 3237.8] porque la diferencia es notable y antes de sacar cualquier conclusión me gustaría revisarla, la factura. Gracias.
+[3237.8 → 3239.8] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[3239.8 → 3241.8] ¿Más palabras? Pues Ángel.
+[3241.8 → 3251.8] Bueno, las conclusiones las ha sacado usted porque desde las comisiones informativas podía haber ido al técnico del área correspondiente y haberle preguntado de qué era esto y exactamente qué factura
+[3251.8 → 3259.8] y no venir aquí a intentar postergiversar, hacer mucho ruido y decir que aquí se compran las cosas multiplicado por cuatro.
+[3259.8 → 3267.8] Me parece indecente que diga usted eso. Primero se va y pregunte dónde toca, que tiene el expediente desde hace dos semanas casi,
+[3267.8 → 3273.8] y pregunte usted al técnico correspondiente y no venga aquí a decir, a insinuar cosas que no son.
+[3273.8 → 3282.8] Hombre, vamos, y aparte de eso que yo le tenga que decir cómo era el banco, pues no sé si era de color rojo, rosa o verde, yo qué sé.
+[3282.8 → 3288.8] Aquí traemos facturas que han sido conformadas por los técnicos, firmadas por los técnicos.
+[3288.8 → 3296.8] Si usted tiene alguna duda de algún técnico, se va y le pregunta y revisa la factura, pero no venga aquí ya a insinuar cosas que no son.
+[3296.8 → 3303.8] Porque esa política no es la buena, esa no es la política buena que se tiene que llevar aquí.
+[3303.8 → 3307.8] Aquí se viene con datos. ¿De acuerdo? Gracias.
+[3307.8 → 3314.8] Bueno, quedan claras las dos intervenciones, la última.
+[3314.8 → 3320.8] Bueno, yo siempre le aconsejo, porque estamos hablando de una factura, de una diferencia que cuando uno la ha dicho,
+[3321.8 → 3328.8] es una anímala, pero tal vez si vas a la factura te das cuenta de que son varios bancos, no uno, son varios.
+[3328.8 → 3331.8] Y cuando son varios, es porque es otro técnico.
+[3331.8 → 3334.8] En fin, tenemos las condiciones informativas.
+[3334.8 → 3338.8] Yo sé que, efectivamente, cuando uno va a hacer política, queda muy bien el pleno.
+[3338.8 → 3343.8] A ver si pillan un renuncio al rechidor y exageren y todo el mundo se va.
+[3343.8 → 3349.8] Pero yo creo que esto es una cualidad del rechidor, cada uno ya sabe lo que hace, su vida y cómo lo hace.
+[3349.8 → 3354.8] Pero sí que es verdad que si tiene que haberse ido al técnico o al área, también no.
+[3354.8 → 3357.8] El error es que hay varios bancos.
+[3357.8 → 3361.8] Pues a mí los de 4.640 serán tres, cuatro bancos los que hay.
+[3361.8 → 3362.8] Y está por una factura.
+[3362.8 → 3364.8] Como prueba, no están.
+[3364.8 → 3371.8] Y bueno, mirando también, porque se cuestionaba el tema de los compres a proveedores externos,
+[3371.8 → 3374.8] ratificar lo que dice el rechidor.
+[3374.8 → 3380.8] Desde que estamos gobernando nosotros, son los autónomos y todo lo que podemos, lo que se compra en el pueblo.
+[3380.8 → 3386.8] Esta empresa en concreto, si no me equivoco mal, hay poquitos en la Comunidad Valenciana.
+[3386.8 → 3389.8] Trabajan en el plástico reciclado.
+[3389.8 → 3393.8] Y si ha mirado su presupuesto, lo ha visto, lo que ha documentado,
+[3393.8 → 3396.8] verá que son empresas únicas y que en Rivarracha no hay ninguna.
+[3396.8 → 3398.8] Por lo tanto, son varios bancos.
+[3398.8 → 3400.8] Es una empresa que no existe en Rivarracha.
+[3400.8 → 3401.8] Es material.
+[3402.8 → 3407.8] Y lo que estamos haciendo es, en base a lo que nosotros creemos, buscar el plástico reciclado
+[3407.8 → 3412.8] como un elemento de movilidad y urbano que dura más que la madera
+[3412.8 → 3416.8] y que en definitiva hemos dado una más garantía.
+[3416.8 → 3417.8] Eso es lo que teníamos antes.
+[3417.8 → 3418.8] No están.
+[3418.8 → 3419.8] ¿Quieres comentar alguna cosa?
+[3419.8 → 3420.8] Pero rápido.
+[3420.8 → 3421.8] Sí, puede ser, sí.
+[3421.8 → 3423.8] Sí, porque no estás en turno, pero rápido.
+[3423.8 → 3427.8] Bueno, lo digo porque como los bancos han tenido tanto que decir,
+[3428.8 → 3429.8] es que estoy viendo el presupuesto.
+[3429.8 → 3436.8] Son cuatro bancos que son 384,90 euros más 90 euros de desplazamiento.
+[3436.8 → 3439.8] Decir que estos bancos son con reciclado de bricks,
+[3439.8 → 3441.8] que hasta el momento no se habían hecho.
+[3441.8 → 3444.8] Somos la primer municipio que los ha puesto.
+[3444.8 → 3447.8] Son los bancos que están en el edificio de la estación y entre los aseos.
+[3447.8 → 3452.8] Y ese brick que se recicla lo está haciendo una empresa nuestra del área industrial.
+[3452.8 → 3455.8] Hasta ese momento, dentro de los plásticos que se reciclaban,
+[3455.8 → 3458.8] los que no se podían reciclar eran precisamente los bricks de leche,
+[3458.8 → 3460.8] porque no había forma.
+[3460.8 → 3463.8] Pues al final se ha conseguido y ha sido gracias a una empresa valenciana
+[3463.8 → 3467.8] y además en colaboración, porque no me quiero equivocar en la empresa,
+[3467.8 → 3471.8] de una empresa de materiales de nuestra industria.
+[3473.8 → 3476.8] Las sedes están en el Chemesí, trabajan, son bons,
+[3476.8 → 3478.8] pero posiblemente colaboren alguna nuestra.
+[3478.8 → 3481.8] Pero bueno, el presupuesto es nada más barato que el que haya hecho usted,
+[3482.8 → 3485.8] pero bueno, pasemos al siguiente punto del orden del día.
+[3487.8 → 3488.8] Vamos a votar este punto.
+[3488.8 → 3490.8] El reconocimiento del punto 6.
+[3490.8 → 3492.8] ¿Vamos a votarlo?
+[3502.8 → 3503.8] ¿Faltaría un voto? Pues ya está.
+[3503.8 → 3506.8] ¿Lot C a favor? ¿Nuevas extensiones? ¿Cruz Socialista?
+[3507.8 → 3508.8] ¿Cruz Socialista?
+[3509.8 → 3510.8] A favor.
+[3510.8 → 3511.8] Grupo Popular.
+[3512.8 → 3513.8] Vox.
+[3514.8 → 3516.8] ¿Compromiso a Esquerra y Podemos?
+[3516.8 → 3517.8] ¿Y compromiso?
+[3518.8 → 3520.8] Pasemos al 5 punto del orden del día,
+[3520.8 → 3522.8] que es el punto 7.
+[3534.8 → 3535.8] ¿Quién va a decir el punto?
+[3535.8 → 3536.8] Vale, Pablo.
+[3539.8 → 3540.8] Bueno, buenas tardes.
+[3540.8 → 3543.8] Como bien dice la moción, y ya todos lo sabéis,
+[3543.8 → 3546.8] hace más de un año se aprobó por unanimidad en el Congreso de los Diputados
+[3546.8 → 3549.8] la proposición de ley para mejorar la calidad de las personas
+[3549.8 → 3552.8] con esclerosis lateral amiotrófica.
+[3552.8 → 3556.8] Publicada en el Boletín Oficial del Estado el 31 de octubre,
+[3556.8 → 3558.8] esta ley tiene como objeto establecer un marco jurídico
+[3558.8 → 3560.8] que refleje el compromiso de la sociedad,
+[3560.8 → 3563.8] y en particular de las Administraciones competentes,
+[3563.8 → 3566.8] de asegurar un trato digno, respetuoso y adecuado
+[3566.8 → 3570.8] para las personas incluidas en su ámbito de aplicación,
+[3570.8 → 3572.8] así como sus familias,
+[3572.8 → 3574.8] teniendo en cuenta, particularmente,
+[3574.8 → 3577.8] los reducidos rangos temporales de supervivencia en el caso de la ELA
+[3577.8 → 3579.8] y otras enfermedades similares a ella.
+[3579.8 → 3580.8] Como bien es sabido,
+[3580.8 → 3582.8] el Gobierno de España no ha llegado a presentar
+[3582.8 → 3585.8] propuesta de presupuestos generales del Estado todavía,
+[3585.8 → 3587.8] pero hace unos días el Consejo de Ministros aprobó
+[3587.8 → 3590.8] el Real Decreto Ley 11.025,
+[3590.8 → 3592.8] que establece medidas para la financiación y desarrollo
+[3592.8 → 3595.8] de la Ley ELA de octubre de 2024.
+[3595.8 → 3597.8] Por todo esto, la propuesta de acuerdos
+[3597.8 → 3599.8] que hoy traemos al Pleno Municipal…
+[3600.0 → 3605.4] municipal, junto con Vox, es que el Ayuntamiento de Rivarroja del Turia insta al Gobierno de
+[3605.4 → 3610.0] España a distribuir con máxima urgencia la dotación presupuestaria extraordinaria
+[3610.0 → 3615.8] de 500 millones de euros, necesaria para asegurar que todos los avances y derechos contemplados
+[3615.8 → 3620.9] en la Ley 3.2024 se materialicen con inmediatez, con carácter retroactivo, desde la entrada
+[3620.9 → 3626.0] en vigor de la referida norma y en condiciones de equidad y plena accesibilidad a toda España
+[3626.0 → 3630.1] para la totalidad de los afectados, así como instar a la Generalitat Valenciana a
+[3630.1 → 3635.5] adaptar el sistema de dependencia autonómico para poder incorporar el grado 3+, y así
+[3635.5 → 3639.3] garantizar el acceso a nuevas prestaciones para las personas con ELA de toda la comunidad
+[3639.3 → 3642.7] valenciana. Aquí tengo que añadir que esto es una esmena
+[3642.7 → 3647.7] que luego le voy a decir, que hemos aceptado de Esquerra Unida Unides Podem y Compromís,
+[3647.7 → 3655.7] y ya le hemos añadido aquí. Y, luego, el punto número dos es que la Corporación
+[3655.7 → 3661.0] Municipal quiere mostrar todo su apoyo y cercanía a las personas con ELA, así como a sus familiares,
+[3661.0 → 3665.1] profesionales sanitarios y cuidadores, que cada día afrontan esta enfermedad con fuerza,
+[3665.1 → 3670.0] dignidad y esperanza. Y de momento ya está. SEÑOR PRESIDENTE DE LA JUNTA DE EXTREMADURA
+[3670.0 → 3671.0] DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA
+[3671.0 → 3672.0] DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA DE EXTREMADURA
+[3673.0 → 3677.0] Bueno, desde el Grupo Municipal Socialista también manifestamos nuestro compromiso con
+[3677.0 → 3681.1] las personas que padecen esclerosis lateral amiotrófica, así como otras enfermedades
+[3681.1 → 3685.8] neurodegenerativas o de alta complejidad, así también como a sus familias y cuidadores.
+[3685.8 → 3690.8] Por ello, que valoramos positivamente la moción presentada por el Grupo Popular, por seguir
+[3690.8 → 3695.9] también por la línea continuista que fue aprobada esta proposición de ley el año
+[3695.9 → 3701.3] pasado, tanto en el Congreso de los Diputados y en el Senado, por todos los grupos políticos.
+[3701.3 → 3705.2] Valoramos positivamente, pero es necesario recordar que el Gobierno de España ya ha
+[3705.2 → 3710.9] aprobado, que es lo que ha comentado Paula, el Real Decreto Ley 11-2025, el 21 de octubre,
+[3710.9 → 3715.2] que desarrolla la ley que se aprobó tanto en el Congreso como en el Senado para la protección
+[3715.2 → 3719.6] de las personas con ELA, así como otras enfermedades graves, dotando al sistema de dependencia
+[3719.6 → 3723.2] de nuevos instrumentos, tanto jurídicos como financieros.
+[3723.2 → 3727.3] Este Real Decreto Ley introduce una reforma estructural del sistema para la autonomía
+[3727.3 → 3730.9] y la atención a la dependencia, con tres ejes principalmente.
+[3730.9 → 3735.0] Creación del nuevo grado 3+, de dependencia extrema, aplicable a personas que requieren
+[3735.0 → 3737.4] cuidados permanentes 24 horas.
+[3737.4 → 3741.5] También el establecimiento de una cuantía mínima estatal garantizada de 4.930 euros
+[3741.5 → 3747.8] al mes, con una máxima en prestaciones vinculadas al servicio de asistencia personal hasta 9.859
+[3747.8 → 3748.8] euros al mes.
+[3748.8 → 3752.9] La aprobación de una partida extraordinaria, que aquí hacíamos referencia un poco a lo
+[3752.9 → 3759.8] que hacía la exposición de un motivo, donde la Fundación Luzón calculaba que se requerían
+[3759.8 → 3763.3] entre 184 millones de euros y 230 millones.
+[3763.3 → 3768.0] El Gobierno estatal hace una apuesta, en una partida extraordinaria, de 500 millones de
+[3768.0 → 3772.3] euros para reforzar este sistema, que será distribuido entre todas las comunidades autónomas
+[3772.3 → 3777.1] conforme al marco de cooperación interadministrativa, así como los criterios de financiación del
+[3777.1 → 3778.1] nivel acordado.
+[3778.8 → 3780.4] Así, aspectos técnicos relevantes.
+[3780.4 → 3784.4] Cabe destacar que este real decreto aprobado modifica el real decreto anterior, que es
+[3784.4 → 3789.6] el 1.051-2013, para adaptar los baremos de valoración y mejorar los procedimientos de
+[3789.6 → 3791.9] urgencia en enfermedades neurodegenerativas.
+[3791.9 → 3795.6] Además, se crean equipos interdisciplinares especializados en coordinación sociosanitaria,
+[3795.6 → 3799.6] es decir, entre servicios sociales y sanidad, para atender principalmente los casos más
+[3799.6 → 3800.6] graves.
+[3800.6 → 3805.5] Se amplía la interoperabilidad de los sistemas autonómicos de información de este sistema
+[3805.5 → 3810.0] con el objetivo de reducir los pasos de resolución y eliminar duplicidades administrativas.
+[3810.0 → 3815.3] Además, las comunidades autónomas deberán remitir datos mensuales al inserso para monitorizar
+[3815.3 → 3818.7] el grado de ejecución de los fondos y la cobertura del nuevo grado 3+.
+[3818.7 → 3823.2] Además, el Estado fija el marco de cofinanciación para el seguimiento y control del gasto correspondiente
+[3823.2 → 3827.1] a las comunidades autónomas, en aplicación del artículo 12 del real decreto ley.
+[3827.1 → 3831.5] Y, además, se prevé que esta dotación extraordinaria de 500 millones se consolide parcialmente
+[3831.5 → 3836.6] en los presupuestos generales del Estado de 2026, con una continuidad en los ejercicios
+[3836.6 → 3838.0] posteriores.
+[3838.0 → 3843.5] Es por ello que hemos presentado una enmienda propuesta, que sería la siguiente.
+[3843.5 → 3847.1] Que la Corporación del Ayuntamiento de Rivarroja de Turia inste al Consejo de la Unidad Valenciana
+[3847.1 → 3853.9] a adoptar un plan autonómico de implementación del real decreto ley 11.2025, garantizar la
+[3853.9 → 3857.7] aplicación efectiva del grado 3+, así como la atención inmediata a las personas con
+[3857.7 → 3863.5] ELA y patologías afines, asegurar la retroactividad y priorizar la simplificación administrativa
+[3863.5 → 3865.9] y fomentar la cooperación entre Administraciones.
+[3865.9 → 3866.9] Muchas gracias.
+[3866.9 → 3869.4] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[3869.4 → 3870.4] Muchas gracias.
+[3870.4 → 3872.4] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[3872.4 → 3873.4] José Manuel Álvarez.
+[3873.4 → 3874.4] SEÑOR ÁLVAREZ CORTÉS.
+[3874.4 → 3880.7] Bueno, en primer lugar, agradezco al Partido Popular poder afechar las enmiendas planteadas
+[3880.7 → 3882.4] en este punto de acuerdo.
+[3882.4 → 3887.5] Es verdad que también habíamos planteado otras aportaciones, que no sé si se podrán
+[3887.5 → 3894.2] plantear, que eran afechar a la exposición de motivos, lo que de hecho ha comentado Paula,
+[3894.2 → 3899.1] que es los fondos extraordinarios que ha hecho el Gobierno estatal, y también en el título
+[3899.1 → 3904.1] de la moción que habla de instar al Gobierno de España y también a la Generalidad Valenciana
+[3904.1 → 3905.9] a lo que dicen los protocolos.
+[3905.9 → 3911.0] Por tanto, es saber si esto también se afecta a la semana, o sea, a la moción, y por nuestra
+[3911.0 → 3915.8] parte, si es así, no, donaremos soporte a esta propuesta, y consideramos que es importante,
+[3915.8 → 3919.7] porque al final yo creo que todos defendemos lo mismo en nuestro sentido, y por tanto,
+[3919.7 → 3922.7] si es así, no, votaremos a favor.
+[3922.7 → 3923.7] Gracias.
+[3923.7 → 3924.7] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[3924.7 → 3925.7] Muchas gracias.
+[3925.7 → 3926.7] Compromiso, Rafa.
+[3926.7 → 3927.7] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[3927.7 → 3928.7] Gracias, señor alcalde.
+[3928.7 → 3931.7] Buenas tardes a todos y a todas.
+[3931.7 → 3939.8] Ahora, en esta moción de aportar al Partido Popular, primero aclarar al representante
+[3939.8 → 3944.5] del Partido Popular que les desmene a esta moción de las comisiones informativas el
+[3944.5 → 3946.7] deseo de Esquerra Unida-Podemos.
+[3946.7 → 3952.5] Compromiso no va a ser el que va a aportar ninguna semana.
+[3952.5 → 3958.1] Nosotros creemos que al César lo que es del César.
+[3958.1 → 3963.9] Continuando en esta moción, la verdad es que nosotros, y después de los últimos acontecimientos
+[3963.9 → 3969.7] que ya han hablado, es que me han precedido, la verdad es que no le trobaba en ningún
+[3969.7 → 3977.0] sentido, tan solo en el punto 2 de la propuesta de acuerdo, en el que dice que la Corporación
+[3977.0 → 3982.3] Municipal quiere mostrar todo el soporte y proximidad a las personas malaltas de la Aysina
+[3982.3 → 3988.2] como a sus familias, profesionales, sanitarios y cuidadores que cada día afrontan una malaltía,
+[3988.2 → 3990.1] esta malaltía en fuerza, dignidad y esperanza.
+[3991.1 → 3998.2] Por lo demás, la verdad es que no creíamos que tendría sentido esta moción, y ya digo,
+[3998.2 → 4004.7] por los últimos acontecimientos que han relatado, que es la aprobación del Real Decreto.
+[4004.7 → 4011.6] Pero, vis la intervención del Partido Popular, del Partido Socialista y de Esquerra Unida,
+[4011.6 → 4018.5] creemos que si la moción se presenta en todas las semanas que se han dicho, nosotros, evidentemente,
+[4018.6 → 4021.5] en la Aysina, sí que la traemos en sentido y votaremos a favor. Gracias.
+[4021.5 → 4025.1] SEÑOR PRESIDENTE. ¿Más problemas? ¿Paula?
+[4025.1 → 4030.0] SEÑORA PRESIDENTA. Sí, a ver, sobre, para contestar un poco
+[4030.0 → 4036.5] lo de las semanas, sí que hemos aceptado todas, moción para exigir directamente, hemos quitado,
+[4036.5 → 4040.9] es moción para exigir a todo el mundo, o sea, directamente, o sea, que sí que hemos aceptado
+[4040.9 → 4047.2] esas semanas. Y las de los puntos también. Había una que era sobre una frase concreta
+[4047.2 → 4051.3] en el argumentario, que era que quitáramos el Gobierno de España no ha llegado a presentar
+[4051.3 → 4056.0] propuesta de presupuestos y otra frase más, hemos quitado esa otra frase más, pero que no
+[4056.0 → 4059.1] ha llegado a presentar propuesta de presupuestos generales, sí que la hemos dejado, porque nos
+[4059.1 → 4065.1] parece algo que es algo lógico y real y no podíamos quitarlo. Luego, sobre lo que me estás
+[4065.1 → 4069.8] diciendo, Rafa, nosotros no dejamos de poner en valor los 500 millones de euros aprobados hace
+[4069.8 → 4074.2] una semana, pero es que llegan mal y tarde. Entonces, esta moción para nosotros sí tiene
+[4074.2 → 4080.1] sentido seguir presentándola, porque durante este año entero la inacción de este Gobierno han
+[4080.1 → 4087.1] fallecido más de 1.000 enfermos de ELA que son una media de tres al día. Son datos muy duros y
+[4087.1 → 4091.1] para las personas, como en mi caso, que trabajamos en el ámbito sanitario y lo vemos día a día más
+[4091.1 → 4096.1] aún. Por esto mismo digo que llega un poco tarde, porque hace un año que se aprobó una ley que no
+[4096.1 → 4101.2] iba acompañada de una memoria económica que garantizase su financiación, la ley que no sirvió
+[4101.2 → 4106.2] nada más que para lo que vimos, que el presidente se hiciera fotos con los enfermos de ELA y sus
+[4106.2 → 4111.5] familiares. Y digo que llega mal porque, una vez más, el Gobierno nacional deja que el peso de la
+[4111.5 → 4115.9] gestión, que no se ha realizado durante un año entero, ahora caiga sobre una comunidad autónoma,
+[4115.9 → 4120.4] bueno, todas las comunidades autónomas, que son órganos de gobierno bastante más reducidos que
+[4120.4 → 4125.8] el Gobierno nacional. Durante este año hemos tenido que ver acciones que cada comunidad autónoma ha ido
+[4126.2 → 4132.3] por falta de acción y compromiso del Gobierno nacional con los enfermos de ELA. En la Comunidad
+[4132.3 → 4137.2] de Madrid vimos la creación del primer centro especializado de atención diurna para pacientes
+[4137.2 → 4142.5] de ELA. En La Rioja y en Extremadura aprobaron deducciones fiscales para gastos relacionados
+[4142.5 → 4145.7] con esta enfermedad. Y aquí, en la Comunidad Valenciana, como en Galicia y en las Baleares,
+[4145.7 → 4151.5] ayudas directas o subvenciones. Justo esta semana yo pude hablar con un enfermo que padece ELA y
+[4151.6 → 4156.2] su familia, y así me lo confirmaban. Por eso, también, la importancia de traer esta moción al
+[4156.2 → 4162.2] pleno, porque desde la aprobación en 2024 ninguna ayuda. Las subvenciones de la Generalitat están en
+[4162.2 → 4167.2] trámites, pero por lo menos se han podido ir tramitando. También ellos me añaden que,
+[4167.2 → 4171.1] en cuanto a notificaciones personales sobre esto que se acaba de aprobar, de momento no han recibido
+[4171.1 → 4176.2] ninguna, salvo lo que han podido leer en redes sociales, internet, etcétera. Tras un año de
+[4176.2 → 4180.2] espera, ahora los pacientes deben solicitar estas ayudas del Estado y esperar que se tramiten lo
+[4180.2 → 4184.7] más pronto posible por la comunidad autónoma, para no seguir esperando más de un año sin
+[4184.7 → 4190.1] recibirlas. Así que sí, el Partido Popular se alegra de esta aprobación dotada de 500 millones
+[4190.1 → 4194.8] de euros, que, aunque no sea únicamente para la ley ELA y sea también una inyección para la ley de
+[4194.8 → 4199.4] dependencia en general, como ha comentado David, pues nosotros nos alegramos y nos esperamos que
+[4199.4 → 4203.1] lleguen en tiempo y forma. No vaya a pasar como otras ayudas, como puede ser los de la DANA.
+[4203.1 → 4208.6] Sobre tus enmiendas, David, las acepto, las cinco, las aceptamos y las añadiremos y se
+[4208.7 → 4210.5] lo pasaremos a la secretaria. Nada más.
+[4210.5 → 4213.5] Más palabras, David.
+[4213.5 → 4220.5] Sí, yo no entraré mucho en el debate, porque creo que, con considerar la unanimidad por parte de
+[4220.5 → 4225.4] todos los grupos en esta materia, yo creo que ya es algo histórico y debemos seguir así, pero sí
+[4225.4 → 4229.5] que me gustaría matizar que las comunidades autónomas, en este caso la ciudad valenciana,
+[4229.5 → 4234.3] son las competentes en la gestión y tramitación de la resolución de las leyes de dependencia.
+[4234.9 → 4240.6] No desviemos tampoco mucho el debate. Entendemos que ha tardado un año en desarrollarse este real
+[4240.6 → 4246.1] decreto, pero bueno, son buenas noticias. La inversión que va a hacer el Gobierno estatal es
+[4246.1 → 4250.0] importante y yo creo que lo que tiene que hacer ahora cada comunidad autónoma es establecer un
+[4250.0 → 4255.1] protocolo, una calendarización y ejecutar las prestaciones lo antes posible. Muchas gracias.
+[4255.1 → 4259.1] Más palabras, José Manuel.
+[4260.1 → 4267.9] Yo quería también compartir las palabras del PSOE, porque creo sinceramente que es verdad que
+[4267.9 → 4272.3] hemos de exigir, porque es una cosa que ha tardado mucho, y eso es una realidad y hemos de ser
+[4272.3 → 4279.4] objetivos, pero también es verdad que ya desde el Gobierno estatal, en este sentido, unas prácticas
+[4279.4 → 4285.3] políticas que son novedosas, que no se han hecho nunca, es decir, por primera vez el Estado asegura
+[4285.8 → 4291.6] directamente el costo del 50% de esta prestación y lo descubre, es una cosa novedosa y es una cosa
+[4291.6 → 4298.1] nueva que ha posado el Gobierno estatal y, por tanto, creo que eso también es importante posar en
+[4298.1 → 4303.4] valor esa realidad. Y corroboré también la parte de la dependencia, porque sí que es verdad que
+[4303.4 → 4310.7] esta norma o esta propuesta lo que hace también es relegar en la parte de la dependencia parte
+[4311.3 → 4316.7] económica y es verdad que eso forma parte del Gobierno autonómico, pero es cierto que a nivel
+[4316.7 → 4321.3] normativo la dependencia es autonómica, por tanto, se ha de regular también.
+[4321.3 → 4327.4] Creo que impulsar este nuevo grado 3+, es también muy importante para realidades que son más
+[4327.4 → 4333.4] greves o que necesiten más atención y, por tanto, creo que es una norma que es muy positiva.
+[4333.4 → 4338.0] Es verdad que podría haber llegado mucho más pronto y eso es verdad y, por tanto, también
+[4338.0 → 4343.3] de instar al Gobierno de España, pero también donar soporte a las prácticas políticas que está
+[4343.3 → 4347.1] haciendo, que es una cosa que más había hecho en la historia de España. Gracias.
+[4357.1 → 4362.8] Nada, nosotros por nuestra parte, para finalizar un poco y no seguir con el debate, agradecerle a
+[4362.8 → 4368.1] Vox, que se ha unido desde las comisiones informativas a la moción conjunta. Esperamos
+[4368.1 → 4372.9] el voto a favor de todos los partidos, porque la verdad, como ha dicho David, es algo que creo
+[4372.9 → 4376.5] que estamos todos bastante concienciados y vamos todos a una y eso también es muy positivo.
+[4376.5 → 4384.5] Y sobre las enmiendas, ya lo he comentado, que aceptamos las del Partido Socialista y las de
+[4384.5 → 4391.9] las demás enmiendas. Gracias. Bueno, eso es, como diría aquí, con adiós rodgando y con el mazo
+[4391.9 → 4400.3] dando, ¿no? Adiós rogando, pero con el mazo dando. En el PSOE siempre arriba. Cuando arriba es el
+[4400.3 → 4406.3] Partido Popular con el Gobierno de España. En todos los avances sociales, en la Ley Universitaria
+[4406.3 → 4412.4] de la Sanidad, siempre que el Gobierno de los PSOE y la izquierda avancen. Pero claro, cuando hacemos
+[4412.4 → 4416.5] algo siempre llega tarde y mal. ¿Qué dice usted que llega tarde y mal cuando estemos nosotros? Pero
+[4416.5 → 4423.9] siempre se aprueba cuando estemos nosotros. Todas las leyes de avanzos con nosotros. Pero para
+[4423.9 → 4431.1] ustedes tarde y mal. No, no. Llega y viene. Con cuanto arriba el Chimo Puig y el Gobierno del
+[4431.1 → 4438.9] Botánico, ¿qué? Vas a comenzar a pagar el medicamento que no se podía pagar, llevar el copagamento y
+[4438.9 → 4444.4] salvar vidas, porque había gente que no podía pagar lo de la hepatitis. Salvar vidas. Porque en los
+[4444.4 → 4453.9] gobiernos del Partido Popular no se subvencionaba esa vacuna, ese medicamento para no morirse.
+[4453.9 → 4459.8] Claro, en aquel momento podría llegar tarde y mal también, porque no llegaba el primer día. Llegaba
+[4459.8 → 4465.4] al año siguiente de gobernar. Pero se tramitaba una ley, se aprobaba y a partir de ahí llevaron todo el
+[4465.4 → 4469.9] copagamiento que ustedes habían pagado y además financiaron para que la gente no muriera en un
+[4469.9 → 4478.2] medicamento que era carísimo. Por lo tanto, discrepan. Entiendo que si hay unanimidad y todo se pasa
+[4478.2 → 4484.8] bonito, pero hombre, que llega tarde y mal no. Llega tarde y viene. Y a la familia con la que estoy hablando,
+[4484.8 → 4490.0] que por eso no la hemos aprobado, pero hay familias como ellas, que hay miles en España, que gracias a
+[4490.0 → 4497.5] esta aprobación, en un gobierno de izquierdas, con el apoyo de muchos parlamentarios, podremos ayudarlos
+[4497.5 → 4506.5] a vivir un poco mejor. Esa es la importancia. ¿Me va a pasar la votación? No pasa nada.
+[4506.5 → 4514.5] Volvemos a tiempos antiguos. ¿Voy a favor de la moción? Se aprueba con unanimidad. Hacemos el 100 puntos del día.
+[4514.5 → 4522.5] A ver, el punto 8, que es la moción conjunta de los grupos municipales. Compromiso.
+[4522.5 → 4531.5] Ah, no está, correcto. Compromiso con la Asamblea de Podemos a motivo de la Primera División y de la DANA,
+[4531.5 → 4534.5] que van a partir del 23 de octubre. ¿Quita la palabra?
+[4534.5 → 4554.5] Compromiso. Vale, gracias. Ahora, bueno, la intervención este matí del señor Carlos Mazón, que ya no sé si es
+[4554.5 → 4568.5] presidente o expresidente. Ahora comprendo por qué la representante del PP habla de tarde y mal. Vista la comparecencia
+[4568.5 → 4582.5] este matí del exhonorable presidente de la Generalitat, lo entiendo. Bueno, creo que todos deberíamos asistir.
+[4582.5 → 4594.5] La semana pasada, algunos en persona, como el alcalde de este municipio, los otros, vía las transmisiones televisivas,
+[4594.5 → 4607.5] depende de quina cadena, al funeral de estado de la DANA. La verdad es que a mí me habría caído la cara de vergoña
+[4607.5 → 4615.5] si me hubieran dicho todo lo que le hubieran dicho a Carlos Mazón. Me hubiera levantado y me hubiera ido seguro.
+[4615.5 → 4627.5] Lo tengo mucho más que claro. Pero, en fin, ha pasado un año, 229 personas muertas, muchas familias destrozadas,
+[4627.5 → 4642.5] tanto anímicamente, sentimentalmente, como económicamente. La reconstrucción, ya saben cómo están, sobre todo las empresas afines al Partido Popular.
+[4642.5 → 4654.5] Y nosotros, en esta moción, lo que venimos a reclamar, o el punto de acuerdo que portamos, son los siguientes.
+[4654.5 → 4664.5] Vamos a variar un poco el primero, porque pensábamos que este martes había dimitido, pero es que ni tan solo se ha dicho la palabra «dimito».
+[4664.5 → 4673.5] No sabemos si va a dimitir, no sabemos si se va a agarrar una baixa para poder continuar en su escó.
+[4673.5 → 4681.5] Es que no sabemos nada. Por eso, este punto, hemos decidido, antes de reunirnos, como compromiso, mantenerlo.
+[4681.5 → 4693.5] Es reclamar formalmente al presidente del Partido Popular, Bertón Núñez Fejó, y a sus órganos correspondientes, la dimisión inmediata del presidente de la Generalitat Valenciana, Carlos Mazón,
+[4693.5 → 4706.5] y la vicepresidenta y consejera de Servicios Sociales, Susana Camarero, por su responsabilidad política en la gestión de las ganas del 29 de octubre de 2024.
+[4706.5 → 4717.5] Declarar a personas no gratis arriba de Racha de Turia, al señor Carlos Mazón y a la señora Susana Camarero, como muestra de reprobación por su actuación y por la manca de sensibilidad demostrada
+[4717.5 → 4720.5] davanta de las víctimas y de sus familias.
+[4720.5 → 4731.5] Ajustar a la Generalitat Valenciana a garantizar la máxima transparencia en la investigación de fechos y a revisar los protocolos de actuación y coordinación
+[4731.5 → 4739.5] davanta de emergencias climatológicas, graves, con el objetivo de mejorar la protección y la seguridad de la ciudadanía.
+[4739.5 → 4754.5] Mostrar el soporte de este ayuntamiento a todas las personas y familias afectadas por las ganas, así como a los profesionales del servicio de emergencias que van a trabajar con dedicación y valentía en aquellas circunstancias extremas.
+[4754.5 → 4779.5] También volvimos a fechar un otro fondo de acuerdo que sería el de reclamar a la mayor brevedad posible que se convoquen elecciones autonómicas para que el pueblo valenciano decida quién tiene que gobernar y no siga una decisión de un despacho de Madrid. Gracias.
+[4784.5 → 4788.5] SEÑORA PRESIDENTA. Buenas tardes.
+[4788.5 → 4799.5] Con respecto a la moción, ya es en el pleno del 2 de diciembre del 2024, ya tanto Esquerra Unida como Compromís trajeron esta moción también.
+[4800.0 → 4807.0] el apoyo de los afectados de la DANA y la dimisión del señor Mazón. Votamos a favor
+[4807.0 → 4810.6] y en este caso estamos de acuerdo con la propuesta que habéis presentado, porque es cierto que
+[4810.6 → 4816.2] no sabemos si esa dimisión es efectiva o no, o si va a estar de baja médica o no,
+[4816.2 → 4822.5] y lo que sí que os pediríamos es que retirarais de los puntos de acuerdo la parte de personas
+[4822.5 → 4828.2] no gratas del señor Mazón y la señora Camadero, con respecto al resto de puntos, incluyendo
+[4829.2 → 4834.8] el que vais a incluir, de reclamar la convocatoria de elecciones autonómicas, también estaríamos
+[4834.8 → 4836.8] de acuerdo. Nada más.
+[4836.8 → 4840.8] Más palabras del Partido Popular. Alberto.
+[4840.8 → 4846.3] Sí, a mí la verdad es que me fa mal todo el cos cuando parlen otra volta de la DANA
+[4846.3 → 4854.8] y de todo lo que pasa. Vosotros fan mención en la moción a que el señor Carlos Mazón,
+[4854.8 → 4861.4] siguiente diputado, va a reclamar responsabilidades políticas, no las va a obtener, porque va
+[4861.4 → 4866.3] a ser en coherencia con aquel principio que es reconocer las responsabilidades de emergencias.
+[4866.3 → 4872.6] En base a aquel oriche actual, señor Mazón, que yo creo que hoy sí que ha dimitido, pero
+[4872.6 → 4878.8] bueno, probablemente lo has que yo mal interpretado. De todas formas, decirles que la responsabilidad
+[4878.8 → 4884.8] no es única y exclusivamente de la Generalitat Valenciana. En el CECOPI es el centro de coordinación
+[4884.8 → 4890.6] de operatividad integrada para las emergencias, donde están el gobierno central y el gobierno
+[4890.6 → 4897.2] autonómico. Y todos aquellos estatutos y cosas de fuerzas y cosas de seguridad del
+[4897.2 → 4904.3] Estado y de la comunidad autonómica. De todas formas, a mí también me agradaría,
+[4904.3 → 4911.0] en base a presentar una semana y afechar un nuevo punto en el que solicitar se reclamen
+[4911.0 → 4916.2] elecciones nacionales ya por la falta de ayudas que han tenido en la DAN a los valencianos
+[4916.2 → 4921.9] y por dejarnos de lado a los valencianos por parte del gobierno español. Me contestan
+[4921.9 → 4926.5] a esta obsesión, porque si estamos mezclando todo, pues vamos a mezclar todo y ya. Que
+[4926.5 → 4932.4] sea un revoluto con todo y ya está. De todas formas, los dineros de la Generalitat han
+[4932.4 → 4936.8] aplicado más y antes que los dineros del gobierno, que probablemente los dineros del
+[4936.8 → 4943.1] gobierno español apliquen. Pero los dineros de la Generalitat han aplicado antes. Ustedes
+[4943.1 → 4950.2] deberían caer en la cara de vergüenza al seguir presentando esta moción hoy. No sé
+[4950.2 → 4955.3] por qué si están esperando un nuevo objetivo a que el PP diga que ahora el cap visible
+[4955.3 → 4961.7] Susana Camarero o siga quien siga, pero como no tienen ahora un cap visible contra el Kianar,
+[4961.7 → 4968.7] pues mantenimos hoy y seguimos en nuestra fuya de ruta. Gracias.
+[4968.7 → 4977.3] Muchas gracias. Primero, como no puede ser de otra manera, en la parte de la condolencia
+[4977.3 → 4984.1] a todas las víctimas, unirnos y a los familiares en el dolor, como no puede ser de otra forma.
+[4984.1 → 4992.5] Pero el doble rasero que tiene que medir la izquierda más radical obsoleta no ha dicho
+[4992.5 → 4998.6] nada del presidente del gobierno, ni de la Confederación Hidrográfica del JUCAR, ni
+[4998.6 → 5006.2] de tantas otras instituciones que no hicieron prácticamente nada. Acuérdese de la palabra
+[5006.2 → 5013.2] del señor Sánchez de si necesita ayuda, que la pidan. No sé, tienen una fijación permanente
+[5013.4 → 5019.4] Por cierto, ha dimitido el señor Mazón, ha presentado la dimisión, me lo han confirmado
+[5019.4 → 5024.5] con el grupo nuestro en Cortes y ahora se abren los procesos de los doce días para
+[5024.5 → 5031.9] elegir candidatos. Pero de verdad que ustedes tienen una forma de medir que se lo tienen
+[5031.9 → 5037.6] que hacer mirar. La Confederación Hidrográfica del JUCAR ya se demostrará, es una de las
+[5037.6 → 5043.7] principales culpables. Y la inacción del gobierno de España también, que cometió
+[5043.7 → 5048.5] errores, lo ha dicho hoy, uno de los errores no fue declarar el estado de emergencia. Pero
+[5048.5 → 5053.3] bueno, evidentemente no vamos a poder dar a este soporte. Primero porque Mazón ya ha
+[5053.3 → 5060.1] dimitido, por lo tanto no tiene mucho sentido. Y luego con el resto me parece como, tomando
+[5060.1 → 5065.8] las palabras de otro concejal, me parecen de una bajeza enorme. Gracias.
+[5065.8 → 5078.1] En primer lugar, lo que debería hacer el Partido Popular y Vox es no desviar la atención
+[5078.1 → 5086.2] y conocer la norma. En este sentido, lo que vemos hoy es que Mazón lo que ha hecho es
+[5086.2 → 5093.6] una dimisión citar y de forma negativa, porque además lo que hace no es dimitir, es seguir
+[5093.6 → 5099.0] en la mentira y hacer una absoluta estafa, que es lo que está haciendo el Partido Popular
+[5099.0 → 5103.5] en Valencia. ¿Por qué? Porque lo que hace Mazón es agafarse a una baixa médica, que
+[5103.5 → 5108.9] es lo que está haciendo, supuestamente está haciendo eso. Lo que supone, por ejemplo,
+[5108.9 → 5114.9] porque debemos hablar también de la realidad, es que él, por ejemplo, el 7 de noviembre
+[5114.9 → 5119.3] tenía que ir a Madrid a una comisión de investigación en la que si está de baixa
+[5119.3 → 5123.3] médica, ahora no tiene que ir, porque es el exímis de esa responsabilidad y de hacer
+[5123.3 → 5130.6] declaraciones. En este sentido, no puede ser que después de un año, ahora, estigamos
+[5130.6 → 5136.1] utilizando que Mazón ha dimitido, cuando ha estado un año de presidente de la unidad
+[5136.1 → 5141.5] y no es que ha estado un año ella sola, es porque ha vuelto, sino con el apoyo del Partido
+[5141.5 → 5148.4] Popular, de todo el Partido Popular en cada acto. Aplaudirlo y darle muchos abrazos a
+[5148.5 → 5154.3] todo el Partido Popular en su conjunto. Además, nosotros, esta moción no es una moción ya
+[5154.3 → 5158.9] tan ni de Esquerra Unida, ni del Partido Socialista, ni de Compromís, sino es una moción que
+[5158.9 → 5165.9] demana la ciudadanía, porque aunque ustedes pueden ver toros del año 97, lo que estaba
+[5165.9 → 5172.1] pasando en Valencia es que había una manifestación multitudinaria demanando la dimisión de Carlos
+[5172.1 → 5178.1] Mazón por su gestión, que no es un error, no es un error la gestión del Partido Popular
+[5178.1 → 5184.9] en Valencia, es una negligencia, lo que ha hecho el Partido Popular, porque al final
+[5184.9 → 5189.8] un error se puede subsanar o se puede plantechar, pero cuando tú lo que haces es mantener en
+[5189.8 → 5196.1] tu puesto una mentira, dar otra mentira, y además decir diversos discursos que no coinciden
+[5196.1 → 5201.5] y que lo que se está demostrando ahora es que ha mentido considerablemente y se ha demostrado
+[5201.5 → 5206.6] y es para eso realmente lo que está dimitiendo Carlos Mazón, no por responsabilidad política
+[5206.6 → 5212.7] o porque por la segua irresponsabilidad política o porque ha hecho una gestión negligente
+[5212.7 → 5217.1] y han muerto 229 personas, sino porque al final la sociedad civil lo que está haciendo
+[5217.1 → 5222.3] es ponerlo en el suyo. Carlos Mazón no ha dimitido, ha sido expulsado porque la ciudadanía
+[5222.3 → 5228.3] lo que ha hecho es expulsarlo. Creo que es importante hablar de las cosas como son realmente
+[5228.3 → 5234.1] y también hablar de la norma y de la instrucción, porque la instrucción justicia es muy clara,
+[5234.1 → 5238.3] es decir, habla de la responsabilidad y de las competencias autonómicas, por tanto
+[5238.3 → 5244.1] no hay que desviar la atención y hay que hablar de las cosas como son. Mazón ha dimitido
+[5244.1 → 5249.1] no porque el Partido Popular lo que ha hecho, no, es porque la Chen lo que ha hecho es tirarlo
+[5249.1 → 5254.3] fuera y ahora sí, coincidís en José Luis en lo que estaba diciendo, que 12 días antes
+[5254.3 → 5258.1] de que él fuera presidente, es una cosa en la que Vox va a participar también y esa
+[5258.1 → 5263.7] es la decisión y lo que ha hecho el Partido Popular es disminuirlo. No vamos a hacer elecciones
+[5263.7 → 5268.9] porque hay una toma de dones de soporte y además se hace desde Madrid, que es como
+[5268.9 → 5272.1] ya no te digo un país valenciano, comunidad valenciana, pero vamos a hacerlo desde la
+[5272.1 → 5276.8] comunidad valenciana. ¿Sabes? Porque al final molde Valencia y molde amor, pero realmente
+[5276.8 → 5281.5] las decisiones importantes son desde Feijóo y desde Abascal, desde Madrid, no desde las
+[5281.5 → 5285.9] autonomías, que realmente son quienes tienen las competencias y que deberían dar estas
+[5285.9 → 5287.3] decisiones. Gracias.
+[5287.3 → 5289.4] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[5289.4 → 5291.4] Mis palabras, compromiso, segunda intervención.
+[5291.4 → 5293.7] SEÑOR PRESIDENTE DE LA ASAMBLEA DE EXTREMADURA
+[5293.7 → 5296.1] Gracias, señor alcalde. Haremos lo que haremos.
+[5296.1 → 5302.1] En primer lugar, diría al portavoz del Partido Popular que esta moción se va a presentar
+[5302.1 → 5310.0] el día 22 de octubre de este año, es decir, no se ha presentado hoy. Esos acontecimientos
+[5310.0 → 5319.6] han surgido y, de hecho, la moción se presenta antes de esa gran manifestación, como todos
+[5319.6 → 5333.2] los que han habido mes tras mes, el día 28 o el día 29, depende de cuándo caía. Algunos
+[5333.2 → 5342.2] han preferido una corregida de Vox por la tele, en ese canal que pensaban que era de
+[5342.2 → 5349.2] todos y todas las teles valencianas, pero ahora parece que no, que es tal Servey de…
+[5349.2 → 5361.1] Anaba a utilizar paraules como utiliza el portavoz de Vox, fascistas, ultraderechistas,
+[5361.1 → 5368.5] carques, pero no va a utilizar esas expresiones porque cree que se merecen un respecto en
+[5368.5 → 5373.8] cara a que no compartan las ideas, cosa que usted no hace en las intervenciones, como
+[5374.1 → 5392.9] la izquierda era radical. El problema está en que así el pueblo valenciano cree que ha hablado
+[5393.9 → 5405.0] pro-Clar y pro-Wald desde el fatídico día 29 de octubre de 2024. Y ustedes piensan que repetir
+[5405.0 → 5412.3] una mentira, una y otra vega, y una otra vega, y una otra vega, se va a convertir en una veridad,
+[5412.3 → 5420.8] y al pueblo ya no se les engaña en un caramelo. En cuanto a lo de la responsabilidad, bueno,
+[5420.8 → 5428.7] está claro que cuanto a lo del accidente del tren que estaba el Gobierno del Botánico,
+[5428.7 → 5433.7] Carlos Mazón y Shia Diguén, que la responsabilidad es autonómica de las
+[5433.7 → 5443.7] emergencias, pero ahora no, ahora es del Estado. Yo antengo también a los representantes de Vox
+[5444.9 → 5448.6] que dicen que la responsabilidad es del Estado, porque ustedes no han creído
+[5448.6 → 5454.8] más en el Estado y las autonomías, además a los públicos, y no tienen que repetir,
+[5454.8 → 5461.2] yo ya he repetido a ustedes muchas vegas. Entonces, creen que repetir una mentira tantas
+[5461.2 → 5466.0] vegas, al final no se va a convertir en una veridad. Ustedes han hecho una, bueno,
+[5466.0 → 5475.8] el Gobierno ha hecho, o el Presidente, ahora ya se puede decir, ha hecho una negligente,
+[5476.0 → 5484.5] negligente tasca, y por eso nosotros vamos a continuar con nuestras propuestas. Gracias.
+[5490.1 → 5505.0] Bueno, los autos de la juez, yo creo que sean los que decidan y los que confirmen
+[5505.0 → 5512.1] las responsabilidades de quienes son y las competencias de quienes eran. No creo que se
+[5512.1 → 5518.2] trate de dinero, de quién ha pagado antes, creo que no estamos hablando de dinero,
+[5518.2 → 5522.5] estamos hablando de algo más gordo. Y hablamos también de una bajeza,
+[5522.5 → 5528.5] como ha comentado José Luis, que hemos vivido todos los valencianos durante 12 meses. Y sí
+[5528.5 → 5533.0] que podemos hablar de negligencia, como ha dicho Rafa, una negligencia absoluta,
+[5533.0 → 5538.7] porque, para desgracia nuestra, nuestro Presidente de la Generalitat no estuvo a la altura del cargo,
+[5538.7 → 5544.9] porque el cargo asume unas responsabilidades que entendemos que no supo tener él y no supo
+[5544.9 → 5551.4] entender su partido. Desde el Partido Socialista, Diana Morán le ofreció el cambio de presidente,
+[5551.4 → 5556.3] un nuevo presidente para la Generalitat, en el cual el PSOE votaría abstención para que no
+[5556.3 → 5561.7] tuviera que depender de ningún partido. Porque, bueno, la figura que habían puesto de Presidente
+[5561.8 → 5567.4] no había estado a la altura del cargo, porque el cargo supone una responsabilidad que creemos
+[5567.4 → 5573.7] que no ha sabido ni asumir en el momento, ni 12 meses después. Y han sido 12 meses y 12
+[5573.7 → 5580.0] manifestaciones de la gente del pueblo saliendo a decirle que no podía estar. Y creo que la otra
+[5580.0 → 5586.8] que colmó el vaso fue el funeral de Estado. Lo del funeral de Estado fue tremendo. Es muy triste
+[5586.8 → 5591.6] que se quiera politizar con estas cosas. Yo creo que los primeros defensores de que hemos tenido
+[5591.9 → 5595.7] desgraciadamente un presidente de la Generalitat que no nos lo hemos merecido debería ser su propio
+[5595.7 → 5601.7] partido y que ha reaccionado 12 meses tarde. Y lo que esperamos, después de que no ha sabido
+[5601.7 → 5607.1] reaccionar como tocar, es que por lo menos deje hablar al pueblo, como ha comentado Rafa Folgado,
+[5607.1 → 5609.9] y convoque a las elecciones pronto. Nada más.
+[5609.9 → 5625.4] A la Comisión de Investigación, te gana Carlos Mazón, te gana Margarita Robles, te gana Marlaska,
+[5625.4 → 5631.3] te gana la delegada de Gobierno, te gana Miguel Polo de la Confederación Geográfica de Xucar,
+[5631.3 → 5637.0] te gana el director general de la AEMED. Más del gobierno español que el gobierno autonómico.
+[5638.0 → 5649.0] Pero no os molesta que el gobierno de España, si quieren ayuda, que lo pidan.
+[5649.0 → 5654.6] Eso no nos molesta ni aparece en la mención. Y lo de Jopeta es, según ustedes,
+[5654.6 → 5658.1] información interna que ustedes conocen y que son sabedores.
+[5659.1 → 5663.0] Manifestaciones han habido. Ustedes en el carrer saben apropiarse de ellos, por supuesto.
+[5663.0 → 5667.0] Son allí, siempre han estado allí. Esta es la menos numerosa de las tres que han habido.
+[5667.0 → 5672.5] Esta es la menos numerosa. Ustedes tienen una doble barra de medir.
+[5672.5 → 5677.1] El pueblo valenciano ha hablado. Cuando el pueblo valenciano, en marzo de 2023,
+[5677.1 → 5683.7] se diga que ustedes son compromiso fuera de las instituciones de la comunidad autonómica valenciana,
+[5683.7 → 5688.5] del Ayuntamiento de Valencia, de la Diputación de Valencia, de todos los cargos que pueden,
+[5688.5 → 5692.5] esa voz del pueblo valenciano ya no es tan buena.
+[5692.5 → 5698.5] Vuestra voz del pueblo valenciano es buena cuando ustedes les favorecen.
+[5698.5 → 5702.5] Si hablan contra lo que ustedes creen ya, ahí ya no habla el pueblo valenciano.
+[5702.5 → 5707.5] Manipulación de la extrema derecha, de la derecha, se juntan todos para ir contra el mal.
+[5707.5 → 5712.5] Y Rafa, por mal que te sepa, su presidente es tu presidente,
+[5712.5 → 5716.5] con cuanto a que tu presidente era su presidente y el mío.
+[5716.5 → 5723.5] Chimo Puig era el presidente de todos los valencianos, y Carlos Mazón era el presidente de todos los valencianos.
+[5723.5 → 5728.5] Y, a pesar de que en la primera intervención no tenía ningún plan si había dimitido,
+[5728.5 → 5733.5] y en la segunda intervención tenía un plan ya que ha dimitido un minuto después. No aguante mucho.
+[5733.5 → 5738.5] Ustedes hablan de medida de moral y de bajeza. ¿Bajeza de quién?
+[5738.5 → 5743.5] ¿Del presidente del gobierno o del presidente de la Generalitat? ¿O de ambos dos?
+[5743.5 → 5747.5] No, la bajeza moral la has dicho tú. No, lo has dicho tú en tus palabras.
+[5747.5 → 5752.5] Y si no, ya lo veremos en las actas. Me parece una bajeza moral, has comentado.
+[5752.5 → 5758.5] Yo cuando el presidente del gobierno, el presidente de la Generalitat, ha mentido.
+[5758.5 → 5761.5] Ha dado varias versiones. No sabía de quién estabais hablando.
+[5761.5 → 5764.5] Si del presidente de la Generalitat o del presidente del gobierno, Pedro Sánchez.
+[5764.5 → 5767.5] Porque más versiones, más mentiras que ha dicho ese señor,
+[5767.5 → 5771.5] no ha dicho ningún presidente de ninguna institución en el Estado español.
+[5771.5 → 5775.5] Y ahí el tenemos. Pero como es conveniente a ustedes, ahí el tendremos.
+[5775.5 → 5777.5] Nada más, gracias.
+[5795.5 → 5801.5] Yo lo que planteaba de la Comisión de Investigación, el problema no es que tenga que ganar.
+[5801.5 → 5805.5] El problema es que al final no va a ganar porque se va a agafar a una baixa médica.
+[5805.5 → 5811.5] Es decir, el mayor responsable, Carlos Mazón, no va a ganar a esa Comisión de Investigación
+[5811.5 → 5815.5] porque va a estar en una baixa médica.
+[5815.5 → 5819.5] Que eso lo que hace es eximirle de que vaya a esa Comisión de Investigación.
+[5819.5 → 5825.5] Aleshores, creo que eso es cuestionable y el Partido Popular lo que habría de hacer es criticarlo.
+[5825.5 → 5832.5] Además, en este sentido, las mentiras, las manipulaciones y los cambios de versión de Carlos Mazón
+[5832.5 → 5836.5] han sido muy notorios durante este año.
+[5836.5 → 5839.5] Porque primero va a hablar de cuándo va a llegar al Palo de la Generalitat,
+[5839.5 → 5841.5] que supuestamente va a ser a las 5.
+[5841.5 → 5844.5] Después ese discurso va a cambiar a dos horas más tarde.
+[5844.5 → 5850.5] Después va a decir que estaba en un mensaje a nivel tema político.
+[5850.5 → 5851.5] Después va a descubrir que no.
+[5851.5 → 5852.5] Después va a decir que sí.
+[5852.5 → 5855.5] Al final se va a descubrir que va a ser en La Periodista.
+[5855.5 → 5857.5] Después que si va a la Alparca y que si no.
+[5857.5 → 5863.5] Ya horas en los que el presidente de la Generalitat Valenciana no se sabe dónde está.
+[5863.5 → 5868.5] Es decir, en esa Comisión de Investigación es donde supuestamente se le anaba a preguntar sobre estas cuestiones.
+[5868.5 → 5872.5] Y es esa persona la que el 10 de noviembre no va a estar en esa Comisión de Investigación
+[5872.5 → 5879.5] porque el responsable directo, en este sentido el presidente, a nivel autonómico,
+[5879.5 → 5881.5] es el que tiene que estar en una emergencia.
+[5881.5 → 5885.5] No ha dado respuesta de dónde estaba en esas horas que son cruciales
+[5885.5 → 5888.5] y que además va a ser donde más gente va a morir.
+[5888.5 → 5892.5] Y además también se ha comprobado que él, antes de irse a Mosdinar,
+[5892.5 → 5895.5] ya sabía que estaba en una situación muy complicada.
+[5895.5 → 5899.5] Por tanto, hay grabaciones que dan soporte a estas declaraciones
+[5899.5 → 5903.5] y el problema es que esta persona, que es la máxima responsable,
+[5903.5 → 5908.5] no va a estar en un lloc que es donde debería estar y va a estar, no sabemos aún,
+[5908.5 → 5912.5] porque no le sabe tampoco el Partido Popular o si le sabe o no le está bien.
+[5912.5 → 5917.5] Por tanto, hay un problema y por supuesto que, claro, que ha de dimitir,
+[5917.5 → 5920.5] no solamente dimitir, sino adeanar a una Comisión de Investigación,
+[5920.5 → 5923.5] no solamente así allí, a Madrid, sino también así.
+[5923.5 → 5928.5] Porque al final ha de dar respuesta a esas preguntas que no está dando porque no se sabe.
+[5928.5 → 5932.5] Ningún sapo no está en Mazón y ahí es donde está realmente el problema.
+[5944.5 → 5948.5] Mazón se ha pasado un año faltando a la verita.
+[5949.5 → 5953.5] Por fin, como pueden decir ustedes.
+[5955.5 → 5958.5] Y la táctica del Partido Popular siempre ha sido la misma.
+[5958.5 → 5962.5] Y si no, recordaremos a las víctimas del metro de Valencia.
+[5963.5 → 5971.5] Balones fuera, la gente no tiene razón, el fallo es de otros, de los técnicos, sobre todo.
+[5972.5 → 5979.5] Esa es la táctica del Partido Popular, con la convivencia de Vox.
+[5980.5 → 5988.5] Y como digo el lema de esta camiseta, son más perillosos, pero inútiles que percorruptes.
+[5988.5 → 5990.5] Y al final va a tener razón.
+[5990.5 → 5994.5] Pero, en fin, la veritat en cara a la tenencia anterior.
+[5995.5 → 5998.5] Mi abuelo me decía cuando yo era un mentiroso,
+[6000.0 → 6007.0] mentís més que Helena y Helena més que un porco. Y vosotres, Helena, en barbaridad.
+[6007.0 → 6019.0] Estaría bien, estaría bien, que a banda de dimitir, dejara la su acta de diputado.
+[6020.0 → 6031.0] Y si tenguera dignidad, que se le pudiera juzgar, como cuando se va al altre, en un tribunal
+[6031.0 → 6039.0] de la Comunidad Valenciana o del País Valencià, como dicen ellos, y no que se base en ese
+[6039.0 → 6048.0] aforament para que él tenga que juzgar un altre juzgado superior. Gracias.
+[6050.0 → 6054.0] Bueno, pues hemos tenido la intervención correspondiente por parte de los políticos
+[6054.0 → 6059.0] y yo creo que, en el fondo, en cada caso que ha sido el que diga, casi todos están de acuerdo.
+[6059.0 → 6064.0] Vox está de acuerdo y le va muy bien, y lo voy a decir con súper contento, porque va
+[6064.0 → 6069.0] apuchando y va llevando cada día un diputado más, y a la marcha que due, yo digo lo que
+[6069.0 → 6075.0] yo pienso. Cuando digo lo que pienso y esté aquí el doctor, no, me va a permitir que
+[6075.0 → 6082.0] yo diga lo que yo pienso. Yo hubiera escuchado a Abascal, y depende, el nuevo gobierno,
+[6082.0 → 6087.0] el nuevo presidente, depende de Vox, salvo que no existan elecciones, y eso está clarísimo.
+[6087.0 → 6092.0] Por tanto, en las últimas encuestas, Vox va apuchando, se ha demostrado, eso va mal
+[6092.0 → 6096.0] para su partido, para mí mal para España, pero va mal para su partido, y mal para el
+[6096.0 → 6102.0] Partido Popular, y eso va demostrando que el vaixell de Fijó, pues es un vaixell que
+[6102.0 → 6109.0] no capitanecha, que tiene la almirante Ayuso que le pega la voluntad, y va, pues, sota
+[6109.0 → 6115.0] mar, paga multa y paga baño. Y eso afecta a Valencianas y a Rivarrocher,
+[6115.0 → 6121.0] afecta porque efectivamente no tendrá un partido cohesionado de la oposición como
+[6121.0 → 6125.0] un partido, como el Partido Popular, que ha sido un partido de Estado, pues afecta las
+[6125.0 → 6130.0] autonomías, afecta el día a día, afecta a Rivarrocher, y afecta a todo lo que está
+[6130.0 → 6133.0] pasando por España. Y ahora ha sido un señet el que ha pasado,
+[6133.0 → 6136.0] una vergüenza para los valencianos y las valencianas.
+[6136.0 → 6142.0] La dimisión que ha hecho el expresidente Mazón es una dimisión, desde el punto de
+[6142.0 → 6147.0] vista, no, no, de todos los articulistas, de todas las páginas de los diarios de derecha,
+[6147.0 → 6152.0] de editoriales de izquierdas, pues ha sido una cuestión que se estudiará, vamos, como
+[6152.0 → 6157.0] lo último que se tiene que hacer, porque uno cuando dice que está jodido, se va a
+[6157.0 → 6161.0] pregar trastos, dimitirse del todo y se va a casa.
+[6161.0 → 6165.0] Yo habré demostrado disculpas por cada uno que ha hecho lo que ha tenido que hacer.
+[6165.0 → 6170.0] Pero la verdad, cuando ustedes hablan de números, están diciendo cosas que no son
+[6170.0 → 6173.0] ciertas, y ahí los números son los que tienen que decir.
+[6173.0 → 6180.0] Mire, el ejecutivo de Mazón y de Vox, porque Vox es el que controla, va a aprobar
+[6181.0 → 6186.0] concretamente 2.364 millones para la dana, desde faunales.
+[6186.0 → 6190.0] El 75% no ni se ha ejecutado.
+[6190.0 → 6195.0] En este momento, en el visor presupuestario que ustedes tienen, si quieren, en los
+[6195.0 → 6201.0] contes del ayuntamiento, en las charlas, el gobierno de España ya ha pagado en los
+[6201.0 → 6205.0] bochaques casi 7.000 millones de euros.
+[6205.0 → 6211.0] 7.000 millones que están en el 90% de las empresas, quedan un 10% en cara, en el 95%
+[6211.0 → 6216.0] de las viviendas afectadas, en los vehículos que han estado afectados, en los
+[6216.0 → 6218.0] ayuntamientos ingresados.
+[6218.0 → 6224.0] Esos casi 7.000 millones son efectivos y están ya ingresados, frente a esos 2.000
+[6224.0 → 6229.0] que va a aprobar en 2.364 Mazón, y el 74% ni se ha ejecutado.
+[6229.0 → 6232.0] Esa es la realidad que hay.
+[6232.0 → 6236.0] La reconstrucción, ya lo saben todos los alcaldes, de derechas y de izquierdas, está
+[6236.0 → 6240.0] durante el gobierno de España, en sus dificultades, porque tenemos una ley de
+[6240.0 → 6244.0] contratación que, excepto lo que va por emergencia, pues cuesta mucho.
+[6244.0 → 6248.0] Bueno, el regidor que tenemos en el momento y en el área lo saben perfectamente.
+[6248.0 → 6252.0] Pero estamos convencidos de que vamos a seguir así de adelante en esos casi 7.000
+[6252.0 → 6256.0] millones que ejecutará definitivamente el gobierno de España.
+[6256.0 → 6260.0] ¿Nosotros qué queremos? Pues bueno, que se apague, que se aclarice el PP y Vox, y
+[6260.0 → 6265.0] que tenga un gobierno coherente, ¿vale? Que siga no sé qué presidente triarán, pero
+[6265.0 → 6270.0] que sea la mayoría, y que la reconstrucción sea lo que más nos preocupe.
+[6270.0 → 6274.0] Porque lo que está pasando es que estamos hablando en todo el ámbito internacional,
+[6274.0 → 6278.0] en las páginas de todos los diarios del mundo, pero para hacer el ridículo.
+[6278.0 → 6282.0] Y eso da inseguridad, incertezas.
+[6282.0 → 6286.0] Y la gente lo que quiere, primero, es estar al costado de las víctimas, porque un
+[6287.0 → 6291.0] Pero la vida de un ser humano no se puede reconstruir, se ha perdido.
+[6291.0 → 6297.0] Y tal vez, si eso es alerta, se habrán enviado a los 5, se habrán salvado muchas vidas.
+[6297.0 → 6299.0] Y eso lo sabe todo el mundo.
+[6299.0 → 6302.0] Y fallos no los habrán comido todos.
+[6302.0 → 6305.0] Pero eso es muy importante, lo ha dicho Teresa.
+[6305.0 → 6310.0] Teníamos que, en aquel momento, hacer las decisiones que a la ley le correspondían.
+[6310.0 → 6314.0] Por último, acabaré diciendo que aún queda mucho, porque la reconstrucción
+[6314.0 → 6318.0] tardará dos o tres años para poder tenerlo al menos como estaba.
+[6318.0 → 6320.0] Y Río Barroso es un pueblo muy afectado.
+[6320.0 → 6324.0] Tenemos el Parque Natural, tenemos 400 empresas, tenemos el barranco de Pollo,
+[6324.0 → 6327.0] tenemos el barranco de Pozalet, y necesitamos trabajar al máximo.
+[6327.0 → 6331.0] Y si se puede hacer, en la máxima unión, en breve tendremos un acto importante,
+[6331.0 → 6335.0] el día 6, que estaremos todos, y lo que haremos es recolzar a las víctimas,
+[6335.0 → 6340.0] a las familias, entenderlas, y después, pues diríamos,
+[6340.0 → 6343.0] reconocer a aquellos que han ayudado y han trabajado desde el voluntariado
+[6343.0 → 6346.0] a otras empresas, etcétera, para que las cosas se escandalaban.
+[6346.0 → 6349.0] Entonces, nosotros, la verdad es que el problema está en el museo,
+[6349.0 → 6352.0] porque, como le he dicho tarde o tarde, en nuestro partido, desde la primera hora,
+[6352.0 → 6356.0] va a ofrecerle una mano al Partido Popular para decir,
+[6356.0 → 6360.0] cambia a Amazon, no está preparado, el problema que ha tenido es un problema
+[6360.0 → 6364.0] de no estar preparado, ponga un otro presidente y nosotros asumiremos.
+[6364.0 → 6367.0] Eso no va a ser posible, y a partir de ahí ya diríamos que no querríamos
+[6367.0 → 6370.0] un museo de censura, sino un museo de elecciones.
+[6370.0 → 6373.0] Y es verdad, no tengamos miedo de que el pueblo valenciano hable.
+[6373.0 → 6377.0] Si las encuestas les dan más, dicen ustedes, pues que hable el pueblo valenciano.
+[6377.0 → 6381.0] Ustedes que están en Vox, influyan en Vox.
+[6381.0 → 6384.0] Y digan, no, no, que hable para el pueblo valenciano.
+[6384.0 → 6387.0] Nosotros estamos empujando, dicen que están empujando a ustedes.
+[6387.0 → 6390.0] Como están empujando a ustedes y pueden hacer un gobierno de derechos que dicen,
+[6390.0 → 6395.0] pues que hable el pueblo, no tengamos miedo de que el pueblo se exprese,
+[6395.0 → 6399.0] a que Castelló, Valencia y Alicante digan qué gobierno quieren.
+[6399.0 → 6401.0] Pero ¿qué es la mejor solución?
+[6401.0 → 6404.0] Sería tener un gobierno fuerte, el que siga, pero un gobierno cohesionado
+[6404.0 → 6409.0] y no un gobierno devaluado, porque todo el mundo que está influido por la dana,
+[6409.0 → 6411.0] pues tiene un problema importante.
+[6411.0 → 6415.0] Tanto Susana Camarero, como otros que están en el gobierno también,
+[6415.0 → 6418.0] y que, bueno, pues las actuaciones no van a ser de las correctas.
+[6418.0 → 6421.0] Nosotros querríamos que todo eso no hubiera pasado, yo lo digo sinceramente.
+[6421.0 → 6425.0] Nosotros hablamos muy con el Partido Popular en unas condiciones de, bueno,
+[6425.0 → 6430.0] no las acciones normalizadas y hablar de proyectos políticos y hablar de gobernar
+[6430.0 → 6432.0] si el pueblo nos ha donado la mayoría.
+[6432.0 → 6434.0] Pero lo que ha pasado es de una gravedad.
+[6434.0 → 6440.0] Yo pasé fatal en el enterro, en el soterrano de Estado, en el funeral de Estado.
+[6440.0 → 6445.0] Pero yo, y fíjate que era Mazón en el partido, pero estaba en el puño pegado,
+[6445.0 → 6447.0] el estómago estaba preto.
+[6447.0 → 6450.0] Porque cuando se lean las fotos de la gente que estaba morindo,
+[6450.0 → 6456.0] que estaba morindo, ofegándose, que eran familias anteriores o chiquillos,
+[6456.0 → 6461.0] y miraban al presidente, miraban a quien no estaba para apretar el botón
+[6461.0 → 6463.0] o no donaba la orden para apretar el botón.
+[6463.0 → 6466.0] Que podían haberlo apretado perfectamente, lo digo.
+[6466.0 → 6469.0] Están en los autos, es que la chucha está enfrente, en fin,
+[6469.0 → 6472.0] y no es de la parte progresista, la parte conservadora.
+[6472.0 → 6476.0] Y están paso por paso, todos los autos, como se dice, con la confederación,
+[6476.0 → 6479.0] no sé qué, pam, la chucha, fuera.
+[6479.0 → 6483.0] Cuando digo en la derecha, claro, porque ustedes han ganado en toda la artillería,
+[6483.0 → 6487.0] manos limpias, hazme oír, toda la artillería de la extrema derecha de vosotros,
+[6487.0 → 6491.0] contra la cual se puede imputar a Miguel Polo, a Pilar Núñez Navé,
+[6491.0 → 6496.0] al de la EMED, a todos, menos de mano de admisión, a Mazón,
+[6496.0 → 6500.0] que realmente era el que tenía dicha responsabilidad para el ley, la emergencia.
+[6500.0 → 6503.0] Y para acabar, dirles que en Dana no hayamos expuesto,
+[6503.0 → 6507.0] en Andalucía no hay Dana, en Castilla y La Mancha también,
+[6507.0 → 6510.0] sin embargo, sí tenemos 229 muertos y en Andalucía uno.
+[6510.0 → 6514.0] Pero el CECOPI de Andalucía se había reunido tres días antes,
+[6514.0 → 6519.0] no el día, sino cuando ya venía la Dana, ya estábamos reunidos,
+[6519.0 → 6522.0] ya estábamos hablando de las medidas de prevención.
+[6522.0 → 6525.0] Y eso es lo que hay que hacer ya, y el valenciano se lo tiene claro.
+[6525.0 → 6527.0] Eso no quiere decir que vengan las elecciones,
+[6527.0 → 6529.0] bueno, que voten el pueblo y que den la mayoría que consideren.
+[6529.0 → 6532.0] Pero para tener un gobierno potente y legítimo,
+[6533.0 → 6536.0] deberían dar la voz al pueblo valenciano.
+[6536.0 → 6540.0] Y todo lo que no es eso son parches que el CECOPI da.
+[6540.0 → 6543.0] Parches que piensan que malposados.
+[6543.0 → 6547.0] Ahora votarán a Juanfran o votarán a quien consideren,
+[6547.0 → 6549.0] seguro que lo hacen mejor que a Mazón,
+[6549.0 → 6552.0] pero así no es todo, puede ser un gobierno débil, debilitado,
+[6552.0 → 6555.0] en una crisis que está pasando, que quiere ser Montpó,
+[6555.0 → 6559.0] Fijó que quiere que sea la catalana, es provincial y quiere que sea Montpó,
+[6559.0 → 6562.0] y es una crisis larvada que solo beneficia,
+[6562.0 → 6564.0] y atención a lo que digo, a la extrema derecha,
+[6564.0 → 6567.0] bueno, a Vox, si no quiere decir a la extrema derecha.
+[6567.0 → 6568.0] A ellos les beneficia.
+[6568.0 → 6572.0] Y eso va a hacer que sea una tenalla grandísima del Partido Popular
+[6572.0 → 6576.0] que cuando vengan las próximas elecciones estarán fiti fiti en los diputados.
+[6576.0 → 6579.0] Y si el gobierno de derecha es extrema,
+[6579.0 → 6583.0] pues triunfará sobre lo que podría haber sido un gobierno, diría, moderado,
+[6583.0 → 6584.0] que no lo ha sido.
+[6584.0 → 6588.0] Y en China es que, en fin, vamos a ver cómo se resoltó.
+[6588.0 → 6592.0] Nosotros seguimos trabajando, demanando que pare el pueblo,
+[6592.0 → 6594.0] la dimisión está clara ya, por tanto, en ese sentido,
+[6594.0 → 6597.0] a repetir la semana que ha oferto, o sea...
+[6597.0 → 6598.0] Una cuestión de orden.
+[6598.0 → 6599.0] Sí.
+[6599.0 → 6602.0] La semana que empieza a hacer el Partido Socialista...
+[6602.0 → 6604.0] Claro, nosotros retiremos a todos.
+[6604.0 → 6606.0] Personas nombradas no nos van a declarar a ninguno,
+[6606.0 → 6608.0] por tanto, agredimos que retiremos Zapata,
+[6608.0 → 6611.0] vamos a votar la dimisión del primer punto
+[6611.0 → 6614.0] y que se convoquen elecciones para el pueblo,
+[6614.0 → 6616.0] que es lo que se ha quedado.
+[6617.0 → 6619.0] Sí, sí, lo jugo a fichito.
+[6622.0 → 6627.0] No se acepta la semana del Partido Popular.
+[6627.0 → 6630.0] Vamos a hablar de la Comunidad Valenciana.
+[6630.0 → 6634.0] Vamos a votar esta moción a las semanas correspondientes que han habido.
+[6642.0 → 6644.0] Faltaría un voto, ya está.
+[6644.0 → 6646.0] No, faltó uno.
+[6646.0 → 6647.0] Ahora sí.
+[6647.0 → 6650.0] Pues trece votos a favor y ocho en contra.
+[6650.0 → 6651.0] Grupo Socialista.
+[6651.0 → 6652.0] A favor.
+[6652.0 → 6653.0] Partido Popular.
+[6654.0 → 6655.0] Partido Popular.
+[6655.0 → 6656.0] En contra.
+[6656.0 → 6657.0] Vox.
+[6657.0 → 6658.0] En contra.
+[6658.0 → 6659.0] Esquerra Unida Podemos.
+[6659.0 → 6660.0] A favor.
+[6660.0 → 6661.0] Compromiso.
+[6661.0 → 6662.0] A favor.
+[6662.0 → 6664.0] Pasemos al cien punto de orden del día,
+[6665.0 → 6668.0] que es una moción conjunta de grupos municipales,
+[6669.0 → 6670.0] popular y...
+[6670.0 → 6671.0] No.
+[6672.0 → 6674.0] Moción conjunta de grupos municipales.
+[6674.0 → 6675.0] Esquerra Unida y Compromiso.
+[6675.0 → 6676.0] Perdón.
+[6678.0 → 6679.0] No es la meua cultura.
+[6679.0 → 6680.0] ¿Vale?
+[6680.0 → 6681.0] Sí.
+[6688.0 → 6689.0] Gracias.
+[6691.0 → 6695.0] Desde Esquerra Unida Podemos y desde Compromiso presentamos esta moción
+[6695.0 → 6697.0] que espera dar soporte a la ILP.
+[6697.0 → 6698.0] No es la meua cultura.
+[6699.0 → 6701.0] Es una iniciativa legislativa popular
+[6701.0 → 6705.0] que ha conseguido más de 715.000 signaturas
+[6705.0 → 6707.0] de personas de todo el Estado
+[6707.0 → 6710.0] que reclaman una cosa que es muy sencilla,
+[6710.0 → 6713.0] que es que la violencia no siga patrimonio cultural.
+[6713.0 → 6716.0] Es decir, que la tauromaquia no siga patrimonio cultural
+[6716.0 → 6718.0] y que las autonomías y los ayuntamientos
+[6718.0 → 6721.0] puedan elegir cuál modelo de bienestar animal quieren.
+[6721.0 → 6724.0] Si quieren un modelo de bienestar animal
+[6724.0 → 6727.0] que defiende a todos los animales
+[6727.0 → 6732.0] o quieren el modelo del Partido Popular y de Vox.
+[6732.0 → 6736.0] Esta ILP representa una de las mayores movilizaciones ciudadanas
+[6736.0 → 6740.0] recientes de dignidad ética y bienestar animal
+[6740.0 → 6743.0] y creo que es importantísimo
+[6743.0 → 6748.0] también dar soporte y hablar de que la sociedad cambia
+[6748.0 → 6749.0] y que la realidad es clara.
+[6749.0 → 6752.0] 7 de cada 10 personas en el Estado español
+[6752.0 → 6755.0] rechazan el uso de animales en espectáculos violentos.
+[6755.0 → 6758.0] Además, el público de la tauromaquia ha caído en picar
+[6758.0 → 6761.0] mientras se mantienen por subvenciones públicas
+[6761.0 → 6764.0] que las sostienen artificialmente.
+[6764.0 → 6767.0] Y sobre todo, la mayoría social quiere una cultura que eduque,
+[6767.0 → 6769.0] que inspire y que no torture.
+[6769.0 → 6772.0] Además, es importante destacar que esta ILP
+[6772.0 → 6775.0] no quiere prohibir sino quiere democratizar.
+[6775.0 → 6779.0] Es decir, no quiere prohibir en este sentido la tauromaquia
+[6779.0 → 6782.0] sino retornar la capacidad de decisión
+[6782.0 → 6784.0] a la ciudadanía y a los territorios.
+[6784.0 → 6788.0] La Ley 18-2013 del Partido Popular
+[6788.0 → 6792.0] impuso la tauromaquia como patrimonio cultural a todo el Estado
+[6792.0 → 6794.0] uniformando esa diversidad cultural.
+[6794.0 → 6797.0] Esta ILP lo que hace es que esas competencias
+[6797.0 → 6801.0] puedan volver a las autonomías y a los ayuntamientos
+[6801.0 → 6805.0] y que no pase como pasó en Cataluña o en Baleares
+[6805.0 → 6811.0] anulando decisiones autonómicas por esta ley del Partido Popular.
+[6811.0 → 6815.0] Creo sinceramente que una cultura como tal
+[6815.0 → 6817.0] no puede basarse en el sufrimiento
+[6817.0 → 6821.0] y en este sentido no puede normalizar ese sufrimiento a los animales.
+[6821.0 → 6826.0] Y además, creo sinceramente que esta ILP es un éxito a nivel ciudadano
+[6826.0 → 6829.0] porque ha mogado muchísimas asignaturas.
+[6829.0 → 6833.0] Es esencial saber que para que una ILP se porte al Congreso
+[6833.0 → 6835.0] ha de tener medio millón de firmas
+[6835.0 → 6838.0] y esta ILP ha tenido muchas más asignaturas.
+[6839.0 → 6841.0] Y creo sinceramente que en estas materias
+[6841.0 → 6844.0] hay que posicionarse porque al final ser neutral
+[6844.0 → 6849.0] creo que es ser cómplice de estas políticas.
+[6849.0 → 6851.0] En este sentido, pienso y considero que Rivarrocha
+[6851.0 → 6854.0] es un municipio comprometido con la sostenibilidad,
+[6854.0 → 6857.0] con los derechos sociales y también con el bienestar animal
+[6857.0 → 6860.0] y espero que portemos estos puntos de acuerdo
+[6860.0 → 6863.0] para que Rivarrocha pueda dar apoyo a esta ILP
+[6863.0 → 6866.0] y sobre todo apoyo a todas las herramientas
+[6866.0 → 6868.0] para que se torne a aportar y que se pueda debatir
+[6868.0 → 6870.0] al Congreso de Diputados y Diputadas.
+[6870.0 → 6871.0] Gracias.
+[6876.0 → 6877.0] Sí, buenas tardes.
+[6877.0 → 6884.0] Esta es una moción que traéis casi todas las asignaturas
+[6884.0 → 6887.0] o casi todos los años con respecto a esto
+[6887.0 → 6891.0] y nuestro argumento sigue siendo el mismo.
+[6891.0 → 6894.0] La ley permite eso.
+[6894.0 → 6898.0] Es un tema que no depende de un ámbito municipal.
+[6898.0 → 6903.0] Creo que está más carregado que aquí en Rivarrocha.
+[6903.0 → 6906.0] Hay gente que le gustan los toros, otros que no.
+[6906.0 → 6908.0] Y ante esa decisión entendemos que los partidos políticos,
+[6908.0 → 6910.0] entre ellos el nuestro y el vuestro también,
+[6910.0 → 6915.0] donde tienen que decidirlo es en el Congreso
+[6915.0 → 6918.0] y tener una ley a nivel nacional que no haga
+[6918.0 → 6922.0] que sean los ayuntamientos los que tengan esta situación
+[6922.0 → 6924.0] un poco complicada y delicada.
+[6924.0 → 6925.0] Porque vecinos son todos.
+[6925.0 → 6928.0] El concepto de maltrato animal difiere.
+[6928.0 → 6931.0] Depende muchas veces de cómo lo mires,
+[6931.0 → 6934.0] independientemente de lo que sea un maltrato absoluto,
+[6934.0 → 6937.0] pero hay ciertas cosas que hay opiniones diferentes
+[6937.0 → 6939.0] y traer esto a que sean los ayuntamientos
+[6939.0 → 6943.0] donde se derive sí, sí o si no, vemos que no es el lugar.
+[6943.0 → 6944.0] Vosotros lo tenéis también.
+[6944.0 → 6947.0] Quiero decir, en municipios donde gobernáis se hacen toros.
+[6947.0 → 6951.0] Porque hay ciertas costumbres que nos gusten más o menos,
+[6951.0 → 6953.0] a lo mejor con el tiempo acaban o no.
+[6953.0 → 6955.0] A lo mejor van a ir más.
+[6955.0 → 6957.0] Pero dentro de esa circunstancia que, por supuesto,
+[6957.0 → 6960.0] respetamos esta asociación que defiende esto,
+[6960.0 → 6962.0] como tú comentas, con las firmas que tenga,
+[6962.0 → 6965.0] y sobre todo que debe ser un entendimiento político
+[6965.0 → 6968.0] a nivel nacional y a partir de ahí que los ayuntamientos
+[6968.0 → 6970.0] se vean respaldados ante una decisión
+[6970.0 → 6972.0] que no depende de nosotros.
+[6972.0 → 6975.0] Por eso, como tú dices, no hay que abstenerse.
+[6975.0 → 6978.0] En ese sentido, estábamos hablando de la abstención,
+[6978.0 → 6980.0] pero entendemos que nuestro voto va a ser en contra
+[6980.0 → 6982.0] porque no es una decisión municipal
+[6982.0 → 6984.0] y que, por tanto, no queremos tener
+[6984.0 → 6986.0] esa responsabilidad de decisión por nuestra parte
+[6986.0 → 6989.0] porque somos vecinos de los que les gustan los toros
+[6989.0 → 6990.0] y a los que no.
+[6990.0 → 6992.0] Y mientras sea algo que sea legal,
+[6992.0 → 6994.0] pues en ese sentido tendremos que estar con todos.
+[6994.0 → 6995.0] Nada más.
+[7002.0 → 7005.0] A mí, apostillando a lo que comentaste, Teresa,
+[7006.0 → 7009.0] Muceros, Esquerra Unida, Podem, se hacen votos.
+[7009.0 → 7012.0] Del pueblo más boguero, de los bogueros.
+[7012.0 → 7014.0] Giria, compromiso.
+[7014.0 → 7016.0] Ayelo, al Sira, compromiso.
+[7016.0 → 7017.0] Se hacen votos.
+[7017.0 → 7019.0] ¿Ahí presentáis esta moción?
+[7019.0 → 7023.0] ¿O solos en los pueblos donde os conviene?
+[7023.0 → 7025.0] Porque tiene que ser un poco coherente
+[7025.0 → 7027.0] en lo que defiende un partido.
+[7027.0 → 7030.0] Porque si al final os dijémos
+[7030.0 → 7033.0] que si la ley está aprobada estatal y magrada,
+[7033.0 → 7034.0] no la cambiamos.
+[7034.0 → 7038.0] Pero si es estatal y no magrada, está imposada.
+[7038.0 → 7042.0] El Rasero dijo, mira, yo creo que hablando legalmente,
+[7042.0 → 7046.0] ser antitaurista es un poco un complejo de inferioridad
+[7046.0 → 7048.0] que tienen muchos españoles.
+[7048.0 → 7050.0] O porque no se sienten españoles
+[7050.0 → 7052.0] o porque no quieren sentirse españoles.
+[7052.0 → 7057.0] Porque al final, vosotros, el toro, el huevo muerto
+[7057.0 → 7059.0] y todos, pobre el toro.
+[7059.0 → 7062.0] Pero por cada huevo hay dos abortos.
+[7062.0 → 7065.0] No hay ningún antitaurista en las clínicas abortivas.
+[7065.0 → 7067.0] No, no, pero es que es así.
+[7067.0 → 7070.0] Hacemos la ley por la defensa de los animales.
+[7070.0 → 7074.0] Por cada huevo mueren 300 cabos,
+[7074.0 → 7077.0] huevos, en los mataeros.
+[7077.0 → 7081.0] No hay ningún antitaurista allí en los mataeros.
+[7081.0 → 7084.0] A ustedes no les importa la muerte del huevo,
+[7084.0 → 7087.0] ni la plaza de huevos, ni el toro.
+[7087.0 → 7091.0] Les importan los valores que encarna el toro.
+[7092.0 → 7094.0] Porque la tauromaquia encarna los valores,
+[7094.0 → 7096.0] como son la costumbre, las tradiciones,
+[7096.0 → 7098.0] el arraigo a la patria, ser español,
+[7098.0 → 7100.0] ser de la nación española,
+[7100.0 → 7103.0] que ustedes encarnan a la extrema derecha y a la derecha.
+[7103.0 → 7106.0] Porque ustedes no quieren sentirse españoles.
+[7106.0 → 7111.0] Les molesta que ese valor que encarna a España,
+[7111.0 → 7114.0] el español, ah, toros, toros.
+[7114.0 → 7117.0] No, no, yo, toros, no, yo en contra de los toros.
+[7118.0 → 7122.0] Por cada aborto, por cada muerte de un huevo,
+[7122.0 → 7124.0] hay dos abortos.
+[7124.0 → 7126.0] Y ahí no les importa.
+[7126.0 → 7128.0] En los pobres, donde gobiernen,
+[7128.0 → 7130.0] tampoco les importa esta ley.
+[7130.0 → 7131.0] Cada uno que decida,
+[7131.0 → 7134.0] pero que decida lo que nosotros queremos.
+[7134.0 → 7137.0] Ustedes lo que buscan es una sociedad separada,
+[7137.0 → 7140.0] alineada a sus convicciones.
+[7140.0 → 7143.0] No a la sociedad del bienestar o del desarrollo,
+[7143.0 → 7145.0] no, no, no, alineada a sus pensamientos.
+[7145.0 → 7147.0] El mio pensamiento es el válido
+[7147.0 → 7149.0] y el que no hay que imposar.
+[7149.0 → 7152.0] Porque, como decía Teresa, es una ley estatal.
+[7152.0 → 7154.0] Será en el gobierno de España,
+[7154.0 → 7155.0] en el Congreso de los Diputados,
+[7155.0 → 7159.0] donde tienen que debatir si la tauromaquia es válida o no.
+[7159.0 → 7160.0] Porque yo, al final,
+[7160.0 → 7163.0] la tauromaquia se convierte en un escudo
+[7163.0 → 7165.0] frente al socialismo,
+[7165.0 → 7167.0] frente a ustedes.
+[7167.0 → 7169.0] Porque quien defiende es vos,
+[7169.0 → 7171.0] probablemente a ustedes no les convenga
+[7171.0 → 7173.0] que esa gente estiga.
+[7173.0 → 7174.0] Ustedes son hipocresía,
+[7174.0 → 7176.0] porque si no fuerais hipocresía,
+[7176.0 → 7178.0] lo defenderíais en toda la comunidad valenciana
+[7178.0 → 7180.0] o en lo que usted denomina el país valenciano.
+[7180.0 → 7181.0] Pero no.
+[7181.0 → 7184.0] Lo defienden solo en los pueblos donde quieren.
+[7184.0 → 7186.0] Y José Manuel, lo siento,
+[7186.0 → 7189.0] pero dices que Rivarrocha
+[7189.0 → 7191.0] es un pueblo alineado al bienestar animal.
+[7191.0 → 7193.0] Por supuesto.
+[7193.0 → 7195.0] Pero así se hacen muchos en la calle.
+[7195.0 → 7197.0] Aunque el gobierno lo omita
+[7197.0 → 7198.0] y lo amague en las redes sociales.
+[7198.0 → 7200.0] Pero es el ayuntamiento.
+[7200.0 → 7202.4] el que lo organiza y el que lo patrocina.
+[7202.4 → 7204.2] Sí, sí, se esconde. No se publica nada.
+[7204.2 → 7206.4] No se publica nada en redes sociales cuando hay toros.
+[7206.4 → 7207.8] Nada. No existe.
+[7207.8 → 7210.4] En Riva Roja hay redes sociales y no hay toros.
+[7211.4 → 7212.4] Pero sí que hay.
+[7212.8 → 7215.2] Y hay dos asociaciones taurinas de amonto.
+[7216.4 → 7219.2] Ahora, una de todas formas.
+[7219.6 → 7222.0] Nosotros votaremos en contra de la moción
+[7222.0 → 7223.0] como el Partido Socialista
+[7223.0 → 7224.0] porque defendemos
+[7224.4 → 7226.6] cada uno que le agrade lo que haga
+[7226.6 → 7228.6] y mientras siga legal lo haga.
+[7228.6 → 7229.6] Gracias.
+[7231.0 → 7232.0] Más palabras.
+[7233.0 → 7234.0] Vox, José Luis.
+[7235.0 → 7236.0] Gracias.
+[7236.4 → 7238.4] Al final esta extrema izquierda
+[7238.8 → 7241.4] lo que no le gusta es la libertad.
+[7242.2 → 7245.2] Miren, la tauromaquia no es solamente una tradición.
+[7245.2 → 7247.4] Es una expresión de algo que les aterra.
+[7247.4 → 7248.6] La libertad.
+[7249.0 → 7250.4] La libertad para elegir.
+[7250.8 → 7253.0] Es el reflejo de una identidad cultural
+[7253.4 → 7256.2] profundamente arraigada en esta historia de nuestra España
+[7256.6 → 7258.2] y de muchísimos pueblos.
+[7258.4 → 7259.8] Lo de Compromís no tiene nombre
+[7259.8 → 7260.8] porque lo de Compromís
+[7260.8 → 7262.8] en la cantidad de pueblos que están
+[7262.8 → 7264.8] y que vengan aquí con esta moción,
+[7264.8 → 7265.8] en fin,
+[7265.8 → 7266.8] es para hacérselo mirar.
+[7268.2 → 7269.2] Durante siglos
+[7269.8 → 7271.8] el arte del toreo se ha entendido
+[7271.8 → 7273.0] como una forma de comunión
+[7273.0 → 7274.2] entre el ser humano,
+[7274.2 → 7275.4] entre la naturaleza
+[7275.4 → 7276.4] y entre el valor.
+[7276.8 → 7278.2] Y quien acude a una plaza
+[7278.4 → 7280.0] no solo presencia un espectáculo
+[7280.6 → 7283.4] sino que presencia un acto de belleza y riesgo
+[7283.4 → 7285.8] que forma parte de nuestra identidad como pueblo.
+[7286.8 → 7287.8] Defender la tauromaquia
+[7287.8 → 7289.8] es defender la libertad cultural
+[7289.8 → 7292.4] frente a quienes pretenden imponer su forma única
+[7292.4 → 7293.4] de entender el mundo.
+[7293.4 → 7295.8] No hay otra nada más que las que ustedes entienden.
+[7296.6 → 7298.2] Nadie está obligado a amar a los toros,
+[7298.2 → 7299.2] por supuesto,
+[7299.2 → 7300.6] pero nadie tiene derecho
+[7301.0 → 7302.6] a que otros lo vivan
+[7302.6 → 7304.2] con pasión y con amor.
+[7305.4 → 7306.6] Los estudien,
+[7306.6 → 7308.0] los celebren o no.
+[7308.0 → 7309.0] Libertad.
+[7309.4 → 7311.6] La intolerancia disfrazada muchas veces
+[7311.8 → 7313.4] de esa moral superior
+[7313.6 → 7315.4] que la izquierda, en estos casos,
+[7315.4 → 7317.0] la extrema izquierda tiene
+[7318.0 → 7319.0] busca censurar.
+[7319.8 → 7320.8] No comprende.
+[7321.2 → 7322.8] Pero la libertad no se negocia.
+[7323.4 → 7325.8] La libertad se respeta íntegramente
+[7326.0 → 7327.2] o deja de ser libertad.
+[7327.8 → 7330.0] La tauromaquia puede no ser comprendida por todos,
+[7330.0 → 7331.4] yo lo entiendo perfectamente,
+[7331.8 → 7334.4] pero pertenece a todos los que aman la tradición,
+[7335.0 → 7336.0] el coraje
+[7336.0 → 7338.4] y la estética que sobrevive a nuestro tiempo.
+[7339.0 → 7341.2] Quien la prohíbe no defienda a los animales,
+[7341.4 → 7342.6] ataca a la cultura
+[7343.0 → 7345.4] y al derecho a las personas a tener esa libertad
+[7345.4 → 7346.8] y decidir por sí mismas.
+[7347.2 → 7349.8] La libertad consiste precisamente en eso,
+[7349.8 → 7350.8] en poder elegir,
+[7351.2 → 7353.2] elegir, acudir a una corrida
+[7353.2 → 7354.2] o si uno no quiere,
+[7354.2 → 7354.8] no acudir.
+[7354.8 → 7356.8] Yo no obligo a nadie a que vaya a una corrida de toros,
+[7357.0 → 7358.6] pero el que quiere que vaya.
+[7359.6 → 7360.6] Y, por supuesto,
+[7360.6 → 7362.0] estamos orgullosos
+[7362.0 → 7363.0] de sentirnos
+[7363.0 → 7365.4] a los que nos gusta la tauromaquia
+[7365.6 → 7367.4] formar parte de esta historia
+[7368.0 → 7368.8] de España.
+[7368.8 → 7370.4] Lo contrario, como siempre,
+[7370.6 → 7371.6] es censura,
+[7371.8 → 7372.6] es dogma,
+[7372.6 → 7373.6] intolerancia
+[7374.0 → 7376.8] y frente a esa intolerancia que ustedes tienen,
+[7376.8 → 7377.6] libertad.
+[7377.6 → 7378.6] Gracias.
+[7380.2 → 7381.2] ¿Ves, Paules?
+[7381.8 → 7382.8] ¿Compromiso?
+[7384.2 → 7385.2] Sí, gracias.
+[7386.6 → 7387.6] Aníbal Gore,
+[7388.0 → 7389.2] la verdad es que,
+[7390.0 → 7390.6] bueno,
+[7391.0 → 7392.2] no me esperaba menos.
+[7392.8 → 7395.2] Esta vegada del Partido Socialista me esperaba
+[7396.6 → 7398.6] una otra clase de intervención.
+[7399.6 → 7402.8] Yo no sé si ustedes han elegido la moción,
+[7403.0 → 7404.0] parece que no,
+[7404.2 → 7405.2] por la
+[7407.6 → 7408.6] exposición que ha hecho
+[7408.6 → 7410.6] la portavoz del Partido Socialista,
+[7411.2 → 7413.2] porque la ILP
+[7414.4 → 7415.4] no es la nueva cultura,
+[7415.4 → 7416.4] no pretende prohibir,
+[7416.4 → 7417.8] sino democratizar.
+[7418.4 → 7419.4] Vuelve a retornar
+[7419.4 → 7421.4] a las comunidades autónomas y a los ayuntamientos
+[7421.4 → 7423.4] la capacidad de decidir si quieren o no
+[7423.8 → 7425.2] reconocer la tauromaquia
+[7425.4 → 7427.0] como parte de su patrimonio.
+[7427.2 → 7428.2] La ley
+[7428.2 → 7429.8] 18-2013 aprobada
+[7429.8 → 7431.2] durante el gobierno del Partido Popular
+[7431.2 → 7433.4] va a imposar una visión cultural única
+[7433.8 → 7435.4] uniformizando
+[7435.8 → 7437.4] la diversidad cultural de España
+[7437.4 → 7440.4] y restringiendo las competencias autonómicas y municipales.
+[7443.4 → 7444.4] Yo creo que
+[7445.2 → 7446.8] de lo que se trataba es
+[7447.4 → 7448.8] de que decidieran
+[7448.8 → 7450.8] los ayuntamientos y las competencias autónomas.
+[7451.8 → 7453.0] El ser que ustedes
+[7453.8 → 7454.8] parecen
+[7454.8 → 7455.8] que
+[7456.0 → 7457.4] que la ley seguisca en China
+[7457.4 → 7458.6] también les da
+[7460.2 → 7461.2] esa
+[7462.8 → 7463.8] libertad,
+[7463.8 → 7464.8] entre cometas,
+[7465.0 → 7465.8] de decir
+[7465.8 → 7466.8] como está la ley
+[7468.6 → 7469.8] a nivel estatal,
+[7469.8 → 7471.8] nosotros no tenemos culpa.
+[7471.8 → 7472.8] Bien, pero bueno,
+[7473.0 → 7474.4] es lo que toca.
+[7476.2 → 7477.6] En cuanto a lo
+[7477.6 → 7479.8] que se ha comentado en este plenario,
+[7480.0 → 7482.6] de tradición, cultura
+[7483.0 → 7485.4] y toda la parafernalia en la que
+[7486.2 → 7488.2] partidos de derecha y extrema derecha
+[7488.2 → 7489.2] se suelen basar,
+[7490.4 → 7491.4] decirles que
+[7491.8 → 7493.8] el hecho de que alguna cosa sea una tradición
+[7493.8 → 7496.0] no implica que haya de continuar teniendo lugar.
+[7496.6 → 7497.6] Alguna cosa
+[7498.0 → 7499.2] puede ser una tradición
+[7499.2 → 7500.4] o un elemento central
+[7500.4 → 7501.8] en una determinada cultura
+[7501.8 → 7502.8] y ser injusto.
+[7503.6 → 7505.2] Hay múltiples ejemplos de esto.
+[7505.6 → 7508.2] Esto ha sucedido en el caso de instituciones
+[7508.6 → 7509.6] como la esclavitud.
+[7510.4 → 7511.4] Igualmente
+[7511.6 → 7514.6] en muchas tradiciones que se manifiestan de forma muy clara
+[7515.2 → 7517.0] el sexismo, el racismo
+[7517.0 → 7518.8] y otras formas de discriminación.
+[7519.4 → 7521.0] Además, cualquier valor
+[7521.2 → 7523.2] que tenga la cultura y la tradición
+[7523.2 → 7525.4] es un valor para los seres humanos
+[7525.6 → 7527.0] que lo aprecien
+[7527.0 → 7528.4] o se beneficien de él.
+[7529.2 → 7531.8] Cuando consideramos una práctica como la taunomaquía,
+[7532.0 → 7533.2] tenemos que tener en cuenta
+[7533.4 → 7535.8] no solamente los intereses de los seres humanos,
+[7536.0 → 7537.0] sino también
+[7537.0 → 7538.0] los animales
+[7538.0 → 7540.0] de otras especies afectadas por ella.
+[7540.4 → 7541.2] En este caso,
+[7541.4 → 7542.4] los huevos.
+[7542.8 → 7544.4] Así como los caballos.
+[7545.4 → 7546.4] Y el interés
+[7546.4 → 7548.0] de disfrutar de una cierta tradición
+[7548.0 → 7549.4] es mucho menos importante
+[7549.6 → 7550.4] que el interés
+[7550.4 → 7551.6] de no ser víctima
+[7551.6 → 7553.0] de graves sufrimientos
+[7553.4 → 7554.4] y en que no
+[7554.4 → 7555.4] te maten.
+[7555.8 → 7557.4] Por ello, el interés de los animales
+[7557.4 → 7558.4] matados
+[7558.4 → 7559.4] y atormentados
+[7559.6 → 7561.0] en las actividades taurinas
+[7561.0 → 7562.4] debe tener más peso
+[7562.4 → 7564.0] que el de los seres humanos
+[7564.0 → 7565.6] aficionados a esas actividades
+[7565.6 → 7567.8] para mantener la tradición de la taunomaquía.
+[7568.6 → 7569.4] El hecho
+[7569.4 → 7570.4] de que los seres humanos
+[7570.4 → 7572.0] siguen de una cierta especie
+[7572.2 → 7573.8] es una mera circunstancia
+[7574.0 → 7574.8] biológica
+[7574.8 → 7575.8] que no justifica
+[7575.8 → 7576.4] donar más
+[7576.4 → 7578.4] para sus intereses.
+[7578.8 → 7579.8] Tampoco el hecho
+[7579.8 → 7580.8] de que puedan tener
+[7580.8 → 7582.8] unas capacidades cognitivas mayores
+[7582.8 → 7583.8] justifica
+[7583.8 → 7584.8] que sus intereses
+[7584.8 → 7586.6] tengan prioridad sobre los intereses
+[7586.8 → 7587.8] más importantes
+[7587.8 → 7588.8] de los animales.
+[7589.4 → 7590.4] Por el mismo motivo
+[7590.6 → 7592.2] por el cual no se justifica
+[7592.2 → 7593.2] discriminar
+[7593.4 → 7594.6] a los seres humanos
+[7594.6 → 7595.8] menos inteligentes.
+[7596.4 → 7598.0] Las tradiciones que benefician
+[7598.2 → 7599.2] algunos
+[7599.4 → 7600.4] seres humanos
+[7600.6 → 7601.6] a costa de dañar
+[7601.6 → 7603.2] a animales de otras especies
+[7603.4 → 7604.6] pueden considerarse
+[7604.6 → 7605.6] ejemplos
+[7605.6 → 7606.6] del que esconeis
+[7606.6 → 7607.6] como especismo.
+[7608.0 → 7609.0] La discriminación
+[7609.0 → 7610.0] de los que no pertenecen
+[7610.0 → 7611.2] a una cierta especie
+[7611.4 → 7613.0] ya han de ser dejadas de costar.
+[7613.0 → 7614.0] Gracias.
+[7618.2 → 7619.2] Perdón.
+[7620.2 → 7621.6] ¿Me ha esperado usted eso?
+[7623.8 → 7624.8] Yo.
+[7625.4 → 7626.4] No.
+[7626.6 → 7627.6] Gracias.
+[7628.0 → 7629.0] Yo
+[7629.0 → 7630.0] Bueno, en primer lugar
+[7630.0 → 7631.0] coincidís en Rafa
+[7631.0 → 7632.0] en que yo creo sinceramente
+[7632.0 → 7633.0] que ni el Partido Popular
+[7633.0 → 7634.0] ni el Partido Socialista
+[7634.0 → 7635.0] ha hecho la moción
+[7635.0 → 7636.0] o no ha vuelto a entender
+[7636.0 → 7637.0] la moción.
+[7638.0 → 7639.0] Uno.
+[7640.0 → 7641.0] Si esta propuesta
+[7641.0 → 7642.0] de lo que habla
+[7642.0 → 7643.0] es de donar soporte
+[7643.0 → 7644.0] a una ILP
+[7644.0 → 7645.0] que se va a presentar
+[7645.0 → 7646.0] en el Congreso
+[7646.0 → 7647.0] en el que
+[7647.0 → 7648.0] la derecha y la extrema derecha
+[7648.0 → 7649.0] van a votar en contra
+[7649.0 → 7650.0] y el Partido Socialista
+[7650.0 → 7651.0] se va a abstener.
+[7651.0 → 7652.0] ¿Vale?
+[7652.0 → 7653.0] Si esta propuesta
+[7653.0 → 7654.0] esta ILP
+[7654.0 → 7655.0] se desenvolupa
+[7655.0 → 7656.0] lo que hace
+[7656.0 → 7657.0] no es afectar a Rivarrocha
+[7657.0 → 7658.0] afecta a cualquier
+[7658.0 → 7659.0] cualquier municipio
+[7659.0 → 7660.0] gobernado
+[7660.0 → 7661.0] por compromiso
+[7661.0 → 7662.0] por Esquerra Unida
+[7662.0 → 7663.0] por el Partido Popular
+[7663.0 → 7664.0] o cualquier
+[7664.0 → 7665.0] partido.
+[7665.0 → 7666.0] Es decir,
+[7666.0 → 7667.0] no afecta al partido
+[7667.0 → 7668.0] sino afecta al pueblo
+[7668.0 → 7669.0] porque le da el poder
+[7669.0 → 7670.0] de decidir
+[7670.0 → 7671.0] a la autonomía
+[7671.0 → 7672.0] o al municipio
+[7672.0 → 7673.0] y eso es lo que defensa
+[7673.0 → 7674.0] esta ILP
+[7674.0 → 7675.0] que las autonomías
+[7675.0 → 7676.0] y los municipios
+[7676.0 → 7677.0] defiendan.
+[7677.0 → 7678.0] Para contestar a Vox
+[7680.0 → 7681.0] la libertad
+[7681.0 → 7682.0] para elegir
+[7682.0 → 7683.0] para imposar
+[7683.0 → 7684.0] mirad
+[7684.0 → 7685.0] un ejemplo es muy claro
+[7685.0 → 7686.0] en Cataluña
+[7686.0 → 7687.0] y en Balear
+[7687.0 → 7688.0] van a volver
+[7688.0 → 7689.0] a llevar
+[7689.0 → 7690.0] la tauromaquia
+[7690.0 → 7691.0] porque
+[7691.0 → 7692.0] así se va a decidir
+[7692.0 → 7693.0] y por esta ley
+[7693.0 → 7694.0] les han obligado
+[7694.0 → 7695.0] a no poder
+[7695.0 → 7696.0] llevarla
+[7696.0 → 7697.0] porque esta ley
+[7697.0 → 7698.0] lo que hace es
+[7698.0 → 7699.0] imposar.
+[7699.0 → 7700.0] Por lo tanto
+[7700.0 → 7701.0] esta ILP
+[7701.0 → 7702.0] lo que hace es
+[7702.0 → 7703.0] democratizar
+[7703.0 → 7704.0] la cultura
+[7704.0 → 7705.0] para que se pueda decidir.
+[7705.0 → 7706.0] Por lo tanto
+[7706.0 → 7707.0] quien no tiene la libertad
+[7707.0 → 7708.0] es en este sentido
+[7708.0 → 7709.0] la derecha
+[7709.0 → 7710.0] y la extrema derecha.
+[7710.0 → 7711.0] Y en el caso
+[7711.0 → 7712.0] del Partido Socialista
+[7712.0 → 7713.0] no es una moción
+[7713.0 → 7714.0] que ya se ha presentado
+[7714.0 → 7715.0] es una moción
+[7715.0 → 7716.0] diferente
+[7716.0 → 7717.0] de la moción
+[7717.0 → 7718.0] del Partido Socialista
+[7718.0 → 7719.0] por lo tanto
+[7719.0 → 7720.0] no es verdad.
+[7720.0 → 7721.0] Y voy a decir una cosa
+[7721.0 → 7722.0] que es esencialmente importante
+[7722.0 → 7723.0] al Partido Popular
+[7723.0 → 7724.0] y es que esta moción
+[7724.0 → 7725.0] lo que hace
+[7725.0 → 7726.0] en las suyas posiciones de motivos
+[7726.0 → 7727.0] es hablar
+[7727.0 → 7728.0] de lo que es la ILP
+[7728.0 → 7729.0] pero esta moción
+[7729.0 → 7730.0] está basada
+[7730.0 → 7731.0] en un argumentario
+[7731.0 → 7732.0] un argumentario
+[7732.0 → 7733.0] en defensa
+[7733.0 → 7734.0] del bienestar animal.
+[7734.0 → 7735.0] Este argumentario
+[7735.0 → 7736.0] yo me he encarregado
+[7736.0 → 7737.0] de que no siga
+[7737.0 → 7738.0] ni de esquerronía
+[7738.0 → 7739.0] ni de poder
+[7739.0 → 7740.0] ni de compromiso.
+[7740.0 → 7741.0] El argumentario
+[7741.0 → 7742.0] de esta moción
+[7742.0 → 7743.0] es del Partido Socialista
+[7743.0 → 7744.0] de Rivarrocha.
+[7744.0 → 7745.0] He agafado
+[7745.0 → 7746.0] el argumentario
+[7746.0 → 7747.0] del bienestar animal
+[7747.0 → 7748.0] de todos los animales
+[7748.0 → 7749.0] de la rechiduría
+[7749.0 → 7750.0] del bienestar animal
+[7750.0 → 7751.0] de Raquel
+[7751.0 → 7752.0] y en la legislatura pasada.
+[7752.0 → 7753.0] Yo ya me he encarregado
+[7753.0 → 7754.0] de argumentar
+[7754.0 → 7755.0] esta moción
+[7755.0 → 7756.0] con el Partido Socialista
+[7756.0 → 7757.0] por lo tanto
+[7757.0 → 7758.0] esta moción
+[7758.0 → 7759.0] es más del Partido Socialista
+[7759.0 → 7760.0] que de esquerronía
+[7760.0 → 7761.0] de poder
+[7761.0 → 7762.0] ni de compromiso.
+[7762.0 → 7763.0] Por lo tanto
+[7763.0 → 7764.0] si vosotros votáis en contra
+[7764.0 → 7765.0] lo que estáis haciendo
+[7765.0 → 7766.0] es lo que
+[7766.0 → 7767.0] muchísimas veces
+[7767.0 → 7768.0] hace el Partido Socialista
+[7768.0 → 7769.0] en materia del bienestar animal
+[7769.0 → 7770.0] que es hipocresía política
+[7770.0 → 7771.0] porque ustedes
+[7771.0 → 7772.0] defienden
+[7772.0 → 7773.0] el bienestar animal
+[7773.0 → 7774.0] pero a todos los animales
+[7774.0 → 7775.0] pero realmente
+[7775.0 → 7776.0] cuando hay que hacer
+[7776.0 → 7777.0] políticas valientes
+[7777.0 → 7778.0] que es lo que no va a hacer
+[7778.0 → 7779.0] el Partido Socialista
+[7779.0 → 7780.0] a nivel estatal
+[7780.0 → 7781.0] que habría de haber
+[7781.0 → 7782.0] defensado esta ILP
+[7782.0 → 7783.0] para democratizar
+[7783.0 → 7784.0] la cultura
+[7784.0 → 7785.0] y para
+[7785.0 → 7786.0] tornar a las autonomías
+[7786.0 → 7787.0] y a los ayuntamientos
+[7787.0 → 7788.0] esta
+[7788.0 → 7789.0] realidad
+[7789.0 → 7790.0] lo que no ha hecho
+[7790.0 → 7791.0] el Partido Socialista
+[7791.0 → 7792.0] es
+[7792.0 → 7793.0] donar suporte
+[7793.0 → 7794.0] a esta propuesta
+[7794.0 → 7795.0] y lo que nosotros
+[7795.0 → 7796.0] queremos es
+[7796.0 → 7797.0] en base
+[7797.0 → 7798.0] a vuestro argumentario
+[7798.0 → 7799.0] poder defensar esta propuesta
+[7799.0 → 7800.0] por lo tanto
+[7800.0 → 7801.0] no es una propuesta nueva
+[7801.0 → 7802.0] pero que es una propuesta
+[7802.0 → 7803.0] de la ILP
+[7804.0 → 7805.0] y dos
+[7805.0 → 7806.0] defensa una cosa nueva
+[7806.0 → 7807.0] y cree sinceramente
+[7807.0 → 7808.0] que el Partido Socialista
+[7808.0 → 7809.0] lo que habría de hacer
+[7809.0 → 7810.0] es estar a la altura
+[7810.0 → 7811.0] de
+[7811.0 → 7812.0] ya no de sus votantes
+[7812.0 → 7813.0] sino de su propio discurso
+[7813.0 → 7814.0] que hacen en los medios
+[7814.0 → 7815.0] de comunicación
+[7815.0 → 7816.0] gracias
+[7816.0 → 7817.0] en ocho instantes
+[7817.0 → 7818.0] que es emocionante
+[7818.0 → 7819.0] el debate
+[7819.0 → 7820.0] pero
+[7820.0 → 7821.0] tu chema
+[7821.0 → 7822.0] grande
+[7822.0 → 7823.0] Teresa
+[7825.0 → 7826.0] bueno pues
+[7826.0 → 7827.0] desde el cariño
+[7827.0 → 7828.0] absoluto
+[7830.0 → 7831.0] pero vamos a ver
+[7831.0 → 7832.0] creo que se tiene
+[7832.0 → 7833.0] que predicar
+[7833.0 → 7834.0] con el ejemplo
+[7834.0 → 7835.0] o sea
+[7835.0 → 7836.0] si vosotros
+[7836.0 → 7837.0] en vuestros municipios
+[7837.0 → 7838.0] en los que gobernáis
+[7838.0 → 7839.0] libremente
+[7839.0 → 7840.0] no hubieran toros
+[7840.0 → 7841.0] entendería vuestra postura
+[7841.0 → 7842.0] un poco indignada
+[7842.0 → 7843.0] de nuestra
+[7843.0 → 7844.0] de nuestra decisión
+[7844.0 → 7845.0] o de nuestro planteamiento
+[7845.0 → 7846.0] creo que hay que predicar
+[7846.0 → 7847.0] con el ejemplo
+[7847.0 → 7848.0] quiero decir
+[7848.0 → 7849.0] nosotros como partido
+[7849.0 → 7850.0] iremos a nuestros
+[7850.0 → 7851.0] diputados del Congreso
+[7851.0 → 7852.0] a decir lo que tengamos
+[7852.0 → 7853.0] que decir
+[7853.0 → 7854.0] pero
+[7854.0 → 7855.0] egoístamente hablando
+[7855.0 → 7856.0] y
+[7856.0 → 7857.0] perdóname que sea así
+[7857.0 → 7858.0] a lo mejor un poco dura
+[7858.0 → 7859.0] bastantes problemas
+[7859.0 → 7860.0] tenemos a nivel municipal
+[7860.0 → 7861.0] como para encima
+[7861.0 → 7862.0] querer ponernos
+[7862.0 → 7863.0] algunos
+[7863.0 → 7864.0] que no nos corresponden
+[7864.0 → 7865.0] a nivel municipal
+[7866.0 → 7867.0] que lo decidan
+[7867.0 → 7868.0] los partidos
+[7868.0 → 7869.0] que afortunadamente
+[7869.0 → 7870.0] todos los partidos
+[7870.0 → 7871.0] que estamos aquí representados
+[7871.0 → 7872.0] tienen diputados
+[7872.0 → 7873.0] en el Congreso
+[7873.0 → 7874.0] de los diputados
+[7874.0 → 7875.0] y que sean ellos
+[7875.0 → 7876.0] quienes lo lleven
+[7876.0 → 7877.0] y lo defiendan
+[7877.0 → 7878.0] y lo propongan
+[7878.0 → 7879.0] y no trasladen
+[7879.0 → 7880.0] esos problemas
+[7880.0 → 7881.0] a los ayuntamientos
+[7882.0 → 7883.0] y en este caso
+[7883.0 → 7884.0] nosotros ya te digo
+[7884.0 → 7885.0] podremos
+[7885.0 → 7886.0] porque en nuestro propio partido
+[7886.0 → 7887.0] hay diferentes opiniones
+[7887.0 → 7888.0] hay gente que le gustan los toros
+[7888.0 → 7889.0] y hay gente que no
+[7889.0 → 7890.0] es que
+[7890.0 → 7891.0] a José Luis
+[7891.0 → 7892.0] los toros
+[7892.0 → 7893.0] no va con el partido
+[7893.0 → 7894.0] a que votas
+[7894.0 → 7895.0] es que yo
+[7895.0 → 7896.0] no comparto
+[7896.0 → 7897.0] esa postura tuya
+[7897.0 → 7898.0] que los toros
+[7898.0 → 7899.0] le gusta a una parte
+[7899.0 → 7900.0] de colectivo
+[7900.0 → 7901.0] y a otros no
+[7901.0 → 7902.0] pero dentro
+[7902.0 → 7903.0] de esa decisión
+[7903.0 → 7904.0] de si toros sí
+[7904.0 → 7905.0] o toros no
+[7905.0 → 7906.0] el gobierno central
+[7906.0 → 7907.0] es el que tiene que decir
+[7907.0 → 7908.0] o sea
+[7908.0 → 7909.0] las leyes nacionales
+[7909.0 → 7910.0] son las que deciden
+[7910.0 → 7911.0] si hay toros o no
+[7911.0 → 7912.0] no es una decisión
+[7912.0 → 7913.0] municipalista
+[7913.0 → 7914.0] y en ese sentido
+[7914.0 → 7915.0] vosotros creo
+[7915.0 → 7916.0] que
+[7916.0 → 7917.0] que breguéis con el ejemplo
+[7917.0 → 7918.0] empezar con los ayuntamientos
+[7918.0 → 7919.0] en los que gobernáis
+[7919.0 → 7920.0] y no hagáis toros
+[7920.0 → 7921.0] y entonces entenderé
+[7921.0 → 7922.0] esa propuesta
+[7922.0 → 7923.0] pero
+[7923.0 → 7924.0] sí que me he leído
+[7924.0 → 7925.0] tu propuesta
+[7925.0 → 7926.0] pero es que
+[7926.0 → 7927.0] el punto 4
+[7927.0 → 7928.0] expresar el compromiso
+[7928.0 → 7929.0] firme
+[7929.0 → 7930.0] de ese ayuntamiento
+[7930.0 → 7931.0] con los valores de respeto
+[7931.0 → 7932.0] y la protección animal
+[7932.0 → 7933.0] y mostrar nuestra disposición
+[7933.0 → 7934.0] a ser un altavoz
+[7934.0 → 7935.0] de las demandas
+[7935.0 → 7936.0] ciudadanas
+[7936.0 → 7937.0] de este
+[7937.0 → 7938.0] supone
+[7938.0 → 7939.0] que cuando vengan
+[7939.0 → 7940.0] un colectivo
+[7940.0 → 7941.0] de nuestro pueblo
+[7941.0 → 7942.0] que también son ciudadanos
+[7942.0 → 7943.0] y que la ley les permite
+[7943.0 → 7944.0] hacer toros
+[7944.0 → 7945.0] les digamos que no
+[7945.0 → 7946.0] y no
+[7946.0 → 7947.0] es decir
+[7947.0 → 7948.0] no es una decisión nuestra
+[7948.0 → 7949.0] en este momento
+[7949.0 → 7950.0] para que tengamos que decidirlo
+[7950.0 → 7951.0] y nos guste o no
+[7951.0 → 7952.0] somos
+[7952.0 → 7953.0] gobierno
+[7953.0 → 7954.0] del que le gustan los toros
+[7954.0 → 7955.0] y el que no le gusta
+[7955.0 → 7956.0] del que nos vota
+[7956.0 → 7957.0] y del que no nos vota
+[7957.0 → 7958.0] entonces
+[7958.0 → 7959.0] es una decisión
+[7959.0 → 7960.0] que en este momento
+[7960.0 → 7961.0] no es nuestra
+[7961.0 → 7962.0] y no la queremos como tal
+[7962.0 → 7963.0] cuando nos la trasladen
+[7963.0 → 7964.0] ya veremos
+[7964.0 → 7965.0] pero en este momento
+[7965.0 → 7966.0] no es una circunstancia municipal
+[7966.0 → 7967.0] y cuando se cambie
+[7967.0 → 7968.0] estaremos
+[7968.0 → 7969.0] o sea
+[7969.0 → 7970.0] llevarlo
+[7970.0 → 7971.0] hablarlo con vuestros
+[7971.0 → 7972.0] equipos
+[7972.0 → 7973.0] que están en la altura
+[7973.0 → 7974.0] donde tienen que decidirlo
+[7974.0 → 7975.0] y mostrar el ejemplo
+[7975.0 → 7976.0] en los municipios
+[7976.0 → 7977.0] en los que estáis
+[7977.0 → 7978.0] y que es un esfuerzo importante
+[7978.0 → 7979.0] también
+[7979.0 → 7980.0] de cara a la defensa
+[7980.0 → 7981.0] de estas propuestas
+[7981.0 → 7982.0] nada más
+[7982.0 → 7983.0] ¿Más palabras?
+[7983.0 → 7984.0] Alberto
+[7984.0 → 7985.0] es una intervención ya
+[7985.0 → 7986.0] a mí me hace gracia
+[7986.0 → 7987.0] que
+[7987.0 → 7988.0] fijar el ejemplo
+[7988.0 → 7989.0] de la comunidad autonómica
+[7989.0 → 7990.0] de Cataluña
+[7990.0 → 7991.0] y de Baleares
+[7991.0 → 7992.0] volviendo a llevar
+[7992.0 → 7993.0] los huevos
+[7993.0 → 7994.0] y
+[7994.0 → 7995.0] no se permitir
+[7995.0 → 7996.0] porque va contra
+[7996.0 → 7997.0] una ley estatal
+[7997.0 → 7998.0] vamos a llevar
+[7998.0 → 7999.0] nosotros las reglas
+[7999.0 → 8000.0] de tráfico
+[8000.0 → 8001.0] en la Comunidad Valenciana
+[8001.0 → 8002.0] y que no nos dicen
+[8002.0 → 8003.0] porque es de Llochica
+[8003.0 → 8004.0] porque va contra
+[8004.0 → 8005.0] una ley estatal
+[8005.0 → 8006.0] es que al final
+[8006.0 → 8007.0] las leyes estatales
+[8007.0 → 8008.0] están hechas
+[8008.0 → 8009.0] para que les cumplan
+[8009.0 → 8010.0] las comunidades autonómicas
+[8010.0 → 8011.0] del Estado Español
+[8011.0 → 8012.0] no es
+[8012.0 → 8013.0] tú sí
+[8013.0 → 8014.0] tú si quieres
+[8014.0 → 8015.0] tú no
+[8015.0 → 8016.0] y ya una
+[8016.0 → 8017.0] y ustedes se basan
+[8017.0 → 8018.0] en datos
+[8018.0 → 8019.0] que no sé realmente
+[8019.0 → 8020.0] 7 de cada 10 personas
+[8020.0 → 8021.0] yo he buscado
+[8021.0 → 8022.0] esto
+[8022.0 → 8023.0] y 7 de cada 10 personas
+[8023.0 → 8024.0] no rebutan los huevos
+[8024.0 → 8025.0] porque en lugar
+[8025.0 → 8026.0] de 700.000 firmes
+[8026.0 → 8027.0] habrían repartido
+[8027.0 → 8028.0] 37 millones de firmas
+[8028.0 → 8029.0] porque
+[8029.0 → 8030.0] en el Estado Español
+[8030.0 → 8031.0] son mucho más habitantes
+[8031.0 → 8032.0] que
+[8032.0 → 8033.0] de estos 700.000
+[8033.0 → 8034.0] en todo el respeto
+[8034.0 → 8035.0] a este Estado
+[8035.0 → 8036.0] en todo el respeto
+[8036.0 → 8037.0] a estas 700.000 personas
+[8037.0 → 8038.0] un deseo
+[8038.0 → 8039.0] sostenido
+[8039.0 → 8040.0] de la tauromaquia
+[8040.0 → 8041.0] no así
+[8041.0 → 8042.0] en la Comunidad Valenciana
+[8042.0 → 8043.0] porque así
+[8043.0 → 8044.0] en la Comunidad Valenciana
+[8044.0 → 8045.0] durante el año 24
+[8045.0 → 8046.0] y 25
+[8046.0 → 8047.0] ha aumentado
+[8047.0 → 8048.0] los huevos
+[8048.0 → 8049.0] en la calle
+[8049.0 → 8050.0] los festejos
+[8050.0 → 8051.0] de huevos
+[8051.0 → 8052.0] en el mar
+[8052.0 → 8053.0] los corregidos
+[8053.0 → 8054.0] de huevos
+[8054.0 → 8055.0] las plazas
+[8055.0 → 8056.0] desmontables
+[8056.0 → 8057.0] todos estos eventos
+[8057.0 → 8058.0] taurinos
+[8058.0 → 8059.0] han aumentado
+[8059.0 → 8060.0] ustedes no pretenden
+[8060.0 → 8061.0] prohibir
+[8061.0 → 8062.0] sino democratizar
+[8062.0 → 8063.0] esta ILP
+[8063.0 → 8064.0] pero es que
+[8064.0 → 8065.0] es una ley estatal
+[8065.0 → 8066.0] que
+[8066.0 → 8067.0] es democrática
+[8067.0 → 8068.0] votar
+[8068.0 → 8069.0] por el Congreso
+[8069.0 → 8070.0] de los Diputados
+[8070.0 → 8071.0] por una mayoría
+[8071.0 → 8072.0] aplastante
+[8072.0 → 8073.0] en el momento
+[8073.0 → 8074.0] en el que va a determinar
+[8074.0 → 8075.0] todo el pueblo español
+[8075.0 → 8076.0] que los huevos
+[8076.0 → 8077.0] continúen
+[8077.0 → 8078.0] pero como a ustedes
+[8078.0 → 8079.0] la hija ideal
+[8079.0 → 8080.0] no les agrada
+[8080.0 → 8081.0] quieren democratizar
+[8081.0 → 8082.0] pero si es que
+[8082.0 → 8083.0] la ley
+[8083.0 → 8084.0] es democrática
+[8084.0 → 8085.0] todas las leyes
+[8085.0 → 8086.0] están basadas
+[8086.0 → 8087.0] en el Estado
+[8087.0 → 8088.0] de Democracia
+[8088.0 → 8089.0] de España
+[8089.0 → 8090.0] la cultura
+[8090.0 → 8091.0] no puede imponerse
+[8091.0 → 8092.0] bien
+[8092.0 → 8093.0] pero
+[8094.0 → 8095.0] en todo el respeto
+[8095.0 → 8096.0] al Valencia
+[8096.0 → 8097.0] que yo parlé de Valencia
+[8097.0 → 8098.0] el Valencia
+[8098.0 → 8099.0] si que lo podemos imponer
+[8099.0 → 8100.0] por la defensa
+[8100.0 → 8101.0] del Valencia
+[8101.0 → 8102.0] no se puede
+[8102.0 → 8103.0] imponer
+[8103.0 → 8104.0] nada
+[8104.0 → 8105.0] tú
+[8105.0 → 8106.0] dentro de lo que es legal
+[8106.0 → 8107.0] puedes hacer
+[8107.0 → 8108.0] y deshacer
+[8108.0 → 8109.0] pero imponer
+[8109.0 → 8110.0] no es un buen camino
+[8110.0 → 8111.0] para nada
+[8111.0 → 8112.0] ustedes
+[8112.0 → 8113.0] siempre agarran
+[8113.0 → 8114.0] sus ideales
+[8114.0 → 8115.0] como los ideales
+[8115.0 → 8116.0] del pueblo de Valencia
+[8116.0 → 8117.0] o del pueblo español
+[8117.0 → 8118.0] y muchos viajes
+[8118.0 → 8119.0] no permiten
+[8119.0 → 8120.0] que la gente
+[8120.0 → 8121.0] haga dentro de la legalidad
+[8121.0 → 8122.0] cada uno
+[8122.0 → 8123.0] lo que sea conveniente
+[8123.0 → 8124.0] y lo que buiga
+[8124.0 → 8125.0] ustedes van contra
+[8125.0 → 8126.0] la libertad
+[8126.0 → 8127.0] de los españoles
+[8127.0 → 8128.0] nada más
+[8128.0 → 8129.0] gracias
+[8129.0 → 8130.0] y
+[8130.0 → 8131.0] más palabras
+[8131.0 → 8132.0] Vox
+[8132.0 → 8133.0] muchas gracias
+[8133.0 → 8134.0] y muy breve
+[8134.0 → 8135.0] simplemente
+[8135.0 → 8136.0] responder
+[8136.0 → 8137.0] al rechidor
+[8137.0 → 8138.0] de compromiso
+[8138.0 → 8139.0] que comparar
+[8139.0 → 8140.0] la tauromaquia
+[8140.0 → 8141.0] con la esclavitud
+[8141.0 → 8142.0] y el machismo
+[8142.0 → 8143.0] pues en fin
+[8143.0 → 8144.0] el mismo
+[8144.0 → 8145.0] se ha definido
+[8145.0 → 8146.0] no tiene
+[8146.0 → 8147.0] nada que ver
+[8147.0 → 8148.0] o sea
+[8148.0 → 8149.0] me está poniendo
+[8149.0 → 8150.0] unos ejemplos
+[8150.0 → 8151.0] que de verdad
+[8151.0 → 8152.0] en fin
+[8152.0 → 8153.0] la tauromaquia
+[8153.0 → 8154.0] no tiene nada que ver
+[8154.0 → 8155.0] ni con la esclavitud
+[8155.0 → 8156.0] ni con el machismo
+[8156.0 → 8157.0] son dos cosas
+[8157.0 → 8158.0] son cosas completamente
+[8158.0 → 8159.0] diferentes
+[8159.0 → 8160.0] la tauromaquia
+[8160.0 → 8161.0] es esto que hay
+[8161.0 → 8162.0] un toro
+[8162.0 → 8163.0] cuernos
+[8163.0 → 8164.0] un torero
+[8164.0 → 8165.0] etcétera
+[8165.0 → 8166.0] la esclavitud
+[8166.0 → 8167.0] eran otras cosas
+[8167.0 → 8168.0] eran las de las cadenas
+[8168.0 → 8169.0] lamentablemente
+[8169.0 → 8170.0] a ver si por lo menos
+[8170.0 → 8171.0] aprendemos a diferenciar
+[8171.0 → 8172.0] un poquito
+[8172.0 → 8173.0] las cosas
+[8173.0 → 8174.0] por favor
+[8174.0 → 8175.0] gracias
+[8175.0 → 8176.0] eh
+[8176.0 → 8177.0] compromiso
+[8177.0 → 8178.0] última intervención
+[8178.0 → 8179.0] creo que si
+[8179.0 → 8180.0] no
+[8180.0 → 8181.0] un minuto
+[8181.0 → 8182.0] venga un minuto
+[8182.0 → 8183.0] dos minutos
+[8183.0 → 8184.0] dos minutos
+[8184.0 → 8185.0] a la teo
+[8185.0 → 8186.0] dos minutos
+[8186.0 → 8187.0] venga
+[8187.0 → 8188.0] gracias
+[8188.0 → 8189.0] el dos minutos
+[8189.0 → 8190.0] no va a estar bien
+[8190.0 → 8191.0] de pronto
+[8191.0 → 8192.0] pero va a estar
+[8192.0 → 8193.0] ah
+[8193.0 → 8194.0] Tolomón
+[8194.0 → 8195.0] comenzaré
+[8195.0 → 8196.0] per les dones
+[8196.0 → 8197.0] en diferencia
+[8197.0 → 8198.0] a la portavoz
+[8198.0 → 8199.0] del Partido Socialista
+[8199.0 → 8200.0] Teresa
+[8200.0 → 8201.0] no te sea yo
+[8201.0 → 8202.0] tan demagógica
+[8202.0 → 8203.0] vale
+[8203.0 → 8204.0] pero una sencilla razón
+[8204.0 → 8205.0] porque
+[8205.0 → 8206.0] es una ley
+[8206.0 → 8207.0] estatal
+[8207.0 → 8208.0] evidentemente
+[8208.0 → 8209.0] en el Ayuntamiento
+[8209.0 → 8210.0] y también
+[8210.0 → 8211.0] si hay un mal compromiso
+[8211.0 → 8212.0] se la tiene que tragar
+[8212.0 → 8213.0] vale
+[8213.0 → 8214.0] igual que se la traga
+[8214.0 → 8215.0] cuatro
+[8215.0 → 8216.0] igual que se la traga
+[8216.0 → 8217.0] Manises
+[8217.0 → 8218.0] igual que se la traga
+[8218.0 → 8219.0] Cuart de Poblet
+[8219.0 → 8220.0] vale
+[8220.0 → 8221.0] entonces
+[8221.0 → 8222.0] lo que pretendemos
+[8222.0 → 8223.0] nosotros
+[8223.0 → 8224.0] en esta ILP
+[8224.0 → 8225.0] que no es una moción
+[8225.0 → 8226.0] que ha estado presentada
+[8226.0 → 8227.0] en otras legislaturas
+[8227.0 → 8228.0] en otras legislaturas
+[8228.0 → 8229.0] cuando estaba
+[8229.0 → 8230.0] Rafa Gómez
+[8230.0 → 8231.0] que el coneyo
+[8231.0 → 8232.0] vale
+[8232.0 → 8233.0] se presentaban
+[8233.0 → 8234.0] en contra de la tauromaquia
+[8234.0 → 8235.0] esta
+[8235.0 → 8236.0] es
+[8236.0 → 8237.0] para que la ILP
+[8237.0 → 8238.0] vaya a andar
+[8238.0 → 8239.0] vaya a andar
+[8239.0 → 8240.0] y
+[8240.0 → 8241.0] el Ayuntamiento
+[8241.0 → 8242.0] pueda decidir
+[8242.0 → 8243.0] y vosotros
+[8243.0 → 8244.0] o el que esté llamado
+[8244.0 → 8245.0] decidirá
+[8245.0 → 8246.0] si sí
+[8246.0 → 8247.0] o si no
+[8247.0 → 8248.0] pero no estará imposado
+[8248.0 → 8249.0] por un gobierno central
+[8249.0 → 8250.0] vale
+[8250.0 → 8251.0] y
+[8251.0 → 8252.0] eh
+[8252.0 → 8253.0] ahora
+[8253.0 → 8254.0] eh
+[8254.0 → 8255.0] el regidor de voz
+[8255.0 → 8256.0] yo ya no sé
+[8256.0 → 8257.0] qué contestarle
+[8257.0 → 8258.0] porque vamos
+[8258.0 → 8259.0] eh
+[8259.0 → 8260.0] estoy hablando de tradición
+[8260.0 → 8261.0] y
+[8261.0 → 8262.0] y la esclavitud
+[8262.0 → 8263.0] parece que era una tradición
+[8263.0 → 8264.0] en aquella época
+[8264.0 → 8265.0] y
+[8265.0 → 8266.0] y
+[8266.0 → 8267.0] y
+[8267.0 → 8297.0] 
+[8297.0 → 8327.0] 
+[8327.0 → 8357.0] 
+[8357.0 → 8387.0] 
+[8387.0 → 8400.0] 
+[8400.0 → 8407.0] para decir que estéis por vuestras declaraciones, que son públicas y que además están recogidas en esta emoción,
+[8407.0 → 8409.0] que sigáis coherentes.
+[8409.0 → 8417.0] No se puede defender el bienestar animal contra todos los animales, como vosotros decís en vuestras notas de prensa,
+[8417.0 → 8421.0] pero también decir que el maltrato depende de cómo lo mires.
+[8421.0 → 8423.0] No, eso no puede ser.
+[8423.0 → 8427.0] Es decir, o estamos a favor del bienestar animal o estamos en contra.
+[8427.0 → 8429.0] No se puede estar al costado de los dos.
+[8429.0 → 8435.0] O defendemos el bienestar animal como supuestamente se defiende en notas de prensa del PSOE de Rivarrocha,
+[8435.0 → 8436.0] o no.
+[8436.0 → 8440.0] Esta emoción, reitero, el argumentario es del PSOE de Rivarrocha.
+[8440.0 → 8444.0] Si votáis en contra, lo que estáis haciendo es una práctica política de incoherencia política
+[8444.0 → 8447.0] porque estáis votando en contra de vuestro propio argumentario.
+[8447.0 → 8449.0] Nada más. Gracias.
+[8450.0 → 8451.0] Vale.
+[8452.0 → 8455.0] Estoy contento de que hayáis tomado el tiempo.
+[8455.0 → 8460.0] Yo creo que en la argumentación te has dado la respuesta.
+[8460.0 → 8466.0] Yo creo que el que no ha sido una persona, bueno, sí, por supuesto,
+[8466.0 → 8470.0] el que no ha tenido una coherencia estratégica ha sido Esquerra Unida Podem,
+[8470.0 → 8475.0] porque lo que ha hecho es, en vez de hablar en el Partido Socialista de su programa,
+[8475.0 → 8478.0] ha tallado, ha asesorado, ha asesorado claramente,
+[8478.0 → 8481.0] porque ese no es el programa del Partido Socialista, yo le invito a que lo vea bien,
+[8481.0 → 8485.0] y nosotros le diríamos, mire si le diríamos que en el pacto de gobierno,
+[8485.0 → 8491.0] sí, sí, usted estaba, en el pacto de gobierno excluyeron el tema de los huevos y el tema de la bandera.
+[8491.0 → 8495.0] Pacto de gobierno, y eso está Rafa de testigo, entre otras cosas.
+[8495.0 → 8498.0] Nosotros si no estamos debatiendo si huevos sí o huevos no.
+[8499.0 → 8503.0] Por lo tanto, nosotros tenemos compañeros rechazadores y rechazadores
+[8503.0 → 8509.0] que están en contra de la tauromaquia, y en nuestro partido hay de todo.
+[8509.0 → 8514.0] Nosotros lo que está diciendo, yo pienso que quien no lo entiende es usted,
+[8514.0 → 8519.0] es que efectivamente deben de ser los partidos a nivel nacional
+[8519.0 → 8525.0] donde realmente llegan los acuerdos políticos para poder hacer lo que usted desea.
+[8526.0 → 8530.0] Y hay algunos compañeros también que están así, por ejemplo el del PSOE,
+[8530.0 → 8534.0] y decirle que ustedes han estado gobernando y están gobernando en el PSOE.
+[8534.0 → 8539.0] Ahora, sumar, son ustedes, y Podemos hasta también.
+[8539.0 → 8546.0] ¿Usted ha visto alguna propuesta de Yolanda diciéndole a la taula del Consejo de Gobierno
+[8546.0 → 8550.0] para aprobarla? ¿La ha visto? No la ha aprobado.
+[8550.0 → 8553.0] El Consejo de Gobierno no se ha tratado del tema.
+[8553.0 → 8555.0] Otra cosa es las propuestas que viene de abajo.
+[8555.0 → 8558.0] Y por lo tanto, la hipocresía sería en todo caso,
+[8558.0 → 8564.0] allá donde creen en el IJLP y están haciendo huevos.
+[8564.0 → 8570.0] Nosotros hemos diferenciado siempre y estamos trabajando por el bienestar animal y mucho.
+[8570.0 → 8576.0] Y al mismo tiempo entendemos que no hay práctica, que a unos les gusta y a otros no les gusta
+[8576.0 → 8580.0] que se huevan y que los compartan, y a otros no,
+[8580.0 → 8585.0] que es compatible en trabajar desde la pedagogía para que efectivamente
+[8585.0 → 8587.0] el conjunto del bienestar animal avance.
+[8587.0 → 8589.0] Y eso es lo que estamos haciendo.
+[8589.0 → 8595.0] Y nosotros hemos pensado seis años para intentar tener un rendimiento político
+[8595.0 → 8597.0] y sentarnos y haber hablado.
+[8597.0 → 8598.0] Vamos a hablar de este tema.
+[8598.0 → 8601.0] Ha venido para ver si en el pleno va lo que usted cree que debe ir.
+[8601.0 → 8604.0] Que es la rentabilidad política en los huevos.
+[8604.0 → 8606.0] Y eso es lo que preocupa.
+[8606.0 → 8608.0] Porque si piensa que va a rascar huevos del PSOE,
+[8608.0 → 8612.0] porque resulta que el PSOE está en un debate de huevos sí o huevos no,
+[8612.0 → 8615.0] se equivoca y el tiempo ya lo ha demostrado.
+[8615.0 → 8617.0] Por lo tanto, ha venido a rascar huevos.
+[8617.0 → 8620.0] Y cuando uno va a rascar huevos, el viaje se va trasquilando.
+[8620.0 → 8622.0] Y eso es lo que debe hacer usted.
+[8622.0 → 8626.0] Buscar una frase así, doble allá, estudiar, ser mal estudiado,
+[8626.0 → 8630.0] el programa nuestro, porque en el programa nuestro sí contemplamos los huevos,
+[8630.0 → 8634.0] no hablemos de prohibir los huevos y siempre hablemos de que no es una ley nacional.
+[8634.0 → 8637.0] Yo creo que efectivamente, de lo que dijo José Manuel,
+[8637.0 → 8640.0] se podría haber tratado de otra manera, si realmente el objetivo,
+[8640.0 → 8644.0] el final que usted quiere iniciar el PSOE habría sido lo que usted quiere hacer.
+[8644.0 → 8648.0] Haber sentado al grupo, haber hablado, hemos intentado convencer,
+[8648.0 → 8652.0] pero no, ha venido en una puntadilla, amagado, para decir así,
+[8652.0 → 8656.0] para ver si el PSOE le dice que es taurino.
+[8656.0 → 8661.0] Y, por lo tanto, el PSOE en contra de un acerto electoral que tenía.
+[8661.0 → 8665.0] Equivocación, tengo el consejo, equivocación.
+[8665.0 → 8667.0] Pero bueno, lo que pasa es que todos estos argumentos,
+[8667.0 → 8670.0] nosotros no estamos votando por sí o por no.
+[8670.0 → 8672.0] No estamos votando por eso.
+[8672.0 → 8676.0] Por lo tanto, y si la votación es en contra de lo que tú dices,
+[8676.0 → 8683.0] que es ir a un ILEPE, donde realmente nosotros creemos que desde el gobierno de España,
+[8683.0 → 8687.0] donde se tenía que tratar ese tema y, por lo tanto, duró el Congreso de Diputados.
+[8687.0 → 8690.0] Y votaron. Y a partir de ahí, lo que nos digan.
+[8690.0 → 8695.0] Y no estamos haciendo votos así, votos allá, y así para que así, y allá para que allá.
+[8695.0 → 8697.0] Era simplemente eso.
+[8703.0 → 8705.0] Y es que usted ha faltado a la veridad.
+[8705.0 → 8711.0] Yo lo que he hecho es pasarle la propuesta antes de las comisiones informativas del PSOE,
+[8711.0 → 8715.0] que supuestamente hizo sentarse a negociar y que se plantee esta propuesta.
+[8715.0 → 8718.0] Esta propuesta está pasada desde el Mostre.
+[8718.0 → 8720.0] Sí, está pasada.
+[8720.0 → 8725.0] Y yo no me he sentado en el PSOE porque el PSOE en cara no me ha contestado.
+[8725.0 → 8727.0] Así que sí que la rebut, obviamente.
+[8727.0 → 8729.0] Pero no hay rebut, respuesta en cara del PSOE.
+[8729.0 → 8732.0] Por lo tanto, está faltando a la veridad.
+[8732.0 → 8734.0] No es estrategia política.
+[8734.0 → 8737.0] No desvía la atención porque la realidad es la que es.
+[8737.0 → 8739.0] Son datos objetivos.
+[8739.0 → 8743.0] Así que sí que he pasado la propuesta del PSOE antes de las comisiones informativas.
+[8769.0 → 8771.0] Y lo creemos así.
+[8771.0 → 8774.0] Y como usted no ha venido de cara a la opinión del PSOE,
+[8774.0 → 8778.0] pero usted ha hecho un argumento donde realmente ha venido a acorralar
+[8778.0 → 8782.0] en base a medios de verdad de un programa electoral que no es como usted dice exactamente.
+[8782.0 → 8785.0] Y ha retirado un trozo por aquí y un trozo por allá.
+[8785.0 → 8789.0] Y eso, en términos políticos, es demagogia absoluta.
+[8789.0 → 8791.0] Por un fin que es rascar los ojos al Partido Socialista.
+[8791.0 → 8793.0] Y ahí nos hemos encontrado en la claridad.
+[8793.0 → 8795.0] No, ni tan siquiera en la extensión.
+[8795.0 → 8797.0] No es no.
+[8797.0 → 8799.0] Y no votaré eso.
+[8799.0 → 8801.0] No porque todos estemos así.
+[8801.0 → 8803.0] Muchos de ustedes son antitauristas.
+[8803.0 → 8805.0] De este grupo.
+[8805.0 → 8807.0] Y de la ejecutiva y del partido.
+[8807.0 → 8809.0] Pero si usted vota así, es totalmente votable en contra.
+[8809.0 → 8811.0] Totalmente y absolutamente.
+[8811.0 → 8813.0] El tiempo se irá cambiando poco a poco.
+[8813.0 → 8815.0] Pasemos a la votación.
+[8827.0 → 8831.0] Pues ya están votados.
+[8831.0 → 8833.0] De nuevo en contra.
+[8833.0 → 8835.0] Y dos a favor.
+[8835.0 → 8837.0] Obrero, Grupo Socialista.
+[8837.0 → 8839.0] Partido Popular.
+[8839.0 → 8841.0] Vox.
+[8841.0 → 8843.0] Esquerra Unida, Podemos.
+[8843.0 → 8845.0] Compromiso.
+[8845.0 → 8847.0] Pasemos a cinco puntos del día.
+[8847.0 → 8849.0] Que es el punto once.
+[8849.0 → 8851.0] No, el diez.
+[8851.0 → 8853.0] Moción conjunta del Grupo Municipal Socialista.
+[8853.0 → 8855.0] Esquerra Unida, Podemos y Compromiso.
+[8855.0 → 8857.0] Para defenderse del programa de detección precoz.
+[8857.0 → 8859.0] Del cáncer de mama.
+[8859.0 → 8861.0] Quintera paraula.
+[8861.0 → 8863.0] Hola.
+[8863.0 → 8865.0] Buenas noches a todos y a todas.
+[8867.0 → 8869.0] La sanidad pública.
+[8869.0 → 8871.0] Es un pilar fundamental de nuestra sociedad.
+[8871.0 → 8873.0] Y de estado de bienestar.
+[8873.0 → 8875.0] El programa valenciano.
+[8875.0 → 8877.0] De prevención y detección temprana del cáncer de mama.
+[8877.0 → 8879.0] Ha sido un ejemplo de sanidad pública.
+[8879.0 → 8881.0] Muy gestionada.
+[8881.0 → 8883.0] Basada en la evidencia y en la confianza.
+[8883.0 → 8885.0] Pero la realidad actual.
+[8885.0 → 8887.0] Es más que preocupante.
+[8887.0 → 8889.0] Los datos oficiales muestran.
+[8889.0 → 8891.0] Que el 2024 la Consejería de Sanidad.
+[8891.0 → 8893.0] Bajo el gobierno de Mazón.
+[8893.0 → 8895.0] Ha conseguido el peor resultado.
+[8895.0 → 8897.0] Del programa de los últimos cuatro años.
+[8897.0 → 8899.0] Y una muestra evidente de la pérdida de eficacia.
+[8899.0 → 8901.0] De un programa que había sido un referente.
+[8901.0 → 8903.0] Pero tan preocupante.
+[8903.0 → 8905.0] Como la caída de la participación.
+[8905.0 → 8907.0] Es la pérdida de calidad.
+[8907.0 → 8909.0] En la lectura de las mamografías.
+[8909.0 → 8911.0] En algunos hospitales.
+[8911.0 → 8913.0] Y en otros.
+[8913.0 → 8915.0] Parcialmente.
+[8915.0 → 8917.0] Este aumento de desviaciones.
+[8917.0 → 8919.0] A la sanidad privada.
+[8919.0 → 8921.0] Por la que apuesta la actual consejera.
+[8921.0 → 8923.0] Ha crecido casi un 30%.
+[8923.0 → 8925.0] Durante el último año.
+[8925.0 → 8927.0] Esto significa perder trazabilidad.
+[8927.0 → 8929.0] Y experiencia acumulada.
+[8929.0 → 8931.0] Los radiólogos y radiólogas públicas.
+[8931.0 → 8933.0] Que son las que mejor conocen el programa.
+[8933.0 → 8935.0] Y han contribuido a su éxito.
+[8935.0 → 8937.0] Ya no participan directamente en estas lecturas.
+[8937.0 → 8939.0] Porque la consejería paga menos.
+[8939.0 → 8941.0] Han reducido el autoconcierto.
+[8941.0 → 8943.0] Que sí reforzaba la sanidad pública.
+[8943.0 → 8945.0] Permitiendo una degradación del sistema.
+[8945.0 → 8947.0] Para que la privada haga lo que la pública.
+[8947.0 → 8949.0] Ya no puede supuestamente asumir.
+[8949.0 → 8951.0] Este fenómeno del negocio.
+[8951.0 → 8953.0] De la sanidad privada.
+[8953.0 → 8955.0] Viene además reflejado.
+[8955.0 → 8957.0] Con las colas de radiografías y ecografías.
+[8957.0 → 8959.0] Y otras técnicas de detección.
+[8959.0 → 8961.0] Como colon o cervix.
+[8961.0 → 8963.0] Que la generalidad deja que engorden sutilmente.
+[8963.0 → 8965.0] Apelando a una baja productividad del personal.
+[8965.0 → 8967.0] Para justificar el desvío al sector privado.
+[8967.0 → 8969.0] Lo cual representa no solo un daño.
+[8969.0 → 8971.0] De la propia sanidad pública.
+[8971.0 → 8973.0] Sino un riesgo para miles de valencianas y valencianos.
+[8973.0 → 8975.0] Con otras dolencias.
+[8975.0 → 8977.0] Que ven sus campañas preventivas.
+[8977.0 → 8979.0] Lastradas por una gestión nefasta.
+[8979.0 → 8981.0] Toda esta mala gestión.
+[8981.0 → 8983.0] Tiene un impacto directo.
+[8983.0 → 8985.0] Hacia nuestra ciudadanía de Riva Roja.
+[8985.0 → 8987.0] Que se ve claramente perjudicada.
+[8987.0 → 8989.0] Por un enfoque que merma.
+[8989.0 → 8991.0] Las posibilidades de una detección precoce.
+[8991.0 → 8993.0] En el caso del cáncer de mama.
+[8993.0 → 8995.0] Y deja en el aire la pregunta.
+[8995.0 → 8997.0] Si las madres, hermanas o hijas.
+[8997.0 → 8999.0] No habrán sido diagnosticadas correctamente.
+[8999.0 → 9001.0] O ni tan siquiera avisadas.
+[9001.0 → 9003.0] Para su mamografía.
+[9003.0 → 9005.0] Por ello, si bien el Ayuntamiento.
+[9005.0 → 9007.0] No tiene competencia en materia de sanidad.
+[9007.0 → 9009.0] Si que tenemos, nos vemos en la obligación moral.
+[9009.0 → 9011.0] Y responsabilidad política.
+[9011.0 → 9013.0] De defender los intereses de nuestras vecinas y vecinos.
+[9013.0 → 9015.0] Y denunciar lo que actualmente.
+[9015.0 → 9017.0] Está ocurriendo.
+[9017.0 → 9019.0] Así entendemos que el Ayuntamiento.
+[9019.0 → 9021.0] Como administración más cercana a la ciudadanía.
+[9021.0 → 9023.0] Debe exigir responsabilidades.
+[9023.0 → 9025.0] Y no silenciar el actual modelo.
+[9025.0 → 9027.0] Del Partido Popular.
+[9027.0 → 9029.0] Que abandona y degrada a lo público.
+[9029.0 → 9031.0] En pro de favorecer el negocio privado.
+[9031.0 → 9033.0] Y la opacidad.
+[9033.0 → 9035.0] Por todo lo expuesto.
+[9035.0 → 9037.0] El Grupo Municipal Socialista.
+[9037.0 → 9039.0] Junto a EUPODEM y Compromís.
+[9039.0 → 9041.0] Que se unieron a esta moción.
+[9041.0 → 9043.0] Proponen la adopción de los siguientes puntos de acuerdo.
+[9043.0 → 9045.0] Primero.
+[9045.0 → 9047.0] Manifestar la más rotunda condena.
+[9047.0 → 9049.0] Del Pleno del Ayuntamiento de Riva Roja de Turia.
+[9049.0 → 9051.0] A la negligente gestión del programa.
+[9051.0 → 9053.0] Por parte de la Consejería de Sanidad Valenciana.
+[9055.0 → 9057.0] Segundo.
+[9057.0 → 9059.0] Mostrar el apoyo y solidaridad de este Ayuntamiento.
+[9059.0 → 9061.0] Con todas las mujeres valencianas.
+[9061.0 → 9063.0] Y en especial con las vecinas de Riva Roja.
+[9063.0 → 9065.0] Afectadas por estos recortes y retrasos.
+[9065.0 → 9067.0] Y reconocer la labor histórica.
+[9067.0 → 9069.0] De los profesionales de la sanidad pública.
+[9069.0 → 9071.0] Tercero.
+[9071.0 → 9073.0] Instar al Consel de la Generalitat Valenciana.
+[9073.0 → 9075.0] Y a la Consejería de Sanidad.
+[9075.0 → 9077.0] A restituir de forma inmediata.
+[9077.0 → 9079.0] El 100% de las citaciones.
+[9079.0 → 9081.0] Asegurando que las 90.217 mujeres abandonadas.
+[9081.0 → 9083.0] Sean contactadas y atendidas.
+[9083.0 → 9085.0] Con la máxima urgencia.
+[9085.0 → 9087.0] Publicar un informe de transparencia detallado.
+[9087.0 → 9089.0] Sobre la ejecución del programa.
+[9089.0 → 9091.0] Desde el inicio de su gestión.
+[9091.0 → 9093.0] Incluyendo población diana.
+[9093.0 → 9095.0] Participación.
+[9095.0 → 9097.0] Resultados y datos de externalizaciones.
+[9097.0 → 9099.0] Desglosados por Departamento de Salud.
+[9099.0 → 9101.0] Y accesibles en el portal de transparencia.
+[9101.0 → 9103.0] De la Generalitat.
+[9103.0 → 9105.0] Exigir a cualquier actividad externalizada.
+[9105.0 → 9107.0] Dentro del programa de prevención.
+[9107.0 → 9109.0] Del cáncer de mama.
+[9109.0 → 9111.0] Que cumpla los estándares de calidad.
+[9111.0 → 9113.0] Trazabilidad.
+[9113.0 → 9115.0] Y acreditación profesional.
+[9115.0 → 9117.0] Establecidos por la normativa europea y estatal.
+[9117.0 → 9119.0] Asegurando la supervisión.
+[9119.0 → 9121.0] Y el control por parte de los servicios públicos.
+[9121.0 → 9123.0] De radiodiagnóstico de la consellería.
+[9123.0 → 9125.0] Estableciendo objetivos de mejora continua.
+[9125.0 → 9127.0] Y auditorías periódicas de cumplimiento.
+[9127.0 → 9129.0] Y asumir las responsabilidades políticas pertinentes.
+[9129.0 → 9131.0] Por este grave fallo de gestión.
+[9131.0 → 9133.0] Que ha puesto en riesgo la salud.
+[9133.0 → 9135.0] De miles de mujeres.
+[9135.0 → 9137.0] Actuar desde lo local.
+[9137.0 → 9139.0] A través de acciones de proximidad.
+[9139.0 → 9141.0] Y esto incluiría solicitar un punto de información.
+[9141.0 → 9143.0] Y apoyo temporal.
+[9143.0 → 9145.0] Para que desde Sanidad Pública.
+[9145.0 → 9147.0] Informen activamente a las vecinas de Rivarrocha.
+[9147.0 → 9149.0] Sobre cómo pueden verificar.
+[9149.0 → 9151.0] El estado de su situación en el programa.
+[9151.0 → 9153.0] Y sensibilizar sobre la prevención activa.
+[9153.0 → 9155.0] Este punto se puede situar.
+[9155.0 → 9157.0] En el centro de salud.
+[9157.0 → 9159.0] Inclusive en propias detenencias en el ayuntamiento.
+[9159.0 → 9161.0] O poner una línea telefónica.
+[9161.0 → 9163.0] De atención directa a estas posibles.
+[9163.0 → 9165.0] Afectadas de Rivarrocha.
+[9165.0 → 9167.0] Quinto, dotar del próximo.
+[9167.0 → 9169.0] El próximo centro de atención primaria de Rivarrocha.
+[9169.0 → 9171.0] De una unidad de prevención de cáncer de mama.
+[9171.0 → 9173.0] Para que pueda ser utilizado.
+[9173.0 → 9175.0] Por todas las mujeres de Rivarrocha.
+[9175.0 → 9177.0] Y toda la comarca.
+[9177.0 → 9179.0] Y sexto, trasladar los presentes acuerdos.
+[9179.0 → 9181.0] A la Generalitat Valenciana.
+[9181.0 → 9183.0] Al Conseller de Sanidad.
+[9183.0 → 9185.0] A todos los grupos políticos del Escorts Valencianes.
+[9185.0 → 9187.0] Y a la Federación Valenciana de Municipios y Provincias.
+[9187.0 → 9189.0] Y a las principales asociaciones.
+[9189.0 → 9191.0] De la lucha contra el cáncer.
+[9191.0 → 9193.0] De nuestro ámbito.
+[9197.0 → 9199.0] Tres palabras.
+[9199.0 → 9201.0] Presidenta de la Junta de Extremadura.
+[9205.0 → 9207.0] En febrero de 2024.
+[9207.0 → 9209.0] El actual equipo de la Consejería de Sanidad.
+[9209.0 → 9211.0] Confirmó retrasos en la realización de mamografías.
+[9213.0 → 9215.0] Se evidenció el desastre heredado.
+[9215.0 → 9217.0] No existían protocolos claros.
+[9217.0 → 9219.0] Ni automatizados.
+[9219.0 → 9221.0] Para garantizar que los casos dudosos.
+[9221.0 → 9223.0] Fueran seguidos correctamente.
+[9223.0 → 9225.0] El anterior Gobierno.
+[9225.0 → 9227.0] Mantuvo durante años.
+[9227.0 → 9229.0] Equipos de mamografía obsoletos.
+[9229.0 → 9231.0] Con sistemas informáticos.
+[9231.0 → 9233.0] Sin integración completa.
+[9233.0 → 9235.0] Durante años.
+[9235.0 → 9237.0] El Gobierno anterior presumía de sanidad pública.
+[9237.0 → 9239.0] Pero la tenía anclada y no renovada.
+[9239.0 → 9241.0] Ni disponía de protocolos seguros.
+[9241.0 → 9243.0] Todo esto.
+[9243.0 → 9245.0] Lo está haciendo el Gobierno del PP.
+[9245.0 → 9247.0] Gracias al PP.
+[9247.0 → 9249.0] Con una revisión integral.
+[9249.0 → 9251.0] Del programa de cribado.
+[9251.0 → 9253.0] Se han podido detectar todos estos fallos.
+[9253.0 → 9255.0] El PP gestiona.
+[9255.0 → 9257.0] Trabaja y actúa.
+[9257.0 → 9259.0] El PP de la Generalitat.
+[9259.0 → 9261.0] Durante 2024.
+[9261.0 → 9263.0] De un total de 24 mamógrafos.
+[9263.0 → 9265.0] Del programa de cribados.
+[9265.0 → 9267.0] Se han renovado 11 equipos.
+[9267.0 → 9269.0] Que no estaban en condiciones de uso.
+[9269.0 → 9271.0] En la provincia de Castellón.
+[9271.0 → 9273.0] Teníamos un mamógrafo.
+[9273.0 → 9275.0] Sin actividad de prevención.
+[9275.0 → 9277.0] Y dos en uso general.
+[9277.0 → 9279.0] Actualmente tenemos.
+[9279.0 → 9281.0] Además del de Vinaroz.
+[9281.0 → 9283.0] Funcionando correctamente.
+[9283.0 → 9285.0] Un servicio añadido en Segorbe.
+[9285.0 → 9287.0] Y otras vías de culminar en Honda.
+[9287.0 → 9289.0] Se ha puesto en marcha.
+[9289.0 → 9291.0] Una importante medida organizativa.
+[9291.0 → 9293.0] Con la integración de unidades de prevención.
+[9293.0 → 9295.0] Del cáncer de mamá.
+[9295.0 → 9297.0] En la estructura de asistencia hospitalaria.
+[9297.0 → 9299.0] Para mejorar el programa de cribado.
+[9301.0 → 9303.0] Y reforzar la calidad del servicio.
+[9303.0 → 9305.0] Esto permite.
+[9305.0 → 9307.0] Una atención más rápida.
+[9307.0 → 9309.0] Y eficaz.
+[9309.0 → 9311.0] En caso de que sea necesaria.
+[9311.0 → 9313.0] Una valoración adicional.
+[9313.0 → 9315.0] Para confirmar una sospecha.
+[9315.0 → 9317.0] Acelerando así el proceso.
+[9317.0 → 9319.0] La hoja de ruta.
+[9319.0 → 9321.0] Impulsada por la consellería.
+[9321.0 → 9323.0] Ha dado resultados positivos.
+[9323.0 → 9325.0] Hasta septiembre del 2025.
+[9325.0 → 9327.0] Se han realizado más de 182.000 mamografías.
+[9329.0 → 9331.0] Un aumento de 10.000.
+[9331.0 → 9333.0] En comparación con el año anterior.
+[9333.0 → 9335.0] Muchas gracias.
+[9335.0 → 9337.0] SEÑOR PRESIDENTE.
+[9337.0 → 9339.0] Más palabras, Vox.
+[9339.0 → 9341.0] José.
+[9341.0 → 9343.0] JOSE FERNÁNDEZ.
+[9343.0 → 9345.0] Desde Vox consideramos muy graves.
+[9345.0 → 9347.0] Los fallos realmente.
+[9347.0 → 9349.0] Del programa de detección.
+[9349.0 → 9351.0] De detección precoz.
+[9351.0 → 9353.0] De cáncer de mamá.
+[9353.0 → 9355.0] De la comunidad valenciana.
+[9355.0 → 9357.0] Y de otras regiones de España.
+[9357.0 → 9359.0] Y exigimos responsabilidades.
+[9359.0 → 9361.0] Tanto de la Generalitat.
+[9361.0 → 9363.0] Como a los anteriores del PP.
+[9363.0 → 9365.0] Y del SUEC cuando estuvieron.
+[9365.0 → 9367.0] Según esta formación.
+[9367.0 → 9369.0] Decenas de miles de mujeres.
+[9369.0 → 9371.0] No fueron citadas para las revisiones.
+[9371.0 → 9373.0] Lo que supuso un riesgo evidente.
+[9373.0 → 9375.0] Para la salud pública.
+[9375.0 → 9377.0] De hecho hemos solicitado una auditoría exhaustiva.
+[9377.0 → 9379.0] Tanto en la Consejería de Sanidad.
+[9379.0 → 9381.0] De la Generalitat Valenciana.
+[9381.0 → 9383.0] Como a nivel nacional.
+[9383.0 → 9385.0] Para clarificar la magnitud de los fallos.
+[9385.0 → 9387.0] Y depurar responsabilidades.
+[9387.0 → 9389.0] A nivel de gestión sanitaria.
+[9389.0 → 9391.0] Y reclamamos que los resultados.
+[9391.0 → 9393.0] Se remitan a las cortes y al Congreso.
+[9393.0 → 9395.0] Y que se publican en portales de transparencia.
+[9395.0 → 9397.0] Así como la implementación.
+[9397.0 → 9399.0] De mecanismos de notificación rápido.
+[9399.0 → 9401.0] A pacientes.
+[9401.0 → 9403.0] Y un refuerzo de medios y personal.
+[9403.0 → 9405.0] La postura nuestra.
+[9405.0 → 9407.0] Es que la situación actual.
+[9407.0 → 9409.0] Se debe a una dejadez continuada.
+[9409.0 → 9411.0] De los gobiernos autonómicos y estatales.
+[9411.0 → 9413.0] Tanto del PP como del SUEC.
+[9413.0 → 9415.0] Y exigimos medidas urgentes.
+[9415.0 → 9417.0] Sin atención a las pruebas que necesiten.
+[9417.0 → 9419.0] Gracias.
+[9445.0 → 9447.0] Con el apoyo de nuestro grupo municipal.
+[9447.0 → 9449.0] Queremos expresar.
+[9449.0 → 9451.0] Que hay una gran indignación y preocupación.
+[9451.0 → 9453.0] En esta materia.
+[9453.0 → 9455.0] Y coincidimos desde Esquerra Unida.
+[9455.0 → 9457.0] En esta indignación y preocupación.
+[9457.0 → 9459.0] Porque es una medicina sanitaria.
+[9459.0 → 9461.0] Y lo que está pasando.
+[9461.0 → 9463.0] Es que en este caso.
+[9463.0 → 9465.0] El Gobierno de la Generalitat Valenciana.
+[9465.0 → 9467.0] Está haciendo una política encoberta.
+[9467.0 → 9469.0] Oculta información.
+[9469.0 → 9471.0] Improvisa decisiones.
+[9471.0 → 9473.0] Y mensprea el derecho de las dones.
+[9473.0 → 9475.0] Desde el mes de junio.
+[9475.0 → 9477.0] La consejera no ha vuelto a entregar las dades.
+[9477.0 → 9479.0] Sobre el funcionamiento de los programas.
+[9479.0 → 9481.0] Como ha dicho el portavoz de Vox.
+[9481.0 → 9483.0] Afecta a las dones valencianas.
+[9483.0 → 9485.0] Y las dades hablan.
+[9485.0 → 9487.0] De más de 90.000 dones valencianas.
+[9487.0 → 9489.0] Que no han sido citadas.
+[9489.0 → 9491.0] Por su mamografía.
+[9491.0 → 9493.0] Es un error.
+[9493.0 → 9495.0] Que por supuesto.
+[9495.0 → 9497.0] Tiene consecuencias irreparables.
+[9497.0 → 9499.0] Y el Partido Popular.
+[9499.0 → 9501.0] Debería saberlo.
+[9501.0 → 9503.0] El Partido Popular.
+[9503.0 → 9505.0] Ha vuelto a demostrar.
+[9505.0 → 9507.0] Que cuando gobierna.
+[9507.0 → 9509.0] Pone delante el negocio privado.
+[9509.0 → 9511.0] Antes que la salud pública.
+[9511.0 → 9513.0] Y creo que es importante.
+[9513.0 → 9515.0] Defender siempre la sanidad pública.
+[9515.0 → 9517.0] Y sobre todo.
+[9517.0 → 9519.0] Depurar responsabilidades.
+[9519.0 → 9521.0] Gracias.
+[9531.0 → 9533.0] En la plataforma.
+[9533.0 → 9535.0] Esta moción.
+[9535.0 → 9537.0] Tan solo.
+[9537.0 → 9539.0] Estiga.
+[9539.0 → 9541.0] En el.
+[9541.0 → 9543.0] Logotipo.
+[9543.0 → 9545.0] Del Partido Socialista.
+[9545.0 → 9547.0] Y no.
+[9547.0 → 9549.0] Estiga compartido.
+[9549.0 → 9551.0] En el logotipo.
+[9551.0 → 9553.0] De Esquerra y de Podemos.
+[9553.0 → 9555.0] Y el compromiso.
+[9555.0 → 9557.0] Esa es la pregunta.
+[9557.0 → 9559.0] Que es lo que ha sucedido.
+[9559.0 → 9561.0] Y por favor.
+[9561.0 → 9563.0] Cuando ocurran estas cosas.
+[9563.0 → 9565.0] Se resuelvan.
+[9565.0 → 9567.0] Después.
+[9567.0 → 9569.0] Me había hecho la ilusión.
+[9569.0 → 9571.0] De que iba.
+[9571.0 → 9573.0] A presentar la propuesta.
+[9573.0 → 9575.0] En Valencia.
+[9575.0 → 9577.0] Pero bueno.
+[9577.0 → 9579.0] Bueno.
+[9579.0 → 9581.0] Ya son públicos.
+[9581.0 → 9583.0] Que son.
+[9583.0 → 9585.0] 12.292.
+[9585.0 → 9587.0] Mamografías.
+[9587.0 → 9589.0] Mamografías.
+[9589.0 → 9591.0] Menos que el año anterior.
+[9593.0 → 9595.0] Esta información.
+[9595.0 → 9597.0] No la tenemos.
+[9597.0 → 9599.0] Que tenemos.
+[9599.0 → 9601.0] Nosotros.

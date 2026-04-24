@@ -623,18 +623,23 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
   })
   if (!res.ok) {
     const body = await res.text()
-    // Retryable: rate-limited (429) or server overloaded/unavailable (5xx).
-    // Honor Retry-After when provided; cap at 2 min so a badly-set header
-    // doesn't stall the whole run.
-    if (res.status === 429 || res.status >= 500) {
+    // OpenAI uses HTTP 429 for both transient rate-limiting AND permanent
+    // quota exhaustion (code "insufficient_quota"). The former clears in
+    // seconds; the latter requires the user to top up their billing.
+    // Don't retry or backoff on insufficient_quota — bubble up immediately
+    // so the fallback chain can try anthropic/ollama without wasting 12s
+    // of sleep per call against a permanently-dead backend.
+    const isQuotaExhausted = res.status === 429 && body.includes('insufficient_quota')
+    if ((res.status === 429 && !isQuotaExhausted) || res.status >= 500) {
       const retryAfterMs = Math.min(parseRetryAfter(res.headers.get('retry-after')), 120_000)
       throw new RetryableError(`OpenAI ${res.status}: ${body.slice(0, 200)}`, {
         retryAfterMs,
         status: res.status,
       })
     }
-    // 4xx other than 429: permanent (bad schema, missing field, auth). Bubble up
-    // without triggering the retry loop to backoff unnecessarily.
+    // Permanent: insufficient_quota, 400 (schema), 401 (auth), 404, etc.
+    // Bubble up plain Error so the per-backend retry loop gives up instantly
+    // and the cross-backend fallback takes over.
     throw new Error(`OpenAI ${res.status}: ${body.slice(0, 200)}`)
   }
   const data = (await res.json()) as {
@@ -757,7 +762,11 @@ export async function callLLM<TSchema extends ZodTypeAny>(
         lastErr = parsed.error.toString().slice(0, 200)
       } catch (err) {
         lastErr = err instanceof Error ? err.message : String(err)
-        if (err instanceof RetryableError && err.retryAfterMs > 0 && perBackendAttempt < maxRetries) {
+        if (
+          err instanceof RetryableError &&
+          err.retryAfterMs > 0 &&
+          perBackendAttempt < maxRetries
+        ) {
           // Server asked us to wait — sleep, then stay on same backend.
           process.stderr.write(
             `[llm] ${backend} ${err.status} → backoff ${err.retryAfterMs}ms (attempt ${perBackendAttempt + 1}/${maxRetries + 1})\n`,
