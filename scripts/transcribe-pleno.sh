@@ -3,17 +3,24 @@
 #
 # Usage:
 #   bash scripts/transcribe-pleno.sh <plenoId>
+#   WHISPER_MODEL=medium bash scripts/transcribe-pleno.sh <plenoId>   # 2-3× faster
 #
 # Looks up the pleno in public/data/pleno-videos.json, downloads audio (mp3,
-# 16kHz mono), runs faster-whisper large-v3 for Spanish/Catalan mixed content,
-# writes the transcript to public/data/pleno-transcripts/<plenoId>.txt, and
-# then runs the inference engine to produce suggestions.
+# 16kHz mono), runs faster-whisper for Spanish/Catalan mixed content, writes
+# the transcript to public/data/pleno-transcripts/<plenoId>.txt, and then runs
+# the inference engine to produce suggestions.
+#
+# Model choice (WHISPER_MODEL env):
+#   large-v3 (default) · best WER, ~0.3× realtime on M-series int8 CPU
+#   medium            · ~2-3× faster, small quality drop on clean audio
+#   small             · ~5-6× faster, noticeable quality drop — not recommended
 #
 # Prereqs (one-time):
 #   brew install yt-dlp ffmpeg
 #   pipx install faster-whisper   # or: pip install -U faster-whisper
-#   # (first run downloads the ~1.5GB model into ~/.cache/huggingface)
+#   # (first run downloads the model into ~/.cache/huggingface)
 set -euo pipefail
+WHISPER_MODEL="${WHISPER_MODEL:-large-v3}"
 
 if [ $# -ne 1 ]; then
   echo "usage: bash scripts/transcribe-pleno.sh <plenoId>" >&2
@@ -78,15 +85,17 @@ if [ -x "$HOME/.local/civicpulse-whisper/venv/bin/python" ]; then
 else
   PY="python3"
 fi
-"$PY" - "$AUDIO" "$TRANSCRIPT_DIR/$PLENO_ID.txt" <<'PYEOF'
-import sys, os
+echo "[transcribe] model: $WHISPER_MODEL"
+WHISPER_MODEL="$WHISPER_MODEL" "$PY" - "$AUDIO" "$TRANSCRIPT_DIR/$PLENO_ID.txt" <<'PYEOF'
+import sys, os, time
 from faster_whisper import WhisperModel
 
 audio_path, out_path = sys.argv[1], sys.argv[2]
+model_name = os.environ.get('WHISPER_MODEL', 'large-v3')
 
 # Use CPU on M-series Macs (CUDA not available); int8 compute for speed.
-# large-v3 handles Spanish + Valencian mixed audio at ~0.3× realtime.
-model = WhisperModel('large-v3', device='auto', compute_type='int8')
+# large-v3 handles Spanish + Valencian mixed audio at ~0.3× realtime on CPU.
+model = WhisperModel(model_name, device='auto', compute_type='int8')
 
 segments, info = model.transcribe(
     audio_path,
@@ -96,11 +105,25 @@ segments, info = model.transcribe(
     vad_parameters={'min_silence_duration_ms': 800},
 )
 
-print(f'[transcribe] lang={info.language} duration={info.duration:.1f}s')
+print(f'[transcribe] lang={info.language} duration={info.duration:.1f}s model={model_name}', flush=True)
 
+# Stream segments to disk progressively so a mid-run interrupt (Ctrl-C, OOM
+# kill, laptop sleep) leaves a partial transcript on disk — the extract
+# pipeline's cache-keyed LLM calls can still consume what's there.
+t0 = time.time()
+last_progress = 0.0
 with open(out_path, 'w', encoding='utf-8') as f:
     for seg in segments:
         f.write(f'[{seg.start:.1f} → {seg.end:.1f}] {seg.text.strip()}\n')
+        f.flush()
+        # Log progress at most every 10% of audio processed, keeps stdout quiet.
+        pct = seg.end / max(info.duration, 1)
+        if pct - last_progress >= 0.1:
+            elapsed = time.time() - t0
+            rate = seg.end / elapsed if elapsed > 0 else 0
+            eta = (info.duration - seg.end) / rate if rate > 0 else 0
+            print(f'[transcribe]   {pct*100:.0f}% · {rate:.2f}× realtime · ETA {eta/60:.1f}min', flush=True)
+            last_progress = pct
 PYEOF
 
 echo "[transcribe] transcript: $TRANSCRIPT_DIR/$PLENO_ID.txt"

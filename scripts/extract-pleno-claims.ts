@@ -161,39 +161,85 @@ async function main() {
     `[extract·claims] seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')}\n`,
   )
 
-  const fresh: PlenoClaim[] = []
-  for (const id of ids) fresh.push(...(await runOne(id, plenos, currentSeats, minConfidence)))
-
-  // Merge with existing suggestions, filtering out anything from the same
-  // plenoId we just re-ran.
+  // Load previous snapshot once — we rebuild it progressively, pleno-by-pleno,
+  // so a mid-batch crash (rate limit, network) keeps the completed plenos on
+  // disk. The LLM cache on .llm-cache/* also handles per-window resumption,
+  // but that only saves the API roundtrip — this checkpoint preserves the
+  // editorial snapshot itself.
   const previous: PlenoClaim[] = existsSync(OUT_PATH)
     ? (JSON.parse(readFileSync(OUT_PATH, 'utf8')).items ?? [])
     : []
-  const keep = previous.filter((c) => !ids.includes(c.plenoId))
-  const items = [...keep, ...fresh].sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
+  // Start with everything NOT in `ids` (the set we're about to re-run).
+  const accumulated = previous.filter((c) => !ids.includes(c.plenoId))
 
-  const byType = emptyByType()
-  const byTopic = emptyByTopic()
-  const byPleno: Record<string, number> = {}
-  for (const c of items) {
-    byType[c.type] = (byType[c.type] ?? 0) + 1
-    byTopic[c.topic] = (byTopic[c.topic] ?? 0) + 1
-    byPleno[c.plenoId] = (byPleno[c.plenoId] ?? 0) + 1
+  function writeSnapshot() {
+    const items = [...accumulated].sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
+    const byType = emptyByType()
+    const byTopic = emptyByTopic()
+    const byPleno: Record<string, number> = {}
+    for (const c of items) {
+      byType[c.type] = (byType[c.type] ?? 0) + 1
+      byTopic[c.topic] = (byTopic[c.topic] ?? 0) + 1
+      byPleno[c.plenoId] = (byPleno[c.plenoId] ?? 0) + 1
+    }
+    const out: PlenoClaimsSnapshot = {
+      generatedAt: new Date().toISOString(),
+      source: {
+        description:
+          'Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.',
+        contract:
+          'Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming.',
+      },
+      stats: { total: items.length, byType, byPleno, byTopic },
+      items,
+    }
+    writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8')
+    return items.length
   }
 
-  const out: PlenoClaimsSnapshot = {
-    generatedAt: new Date().toISOString(),
-    source: {
-      description:
-        'Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.',
-      contract:
-        'Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming.',
-    },
-    stats: { total: items.length, byType, byPleno, byTopic },
-    items,
+  // Graceful interrupt: Ctrl-C / SIGTERM writes the current snapshot before
+  // exiting so partial runs aren't lost even outside the pleno-loop boundary.
+  let interrupted = false
+  const onSignal = (signal: string) => {
+    if (interrupted) return
+    interrupted = true
+    process.stderr.write(`\n[extract·claims] ${signal} — flushing snapshot…\n`)
+    try {
+      const n = writeSnapshot()
+      process.stderr.write(`[extract·claims] flushed ${n} claim(s) → ${OUT_PATH}\n`)
+    } catch (err) {
+      process.stderr.write(
+        `[extract·claims] flush failed: ${err instanceof Error ? err.message : String(err)}\n`,
+      )
+    }
+    process.exit(130)
   }
-  writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8')
-  process.stdout.write(`[extract·claims] wrote ${items.length} claim(s) → ${OUT_PATH}\n`)
+  process.on('SIGINT', () => onSignal('SIGINT'))
+  process.on('SIGTERM', () => onSignal('SIGTERM'))
+
+  let completed = 0
+  for (const id of ids) {
+    try {
+      const fresh = await runOne(id, plenos, currentSeats, minConfidence)
+      accumulated.push(...fresh)
+      completed += 1
+      const total = writeSnapshot()
+      process.stdout.write(
+        `[extract·claims] checkpoint ${completed}/${ids.length}: ${id} · ${fresh.length} claim(s) · snapshot=${total} total\n`,
+      )
+    } catch (err) {
+      process.stderr.write(
+        `[extract·claims] ${id} FAILED: ${err instanceof Error ? err.message : String(err)}\n`,
+      )
+      // Persist what we have so far, then rethrow so the caller (shell /
+      // Actions) sees a non-zero exit and the user knows to re-run.
+      writeSnapshot()
+      throw err
+    }
+  }
+
+  const total = writeSnapshot()
+  process.stdout.write(`[extract·claims] done — ${total} claim(s) total → ${OUT_PATH}\n`)
 }
 
 main().catch((err) => {
