@@ -6,6 +6,7 @@ import { NAV } from './Sidebar'
 import { useOfficials } from '../hooks/useOfficials'
 import { usePromises } from '../hooks/usePromises'
 import { useQuejas, CATEGORY_LABEL, STATE_LABEL } from '../hooks/useQuejas'
+import { usePlenoFindings } from '../hooks/usePlenoFindings'
 
 export function CmdK({ open, onClose, onOpen }) {
   const navigate = useNavigate()
@@ -13,6 +14,7 @@ export function CmdK({ open, onClose, onOpen }) {
   const { data: officials } = useOfficials()
   const { data: promises } = usePromises()
   const { data: quejas } = useQuejas()
+  const { data: findings } = usePlenoFindings()
 
   const all = [
     ...NAV.map((n) => ({ kind: 'Página', label: n.label, to: n.to, icon: n.icon })),
@@ -39,6 +41,18 @@ export function CmdK({ open, onClose, onOpen }) {
         (STATE_LABEL[qu.status] || qu.status) +
         (qu.concejalia_area ? ' · ' + qu.concejalia_area : ''),
       to: `/quejas/${qu.service_request_id.toLowerCase()}`,
+      icon: Ic.warn,
+    })),
+    ...(findings?.items ?? []).map((f) => ({
+      kind: 'Hallazgo',
+      label: f.title,
+      sub:
+        (f.severity ? f.severity + ' · ' : '') +
+        f.plenoDate +
+        (f.quotes?.[0]?.speakerGroup ? ' · ' + f.quotes[0].speakerGroup : '') +
+        ' · ' +
+        (f.quotes?.[0]?.text?.slice(0, 80) ?? ''),
+      to: `/hallazgos#${f.id}`,
       icon: Ic.warn,
     })),
     { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },

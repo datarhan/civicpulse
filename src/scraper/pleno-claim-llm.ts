@@ -198,6 +198,10 @@ export async function extractClaimsWithLlm(
             ? { referencedEntity: raw.entities.referencedEntity.toLowerCase().trim() }
             : {}),
         },
+        // Propagate accusationSubtype when the LLM classifies the claim.
+        // Missing / null means the verifier will treat it as opinativa
+        // (safe default) — same policy as claim-verifier.ts.
+        ...(raw.accusationSubtype ? { accusationSubtype: raw.accusationSubtype } : {}),
         confidence: raw.confidence,
         reasoning: raw.reasoning,
         requiresHumanApproval: true,

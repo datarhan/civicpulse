@@ -1,0 +1,70 @@
+name: Derecho de réplica — hallazgo editorial
+description: Formaliza la respuesta oficial de un partido o grupo municipal a un hallazgo publicado en /hallazgos.
+title: "[derecho-replica] <finding-id> · <partido>"
+labels: [derecho-replica, hallazgo]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Si tu grupo municipal ha sido citado en un hallazgo editorial de CivicPulse y quieres publicar una respuesta oficial, este es el canal. Todas las respuestas se insertan íntegras y verbatim en `public/data/pleno-findings.json` y se muestran en la ficha del hallazgo como *"Réplica del grupo X"*.
+
+        Plazo de revisión: 24 h hábiles. Resolución: 72 h. Historial público en git.
+
+  - type: input
+    id: finding-id
+    attributes:
+      label: ID del hallazgo
+      description: Copia el identificador que aparece junto al título del hallazgo (formato `f-YYYY-MM-DD-…`). Este campo se precompleta si llegas desde el enlace «Responder como grupo afectado» en la propia página.
+      placeholder: f-2026-03-09-afi-a9546e
+    validations:
+      required: true
+
+  - type: dropdown
+    id: party
+    attributes:
+      label: Grupo que responde
+      options:
+        - PSOE
+        - PP
+        - VOX
+        - Compromís
+        - Ciudadanos
+        - Otro
+    validations:
+      required: true
+
+  - type: input
+    id: responder-name
+    attributes:
+      label: Portavoz o firmante (opcional)
+      description: Nombre y cargo de la persona que firma la réplica. No se publica; se usa sólo para la verificación interna del origen.
+      placeholder: "ej. Portavoz del Grupo PP en el pleno"
+
+  - type: textarea
+    id: quote
+    attributes:
+      label: Cita literal de la réplica (verbatim, ≥20 caracteres)
+      description: |
+        Texto que se publicará íntegramente junto al hallazgo. Puede ser tan breve o tan extenso como consideres necesario (máx. 2.000 caracteres). NO lo resumimos ni parafraseamos: se publica exactamente como lo escribas aquí.
+
+        Si la réplica tiene fuentes adicionales (nota de prensa, acta, etc.), usa el campo de abajo.
+      placeholder: |
+        "El Grupo Municipal X desea aclarar que el expediente 242.255 € corresponde a facturas del ejercicio anterior, documentadas en el Registro de Intervención bajo las referencias 2025/1234 a 2025/1298, y que la convalidación en pleno es el procedimiento ordinario previsto en el artículo 176 del TRLHL."
+    validations:
+      required: true
+
+  - type: input
+    id: source-url
+    attributes:
+      label: URL de la fuente (opcional)
+      description: Nota de prensa oficial, acta, o cualquier documento público que soporte la réplica. El enlace se publica junto al texto para que la ciudadanía pueda contrastar.
+      placeholder: "https://www.ribarroja.es/noticias/nota-replica-X"
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        **Ingreso automatizado**: cuando este issue se etiqueta como `derecho-replica`, un workflow lo procesa y escribe la réplica en `public/data/pleno-findings.json`, respetando el formato requerido por el validador de `src/scraper/pleno-finding.ts`. El issue se cierra automáticamente al terminar y el commit queda en el historial público de git.
+
+        Cualquier corrección posterior (rectificación, aclaración, ampliación) se trata como una nueva respuesta, nunca como una edición de la anterior — todo el historial es auditable.

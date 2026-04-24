@@ -58,6 +58,14 @@ export const NAV = [
     shortcut: 'G E',
   },
   {
+    to: '/hallazgos',
+    id: 'findings',
+    labelKey: 'nav.hallazgos',
+    label: 'Hallazgos',
+    icon: Ic.warn,
+    shortcut: 'G F',
+  },
+  {
     to: '/datos',
     id: 'datos',
     labelKey: 'nav.datos',

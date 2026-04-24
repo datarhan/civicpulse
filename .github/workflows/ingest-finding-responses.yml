@@ -1,0 +1,113 @@
+name: Ingest finding responses
+
+on:
+  issues:
+    types: [labeled, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: Issue number to re-process
+        required: true
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.label.name == 'derecho-replica') ||
+      (github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'derecho-replica'))
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci --no-audit --no-fund
+
+      - name: Extract fields from issue body
+        id: parse
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          set -euo pipefail
+          BODY=$(gh issue view "$ISSUE_NUMBER" --json body -q .body)
+
+          field() {
+            awk -v h="$1" 'BEGIN{cap=0} $0 == "### " h {cap=1; next} /^### /{cap=0} cap' <<< "$BODY" \
+              | sed '/^$/d' | awk '{$1=$1;print}' | head -n 40
+          }
+
+          FINDING_ID=$(field 'ID del hallazgo' | head -n1)
+          PARTY=$(field 'Grupo que responde' | head -n1)
+          QUOTE=$(field 'Cita literal de la réplica (verbatim, ≥20 caracteres)' | tr '\n' ' ' | sed 's/  */ /g' | awk '{$1=$1;print}')
+          SOURCE_URL=$(field 'URL de la fuente (opcional)' | head -n1)
+
+          # Label-only (finding endpoint)
+          if [ -z "$FINDING_ID" ] || [ -z "$PARTY" ] || [ -z "$QUOTE" ]; then
+            echo "::error::Missing finding-id / party / quote fields"
+            gh issue comment "$ISSUE_NUMBER" --body ":warning: No se pudieron extraer los campos obligatorios (ID, partido, cita). Revisa la plantilla y vuelve a enviar."
+            exit 1
+          fi
+
+          echo "finding_id=$FINDING_ID"    >> "$GITHUB_OUTPUT"
+          echo "party=$PARTY"              >> "$GITHUB_OUTPUT"
+          # Multi-line quote via delimiter trick
+          {
+            echo "quote<<EOFQUOTE"
+            echo "$QUOTE"
+            echo "EOFQUOTE"
+          } >> "$GITHUB_OUTPUT"
+          echo "source_url=$SOURCE_URL"    >> "$GITHUB_OUTPUT"
+
+      - name: Apply via finding-reply CLI
+        env:
+          FINDING_ID: ${{ steps.parse.outputs.finding_id }}
+          PARTY: ${{ steps.parse.outputs.party }}
+          QUOTE: ${{ steps.parse.outputs.quote }}
+          SOURCE_URL: ${{ steps.parse.outputs.source_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+        run: |
+          set -euo pipefail
+          if [ -n "$SOURCE_URL" ]; then
+            npm run finding-reply -- "$FINDING_ID" "$PARTY" "$QUOTE" "$SOURCE_URL" || {
+              gh issue comment "$ISSUE_NUMBER" --body ":x: El validador rechazó la réplica. Comprueba que la cita tenga ≥20 caracteres y el ID del hallazgo sea correcto."
+              exit 1
+            }
+          else
+            npm run finding-reply -- "$FINDING_ID" "$PARTY" "$QUOTE" || {
+              gh issue comment "$ISSUE_NUMBER" --body ":x: El validador rechazó la réplica. Comprueba que la cita tenga ≥20 caracteres y el ID del hallazgo sea correcto."
+              exit 1
+            }
+          fi
+
+      - name: Commit + push if diff
+        run: |
+          set -euo pipefail
+          if git diff --quiet public/data/pleno-findings.json; then
+            echo "No diff to commit."
+            exit 0
+          fi
+          git config user.name  "civicpulse-bot"
+          git config user.email "bot@civicpulse"
+          git add public/data/pleno-findings.json
+          git commit -m "feat(findings): ingest réplica from #${{ github.event.issue.number || inputs.issue_number }}"
+          git push
+
+      - name: Close the issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+          FINDING_ID: ${{ steps.parse.outputs.finding_id }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body ":white_check_mark: Réplica publicada en el hallazgo \`${FINDING_ID}\`. Visible en https://civicpulse-virid.vercel.app/hallazgos#${FINDING_ID}"
+          gh issue close "$ISSUE_NUMBER" --reason completed

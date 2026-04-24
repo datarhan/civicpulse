@@ -607,6 +607,7 @@ const RAIL_ITEMS = [
   { to: '/plenos', label: 'Plenos', icon: Ic.scale },
   { to: '/promesas', label: 'Promesas', icon: Ic.scale },
   { to: '/departamentos', label: 'Departamentos', icon: Ic.building },
+  { to: '/hallazgos', label: 'Hallazgos', icon: Ic.warn },
   { to: '/datos', label: 'Datos', icon: Ic.chart },
   { to: '/quejas', label: 'Quejas', icon: Ic.warn },
   { to: '/metodologia', label: 'Metodología', icon: Ic.cmd },
