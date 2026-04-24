@@ -26,9 +26,11 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Skip the deploy if the commit message contains [skip vercel] so
-    # doc-only or test-only commits don't waste a deploy slot.
-    if: "!contains(github.event.head_commit.message, '[skip vercel]')"
+    # Skip the deploy when the commit message ends with the sentinel
+    # "[no-deploy]" (on its own line at the end of the body) so doc-only or
+    # test-only commits can opt out without triggering on messages that
+    # merely *document* the sentinel.
+    if: "!endsWith(github.event.head_commit.message, '[no-deploy]')"
     steps:
       - uses: actions/checkout@v4
 
