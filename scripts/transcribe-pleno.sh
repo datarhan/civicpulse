@@ -170,7 +170,19 @@ elif [ "$WHISPER_ENGINE" = "mlx" ]; then
     echo "[transcribe]   ~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx" >&2
     exit 1
   fi
-  WHISPER_BATCH_SIZE="${WHISPER_BATCH_SIZE:-12}"
+  # batch_size vs audio size heuristic: Metal GPU Timeout kicks in
+  # reliably on >~120 MB inputs (≈4+ hour sessions) at batch_size=12.
+  # Drop to 4 automatically for big files; caller can override via
+  # WHISPER_BATCH_SIZE env.
+  AUDIO_MB=$(( $(stat -f%z "$AUDIO" 2>/dev/null || stat -c%s "$AUDIO") / 1048576 ))
+  if [ -z "${WHISPER_BATCH_SIZE:-}" ]; then
+    if [ "$AUDIO_MB" -gt 120 ]; then
+      WHISPER_BATCH_SIZE=4
+      echo "[transcribe] audio ${AUDIO_MB}MB > 120 MB threshold — batch_size auto-set to 4"
+    else
+      WHISPER_BATCH_SIZE=12
+    fi
+  fi
   echo "[transcribe] running lightning-whisper-mlx (model=$WHISPER_MODEL batch_size=$WHISPER_BATCH_SIZE on Apple Neural Engine)…"
   WHISPER_MODEL="$WHISPER_MODEL" WHISPER_BATCH_SIZE="$WHISPER_BATCH_SIZE" "$MLX_PY" - "$AUDIO" "$OUT_PATH" <<'PYEOF'
 import sys, os, time, json
