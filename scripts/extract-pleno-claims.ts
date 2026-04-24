@@ -82,6 +82,7 @@ async function runOne(
   plenos: PlenoMeta[],
   currentSeats: { bloc: string; seats: number }[],
   minConfidence: number,
+  concurrency: number,
 ): Promise<PlenoClaim[]> {
   const path = resolve(TRANSCRIPT_DIR, `${plenoId}.txt`)
   if (!existsSync(path)) {
@@ -95,12 +96,24 @@ async function runOne(
   }
   const transcript = readFileSync(path, 'utf8')
   const agendaItems = loadAgendaFor(plenoId)
+  // Log every ~5% of windows processed so long runs aren't silent.
+  let lastReport = -1
   const res = await extractClaimsWithLlm(transcript, {
     plenoId,
     plenoDate: pleno.date,
     currentSeats,
     agendaItems,
     minConfidence,
+    concurrency,
+    onWindow: ({ index, total, claimsKept }) => {
+      const pct = Math.floor(((index + 1) / total) * 20) // 5% buckets
+      if (pct > lastReport) {
+        lastReport = pct
+        process.stdout.write(
+          `[extract·claims]   ${plenoId} · ${index + 1}/${total} windows · ${pct * 5}%${claimsKept > 0 ? ` · +${claimsKept} claim(s)` : ''}\n`,
+        )
+      }
+    },
   })
   process.stdout.write(
     `[extract·claims] ${plenoId}: ${res.stats.segmentsScanned} windows · ${res.stats.claimsEmitted} kept · ${res.stats.droppedLowConfidence} dropped\n`,
@@ -123,6 +136,7 @@ function emptyByTopic(): Record<ClaimTopic, number> {
 async function main() {
   const args = process.argv.slice(2)
   let minConfidence = 0.5
+  let concurrency = Number(process.env.LLM_CONCURRENCY || 3)
   const positional: string[] = []
   for (let i = 0; i < args.length; i++) {
     const a = args[i]
@@ -130,14 +144,24 @@ async function main() {
       minConfidence = Number(args[++i])
       continue
     }
+    if (a === '--concurrency') {
+      concurrency = Number(args[++i])
+      continue
+    }
     positional.push(a)
   }
   if (positional.length !== 1) {
-    process.stderr.write('usage: extract-pleno-claims.ts <plenoId|--all> [--min-confidence 0.5]\n')
+    process.stderr.write(
+      'usage: extract-pleno-claims.ts <plenoId|--all> [--min-confidence 0.5] [--concurrency 3]\n',
+    )
     process.exit(2)
   }
   if (!Number.isFinite(minConfidence) || minConfidence < 0 || minConfidence > 1) {
     process.stderr.write('--min-confidence must be between 0 and 1\n')
+    process.exit(2)
+  }
+  if (!Number.isFinite(concurrency) || concurrency < 1 || concurrency > 10) {
+    process.stderr.write('--concurrency must be between 1 and 10\n')
     process.exit(2)
   }
 
@@ -158,7 +182,7 @@ async function main() {
   const currentSeats = loadCurrentSeats()
   resetBudget()
   process.stdout.write(
-    `[extract·claims] seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')}\n`,
+    `[extract·claims] seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')} · concurrency=${concurrency}\n`,
   )
 
   // Load previous snapshot once — we rebuild it progressively, pleno-by-pleno,
@@ -220,7 +244,7 @@ async function main() {
   let completed = 0
   for (const id of ids) {
     try {
-      const fresh = await runOne(id, plenos, currentSeats, minConfidence)
+      const fresh = await runOne(id, plenos, currentSeats, minConfidence, concurrency)
       accumulated.push(...fresh)
       completed += 1
       const total = writeSnapshot()

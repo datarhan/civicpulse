@@ -37,6 +37,18 @@ export interface ClaimExtractionOptions {
    */
   windowChars?: number
   windowStep?: number
+  /**
+   * Number of LLM calls to issue in parallel. Default 1 (serial) for clean
+   * telemetry. Bumping to 3-4 is safe on Claude Code Max plan and cuts
+   * wall-clock ~3-4× for multi-hundred-window transcripts. Kept modest so
+   * rate-limit headroom is preserved for other concurrent pipelines.
+   */
+  concurrency?: number
+  /**
+   * Optional callback fired after each window resolves — useful for
+   * progress reporting from long-running CLIs.
+   */
+  onWindow?: (info: { index: number; total: number; claimsKept: number }) => void
 }
 
 export interface ClaimExtractionResult {
@@ -143,6 +155,7 @@ export async function extractClaimsWithLlm(
   const minConfidence = opts.minConfidence ?? 0.5
   const windowChars = opts.windowChars ?? 1200
   const step = opts.windowStep ?? Math.floor(windowChars / 2)
+  const concurrency = Math.max(1, opts.concurrency ?? 1)
   const windows = splitClaimWindows(transcript, windowChars, step)
 
   const systemPrompt = buildPlenoClaimSystemPrompt({
@@ -155,7 +168,10 @@ export async function extractClaimsWithLlm(
   const items: PlenoClaim[] = []
   let droppedLowConfidence = 0
 
-  for (let i = 0; i < windows.length; i++) {
+  // Process windows in fixed-size parallel batches. Each batch awaits all of
+  // its calls before starting the next so cache writes + dedup keep ordered
+  // semantics. Concurrency=1 keeps identical behavior to the serial version.
+  async function runWindow(i: number): Promise<number> {
     const window = windows[i]
     const userPrompt = buildPlenoClaimUserPrompt(window)
     const response = await caller({
@@ -165,8 +181,8 @@ export async function extractClaimsWithLlm(
       schema: PlenoClaimResponseSchema,
       input: { plenoId: opts.plenoId, windowIndex: i, windowHash: windowHash(window) },
     })
-    if (!response) continue
-
+    if (!response) return 0
+    let kept = 0
     for (const raw of response.claims) {
       if (raw.confidence < minConfidence) {
         droppedLowConfidence += 1
@@ -175,7 +191,6 @@ export async function extractClaimsWithLlm(
       const key = claimKey(raw)
       if (seen.has(key)) continue
       seen.add(key)
-      // Stable id combines plenoId + window + type-abbrev + short hash.
       const typeAbbr = raw.type.slice(0, 3)
       const shortHash = keyHash(key)
       const id = `${opts.plenoId}-${String(i).padStart(3, '0')}-${typeAbbr}-${shortHash}`
@@ -198,14 +213,27 @@ export async function extractClaimsWithLlm(
             ? { referencedEntity: raw.entities.referencedEntity.toLowerCase().trim() }
             : {}),
         },
-        // Propagate accusationSubtype when the LLM classifies the claim.
-        // Missing / null means the verifier will treat it as opinativa
-        // (safe default) — same policy as claim-verifier.ts.
         ...(raw.accusationSubtype ? { accusationSubtype: raw.accusationSubtype } : {}),
         confidence: raw.confidence,
         reasoning: raw.reasoning,
         requiresHumanApproval: true,
       })
+      kept += 1
+    }
+    return kept
+  }
+
+  for (let batchStart = 0; batchStart < windows.length; batchStart += concurrency) {
+    const batch: Array<Promise<{ index: number; kept: number }>> = []
+    for (let j = 0; j < concurrency && batchStart + j < windows.length; j++) {
+      const i = batchStart + j
+      batch.push(runWindow(i).then((kept) => ({ index: i, kept })))
+    }
+    const results = await Promise.all(batch)
+    if (opts.onWindow) {
+      for (const r of results) {
+        opts.onWindow({ index: r.index, total: windows.length, claimsKept: r.kept })
+      }
     }
   }
 
