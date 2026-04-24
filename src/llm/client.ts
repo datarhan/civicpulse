@@ -93,11 +93,20 @@ interface RunBudget {
 let currentBudget: RunBudget | null = null
 
 /** Reset the per-run budget. Called at the top of every CLI script that uses
- *  the LLM — prevents a runaway from carrying across batch boundaries. */
+ *  the LLM — prevents a runaway from carrying across batch boundaries.
+ *
+ *  Defaults:
+ *    500K tokens for metered backends (anthropic/openai) — cost guard.
+ *    4M tokens for claude-code (Max plan, $0 billed) — large enough to
+ *    cover one full pleno (~1M tokens for a 6K-line transcript at 1200-char
+ *    windows). Claude Code's own rate-limit is the real ceiling, not this.
+ *  Override via env LLM_MAX_TOKENS_PER_RUN or the function arg. */
 export function resetBudget(limit?: number) {
+  const envLimit = Number(process.env.LLM_MAX_TOKENS_PER_RUN || 0)
+  const defaultLimit = process.env.LLM_BACKEND === 'claude-code' ? 4_000_000 : 500_000
   currentBudget = {
     tokensUsed: 0,
-    limit: limit ?? Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
+    limit: limit ?? (envLimit > 0 ? envLimit : defaultLimit),
   }
 }
 
@@ -552,20 +561,25 @@ export async function callLLM<TSchema extends ZodTypeAny>(
     attempt += 1
   }
 
-  const entry: CacheEntry<z.infer<TSchema>> = {
-    result,
-    backend: config.backend,
-    model: backendModel(config),
-    promptVersion: opts.promptVersion,
-    tokenCount,
-    latencyMs: Date.now() - t0,
-    retryCount: attempt,
-    costUSD,
-    createdAt: new Date().toISOString(),
-  }
-  writeCache(config.cacheDir, key, entry)
-
-  if (!result) {
+  // Only cache successful (non-null) results. A null means the call failed
+  // — rate limit, transient network error, parse failure, CLI crash. Caching
+  // those makes the failure permanent: every re-run replays null instantly,
+  // defeating the whole point of re-running. Successful results are stable
+  // given the content-addressed key, so caching them is always safe.
+  if (result !== null) {
+    const entry: CacheEntry<z.infer<TSchema>> = {
+      result,
+      backend: config.backend,
+      model: backendModel(config),
+      promptVersion: opts.promptVersion,
+      tokenCount,
+      latencyMs: Date.now() - t0,
+      retryCount: attempt,
+      costUSD,
+      createdAt: new Date().toISOString(),
+    }
+    writeCache(config.cacheDir, key, entry)
+  } else {
     process.stderr.write(`[llm] all ${maxRetries + 1} attempts failed: ${lastErr}\n`)
   }
   return result
