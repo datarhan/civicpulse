@@ -1,26 +1,37 @@
 #!/usr/bin/env bash
-# Transcribe a single pleno video via yt-dlp + faster-whisper.
+# Transcribe a single pleno video via yt-dlp + whisper.
 #
 # Usage:
 #   bash scripts/transcribe-pleno.sh <plenoId>
-#   WHISPER_MODEL=medium bash scripts/transcribe-pleno.sh <plenoId>   # 2-3× faster
+#   WHISPER_MODEL=medium bash scripts/transcribe-pleno.sh <plenoId>    # 2-3× faster CPU
+#   WHISPER_ENGINE=openai bash scripts/transcribe-pleno.sh <plenoId>   # ~30s end-to-end
 #
 # Looks up the pleno in public/data/pleno-videos.json, downloads audio (mp3,
-# 16kHz mono), runs faster-whisper for Spanish/Catalan mixed content, writes
-# the transcript to public/data/pleno-transcripts/<plenoId>.txt, and then runs
+# 16kHz mono), transcribes it for Spanish/Catalan mixed content, writes the
+# transcript to public/data/pleno-transcripts/<plenoId>.txt, and then runs
 # the inference engine to produce suggestions.
 #
-# Model choice (WHISPER_MODEL env):
+# Engine choice (WHISPER_ENGINE env):
+#   local   (default) · faster-whisper on M-series CPU, free, slow
+#   openai            · OpenAI Whisper API, ~\$0.006/min (\$0.72 / 2h pleno),
+#                       done in 30-60s. Requires OPENAI_API_KEY exported.
+#                       Audio is re-encoded to 16 kbps mono opus (≈12 MB per
+#                       2h pleno) so we stay under the 25 MB upload limit
+#                       without chunking.
+#
+# Model choice (WHISPER_MODEL env — only applies when WHISPER_ENGINE=local):
 #   large-v3 (default) · best WER, ~0.3× realtime on M-series int8 CPU
 #   medium            · ~2-3× faster, small quality drop on clean audio
 #   small             · ~5-6× faster, noticeable quality drop — not recommended
 #
 # Prereqs (one-time):
 #   brew install yt-dlp ffmpeg
-#   pipx install faster-whisper   # or: pip install -U faster-whisper
-#   # (first run downloads the model into ~/.cache/huggingface)
+#   Local engine:  pipx install faster-whisper
+#   OpenAI engine: export OPENAI_API_KEY=sk-…  (add to .env or shell rc)
+#   # (local first run downloads the model into ~/.cache/huggingface)
 set -euo pipefail
 WHISPER_MODEL="${WHISPER_MODEL:-large-v3}"
+WHISPER_ENGINE="${WHISPER_ENGINE:-local}"
 
 if [ $# -ne 1 ]; then
   echo "usage: bash scripts/transcribe-pleno.sh <plenoId>" >&2
@@ -77,16 +88,77 @@ if [ ! -f "$AUDIO" ]; then
 fi
 echo "[transcribe] audio size: $(du -h "$AUDIO" | cut -f1)"
 
-echo "[transcribe] running faster-whisper (large-v3)…"
-# Use the dedicated venv if it exists (avoids PEP 668 on system Python);
-# fall back to python3 if the user prefers global installs.
-if [ -x "$HOME/.local/civicpulse-whisper/venv/bin/python" ]; then
-  PY="$HOME/.local/civicpulse-whisper/venv/bin/python"
+OUT_PATH="$TRANSCRIPT_DIR/$PLENO_ID.txt"
+
+if [ "$WHISPER_ENGINE" = "openai" ]; then
+  # ── OpenAI Whisper API branch ────────────────────────────────────────────
+  # Requires OPENAI_API_KEY. Re-encodes to 16 kbps mono opus (small enough
+  # that a 3h pleno stays under the 25 MB upload cap) and sends one request.
+  if [ -z "${OPENAI_API_KEY:-}" ]; then
+    # Fall back to .env in the repo root if the shell env doesn't have it.
+    if [ -f "$REPO_ROOT/.env" ]; then
+      # shellcheck disable=SC1090
+      set -a; . "$REPO_ROOT/.env"; set +a
+    fi
+  fi
+  if [ -z "${OPENAI_API_KEY:-}" ]; then
+    echo "[transcribe] OPENAI_API_KEY not set — export it or add to .env" >&2
+    exit 1
+  fi
+
+  OPUS="$WORKDIR/audio.ogg"
+  echo "[transcribe] re-encoding to 16kbps mono opus for upload…"
+  ffmpeg -hide_banner -loglevel error -y \
+    -i "$AUDIO" \
+    -ac 1 -ar 16000 -c:a libopus -b:a 16k \
+    "$OPUS"
+  echo "[transcribe] opus size: $(du -h "$OPUS" | cut -f1)"
+
+  # Hard-guard the 25 MB limit.
+  SIZE_BYTES=$(stat -f%z "$OPUS" 2>/dev/null || stat -c%s "$OPUS")
+  if [ "$SIZE_BYTES" -gt 26214400 ]; then
+    echo "[transcribe] opus exceeds 25 MB ($SIZE_BYTES bytes). Pleno is unusually long — add chunking." >&2
+    exit 1
+  fi
+
+  echo "[transcribe] POST /v1/audio/transcriptions (verbose_json, language=es)…"
+  RESP_JSON="$WORKDIR/response.json"
+  HTTP_CODE=$(curl -fsS -w "%{http_code}" -o "$RESP_JSON" \
+    https://api.openai.com/v1/audio/transcriptions \
+    -H "Authorization: Bearer $OPENAI_API_KEY" \
+    -F file="@$OPUS" \
+    -F model="whisper-1" \
+    -F language="es" \
+    -F response_format="verbose_json" \
+    -F "timestamp_granularities[]=segment" 2>&1 || echo "000")
+
+  if [ "$HTTP_CODE" != "200" ]; then
+    echo "[transcribe] OpenAI API returned HTTP $HTTP_CODE" >&2
+    cat "$RESP_JSON" >&2 || true
+    exit 1
+  fi
+
+  # Convert verbose_json segments to [start → end] text\n format.
+  node -e "
+    const fs = require('fs')
+    const data = JSON.parse(fs.readFileSync('$RESP_JSON', 'utf8'))
+    const segs = data.segments || []
+    const out = fs.createWriteStream('$OUT_PATH')
+    for (const s of segs) out.write(\`[\${s.start.toFixed(1)} → \${s.end.toFixed(1)}] \${s.text.trim()}\n\`)
+    out.end()
+    console.error('[transcribe]   segments=' + segs.length + ' duration=' + (data.duration || 'n/a') + 's language=' + (data.language || 'n/a'))
+  "
 else
-  PY="python3"
-fi
-echo "[transcribe] model: $WHISPER_MODEL"
-WHISPER_MODEL="$WHISPER_MODEL" "$PY" - "$AUDIO" "$TRANSCRIPT_DIR/$PLENO_ID.txt" <<'PYEOF'
+  # ── Local faster-whisper branch ──────────────────────────────────────────
+  echo "[transcribe] running faster-whisper (model=$WHISPER_MODEL)…"
+  # Use the dedicated venv if it exists (avoids PEP 668 on system Python);
+  # fall back to python3 if the user prefers global installs.
+  if [ -x "$HOME/.local/civicpulse-whisper/venv/bin/python" ]; then
+    PY="$HOME/.local/civicpulse-whisper/venv/bin/python"
+  else
+    PY="python3"
+  fi
+  WHISPER_MODEL="$WHISPER_MODEL" "$PY" - "$AUDIO" "$OUT_PATH" <<'PYEOF'
 import sys, os, time
 from faster_whisper import WhisperModel
 
@@ -125,8 +197,9 @@ with open(out_path, 'w', encoding='utf-8') as f:
             print(f'[transcribe]   {pct*100:.0f}% · {rate:.2f}× realtime · ETA {eta/60:.1f}min', flush=True)
             last_progress = pct
 PYEOF
+fi
 
-echo "[transcribe] transcript: $TRANSCRIPT_DIR/$PLENO_ID.txt"
+echo "[transcribe] transcript: $OUT_PATH"
 echo "[transcribe] running vote inference…"
 
 cd "$REPO_ROOT"
