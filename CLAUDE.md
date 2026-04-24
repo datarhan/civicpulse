@@ -65,10 +65,14 @@ npm run compute:dept-stats          # writes plazosVencidosCount into plenos-age
 # Claim extraction pipeline (LLM-extracted verbatim claims → deterministic
 # verifier → human-curated editorial findings). Requires transcripts on disk
 # (public/data/pleno-transcripts/*.txt) produced by the transcribe:batch
-# workflow, plus LLM_BACKEND=claude-code (Max plan, no API key) or a configured
-# ollama/openai backend. See src/scraper/pleno-claim.ts + claim-verifier.ts +
-# pleno-finding.ts for the schema contracts. Surfaces on /plenos and
-# /departamentos/:slug.
+# workflow, plus an LLM backend. Auto-selected in this order when
+# LLM_BACKEND is unset: OPENAI_API_KEY → openai (metered, recommended for
+# batch), ANTHROPIC_API_KEY → anthropic (metered), else ollama (local).
+# LLM_BACKEND=claude-code is opt-in only — it burns the Anthropic Max
+# subscription quota shared with interactive Claude Code sessions, and one
+# full-pleno extract (~200 calls) can exhaust a 5-hour window.
+# See src/scraper/pleno-claim.ts + claim-verifier.ts + pleno-finding.ts for
+# the schema contracts. Surfaces on /plenos and /departamentos/:slug.
 npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concurrency 3]
 # Default concurrency=3 runs 3 LLM calls in parallel per batch. Env:
 # LLM_CONCURRENCY=N. Writes a per-pleno checkpoint to

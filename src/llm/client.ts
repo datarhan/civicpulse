@@ -55,8 +55,27 @@ export interface ClientConfig {
 }
 
 export function loadConfigFromEnv(): ClientConfig {
+  // Backend auto-selection hierarchy when LLM_BACKEND is unset:
+  //   1. openai       — if OPENAI_API_KEY is exported (metered, no subscription burn)
+  //   2. anthropic    — if ANTHROPIC_API_KEY is exported (metered, no subscription burn)
+  //   3. ollama       — local fallback
+  // Explicitly NOT auto-selecting `claude-code` — that backend burns the user's
+  // Max-plan quota (the same quota powering interactive Claude Code sessions)
+  // and one full-pleno extract can torch a 5-hour window. It must be opted
+  // into via LLM_BACKEND=claude-code.
+  const envBackend = process.env.LLM_BACKEND as Backend | undefined
+  let backend: Backend
+  if (envBackend) {
+    backend = envBackend
+  } else if (process.env.OPENAI_API_KEY) {
+    backend = 'openai'
+  } else if (process.env.ANTHROPIC_API_KEY) {
+    backend = 'anthropic'
+  } else {
+    backend = 'ollama'
+  }
   return {
-    backend: (process.env.LLM_BACKEND as Backend) || 'ollama',
+    backend,
     ollamaUrl: process.env.OLLAMA_URL || 'http://localhost:11434',
     ollamaModel: process.env.OLLAMA_MODEL || 'qwen2.5:14b-instruct',
     openaiModel: process.env.OPENAI_MODEL || 'gpt-4o-mini',

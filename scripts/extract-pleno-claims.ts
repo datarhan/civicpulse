@@ -21,7 +21,7 @@ import type {
   ClaimTopic,
 } from '../src/scraper/pleno-claim'
 import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../src/scraper/pleno-claim'
-import { resetBudget } from '../src/llm/client'
+import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
 const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
@@ -181,9 +181,19 @@ async function main() {
 
   const currentSeats = loadCurrentSeats()
   resetBudget()
+  const config = loadConfigFromEnv()
   process.stdout.write(
-    `[extract·claims] seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')} · concurrency=${concurrency}\n`,
+    `[extract·claims] backend=${config.backend} · seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')} · concurrency=${concurrency}\n`,
   )
+  if (config.backend === 'claude-code') {
+    process.stderr.write(
+      '[extract·claims] WARNING: LLM_BACKEND=claude-code uses your Anthropic Max subscription quota.\n' +
+        '[extract·claims]   A full-pleno extract can exhaust a 5-hour window (~200 calls).\n' +
+        '[extract·claims]   Prefer LLM_BACKEND=openai (metered) or LLM_BACKEND=ollama (local)\n' +
+        '[extract·claims]   for batch runs. Press Ctrl-C in the next 5s to abort.\n',
+    )
+    await new Promise((r) => setTimeout(r, 5000))
+  }
 
   // Load previous snapshot once — we rebuild it progressively, pleno-by-pleno,
   // so a mid-batch crash (rate limit, network) keeps the completed plenos on
