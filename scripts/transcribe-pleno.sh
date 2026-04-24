@@ -149,16 +149,30 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   for CHUNK in "$CHUNK_DIR"/chunk-*.ogg; do
     OFFSET=$(( IDX * CHUNK_SECS ))
     RESP_JSON="$WORKDIR/response-${IDX}.json"
-    HTTP_CODE=$(curl -fsS -o "$RESP_JSON" -w "%{http_code}" \
-      https://api.openai.com/v1/audio/transcriptions \
-      -H "Authorization: Bearer $OPENAI_API_KEY" \
-      -F file="@$CHUNK" \
-      -F model="whisper-1" \
-      -F language="es" \
-      -F response_format="verbose_json" 2>&1 || echo "000")
+    # Per-chunk retry with exponential backoff — handles transient SSL /
+    # 429 / 5xx without discarding progress from earlier chunks. 4 tries
+    # total (0s, 2s, 4s, 8s).
+    HTTP_CODE=000
+    for TRY in 0 1 2 3; do
+      if [ "$TRY" -gt 0 ]; then
+        BACKOFF=$(( 2 ** TRY ))
+        echo "[transcribe]   chunk ${IDX} retry ${TRY}/3 after ${BACKOFF}s (prev HTTP $HTTP_CODE)" >&2
+        sleep "$BACKOFF"
+      fi
+      HTTP_CODE=$(curl -sS -o "$RESP_JSON" -w "%{http_code}" \
+        https://api.openai.com/v1/audio/transcriptions \
+        -H "Authorization: Bearer $OPENAI_API_KEY" \
+        -F file="@$CHUNK" \
+        -F model="whisper-1" \
+        -F language="es" \
+        -F response_format="verbose_json" 2>/dev/null || echo "000")
+      if [ "$HTTP_CODE" = "200" ]; then
+        break
+      fi
+    done
     if [ "$HTTP_CODE" != "200" ]; then
-      echo "[transcribe] chunk ${IDX} failed with HTTP $HTTP_CODE" >&2
-      cat "$RESP_JSON" >&2 || true
+      echo "[transcribe] chunk ${IDX} gave up after 4 attempts (last HTTP $HTTP_CODE)" >&2
+      cat "$RESP_JSON" >&2 2>/dev/null || true
       exit 1
     fi
     # Append segments with cumulative time offset. Node invocation runs
