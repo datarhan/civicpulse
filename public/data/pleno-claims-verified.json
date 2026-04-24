@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T05:42:49.064Z",
+  "generatedAt": "2026-04-24T07:06:43.522Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -7,10 +7,10 @@
   "stats": {
     "total": 267,
     "byVerdict": {
-      "verificado": 0,
-      "parcial": 16,
+      "verificado": 2,
+      "parcial": 3,
       "contradicho": 0,
-      "sin-datos": 251,
+      "sin-datos": 262,
       "promesa-repetida": 0
     }
   },
@@ -410,16 +410,9 @@
       },
       "verification": {
         "claimId": "ma87e0-089-cit-756a2e",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -1109,16 +1102,9 @@
       },
       "verification": {
         "claimId": "ma87e0-102-cit-a8afef",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=o2e44yfhgzU7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato de obras para la ejecución del proyecto de instalación de un revestimiento de trencadis sobre la barrera new jersey del puente de la carretera CV-336 en el término municipal de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -1271,16 +1257,9 @@
       },
       "verification": {
         "claimId": "ma87e0-104-cit-377216",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YlgG3XJA7Vh7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Obras de impermeabilización cubierta Edificio Polivalente así como el fomento de la estabilidad en el empleo y la protección del medio ambiente, debido a  que “El contrato consta de una única obra y por tanto no cabe la división en lotes de la misma”, por procedimiento abierto supersimplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -1822,16 +1801,9 @@
       },
       "verification": {
         "claimId": "ma87e0-112-cit-178146",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.67
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -2624,16 +2596,9 @@
       },
       "verification": {
         "claimId": "ma87e0-123-cit-170e96",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D",
-            "snippet": "Contrato Menor 01m/2022 de Servicio de Elaboración de  un  Plan  de  Acción  Local  para  incorporación  del  municipio  a  la  Red  de  Ciudades Amigables con las personas mayores. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -3758,16 +3723,9 @@
       },
       "verification": {
         "claimId": "ma87e0-144-cit-793756",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D",
-            "snippet": "Contrato Menor 01m/2022 de Servicio de Elaboración de  un  Plan  de  Acción  Local  para  incorporación  del  municipio  a  la  Red  de  Ciudades Amigables con las personas mayores. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -4016,9 +3974,9 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 2 furgonetas de 5 plazas y 2 furgonetas de 9 plazas destinadas al el Plan de Empleo DANA a favor de NORTHGATE ESPAÑA RENTING FLEXIBLE SA; A28659423. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EcwQUWMyQ4mmq21uxhbaVQ%3D%3D",
+            "snippet": "Obras instalación pista deportiva en barrio Ciudad Jardín · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "similarity": 0.67
           }
         ],
         "checkedAgainst": [
@@ -4328,16 +4286,9 @@
       },
       "verification": {
         "claimId": "ma87e0-154-cit-d2ff2b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Y44NDznkNwwQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio postal · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -4955,16 +4906,9 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-4e23e7",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -5062,16 +5006,9 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-3acc3b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -6613,16 +6550,9 @@
       },
       "verification": {
         "claimId": "ma87e0-184-cit-3b5ad9",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -7242,14 +7172,14 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-56214f",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.6
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
+            "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "similarity": 1
           }
         ],
         "checkedAgainst": [
@@ -7280,16 +7210,9 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-1a0535",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "bdns",
@@ -7318,14 +7241,14 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-436a7e",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 0.5
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
+            "snippet": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "similarity": 1
           }
         ],
         "checkedAgainst": [

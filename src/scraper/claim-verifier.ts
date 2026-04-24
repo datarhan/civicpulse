@@ -161,18 +161,36 @@ function norm(s: string | undefined | null): string {
     .trim()
 }
 
+/**
+ * Stopwords for overlapScore — tokens that appear in the municipality's name
+ * or in generic municipal-contract boilerplate so they inflate every score
+ * against every tender. Dropping these forces matches to rely on genuinely
+ * project-specific tokens.
+ */
+const STOPWORDS = new Set([
+  'riba',
+  'roja',
+  'rivaroja',
+  'turia',
+  'ayuntamiento',
+  'municipal',
+  'municipio',
+  'servicio',
+  'servicios',
+  'contrato',
+  'obras',
+  'obra',
+  'proyecto',
+  'proyectos',
+  'plan',
+  'ejecucion',
+])
+
 /** Very cheap word-overlap score between two normalized strings. */
 function overlapScore(a: string, b: string): number {
-  const aw = new Set(
-    norm(a)
-      .split(' ')
-      .filter((w) => w.length >= 4),
-  )
-  const bw = new Set(
-    norm(b)
-      .split(' ')
-      .filter((w) => w.length >= 4),
-  )
+  const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
+  const aw = new Set(norm(a).split(' ').filter(filt))
+  const bw = new Set(norm(b).split(' ').filter(filt))
   if (aw.size === 0 || bw.size === 0) return 0
   let hit = 0
   for (const w of aw) if (bw.has(w)) hit += 1
@@ -421,7 +439,11 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     const claimsCompleted = COMPLETION_PATTERNS.some((rx) => rx.test(claim.verbatim))
     for (const t of tenderList) {
       const textSim = overlapScore(claim.entities.referencedEntity, tenderTitle(t))
-      if (textSim >= 0.5) {
+      // 0.65 threshold — lower lets spurious single-word-overlap matches
+      // leak through ("Escoto" in two unrelated tenders, generic "plan"
+      // matching any plan document). 0.65 requires meaningful multi-word
+      // agreement.
+      if (textSim >= 0.65) {
         evidence.push({
           kind: 'tender',
           ref: t.permalink ?? '',

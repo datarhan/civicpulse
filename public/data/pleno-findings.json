@@ -1,10 +1,166 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-23T20:21:31.530Z",
+  "generatedAt": "2026-04-24T07:07:29.661Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "f-2026-03-16-cit-377216",
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "title": "Chemmachor · edificio polivalente citado en dos intervenciones con contrato en BD",
+      "summary": "En la sesión de marzo de 2026 dos intervenciones del grupo socialista mencionan el edificio polivalente de la Chemmachor (transcrito también como 'Xemachor' o 'Chemachor'). La base municipal de contratación pública registra un contrato de obras de impermeabilización de la cubierta del mismo edificio polivalente — el vínculo documental existe, pero el discurso plenario no cita el expediente ni el importe, por lo que sólo podemos confirmar que el proyecto está activo en el registro de contratación, no el estado real de ejecución ni las fases cubiertas por ese contrato.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "ma87e0-104-cit-377216",
+        "ma87e0-162-cit-092d3e"
+      ],
+      "quotes": [
+        {
+          "text": "El edificio polivalente de la Chemmachor, también. No sé, estas personas que son vecinos nuestros, Chemmachor.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "ma87e0-104-cit-377216"
+        },
+        {
+          "text": "el proyecto y construcción del edificio polivalente Chemachor",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "ma87e0-162-cit-092d3e"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YlgG3XJA7Vh7h85%2Fpmmsfw%3D%3D",
+          "snippet": "Obras de impermeabilización cubierta Edificio Polivalente así como el fomento de la estabilidad en el empleo y la protección del medio ambiente, debido a  que “El contrato consta de una única obra y por tanto no cabe la división en lotes…"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-auto",
+      "publishedAt": "2026-04-24",
+      "response": null
+    },
+    {
+      "id": "f-2026-03-16-cit-56214f",
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "title": "Centro de Salud · obra registrada, no ampliación mencionada en el discurso",
+      "summary": "En la intervención se afirma que el municipio 'no tiene el Centro de Salud' en el sentido de ampliación o nueva dotación esperada. La base municipal de contratación sí registra un contrato menor para suministro de una carpa de triaje en la zona exterior del Centro de Salud — es una dotación puntual que no equivale a la inversión que el orador echa en falta. La ausencia de obras mayores en el registro corrobora parcialmente la queja discursiva.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "ma87e0-195-cit-56214f"
+      ],
+      "quotes": [
+        {
+          "text": "No tiene el Centro de Salud",
+          "speakerGroup": null,
+          "sourceClaimId": "ma87e0-195-cit-56214f"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamient…"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-auto",
+      "publishedAt": "2026-04-24",
+      "response": null
+    },
+    {
+      "id": "f-2026-03-16-cit-436a7e",
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "title": "Pabellón de Escoto · contrato de construcción Fase I registrado",
+      "summary": "En la misma intervención se afirma que el municipio 'no tiene el pabellón de Escoto'. La base municipal de contratación registra el contrato de ejecución de las obras de construcción del pabellón deportivo cubierto en el CEIP Mas d'Escoto, Fase I (movimiento de tierras y muro de contención). La Fase I existe documentalmente; lo que queda por documentarse son las fases siguientes y el estado de ejecución actual del pabellón en sí, que no es el mismo que la preparación del terreno.",
+      "severity": "notable",
+      "sourceClaimIds": [
+        "ma87e0-195-cit-436a7e"
+      ],
+      "quotes": [
+        {
+          "text": "no tiene el pabellón de Escoto",
+          "speakerGroup": null,
+          "sourceClaimId": "ma87e0-195-cit-436a7e"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
+          "snippet": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, var…"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-auto",
+      "publishedAt": "2026-04-24",
+      "response": null
+    },
+    {
+      "id": "f-2026-03-16-cit-75b31f",
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "title": "Ciudad Jardín · proyecto deportivo documentado pero no el plan de empleo citado",
+      "summary": "Una intervención menciona 'el Plan de Empleo Ciudad Jardín' como partida presupuestaria. La base de contratos registra una obra de instalación de pista deportiva en el barrio de Ciudad Jardín — es el mismo barrio pero un contrato de obra pública, no un programa de empleo. La cita del discurso no se corresponde directamente con el contrato encontrado; queda pendiente de documentar dónde está específicamente el Plan de Empleo Ciudad Jardín en la base presupuestaria municipal.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "ma87e0-151-cit-75b31f"
+      ],
+      "quotes": [
+        {
+          "text": "el Rivadona o el Plan de Empleo Ciudad Jardín",
+          "speakerGroup": null,
+          "sourceClaimId": "ma87e0-151-cit-75b31f"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EcwQUWMyQ4mmq21uxhbaVQ%3D%3D",
+          "snippet": "Obras instalación pista deportiva en barrio Ciudad Jardín · Ayuntamiento de Riba-roja de Túria · estado: awarded"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-auto",
+      "publishedAt": "2026-04-24",
+      "response": null
+    },
+    {
+      "id": "f-2026-03-16-cit-528973",
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "title": "Instalaciones deportivas · sólo contrato de control microbiológico registrado",
+      "summary": "La intervención se refiere a financiar 'una parte de las instalaciones deportivas', reconociendo necesidades pendientes. La base municipal registra un único contrato relevante al término: el control microbiológico y físico-químico de las instalaciones. Es mantenimiento/monitorización, no inversión en mejora — compatible con la tesis del orador de que quedan necesidades por atender.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "ma87e0-104-cit-528973"
+      ],
+      "quotes": [
+        {
+          "text": "Con ella se va a financiar también una parte de las instalaciones deportivas. ¿Cuántas veces tenemos aquí? Pues lo entendemos que hay necesidades en las instalaciones deportivas que hay que mejorar. Pues ahí se va a financiar.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "ma87e0-104-cit-528973"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ngqf58oaRxQQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · estado: unknown"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "civicpulse-auto",
+      "publishedAt": "2026-04-24",
+      "response": null
+    },
     {
       "id": "f-2026-03-09-afi-a9546e",
       "plenoId": "1sqj7is",

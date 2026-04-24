@@ -86,7 +86,10 @@ function evidenceToRefs(ev: ClaimVerification['evidence']): {
   const contradiction: FindingRef[] = []
   for (const e of ev) {
     if (e.kind === 'prior-claim') continue // not representable as a findings ref
-    const ref: FindingRef = { kind: e.kind, ref: e.ref, snippet: e.snippet }
+    // Truncate snippet to the schema's 240-char cap so long tender titles
+    // don't break the validator on promotion.
+    const snippet = e.snippet.length > 237 ? e.snippet.slice(0, 237).trimEnd() + '…' : e.snippet
+    const ref: FindingRef = { kind: e.kind, ref: e.ref, snippet }
     // Heuristic — very strong matches or high-similarity rows corroborate;
     // rows with low similarity or mismatched-amount notes contradict.
     if ((e.similarity ?? 0) >= 0.65 && !e.snippet.includes('no coincide')) {
