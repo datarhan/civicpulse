@@ -170,13 +170,20 @@ elif [ "$WHISPER_ENGINE" = "mlx" ]; then
     echo "[transcribe]   ~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx" >&2
     exit 1
   fi
-  # batch_size vs audio size heuristic: Metal GPU Timeout kicks in
-  # reliably on >~120 MB inputs (≈4+ hour sessions) at batch_size=12.
-  # Drop to 4 automatically for big files; caller can override via
-  # WHISPER_BATCH_SIZE env.
+  # batch_size vs audio size heuristic: Metal GPU Timeout kicks in on long
+  # inputs (~4+ hour sessions) because each command-buffer exceeds the OS
+  # timeout. The cut-offs below are empirical (observed on M1 Max with
+  # lightning-whisper-mlx large-v3):
+  #   · up to 120 MB → batch_size=12 (fastest)
+  #   · 120-150 MB   → batch_size=4  (observed success on qz6weg @ 138 MB)
+  #   · >150 MB      → batch_size=2  (qz6weg/1du4rf5 territory; >5h audio)
+  # Caller can override via WHISPER_BATCH_SIZE env.
   AUDIO_MB=$(( $(stat -f%z "$AUDIO" 2>/dev/null || stat -c%s "$AUDIO") / 1048576 ))
   if [ -z "${WHISPER_BATCH_SIZE:-}" ]; then
-    if [ "$AUDIO_MB" -gt 120 ]; then
+    if [ "$AUDIO_MB" -gt 150 ]; then
+      WHISPER_BATCH_SIZE=2
+      echo "[transcribe] audio ${AUDIO_MB}MB > 150 MB threshold — batch_size auto-set to 2 (safest for 5h+ sessions)"
+    elif [ "$AUDIO_MB" -gt 120 ]; then
       WHISPER_BATCH_SIZE=4
       echo "[transcribe] audio ${AUDIO_MB}MB > 120 MB threshold — batch_size auto-set to 4"
     else
