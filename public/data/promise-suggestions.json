@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-23T06:24:11.770Z",
+  "generatedAt": "2026-04-24T06:26:31.278Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -30,19 +30,6 @@
             "aprueba",
             "alto",
             "historia"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQOVp0N3ZEU19kVDlpX1JYcnI2aGppNmFldjJHanlPWWFaSGtidVNCLUVHeTVZM3duS3lialgxWFBLSGZnRU1pNl85TE04NldUTzJkaFQzaTMwZDQwdmJPZW9yeHRuc1VCeUR1TU5RcGlXOHJGQUd6bTU5WW5ZYjBKYVAyZE5SWGxqd01DTHprOWU0MzlZY2E4VGNZQ19QV1N6OU9TWkRiZWlwZU5jdUVJUHZ0V1ZJcE10aFNsWnFDbmFnaW1ObHNScFhvVVZwal9ZeGc3WlE3RXE?oc=5",
-          "date": "2026-04-19",
-          "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
-          "kind": "press",
-          "publisher": "MSN",
-          "matchedKeywords": [
-            "presupuesto",
-            "millon",
-            "euro",
-            "aprueba"
           ]
         },
         {
@@ -81,7 +68,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -104,18 +91,6 @@
             "euro",
             "entre",
             "destaca"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQOVp0N3ZEU19kVDlpX1JYcnI2aGppNmFldjJHanlPWWFaSGtidVNCLUVHeTVZM3duS3lialgxWFBLSGZnRU1pNl85TE04NldUTzJkaFQzaTMwZDQwdmJPZW9yeHRuc1VCeUR1TU5RcGlXOHJGQUd6bTU5WW5ZYjBKYVAyZE5SWGxqd01DTHprOWU0MzlZY2E4VGNZQ19QV1N6OU9TWkRiZWlwZU5jdUVJUHZ0V1ZJcE10aFNsWnFDbmFnaW1ObHNScFhvVVZwal9ZeGc3WlE3RXE?oc=5",
-          "date": "2026-04-19",
-          "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
-          "kind": "press",
-          "publisher": "MSN",
-          "matchedKeywords": [
-            "aprueba",
-            "millon",
-            "euro"
           ]
         },
         {
@@ -143,7 +118,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -164,6 +139,20 @@
             "europeo",
             "recibira",
             "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPWC1QbkNvamk1dnk0NlZENEtPaHctNDdVVElEQlBHZWN3MXVKUS1XS2RBcDFhWFRfcWJsczZscFhKODNLeDlHTHpORl8zVnNPdnZiekZxQW0zRjRyWG8wX3NMZ0ZIV2I1X0ZnU0NPVVFlM0RMa3dPc2JDZTV5VXlNV3JfQVY3ZVVvamZITlVIdXE4eHRXS196UmFBREJINmY2WFRTdUxkMWxla21uaWkwem0tQzdySGdiaTFOSUVWZFAzQXBIVVRaWmpfUWdWb0xkY2duSGRZcklGR2ZERUt1OVlYNVdvMGlRdklxVjFLY215QVR3VkxZ?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja recibirá 9,5 millones de fondos europeos para ejecutar inversiones de su agenda de reconstrucción",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "reconstruccion",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira"
           ]
         },
         {
@@ -190,31 +179,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-          "date": "2026-01-05",
-          "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-          "kind": "press",
-          "publisher": "elDiario.es",
-          "matchedKeywords": [
-            "plan",
-            "crear",
-            "hogar",
-            "nuevo",
-            "lucha",
-            "contra",
-            "falta",
-            "suelo",
-            "ambicioso"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcnRfSHBHWmlmR2JwNWlRYW9rRl9keTFwdVNYdkI3YllUN0pVU0NHXzJuN045NGNvU2pESnVfWnBLS05VcnBGSVJScVJpUXFmdjNPUWktNjBGTG5uNjFwdlFqU1BUSUgtUnNCYkNNa2kyRk1qdmgwYmI1QldCdEhrUFpuUVZEZFhpTVpRY0w0YzNiR1hOU2V5bm9VQmVBa2hCMjZ6N1g1ODg1Y3ZXMlM5SVQycXVmMndPd3fSAb8BQVVfeXFMUGg0SXk2OHZ2TXNxdzR2SFgzQXZmLU9wNG9GQjd1TTl0bm95V0tvaGt1amdtTmJXUUdtMXc0d3pLNjNNSHhtUmZMNEF6N1lDMl9ud0t6bTQ2dDVCSWtQR2hwWXJZVjVuVmhfOWZKRnljSkNWUktsdDNsdEpCQU1faS1fbEx3Q2FqazNoLTVSMUcyZ3FxbWlZNjFPaUJXcHl5QjFBQjlBQWFPTkJIRURDRnJhZGo5NmJiTnJybVR4NzQ?oc=5",
           "date": "2026-01-27",
@@ -228,7 +199,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -263,7 +234,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -287,7 +258,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -325,7 +296,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -345,7 +316,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -353,7 +324,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -372,7 +343,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -391,17 +362,6 @@
             "millon",
             "euro",
             "municipio"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQOVp0N3ZEU19kVDlpX1JYcnI2aGppNmFldjJHanlPWWFaSGtidVNCLUVHeTVZM3duS3lialgxWFBLSGZnRU1pNl85TE04NldUTzJkaFQzaTMwZDQwdmJPZW9yeHRuc1VCeUR1TU5RcGlXOHJGQUd6bTU5WW5ZYjBKYVAyZE5SWGxqd01DTHprOWU0MzlZY2E4VGNZQ19QV1N6OU9TWkRiZWlwZU5jdUVJUHZ0V1ZJcE10aFNsWnFDbmFnaW1ObHNScFhvVVZwal9ZeGc3WlE3RXE?oc=5",
-          "date": "2026-04-19",
-          "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
-          "kind": "press",
-          "publisher": "MSN",
-          "matchedKeywords": [
-            "millon",
-            "euro"
           ]
         },
         {
@@ -427,11 +387,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNYWVqaHZTNHhJTlBja3lGZVBLblZjNWV0SVlMN01BMGNsMUo4VmlDVHFGbk81bl9TOUxyeFppeWJiYlRVdnJEa00taThtWHQ4YnZoSm9QWHg4X0lNcnhneUVWX0l0bU1qVTJSNl8wS0tfNFBNUFZzTzJQTkNaR0NBMDBJTmx0U0NVUmlQYmRNTHVTNVQtZjRNSEQtd1hXV1djYVluc3FhVnVkQUJVaDdvOWRBTGFNelh4VzBpSFdjNlo4aGI1U2fSAcsBQVVfeXFMUHBCNXNKeW5BWnhLbzdtZHZMLV9qYVpLRGIyQUhSM3JmYU5DVjd3elRVV3dPczRVY1RudnE0azJLRFNyLW5yRkxLenV1MXRUOHJDaFBwQjlhLTJYVUxQelV2Z3VNN0tURWVEVjdsMmZyOXYwXzBQdS16TzhyamJCT0RUVmFkMmMwaGtKN0IwS1FEV3R6emh6SWtUVHYweElmajdkdGpYYmNDNjNHbGpUUmJYejhjZGhxMUlHdE5jWDdoN1NUUGxSdlpuekk?oc=5",
-          "date": "2026-02-16",
-          "quote": "Riba-roja respalda el nuevo modelo de financiación autonómica que aportaría 3.669 millones de euros a la C. Valenciana",
+          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQkJrTllwdmN3clZkRXV1eTEtVFpsSkpfTmFUeXJZMFQ2R0w5R3ZxNkJ1TGw5REpETTFySXpzdHlCWFhleWJ3a3hMRkJobkpfZkxvUWM0TXZLNEk0ZWlpVDFzVXotYkNjVXRyTFJZYmhtUXZtZlcwbTlGSk5BY1dqb0lkTUgzY0ZQSFhLVFA0bFpmOU94cXd3SkM1aFlPcTVUeGFqcGFPcUNjajJRakFGdlVWUUpjQ2JMYlJWbUdNT1F5dVoyYVlYN19n?oc=5",
+          "date": "2026-03-16",
+          "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -449,7 +409,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -469,7 +429,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -533,7 +493,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -572,7 +532,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -611,7 +571,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -641,7 +601,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-23T06:24:11.700Z"
+      "generatedAt": "2026-04-24T06:26:31.208Z"
     }
   ],
   "llmEvidence": [],
