@@ -1,0 +1,62 @@
+name: Deploy to Vercel
+
+# Triggers a production deploy on every push to main.
+#
+# Why this workflow exists: Vercel's built-in GitHub integration requires
+# every account that pushes commits to be a member of the Vercel team that
+# owns the project. That needs a Pro plan for team collaborators. This
+# workflow sidesteps that by calling `vercel --prod` with the project
+# owner's personal token — no team-membership check involved.
+#
+# Required repository secrets (Settings → Secrets and variables → Actions):
+#   VERCEL_TOKEN       · personal token from vercel.com/account/tokens
+#   VERCEL_ORG_ID      · see .vercel/project.json → orgId
+#   VERCEL_PROJECT_ID  · see .vercel/project.json → projectId
+#
+# Manual trigger: Actions tab → "Deploy to Vercel" → Run workflow.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Skip the deploy if the commit message contains [skip vercel] so
+    # doc-only or test-only commits don't waste a deploy slot.
+    if: "!contains(github.event.head_commit.message, '[skip vercel]')"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Pull Vercel environment
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+
+      - name: Build
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel build --prod --token="$VERCEL_TOKEN"
+
+      - name: Deploy prebuilt bundle
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel deploy --prebuilt --prod --token="$VERCEL_TOKEN"
