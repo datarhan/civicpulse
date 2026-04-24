@@ -259,20 +259,21 @@ async function callOllama(req: RawCall): Promise<RawResult> {
   return { raw: data.message.content, tokenCount: tokens, costUSD: 0 }
 }
 
-// OpenAI pricing per 1M tokens. Update when the published rate card changes;
-// openai.com/api/pricing blocks automated fetches (HTTP 403) so these have to
-// be pasted in by hand. If a model isn't listed, callLLM falls back to
-// {in:0, out:0} and the llm:cost dashboard will show $0 for those calls.
-const OPENAI_PRICING: Record<string, { in: number; out: number }> = {
+// OpenAI pricing per 1M tokens. `cacheRead` applies to prompt-cache hits
+// (OpenAI Prompt Caching · automatic for prompts >1024 tokens), reported in
+// the response under `usage.prompt_tokens_details.cached_tokens`.
+// openai.com/api/pricing blocks automated fetches (HTTP 403) so these have
+// to be pasted in by hand. Unknown models fall back to zero (cost dashboard
+// shows $0 for those calls).
+const OPENAI_PRICING: Record<string, { in: number; out: number; cacheRead?: number }> = {
   // 4.x family (verified from pricing page snapshots · 2025-06):
-  'gpt-4o-mini': { in: 0.15, out: 0.6 },
-  'gpt-4o': { in: 2.5, out: 10.0 },
-  'gpt-4.1-mini': { in: 0.4, out: 1.6 },
+  'gpt-4o-mini': { in: 0.15, out: 0.6, cacheRead: 0.075 },
+  'gpt-4o': { in: 2.5, out: 10.0, cacheRead: 1.25 },
+  'gpt-4.1-mini': { in: 0.4, out: 1.6, cacheRead: 0.1 },
   'gpt-4.1-nano': { in: 0.1, out: 0.4 },
   'gpt-4.1': { in: 2.0, out: 8.0 },
-  // 5.x family (estimates · update once openai publishes confirmed rates;
-  // placeholder values bracket the 4.x successor tier so cost reports aren't
-  // misleadingly low):
+  // 5.x family — verified rows carry cacheRead; placeholders still bracket
+  // the 4.x successor tier for unverified variants.
   'gpt-5-nano': { in: 0.05, out: 0.4 },
   'gpt-5-mini': { in: 0.25, out: 2.0 },
   'gpt-5': { in: 1.25, out: 10.0 },
@@ -281,7 +282,7 @@ const OPENAI_PRICING: Record<string, { in: number; out: number }> = {
   'gpt-5.2-mini': { in: 0.25, out: 2.0 },
   'gpt-5.2': { in: 1.25, out: 10.0 },
   'gpt-5.4-nano': { in: 0.05, out: 0.4 },
-  'gpt-5.4-mini': { in: 0.25, out: 2.0 },
+  'gpt-5.4-mini': { in: 0.75, out: 4.5, cacheRead: 0.075 }, // verified 2026-04-24
   'gpt-5.4': { in: 1.25, out: 10.0 },
   'gpt-5.4-pro': { in: 5.0, out: 40.0 },
   // Audio:
@@ -538,11 +539,22 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
   if (!res.ok) throw new Error(`OpenAI ${res.status}: ${await res.text()}`)
   const data = (await res.json()) as {
     choices: { message: { content: string } }[]
-    usage: { prompt_tokens: number; completion_tokens: number }
+    usage: {
+      prompt_tokens: number
+      completion_tokens: number
+      prompt_tokens_details?: { cached_tokens?: number }
+    }
   }
   const pricing = OPENAI_PRICING[req.config.openaiModel] ?? { in: 0, out: 0 }
+  // Split prompt_tokens into cached + fresh when the server reports cache hits.
+  // Cached tokens bill at ~10× less (cacheRead rate); fresh at the full in rate.
+  const cachedTokens = data.usage.prompt_tokens_details?.cached_tokens ?? 0
+  const freshInputTokens = data.usage.prompt_tokens - cachedTokens
   const costUSD =
-    (data.usage.prompt_tokens * pricing.in + data.usage.completion_tokens * pricing.out) / 1_000_000
+    (freshInputTokens * pricing.in +
+      cachedTokens * (pricing.cacheRead ?? pricing.in) +
+      data.usage.completion_tokens * pricing.out) /
+    1_000_000
   return {
     raw: data.choices[0].message.content,
     tokenCount: data.usage.prompt_tokens + data.usage.completion_tokens,
