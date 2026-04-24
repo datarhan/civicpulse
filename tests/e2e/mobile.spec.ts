@@ -5,7 +5,7 @@ const ROUTES = ['/', '/cargos', '/presupuesto', '/plenos', '/promesas', '/quejas
 test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
   for (const path of ROUTES) {
     test(`${path} fits the viewport with no horizontal scroll`, async ({ page }) => {
-      await page.goto(path, { waitUntil: 'networkidle' })
+      await page.goto(path, { waitUntil: 'domcontentloaded' })
       await page.waitForTimeout(600)
 
       const overflow = await page.evaluate(() => ({
@@ -18,7 +18,7 @@ test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
   }
 
   test('hamburger opens the sidebar drawer, Escape closes it', async ({ page }) => {
-    await page.goto('/cargos', { waitUntil: 'networkidle' })
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     const sidebar = page.locator('.cp-shell-sidebar')
     const hamburger = page.getByRole('button', { name: /menú/i })
 

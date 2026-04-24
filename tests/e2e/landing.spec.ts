@@ -6,7 +6,7 @@ test.describe('Landing (/)', () => {
     page.on('pageerror', (e) => errors.push(String(e)))
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()) })
 
-    await page.goto('/', { waitUntil: 'networkidle' })
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
 
     // Editorial header — municipality name always present
     await expect(page.getByText('Riba-roja de Túria').first()).toBeVisible()

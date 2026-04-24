@@ -17,7 +17,7 @@ const ROUTES = [
 test.describe('Accessibility (WCAG 2.1 AA)', () => {
   for (const path of ROUTES) {
     test(`${path} has no critical or serious axe violations`, async ({ page }) => {
-      await page.goto(path, { waitUntil: 'networkidle' })
+      await page.goto(path, { waitUntil: 'domcontentloaded' })
       await page.waitForTimeout(800)
 
       const results = await new AxeBuilder({ page })

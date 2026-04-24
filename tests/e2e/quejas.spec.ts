@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test'
 
 test.describe('Quejas feed + dashboard', () => {
   test('shows empty-state copy when no quejas have been captured', async ({ page }) => {
-    await page.goto('/quejas', { waitUntil: 'networkidle' })
+    await page.goto('/quejas', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText('Quejas ciudadanas').first()).toBeVisible()
 
     // With no quejas.json data yet, the feed must not fabricate complaints —

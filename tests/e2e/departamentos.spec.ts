@@ -8,7 +8,7 @@ test.describe('Departamentos (/departamentos)', () => {
       if (m.type() === 'error') errors.push(m.text())
     })
 
-    await page.goto('/departamentos', { waitUntil: 'networkidle' })
+    await page.goto('/departamentos', { waitUntil: 'domcontentloaded' })
 
     // Page eyebrow + title
     await expect(page.getByText(/Rendici.n de cuentas/i).first()).toBeVisible()
@@ -31,7 +31,7 @@ test.describe('Departamentos (/departamentos)', () => {
     const errors: string[] = []
     page.on('pageerror', (e) => errors.push(String(e)))
 
-    await page.goto('/departamentos/urbanismo', { waitUntil: 'networkidle' })
+    await page.goto('/departamentos/urbanismo', { waitUntil: 'domcontentloaded' })
 
     // Back link
     await expect(page.getByText(/Todos los departamentos/i).first()).toBeVisible()
@@ -55,7 +55,7 @@ test.describe('Departamentos (/departamentos)', () => {
     const errors: string[] = []
     page.on('pageerror', (e) => errors.push(String(e)))
 
-    await page.goto('/departamentos/no-existe-este-slug', { waitUntil: 'networkidle' })
+    await page.goto('/departamentos/no-existe-este-slug', { waitUntil: 'domcontentloaded' })
 
     await expect(page.getByText(/Departamento no encontrado/i).first()).toBeVisible({
       timeout: 8000,
@@ -64,7 +64,7 @@ test.describe('Departamentos (/departamentos)', () => {
   })
 
   test('landing rail has a Departamentos icon linking here', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'networkidle' })
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
     // Rail item renders as an <a href="/departamentos"> inside the LeftRail
     // aside. We wait for at least one to be attached — lazy chunks can take a
     // beat — then verify click navigation works.
@@ -78,7 +78,7 @@ test.describe('Departamentos (/departamentos)', () => {
   })
 
   test('Plenos page TopDepartmentsCard chips link into /departamentos/:slug', async ({ page }) => {
-    await page.goto('/plenos', { waitUntil: 'networkidle' })
+    await page.goto('/plenos', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/Ver dashboard por departamento/i).first()).toBeVisible({
       timeout: 8000,
     })
