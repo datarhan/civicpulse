@@ -215,3 +215,137 @@ describe('LLM client · token budget', () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1)
   })
 })
+
+describe('LLM client · resilience', () => {
+  function openaiSuccess(content: string, tokens = 50) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      headers: new Headers(),
+      text: async () => '',
+      json: async () => ({
+        choices: [{ message: { content } }],
+        usage: { prompt_tokens: Math.floor(tokens / 2), completion_tokens: Math.ceil(tokens / 2) },
+      }),
+    })
+  }
+  function anthropicSuccess(input: object, tokens = 50) {
+    return Promise.resolve({
+      ok: true,
+      status: 200,
+      headers: new Headers(),
+      text: async () => '',
+      json: async () => ({
+        content: [{ type: 'tool_use', name: 'emit_structured_output', input }],
+        usage: { input_tokens: Math.floor(tokens / 2), output_tokens: Math.ceil(tokens / 2) },
+      }),
+    })
+  }
+  function httpError(status: number, body = '', retryAfter?: string) {
+    const headers = new Headers()
+    if (retryAfter) headers.set('retry-after', retryAfter)
+    return Promise.resolve({
+      ok: false,
+      status,
+      headers,
+      text: async () => body,
+      json: async () => ({}),
+    })
+  }
+
+  it('retries on 429 with Retry-After-honoring backoff', async () => {
+    // 429 with 1-second wait, then success. The real sleep is minified in tests;
+    // we just assert the retry path didn't give up immediately.
+    fetchSpy
+      .mockReturnValueOnce(httpError(429, 'slow down', '1'))
+      .mockReturnValueOnce(openaiSuccess(JSON.stringify({ reply: 'finally' })))
+
+    const result = await callLLM({
+      systemPrompt: 's', userPrompt: 'u', promptVersion: 'rate-v1',
+      schema: TestSchema, input: { x: 1 },
+      config: { ...loadConfigFromEnv(), backend: 'openai' as const, openaiApiKey: 'sk-test', cacheDir },
+    })
+    expect(result).toEqual({ reply: 'finally' })
+    expect(fetchSpy).toHaveBeenCalledTimes(2)
+  }, 8000)
+
+  it('falls back to anthropic when openai exhausts retries', async () => {
+    // OpenAI: three 429s (exhausts maxRetries=2 = 3 attempts)
+    // Anthropic: success on first try
+    fetchSpy
+      .mockReturnValueOnce(httpError(429))
+      .mockReturnValueOnce(httpError(429))
+      .mockReturnValueOnce(httpError(429))
+      .mockReturnValueOnce(anthropicSuccess({ reply: 'claude rescue' }))
+
+    const result = await callLLM({
+      systemPrompt: 's', userPrompt: 'u', promptVersion: 'fb-v1',
+      schema: TestSchema, input: { x: 1 },
+      config: {
+        ...loadConfigFromEnv(),
+        backend: 'openai' as const,
+        openaiApiKey: 'sk-test',
+        anthropicApiKey: 'sk-ant-test',
+        cacheDir,
+      },
+    })
+    expect(result).toEqual({ reply: 'claude rescue' })
+    expect(fetchSpy).toHaveBeenCalledTimes(4)
+    const lastCall = fetchSpy.mock.calls[3]
+    expect(lastCall[0]).toContain('api.anthropic.com')
+  }, 10000)
+
+  it('does not sleep between retries on permanent (4xx non-429) errors', async () => {
+    // All calls return 400 (permanent error). The loop still does per-backend
+    // retries + falls through to other backends, but every attempt must
+    // complete quickly — no backoff sleep. Time-bound assertion.
+    fetchSpy.mockImplementation(() => httpError(400, 'bad schema'))
+
+    const t0 = Date.now()
+    const result = await callLLM({
+      systemPrompt: 's', userPrompt: 'u', promptVersion: 'perm-v1',
+      schema: TestSchema, input: { x: 1 },
+      config: { ...loadConfigFromEnv(), backend: 'openai' as const, openaiApiKey: 'sk-test', cacheDir },
+    })
+    const elapsed = Date.now() - t0
+
+    expect(result).toBeNull()
+    // Permanent errors should NOT trigger retry backoff. Stays well under 1s
+    // even with openai→ollama fallback × 3 attempts each.
+    expect(elapsed).toBeLessThan(1000)
+    const urls = fetchSpy.mock.calls.map((c) => String(c[0]))
+    expect(urls.some((u) => u.includes('openai.com'))).toBe(true)
+    expect(urls.some((u) => u.includes('localhost:11434'))).toBe(true)
+  })
+
+  it('circuit breaker trips after sustained failures and short-circuits subsequent calls', async () => {
+    // All backends fail permanently. After enough failing calls the circuit
+    // trips; subsequent callLLM returns null WITHOUT hitting fetch.
+    fetchSpy.mockImplementation(() => httpError(400))
+
+    resetBudget(1_000_000) // also resets the circuit with default threshold 10
+    const config = {
+      ...loadConfigFromEnv(),
+      backend: 'openai' as const,
+      openaiApiKey: 'sk-test',
+      cacheDir,
+    }
+
+    // Issue enough failing calls to push consecutiveFailures past the threshold.
+    for (let i = 0; i < 11; i++) {
+      await callLLM({
+        systemPrompt: 's', userPrompt: `u-${i}`, promptVersion: 'cb-v1',
+        schema: TestSchema, input: { i }, config,
+      })
+    }
+    const callsAfterTrip = fetchSpy.mock.calls.length
+
+    // One more call — should short-circuit entirely, no fetch.
+    const result = await callLLM({
+      systemPrompt: 's', userPrompt: 'u-last', promptVersion: 'cb-v1',
+      schema: TestSchema, input: { i: 99 }, config,
+    })
+    expect(result).toBeNull()
+    expect(fetchSpy).toHaveBeenCalledTimes(callsAfterTrip)
+  })
+})

@@ -30,6 +30,70 @@ import { resolve, dirname } from 'node:path'
 import type { ZodTypeAny, z } from 'zod'
 import { zodToJsonSchema } from './schemas'
 
+// ─── Resilience primitives ─────────────────────────────────────────────────
+
+/**
+ * Typed retryable error thrown by backend-specific callers when the server
+ * is rate-limiting or overloaded. callLLM's retry loop honors `retryAfterMs`
+ * by sleeping before the next attempt, and treats these as the signal to
+ * fall through to the next backend in the auto-select chain once per-backend
+ * retries exhaust.
+ */
+class RetryableError extends Error {
+  retryAfterMs: number
+  status: number
+  constructor(message: string, opts: { retryAfterMs?: number; status?: number } = {}) {
+    super(message)
+    this.name = 'RetryableError'
+    this.retryAfterMs = opts.retryAfterMs ?? 0
+    this.status = opts.status ?? 0
+  }
+}
+
+/**
+ * Parse a Retry-After header. HTTP spec allows two forms:
+ *   · delta seconds as an integer (e.g. "60")
+ *   · HTTP-date (e.g. "Wed, 21 Oct 2015 07:28:00 GMT")
+ */
+function parseRetryAfter(header: string | null | undefined): number {
+  if (!header) return 0
+  const trimmed = header.trim()
+  if (/^\d+$/.test(trimmed)) return Number(trimmed) * 1000
+  const t = Date.parse(trimmed)
+  if (Number.isFinite(t)) return Math.max(0, t - Date.now())
+  return 0
+}
+
+/**
+ * Circuit breaker — trips when too many calls in a row return null (all
+ * retries + fallbacks exhausted). Prevents a long extract from grinding
+ * through hundreds of windows against a dead backend. Reset on any success
+ * or on resetBudget().
+ */
+interface CircuitBreakerState {
+  consecutiveFailures: number
+  threshold: number
+  tripped: boolean
+}
+let currentCircuit: CircuitBreakerState | null = null
+function resetCircuit(threshold = 10) {
+  currentCircuit = { consecutiveFailures: 0, threshold, tripped: false }
+}
+function notifyResult(ok: boolean): void {
+  if (!currentCircuit) return
+  if (ok) {
+    currentCircuit.consecutiveFailures = 0
+  } else {
+    currentCircuit.consecutiveFailures += 1
+    if (currentCircuit.consecutiveFailures >= currentCircuit.threshold) {
+      currentCircuit.tripped = true
+    }
+  }
+}
+export function getCircuitState(): CircuitBreakerState | null {
+  return currentCircuit
+}
+
 // ─── Config ────────────────────────────────────────────────────────────────
 
 export type Backend = 'ollama' | 'openai' | 'anthropic' | 'claude-code'
@@ -135,6 +199,9 @@ export function resetBudget(limit?: number) {
     tokensUsed: 0,
     limit: limit ?? (envLimit > 0 ? envLimit : defaultLimit),
   }
+  // Also reset the circuit breaker so a stuck state from the previous run
+  // doesn't bleed into a fresh extract. Threshold tuneable via env.
+  resetCircuit(Number(process.env.LLM_CIRCUIT_THRESHOLD || 10))
 }
 
 function chargeBudget(tokens: number): boolean {
@@ -356,7 +423,17 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
     },
     body: JSON.stringify(body),
   })
-  if (!res.ok) throw new Error(`Anthropic ${res.status}: ${await res.text()}`)
+  if (!res.ok) {
+    const body = await res.text()
+    if (res.status === 429 || res.status >= 500) {
+      const retryAfterMs = Math.min(parseRetryAfter(res.headers.get('retry-after')), 120_000)
+      throw new RetryableError(`Anthropic ${res.status}: ${body.slice(0, 200)}`, {
+        retryAfterMs,
+        status: res.status,
+      })
+    }
+    throw new Error(`Anthropic ${res.status}: ${body.slice(0, 200)}`)
+  }
   const data = (await res.json()) as {
     content: Array<{ type: string; name?: string; input?: unknown; text?: string }>
     usage: {
@@ -544,7 +621,22 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
     },
     body: JSON.stringify(body),
   })
-  if (!res.ok) throw new Error(`OpenAI ${res.status}: ${await res.text()}`)
+  if (!res.ok) {
+    const body = await res.text()
+    // Retryable: rate-limited (429) or server overloaded/unavailable (5xx).
+    // Honor Retry-After when provided; cap at 2 min so a badly-set header
+    // doesn't stall the whole run.
+    if (res.status === 429 || res.status >= 500) {
+      const retryAfterMs = Math.min(parseRetryAfter(res.headers.get('retry-after')), 120_000)
+      throw new RetryableError(`OpenAI ${res.status}: ${body.slice(0, 200)}`, {
+        retryAfterMs,
+        status: res.status,
+      })
+    }
+    // 4xx other than 429: permanent (bad schema, missing field, auth). Bubble up
+    // without triggering the retry loop to backoff unnecessarily.
+    throw new Error(`OpenAI ${res.status}: ${body.slice(0, 200)}`)
+  }
   const data = (await res.json()) as {
     choices: { message: { content: string } }[]
     usage: {
@@ -600,6 +692,11 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   const cached = readCache<z.infer<TSchema>>(config.cacheDir, key)
   if (cached) return cached.result
 
+  // Circuit breaker short-circuit — once tripped, stop making API calls and
+  // let the run finish writing its checkpoint cleanly. One log line, then
+  // silent skip for the rest of the run.
+  if (currentCircuit?.tripped) return null
+
   // Budget check before making the call — estimate by prompt length.
   const approxTokens = Math.ceil((opts.systemPrompt.length + opts.userPrompt.length) / 4)
   if (!chargeBudget(approxTokens)) {
@@ -609,38 +706,79 @@ export async function callLLM<TSchema extends ZodTypeAny>(
     return null
   }
 
+  // Build the ordered list of backends to try. Primary is whatever the
+  // config says; fallbacks are the other auto-eligible ones in priority
+  // order that have a key/endpoint configured. claude-code is never auto-
+  // used as a fallback (would burn Max subscription quota silently); the
+  // caller has to ask for it explicitly via LLM_BACKEND.
+  const attemptedBackends: Backend[] = [config.backend]
+  const fallbackOrder: Backend[] = ['openai', 'anthropic', 'ollama']
+  for (const b of fallbackOrder) {
+    if (b === config.backend) continue
+    if (b === 'openai' && !config.openaiApiKey) continue
+    if (b === 'anthropic' && !config.anthropicApiKey) continue
+    attemptedBackends.push(b)
+  }
+
   const t0 = Date.now()
   let result: z.infer<TSchema> | null = null
   let tokenCount = 0
   let costUSD = 0
   let attempt = 0
   let lastErr = ''
+  let usedBackend = config.backend
 
-  while (attempt <= maxRetries) {
-    try {
-      const raw: RawResult =
-        config.backend === 'ollama'
-          ? await callOllama({ ...opts, config })
-          : config.backend === 'anthropic'
-            ? await callAnthropic({ ...opts, config })
-            : config.backend === 'claude-code'
-              ? await callClaudeCode({ ...opts, config })
-              : await callOpenAI({ ...opts, config })
-      tokenCount += raw.tokenCount
-      costUSD += raw.costUSD
-      // Charge the real token count (minus the pre-estimate).
-      chargeBudget(Math.max(0, raw.tokenCount - (attempt === 0 ? approxTokens : 0)))
+  outer: for (let bi = 0; bi < attemptedBackends.length; bi++) {
+    const backend = attemptedBackends[bi]
+    const backendConfig: ClientConfig = { ...config, backend }
+    usedBackend = backend
+    let perBackendAttempt = 0
+    while (perBackendAttempt <= maxRetries) {
+      try {
+        const call =
+          backend === 'ollama'
+            ? callOllama
+            : backend === 'anthropic'
+              ? callAnthropic
+              : backend === 'claude-code'
+                ? callClaudeCode
+                : callOpenAI
+        const raw: RawResult = await call({ ...opts, config: backendConfig })
+        tokenCount += raw.tokenCount
+        costUSD += raw.costUSD
+        chargeBudget(Math.max(0, raw.tokenCount - (attempt === 0 ? approxTokens : 0)))
 
-      const parsed = opts.schema.safeParse(JSON.parse(raw.raw))
-      if (parsed.success) {
-        result = parsed.data as z.infer<TSchema>
-        break
+        const parsed = opts.schema.safeParse(JSON.parse(raw.raw))
+        if (parsed.success) {
+          result = parsed.data as z.infer<TSchema>
+          break outer
+        }
+        // Schema mismatch — retry same backend (non-retryable-error path).
+        lastErr = parsed.error.toString().slice(0, 200)
+      } catch (err) {
+        lastErr = err instanceof Error ? err.message : String(err)
+        if (err instanceof RetryableError && err.retryAfterMs > 0 && perBackendAttempt < maxRetries) {
+          // Server asked us to wait — sleep, then stay on same backend.
+          process.stderr.write(
+            `[llm] ${backend} ${err.status} → backoff ${err.retryAfterMs}ms (attempt ${perBackendAttempt + 1}/${maxRetries + 1})\n`,
+          )
+          await new Promise((r) => setTimeout(r, err.retryAfterMs))
+        } else if (err instanceof RetryableError && perBackendAttempt < maxRetries) {
+          // Retryable but no Retry-After — exponential backoff capped at 30s.
+          const backoffMs = Math.min(1000 * 2 ** perBackendAttempt, 30_000)
+          await new Promise((r) => setTimeout(r, backoffMs))
+        }
       }
-      lastErr = parsed.error.toString().slice(0, 200)
-    } catch (err) {
-      lastErr = err instanceof Error ? err.message : String(err)
+      attempt += 1
+      perBackendAttempt += 1
     }
-    attempt += 1
+    // This backend's retries exhausted. If there's another backend to try,
+    // log the fallback so the user sees what happened.
+    if (bi + 1 < attemptedBackends.length) {
+      process.stderr.write(
+        `[llm] ${backend} exhausted ${maxRetries + 1} attempts (${lastErr.slice(0, 80)}); falling back to ${attemptedBackends[bi + 1]}\n`,
+      )
+    }
   }
 
   // Only cache successful (non-null) results. A null means the call failed
@@ -649,10 +787,11 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   // defeating the whole point of re-running. Successful results are stable
   // given the content-addressed key, so caching them is always safe.
   if (result !== null) {
+    const usedConfig: ClientConfig = { ...config, backend: usedBackend }
     const entry: CacheEntry<z.infer<TSchema>> = {
       result,
-      backend: config.backend,
-      model: backendModel(config),
+      backend: usedBackend,
+      model: backendModel(usedConfig),
       promptVersion: opts.promptVersion,
       tokenCount,
       latencyMs: Date.now() - t0,
@@ -661,8 +800,13 @@ export async function callLLM<TSchema extends ZodTypeAny>(
       createdAt: new Date().toISOString(),
     }
     writeCache(config.cacheDir, key, entry)
+    notifyResult(true)
   } else {
-    process.stderr.write(`[llm] all ${maxRetries + 1} attempts failed: ${lastErr}\n`)
+    notifyResult(false)
+    const trippedNow = currentCircuit?.tripped === true
+    process.stderr.write(
+      `[llm] all backends exhausted (${attemptedBackends.join('→')}) after ${attempt} total attempts: ${lastErr}${trippedNow ? ' · CIRCUIT TRIPPED, subsequent calls will short-circuit to null' : ''}\n`,
+    )
   }
   return result
 }
