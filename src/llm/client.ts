@@ -96,7 +96,7 @@ export function getCircuitState(): CircuitBreakerState | null {
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
-export type Backend = 'ollama' | 'openai' | 'anthropic' | 'claude-code'
+export type Backend = 'ollama' | 'openai' | 'anthropic' | 'claude-code' | 'gemini'
 
 export interface ClientConfig {
   backend: Backend
@@ -114,6 +114,16 @@ export interface ClientConfig {
    */
   claudeCodeModel: string
   claudeCodeBin: string
+  /**
+   * gemini backend: which model alias to pass via `gemini -m`.
+   * Requires the user to be OAuth-logged-in via `GOOGLE_GENAI_USE_GCA=1
+   * gemini` (uses Google AI Pro subscription, $0 billing).
+   * No `--json-schema` flag exists on gemini CLI, so we prompt-engineer
+   * JSON output and parse the response text — stricter retry policy
+   * than backends with schema-enforced output.
+   */
+  geminiModel: string
+  geminiBin: string
   cacheDir: string
   maxTokensPerRun: number
 }
@@ -154,6 +164,10 @@ export function loadConfigFromEnv(): ClientConfig {
     // garbled tokens and still extracts votes at moderate confidence.
     claudeCodeModel: process.env.CLAUDE_CODE_MODEL || 'sonnet',
     claudeCodeBin: process.env.CLAUDE_CODE_BIN || 'claude',
+    geminiModel: process.env.GEMINI_MODEL || 'gemini-2.5-pro',
+    geminiBin:
+      process.env.GEMINI_BIN ||
+      (process.env.HOME || '') + '/.local/civicpulse-gemini/node_modules/.bin/gemini',
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
   }
@@ -163,6 +177,7 @@ function backendModel(config: ClientConfig): string {
   if (config.backend === 'ollama') return config.ollamaModel
   if (config.backend === 'openai') return config.openaiModel
   if (config.backend === 'claude-code') return `claude-code:${config.claudeCodeModel}`
+  if (config.backend === 'gemini') return `gemini:${config.geminiModel}`
   return config.anthropicModel
 }
 
@@ -190,7 +205,7 @@ export function resetBudget(limit?: number) {
   const envLimit = Number(process.env.LLM_MAX_TOKENS_PER_RUN || 0)
   const backend = process.env.LLM_BACKEND
   const defaultLimit =
-    backend === 'claude-code'
+    backend === 'claude-code' || backend === 'gemini'
       ? 4_000_000
       : backend === 'openai' || backend === 'anthropic'
         ? 2_000_000
@@ -594,6 +609,114 @@ function toOpenAIStrictSchema(schema: unknown): unknown {
   return out
 }
 
+/**
+ * Gemini CLI backend.
+ *
+ * Spawns `gemini -p <prompt> -m <model> -o json --yolo` and parses the
+ * `{session_id, response}` envelope. Uses Google AI Pro subscription (no
+ * per-token billing) when the user has authenticated via
+ * `GOOGLE_GENAI_USE_GCA=true gemini` (one-time OAuth flow opens browser).
+ * Alternative: set GEMINI_API_KEY for pay-per-token API access.
+ *
+ * Unlike claude-code, gemini CLI has no --json-schema flag, so we prompt-
+ * engineer the JSON output: merge system + user prompts and append a
+ * strict "reply only in JSON matching this schema" instruction. Response
+ * parsing is lenient — we extract the first {…} or [...] JSON block from
+ * the model's text (handles optional ```json fenced blocks) and let the
+ * callLLM wrapper do the real Zod validation. Schema-mismatch retries in
+ * callLLM absorb the extra failure rate vs backends with enforced output.
+ */
+async function callGemini(req: RawCall): Promise<RawResult> {
+  const { spawn } = await import('node:child_process')
+  const schemaJson = JSON.stringify(zodToJsonSchema(req.schema), null, 2)
+  // Merged single prompt. gemini CLI doesn't have --system-prompt; stitch
+  // them together explicitly and force JSON-only output.
+  const mergedPrompt =
+    req.systemPrompt +
+    '\n\n---\n\n' +
+    req.userPrompt +
+    '\n\n---\n\n' +
+    'REPLY WITH A SINGLE VALID JSON OBJECT that conforms to this schema. ' +
+    'No markdown fences. No commentary. No explanation. Just the JSON object.\n\n' +
+    'Schema:\n' +
+    schemaJson
+
+  return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
+    const args = [
+      '-p',
+      mergedPrompt,
+      '-m',
+      req.config.geminiModel,
+      '-o',
+      'json',
+      '--yolo',
+    ]
+    const child = spawn(req.config.geminiBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
+    let stdout = ''
+    let stderr = ''
+    child.stdout.on('data', (d) => {
+      stdout += d.toString()
+    })
+    child.stderr.on('data', (d) => {
+      stderr += d.toString()
+    })
+    child.on('error', (err) => rejectPromise(err))
+    child.on('close', (code) => {
+      if (code !== 0) {
+        return rejectPromise(
+          new Error(`gemini exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
+        )
+      }
+      try {
+        const envelope = JSON.parse(stdout) as {
+          session_id?: string
+          response?: string
+          error?: { type?: string; message?: string; code?: number }
+          stats?: {
+            models?: Record<
+              string,
+              { tokens?: { input?: number; candidates?: number; total?: number } }
+            >
+          }
+        }
+        if (envelope.error) {
+          return rejectPromise(
+            new Error(`gemini CLI error: ${envelope.error.message || 'unknown'}`),
+          )
+        }
+        const text = (envelope.response ?? '').trim()
+        if (!text) {
+          return rejectPromise(new Error('gemini CLI returned empty response'))
+        }
+        // Extract the JSON payload. Gemini often wraps it in ```json … ```
+        // fences; strip those first. Then locate the first { or [ to
+        // tolerate any preamble before the JSON.
+        const fenceMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/i)
+        const candidate = fenceMatch ? fenceMatch[1].trim() : text
+        const positions = [candidate.indexOf('{'), candidate.indexOf('[')].filter((i) => i >= 0)
+        const firstBrace = positions.length > 0 ? Math.min(...positions) : -1
+        const jsonSlice = firstBrace >= 0 ? candidate.slice(firstBrace) : candidate
+        // Token count: sum input + candidates (output) from the first model
+        // entry. gemini CLI reports per-model; in single-shot mode there's
+        // only one entry. Omit 'cached' and 'thoughts' — they duplicate
+        // the input bucket.
+        let tokenCount = 0
+        const models = envelope.stats?.models ?? {}
+        for (const m of Object.values(models)) {
+          tokenCount += (m.tokens?.input ?? 0) + (m.tokens?.candidates ?? 0)
+        }
+        resolvePromise({
+          raw: jsonSlice,
+          tokenCount,
+          costUSD: 0, // Google AI Pro subscription: $0 billed (quota-rated)
+        })
+      } catch (err) {
+        rejectPromise(new Error(`gemini CLI output not JSON: ${String(err).slice(0, 200)}`))
+      }
+    })
+  })
+}
+
 async function callOpenAI(req: RawCall): Promise<RawResult> {
   if (!req.config.openaiApiKey) throw new Error('OPENAI_API_KEY not set')
   const body = {
@@ -747,7 +870,9 @@ export async function callLLM<TSchema extends ZodTypeAny>(
               ? callAnthropic
               : backend === 'claude-code'
                 ? callClaudeCode
-                : callOpenAI
+                : backend === 'gemini'
+                  ? callGemini
+                  : callOpenAI
         const raw: RawResult = await call({ ...opts, config: backendConfig })
         tokenCount += raw.tokenCount
         costUSD += raw.costUSD
