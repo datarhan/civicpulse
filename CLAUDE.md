@@ -76,6 +76,10 @@ npm run promote-claim -- <claimId> [claimId ...] \
                      --title "<≥10 chars>" --summary "<≥40 chars>" \
                      [--severity informational|notable|critical] \
                      [--related-promise <id>] [--edit] [--force]
+# Right-of-reply for a published finding. Also via the
+# .github/ISSUE_TEMPLATE/finding-response.yml form (label `derecho-replica`
+# triggers ingest-finding-responses.yml which calls this CLI and commits).
+npm run finding-reply -- <findingId> <PARTY> "<verbatim ≥20 chars>" [source-url] [YYYY-MM-DD]
 
 # LLM cost / cache-hit dashboard (reads .llm-cache/*.json telemetry)
 npm run llm:cost                     # summary table
@@ -134,7 +138,9 @@ reads real JSON. The file is only kept as a compile reference.
 - `/plenos` — 53 sessions + orden del día + Participa block
 - `/promesas` — legal-chrome promise tracker + LOREG freeze
 - `/departamentos` — per-concejalía accountability (pleno votes primary + promesas secondary + plazos vencidos soft flag)
-- `/departamentos/:slug` — detail view (compromisos plenarios + promesas + puntos sin voto + quejas activas)
+- `/departamentos/:slug` — detail view (compromisos plenarios + promesas + puntos sin voto + quejas activas + claim ledger filtered by topic)
+- `/cargos/:slug` — per-councillor detail (portfolio chips + party promises + agenda items in their portfolios + assigned quejas)
+- `/hallazgos` — editorial findings dashboard · severity/speaker/pleno filters · per-finding permalinks · right-of-reply button on each card
 - `/datos` — catálogo of every JSON snapshot w/ Wikidata + padrón charts
 - `/quejas` — public feed + heatmap + Síndic/CTBG resolution cards
 - `/quejas/dashboard` — analytics surface (KPIs, LPACAP lifecycle, per-concejalía SLA)
@@ -497,8 +503,22 @@ Output files (do not mix their contracts):
   deterministic verdict + evidence zipped onto each claim. Regenerated
   by `npm run verify:pleno-claims`.
 - `public/data/pleno-findings.json` — **curator-only**. Mutations via
-  `npm run promote-claim -- <claimId> …` or hand-edited PR. CLI
-  re-validates the whole snapshot before writing.
+  `npm run promote-claim -- <claimId> …`, `npm run finding-reply -- …`,
+  or hand-edited PR. Each CLI re-validates the whole snapshot before
+  writing.
+
+Right-of-reply wiring (same contract as the promise right-of-reply):
+- `.github/ISSUE_TEMPLATE/finding-response.yml` — structured GH Issue
+  form. Accepts finding-id (pre-filled via the "Responder como grupo
+  afectado" link on the finding card), party, verbatim quote ≥20 chars,
+  optional source URL.
+- `.github/workflows/ingest-finding-responses.yml` — fires on label
+  `derecho-replica`. Extracts the fields, calls `npm run finding-reply`,
+  commits the updated `pleno-findings.json`, closes the issue with a
+  permalink. Public git history remains the sole audit trail.
+- `scripts/apply-finding-response.ts` — validator-fronted CLI invoked
+  by the workflow (and callable directly by curators). Bails if the
+  verbatim clause is <20 chars or the finding id doesn't exist.
 
 Libel rules applicable when editing this subsystem:
 
