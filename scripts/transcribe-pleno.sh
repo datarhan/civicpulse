@@ -3,8 +3,9 @@
 #
 # Usage:
 #   bash scripts/transcribe-pleno.sh <plenoId>
-#   WHISPER_MODEL=medium bash scripts/transcribe-pleno.sh <plenoId>    # 2-3× faster CPU
-#   WHISPER_ENGINE=openai bash scripts/transcribe-pleno.sh <plenoId>   # ~30s end-to-end
+#   WHISPER_ENGINE=mlx    bash scripts/transcribe-pleno.sh <plenoId>   # recommended: ~5× realtime, \$0
+#   WHISPER_ENGINE=openai bash scripts/transcribe-pleno.sh <plenoId>   # fastest: ~30s, paid
+#   WHISPER_MODEL=medium  bash scripts/transcribe-pleno.sh <plenoId>   # 2-3× faster CPU (local)
 #
 # Looks up the pleno in public/data/pleno-videos.json, downloads audio (mp3,
 # 16kHz mono), transcribes it for Spanish/Catalan mixed content, writes the
@@ -12,14 +13,19 @@
 # the inference engine to produce suggestions.
 #
 # Engine choice (WHISPER_ENGINE env):
-#   local   (default) · faster-whisper on M-series CPU, free, slow
+#   local   (default) · faster-whisper on M-series CPU int8, free, ~0.3× realtime
+#   mlx               · lightning-whisper-mlx large-v3 on Apple Neural Engine,
+#                       free, ~5× realtime. Better WER on technical terms than
+#                       OpenAI's whisper-1 in our benchmark (UNE norms,
+#                       "exhaustivo" — mispronounced by OpenAI, correct by MLX).
+#                       30-second chunks, local, no data exfil.
 #   openai            · OpenAI Whisper API, ~\$0.006/min (\$0.72 / 2h pleno),
 #                       done in 30-60s. Requires OPENAI_API_KEY exported.
 #                       Audio is re-encoded to 16 kbps mono opus (≈12 MB per
 #                       2h pleno) so we stay under the 25 MB upload limit
 #                       without chunking.
 #
-# Model choice (WHISPER_MODEL env — only applies when WHISPER_ENGINE=local):
+# Model choice (WHISPER_MODEL env — only applies when WHISPER_ENGINE=local|mlx):
 #   large-v3 (default) · best WER, ~0.3× realtime on M-series int8 CPU
 #   medium            · ~2-3× faster, small quality drop on clean audio
 #   small             · ~5-6× faster, noticeable quality drop — not recommended
@@ -27,8 +33,11 @@
 # Prereqs (one-time):
 #   brew install yt-dlp ffmpeg
 #   Local engine:  pipx install faster-whisper
+#   MLX engine:    python3.10 -m venv ~/.local/civicpulse-mlx/venv \
+#                  && ~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx
+#                  (Python 3.10-3.12 — tiktoken has no 3.13+ wheels yet.
+#                  First run downloads the model into ~/.cache/huggingface.)
 #   OpenAI engine: export OPENAI_API_KEY=sk-…  (add to .env or shell rc)
-#   # (local first run downloads the model into ~/.cache/huggingface)
 set -euo pipefail
 WHISPER_MODEL="${WHISPER_MODEL:-large-v3}"
 WHISPER_ENGINE="${WHISPER_ENGINE:-local}"
@@ -148,6 +157,50 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     out.end()
     console.error('[transcribe]   segments=' + segs.length + ' duration=' + (data.duration || 'n/a') + 's language=' + (data.language || 'n/a'))
   "
+elif [ "$WHISPER_ENGINE" = "mlx" ]; then
+  # ── Apple Neural Engine (lightning-whisper-mlx) branch ───────────────────
+  # 5-10× realtime, \$0, local. Better WER on technical/legal terms than
+  # OpenAI whisper-1 in our benchmark (e.g. "UNE 93200:2008" captured
+  # correctly by MLX, mangled as "norma 1 en 93.200" by OpenAI).
+  MLX_PY="$HOME/.local/civicpulse-mlx/venv/bin/python"
+  if [ ! -x "$MLX_PY" ]; then
+    echo "[transcribe] lightning-whisper-mlx venv missing at $MLX_PY" >&2
+    echo "[transcribe] bootstrap with:" >&2
+    echo "[transcribe]   python3.10 -m venv ~/.local/civicpulse-mlx/venv" >&2
+    echo "[transcribe]   ~/.local/civicpulse-mlx/venv/bin/pip install lightning-whisper-mlx" >&2
+    exit 1
+  fi
+  echo "[transcribe] running lightning-whisper-mlx (model=$WHISPER_MODEL on Apple Neural Engine)…"
+  WHISPER_MODEL="$WHISPER_MODEL" "$MLX_PY" - "$AUDIO" "$OUT_PATH" <<'PYEOF'
+import sys, os, time, json
+from lightning_whisper_mlx import LightningWhisperMLX
+
+audio_path, out_path = sys.argv[1], sys.argv[2]
+model_name = os.environ.get('WHISPER_MODEL', 'large-v3')
+
+t0 = time.time()
+whisper = LightningWhisperMLX(model=model_name, batch_size=12, quant=None)
+print(f'[transcribe]   model load: {time.time()-t0:.1f}s', flush=True)
+
+t1 = time.time()
+result = whisper.transcribe(audio_path=audio_path, language='es')
+elapsed = time.time() - t1
+print(f'[transcribe]   transcribe: {elapsed:.1f}s', flush=True)
+
+# lightning-whisper-mlx returns {'text': str, 'segments': [[start_cs, end_cs, text], ...], 'language': str}
+# where timestamps are in centiseconds (1/100s). Coarser than faster-whisper's
+# per-sentence segments (typically 30s chunks) but downstream extractors don't
+# care — they slide 1200-char windows over the text regardless of seg bounds.
+segs = result.get('segments') or []
+with open(out_path, 'w', encoding='utf-8') as f:
+    for s in segs:
+        start_s = s[0] / 100.0
+        end_s = s[1] / 100.0
+        text = s[2].strip()
+        f.write(f'[{start_s:.1f} → {end_s:.1f}] {text}\n')
+        f.flush()
+print(f'[transcribe]   segments: {len(segs)} · lang: {result.get("language", "n/a")}', flush=True)
+PYEOF
 else
   # ── Local faster-whisper branch ──────────────────────────────────────────
   echo "[transcribe] running faster-whisper (model=$WHISPER_MODEL)…"
