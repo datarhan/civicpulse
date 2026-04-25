@@ -29,6 +29,7 @@ const CATALOGUE = {
     'nav.promesas': 'Promesas',
     'nav.departamentos': 'Departamentos',
     'nav.hallazgos': 'Hallazgos',
+    'nav.declaraciones': 'Declaraciones',
     'nav.datos': 'Datos',
     'nav.quejas': 'Quejas',
     'nav.section': 'Navegación',
@@ -60,6 +61,26 @@ const CATALOGUE = {
     // Common
     'common.loading': 'Cargando…',
     'common.noData': 'Sin datos',
+
+    // Declaraciones page (global verified-claim browse)
+    'declaraciones.eyebrow': 'Verificación de declaraciones',
+    'declaraciones.title': 'Declaraciones en pleno',
+    'declaraciones.subtitle':
+      'Cada afirmación, promesa o acusación detectada en los plenos municipales, cruzada contra los datos abiertos publicados (PLACSP, BDNS, presupuesto, promesas electorales). Atribución a nivel de grupo. Las declaraciones sin atribuir o sin evidencia se mantienen visibles porque se han hecho — pero no se promueven editorialmente sin verificación humana.',
+    'declaraciones.stat.total': 'Total',
+    'declaraciones.stat.conEvidencia': 'Con evidencia',
+    'declaraciones.filter.verdict': 'Verdicto',
+    'declaraciones.filter.bloc': 'Grupo',
+    'declaraciones.filter.topic': 'Tema',
+    'declaraciones.filter.todas': 'Todas',
+    'declaraciones.filter.todos': 'Todos',
+    'declaraciones.filter.conEvidencia': 'Con evidencia',
+    'declaraciones.filter.atribuidas': 'Atribuidas',
+    'declaraciones.search.placeholder': 'Buscar en el texto literal…',
+    'declaraciones.matchCount': 'declaraciones coinciden con los filtros',
+    'declaraciones.loadMore': 'Mostrar más',
+    'declaraciones.empty':
+      'Ninguna declaración coincide con los filtros actuales.',
 
     // Page eyebrows + titles
     'cargos.eyebrow': 'Rendición de cuentas',
@@ -154,6 +175,7 @@ const CATALOGUE = {
     'nav.promesas': 'Promeses',
     'nav.departamentos': 'Departaments',
     'nav.hallazgos': 'Troballes',
+    'nav.declaraciones': 'Declaracions',
     'nav.datos': 'Dades',
     'nav.quejas': 'Queixes',
     'nav.section': 'Navegació',
@@ -181,6 +203,25 @@ const CATALOGUE = {
 
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',
+
+    'declaraciones.eyebrow': 'Verificació de declaracions',
+    'declaraciones.title': 'Declaracions en plenari',
+    'declaraciones.subtitle':
+      'Cada afirmació, promesa o acusació detectada als plens municipals, creuada contra les dades obertes publicades (PLACSP, BDNS, pressupost, promeses electorals). Atribució a nivell de grup. Les declaracions sense atribuir o sense evidència es mantenen visibles perquè es van fer — però no es promouen editorialment sense verificació humana.',
+    'declaraciones.stat.total': 'Total',
+    'declaraciones.stat.conEvidencia': 'Amb evidència',
+    'declaraciones.filter.verdict': 'Veredicte',
+    'declaraciones.filter.bloc': 'Grup',
+    'declaraciones.filter.topic': 'Tema',
+    'declaraciones.filter.todas': 'Totes',
+    'declaraciones.filter.todos': 'Tots',
+    'declaraciones.filter.conEvidencia': 'Amb evidència',
+    'declaraciones.filter.atribuidas': 'Atribuïdes',
+    'declaraciones.search.placeholder': 'Cerca en el text literal…',
+    'declaraciones.matchCount': 'declaracions coincideixen amb els filtres',
+    'declaraciones.loadMore': 'Mostrar-ne més',
+    'declaraciones.empty':
+      'Cap declaració coincideix amb els filtres actuals.',
 
     'cargos.eyebrow': 'Rendició de comptes',
     'cargos.title': 'Càrrecs i departaments',

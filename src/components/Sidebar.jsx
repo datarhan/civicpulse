@@ -66,6 +66,14 @@ export const NAV = [
     shortcut: 'G F',
   },
   {
+    to: '/declaraciones',
+    id: 'declaraciones',
+    labelKey: 'nav.declaraciones',
+    label: 'Declaraciones',
+    icon: Ic.list ?? Ic.warn,
+    shortcut: 'G L',
+  },
+  {
     to: '/datos',
     id: 'datos',
     labelKey: 'nav.datos',
