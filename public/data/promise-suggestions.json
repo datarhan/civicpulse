@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T06:26:31.278Z",
+  "generatedAt": "2026-04-25T06:06:07.922Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -68,7 +68,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -118,7 +118,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -156,6 +156,18 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNazdtbVFqeWZuclVhMmRwMThWYnBEYklaQldQN3pmZC1McFJ2bVBtMG03czZOcFpXQl9oTDFTLTBzX3d4d0Y5ZWFxcFJGYWhONExCLXVGOE9jWThBMnpmOElPbXFPbmpVMmttSHRsQUtyQVZva3ZCQXg1V0J3dHJVWk9uZG4tajhoZ3JnMWMzbnQ5QmFET2ZIRjVYS3ZKMmF4ZVdGQ3g2NFpna2NWVzFicjVJekY3SWxSc2VBR01nTTlJY3ZrR1QxQ0JndWtZRkpwdjJsUEJnT1k0bkJHWEprOVk2LUF4YjhVbmJmaXpB?oc=5",
+          "date": "2026-04-03",
+          "quote": "Riba-roja aconseja evitar el Parque Natural del Túria en Pascua por el proceso de reconstrucción tras la dana",
+          "kind": "press",
+          "publisher": "Europa Press",
+          "matchedKeywords": [
+            "reconstruccion",
+            "dana",
+            "tras"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOWVXUUV4UVNhQ2NPYmw3enYzLVQ2YlJOM2NGbFVLUDNoRHN1UWd0TXpQU2NFNmJEQ2tfX2E0eHpZbmZocjcwX255azBadkMzNm9YR0RrRDBRRU8xR1V6c0tkeDkxU3Q0WGlnYWxId1NOM0l1M0VYMXo5Q2VoSGtOUlRVLUlCX0lVcV9VcmtqTDdfdkpLSFRzb3V2UTc1V1NVUjdKM1hmN0lqVVdXZ0ZUX0FnaEhxSHdNRmg3UHR4V0JMSjVERnFKN1d0ONIB0AFBVV95cUxOa1NhT2pXSnEteVVWWW5RUmFEakxZU0Q0eFJBbUZwUklld0hZOHk0a1lISWtEcVUzNjhRNU05VUlsNmxrX0c4ZWNPWVhOZjRjRDhoSnVHRlpZUjZ5bVFmbVB3aGZlT3lwbkVzWjFabUJRQThvUnBQMDJmUzhMbldLWUNtZzYzRWM4b0RJUUJoZnVCZWdrMVQ3TlFkV09URElLWm9OSzE2LUFGcFVpME4ySXBEMHJqNE42S2pfWVE0bmx2ZnhMMUx3SmhmSjJFU2JV?oc=5",
           "date": "2026-04-03",
           "quote": "Riba-roja alerta a vecinos y senderistas de los riesgos \"ocultos\" del Parque Natural del Túria tras la dana",
@@ -167,19 +179,19 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQUkRHc0RfbFYtTEptXzRRTm5oOXEwTUZtR0EzLUFXZTFEdDNuR0ptU1pnVFQ5ZzdfMEpwT3JLNjFsQlFScWlXYlFFZDRpTUFwSDFHMmtaM0hnSmdQVGNKSWxNTndnWE1oQ3JUcHVsVE5DVTUwNUszLTgwVHQzYnBFYnpzbTEtRXhJMXFUNzAyckl1NTFmTmg4X0xn?oc=5",
-          "date": "2026-02-16",
-          "quote": "La primera Comisión Mixta tras la DANA se reúne el miércoles en el castillo de Riba-roja de Túria",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxObm51NndvX0JROW83LU9vdFhPUGZMUFJ6TEVGQmxrQmpLYlc4WXAteHdabHZNR0pobzFjeHM3LThDSk9ERTNZdG1MbEY4RG5wdDYxR28xRFBYVU5XVWFoTFdPWFR4aTI1NTRjdDF6UUNiZ0ltNVFCTlpvRVpOc3ItdFAwU1NtV1Iwd3ZSanVfcl8teVREX19ZMW12V2cybmZVeTBzTDF4WHZyMTMtRDk3NURqSE5tSF9IVTNudUxB0gHDAUFVX3lxTFBydHRVOGNlMWFyUzdmN1VyQTJCbGVjY1RhbTUzVTREY3g4alJWLUN4S2R6LVNIRG5EN1JFamRUNTZiazNXVUxzdVB4RFB0REg1TV9VQUEtV3NLSC1KbDhoZUZnZWJHbGpzVTJfRXhKNktRU2xVZEJZME9BSUJmM3lJQ2k0M0hWZmF4cnAtOURmb3g2anNycHFJVGJ1YnNKQXdEWkVaZ1ZwY0hncGEtOWRvWlgxZHNwNFE1WkgtWWFqbXBxRQ?oc=5",
+          "date": "2026-03-31",
+          "quote": "Riba-roja refuerza los proyectos post-dana con 23 técnicos cualificados",
           "kind": "press",
-          "publisher": "Actualidad Valencia",
+          "publisher": "Las Provincias",
           "matchedKeywords": [
-            "dana",
-            "tras"
+            "post",
+            "dana"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -199,7 +211,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -234,7 +246,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -258,7 +270,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -296,7 +308,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -316,7 +328,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -324,7 +336,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -343,27 +355,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
       "proposedStatus": "en-progreso",
-      "confidence": 0.7,
+      "confidence": 0.35,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMGRHc0hETGtMNWVEUGdUYjY5Ny1Wb1hYdGlmMzNOTW9xX2ZhbmNGekZ1QlpvRTFuX3NPV2RJZUhNOEliSGxyb1c1eEZ6QlVjT2E2MUpETGczSGEyM2EwUVY5VW9DV296QTJReEZicVVvN0ZFa18wVlhsbml0ZV9nczRuTllNdGtRSGFaX1E2VVFWcmV2NXVsYTdiY1ZicGZWUDhv?oc=5",
-          "date": "2026-02-12",
-          "quote": "El PP de Riba-roja vota en contra de los 9,5 millones de euros para el municipio",
-          "kind": "press",
-          "publisher": "elperiodic.com",
-          "matchedKeywords": [
-            "vota",
-            "contra",
-            "millon",
-            "euro",
-            "municipio"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
           "date": "2026-04-08",
@@ -373,6 +371,17 @@
           "matchedKeywords": [
             "millon",
             "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxObm51NndvX0JROW83LU9vdFhPUGZMUFJ6TEVGQmxrQmpLYlc4WXAteHdabHZNR0pobzFjeHM3LThDSk9ERTNZdG1MbEY4RG5wdDYxR28xRFBYVU5XVWFoTFdPWFR4aTI1NTRjdDF6UUNiZ0ltNVFCTlpvRVpOc3ItdFAwU1NtV1Iwd3ZSanVfcl8teVREX19ZMW12V2cybmZVeTBzTDF4WHZyMTMtRDk3NURqSE5tSF9IVTNudUxB0gHDAUFVX3lxTFBydHRVOGNlMWFyUzdmN1VyQTJCbGVjY1RhbTUzVTREY3g4alJWLUN4S2R6LVNIRG5EN1JFamRUNTZiazNXVUxzdVB4RFB0REg1TV9VQUEtV3NLSC1KbDhoZUZnZWJHbGpzVTJfRXhKNktRU2xVZEJZME9BSUJmM3lJQ2k0M0hWZmF4cnAtOURmb3g2anNycHFJVGJ1YnNKQXdEWkVaZ1ZwY0hncGEtOWRvWlgxZHNwNFE1WkgtWWFqbXBxRQ?oc=5",
+          "date": "2026-03-31",
+          "quote": "Riba-roja refuerza los proyectos post-dana con 23 técnicos cualificados",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "post",
+            "dana"
           ]
         },
         {
@@ -409,7 +418,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -429,7 +438,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -493,7 +502,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -532,7 +541,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -571,7 +580,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -601,7 +610,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-24T06:26:31.208Z"
+      "generatedAt": "2026-04-25T06:06:07.854Z"
     }
   ],
   "llmEvidence": [],
