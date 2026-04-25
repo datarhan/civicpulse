@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-24T22:26:46.419Z",
+  "generatedAt": "2026-04-25T06:19:56.208Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -7,10 +7,10 @@
   "stats": {
     "total": 4658,
     "byVerdict": {
-      "verificado": 112,
+      "verificado": 114,
       "parcial": 70,
       "contradicho": 0,
-      "sin-datos": 4476,
+      "sin-datos": 4474,
       "promesa-repetida": 0
     }
   },
@@ -36,14 +36,24 @@
       },
       "verification": {
         "claimId": "k4olcs-005-acu-7c0edd",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "La afirmación es corroborada por la existencia de contratos de emergencia para obras de alumbrado público relacionados con la DANA en Riba-roja de Túria.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
+            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · awarded",
+            "similarity": 0.29
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
+            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA · Ayuntamiento de Riba-roja de Túria · revoked",
+            "similarity": 0.29
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
@@ -67,14 +77,24 @@
       },
       "verification": {
         "claimId": "k4olcs-006-afi-462d5e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "La afirmación sobre cuestiones relacionadas con la DANA se corrobora con la existencia de contratos de emergencia para obras de alumbrado público que mencionan explícitamente la DANA como causa.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
+            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
+            "similarity": 0.29
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
+            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
+            "similarity": 0.29
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
