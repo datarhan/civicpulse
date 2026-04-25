@@ -31,10 +31,7 @@ import {
   type ClaimVerdict,
   type VerifierInputs,
 } from '../src/scraper/claim-verifier'
-import {
-  verifyClaimWithLlm,
-  shouldSkipLlmVerification,
-} from '../src/scraper/claim-verifier-llm'
+import { verifyClaimWithLlm, shouldSkipLlmVerification } from '../src/scraper/claim-verifier-llm'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
@@ -143,7 +140,10 @@ async function main() {
         verification: {
           ...r.verification,
           // Tag the dataset list so audit shows this came from the LLM pass.
-          checkedAgainst: ['llm-second-pass', ...r.verification.checkedAgainst.filter((x) => x !== 'llm-second-pass')],
+          checkedAgainst: [
+            'llm-second-pass',
+            ...r.verification.checkedAgainst.filter((x) => x !== 'llm-second-pass'),
+          ],
         },
       }
       stats.upgraded += 1
@@ -153,11 +153,44 @@ async function main() {
     if (r.rejectedIndexes.length > 0) stats.rejected += r.rejectedIndexes.length
   }
 
-  // Bounded-concurrency batches.
+  function flushSnapshot() {
+    const byVerdict: Record<ClaimVerdict, number> = {
+      verificado: 0,
+      parcial: 0,
+      contradicho: 0,
+      'sin-datos': 0,
+      'promesa-repetida': 0,
+    }
+    for (const it of snap.items) {
+      byVerdict[it.verification.verdict] = (byVerdict[it.verification.verdict] ?? 0) + 1
+    }
+    snap.stats = { total: snap.items.length, byVerdict }
+    snap.generatedAt = new Date().toISOString()
+    writeFileSync(VERIFIED, JSON.stringify(snap, null, 2) + '\n')
+  }
+  // Graceful interrupt — flush partial snapshot on SIGINT/SIGTERM so a
+  // long run doesn't lose progress when the user cancels.
+  let interrupted = false
+  const onSignal = (sig: string) => {
+    if (interrupted) return
+    interrupted = true
+    process.stderr.write(`\n[verify-llm] ${sig} — flushing partial snapshot…\n`)
+    try {
+      flushSnapshot()
+    } catch {}
+    process.exit(130)
+  }
+  process.on('SIGINT', () => onSignal('SIGINT'))
+  process.on('SIGTERM', () => onSignal('SIGTERM'))
+
+  // Bounded-concurrency batches with mid-run checkpoint every 100 claims.
+  const CHECKPOINT_EVERY = 100
+  let sinceCheckpoint = 0
   for (let i = 0; i < queue.length; i += opts.concurrency) {
     const batch = queue.slice(i, i + opts.concurrency)
     await Promise.all(batch.map(processOne))
     const done = Math.min(i + opts.concurrency, queue.length)
+    sinceCheckpoint += batch.length
     const pct = Math.floor((done / queue.length) * 20) // 5% buckets
     if (pct > lastReport) {
       lastReport = pct
@@ -165,29 +198,20 @@ async function main() {
         `[verify-llm]   ${done}/${queue.length} (${pct * 5}%) · upgraded=${stats.upgraded} kept=${stats.kept} rejected_refs=${stats.rejected}\n`,
       )
     }
+    if (sinceCheckpoint >= CHECKPOINT_EVERY) {
+      flushSnapshot()
+      sinceCheckpoint = 0
+    }
   }
 
-  // Recompute byVerdict stats after upgrades.
-  const byVerdict: Record<ClaimVerdict, number> = {
-    verificado: 0,
-    parcial: 0,
-    contradicho: 0,
-    'sin-datos': 0,
-    'promesa-repetida': 0,
-  }
-  for (const it of snap.items) {
-    byVerdict[it.verification.verdict] = (byVerdict[it.verification.verdict] ?? 0) + 1
-  }
-  snap.stats = { total: snap.items.length, byVerdict }
-  snap.generatedAt = new Date().toISOString()
-
-  writeFileSync(VERIFIED, JSON.stringify(snap, null, 2) + '\n')
+  // Final flush + summary.
+  flushSnapshot()
   process.stdout.write(
     `[verify-llm] done. ` +
       `upgraded=${stats.upgraded} of ${stats.attempted} attempted (${queue.length} eligible). ` +
       `Hallucinated refs rejected: ${stats.rejected}. ` +
       `New verdict mix: ` +
-      Object.entries(byVerdict)
+      Object.entries(snap.stats.byVerdict)
         .filter(([, n]) => n > 0)
         .map(([k, n]) => `${k}:${n}`)
         .join(' · ') +
