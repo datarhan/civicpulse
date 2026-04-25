@@ -209,3 +209,62 @@ describe('computeDepartmentStats', () => {
     expect(r.list.every((b) => b.plenoVotes.total === 0)).toBe(true)
   })
 })
+
+describe('computeDepartmentStats — claims (LLM verifier-aware)', () => {
+  const claims = {
+    items: [
+      // urbanismo topic → urbanismo + obras-publicas dept buckets
+      { claim: { topic: 'urbanismo' }, verification: { verdict: 'verificado' } },
+      { claim: { topic: 'urbanismo' }, verification: { verdict: 'parcial' } },
+      { claim: { topic: 'urbanismo' }, verification: { verdict: 'sin-datos' } },
+      // vivienda → vivienda + urbanismo
+      { claim: { topic: 'vivienda' }, verification: { verdict: 'contradicho' } },
+      // fiscal → hacienda + contratacion + empleo-economia + recursos-humanos
+      { claim: { topic: 'fiscal' }, verification: { verdict: 'verificado' } },
+      // unknown topic — should be ignored
+      { claim: { topic: 'totally-not-a-topic' }, verification: { verdict: 'verificado' } },
+      // missing verdict — should be ignored
+      { claim: { topic: 'urbanismo' }, verification: {} },
+    ],
+  } as never
+
+  const NOW = new Date('2026-04-25T12:00:00Z')
+
+  it('aggregates claim verdicts to dept buckets via topic→dept map', () => {
+    const r = computeDepartmentStats({ claims, now: NOW })
+    // urbanismo gets: 1 verificado + 1 parcial + 1 sin-datos (topic=urbanismo)
+    //                + 1 contradicho (topic=vivienda → urbanismo)
+    expect(r.bySlug.urbanismo.declaraciones.verificado).toBe(1)
+    expect(r.bySlug.urbanismo.declaraciones.parcial).toBe(1)
+    expect(r.bySlug.urbanismo.declaraciones.contradicho).toBe(1)
+    expect(r.bySlug.urbanismo.declaraciones.sinDatos).toBe(1)
+    expect(r.bySlug.urbanismo.declaraciones.conEvidencia).toBe(3) // verif+parcial+contra
+    expect(r.bySlug.urbanismo.declaraciones.total).toBe(4)
+  })
+
+  it('multi-targets a topic mapped to several depts', () => {
+    const r = computeDepartmentStats({ claims, now: NOW })
+    // fiscal one verificado claim should land in BOTH hacienda and
+    // contratacion (and empleo-economia, recursos-humanos).
+    expect(r.bySlug.hacienda.declaraciones.verificado).toBe(1)
+    expect(r.bySlug.contratacion.declaraciones.verificado).toBe(1)
+    expect(r.bySlug['empleo-economia'].declaraciones.verificado).toBe(1)
+  })
+
+  it('ignores claims with unknown topic or missing verdict', () => {
+    const r = computeDepartmentStats({ claims, now: NOW })
+    // the "totally-not-a-topic" claim shouldn't show up anywhere.
+    let totalVerificado = 0
+    for (const b of r.list) totalVerificado += b.declaraciones.verificado
+    // Expected: 1 urbanismo claim verifies in urbanismo + obras-publicas,
+    // 1 fiscal verifies in hacienda + contratacion + empleo-economia +
+    // recursos-humanos. No overlap = 6 dept buckets total.
+    expect(totalVerificado).toBe(6)
+  })
+
+  it('passes through when claims is null', () => {
+    const r = computeDepartmentStats({ claims: null, now: NOW })
+    expect(r.bySlug.urbanismo.declaraciones.total).toBe(0)
+    expect(r.bySlug.urbanismo.declaraciones.conEvidencia).toBe(0)
+  })
+})

@@ -14,48 +14,8 @@ import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVot
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
 import { ClaimLedger } from '../components/ClaimLedger'
+import { deptSlugToClaimTopics } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
-
-/**
- * Map a canonical dept slug to the set of ClaimTopic values that belong to
- * it. Used to filter the claim ledger on /departamentos/:slug so a reader
- * visiting the Hacienda page sees only fiscal claims, Urbanismo sees
- * urbanismo+vivienda, etc. One-to-many on purpose — a claim about
- * «vivienda social» is relevant to both vivienda and urbanismo readers.
- */
-function deptSlugToClaimTopics(slug) {
-  const map = {
-    alcaldia: ['other'],
-    urbanismo: ['urbanismo', 'vivienda'],
-    'obras-publicas': ['urbanismo', 'movilidad'],
-    'medio-ambiente': ['medio-ambiente'],
-    movilidad: ['movilidad'],
-    deportes: ['cultura'],
-    educacion: ['educacion'],
-    cultura: ['cultura'],
-    fiestas: ['cultura'],
-    juventud: ['social'],
-    mayores: ['social'],
-    'servicios-sociales': ['social'],
-    salud: ['salud'],
-    igualdad: ['social'],
-    transparencia: ['transparencia'],
-    hacienda: ['fiscal'],
-    contratacion: ['fiscal'],
-    seguridad: ['seguridad'],
-    'empleo-economia': ['empleo', 'fiscal'],
-    comercio: ['empleo'],
-    agricultura: ['medio-ambiente'],
-    turismo: ['cultura', 'empleo'],
-    vivienda: ['vivienda'],
-    'recursos-humanos': ['fiscal'],
-    'servicios-generales': ['transparencia'],
-    'bienestar-animal': ['medio-ambiente'],
-    innovacion: ['other'],
-    comunicacion: ['transparencia'],
-  }
-  return new Set(map[slug] ?? [])
-}
 
 function flattenAgendas(snap) {
   if (!snap?.plenos) return []

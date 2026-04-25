@@ -76,6 +76,12 @@ function DepartmentCard({ bucket, frozen }) {
             tone={bucket.quejas.silencios > 0 ? 'crit' : undefined}
             muted={bucket.quejas.total === 0}
           />
+          <Stat
+            label={t('departamentos.card.declaraciones')}
+            value={bucket.declaraciones.conEvidencia}
+            tone={bucket.declaraciones.contradicho > 0 ? 'crit' : undefined}
+            muted={bucket.declaraciones.conEvidencia === 0}
+          />
           {!frozen && (
             <Stat
               label={t('departamentos.card.vencidos')}

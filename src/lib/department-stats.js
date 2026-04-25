@@ -18,6 +18,7 @@ import {
   canonicalizeDepartment,
   resolveResponsibleOfficial,
 } from '../scraper/departments'
+import { topicToDeptSlugs } from './department-claim-topics'
 
 /**
  * @typedef {Object} DepartmentStats
@@ -48,6 +49,19 @@ function emptyBucket(slug) {
     plenoAgendas: { total: 0, sinVoto: 0 },
     promesas: { total: 0, docs: 0, enProgreso: 0, plazosVencidos: 0 },
     quejas: { abiertas: 0, silencios: 0, total: 0 },
+    /** Claims surfaced from the verifier (deterministic + LLM-second-pass).
+     *  conEvidencia = verificado + parcial + contradicho — the editorially
+     *  meaningful number. sinDatos is excluded; promesa-repetida tracked
+     *  separately because it has its own UI affordance. */
+    declaraciones: {
+      total: 0,
+      verificado: 0,
+      parcial: 0,
+      contradicho: 0,
+      promesaRepetida: 0,
+      sinDatos: 0,
+      conEvidencia: 0,
+    },
   }
 }
 
@@ -86,6 +100,7 @@ export function computeDepartmentStats({
   agendas,
   votes,
   quejas,
+  claims,
   now = new Date(),
 }) {
   /** @type {Record<string, DepartmentStats>} */
@@ -155,6 +170,39 @@ export function computeDepartmentStats({
     buckets[slug].quejas.total += 1
     if (!CLOSED_STATES.has(q.state)) buckets[slug].quejas.abiertas += 1
     if (q.state === 'silencio_negativo') buckets[slug].quejas.silencios += 1
+  }
+
+  // Verified claims (deterministic + LLM second-pass). Each claim's topic
+  // maps to one or more dept slugs via DEPT_TO_CLAIM_TOPICS — claims about
+  // «vivienda» surface on both /departamentos/vivienda and /urbanismo,
+  // matching how citizens think about responsibility. We count by verdict
+  // and aggregate `conEvidencia = verificado + parcial + contradicho` as
+  // the editorially-meaningful "claim has data backing it" total.
+  const claimList = claims?.items ?? []
+  for (const it of claimList) {
+    const topic = it?.claim?.topic
+    const verdict = it?.verification?.verdict
+    if (!topic || !verdict) continue
+    const slugs = topicToDeptSlugs(topic)
+    for (const slug of slugs) {
+      if (!buckets[slug]) continue
+      const d = buckets[slug].declaraciones
+      d.total += 1
+      if (verdict === 'verificado') {
+        d.verificado += 1
+        d.conEvidencia += 1
+      } else if (verdict === 'parcial') {
+        d.parcial += 1
+        d.conEvidencia += 1
+      } else if (verdict === 'contradicho') {
+        d.contradicho += 1
+        d.conEvidencia += 1
+      } else if (verdict === 'promesa-repetida') {
+        d.promesaRepetida += 1
+      } else if (verdict === 'sin-datos') {
+        d.sinDatos += 1
+      }
+    }
   }
 
   // Return as both a map (for detail pages) and an ordered list (for the
