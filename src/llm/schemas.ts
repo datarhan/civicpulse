@@ -158,6 +158,37 @@ export const TenderQuejaResponseSchema = z.object({
   correlation: TenderQuejaCorrelationSchema.nullable(),
 })
 
+// ─── Phase 5 · Claim verifier second-pass (LLM) ─────────────────────────────
+// Runs ONLY on claims the deterministic verifier marked sin-datos. The LLM
+// receives a pre-filtered top-K candidate list and may upgrade the verdict
+// only by citing one or more candidates by their *index* in that list.
+// Free-form ref strings are not allowed — that's the libel safety boundary:
+// the LLM literally cannot fabricate a tender that doesn't exist, only
+// agree or disagree with one we showed it.
+
+export const ClaimVerifierLlmEvidenceSchema = z.object({
+  /** Index into the candidates array sent in the user prompt. The runner
+   *  rejects any value outside [0, candidates.length). */
+  candidateIndex: z.number().int().nonnegative(),
+  /** ≤240-char one-line citation showing what matched. */
+  snippet: z.string().min(10).max(240),
+  /** True if the candidate CONTRADICTS the claim (e.g. tender amount
+   *  doesn't match the spoken figure). Required for verdict=contradicho. */
+  isContradiction: z.boolean(),
+})
+
+export const ClaimVerifierLlmResponseSchema = z.object({
+  verdict: z.enum(['verificado', 'parcial', 'contradicho', 'sin-datos']),
+  /** One-sentence justification. */
+  summary: z.string().min(10).max(300),
+  /** Up to 5 candidate citations. Empty when verdict=sin-datos. */
+  evidence: z.array(ClaimVerifierLlmEvidenceSchema).max(5),
+  /** LLM's self-reported confidence in the verdict (0..1). */
+  confidence: z.number().min(0).max(1),
+})
+
+export type ClaimVerifierLlmResponse = z.infer<typeof ClaimVerifierLlmResponseSchema>
+
 // ─── Utility ────────────────────────────────────────────────────────────────
 
 /**

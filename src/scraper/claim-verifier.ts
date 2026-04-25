@@ -526,3 +526,97 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     checkedAgainst: checked,
   }
 }
+
+// ─── LLM second-pass: candidate shortlist ──────────────────────────────────
+//
+// The LLM verifier runs ONLY on claims the deterministic pass marked
+// sin-datos. Its goal is to catch matches that the word-overlap matcher
+// missed — semantic-but-not-lexical relations like "omisión interventora"
+// against a tender labeled "fiscalización adversa". We give the LLM the
+// top-K most plausibly-related records (by score, regardless of whether
+// they passed the deterministic threshold) and let it reason.
+//
+// `kind` covers the four open-data sources; ref/snippet match the shape
+// the LLM verifier returns. similarity is exposed so the LLM sees how
+// confident our shortlist heuristic is.
+
+export interface CandidateShortlist {
+  kind: 'tender' | 'bdns' | 'promise'
+  ref: string
+  snippet: string
+  similarity: number
+}
+
+/**
+ * Build the top-K candidate list for an LLM verifier pass. Same scoring
+ * mechanics the deterministic verifier uses internally, but we keep all
+ * candidates above similarity ≥0.20 (vs the 0.65 deterministic threshold)
+ * so semantic-but-not-lexical near-misses surface to the LLM.
+ *
+ * Returned list is sorted by similarity descending and capped at topK.
+ */
+export function shortlistCandidates(
+  inputs: VerifierInputs,
+  topK = 8,
+): CandidateShortlist[] {
+  const claim = inputs.claim
+  const out: CandidateShortlist[] = []
+
+  // Tenders
+  for (const t of readTenders(inputs.tenders)) {
+    const title = tenderTitle(t)
+    if (!title) continue
+    const textSim = overlapScore(claim.verbatim + ' ' + claim.context, title)
+    if (textSim < 0.20) continue
+    const amount = tenderAmount(t)
+    let snippet = title
+    if (amount && claim.entities.amountEuros) {
+      const aSim = similarAmount(claim.entities.amountEuros, amount)
+      snippet += ` · €${amount.toLocaleString('es-ES')}${aSim >= 0.85 ? ' (matches claim)' : aSim >= 0.5 ? ' (close to claim)' : ''}`
+    } else if (amount) {
+      snippet += ` · €${amount.toLocaleString('es-ES')}`
+    }
+    if (t.status) snippet += ` · ${t.status}`
+    out.push({
+      kind: 'tender',
+      ref: t.permalink ?? `tender:${title.slice(0, 40)}`,
+      snippet: snippet.slice(0, 230),
+      similarity: Math.round(textSim * 100) / 100,
+    })
+  }
+
+  // BDNS subsidies
+  for (const b of readBdns(inputs.bdns)) {
+    if (!b.titulo) continue
+    const sim = overlapScore(claim.verbatim + ' ' + claim.context, b.titulo)
+    if (sim < 0.20) continue
+    const amount = bdnsAmount(b)
+    out.push({
+      kind: 'bdns',
+      ref: b.url ?? (b.convocatoriaId ? `bdns:${b.convocatoriaId}` : `bdns:${b.titulo.slice(0, 40)}`),
+      snippet: `${b.titulo}${amount ? ` · €${amount.toLocaleString('es-ES')}` : ''}${b.organo ? ` · ${b.organo}` : ''}`.slice(0, 230),
+      similarity: Math.round(sim * 100) / 100,
+    })
+  }
+
+  // Promises (only relevant for promesa-type claims; skip otherwise to
+  // avoid spurious shortlisting).
+  if (claim.type === 'promesa') {
+    for (const p of readPromises(inputs.promises)) {
+      if (!p?.quote || !p.id) continue
+      if (p.party && claim.speakerGroup && p.party !== claim.speakerGroup) continue
+      const sim = overlapScore(p.quote, claim.verbatim)
+      if (sim < 0.20) continue
+      out.push({
+        kind: 'promise',
+        ref: p.source?.url ?? `promise:${p.id}`,
+        snippet: `${p.party ?? ''} «${p.quote.slice(0, 140)}» · ${p.madeAt ?? ''}${p.status ? ` · status=${p.status}` : ''}`.slice(0, 230),
+        similarity: Math.round(sim * 100) / 100,
+      })
+    }
+  }
+
+  // Sort by similarity desc, take top K.
+  out.sort((a, b) => b.similarity - a.similarity)
+  return out.slice(0, topK)
+}

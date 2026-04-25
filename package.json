@@ -53,6 +53,7 @@
     "extract:pleno-claims": "npx tsx scripts/extract-pleno-claims.ts",
     "extract:all-pleno-claims": "npx tsx scripts/extract-pleno-claims.ts --all --min-confidence 0.5",
     "verify:pleno-claims": "npx tsx scripts/verify-pleno-claims.ts",
+    "verify:pleno-claims:llm": "npx tsx scripts/verify-pleno-claims-llm.ts",
     "extract-and-verify:pleno-claims": "bash scripts/extract-and-verify-pleno-claims.sh",
     "promote-claim": "npx tsx scripts/promote-claim.ts",
     "finding-reply": "npx tsx scripts/apply-finding-response.ts",

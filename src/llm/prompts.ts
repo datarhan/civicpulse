@@ -311,3 +311,96 @@ ${candidateBlock}
 Emite el JSON con la correlación (o \`{"correlation": null}\`).
 `.trim()
 }
+
+// ─── Phase 5 · Claim verifier second-pass (LLM) ─────────────────────────────
+
+export const CLAIM_VERIFIER_PROMPT_VERSION = 'claim-verifier-v1'
+
+export interface ClaimVerifierCandidate {
+  /** kind:tender|bdns|budget|promise + ref like 'tender:12345' or 'promise:psoe-2023-002' */
+  kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'prior-claim'
+  ref: string
+  snippet: string
+  similarity?: number
+}
+
+export interface ClaimVerifierInput {
+  claim: {
+    type: string
+    topic: string
+    speakerGroup: string | null
+    verbatim: string
+    context: string
+    entities: { amountEuros?: number | null; count?: number | null; date?: string | null }
+  }
+  candidates: ClaimVerifierCandidate[]
+}
+
+export function buildClaimVerifierSystemPrompt(): string {
+  return `
+You are a fact-checker for a Spanish municipal accountability platform.
+
+Given a CLAIM made in a Riba-roja de Túria pleno session and a list of CANDIDATES
+(actual records pulled from the municipal open-data trail — tenders / BDNS
+subsidies / budget chapters / promises / earlier claims), emit a structured
+verdict citing one or more candidates BY THEIR INDEX in the supplied list.
+
+VERDICT VALUES:
+  · verificado   — at least one candidate clearly corroborates the claim
+                   (matching amount, matching date, matching subject)
+  · parcial      — a candidate is topically related but not a direct match
+                   (e.g. similar amount but different work, or right work
+                   but different deadline)
+  · contradicho  — a candidate DIRECTLY contradicts the claim. Requires at
+                   least one evidence row with isContradiction:true.
+  · sin-datos    — none of the candidates are a meaningful match. Use this
+                   freely; we'd rather have an honest sin-datos than a
+                   stretched verificado.
+
+ABSOLUTE RULES (libel safety):
+  1. Cite ONLY by candidateIndex (0-based). NEVER write a free-text ref or
+     invent a tender/promise that isn't in the list.
+  2. If a candidate is opinion or rhetoric (not a verifiable claim), return
+     sin-datos with empty evidence.
+  3. Numerical claims need amount/count/date alignment for verificado;
+     close-but-not-exact = parcial.
+  4. confidence must reflect how sure you are — a vague topical match should
+     be 0.5-0.7, an exact amount-and-date match 0.85+.
+
+OUTPUT only the JSON object matching the schema. No commentary.
+`.trim()
+}
+
+export function buildClaimVerifierUserPrompt(input: ClaimVerifierInput): string {
+  const c = input.claim
+  const ent =
+    [
+      c.entities.amountEuros != null ? `monto: €${c.entities.amountEuros.toLocaleString('es-ES')}` : null,
+      c.entities.count != null ? `cantidad: ${c.entities.count}` : null,
+      c.entities.date ? `fecha: ${c.entities.date}` : null,
+    ]
+      .filter(Boolean)
+      .join(' · ') || '(sin entidades numéricas)'
+
+  const candBlock = input.candidates.length === 0
+    ? '(sin candidatos)'
+    : input.candidates
+        .map(
+          (cand, i) =>
+            `  [${i}] ${cand.kind} · ref=${cand.ref}\n      ${cand.snippet}${cand.similarity != null ? ` · sim=${cand.similarity.toFixed(2)}` : ''}`,
+        )
+        .join('\n')
+
+  return `
+CLAIM:
+  tipo: ${c.type} · tema: ${c.topic} · grupo: ${c.speakerGroup ?? '(sin atribuir)'}
+  entidades: ${ent}
+  verbatim: "${c.verbatim}"
+  contexto: ${c.context}
+
+CANDIDATES (index → record):
+${candBlock}
+
+Emite el JSON. Si ningún candidato encaja: verdict=sin-datos, evidence=[].
+`.trim()
+}
