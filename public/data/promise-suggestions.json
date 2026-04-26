@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-25T06:06:07.922Z",
+  "generatedAt": "2026-04-26T06:24:57.885Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -68,7 +68,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -118,7 +118,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -142,32 +142,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPWC1QbkNvamk1dnk0NlZENEtPaHctNDdVVElEQlBHZWN3MXVKUS1XS2RBcDFhWFRfcWJsczZscFhKODNLeDlHTHpORl8zVnNPdnZiekZxQW0zRjRyWG8wX3NMZ0ZIV2I1X0ZnU0NPVVFlM0RMa3dPc2JDZTV5VXlNV3JfQVY3ZVVvamZITlVIdXE4eHRXS196UmFBREJINmY2WFRTdUxkMWxla21uaWkwem0tQzdySGdiaTFOSUVWZFAzQXBIVVRaWmpfUWdWb0xkY2duSGRZcklGR2ZERUt1OVlYNVdvMGlRdklxVjFLY215QVR3VkxZ?oc=5",
-          "date": "2026-02-10",
-          "quote": "Riba-roja recibirá 9,5 millones de fondos europeos para ejecutar inversiones de su agenda de reconstrucción",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "reconstruccion",
-            "millon",
-            "fondo",
-            "europeo",
-            "recibira"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNazdtbVFqeWZuclVhMmRwMThWYnBEYklaQldQN3pmZC1McFJ2bVBtMG03czZOcFpXQl9oTDFTLTBzX3d4d0Y5ZWFxcFJGYWhONExCLXVGOE9jWThBMnpmOElPbXFPbmpVMmttSHRsQUtyQVZva3ZCQXg1V0J3dHJVWk9uZG4tajhoZ3JnMWMzbnQ5QmFET2ZIRjVYS3ZKMmF4ZVdGQ3g2NFpna2NWVzFicjVJekY3SWxSc2VBR01nTTlJY3ZrR1QxQ0JndWtZRkpwdjJsUEJnT1k0bkJHWEprOVk2LUF4YjhVbmJmaXpB?oc=5",
-          "date": "2026-04-03",
-          "quote": "Riba-roja aconseja evitar el Parque Natural del Túria en Pascua por el proceso de reconstrucción tras la dana",
-          "kind": "press",
-          "publisher": "Europa Press",
-          "matchedKeywords": [
-            "reconstruccion",
-            "dana",
-            "tras"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOWVXUUV4UVNhQ2NPYmw3enYzLVQ2YlJOM2NGbFVLUDNoRHN1UWd0TXpQU2NFNmJEQ2tfX2E0eHpZbmZocjcwX255azBadkMzNm9YR0RrRDBRRU8xR1V6c0tkeDkxU3Q0WGlnYWxId1NOM0l1M0VYMXo5Q2VoSGtOUlRVLUlCX0lVcV9VcmtqTDdfdkpLSFRzb3V2UTc1V1NVUjdKM1hmN0lqVVdXZ0ZUX0FnaEhxSHdNRmg3UHR4V0JMSjVERnFKN1d0ONIB0AFBVV95cUxOa1NhT2pXSnEteVVWWW5RUmFEakxZU0Q0eFJBbUZwUklld0hZOHk0a1lISWtEcVUzNjhRNU05VUlsNmxrX0c4ZWNPWVhOZjRjRDhoSnVHRlpZUjZ5bVFmbVB3aGZlT3lwbkVzWjFabUJRQThvUnBQMDJmUzhMbldLWUNtZzYzRWM4b0RJUUJoZnVCZWdrMVQ3TlFkV09URElLWm9OSzE2LUFGcFVpME4ySXBEMHJqNE42S2pfWVE0bmx2ZnhMMUx3SmhmSjJFU2JV?oc=5",
           "date": "2026-04-03",
           "quote": "Riba-roja alerta a vecinos y senderistas de los riesgos \"ocultos\" del Parque Natural del Túria tras la dana",
@@ -177,21 +151,10 @@
             "dana",
             "tras"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxObm51NndvX0JROW83LU9vdFhPUGZMUFJ6TEVGQmxrQmpLYlc4WXAteHdabHZNR0pobzFjeHM3LThDSk9ERTNZdG1MbEY4RG5wdDYxR28xRFBYVU5XVWFoTFdPWFR4aTI1NTRjdDF6UUNiZ0ltNVFCTlpvRVpOc3ItdFAwU1NtV1Iwd3ZSanVfcl8teVREX19ZMW12V2cybmZVeTBzTDF4WHZyMTMtRDk3NURqSE5tSF9IVTNudUxB0gHDAUFVX3lxTFBydHRVOGNlMWFyUzdmN1VyQTJCbGVjY1RhbTUzVTREY3g4alJWLUN4S2R6LVNIRG5EN1JFamRUNTZiazNXVUxzdVB4RFB0REg1TV9VQUEtV3NLSC1KbDhoZUZnZWJHbGpzVTJfRXhKNktRU2xVZEJZME9BSUJmM3lJQ2k0M0hWZmF4cnAtOURmb3g2anNycHFJVGJ1YnNKQXdEWkVaZ1ZwY0hncGEtOWRvWlgxZHNwNFE1WkgtWWFqbXBxRQ?oc=5",
-          "date": "2026-03-31",
-          "quote": "Riba-roja refuerza los proyectos post-dana con 23 técnicos cualificados",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "post",
-            "dana"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -211,7 +174,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -246,7 +209,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -270,7 +233,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -308,7 +271,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -328,7 +291,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -336,7 +299,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -355,7 +318,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -371,17 +334,6 @@
           "matchedKeywords": [
             "millon",
             "euro"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxObm51NndvX0JROW83LU9vdFhPUGZMUFJ6TEVGQmxrQmpLYlc4WXAteHdabHZNR0pobzFjeHM3LThDSk9ERTNZdG1MbEY4RG5wdDYxR28xRFBYVU5XVWFoTFdPWFR4aTI1NTRjdDF6UUNiZ0ltNVFCTlpvRVpOc3ItdFAwU1NtV1Iwd3ZSanVfcl8teVREX19ZMW12V2cybmZVeTBzTDF4WHZyMTMtRDk3NURqSE5tSF9IVTNudUxB0gHDAUFVX3lxTFBydHRVOGNlMWFyUzdmN1VyQTJCbGVjY1RhbTUzVTREY3g4alJWLUN4S2R6LVNIRG5EN1JFamRUNTZiazNXVUxzdVB4RFB0REg1TV9VQUEtV3NLSC1KbDhoZUZnZWJHbGpzVTJfRXhKNktRU2xVZEJZME9BSUJmM3lJQ2k0M0hWZmF4cnAtOURmb3g2anNycHFJVGJ1YnNKQXdEWkVaZ1ZwY0hncGEtOWRvWlgxZHNwNFE1WkgtWWFqbXBxRQ?oc=5",
-          "date": "2026-03-31",
-          "quote": "Riba-roja refuerza los proyectos post-dana con 23 técnicos cualificados",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "post",
-            "dana"
           ]
         },
         {
@@ -407,6 +359,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNYWVqaHZTNHhJTlBja3lGZVBLblZjNWV0SVlMN01BMGNsMUo4VmlDVHFGbk81bl9TOUxyeFppeWJiYlRVdnJEa00taThtWHQ4YnZoSm9QWHg4X0lNcnhneUVWX0l0bU1qVTJSNl8wS0tfNFBNUFZzTzJQTkNaR0NBMDBJTmx0U0NVUmlQYmRNTHVTNVQtZjRNSEQtd1hXV1djYVluc3FhVnVkQUJVaDdvOWRBTGFNelh4VzBpSFdjNlo4aGI1U2fSAcsBQVVfeXFMUHBCNXNKeW5BWnhLbzdtZHZMLV9qYVpLRGIyQUhSM3JmYU5DVjd3elRVV3dPczRVY1RudnE0azJLRFNyLW5yRkxLenV1MXRUOHJDaFBwQjlhLTJYVUxQelV2Z3VNN0tURWVEVjdsMmZyOXYwXzBQdS16TzhyamJCT0RUVmFkMmMwaGtKN0IwS1FEV3R6emh6SWtUVHYweElmajdkdGpYYmNDNjNHbGpUUmJYejhjZGhxMUlHdE5jWDdoN1NUUGxSdlpuekk?oc=5",
+          "date": "2026-02-16",
+          "quote": "Riba-roja respalda el nuevo modelo de financiación autonómica que aportaría 3.669 millones de euros a la C. Valenciana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
           "date": "2026-04-20",
           "quote": "ASUNTO DE URGENCIA, Expediente 1562/2018/GEN, Aceptación propuesta de adjudicación mesa de contratación relativo al contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
@@ -418,7 +381,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -438,35 +401,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "en-progreso",
-      "confidence": 0.35,
+      "confidence": 0.3,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
-          "date": "2026-04-13",
-          "quote": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "servicio",
-            "vecino"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
-          "date": "2026-03-17",
-          "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "gestion",
-            "municipio"
-          ]
-        },
         {
           "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
           "date": "2026-04-20",
@@ -502,7 +443,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -541,7 +482,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -580,24 +521,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
       "proposedStatus": "en-progreso",
-      "confidence": 0.35,
+      "confidence": 0.3,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUnZSUFExcEE5eW45OVNPbFJtZng4RGQ4MzhSNm51dFlYUGkzT3ZfTUdvTWZDdGFlZFdqd2o5MjJNb1Z5RFpMNHktbEJzUExaVnFBa2dCRG9ITVdBVmc5N3pGSHlqSVByMDVuTXZ5cFo0bFVrM1A3akl3X0h6Qzk2MDlvMHJUMVl2em14djE0UlE2MUxYdUR2T3c5d3A2OUxETHZ5S2E1RGJMRmxVdndteWNuN0FnU2pSTWZycTc2M2drNFHSAcgBQVVfeXFMTm9qWkRyeERlUUd4SWhOY0dObERxSHU1VVFpRl9vYTlTZ01yOHIwa2R1TUNyZjB5Y1lOdDdtbnNHTUFmbElkUmZockc4STFHY2t1QW5jbjBMWFVpbm5XR1ZubXUzaWl5QnVERXhGZk9aQjd1WWVQbFpiZi1pV0NqU3dUdFRTV1FmVWJnSGktNC11c1ZQLUxCNk9jNlFjYVE0ZUxEMnEta29Ib3lNa2pWaUN4eW5QWTJuTEpMTU5ldnpOOS0tU214bWo?oc=5",
-          "date": "2025-09-10",
-          "quote": "Riba-roja ahorra 731.000 euros en la adjudicación del servicio de recogida de residuos sólidos",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "ahorra",
-            "euro"
-          ]
-        },
         {
           "url": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333",
           "date": "2026-03-16",
@@ -610,7 +540,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-25T06:06:07.854Z"
+      "generatedAt": "2026-04-26T06:24:57.816Z"
     }
   ],
   "llmEvidence": [],
