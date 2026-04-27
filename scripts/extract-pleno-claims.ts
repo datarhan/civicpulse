@@ -137,6 +137,7 @@ async function main() {
   const args = process.argv.slice(2)
   let minConfidence = 0.5
   let concurrency = Number(process.env.LLM_CONCURRENCY || 3)
+  let forceOrphanFindings = false
   const positional: string[] = []
   for (let i = 0; i < args.length; i++) {
     const a = args[i]
@@ -148,11 +149,19 @@ async function main() {
       concurrency = Number(args[++i])
       continue
     }
+    if (a === '--force-orphan-findings') {
+      // Override the preservation guard: allow re-extract to overwrite
+      // a pleno even if doing so leaves published findings citing
+      // claim IDs that no longer exist. Use only when migrating a
+      // finding to a curator-approved replacement set of claim IDs.
+      forceOrphanFindings = true
+      continue
+    }
     positional.push(a)
   }
   if (positional.length !== 1) {
     process.stderr.write(
-      'usage: extract-pleno-claims.ts <plenoId|--all> [--min-confidence 0.5] [--concurrency 3]\n',
+      'usage: extract-pleno-claims.ts <plenoId|--all> [--min-confidence 0.5] [--concurrency 3] [--force-orphan-findings]\n',
     )
     process.exit(2)
   }
@@ -203,8 +212,55 @@ async function main() {
   const previous: PlenoClaim[] = existsSync(OUT_PATH)
     ? (JSON.parse(readFileSync(OUT_PATH, 'utf8')).items ?? [])
     : []
+  // Index previous claims by pleno so we can roll back individual plenos
+  // when the preservation guard refuses to overwrite them.
+  const previousByPleno = new Map<string, PlenoClaim[]>()
+  for (const c of previous) {
+    const list = previousByPleno.get(c.plenoId) ?? []
+    list.push(c)
+    previousByPleno.set(c.plenoId, list)
+  }
   // Start with everything NOT in `ids` (the set we're about to re-run).
   const accumulated = previous.filter((c) => !ids.includes(c.plenoId))
+
+  // ─── Preservation guard ──────────────────────────────────────────────────
+  // Claim IDs are deterministic on (plenoId, segmentIndex, type, verbatim
+  // hash). Different extraction models pick slightly different segment
+  // boundaries / quote text, so re-extracting a pleno typically renames
+  // most claim IDs. Findings in pleno-findings.json cite specific
+  // sourceClaimIds — if a citation no longer resolves after re-extract,
+  // that finding's quote→claim audit chain is broken.
+  //
+  // Per pleno being re-extracted, snapshot the cited IDs *before* the run.
+  // After the run, if any cited ID is missing from the new claim set, we
+  // refuse to overwrite that pleno (keep the OLD claims) unless
+  // --force-orphan-findings was passed.
+  const FINDINGS_PATH = resolve('public/data/pleno-findings.json')
+  const findingsCitations = new Map<string, Set<string>>()
+  if (existsSync(FINDINGS_PATH)) {
+    const fSnap = JSON.parse(readFileSync(FINDINGS_PATH, 'utf8'))
+    for (const f of (fSnap.items ?? []) as Array<{
+      plenoId: string
+      sourceClaimIds: string[]
+    }>) {
+      if (!ids.includes(f.plenoId)) continue
+      const set = findingsCitations.get(f.plenoId) ?? new Set<string>()
+      for (const cid of f.sourceClaimIds ?? []) set.add(cid)
+      findingsCitations.set(f.plenoId, set)
+    }
+  }
+  const totalCitedAcrossRun = [...findingsCitations.values()].reduce((sum, s) => sum + s.size, 0)
+  if (totalCitedAcrossRun > 0) {
+    process.stdout.write(
+      `[extract·claims] preservation guard: ${totalCitedAcrossRun} claim id(s) cited by published findings across ${findingsCitations.size} pleno(s)\n`,
+    )
+    if (forceOrphanFindings) {
+      process.stderr.write(
+        '[extract·claims] WARNING: --force-orphan-findings is set — published findings WILL be left orphaned where claim IDs change. Pass only when migrating to curator-approved replacements.\n',
+      )
+    }
+  }
+  const guardSkipped: Array<{ plenoId: string; orphans: string[] }> = []
 
   function writeSnapshot() {
     const items = [...accumulated].sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
@@ -255,6 +311,41 @@ async function main() {
   for (const id of ids) {
     try {
       const fresh = await runOne(id, plenos, currentSeats, minConfidence, concurrency)
+      // Preservation check: would this overwrite leave any published
+      // finding with an orphan sourceClaimId for this pleno?
+      const cited = findingsCitations.get(id)
+      if (cited && cited.size > 0) {
+        const freshIds = new Set(fresh.map((c) => c.id))
+        const orphans = [...cited].filter((cid) => !freshIds.has(cid))
+        if (orphans.length > 0 && !forceOrphanFindings) {
+          process.stderr.write(
+            `[extract·claims] ${id} SKIPPED — ${orphans.length}/${cited.size} cited claim(s) would be orphaned by overwrite:\n`,
+          )
+          for (const o of orphans.slice(0, 5)) process.stderr.write(`[extract·claims]     · ${o}\n`)
+          if (orphans.length > 5) {
+            process.stderr.write(`[extract·claims]     · …and ${orphans.length - 5} more\n`)
+          }
+          process.stderr.write(
+            `[extract·claims]   Pass --force-orphan-findings to override (will leave findings orphaned).\n`,
+          )
+          // Roll back: keep the OLD claims for this pleno on disk so the
+          // findings remain auditable.
+          const old = previousByPleno.get(id) ?? []
+          accumulated.push(...old)
+          guardSkipped.push({ plenoId: id, orphans })
+          completed += 1
+          const total = writeSnapshot()
+          process.stdout.write(
+            `[extract·claims] checkpoint ${completed}/${ids.length}: ${id} · PRESERVED (${old.length} old claim(s)) · snapshot=${total} total\n`,
+          )
+          continue
+        }
+        if (orphans.length > 0) {
+          process.stderr.write(
+            `[extract·claims] ${id} OVERWRITING despite ${orphans.length} orphan(s) (--force-orphan-findings)\n`,
+          )
+        }
+      }
       accumulated.push(...fresh)
       completed += 1
       const total = writeSnapshot()
@@ -274,6 +365,16 @@ async function main() {
 
   const total = writeSnapshot()
   process.stdout.write(`[extract·claims] done — ${total} claim(s) total → ${OUT_PATH}\n`)
+  if (guardSkipped.length > 0) {
+    process.stdout.write(
+      `[extract·claims] preservation guard preserved ${guardSkipped.length} pleno(s):\n`,
+    )
+    for (const g of guardSkipped) {
+      process.stdout.write(
+        `[extract·claims]   · ${g.plenoId} — ${g.orphans.length} orphan(s) (re-run with --force-orphan-findings to migrate)\n`,
+      )
+    }
+  }
 }
 
 main().catch((err) => {
