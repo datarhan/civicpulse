@@ -108,14 +108,20 @@ function isFrozen(promises: PromisesSnap | null): boolean {
   return promises.frozenUntil > new Date().toISOString().slice(0, 10)
 }
 
-function plenoVideoUrl(videos: { items?: PlenoVideoEntry[] } | null, plenoDate: string): string | null {
+function plenoVideoUrl(
+  videos: { items?: PlenoVideoEntry[] } | null,
+  plenoDate: string,
+): string | null {
   for (const v of videos?.items ?? []) {
     if (v.plenoDate === plenoDate && v.url) return v.url
   }
   return null
 }
 
-function plenoTitle(plenos: { items?: Array<{ id: string; title: string }> } | null, id: string): string {
+function plenoTitle(
+  plenos: { items?: Array<{ id: string; title: string }> } | null,
+  id: string,
+): string {
   for (const p of plenos?.items ?? []) if (p.id === id) return p.title
   return id
 }
@@ -124,7 +130,7 @@ function writeQueueFile(bundles: BundleCandidate[]): void {
   mkdirSync(resolve('editorial'), { recursive: true })
   const lines = ['# Auto-curation queue · ' + new Date().toISOString().slice(0, 10), '']
   lines.push(
-    'Bundles routed here because they contain at least one `contradicho` claim. The auto-curation CLI never publishes contradicho material — these need a curator to review the LLM\'s claim-vs-tender match before promotion.',
+    "Bundles routed here because they contain at least one `contradicho` claim. The auto-curation CLI never publishes contradicho material — these need a curator to review the LLM's claim-vs-tender match before promotion.",
   )
   lines.push('')
   for (const b of bundles) {
@@ -184,6 +190,24 @@ async function main() {
   if (quarantine.length > 0) {
     writeQueueFile(quarantine)
     process.stdout.write(`[auto-curate]   queue file → ${QUEUE}\n`)
+  }
+  // Always refresh the dashboard JSONs (even if zero quarantine, so the
+  // dashboard sees an honest empty state instead of a stale snapshot).
+  try {
+    const { execFile } = await import('node:child_process')
+    await new Promise<void>((resolveP, rejectP) => {
+      execFile(
+        'npx',
+        ['tsx', 'scripts/refresh-curate-queue.ts'],
+        { cwd: resolve('.'), timeout: 30_000 },
+        (err) => (err ? rejectP(err) : resolveP()),
+      )
+    })
+    process.stdout.write(`[auto-curate]   refreshed dashboard queue JSON\n`)
+  } catch (err) {
+    process.stderr.write(
+      `[auto-curate]   WARN: dashboard queue refresh failed: ${(err as Error).message}\n`,
+    )
   }
 
   if (eligible.length === 0) {
@@ -302,8 +326,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  process.stderr.write(
-    `[auto-curate] FATAL: ${err instanceof Error ? err.message : String(err)}\n`,
-  )
+  process.stderr.write(`[auto-curate] FATAL: ${err instanceof Error ? err.message : String(err)}\n`)
   process.exit(1)
 })

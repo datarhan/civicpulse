@@ -37,6 +37,17 @@ export async function generateTitleAndSummary(
       topic: bundle.topic,
       blocs: bundle.blocs,
       claimIds: bundle.quotes.map((_q, i) => i),
+      // Discriminate the cache by what's actually in the prompt:
+      //   · verbatim hashes  ─ if the bundle's quotes change, the
+      //     summary should re-draft (this rarely happens but it's
+      //     correct).
+      //   · evidence list    ─ curator-added evidence (URL/PDF
+      //     snippets) is what makes the dashboard's "Re-draft with
+      //     N evidence" button useful. Without this, two clicks
+      //     with different evidence would return the same cached
+      //     draft.
+      quoteHashes: bundle.quotes.map((q) => q.verbatim.length + ':' + q.verbatim.slice(0, 32)),
+      evidenceSnippets: bundle.evidenceSnippets,
     },
   })
 }
