@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T06:22:13.299Z",
+  "generatedAt": "2026-04-27T06:44:37.599Z",
   "source": {
     "boundary": "https://overpass-api.de/api/interpreter",
     "neighborhoods": "https://overpass-api.de/api/interpreter",
@@ -1360,6 +1360,10 @@
         -0.5180779
       ],
       [
+        39.5461007,
+        -0.5181973
+      ],
+      [
         39.5466331,
         -0.5187899
       ],
@@ -1955,8 +1959,8 @@
       "east": -0.514079
     },
     "centroid": [
-      39.51473201425623,
-      -0.5485038202479338
+      39.5147966919588,
+      -0.5484413325773194
     ],
     "population": 24235
   },
@@ -4005,7 +4009,7 @@
     ]
   },
   "stats": {
-    "boundaryPoints": 484,
+    "boundaryPoints": 485,
     "neighborhoods": 21,
     "populationSum": 8394,
     "railwayWays": 25,
