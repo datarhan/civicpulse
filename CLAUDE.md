@@ -102,6 +102,13 @@ npm run promote-claim -- <claimId> [claimId ...] \
                      --title "<≥10 chars>" --summary "<≥40 chars>" \
                      [--severity informational|notable|critical] \
                      [--related-promise <id>] [--edit] [--force]
+# Auto-curation — LLM writes title + summary for high-confidence
+# informational findings, applies safety gates, and bulk-promotes.
+# Severity is hard-coded to informational; contradicho-bearing bundles
+# are routed to editorial/auto-curation-queue.md (curator-only) instead
+# of /hallazgos. Skipped during LOREG electoral freeze.
+npm run auto-curate                       # default: max 5 findings
+npm run auto-curate -- --max 10 --dry-run # preview without persisting
 # Right-of-reply for a published finding. Also via the
 # .github/ISSUE_TEMPLATE/finding-response.yml form (label `derecho-replica`
 # triggers ingest-finding-responses.yml which calls this CLI and commits).

@@ -404,3 +404,93 @@ ${candBlock}
 Emite el JSON. Si ningún candidato encaja: verdict=sin-datos, evidence=[].
 `.trim()
 }
+
+// ─── Phase 6 · Auto-curation prompts ────────────────────────────────────────
+
+export const AUTO_CURATE_PROMPT_VERSION = 'auto-curate-v1'
+
+export interface AutoCurateBundle {
+  plenoId: string
+  plenoDate: string
+  plenoTitle: string
+  topic: string
+  blocs: string[]
+  /** 1..4 quotes the gate selected as the strongest evidence for this finding. */
+  quotes: Array<{
+    speakerGroup: string
+    verdict: string
+    confidence: number
+    verbatim: string
+  }>
+  /** Verifier evidence titles + URLs (deduped). Used to ground the summary. */
+  evidenceSnippets: string[]
+}
+
+export function buildAutoCurateSystemPrompt(): string {
+  return `
+You write a one-line headline + 2-3 sentence editorial summary for a
+CivicPulse pleno-claim finding. Output is JSON: {title, summary}.
+
+CivicPulse is a citizen-accountability platform tracking the municipal
+council of Riba-roja de Túria (Spain). Findings are LEGALLY MATERIAL —
+they document what elected officials said in plenary sessions and
+cross-reference against open data (PLACSP tenders, BDNS subsidies,
+budget). Defamation risk is real.
+
+ABSOLUTE RULES (libel safety):
+
+  1. Cite each speaker by their PARTY/BLOC ONLY — PSOE, PP, VOX,
+     Compromís, Otro. NEVER name an individual concejal. Whisper has
+     ~5-10% WER on proper nouns and individual misattribution is the
+     biggest libel exposure we have.
+
+  2. Use modal/declarative verbs ONLY:
+       ✓ "afirma", "denuncia", "señala", "según", "el registro
+          municipal incluye", "el grupo X manifiesta"
+       ✗ "lied", "mintió", "engañó", "falseó", "ocultó"
+     Frame the finding as DOCUMENTING the debate, not adjudicating it.
+
+  3. The severity is FIXED at "informational" by the caller — never
+     adjudicate critical/notable. Your prose must read as neutral
+     documentation.
+
+  4. Cite at least one corroborating record by its title. The titles
+     are supplied in the user prompt — never invent records.
+
+  5. Keep names of municipal works/places in the original spelling
+     (e.g. "Pabellón Mas d'Escoto", "complejo La Mallá") — do NOT
+     translate or normalise.
+
+LENGTH:
+  · title:   10-120 chars. One line. Include pleno date in YYYY-MM-DD form.
+  · summary: 40-600 chars. 2-3 sentences. Plain Spanish.
+
+OUTPUT: a single JSON object {title, summary}. No fences. No commentary.
+`.trim()
+}
+
+export function buildAutoCurateUserPrompt(b: AutoCurateBundle): string {
+  const quoteBlock = b.quotes
+    .map(
+      (q, i) =>
+        `  [${i + 1}] [${q.verdict}] ${q.speakerGroup} (conf ${q.confidence.toFixed(2)})\n      «${q.verbatim}»`,
+    )
+    .join('\n')
+  const evidenceBlock =
+    b.evidenceSnippets.length === 0
+      ? '  (sin evidencia)'
+      : b.evidenceSnippets.map((s, i) => `  [E${i + 1}] ${s}`).join('\n')
+  return `
+PLENO: ${b.plenoTitle} (id ${b.plenoId} · ${b.plenoDate})
+TEMA: ${b.topic}
+GRUPOS QUE INTERVIENEN: ${b.blocs.join(', ')}
+
+QUOTES VERIFICADOS (verbatim del transcript, atribuidos a nivel de grupo):
+${quoteBlock}
+
+REGISTROS QUE CORROBORAN (titulares supplied — cita al menos uno):
+${evidenceBlock}
+
+Emite el JSON {title, summary}.
+`.trim()
+}

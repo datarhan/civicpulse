@@ -50,8 +50,8 @@ export interface FindingQuote {
 }
 
 export interface FindingRef {
-  /** tender | bdns | budget | promise */
-  kind: 'tender' | 'bdns' | 'budget' | 'promise'
+  /** tender | bdns | budget | promise | pleno-video | pleno-acta */
+  kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'pleno-video' | 'pleno-acta'
   /** Absolute URL when possible; synthetic ref ("budget:2025:cap3") otherwise. */
   ref: string
   /** Short citation the reader sees, ≤240 chars. */
@@ -134,7 +134,8 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): Findin
   must(typeof r === 'object' && r !== null, `items[${idx}].${label}[${ri}] must be object`)
   const o = r as Record<string, unknown>
   must(
-    typeof o.kind === 'string' && ['tender', 'bdns', 'budget', 'promise'].includes(o.kind),
+    typeof o.kind === 'string' &&
+      ['tender', 'bdns', 'budget', 'promise', 'pleno-video', 'pleno-acta'].includes(o.kind),
     `items[${idx}].${label}[${ri}].kind invalid`,
   )
   must(typeof o.ref === 'string' && o.ref.length > 0, `items[${idx}].${label}[${ri}].ref required`)

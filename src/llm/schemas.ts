@@ -189,6 +189,23 @@ export const ClaimVerifierLlmResponseSchema = z.object({
 
 export type ClaimVerifierLlmResponse = z.infer<typeof ClaimVerifierLlmResponseSchema>
 
+// ─── Phase 6 · Auto-curation (LLM-written title + summary) ──────────────────
+// Generates the editorial chrome for an auto-published finding. The CLI
+// (scripts/auto-curate-findings.ts) gates by safety rules (no contradicho,
+// all party-attributed, etc.) BEFORE calling this; the LLM only writes
+// neutral framing. Severity is fixed at `informational` by the caller —
+// the LLM doesn't choose severity.
+
+export const AutoCurateResponseSchema = z.object({
+  /** ≤120-char one-line headline. Must include pleno date (YYYY-MM-DD). */
+  title: z.string().min(10).max(120),
+  /** 2-3 sentences citing each speaker by bloc + at least one corroborating
+   *  data record. Length floor matches the FindingsSnapshot validator. */
+  summary: z.string().min(40).max(600),
+})
+
+export type AutoCurateResponse = z.infer<typeof AutoCurateResponseSchema>
+
 // ─── Utility ────────────────────────────────────────────────────────────────
 
 /**
