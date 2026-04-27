@@ -45,7 +45,11 @@ git pull --rebase --autostash origin main
 # chain (anthropic → ollama) automatically if the quota is out.
 export GOOGLE_GENAI_USE_GCA="${GOOGLE_GENAI_USE_GCA:-true}"
 export LLM_BACKEND="${LLM_BACKEND:-gemini}"
-export GEMINI_MODEL="${GEMINI_MODEL:-gemini-2.5-flash}"
+# gemini-2.5-pro is the highest tier the gemini CLI Pro subscription
+# accepts on this account (3.x isn't reachable, 2.0/lite are
+# downgrades). Verified by probing `gemini -m <model> -p ...` against
+# the live CLI. Re-test if Google ships 3.x to this tier.
+export GEMINI_MODEL="${GEMINI_MODEL:-gemini-2.5-pro}"
 
 # Run the curator with a 5-finding cap (matches the on-demand default).
 echo "[$(date '+%F %T')] invoking npm run auto-curate -- --max 5"

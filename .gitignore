@@ -9,6 +9,8 @@ dist/
 playwright-report/
 test-results/
 .llm-cache/
+.embed-cache/
+.curator-jobs/
 mlx_models/
 editorial/
 scripts/logs/
