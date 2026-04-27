@@ -513,7 +513,19 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
  */
 async function callClaudeCode(req: RawCall): Promise<RawResult> {
   const { spawn } = await import('node:child_process')
+  const { mkdtempSync } = await import('node:fs')
+  const { tmpdir } = await import('node:os')
+  const { join } = await import('node:path')
   const schemaJson = JSON.stringify(zodToJsonSchema(req.schema))
+
+  // Spawn from a freshly-minted temp directory so the claude CLI does
+  // NOT auto-discover this project's CLAUDE.md and other workspace
+  // state. Without this, every invocation cache-creates ~63 KB of
+  // project context — both expensive (in API-equivalent tokens) and
+  // a likely cause of `api_error_status` cascades when the Max plan's
+  // burst-rate limit trips. With cwd in /tmp, the CLI's per-call
+  // cache write drops to ~24 KB. Probed empirically 2026-04-27.
+  const cwd = mkdtempSync(join(tmpdir(), 'cp-claude-cwd-'))
 
   return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
     const args = [
@@ -533,6 +545,7 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
     ]
     const child = spawn(req.config.claudeCodeBin, args, {
       stdio: ['ignore', 'pipe', 'pipe'],
+      cwd,
     })
     let stdout = ''
     let stderr = ''
