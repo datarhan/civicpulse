@@ -10,3 +10,5 @@ playwright-report/
 test-results/
 .llm-cache/
 mlx_models/
+editorial/
+scripts/logs/

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.auto-curate</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/auto-curate-weekly.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/Documents/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+  </dict>
+
+  <!-- Mondays at 09:00 local time. macOS coalesces into the next wake
+       if the Mac is asleep at that hour — the run fires as soon as
+       it's awake again. Weekday key uses 1=Monday … 7=Sunday. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Weekday</key><integer>1</integer>
+    <key>Hour</key><integer>9</integer>
+    <key>Minute</key><integer>0</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/logs/auto-curate.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/logs/auto-curate.err.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

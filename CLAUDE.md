@@ -109,6 +109,10 @@ npm run promote-claim -- <claimId> [claimId ...] \
 # of /hallazgos. Skipped during LOREG electoral freeze.
 npm run auto-curate                       # default: max 5 findings
 npm run auto-curate -- --max 10 --dry-run # preview without persisting
+# Weekly launchd agent (Mondays 09:00 Madrid · runs auto-curate, commits + pushes):
+bash scripts/launchd-install-auto-curate.sh           # install + load
+bash scripts/launchd-install-auto-curate.sh uninstall # remove
+# Logs: scripts/logs/auto-curate.{out,err}.log
 # Right-of-reply for a published finding. Also via the
 # .github/ISSUE_TEMPLATE/finding-response.yml form (label `derecho-replica`
 # triggers ingest-finding-responses.yml which calls this CLI and commits).
