@@ -95,9 +95,33 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           (default — fallback when MLX isn't bootstrapped).
 #   WHISPER_MODEL env chooses the Whisper weights (large-v3 default,
 #   medium/small for speed at the cost of WER).
+#
+# Optional speaker diarization (post-Whisper, opt-in):
+#   WHISPER_DIARIZE=1     · runs pyannote.audio's speaker-diarization-3.1
+#                           after Whisper and rewrites every transcript
+#                           line with a (SPEAKER_NN) tag. Cuts the
+#                           extractor's null-speakerGroup rate from
+#                           ~65% to <30% on real plenos. ~0.5× realtime
+#                           on CPU. Bootstrap (one-time):
+#                             1. Accept user agreements at
+#                                  huggingface.co/pyannote/speaker-diarization-3.1
+#                                  huggingface.co/pyannote/segmentation-3.0
+#                             2. Set HUGGINGFACE_TOKEN in .env
+#                             3. python3.10 -m venv ~/.local/civicpulse-pyannote/venv
+#                             4. ~/.local/civicpulse-pyannote/venv/bin/pip install pyannote.audio==3.3
+#                           Default OFF — plain Whisper output keeps
+#                           the dependency surface minimal.
 
 npm run verify:pleno-claims               # pure local pass · tenders + BDNS + budget + promises
 npm run extract-and-verify:pleno-claims -- <plenoId|--all>  # both in one go
+# Semantic shortlist for the LLM second pass (opt-in via env, default lexical):
+#   VERIFIER_SHORTLIST=lexical  (default) word-overlap scoring · no API calls
+#   VERIFIER_SHORTLIST=semantic cosine over OpenAI text-embedding-3-small
+#   VERIFIER_SHORTLIST=hybrid   union of both, deduped by ref
+# Run once per corpus refresh; idempotent (hash-keyed). Falls back to lexical
+# with a warning when the cache or OPENAI_API_KEY is missing — never crashes
+# the verifier. Cost ~$0.002 / full rebuild on ~2k corpus rows.
+npm run embed:verifier-corpus             # build .embed-cache/verifier-corpus.jsonl
 npm run promote-claim -- <claimId> [claimId ...] \
                      --title "<≥10 chars>" --summary "<≥40 chars>" \
                      [--severity informational|notable|critical] \

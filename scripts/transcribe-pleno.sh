@@ -311,6 +311,29 @@ PYEOF
 fi
 
 echo "[transcribe] transcript: $OUT_PATH"
+
+# ── Optional speaker diarization (post-Whisper) ─────────────────────────
+# Default OFF to keep the pipeline's wall-time + dependency surface
+# minimal. Enable per-run with WHISPER_DIARIZE=1, or per-shell with
+# `export WHISPER_DIARIZE=1`. Adds ~0.5× realtime on CPU plus a
+# pyannote.audio venv + HuggingFace token requirement (one-time
+# bootstrap — see scripts/diarize-pleno.sh header).
+#
+# Result: every transcript line is rewritten with a (SPEAKER_NN) tag
+# that the LLM extractor can use to attribute claims more reliably.
+# Without diarization the extractor must guess from prose alone, which
+# produces ~62-65% null-speakerGroup attribution on this corpus.
+if [ "${WHISPER_DIARIZE:-0}" = "1" ]; then
+  echo "[transcribe] WHISPER_DIARIZE=1 — running pyannote diarization (post-Whisper)…"
+  if bash "$REPO_ROOT/scripts/diarize-pleno.sh" "$PLENO_ID"; then
+    echo "[transcribe] diarization tags applied"
+  else
+    echo "[transcribe] diarization FAILED — keeping un-tagged transcript" >&2
+    # Don't abort: a tagged transcript is a quality lift, not a hard
+    # requirement. Plain Whisper output is still usable downstream.
+  fi
+fi
+
 echo "[transcribe] running vote inference…"
 
 cd "$REPO_ROOT"
