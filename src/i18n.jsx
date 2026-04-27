@@ -79,8 +79,7 @@ const CATALOGUE = {
     'declaraciones.search.placeholder': 'Buscar en el texto literal…',
     'declaraciones.matchCount': 'declaraciones coinciden con los filtros',
     'declaraciones.loadMore': 'Mostrar más',
-    'declaraciones.empty':
-      'Ninguna declaración coincide con los filtros actuales.',
+    'declaraciones.empty': 'Ninguna declaración coincide con los filtros actuales.',
 
     // Page eyebrows + titles
     'cargos.eyebrow': 'Rendición de cuentas',
@@ -220,8 +219,7 @@ const CATALOGUE = {
     'declaraciones.search.placeholder': 'Cerca en el text literal…',
     'declaraciones.matchCount': 'declaracions coincideixen amb els filtres',
     'declaraciones.loadMore': 'Mostrar-ne més',
-    'declaraciones.empty':
-      'Cap declaració coincideix amb els filtres actuals.',
+    'declaraciones.empty': 'Cap declaració coincideix amb els filtres actuals.',
 
     'cargos.eyebrow': 'Rendició de comptes',
     'cargos.title': 'Càrrecs i departaments',

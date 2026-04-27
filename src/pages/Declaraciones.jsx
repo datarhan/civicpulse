@@ -84,10 +84,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
     >
       {label}
       {count != null && (
-        <span
-          className="mono"
-          style={{ marginLeft: 6, opacity: 0.7, fontSize: 10.5 }}
-        >
+        <span className="mono" style={{ marginLeft: 6, opacity: 0.7, fontSize: 10.5 }}>
           {count.toLocaleString('es-ES')}
         </span>
       )}
@@ -98,10 +95,13 @@ function FilterChip({ active, label, count, onClick, tone }) {
 function ClaimRow({ item, plenoTitle }) {
   const c = item.claim
   const v = item.verification
-  const speakerColor = c.speakerGroup ? PARTY_TONE[c.speakerGroup] || 'var(--ink60)' : 'var(--ink50)'
+  const speakerColor = c.speakerGroup
+    ? PARTY_TONE[c.speakerGroup] || 'var(--ink60)'
+    : 'var(--ink50)'
   const ent = []
   if (c.entities?.amountEuros) ent.push('€' + c.entities.amountEuros.toLocaleString('es-ES'))
-  if (c.entities?.count) ent.push(c.entities.count + (c.entities.countUnit ? ' ' + c.entities.countUnit : ''))
+  if (c.entities?.count)
+    ent.push(c.entities.count + (c.entities.countUnit ? ' ' + c.entities.countUnit : ''))
   if (c.entities?.date) ent.push(c.entities.date)
   return (
     <Card>
@@ -133,9 +133,7 @@ function ClaimRow({ item, plenoTitle }) {
           {c.plenoDate}
         </Link>
       </div>
-      <div style={{ fontSize: 13.5, lineHeight: 1.5, marginBottom: 6 }}>
-        «{c.verbatim}»
-      </div>
+      <div style={{ fontSize: 13.5, lineHeight: 1.5, marginBottom: 6 }}>«{c.verbatim}»</div>
       {ent.length > 0 && (
         <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)', marginBottom: 6 }}>
           {ent.join(' · ')}
@@ -163,11 +161,16 @@ function ClaimRow({ item, plenoTitle }) {
             }}
           >
             {v.evidence.length} {v.evidence.length === 1 ? 'evidencia' : 'evidencias'} ·{' '}
-            {v.checkedAgainst?.includes('llm-second-pass') ? 'verificador LLM' : 'verificador determinista'}
+            {v.checkedAgainst?.includes('llm-second-pass')
+              ? 'verificador LLM'
+              : 'verificador determinista'}
           </div>
           {v.evidence.slice(0, 2).map((e, i) => (
             <div key={i} style={{ marginTop: 2 }}>
-              <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginRight: 6 }}>
+              <span
+                className="mono"
+                style={{ fontSize: 10, color: 'var(--ink50)', marginRight: 6 }}
+              >
                 [{e.kind}]
               </span>
               {e.snippet}
@@ -196,8 +199,14 @@ export default function Declaraciones() {
 
   // Aggregate counts for the chip badges, computed once per snapshot.
   const stats = useMemo(() => {
-    const byVerdict = { verificado: 0, parcial: 0, contradicho: 0, 'sin-datos': 0, 'promesa-repetida': 0 }
-    const byBloc = { PSOE: 0, PP: 0, VOX: 0, 'Compromís': 0, Otro: 0, null: 0 }
+    const byVerdict = {
+      verificado: 0,
+      parcial: 0,
+      contradicho: 0,
+      'sin-datos': 0,
+      'promesa-repetida': 0,
+    }
+    const byBloc = { PSOE: 0, PP: 0, VOX: 0, Compromís: 0, Otro: 0, null: 0 }
     const topics = new Set()
     for (const it of items) {
       byVerdict[it.verification.verdict] = (byVerdict[it.verification.verdict] ?? 0) + 1
@@ -218,7 +227,8 @@ export default function Declaraciones() {
     const q = search.trim().toLowerCase()
     return items.filter((it) => {
       if (verdictFilter === 'with-evidence') {
-        if (!['verificado', 'parcial', 'contradicho'].includes(it.verification.verdict)) return false
+        if (!['verificado', 'parcial', 'contradicho'].includes(it.verification.verdict))
+          return false
       } else if (verdictFilter !== 'all' && it.verification.verdict !== verdictFilter) {
         return false
       }
@@ -249,16 +259,12 @@ export default function Declaraciones() {
 
   if (claims.loading) {
     return (
-      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>
-        {t('common.loading')}
-      </div>
+      <div style={{ padding: 32, color: 'var(--ink50)', fontSize: 13 }}>{t('common.loading')}</div>
     )
   }
   if (claims.error) {
     return (
-      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>
-        {claims.error.message}
-      </div>
+      <div style={{ padding: 32, color: 'var(--crit)', fontSize: 13 }}>{claims.error.message}</div>
     )
   }
 
@@ -266,10 +272,7 @@ export default function Declaraciones() {
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1100, margin: '0 auto' }}>
-      <SectionHead
-        eyebrow={t('declaraciones.eyebrow')}
-        title={t('declaraciones.title')}
-      />
+      <SectionHead eyebrow={t('declaraciones.eyebrow')} title={t('declaraciones.title')} />
       <p
         style={{
           fontSize: 13,
@@ -293,7 +296,11 @@ export default function Declaraciones() {
         }}
       >
         <MiniStat label={t('declaraciones.stat.total')} value={stats.total} />
-        <MiniStat label={t('declaraciones.stat.conEvidencia')} value={stats.withEvidence} tone="ok" />
+        <MiniStat
+          label={t('declaraciones.stat.conEvidencia')}
+          value={stats.withEvidence}
+          tone="ok"
+        />
         <MiniStat label="verificado" value={stats.byVerdict.verificado} tone="ok" />
         <MiniStat label="parcial" value={stats.byVerdict.parcial} tone="warn" />
         <MiniStat label="contradicho" value={stats.byVerdict.contradicho} tone="crit" />

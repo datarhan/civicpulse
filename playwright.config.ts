@@ -33,8 +33,7 @@ export default defineConfig({
         deviceScaleFactor: 2,
         isMobile: true,
         hasTouch: true,
-        userAgent:
-          'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15',
+        userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15',
       },
       testMatch: /mobile\.spec\.ts$/,
     },

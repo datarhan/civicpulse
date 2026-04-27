@@ -290,9 +290,7 @@ async function main() {
     }
     const reps = diffLines(chunk, corrected, start)
     allReplacements.push(...reps)
-    process.stderr.write(
-      `[refine-transcript]     ${reps.length} replacement(s) in this chunk\n`,
-    )
+    process.stderr.write(`[refine-transcript]     ${reps.length} replacement(s) in this chunk\n`)
     refinedChunks.push(corrected)
   }
 
@@ -311,16 +309,12 @@ async function main() {
     `# total replacements: ${allReplacements.length}`,
     `# vocab: ${JSON.stringify(vocab.counts)}`,
     '',
-    ...allReplacements.map(
-      (r) => `line ${r.lineNo}:\n  - ${r.before}\n  + ${r.after}`,
-    ),
+    ...allReplacements.map((r) => `line ${r.lineNo}:\n  - ${r.before}\n  + ${r.after}`),
     '',
   ].join('\n')
   writeFileSync(logPath, logBody, 'utf8')
   process.stderr.write(`[refine-transcript] audit log: ${logPath}\n`)
-  process.stderr.write(
-    `[refine-transcript] total replacements: ${allReplacements.length}\n`,
-  )
+  process.stderr.write(`[refine-transcript] total replacements: ${allReplacements.length}\n`)
 
   if (opts.apply) {
     // Atomic rename. Fails noisily if anything's wrong with the refined file.

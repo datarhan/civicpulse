@@ -55,8 +55,7 @@ function score(label: string): number {
 function extractActaLinks(html: string): ActaLink[] {
   // class="pdf" <a> tags. Example:
   //   <li class="descargas"><a class="pdf" href="/contenidos.downloadatt.action?id=9361387" target="_blank">Esborrany acta ple 2 d'octubre de 2023</a></li>
-  const re =
-    /<a\s+(?:[^>]*?\s)?class="pdf"\s+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi
+  const re = /<a\s+(?:[^>]*?\s)?class="pdf"\s+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi
   const out: ActaLink[] = []
   for (const m of html.matchAll(re)) {
     const href = m[1]
@@ -117,13 +116,18 @@ function normalizeActaText(raw: string): string {
 function toTranscriptFormat(text: string): string {
   // Match the `[start → end] text\n` shape the extractor slides windows over.
   // Every line gets [0.0 → 0.0] since PDF has no audio timestamps.
-  return text
-    .split('\n')
-    .map((line) => `[0.0 → 0.0] ${line}`)
-    .join('\n') + '\n'
+  return (
+    text
+      .split('\n')
+      .map((line) => `[0.0 → 0.0] ${line}`)
+      .join('\n') + '\n'
+  )
 }
 
-async function processPleno(p: Pleno, opts: { force: boolean }): Promise<'done' | 'skipped' | 'missing' | 'failed'> {
+async function processPleno(
+  p: Pleno,
+  opts: { force: boolean },
+): Promise<'done' | 'skipped' | 'missing' | 'failed'> {
   const outPath = resolve(TRANSCRIPT_DIR, `${p.id}.txt`)
   if (existsSync(outPath) && !opts.force) return 'skipped'
 
@@ -164,7 +168,9 @@ async function processPleno(p: Pleno, opts: { force: boolean }): Promise<'done' 
 
   const text = normalizeActaText(rawText)
   if (text.length < 400) {
-    process.stderr.write(`  extracted text too short (${text.length} chars) — likely scanned PDF; skipping\n`)
+    process.stderr.write(
+      `  extracted text too short (${text.length} chars) — likely scanned PDF; skipping\n`,
+    )
     return 'failed'
   }
   mkdirSync(TRANSCRIPT_DIR, { recursive: true })
@@ -195,25 +201,28 @@ async function main() {
   const plenos = (JSON.parse(readFileSync(PLENOS_PATH, 'utf8')).items ?? []) as Pleno[]
   mkdirSync(TRANSCRIPT_DIR, { recursive: true })
   const done = new Set(
-    readdirSync(TRANSCRIPT_DIR).filter((f) => f.endsWith('.txt')).map((f) => f.replace('.txt', '')),
+    readdirSync(TRANSCRIPT_DIR)
+      .filter((f) => f.endsWith('.txt'))
+      .map((f) => f.replace('.txt', '')),
   )
 
   // Default: oldest-first. Recent plenos (last ~6 weeks) haven't had their
   // actas approved + published yet — running newest-first wastes requests on
   // pages that predictably have no acta. Positional mode (explicit plenoIds)
   // keeps the caller's order.
-  const targets = positional.length > 0
-    ? plenos.filter((p) => positional.includes(p.id))
-    : plenos
-        .filter((p) => !done.has(p.id))
-        .sort((a, b) => a.date.localeCompare(b.date))
+  const targets =
+    positional.length > 0
+      ? plenos.filter((p) => positional.includes(p.id))
+      : plenos.filter((p) => !done.has(p.id)).sort((a, b) => a.date.localeCompare(b.date))
 
   if (positional.length > 0 && targets.length === 0) {
     process.stderr.write(`[actas] no pleno matches: ${positional.join(', ')}\n`)
     process.exit(1)
   }
 
-  process.stdout.write(`[actas] ${targets.length} pleno(s) to process${limit !== Infinity ? ` (limit ${limit})` : ''}\n`)
+  process.stdout.write(
+    `[actas] ${targets.length} pleno(s) to process${limit !== Infinity ? ` (limit ${limit})` : ''}\n`,
+  )
 
   const stats = { done: 0, skipped: 0, missing: 0, failed: 0 }
   let n = 0

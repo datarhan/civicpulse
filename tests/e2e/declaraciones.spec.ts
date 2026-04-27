@@ -20,9 +20,7 @@ test.describe('Declaraciones (/declaraciones)', () => {
     await expect(page.getByText(/^Total$/i).first()).toBeVisible({ timeout: 5000 })
 
     // Filter chip "Con evidencia" exists (default-selected).
-    await expect(
-      page.getByRole('button', { name: /Con evidencia/i }).first(),
-    ).toBeVisible()
+    await expect(page.getByRole('button', { name: /Con evidencia/i }).first()).toBeVisible()
 
     // At least one claim card renders (we have 4658+ claims at time of writing).
     await expect(page.locator('text=/«[^»]+»/').first()).toBeVisible({ timeout: 8000 })
@@ -36,11 +34,9 @@ test.describe('Declaraciones (/declaraciones)', () => {
     // empty-state copy renders. Either is a successful filter behaviour.
     const contradichoChip = page.getByRole('button', { name: /^contradicho/i }).first()
     await contradichoChip.click()
-    await expect(
-      page
-        .getByText(/Ninguna declaraci.n coincide|contradicho/i)
-        .first(),
-    ).toBeVisible({ timeout: 5000 })
+    await expect(page.getByText(/Ninguna declaraci.n coincide|contradicho/i).first()).toBeVisible({
+      timeout: 5000,
+    })
   })
 
   test('sidebar nav has Declaraciones entry linking here', async ({ page }) => {

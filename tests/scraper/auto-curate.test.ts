@@ -36,7 +36,10 @@ function mkClaim(over: Partial<VerifiedItem['claim']> = {}): VerifiedItem['claim
   }
 }
 
-function mkItem(claimOver: Partial<VerifiedItem['claim']>, verdict: VerifiedItem['verification']['verdict'] = 'verificado'): VerifiedItem {
+function mkItem(
+  claimOver: Partial<VerifiedItem['claim']>,
+  verdict: VerifiedItem['verification']['verdict'] = 'verificado',
+): VerifiedItem {
   const claim = mkClaim(claimOver)
   return {
     claim,
@@ -144,10 +147,7 @@ describe('selectBundles · gates', () => {
     const items = []
     for (let i = 0; i < 3; i++) {
       items.push(
-        mkItem(
-          { id: `p1-00${i}-cit-x${i}`, speakerGroup: 'PSOE', confidence: 0.85 },
-          'verificado',
-        ),
+        mkItem({ id: `p1-00${i}-cit-x${i}`, speakerGroup: 'PSOE', confidence: 0.85 }, 'verificado'),
       )
     }
     const r = selectBundles({ items }, new Set(), { minScore: 0 })
@@ -248,7 +248,8 @@ describe('composeFinding', () => {
       bundle,
       selectedQuotes: bundle.items,
       llmTitle: 'Title test 2026-01-15',
-      llmSummary: 'Resumen suficientemente largo para satisfacer el suelo de validación del schema.',
+      llmSummary:
+        'Resumen suficientemente largo para satisfacer el suelo de validación del schema.',
     })
     expect(finding.corroboration.length).toBeGreaterThan(0)
     expect(finding.corroboration[0].kind).toBe('tender')

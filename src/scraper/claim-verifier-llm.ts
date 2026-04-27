@@ -62,7 +62,10 @@ export interface LlmVerifierResult {
 /** Skip LLM verification for claim shapes where the answer is policy, not
  *  a data lookup. Mirrors the deterministic verifier's opinativa skip. */
 export function shouldSkipLlmVerification(claim: PlenoClaim): boolean {
-  if (claim.type === 'acusacion_publica' && (claim.accusationSubtype ?? 'opinativa') === 'opinativa') {
+  if (
+    claim.type === 'acusacion_publica' &&
+    (claim.accusationSubtype ?? 'opinativa') === 'opinativa'
+  ) {
     return true
   }
   return false
@@ -139,7 +142,10 @@ export async function verifyClaimWithLlm(
   //  · verificado/parcial require ≥1 citation; otherwise sin-datos.
   let verdict: ClaimVerdict = response.verdict
   if (verdict === 'contradicho' && contradictionCount === 0) verdict = 'parcial'
-  if ((verdict === 'verificado' || verdict === 'parcial' || verdict === 'contradicho') && evidence.length === 0) {
+  if (
+    (verdict === 'verificado' || verdict === 'parcial' || verdict === 'contradicho') &&
+    evidence.length === 0
+  ) {
     verdict = 'sin-datos'
   }
 
