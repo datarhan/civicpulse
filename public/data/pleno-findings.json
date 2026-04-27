@@ -1,10 +1,73 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-24T15:55:40.646Z",
+  "generatedAt": "2026-04-27T11:52:21.588Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "f-2026-04-20-cit-b9b013",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "title": "Pleno ordinario 2026-04-20: Debates sobre transparencia y sistemas de control",
+      "summary": "El grupo Otro afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "k4olcs-019-cit-b9b013",
+        "k4olcs-109-cit-531135",
+        "k4olcs-013-cit-3334d5",
+        "k4olcs-008-afi-843b2a"
+      ],
+      "quotes": [
+        {
+          "text": "sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "k4olcs-019-cit-b9b013"
+        },
+        {
+          "text": "estarán en la web para que todo el mundo pueda comprobar las licitaciones que se han realizado y las adjudicaciones",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "k4olcs-109-cit-531135"
+        },
+        {
+          "text": "esta carta es una rendición de cuentas y un acto de transparencia completo",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "k4olcs-013-cit-3334d5"
+        },
+        {
+          "text": "Con esos indicadores también la carta de servicios sufre, como he dicho, adaptaciones.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "k4olcs-008-afi-843b2a"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones."
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
+          "snippet": "Carta de servicios municipal · Ayuntamiento de Riba-roja de Túria · awarded"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=M1ywm72VHdo",
+          "snippet": "Vídeo del pleno 2026-04-20 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
     {
       "id": "f-2026-03-16-cit-377216",
       "plenoId": "ma87e0",
@@ -267,6 +330,287 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-curator",
       "publishedAt": "2026-04-24",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-23-cit-c905c3",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "title": "Pleno extraordinario y urgente 2025-12-23: Medio ambiente",
+      "summary": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. Otro grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1qi8axv-052-cit-c905c3",
+        "1qi8axv-052-cit-977367",
+        "1qi8axv-057-afi-c1ba98",
+        "1qi8axv-057-afi-e76c4d"
+      ],
+      "quotes": [
+        {
+          "text": "un contrato que además venía aprobado por un plan local de residuos que nos marcaba el camino a seguir a la hora de elaborar.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "1qi8axv-052-cit-c905c3"
+        },
+        {
+          "text": "una mejora con respecto al Agenda 2030, independientemente de eso, tenía mejoras directas sobre cómo había que tratar la basura, sobre cómo tenía que mejorar el servicio para que cada vez tuviera más calidad.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "1qi8axv-052-cit-977367"
+        },
+        {
+          "text": "pasar esos 50-60% que sí que se retiran de contenedores al día, pasar al 100%.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-057-afi-c1ba98"
+        },
+        {
+          "text": "los 50-60% que sí que se retiran de contenedores al día",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-057-afi-e76c4d"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato menor de servicio para la elaboración del plan  local de residuos para el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
+          "snippet": "Servicio limpieza · Ayuntamiento de Riba-roja de Túria · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
+          "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU..."
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=OGM7-9SLePc",
+          "snippet": "Vídeo del pleno 2025-12-23 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-01-cit-d89862",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "title": "Pleno ordinario 2025-12-01: Discusión sobre obras del Centro de Salud",
+      "summary": "El grupo PP afirma que las obras en el Centro de Salud están en curso y solicita información al respecto. El PSOE señala su intención de volver a la consellería en enero para revisar el avance del proyecto. Ambos grupos hacen referencia al contrato menor para adquisición de una carpa en el centro.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "qz6weg-239-cit-d89862",
+        "qz6weg-237-cit-7bff59",
+        "qz6weg-239-cit-5edf02",
+        "qz6weg-249-cit-3e02ef"
+      ],
+      "quotes": [
+        {
+          "text": "las obras del Centro de Salud",
+          "speakerGroup": "PP",
+          "sourceClaimId": "qz6weg-239-cit-d89862"
+        },
+        {
+          "text": "La consecución de la obra que se está haciendo en el Centro de Salud",
+          "speakerGroup": "PP",
+          "sourceClaimId": "qz6weg-237-cit-7bff59"
+        },
+        {
+          "text": "Contestemos el bloque del Partido Popular sobre el Centro de Salud.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "qz6weg-239-cit-5edf02"
+        },
+        {
+          "text": "seguiremos con el tema del centro de salud que cuando pase este mes, en enero, volveremos a la consellería para ver cómo va el tema del proyecto",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-249-cit-3e02ef"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamient…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
+          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2025-11-03-acu-431140",
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "title": "Pleno ordinario de Riba-roja de Túria, 2025-11-03: Debates sobre responsabilidad política y propuesta de ILP",
+      "summary": "El PP afirma que la responsabilidad en el temporal del 29 de octubre no recae exclusivamente en la Generalitat Valenciana. El PSOE señala su intención de presentar una Iniciativa Legislativa Popular (ILP) sobre este tema, diferenciándola de mociones anteriores. Compromís reclama formalmente la dimisión del presidente y vicepresidenta de la Generalitat por su gestión en el mencionado temporal.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1du4rf5-115-acu-431140",
+        "1du4rf5-237-cit-e34df3",
+        "1du4rf5-111-acu-4f6c40"
+      ],
+      "quotes": [
+        {
+          "text": "la responsabilidad no es única y exclusivamente de la Generalitat Valenciana.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "1du4rf5-115-acu-431140"
+        },
+        {
+          "text": "lo que pretendemos nosotros en esta ILP que no es una moción que ha estado presentada en otras legislaturas",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "1du4rf5-237-cit-e34df3"
+        },
+        {
+          "text": "Es reclamar formalmente al presidente del Partido Popular, Bertón Núñez Fejó, y a sus órganos correspondientes, la dimisión inmediata del presidente de la Generalitat Valenciana, Carlos Mazón, y la vicepresidenta y consejera de Servicios Sociales, Susana Camarero, por su responsabilidad política en la gestión de las ganas del 29 de octubre de 2024.",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "1du4rf5-111-acu-4f6c40"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=50AMOi%2FtmLPnSoTX3z%2F7wA%3D%3D",
+          "snippet": "Seguro de responsabilidad civil/patrimonial del ayuntamiento"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fyqNrUJGe9wQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Seguro de Responsabilidad Civil/patrimonial del Ayuntamiento de Riba-roja"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lcLSDg%2F0aswSugstABGr5A%3D%3D",
+          "snippet": "Contrato menor de renovación del actual sistema de gestión de copias de seguridad y recuperación junto con sus infraestructuras. · Ayuntamiento de Riba-roja de Túria · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=friEJqC%2FU%2Frs%2BnLj3vAg5A%3D%3D",
+          "snippet": "Contrato de obra en la Pedanía El Oliveral como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=97rs8e9e65YQyBAnWzHfCg%3D%3D",
+          "snippet": "Contrato de servicio reposición alumbrado Els Pous como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BIqG1AMdjwnVGIpKDxgsAQ%3D%3D",
+          "snippet": "Contrato de suministro de adquisición de tractor municipal como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024."
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=VGwdFVvEMOQ",
+          "snippet": "Vídeo del pleno 2025-11-03 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2025-10-06-cit-6c4d24",
+      "plenoId": "otxq2c",
+      "plenoDate": "2025-10-06",
+      "title": "Pleno ordinario 2025-10-06: Debate sobre apoyo social e igualdad",
+      "summary": "El PP afirma que trasladará puntos de acuerdo a varias instituciones para mejorar la atención a las mujeres. El PSOE señala su colaboración en programas de prevención y atención, destacando el compromiso con la protección infantil y adolescente. Ambos grupos mencionan contratos menores relacionados con servicios de asesoramiento jurídico y defensa procesal del Ayuntamiento.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "otxq2c-037-cit-6c4d24",
+        "otxq2c-072-cit-d5c436",
+        "otxq2c-031-cit-8ffc2f",
+        "otxq2c-024-cit-f56122"
+      ],
+      "quotes": [
+        {
+          "text": "de los grupos de apoyo psicológico, social, jurídico y en otros ámbitos. Y trasladar todos estos puntos de acuerdo al Ministerio de Igualdad, a la Delegación de Gobierno, a la Generalitat Valenciana, Federación Valenciana de Municipios y Provincias, al Consejo de Igualdad de Río Roja y a todas las asociaciones de nuestro municipio que trabajan por y para las mujeres.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "otxq2c-037-cit-6c4d24"
+        },
+        {
+          "text": "Colaboramos con Generalitat, colaboramos con Diputación y participamos en todos los programas de campañas de prevención, atención, reparación",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "otxq2c-072-cit-d5c436"
+        },
+        {
+          "text": "Esta comisión representa una apuesta firme por la protección de la infancia y la adolescencia",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "otxq2c-031-cit-8ffc2f"
+        },
+        {
+          "text": "dota al Ayuntamiento de Riva Roja de una herramienta sólida, moderna y garantista, que nos permitirá seguir atendiendo con rigor, empatía y eficacia a las personas y familias que atraviesan dificultades.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "otxq2c-024-cit-f56122"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y%2B4KpfdCiqmiEJrVRqloyA%3D%3D",
+          "snippet": "Contrato menor, servicio para la elaboración del Plan de Inclusión y Cohesión Social Municipal para el municipio de Riba-roja de Túria."
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MT4UDr1mVSrnSoTX3z%2F7wA%3D%3D",
+          "snippet": "Servicio de asesoramiento jurídico y defensa procesal del Ayuntamiento"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L6ABbu5%2BhfgQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Habilitación de locales de ctra. villamarchante, 119, para asociaciones municipales"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+          "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Prevención ajeno: especialidades · Ayuntamiento de Riba-roja de Túria"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sigih%2BOEc2d7h85%2Fpmmsfw%3D%3D",
+          "snippet": "obras de reparación goteras en edificios municipales. · Ayuntamiento de Riba-roja de Túria"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
+          "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
+          "snippet": "Programa municipal personas con diversidad funcional intelectual"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=x85-nqbxcnY",
+          "snippet": "Vídeo del pleno 2025-10-06 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
       "response": null
     }
   ]
