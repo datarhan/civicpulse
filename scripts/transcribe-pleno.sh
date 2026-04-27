@@ -97,6 +97,40 @@ if [ ! -f "$AUDIO" ]; then
 fi
 echo "[transcribe] audio size: $(du -h "$AUDIO" | cut -f1)"
 
+# ── Optional pre-Whisper denoise ────────────────────────────────────────
+# Default OFF. When `WHISPER_DENOISE=1`, we re-encode `$AUDIO` through
+# ffmpeg's `afftdn` (FFT-based noise reduction, built-in — no extra
+# dependencies) and point all three Whisper backends at the cleaned
+# file. Worth a try on noisy plenos (long marathon sessions, distant
+# microphones, post-DANA echoey recovery sessions). Skip on already-
+# clean audio: aggressive denoise can clip consonant transients.
+#
+# Filter parameters:
+#   nr=12 dB   moderate reduction. <8 dB inaudible; >20 dB starts
+#              chewing on speech consonants.
+#   nf=-25 dB  noise-floor seed. With tn=1 the filter auto-adapts as
+#              the floor drifts (AC hum during quiet passages,
+#              applause/cross-talk during debate).
+#   tn=1       track noise floor adaptively.
+#
+# Empirical guidance: A/B word-count between with/without on each
+# pleno before adopting. Drop the flag if the cleaned-audio transcript
+# loses >5% of words vs the baseline.
+if [ "${WHISPER_DENOISE:-0}" = "1" ]; then
+  CLEAN="$WORKDIR/audio-clean.mp3"
+  echo "[transcribe] WHISPER_DENOISE=1 — running ffmpeg afftdn (FFT noise reduction)…"
+  ffmpeg -hide_banner -loglevel error -y \
+    -i "$AUDIO" \
+    -af "afftdn=nr=12:nf=-25:tn=1" \
+    "$CLEAN"
+  if [ ! -f "$CLEAN" ]; then
+    echo "[transcribe] denoise failed; keeping original audio" >&2
+  else
+    AUDIO="$CLEAN"
+    echo "[transcribe]   denoised audio: $(du -h "$AUDIO" | cut -f1)"
+  fi
+fi
+
 OUT_PATH="$TRANSCRIPT_DIR/$PLENO_ID.txt"
 
 if [ "$WHISPER_ENGINE" = "openai" ]; then

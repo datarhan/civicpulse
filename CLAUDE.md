@@ -96,6 +96,16 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #   WHISPER_MODEL env chooses the Whisper weights (large-v3 default,
 #   medium/small for speed at the cost of WER).
 #
+# Optional pre-Whisper noise reduction (opt-in):
+#   WHISPER_DENOISE=1     · re-encodes the downloaded audio through
+#                           ffmpeg's afftdn (FFT noise reduction, built-in)
+#                           BEFORE Whisper sees it. nr=12 dB reduction with
+#                           adaptive noise-floor tracking. Default OFF —
+#                           aggressive denoise can clip consonants on
+#                           already-clean recordings; A/B word-count first.
+#                           Useful for marathon sessions, distant mics,
+#                           post-DANA echoey recovery rooms.
+#
 # Optional speaker diarization (post-Whisper, opt-in):
 #   WHISPER_DIARIZE=1     · runs pyannote.audio's speaker-diarization-3.1
 #                           after Whisper and rewrites every transcript
