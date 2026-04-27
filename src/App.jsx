@@ -26,6 +26,11 @@ const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Metodologia = lazy(() => import('./pages/Metodologia'))
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
 const Cambios = lazy(() => import('./pages/Cambios'))
+// /curator is dev-only — see vite-curator-plugin.js. The lazy import
+// is gated below by `import.meta.env.MODE !== 'production'`. Production
+// builds never reference Curator.jsx so the chunk is tree-shaken out.
+const isDev = import.meta.env.MODE !== 'production'
+const Curator = isDev ? lazy(() => import('./pages/Curator')) : null
 
 const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
 
@@ -97,6 +102,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
               <Route path="/quejas/:id" element={<QuejaDetail />} />
               <Route path="/cambios" element={<Cambios />} />
+              {Curator && <Route path="/curator" element={<Curator />} />}
               <Route path="/metodologia" element={<Metodologia />} />
               <Route path="/aviso-legal" element={<AvisoLegal />} />
               <Route path="*" element={<Navigate to="/" replace />} />

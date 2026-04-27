@@ -89,6 +89,21 @@ export const NAV = [
     icon: Ic.warn,
     shortcut: 'G Q',
   },
+  // /curator is dev-only — surfaces in the sidebar only when running
+  // `npm run dev` on a curator's laptop. Production builds tree-shake
+  // this entry out via the import.meta.env.MODE check below.
+  ...(import.meta.env.MODE !== 'production'
+    ? [
+        {
+          to: '/curator',
+          id: 'curator',
+          labelKey: 'nav.curator',
+          label: 'Curator (dev)',
+          icon: Ic.settings ?? Ic.warn,
+          shortcut: 'G C',
+        },
+      ]
+    : []),
 ]
 
 function CityChip() {
