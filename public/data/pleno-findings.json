@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-27T11:52:21.588Z",
+  "generatedAt": "2026-04-27T12:00:20.949Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -55,6 +55,63 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
           "snippet": "Carta de servicios municipal · Ayuntamiento de Riba-roja de Túria · awarded"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=M1ywm72VHdo",
+          "snippet": "Vídeo del pleno 2026-04-20 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2026-04-20-cit-25e6ea",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "title": "Pleno ordinario de Riba-roja de Túria 2026-04-20: Debate sobre educación",
+      "summary": "El grupo PSOE afirma que el plan edificante ha movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas, mientras que VOX se compromete a garantizar una enseñanza de calidad con libertad. El registro municipal incluye contratos relacionados con mejoras en centros educativos y servicios de formación.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "k4olcs-063-cit-25e6ea",
+        "k4olcs-032-cit-98a5be",
+        "k4olcs-077-pro-02ea8a"
+      ],
+      "quotes": [
+        {
+          "text": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "k4olcs-063-cit-25e6ea"
+        },
+        {
+          "text": "Pasemos al siguiente punto que es una moción del Grupo Municipal Socialista para la Defensa de la Educación Pública",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "k4olcs-032-cit-98a5be"
+        },
+        {
+          "text": "El compromiso de Vox es garantizar una enseñanza de calidad, con libertad,",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "k4olcs-077-pro-02ea8a"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bLZD2lEN68VvYnTkQN0%2FZA%3D%3D",
+          "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de a…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Cp2xOIZ42esQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Impartición clases de educación ambiental en colegios del municipio"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
+          "snippet": "tender · 80000000-Servicios de enseñanza y formación. · Ayuntamiento de Riba-roja de Túria · awarded"
         },
         {
           "kind": "pleno-video",
@@ -291,6 +348,73 @@
       "response": null
     },
     {
+      "id": "f-2026-01-19-afi-5b06c8",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Pleno ordinario 2026-01-19: Debate sobre transparencia en contratación",
+      "summary": "El grupo Otro afirma que se ha discutido la necesidad de controlar el grado de cumplimiento del plan estratégico participado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que Otro señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-025-afi-5b06c8",
+        "19gax3o-017-cit-1a1dad",
+        "19gax3o-120-acu-c9acb2"
+      ],
+      "quotes": [
+        {
+          "text": "Hay uno que ya comentamos en la misma comisión de contratación que es que el control del grado de cumplimiento de lo planificado,",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-025-afi-5b06c8"
+        },
+        {
+          "text": "hemos aprobado la guía rivalizada, el trabajo de los sistemas dinámicos de adquisición",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-017-cit-1a1dad"
+        },
+        {
+          "text": "No hay un contrato de mantenimiento que tenga una empresa grande como es el Ecnor,",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-120-acu-c9acb2"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UOJGb0cV33kBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato de servicio de seguimiento y control de la implementación del “plan estratégico participado de Riba-roja de Túria (2017-2025) (Plan Riba y PlanRiba-plus)"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=p%2FN4VhcVFNUBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "servicio de asesoramiento jurídico en materia de contratación con el fin de poner en marcha los Sistemas Dinámicos de Adquisición."
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Mantenimiento SW Deepfreeze. · Ayuntamiento de Riba-roja de Túria"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+          "snippet": "Servicio mantenimiento instalaciones térmicas deportes. · Ayuntamiento de Riba-roja de Túria"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AB1HaKg7oyUBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Mantenimiento de ascensores y elevadores de titularidad municipal · Ayuntamiento de Riba-roja de Túria"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
       "id": "f-2025-12-23-acu-a1ba00",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -396,6 +520,68 @@
       "response": null
     },
     {
+      "id": "f-2025-12-23-afi-3eebaf",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "title": "Pleno extraordinario y urgente de Riba-roja de Túria, 2025-12-23: Debates sobre transparencia y accesibilidad a informes",
+      "summary": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que Otro señala la inclusión de nuevas condiciones en el actual contrato.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1qi8axv-122-afi-3eebaf",
+        "1qi8axv-023-cit-3e6224",
+        "1qi8axv-059-afi-3e1e17"
+      ],
+      "quotes": [
+        {
+          "text": "ahora no hay ni que desplazarse al ayuntamiento para poder acceder a los informes",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "1qi8axv-122-afi-3eebaf"
+        },
+        {
+          "text": "un contrato para la asistencia técnica y el recorzamiento para el control y supervisión de las prestaciones del contrato",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "1qi8axv-023-cit-3e6224"
+        },
+        {
+          "text": "no existía en el contrato anterior y en este sí",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-059-afi-3e1e17"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9xjipJFNRB8QK2TEfXGy%2BA%3D%3D",
+          "snippet": "Actualización y mantenimiento de la plataforma Esigna 3.X"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Mantenimiento plataforma de administración electrónica."
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3u5MceicW%2FxvYnTkQN0%2FZA%3D%3D",
+          "snippet": "Servicio de asistencia técnica para el impulso y la gestión de la compra pública de innovación en el Ayuntamiento de Riba-roja de Túria dentro del marco estratégico de Missions Valencia 2030 (Plan estratégico de innovación orientado a Ri…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
+          "snippet": "Asistencia técnica creación espacio RIV, RIBA INNOVACIÓ VIVA."
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=OGM7-9SLePc",
+          "snippet": "Vídeo del pleno 2025-12-23 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
       "id": "f-2025-12-01-cit-d89862",
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
@@ -435,6 +621,58 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
           "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamient…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
+          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-01-cit-66cd62",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "title": "Pleno ordinario de Riba-roja de Túria, 2025-12-01: Debates sobre sistemas dinámicos de adquisición y bolsa de autónomos",
+      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. Otro grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "qz6weg-185-cit-66cd62",
+        "qz6weg-185-afi-eeb37d",
+        "qz6weg-278-cit-1e696b"
+      ],
+      "quotes": [
+        {
+          "text": "Los sistemas dinámicos de adquisición, que se aprobaron hace poco aquí, y con la cesión de la bolsa de autónomos de Riva Roja a otros ayuntamientos para realizar proyectos.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-185-cit-66cd62"
+        },
+        {
+          "text": "El plan rehabilita más de 900.000 euros con una bolsa en el ayuntamiento para los autónomos y pequeñas empresas de Riva Roja.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-185-afi-eeb37d"
+        },
+        {
+          "text": "esta iniciativa se ha hecho, que lo hacemos en más municipios porque en definitiva es una campaña para el comercio local, para los autónomos",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "qz6weg-278-cit-1e696b"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=p%2FN4VhcVFNUBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "servicio de asesoramiento jurídico en materia de contratación con el fin de poner en marcha los Sistemas Dinámicos de Adquisición. · Ayuntamiento de Riba-roja de Túria · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
+          "snippet": "Actuación musical feria del comercio 2019"
         },
         {
           "kind": "pleno-video",
