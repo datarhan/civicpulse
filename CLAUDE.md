@@ -121,6 +121,20 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                             4. ~/.local/civicpulse-pyannote/venv/bin/pip install pyannote.audio==3.3
 #                           Default OFF — plain Whisper output keeps
 #                           the dependency surface minimal.
+#
+# Optional proper-noun second pass (post-Whisper, opt-in):
+#   npm run refine-transcript -- <plenoId> [--apply]
+#                         · Reads the Whisper transcript, builds a vocab
+#                           from officials.json + geo.json + wikidata.json
+#                           + top-50 contractors in tenders.json, and asks
+#                           the LLM (Gemini Pro by default) to fix
+#                           Whisper-mistranscribed proper nouns ONLY.
+#                           Conservative replacement discipline — leaves
+#                           uncertain tokens alone. Writes <id>.txt.refined
+#                           alongside the original; --apply atomic-renames
+#                           it. Audit log per replacement at
+#                           scripts/logs/refine-transcript-<id>-<ts>.log.
+#                           Cost: ~$0 on Gemini Pro plan, ~$0.30 metered.
 
 npm run verify:pleno-claims               # pure local pass · tenders + BDNS + budget + promises
 npm run extract-and-verify:pleno-claims -- <plenoId|--all>  # both in one go
