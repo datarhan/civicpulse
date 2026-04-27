@@ -17,12 +17,7 @@
  */
 import type { PlenoClaim } from './pleno-claim'
 import type { ClaimVerification } from './claim-verifier'
-import type {
-  PlenoFinding,
-  FindingQuote,
-  FindingRef,
-  FindingSeverity,
-} from './pleno-finding'
+import type { PlenoFinding, FindingQuote, FindingRef, FindingSeverity } from './pleno-finding'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -146,7 +141,8 @@ export function selectBundles(
  */
 export function topQuotes(items: VerifiedItem[], k = 4): VerifiedItem[] {
   const sorted = [...items].sort((a, b) => {
-    const dw = (VERDICT_WEIGHT[b.verification.verdict] ?? 1) - (VERDICT_WEIGHT[a.verification.verdict] ?? 1)
+    const dw =
+      (VERDICT_WEIGHT[b.verification.verdict] ?? 1) - (VERDICT_WEIGHT[a.verification.verdict] ?? 1)
     if (dw !== 0) return dw
     return b.claim.confidence - a.claim.confidence
   })
@@ -203,7 +199,8 @@ export function composeFinding(opts: ComposeOpts): PlenoFinding {
       if (!['tender', 'bdns', 'budget', 'promise'].includes(kindMapped)) continue
       if (seenRefs.has(ev.ref)) continue
       seenRefs.add(ev.ref)
-      const snippet = ev.snippet.length > 237 ? ev.snippet.slice(0, 237).trimEnd() + '…' : ev.snippet
+      const snippet =
+        ev.snippet.length > 237 ? ev.snippet.slice(0, 237).trimEnd() + '…' : ev.snippet
       corroboration.push({ kind: kindMapped as FindingRef['kind'], ref: ev.ref, snippet })
     }
   }

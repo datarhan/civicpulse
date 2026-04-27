@@ -50,8 +50,30 @@ export interface FindingQuote {
 }
 
 export interface FindingRef {
-  /** tender | bdns | budget | promise | pleno-video | pleno-acta */
-  kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'pleno-video' | 'pleno-acta'
+  /**
+   * Six original kinds come from the deterministic + LLM verifiers
+   * (tender / bdns / budget / promise / pleno-video / pleno-acta).
+   * Three additional kinds are populated only by the curator path
+   * via the dashboard's `extraCorroboration` flow:
+   *   · press      – external news article (HTML URL)
+   *   · document   – non-acta external PDF (auditor report, contract,
+   *                  press release, etc.)
+   *   · transcript – whisper transcript of curator-supplied audio/video
+   *                  evidence (press conferences, citizen recordings).
+   * The curator-only kinds are gated server-side: only the
+   * `--extra-corroboration` flag (and the matching middleware action)
+   * accept them; no automated path can land them.
+   */
+  kind:
+    | 'tender'
+    | 'bdns'
+    | 'budget'
+    | 'promise'
+    | 'pleno-video'
+    | 'pleno-acta'
+    | 'press'
+    | 'document'
+    | 'transcript'
   /** Absolute URL when possible; synthetic ref ("budget:2025:cap3") otherwise. */
   ref: string
   /** Short citation the reader sees, ≤240 chars. */
@@ -135,7 +157,17 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): Findin
   const o = r as Record<string, unknown>
   must(
     typeof o.kind === 'string' &&
-      ['tender', 'bdns', 'budget', 'promise', 'pleno-video', 'pleno-acta'].includes(o.kind),
+      [
+        'tender',
+        'bdns',
+        'budget',
+        'promise',
+        'pleno-video',
+        'pleno-acta',
+        'press',
+        'document',
+        'transcript',
+      ].includes(o.kind),
     `items[${idx}].${label}[${ri}].kind invalid`,
   )
   must(typeof o.ref === 'string' && o.ref.length > 0, `items[${idx}].${label}[${ri}].ref required`)

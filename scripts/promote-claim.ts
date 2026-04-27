@@ -48,7 +48,9 @@ function usage(): never {
       '  npm run promote-claim -- <claimId> [claimId ...] \\\n' +
       '      --title "<title>" --summary "<summary>" \\\n' +
       '      [--severity informational|notable|critical] \\\n' +
-      '      [--curator "<name>"] [--related-promise <id>] [--edit] [--force]\n',
+      '      [--curator "<name>"] [--related-promise <id>] \\\n' +
+      '      [--extra-corroboration \'[{"kind":"press|document|transcript","ref":"<url>","snippet":"<≤240 chars>"}, …]\'] \\\n' +
+      '      [--edit] [--force]\n',
   )
   process.exit(2)
 }
@@ -103,6 +105,67 @@ function evidenceToRefs(ev: ClaimVerification['evidence']): {
   return { corroboration, contradiction }
 }
 
+/** Curator-supplied refs eligible to land in `corroboration[]`. The
+ *  CLI restricts the kinds here to the three curator-only values
+ *  (`press`, `document`, `transcript`) — the remaining six kinds are
+ *  populated only by the verifier path. */
+const CURATOR_REF_KINDS = new Set(['press', 'document', 'transcript'])
+const MAX_EXTRA_CORROBORATION = 10
+
+function parseExtraCorroboration(raw: string): FindingRef[] {
+  let parsed: unknown
+  try {
+    parsed = JSON.parse(raw)
+  } catch (err) {
+    process.stderr.write(
+      `[promote-claim] --extra-corroboration: invalid JSON (${(err as Error).message})\n`,
+    )
+    process.exit(2)
+  }
+  if (!Array.isArray(parsed)) {
+    process.stderr.write('[promote-claim] --extra-corroboration: must be a JSON array\n')
+    process.exit(2)
+  }
+  if (parsed.length > MAX_EXTRA_CORROBORATION) {
+    process.stderr.write(
+      `[promote-claim] --extra-corroboration: max ${MAX_EXTRA_CORROBORATION} entries (got ${parsed.length})\n`,
+    )
+    process.exit(2)
+  }
+  const out: FindingRef[] = []
+  for (let i = 0; i < parsed.length; i++) {
+    const e = parsed[i] as Record<string, unknown>
+    if (!e || typeof e !== 'object') {
+      process.stderr.write(`[promote-claim] --extra-corroboration[${i}]: must be object\n`)
+      process.exit(2)
+    }
+    const kind = String(e.kind ?? '')
+    const ref = String(e.ref ?? '')
+    const snippetRaw = String(e.snippet ?? '')
+    if (!CURATOR_REF_KINDS.has(kind)) {
+      process.stderr.write(
+        `[promote-claim] --extra-corroboration[${i}].kind: must be one of ${[...CURATOR_REF_KINDS].join('|')} (got ${kind})\n`,
+      )
+      process.exit(2)
+    }
+    if (ref.length === 0 || ref.length > 2000) {
+      process.stderr.write(
+        `[promote-claim] --extra-corroboration[${i}].ref: 1-2000 chars required\n`,
+      )
+      process.exit(2)
+    }
+    if (snippetRaw.length === 0) {
+      process.stderr.write(`[promote-claim] --extra-corroboration[${i}].snippet: required\n`)
+      process.exit(2)
+    }
+    // Truncate snippet to the schema's 240-char cap (same trimming
+    // discipline as the verifier path).
+    const snippet = snippetRaw.length > 237 ? snippetRaw.slice(0, 237).trimEnd() + '…' : snippetRaw
+    out.push({ kind: kind as FindingRef['kind'], ref, snippet })
+  }
+  return out
+}
+
 function parseArgs(argv: string[]): {
   claimIds: string[]
   title: string
@@ -110,6 +173,7 @@ function parseArgs(argv: string[]): {
   severity: FindingSeverity
   curator: string
   relatedPromises: string[]
+  extraCorroboration: FindingRef[]
   edit: boolean
   force: boolean
 } {
@@ -120,6 +184,7 @@ function parseArgs(argv: string[]): {
     severity: 'notable' as FindingSeverity,
     curator: 'civicpulse-curator',
     relatedPromises: [] as string[],
+    extraCorroboration: [] as FindingRef[],
     edit: false,
     force: false,
   }
@@ -130,7 +195,9 @@ function parseArgs(argv: string[]): {
     else if (a === '--severity') opts.severity = argv[++i] as FindingSeverity
     else if (a === '--curator') opts.curator = argv[++i]
     else if (a === '--related-promise') opts.relatedPromises.push(argv[++i])
-    else if (a === '--edit') opts.edit = true
+    else if (a === '--extra-corroboration') {
+      opts.extraCorroboration = parseExtraCorroboration(argv[++i])
+    } else if (a === '--edit') opts.edit = true
     else if (a === '--force') opts.force = true
     else if (a.startsWith('--')) {
       process.stderr.write(`[promote-claim] unknown flag ${a}\n`)
@@ -199,6 +266,17 @@ function main() {
       }
     }
   }
+  // Curator-supplied corroboration (URL/PDF/transcript). Dedup by ref
+  // so a curator-added URL that happens to also surface in the
+  // verifier's evidence doesn't appear twice on the published card.
+  if (opts.extraCorroboration.length > 0) {
+    const seen = new Set(corroboration.map((c) => c.ref))
+    for (const e of opts.extraCorroboration) {
+      if (seen.has(e.ref)) continue
+      seen.add(e.ref)
+      corroboration.push(e)
+    }
+  }
 
   // Deterministic finding id: f-<plenoDate>-<first-claim-id-short>
   const shortAnchor = anchor.id.split('-').slice(-2).join('-')
@@ -257,7 +335,7 @@ function main() {
   writeFileSync(FINDINGS, serialized, 'utf8')
   process.stdout.write(
     `[promote-claim] ${existingIdx >= 0 ? 'updated' : 'promoted'} finding ${id} ` +
-      `(${rows.length} claim(s), ${corroboration.length} corroboration, ${contradiction.length} contradiction) → ${FINDINGS}\n`,
+      `(${rows.length} claim(s), ${corroboration.length} corroboration${opts.extraCorroboration.length > 0 ? ` [+${opts.extraCorroboration.length} curator]` : ''}, ${contradiction.length} contradiction) → ${FINDINGS}\n`,
   )
 }
 

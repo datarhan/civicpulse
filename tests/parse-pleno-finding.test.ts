@@ -101,3 +101,48 @@ describe('validateFindingsSnapshot — legal invariants', () => {
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/duplicate/)
   })
 })
+
+describe('FindingRef.kind — curator-only kinds', () => {
+  // Three new kinds were added so the curator dashboard can persist
+  // URL/PDF/transcript evidence into corroboration[]: 'press',
+  // 'document', 'transcript'. The original six (tender/bdns/budget/
+  // promise/pleno-video/pleno-acta) keep working.
+  const PUBLISH_KINDS_OK = ['press', 'document', 'transcript']
+
+  for (const kind of PUBLISH_KINDS_OK) {
+    it(`accepts kind=${kind} in corroboration[]`, () => {
+      const ok = JSON.parse(JSON.stringify(VALID))
+      ok.items[0].corroboration = [
+        { kind, ref: 'https://example.com/source', snippet: 'curator-supplied citation' },
+      ]
+      const snap = validateFindingsSnapshot(JSON.stringify(ok))
+      expect(snap.items[0].corroboration[0].kind).toBe(kind)
+    })
+  }
+
+  it('still accepts the six original kinds (no regression)', () => {
+    const ok = JSON.parse(JSON.stringify(VALID))
+    ok.items[0].corroboration = [
+      { kind: 'tender', ref: 'https://t/1', snippet: 'tender' },
+      { kind: 'bdns', ref: 'https://b/1', snippet: 'bdns' },
+      { kind: 'budget', ref: 'budget:2025:cap3', snippet: 'budget' },
+      { kind: 'promise', ref: 'promise:psoe-1', snippet: 'promise' },
+      { kind: 'pleno-video', ref: 'https://yt/1', snippet: 'video' },
+      { kind: 'pleno-acta', ref: 'https://ribarroja.es/acta', snippet: 'acta' },
+    ]
+    const snap = validateFindingsSnapshot(JSON.stringify(ok))
+    expect(snap.items[0].corroboration).toHaveLength(6)
+  })
+
+  it('still rejects unknown kinds', () => {
+    const bad = JSON.parse(JSON.stringify(VALID))
+    bad.items[0].corroboration = [{ kind: 'rumor', ref: 'https://x', snippet: 'unverified' }]
+    expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/kind invalid/)
+  })
+
+  it('rejects snippet >240 chars regardless of kind', () => {
+    const bad = JSON.parse(JSON.stringify(VALID))
+    bad.items[0].corroboration = [{ kind: 'press', ref: 'https://x', snippet: 'x'.repeat(241) }]
+    expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/1-240 chars/)
+  })
+})
