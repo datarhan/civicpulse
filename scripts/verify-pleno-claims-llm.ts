@@ -26,7 +26,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import {
-  shortlistCandidates,
+  getShortlist,
   type ClaimVerification,
   type ClaimVerdict,
   type VerifierInputs,
@@ -120,7 +120,7 @@ async function main() {
   let lastReport = -1
   async function processOne(it: { claim: PlenoClaim; verification: ClaimVerification }) {
     const inputs: VerifierInputs = { claim: it.claim, tenders, bdns, budget, promises }
-    const shortlist = shortlistCandidates(inputs, 8)
+    const shortlist = await getShortlist(inputs, 8)
     if (shortlist.length === 0) {
       stats.kept += 1
       return

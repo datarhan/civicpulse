@@ -81,7 +81,11 @@ describe('shortlistCandidates', () => {
   it('excludes records below the 0.20 similarity floor', () => {
     const offTopic = {
       items: [
-        { permalink: 'https://t/1', title: 'Festival de música tradicional valenciana', award_amount_eur: 5000 },
+        {
+          permalink: 'https://t/1',
+          title: 'Festival de música tradicional valenciana',
+          award_amount_eur: 5000,
+        },
       ],
     }
     const list = shortlistCandidates({ claim: baseClaim, tenders: offTopic }, 5)
@@ -98,9 +102,14 @@ describe('verifyClaimWithLlm', () => {
       { claim: baseClaim, candidates },
       mockCaller({
         verdict: 'verificado',
-        summary: 'El contrato de alumbrado público se adjudicó por €195.000, cercano a los €200.000 declarados.',
+        summary:
+          'El contrato de alumbrado público se adjudicó por €195.000, cercano a los €200.000 declarados.',
         evidence: [
-          { candidateIndex: 0, snippet: 'tender alumbrado adjudicado por €195.000', isContradiction: false },
+          {
+            candidateIndex: 0,
+            snippet: 'tender alumbrado adjudicado por €195.000',
+            isContradiction: false,
+          },
         ],
         confidence: 0.85,
       }),
@@ -123,9 +132,7 @@ describe('verifyClaimWithLlm', () => {
       mockCaller({
         verdict: 'verificado',
         summary: 'Hallucinated cite outside the list.',
-        evidence: [
-          { candidateIndex: 999, snippet: 'fake tender', isContradiction: false },
-        ],
+        evidence: [{ candidateIndex: 999, snippet: 'fake tender', isContradiction: false }],
         confidence: 0.9,
       }),
     )
@@ -162,7 +169,11 @@ describe('verifyClaimWithLlm', () => {
         verdict: 'contradicho',
         summary: 'Tender amount disagrees with the spoken figure.',
         evidence: [
-          { candidateIndex: 0, snippet: 'tender amount €195k vs claimed €200k', isContradiction: true },
+          {
+            candidateIndex: 0,
+            snippet: 'tender amount €195k vs claimed €200k',
+            isContradiction: true,
+          },
         ],
         confidence: 0.92,
       }),
@@ -179,7 +190,10 @@ describe('verifyClaimWithLlm', () => {
       verbatim: 'el equipo de gobierno es inútil y mentiroso',
     }
     const result = await verifyClaimWithLlm(
-      { claim: opinionativeClaim, candidates: [{ kind: 'tender', ref: 'r', snippet: 's', similarity: 0.5 }] },
+      {
+        claim: opinionativeClaim,
+        candidates: [{ kind: 'tender', ref: 'r', snippet: 's', similarity: 0.5 }],
+      },
       // Mock caller should never be invoked
       async () => {
         throw new Error('LLM should not be called for opinativa')
@@ -189,21 +203,15 @@ describe('verifyClaimWithLlm', () => {
   })
 
   it('returns null when there are no candidates to cite', async () => {
-    const result = await verifyClaimWithLlm(
-      { claim: baseClaim, candidates: [] },
-      async () => {
-        throw new Error('caller should not run')
-      },
-    )
+    const result = await verifyClaimWithLlm({ claim: baseClaim, candidates: [] }, async () => {
+      throw new Error('caller should not run')
+    })
     expect(result).toBeNull()
   })
 
   it('returns null when LLM returns null', async () => {
     const candidates = shortlistCandidates({ claim: baseClaim, tenders: tendersFixture }, 5)
-    const result = await verifyClaimWithLlm(
-      { claim: baseClaim, candidates },
-      async () => null,
-    )
+    const result = await verifyClaimWithLlm({ claim: baseClaim, candidates }, async () => null)
     expect(result).toBeNull()
   })
 })

@@ -555,10 +555,7 @@ export interface CandidateShortlist {
  *
  * Returned list is sorted by similarity descending and capped at topK.
  */
-export function shortlistCandidates(
-  inputs: VerifierInputs,
-  topK = 8,
-): CandidateShortlist[] {
+export function shortlistCandidates(inputs: VerifierInputs, topK = 8): CandidateShortlist[] {
   const claim = inputs.claim
   const out: CandidateShortlist[] = []
 
@@ -567,7 +564,7 @@ export function shortlistCandidates(
     const title = tenderTitle(t)
     if (!title) continue
     const textSim = overlapScore(claim.verbatim + ' ' + claim.context, title)
-    if (textSim < 0.20) continue
+    if (textSim < 0.2) continue
     const amount = tenderAmount(t)
     let snippet = title
     if (amount && claim.entities.amountEuros) {
@@ -589,12 +586,17 @@ export function shortlistCandidates(
   for (const b of readBdns(inputs.bdns)) {
     if (!b.titulo) continue
     const sim = overlapScore(claim.verbatim + ' ' + claim.context, b.titulo)
-    if (sim < 0.20) continue
+    if (sim < 0.2) continue
     const amount = bdnsAmount(b)
     out.push({
       kind: 'bdns',
-      ref: b.url ?? (b.convocatoriaId ? `bdns:${b.convocatoriaId}` : `bdns:${b.titulo.slice(0, 40)}`),
-      snippet: `${b.titulo}${amount ? ` · €${amount.toLocaleString('es-ES')}` : ''}${b.organo ? ` · ${b.organo}` : ''}`.slice(0, 230),
+      ref:
+        b.url ?? (b.convocatoriaId ? `bdns:${b.convocatoriaId}` : `bdns:${b.titulo.slice(0, 40)}`),
+      snippet:
+        `${b.titulo}${amount ? ` · €${amount.toLocaleString('es-ES')}` : ''}${b.organo ? ` · ${b.organo}` : ''}`.slice(
+          0,
+          230,
+        ),
       similarity: Math.round(sim * 100) / 100,
     })
   }
@@ -606,11 +608,15 @@ export function shortlistCandidates(
       if (!p?.quote || !p.id) continue
       if (p.party && claim.speakerGroup && p.party !== claim.speakerGroup) continue
       const sim = overlapScore(p.quote, claim.verbatim)
-      if (sim < 0.20) continue
+      if (sim < 0.2) continue
       out.push({
         kind: 'promise',
         ref: p.source?.url ?? `promise:${p.id}`,
-        snippet: `${p.party ?? ''} «${p.quote.slice(0, 140)}» · ${p.madeAt ?? ''}${p.status ? ` · status=${p.status}` : ''}`.slice(0, 230),
+        snippet:
+          `${p.party ?? ''} «${p.quote.slice(0, 140)}» · ${p.madeAt ?? ''}${p.status ? ` · status=${p.status}` : ''}`.slice(
+            0,
+            230,
+          ),
         similarity: Math.round(sim * 100) / 100,
       })
     }
@@ -619,4 +625,94 @@ export function shortlistCandidates(
   // Sort by similarity desc, take top K.
   out.sort((a, b) => b.similarity - a.similarity)
   return out.slice(0, topK)
+}
+
+// ─── Backend-aware dispatcher ───────────────────────────────────────────────
+//
+// The LLM verifier reads `getShortlist(inputs, topK)` instead of the sync
+// `shortlistCandidates()`. The dispatcher honours the `VERIFIER_SHORTLIST`
+// env var so a single switch reroutes the verifier to a semantic backend
+// without touching the verifier itself. Defaults to lexical for safety.
+
+export type ShortlistMode = 'lexical' | 'semantic' | 'hybrid'
+
+export interface ShortlistDispatcherOptions {
+  /** Override env. Defaults to `process.env.VERIFIER_SHORTLIST`. */
+  mode?: ShortlistMode
+  /**
+   * Path to the JSONL embedding cache. Defaults to
+   * `.embed-cache/verifier-corpus.jsonl`. Ignored in `lexical` mode.
+   */
+  corpusPath?: string
+}
+
+/**
+ * Async dispatcher used by the LLM verifier. Falls back to lexical
+ * gracefully if the semantic backend is selected but its cache or API
+ * key is unavailable — never crashes the verifier.
+ */
+export async function getShortlist(
+  inputs: VerifierInputs,
+  topK = 8,
+  opts: ShortlistDispatcherOptions = {},
+): Promise<CandidateShortlist[]> {
+  const mode = (opts.mode ?? (process.env.VERIFIER_SHORTLIST as ShortlistMode) ?? 'lexical') as
+    | ShortlistMode
+    | string
+  if (mode === 'lexical' || (mode !== 'semantic' && mode !== 'hybrid')) {
+    return shortlistCandidates(inputs, topK)
+  }
+
+  // Lazy-load the semantic helpers so the lexical-only path doesn't pay
+  // the import cost (and doesn't require fetch/openai env at all).
+  let semanticModule: typeof import('./semantic-shortlist')
+  let embedModule: typeof import('./embed-client')
+  try {
+    semanticModule = await import('./semantic-shortlist')
+    embedModule = await import('./embed-client')
+  } catch (err) {
+    process.stderr.write(
+      `[verifier] semantic mode unavailable (${(err as Error).message}); using lexical\n`,
+    )
+    return shortlistCandidates(inputs, topK)
+  }
+
+  const corpusPath = opts.corpusPath ?? '.embed-cache/verifier-corpus.jsonl'
+  let corpus: import('./semantic-shortlist').Corpus
+  try {
+    corpus = semanticModule.loadCorpus(corpusPath)
+  } catch (err) {
+    process.stderr.write(
+      `[verifier] semantic corpus missing (${(err as Error).message}); using lexical\n`,
+    )
+    return shortlistCandidates(inputs, topK)
+  }
+
+  if (!process.env.OPENAI_API_KEY) {
+    process.stderr.write(`[verifier] OPENAI_API_KEY not set; semantic disabled, using lexical\n`)
+    return shortlistCandidates(inputs, topK)
+  }
+
+  const embedFn: import('./semantic-shortlist').EmbedFn = async (text) => {
+    const [v] = await embedModule.embedTexts([text])
+    return v
+  }
+
+  let semantic: CandidateShortlist[]
+  try {
+    semantic = await semanticModule.semanticShortlist(inputs.claim, corpus, embedFn, {
+      topK: mode === 'hybrid' ? topK * 2 : topK,
+    })
+  } catch (err) {
+    process.stderr.write(
+      `[verifier] semantic shortlist failed (${(err as Error).message}); using lexical\n`,
+    )
+    return shortlistCandidates(inputs, topK)
+  }
+
+  if (mode === 'semantic') return semantic.slice(0, topK)
+
+  // Hybrid: union with lexical, dedup by ref, take top K by similarity.
+  const lexical = shortlistCandidates(inputs, topK * 2)
+  return semanticModule.mergeShortlists([semantic, lexical], topK)
 }
