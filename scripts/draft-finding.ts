@@ -100,14 +100,21 @@ function loadJson<T>(path: string): T | null {
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
 
-  // Default backend: Gemini Pro (subscription, $0). Same env as the
-  // weekly auto-curate cron. Caller can still override with LLM_BACKEND.
+  // Default backend: claude-code (Max subscription, $0). Claude shows
+  // better editorial discipline on the bloc-only attribution rules in
+  // the auto-curate prompt — observed during k4olcs claim-extract A/B.
+  // Curators are reviewing the draft anyway, so we optimise for prose
+  // quality over cold-start latency. Same default as the weekly cron.
+  //
+  // The fallback chain (claude-code → openai → anthropic → gemini →
+  // ollama) catches Max-window collisions; gemini stays as the
+  // pragmatic fallback because the project has Pro plan auth wired.
+  process.env.LLM_BACKEND = process.env.LLM_BACKEND ?? 'claude-code'
+  process.env.CLAUDE_CODE_MODEL = process.env.CLAUDE_CODE_MODEL ?? 'sonnet'
   process.env.GOOGLE_GENAI_USE_GCA = process.env.GOOGLE_GENAI_USE_GCA ?? 'true'
-  process.env.LLM_BACKEND = process.env.LLM_BACKEND ?? 'gemini'
   // gemini-2.5-pro is the highest tier the user's gemini CLI Pro
   // subscription accepts (3.x is 404 on this account, 2.0/lite are
-  // downgrades). Curators are reviewing the draft anyway, so we
-  // optimise for prose quality over cold-start latency.
+  // downgrades).
   process.env.GEMINI_MODEL = process.env.GEMINI_MODEL ?? 'gemini-2.5-pro'
 
   resetBudget()

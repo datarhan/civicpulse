@@ -41,14 +41,30 @@ echo "[$(date '+%F %T')] auto-curate-weekly starting"
 # don't waste quota.
 git pull --rebase --autostash origin main
 
-# Default backend: gemini (Pro plan, $0). Falls back through the
-# chain (anthropic → ollama) automatically if the quota is out.
-export GOOGLE_GENAI_USE_GCA="${GOOGLE_GENAI_USE_GCA:-true}"
-export LLM_BACKEND="${LLM_BACKEND:-gemini}"
+# Default backend: claude-code (Max subscription, $0). Claude has
+# noticeably better editorial discipline on the bloc-only attribution
+# rules in the auto-curate prompt — observed during the k4olcs A/B
+# (no fake 'Otro' attributions, more promesas correctly classified,
+# better numeric extraction).
+#
+# Volume: 5 findings × 1 LLM call per finding = 5 calls/week. Well
+# within the Max plan's 5-hour windows. If a window collides with
+# the curator's interactive Claude Code session, the fallback chain
+# (claude-code → openai → anthropic → gemini → ollama) catches it.
+#
+# The cwd patch in src/llm/client.ts (commit 2d9c1e8) keeps each
+# claude-code invocation at ~24K cache tokens (down from 63K) so the
+# api_error_status cascade we saw on the first claim-extract attempt
+# doesn't recur here.
+export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
+export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-sonnet}"
+# Gemini stays as a fallback target. GOOGLE_GENAI_USE_GCA=true so the
+# chain can switch to Pro plan auth if claude-code hits a quota wall.
 # gemini-2.5-pro is the highest tier the gemini CLI Pro subscription
 # accepts on this account (3.x isn't reachable, 2.0/lite are
 # downgrades). Verified by probing `gemini -m <model> -p ...` against
 # the live CLI. Re-test if Google ships 3.x to this tier.
+export GOOGLE_GENAI_USE_GCA="${GOOGLE_GENAI_USE_GCA:-true}"
 export GEMINI_MODEL="${GEMINI_MODEL:-gemini-2.5-pro}"
 
 # Run the curator with a 5-finding cap (matches the on-demand default).
