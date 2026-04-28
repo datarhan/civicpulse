@@ -1151,6 +1151,299 @@ function IssueRow({ issue }) {
   )
 }
 
+function PartyChip({ party }) {
+  if (!party) return null
+  const tone =
+    party === 'PSOE'
+      ? 'civic'
+      : party === 'PP'
+        ? 'intel'
+        : party === 'VOX'
+          ? 'crit'
+          : party === 'Compromís'
+            ? 'ok'
+            : 'neutral'
+  return <Pill tone={tone}>{party}</Pill>
+}
+
+function VoiceEnrollmentSection() {
+  // The endpoint returns { rows: [{slug, name, party, role, enrollment}] }
+  // — see vite-curator-plugin.js:handleVoiceprintsRead. Refreshes after
+  // every enroll/delete so the curator sees the latest state.
+  const voices = useJsonResource('/api/curator/voiceprints')
+  const [enrollFor, setEnrollFor] = useState(null) // { slug, name, party, role } or null
+  const [enrollUrl, setEnrollUrl] = useState('')
+  const [enrolling, setEnrolling] = useState(false)
+  const [enrollErr, setEnrollErr] = useState(null)
+  const [deleting, setDeleting] = useState(null) // slug being deleted, or null
+
+  const onEnroll = async () => {
+    if (!enrollFor) return
+    const url = enrollUrl.trim()
+    if (!url) return
+    setEnrolling(true)
+    setEnrollErr(null)
+    const r = await callCurator('enroll-voice', {
+      slug: enrollFor.slug,
+      audioUrl: url,
+      force: !!enrollFor.enrollment, // re-enroll path
+    })
+    setEnrolling(false)
+    if (!r.ok || r.exitCode !== 0) {
+      setEnrollErr(r.error || r.stderr?.slice(-300) || `enroll exited ${r.exitCode}`)
+      return
+    }
+    setEnrollFor(null)
+    setEnrollUrl('')
+    voices.refresh()
+  }
+
+  const onDelete = async (slug) => {
+    setDeleting(slug)
+    const r = await callCurator('delete-voiceprint', { slug })
+    setDeleting(null)
+    if (r.ok && r.exitCode === 0) voices.refresh()
+  }
+
+  const rows = voices.data?.rows ?? []
+  const enrolledCount = voices.data?.enrolledCount ?? 0
+  const total = voices.data?.totalCouncillors ?? 0
+
+  return (
+    <Card style={{ padding: 16, marginBottom: 18 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <SectionHead title="Voice ID enrollment" />
+        <span
+          className="mono"
+          style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+        >
+          {voices.data
+            ? `${enrolledCount}/${total} councillors enrolled · generated ${shortDate(voices.data.generatedAt)}`
+            : ''}
+        </span>
+        <button
+          onClick={() => voices.refresh()}
+          disabled={voices.loading}
+          style={{
+            padding: '5px 10px',
+            fontSize: 11,
+            border: '1px solid var(--border2)',
+            background: 'var(--paper)',
+            borderRadius: 6,
+            cursor: voices.loading ? 'not-allowed' : 'pointer',
+          }}
+        >
+          {voices.loading ? 'Loading…' : 'Refresh'}
+        </button>
+      </div>
+      <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, marginBottom: 10 }}>
+        Per-councillor voiceprint database (192-dim ECAPA-TDNN embeddings).
+        Enroll from any public audio URL — Instagram reel, YouTube clip,
+        official statement. Stored locally in <code>.voiceprints/</code>{' '}
+        (gitignored). Used for individual claim attribution at extraction
+        time once integration ships; today this is the enrollment tool only.
+      </p>
+      {voices.error && (
+        <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+          Cannot load /api/curator/voiceprints: {voices.error}
+        </p>
+      )}
+      <div style={{ display: 'grid', gap: 6 }}>
+        {rows.map((r) => {
+          const enrolled = !!r.enrollment
+          return (
+            <div
+              key={r.slug}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                padding: '8px 10px',
+                border: `1px solid ${enrolled ? 'var(--ok-ink)' : 'var(--border2)'}`,
+                borderRadius: 6,
+                background: enrolled ? 'var(--soft)' : 'var(--paper)',
+              }}
+            >
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 13, fontWeight: 600 }}>{r.name}</span>
+                  <PartyChip party={r.party} />
+                  {r.role === 'alcalde' && (
+                    <Pill tone="warn" size="sm">
+                      alcalde
+                    </Pill>
+                  )}
+                  {enrolled && (
+                    <span
+                      className="mono"
+                      style={{ fontSize: 10, color: 'var(--ok-ink)' }}
+                      title={`enrolled ${r.enrollment.enrolledAt}`}
+                    >
+                      ✓ {Math.round(r.enrollment.durationSec)}s · {r.enrollment.embeddingDim}-dim
+                    </span>
+                  )}
+                </div>
+                {enrolled && r.enrollment.sourceUrl && (
+                  <div style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+                    <a
+                      href={r.enrollment.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: 'inherit' }}
+                    >
+                      source ↗
+                    </a>
+                  </div>
+                )}
+              </div>
+              {enrolled && (
+                <button
+                  onClick={() => onDelete(r.slug)}
+                  disabled={deleting === r.slug}
+                  style={{
+                    padding: '4px 10px',
+                    fontSize: 11,
+                    border: '1px solid var(--border2)',
+                    background: 'var(--paper)',
+                    borderRadius: 4,
+                    cursor: deleting === r.slug ? 'not-allowed' : 'pointer',
+                  }}
+                >
+                  {deleting === r.slug ? 'Removing…' : 'Clear'}
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  setEnrollFor(r)
+                  setEnrollUrl('')
+                  setEnrollErr(null)
+                }}
+                style={{
+                  padding: '4px 10px',
+                  fontSize: 11,
+                  border: '1px solid var(--border2)',
+                  background: 'var(--paper)',
+                  borderRadius: 4,
+                  cursor: 'pointer',
+                }}
+              >
+                {enrolled ? 'Re-enroll…' : 'Enroll URL…'}
+              </button>
+            </div>
+          )
+        })}
+      </div>
+
+      {enrollFor && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.42)',
+            zIndex: 100,
+            display: 'grid',
+            placeItems: 'center',
+            padding: 16,
+          }}
+          role="dialog"
+          aria-modal="true"
+        >
+          <Card style={{ width: 'min(560px, 100%)', padding: 18 }}>
+            <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
+              {enrollFor.role ?? '—'} · {enrollFor.party ?? '—'}
+            </div>
+            <h3 style={{ margin: '4px 0 12px', fontSize: 16 }}>
+              Enroll voice: {enrollFor.name}
+            </h3>
+            <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 0 }}>
+              Paste any public audio URL with this person speaking — yt-dlp
+              will extract the audio. Recommended: <b>≥30 s</b> of clear,
+              uninterrupted speech (interview, statement, press conference).
+              The downloaded clip is cached in <code>.voiceprints/audio/</code>{' '}
+              for audit but never committed.
+            </p>
+            <input
+              type="url"
+              placeholder="https://www.instagram.com/reel/… or https://youtu.be/…"
+              value={enrollUrl}
+              onChange={(e) => setEnrollUrl(e.target.value)}
+              disabled={enrolling}
+              autoFocus
+              style={{
+                width: '100%',
+                padding: '8px 10px',
+                border: '1px solid var(--border2)',
+                borderRadius: 6,
+                fontSize: 13,
+                background: 'var(--paper)',
+                color: 'var(--ink)',
+                marginTop: 8,
+              }}
+            />
+            {enrollErr && (
+              <pre
+                style={{
+                  marginTop: 8,
+                  padding: '8px 10px',
+                  border: '1px solid var(--crit-ink)',
+                  borderRadius: 6,
+                  fontSize: 11,
+                  background: 'var(--soft)',
+                  color: 'var(--crit-ink)',
+                  whiteSpace: 'pre-wrap',
+                  overflow: 'auto',
+                  maxHeight: 200,
+                }}
+              >
+                {enrollErr}
+              </pre>
+            )}
+            <div style={{ display: 'flex', gap: 8, marginTop: 14 }}>
+              <button
+                onClick={onEnroll}
+                disabled={!enrollUrl.trim() || enrolling}
+                style={{
+                  padding: '9px 14px',
+                  border: 'none',
+                  background:
+                    enrollUrl.trim() && !enrolling ? 'var(--civic-ink)' : 'var(--soft)',
+                  color: enrollUrl.trim() && !enrolling ? '#fff' : 'var(--ink50)',
+                  borderRadius: 6,
+                  cursor: enrollUrl.trim() && !enrolling ? 'pointer' : 'not-allowed',
+                  fontWeight: 600,
+                }}
+              >
+                {enrolling
+                  ? 'Enrolling (yt-dlp + ffmpeg + ECAPA)…'
+                  : enrollFor.enrollment
+                    ? 'Re-enroll'
+                    : 'Enroll'}
+              </button>
+              <button
+                onClick={() => {
+                  setEnrollFor(null)
+                  setEnrollUrl('')
+                  setEnrollErr(null)
+                }}
+                disabled={enrolling}
+                style={{
+                  padding: '9px 14px',
+                  border: '1px solid var(--border2)',
+                  background: 'var(--paper)',
+                  borderRadius: 6,
+                  cursor: enrolling ? 'not-allowed' : 'pointer',
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </Card>
+        </div>
+      )}
+    </Card>
+  )
+}
+
 export default function Curator() {
   const queue = useJsonResource(QUEUE_URL)
   const issues = useJsonResource(ISSUES_URL)
@@ -1412,6 +1705,8 @@ export default function Curator() {
           <IssueRow key={i.number} issue={i} />
         ))}
       </Card>
+
+      <VoiceEnrollmentSection />
 
       {refreshResult && !refreshResult.ok && (
         <Card style={{ padding: 12, marginBottom: 18, borderColor: 'var(--crit-ink)' }}>

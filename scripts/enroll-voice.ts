@@ -45,7 +45,9 @@ const VOICE_MODELS_DIR = `${process.env.HOME}/.local/civicpulse-voice/models/spk
 
 interface CliArgs {
   slug: string
-  audio: string
+  /** Either --audio (local path) OR --url (Instagram/YouTube/etc., yt-dlp). */
+  audio?: string
+  url?: string
   /** When true, overwrite an existing voiceprint without --force prompt. */
   force: boolean
 }
@@ -56,17 +58,62 @@ function parseArgs(argv: string[]): CliArgs {
     const a = argv[i]
     if (a === '--slug') out.slug = argv[++i]
     else if (a === '--audio') out.audio = argv[++i]
+    else if (a === '--url') out.url = argv[++i]
     else if (a === '--force') out.force = true
     else {
       process.stderr.write(`[enroll-voice] unknown flag: ${a}\n`)
       process.exit(2)
     }
   }
-  if (!out.slug || !out.audio) {
-    process.stderr.write('usage: enroll-voice.ts --slug <slug> --audio <path> [--force]\n')
+  if (!out.slug || (!out.audio && !out.url)) {
+    process.stderr.write(
+      'usage: enroll-voice.ts --slug <slug> (--audio <path> | --url <url>) [--force]\n',
+    )
+    process.exit(2)
+  }
+  if (out.audio && out.url) {
+    process.stderr.write('[enroll-voice] pass either --audio or --url, not both\n')
     process.exit(2)
   }
   return out as CliArgs
+}
+
+/**
+ * Download audio from a public URL via yt-dlp. Lands as opus in
+ * .voiceprints/audio/<slug>-<timestamp>.opus. Same downloader the
+ * pleno-transcription pipeline uses, so format coverage is the same.
+ */
+function downloadAudioToCache(slug: string, url: string): string {
+  mkdirSync(resolve(VOICEPRINTS_DIR, 'audio'), { recursive: true })
+  const ts = new Date().toISOString().replace(/[:.]/g, '-').slice(0, 19)
+  const stem = `${slug}-${ts}`
+  const outTemplate = resolve(VOICEPRINTS_DIR, `audio/${stem}.%(ext)s`)
+  process.stderr.write(`[enroll-voice]   yt-dlp ${url} → ${outTemplate}\n`)
+  const r = spawnSync(
+    'yt-dlp',
+    [
+      '--no-playlist',
+      '--extract-audio',
+      '--audio-format',
+      'opus',
+      '--audio-quality',
+      '32k',
+      '-o',
+      outTemplate,
+      '--no-warnings',
+      url,
+    ],
+    { encoding: 'utf8', maxBuffer: 16 * 1024 * 1024 },
+  )
+  if (r.status !== 0) {
+    throw new Error(`yt-dlp failed: ${r.stderr.slice(-500) || 'non-zero exit'}`)
+  }
+  // yt-dlp picks the extension; opus is what we asked for.
+  const expected = resolve(VOICEPRINTS_DIR, `audio/${stem}.opus`)
+  if (!existsSync(expected)) {
+    throw new Error(`yt-dlp completed but ${expected} not found`)
+  }
+  return expected
 }
 
 interface Official {
@@ -104,7 +151,10 @@ interface IndexEntry {
   party: string | null
   role: string | null
   enrolledAt: string
+  /** Path to the (cached) audio file used for enrollment. */
   sourceAudio: string
+  /** When enrolled via --url, the original public URL for audit. */
+  sourceUrl: string | null
   durationSec: number
   embeddingDim: number
   embeddingNorm: number
@@ -261,8 +311,19 @@ function saveEmbedding(slug: string, emb: number[]): string {
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
   const official = loadOfficial(opts.slug)
-  if (!existsSync(opts.audio)) {
-    process.stderr.write(`[enroll-voice] audio missing: ${opts.audio}\n`)
+
+  // Resolve audio: either the local path the caller provided, or
+  // download fresh via yt-dlp. The downloaded file lands in the
+  // gitignored .voiceprints/audio/ directory and is preserved for
+  // audit trail (sourceAudio in index.json points at it).
+  let audioPath = opts.audio
+  if (opts.url) {
+    process.stderr.write(`[enroll-voice] downloading audio from ${opts.url}\n`)
+    audioPath = downloadAudioToCache(opts.slug, opts.url)
+    process.stderr.write(`[enroll-voice]   saved: ${audioPath}\n`)
+  }
+  if (!audioPath || !existsSync(audioPath)) {
+    process.stderr.write(`[enroll-voice] audio missing: ${audioPath}\n`)
     process.exit(1)
   }
   const idx = loadIndex()
@@ -281,7 +342,7 @@ async function main() {
   // ffmpeg → 16 kHz mono WAV with silence trim
   const wavPath = resolve(VOICEPRINTS_DIR, `audio/${opts.slug}.16k.wav`)
   mkdirSync(dirname(wavPath), { recursive: true })
-  const duration = ffmpegToWav(opts.audio, wavPath)
+  const duration = ffmpegToWav(audioPath, wavPath)
   process.stderr.write(
     `[enroll-voice]   trimmed audio: ${duration.toFixed(1)}s @ 16 kHz mono\n`,
   )
@@ -308,7 +369,8 @@ async function main() {
     party: official.party ?? null,
     role: official.role ?? null,
     enrolledAt: new Date().toISOString(),
-    sourceAudio: opts.audio,
+    sourceAudio: audioPath,
+    sourceUrl: opts.url ?? null,
     durationSec: Number(duration.toFixed(2)),
     embeddingDim: emb.dim,
     embeddingNorm: Number(emb.norm.toFixed(4)),

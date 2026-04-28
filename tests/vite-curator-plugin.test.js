@@ -388,7 +388,9 @@ describe('ActionSchemas', () => {
   it('has no unexpected actions registered', () => {
     expect(Object.keys(ActionSchemas).sort()).toEqual([
       'archive-bundle',
+      'delete-voiceprint',
       'draft-finding',
+      'enroll-voice',
       'fetch-url-evidence',
       'finding-reply',
       'promote-claim',
@@ -396,6 +398,52 @@ describe('ActionSchemas', () => {
       'refresh-gh-issues',
       'unarchive-bundle',
     ])
+  })
+
+  describe('enroll-voice', () => {
+    const schema = ActionSchemas['enroll-voice']
+    it('accepts a slug + audio URL', () => {
+      const r = schema.safeParse({
+        slug: 'robert-raga-gadea',
+        audioUrl: 'https://www.instagram.com/reel/DXMxH6FjJEr/',
+      })
+      expect(r.success).toBe(true)
+    })
+
+    it('rejects shell-metachar in url', () => {
+      const r = schema.safeParse({
+        slug: 'robert-raga-gadea',
+        audioUrl: 'https://example.com/$(rm -rf /)',
+      })
+      expect(r.success).toBe(false)
+    })
+
+    it('rejects malformed slug', () => {
+      const r = schema.safeParse({
+        slug: 'BAD UPPERCASE',
+        audioUrl: 'https://example.com/x',
+      })
+      expect(r.success).toBe(false)
+    })
+
+    it('accepts optional force flag', () => {
+      const r = schema.safeParse({
+        slug: 'robert-raga-gadea',
+        audioUrl: 'https://example.com/x',
+        force: true,
+      })
+      expect(r.success).toBe(true)
+    })
+  })
+
+  describe('delete-voiceprint', () => {
+    const schema = ActionSchemas['delete-voiceprint']
+    it('accepts a valid slug', () => {
+      expect(schema.safeParse({ slug: 'teresa-pozuelo-martin' }).success).toBe(true)
+    })
+    it('rejects extras', () => {
+      expect(schema.safeParse({ slug: 'pln', extra: 1 }).success).toBe(false)
+    })
   })
 })
 

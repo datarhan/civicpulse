@@ -26,6 +26,7 @@
  * structured error JSON on validation failures.
  */
 import { execFile, spawn } from 'node:child_process'
+import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { z } from 'zod'
 // curator-jobs is a JSDoc-typed JS module so plain Node ESM can
@@ -188,6 +189,30 @@ const ActionSchemas = {
         }),
     })
     .strict(),
+  // Enroll a councillor's voiceprint from a public URL (Instagram /
+  // YouTube / direct mp3). Spawns yt-dlp + ffmpeg + speechbrain via
+  // the enroll-voice CLI. Output JSON lands in
+  // .voiceprints/<slug>.f32 + index.json — both gitignored.
+  'enroll-voice': z
+    .object({
+      slug: z.string().regex(/^[a-z0-9-]{3,80}$/),
+      audioUrl: z
+        .string()
+        .url()
+        .max(2000)
+        .refine((s) => !SHELL_METACHAR_RE.test(s), {
+          message: 'url contains forbidden characters',
+        }),
+      force: z.boolean().optional(),
+    })
+    .strict(),
+  // Remove a voiceprint (the .f32 vector + the index entry). Used
+  // by the dashboard's "Re-enroll" / "Clear" affordance.
+  'delete-voiceprint': z
+    .object({
+      slug: z.string().regex(/^[a-z0-9-]{3,80}$/),
+    })
+    .strict(),
 }
 
 /** Schema for the `POST /api/curator/jobs` body — separate from
@@ -260,6 +285,14 @@ function buildArgv(action, args) {
     }
     case 'fetch-url-evidence': {
       return ['run', 'fetch-url-evidence', '--', args.url]
+    }
+    case 'enroll-voice': {
+      const argv = ['run', 'enroll-voice', '--', '--slug', args.slug, '--url', args.audioUrl]
+      if (args.force) argv.push('--force')
+      return argv
+    }
+    case 'delete-voiceprint': {
+      return ['run', 'delete-voiceprint', '--', '--slug', args.slug]
     }
     default:
       throw new Error(`unknown action ${action}`)
@@ -684,6 +717,80 @@ function handleJobCancel(req, res) {
 }
 
 /**
+ * GET /api/curator/voiceprints — return the full councillor list with
+ * per-councillor enrollment status. Joins officials.json (the public
+ * source-of-truth roster of 21 elected officials) with the local
+ * voiceprint index (.voiceprints/index.json, gitignored). Used by the
+ * dashboard's voice-enrollment section to render the 21-row table
+ * with a "✓ enrolled" / "✗ not enrolled" affordance per row.
+ *
+ * The .voiceprints/ directory is local-only — never deployed — but
+ * this endpoint is dev-mode-only too (apply:'serve'), so the join is
+ * symmetric: the data path stays on the curator's machine.
+ */
+function handleVoiceprintsRead(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
+    sendJson(res, 403, { error: 'origin not allowed' })
+    return
+  }
+  const officialsPath = resolve(cwd, 'public/data/officials.json')
+  if (!existsSync(officialsPath)) {
+    sendJson(res, 500, { error: 'officials.json missing — run scrape:officials' })
+    return
+  }
+  let officialsRaw
+  try {
+    officialsRaw = JSON.parse(readFileSync(officialsPath, 'utf8'))
+  } catch (err) {
+    sendJson(res, 500, { error: `officials.json unreadable: ${err.message}` })
+    return
+  }
+  /** @type {Array<{slug:string,name:string,party?:string,role?:string}>} */
+  const officials = officialsRaw.officials ?? officialsRaw.items ?? []
+
+  // Read voiceprint index (local-only). Missing file → empty enrollment.
+  const indexPath = resolve(cwd, '.voiceprints/index.json')
+  /** @type {Map<string, object>} */
+  const enrollmentBySlug = new Map()
+  if (existsSync(indexPath)) {
+    try {
+      const idx = JSON.parse(readFileSync(indexPath, 'utf8'))
+      for (const e of idx.entries ?? []) enrollmentBySlug.set(e.slug, e)
+    } catch (err) {
+      // Don't fail the whole list on a corrupt index — the dashboard
+      // should still show the 21 unenrolled councillors.
+      process.stderr.write(`[voiceprints] index unreadable: ${err.message}\n`)
+    }
+  }
+
+  const rows = officials.map((o) => ({
+    slug: o.slug,
+    name: o.name,
+    party: o.party ?? null,
+    role: o.role ?? null,
+    enrollment: enrollmentBySlug.get(o.slug) ?? null,
+  }))
+  // Stable sort: alcalde first, then by party + name. Curators see the
+  // most consequential councillor at the top.
+  rows.sort((a, b) => {
+    if (a.role === 'alcalde' && b.role !== 'alcalde') return -1
+    if (b.role === 'alcalde' && a.role !== 'alcalde') return 1
+    return (a.party ?? '').localeCompare(b.party ?? '') || a.name.localeCompare(b.name)
+  })
+
+  sendJson(res, 200, {
+    generatedAt: new Date().toISOString(),
+    totalCouncillors: officials.length,
+    enrolledCount: enrollmentBySlug.size,
+    rows,
+  })
+}
+
+/**
  * @param {{ cwd?: string }} [opts]
  * @returns {import('vite').Plugin}
  */
@@ -707,6 +814,17 @@ export function viteCuratorPlugin(opts = {}) {
           handleCommit(req, res, cwd).catch((err) => {
             sendJson(res, 500, { error: err.message })
           })
+        } else {
+          next()
+        }
+      })
+      server.middlewares.use('/api/curator/voiceprints', (req, res, next) => {
+        if (!req.url || req.url === '/' || req.url === '') {
+          try {
+            handleVoiceprintsRead(req, res, cwd)
+          } catch (err) {
+            sendJson(res, 500, { error: err.message })
+          }
         } else {
           next()
         }
