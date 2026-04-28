@@ -11,6 +11,7 @@ test-results/
 .llm-cache/
 .embed-cache/
 .curator-jobs/
+.voiceprints/
 mlx_models/
 editorial/
 scripts/logs/
