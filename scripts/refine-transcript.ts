@@ -40,7 +40,10 @@ const GEO = resolve('public/data/geo.json')
 const WIKIDATA = resolve('public/data/wikidata.json')
 const TENDERS = resolve('public/data/tenders.json')
 
-const PROMPT_VERSION = 'refine-transcript-v1'
+// v2 added explicit "proper nouns only" rule + locked Spanish/Valencian
+// code-switching as preserved (the v1 prompt over-corrected `aconsella`
+// → `aconseja` on the k4olcs A/B run).
+const PROMPT_VERSION = 'refine-transcript-v2'
 const CHUNK_LINES = 80 // ~25 min of pleno audio per chunk
 const MAX_TOP_ASSIGNEES = 50
 
@@ -181,15 +184,17 @@ function buildSystemPrompt(vocab: Vocab): string {
 
 ABSOLUTE RULES:
 
-1. **Conservative replacement only.** Replace a token only when it is *clearly* a Whisper-mistranscribed form of a known proper noun (matches one of the canonical strings below). When uncertain, leave the original token untouched.
+1. **PROPER NOUNS ONLY.** Replace a token *only* when it is clearly a Whisper-mistranscribed form of a known proper noun (matches one of the canonical strings below). Proper nouns means: people's names, place names, organization/company names, branded products. **Do NOT replace verbs, common nouns, prepositions, articles, adjectives, or adverbs — even if they look misspelled or seem to be in the "wrong" Spanish/Valencian register.** When in doubt, leave the original token untouched.
 
-2. **Preserve everything else exactly.** Keep every timestamp ([12.3 → 18.7]), every line break, every Spanish/Valencian word, every number, every punctuation mark. Do NOT rephrase, summarize, translate, or "improve" the prose.
+2. **Preserve language register exactly.** The transcript mixes Spanish and Valencian/Catalan freely — that's how the speakers actually talk. Do NOT translate Valencian forms (\`aconsella\`, \`vaga\`, \`aplegar\`, \`reprega\`, etc.) into Spanish equivalents (\`aconseja\`, \`huelga\`, etc.) and do NOT translate Spanish into Valencian. Code-switching is intentional.
 
-3. **No additions.** Do not add bracketed clarifications, notes, or speaker tags. Do not insert content. Output exactly the same line count as the input.
+3. **Preserve everything else exactly.** Keep every timestamp ([12.3 → 18.7]), every line break, every number, every punctuation mark. Do NOT rephrase, summarize, "improve" the prose, or fix grammar. Spelling errors that are NOT proper nouns stay as-is.
 
-4. **Case + diacritics matter.** "Riba-roja de Túria" with accent + hyphen is the canonical form; replace "Rivaroja", "Riba roja", "Ribarroja" only when context makes the municipality unambiguous.
+4. **No additions.** Do not add bracketed clarifications, notes, or speaker tags. Do not insert content. Output exactly the same line count as the input.
 
-5. **JSON output only**: { "correctedText": "<chunk>" }. No preamble, no commentary.
+5. **Case + diacritics matter.** "Riba-roja de Túria" with accent + hyphen is the canonical form; replace "Rivaroja", "Riba roja", "Ribarroja", "Riva Rocha", "Río Roja" only when context makes the municipality unambiguous.
+
+6. **JSON output only**: { "correctedText": "<chunk>" }. No preamble, no commentary.
 
 KNOWN PROPER NOUNS (canonical forms — use these spellings exactly when replacing):
 ${vocab.canonical.map((s) => `  · ${s}`).join('\n')}`
