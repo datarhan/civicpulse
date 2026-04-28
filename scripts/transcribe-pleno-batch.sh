@@ -7,6 +7,18 @@
 #   npm run transcribe:batch -- --limit 3           # at most 3 sessions this run
 #   npm run transcribe:batch -- --limit 3 --dry-run # show what would run, don't execute
 #   npm run transcribe:batch -- --force             # re-transcribe even if cached
+#   npm run transcribe:batch -- --refine            # run refine-transcript per pleno after Whisper
+#   npm run transcribe:batch -- --refine --refine-apply  # also atomically apply each .refined
+#
+# Quality-lift env vars (inherited by transcribe-pleno.sh):
+#   WHISPER_DENOISE=1   ffmpeg afftdn pre-Whisper noise reduction
+#   WHISPER_DIARIZE=1   pyannote speaker diarization post-Whisper
+#   WHISPER_ENGINE=...  mlx | openai | local (default: local)
+#   WHISPER_MODEL=...   large-v3 | medium | small (default: large-v3)
+#
+# Example all-in pass (denoise → transcribe → diarize → LLM refine):
+#   WHISPER_DENOISE=1 WHISPER_DIARIZE=1 \
+#     npm run transcribe:batch -- --force --refine --refine-apply
 #
 # Constraints (by design):
 # - Runs serially (one Whisper job at a time). Parallelism risks swapping out
@@ -15,6 +27,8 @@
 # - DO NOT wire this into the nightly GH Actions scrape — transcription is
 #   CPU-heavy (~1h wall-clock per 1h of audio on Apple Silicon) and must
 #   stay local. The cron runners in Actions can't afford it.
+# - --refine calls the LLM (Gemini Pro by default) once per pleno chunk;
+#   skip it during quota cooldowns or use it explicitly post-batch.
 #
 # Exit codes:
 #   0  — all requested sessions transcribed (or skipped for valid reasons)
@@ -33,12 +47,16 @@ LIMIT=0          # 0 = no limit
 DRY_RUN=0
 FORCE=0
 SKIP=""          # comma-separated plenoIds to defer (e.g. long live-archived ones)
+REFINE=0         # post-Whisper proper-noun pass via Gemini (LLM call per chunk)
+REFINE_APPLY=0   # passes --apply to refine-transcript so .refined replaces the .txt
 while [ $# -gt 0 ]; do
   case "$1" in
-    --limit)   shift; LIMIT="${1:-0}" ;;
-    --dry-run) DRY_RUN=1 ;;
-    --force)   FORCE=1 ;;
-    --skip)    shift; SKIP="${1:-}" ;;
+    --limit)        shift; LIMIT="${1:-0}" ;;
+    --dry-run)      DRY_RUN=1 ;;
+    --force)        FORCE=1 ;;
+    --skip)         shift; SKIP="${1:-}" ;;
+    --refine)       REFINE=1 ;;
+    --refine-apply) REFINE=1; REFINE_APPLY=1 ;;
     -h|--help)
       sed -n '1,/^# Exit codes/p' "$0" | sed 's/^# \{0,1\}//'
       exit 0 ;;
@@ -94,6 +112,24 @@ for id in $targets; do
     txt="$TRANSCRIPT_DIR/$id.txt"
     if [ -s "$txt" ] && [ "$(wc -c < "$txt")" -gt 1024 ]; then
       echo "[batch] ($i/$total) $id OK · $(wc -c < "$txt") bytes"
+      # Optional post-Whisper proper-noun pass. Failures here don't fail
+      # the batch — refine-transcript leaves the original .txt untouched
+      # unless --apply is passed; the user can review the audit log later.
+      if [ "$REFINE" -eq 1 ]; then
+        refine_args=("$id")
+        if [ "$REFINE_APPLY" -eq 1 ]; then
+          refine_args+=(--apply)
+        fi
+        refine_log="$LOG_DIR/$id.refine.log"
+        echo "[batch] ($i/$total) $id refining proper nouns…"
+        if (cd "$REPO_ROOT" && npx tsx scripts/refine-transcript.ts "${refine_args[@]}") \
+            > "$refine_log" 2>&1; then
+          echo "[batch] ($i/$total) $id refine OK"
+        else
+          echo "[batch] ($i/$total) $id refine FAILED — see $refine_log (transcript untouched)" >&2
+          # Don't bump exit_code — refine is best-effort.
+        fi
+      fi
     else
       echo "[batch] ($i/$total) $id produced an empty/tiny transcript — see $log_file" >&2
       exit_code=1
