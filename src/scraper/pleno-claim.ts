@@ -107,8 +107,27 @@ export interface PlenoClaim {
    * Group attribution only — no personal names. Whisper WER on proper
    * nouns is ~5-10%; misattributing a claim to a specific councillor
    * would be a libel risk. Null when the speaker's group is unclear.
+   *
+   * This is the primary, libel-safe attribution. Even when speakerSlug
+   * is set, no published surface (`/declaraciones`, `/hallazgos`) names
+   * the individual until a curator promotes it via `promote-claim`.
    */
   speakerGroup: VoteBloc | null
+  /**
+   * Optional individual attribution — only populated when the
+   * transcript line was rewritten with a high-tier voice-id named tag
+   * by `identify-pleno-speakers --apply` AND the slug resolves against
+   * `public/data/officials.json` AND the official's party agrees with
+   * `speakerGroup`. Validated in src/scraper/pleno-claim-llm.ts;
+   * inconsistent values are stripped to null at write time.
+   *
+   * Editorial signal only. The dashboard / curator can use it; the LLM
+   * extractor will NOT promote it to a published `/declaraciones` row
+   * without an explicit curator step. The libel boundary documented in
+   * CLAUDE.md still applies — an individual is named in published
+   * editorial only after `promote-claim` review.
+   */
+  speakerSlug?: string | null
   /** Verbatim quote from the transcript (≥20 chars). */
   verbatim: string
   /** 400-char excerpt with surrounding context for the curator. */

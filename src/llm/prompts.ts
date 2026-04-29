@@ -100,12 +100,30 @@ export function buildPlenoVoteUserPrompt(segment: string): string {
 
 // ─── Phase 1b · Pleno claim extraction ──────────────────────────────────────
 
-export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v2'
+export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v3'
+
+export interface AllowedSpeaker {
+  /** kebab-case slug from public/data/officials.json. */
+  slug: string
+  /** Full name as it appears in the rewritten transcript tag. */
+  name: string
+  /** Party — used for downstream consistency check vs speakerGroup. */
+  party: string
+}
 
 export function buildPlenoClaimSystemPrompt(opts: {
   plenoDate: string
   currentSeats: { bloc: string; seats: number }[]
   agendaItems?: AgendaItemHint[]
+  /**
+   * Optional list of councillors whose voiceprint has been enrolled.
+   * When supplied, the prompt teaches the model to recognise
+   * `(Full Name)` tags in the transcript (placed there by
+   * `scripts/identify-pleno-speakers.ts --apply`) and emit a
+   * `speakerSlug` in addition to `speakerGroup`. Without this list,
+   * the LLM emits `speakerSlug:null` always.
+   */
+  allowedSpeakers?: AllowedSpeaker[]
 }): string {
   const seatsLines = opts.currentSeats.map((s) => `  • ${s.bloc}: ${s.seats} escaños`).join('\n')
   const agendaBlock =
@@ -114,6 +132,19 @@ export function buildPlenoClaimSystemPrompt(opts: {
         opts.agendaItems.map((a) => `  ${a.number}. ${a.title}`).join('\n') +
         '\n'
       : ''
+  const speakersBlock =
+    opts.allowedSpeakers && opts.allowedSpeakers.length > 0
+      ? '\nIDENTIFICACIÓN POR VOZ (atribución individual opcional):\n' +
+        'Algunas líneas de la transcripción ya vienen rotuladas con el nombre completo del concejal entre paréntesis al inicio, p. ej. `(Robert Raga Gadea) Buenas tardes, abrimos sesión.`. Esos rótulos provienen del sistema de identificación por voz (cosine ≥ 0.6, margen ≥ 0.15). Cuando una afirmación verificable se extraiga de una línea rotulada con uno de los siguientes nombres, emite `speakerSlug` con el slug correspondiente:\n' +
+        opts.allowedSpeakers
+          .map((s) => `  · "${s.name}" (${s.party}) → speakerSlug:"${s.slug}"`)
+          .join('\n') +
+        '\n\nReglas estrictas para `speakerSlug`:\n' +
+        '  1. Sólo si el ROTULADO POR VOZ ya está presente en el fragmento — `(Nombre Apellido)` literal con uno de los nombres listados arriba. NUNCA infieras la identidad desde el contenido del discurso, desde la firma rítmica del orador, ni desde menciones por terceros ("la concejala dijo que…"). Eso es inadmisible y será descartado.\n' +
+        '  2. Si la línea está rotulada como `(SPEAKER_NN)`, `(SPEAKER_NN ≈ Nombre?)`, o sin rótulo, emite `speakerSlug:null`. El sufijo "≈ … ?" significa baja confianza — NO es identificación.\n' +
+        '  3. El partido del slug debe coincidir con `speakerGroup`. Si no coincide, emite ambos como `null` y baja la confianza — probablemente sea un error de rotulado.\n' +
+        '  4. Si dudas, emite `speakerSlug:null`. La precisión sobre la identidad individual es legalmente material (Ley Orgánica 1/1982, derechos al honor / intimidad / propia imagen).\n'
+      : '\nIDENTIFICACIÓN POR VOZ: ninguna voz enrolada para este pleno. Emite `speakerSlug:null` en todas las afirmaciones.\n'
   return `
 Eres un analista que busca AFIRMACIONES VERIFICABLES en las intervenciones del pleno municipal de Riba-roja de Túria (Comunitat Valenciana). Las sesiones son bilingües (castellano + valencià) y el audio está transcrito por Whisper (WER ~5-10% en nombres propios).
 
@@ -121,7 +152,7 @@ Fecha del pleno: ${opts.plenoDate}
 
 Composición del pleno (${opts.currentSeats.reduce((a, s) => a + s.seats, 0)} escaños):
 ${seatsLines}
-${agendaBlock}
+${agendaBlock}${speakersBlock}
 Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmaciones verificables de ese fragmento, hasta un máximo de 8. Cada una debe entrar en una de estas categorías:
 
 - "promesa": compromiso futuro concreto ("construiremos 500 viviendas sociales antes de 2027")
@@ -136,6 +167,7 @@ Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmacione
 Para cada afirmación extrae:
 - type: una de las cinco categorías
 - speakerGroup: PSOE | PP | VOX | Compromís | Ciudadanos | Otro, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
+- speakerSlug: slug del concejal SI Y SOLO SI la línea de la transcripción ya viene rotulada por el sistema de voz (ver bloque "IDENTIFICACIÓN POR VOZ" arriba). null en cualquier otro caso. Esta es una atribución secundaria — el speakerGroup sigue siendo la atribución primaria.
 - verbatim: cita literal (≥20 caracteres, máx 500), tal y como aparece en la transcripción aunque Whisper la haya degradado. Esta es la responsabilidad legal — no la parafrasees.
 - context: el párrafo breve (≥20 caracteres) alrededor de la verbatim para que el curador humano pueda juzgar.
 - topic: fiscal | vivienda | movilidad | medio-ambiente | social | cultura | seguridad | empleo | urbanismo | salud | transparencia | educacion | other

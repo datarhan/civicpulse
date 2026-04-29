@@ -28,6 +28,7 @@ const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
 const PLENOS_PATH = resolve('public/data/plenos.json')
 const OFFICIALS_PATH = resolve('public/data/officials.json')
 const AGENDAS_PATH = resolve('public/data/plenos-agendas.json')
+const PLENO_SPEAKERS_DIR = resolve('pleno-speakers')
 
 interface PlenoMeta {
   id: string
@@ -36,7 +37,7 @@ interface PlenoMeta {
 }
 
 interface Officials {
-  officials?: Array<{ party: string }>
+  officials?: Array<{ slug: string; name: string; party: string }>
   composition?: Record<string, number>
 }
 
@@ -58,6 +59,49 @@ function loadCurrentSeats(): { bloc: string; seats: number }[] {
     counts.set(o.party, (counts.get(o.party) ?? 0) + 1)
   }
   return [...counts.entries()].map(([bloc, seats]) => ({ bloc, seats }))
+}
+
+/**
+ * Build the allowed-speaker list for a pleno: the intersection of
+ *   · councillors enrolled in `.voiceprints/`
+ *   · councillors whom `pleno-speakers/<plenoId>.json` matched in this
+ *     particular pleno at high tier
+ *   · councillors present in `officials.json` (party lookup)
+ *
+ * Returns []  when:
+ *   - the pleno has no voice-id JSON yet (matcher never ran)
+ *   - the JSON has no high-tier matches
+ *   - officials.json doesn't carry the slug (stale enrollment)
+ *
+ * In all those cases the LLM emits speakerSlug:null on every claim and
+ * the existing bloc-level attribution remains the only signal.
+ */
+function loadAllowedSpeakersFor(
+  plenoId: string,
+): Array<{ slug: string; name: string; party: string }> {
+  const speakersPath = resolve(PLENO_SPEAKERS_DIR, `${plenoId}.json`)
+  if (!existsSync(speakersPath)) return []
+  let assignments: Array<{ match?: { tier: string; slug: string } | null }> = []
+  try {
+    const doc = JSON.parse(readFileSync(speakersPath, 'utf8'))
+    assignments = doc?.assignments ?? []
+  } catch {
+    return []
+  }
+  const highSlugs = new Set<string>()
+  for (const a of assignments) {
+    if (a.match?.tier === 'high' && a.match?.slug) highSlugs.add(a.match.slug)
+  }
+  if (highSlugs.size === 0) return []
+
+  const officials = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials
+  const out: Array<{ slug: string; name: string; party: string }> = []
+  for (const o of officials.officials ?? []) {
+    if (highSlugs.has(o.slug)) {
+      out.push({ slug: o.slug, name: o.name, party: o.party })
+    }
+  }
+  return out
 }
 
 function loadAgendaFor(plenoId: string) {
@@ -96,6 +140,14 @@ async function runOne(
   }
   const transcript = readFileSync(path, 'utf8')
   const agendaItems = loadAgendaFor(plenoId)
+  const allowedSpeakers = loadAllowedSpeakersFor(plenoId)
+  if (allowedSpeakers.length > 0) {
+    process.stdout.write(
+      `[extract·claims] ${plenoId}: voice-id allowed speakers (high-tier): ${allowedSpeakers
+        .map((s) => `${s.slug}(${s.party})`)
+        .join(', ')}\n`,
+    )
+  }
   // Log every ~5% of windows processed so long runs aren't silent.
   let lastReport = -1
   const res = await extractClaimsWithLlm(transcript, {
@@ -103,6 +155,7 @@ async function runOne(
     plenoDate: pleno.date,
     currentSeats,
     agendaItems,
+    allowedSpeakers,
     minConfidence,
     concurrency,
     onWindow: ({ index, total, claimsKept }) => {

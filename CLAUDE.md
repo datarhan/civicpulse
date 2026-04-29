@@ -606,9 +606,16 @@ contract:
 - `src/scraper/pleno-claim.ts` — **machine-written** extraction schema
   (`ClaimType` ∈ promesa/afirmacion_numerica/cita_obra/cita_convenio/
   acusacion_publica + `accusationSubtype` ∈ factual/contra-datos/
-  opinativa). Every record carries `requiresHumanApproval:true` and
-  speaker attribution is **bloc-level only** — naming an individual is
-  a libel line given Whisper WER ~5-10% on proper nouns.
+  opinativa). Every record carries `requiresHumanApproval:true`.
+  **Primary attribution is bloc-level** (`speakerGroup`) — that is the
+  libel-safe field surfaced on `/declaraciones` and `/hallazgos`.
+  An optional **secondary `speakerSlug`** is populated only when the
+  transcript line carries a high-tier voice-id named tag (placed by
+  `scripts/identify-pleno-speakers.ts --apply`) AND the slug exists in
+  `officials.json` AND the official's party agrees with `speakerGroup`.
+  Inconsistent slugs are stripped to null at write time. Even when set,
+  `speakerSlug` is editorial signal only — no published surface names
+  the individual until a curator promotes it via `promote-claim`.
 - `src/scraper/claim-verifier.ts` — **pure, deterministic** verifier.
   No LLM, no network. Takes `{claim, tenders, bdns, budget, promises,
   priorClaims}` → `ClaimVerdict` ∈ verificado/parcial/contradicho/
@@ -655,7 +662,13 @@ Libel rules applicable when editing this subsystem:
    do not loosen it to sneak opinion claims into `verificado`.
 3. Finding severity `critical` without evidence is rejected by
    `validateFindingsSnapshot`. Keep that invariant.
-4. `/metodologia#verificacion-declaraciones` is the published
+4. `speakerSlug` (individual attribution from voice-id) MUST come from
+   a transcript line that already carries a `(Full Name)` tag — never
+   inferred from prose. The prompt forbids that explicitly; the
+   write-time guard in `pleno-claim-llm.ts` strips slugs that aren't
+   in the enrolled-speakers set or whose party disagrees with
+   `speakerGroup`. `/metodologia` references both layers.
+5. `/metodologia#verificacion-declaraciones` is the published
    editorial contract. Update it via PR whenever this pipeline's
    behavior changes.
 

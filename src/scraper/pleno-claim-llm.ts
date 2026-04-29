@@ -19,6 +19,7 @@ import {
   buildPlenoClaimSystemPrompt,
   buildPlenoClaimUserPrompt,
   type AgendaItemHint,
+  type AllowedSpeaker,
 } from '../llm/prompts'
 import type { ZodTypeAny, z } from 'zod'
 import type { PlenoClaim } from './pleno-claim'
@@ -28,6 +29,15 @@ export interface ClaimExtractionOptions {
   plenoDate: string
   currentSeats: { bloc: string; seats: number }[]
   agendaItems?: AgendaItemHint[]
+  /**
+   * Optional list of councillors whose voiceprint has been enrolled.
+   * Each entry must include `slug`, `name` and `party`. When supplied,
+   * the LLM may emit `speakerSlug` for claims extracted from lines
+   * carrying the matching `(Full Name)` voice-id tag. Slugs not in
+   * this list — or that disagree with `speakerGroup` party-wise — are
+   * stripped to null at write time as a defensive guard.
+   */
+  allowedSpeakers?: AllowedSpeaker[]
   /** Minimum confidence (0..1). Defaults to 0.5. */
   minConfidence?: number
   /**
@@ -162,7 +172,27 @@ export async function extractClaimsWithLlm(
     plenoDate: opts.plenoDate,
     currentSeats: opts.currentSeats,
     agendaItems: opts.agendaItems,
+    allowedSpeakers: opts.allowedSpeakers,
   })
+
+  // Defensive party-consistency check applied to every emitted speakerSlug.
+  // The prompt forbids inferring identity from prose, but the schema can't
+  // enforce that — this guard catches LLM drift where the model latches
+  // onto a tag from a different bloc.
+  const speakersBySlug = new Map<string, AllowedSpeaker>()
+  for (const s of opts.allowedSpeakers ?? []) speakersBySlug.set(s.slug, s)
+  function validateSlug(
+    rawSlug: string | null | undefined,
+    speakerGroup: string | null,
+  ): string | null {
+    if (!rawSlug) return null
+    const entry = speakersBySlug.get(rawSlug)
+    if (!entry) return null
+    // If we have a bloc and it disagrees with the slug's party, drop the slug.
+    // We don't drop speakerGroup — it has its own libel-safe verification.
+    if (speakerGroup && entry.party !== speakerGroup) return null
+    return rawSlug
+  }
 
   const seen = new Set<string>()
   const items: PlenoClaim[] = []
@@ -194,6 +224,7 @@ export async function extractClaimsWithLlm(
       const typeAbbr = raw.type.slice(0, 3)
       const shortHash = keyHash(key)
       const id = `${opts.plenoId}-${String(i).padStart(3, '0')}-${typeAbbr}-${shortHash}`
+      const validatedSlug = validateSlug(raw.speakerSlug, raw.speakerGroup)
       items.push({
         id,
         plenoId: opts.plenoId,
@@ -201,6 +232,7 @@ export async function extractClaimsWithLlm(
         segmentIndex: i,
         type: raw.type,
         speakerGroup: raw.speakerGroup,
+        ...(validatedSlug ? { speakerSlug: validatedSlug } : {}),
         verbatim: raw.verbatim.trim(),
         context: raw.context.trim(),
         topic: raw.topic,

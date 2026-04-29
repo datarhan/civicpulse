@@ -79,6 +79,23 @@ export const ClaimEntitiesSchema = z.object({
 export const PlenoClaimSuggestionSchema = z.object({
   type: z.enum([...ALLOWED_CLAIM_TYPES] as [(typeof ALLOWED_CLAIM_TYPES)[number]]),
   speakerGroup: z.enum([...ALLOWED_BLOCS] as [(typeof ALLOWED_BLOCS)[number]]).nullable(),
+  // Optional individual attribution — only set when the transcript line
+  // carries a high-tier voice-id named tag like `(Robert Raga Gadea)`,
+  // produced by `scripts/identify-pleno-speakers.ts --apply`. NEVER
+  // populated from prose alone (Whisper WER on proper nouns is too high
+  // to be defamation-safe). Validated post-LLM against the enrolled
+  // voiceprint set + officials.json party consistency in
+  // src/scraper/pleno-claim-llm.ts. speakerGroup remains the primary
+  // libel-safe attribution; speakerSlug is editorial signal that the
+  // dashboard / curator can use, but is NOT auto-published into
+  // /declaraciones or /hallazgos without explicit promote-claim curation.
+  speakerSlug: z
+    .string()
+    .min(2)
+    .max(80)
+    .regex(/^[a-z0-9][a-z0-9-]*$/)
+    .nullable()
+    .optional(),
   verbatim: z.string().min(20).max(500),
   context: z.string().min(20).max(500),
   topic: z.enum([...ALLOWED_CLAIM_TOPICS] as [(typeof ALLOWED_CLAIM_TOPICS)[number]]),
