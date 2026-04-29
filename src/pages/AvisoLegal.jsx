@@ -163,22 +163,22 @@ export default function AvisoLegal() {
           público (<code>quejas.json</code>) vive en un repositorio git como garantía editorial:
           cada cambio queda firmado y fechado en el commit log, lo que permite auditar
           retroactivamente qué se publicó y cuándo. Esa misma propiedad implica que un commit
-          anterior puede contener una versión obsoleta de tu queja después de que ejerzas el
-          derecho al olvido. Compatibilizamos ambas obligaciones así:
+          anterior puede contener una versión obsoleta de tu queja después de que ejerzas el derecho
+          al olvido. Compatibilizamos ambas obligaciones así:
         </p>
         <ul>
           <li>
-            <strong>Eliminación inmediata del snapshot vigente</strong>: en el momento en que
-            envías <code>/olvidar Q-XXXXXXXX</code> tu queja desaparece de las páginas públicas y
-            del JSON que se sirve a los visitantes.
+            <strong>Eliminación inmediata del snapshot vigente</strong>: en el momento en que envías{' '}
+            <code>/olvidar Q-XXXXXXXX</code> tu queja desaparece de las páginas públicas y del JSON
+            que se sirve a los visitantes.
           </li>
           <li>
             <strong>Reescritura del historial bajo solicitud formal</strong>: si requieres además
             que se borren las versiones presentes en el historial git (commits anteriores), usa la
             misma vía de rectificación contactando al responsable del tratamiento. Procederemos a
             reescribir el historial (<code>git filter-repo</code> o equivalente) y a forzar la
-            actualización del repositorio público y de los <em>mirrors</em> de Vercel, dejando
-            traza interna de la solicitud y de la fecha de ejecución (sin republicar el contenido
+            actualización del repositorio público y de los <em>mirrors</em> de Vercel, dejando traza
+            interna de la solicitud y de la fecha de ejecución (sin republicar el contenido
             eliminado).
           </li>
           <li>

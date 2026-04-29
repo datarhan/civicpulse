@@ -60,9 +60,7 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
   manifestBytes: number
 } {
   if (!existsSync(MONOLITH)) {
-    throw new Error(
-      `[chunk-claims] ${MONOLITH} missing — run npm run verify:pleno-claims first.`,
-    )
+    throw new Error(`[chunk-claims] ${MONOLITH} missing — run npm run verify:pleno-claims first.`)
   }
   const monolith = JSON.parse(readFileSync(MONOLITH, 'utf8')) as VerifiedSnapshot
   const items = monolith.items ?? []

@@ -22,7 +22,12 @@ const baseClaim = {
   requiresHumanApproval: true as const,
 }
 
-function mkItem(plenoId: string, plenoDate: string, segmentIndex: number, verdict = 'sin-datos'): VerifiedClaimItem {
+function mkItem(
+  plenoId: string,
+  plenoDate: string,
+  segmentIndex: number,
+  verdict = 'sin-datos',
+): VerifiedClaimItem {
   return {
     claim: {
       ...baseClaim,

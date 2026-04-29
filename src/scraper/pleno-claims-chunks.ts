@@ -86,9 +86,7 @@ export interface PlenoClaimsChunk {
  * — this is the order the SPA will fetch chunks in by default, so
  * the on-disk write order matches user-perceived priority.
  */
-export function groupItemsByPleno(
-  items: VerifiedClaimItem[],
-): Map<string, VerifiedClaimItem[]> {
+export function groupItemsByPleno(items: VerifiedClaimItem[]): Map<string, VerifiedClaimItem[]> {
   const byPleno = new Map<string, VerifiedClaimItem[]>()
   for (const it of items) {
     const id = it.claim.plenoId
