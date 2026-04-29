@@ -191,7 +191,10 @@ export default function Metodologia() {
           <li>
             <strong>Derecho de réplica intacto.</strong> Cualquier persona o grupo afectado puede
             responder con una cita textual contactando con la redacción (ver{' '}
-            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>/aviso-legal</a>).
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              /aviso-legal
+            </a>
+            ).
           </li>
           <li>
             <strong>Suspensión durante el periodo electoral.</strong> Bajo la LOREG art. 50, el
@@ -293,7 +296,10 @@ export default function Metodologia() {
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
             Contacta con la redacción a través del canal indicado en{' '}
-            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>/aviso-legal</a>.
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              /aviso-legal
+            </a>
+            .
           </li>
           <li>
             Incluye el <code>id</code> de la promesa o del hallazgo afectado y el enlace a la fuente
@@ -303,9 +309,7 @@ export default function Metodologia() {
             Te responderemos en 24 h hábiles con una de tres opciones: acepto la corrección,
             necesito más evidencia, o la rechazo con motivo público.
           </li>
-          <li>
-            Los cambios aplicados se registran en la bitácora interna del proyecto.
-          </li>
+          <li>Los cambios aplicados se registran en la bitácora interna del proyecto.</li>
         </ol>
       </Card>
 

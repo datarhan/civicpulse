@@ -27,15 +27,24 @@ function FreezeBanner({ snap }) {
       }}
       role="alert"
     >
-      <strong style={{ color: '#DC2626' }}>Periodo electoral en vigor — tracker en modo solo-lectura.</strong>
+      <strong style={{ color: '#DC2626' }}>
+        Periodo electoral en vigor — tracker en modo solo-lectura.
+      </strong>
       <div style={{ marginTop: 4, color: 'var(--ink70)' }}>
-        Los estados quedan congelados hasta {new Date(snap.frozenUntil).toLocaleDateString('es-ES', {
+        Los estados quedan congelados hasta{' '}
+        {new Date(snap.frozenUntil).toLocaleDateString('es-ES', {
           day: 'numeric',
           month: 'long',
           year: 'numeric',
         })}{' '}
-        (LOREG art. 50). El motor de sugerencias sigue ejecutándose pero no publica cambios de estado. Para correcciones durante este periodo, abre una issue en{' '}
-        <a href={snap.contactUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+        (LOREG art. 50). El motor de sugerencias sigue ejecutándose pero no publica cambios de
+        estado. Para correcciones durante este periodo, abre una issue en{' '}
+        <a
+          href={snap.contactUrl}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'var(--civic)' }}
+        >
           GitHub
         </a>
         .
@@ -65,7 +74,12 @@ function LegalFooter({ snap }) {
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
           Aviso legal →
         </a>
-        <a href={snap.contactUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+        <a
+          href={snap.contactUrl}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'var(--civic)' }}
+        >
           Proponer corrección / añadir fuente →
         </a>
       </div>
@@ -85,7 +99,9 @@ function CompositionBar({ items }) {
       <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)', marginBottom: 6 }}>
         {total} compromisos en seguimiento · distribución por partido
       </div>
-      <div style={{ display: 'flex', width: '100%', height: 10, borderRadius: 5, overflow: 'hidden' }}>
+      <div
+        style={{ display: 'flex', width: '100%', height: 10, borderRadius: 5, overflow: 'hidden' }}
+      >
         {entries.map(([party, n]) => (
           <div
             key={party}
@@ -183,7 +199,9 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       >
         «{p.quote}»
       </blockquote>
-      <div style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 6, fontSize: 11.5 }}>
+      <div
+        style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 6, fontSize: 11.5 }}
+      >
         <a
           href={p.source.url}
           target="_blank"
@@ -244,14 +262,16 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
               fontWeight: 700,
             }}
           >
-            Propuesta automática · pendiente de revisión humana · confianza {(suggestion.confidence * 100).toFixed(0)}%
+            Propuesta automática · pendiente de revisión humana · confianza{' '}
+            {(suggestion.confidence * 100).toFixed(0)}%
           </div>
           <div style={{ marginBottom: 6, color: 'var(--ink70)' }}>
             El motor propone estado:{' '}
             <strong style={{ color: 'var(--ink)' }}>
               {STATUS_LABEL[suggestion.proposedStatus]}
             </strong>
-            . Esta propuesta no está publicada; sólo un curador humano puede aplicar un cambio de estado.
+            . Esta propuesta no está publicada; sólo un curador humano puede aplicar un cambio de
+            estado.
           </div>
           <div style={{ fontSize: 11, color: 'var(--ink60)' }}>
             Fundamentación ({suggestion.reasoning.length} evidencias):
@@ -292,12 +312,14 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
               fontWeight: 700,
             }}
           >
-            Evidencia sugerida por LLM · {llmItems.length} fuente{llmItems.length === 1 ? '' : 's'} · pendiente de revisión
+            Evidencia sugerida por LLM · {llmItems.length} fuente{llmItems.length === 1 ? '' : 's'}{' '}
+            · pendiente de revisión
           </div>
           <div style={{ fontSize: 11, color: 'var(--ink60)', marginBottom: 5, lineHeight: 1.45 }}>
             Estas citas han sido identificadas automáticamente por el modelo a partir de prensa,
-            actas de pleno, licitaciones, subvenciones y presupuesto. <strong>No publican estado</strong>;
-            un curador debe verificarlas antes de incorporarlas al registro.
+            actas de pleno, licitaciones, subvenciones y presupuesto.{' '}
+            <strong>No publican estado</strong>; un curador debe verificarlas antes de incorporarlas
+            al registro.
           </div>
           <ul style={{ margin: '4px 0 0', paddingLeft: 16, fontSize: 11 }}>
             {llmItems.slice(0, 4).map((ev, i) => {
@@ -306,13 +328,27 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
                 <li key={i} style={{ marginBottom: 4 }}>
                   <span
                     className="mono"
-                    title={isTranscript ? 'Transcripción automática del vídeo del pleno. El orador NO está atribuido (riesgo de difamación por errores de transcripción).' : undefined}
+                    title={
+                      isTranscript
+                        ? 'Transcripción automática del vídeo del pleno. El orador NO está atribuido (riesgo de difamación por errores de transcripción).'
+                        : undefined
+                    }
                     style={{ color: 'var(--intel-ink)', fontWeight: 600 }}
                   >
                     {isTranscript ? '🎙 transcript' : ev.corpus}
-                  </span>{' · '}
+                  </span>
+                  {' · '}
                   <span className="mono">{ev.date}</span> · {ev.publisher} ·{' '}
-                  <a href={ev.evidenceUrl} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>
+                  <a
+                    href={ev.evidenceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{
+                      color: 'var(--civic)',
+                      textDecoration: 'underline',
+                      textUnderlineOffset: 2,
+                    }}
+                  >
                     {ev.quote.length > 90 ? ev.quote.slice(0, 90) + '…' : ev.quote}
                   </a>{' '}
                   <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10 }}>
@@ -344,7 +380,12 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           {p.response.source && (
             <>
               {' '}
-              <a href={p.response.source.url} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+              <a
+                href={p.response.source.url}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)' }}
+              >
                 (fuente)
               </a>
             </>
@@ -440,8 +481,11 @@ export default function Promesas() {
           {t('promesas.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 780 }}>
-          Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los estados se mantienen en{' '}
-          <strong>documentada</strong> o <strong>en verificación</strong> salvo que exista prueba directa (pleno, presupuesto, resolución) que justifique otro estado.
+          Compromisos públicos atribuidos a partidos y cargos del Ayuntamiento de Riba-roja de
+          Túria, cada uno enlazado a su fuente primaria y con cadena de evidencia trazable. Los
+          estados se mantienen en <strong>documentada</strong> o <strong>en verificación</strong>{' '}
+          salvo que exista prueba directa (pleno, presupuesto, resolución) que justifique otro
+          estado.
         </div>
       </div>
 

@@ -8,7 +8,10 @@ import {
   CATEGORY_LABEL,
   prettyNeighborhood,
 } from '../hooks/useQuejas'
-import { useTenderQuejaCorrelations, correlationsForQueja } from '../hooks/useTenderQuejaCorrelations'
+import {
+  useTenderQuejaCorrelations,
+  correlationsForQueja,
+} from '../hooks/useTenderQuejaCorrelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 
@@ -55,29 +58,57 @@ function plazoFor(category) {
 
 function TimelineItem({ date, label, tone = 'neutral', detail }) {
   const color =
-    tone === 'ok' ? 'var(--ok)' :
-    tone === 'warn' ? 'var(--warn)' :
-    tone === 'crit' ? 'var(--crit)' :
-    tone === 'civic' ? 'var(--civic)' :
-    'var(--ink60)'
+    tone === 'ok'
+      ? 'var(--ok)'
+      : tone === 'warn'
+        ? 'var(--warn)'
+        : tone === 'crit'
+          ? 'var(--crit)'
+          : tone === 'civic'
+            ? 'var(--civic)'
+            : 'var(--ink60)'
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '120px 12px 1fr', gap: 12, alignItems: 'flex-start', padding: '10px 0' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '120px 12px 1fr',
+        gap: 12,
+        alignItems: 'flex-start',
+        padding: '10px 0',
+      }}
+    >
       <div className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
         {fmtDate(date)}
       </div>
       <div style={{ position: 'relative', height: '100%' }}>
-        <div style={{
-          width: 8, height: 8, borderRadius: '50%', background: color,
-          position: 'absolute', top: 6, left: 0,
-        }} />
-        <div style={{
-          position: 'absolute', top: 16, bottom: -10, left: 3.5, width: 1, background: 'var(--border2)',
-        }} />
+        <div
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            background: color,
+            position: 'absolute',
+            top: 6,
+            left: 0,
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            top: 16,
+            bottom: -10,
+            left: 3.5,
+            width: 1,
+            background: 'var(--border2)',
+          }}
+        />
       </div>
       <div>
         <div style={{ fontSize: 13.5, fontWeight: 500 }}>{label}</div>
         {detail && (
-          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>{detail}</div>
+          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
+            {detail}
+          </div>
         )}
       </div>
     </div>
@@ -94,9 +125,17 @@ function CorrelationsCard({ quejaId }) {
         eyebrow="Sugerencia automática · pendiente de revisión"
         title="Posibles actuaciones municipales relacionadas"
       />
-      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 6, marginBottom: 10, lineHeight: 1.5 }}>
-        Estos contratos <strong>podrían</strong> abordar esta queja, pero la relación
-        NO es causal. Un curador debe verificar antes de afirmar que resuelven el problema.
+      <div
+        style={{
+          fontSize: 12,
+          color: 'var(--ink60)',
+          marginTop: 6,
+          marginBottom: 10,
+          lineHeight: 1.5,
+        }}
+      >
+        Estos contratos <strong>podrían</strong> abordar esta queja, pero la relación NO es causal.
+        Un curador debe verificar antes de afirmar que resuelven el problema.
       </div>
       {items.map((c, i) => (
         <div
@@ -106,31 +145,66 @@ function CorrelationsCard({ quejaId }) {
             borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4, flexWrap: 'wrap' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'baseline',
+              gap: 8,
+              marginBottom: 4,
+              flexWrap: 'wrap',
+            }}
+          >
             <span
               className="mono"
               style={{
-                fontSize: 9.5, padding: '1px 6px', borderRadius: 3,
-                textTransform: 'uppercase', letterSpacing: '.08em', fontWeight: 700,
+                fontSize: 9.5,
+                padding: '1px 6px',
+                borderRadius: 3,
+                textTransform: 'uppercase',
+                letterSpacing: '.08em',
+                fontWeight: 700,
                 background: c.via === 'expediente' ? 'var(--ok-soft)' : 'var(--intel-soft)',
                 color: c.via === 'expediente' ? 'var(--ok-ink)' : 'var(--intel-ink)',
               }}
-              title={c.via === 'expediente' ? 'Coincidencia estructural: mismo expediente en agenda y adjudicación' : 'Coincidencia difusa: CPV + ventana temporal + reranking LLM'}
+              title={
+                c.via === 'expediente'
+                  ? 'Coincidencia estructural: mismo expediente en agenda y adjudicación'
+                  : 'Coincidencia difusa: CPV + ventana temporal + reranking LLM'
+              }
             >
               {c.via}
             </span>
-            <span className="mono" style={{ fontSize: 10, color: c.confidence >= 0.8 ? 'var(--ok-ink)' : 'var(--warn-ink)' }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 10,
+                color: c.confidence >= 0.8 ? 'var(--ok-ink)' : 'var(--warn-ink)',
+              }}
+            >
               conf. {(c.confidence * 100).toFixed(0)}%
             </span>
           </div>
-          <div style={{ fontSize: 13, color: 'var(--ink80)', marginBottom: 4, lineHeight: 1.4, fontStyle: 'italic' }}>
+          <div
+            style={{
+              fontSize: 13,
+              color: 'var(--ink80)',
+              marginBottom: 4,
+              lineHeight: 1.4,
+              fontStyle: 'italic',
+            }}
+          >
             {c.reasoning}
           </div>
           <a
             href={c.tenderPermalink}
             target="_blank"
             rel="noreferrer"
-            style={{ fontSize: 11, color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+            style={{
+              fontSize: 11,
+              color: 'var(--civic)',
+              textDecoration: 'underline',
+              textUnderlineOffset: 2,
+            }}
           >
             Ver contrato en contrataciondelestado.es →
           </a>
@@ -154,7 +228,10 @@ export default function QuejaDetail() {
 
   if (loading) {
     return (
-      <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}
+      >
         <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando…</div>
       </div>
     )
@@ -162,14 +239,20 @@ export default function QuejaDetail() {
 
   if (!queja) {
     return (
-      <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}
+      >
         <Card>
           <SectionHead eyebrow="No encontrada" title={`Queja ${id}`} />
           <div style={{ fontSize: 14, color: 'var(--ink70)', marginTop: 8 }}>
-            Esta queja no aparece en el snapshot actual. Puede que haya sido archivada o que el identificador sea incorrecto.
+            Esta queja no aparece en el snapshot actual. Puede que haya sido archivada o que el
+            identificador sea incorrecto.
           </div>
           <div style={{ marginTop: 12 }}>
-            <Link to="/quejas" style={{ color: 'var(--civic)' }}>← Volver al feed público</Link>
+            <Link to="/quejas" style={{ color: 'var(--civic)' }}>
+              ← Volver al feed público
+            </Link>
           </div>
         </Card>
       </div>
@@ -232,15 +315,30 @@ export default function QuejaDetail() {
   return (
     <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 900, margin: '0 auto' }}>
       <div style={{ marginBottom: 10 }}>
-        <Link to="/quejas" style={{ fontSize: 12, color: 'var(--civic)' }}>← Feed de quejas</Link>
+        <Link to="/quejas" style={{ fontSize: 12, color: 'var(--civic)' }}>
+          ← Feed de quejas
+        </Link>
       </div>
 
       <Card>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12, marginBottom: 10 }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+            gap: 12,
+            marginBottom: 10,
+          }}
+        >
           <div>
             <div
               className="mono"
-              style={{ fontSize: 11, color: 'var(--ink50)', letterSpacing: '.08em', textTransform: 'uppercase' }}
+              style={{
+                fontSize: 11,
+                color: 'var(--ink50)',
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+              }}
             >
               Queja ciudadana · {queja.service_request_id}
             </div>
@@ -258,7 +356,15 @@ export default function QuejaDetail() {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', fontSize: 12, color: 'var(--ink60)' }}>
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            flexWrap: 'wrap',
+            fontSize: 12,
+            color: 'var(--ink60)',
+          }}
+        >
           <span>📂 {CATEGORY_LABEL[category] || category}</span>
           {queja.address_string && <span>📍 {prettyNeighborhood(queja.address_string)}</span>}
           {queja.concejalia_area && <span>🏛 {queja.concejalia_area}</span>}
@@ -266,18 +372,41 @@ export default function QuejaDetail() {
         </div>
 
         {concejal && (
-          <div style={{ marginTop: 14, display: 'flex', alignItems: 'center', gap: 10, padding: '10px 0', borderTop: '1px solid var(--border2)' }}>
+          <div
+            style={{
+              marginTop: 14,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              padding: '10px 0',
+              borderTop: '1px solid var(--border2)',
+            }}
+          >
             {concejal.photoUrl && (
               <img
                 src={concejal.photoUrl}
                 alt={concejal.name}
                 width={38}
                 height={38}
-                style={{ width: 38, height: 38, borderRadius: 6, objectFit: 'cover', flexShrink: 0 }}
+                style={{
+                  width: 38,
+                  height: 38,
+                  borderRadius: 6,
+                  objectFit: 'cover',
+                  flexShrink: 0,
+                }}
               />
             )}
             <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="mono" style={{ fontSize: 10, color: 'var(--ink60)', letterSpacing: '.08em', textTransform: 'uppercase' }}>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  color: 'var(--ink60)',
+                  letterSpacing: '.08em',
+                  textTransform: 'uppercase',
+                }}
+              >
                 Responsable político
               </div>
               <div style={{ fontSize: 14, fontWeight: 600 }}>{concejal.name}</div>
@@ -303,7 +432,15 @@ export default function QuejaDetail() {
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Texto de la queja" title="Detalle ciudadano (verbatim)" />
-        <div style={{ fontSize: 14, lineHeight: 1.55, color: 'var(--ink80)', marginTop: 8, whiteSpace: 'pre-wrap' }}>
+        <div
+          style={{
+            fontSize: 14,
+            lineHeight: 1.55,
+            color: 'var(--ink80)',
+            marginTop: 8,
+            whiteSpace: 'pre-wrap',
+          }}
+        >
           {queja.description}
         </div>
       </Card>
@@ -315,19 +452,45 @@ export default function QuejaDetail() {
           <SectionHead eyebrow="Reloj legal" title="Plazo LPACAP en curso" />
           <div style={{ display: 'flex', gap: 20, marginTop: 10, flexWrap: 'wrap' }}>
             <div>
-              <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  color: 'var(--ink50)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 Registrada
               </div>
-              <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>{fmtDate(queja.registered_at)}</div>
+              <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>
+                {fmtDate(queja.registered_at)}
+              </div>
             </div>
             <div>
-              <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  color: 'var(--ink50)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 Plazo máximo
               </div>
               <div style={{ fontSize: 15, fontWeight: 600, marginTop: 2 }}>{plazo} días</div>
             </div>
             <div>
-              <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <div
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  color: 'var(--ink50)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 {diasRestantes >= 0 ? 'Días restantes' : 'Días excedidos'}
               </div>
               <div
@@ -335,7 +498,12 @@ export default function QuejaDetail() {
                   fontSize: 15,
                   fontWeight: 700,
                   marginTop: 2,
-                  color: diasRestantes < 0 ? 'var(--crit)' : diasRestantes < 15 ? 'var(--warn)' : 'var(--ok)',
+                  color:
+                    diasRestantes < 0
+                      ? 'var(--crit)'
+                      : diasRestantes < 15
+                        ? 'var(--warn)'
+                        : 'var(--ok)',
                 }}
               >
                 {diasRestantes >= 0 ? diasRestantes : Math.abs(diasRestantes)}
@@ -343,10 +511,20 @@ export default function QuejaDetail() {
             </div>
             {queja.registro_entry_number && (
               <div>
-                <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.06em' }}>
+                <div
+                  className="mono"
+                  style={{
+                    fontSize: 10,
+                    color: 'var(--ink50)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '.06em',
+                  }}
+                >
                   Asiento sede
                 </div>
-                <div className="mono" style={{ fontSize: 13, fontWeight: 600, marginTop: 2 }}>{queja.registro_entry_number}</div>
+                <div className="mono" style={{ fontSize: 13, fontWeight: 600, marginTop: 2 }}>
+                  {queja.registro_entry_number}
+                </div>
               </div>
             )}
           </div>
@@ -356,7 +534,9 @@ export default function QuejaDetail() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Historial" title="Línea temporal" />
         <div style={{ marginTop: 10 }}>
-          {timeline.map((t, i) => <TimelineItem key={i} {...t} />)}
+          {timeline.map((t, i) => (
+            <TimelineItem key={i} {...t} />
+          ))}
         </div>
       </Card>
 
@@ -365,14 +545,34 @@ export default function QuejaDetail() {
           <SectionHead eyebrow="Derecho de réplica oficial" title="Respuesta del Ayuntamiento" />
           <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 14 }}>
             {qResponses.map((r) => (
-              <div key={r.id} style={{ paddingBottom: 10, borderBottom: '1px dotted var(--border2)' }}>
-                <div className="mono" style={{ fontSize: 10, color: 'var(--ink60)', letterSpacing: '.08em', textTransform: 'uppercase' }}>
+              <div
+                key={r.id}
+                style={{ paddingBottom: 10, borderBottom: '1px dotted var(--border2)' }}
+              >
+                <div
+                  className="mono"
+                  style={{
+                    fontSize: 10,
+                    color: 'var(--ink60)',
+                    letterSpacing: '.08em',
+                    textTransform: 'uppercase',
+                  }}
+                >
                   {r.role} · {r.firmante} · {fmt(r.appliedAt)}
                 </div>
-                <div style={{ fontSize: 14, marginTop: 6, lineHeight: 1.55, whiteSpace: 'pre-wrap' }}>{r.text}</div>
+                <div
+                  style={{ fontSize: 14, marginTop: 6, lineHeight: 1.55, whiteSpace: 'pre-wrap' }}
+                >
+                  {r.text}
+                </div>
                 {r.source_url && (
                   <div style={{ marginTop: 6, fontSize: 12 }}>
-                    <a href={r.source_url} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+                    <a
+                      href={r.source_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: 'var(--civic)' }}
+                    >
                       Fuente primaria →
                     </a>
                   </div>
@@ -385,14 +585,28 @@ export default function QuejaDetail() {
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Acciones" title="¿Qué puedes hacer?" />
-        <ul style={{ paddingLeft: 20, marginTop: 8, fontSize: 13.5, color: 'var(--ink70)', lineHeight: 1.6 }}>
+        <ul
+          style={{
+            paddingLeft: 20,
+            marginTop: 8,
+            fontSize: 13.5,
+            color: 'var(--ink70)',
+            lineHeight: 1.6,
+          }}
+        >
           <li>
-            <strong>Apoyar:</strong> escribe <code>/apoyar {queja.service_request_id}</code> al bot de Telegram.
+            <strong>Apoyar:</strong> escribe <code>/apoyar {queja.service_request_id}</code> al bot
+            de Telegram.
           </li>
           {(queja.status === 'silencio_negativo' || queja.status === 'escalada_sindic') && (
             <li>
               <strong>Presentar queja al Síndic:</strong>{' '}
-              <a href={SINDIC_PORTAL} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+              <a
+                href={SINDIC_PORTAL}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)' }}
+              >
                 elsindic.com →
               </a>
             </li>

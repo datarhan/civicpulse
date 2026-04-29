@@ -200,7 +200,9 @@ function FindingDetailCard({ f, permalink }) {
           }}
         >
           ¿Eres el grupo afectado? Contacta con la redacción para ejercer derecho de réplica · ver{' '}
-          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>/aviso-legal</a>
+          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+            /aviso-legal
+          </a>
         </div>
       )}
     </Card>

@@ -77,7 +77,15 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
           flexShrink: 0,
         }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+        >
           <line x1="4" y1="7" x2="20" y2="7" />
           <line x1="4" y1="12" x2="20" y2="12" />
           <line x1="4" y1="17" x2="20" y2="17" />
@@ -97,8 +105,21 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         >
           Riba-roja de Túria
         </span>
-        <span className="cp-topbar-muni" style={{ color: 'var(--ink40)' }}>/</span>
-        <span className="cp-topbar-crumb" style={{ fontSize: 13.5, fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{crumb}</span>
+        <span className="cp-topbar-muni" style={{ color: 'var(--ink40)' }}>
+          /
+        </span>
+        <span
+          className="cp-topbar-crumb"
+          style={{
+            fontSize: 13.5,
+            fontWeight: 500,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+          }}
+        >
+          {crumb}
+        </span>
       </div>
 
       <button
@@ -118,7 +139,9 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
         }}
       >
         <Ic.search width={14} height={14} />
-        <span className="cp-topbar-search-hint" style={{ flex: 1, textAlign: 'left' }}>{t('topbar.search')}</span>
+        <span className="cp-topbar-search-hint" style={{ flex: 1, textAlign: 'left' }}>
+          {t('topbar.search')}
+        </span>
         <span
           className="mono cp-topbar-search-kbd"
           style={{
