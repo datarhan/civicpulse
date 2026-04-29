@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-27T06:47:40.192Z",
+  "generatedAt": "2026-04-29T06:45:31.408Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -68,7 +68,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -106,6 +106,28 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQX1JjaEhxYzJoUDgwdmQtUmd1RkpNeW1CSFYtaGktZXN5MS1BckFXVXJLdG5GNVBiM3hfVU5PczB2cENvVnQ5MkF2bU1rTVV4YkpaclEyak9MVUVLLTFldEVHejhDTjdKZmhDcmZtQXF5UG1fblFNQnBtd1ozUGs1YlhSWjNfcEFnNjlYblcwZ2lXWnFtYVdwdUVmX0pHT29zOU9OM3pvVHA3YVZOXzRCRHdERXl2OU9XVmVneVh1ZzFVa0JJcGdGbWg1OXFkZVJ2NGtmZjY1bi1KSkwzaTVzYk1EVE9CcGx1SnfSAe8BQVVfeXFMT3FyV0ZicllVZzBqci02V3dhOXJBVWQzODQ5ZFNVSVVPMjE5R1luSjFOcV9EUE82N3BiV2gyYkE0OWdRcHB0dm5DMXAzLWlTbmZtWnFBa3hYRHU5YWtkUVlVQVJvZHNYbjhHUXRlNHBibkNXdC1Beklqdk5WR3dTQXBaSkJJQVh1Z0N0U0J3ZXNqM29LYkhCeXk0UFJOVlF5ekNrVm5ORjVGMW9tbndkN3JxT1ZpNHhLVmRMT3ZRWC1nR0t1Nnd3RTZWMElvNEJncUoyVE5WZWw4Vjh0OUhlby1sdGk4dmZkdTJ6UkYtbHM?oc=5",
+          "date": "2026-04-27",
+          "quote": "Riba-roja cierra 2025 con un superávit de 4,5 millones y activa 3,3 millones en inversiones",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "inversion",
+            "millon"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZVF3ZlQxckM0bjhXWV81S2hBTjlGa1g2VTJnOFMxd2xTR1dqUUtwWElza3VQYjkyb2RDczNHcTVXRWpGcFJoTGptcWU0MzhOZDRqeFVIbGFNbDI2eld3YUpUSUFHYWtVYVlIOFMzS3NMMlFiUmFmc0djd21rY0FITDd2Ym9KYk1IZ1RCNGZJVm1OZ3dIOE9sUmE3Tl9tdUZTa1pfbHd3ZzZ0Ti13eXY1Q2dCcmczc01PS3ZlaWFHMDNjQ3dmZGZsZVUtNFMxcXU3Z0hoUnpIMXBOUlJUbkNqSmI2cFRxbmViTzZ3Wlk4c2l0X3ViNGFKZUhn?oc=5",
+          "date": "2026-04-27",
+          "quote": "Riba-roja destinará este año 3,3 millones en inversiones públicas gracias al superávit de las cuentas de 2025",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "inversion",
+            "millon"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNY0R4YTZjQUhkeFNlQTlSQ2xFdWVEdWI4MDJVMmlzN3ZNaTJ2N1VWNVRtSFg2cXJOaDJPRlp3R1U5NGE5SnZ5VnRjYUwwekNxcmQxbEIxbDhORF9IWGJCR3ZWcGQzYmpXSFFpZGNZN01RQ09SdXVleXpIc0QxRktPZDBMeTk1dHcwemxRaEZzUWs2NG9NYkJ0WjZfY0hEcTZHZWJ3LTc5eGJyOTJhVUh6eEJ1V1VLcHF3eGx4U05uTllJN2JtZEU1dFVVVmJFTTdhNTdCQ1VhSEc1dVMwS2V4cFZONjVKQVE4cmY1NWxKTGlGVE9mMFN1MzBPLUtQekc0RjRvYmNsbVJ5QlN00gGSAkFVX3lxTE9ydkpvSVFmMmppdnFickhHdDl3WDFqc0h5R29WTWh1V2REdUpBTkdLSVNNRTRQaTJGeVZ6LVNGLXRWZ3F2ODUxbUcxaDRqaDg0SUQ1d3Z6MFZoVFBFdV8yckJheWs1R25WcENJRnp0Mi1BbGltM0cwTGh5T3ZwQ0RUdE1GTWpicjFTM3FRb3pTeUVvR3pGMHlEMkxjTk9LTnM5TWhXQ0Uwa0UxWUNFQlA0UVphWWpRX1gzbUNfdmd2Z1B4a2lnMjA0ZFB6ekVfNEhrNVFRVUZRaDZTYVhLQk0zZ1RvNk1iMEFzZllCUlM5YXY1d0dHMklGVFVpNjQ2RzV2R1d5ZzNEcThmTzJwQkk5RUE?oc=5",
           "date": "2026-04-08",
           "quote": "La Conselleria de Sanidad impulsa el Nuevo Centro de Salud de Riba-roja de Túria: Inversión de 8,3 millones y obras en 2027",
@@ -118,7 +140,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -139,6 +161,20 @@
             "europeo",
             "recibira",
             "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPWC1QbkNvamk1dnk0NlZENEtPaHctNDdVVElEQlBHZWN3MXVKUS1XS2RBcDFhWFRfcWJsczZscFhKODNLeDlHTHpORl8zVnNPdnZiekZxQW0zRjRyWG8wX3NMZ0ZIV2I1X0ZnU0NPVVFlM0RMa3dPc2JDZTV5VXlNV3JfQVY3ZVVvamZITlVIdXE4eHRXS196UmFBREJINmY2WFRTdUxkMWxla21uaWkwem0tQzdySGdiaTFOSUVWZFAzQXBIVVRaWmpfUWdWb0xkY2duSGRZcklGR2ZERUt1OVlYNVdvMGlRdklxVjFLY215QVR3VkxZ?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja recibirá 9,5 millones de fondos europeos para ejecutar inversiones de su agenda de reconstrucción",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "reconstruccion",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira"
           ]
         },
         {
@@ -165,7 +201,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -203,7 +239,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -238,7 +274,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -262,7 +298,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -300,7 +336,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -320,7 +356,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -328,7 +364,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -347,13 +383,27 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
       "proposedStatus": "en-progreso",
-      "confidence": 0.35,
+      "confidence": 0.7,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPMGRHc0hETGtMNWVEUGdUYjY5Ny1Wb1hYdGlmMzNOTW9xX2ZhbmNGekZ1QlpvRTFuX3NPV2RJZUhNOEliSGxyb1c1eEZ6QlVjT2E2MUpETGczSGEyM2EwUVY5VW9DV296QTJReEZicVVvN0ZFa18wVlhsbml0ZV9nczRuTllNdGtRSGFaX1E2VVFWcmV2NXVsYTdiY1ZicGZWUDhv?oc=5",
+          "date": "2026-02-12",
+          "quote": "El PP de Riba-roja vota en contra de los 9,5 millones de euros para el municipio",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "vota",
+            "contra",
+            "millon",
+            "euro",
+            "municipio"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
           "date": "2026-04-08",
@@ -399,7 +449,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -419,13 +469,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "en-progreso",
       "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
+          "date": "2026-04-13",
+          "quote": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "servicio",
+            "vecino"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
           "date": "2026-03-17",
@@ -472,7 +533,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -511,7 +572,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -550,7 +611,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -569,7 +630,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-27T06:47:40.125Z"
+      "generatedAt": "2026-04-29T06:45:31.340Z"
     }
   ],
   "llmEvidence": [],
