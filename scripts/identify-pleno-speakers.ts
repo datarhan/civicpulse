@@ -140,7 +140,9 @@ function loadDiarizedTranscript(plenoId: string): { text: string; path: string }
   const path = resolve(REPO_ROOT, `public/data/pleno-transcripts/${plenoId}.txt`)
   if (!existsSync(path)) {
     process.stderr.write(`[identify] transcript missing: ${path}\n`)
-    process.stderr.write(`[identify]   run transcribe-pleno first: bash scripts/transcribe-pleno.sh ${plenoId}\n`)
+    process.stderr.write(
+      `[identify]   run transcribe-pleno first: bash scripts/transcribe-pleno.sh ${plenoId}\n`,
+    )
     process.exit(1)
   }
   const text = readFileSync(path, 'utf8')
@@ -195,7 +197,8 @@ function spliceSegmentsToWav(
   for (const s of segments) {
     inputs.push('-ss', s.start.toFixed(3), '-to', s.end.toFixed(3), '-i', audioPath)
   }
-  const filter = segments.map((_, i) => `[${i}:a]`).join('') + `concat=n=${segments.length}:v=0:a=1[out]`
+  const filter =
+    segments.map((_, i) => `[${i}:a]`).join('') + `concat=n=${segments.length}:v=0:a=1[out]`
   const args = [
     '-hide_banner',
     '-loglevel',
@@ -374,7 +377,9 @@ async function main(): Promise<void> {
   if (opts.apply) {
     const rewritten = rewriteTranscript(transcript, assignments)
     if (rewritten === transcript) {
-      process.stderr.write(`[identify] --apply: no high/medium-tier matches; transcript untouched\n`)
+      process.stderr.write(
+        `[identify] --apply: no high/medium-tier matches; transcript untouched\n`,
+      )
     } else {
       const tmpT = `${transcriptPath}.identified.tmp`
       writeFileSync(tmpT, rewritten)

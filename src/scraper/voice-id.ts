@@ -197,6 +197,20 @@ export function bestMatch(
   }
 }
 
+export interface CuratorOverride {
+  /** null = explicitly unassigned by curator (override clears auto-match too). */
+  slug: string | null
+  name: string | null
+  party: string | null
+  /** ISO timestamp the override was applied. */
+  setAt: string
+  /** Optional curator name for audit (defaults to system user). */
+  by?: string | null
+  /** Free-text reason — useful for the audit log when the override
+   *  contradicts a high-tier auto-match. */
+  reason?: string | null
+}
+
 export interface SpeakerAssignment {
   speaker: string
   durationSec: number
@@ -204,6 +218,41 @@ export interface SpeakerAssignment {
   match: MatchResult | null
   /** Top 3 candidates for audit (always present, even when no match). */
   topCandidates: Array<{ slug: string; name: string; cosine: number }>
+  /**
+   * Curator-applied override. When present, takes precedence over
+   * `match` for downstream consumers (LLM extractor, dashboard, etc.).
+   * Only mutated by `scripts/override-speaker-assignment.ts`.
+   *
+   * Auto-runs of identify-pleno-speakers MUST NOT clobber existing
+   * curator overrides — see the merge logic in the CLI.
+   */
+  curatorOverride?: CuratorOverride | null
+}
+
+/**
+ * Resolve the effective slug for an assignment. Curator override wins
+ * over auto-match; if both absent, returns null. Used everywhere the
+ * downstream pipeline needs a single answer.
+ *
+ *   curatorOverride present + slug=null  → null (explicitly unassigned)
+ *   curatorOverride present + slug=foo   → foo
+ *   curatorOverride absent  + match.slug → match.slug
+ *   neither                              → null
+ */
+export function effectiveSlug(a: Pick<SpeakerAssignment, 'match' | 'curatorOverride'>): string | null {
+  if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
+    return a.curatorOverride.slug
+  }
+  return a.match?.slug ?? null
+}
+
+/** Tag describing which layer set the effective assignment. */
+export function effectiveTier(
+  a: Pick<SpeakerAssignment, 'match' | 'curatorOverride'>,
+): 'curator' | 'high' | 'medium' | 'low' | 'unmatched' {
+  if (a.curatorOverride !== undefined && a.curatorOverride !== null) return 'curator'
+  if (!a.match) return 'unmatched'
+  return a.match.tier
 }
 
 export interface IdentifyResult {
@@ -217,19 +266,17 @@ export interface IdentifyResult {
 }
 
 /**
- * Replace `(SPEAKER_NN)` markers in the transcript with named tags
- * for high-confidence assignments. Medium and low keep SPEAKER_NN —
- * we surface them in the JSON map for curator review, but don't
- * fabricate individual attribution in the published transcript.
+ * Replace `(SPEAKER_NN)` markers in the transcript with named tags.
+ * Curator overrides win over auto-matches — an override that clears
+ * the slug (explicitly unassigned) keeps the SPEAKER_NN as-is.
  *
- *   high   → "(Robert Raga)"
- *   medium → "(SPEAKER_00 ≈ Robert Raga?)"   (curator-readable hint)
- *   low    → "(SPEAKER_00)"                  (unchanged)
+ *   curator (assigned)   → "(Robert Raga)"
+ *   curator (unassigned) → "(SPEAKER_00)"            (untouched)
+ *   high                 → "(Robert Raga)"
+ *   medium               → "(SPEAKER_00 ≈ Robert Raga?)"
+ *   low / unmatched      → "(SPEAKER_00)"            (unchanged)
  */
-export function rewriteTranscript(
-  transcript: string,
-  assignments: SpeakerAssignment[],
-): string {
+export function rewriteTranscript(transcript: string, assignments: SpeakerAssignment[]): string {
   const map = new Map<string, SpeakerAssignment>()
   for (const a of assignments) map.set(a.speaker, a)
   const lines = transcript.split('\n')
@@ -238,12 +285,20 @@ export function rewriteTranscript(
     if (!m) continue
     const speaker = m[3]
     const a = map.get(speaker)
-    if (!a || !a.match) continue
-    const tag =
-      a.match.tier === 'high'
-        ? `(${a.match.name})`
-        : `(${speaker} ≈ ${a.match.name}?)`
-    lines[i] = lines[i].replace(`(${speaker})`, tag)
+    if (!a) continue
+    let tag: string | null = null
+    if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
+      // Curator decision overrides the automatic match entirely.
+      if (a.curatorOverride.slug && a.curatorOverride.name) {
+        tag = `(${a.curatorOverride.name})`
+      }
+      // null slug = explicitly unassigned → leave SPEAKER_NN
+    } else if (a.match) {
+      tag = a.match.tier === 'high' ? `(${a.match.name})` : `(${speaker} ≈ ${a.match.name}?)`
+    }
+    if (tag !== null) {
+      lines[i] = lines[i].replace(`(${speaker})`, tag)
+    }
   }
   return lines.join('\n')
 }

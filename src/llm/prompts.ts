@@ -407,21 +407,24 @@ export function buildClaimVerifierUserPrompt(input: ClaimVerifierInput): string 
   const c = input.claim
   const ent =
     [
-      c.entities.amountEuros != null ? `monto: €${c.entities.amountEuros.toLocaleString('es-ES')}` : null,
+      c.entities.amountEuros != null
+        ? `monto: €${c.entities.amountEuros.toLocaleString('es-ES')}`
+        : null,
       c.entities.count != null ? `cantidad: ${c.entities.count}` : null,
       c.entities.date ? `fecha: ${c.entities.date}` : null,
     ]
       .filter(Boolean)
       .join(' · ') || '(sin entidades numéricas)'
 
-  const candBlock = input.candidates.length === 0
-    ? '(sin candidatos)'
-    : input.candidates
-        .map(
-          (cand, i) =>
-            `  [${i}] ${cand.kind} · ref=${cand.ref}\n      ${cand.snippet}${cand.similarity != null ? ` · sim=${cand.similarity.toFixed(2)}` : ''}`,
-        )
-        .join('\n')
+  const candBlock =
+    input.candidates.length === 0
+      ? '(sin candidatos)'
+      : input.candidates
+          .map(
+            (cand, i) =>
+              `  [${i}] ${cand.kind} · ref=${cand.ref}\n      ${cand.snippet}${cand.similarity != null ? ` · sim=${cand.similarity.toFixed(2)}` : ''}`,
+          )
+          .join('\n')
 
   return `
 CLAIM:

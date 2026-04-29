@@ -7,6 +7,8 @@ import {
   bestMatch,
   rankCandidates,
   rewriteTranscript,
+  effectiveSlug,
+  effectiveTier,
   DEFAULT_MATCH_OPTS,
   type DiarizedSegment,
   type VoiceprintEntry,
@@ -202,9 +204,7 @@ describe('bestMatch', () => {
   })
 
   it('handles single-candidate ranking by treating second as 0', () => {
-    const m = bestMatch([
-      { slug: 'a', name: 'Alice', party: 'PSOE', cosine: 0.7 },
-    ])
+    const m = bestMatch([{ slug: 'a', name: 'Alice', party: 'PSOE', cosine: 0.7 }])
     expect(m?.tier).toBe('high') // 0.7 >= 0.6, margin 0.7 >= 0.15
   })
 
@@ -213,10 +213,13 @@ describe('bestMatch', () => {
   })
 
   it('respects custom thresholds when provided', () => {
-    const m = bestMatch(
-      [{ slug: 'a', name: 'Alice', party: 'PSOE', cosine: 0.45 }],
-      { ...DEFAULT_MATCH_OPTS, threshold: 0.4, thresholdHigh: 0.4, margin: 0, marginHigh: 0 },
-    )
+    const m = bestMatch([{ slug: 'a', name: 'Alice', party: 'PSOE', cosine: 0.45 }], {
+      ...DEFAULT_MATCH_OPTS,
+      threshold: 0.4,
+      thresholdHigh: 0.4,
+      margin: 0,
+      marginHigh: 0,
+    })
     expect(m?.tier).toBe('high')
   })
 })
@@ -277,5 +280,128 @@ describe('rewriteTranscript', () => {
       { speaker: 'SPEAKER_00', durationSec: 5, segmentCount: 1, match: null, topCandidates: [] },
     ])
     expect(out).toBe(transcript)
+  })
+
+  it('curator override (assigned) overrides high-tier auto-match name', () => {
+    const transcript = '[10.0 → 15.0] (SPEAKER_00) Hola.\n'
+    const out = rewriteTranscript(transcript, [
+      {
+        speaker: 'SPEAKER_00',
+        durationSec: 5,
+        segmentCount: 1,
+        match: {
+          slug: 'maria-esther-gomez-laredo',
+          name: 'María Esther Gómez Laredo',
+          party: 'PSOE',
+          cosine: 0.65,
+          margin: 0.2,
+          tier: 'high',
+        },
+        topCandidates: [],
+        curatorOverride: {
+          slug: 'robert-raga-gadea',
+          name: 'Robert Raga Gadea',
+          party: 'PSOE',
+          setAt: '2026-04-29T10:00:00Z',
+        },
+      },
+    ])
+    expect(out).toContain('(Robert Raga Gadea) Hola.')
+    expect(out).not.toContain('María Esther')
+  })
+
+  it('curator override (cleared) keeps SPEAKER_NN even when auto-match is high tier', () => {
+    const transcript = '[10.0 → 15.0] (SPEAKER_00) Hola.\n'
+    const out = rewriteTranscript(transcript, [
+      {
+        speaker: 'SPEAKER_00',
+        durationSec: 5,
+        segmentCount: 1,
+        match: {
+          slug: 'robert-raga-gadea',
+          name: 'Robert Raga Gadea',
+          party: 'PSOE',
+          cosine: 0.85,
+          margin: 0.5,
+          tier: 'high',
+        },
+        topCandidates: [],
+        curatorOverride: {
+          slug: null,
+          name: null,
+          party: null,
+          setAt: '2026-04-29T10:00:00Z',
+        },
+      },
+    ])
+    expect(out).toContain('(SPEAKER_00) Hola.')
+    expect(out).not.toContain('Robert Raga')
+  })
+})
+
+describe('effectiveSlug / effectiveTier', () => {
+  it('returns curator slug when override is set with a slug', () => {
+    expect(
+      effectiveSlug({
+        match: { slug: 'a', name: 'A', party: 'P', cosine: 0.7, margin: 0.3, tier: 'high' },
+        curatorOverride: {
+          slug: 'b',
+          name: 'B',
+          party: 'P',
+          setAt: '2026-04-29T10:00:00Z',
+        },
+      }),
+    ).toBe('b')
+  })
+
+  it('returns null when override clears the slug, even if auto-match exists', () => {
+    expect(
+      effectiveSlug({
+        match: { slug: 'a', name: 'A', party: 'P', cosine: 0.7, margin: 0.3, tier: 'high' },
+        curatorOverride: {
+          slug: null,
+          name: null,
+          party: null,
+          setAt: '2026-04-29T10:00:00Z',
+        },
+      }),
+    ).toBeNull()
+  })
+
+  it('falls through to auto-match slug when override is absent', () => {
+    expect(
+      effectiveSlug({
+        match: { slug: 'a', name: 'A', party: 'P', cosine: 0.7, margin: 0.3, tier: 'high' },
+      }),
+    ).toBe('a')
+  })
+
+  it('returns null when neither override nor auto-match is set', () => {
+    expect(effectiveSlug({ match: null })).toBeNull()
+  })
+
+  it('effectiveTier reports curator/high/medium/low/unmatched correctly', () => {
+    expect(
+      effectiveTier({
+        match: null,
+        curatorOverride: {
+          slug: 'a',
+          name: 'A',
+          party: 'P',
+          setAt: '2026-04-29T10:00:00Z',
+        },
+      }),
+    ).toBe('curator')
+    expect(
+      effectiveTier({
+        match: { slug: 'a', name: 'A', party: 'P', cosine: 0.7, margin: 0.3, tier: 'high' },
+      }),
+    ).toBe('high')
+    expect(
+      effectiveTier({
+        match: { slug: 'a', name: 'A', party: 'P', cosine: 0.55, margin: 0.12, tier: 'medium' },
+      }),
+    ).toBe('medium')
+    expect(effectiveTier({ match: null })).toBe('unmatched')
   })
 })

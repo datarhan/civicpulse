@@ -393,6 +393,7 @@ describe('ActionSchemas', () => {
       'enroll-voice',
       'fetch-url-evidence',
       'finding-reply',
+      'override-speaker-assignment',
       'promote-claim',
       'refresh-curate-queue',
       'refresh-gh-issues',
@@ -443,6 +444,69 @@ describe('ActionSchemas', () => {
     })
     it('rejects extras', () => {
       expect(schema.safeParse({ slug: 'pln', extra: 1 }).success).toBe(false)
+    })
+  })
+
+  describe('override-speaker-assignment', () => {
+    const schema = ActionSchemas['override-speaker-assignment']
+    it('accepts mode=assign with a slug', () => {
+      const r = schema.safeParse({
+        plenoId: 'voicetest',
+        speaker: 'SPEAKER_00',
+        mode: 'assign',
+        slug: 'robert-raga-gadea',
+      })
+      expect(r.success).toBe(true)
+    })
+    it('rejects mode=assign without a slug', () => {
+      const r = schema.safeParse({
+        plenoId: 'voicetest',
+        speaker: 'SPEAKER_00',
+        mode: 'assign',
+      })
+      expect(r.success).toBe(false)
+    })
+    it('accepts mode=clear with no slug', () => {
+      const r = schema.safeParse({
+        plenoId: 'voicetest',
+        speaker: 'SPEAKER_00',
+        mode: 'clear',
+      })
+      expect(r.success).toBe(true)
+    })
+    it('rejects mode=clear with a slug (defensive)', () => {
+      const r = schema.safeParse({
+        plenoId: 'voicetest',
+        speaker: 'SPEAKER_00',
+        mode: 'clear',
+        slug: 'robert-raga-gadea',
+      })
+      expect(r.success).toBe(false)
+    })
+    it('rejects malformed speaker label', () => {
+      const r = schema.safeParse({
+        plenoId: 'voicetest',
+        speaker: 'speaker_00',
+        mode: 'clear',
+      })
+      expect(r.success).toBe(false)
+    })
+    it('rejects malformed plenoId', () => {
+      const r = schema.safeParse({
+        plenoId: 'PATH/../secret',
+        speaker: 'SPEAKER_00',
+        mode: 'clear',
+      })
+      expect(r.success).toBe(false)
+    })
+    it('rejects extras', () => {
+      const r = schema.safeParse({
+        plenoId: 'voicetest',
+        speaker: 'SPEAKER_00',
+        mode: 'clear',
+        evil: 1,
+      })
+      expect(r.success).toBe(false)
     })
   })
 })

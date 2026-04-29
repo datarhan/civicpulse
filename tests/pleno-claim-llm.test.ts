@@ -19,8 +19,7 @@ const baseClaim: PlenoClaimExtraction = {
   speakerGroup: 'PSOE',
   speakerSlug: null,
   verbatim: 'Hemos asignado 46 millones al presupuesto del año.',
-  context:
-    'El alcalde explica el cierre presupuestario y cita la cifra que se ha consignado.',
+  context: 'El alcalde explica el cierre presupuestario y cita la cifra que se ha consignado.',
   topic: 'fiscal',
   entities: { amountEuros: 46000000 },
   accusationSubtype: null,

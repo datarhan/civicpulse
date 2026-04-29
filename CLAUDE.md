@@ -153,6 +153,24 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #   to a dot product downstream. Same speaker self-similarity in our
 #   benchmark: ~0.85; cross-speaker noise floor: ~0.10.
 #
+#   Curator review surface (dashboard at /curator → "Voice ID assignments
+#   per pleno"). Lists every `pleno-speakers/<plenoId>.json`. Per cluster:
+#   shows the auto-match tier, top-3 candidates with cosine scores, and a
+#   dropdown to override the assignment. Overrides land in
+#   `pleno-speakers/<plenoId>.json` under a sibling `curatorOverride`
+#   field — the auto-match is preserved untouched for audit. Effective
+#   assignment for downstream consumers (LLM extractor, transcript
+#   rewrite) follows: curatorOverride wins → else high-tier match → else
+#   nothing. Medium and low tier auto-matches NEVER feed the LLM unless a
+#   curator explicitly promotes them via override.
+#
+#     npm run override-speaker-assignment -- --pleno-id <id> \
+#         --speaker SPEAKER_NN --slug <officials-slug> [--reason "…"]
+#     npm run override-speaker-assignment -- --pleno-id <id> \
+#         --speaker SPEAKER_NN --clear         # explicit unassigned
+#     npm run override-speaker-assignment -- --pleno-id <id> \
+#         --speaker SPEAKER_NN --remove-override
+#
 #   Editorial guard: voice-id is editorial signal, not a libel green
 #   light. The LLM extractor's `speakerGroup` enum stays bloc-level
 #   (PSOE / PP / VOX / Compromís) regardless of voiceprint match. A

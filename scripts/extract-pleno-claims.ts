@@ -81,23 +81,34 @@ function loadAllowedSpeakersFor(
 ): Array<{ slug: string; name: string; party: string }> {
   const speakersPath = resolve(PLENO_SPEAKERS_DIR, `${plenoId}.json`)
   if (!existsSync(speakersPath)) return []
-  let assignments: Array<{ match?: { tier: string; slug: string } | null }> = []
+  let assignments: Array<{
+    match?: { tier: string; slug: string } | null
+    curatorOverride?: { slug: string | null } | null
+  }> = []
   try {
     const doc = JSON.parse(readFileSync(speakersPath, 'utf8'))
     assignments = doc?.assignments ?? []
   } catch {
     return []
   }
-  const highSlugs = new Set<string>()
+  // Curator override wins. Otherwise only high-tier auto-matches qualify.
+  // Medium/low auto-matches are deliberately excluded — they're intended
+  // for review on the dashboard, not as LLM input.
+  const allowedSlugs = new Set<string>()
   for (const a of assignments) {
-    if (a.match?.tier === 'high' && a.match?.slug) highSlugs.add(a.match.slug)
+    if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
+      if (a.curatorOverride.slug) allowedSlugs.add(a.curatorOverride.slug)
+      // null slug = explicitly unassigned → not added
+      continue
+    }
+    if (a.match?.tier === 'high' && a.match?.slug) allowedSlugs.add(a.match.slug)
   }
-  if (highSlugs.size === 0) return []
+  if (allowedSlugs.size === 0) return []
 
   const officials = JSON.parse(readFileSync(OFFICIALS_PATH, 'utf8')) as Officials
   const out: Array<{ slug: string; name: string; party: string }> = []
   for (const o of officials.officials ?? []) {
-    if (highSlugs.has(o.slug)) {
+    if (allowedSlugs.has(o.slug)) {
       out.push({ slug: o.slug, name: o.name, party: o.party })
     }
   }

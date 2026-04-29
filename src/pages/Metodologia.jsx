@@ -231,13 +231,13 @@ export default function Metodologia() {
             <code>cita_obra</code> · <code>cita_convenio</code> · <code>acusacion_publica</code>.
             Cada registro se guarda en <code>pleno-claims-suggestions.json</code> con{' '}
             <strong>atribución primaria a nivel de grupo municipal</strong>. La identificación
-            individual (concejal concreto) sólo se anota como señal secundaria
-            (<code>speakerSlug</code>) cuando el sistema de identificación por voz —entrenado con
-            muestras públicas de cada concejal— ha asignado esa línea con alta confianza (cosine
-            ≥ 0,6 y margen ≥ 0,15 frente al segundo candidato). Aún así, ninguna superficie
-            pública (<code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo
-            hasta que un curador lo promueve manualmente. La atribución por grupo es la única
-            que aparece sin revisión humana.
+            individual (concejal concreto) sólo se anota como señal secundaria (
+            <code>speakerSlug</code>) cuando el sistema de identificación por voz —entrenado con
+            muestras públicas de cada concejal— ha asignado esa línea con alta confianza (cosine ≥
+            0,6 y margen ≥ 0,15 frente al segundo candidato). Aún así, ninguna superficie pública (
+            <code>/declaraciones</code>, <code>/hallazgos</code>) nombra al individuo hasta que un
+            curador lo promueve manualmente. La atribución por grupo es la única que aparece sin
+            revisión humana.
           </li>
           <li>
             <strong>Contraste determinista</strong> (sin LLM) contra la base de datos municipal:

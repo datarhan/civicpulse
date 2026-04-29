@@ -26,7 +26,7 @@
  * structured error JSON on validation failures.
  */
 import { execFile, spawn } from 'node:child_process'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { z } from 'zod'
 // curator-jobs is a JSDoc-typed JS module so plain Node ESM can
@@ -238,6 +238,29 @@ const ActionSchemas = {
       slug: z.string().regex(/^[a-z0-9-]{3,80}$/),
     })
     .strict(),
+  // Apply a curator override to a single SPEAKER_NN cluster in
+  // pleno-speakers/<plenoId>.json. Used by the dashboard's voice-id
+  // assignment review surface to correct medium/low-confidence
+  // matches before the LLM extractor consumes them.
+  'override-speaker-assignment': z
+    .object({
+      plenoId: z.string().regex(/^[a-z0-9]{3,40}$/),
+      speaker: z.string().regex(/^SPEAKER_\d{1,3}$/),
+      mode: z.enum(['assign', 'clear', 'remove-override']),
+      slug: z
+        .string()
+        .regex(/^[a-z0-9-]{3,80}$/)
+        .optional(),
+      reason: z.string().min(1).max(500).optional(),
+      by: z.string().min(1).max(80).optional(),
+    })
+    .strict()
+    .refine((d) => d.mode !== 'assign' || typeof d.slug === 'string', {
+      message: "mode='assign' requires slug",
+    })
+    .refine((d) => d.mode === 'assign' || !d.slug, {
+      message: 'slug only allowed with mode=assign',
+    }),
 }
 
 /** Schema for the `POST /api/curator/jobs` body — separate from
@@ -318,6 +341,23 @@ function buildArgv(action, args) {
     }
     case 'delete-voiceprint': {
       return ['run', 'delete-voiceprint', '--', '--slug', args.slug]
+    }
+    case 'override-speaker-assignment': {
+      const argv = [
+        'run',
+        'override-speaker-assignment',
+        '--',
+        '--pleno-id',
+        args.plenoId,
+        '--speaker',
+        args.speaker,
+      ]
+      if (args.mode === 'assign') argv.push('--slug', args.slug)
+      else if (args.mode === 'clear') argv.push('--clear')
+      else if (args.mode === 'remove-override') argv.push('--remove-override')
+      if (args.reason) argv.push('--reason', args.reason)
+      if (args.by) argv.push('--by', args.by)
+      return argv
     }
     default:
       throw new Error(`unknown action ${action}`)
@@ -834,6 +874,123 @@ function handleVoiceprintsRead(req, res, cwd) {
 }
 
 /**
+ * GET /api/curator/pleno-speakers — directory of every pleno that has
+ * a voice-id assignment file at `pleno-speakers/<plenoId>.json`.
+ *
+ * Each row carries enough summary stats to populate the dashboard
+ * without round-tripping for the detail JSON: speaker counts per tier,
+ * how many lines have curator overrides, when it was last regenerated.
+ *
+ * Plenos without a JSON file are omitted (the curator hasn't run
+ * identify-pleno-speakers on them yet).
+ */
+function handlePlenoSpeakersList(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  const dir = resolve(cwd, 'pleno-speakers')
+  if (!existsSync(dir)) {
+    sendJson(res, 200, { generatedAt: new Date().toISOString(), plenos: [] })
+    return
+  }
+  let files
+  try {
+    files = readdirSync(dir).filter((f) => f.endsWith('.json'))
+  } catch (err) {
+    sendJson(res, 500, { error: `cannot read ${dir}: ${err.message}` })
+    return
+  }
+  const plenosPath = resolve(cwd, 'public/data/plenos.json')
+  /** @type {Record<string, {date?: string, title?: string}>} */
+  const plenoMeta = {}
+  if (existsSync(plenosPath)) {
+    try {
+      const items = JSON.parse(readFileSync(plenosPath, 'utf8')).items ?? []
+      for (const p of items) plenoMeta[p.id] = { date: p.date, title: p.title }
+    } catch (err) {
+      // Non-fatal; the dashboard just won't get pleno titles.
+      process.stderr.write(`[pleno-speakers] plenos.json unreadable: ${err.message}\n`)
+    }
+  }
+  const rows = []
+  for (const f of files) {
+    const plenoId = f.replace(/\.json$/, '')
+    let doc
+    try {
+      doc = JSON.parse(readFileSync(resolve(dir, f), 'utf8'))
+    } catch (err) {
+      process.stderr.write(`[pleno-speakers] ${f} unreadable: ${err.message}\n`)
+      continue
+    }
+    const assignments = doc?.assignments ?? []
+    let curatorOverrideCount = 0
+    for (const a of assignments) {
+      if (a.curatorOverride !== undefined && a.curatorOverride !== null) curatorOverrideCount += 1
+    }
+    rows.push({
+      plenoId,
+      plenoDate: plenoMeta[plenoId]?.date ?? null,
+      plenoTitle: plenoMeta[plenoId]?.title ?? null,
+      generatedAt: doc?.generatedAt ?? null,
+      totalSpeakers: doc?.totalSpeakers ?? assignments.length,
+      highConfidenceCount: doc?.highConfidenceCount ?? 0,
+      mediumConfidenceCount: doc?.mediumConfidenceCount ?? 0,
+      unmatchedCount: doc?.unmatchedCount ?? 0,
+      curatorOverrideCount,
+    })
+  }
+  // Most recent pleno on top — date when known, else id.
+  rows.sort((a, b) => {
+    if (a.plenoDate && b.plenoDate) return b.plenoDate.localeCompare(a.plenoDate)
+    return b.plenoId.localeCompare(a.plenoId)
+  })
+  sendJson(res, 200, { generatedAt: new Date().toISOString(), plenos: rows })
+}
+
+/**
+ * GET /api/curator/pleno-speakers/<plenoId> — full assignment doc.
+ * Returns the raw JSON the matcher writes (assignments[], topCandidates,
+ * curator overrides, totals). The dashboard renders the per-cluster table
+ * from this payload.
+ */
+function handlePlenoSpeakersDetail(req, res, cwd, plenoId) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  if (!/^[a-z0-9]{3,40}$/.test(plenoId)) {
+    sendJson(res, 400, { error: 'invalid plenoId' })
+    return
+  }
+  const path = resolve(cwd, `pleno-speakers/${plenoId}.json`)
+  if (!existsSync(path)) {
+    sendJson(res, 404, { error: `no assignment file for ${plenoId}` })
+    return
+  }
+  try {
+    const doc = JSON.parse(readFileSync(path, 'utf8'))
+    sendJson(res, 200, doc)
+  } catch (err) {
+    sendJson(res, 500, { error: `cannot read ${path}: ${err.message}` })
+  }
+}
+
+/**
  * @param {{ cwd?: string }} [opts]
  * @returns {import('vite').Plugin}
  */
@@ -870,6 +1027,25 @@ export function viteCuratorPlugin(opts = {}) {
           }
         } else {
           next()
+        }
+      })
+      // /api/curator/pleno-speakers — list view at the bare path,
+      // detail view at /api/curator/pleno-speakers/<plenoId>.
+      server.middlewares.use('/api/curator/pleno-speakers', (req, res, next) => {
+        const path = (req.url || '/').split('?')[0]
+        try {
+          if (path === '/' || path === '') {
+            handlePlenoSpeakersList(req, res, cwd)
+            return
+          }
+          const m = path.match(/^\/([a-z0-9]{3,40})$/)
+          if (m) {
+            handlePlenoSpeakersDetail(req, res, cwd, m[1])
+            return
+          }
+          next()
+        } catch (err) {
+          sendJson(res, 500, { error: err.message })
         }
       })
       // POST /api/curator/jobs (create) and GET /api/curator/jobs (list).
