@@ -42,7 +42,32 @@ import {
   JobValidationError,
 } from './src/scraper/curator-jobs.js'
 
-const ALLOWED_ORIGINS = new Set(['http://localhost:5173', 'http://127.0.0.1:5173'])
+const ALLOWED_ORIGINS = new Set([
+  'http://localhost:5173',
+  'http://127.0.0.1:5173',
+  // IPv6 loopback — some macOS setups resolve `localhost` to ::1 first,
+  // which the browser then surfaces as the page origin. Treat it as
+  // equivalent to 127.0.0.1.
+  'http://[::1]:5173',
+])
+
+/**
+ * Validate the Origin header against the allowlist.
+ *   · POST/DELETE: Origin MUST be present + on the allowlist (CSRF guard).
+ *   · GET: Origin MAY be missing (browsers omit it on some same-origin
+ *     GETs). When present, it must still be on the allowlist.
+ *
+ * Returns null when allowed, or a short reason string when refused.
+ */
+function checkOrigin(req) {
+  const origin = req.headers.origin
+  if (origin) {
+    return ALLOWED_ORIGINS.has(origin) ? null : 'origin not allowed'
+  }
+  // Origin absent → only acceptable for GET (idempotent + read-only).
+  if (req.method === 'GET') return null
+  return 'origin header required'
+}
 // 32 KB headroom for the `draft-finding` extra-evidence payload
 // (≤10 snippets × ≤1500 chars + JSON wrapping). Other actions stay
 // well under this.
@@ -398,9 +423,12 @@ async function handleRun(req, res, cwd) {
     sendJson(res, 405, { error: 'method not allowed' })
     return
   }
-  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
-    sendJson(res, 403, { error: 'origin not allowed' })
-    return
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
   }
   let raw
   try {
@@ -452,9 +480,12 @@ async function handleCommit(req, res, cwd) {
     sendJson(res, 405, { error: 'method not allowed' })
     return
   }
-  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
-    sendJson(res, 403, { error: 'origin not allowed' })
-    return
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
   }
   let raw
   try {
@@ -553,9 +584,12 @@ async function handleJobCreate(req, res, cwd) {
     sendJson(res, 405, { error: 'method not allowed' })
     return
   }
-  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
-    sendJson(res, 403, { error: 'origin not allowed' })
-    return
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
   }
   let raw
   try {
@@ -657,9 +691,12 @@ function handleJobRead(req, res) {
     sendJson(res, 405, { error: 'method not allowed' })
     return
   }
-  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
-    sendJson(res, 403, { error: 'origin not allowed' })
-    return
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
   }
   // Path: '/' (list) or '/<id>' (single).
   const path = (req.url || '/').split('?')[0]
@@ -691,9 +728,12 @@ function handleJobCancel(req, res) {
     sendJson(res, 405, { error: 'method not allowed' })
     return
   }
-  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
-    sendJson(res, 403, { error: 'origin not allowed' })
-    return
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
   }
   const path = (req.url || '/').split('?')[0]
   const id = path.replace(/^\//, '')
@@ -733,9 +773,12 @@ function handleVoiceprintsRead(req, res, cwd) {
     sendJson(res, 405, { error: 'method not allowed' })
     return
   }
-  if (!ALLOWED_ORIGINS.has(req.headers.origin || '')) {
-    sendJson(res, 403, { error: 'origin not allowed' })
-    return
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
   }
   const officialsPath = resolve(cwd, 'public/data/officials.json')
   if (!existsSync(officialsPath)) {

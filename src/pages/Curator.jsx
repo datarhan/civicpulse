@@ -12,8 +12,42 @@
  * middleware enforces an action allowlist + zod-validated args + an
  * argv-array `execFile` (no shell). See vite-curator-plugin.js.
  */
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Component, useCallback, useEffect, useMemo, useState } from 'react'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+
+// Tiny error boundary so a runtime crash in a single section can't
+// take down the whole dashboard. Renders the error stack inline so
+// a curator can copy/paste the bug into a report. Only used on the
+// dev-only /curator route — production builds tree-shake this out.
+class SectionErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { error: null, info: null }
+  }
+  static getDerivedStateFromError(error) {
+    return { error, info: null }
+  }
+  componentDidCatch(error, info) {
+    // eslint-disable-next-line no-console
+    console.error(`[Curator section "${this.props.label}" crashed]`, error, info)
+    this.setState({ error, info })
+  }
+  render() {
+    if (this.state.error) {
+      return (
+        <Card style={{ padding: 12, marginBottom: 18, borderColor: 'var(--crit-ink)' }}>
+          <div className="mono" style={{ fontSize: 11, color: 'var(--crit-ink)', marginBottom: 6 }}>
+            ⚠ {this.props.label} crashed
+          </div>
+          <pre style={{ fontSize: 11, whiteSpace: 'pre-wrap', margin: 0 }}>
+            {String(this.state.error?.stack || this.state.error || 'unknown error')}
+          </pre>
+        </Card>
+      )
+    }
+    return this.props.children
+  }
+}
 
 const QUEUE_URL = '/data/auto-curation-queue.json'
 const ISSUES_URL = '/data/finding-response-issues.json'
@@ -1237,10 +1271,9 @@ function VoiceEnrollmentSection() {
         </button>
       </div>
       <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, marginBottom: 10 }}>
-        Per-councillor voiceprint database (192-dim ECAPA-TDNN embeddings).
-        Enroll from any public audio URL — Instagram reel, YouTube clip,
-        official statement. Stored locally in <code>.voiceprints/</code>{' '}
-        (gitignored). Used for individual claim attribution at extraction
+        Per-councillor voiceprint database (192-dim ECAPA-TDNN embeddings). Enroll from any public
+        audio URL — Instagram reel, YouTube clip, official statement. Stored locally in{' '}
+        <code>.voiceprints/</code> (gitignored). Used for individual claim attribution at extraction
         time once integration ships; today this is the enrollment tool only.
       </p>
       {voices.error && (
@@ -1352,15 +1385,12 @@ function VoiceEnrollmentSection() {
             <div className="mono" style={{ fontSize: 11, color: 'var(--ink50)' }}>
               {enrollFor.role ?? '—'} · {enrollFor.party ?? '—'}
             </div>
-            <h3 style={{ margin: '4px 0 12px', fontSize: 16 }}>
-              Enroll voice: {enrollFor.name}
-            </h3>
+            <h3 style={{ margin: '4px 0 12px', fontSize: 16 }}>Enroll voice: {enrollFor.name}</h3>
             <p style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 0 }}>
-              Paste any public audio URL with this person speaking — yt-dlp
-              will extract the audio. Recommended: <b>≥30 s</b> of clear,
-              uninterrupted speech (interview, statement, press conference).
-              The downloaded clip is cached in <code>.voiceprints/audio/</code>{' '}
-              for audit but never committed.
+              Paste any public audio URL with this person speaking — yt-dlp will extract the audio.
+              Recommended: <b>≥30 s</b> of clear, uninterrupted speech (interview, statement, press
+              conference). The downloaded clip is cached in <code>.voiceprints/audio/</code> for
+              audit but never committed.
             </p>
             <input
               type="url"
@@ -1405,8 +1435,7 @@ function VoiceEnrollmentSection() {
                 style={{
                   padding: '9px 14px',
                   border: 'none',
-                  background:
-                    enrollUrl.trim() && !enrolling ? 'var(--civic-ink)' : 'var(--soft)',
+                  background: enrollUrl.trim() && !enrolling ? 'var(--civic-ink)' : 'var(--soft)',
                   color: enrollUrl.trim() && !enrolling ? '#fff' : 'var(--ink50)',
                   borderRadius: 6,
                   cursor: enrollUrl.trim() && !enrolling ? 'pointer' : 'not-allowed',
@@ -1706,7 +1735,9 @@ export default function Curator() {
         ))}
       </Card>
 
-      <VoiceEnrollmentSection />
+      <SectionErrorBoundary label="Voice ID enrollment">
+        <VoiceEnrollmentSection />
+      </SectionErrorBoundary>
 
       {refreshResult && !refreshResult.ok && (
         <Card style={{ padding: 12, marginBottom: 18, borderColor: 'var(--crit-ink)' }}>

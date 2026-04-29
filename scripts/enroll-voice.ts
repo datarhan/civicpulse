@@ -28,13 +28,7 @@
  * attribution.
  */
 import { spawnSync } from 'node:child_process'
-import {
-  existsSync,
-  mkdirSync,
-  readFileSync,
-  renameSync,
-  writeFileSync,
-} from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 
 const OFFICIALS = resolve('public/data/officials.json')
@@ -175,11 +169,7 @@ function writeIndex(entries: IndexEntry[]): void {
   const tmp = `${INDEX_PATH}.tmp`
   writeFileSync(
     tmp,
-    JSON.stringify(
-      { generatedAt: new Date().toISOString(), entries },
-      null,
-      2,
-    ) + '\n',
+    JSON.stringify({ generatedAt: new Date().toISOString(), entries }, null, 2) + '\n',
   )
   renameSync(tmp, INDEX_PATH)
 }
@@ -343,9 +333,7 @@ async function main() {
   const wavPath = resolve(VOICEPRINTS_DIR, `audio/${opts.slug}.16k.wav`)
   mkdirSync(dirname(wavPath), { recursive: true })
   const duration = ffmpegToWav(audioPath, wavPath)
-  process.stderr.write(
-    `[enroll-voice]   trimmed audio: ${duration.toFixed(1)}s @ 16 kHz mono\n`,
-  )
+  process.stderr.write(`[enroll-voice]   trimmed audio: ${duration.toFixed(1)}s @ 16 kHz mono\n`)
   if (duration < 3) {
     process.stderr.write(
       `[enroll-voice] WARNING: <3s of speech — voiceprint will be unreliable. Recommend ≥30s.\n`,
@@ -376,8 +364,8 @@ async function main() {
     embeddingNorm: Number(emb.norm.toFixed(4)),
     model: 'speechbrain/spkrec-ecapa-voxceleb',
   }
-  const updated = [...idx.entries.filter((e) => e.slug !== opts.slug), newEntry].sort(
-    (a, b) => a.slug.localeCompare(b.slug),
+  const updated = [...idx.entries.filter((e) => e.slug !== opts.slug), newEntry].sort((a, b) =>
+    a.slug.localeCompare(b.slug),
   )
   writeIndex(updated)
   process.stderr.write(`[enroll-voice]   updated ${INDEX_PATH}\n`)
