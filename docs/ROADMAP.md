@@ -8,6 +8,31 @@ At this stage, *features are not the bottleneck*. Citizen utility is. The roadma
 
 ---
 
+## Status (2026-04 update)
+
+The roadmap below was authored when the dashboard was a green-field MVP. Since then most P1–P2 items shipped (sometimes through different files than originally planned) and a substantial new subsystem — voice-id — was added that didn't exist at write time. Current state by theme:
+
+**P1 — SIGNAL · mostly shipped**
+- 1.1 LOPD/GDPR hardening — ✅ shipped. `bot/src/commands/olvidar.ts`, `deleted_at` column, AvisoLegal RGPD card. Extended in 2026-04 with a git-history rewrite clause (Art. 17) covering the inmutable-cadena-de-custodia case. Bot still local-launchd; Fly.io deferred to public-launch phase.
+- 1.2 Batch transcription — ✅ shipped. `scripts/transcribe-pleno-batch.sh` walks pleno-videos.json with `--refine` / `--refine-apply` flags + WHISPER_DENOISE / WHISPER_DIARIZE / WHISPER_IDENTIFY env-gated stages.
+- 1.3 Transcripts as promise corpus — partial. The LLM extractor (`extract:pleno-claims`) consumes transcripts directly to produce `pleno-claims-suggestions.json` + verifier output rather than feeding promise-llm-inference. The end-to-end editorial flow (claim → verifier verdict → curator finding → /hallazgos) replaces the original "transcripts feed promise evidence" plan.
+
+**P2 — DISTRIBUTE · partial**
+- 2.1 `/cambios` page — ✅ shipped (route mounted in `src/App.jsx`).
+- 2.2–2.4 — not shipped; deprioritised in favour of curator-side editorial tooling.
+
+**P3 — HARDEN · ESLint/Prettier shipped, observability + JS type-check deferred.**
+
+**New since this roadmap was written (2026-04)**
+- **Voice-ID pipeline.** Per-councillor ECAPA-TDNN voiceprints + pyannote diarization + identification matcher + curator review surface. Crosses the libel boundary cleanly: bloc attribution remains primary, individual `speakerSlug` is editorial signal, individualSpeaker on `/hallazgos` requires explicit curator promotion via `promote-claim --individual-speaker`. Endpoints + dashboard at `/curator → Voice ID enrollment` / `→ Voice ID assignments`. Audio playback per cluster, encrypted backup script, 8s ffmpeg-streamed snippets. Bootstrap helper, batch enrollment, A/B measurement runner. Documented in CLAUDE.md §Voice-ID.
+- **Claim-extraction subsystem.** `src/scraper/pleno-claim.ts` + `claim-verifier.ts` + `pleno-finding.ts`. Auto-curate weekly via launchd. LOREG freeze + V1-status gates enforced in CLI.
+- **Pleno-claims chunking.** Monolith hit 7 MB; split into per-pleno chunks at `public/data/pleno-claims/<plenoId>.json` + 8 KB manifest. SPA hook fetches in parallel; CLIs keep using monolith.
+- **Privacy cleanup.** Public GitHub links removed from every public-facing surface (right-of-reply CTAs route to `/aviso-legal` instead). Repo stays private until public-launch phase.
+
+**Net assessment.** The core editorial loop (transcript → extraction → verification → curated finding → right-of-reply) is shipped end-to-end and exercised on real plenos. The two remaining gates before public-launch are (a) Fly.io migration of the bot (deferred deliberately) and (b) cross-bloc voiceprint enrollment (needs human-supplied URLs).
+
+---
+
 ## P1 · SIGNAL — unblock real data flowing through the pipe
 
 ### 1.1 Bot activation with LOPD/GDPR hardening — **BLOCKING**
@@ -160,6 +185,9 @@ Two doc files contradict the shipped stack. The referenced-but-missing `bot/LOCA
 
 ## Deferred — not in this plan
 
+- **Bot to Fly.io.** Production-grade deployment of the Telegram bot is parked until public-launch readiness. `bot/DEPLOY.md` carries the playbook; meanwhile the laptop launchd setup (`bot/LOCAL.md`) covers all dev + curator-controlled use.
+- **Cross-bloc voiceprint enrollment.** Three PSOE councillors enrolled (alcalde + 2 concejales). Cross-party validation (≥1 PP, VOX, Compromís) needs human-supplied audio URLs. `npm run enroll-voices-batch -- --file enrollments.json` is wired and waiting.
+- **Lazy-loaded pleno-claims chunks.** Today's hook fetches all chunks in parallel via the manifest. A future iteration could load only the most-recent N plenos by default and lazy-load older ones as the user paginates `/declaraciones` past loaded plenos. Manifest already carries the metadata to drive this without a schema change.
 - **Live acta fact-checker** (transcript vs agenda diff). Needs ≥10 clean transcripts so the failure mode is "nothing surfaces" not "we accused the alcalde of skipping an agenda item." Revisit after 1.2 lands volume.
 - **Cross-pleno semantic search + vector DB** (LanceDB or Postgres+pgvector). At ribarroja scale (≤50 sessions × ~1k segments ≈ 50k chunks, single-user queries, static data), BM25 + LLM reranker is 90% as good with zero ops. Revisit when corpus >500k chunks OR we onboard a second municipality.
 - **Official acta PDF parser**. Actas lag sessions 2-6 weeks. Low urgency — we already have the Whisper transcript ahead of the official acta.
