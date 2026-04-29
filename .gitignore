@@ -12,6 +12,7 @@ test-results/
 .embed-cache/
 .curator-jobs/
 .voiceprints/
+tmp/
 mlx_models/
 editorial/
 scripts/logs/

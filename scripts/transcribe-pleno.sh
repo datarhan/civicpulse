@@ -368,6 +368,35 @@ if [ "${WHISPER_DIARIZE:-0}" = "1" ]; then
   fi
 fi
 
+# ── Optional voice-id assignment (post-diarization) ─────────────────────
+# Default OFF. Enable per-run with WHISPER_IDENTIFY=1.
+# Pre-requisite: WHISPER_DIARIZE=1 (or a pre-tagged transcript) AND ≥1
+# enrolled voiceprint in `.voiceprints/`.
+#
+# Slices each SPEAKER_NN cluster's longest contiguous segments out of
+# the cached audio, embeds them via the same speechbrain ECAPA-TDNN
+# model `enroll-voice` used, and matches against the enrolled set.
+# High-confidence matches (cosine ≥ 0.6 AND margin ≥ 0.15) get rewritten
+# from `(SPEAKER_NN)` to `(<councillor name>)`. Medium-confidence matches
+# stay as `(SPEAKER_NN ≈ <name>?)` for curator review.
+#
+# Always writes the audit JSON to `pleno-speakers/<plenoId>.json` —
+# downstream (LLM extractor, dashboard) can consult it without
+# re-doing the embedding work.
+if [ "${WHISPER_IDENTIFY:-0}" = "1" ]; then
+  if [ "${WHISPER_DIARIZE:-0}" != "1" ]; then
+    echo "[transcribe] WHISPER_IDENTIFY=1 needs WHISPER_DIARIZE=1 — skipping" >&2
+  else
+    echo "[transcribe] WHISPER_IDENTIFY=1 — running voice-id matcher (post-diarization)…"
+    cd "$REPO_ROOT"
+    if npx tsx scripts/identify-pleno-speakers.ts "$PLENO_ID" --apply; then
+      echo "[transcribe] voice-id assignments written"
+    else
+      echo "[transcribe] voice-id matcher FAILED — keeping diarized transcript untouched" >&2
+    fi
+  fi
+fi
+
 echo "[transcribe] running vote inference…"
 
 cd "$REPO_ROOT"

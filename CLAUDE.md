@@ -122,6 +122,47 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           Default OFF — plain Whisper output keeps
 #                           the dependency surface minimal.
 #
+# Optional voice-id assignment (post-diarization, opt-in):
+#   WHISPER_IDENTIFY=1    · matches each diarized SPEAKER_NN cluster to
+#                           an enrolled councillor voiceprint. Requires
+#                           WHISPER_DIARIZE=1 AND ≥1 enrolled voice in
+#                           `.voiceprints/` (see `npm run enroll-voice`
+#                           below). Slices the longest contiguous segments
+#                           of each cluster, embeds them via the same
+#                           speechbrain ECAPA-TDNN model used at
+#                           enrollment, cosine-ranks against the enrolled
+#                           set, and writes the assignment to
+#                           `pleno-speakers/<plenoId>.json`.
+#                           High-tier matches (cosine ≥ 0.6 AND margin
+#                           over second-best ≥ 0.15) get the transcript
+#                           rewritten from `(SPEAKER_NN)` to
+#                           `(<councillor name>)`. Medium-tier becomes
+#                           `(SPEAKER_NN ≈ <name>?)` for curator review.
+#                           Below-threshold clusters keep `(SPEAKER_NN)`.
+#                           Default OFF.
+#
+#   Standalone CLI (no env-gate, runs against an existing diarized transcript):
+#     npm run identify-pleno-speakers -- <plenoId> [--apply]
+#
+#   Voiceprint enrollment (admin-only · curator dashboard at /curator):
+#     npm run enroll-voice -- --slug <officials-slug> --url <public-audio-url>
+#     npm run enroll-voice -- --slug robert-raga-gadea --audio path/to/sample.mp3
+#     npm run delete-voiceprint -- --slug <officials-slug>
+#   The voiceprints database is local-only (`.voiceprints/` is gitignored).
+#   The 192-dim ECAPA-TDNN embedding is L2-normalised so cosine reduces
+#   to a dot product downstream. Same speaker self-similarity in our
+#   benchmark: ~0.85; cross-speaker noise floor: ~0.10.
+#
+#   Editorial guard: voice-id is editorial signal, not a libel green
+#   light. The LLM extractor's `speakerGroup` enum stays bloc-level
+#   (PSOE / PP / VOX / Compromís) regardless of voiceprint match. A
+#   curator promotes individual attribution per finding, after spot-
+#   checking the assignment in `pleno-speakers/<plenoId>.json` against
+#   the audio. The high-tier threshold (0.6 cosine + 0.15 margin) was
+#   set so that wrong matches require *both* an unusual voice profile
+#   AND a tight margin — a combination that hasn't shown up in our
+#   pilot data.
+#
 # Optional proper-noun second pass (post-Whisper, opt-in):
 #   npm run refine-transcript -- <plenoId> [--apply]
 #                         · Reads the Whisper transcript, builds a vocab

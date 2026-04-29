@@ -64,6 +64,7 @@
     "refine-transcript": "npx tsx scripts/refine-transcript.ts",
     "enroll-voice": "npx tsx scripts/enroll-voice.ts",
     "delete-voiceprint": "npx tsx scripts/delete-voiceprint.ts",
+    "identify-pleno-speakers": "npx tsx scripts/identify-pleno-speakers.ts",
     "curator-job-runner": "npx tsx scripts/curator-job-runner.ts",
     "archive-bundle": "npx tsx scripts/archive-bundle.ts",
     "unarchive-bundle": "npx tsx scripts/unarchive-bundle.ts",
