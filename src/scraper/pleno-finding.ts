@@ -94,6 +94,23 @@ export interface PlenoFinding {
   relatedPromiseIds: string[]
   curatorName: string
   publishedAt: string
+  /**
+   * Optional individual attribution. Set ONLY when every claim in
+   * sourceClaimIds shares the same speakerSlug AND a curator
+   * explicitly confirmed via promote-claim. The slug must resolve
+   * against officials.json; the party must agree with every quote's
+   * speakerGroup. Validated by validateFindingsSnapshot.
+   *
+   * When present, /hallazgos renders the councillor's name as a
+   * chip alongside the bloc tag — that's the libel boundary
+   * crossing where individual attribution becomes visible to the
+   * public. The bloc tag remains the primary attribution.
+   */
+  individualSpeaker?: {
+    slug: string
+    name: string
+    party: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
+  } | null
   response?: {
     from: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
     quote: string
@@ -239,6 +256,23 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
   const relatedPromiseIds = Array.isArray(o.relatedPromiseIds)
     ? (o.relatedPromiseIds as string[])
     : []
+  const individualSpeaker = (o.individualSpeaker ?? null) as PlenoFinding['individualSpeaker']
+  if (individualSpeaker) {
+    must(
+      typeof individualSpeaker.slug === 'string' &&
+        /^[a-z0-9][a-z0-9-]*$/.test(individualSpeaker.slug),
+      `items[${idx}].individualSpeaker.slug must be kebab-case`,
+    )
+    must(
+      typeof individualSpeaker.name === 'string' && individualSpeaker.name.trim().length >= 3,
+      `items[${idx}].individualSpeaker.name must be non-empty string`,
+    )
+    must(
+      typeof individualSpeaker.party === 'string' &&
+        (ALLOWED_BLOCS as readonly string[]).includes(individualSpeaker.party),
+      `items[${idx}].individualSpeaker.party must be one of ${ALLOWED_BLOCS.join(',')}`,
+    )
+  }
   const response = (o.response ?? null) as PlenoFinding['response']
   if (response) {
     must(
@@ -275,6 +309,7 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     relatedPromiseIds,
     curatorName: o.curatorName as string,
     publishedAt: o.publishedAt as string,
+    ...(individualSpeaker ? { individualSpeaker } : {}),
     response: response ?? null,
   }
 }

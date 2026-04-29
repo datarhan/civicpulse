@@ -171,15 +171,51 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #     npm run override-speaker-assignment -- --pleno-id <id> \
 #         --speaker SPEAKER_NN --remove-override
 #
+#   Audio playback per cluster: GET /api/curator/pleno-speakers/<id>/
+#   audio/<SPEAKER_NN> ffmpeg-streams an 8-second mp3 from the mid-
+#   point of the cluster's longest segment. Surfaced on every assignment
+#   row in the dashboard so the curator can listen before overriding.
+#
+#   Bootstrap helper for the venvs + tooling:
+#     bash scripts/bootstrap-voice-id.sh
+#   Detects + best-effort installs ffmpeg / yt-dlp / python3.10 / the
+#   pyannote venv / the speechbrain venv. Exits non-zero with a punch
+#   list of remaining human actions (HF user agreements + token).
+#
+#   Batch enrollment (admin-only) accepts a JSON manifest of
+#   {slug, url} rows and runs them serially:
+#     npm run enroll-voices-batch -- --file enrollments.json
+#   Skips already-enrolled rows unless --force; writes an audit log
+#   to scripts/logs/enroll-voices-batch-<ts>.log.
+#
+#   A/B measurement of voice-id's lift on attribution:
+#     npm run voice-id-ab -- <plenoId>
+#   Two extraction passes against the same identified transcript:
+#   allowedSpeakers=[] (Pass A, pre-voice-id behaviour) vs
+#   allowedSpeakers=enrolled (Pass B, current production). Reports
+#   per-bloc + per-individual counts, prints a markdown summary, and
+#   writes scripts/logs/voice-id-ab-<id>-<ts>.md. Cost: 2× a normal
+#   extract — recommend running once after the first 4-bloc enrollment
+#   set is complete.
+#
 #   Editorial guard: voice-id is editorial signal, not a libel green
 #   light. The LLM extractor's `speakerGroup` enum stays bloc-level
 #   (PSOE / PP / VOX / Compromís) regardless of voiceprint match. A
 #   curator promotes individual attribution per finding, after spot-
 #   checking the assignment in `pleno-speakers/<plenoId>.json` against
-#   the audio. The high-tier threshold (0.6 cosine + 0.15 margin) was
-#   set so that wrong matches require *both* an unusual voice profile
-#   AND a tight margin — a combination that hasn't shown up in our
-#   pilot data.
+#   the audio. Promotion happens via:
+#     npm run promote-claim -- <claimId> [...] --title "…" --summary "…" \
+#         [--individual-speaker auto|<slug>|none]
+#   Default 'auto' stamps the finding with `individualSpeaker` when
+#   every cited claim shares the same speakerSlug. 'none' suppresses;
+#   '<slug>' explicit. The slug must resolve to officials.json AND
+#   match every quote's speakerGroup party (mismatches abort).
+#   `/hallazgos` renders the individualSpeaker chip alongside the bloc
+#   tag — that's the libel boundary crossing where the individual
+#   becomes visible to the public. The high-tier voice-id threshold
+#   (0.6 cosine + 0.15 margin) was set so wrong matches require both
+#   an unusual voice profile AND a tight margin — a combination that
+#   hasn't shown up in pilot data.
 #
 # Optional proper-noun second pass (post-Whisper, opt-in):
 #   npm run refine-transcript -- <plenoId> [--apply]

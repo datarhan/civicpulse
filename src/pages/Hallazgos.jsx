@@ -106,6 +106,35 @@ function FindingDetailCard({ f, permalink }) {
         </a>
       </div>
       <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
+      {f.individualSpeaker && (
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            marginTop: 6,
+            padding: '3px 8px',
+            background: 'var(--soft)',
+            borderRadius: 12,
+            fontSize: 11.5,
+          }}
+          title="Atribución individual confirmada por curaduría editorial"
+        >
+          <span
+            className="mono"
+            style={{
+              fontSize: 9,
+              fontWeight: 700,
+              letterSpacing: '.08em',
+              textTransform: 'uppercase',
+              color: PARTY_TONE[f.individualSpeaker.party] || 'var(--ink50)',
+            }}
+          >
+            {f.individualSpeaker.party}
+          </span>
+          <span>{f.individualSpeaker.name}</span>
+        </div>
+      )}
       <p
         style={{
           fontSize: 13,

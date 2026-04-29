@@ -176,6 +176,19 @@ function parseArgs(argv: string[]): {
   extraCorroboration: FindingRef[]
   edit: boolean
   force: boolean
+  /**
+   * 'auto' (default): if every cited claim shares the same speakerSlug,
+   *   stamp the finding with individualSpeaker. If they don't agree,
+   *   leave it null (bloc-level only). NEVER fabricate.
+   * 'none': explicitly suppress individual attribution even when the
+   *   underlying claims agree. Useful when the curator wants the
+   *   finding bloc-level for editorial reasons.
+   * '<slug>': force the finding to attribute to this slug. Slug must
+   *   exist in officials.json AND match every quote's speakerGroup
+   *   party. Used when claims came from the LLM with speakerSlug=null
+   *   but the curator confirmed individual identity from the audio.
+   */
+  individualSpeaker: 'auto' | 'none' | string
 } {
   const opts = {
     claimIds: [] as string[],
@@ -187,6 +200,7 @@ function parseArgs(argv: string[]): {
     extraCorroboration: [] as FindingRef[],
     edit: false,
     force: false,
+    individualSpeaker: 'auto' as 'auto' | 'none' | string,
   }
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i]
@@ -199,6 +213,7 @@ function parseArgs(argv: string[]): {
       opts.extraCorroboration = parseExtraCorroboration(argv[++i])
     } else if (a === '--edit') opts.edit = true
     else if (a === '--force') opts.force = true
+    else if (a === '--individual-speaker') opts.individualSpeaker = argv[++i]
     else if (a.startsWith('--')) {
       process.stderr.write(`[promote-claim] unknown flag ${a}\n`)
       process.exit(2)
@@ -282,6 +297,71 @@ function main() {
   const shortAnchor = anchor.id.split('-').slice(-2).join('-')
   const id = `f-${plenoDate}-${shortAnchor}`
 
+  // ─── Individual attribution gate (libel-material) ──────────────────────
+  // The schema admits an optional individualSpeaker field. We populate it
+  // only when (a) the curator explicitly opted in via --individual-speaker
+  // <slug> OR (b) all cited claims agree on the same speakerSlug AND the
+  // curator hasn't passed --individual-speaker none. Either way we
+  // resolve the slug against officials.json + cross-check party with
+  // every quote's speakerGroup; mismatches abort the run.
+  let individualSpeaker: PlenoFinding['individualSpeaker'] = null
+  if (opts.individualSpeaker !== 'none') {
+    let candidateSlug: string | null = null
+    if (opts.individualSpeaker === 'auto') {
+      const slugs = new Set(rows.map((r) => r.claim.speakerSlug ?? '').filter(Boolean))
+      if (slugs.size === 1) candidateSlug = [...slugs][0] || null
+    } else {
+      candidateSlug = opts.individualSpeaker
+    }
+    if (candidateSlug) {
+      const officialsPath = resolve('public/data/officials.json')
+      if (!existsSync(officialsPath)) {
+        process.stderr.write('[promote-claim] officials.json missing\n')
+        process.exit(1)
+      }
+      const officialsRaw = JSON.parse(readFileSync(officialsPath, 'utf8')) as {
+        officials?: Array<{ slug: string; name: string; party: string }>
+      }
+      const o = (officialsRaw.officials ?? []).find((x) => x.slug === candidateSlug)
+      if (!o) {
+        process.stderr.write(
+          `[promote-claim] individual-speaker slug "${candidateSlug}" not in officials.json\n`,
+        )
+        process.exit(1)
+      }
+      // Cross-check party with every quote's speakerGroup. A mismatch is
+      // editorial abort — the curator should resolve the inconsistency
+      // before promotion, not paper over it.
+      for (const r of rows) {
+        if (r.claim.speakerGroup && r.claim.speakerGroup !== o.party) {
+          process.stderr.write(
+            `[promote-claim] party mismatch on claim ${r.claim.id}: speakerGroup=${r.claim.speakerGroup}, official.party=${o.party}\n` +
+              `[promote-claim]   abort — re-extract or pass --individual-speaker none if intentional\n`,
+          )
+          process.exit(1)
+        }
+      }
+      // Type-narrow: party must be one of the allowed blocs (the schema
+      // validator will catch this too, but failing here gives a cleaner
+      // error message).
+      const ALLOWED = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'] as const
+      if (!(ALLOWED as readonly string[]).includes(o.party)) {
+        process.stderr.write(
+          `[promote-claim] official ${o.slug} has party "${o.party}" which is not a tracked bloc\n`,
+        )
+        process.exit(1)
+      }
+      individualSpeaker = {
+        slug: o.slug,
+        name: o.name,
+        party: o.party as (typeof ALLOWED)[number],
+      }
+      process.stderr.write(
+        `[promote-claim] individualSpeaker → ${o.name} (${o.party}) [${opts.individualSpeaker === 'auto' ? 'auto-detected from claims' : 'explicit'}]\n`,
+      )
+    }
+  }
+
   const finding: PlenoFinding = {
     id,
     plenoId,
@@ -296,6 +376,7 @@ function main() {
     relatedPromiseIds: opts.relatedPromises,
     curatorName: opts.curator,
     publishedAt: new Date().toISOString().slice(0, 10),
+    ...(individualSpeaker ? { individualSpeaker } : {}),
     response: null,
   }
 

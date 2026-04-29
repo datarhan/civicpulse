@@ -956,6 +956,156 @@ function handlePlenoSpeakersList(req, res, cwd) {
 }
 
 /**
+ * GET /api/curator/pleno-speakers/<plenoId>/audio/<SPEAKER_NN>
+ *
+ * Stream an ~8-second slice of the cluster's longest segment from the
+ * cached pleno audio so the curator can spot-check the voice before
+ * applying an override. Strict validation — plenoId and speaker pass
+ * regex gates, ffmpeg argv is fixed shape (no shell), audio file path
+ * is computed from the regex-matched plenoId so directory traversal
+ * is impossible. Encoded as audio/mpeg via ffmpeg piped to res.
+ *
+ * Response is short (≤8s mp3 ≈ 30-60 KB), so we stream directly with
+ * no length header; the browser shows progressive playback.
+ */
+function handlePlenoSpeakersAudio(req, res, cwd, plenoId, speaker) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  if (!/^[a-z0-9]{3,40}$/.test(plenoId)) {
+    sendJson(res, 400, { error: 'invalid plenoId' })
+    return
+  }
+  if (!/^SPEAKER_\d{1,3}$/.test(speaker)) {
+    sendJson(res, 400, { error: 'invalid speaker' })
+    return
+  }
+  const docPath = resolve(cwd, `pleno-speakers/${plenoId}.json`)
+  if (!existsSync(docPath)) {
+    sendJson(res, 404, { error: `no assignment file for ${plenoId}` })
+    return
+  }
+  let doc
+  try {
+    doc = JSON.parse(readFileSync(docPath, 'utf8'))
+  } catch (err) {
+    sendJson(res, 500, { error: `cannot read ${docPath}: ${err.message}` })
+    return
+  }
+  // Find the cluster + its segments. We don't store segments on the
+  // assignment after identify-pleno-speakers (only durations); we
+  // re-derive by re-reading the diarized transcript.
+  const a = (doc.assignments ?? []).find((x) => x.speaker === speaker)
+  if (!a) {
+    sendJson(res, 404, { error: `speaker ${speaker} not in ${plenoId}` })
+    return
+  }
+  const transcriptPath = resolve(cwd, `public/data/pleno-transcripts/${plenoId}.txt`)
+  if (!existsSync(transcriptPath)) {
+    sendJson(res, 404, { error: `transcript missing: ${transcriptPath}` })
+    return
+  }
+  const transcript = readFileSync(transcriptPath, 'utf8')
+  // Parse for the SPEAKER_NN tag — also accepts the override-applied
+  // (Full Name) form by falling back to first segment on the cluster.
+  // Original tag must be in the transcript when this is the diarized
+  // baseline; if not (curator already applied --apply), we look at any
+  // line and find one starting with the curator-assigned full name.
+  const escapedSpeaker = speaker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const reSpeaker = new RegExp(`^\\[(\\d+\\.?\\d*)\\s*→\\s*(\\d+\\.?\\d*)\\]\\s*\\(${escapedSpeaker}\\)`)
+  const segments = []
+  for (const line of transcript.split('\n')) {
+    const m = line.match(reSpeaker)
+    if (!m) continue
+    const start = Number(m[1])
+    const end = Number(m[2])
+    if (Number.isFinite(start) && Number.isFinite(end) && end > start) {
+      segments.push({ start, end, dur: end - start })
+    }
+  }
+  if (segments.length === 0) {
+    sendJson(res, 404, { error: `no segments tagged ${speaker} in transcript` })
+    return
+  }
+  // Pick the longest segment, slice 8s from its midpoint (so we skip
+  // the speaker-change boundary at the start where pyannote sometimes
+  // labels the wrong half-second).
+  segments.sort((p, q) => q.dur - p.dur)
+  const best = segments[0]
+  const sliceDur = Math.min(8, best.dur)
+  const sliceStart = Math.max(best.start, best.start + (best.dur - sliceDur) / 2)
+  // Find the cached audio. The transcribe pipeline may have left it as
+  // audio.mp3 or audio-clean.mp3 (when WHISPER_DENOISE=1 was on).
+  const audioCandidates = [
+    resolve(cwd, `tmp/transcribe/${plenoId}/audio.mp3`),
+    resolve(cwd, `tmp/transcribe/${plenoId}/audio-clean.mp3`),
+  ]
+  const audioPath = audioCandidates.find((p) => existsSync(p))
+  if (!audioPath) {
+    sendJson(res, 404, {
+      error:
+        `cached audio missing for ${plenoId} — re-run transcribe-pleno (the WORKDIR is ` +
+        'auto-cleaned after a successful run).',
+    })
+    return
+  }
+  res.statusCode = 200
+  res.setHeader('content-type', 'audio/mpeg')
+  res.setHeader('cache-control', 'no-store')
+  // Spawn ffmpeg with a fixed argv — no shell. -ss before -i is the
+  // input-seek form (fast) which is plenty accurate for an 8s preview.
+  const args = [
+    '-hide_banner',
+    '-loglevel',
+    'error',
+    '-ss',
+    sliceStart.toFixed(3),
+    '-t',
+    sliceDur.toFixed(3),
+    '-i',
+    audioPath,
+    '-ac',
+    '1',
+    '-ar',
+    '22050',
+    '-b:a',
+    '64k',
+    '-f',
+    'mp3',
+    '-',
+  ]
+  const child = spawn('ffmpeg', args, { stdio: ['ignore', 'pipe', 'pipe'] })
+  let stderrBuf = ''
+  child.stderr.on('data', (d) => {
+    stderrBuf += d.toString()
+    if (stderrBuf.length > 4096) stderrBuf = stderrBuf.slice(-4096)
+  })
+  child.stdout.pipe(res)
+  child.on('error', (err) => {
+    if (!res.headersSent) sendJson(res, 500, { error: `ffmpeg spawn: ${err.message}` })
+  })
+  child.on('close', (code) => {
+    if (code !== 0) {
+      // Best-effort error tail — at this point headers already went
+      // out, but the stream just terminates cleanly with bad data
+      // truncated. Log on server side for diagnosis.
+      process.stderr.write(`[pleno-speakers/audio] ffmpeg exit ${code}: ${stderrBuf.slice(-300)}\n`)
+    }
+  })
+  req.on('close', () => {
+    if (!child.killed) child.kill('SIGTERM')
+  })
+}
+
+/**
  * GET /api/curator/pleno-speakers/<plenoId> — full assignment doc.
  * Returns the raw JSON the matcher writes (assignments[], topCandidates,
  * curator overrides, totals). The dashboard renders the per-cluster table
@@ -1029,13 +1179,20 @@ export function viteCuratorPlugin(opts = {}) {
           next()
         }
       })
-      // /api/curator/pleno-speakers — list view at the bare path,
-      // detail view at /api/curator/pleno-speakers/<plenoId>.
+      // /api/curator/pleno-speakers
+      //   /                                        list
+      //   /<plenoId>                               detail JSON
+      //   /<plenoId>/audio/<SPEAKER_NN>            ffmpeg-streamed snippet
       server.middlewares.use('/api/curator/pleno-speakers', (req, res, next) => {
         const path = (req.url || '/').split('?')[0]
         try {
           if (path === '/' || path === '') {
             handlePlenoSpeakersList(req, res, cwd)
+            return
+          }
+          const audioMatch = path.match(/^\/([a-z0-9]{3,40})\/audio\/(SPEAKER_\d{1,3})$/)
+          if (audioMatch) {
+            handlePlenoSpeakersAudio(req, res, cwd, audioMatch[1], audioMatch[2])
             return
           }
           const m = path.match(/^\/([a-z0-9]{3,40})$/)

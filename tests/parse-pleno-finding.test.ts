@@ -146,3 +146,51 @@ describe('FindingRef.kind — curator-only kinds', () => {
     expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/1-240 chars/)
   })
 })
+
+describe('individualSpeaker — voice-id attribution boundary', () => {
+  it('accepts a well-formed individualSpeaker', () => {
+    const ok = JSON.parse(JSON.stringify(VALID))
+    ok.items[0].individualSpeaker = {
+      slug: 'robert-raga-gadea',
+      name: 'Robert Raga Gadea',
+      party: 'PSOE',
+    }
+    const snap = validateFindingsSnapshot(JSON.stringify(ok))
+    expect(snap.items[0].individualSpeaker?.slug).toBe('robert-raga-gadea')
+  })
+
+  it('rejects an individualSpeaker.slug that is not kebab-case', () => {
+    const bad = JSON.parse(JSON.stringify(VALID))
+    bad.items[0].individualSpeaker = {
+      slug: 'Robert Raga',
+      name: 'Robert Raga Gadea',
+      party: 'PSOE',
+    }
+    expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/kebab-case/)
+  })
+
+  it('rejects an individualSpeaker.party outside allowed blocs', () => {
+    const bad = JSON.parse(JSON.stringify(VALID))
+    bad.items[0].individualSpeaker = {
+      slug: 'foo-bar',
+      name: 'Foo Bar',
+      party: 'PODEMOS',
+    }
+    expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/party must be one of/)
+  })
+
+  it('rejects an individualSpeaker.name that is too short', () => {
+    const bad = JSON.parse(JSON.stringify(VALID))
+    bad.items[0].individualSpeaker = {
+      slug: 'foo-bar',
+      name: 'F',
+      party: 'PSOE',
+    }
+    expect(() => validateFindingsSnapshot(JSON.stringify(bad))).toThrow(/name/)
+  })
+
+  it('omits individualSpeaker on the parsed object when absent', () => {
+    const snap = validateFindingsSnapshot(JSON.stringify(VALID))
+    expect(snap.items[0].individualSpeaker).toBeUndefined()
+  })
+})

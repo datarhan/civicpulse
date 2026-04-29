@@ -239,7 +239,9 @@ export interface SpeakerAssignment {
  *   curatorOverride absent  + match.slug → match.slug
  *   neither                              → null
  */
-export function effectiveSlug(a: Pick<SpeakerAssignment, 'match' | 'curatorOverride'>): string | null {
+export function effectiveSlug(
+  a: Pick<SpeakerAssignment, 'match' | 'curatorOverride'>,
+): string | null {
   if (a.curatorOverride !== undefined && a.curatorOverride !== null) {
     return a.curatorOverride.slug
   }

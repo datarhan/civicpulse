@@ -1519,14 +1519,25 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
   return (
     <tr style={{ borderTop: '1px dashed var(--border2)' }}>
       <td style={{ padding: '8px 6px', verticalAlign: 'top' }}>
-        <div className="mono" style={{ fontSize: 11, fontWeight: 600 }}>{assignment.speaker}</div>
+        <div className="mono" style={{ fontSize: 11, fontWeight: 600 }}>
+          {assignment.speaker}
+        </div>
         <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           {assignment.durationSec.toFixed(0)}s · {assignment.segmentCount} seg
         </div>
+        <audio
+          controls
+          preload="none"
+          src={`/api/curator/pleno-speakers/${plenoId}/audio/${assignment.speaker}`}
+          style={{ width: 220, marginTop: 6, height: 28 }}
+          title="8-second snippet from the cluster's longest segment"
+        />
       </td>
       <td style={{ padding: '8px 6px', verticalAlign: 'top' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-          <Pill tone={tier.tone} size="xs">{tier.label}</Pill>
+          <Pill tone={tier.tone} size="xs">
+            {tier.label}
+          </Pill>
           {eff.name ? (
             <>
               <span style={{ fontSize: 12.5 }}>{eff.name}</span>
@@ -1565,13 +1576,14 @@ function PlenoAssignmentRow({ plenoId, assignment, voiceprintRows, onOverride, b
         <select
           value={
             assignment.curatorOverride
-              ? assignment.curatorOverride.slug ?? '__cleared__'
+              ? (assignment.curatorOverride.slug ?? '__cleared__')
               : '__no-override__'
           }
           disabled={busy}
           onChange={(e) => {
             const v = e.target.value
-            if (v === '__no-override__') onOverride(plenoId, assignment.speaker, { mode: 'remove-override' })
+            if (v === '__no-override__')
+              onOverride(plenoId, assignment.speaker, { mode: 'remove-override' })
             else if (v === '__cleared__') onOverride(plenoId, assignment.speaker, { mode: 'clear' })
             else onOverride(plenoId, assignment.speaker, { mode: 'assign', slug: v })
           }}
@@ -1634,11 +1646,15 @@ function PlenoAssignmentsCard({ plenoSummary, voiceprintRows, onChanged }) {
           }
           title={plenoSummary.plenoTitle ?? plenoSummary.plenoId}
         />
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}>
-          {plenoSummary.totalSpeakers} cluster(s) ·{' '}
-          {plenoSummary.highConfidenceCount} high · {plenoSummary.mediumConfidenceCount} medium ·{' '}
-          {plenoSummary.unmatchedCount} unmatched
-          {plenoSummary.curatorOverrideCount > 0 ? ` · ${plenoSummary.curatorOverrideCount} curator` : ''}
+        <span
+          className="mono"
+          style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+        >
+          {plenoSummary.totalSpeakers} cluster(s) · {plenoSummary.highConfidenceCount} high ·{' '}
+          {plenoSummary.mediumConfidenceCount} medium · {plenoSummary.unmatchedCount} unmatched
+          {plenoSummary.curatorOverrideCount > 0
+            ? ` · ${plenoSummary.curatorOverrideCount} curator`
+            : ''}
         </span>
       </div>
       {detail.loading && <div style={{ fontSize: 12, color: 'var(--ink60)' }}>Loading…</div>}
@@ -1656,16 +1672,44 @@ function PlenoAssignmentsCard({ plenoSummary, voiceprintRows, onChanged }) {
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}>
           <thead>
             <tr style={{ textAlign: 'left', color: 'var(--ink50)', fontSize: 10.5 }}>
-              <th style={{ padding: '6px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <th
+                style={{
+                  padding: '6px',
+                  fontWeight: 500,
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 Cluster
               </th>
-              <th style={{ padding: '6px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <th
+                style={{
+                  padding: '6px',
+                  fontWeight: 500,
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 Effective
               </th>
-              <th style={{ padding: '6px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <th
+                style={{
+                  padding: '6px',
+                  fontWeight: 500,
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 Top candidates
               </th>
-              <th style={{ padding: '6px', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '.06em' }}>
+              <th
+                style={{
+                  padding: '6px',
+                  fontWeight: 500,
+                  textTransform: 'uppercase',
+                  letterSpacing: '.06em',
+                }}
+              >
                 Curator override
               </th>
             </tr>
@@ -1700,7 +1744,10 @@ function VoiceIDAssignmentsSection() {
     <Card style={{ padding: 16, marginBottom: 18 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
         <SectionHead title="Voice ID assignments per pleno" />
-        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}>
+        <span
+          className="mono"
+          style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+        >
           {plenos.length} pleno(s) · generated{' '}
           {list.data?.generatedAt ? shortDate(list.data.generatedAt) : '—'}
         </span>
@@ -1720,10 +1767,9 @@ function VoiceIDAssignmentsSection() {
         </button>
       </div>
       <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.5, marginTop: 4 }}>
-        Per-pleno cluster→councillor map produced by{' '}
-        <code>npm run identify-pleno-speakers</code>. High-tier matches feed the LLM
-        extractor as <code>speakerSlug</code>; medium and low stay editorial signal
-        only. Override low-confidence rows here before re-running the extractor.
+        Per-pleno cluster→councillor map produced by <code>npm run identify-pleno-speakers</code>.
+        High-tier matches feed the LLM extractor as <code>speakerSlug</code>; medium and low stay
+        editorial signal only. Override low-confidence rows here before re-running the extractor.
       </div>
       {list.error && (
         <div style={{ fontSize: 12, color: 'var(--crit-ink)', marginTop: 8 }}>
@@ -1733,8 +1779,10 @@ function VoiceIDAssignmentsSection() {
       {plenos.length === 0 && !list.loading && !list.error && (
         <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 8 }}>
           No <code>pleno-speakers/&lt;id&gt;.json</code> files yet. Run{' '}
-          <code>WHISPER_DIARIZE=1 WHISPER_IDENTIFY=1 bash scripts/transcribe-pleno.sh &lt;id&gt;</code>,
-          or <code>npm run identify-pleno-speakers -- &lt;id&gt; --apply</code> against an
+          <code>
+            WHISPER_DIARIZE=1 WHISPER_IDENTIFY=1 bash scripts/transcribe-pleno.sh &lt;id&gt;
+          </code>
+          , or <code>npm run identify-pleno-speakers -- &lt;id&gt; --apply</code> against an
           already-diarized transcript.
         </div>
       )}
@@ -1763,11 +1811,16 @@ function VoiceIDAssignmentsSection() {
                     {p.plenoDate ? `${p.plenoDate} · ` : ''}
                     {p.plenoTitle ?? p.plenoId}
                   </span>
-                  <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}>
+                  <span
+                    className="mono"
+                    style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+                  >
                     {p.totalSpeakers} cluster(s) · {p.highConfidenceCount} high
                     {p.curatorOverrideCount > 0 ? ` · ${p.curatorOverrideCount} curator` : ''}
                   </span>
-                  <span style={{ fontSize: 11, color: 'var(--ink50)' }}>{isExpanded ? '▾' : '▸'}</span>
+                  <span style={{ fontSize: 11, color: 'var(--ink50)' }}>
+                    {isExpanded ? '▾' : '▸'}
+                  </span>
                 </button>
                 {isExpanded && (
                   <PlenoAssignmentsCard

@@ -1,0 +1,168 @@
+#!/usr/bin/env bash
+# Bootstrap helper for the voice-id pipeline.
+#
+#   bash scripts/bootstrap-voice-id.sh
+#
+# Walks every prerequisite the diarize / identify chain depends on
+# and reports MISSING / OK / ATTEMPTED for each. Best-effort attempts
+# the install steps that don't require a human in the loop:
+#
+#   - python3.10 venv creation
+#   - pip install of pyannote.audio + speechbrain
+#
+# Steps that DO require a human (HuggingFace user agreements, putting
+# the token in .env) are flagged with "MISSING (human action)" and the
+# script exits non-zero so an automated runner can fail fast.
+#
+# Run after every Python upgrade or whenever the venvs misbehave;
+# safe to re-run repeatedly (idempotent).
+set -uo pipefail
+
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
+cd "$REPO_ROOT"
+
+# Track issues for the final summary.
+ISSUES=()
+
+# ─── 1. Operating system tools ─────────────────────────────────────────
+echo "[bootstrap] === System binaries ==="
+for bin in ffmpeg ffprobe yt-dlp python3.10; do
+  if command -v "$bin" >/dev/null 2>&1; then
+    version=$("$bin" --version 2>&1 | head -1 || true)
+    echo "[bootstrap]   OK     $bin  ($version)"
+  else
+    echo "[bootstrap]   MISS   $bin"
+    case "$bin" in
+      ffmpeg|ffprobe) ISSUES+=("$bin: install via 'brew install ffmpeg'") ;;
+      yt-dlp)         ISSUES+=("$bin: install via 'brew install yt-dlp'") ;;
+      python3.10)     ISSUES+=("$bin: install via 'brew install python@3.10'") ;;
+    esac
+  fi
+done
+
+# ─── 2. .env file with HUGGINGFACE_TOKEN ───────────────────────────────
+echo "[bootstrap] === Configuration ==="
+if [ -f .env ]; then
+  if grep -q '^HUGGINGFACE_TOKEN=.\+' .env 2>/dev/null; then
+    echo "[bootstrap]   OK     HUGGINGFACE_TOKEN set in .env"
+  else
+    echo "[bootstrap]   MISS   HUGGINGFACE_TOKEN in .env (still empty)"
+    ISSUES+=("HUGGINGFACE_TOKEN: (1) accept user agreements at:")
+    ISSUES+=("    https://huggingface.co/pyannote/speaker-diarization-3.1")
+    ISSUES+=("    https://huggingface.co/pyannote/segmentation-3.0")
+    ISSUES+=("  (2) generate a read token at:")
+    ISSUES+=("    https://huggingface.co/settings/tokens")
+    ISSUES+=("  (3) set HUGGINGFACE_TOKEN=hf_xxx in .env")
+  fi
+else
+  echo "[bootstrap]   MISS   .env (run cp .env.example .env)"
+  ISSUES+=(".env: copy .env.example and fill HUGGINGFACE_TOKEN")
+fi
+
+# ─── 3. pyannote venv (diarization) ────────────────────────────────────
+echo "[bootstrap] === pyannote.audio venv ==="
+PYANNOTE_VENV="$HOME/.local/civicpulse-pyannote/venv"
+if [ -x "$PYANNOTE_VENV/bin/python" ]; then
+  echo "[bootstrap]   OK     venv exists at $PYANNOTE_VENV"
+  if "$PYANNOTE_VENV/bin/python" -c 'import pyannote.audio' 2>/dev/null; then
+    pyannote_version=$("$PYANNOTE_VENV/bin/python" -c 'import pyannote.audio; print(pyannote.audio.__version__)' 2>/dev/null || echo '?')
+    echo "[bootstrap]   OK     pyannote.audio $pyannote_version installed"
+  else
+    echo "[bootstrap]   MISS   pyannote.audio not in venv"
+    if command -v python3.10 >/dev/null 2>&1; then
+      echo "[bootstrap]   ATTEMPT  pip install pyannote.audio==3.3 …"
+      "$PYANNOTE_VENV/bin/pip" install --quiet pyannote.audio==3.3 || \
+        ISSUES+=("pyannote.audio install failed — see pip output above")
+    else
+      ISSUES+=("pyannote.audio: install python3.10 first")
+    fi
+  fi
+else
+  echo "[bootstrap]   MISS   venv at $PYANNOTE_VENV"
+  if command -v python3.10 >/dev/null 2>&1; then
+    echo "[bootstrap]   ATTEMPT  python3.10 -m venv $PYANNOTE_VENV"
+    mkdir -p "$(dirname "$PYANNOTE_VENV")"
+    if python3.10 -m venv "$PYANNOTE_VENV"; then
+      echo "[bootstrap]   ATTEMPT  pip install pyannote.audio==3.3 (this takes ~3 min) …"
+      "$PYANNOTE_VENV/bin/pip" install --quiet --upgrade pip
+      if "$PYANNOTE_VENV/bin/pip" install --quiet pyannote.audio==3.3; then
+        echo "[bootstrap]   OK     pyannote.audio installed"
+      else
+        ISSUES+=("pyannote.audio install failed")
+      fi
+    else
+      ISSUES+=("python3.10 venv creation failed at $PYANNOTE_VENV")
+    fi
+  else
+    ISSUES+=("pyannote venv: install python3.10 first, then re-run this script")
+  fi
+fi
+
+# ─── 4. speechbrain venv (voice-id enrollment + matching) ──────────────
+echo "[bootstrap] === speechbrain venv ==="
+VOICE_VENV="$HOME/.local/civicpulse-voice/venv"
+if [ -x "$VOICE_VENV/bin/python" ]; then
+  echo "[bootstrap]   OK     venv exists at $VOICE_VENV"
+  if "$VOICE_VENV/bin/python" -c 'import speechbrain' 2>/dev/null; then
+    sb_version=$("$VOICE_VENV/bin/python" -c 'import speechbrain; print(speechbrain.__version__)' 2>/dev/null || echo '?')
+    echo "[bootstrap]   OK     speechbrain $sb_version installed"
+  else
+    echo "[bootstrap]   MISS   speechbrain not in venv"
+    if command -v python3.10 >/dev/null 2>&1; then
+      echo "[bootstrap]   ATTEMPT  pip install speechbrain==1.0.2 'huggingface_hub<0.24' soundfile torchaudio==2.5.1 torch==2.5.1 …"
+      "$VOICE_VENV/bin/pip" install --quiet \
+        speechbrain==1.0.2 'huggingface_hub<0.24' soundfile torchaudio==2.5.1 torch==2.5.1 || \
+        ISSUES+=("speechbrain install failed")
+    fi
+  fi
+else
+  echo "[bootstrap]   MISS   venv at $VOICE_VENV"
+  if command -v python3.10 >/dev/null 2>&1; then
+    echo "[bootstrap]   ATTEMPT  python3.10 -m venv $VOICE_VENV"
+    mkdir -p "$(dirname "$VOICE_VENV")"
+    if python3.10 -m venv "$VOICE_VENV"; then
+      echo "[bootstrap]   ATTEMPT  pip install speechbrain==1.0.2 'huggingface_hub<0.24' soundfile torchaudio==2.5.1 torch==2.5.1 (this takes ~5 min — torch is ~700 MB) …"
+      "$VOICE_VENV/bin/pip" install --quiet --upgrade pip
+      if "$VOICE_VENV/bin/pip" install --quiet \
+        speechbrain==1.0.2 'huggingface_hub<0.24' soundfile torchaudio==2.5.1 torch==2.5.1; then
+        echo "[bootstrap]   OK     speechbrain stack installed"
+      else
+        ISSUES+=("speechbrain install failed")
+      fi
+    else
+      ISSUES+=("python3.10 venv creation failed at $VOICE_VENV")
+    fi
+  else
+    ISSUES+=("voice venv: install python3.10 first, then re-run this script")
+  fi
+fi
+
+# ─── 5. Voiceprint enrollment status (informational) ───────────────────
+echo "[bootstrap] === Voiceprint enrollments ==="
+INDEX=".voiceprints/index.json"
+if [ -f "$INDEX" ]; then
+  count=$(node -e "console.log((JSON.parse(require('fs').readFileSync('$INDEX','utf8')).entries||[]).length)" 2>/dev/null || echo '?')
+  echo "[bootstrap]   INFO   $count councillor(s) enrolled (see /curator → Voice ID enrollment)"
+  if [ "$count" -lt 4 ] 2>/dev/null; then
+    echo "[bootstrap]   HINT   cross-bloc validation needs ≥1 enrollment per party (PSOE + PP + VOX + Compromís)"
+  fi
+else
+  echo "[bootstrap]   INFO   no enrollments yet — open /curator → Voice ID enrollment"
+fi
+
+# ─── Summary ───────────────────────────────────────────────────────────
+echo
+if [ "${#ISSUES[@]}" -eq 0 ]; then
+  echo "[bootstrap] ✓ all prerequisites satisfied — voice-id chain ready to run"
+  echo "[bootstrap]   Next: enroll councillors via /curator, then run"
+  echo "[bootstrap]     WHISPER_DIARIZE=1 WHISPER_IDENTIFY=1 bash scripts/transcribe-pleno.sh <plenoId>"
+  exit 0
+fi
+
+echo "[bootstrap] ✗ ${#ISSUES[@]} issue(s) need attention:"
+for i in "${ISSUES[@]}"; do
+  echo "[bootstrap]   · $i"
+done
+echo
+echo "[bootstrap] Re-run this script after addressing the above."
+exit 1

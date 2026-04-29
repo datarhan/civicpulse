@@ -76,7 +76,9 @@ function parseArgs(argv: string[]): CliArgs {
     process.exit(2)
   }
   if (!/^SPEAKER_\d+$/.test(out.speaker)) {
-    process.stderr.write(`[override] invalid speaker label: "${out.speaker}" (expected SPEAKER_NN)\n`)
+    process.stderr.write(
+      `[override] invalid speaker label: "${out.speaker}" (expected SPEAKER_NN)\n`,
+    )
     process.exit(2)
   }
   return out as CliArgs

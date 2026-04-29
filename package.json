@@ -66,6 +66,8 @@
     "delete-voiceprint": "npx tsx scripts/delete-voiceprint.ts",
     "identify-pleno-speakers": "npx tsx scripts/identify-pleno-speakers.ts",
     "override-speaker-assignment": "npx tsx scripts/override-speaker-assignment.ts",
+    "enroll-voices-batch": "npx tsx scripts/enroll-voices-batch.ts",
+    "voice-id-ab": "npx tsx scripts/voice-id-ab.ts",
     "curator-job-runner": "npx tsx scripts/curator-job-runner.ts",
     "archive-bundle": "npx tsx scripts/archive-bundle.ts",
     "unarchive-bundle": "npx tsx scripts/unarchive-bundle.ts",
