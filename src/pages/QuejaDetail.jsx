@@ -398,17 +398,12 @@ export default function QuejaDetail() {
             </li>
           )}
           <li>
-            <strong>Responder como responsable público:</strong>{' '}
-            <a
-              href={`https://github.com/datarhan/civicpulse/issues/new?template=queja-response.yml&title=${encodeURIComponent(
-                '[Respuesta] ' + queja.service_request_id
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              Abrir respuesta oficial (GitHub issue) →
+            <strong>Responder como responsable público:</strong> contacta con la redacción según se
+            indica en{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+              /aviso-legal
             </a>
+            .
           </li>
         </ul>
       </Card>

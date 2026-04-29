@@ -1721,8 +1721,11 @@ export default function Curator() {
           </p>
         )}
         {issues.data?.error && (
-          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
-            Last refresh failed: {issues.data.error}
+          <p style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.5 }}>
+            <span style={{ color: 'var(--warn-ink, var(--ink))' }}>Refresh skipped.</span>{' '}
+            {issues.data.error.includes('GITHUB_TOKEN')
+              ? 'The repository is private — set GITHUB_TOKEN in .env (a fine-grained PAT with read access is enough) and re-run npm run refresh:gh-issues. Right-of-reply still works as a curator workflow; replies arrive through editorial contact and are applied with `npm run finding-reply`.'
+              : issues.data.error}
           </p>
         )}
         {!issues.loading && !issues.error && ghIssues.length === 0 && !issues.data?.error && (

@@ -35,11 +35,26 @@ async function fetchIssues(): Promise<IssueRow[]> {
     accept: 'application/vnd.github+json',
     'user-agent': 'civicpulse-curator-dashboard',
   }
-  if (process.env.GITHUB_TOKEN) {
+  const hasToken = !!process.env.GITHUB_TOKEN
+  if (hasToken) {
     headers.authorization = `Bearer ${process.env.GITHUB_TOKEN}`
   }
   const res = await fetch(url, { headers })
   if (!res.ok) {
+    // GitHub returns 404 for both "repo doesn't exist" and "private
+    // repo, no auth" — they don't disclose existence to anonymous
+    // callers. Surface a more actionable diagnostic so the curator
+    // knows what to fix.
+    if (res.status === 404 && !hasToken) {
+      throw new Error(
+        `GitHub 404 on ${REPO} (no GITHUB_TOKEN). Repo may be private — set GITHUB_TOKEN in .env, or override the path with GITHUB_REPO=<owner>/<repo>.`,
+      )
+    }
+    if (res.status === 401 || res.status === 403) {
+      throw new Error(
+        `GitHub ${res.status} on ${REPO} — token is set but lacks permission. Generate a fresh token with at least \`repo\` scope at https://github.com/settings/tokens.`,
+      )
+    }
     throw new Error(`GitHub ${res.status}: ${(await res.text()).slice(0, 200)}`)
   }
   const data = (await res.json()) as Array<{

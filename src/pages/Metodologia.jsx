@@ -190,16 +190,8 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Derecho de réplica intacto.</strong> Cualquier persona o grupo afectado puede
-            responder con una cita textual a través de la{' '}
-            <a
-              href="https://github.com/datarhan/civicpulse/issues/new/choose"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              plantilla de respuesta
-            </a>
-            .
+            responder con una cita textual contactando con la redacción (ver{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>/aviso-legal</a>).
           </li>
           <li>
             <strong>Suspensión durante el periodo electoral.</strong> Bajo la LOREG art. 50, el
@@ -300,28 +292,19 @@ export default function Metodologia() {
         <SectionHead eyebrow="Proceso de corrección" title="Cómo pedir una rectificación" />
         <ol style={{ margin: '8px 0 0', paddingLeft: 20 }}>
           <li>
-            Abre una issue pública en{' '}
-            <a
-              href="https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              github.com/datarhan/civicpulse
-            </a>{' '}
-            con la etiqueta <code>correccion-promesa</code>.
+            Contacta con la redacción a través del canal indicado en{' '}
+            <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>/aviso-legal</a>.
           </li>
           <li>
-            Incluye el <code>id</code> de la promesa afectada y el enlace a la fuente que propones
-            (programa electoral, acta de pleno, nota de prensa, BOE/BOPV).
+            Incluye el <code>id</code> de la promesa o del hallazgo afectado y el enlace a la fuente
+            que propones (programa electoral, acta de pleno, nota de prensa, BOE/BOPV).
           </li>
           <li>
             Te responderemos en 24 h hábiles con una de tres opciones: acepto la corrección,
             necesito más evidencia, o la rechazo con motivo público.
           </li>
           <li>
-            Los cambios aplicados aparecen reflejados en el historial git del repositorio
-            —auditables por cualquiera.
+            Los cambios aplicados se registran en la bitácora interna del proyecto.
           </li>
         </ol>
       </Card>

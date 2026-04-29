@@ -132,22 +132,6 @@ export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
           ⌘K
         </span>
       </button>
-
-      <a
-        href="https://github.com/datarhan/civicpulse"
-        target="_blank"
-        rel="noreferrer"
-        className="mono cp-topbar-github"
-        style={{
-          fontSize: 10.5,
-          color: 'var(--ink50)',
-          textDecoration: 'none',
-          letterSpacing: '.06em',
-          textTransform: 'uppercase',
-        }}
-      >
-        {t('topbar.github')}
-      </a>
     </header>
   )
 }

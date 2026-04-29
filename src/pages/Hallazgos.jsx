@@ -83,7 +83,6 @@ function RefList({ refs, kind }) {
 }
 
 function FindingDetailCard({ f, permalink }) {
-  const responseLink = `https://github.com/datarhan/civicpulse/issues/new?template=finding-response.yml&finding-id=${encodeURIComponent(f.id)}`
   return (
     <Card id={f.id} style={{ scrollMarginTop: 24 }}>
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
@@ -193,20 +192,16 @@ function FindingDetailCard({ f, permalink }) {
           )}
         </div>
       ) : (
-        <a
-          href={responseLink}
-          target="_blank"
-          rel="noreferrer"
+        <div
           style={{
-            display: 'inline-block',
             marginTop: 10,
             fontSize: 11,
-            color: 'var(--civic)',
-            textDecoration: 'none',
+            color: 'var(--ink50)',
           }}
         >
-          Responder como grupo afectado →
-        </a>
+          ¿Eres el grupo afectado? Contacta con la redacción para ejercer derecho de réplica · ver{' '}
+          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>/aviso-legal</a>
+        </div>
       )}
     </Card>
   )

@@ -16,18 +16,10 @@ export default function AvisoLegal() {
       <Card style={{ marginTop: 22 }}>
         <SectionHead eyebrow="Quién es CivicPulse" title="Identidad y responsabilidad" />
         <p>
-          CivicPulse es un proyecto independiente de civic-tech. No es un medio de comunicación al amparo de la LO 2/1997, ni un partido político, ni está vinculado al Ayuntamiento de Riba-roja de Túria ni a ninguna administración. Se publica en{' '}
-          <a href="https://github.com/datarhan/civicpulse" target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
-            github.com/datarhan/civicpulse
-          </a>{' '}
-          y se aloja en Vercel bajo el dominio civicpulse-virid.vercel.app.
+          CivicPulse es un proyecto independiente de civic-tech. No es un medio de comunicación al amparo de la LO 2/1997, ni un partido político, ni está vinculado al Ayuntamiento de Riba-roja de Túria ni a ninguna administración. Se aloja en Vercel bajo el dominio civicpulse-virid.vercel.app.
         </p>
         <p>
-          El mantenedor del repositorio asume responsabilidad editorial individual por el contenido publicado. Contacto directo:{' '}
-          <a href="https://github.com/datarhan/civicpulse/issues/new" target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
-            issue pública en GitHub
-          </a>
-          .
+          El mantenedor del proyecto asume responsabilidad editorial individual por el contenido publicado. Para correcciones, derecho de réplica o consultas legales, contacte con la redacción a través del canal indicado más abajo.
         </p>
       </Card>
 
@@ -42,24 +34,12 @@ export default function AvisoLegal() {
       <Card style={{ marginTop: 14 }}>
         <SectionHead eyebrow="Derecho de rectificación" title="Cómo pedir una corrección" />
         <p>
-          Si apareces nombrado en el tracker de promesas, en la ficha de Cargos o en cualquier otra sección con información incorrecta, tienes derecho a solicitar rectificación. El canal oficial es una issue pública en GitHub:
-        </p>
-        <p>
-          <strong>
-            <a
-              href="https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)' }}
-            >
-              Abrir solicitud de rectificación →
-            </a>
-          </strong>
+          Si apareces nombrado en el tracker de promesas, en la ficha de Cargos o en cualquier otra sección con información incorrecta, tienes derecho a solicitar rectificación. Contacta con la redacción para abrir el procedimiento.
         </p>
         <ul>
           <li>Revisión en 24 h hábiles (L-V).</li>
           <li>Resolución en 72 h: aceptamos la corrección, la rechazamos con motivo público, o pedimos más evidencia.</li>
-          <li>El historial git del repositorio es la bitácora pública de todas las ediciones. Nada se borra en silencio.</li>
+          <li>Las ediciones del contenido publicado se registran en la bitácora interna del proyecto. Nada se borra en silencio.</li>
         </ul>
       </Card>
 

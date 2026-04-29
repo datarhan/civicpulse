@@ -343,16 +343,6 @@ function PlenoVotesBlock() {
             secretaría del ayuntamiento — manual y verificable. Cuando se publique el primer acuerdo
             votado, aparecerá aquí con cita a la fuente.
           </div>
-          <div style={{ marginTop: 10, fontSize: 12 }}>
-            <a
-              href="https://github.com/datarhan/civicpulse/issues/new?template=pleno-vote.yml"
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
-            >
-              Enviar acta con voto registrado →
-            </a>
-          </div>
         </Card>
       )}
 

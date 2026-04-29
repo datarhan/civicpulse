@@ -38,7 +38,6 @@ const CATALOGUE = {
     'topbar.search': 'Buscar quejas, cargos, plenos…',
     'topbar.search.aria': 'Buscar',
     'topbar.menu.aria': 'Abrir menú',
-    'topbar.github': 'GitHub →',
 
     // Sidebar
     'sidebar.footer.tag': 'MVP público · datos abiertos',
@@ -182,7 +181,6 @@ const CATALOGUE = {
     'topbar.search': 'Cerca queixes, càrrecs, plens…',
     'topbar.search.aria': 'Cerca',
     'topbar.menu.aria': 'Obrir menú',
-    'topbar.github': 'GitHub →',
 
     'sidebar.footer.tag': 'MVP públic · dades obertes',
     'sidebar.footer.legal': 'Avís legal',

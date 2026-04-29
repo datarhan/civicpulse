@@ -360,29 +360,16 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           display: 'flex',
           gap: 12,
           fontSize: 11,
+          color: 'var(--ink50)',
         }}
       >
-        <a
-          href={`https://github.com/datarhan/civicpulse/issues/new?template=promise-response.yml&title=${encodeURIComponent(
-            `[derecho-replica] ${p.id} · `
-          )}`}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
-        >
-          Responder como partido →
-        </a>
-        <a
-          href={`https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa&title=${encodeURIComponent(
-            `[corrección] ${p.id}`
-          )}`}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'var(--ink60)', textDecoration: 'none' }}
-        >
-          Proponer corrección
-        </a>
-        <span style={{ marginLeft: 'auto', color: 'var(--ink50)' }} className="mono">
+        <span>
+          Réplica o corrección · contacto en{' '}
+          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+            /aviso-legal
+          </a>
+        </span>
+        <span style={{ marginLeft: 'auto' }} className="mono">
           id: {p.id}
         </span>
       </div>
