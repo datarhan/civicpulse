@@ -159,6 +159,42 @@ export default function AvisoLegal() {
           sobre su propia queja.
         </p>
         <p>
+          <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot
+          público (<code>quejas.json</code>) vive en un repositorio git como garantía editorial:
+          cada cambio queda firmado y fechado en el commit log, lo que permite auditar
+          retroactivamente qué se publicó y cuándo. Esa misma propiedad implica que un commit
+          anterior puede contener una versión obsoleta de tu queja después de que ejerzas el
+          derecho al olvido. Compatibilizamos ambas obligaciones así:
+        </p>
+        <ul>
+          <li>
+            <strong>Eliminación inmediata del snapshot vigente</strong>: en el momento en que
+            envías <code>/olvidar Q-XXXXXXXX</code> tu queja desaparece de las páginas públicas y
+            del JSON que se sirve a los visitantes.
+          </li>
+          <li>
+            <strong>Reescritura del historial bajo solicitud formal</strong>: si requieres además
+            que se borren las versiones presentes en el historial git (commits anteriores), usa la
+            misma vía de rectificación contactando al responsable del tratamiento. Procederemos a
+            reescribir el historial (<code>git filter-repo</code> o equivalente) y a forzar la
+            actualización del repositorio público y de los <em>mirrors</em> de Vercel, dejando
+            traza interna de la solicitud y de la fecha de ejecución (sin republicar el contenido
+            eliminado).
+          </li>
+          <li>
+            <strong>Base jurídica de la retención por defecto</strong>: la conservación del
+            historial git como bitácora de cambios responde al interés público de transparencia
+            documentado en el Art. 6.1.e RGPD y al deber de archivo (Art. 55 LOPD-GDD) durante el
+            plazo legal de conservación. La reescritura se reserva como excepción a petición
+            individual del titular del dato, no como práctica habitual.
+          </li>
+          <li>
+            <strong>Plazo</strong>: la eliminación del snapshot vigente es instantánea (≤24 h). La
+            reescritura del historial git se ejecuta en un plazo máximo de 30 días desde la
+            recepción de la solicitud.
+          </li>
+        </ul>
+        <p>
           <strong>Derechos adicionales</strong> (acceso, rectificación, oposición, portabilidad):
           contacto igual que la vía de rectificación de esta página. Reclamación ante autoridad de
           control:{' '}

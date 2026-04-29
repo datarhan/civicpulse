@@ -1,0 +1,1747 @@
+{
+  "generatedAt": "2026-04-29T10:31:33.384Z",
+  "version": "1",
+  "plenoId": "rx4hb4",
+  "plenoDate": "2026-02-09",
+  "items": [
+    {
+      "claim": {
+        "id": "rx4hb4-439-afi-b51241",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 439,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "faltan 5 días para presentarse",
+        "context": "El concejal advierte del plazo inminente de la convocatoria DANA: 'lo que sí que quería [...] o sea que entiendo que faltan 5 días para presentarse', situando el límite en torno al 14 de febrero de 2026.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 5,
+          "countUnit": "días",
+          "date": "2026-02-14",
+          "referencedEntity": "convocatoria dana"
+        },
+        "confidence": 0.65,
+        "reasoning": "El hablante cifra en 5 días el plazo restante para presentarse a la convocatoria relacionada con la DANA (contexto del punto 11 del orden del día, PAI EDIL / senda financiera). Verificable consultando la convocatoria oficial y su fecha límite de presentación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-439-afi-b51241",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-439-afi-e031c5",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 439,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "los 3 meses es el término para presentarse",
+        "context": "El concejal argumenta que la convocatoria lleva publicada desde hace aproximadamente 3 meses y que ese es el plazo oficial de presentación: 'yo lo que he visto es que eso se va a presentar hace 3 meses porque en el documento que ya pone se publica y los 3 meses es el término para presentarse'.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 3,
+          "countUnit": "meses",
+          "referencedEntity": "convocatoria dana"
+        },
+        "confidence": 0.62,
+        "reasoning": "El hablante afirma que el plazo oficial de la convocatoria DANA es de 3 meses desde su publicación. Verificable cotejando la fecha de publicación en el BOE/DOGV y el término establecido en las bases de la convocatoria referenciada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-439-afi-e031c5",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-439-acu-75f41b",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 439,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "en esos 3 meses que ha pasado porque estamos un poco al límite vale",
+        "context": "El concejal implica que el ayuntamiento ha dejado pasar los 3 meses del plazo sin actuar, llegando al límite: 'en esos 3 meses que ha pasado porque estamos un poco al límite vale'. La expresión sugiere una crítica a la gestión del tiempo disponible.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 3,
+          "countUnit": "meses",
+          "referencedEntity": "convocatoria dana"
+        },
+        "accusationSubtype": "opinativa",
+        "confidence": 0.52,
+        "reasoning": "El hablante insinúa que la corporación ha gestionado con retraso la convocatoria DANA al llegar 'al límite' del plazo de 3 meses. La afirmación es valorativa sobre la gestión sin citar cifras concretas de inversión ni entidades formales verificables, por lo que se clasifica como opinativa.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-439-acu-75f41b",
+        "verdict": "sin-datos",
+        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-440-afi-3593f5",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 440,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "entendemos que en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto",
+        "context": "también una de las cosas que quería preguntar que es lo que ya has comentado los dinero que va a poner el ayuntamiento entendemos que en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "presupuesto municipal 2026"
+        },
+        "confidence": 0.65,
+        "reasoning": "El orador afirma (con 'entendemos que') que el presupuesto 2026 ya contempla una primera partida para el proyecto en cuestión. Verificable contra budget.json / CONPREL 2026 y las aplicaciones presupuestarias aprobadas. El hedge 'entendemos' rebaja ligeramente la certeza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-440-afi-3593f5",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-440-afi-1045a2",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 440,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el 31 de marzo del año 2027 ya tiene que estar como al menos el 40% del gasto",
+        "context": "pone también en la normativa que el 31 de marzo del año 2027 ya tiene que estar como al menos el 40% del gasto eso realmente significa o sea que de los dineros que tiene que poner Ri[ba-roja]",
+        "topic": "fiscal",
+        "entities": {
+          "count": 40,
+          "countUnit": "% del gasto ejecutado",
+          "date": "2027-03-31",
+          "referencedEntity": "normativa convocatoria pai edil / senda financiera"
+        },
+        "confidence": 0.8,
+        "reasoning": "El orador cita literalmente un requisito normativo: ejecutar al menos el 40 % del gasto antes del 31 de marzo de 2027. Altamente verificable contra las bases reguladoras de la convocatoria referenciada en el punto 11 del orden del día ('senda financiera'). Fecha y porcentaje son concretos y precisos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-440-afi-1045a2",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-441-pro-5a50ba",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 441,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto",
+        "context": "El interviniente comenta que 'los dinero que va a poner el ayuntamiento entendemos que en el presupuesto del año 2026 va a estar ya la primera partida para este proyecto y dos y tres', refiriéndose al expediente de la senda financiera (PAI EDIL).",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "presupuesto municipal 2026 / pai edil"
+        },
+        "confidence": 0.62,
+        "reasoning": "Afirma que la primera dotación presupuestaria para el proyecto (aparentemente PAI EDIL / senda financiera, punto 11 del orden del día) debe figurar en el presupuesto de 2026. Verificable contrastando las aplicaciones presupuestarias del CONPREL 2026 del Ayuntamiento de Riba-roja de Túria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-441-pro-5a50ba",
+        "verdict": "verificado",
+        "summary": "El presupuesto municipal de Riba-roja de Túria para el año 2026, que incluirá la primera partida para el proyecto mencionado, ha sido aprobado, confirmando su existencia.",
+        "evidence": [
+          {
+            "kind": "promise",
+            "ref": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
+            "snippet": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
+            "similarity": 0.33
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-441-cit-1b4914",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 441,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "es demandar fondos europeos",
+        "context": "El interviniente valora positivamente la propuesta: 'creo que es súper importante y además si es una cosa buena para Riva Rocha y únicamente es estas cuestiones', describiéndola como una solicitud de fondos europeos ('es demandar fondos europeos').",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "fondos europeos / senda financiera pai edil"
+        },
+        "confidence": 0.55,
+        "reasoning": "Identifica el PAI EDIL / senda financiera como un mecanismo de captación de fondos europeos. Verificable contrastando el expediente 647/2026/GEN con la BDNS y los fondos europeos Next Generation o similares en los que se enmarcaría la convocatoria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-441-cit-1b4914",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-442-afi-6a4ea6",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 442,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "nos han dado 24.180.000 euros",
+        "context": "Una cosa es la reconstrucción que nos han dado 24.180.000 euros y en esos 24.180.000 euros que son 11 subvenciones de las cuales no hay de varios ministerios y ahí entra toda la recuperación",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 24180000,
+          "referencedEntity": "reconstrucción post-dana riba-roja de túria"
+        },
+        "confidence": 0.88,
+        "reasoning": "Cifra concreta de subvenciones recibidas para la reconstrucción, repetida dos veces en el fragmento; verificable cruzando BDNS (MinHac) por convocatorias adjudicadas al municipio 46214 con ese importe agregado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-442-afi-6a4ea6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-442-afi-7f1544",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 442,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "que son 11 subvenciones de las cuales no hay de varios ministerios",
+        "context": "Nos han dado 24.180.000 euros y en esos 24.180.000 euros que son 11 subvenciones de las cuales no hay de varios ministerios y ahí entra toda la recuperación",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 24180000,
+          "count": 11,
+          "countUnit": "subvenciones",
+          "referencedEntity": "subvenciones reconstrucción post-dana varios ministerios"
+        },
+        "confidence": 0.82,
+        "reasoning": "Número concreto de subvenciones que componen los 24,18 M€; verificable en BDNS filtrando por beneficiario Ayuntamiento de Riba-roja de Túria y convocantes ministeriales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-442-afi-7f1544",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-442-cit-722cbf",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 442,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva",
+        "context": "Ahí entra toda la recuperación hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva el tema de los polos",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 29,
+          "countUnit": "proyectos",
+          "referencedEntity": "recuperación polígono industrial y pedanía post-dana riba-roja de túria"
+        },
+        "confidence": 0.78,
+        "reasoning": "Afirmación concreta sobre el número de proyectos de recuperación y su alcance (100% del polígono + pedanía); verificable en el expediente de las subvenciones y en el plan de reconstrucción municipal publicado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-442-cit-722cbf",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-443-cit-8f3173",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 443,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "nos han dado 24.180.000 euros y en esos 24.180.000 euros que son 11 subvenciones de las cuales no hay de varios ministerios",
+        "context": "El interviniente describe los fondos recibidos para la reconstrucción: 24.180.000 euros canalizados a través de 11 subvenciones procedentes de varios ministerios, para proyectos de recuperación del polígono, pedanía, casco urbano y otros ámbitos.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 24180000,
+          "count": 11,
+          "countUnit": "subvenciones",
+          "referencedEntity": "subvenciones ministeriales reconstrucción post-dana riba-roja de túria"
+        },
+        "confidence": 0.87,
+        "reasoning": "La cantidad de 24.180.000 € se repite tres veces en el fragmento, lo que refuerza la consistencia. Es contrastable contra el BDNS filtrando convocatorias/concesiones con beneficiario Ayuntamiento de Riba-roja de Túria y descripción relacionada con la DANA o reconstrucción.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-443-cit-8f3173",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-443-afi-f2cce9",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 443,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva el tema de los polos y el casco urbano",
+        "context": "Dentro de los 24.180.000 euros de fondos ministeriales, el interviniente afirma que se articulan 29 proyectos destinados a la recuperación integral del polígono, la pedanía, la Riva, los polos y el casco urbano.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 29,
+          "countUnit": "proyectos",
+          "referencedEntity": "proyectos de recuperación post-dana riba-roja de túria"
+        },
+        "confidence": 0.8,
+        "reasoning": "El número de 29 proyectos es verificable cruzando las memorias presentadas al ministerio con el listado de expedientes de obras/contratos en PLACSP/Gobierto o con la documentación del PAI de reconstrucción. Los topónimos 'la Riva' y 'los polos' pueden ser errores de Whisper (pedanías o áreas industriales), de ahí la confianza moderada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-443-afi-f2cce9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-443-pro-278117",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 443,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva el tema de los polos y el casco urbano",
+        "context": "El interviniente presenta como compromiso que los 29 proyectos encuadrados en las 11 subvenciones ministeriales lograrán la recuperación al 100% del polígono, la pedanía, la Riva, los polos y el casco urbano, señalando que las memorias están pendientes de aprobación ministerial.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 24180000,
+          "count": 29,
+          "countUnit": "proyectos",
+          "referencedEntity": "recuperación integral post-dana polígono y casco urbano riba-roja de túria"
+        },
+        "confidence": 0.75,
+        "reasoning": "El uso del futuro 'recuperarán… al 100%' constituye un compromiso público concreto de resultado (recuperación total), vinculado a fondos ya asignados (24,18 M€) pero sujeto a aprobación ministerial de memorias; su cumplimiento es contrastable a futuro contra licitaciones publicadas y estado de obras.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-443-pro-278117",
+        "verdict": "parcial",
+        "summary": "Algunas licitaciones se relacionan con el urbanismo del casco urbano, pero no hay evidencia directa que corrobore la cantidad de 29 proyectos ni el monto de €24.180.000 para la recuperación integral de todas las áreas mencionadas.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
+            "snippet": "La licitación 'UE casco 5' es temáticamente afín a la recuperación de zonas urbanas.",
+            "similarity": 1
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
+            "snippet": "La licitación 'Reasfaltado casco urbano' se relaciona con mejoras en el área urbana.",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-444-cit-cbfc4e",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 444,
+        "type": "cita_convenio",
+        "speakerGroup": "PSOE",
+        "verbatim": "aprobamos la agenda urbana en octubre del 24 para poder optar por los 15 millones que queríamos del edil",
+        "context": "El ponente explica que la aprobación de la agenda urbana de reconstrucción en octubre de 2024 fue un requisito previo para concursar a los 15 millones del programa EDIL (Estrategia de Desarrollo Urbano Integrado Local), acción que quedó condicionada por la DANA.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 15000000,
+          "referencedEntity": "agenda urbana de reconstrucción / edil (estrategia de desarrollo urbano integrado local)"
+        },
+        "confidence": 0.78,
+        "reasoning": "La aprobación de la agenda urbana en octubre de 2024 es un acuerdo plenario verificable en el índice de plenos de ribarroja.es; el importe de 15 M€ es contrastable contra la convocatoria EDIL de los PERTE/PRTR o los DUSI del FEDER 2021-2027.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-444-cit-cbfc4e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-444-pro-832167",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 444,
+        "type": "promesa",
+        "speakerGroup": "PSOE",
+        "verbatim": "vamos a optar por el edil de la general que era por eso aprobamos la agenda urbana en octubre del 24 para poder optar por los 15 millones que queríamos del edil pero cuando entramos eso como pasó la DAN",
+        "context": "El ponente anuncia que el municipio se va a presentar a la convocatoria EDIL de la senda financiera general (agenda item 11: Aprobación PAI EDIL), vinculando esta decisión con la agenda urbana aprobada en octubre de 2024 y con el impacto de la DANA que modificó el escenario original.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "pai edil / senda financiera general"
+        },
+        "confidence": 0.68,
+        "reasoning": "Compromiso futuro concreto de solicitar el PAI EDIL, verificable cuando se publique la resolución de la convocatoria en BDNS o en el BOE/DOGV; la frase queda truncada por Whisper ('DAN' en lugar de 'DANA'), lo que reduce ligeramente la confianza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-444-pro-832167",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-445-cit-479bf6",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 445,
+        "type": "cita_convenio",
+        "speakerGroup": "PSOE",
+        "verbatim": "trajeron los pueblos de DANA para hacer una convocatoria especial",
+        "context": "El orador argumenta que, tras la DANA, la administración (estatal o autonómica) generó una convocatoria específica para los municipios afectados, distinta de la línea EDIL general, orientada a la reconstrucción. Esto modificó el marco de financiación disponible para el ayuntamiento.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "convocatoria especial municipios dana / reconstrucción post-dana"
+        },
+        "confidence": 0.72,
+        "reasoning": "La existencia de una convocatoria especial para municipios DANA es verificable contra el BDNS y el BOE/DOGV. El término 'convocatoria especial' es suficientemente concreto para buscar el instrumento normativo que la habilita.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-445-cit-479bf6",
+        "verdict": "verificado",
+        "summary": "El municipio de Riba-roja de Túria ha licitado obras de reconstrucción de vallados en polígonos industriales específicamente por los daños de la DANA, lo cual corrobora la existencia de convocatorias o financiación especial para municipios afectados por este evento.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.33
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA · awarded",
+            "similarity": 0.33
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-446-cit-add122",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 446,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "trajeron los pueblos de DANA para hacer una convocatoria especial",
+        "context": "El interviniente explica que los municipios afectados por la DANA no estaban pensando en una subvención sino en recuperar sus pueblos, y que se creó una convocatoria especial dirigida a dichos municipios: 'trajeron los pueblos de DANA para hacer una convocatoria especial'.",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "convocatoria especial dana pueblos afectados"
+        },
+        "confidence": 0.6,
+        "reasoning": "Referencia a una convocatoria de subvención específica para municipios afectados por la DANA; verificable consultando BDNS o BOE/DOGV en busca de convocatorias extraordinarias post-DANA dirigidas a ayuntamientos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-446-cit-add122",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-446-cit-317f4b",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 446,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "nosotros hemos hecho estudios de inundabilidad y hicimos un estudio claro que tenemos un contrato en AWARD",
+        "context": "El interviniente defiende la posición del equipo de gobierno ante las críticas de la oposición sobre inundabilidad, afirmando haber realizado estudios y tener un contrato registrado (posiblemente en una plataforma de licitación transcrita como 'AWARD' por Whisper): 'nosotros hemos hecho estudios de inundabilidad y hicimos un estudio claro que tenemos un contrato en AWARD'.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "estudios de inundabilidad riba-roja de túria"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirmación de haber contratado estudios de riesgo de inundación con registro en plataforma de contratación (posiblemente PLACE/PLACSP; 'AWARD' es probable distorsión Whisper). Verificable cruzando tenders.json o ribalicita.ribarroja.es con términos 'inundabilidad' o 'estudio hidrológico'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-446-cit-317f4b",
+        "verdict": "verificado",
+        "summary": "La afirmación sobre la realización de estudios de inundabilidad y un contrato adjudicado se corrobora con la licitación para la 'Redacción estudio de inundabilidad'.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
+            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial · Ayuntamiento de Riba-roja de Túria · awarded",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-446-cit-2bb401",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 446,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "el edil no solo les va a la reconstrucción, va a la residencia, va a la prevención y va a muchas cosas más",
+        "context": "Dentro del debate sobre el PAI EDIL (punto 11 del orden del día, expediente 647/2026/GEN), el interviniente argumenta que el programa cubre un alcance más amplio que la mera reconstrucción post-DANA: incluye residencia, prevención y otras actuaciones.",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "pai edil expediente 647/2026/gen"
+        },
+        "confidence": 0.62,
+        "reasoning": "Descripción del objeto del PAI EDIL aprobado en este pleno; verificable consultando el expediente 647/2026/GEN y la convocatoria de senda financiera asociada para comprobar si el programa incluye efectivamente las líneas de residencia y prevención citadas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-446-cit-2bb401",
+        "verdict": "parcial",
+        "summary": "The claim asserts the program covers more than just reconstruction, including prevention and residence. Tenders confirm 'Prevención' actions and that 'Reconstrucción' is part of the scope. However, direct evidence for 'residencia' is absent.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Prevención ajeno: especialidades",
+            "similarity": 0.33
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-447-cit-6f2305",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 447,
+        "type": "cita_convenio",
+        "speakerGroup": "PSOE",
+        "verbatim": "nosotros hemos hecho estudios de inundabilidad y hicimos un estudio claro que tenemos un contrato en AWARD",
+        "context": "El portavoz defiende la actuación municipal ante la oposición afirmando que se han realizado estudios de inundabilidad con respaldo contractual registrado, en respuesta a críticas sobre la gestión del riesgo de inundaciones en la zona de Paca d'Arc.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "contrato estudios de inundabilidad award"
+        },
+        "confidence": 0.6,
+        "reasoning": "Afirma la existencia de un contrato adjudicado para estudios de inundabilidad contrastable contra el portal de licitaciones (Gobierto/PLACSP/tenders.json). 'AWARD' podría ser un error de Whisper sobre un nombre de plataforma o proyecto, de ahí la confianza reducida.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-447-cit-6f2305",
+        "verdict": "verificado",
+        "summary": "El candidato 4 corrobora la afirmación de que se realizó un estudio de inundabilidad con un contrato \"awarded\", ya que describe la \"Redacción estudio de inundabilidad... awarded\".",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
+            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial · Ayuntamiento de Riba-roja de Túria · awarded",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-447-afi-285aa4",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 447,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "si hubiera lluvia en Paca d'Arc lo mismo que lluvia en Pedralba ya te digo yo que en la avenida hubiera habido medio metro de agua",
+        "context": "El edil argumenta que sin las infraestructuras proyectadas, una lluvia equivalente a la registrada en Pedralba habría causado inundaciones de 0,5 m en la avenida de Paca d'Arc, citando implícitamente los resultados del estudio de inundabilidad contratado.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "estudio de inundabilidad zona paca d'arc / lluvia pedralba (dana)"
+        },
+        "confidence": 0.52,
+        "reasoning": "Cifra verificable (0,5 m) derivada del estudio de inundabilidad; contrastable contra el informe técnico del contrato citado. Al ser una proyección condicional, la verificación directa requiere acceder al propio estudio.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-447-afi-285aa4",
+        "verdict": "parcial",
+        "summary": "La afirmación se basa en un estudio de inundabilidad. El candidato 1 es la licitación para la redacción de un estudio de inundabilidad, lo que establece una conexión temática directa con el contexto de la afirmación, aunque no verifica la cantidad exacta de agua ni las infraestructuras específicas.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
+            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-447-cit-b780a4",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 447,
+        "type": "cita_obra",
+        "speakerGroup": "PSOE",
+        "verbatim": "hay infraestructuras de colectores de pluviales de recogida de agua de la zona de Paca d'Arc porque toda la montaña de Paca d'Arc va el agua a morir ahí",
+        "context": "El portavoz describe proyectos de infraestructura de drenaje pluvial en la zona de Paca d'Arc como parte de la respuesta municipal al riesgo de inundación, señalando que los caudales de la montaña convergen en ese punto.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "colectores de pluviales zona paca d'arc"
+        },
+        "confidence": 0.7,
+        "reasoning": "Obra de drenaje pluvial contrastable contra el registro de licitaciones/contratos municipales (tenders.json / PLACSP) y contra el pleno-agenda del expediente correspondiente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-447-cit-b780a4",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-448-cit-c47b51",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 448,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "estos colectores de pluviales vamos a separar el pluvial del fecal porque ahora están juntos",
+        "context": "Dentro de la explicación del proyecto de drenaje, el portavoz afirma que el objetivo es segregar la red de aguas pluviales de la red de aguas residuales, señalando que en la actualidad ambas redes comparten el mismo conducto.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "separación red pluvial-fecal"
+        },
+        "confidence": 0.78,
+        "reasoning": "Contiene dos hechos verificables: (1) el proyecto contempla separación pluvial/fecal, contrastable contra el pliego técnico de la licitación; (2) la afirmación de que actualmente las redes están unidas, contrastable contra informes técnicos municipales o el expediente de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-448-cit-c47b51",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-448-pro-5e60a0",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 448,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "si llueve lo mismo que llueve Pedralba así vamos a evitar un problema serio en la parte del baile de Baix que ya lo tiene actualmente",
+        "context": "El portavoz usa las inundaciones de Pedralba como escenario de referencia para justificar el proyecto de colectores, afirmando que la infraestructura proyectada evitará un problema grave de inundación en el barrio del Baile de Baix, zona que según él ya sufre problemas hidráulicos en la actualidad.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "proyecto drenaje baile de baix / referencia inundaciones pedralba"
+        },
+        "confidence": 0.62,
+        "reasoning": "Compromiso futuro condicionado ('vamos a evitar') asociado a una zona geográfica concreta (Baile de Baix). El estado actual de riesgo hidráulico es parcialmente verificable contra informes de protección civil o el expediente urbanístico; la referencia a Pedralba alude a un evento pluviométrico real contrastable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-448-pro-5e60a0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-449-afi-4e5f1e",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 449,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el diámetro del tubo son de 400 y estos son de 1200 que dará el doble cobertura para todo",
+        "context": "El interviniente compara el diámetro de los tubos existentes (400 mm) con los nuevos colectores de pluviales proyectados (1200 mm), afirmando que la nueva sección multiplicará la capacidad de evacuación.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 1200,
+          "countUnit": "mm diámetro tubo",
+          "referencedEntity": "colectores pluviales barri de baix"
+        },
+        "confidence": 0.82,
+        "reasoning": "Las dimensiones técnicas de tubería (DN400 vs DN1200) son verificables contra el proyecto de licitación o memoria técnica del contrato de obra; contrastable en el portal Gobierto/PLACSP si la obra está licitada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-449-afi-4e5f1e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-449-cit-acc608",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 449,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "así estamos hablando de una subvención que por Europa para desarrollar ciertas zonas nos dan y que no podemos olvidar y no podemos dejarlo para pasar",
+        "context": "El interviniente distingue el proyecto de colectores de pluviales de las obras de reconstrucción, indicando que está financiado con una subvención de origen europeo destinada al desarrollo de determinadas zonas del municipio.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "subvención europea colectores pluviales barri de baix"
+        },
+        "confidence": 0.55,
+        "reasoning": "La referencia a una subvención europea es verificable contra la base BDNS filtrando convocatorias con beneficiario Riba-roja y objeto relacionado con saneamiento/pluviales; la transcripción Whisper degrada la construcción sintáctica ('que por Europa') reduciendo la certeza del importe y fondo concreto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-449-cit-acc608",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-450-cit-d97570",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 450,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "hablando de una subvención que por Europa para desarrollar ciertas zonas nos dan y que no podemos olvidar y no podemos dejarlo para pasar porque lo otro es una cosa y eso es otra",
+        "context": "El portavoz diferencia la subvención europea para desarrollo de zonas municipales de los fondos de reconstrucción post-DANA, argumentando que son fuentes independientes que no deben confundirse ni descartarse.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "subvención europea para desarrollo de zonas"
+        },
+        "confidence": 0.6,
+        "reasoning": "La existencia de la subvención europea es contrastable contra BDNS; la vaguedad del fragmento Whisper impide identificar el fondo o programa concreto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-450-cit-d97570",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-450-cit-2fcc01",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 450,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "hay dos documentos claves para poder optar que es la agenda urbana de reconstrucción porque teníamos que dar fe en esa agenda donde queríamos actuar porque si no nos darían el dinero",
+        "context": "El portavoz explica que la 'agenda urbana de reconstrucción' era requisito documental imprescindible para acceder a la subvención europea, y que sin ella el municipio no recibiría la financiación.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 2,
+          "countUnit": "documentos",
+          "referencedEntity": "agenda urbana de reconstrucción"
+        },
+        "confidence": 0.7,
+        "reasoning": "La 'agenda urbana de reconstrucción' como documento habilitante para la subvención europea es contrastable contra el expediente oficial de la convocatoria y los archivos municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-450-cit-2fcc01",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-451-cit-152d64",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 451,
+        "type": "cita_convenio",
+        "speakerGroup": "PSOE",
+        "verbatim": "gracias a un dinero que nos dio el ministerio de agenda urbana de urbanismo y agenda urbana nos darán 126.000 euros a todos los pueblos de Ana",
+        "context": "El portavoz explica que gracias a una subvención del Ministerio de Vivienda y Agenda Urbana, los municipios afectados por la DANA ('pueblos de Ana', probable error Whisper de 'pueblos DANA') recibirán 126.000 euros para financiar la agenda urbana de reconstrucción, anticipando el Ayuntamiento esos fondos.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 126000,
+          "referencedEntity": "ministerio de vivienda y agenda urbana - subvención agenda urbana reconstrucción dana"
+        },
+        "confidence": 0.68,
+        "reasoning": "Importe concreto (126.000 €) atribuido a una convocatoria ministerial. Verificable contra BDNS buscando convocatorias del Ministerio de Vivienda y Agenda Urbana destinadas a municipios DANA; 'pueblos de Ana' es probable transcripción Whisper de 'pueblos DANA', lo que reduce ligeramente la confianza.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-451-cit-152d64",
+        "verdict": "parcial",
+        "summary": "La afirmación sobre una subvención de 126.000€ del Ministerio para la agenda urbana y reconstrucción post-DANA tiene un anclaje parcial en licitaciones de obras de reconstrucción de vallados tras la DANA, aunque no se detalla el monto ni el tipo de ayuda (subvención vs. licitación de obras).",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-451-pro-f5d1c0",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 451,
+        "type": "promesa",
+        "speakerGroup": "PSOE",
+        "verbatim": "anticiparemos nosotros haremos un contrato en AWARD para adjudicar a una empresa el que nos hará la agenda urbana",
+        "context": "Tras explicar la subvención de 126.000 € del ministerio, el portavoz anuncia que el Ayuntamiento anticipará esos fondos y licitará un contrato —a través de una plataforma denominada 'AWARD' (posible error Whisper de nombre de plataforma de contratación)— para que una empresa elabore la agenda urbana de reconstrucción.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "contrato agenda urbana de reconstrucción dana - plataforma award"
+        },
+        "confidence": 0.62,
+        "reasoning": "Compromiso futuro concreto de licitar un contrato para la agenda urbana de reconstrucción. Verificable en PLACSP/Gobierto bajo el expediente del Ayuntamiento de Riba-roja; 'AWARD' es probablemente un nombre de plataforma distorsionado por Whisper, lo que introduce incertidumbre sobre el canal exacto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-451-pro-f5d1c0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-453-pro-7c7176",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 453,
+        "type": "promesa",
+        "speakerGroup": "PSOE",
+        "verbatim": "poner 100 kilovatios de fotovoltaicos en la malla cambiar",
+        "context": "El portavoz del equipo de gobierno describe un proyecto de transformación energética que incluye aerotermia y la instalación de 100 kilovatios de paneles fotovoltaicos en la red municipal, señalando que llevan dos o tres años trabajando en ello.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 100,
+          "countUnit": "kilovatios fotovoltaicos",
+          "referencedEntity": "instalación fotovoltaica red municipal riba-roja"
+        },
+        "confidence": 0.68,
+        "reasoning": "Cifra concreta de potencia fotovoltaica (100 kW) que puede contrastarse contra tenders municipales, licencias de obra o subvenciones BDNS/IDAE vinculadas al proyecto. El fragmento está ligeramente degradado por Whisper en el contexto pero la cifra es inequívoca.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-453-pro-7c7176",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-453-pro-3f4974",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 453,
+        "type": "promesa",
+        "speakerGroup": "PSOE",
+        "verbatim": "tener la malla en un cambio de manera energética tener aerotermia y llevar el gas y enviarlo a hacer la huela para todos los problemas que tenemos",
+        "context": "El representante del equipo de gobierno anuncia el proyecto de transformar la red energética municipal incorporando aerotermia, vinculándolo a una futura convocatoria de subvención en la que buscan apoyo de una empresa externa para formular la solicitud.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "proyecto aerotermia y transformación energética red municipal"
+        },
+        "confidence": 0.52,
+        "reasoning": "La instalación de aerotermia en la red municipal es una actuación verificable contra tenders (Gobierto/PLACSP) y posibles subvenciones BDNS/IDAE. Confianza reducida por degradación Whisper notable ('la huela' parece transcripción errónea).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-453-pro-3f4974",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-454-afi-492125",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 454,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "yo llevo vamos dos o tres años mamá mía eso",
+        "context": "El concejal del equipo de gobierno explica el tiempo que llevan trabajando en el proyecto de la malla: 'que yo llevo vamos dos o tres años mamá mía eso porque tenemos la ilusión desde el equipo de gobierno de desarrollar que eso va a ser un puntazo'.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "proyecto de la malla"
+        },
+        "confidence": 0.65,
+        "reasoning": "Afirmación verificable de duración (2-3 años) sobre un proyecto activo; contrastable con el historial de plenos y actas del equipo de gobierno para datar el inicio del expediente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-454-afi-492125",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-454-pro-ae16c1",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 454,
+        "type": "promesa",
+        "speakerGroup": "PSOE",
+        "verbatim": "hacer balsas de laminación dentro de la malla en parques y recorridos ciclistas",
+        "context": "El concejal enumera actuaciones previstas: 'hacer balsas de laminación dentro de la malla en parques y recorridos ciclistas hacer dos pistas deportivas polivalentes para que los niños no tengan que votar al campo de fútbol'.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "proyecto de la malla – balsas de laminación y parques"
+        },
+        "confidence": 0.75,
+        "reasoning": "Compromiso de infraestructura de gestión pluvial (balsas de laminación) dentro de la malla; verificable contra el proyecto de urbanización o pliego técnico del PAI correspondiente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-454-pro-ae16c1",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-454-pro-2fc92e",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 454,
+        "type": "promesa",
+        "speakerGroup": "PSOE",
+        "verbatim": "hacer dos pistas deportivas polivalentes para que los niños no tengan que votar al campo de fútbol y tengan ganar ahí para jugar",
+        "context": "El concejal concreta los equipamientos deportivos previstos en la malla: 'hacer dos pistas esportivas polivalentes para que los niños no tengan que votar al campo de fútbol y tengan ganar ahí para jugar'.",
+        "topic": "social",
+        "entities": {
+          "count": 2,
+          "countUnit": "pistas deportivas polivalentes",
+          "referencedEntity": "proyecto de la malla – equipamiento deportivo"
+        },
+        "confidence": 0.85,
+        "reasoning": "Número concreto de instalaciones deportivas (2 pistas polivalentes) prometidas para la malla; verificable contra el programa de actuación integrada (PAI) o licitaciones de obra en PLACSP.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-454-pro-2fc92e",
+        "verdict": "parcial",
+        "summary": "A tender was found for the installation of turf for four paddle courts, which is related to new sports facilities but differs in quantity and type from the claimed two multi-purpose courts.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2ispnjmQgmCXQV0WE7lYPw%3D%3D",
+            "snippet": "Contrato menor para el suministro e instalación del césped para 4 pistas de padel de titularidad municipal",
+            "similarity": 0.25
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-455-cit-5e90b2",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 455,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "primer objetivo de la agenda urbana de reconstrucción... recuperar y restablecer las infraestructuras equipamientos servicios urbanos y espacios naturales afectados por la DAN",
+        "context": "El ponente cita el primer objetivo de la agenda urbana de reconstrucción post-DANA —\"recuperar y restablecer las infraestructuras equipamientos servicios urbanos y espacios naturales afectados por la DAN[A]\"— para contrastar su redacción con la posición del equipo de gobierno, interpelando directamente a \"Alberto\".",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        },
+        "confidence": 0.62,
+        "reasoning": "El ponente cita literalmente el enunciado del primer objetivo de un documento oficial llamado 'agenda urbana de reconstrucción'. Es verificable contrastando el texto del plan de reconstrucción post-DANA publicado por el Ayuntamiento o la Generalitat Valenciana; Whisper trunca 'DANA' en 'DAN'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-455-cit-5e90b2",
+        "verdict": "parcial",
+        "summary": "La afirmación se refiere a la reconstrucción urbana post-DANA de infraestructuras y servicios. Las licitaciones propuestas abordan obras y servicios urbanos generales, relacionados temáticamente pero sin mención explícita a la DANA o a proyectos de reconstrucción específicos por sus efectos.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Asfaltados urbanos (5 urbanos) se relaciona con la infraestructura urbana mencionada en la afirmación.",
+            "similarity": 0.5
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D",
+            "snippet": "Servicio de redacción de proyecto de obra para la construcción de una pasarela peatonal es una infraestructura urbana.",
+            "similarity": 0.4
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y9xtWLJKz4CcCF8sV%2BqtYA%3D%3D",
+            "snippet": "Rehabilitación cubierta Pabellón Municipal se relaciona con equipamientos e infraestructuras.",
+            "similarity": 0.33
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-456-cit-00419e",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 456,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "primer objetivo de la agenda urbana de reconstrucción [...] recuperar y restablecer las infraestructuras equipamientos servicios urbanos y espacios naturales afectados por la DANA",
+        "context": "El interviniente cita el primer objetivo de la agenda urbana de reconstrucción y pregunta retóricamente si el proyecto en cuestión encaja con ese marco, señalando «es ahí China o no es ahí China lo que fija la agenda urbana de reconstrucción».",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        },
+        "confidence": 0.75,
+        "reasoning": "La existencia y el contenido del primer objetivo de la agenda urbana de reconstrucción es verificable contra el documento oficial publicado por el Ministerio de Vivienda / GVA tras la DANA de octubre 2024.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-456-cit-00419e",
+        "verdict": "verificado",
+        "summary": "La afirmación sobre la recuperación y restablecimiento de infraestructuras y equipamientos afectados por la DANA se verifica mediante contratos de obras destinados específicamente a la reconstrucción de vallados en polígonos industriales tras los daños sufridos por este fenómeno.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-456-afi-cfd7e3",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 456,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "cincuenta mil metros cuadrados",
+        "context": "El interviniente argumenta que el espacio referenciado —descrito como «el más afectado por la DANA»— tiene una superficie de cincuenta mil metros cuadrados y que se prevé invertir en él nueve millones de euros.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 50000,
+          "countUnit": "metros cuadrados",
+          "referencedEntity": "espacio afectado por la dana (riba-roja de túria)"
+        },
+        "confidence": 0.82,
+        "reasoning": "La superficie de 50.000 m² es un dato contrastable contra el expediente urbanístico o el proyecto de inversión ligado a la agenda de reconstrucción; puede cruzarse con planos catastrales y documentos del expediente municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-456-afi-cfd7e3",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-456-afi-82338c",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 456,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "nueve millones de euros",
+        "context": "El interviniente menciona que para el espacio de cincuenta mil metros cuadrados se proyecta una inversión de «nueve millones de euros», y lo enmarca dentro de los fondos o proyectos ligados a la reconstrucción post-DANA.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 9000000,
+          "referencedEntity": "inversión reconstrucción post-dana riba-roja de túria"
+        },
+        "confidence": 0.85,
+        "reasoning": "La cifra de 9 M€ es verificable contra el presupuesto municipal (CONPREL), convocatorias BDNS, o el expediente de la agenda urbana de reconstrucción registrado en la Generalitat Valenciana o el Ministerio.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-456-afi-82338c",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-456-acu-41d6fc",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 456,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "dos o tres años trabajando en ello o sea antes de la DANA es un espacio afectado por la DANA el más afectado por la DANA para invertir",
+        "context": "El interviniente cuestiona que el espacio en que se van a invertir los fondos de reconstrucción post-DANA sea realmente un espacio afectado por la DANA, señalando que llevaban «dos o tres años trabajando en ello» antes del evento, lo que implicaría que el proyecto preexistía a la catástrofe y no debería acogerse al marco de reconstrucción.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "referencedEntity": "agenda urbana de reconstrucción post-dana / proyecto previo a la dana"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.65,
+        "reasoning": "La acusación es factual: si existieran expedientes municipales o contratos licitados con anterioridad a octubre 2024 para ese espacio, contradiría la justificación de acogerse a los fondos DANA; verificable contra el registro de tenders/licitaciones y actas de plenos previos a la DANA.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-456-acu-41d6fc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-457-afi-1c9b97",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 457,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "nueve millones de euros",
+        "context": "Inmediatamente tras citar los cincuenta mil metros cuadrados, el interviniente señala 'nueve millones de euros' como importe de la inversión prevista en ese espacio afectado por la DANA.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 9000000,
+          "referencedEntity": "inversión en espacio afectado por la dana - agenda urbana reconstrucción"
+        },
+        "confidence": 0.75,
+        "reasoning": "Importe concreto contrastable contra la partida presupuestaria o la convocatoria de fondos de reconstrucción post-DANA que ampara el proyecto; la cifra es pronunciada con claridad dentro de un párrafo coherente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-457-afi-1c9b97",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-457-cit-731b25",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 457,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "basarse en la agenda urbana de reconstrucción para hacer un proyecto que todos dos o tres años trabajando",
+        "context": "El interviniente critica que se use la agenda urbana de reconstrucción como marco justificativo de un proyecto en el que lleva dos o tres años trabajando, sugiriendo que existía antes de la DANA.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        },
+        "confidence": 0.6,
+        "reasoning": "La 'agenda urbana de reconstrucción' es un programa o plan formal (posiblemente el Plan de Reconstrucción DANA de la Generalitat Valenciana o un instrumento municipal homólogo); su existencia, convocatoria y fecha de aprobación son verificables en el BOE/DOGV.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-457-cit-731b25",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-457-acu-e8dddb",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 457,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "excusarte en la DANA de hace un año",
+        "context": "El interviniente concluye su argumento reprochando al grupo gobernante que use la DANA —ocurrida aproximadamente un año antes del pleno (octubre-noviembre 2024)— como excusa para justificar retrasos en un proyecto ya en marcha.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "dana octubre-noviembre 2024"
+        },
+        "accusationSubtype": "opinativa",
+        "confidence": 0.55,
+        "reasoning": "Acusación de usar la DANA como coartada; no cita entidades, importes ni votos concretos, por lo que se clasifica como opinativa y no se verifica automáticamente. La datación implícita ('hace un año') es consistente con la fecha del pleno (febrero 2026).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-457-acu-e8dddb",
+        "verdict": "sin-datos",
+        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-458-acu-c41475",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 458,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "basarse en la agenda urbana de reconstrucción para hacer un proyecto que todos dos o tres años trabajando y después excusarte en la DANA de hace un año",
+        "context": "El interviniente critica que proyectos que llevan en desarrollo dos o tres años se justifican ahora bajo la agenda urbana de reconstrucción post-DANA, tachándolo de excusa posterior.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "agenda urbana de reconstrucción post-dana"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.62,
+        "reasoning": "Afirmación verificable cruzando la fecha de inicio de los expedientes urbanísticos (plenos-agendas.json, tenders.json) con la fecha de la DANA (oct-2024) para comprobar si los proyectos son efectivamente anteriores.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-458-acu-c41475",
+        "verdict": "parcial",
+        "summary": "Existe un registro de una licitación para obras de reconstrucción post-DANA en polígonos industriales, lo que se relaciona temáticamente con la agenda de reconstrucción mencionada en la acusación, aunque no aborda si el proyecto fue una excusa o su duración.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-458-acu-3fb391",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 458,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
+        "context": "El interviniente acusa al equipo de gobierno de destinar fondos del Ministerio canalizados por la DANA a proyectos que no sufrieron daños por esa catástrofe, poniendo como ejemplo posible el techo del polideportivo.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "fondos ministerio dana"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.67,
+        "reasoning": "Acusación verificable contra el BDNS (bdns.json) y tenders (tenders.json): si los contratos o subvenciones vinculados a fondos DANA financian obras en instalaciones sin constancia de daños en la DANA de octubre 2024.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-458-acu-3fb391",
+        "verdict": "contradicho",
+        "summary": "The claim alleges DANA funds are being spent on projects not affected by the DANA. However, candidate [3] explicitly describes a tender for emergency actions directly following damages caused by the DANA, indicating that funds were allocated for DANA-affected projects.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
+            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025).",
+            "similarity": 0.2
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-458-cit-b68f07",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 458,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "cambiar el techo del pabellón del polideportivo",
+        "context": "El interviniente menciona como ejemplo de obra posiblemente financiada con fondos DANA sin ser obra afectada directamente por la DANA el cambio de cubierta del pabellón del polideportivo municipal.",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "cubierta pabellón polideportivo riba-roja de túria"
+        },
+        "confidence": 0.58,
+        "reasoning": "Obra concreta en instalación pública municipal; verificable cruzando con tenders.json o plenos-agendas.json para localizar el expediente de la cubierta del polideportivo y su fuente de financiación. Confianza reducida por artefactos Whisper ('no lo desconecto' probablemente 'no lo descarto').",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-458-cit-b68f07",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EAFs6rGEbtF%2FR5QFTlaM4A%3D%3D",
+            "snippet": "Contrato de suministro de adquisición para sustitución de las calderas del pabellón municipal y del polideportivo (pádel) afectadas como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de ECOSIONA FACILITY SERVICES, S.L con CIF B10971968 · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-459-acu-7f378c",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 459,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
+        "context": "El interviniente sugiere que podrían usarse fondos del ministerio para la DANA en proyectos como el techo del polideportivo, y acusa directamente: 'vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA'.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "fondos ministerio dana"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.65,
+        "reasoning": "Acusación concreta y verificable: afirma que fondos ministeriales para la DANA se estarían destinando a proyectos no dañados por el desastre. Contrastable contra los expedientes de gasto de la convocatoria DANA (BDNS/tenders) y los proyectos declarados elegibles.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-459-acu-7f378c",
+        "verdict": "parcial",
+        "summary": "La afirmación sobre el uso de fondos DANA en proyectos no afectados por DANA, como obras en el polideportivo, se relaciona parcialmente con un contrato para el mantenimiento estructural del pabellón municipal, sin detalles sobre la fuente de financiación o el impacto de DANA.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WUIrTpS4RqweC9GJQOEBkQ%3D%3D",
+            "snippet": "Contrato administrativo de obras para la ejecución del proyecto “Mantenimiento y refuerzo estructural del pabellón polideportivo municipal”",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-459-acu-3fc66c",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 459,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "lo desconectamos porque no participáis a la oposición de todo lo que estáis llevando a cabo",
+        "context": "El interviniente justifica su desconexión o falta de apoyo alegando que el equipo de gobierno no hace partícipe a la oposición de los proyectos que está desarrollando.",
+        "topic": "transparencia",
+        "entities": {},
+        "accusationSubtype": "opinativa",
+        "confidence": 0.6,
+        "reasoning": "Acusación de opacidad hacia la oposición sin cifras ni entidades verificables concretas; calificada como opinativa porque se refiere a un patrón de comportamiento general sin citar acto administrativo específico. No se verifica automáticamente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-459-acu-3fc66c",
+        "verdict": "sin-datos",
+        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-460-cit-9e68d0",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 460,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "la agenda urbana cuando se aprueba es genérica es para toda la reconstrucción la agenda urbana tiene unos objetivos que es ordenar e",
+        "context": "Tras el debate procedimental sobre tiempos de intervención, el concejal identificado como José Alberto afirma que la agenda urbana aprobada es de carácter genérico y está orientada a toda la reconstrucción, con objetivos de ordenación.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "agenda urbana reconstrucción post-dana"
+        },
+        "confidence": 0.55,
+        "reasoning": "Se cita la aprobación y el alcance de una agenda urbana vinculada a la reconstrucción (presumiblemente post-DANA); verificable contrastando el documento oficial de la agenda urbana del municipio y su ámbito de aplicación declarado. Confianza reducida por el fragmento truncado al final y por la posible degradación Whisper en los nombres propios.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-460-cit-9e68d0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-461-cit-811afb",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 461,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "la agenda urbana tiene unos objetivos que es ordenar el territorio evitar la dispersión urbana prevenir y reducir el impacto del cambio climático",
+        "context": "Un concejal explica el alcance de la agenda urbana distinguiéndola de la mera reconstrucción post-DANA, enumerando sus objetivos formales.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "agenda urbana"
+        },
+        "confidence": 0.68,
+        "reasoning": "Los objetivos enunciados son verificables contrastándolos con el texto oficial de la Agenda Urbana Española o la Agenda Urbana de la Comunitat Valenciana; cualquier discrepancia sería material.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-461-cit-811afb",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "bdns",
+          "promises",
+          "budget"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "rx4hb4-461-cit-85e069",
+        "plenoId": "rx4hb4",
+        "plenoDate": "2026-02-09",
+        "segmentIndex": 461,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "la agenda urbana abarca no sólo la reconstrucción de lo que está añadido sino más cosas",
+        "context": "El concejal argumenta que la agenda urbana tiene un alcance superior al de las infraestructuras dañadas por la DANA, incluyendo objetivos de ordenación territorial más amplios.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "agenda urbana"
+        },
+        "confidence": 0.5,
+        "reasoning": "Afirmación sobre el ámbito material de un instrumento de planificación concreto; contrastable contra el articulado aprobado del documento de agenda urbana municipal o autonómica.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rx4hb4-461-cit-85e069",
+        "verdict": "parcial",
+        "summary": "Los candidatos 1 y 2 muestran obras de reconstrucción post-DANA, que el concejal reconoce como parte de la agenda urbana, pero no verifican la afirmación sobre el alcance más amplio de dicha agenda.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
+            "similarity": 0.22
+          }
+        ],
+        "checkedAgainst": [
+          "llm-second-pass"
+        ]
+      }
+    }
+  ]
+}

@@ -87,6 +87,23 @@ async function main() {
         .join(' · ') +
       ` → ${OUT}\n`,
   )
+  // Refresh the per-pleno chunks the SPA reads. The monolith above
+  // remains the canonical source for CLIs (auto-curate, promote-claim,
+  // …) where 7 MB doesn't matter; the chunks are what the browser
+  // hits via /data/pleno-claims/. See src/scraper/pleno-claims-chunks.ts.
+  try {
+    const { rewriteChunksFromMonolith } = await import('./chunk-pleno-claims')
+    const r = rewriteChunksFromMonolith()
+    process.stdout.write(
+      `[verify]   chunks: ${r.written} written · ${r.removed} stale pruned · manifest=${r.manifestBytes}B\n`,
+    )
+  } catch (err) {
+    // Don't break verify if the chunker fails — the SPA will fall back
+    // to the legacy monolith path until the curator re-runs the chunker.
+    process.stderr.write(
+      `[verify]   chunk refresh FAILED: ${err instanceof Error ? err.message : String(err)}\n`,
+    )
+  }
 }
 
 main().catch((err) => {

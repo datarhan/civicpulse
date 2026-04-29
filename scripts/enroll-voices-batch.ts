@@ -181,7 +181,9 @@ function main(): void {
     if (result.status === 'enrolled') {
       process.stderr.write(`[batch-enroll]   OK\n`)
     } else {
-      process.stderr.write(`[batch-enroll]   FAIL — ${result.reason?.split('\n').slice(-3).join(' ')}\n`)
+      process.stderr.write(
+        `[batch-enroll]   FAIL — ${result.reason?.split('\n').slice(-3).join(' ')}\n`,
+      )
     }
     results.push(result)
   }

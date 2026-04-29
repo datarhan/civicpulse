@@ -1020,7 +1020,9 @@ function handlePlenoSpeakersAudio(req, res, cwd, plenoId, speaker) {
   // baseline; if not (curator already applied --apply), we look at any
   // line and find one starting with the curator-assigned full name.
   const escapedSpeaker = speaker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  const reSpeaker = new RegExp(`^\\[(\\d+\\.?\\d*)\\s*→\\s*(\\d+\\.?\\d*)\\]\\s*\\(${escapedSpeaker}\\)`)
+  const reSpeaker = new RegExp(
+    `^\\[(\\d+\\.?\\d*)\\s*→\\s*(\\d+\\.?\\d*)\\]\\s*\\(${escapedSpeaker}\\)`,
+  )
   const segments = []
   for (const line of transcript.split('\n')) {
     const m = line.match(reSpeaker)

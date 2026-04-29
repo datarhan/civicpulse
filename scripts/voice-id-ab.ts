@@ -60,7 +60,9 @@ function parseArgs(argv: string[]): CliArgs {
     }
   }
   if (!out.plenoId) {
-    process.stderr.write('usage: voice-id-ab.ts <plenoId> [--min-confidence 0.5] [--concurrency 3]\n')
+    process.stderr.write(
+      'usage: voice-id-ab.ts <plenoId> [--min-confidence 0.5] [--concurrency 3]\n',
+    )
     process.exit(2)
   }
   return out as CliArgs
@@ -156,10 +158,12 @@ Enrolled councillors visible to LLM (B): ${allowed.length === 0 ? '(none)' : all
 | With speakerSlug (individual attribution) | ${before.withSpeakerSlug} (${pct(before.withSpeakerSlug, before.total)}) |
 
 Per-bloc:
-${Object.entries(before.byBloc)
-  .sort((a, b) => b[1] - a[1])
-  .map(([k, v]) => `- ${k}: ${v}`)
-  .join('\n') || '- (none)'}
+${
+  Object.entries(before.byBloc)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `- ${k}: ${v}`)
+    .join('\n') || '- (none)'
+}
 
 ## Pass B — \`allowedSpeakers=enrolled\` (current production)
 
@@ -170,16 +174,20 @@ ${Object.entries(before.byBloc)
 | With speakerSlug (individual attribution) | ${after.withSpeakerSlug} (${pct(after.withSpeakerSlug, after.total)}) |
 
 Per-bloc:
-${Object.entries(after.byBloc)
-  .sort((a, b) => b[1] - a[1])
-  .map(([k, v]) => `- ${k}: ${v}`)
-  .join('\n') || '- (none)'}
+${
+  Object.entries(after.byBloc)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `- ${k}: ${v}`)
+    .join('\n') || '- (none)'
+}
 
 Per-individual (Pass B only):
-${Object.entries(after.bySlug)
-  .sort((a, b) => b[1] - a[1])
-  .map(([k, v]) => `- ${k}: ${v}`)
-  .join('\n') || '- (none)'}
+${
+  Object.entries(after.bySlug)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `- ${k}: ${v}`)
+    .join('\n') || '- (none)'
+}
 
 ## Lift
 
@@ -225,7 +233,10 @@ async function main(): Promise<void> {
     officials?: Array<{ party: string }>
   }
   const currentSeats: Array<{ bloc: string; seats: number }> = officials.composition
-    ? Object.entries(officials.composition).map(([bloc, seats]) => ({ bloc, seats: seats as number }))
+    ? Object.entries(officials.composition).map(([bloc, seats]) => ({
+        bloc,
+        seats: seats as number,
+      }))
     : (() => {
         const map = new Map<string, number>()
         for (const o of officials.officials ?? []) map.set(o.party, (map.get(o.party) ?? 0) + 1)
@@ -236,7 +247,9 @@ async function main(): Promise<void> {
   const config = loadConfigFromEnv()
   process.stderr.write(`[voice-id-ab] backend: ${config.backend}\n`)
   process.stderr.write(`[voice-id-ab] enrolled councillors: ${allowed.length}\n`)
-  process.stderr.write(`[voice-id-ab] WARNING: this runs the extractor TWICE — token cost ~2× a normal run.\n`)
+  process.stderr.write(
+    `[voice-id-ab] WARNING: this runs the extractor TWICE — token cost ~2× a normal run.\n`,
+  )
   await new Promise((r) => setTimeout(r, 3000))
 
   process.stderr.write('[voice-id-ab] === Pass A — allowedSpeakers=[] ===\n')

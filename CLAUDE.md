@@ -188,6 +188,15 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #   Skips already-enrolled rows unless --force; writes an audit log
 #   to scripts/logs/enroll-voices-batch-<ts>.log.
 #
+#   Encrypted backup of `.voiceprints/` (gitignored, laptop-only):
+#     bash scripts/backup-voiceprints.sh [output-dir]   # default ~/Documents/civicpulse-backups/
+#     bash scripts/restore-voiceprints.sh <blob.tar.gz.enc>
+#   tar + openssl AES-256-CBC + pbkdf2 (interactive passphrase prompt).
+#   Tiny output (≤20 MB even with all audio) — drop the blob on
+#   Dropbox / iCloud / a USB key. The .f32 vectors are the genuinely
+#   irreplaceable part; audio caches can be re-fetched from sourceUrl
+#   in index.json by re-running `enroll-voice --url`.
+#
 #   A/B measurement of voice-id's lift on attribution:
 #     npm run voice-id-ab -- <plenoId>
 #   Two extraction passes against the same identified transcript:
@@ -232,6 +241,10 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           Cost: ~$0 on Gemini Pro plan, ~$0.30 metered.
 
 npm run verify:pleno-claims               # pure local pass · tenders + BDNS + budget + promises
+                                          # also refreshes public/data/pleno-claims/<id>.json chunks
+                                          # + manifest at public/data/pleno-claims/index.json (the
+                                          # SPA reads chunks; CLIs keep using the monolith)
+npm run chunk-pleno-claims                # standalone: regenerate chunks from monolith (idempotent)
 npm run extract-and-verify:pleno-claims -- <plenoId|--all>  # both in one go
 # Semantic shortlist for the LLM second pass (opt-in via env, default lexical):
 #   VERIFIER_SHORTLIST=lexical  (default) word-overlap scoring · no API calls

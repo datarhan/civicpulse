@@ -34,30 +34,70 @@ export const VERDICT_TONE = {
 }
 
 /**
- * Loads public/data/pleno-claims-verified.json — the snapshot produced by
- * `npm run verify:pleno-claims` that zips every extracted claim with its
- * deterministic verdict. Falls back to an empty ledger when the file
- * isn't generated yet (feature ships honest-empty).
+ * Loads pleno-claims via the chunked layout produced by
+ * `npm run chunk-pleno-claims` (called automatically at the end of
+ * `verify:pleno-claims`):
+ *
+ *   public/data/pleno-claims/index.json    ← manifest (~8 KB)
+ *   public/data/pleno-claims/<plenoId>.json ← per-pleno chunks
+ *
+ * Strategy: fetch the manifest first (small), then fetch all chunks
+ * in parallel. The `{items, stats}` shape returned to the consumer is
+ * identical to the legacy monolith so existing pages don't change.
+ *
+ * Vercel serves each chunk individually gzipped + edge-cached, and
+ * HTTP/2 multiplexes the parallel fetches. With 11 plenos the
+ * round-trip is ~1 wall-clock second on a fresh load and ~0 on
+ * cached visits because the manifest's ETag changes only when at
+ * least one chunk does.
+ *
+ * Falls back to an empty ledger when the manifest isn't generated yet
+ * (feature ships honest-empty for the first run on a clean clone).
  */
 export function usePlenoClaims() {
   const [state, setState] = useState({ loading: true, error: null, data: null })
   useEffect(() => {
     let alive = true
-    fetch('/data/pleno-claims-verified.json', { cache: 'no-cache' })
-      .then((r) => {
-        // 404 is expected when the verifier hasn't run yet — treat as empty.
-        if (r.status === 404) return { items: [], stats: { total: 0, byVerdict: {} } }
-        if (!r.ok) throw new Error(`pleno-claims-verified returned ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
+    ;(async () => {
+      try {
+        const manifestRes = await fetch('/data/pleno-claims/index.json', { cache: 'no-cache' })
+        if (manifestRes.status === 404) {
+          if (alive) {
+            setState({
+              loading: false,
+              error: null,
+              data: { items: [], stats: { total: 0, byVerdict: {} } },
+            })
+          }
+          return
+        }
+        if (!manifestRes.ok) {
+          throw new Error(`pleno-claims manifest returned ${manifestRes.status}`)
+        }
+        const manifest = await manifestRes.json()
+        const chunks = await Promise.all(
+          (manifest.plenos ?? []).map(async (p) => {
+            const r = await fetch(`/data/${p.chunkPath}`, { cache: 'no-cache' })
+            if (!r.ok) throw new Error(`chunk ${p.chunkPath} returned ${r.status}`)
+            return r.json()
+          }),
+        )
+        const items = chunks.flatMap((c) => c.items ?? [])
+        const data = {
+          generatedAt: manifest.generatedAt,
+          items,
+          stats: {
+            total: manifest.totals?.items ?? items.length,
+            byVerdict: manifest.totals?.byVerdict ?? {},
+          },
+        }
         if (alive) setState({ loading: false, error: null, data })
-      })
-      .catch((error) => {
+      } catch (error) {
         if (alive) setState({ loading: false, error, data: null })
-      })
+      }
+    })()
     return () => {
-      alive = true
+      alive = false
     }
   }, [])
   return state
