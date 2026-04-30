@@ -16,7 +16,11 @@
  * a few seconds).
  *
  * Failure modes:
- *   · OPENAI_API_KEY missing → exits 2 with a clear error.
+ *   · API key for the active backend missing → exits 2 with a clear
+ *     error. Pick the backend via EMBED_BACKEND=openai|gemini, or set
+ *     just one of OPENAI_API_KEY / GEMINI_API_KEY for auto-detection.
+ *     Switch backends → rebuild the cache (--rebuild), since 1536-dim
+ *     OpenAI vectors and 768-dim Gemini vectors aren't comparable.
  *   · 429 insufficient_quota → bails fast, prior progress preserved.
  *   · SIGINT → flushes the partial cache before exiting (resume next run).
  *   · One bad row (>8K tokens) → exits 2; user must shorten the source.
@@ -38,7 +42,7 @@ const DATA_DIR = resolve('public/data')
 const CACHE_DIR = resolve('.embed-cache')
 const CACHE_FILE = resolve(CACHE_DIR, 'verifier-corpus.jsonl')
 
-// OpenAI Embeddings allows 2048 inputs per call; we batch smaller (50)
+// OpenAI allows 2048 inputs per call, Gemini caps at 100; we batch smaller (50)
 // so partial-state writes happen frequently and SIGINT is graceful.
 const BATCH_SIZE = 50
 
@@ -239,11 +243,19 @@ function appendToCache(rows: CorpusRow[]): void {
 
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
-  const apiKey = process.env.OPENAI_API_KEY
+  const backend =
+    (process.env.EMBED_BACKEND as 'openai' | 'gemini' | undefined) ??
+    (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : 'openai')
+  const apiKey = backend === 'gemini' ? process.env.GEMINI_API_KEY : process.env.OPENAI_API_KEY
   if (!apiKey && !opts.dryRun) {
-    process.stderr.write('[embed] OPENAI_API_KEY not set (use --dry-run for preview)\n')
+    const expected = backend === 'gemini' ? 'GEMINI_API_KEY' : 'OPENAI_API_KEY'
+    process.stderr.write(
+      `[embed] ${expected} not set (backend=${backend}; use --dry-run for preview, ` +
+        `or set EMBED_BACKEND=gemini if you have a Google AI Studio key)\n`,
+    )
     process.exit(2)
   }
+  process.stdout.write(`[embed] backend=${backend}\n`)
 
   const tenders = loadIfExists('tenders.json')
   const bdns = loadIfExists('bdns.json')
@@ -284,7 +296,7 @@ async function main() {
   )
 
   if (opts.dryRun) {
-    process.stdout.write('[embed] --dry-run: not calling OpenAI; not writing cache\n')
+    process.stdout.write(`[embed] --dry-run: not calling ${backend}; not writing cache\n`)
     if (toEmbed.length > 0) {
       const sample = toEmbed.slice(0, 5).map((r) => `  · ${r.kind}/${r.sourceId.slice(0, 40)}`)
       process.stdout.write(sample.join('\n') + '\n')
@@ -314,7 +326,7 @@ async function main() {
     try {
       embeddings = await embedTexts(
         batch.map((b) => b.text),
-        { apiKey },
+        { backend, apiKey },
       )
     } catch (err) {
       if (err instanceof EmbedError && err.permanent) {

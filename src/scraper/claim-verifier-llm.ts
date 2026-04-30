@@ -57,6 +57,53 @@ export interface LlmVerifierResult {
   acceptedIndexes: number[]
   /** Rejected for being out-of-range or otherwise hallucinated. */
   rejectedIndexes: number[]
+  /** Evidence rejections by reason — telemetry for prompt drift. */
+  rejectedReasons: {
+    outOfRange: number
+    missingCite: number
+    citeNotInSnippet: number
+  }
+}
+
+// ─── Cite grounding ─────────────────────────────────────────────────────────
+//
+// Prompt v2 demands every evidence.snippet begin with a structured cite of
+// the form `<dataset>[<index>].<field>=<value> · …`. The runner enforces
+// it: the cited value must appear LITERALLY inside the candidate's snippet
+// (which is what we showed the LLM in the user prompt). This makes pure
+// fabrication mechanically impossible — the LLM can hallucinate a verdict
+// but it can't hallucinate a number that isn't in the data we sent it.
+//
+// Permissive on the cite syntax itself (whitespace, quotes around the
+// value, scientific notation) but strict on substring grounding. Returns
+// the cited value when the snippet starts with a parseable cite, or null
+// when no cite is present.
+const CITE_PATTERN =
+  /^\s*([a-z][a-z0-9_-]*)\s*\[\s*(\d+)\s*\]\s*\.\s*([a-z][a-z0-9_]*)\s*=\s*"?([^"·|]+?)"?\s*(?:·|$)/i
+
+export function parseCite(snippet: string): { field: string; value: string } | null {
+  const m = snippet.match(CITE_PATTERN)
+  if (!m) return null
+  return { field: m[3], value: m[4].trim() }
+}
+
+/**
+ * Loose substring match: strip diacritics + non-alphanumerics from both
+ * sides so "€482.000" in the candidate matches a cite value of "482000".
+ * Numeric grouping (`.` / `,` / non-breaking spaces / euro sign) routinely
+ * differs between the LLM output and the snippet we showed it.
+ */
+function looselyContains(haystack: string, needle: string): boolean {
+  const norm = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9]+/g, '')
+  const h = norm(haystack)
+  const n = norm(needle)
+  if (n.length === 0) return false
+  return h.includes(n)
 }
 
 /** Skip LLM verification for claim shapes where the answer is policy, not
@@ -114,24 +161,40 @@ export async function verifyClaimWithLlm(
   })
   if (!response) return null
 
-  // Validate each citation index — silently drop any that are out of range
-  // (LLM hallucinated a candidate that wasn't on the list).
+  // Validate each citation:
+  //   1. candidateIndex must be in range.
+  //   2. snippet must begin with a structured field cite (prompt v2).
+  //   3. the cited value must appear (loosely) in the candidate's snippet.
+  // Anything that fails is a hallucination and gets dropped.
   const acceptedIndexes: number[] = []
   const rejectedIndexes: number[] = []
   const evidence: ClaimEvidence[] = []
+  const rejectedReasons = { outOfRange: 0, missingCite: 0, citeNotInSnippet: 0 }
   let contradictionCount = 0
   for (const e of response.evidence) {
     if (e.candidateIndex < 0 || e.candidateIndex >= inputs.candidates.length) {
       rejectedIndexes.push(e.candidateIndex)
+      rejectedReasons.outOfRange += 1
+      continue
+    }
+    const cand = inputs.candidates[e.candidateIndex]
+    const cite = parseCite(e.snippet)
+    if (!cite) {
+      rejectedIndexes.push(e.candidateIndex)
+      rejectedReasons.missingCite += 1
+      continue
+    }
+    if (!looselyContains(cand.snippet, cite.value)) {
+      rejectedIndexes.push(e.candidateIndex)
+      rejectedReasons.citeNotInSnippet += 1
       continue
     }
     acceptedIndexes.push(e.candidateIndex)
-    const cand = inputs.candidates[e.candidateIndex]
     if (e.isContradiction) contradictionCount += 1
     evidence.push({
       kind: cand.kind,
       ref: cand.ref,
-      snippet: e.snippet.length > 0 ? e.snippet.slice(0, 240) : cand.snippet,
+      snippet: e.snippet.slice(0, 240),
       similarity: cand.similarity,
     })
   }
@@ -164,5 +227,6 @@ export async function verifyClaimWithLlm(
     upgraded: verdict !== 'sin-datos' && evidence.length > 0,
     acceptedIndexes,
     rejectedIndexes,
+    rejectedReasons,
   }
 }

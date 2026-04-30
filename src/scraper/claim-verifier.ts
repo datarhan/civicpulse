@@ -632,7 +632,10 @@ export function shortlistCandidates(inputs: VerifierInputs, topK = 8): Candidate
 // The LLM verifier reads `getShortlist(inputs, topK)` instead of the sync
 // `shortlistCandidates()`. The dispatcher honours the `VERIFIER_SHORTLIST`
 // env var so a single switch reroutes the verifier to a semantic backend
-// without touching the verifier itself. Defaults to lexical for safety.
+// without touching the verifier itself. Defaults to hybrid (lexical ∪
+// semantic, deduped by ref) — falls back to lexical with a stderr warning
+// when the embed cache or OPENAI_API_KEY isn't available, so the upgrade
+// is opportunistic and never blocks a verify run.
 
 export type ShortlistMode = 'lexical' | 'semantic' | 'hybrid'
 
@@ -656,7 +659,7 @@ export async function getShortlist(
   topK = 8,
   opts: ShortlistDispatcherOptions = {},
 ): Promise<CandidateShortlist[]> {
-  const mode = (opts.mode ?? (process.env.VERIFIER_SHORTLIST as ShortlistMode) ?? 'lexical') as
+  const mode = (opts.mode ?? (process.env.VERIFIER_SHORTLIST as ShortlistMode) ?? 'hybrid') as
     | ShortlistMode
     | string
   if (mode === 'lexical' || (mode !== 'semantic' && mode !== 'hybrid')) {
@@ -688,8 +691,22 @@ export async function getShortlist(
     return shortlistCandidates(inputs, topK)
   }
 
-  if (!process.env.OPENAI_API_KEY) {
-    process.stderr.write(`[verifier] OPENAI_API_KEY not set; semantic disabled, using lexical\n`)
+  // Embed backend auto-detect: prefer EMBED_BACKEND if set, else whichever
+  // key is present. Falls back to lexical with a stderr warning when no
+  // key matches the chosen backend — never crashes the verifier.
+  const embedBackend =
+    (process.env.EMBED_BACKEND as 'openai' | 'gemini' | undefined) ??
+    (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : null)
+  const haveKey =
+    embedBackend === 'gemini'
+      ? Boolean(process.env.GEMINI_API_KEY)
+      : embedBackend === 'openai'
+        ? Boolean(process.env.OPENAI_API_KEY)
+        : false
+  if (!embedBackend || !haveKey) {
+    process.stderr.write(
+      `[verifier] no embed key (set OPENAI_API_KEY or GEMINI_API_KEY); semantic disabled, using lexical\n`,
+    )
     return shortlistCandidates(inputs, topK)
   }
 

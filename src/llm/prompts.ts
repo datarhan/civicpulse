@@ -346,7 +346,7 @@ Emite el JSON con la correlación (o \`{"correlation": null}\`).
 
 // ─── Phase 5 · Claim verifier second-pass (LLM) ─────────────────────────────
 
-export const CLAIM_VERIFIER_PROMPT_VERSION = 'claim-verifier-v1'
+export const CLAIM_VERIFIER_PROMPT_VERSION = 'claim-verifier-v2'
 
 export interface ClaimVerifierCandidate {
   /** kind:tender|bdns|budget|promise + ref like 'tender:12345' or 'promise:psoe-2023-002' */
@@ -398,6 +398,19 @@ ABSOLUTE RULES (libel safety):
      close-but-not-exact = parcial.
   4. confidence must reflect how sure you are — a vague topical match should
      be 0.5-0.7, an exact amount-and-date match 0.85+.
+  5. Each evidence.snippet MUST begin with a STRUCTURED FIELD CITE in the
+     form \`<dataset>[<index>].<field>=<value>\` followed by " · " and a
+     brief justification. The dataset name comes from the candidate's
+     \`kind\` (tender / bdns / budget / promise / prior-claim) and the
+     value MUST be a literal substring of the candidate's snippet — NOT a
+     paraphrase or rounded number. Example:
+       \`tender[3].award_amount_eur=482000 · matches the speaker's €480k claim\`
+       \`promise[1].status=documentada · same quote stem as PSOE-2024-007\`
+       \`bdns[0].importe=125000 · subvención del mismo programa cultural\`
+     The runner verifies the cited value appears in the candidate snippet
+     verbatim. If you cannot tie the verdict to a literal value from the
+     candidate, return verdict:sin-datos with evidence:[]. A snippet
+     without a parseable cite is treated as a hallucination and rejected.
 
 OUTPUT only the JSON object matching the schema. No commentary.
 `.trim()

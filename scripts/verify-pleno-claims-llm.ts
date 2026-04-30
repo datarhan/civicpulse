@@ -112,7 +112,15 @@ async function main() {
   )
 
   const queue = candidates.slice(0, Math.min(candidates.length, opts.max))
-  const stats = { upgraded: 0, kept: 0, rejected: 0, attempted: 0 }
+  const stats = {
+    upgraded: 0,
+    kept: 0,
+    rejected: 0,
+    attempted: 0,
+    rejectedOutOfRange: 0,
+    rejectedMissingCite: 0,
+    rejectedCiteNotInSnippet: 0,
+  }
   // Map for fast in-place update at the end.
   const indexById = new Map<string, number>()
   snap.items.forEach((it, i) => indexById.set(it.claim.id, i))
@@ -151,6 +159,9 @@ async function main() {
       stats.kept += 1
     }
     if (r.rejectedIndexes.length > 0) stats.rejected += r.rejectedIndexes.length
+    stats.rejectedOutOfRange += r.rejectedReasons.outOfRange
+    stats.rejectedMissingCite += r.rejectedReasons.missingCite
+    stats.rejectedCiteNotInSnippet += r.rejectedReasons.citeNotInSnippet
   }
 
   function flushSnapshot() {
@@ -209,7 +220,10 @@ async function main() {
   process.stdout.write(
     `[verify-llm] done. ` +
       `upgraded=${stats.upgraded} of ${stats.attempted} attempted (${queue.length} eligible). ` +
-      `Hallucinated refs rejected: ${stats.rejected}. ` +
+      `Rejected refs: ${stats.rejected} ` +
+      `(out-of-range=${stats.rejectedOutOfRange} · ` +
+      `missing-cite=${stats.rejectedMissingCite} · ` +
+      `cite-not-in-snippet=${stats.rejectedCiteNotInSnippet}). ` +
       `New verdict mix: ` +
       Object.entries(snap.stats.byVerdict)
         .filter(([, n]) => n > 0)

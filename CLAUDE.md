@@ -246,14 +246,30 @@ npm run verify:pleno-claims               # pure local pass · tenders + BDNS + 
                                           # SPA reads chunks; CLIs keep using the monolith)
 npm run chunk-pleno-claims                # standalone: regenerate chunks from monolith (idempotent)
 npm run extract-and-verify:pleno-claims -- <plenoId|--all>  # both in one go
-# Semantic shortlist for the LLM second pass (opt-in via env, default lexical):
-#   VERIFIER_SHORTLIST=lexical  (default) word-overlap scoring · no API calls
-#   VERIFIER_SHORTLIST=semantic cosine over OpenAI text-embedding-3-small
-#   VERIFIER_SHORTLIST=hybrid   union of both, deduped by ref
-# Run once per corpus refresh; idempotent (hash-keyed). Falls back to lexical
-# with a warning when the cache or OPENAI_API_KEY is missing — never crashes
-# the verifier. Cost ~$0.002 / full rebuild on ~2k corpus rows.
+# Semantic shortlist for the LLM second pass (default hybrid; override via env):
+#   VERIFIER_SHORTLIST=hybrid   (default) union of lexical + semantic, deduped by ref
+#   VERIFIER_SHORTLIST=lexical  word-overlap scoring · no API calls
+#   VERIFIER_SHORTLIST=semantic cosine over the embedded corpus
+# Embeddings backend (auto-detected from API keys present, override via env):
+#   EMBED_BACKEND=openai  (default if OPENAI_API_KEY set) text-embedding-3-small,
+#                          1536 dim, paid tier, ~$0.002/full rebuild on ~2k rows
+#   EMBED_BACKEND=gemini  (default if only GEMINI_API_KEY set) text-embedding-004,
+#                          768 dim, free tier (1.5k req/min, no PAYG required)
+#                          Get a key at https://aistudio.google.com/apikey
+# Anthropic / Claude Code is NOT a valid embeddings backend — Anthropic does
+# not publish an embeddings API. Use it for the chat second pass only
+# (LLM_BACKEND=claude-code) and pair with one of the two embed backends here.
+# Switch backends → MUST rebuild the cache (--rebuild) since 1536-dim and
+# 768-dim vectors are not comparable. Hybrid mode falls back to lexical with
+# a stderr warning when no embed key matches the chosen backend — never
+# crashes the verifier.
+# The LLM second pass also enforces structured cites (prompt v2): each
+# evidence.snippet must begin with `<dataset>[<i>].<field>=<value> · …`
+# and the cited value must appear literally in the candidate snippet, or
+# the citation is rejected as a hallucination. Telemetry (out-of-range,
+# missing-cite, cite-not-in-snippet) reports per run.
 npm run embed:verifier-corpus             # build .embed-cache/verifier-corpus.jsonl
+npm run embed:verifier-corpus -- --rebuild  # required after switching backends
 npm run promote-claim -- <claimId> [claimId ...] \
                      --title "<≥10 chars>" --summary "<≥40 chars>" \
                      [--severity informational|notable|critical] \

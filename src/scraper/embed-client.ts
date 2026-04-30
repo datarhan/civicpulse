@@ -1,24 +1,50 @@
 /**
- * Thin wrapper over the OpenAI Embeddings API for the verifier corpus.
+ * Embedding client for the verifier corpus.
  *
  * Used only by Node-only paths (scripts/embed-verifier-corpus.ts and the
  * verifier when `VERIFIER_SHORTLIST=semantic|hybrid`). Never imported by
- * browser code — the API key is a server-side secret.
+ * browser code — API keys are server-side secrets.
  *
- *   · Token-counts each input pre-flight and rejects rows over the model's
- *     ctx window with a clear error rather than silently truncating.
- *   · Batches up to 2048 inputs per call (OpenAI's API limit).
+ * Two backends are supported, selected by `EMBED_BACKEND` env or by the
+ * presence of an API key (auto-detect):
+ *   · openai (default) — `text-embedding-3-small`, 1536 dims, paid tier.
+ *   · gemini           — Google `text-embedding-004`, 768 dims, free tier
+ *                        with generous quotas (no PAYG required).
+ *
+ * Anthropic / Claude Code is NOT supported here — Anthropic does not
+ * publish an embeddings API. Use the chat backends (gemini / claude-code)
+ * for the LLM second pass and pair them with one of the two embeddings
+ * backends here.
+ *
+ * The corpus cache (`.embed-cache/verifier-corpus.jsonl`) is dimensional —
+ * mixing 1536-dim OpenAI vectors with 768-dim Gemini vectors corrupts
+ * cosine similarity. Whenever the backend changes, rebuild the cache from
+ * scratch (`npm run embed:verifier-corpus -- --rebuild`).
+ *
+ * Both backends share the resilience contract:
+ *   · Token-counts each input pre-flight and rejects rows over ctx with
+ *     a clear error rather than silently truncating.
  *   · Retries 429 (rate limit) and 5xx with exponential backoff +
  *     Retry-After honoring.
- *   · Surfaces `insufficient_quota` immediately so the caller bails out
- *     fast instead of spinning on a permanently-dead key.
+ *   · Surfaces permanent quota errors (`insufficient_quota`,
+ *     `RESOURCE_EXHAUSTED`) immediately so the caller bails fast.
  */
 
-const DEFAULT_MODEL = 'text-embedding-3-small'
-const DEFAULT_DIM = 1536
+export type EmbedBackend = 'openai' | 'gemini'
+
+const OPENAI_MODEL = 'text-embedding-3-small'
+const OPENAI_DIM = 1536
+const GEMINI_MODEL = 'text-embedding-004'
+const GEMINI_DIM = 768
 const MAX_TOKENS_PER_INPUT = 8000 // text-embedding-3-* hard limit is 8192
-const MAX_INPUTS_PER_CALL = 2048
+const OPENAI_MAX_INPUTS = 2048
+const GEMINI_MAX_INPUTS = 100 // batchEmbedContents soft limit
 const MAX_RETRIES = 5
+
+// Back-compat: scripts that imported these names keep working.
+const DEFAULT_MODEL = OPENAI_MODEL
+const DEFAULT_DIM = OPENAI_DIM
+const MAX_INPUTS_PER_CALL = OPENAI_MAX_INPUTS
 
 export class EmbedError extends Error {
   permanent: boolean
@@ -30,6 +56,10 @@ export class EmbedError extends Error {
 }
 
 export interface EmbedOptions {
+  /** Override the auto-detected backend. Defaults to `EMBED_BACKEND` env,
+   *  else openai when OPENAI_API_KEY is set, else gemini when
+   *  GEMINI_API_KEY is set, else throws. */
+  backend?: EmbedBackend
   apiKey?: string
   model?: string
   dim?: number
@@ -37,6 +67,16 @@ export interface EmbedOptions {
   fetchImpl?: typeof fetch
   /** Override sleep (for tests). */
   sleep?: (ms: number) => Promise<void>
+}
+
+/** Pick the active backend from explicit opts → env → API-key auto-detect. */
+export function selectBackend(opts: EmbedOptions = {}): EmbedBackend {
+  if (opts.backend) return opts.backend
+  const envBackend = process.env.EMBED_BACKEND as EmbedBackend | undefined
+  if (envBackend === 'openai' || envBackend === 'gemini') return envBackend
+  if (process.env.OPENAI_API_KEY) return 'openai'
+  if (process.env.GEMINI_API_KEY) return 'gemini'
+  return 'openai' // surface a clear "key missing" error in embedTexts
 }
 
 /**
@@ -78,16 +118,13 @@ interface OpenAIEmbeddingResponse {
 export async function embedTexts(texts: string[], opts: EmbedOptions = {}): Promise<number[][]> {
   if (texts.length === 0) return []
 
-  const apiKey = opts.apiKey ?? process.env.OPENAI_API_KEY
-  if (!apiKey) {
-    throw new EmbedError('OPENAI_API_KEY not set', { permanent: true })
-  }
-  const model = opts.model ?? DEFAULT_MODEL
-  const dim = opts.dim ?? DEFAULT_DIM
+  const backend = selectBackend(opts)
   const fetchImpl = opts.fetchImpl ?? globalThis.fetch
   const sleep = opts.sleep ?? defaultSleep
 
-  // Pre-flight token check.
+  // Pre-flight token check (same ceiling for both backends — the Gemini
+  // ctx is 2048 tokens but our 8000 cap is way under either limit only if
+  // the source corpus stays below ~2k tokens; tighten if Gemini rejects).
   for (let i = 0; i < texts.length; i++) {
     const t = texts[i]
     if (typeof t !== 'string' || t.length === 0) {
@@ -96,13 +133,34 @@ export async function embedTexts(texts: string[], opts: EmbedOptions = {}): Prom
     const tokens = estimateTokens(t)
     if (tokens > MAX_TOKENS_PER_INPUT) {
       throw new EmbedError(
-        `embedTexts[${i}]: ${tokens} tokens exceeds ${MAX_TOKENS_PER_INPUT} (model ${model}). Split or truncate the source row.`,
+        `embedTexts[${i}]: ${tokens} tokens exceeds ${MAX_TOKENS_PER_INPUT}. Split or truncate the source row.`,
         { permanent: true },
       )
     }
   }
 
-  // Batch into ≤2048 input chunks.
+  if (backend === 'gemini') {
+    const apiKey = opts.apiKey ?? process.env.GEMINI_API_KEY
+    if (!apiKey) {
+      throw new EmbedError('GEMINI_API_KEY not set (EMBED_BACKEND=gemini)', { permanent: true })
+    }
+    const model = opts.model ?? GEMINI_MODEL
+    const dim = opts.dim ?? GEMINI_DIM
+    const out: number[][] = []
+    for (let start = 0; start < texts.length; start += GEMINI_MAX_INPUTS) {
+      const slice = texts.slice(start, start + GEMINI_MAX_INPUTS)
+      const batch = await callGeminiEmbeddings(slice, { apiKey, model, dim, fetchImpl, sleep })
+      for (const e of batch) out.push(e)
+    }
+    return out
+  }
+
+  const apiKey = opts.apiKey ?? process.env.OPENAI_API_KEY
+  if (!apiKey) {
+    throw new EmbedError('OPENAI_API_KEY not set', { permanent: true })
+  }
+  const model = opts.model ?? DEFAULT_MODEL
+  const dim = opts.dim ?? DEFAULT_DIM
   const out: number[][] = []
   for (let start = 0; start < texts.length; start += MAX_INPUTS_PER_CALL) {
     const slice = texts.slice(start, start + MAX_INPUTS_PER_CALL)
@@ -193,4 +251,107 @@ async function callEmbeddings(
     }
   }
   throw lastErr ?? new EmbedError('OpenAI embeddings: retries exhausted')
+}
+
+// ─── Gemini backend ─────────────────────────────────────────────────────────
+//
+// Google's batchEmbedContents endpoint. Free tier covers ~1.5k requests/min
+// and 100 req/batch with no PAYG required; the ribarroja corpus (~2.5k
+// rows) embeds in a single sub-second pass.
+//
+// Endpoint:    https://generativelanguage.googleapis.com/v1beta/models/<model>:batchEmbedContents
+// Auth:        x-goog-api-key header (preferred over ?key= query string)
+// Request:     { requests: [ { model: 'models/<model>', content: { parts: [{text: ...}] } }, ... ] }
+// Response:    { embeddings: [ { values: [...float...] }, ... ] } in INPUT order.
+//
+// Permanent errors:
+//   · 401/403 (invalid key) — surface immediately.
+//   · 400 (invalid model / oversized input) — surface immediately.
+//   · 429 RESOURCE_EXHAUSTED with quotaFailure — permanent for the day.
+// Transient: 429 without quotaFailure (rate limit) and 5xx.
+interface GeminiEmbedResponse {
+  embeddings?: Array<{ values?: number[] }>
+}
+
+async function callGeminiEmbeddings(
+  inputs: string[],
+  opts: {
+    apiKey: string
+    model: string
+    dim: number
+    fetchImpl: typeof fetch
+    sleep: (ms: number) => Promise<void>
+  },
+): Promise<number[][]> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${opts.model}:batchEmbedContents`
+  const body = JSON.stringify({
+    requests: inputs.map((text) => ({
+      model: `models/${opts.model}`,
+      content: { parts: [{ text }] },
+    })),
+  })
+
+  let attempt = 0
+  let lastErr: Error | null = null
+  while (attempt < MAX_RETRIES) {
+    attempt += 1
+    try {
+      const res = await opts.fetchImpl(url, {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          'x-goog-api-key': opts.apiKey,
+        },
+        body,
+      })
+
+      if (res.ok) {
+        const data = (await res.json()) as GeminiEmbedResponse
+        if (!Array.isArray(data.embeddings) || data.embeddings.length !== inputs.length) {
+          throw new EmbedError(
+            `Gemini returned ${data.embeddings?.length ?? 0} embeddings for ${inputs.length} inputs`,
+            { permanent: true },
+          )
+        }
+        const ordered: number[][] = []
+        for (let i = 0; i < inputs.length; i++) {
+          const v = data.embeddings[i]?.values
+          if (!Array.isArray(v) || v.length !== opts.dim) {
+            throw new EmbedError(
+              `Gemini returned embedding[${i}] of length ${v?.length ?? 0}, expected ${opts.dim}`,
+              { permanent: true },
+            )
+          }
+          ordered.push(v)
+        }
+        return ordered
+      }
+
+      const text = await res.text()
+      // Permanent quota / auth / schema errors.
+      if (res.status === 429 && /RESOURCE_EXHAUSTED|quotaFailure/i.test(text)) {
+        throw new EmbedError(`Gemini 429 RESOURCE_EXHAUSTED: ${text.slice(0, 200)}`, {
+          permanent: true,
+        })
+      }
+      if (res.status === 401 || res.status === 403) {
+        throw new EmbedError(`Gemini ${res.status}: ${text.slice(0, 200)}`, { permanent: true })
+      }
+      // Transient: rate-limit 429 and 5xx.
+      if (res.status === 429 || res.status >= 500) {
+        const retryAfter = parseRetryAfter(res.headers.get('retry-after'))
+        const backoff = Math.min(retryAfter || 1000 * Math.pow(2, attempt - 1), 60_000)
+        lastErr = new EmbedError(`Gemini ${res.status}: ${text.slice(0, 200)}`)
+        await opts.sleep(backoff)
+        continue
+      }
+      throw new EmbedError(`Gemini ${res.status}: ${text.slice(0, 200)}`, { permanent: true })
+    } catch (err) {
+      if (err instanceof EmbedError && err.permanent) throw err
+      lastErr = err instanceof Error ? err : new Error(String(err))
+      const backoff = Math.min(1000 * Math.pow(2, attempt - 1), 60_000)
+      await opts.sleep(backoff)
+    }
+  }
+  throw lastErr ?? new EmbedError('Gemini embeddings: retries exhausted')
 }

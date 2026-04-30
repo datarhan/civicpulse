@@ -107,7 +107,7 @@ describe('verifyClaimWithLlm', () => {
         evidence: [
           {
             candidateIndex: 0,
-            snippet: 'tender alumbrado adjudicado por €195.000',
+            snippet: 'tender[0].award_amount_eur=195000 · matches the €200k claim',
             isContradiction: false,
           },
         ],
@@ -152,7 +152,11 @@ describe('verifyClaimWithLlm', () => {
         verdict: 'contradicho',
         summary: 'LLM said contradicho but no contradiction flag.',
         evidence: [
-          { candidateIndex: 0, snippet: 'related, not contradicting', isContradiction: false },
+          {
+            candidateIndex: 0,
+            snippet: 'tender[0].award_amount_eur=195000 · related, not contradicting',
+            isContradiction: false,
+          },
         ],
         confidence: 0.7,
       }),
@@ -171,7 +175,7 @@ describe('verifyClaimWithLlm', () => {
         evidence: [
           {
             candidateIndex: 0,
-            snippet: 'tender amount €195k vs claimed €200k',
+            snippet: 'tender[0].award_amount_eur=195000 · vs claimed €200k',
             isContradiction: true,
           },
         ],
@@ -213,5 +217,77 @@ describe('verifyClaimWithLlm', () => {
     const candidates = shortlistCandidates({ claim: baseClaim, tenders: tendersFixture }, 5)
     const result = await verifyClaimWithLlm({ claim: baseClaim, candidates }, async () => null)
     expect(result).toBeNull()
+  })
+
+  it('rejects evidence whose snippet has no structured cite (libel safety)', async () => {
+    const candidates = shortlistCandidates({ claim: baseClaim, tenders: tendersFixture }, 5)
+    const result = await verifyClaimWithLlm(
+      { claim: baseClaim, candidates },
+      mockCaller({
+        verdict: 'verificado',
+        summary: 'LLM emitted a free-text snippet without the structured cite.',
+        evidence: [
+          {
+            candidateIndex: 0,
+            snippet: 'tender alumbrado parece coincidir con el discurso',
+            isContradiction: false,
+          },
+        ],
+        confidence: 0.8,
+      }),
+    )
+    expect(result).not.toBeNull()
+    expect(result!.acceptedIndexes).toHaveLength(0)
+    expect(result!.rejectedReasons.missingCite).toBe(1)
+    expect(result!.verification.verdict).toBe('sin-datos')
+    expect(result!.upgraded).toBe(false)
+  })
+
+  it('rejects evidence whose cited value is not in the candidate snippet (hallucination)', async () => {
+    const candidates = shortlistCandidates({ claim: baseClaim, tenders: tendersFixture }, 5)
+    const result = await verifyClaimWithLlm(
+      { claim: baseClaim, candidates },
+      mockCaller({
+        verdict: 'verificado',
+        summary: 'LLM cited a value the candidate snippet does not contain.',
+        evidence: [
+          {
+            candidateIndex: 0,
+            // Candidate snippet contains 195000, but the LLM cites 999999.
+            snippet: 'tender[0].award_amount_eur=999999 · invented amount',
+            isContradiction: false,
+          },
+        ],
+        confidence: 0.85,
+      }),
+    )
+    expect(result).not.toBeNull()
+    expect(result!.acceptedIndexes).toHaveLength(0)
+    expect(result!.rejectedReasons.citeNotInSnippet).toBe(1)
+    expect(result!.verification.verdict).toBe('sin-datos')
+  })
+
+  it('accepts loosely-matching numbers despite formatting differences', async () => {
+    const candidates = shortlistCandidates({ claim: baseClaim, tenders: tendersFixture }, 5)
+    const result = await verifyClaimWithLlm(
+      { claim: baseClaim, candidates },
+      mockCaller({
+        verdict: 'verificado',
+        summary: 'LLM cite uses 195.000 (Spanish grouping) — candidate has 195.000.',
+        evidence: [
+          {
+            candidateIndex: 0,
+            // Candidate snippet renders €195.000; the cite uses 195.000
+            // — looselyContains strips punctuation so they match.
+            snippet: 'tender[0].award_amount_eur=195.000 · matches claim',
+            isContradiction: false,
+          },
+        ],
+        confidence: 0.85,
+      }),
+    )
+    expect(result).not.toBeNull()
+    expect(result!.acceptedIndexes).toEqual([0])
+    expect(result!.upgraded).toBe(true)
   })
 })

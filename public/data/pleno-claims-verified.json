@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-26T21:11:24.461Z",
+  "generatedAt": "2026-04-30T08:57:02.087Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -8,9 +8,9 @@
     "total": 4658,
     "byVerdict": {
       "verificado": 215,
-      "parcial": 362,
+      "parcial": 364,
       "contradicho": 24,
-      "sin-datos": 4057,
+      "sin-datos": 4055,
       "promesa-repetida": 0
     }
   },
@@ -442,14 +442,18 @@
       },
       "verification": {
         "claimId": "k4olcs-012-afi-d0b348",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Candidato [0] acredita que la Carta de Servicios Municipal de Riba-roja existe y fue adjudicada, confirmando el marco. Pero el registro no contiene cifra de departamentos, por lo que el salto numérico 20→27 no puede verificarse.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
+            "snippet": "tender[0].status=awarded · licitación 'Carta de servicios municipal' adjudicada confirma existencia del programa, pero el snippet carece de cifra de departamentos que valide el salto de 20 a 27",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
@@ -473,14 +477,18 @@
       },
       "verification": {
         "claimId": "k4olcs-012-cit-ee47ed",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Candidato [0] confirma la 'Carta de servicios municipal' adjudicada en Riba-roja de Túria —el instrumento citado en el pleno como acto de transparencia— pero ningún candidato acredita la incorporación específica del Departamento de Innovación a dicha carta.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
+            "snippet": "tender[0].title=Carta de servicios municipal · coincide con la 'carta' del pleno como rendición de cuentas, pero el registro no menciona la incorporación del Departamento de Innovación",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
