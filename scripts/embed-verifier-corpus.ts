@@ -17,10 +17,14 @@
  *
  * Failure modes:
  *   · API key for the active backend missing → exits 2 with a clear
- *     error. Pick the backend via EMBED_BACKEND=openai|gemini, or set
- *     just one of OPENAI_API_KEY / GEMINI_API_KEY for auto-detection.
- *     Switch backends → rebuild the cache (--rebuild), since 1536-dim
- *     OpenAI vectors and 768-dim Gemini vectors aren't comparable.
+ *     error. Pick the backend via EMBED_BACKEND=openai|gemini|ollama, or
+ *     set just one of OPENAI_API_KEY / GEMINI_API_KEY for auto-detection.
+ *     Ollama needs no key (local server at OLLAMA_HOST, default
+ *     localhost:11434) — install the model with
+ *     `ollama pull nomic-embed-text` first.
+ *     Switch backends → rebuild the cache (--rebuild), since vector
+ *     dimensions differ across providers (1536 OpenAI, 768 Gemini, 768
+ *     nomic-embed-text) and aren't directly comparable.
  *   · 429 insufficient_quota → bails fast, prior progress preserved.
  *   · SIGINT → flushes the partial cache before exiting (resume next run).
  *   · One bad row (>8K tokens) → exits 2; user must shorten the source.
@@ -244,18 +248,31 @@ function appendToCache(rows: CorpusRow[]): void {
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
   const backend =
-    (process.env.EMBED_BACKEND as 'openai' | 'gemini' | undefined) ??
-    (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : 'openai')
-  const apiKey = backend === 'gemini' ? process.env.GEMINI_API_KEY : process.env.OPENAI_API_KEY
-  if (!apiKey && !opts.dryRun) {
+    (process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined) ??
+    (process.env.OPENAI_API_KEY
+      ? 'openai'
+      : process.env.GEMINI_API_KEY
+        ? 'gemini'
+        : 'ollama')
+  // Ollama runs locally; no key required.
+  const apiKey =
+    backend === 'ollama'
+      ? null
+      : backend === 'gemini'
+        ? process.env.GEMINI_API_KEY
+        : process.env.OPENAI_API_KEY
+  if (backend !== 'ollama' && !apiKey && !opts.dryRun) {
     const expected = backend === 'gemini' ? 'GEMINI_API_KEY' : 'OPENAI_API_KEY'
     process.stderr.write(
       `[embed] ${expected} not set (backend=${backend}; use --dry-run for preview, ` +
-        `or set EMBED_BACKEND=gemini if you have a Google AI Studio key)\n`,
+        `or set EMBED_BACKEND=ollama for the local zero-cost path)\n`,
     )
     process.exit(2)
   }
-  process.stdout.write(`[embed] backend=${backend}\n`)
+  const ollamaModel = process.env.OLLAMA_EMBED_MODEL ?? 'nomic-embed-text'
+  process.stdout.write(
+    `[embed] backend=${backend}` + (backend === 'ollama' ? ` · model=${ollamaModel}` : '') + '\n',
+  )
 
   const tenders = loadIfExists('tenders.json')
   const bdns = loadIfExists('bdns.json')
@@ -326,7 +343,7 @@ async function main() {
     try {
       embeddings = await embedTexts(
         batch.map((b) => b.text),
-        { backend, apiKey },
+        backend === 'ollama' ? { backend } : { backend, apiKey: apiKey as string },
       )
     } catch (err) {
       if (err instanceof EmbedError && err.permanent) {

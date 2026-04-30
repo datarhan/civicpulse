@@ -268,13 +268,16 @@ export default function Metodologia() {
             </ul>
           </li>
           <li>
-            <strong>Segunda pasada con LLM sobre los <code>sin-datos</code></strong> (opcional, sólo
-            cuando el contraste determinista no encontró nada). Tomamos un máximo de 8 candidatos
-            del corpus municipal (contratos, subvenciones, promesas previas) seleccionados por una
-            combinación de coincidencia léxica y semántica (cosine sobre embeddings), y le pedimos
-            al modelo que decida si alguno corrobora o contradice la afirmación. <strong>El LLM
-            sólo puede citar por índice de la lista que le entregamos</strong> — nunca puede
-            inventar una URL ni un contrato. Además, cada cita debe tener la forma{' '}
+            <strong>
+              Segunda pasada con LLM sobre los <code>sin-datos</code>
+            </strong>{' '}
+            (opcional, sólo cuando el contraste determinista no encontró nada). Tomamos un máximo de
+            8 candidatos del corpus municipal (contratos, subvenciones, promesas previas)
+            seleccionados por una combinación de coincidencia léxica y semántica (cosine sobre
+            embeddings), y le pedimos al modelo que decida si alguno corrobora o contradice la
+            afirmación.{' '}
+            <strong>El LLM sólo puede citar por índice de la lista que le entregamos</strong> —
+            nunca puede inventar una URL ni un contrato. Además, cada cita debe tener la forma{' '}
             <code>{'<dataset>[i].<campo>=<valor>'}</code> y el valor citado debe aparecer{' '}
             <em>literalmente</em> en el extracto del candidato que vio el modelo. Si la cita es
             sintácticamente inválida o el valor no aparece verbatim, el sistema la descarta como

@@ -250,19 +250,27 @@ npm run extract-and-verify:pleno-claims -- <plenoId|--all>  # both in one go
 #   VERIFIER_SHORTLIST=hybrid   (default) union of lexical + semantic, deduped by ref
 #   VERIFIER_SHORTLIST=lexical  word-overlap scoring · no API calls
 #   VERIFIER_SHORTLIST=semantic cosine over the embedded corpus
-# Embeddings backend (auto-detected from API keys present, override via env):
-#   EMBED_BACKEND=openai  (default if OPENAI_API_KEY set) text-embedding-3-small,
+# Embeddings backend (auto-detected from API keys / env, override via env):
+#   EMBED_BACKEND=ollama  (default when no API key is set; recommended)
+#                          Local nomic-embed-text via `ollama serve`, 768 dim,
+#                          zero cost, zero quota, zero secrets. Bootstrap:
+#                            ollama pull nomic-embed-text   # ~275 MB, one-time
+#                          Custom model via OLLAMA_EMBED_MODEL; custom host via
+#                          OLLAMA_HOST (default http://localhost:11434).
+#                          Full corpus rebuild: ~10 s for ~1k rows on M1/M2.
+#   EMBED_BACKEND=openai  (default when OPENAI_API_KEY set) text-embedding-3-small,
 #                          1536 dim, paid tier, ~$0.002/full rebuild on ~2k rows
-#   EMBED_BACKEND=gemini  (default if only GEMINI_API_KEY set) text-embedding-004,
-#                          768 dim, free tier (1.5k req/min, no PAYG required)
-#                          Get a key at https://aistudio.google.com/apikey
+#   EMBED_BACKEND=gemini  (default when only GEMINI_API_KEY set) text-embedding-004,
+#                          768 dim, free-tier REST API (NOT the gemini-CLI OAuth
+#                          token — that one is chat-only). Key at
+#                          https://aistudio.google.com/apikey
 # Anthropic / Claude Code is NOT a valid embeddings backend — Anthropic does
 # not publish an embeddings API. Use it for the chat second pass only
-# (LLM_BACKEND=claude-code) and pair with one of the two embed backends here.
-# Switch backends → MUST rebuild the cache (--rebuild) since 1536-dim and
-# 768-dim vectors are not comparable. Hybrid mode falls back to lexical with
-# a stderr warning when no embed key matches the chosen backend — never
-# crashes the verifier.
+# (LLM_BACKEND=claude-code) and pair with one of the three embed backends here.
+# Switch backends → MUST rebuild the cache (--rebuild) since 1536-dim,
+# 768-dim, and other vector dimensions are not comparable. Hybrid mode falls
+# back to lexical with a stderr warning when the chosen embed backend isn't
+# usable (no key, daemon down, model not pulled) — never crashes the verifier.
 # The LLM second pass also enforces structured cites (prompt v2): each
 # evidence.snippet must begin with `<dataset>[<i>].<field>=<value> · …`
 # and the cited value must appear literally in the candidate snippet, or

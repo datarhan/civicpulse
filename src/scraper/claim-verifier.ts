@@ -692,20 +692,24 @@ export async function getShortlist(
   }
 
   // Embed backend auto-detect: prefer EMBED_BACKEND if set, else whichever
-  // key is present. Falls back to lexical with a stderr warning when no
-  // key matches the chosen backend — never crashes the verifier.
+  // key is present. Ollama requires no key (local server). Falls back to
+  // lexical with a stderr warning when the chosen backend isn't usable —
+  // never crashes the verifier.
   const embedBackend =
-    (process.env.EMBED_BACKEND as 'openai' | 'gemini' | undefined) ??
+    (process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined) ??
     (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : null)
-  const haveKey =
-    embedBackend === 'gemini'
-      ? Boolean(process.env.GEMINI_API_KEY)
-      : embedBackend === 'openai'
-        ? Boolean(process.env.OPENAI_API_KEY)
-        : false
-  if (!embedBackend || !haveKey) {
+  const usable =
+    embedBackend === 'ollama'
+      ? true // reachability is checked at call time; on failure, embedTexts
+      : // throws and we'd land in the catch below
+        embedBackend === 'gemini'
+        ? Boolean(process.env.GEMINI_API_KEY)
+        : embedBackend === 'openai'
+          ? Boolean(process.env.OPENAI_API_KEY)
+          : false
+  if (!embedBackend || !usable) {
     process.stderr.write(
-      `[verifier] no embed key (set OPENAI_API_KEY or GEMINI_API_KEY); semantic disabled, using lexical\n`,
+      `[verifier] no embed key/backend (set OPENAI_API_KEY, GEMINI_API_KEY, or EMBED_BACKEND=ollama); semantic disabled, using lexical\n`,
     )
     return shortlistCandidates(inputs, topK)
   }

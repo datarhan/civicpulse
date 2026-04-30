@@ -5,16 +5,23 @@
  * verifier when `VERIFIER_SHORTLIST=semantic|hybrid`). Never imported by
  * browser code — API keys are server-side secrets.
  *
- * Two backends are supported, selected by `EMBED_BACKEND` env or by the
- * presence of an API key (auto-detect):
- *   · openai (default) — `text-embedding-3-small`, 1536 dims, paid tier.
- *   · gemini           — Google `text-embedding-004`, 768 dims, free tier
- *                        with generous quotas (no PAYG required).
+ * Three backends are supported, selected by `EMBED_BACKEND` env or by
+ * auto-detection (Ollama running locally → ollama; else by API-key
+ * presence):
+ *   · ollama (default if `ollama serve` is reachable) — local model,
+ *                        zero cost, zero quota, zero secrets.
+ *                        `nomic-embed-text` is the recommended small model
+ *                        (768 dims, ~275 MB on disk).
+ *   · openai            — `text-embedding-3-small`, 1536 dims, paid tier.
+ *   · gemini            — Google `text-embedding-004`, 768 dims, free tier
+ *                        REST API (separate from the gemini-CLI OAuth
+ *                        token). Requires GEMINI_API_KEY.
  *
  * Anthropic / Claude Code is NOT supported here — Anthropic does not
- * publish an embeddings API. Use the chat backends (gemini / claude-code)
- * for the LLM second pass and pair them with one of the two embeddings
- * backends here.
+ * publish an embeddings API. The Gemini CLI's OAuth token also doesn't
+ * cover embeddings. Use the chat backends (gemini-cli / claude-code) for
+ * the LLM second pass and pair them with one of the three embeddings
+ * backends above.
  *
  * The corpus cache (`.embed-cache/verifier-corpus.jsonl`) is dimensional —
  * mixing 1536-dim OpenAI vectors with 768-dim Gemini vectors corrupts
@@ -30,15 +37,19 @@
  *     `RESOURCE_EXHAUSTED`) immediately so the caller bails fast.
  */
 
-export type EmbedBackend = 'openai' | 'gemini'
+export type EmbedBackend = 'openai' | 'gemini' | 'ollama'
 
 const OPENAI_MODEL = 'text-embedding-3-small'
 const OPENAI_DIM = 1536
 const GEMINI_MODEL = 'text-embedding-004'
 const GEMINI_DIM = 768
+const OLLAMA_MODEL = 'nomic-embed-text'
+const OLLAMA_DIM = 768 // nomic-embed-text default
+const OLLAMA_DEFAULT_HOST = 'http://localhost:11434'
 const MAX_TOKENS_PER_INPUT = 8000 // text-embedding-3-* hard limit is 8192
 const OPENAI_MAX_INPUTS = 2048
 const GEMINI_MAX_INPUTS = 100 // batchEmbedContents soft limit
+const OLLAMA_MAX_INPUTS = 64 // batch via /api/embed; conservative default
 const MAX_RETRIES = 5
 
 // Back-compat: scripts that imported these names keep working.
@@ -69,14 +80,29 @@ export interface EmbedOptions {
   sleep?: (ms: number) => Promise<void>
 }
 
-/** Pick the active backend from explicit opts → env → API-key auto-detect. */
+/** Pick the active backend from explicit opts → env → API-key/local auto-detect.
+ *
+ * Auto-detect order: ollama (if local server reachable per OLLAMA_HOST or
+ * default localhost:11434 — implicit assumption, the actual reachability
+ * check happens at call time) > openai > gemini > ollama (fallback).
+ * The runtime probes Ollama lazily, so the auto-detect here is heuristic;
+ * the actual call falls back to "ollama not reachable" with a clear
+ * permanent error if the local server isn't running.
+ */
 export function selectBackend(opts: EmbedOptions = {}): EmbedBackend {
   if (opts.backend) return opts.backend
   const envBackend = process.env.EMBED_BACKEND as EmbedBackend | undefined
-  if (envBackend === 'openai' || envBackend === 'gemini') return envBackend
+  if (envBackend === 'openai' || envBackend === 'gemini' || envBackend === 'ollama')
+    return envBackend
+  // Back-compat: callers (and tests) that pass `opts.apiKey` directly
+  // were written for the OpenAI-only era. Treat `apiKey` without an
+  // explicit backend as openai. This keeps the test suite + existing
+  // scripts happy without forcing every callsite to add `backend:'openai'`.
+  if (opts.apiKey) return 'openai'
   if (process.env.OPENAI_API_KEY) return 'openai'
   if (process.env.GEMINI_API_KEY) return 'gemini'
-  return 'openai' // surface a clear "key missing" error in embedTexts
+  return 'ollama' // no key, no env override — assume local Ollama; the
+  // call will throw a clear "ollama unreachable" if the daemon is down.
 }
 
 /**
@@ -150,6 +176,21 @@ export async function embedTexts(texts: string[], opts: EmbedOptions = {}): Prom
     for (let start = 0; start < texts.length; start += GEMINI_MAX_INPUTS) {
       const slice = texts.slice(start, start + GEMINI_MAX_INPUTS)
       const batch = await callGeminiEmbeddings(slice, { apiKey, model, dim, fetchImpl, sleep })
+      for (const e of batch) out.push(e)
+    }
+    return out
+  }
+
+  if (backend === 'ollama') {
+    // No API key needed; Ollama runs locally. Dim is auto-discovered from
+    // the first response (different models return different dims), so we
+    // don't pin it from opts.dim.
+    const host = process.env.OLLAMA_HOST ?? OLLAMA_DEFAULT_HOST
+    const model = opts.model ?? process.env.OLLAMA_EMBED_MODEL ?? OLLAMA_MODEL
+    const out: number[][] = []
+    for (let start = 0; start < texts.length; start += OLLAMA_MAX_INPUTS) {
+      const slice = texts.slice(start, start + OLLAMA_MAX_INPUTS)
+      const batch = await callOllamaEmbeddings(slice, { host, model, fetchImpl, sleep })
       for (const e of batch) out.push(e)
     }
     return out
@@ -354,4 +395,104 @@ async function callGeminiEmbeddings(
     }
   }
   throw lastErr ?? new EmbedError('Gemini embeddings: retries exhausted')
+}
+
+// ─── Ollama backend ─────────────────────────────────────────────────────────
+//
+// Local-first path. Talks to `ollama serve` (default localhost:11434).
+// Zero quota, zero secrets, zero round-trip cost beyond local network.
+// Uses /api/embed with the `input: string[]` form so a whole batch is
+// embedded in one HTTP call.
+//
+// Permanent errors:
+//   · model not pulled — surface immediately with the exact `ollama pull`
+//     command the user should run.
+//   · server unreachable (ECONNREFUSED) — usually means `ollama serve`
+//     isn't running. We surface that as permanent because retrying won't
+//     help; the user has to start the daemon.
+// Transient: 5xx and ECONNRESET — retried with backoff.
+interface OllamaEmbedResponse {
+  embeddings?: number[][]
+  /** Older Ollama versions return a single `embedding` field. */
+  embedding?: number[]
+  /** Error path: server returns {"error": "model 'X' not found"}. */
+  error?: string
+}
+
+async function callOllamaEmbeddings(
+  inputs: string[],
+  opts: {
+    host: string
+    model: string
+    fetchImpl: typeof fetch
+    sleep: (ms: number) => Promise<void>
+  },
+): Promise<number[][]> {
+  const url = `${opts.host.replace(/\/+$/, '')}/api/embed`
+  const body = JSON.stringify({ model: opts.model, input: inputs })
+  let attempt = 0
+  let lastErr: Error | null = null
+  while (attempt < MAX_RETRIES) {
+    attempt += 1
+    try {
+      const res = await opts.fetchImpl(url, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body,
+      })
+      if (res.ok) {
+        const data = (await res.json()) as OllamaEmbedResponse
+        if (data.error) {
+          // model-not-found and similar — permanent until the user fixes it.
+          const hint = /not found|pull/i.test(data.error)
+            ? ` (run \`ollama pull ${opts.model}\` to install it)`
+            : ''
+          throw new EmbedError(`Ollama: ${data.error}${hint}`, { permanent: true })
+        }
+        const embs = data.embeddings ?? (data.embedding ? [data.embedding] : null)
+        if (!Array.isArray(embs) || embs.length !== inputs.length) {
+          throw new EmbedError(
+            `Ollama returned ${embs?.length ?? 0} embeddings for ${inputs.length} inputs`,
+            { permanent: true },
+          )
+        }
+        for (let i = 0; i < embs.length; i++) {
+          if (!Array.isArray(embs[i]) || embs[i].length === 0) {
+            throw new EmbedError(`Ollama returned empty embedding at [${i}]`, { permanent: true })
+          }
+        }
+        return embs
+      }
+      const text = await res.text()
+      // 404 typically means the model isn't pulled.
+      if (res.status === 404) {
+        throw new EmbedError(
+          `Ollama 404 for model "${opts.model}" — run \`ollama pull ${opts.model}\`. Body: ${text.slice(0, 200)}`,
+          { permanent: true },
+        )
+      }
+      if (res.status >= 500) {
+        const backoff = Math.min(1000 * Math.pow(2, attempt - 1), 30_000)
+        lastErr = new EmbedError(`Ollama ${res.status}: ${text.slice(0, 200)}`)
+        await opts.sleep(backoff)
+        continue
+      }
+      throw new EmbedError(`Ollama ${res.status}: ${text.slice(0, 200)}`, { permanent: true })
+    } catch (err) {
+      if (err instanceof EmbedError && err.permanent) throw err
+      // Connection-refused class: the daemon isn't running. No point in
+      // retrying within a single CLI call.
+      const msg = err instanceof Error ? err.message : String(err)
+      if (/ECONNREFUSED|fetch failed|ENOTFOUND/i.test(msg)) {
+        throw new EmbedError(
+          `Ollama unreachable at ${opts.host} (start \`ollama serve\` or set OLLAMA_HOST). ${msg}`,
+          { permanent: true },
+        )
+      }
+      lastErr = err instanceof Error ? err : new Error(String(err))
+      const backoff = Math.min(1000 * Math.pow(2, attempt - 1), 30_000)
+      await opts.sleep(backoff)
+    }
+  }
+  throw lastErr ?? new EmbedError('Ollama embeddings: retries exhausted')
 }
