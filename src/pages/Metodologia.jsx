@@ -268,6 +268,21 @@ export default function Metodologia() {
             </ul>
           </li>
           <li>
+            <strong>Segunda pasada con LLM sobre los <code>sin-datos</code></strong> (opcional, sólo
+            cuando el contraste determinista no encontró nada). Tomamos un máximo de 8 candidatos
+            del corpus municipal (contratos, subvenciones, promesas previas) seleccionados por una
+            combinación de coincidencia léxica y semántica (cosine sobre embeddings), y le pedimos
+            al modelo que decida si alguno corrobora o contradice la afirmación. <strong>El LLM
+            sólo puede citar por índice de la lista que le entregamos</strong> — nunca puede
+            inventar una URL ni un contrato. Además, cada cita debe tener la forma{' '}
+            <code>{'<dataset>[i].<campo>=<valor>'}</code> y el valor citado debe aparecer{' '}
+            <em>literalmente</em> en el extracto del candidato que vio el modelo. Si la cita es
+            sintácticamente inválida o el valor no aparece verbatim, el sistema la descarta como
+            alucinación. Esta tubería se reporta en cada ejecución (telemetría:{' '}
+            <code>missing-cite</code>, <code>cite-not-in-snippet</code>) para auditar deriva del
+            modelo.
+          </li>
+          <li>
             <strong>Hallazgos editoriales</strong> curados por una persona. Cuando un veredicto
             merece contexto, un curador escribe un hallazgo en <code>pleno-findings.json</code> con
             título, resumen (≥40 caracteres), citas verbatim y referencias explícitas de
@@ -320,8 +335,9 @@ export default function Metodologia() {
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 21 de abril de 2026 (añadida la sección "Plazos vencidos
-        · señalización editorial"). Cambios futuros sólo mediante PR público.
+        Última revisión de este documento: 30 de abril de 2026 (añadida la pasada con LLM sobre
+        veredictos <code>sin-datos</code> y la regla de citas estructuradas con anclaje literal).
+        Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )
