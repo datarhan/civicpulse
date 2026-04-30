@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T06:42:32.133Z",
+  "generatedAt": "2026-04-30T06:46:09.746Z",
   "source": {
     "boundary": "https://overpass-api.de/api/interpreter",
     "neighborhoods": "https://overpass-api.de/api/interpreter",
@@ -1962,7 +1962,7 @@
       39.5147966919588,
       -0.5484413325773194
     ],
-    "population": 24235
+    "population": 24609
   },
   "neighborhoods": [
     {
@@ -1974,7 +1974,7 @@
         39.5233167,
         -0.5191743
       ],
-      "population": 500
+      "population": 523
     },
     {
       "id": "node-569980825",
@@ -1985,7 +1985,7 @@
         39.541507,
         -0.5431676
       ],
-      "population": 2338
+      "population": 2280
     },
     {
       "id": "node-615163560",
@@ -2006,7 +2006,7 @@
         39.5344276,
         -0.5307458
       ],
-      "population": 845
+      "population": 881
     },
     {
       "id": "node-615180659",
@@ -2017,7 +2017,7 @@
         39.5508312,
         -0.5333969
       ],
-      "population": 375
+      "population": 372
     },
     {
       "id": "node-615180665",
@@ -2028,7 +2028,7 @@
         39.5558464,
         -0.5425281
       ],
-      "population": 585
+      "population": 601
     },
     {
       "id": "node-615180666",
@@ -2039,7 +2039,7 @@
         39.5533441,
         -0.5383653
       ],
-      "population": 633
+      "population": 650
     },
     {
       "id": "node-768553215",
@@ -2060,7 +2060,7 @@
         39.5577449,
         -0.5539922
       ],
-      "population": 346
+      "population": 360
     },
     {
       "id": "node-865433770",
@@ -2071,7 +2071,7 @@
         39.5544196,
         -0.5510476
       ],
-      "population": 361
+      "population": 364
     },
     {
       "id": "node-2063696014",
@@ -2093,7 +2093,7 @@
         39.4840972,
         -0.572073
       ],
-      "population": 1315
+      "population": 1347
     },
     {
       "id": "node-6088862590",
@@ -2134,7 +2134,7 @@
         39.4710524,
         -0.5366921
       ],
-      "population": 60
+      "population": 69
     },
     {
       "id": "node-12359042823",
@@ -2167,7 +2167,7 @@
         39.5119251,
         -0.5337693
       ],
-      "population": 240
+      "population": 254
     },
     {
       "id": "node-12359042826",
@@ -2178,7 +2178,7 @@
         39.5502196,
         -0.5446061
       ],
-      "population": 511
+      "population": 520
     },
     {
       "id": "node-12359042827",
@@ -2189,7 +2189,7 @@
         39.5515004,
         -0.5282362
       ],
-      "population": 283
+      "population": 301
     }
   ],
   "railways": {
@@ -4011,7 +4011,7 @@
   "stats": {
     "boundaryPoints": 485,
     "neighborhoods": 21,
-    "populationSum": 8394,
+    "populationSum": 8524,
     "railwayWays": 25,
     "railwayStations": 4
   }
