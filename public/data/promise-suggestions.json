@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-30T06:50:10.553Z",
+  "generatedAt": "2026-05-01T07:14:52.370Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -45,17 +45,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOUWNzRVd4c1F1NEVhNGhvM2ZLY01lMHd5RDVxMEFHb09jR3pUek8yQzhWN3JVeDI2N00tcWlFWHNNQzE0RTh4RFhHOE5aZUgyZjJVbmF5aTFDdEtJTzZBZXA1MWRJdTJkQUdNYUdNaEpKVVBETEZIYWNheV9PZ3hTM3RQLTdhX3MzbXdGY21VT242dF9WWTJ1b3RXTkRPVEhjWDRPaTU0LTJsangxcHVrakVtY2YwYXV1QWxFS1lMOUxUU0cyazFmaDEtXzgtSXJ2dElpUzNmUXBCTjBlYTJKWF9PSzhCTjZKb3FHMmQtaFNxd9IB9wFBVV95cUxORnVJMEpXUUdyN1dUQVBsYWxtdkZUdGFqWk1tX2xlYkVMN0RrWUtDZmZOTGRMdzEzNlBXT0NwcHR4bzdqaHhEbWhVYkNjUGtVTTcyTFVWZmFwOGliQTFZUmVmd1NYVVZwTEQxVzhDTTRFWHRHUEJRaktOS01rSmZ6LVN2ZEplS3FxY1kxUmJQY0hrajUtUmJHdG9MLWtJTkw2eHV1a2FYT1NxUnF2SDMyOFVWS1R6TlZ0N0xxOVNibXhaSUR0YklwWkl4X0JCUi1YZ3lOVXN5a0JkZ0g3VDRnV0ttTnMyTmF3R0pqX0dOc0s3d2hWXzNZ?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
@@ -79,7 +68,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -128,22 +117,22 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOUWNzRVd4c1F1NEVhNGhvM2ZLY01lMHd5RDVxMEFHb09jR3pUek8yQzhWN3JVeDI2N00tcWlFWHNNQzE0RTh4RFhHOE5aZUgyZjJVbmF5aTFDdEtJTzZBZXA1MWRJdTJkQUdNYUdNaEpKVVBETEZIYWNheV9PZ3hTM3RQLTdhX3MzbXdGY21VT242dF9WWTJ1b3RXTkRPVEhjWDRPaTU0LTJsangxcHVrakVtY2YwYXV1QWxFS1lMOUxUU0cyazFmaDEtXzgtSXJ2dElpUzNmUXBCTjBlYTJKWF9PSzhCTjZKb3FHMmQtaFNxd9IB9wFBVV95cUxORnVJMEpXUUdyN1dUQVBsYWxtdkZUdGFqWk1tX2xlYkVMN0RrWUtDZmZOTGRMdzEzNlBXT0NwcHR4bzdqaHhEbWhVYkNjUGtVTTcyTFVWZmFwOGliQTFZUmVmd1NYVVZwTEQxVzhDTTRFWHRHUEJRaktOS01rSmZ6LVN2ZEplS3FxY1kxUmJQY0hrajUtUmJHdG9MLWtJTkw2eHV1a2FYT1NxUnF2SDMyOFVWS1R6TlZ0N0xxOVNibXhaSUR0YklwWkl4X0JCUi1YZ3lOVXN5a0JkZ0g3VDRnV0ttTnMyTmF3R0pqX0dOc0s3d2hWXzNZ?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZVF3ZlQxckM0bjhXWV81S2hBTjlGa1g2VTJnOFMxd2xTR1dqUUtwWElza3VQYjkyb2RDczNHcTVXRWpGcFJoTGptcWU0MzhOZDRqeFVIbGFNbDI2eld3YUpUSUFHYWtVYVlIOFMzS3NMMlFiUmFmc0djd21rY0FITDd2Ym9KYk1IZ1RCNGZJVm1OZ3dIOE9sUmE3Tl9tdUZTa1pfbHd3ZzZ0Ti13eXY1Q2dCcmczc01PS3ZlaWFHMDNjQ3dmZGZsZVUtNFMxcXU3Z0hoUnpIMXBOUlJUbkNqSmI2cFRxbmViTzZ3Wlk4c2l0X3ViNGFKZUhn?oc=5",
+          "date": "2026-04-27",
+          "quote": "Riba-roja destinará este año 3,3 millones en inversiones públicas gracias al superávit de las cuentas de 2025",
           "kind": "press",
-          "publisher": "El Periódico de Aquí",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
-            "millon",
-            "euro"
+            "inversion",
+            "millon"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxQX1JjaEhxYzJoUDgwdmQtUmd1RkpNeW1CSFYtaGktZXN5MS1BckFXVXJLdG5GNVBiM3hfVU5PczB2cENvVnQ5MkF2bU1rTVV4YkpaclEyak9MVUVLLTFldEVHejhDTjdKZmhDcmZtQXF5UG1fblFNQnBtd1ozUGs1YlhSWjNfcEFnNjlYblcwZ2lXWnFtYVdwdUVmX0pHT29zOU9OM3pvVHA3YVZOXzRCRHdERXl2OU9XVmVneVh1ZzFVa0JJcGdGbWg1OXFkZVJ2NGtmZjY1bi1KSkwzaTVzYk1EVE9CcGx1SnfSAe8BQVVfeXFMT3FyV0ZicllVZzBqci02V3dhOXJBVWQzODQ5ZFNVSVVPMjE5R1luSjFOcV9EUE82N3BiV2gyYkE0OWdRcHB0dm5DMXAzLWlTbmZtWnFBa3hYRHU5YWtkUVlVQVJvZHNYbjhHUXRlNHBibkNXdC1Beklqdk5WR3dTQXBaSkJJQVh1Z0N0U0J3ZXNqM29LYkhCeXk0UFJOVlF5ekNrVm5ORjVGMW9tbndkN3JxT1ZpNHhLVmRMT3ZRWC1nR0t1Nnd3RTZWMElvNEJncUoyVE5WZWw4Vjh0OUhlby1sdGk4dmZkdTJ6UkYtbHM?oc=5",
-          "date": "2026-04-27",
-          "quote": "Riba-roja cierra 2025 con un superávit de 4,5 millones y activa 3,3 millones en inversiones",
+          "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxNY0R4YTZjQUhkeFNlQTlSQ2xFdWVEdWI4MDJVMmlzN3ZNaTJ2N1VWNVRtSFg2cXJOaDJPRlp3R1U5NGE5SnZ5VnRjYUwwekNxcmQxbEIxbDhORF9IWGJCR3ZWcGQzYmpXSFFpZGNZN01RQ09SdXVleXpIc0QxRktPZDBMeTk1dHcwemxRaEZzUWs2NG9NYkJ0WjZfY0hEcTZHZWJ3LTc5eGJyOTJhVUh6eEJ1V1VLcHF3eGx4U05uTllJN2JtZEU1dFVVVmJFTTdhNTdCQ1VhSEc1dVMwS2V4cFZONjVKQVE4cmY1NWxKTGlGVE9mMFN1MzBPLUtQekc0RjRvYmNsbVJ5QlN00gGSAkFVX3lxTE9ydkpvSVFmMmppdnFickhHdDl3WDFqc0h5R29WTWh1V2REdUpBTkdLSVNNRTRQaTJGeVZ6LVNGLXRWZ3F2ODUxbUcxaDRqaDg0SUQ1d3Z6MFZoVFBFdV8yckJheWs1R25WcENJRnp0Mi1BbGltM0cwTGh5T3ZwQ0RUdE1GTWpicjFTM3FRb3pTeUVvR3pGMHlEMkxjTk9LTnM5TWhXQ0Uwa0UxWUNFQlA0UVphWWpRX1gzbUNfdmd2Z1B4a2lnMjA0ZFB6ekVfNEhrNVFRVUZRaDZTYVhLQk0zZ1RvNk1iMEFzZllCUlM5YXY1d0dHMklGVFVpNjQ2RzV2R1d5ZzNEcThmTzJwQkk5RUE?oc=5",
+          "date": "2026-04-08",
+          "quote": "La Conselleria de Sanidad impulsa el Nuevo Centro de Salud de Riba-roja de Túria: Inversión de 8,3 millones y obras en 2027",
           "kind": "press",
-          "publisher": "El Periódico de Aquí",
+          "publisher": "València Extra",
           "matchedKeywords": [
             "inversion",
             "millon"
@@ -151,7 +140,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -224,7 +213,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -248,21 +237,10 @@
             "suelo",
             "ambicioso"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcnRfSHBHWmlmR2JwNWlRYW9rRl9keTFwdVNYdkI3YllUN0pVU0NHXzJuN045NGNvU2pESnVfWnBLS05VcnBGSVJScVJpUXFmdjNPUWktNjBGTG5uNjFwdlFqU1BUSUgtUnNCYkNNa2kyRk1qdmgwYmI1QldCdEhrUFpuUVZEZFhpTVpRY0w0YzNiR1hOU2V5bm9VQmVBa2hCMjZ6N1g1ODg1Y3ZXMlM5SVQycXVmMndPd3fSAb8BQVVfeXFMUGg0SXk2OHZ2TXNxdzR2SFgzQXZmLU9wNG9GQjd1TTl0bm95V0tvaGt1amdtTmJXUUdtMXc0d3pLNjNNSHhtUmZMNEF6N1lDMl9ud0t6bTQ2dDVCSWtQR2hwWXJZVjVuVmhfOWZKRnljSkNWUktsdDNsdEpCQU1faS1fbEx3Q2FqazNoLTVSMUcyZ3FxbWlZNjFPaUJXcHl5QjFBQjlBQWFPTkJIRURDRnJhZGo5NmJiTnJybVR4NzQ?oc=5",
-          "date": "2026-01-27",
-          "quote": "Así será el nuevo PAI de Riba-roja: 830 viviendas plurifamiliares y unifamiliares",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "nuevo",
-            "vivienda"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -297,7 +275,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -321,7 +299,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -359,7 +337,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -379,7 +357,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -387,7 +365,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -406,7 +384,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -425,17 +403,6 @@
             "millon",
             "euro",
             "municipio"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi8gFBVV95cUxOUWNzRVd4c1F1NEVhNGhvM2ZLY01lMHd5RDVxMEFHb09jR3pUek8yQzhWN3JVeDI2N00tcWlFWHNNQzE0RTh4RFhHOE5aZUgyZjJVbmF5aTFDdEtJTzZBZXA1MWRJdTJkQUdNYUdNaEpKVVBETEZIYWNheV9PZ3hTM3RQLTdhX3MzbXdGY21VT242dF9WWTJ1b3RXTkRPVEhjWDRPaTU0LTJsangxcHVrakVtY2YwYXV1QWxFS1lMOUxUU0cyazFmaDEtXzgtSXJ2dElpUzNmUXBCTjBlYTJKWF9PSzhCTjZKb3FHMmQtaFNxd9IB9wFBVV95cUxORnVJMEpXUUdyN1dUQVBsYWxtdkZUdGFqWk1tX2xlYkVMN0RrWUtDZmZOTGRMdzEzNlBXT0NwcHR4bzdqaHhEbWhVYkNjUGtVTTcyTFVWZmFwOGliQTFZUmVmd1NYVVZwTEQxVzhDTTRFWHRHUEJRaktOS01rSmZ6LVN2ZEplS3FxY1kxUmJQY0hrajUtUmJHdG9MLWtJTkw2eHV1a2FYT1NxUnF2SDMyOFVWS1R6TlZ0N0xxOVNibXhaSUR0YklwWkl4X0JCUi1YZ3lOVXN5a0JkZ0g3VDRnV0ttTnMyTmF3R0pqX0dOc0s3d2hWXzNZ?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "millon",
-            "euro"
           ]
         },
         {
@@ -483,7 +450,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -503,7 +470,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -556,7 +523,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -595,7 +562,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -634,7 +601,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -653,7 +620,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-04-30T06:50:10.481Z"
+      "generatedAt": "2026-05-01T07:14:52.303Z"
     }
   ],
   "llmEvidence": [],
