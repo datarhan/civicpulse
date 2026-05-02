@@ -191,11 +191,44 @@ fi
 # ─── 5. Voiceprint enrollment status (informational) ───────────────────
 echo "[bootstrap] === Voiceprint enrollments ==="
 INDEX=".voiceprints/index.json"
+OFFICIALS="public/data/officials.json"
 if [ -f "$INDEX" ]; then
   count=$(node -e "console.log((JSON.parse(require('fs').readFileSync('$INDEX','utf8')).entries||[]).length)" 2>/dev/null || echo '?')
   echo "[bootstrap]   INFO   $count councillor(s) enrolled (see /curator → Voice ID enrollment)"
-  if [ "$count" -lt 4 ] 2>/dev/null; then
-    echo "[bootstrap]   HINT   cross-bloc validation needs ≥1 enrollment per party (PSOE + PP + VOX + Compromís)"
+  if [ -f "$OFFICIALS" ]; then
+    # Cross-reference: which parties already have a voice + one suggested
+    # councillor for each missing party. Surfaces the actual gap instead
+    # of a generic "PSOE+PP+VOX+Compromís" reminder.
+    coverage=$(node -e "
+      const idx = JSON.parse(require('fs').readFileSync('$INDEX','utf8'));
+      const off = JSON.parse(require('fs').readFileSync('$OFFICIALS','utf8'));
+      const enrolledSlugs = new Set((idx.entries||[]).map(e=>e.slug));
+      const all = off.items||off.officials||off.councillors||[];
+      const partyOf = {};
+      for (const x of all) partyOf[x.slug] = x.party || 'Otro';
+      const enrolledParties = new Set([...enrolledSlugs].map(s=>partyOf[s]).filter(Boolean));
+      const required = ['PSOE','PP','VOX','Compromís'];
+      const missing = required.filter(p => !enrolledParties.has(p));
+      const suggest = {};
+      for (const p of missing) {
+        const cand = all.find(x => (x.party||'')===p && !enrolledSlugs.has(x.slug));
+        if (cand) suggest[p] = cand.slug + ' (' + (cand.name||'?') + ')';
+      }
+      console.log(JSON.stringify({missing, suggest}));
+    " 2>/dev/null || echo '{}')
+    missing=$(node -e "console.log((JSON.parse(\`$coverage\`).missing||[]).join(','))" 2>/dev/null || echo "")
+    if [ -n "$missing" ]; then
+      echo "[bootstrap]   HINT   missing parties for cross-bloc validation: $missing"
+      echo "[bootstrap]          enroll one councillor per missing party via:"
+      node -e "
+        const c = JSON.parse(\`$coverage\`);
+        for (const [p,row] of Object.entries(c.suggest||{})) {
+          console.log('[bootstrap]            npm run enroll-voice -- --slug ' + row.split(' ')[0] + ' --url <pleno-audio-url>   # ' + p);
+        }
+      " 2>/dev/null
+    else
+      echo "[bootstrap]   OK     all 4 main parties have ≥1 voiceprint"
+    fi
   fi
 else
   echo "[bootstrap]   INFO   no enrollments yet — open /curator → Voice ID enrollment"
