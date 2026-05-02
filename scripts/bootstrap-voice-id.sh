@@ -50,6 +50,7 @@ if [ -f .env ]; then
     ISSUES+=("HUGGINGFACE_TOKEN: (1) accept user agreements at:")
     ISSUES+=("    https://huggingface.co/pyannote/speaker-diarization-3.1")
     ISSUES+=("    https://huggingface.co/pyannote/segmentation-3.0")
+    ISSUES+=("    https://huggingface.co/pyannote/speaker-diarization-community-1   ← required by pyannote 4.x")
     ISSUES+=("  (2) generate a read token at:")
     ISSUES+=("    https://huggingface.co/settings/tokens")
     ISSUES+=("  (3) set HUGGINGFACE_TOKEN=hf_xxx in .env")
@@ -67,11 +68,61 @@ if [ -x "$PYANNOTE_VENV/bin/python" ]; then
   if "$PYANNOTE_VENV/bin/python" -c 'import pyannote.audio' 2>/dev/null; then
     pyannote_version=$("$PYANNOTE_VENV/bin/python" -c 'import pyannote.audio; print(pyannote.audio.__version__)' 2>/dev/null || echo '?')
     echo "[bootstrap]   OK     pyannote.audio $pyannote_version installed"
+    # End-to-end pipeline-load smoke test: catches upstream API drift
+    # (torchaudio.AudioMetaData removed, model name renamed to
+    # community-1, missing user agreement) that the import alone misses.
+    if [ -f .env ] && grep -q '^HUGGINGFACE_TOKEN=.\+' .env 2>/dev/null; then
+      pipeline_check=$("$PYANNOTE_VENV/bin/python" - 2>/dev/null <<'PYEOF' | tail -n1
+import os, sys
+# Load .env so the token is available in this subprocess.
+try:
+    with open('.env') as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith('HUGGINGFACE_TOKEN='):
+                os.environ['HUGGINGFACE_TOKEN'] = line.split('=', 1)[1]
+                break
+except Exception:
+    pass
+tok = os.environ.get('HUGGINGFACE_TOKEN', '')
+if not tok:
+    print('NO_TOKEN'); sys.exit(0)
+try:
+    from pyannote.audio import Pipeline
+    Pipeline.from_pretrained('pyannote/speaker-diarization-3.1', token=tok)
+    print('PIPELINE_OK')
+except Exception as e:
+    msg = (str(e) + ' ' + type(e).__name__).lower()
+    if 'gatedrepo' in msg or 'restricted' in msg or 'cannot be accessed' in msg or 'community-1' in msg:
+        print('GATED')
+    else:
+        print(f'ERR:{type(e).__name__}')
+PYEOF
+)
+      case "$pipeline_check" in
+        PIPELINE_OK)
+          echo "[bootstrap]   OK     pipeline loads end-to-end (HF token + agreements valid)"
+          ;;
+        GATED)
+          echo "[bootstrap]   MISS   pipeline blocked by gated-repo (you need to accept extra agreement)"
+          ISSUES+=("pyannote pipeline: accept user conditions at")
+          ISSUES+=("    https://huggingface.co/pyannote/speaker-diarization-community-1")
+          ISSUES+=("    (pyannote 4.x routes 3.1 through community-1; one-click on HF)")
+          ;;
+        NO_TOKEN)
+          : # already reported above
+          ;;
+        *)
+          echo "[bootstrap]   MISS   pipeline load failed: $pipeline_check"
+          ISSUES+=("pyannote pipeline load failed — see error above")
+          ;;
+      esac
+    fi
   else
     echo "[bootstrap]   MISS   pyannote.audio not in venv"
     if command -v python3.10 >/dev/null 2>&1; then
-      echo "[bootstrap]   ATTEMPT  pip install pyannote.audio==3.3 …"
-      "$PYANNOTE_VENV/bin/pip" install --quiet pyannote.audio==3.3 || \
+      echo "[bootstrap]   ATTEMPT  pip install pyannote.audio>=4.0,<5 …"
+      "$PYANNOTE_VENV/bin/pip" install --quiet 'pyannote.audio>=4.0,<5' || \
         ISSUES+=("pyannote.audio install failed — see pip output above")
     else
       ISSUES+=("pyannote.audio: install python3.10 first")
@@ -83,9 +134,9 @@ else
     echo "[bootstrap]   ATTEMPT  python3.10 -m venv $PYANNOTE_VENV"
     mkdir -p "$(dirname "$PYANNOTE_VENV")"
     if python3.10 -m venv "$PYANNOTE_VENV"; then
-      echo "[bootstrap]   ATTEMPT  pip install pyannote.audio==3.3 (this takes ~3 min) …"
+      echo "[bootstrap]   ATTEMPT  pip install pyannote.audio>=4.0,<5 (this takes ~3 min) …"
       "$PYANNOTE_VENV/bin/pip" install --quiet --upgrade pip
-      if "$PYANNOTE_VENV/bin/pip" install --quiet pyannote.audio==3.3; then
+      if "$PYANNOTE_VENV/bin/pip" install --quiet 'pyannote.audio>=4.0,<5'; then
         echo "[bootstrap]   OK     pyannote.audio installed"
       else
         ISSUES+=("pyannote.audio install failed")

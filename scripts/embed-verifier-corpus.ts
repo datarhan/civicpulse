@@ -249,11 +249,7 @@ async function main() {
   const opts = parseArgs(process.argv.slice(2))
   const backend =
     (process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined) ??
-    (process.env.OPENAI_API_KEY
-      ? 'openai'
-      : process.env.GEMINI_API_KEY
-        ? 'gemini'
-        : 'ollama')
+    (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : 'ollama')
   // Ollama runs locally; no key required.
   const apiKey =
     backend === 'ollama'

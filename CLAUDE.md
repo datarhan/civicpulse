@@ -118,7 +118,7 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                                  huggingface.co/pyannote/segmentation-3.0
 #                             2. Set HUGGINGFACE_TOKEN in .env
 #                             3. python3.10 -m venv ~/.local/civicpulse-pyannote/venv
-#                             4. ~/.local/civicpulse-pyannote/venv/bin/pip install pyannote.audio==3.3
+#                             4. ~/.local/civicpulse-pyannote/venv/bin/pip install 'pyannote.audio>=4.0,<5'
 #                           Default OFF — plain Whisper output keeps
 #                           the dependency surface minimal.
 #

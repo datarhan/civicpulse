@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-30T08:57:02.087Z",
+  "generatedAt": "2026-04-30T18:37:55.059Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -7,10 +7,10 @@
   "stats": {
     "total": 4658,
     "byVerdict": {
-      "verificado": 215,
-      "parcial": 364,
+      "verificado": 216,
+      "parcial": 368,
       "contradicho": 24,
-      "sin-datos": 4055,
+      "sin-datos": 4050,
       "promesa-repetida": 0
     }
   },
@@ -962,14 +962,18 @@
       },
       "verification": {
         "claimId": "k4olcs-016-cit-683445",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "El candidato [5] acredita un contrato de desarrollo del Portal de Transparencia municipal, soporte donde el acuerdo ordena publicar la política del sistema interno de información. Coincidencia temática, sin verificación del acto de publicación concreto.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+            "snippet": "tender[5].description=Portal de Transparencia · licitación de desarrollo e implantación del mismo portal donde el acuerdo ordena publicar la política; no verifica el acto de publicación ni la política del canal interno",
+            "similarity": 0.75
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
@@ -993,14 +997,24 @@
       },
       "verification": {
         "claimId": "k4olcs-016-cit-7d0f3b",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Ningún candidato es el acuerdo plenario descrito. Los candidatos [3] y [7] presentan solapamiento temático —gestión antifraude y portal de transparencia— pero son contratos de servicios, no registros del acto procedimental afirmado.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F6rHfi0CpxbVGIpKDxgsAQ%3D%3D",
+            "snippet": "tender[3].snippet=medidas antifraude (74/2024) · solapamiento con «comité antifraude» pero es contrato de servicios de apoyo al plan de integridad, no registro del acuerdo plenario sobre el canal interno",
+            "similarity": 0.73
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+            "snippet": "tender[7].snippet=Portal de Transparencia · solapamiento con la publicación en el portal de transparencia, pero es contrato de desarrollo del portal, no el acto de publicación del acuerdo",
+            "similarity": 0.72
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
@@ -1313,14 +1327,18 @@
       },
       "verification": {
         "claimId": "k4olcs-018-afi-1077bc",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Ningún candidato verifica la cartelería digital a €35.252,87. El candidato [3] cubre la actuación 2 del mismo contexto (sistema de debate/vídeo para el pleno de Riba-roja), corroborando la estructura de proyecto, pero sin confirmar la actuación 1 reclamada.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "tender[3].description=salón de plenos del ayuntamiento de Riba-roja de Turia · actuación 2 del mismo contexto; no cubre la actuación 1 (cartelería digital €35.252,87)",
+            "similarity": 0.71
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
@@ -3157,14 +3175,24 @@
       },
       "verification": {
         "claimId": "k4olcs-036-acu-a81f01",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Candidatos [1] y [2] son temáticamente afines: ayudas escolares generales (2017) y servicios para adultos con dificultades de aprendizaje. Ninguno confirma ni contradice la falta de apoyos individuales para NEE en el alumnado escolar.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/350935",
+            "snippet": "bdns[1].convocatoria=ayudas escolares · Convocatoria municipal de \"ayudas escolares\" (2017-2018) es afín pero cubre retorno general al cole, no apoyos individuales para NEE",
+            "similarity": 0.7
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
+            "snippet": "tender[2].object=dificultades en el aprendizaje · Servicio para personas con \"dificultades en el aprendizaje\" pero dirigido a adultos con diversidad funcional, no a alumnado escolar",
+            "similarity": 0.7
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
@@ -4666,14 +4694,18 @@
       },
       "verification": {
         "claimId": "k4olcs-050-pro-f60a00",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "El Ayuntamiento de Riba-roja de Túria ha convocado previamente un programa de 'col·le xec', que es un equivalente directo al 'cheque escolar' que el grupo VOX defiende, validando la existencia de tal política a nivel local.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/404652",
+            "snippet": "bdns[6].descripcion=ayudas escolares col·le xec · El programa 'col·le xec' es el equivalente directo del 'cheque escolar' que se menciona en la declaración.",
+            "similarity": 0.71
+          }
+        ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "llm-second-pass"
         ]
       }
     },
