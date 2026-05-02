@@ -112,10 +112,16 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           line with a (SPEAKER_NN) tag. Cuts the
 #                           extractor's null-speakerGroup rate from
 #                           ~65% to <30% on real plenos. ~0.5× realtime
-#                           on CPU. Bootstrap (one-time):
+#                           on CPU. Bootstrap (one-time — or just run
+#                           `bash scripts/bootstrap-voice-id.sh` which
+#                           automates 3+4 and smoke-tests the pipeline):
 #                             1. Accept user agreements at
 #                                  huggingface.co/pyannote/speaker-diarization-3.1
 #                                  huggingface.co/pyannote/segmentation-3.0
+#                                  huggingface.co/pyannote/speaker-diarization-community-1
+#                                    (pyannote 4.x transparently routes 3.1
+#                                    model loads through community-1; the
+#                                    bootstrap script detects this gate)
 #                             2. Set HUGGINGFACE_TOKEN in .env
 #                             3. python3.10 -m venv ~/.local/civicpulse-pyannote/venv
 #                             4. ~/.local/civicpulse-pyannote/venv/bin/pip install 'pyannote.audio>=4.0,<5'

@@ -23,15 +23,17 @@
 # `WHISPER_DIARIZE=1`. Default behaviour stays plain Whisper output.
 #
 # ── Bootstrap (one-time) ───────────────────────────────────────────────
-# 1. Create a HuggingFace account, accept the user agreement at:
+# 1. Create a HuggingFace account, accept the user agreements at:
 #    https://huggingface.co/pyannote/speaker-diarization-3.1
 #    https://huggingface.co/pyannote/segmentation-3.0
+#    https://huggingface.co/pyannote/speaker-diarization-community-1
+#      (pyannote 4.x routes 3.1 model loads through community-1; one-click)
 # 2. Generate a read-only token at https://huggingface.co/settings/tokens
 # 3. Set HUGGINGFACE_TOKEN in .env (or shell) — same .env transcribe-pleno
 #    already sources.
-# 4. Bootstrap the pyannote venv:
+# 4. Bootstrap the pyannote venv (or run scripts/bootstrap-voice-id.sh):
 #      python3.10 -m venv ~/.local/civicpulse-pyannote/venv
-#      ~/.local/civicpulse-pyannote/venv/bin/pip install pyannote.audio==3.3
+#      ~/.local/civicpulse-pyannote/venv/bin/pip install 'pyannote.audio>=4.0,<5'
 # 5. Optional smoke: bash scripts/diarize-pleno.sh <known-plenoId>
 #
 # Runtime: ~0.5× realtime on Apple Silicon CPU (so a 2h pleno = ~1h
@@ -98,7 +100,7 @@ print(f'[diarize] loading speaker-diarization-3.1…', flush=True)
 t0 = time.time()
 pipe = Pipeline.from_pretrained(
     'pyannote/speaker-diarization-3.1',
-    use_auth_token=hf_token,
+    token=hf_token,  # `use_auth_token=` was renamed in pyannote.audio 4.x
 )
 print(f'[diarize]   model load: {time.time()-t0:.1f}s', flush=True)
 
