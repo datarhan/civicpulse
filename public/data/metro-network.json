@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-02T06:23:10.447Z",
+  "generatedAt": "2026-05-03T06:45:12.948Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter"
@@ -41196,6 +41196,10 @@
         [
           39.5284486,
           -0.4075943
+        ],
+        [
+          39.5284612,
+          -0.4075877
         ],
         [
           39.5289332,
