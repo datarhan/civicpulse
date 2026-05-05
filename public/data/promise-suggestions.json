@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-03T06:48:35.231Z",
+  "generatedAt": "2026-05-05T06:36:36.146Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -57,7 +57,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -92,16 +92,43 @@
             "inversion",
             "millon"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZVF3ZlQxckM0bjhXWV81S2hBTjlGa1g2VTJnOFMxd2xTR1dqUUtwWElza3VQYjkyb2RDczNHcTVXRWpGcFJoTGptcWU0MzhOZDRqeFVIbGFNbDI2eld3YUpUSUFHYWtVYVlIOFMzS3NMMlFiUmFmc0djd21rY0FITDd2Ym9KYk1IZ1RCNGZJVm1OZ3dIOE9sUmE3Tl9tdUZTa1pfbHd3ZzZ0Ti13eXY1Q2dCcmczc01PS3ZlaWFHMDNjQ3dmZGZsZVUtNFMxcXU3Z0hoUnpIMXBOUlJUbkNqSmI2cFRxbmViTzZ3Wlk4c2l0X3ViNGFKZUhn?oc=5",
+          "date": "2026-04-27",
+          "quote": "Riba-roja destinará este año 3,3 millones en inversiones públicas gracias al superávit de las cuentas de 2025",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "inversion",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "reconstruccion",
+            "dana",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira",
+            "tras"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOWVXUUV4UVNhQ2NPYmw3enYzLVQ2YlJOM2NGbFVLUDNoRHN1UWd0TXpQU2NFNmJEQ2tfX2E0eHpZbmZocjcwX255azBadkMzNm9YR0RrRDBRRU8xR1V6c0tkeDkxU3Q0WGlnYWxId1NOM0l1M0VYMXo5Q2VoSGtOUlRVLUlCX0lVcV9VcmtqTDdfdkpLSFRzb3V2UTc1V1NVUjdKM1hmN0lqVVdXZ0ZUX0FnaEhxSHdNRmg3UHR4V0JMSjVERnFKN1d0ONIB0AFBVV95cUxOa1NhT2pXSnEteVVWWW5RUmFEakxZU0Q0eFJBbUZwUklld0hZOHk0a1lISWtEcVUzNjhRNU05VUlsNmxrX0c4ZWNPWVhOZjRjRDhoSnVHRlpZUjZ5bVFmbVB3aGZlT3lwbkVzWjFabUJRQThvUnBQMDJmUzhMbldLWUNtZzYzRWM4b0RJUUJoZnVCZWdrMVQ3TlFkV09URElLWm9OSzE2LUFGcFVpME4ySXBEMHJqNE42S2pfWVE0bmx2ZnhMMUx3SmhmSjJFU2JV?oc=5",
           "date": "2026-04-03",
@@ -115,31 +142,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-          "date": "2026-01-05",
-          "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-          "kind": "press",
-          "publisher": "elDiario.es",
-          "matchedKeywords": [
-            "plan",
-            "crear",
-            "hogar",
-            "nuevo",
-            "lucha",
-            "contra",
-            "falta",
-            "suelo",
-            "ambicioso"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcnRfSHBHWmlmR2JwNWlRYW9rRl9keTFwdVNYdkI3YllUN0pVU0NHXzJuN045NGNvU2pESnVfWnBLS05VcnBGSVJScVJpUXFmdjNPUWktNjBGTG5uNjFwdlFqU1BUSUgtUnNCYkNNa2kyRk1qdmgwYmI1QldCdEhrUFpuUVZEZFhpTVpRY0w0YzNiR1hOU2V5bm9VQmVBa2hCMjZ6N1g1ODg1Y3ZXMlM5SVQycXVmMndPd3fSAb8BQVVfeXFMUGg0SXk2OHZ2TXNxdzR2SFgzQXZmLU9wNG9GQjd1TTl0bm95V0tvaGt1amdtTmJXUUdtMXc0d3pLNjNNSHhtUmZMNEF6N1lDMl9ud0t6bTQ2dDVCSWtQR2hwWXJZVjVuVmhfOWZKRnljSkNWUktsdDNsdEpCQU1faS1fbEx3Q2FqazNoLTVSMUcyZ3FxbWlZNjFPaUJXcHl5QjFBQjlBQWFPTkJIRURDRnJhZGo5NmJiTnJybVR4NzQ?oc=5",
           "date": "2026-01-27",
@@ -153,13 +162,28 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
       "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdHpMLWQwcHhpYUw0dUo4ZnpNRXdvazBFUE11SkZNdGc5V3RJcXR5SEtFUXQzaVBRVF9lT0hRTEFCaVBlRmtmRklMazlfM19kRTdOYWVMcU84clE1eklERl9jX1U2MWJHdWVvSk1aTjhiaXdrb0VPYTN1d2UtcEVMUHBuRWVyenBWcUVHYlJLUjlxY28wUkdvWXJQbUlzUjRtYnF4NFdJbjRSUktRZEJTaGQ0UFV4Vk4wS2ppMHZxemxFNXdsN1RaOVQtTmpFSG4yOEdBMDE1ZGt3MzVqSEZaOEEwTURLQdIB6wFBVV95cUxPcVQzbGJMQnVHdGJId3drRFowN1RDUUVNTFlsdWk3VWpHMTlUVmU4NHdPUk9VTmVDOFhpR3F4Yk5jNlVQeWF0SDBIZGUyLV8yRnRxNVlrMS1iel82Y2NLNU1iU3AzOHRLTW4xa2xLZk84RDNidkhtZm1Dc3VQSUlaN2pUS2Y3NjVwd2VvblduZ2hPM0JjUEhjWTZmTnE1TXBHS2RuNWRJZU1reXhzVG5yR2RpcUNMTHIyS2FPdEJMX1U0VHI1X05GS3lvUXJrSXZTTzItTHUyUHVWRDFWLXpHVF9wWXp6VFc2SHAw?oc=5",
+          "date": "2026-01-05",
+          "quote": "Riba-roja de Túria impulsará la construcción de vivienda pública en el periodo 2026-2029",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "construccion",
+            "vivienda",
+            "2026",
+            "2029",
+            "impulsara",
+            "periodo"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
           "date": "2026-01-02",
@@ -188,7 +212,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -212,7 +236,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -250,7 +274,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -270,7 +294,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -278,7 +302,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -297,7 +321,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -327,17 +351,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNYWVqaHZTNHhJTlBja3lGZVBLblZjNWV0SVlMN01BMGNsMUo4VmlDVHFGbk81bl9TOUxyeFppeWJiYlRVdnJEa00taThtWHQ4YnZoSm9QWHg4X0lNcnhneUVWX0l0bU1qVTJSNl8wS0tfNFBNUFZzTzJQTkNaR0NBMDBJTmx0U0NVUmlQYmRNTHVTNVQtZjRNSEQtd1hXV1djYVluc3FhVnVkQUJVaDdvOWRBTGFNelh4VzBpSFdjNlo4aGI1U2fSAcsBQVVfeXFMUHBCNXNKeW5BWnhLbzdtZHZMLV9qYVpLRGIyQUhSM3JmYU5DVjd3elRVV3dPczRVY1RudnE0azJLRFNyLW5yRkxLenV1MXRUOHJDaFBwQjlhLTJYVUxQelV2Z3VNN0tURWVEVjdsMmZyOXYwXzBQdS16TzhyamJCT0RUVmFkMmMwaGtKN0IwS1FEV3R6emh6SWtUVHYweElmajdkdGpYYmNDNjNHbGpUUmJYejhjZGhxMUlHdE5jWDdoN1NUUGxSdlpuekk?oc=5",
-          "date": "2026-02-16",
-          "quote": "Riba-roja respalda el nuevo modelo de financiación autonómica que aportaría 3.669 millones de euros a la C. Valenciana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
           "date": "2026-04-20",
           "quote": "ASUNTO DE URGENCIA, Expediente 1562/2018/GEN, Aceptación propuesta de adjudicación mesa de contratación relativo al contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
@@ -349,7 +362,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -357,13 +370,24 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "en-progreso",
-      "confidence": 0.3,
+      "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
+          "date": "2026-03-17",
+          "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "gestion",
+            "municipio"
+          ]
+        },
         {
           "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
           "date": "2026-04-20",
@@ -399,7 +423,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -438,7 +462,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -477,7 +501,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -496,7 +520,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-03T06:48:35.163Z"
+      "generatedAt": "2026-05-05T06:36:36.078Z"
     }
   ],
   "llmEvidence": [],
