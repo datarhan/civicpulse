@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-05T06:36:36.146Z",
+  "generatedAt": "2026-05-07T07:27:01.803Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -45,6 +45,28 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
+          "date": "2026-04-29",
+          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
           "date": "2026-03-17",
           "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
@@ -57,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -83,6 +105,18 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "inversion",
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxQWXNXVW91emsyNzRhRXN4WWl4NzlrREY3OWd4VGhfYXU2QnNNeVN4cTVFdlVQYlFqRHRrNmw5R21uVWlfSXd2SnBSZWd1MUh4RGZaamt4RElkV2Rsb0JqQUxWTkNpWHJMUEswNEVlZ2NQQmUyb3pJVmJOOTJtR2pRcEQyek43OWE0YTZQYVhvd0N0dmpJUzNORzdpcmRSY2dzT3NxaXZTRjM3NE1hQ1dWazFEakpuMDDSAbwBQVVfeXFMT3ZCUDJvZERpZEZ5ZlFNWHZYb3BfaHh6ckZlZHotSlRYc21JVnBDQTZtaHhBcUhGWDZUaVZndk95cUZKMldFRk5heXExRnhEb3p0eElwYkt5N2UxZDFwOTZOQlpTVzZZNmJfbWdBb0x4MDJNbkRNb0RMblpTZjZRby1RY09zSXpFc3BSS2kzVG9ObWpjYUhqcmRFV2oxdV9ybE9sSFplVHo1cEVPRlNfMng5bnBuTjllazJCSHY?oc=5",
           "date": "2026-04-29",
           "quote": "Riba-roja de Túria cierra 2025 con un superávit de 4,5 millones para nuevas inversiones",
@@ -91,6 +125,17 @@
           "matchedKeywords": [
             "inversion",
             "millon"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
+          "date": "2026-04-29",
+          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "millon",
+            "euro"
           ]
         },
         {
@@ -106,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -130,6 +175,20 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxPWC1QbkNvamk1dnk0NlZENEtPaHctNDdVVElEQlBHZWN3MXVKUS1XS2RBcDFhWFRfcWJsczZscFhKODNLeDlHTHpORl8zVnNPdnZiekZxQW0zRjRyWG8wX3NMZ0ZIV2I1X0ZnU0NPVVFlM0RMa3dPc2JDZTV5VXlNV3JfQVY3ZVVvamZITlVIdXE4eHRXS196UmFBREJINmY2WFRTdUxkMWxla21uaWkwem0tQzdySGdiaTFOSUVWZFAzQXBIVVRaWmpfUWdWb0xkY2duSGRZcklGR2ZERUt1OVlYNVdvMGlRdklxVjFLY215QVR3VkxZ?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja recibirá 9,5 millones de fondos europeos para ejecutar inversiones de su agenda de reconstrucción",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "reconstruccion",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOWVXUUV4UVNhQ2NPYmw3enYzLVQ2YlJOM2NGbFVLUDNoRHN1UWd0TXpQU2NFNmJEQ2tfX2E0eHpZbmZocjcwX255azBadkMzNm9YR0RrRDBRRU8xR1V6c0tkeDkxU3Q0WGlnYWxId1NOM0l1M0VYMXo5Q2VoSGtOUlRVLUlCX0lVcV9VcmtqTDdfdkpLSFRzb3V2UTc1V1NVUjdKM1hmN0lqVVdXZ0ZUX0FnaEhxSHdNRmg3UHR4V0JMSjVERnFKN1d0ONIB0AFBVV95cUxOa1NhT2pXSnEteVVWWW5RUmFEakxZU0Q0eFJBbUZwUklld0hZOHk0a1lISWtEcVUzNjhRNU05VUlsNmxrX0c4ZWNPWVhOZjRjRDhoSnVHRlpZUjZ5bVFmbVB3aGZlT3lwbkVzWjFabUJRQThvUnBQMDJmUzhMbldLWUNtZzYzRWM4b0RJUUJoZnVCZWdrMVQ3TlFkV09URElLWm9OSzE2LUFGcFVpME4ySXBEMHJqNE42S2pfWVE0bmx2ZnhMMUx3SmhmSjJFU2JV?oc=5",
           "date": "2026-04-03",
           "quote": "Riba-roja alerta a vecinos y senderistas de los riesgos \"ocultos\" del Parque Natural del Túria tras la dana",
@@ -142,13 +201,31 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
+          "date": "2026-01-05",
+          "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
+          "kind": "press",
+          "publisher": "elDiario.es",
+          "matchedKeywords": [
+            "plan",
+            "crear",
+            "hogar",
+            "nuevo",
+            "lucha",
+            "contra",
+            "falta",
+            "suelo",
+            "ambicioso"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcnRfSHBHWmlmR2JwNWlRYW9rRl9keTFwdVNYdkI3YllUN0pVU0NHXzJuN045NGNvU2pESnVfWnBLS05VcnBGSVJScVJpUXFmdjNPUWktNjBGTG5uNjFwdlFqU1BUSUgtUnNCYkNNa2kyRk1qdmgwYmI1QldCdEhrUFpuUVZEZFhpTVpRY0w0YzNiR1hOU2V5bm9VQmVBa2hCMjZ6N1g1ODg1Y3ZXMlM5SVQycXVmMndPd3fSAb8BQVVfeXFMUGg0SXk2OHZ2TXNxdzR2SFgzQXZmLU9wNG9GQjd1TTl0bm95V0tvaGt1amdtTmJXUUdtMXc0d3pLNjNNSHhtUmZMNEF6N1lDMl9ud0t6bTQ2dDVCSWtQR2hwWXJZVjVuVmhfOWZKRnljSkNWUktsdDNsdEpCQU1faS1fbEx3Q2FqazNoLTVSMUcyZ3FxbWlZNjFPaUJXcHl5QjFBQjlBQWFPTkJIRURDRnJhZGo5NmJiTnJybVR4NzQ?oc=5",
           "date": "2026-01-27",
@@ -162,7 +239,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -201,6 +278,16 @@
           ]
         },
         {
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "TESORERÍA · Dación cuenta al Pleno de la información trimestral correspondiente al Primer Trimestre de 2026: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "2026",
+            "periodo"
+          ]
+        },
+        {
           "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
           "date": "2026-03-09",
           "quote": "SERVICIOS JURÍDICOS, Expediente 1562/2018/GEN, Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio",
@@ -212,7 +299,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -236,7 +323,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -274,7 +361,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -294,7 +381,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -302,7 +389,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -321,13 +408,35 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
       "proposedStatus": "en-progreso",
       "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
+          "date": "2026-04-29",
+          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
           "date": "2026-03-27",
@@ -362,15 +471,38 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
       "proposedStatus": "documentada",
-      "confidence": 0,
-      "reasoning": [],
+      "confidence": 0.175,
+      "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "avanza",
+            "inversion"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOSHY1QkxhM0RydFZ1czRKZmM1WWo0cU9VSTRNNERwZ01Yd0FGbXBBNXlEMFJTY0hpRC1nUDlEcU92VTJ6NFVrUWJjZ2xNc0JoTHpMdk41Z1RNUWx2YjBKczRSUWRfUUhvWjR5WEN2T2d3SkR4TjRrOVpIaTNrZVBoOVdVaS0yQQ?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en el nuevo centro de salud de Riba-roja de Túria con una inversión de 8,3 millones",
+          "kind": "press",
+          "publisher": "Actualidad Valencia",
+          "matchedKeywords": [
+            "avanza",
+            "inversion"
+          ]
+        }
+      ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -423,7 +555,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -431,29 +563,31 @@
       "confidence": 0,
       "reasoning": [
         {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "Moción del Grupo Municipal Socialista de Riba-roja de medidas para fomentar en la ciudadanía la cultura de la prevención y de la autoprotección frente las emergencias",
           "kind": "pleno",
           "matchedKeywords": [
             "mocion",
-            "grupo"
+            "grupo",
+            "socialista"
           ]
         },
         {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "Moción del Grupo Municipal Socialista de Riba-roja para la declaración de Riba-roja de Túria como zona de mercado residencial tensionado y la adopción de medidas estructurales en materia de vivienda",
           "kind": "pleno",
           "matchedKeywords": [
             "mocion",
-            "grupo"
+            "grupo",
+            "socialista"
           ]
         },
         {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)",
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para la mejora de la conexión peatonal y ciclista entre el ciclo vial y la urbanización Valencia la Vella",
           "kind": "pleno",
           "matchedKeywords": [
             "mocion",
@@ -462,7 +596,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -470,44 +604,58 @@
       "confidence": 0,
       "reasoning": [
         {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "Moción del Grupo Municipal Socialista de Riba-roja de medidas para fomentar en la ciudadanía la cultura de la prevención y de la autoprotección frente las emergencias",
           "kind": "pleno",
           "matchedKeywords": [
+            "mocion",
+            "grupo",
+            "socialista"
+          ]
+        },
+        {
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "Moción conjunta de los Grupos Municipales Popular Riba-roja de Túria y Vox Riba-roja de Túria sobre el ROF (Reglamento de Organización y Funcionamiento del Gobierno y la Administración del Ayuntamiento de Riba-roja de Túria)",
+          "kind": "pleno",
+          "matchedKeywords": [
+            "gobierno",
             "mocion",
             "grupo"
           ]
         },
         {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+          "url": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625",
+          "date": "2026-05-11",
+          "quote": "Moción del Grupo Municipal Socialista de Riba-roja para la declaración de Riba-roja de Túria como zona de mercado residencial tensionado y la adopción de medidas estructurales en materia de vivienda",
           "kind": "pleno",
           "matchedKeywords": [
             "mocion",
-            "grupo"
-          ]
-        },
-        {
-          "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821",
-          "date": "2026-03-09",
-          "quote": "Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)",
-          "kind": "pleno",
-          "matchedKeywords": [
-            "mocion",
-            "grupo"
+            "grupo",
+            "socialista"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
       "proposedStatus": "en-progreso",
-      "confidence": 0.3,
+      "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUnZSUFExcEE5eW45OVNPbFJtZng4RGQ4MzhSNm51dFlYUGkzT3ZfTUdvTWZDdGFlZFdqd2o5MjJNb1Z5RFpMNHktbEJzUExaVnFBa2dCRG9ITVdBVmc5N3pGSHlqSVByMDVuTXZ5cFo0bFVrM1A3akl3X0h6Qzk2MDlvMHJUMVl2em14djE0UlE2MUxYdUR2T3c5d3A2OUxETHZ5S2E1RGJMRmxVdndteWNuN0FnU2pSTWZycTc2M2drNFHSAcgBQVVfeXFMTm9qWkRyeERlUUd4SWhOY0dObERxSHU1VVFpRl9vYTlTZ01yOHIwa2R1TUNyZjB5Y1lOdDdtbnNHTUFmbElkUmZockc4STFHY2t1QW5jbjBMWFVpbm5XR1ZubXUzaWl5QnVERXhGZk9aQjd1WWVQbFpiZi1pV0NqU3dUdFRTV1FmVWJnSGktNC11c1ZQLUxCNk9jNlFjYVE0ZUxEMnEta29Ib3lNa2pWaUN4eW5QWTJuTEpMTU5ldnpOOS0tU214bWo?oc=5",
+          "date": "2025-09-10",
+          "quote": "Riba-roja ahorra 731.000 euros en la adjudicación del servicio de recogida de residuos sólidos",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "ahorra",
+            "euro"
+          ]
+        },
         {
           "url": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333",
           "date": "2026-03-16",
@@ -520,7 +668,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-05T06:36:36.078Z"
+      "generatedAt": "2026-05-07T07:27:01.736Z"
     }
   ],
   "llmEvidence": [],
