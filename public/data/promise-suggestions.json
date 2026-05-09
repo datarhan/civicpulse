@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-07T07:27:01.803Z",
+  "generatedAt": "2026-05-09T06:32:46.876Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -56,7 +56,7 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -105,13 +105,24 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
           "publisher": "Comunica GVA",
           "matchedKeywords": [
             "inversion",
+            "millon",
+            "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
+          "date": "2026-04-29",
+          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
             "millon",
             "euro"
           ]
@@ -128,17 +139,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZVF3ZlQxckM0bjhXWV81S2hBTjlGa1g2VTJnOFMxd2xTR1dqUUtwWElza3VQYjkyb2RDczNHcTVXRWpGcFJoTGptcWU0MzhOZDRqeFVIbGFNbDI2eld3YUpUSUFHYWtVYVlIOFMzS3NMMlFiUmFmc0djd21rY0FITDd2Ym9KYk1IZ1RCNGZJVm1OZ3dIOE9sUmE3Tl9tdUZTa1pfbHd3ZzZ0Ti13eXY1Q2dCcmczc01PS3ZlaWFHMDNjQ3dmZGZsZVUtNFMxcXU3Z0hoUnpIMXBOUlJUbkNqSmI2cFRxbmViTzZ3Wlk4c2l0X3ViNGFKZUhn?oc=5",
           "date": "2026-04-27",
           "quote": "Riba-roja destinará este año 3,3 millones en inversiones públicas gracias al superávit de las cuentas de 2025",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -189,6 +189,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPM0dvdXpaelp5NVNtaEE3WXBQZjN3bUtHQjhWR29Uc0I5Mzl1QlowUWMxLU1VMFVBSTNyWUthTWh1OF9PRDJpa1JOY2ZBQ1VnX1FKb0U2WmJmX2FpSEV5ajRvOEFvd2dVT25xVUROal8yMFdyN1YwWUFmY3NuYTViN0dxcUpfckR3NEVSODg1cDdhWk9KZjA1WHNsdVlqWE84V2lPY2t5SWZfZlphQ29MYllNS1dLZXV5RGphZXVqRWpxelJUVWVucEg5eGw0clFXeHZLTmR3UmRoZzBPR1RmRFB4d1E4SWNSdnN5Yg?oc=5",
+          "date": "2026-05-08",
+          "quote": "Riba-roja de Túria repone señalética en el Parque Natural del Túria y casco histórico tras la Dana",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOWVXUUV4UVNhQ2NPYmw3enYzLVQ2YlJOM2NGbFVLUDNoRHN1UWd0TXpQU2NFNmJEQ2tfX2E0eHpZbmZocjcwX255azBadkMzNm9YR0RrRDBRRU8xR1V6c0tkeDkxU3Q0WGlnYWxId1NOM0l1M0VYMXo5Q2VoSGtOUlRVLUlCX0lVcV9VcmtqTDdfdkpLSFRzb3V2UTc1V1NVUjdKM1hmN0lqVVdXZ0ZUX0FnaEhxSHdNRmg3UHR4V0JMSjVERnFKN1d0ONIB0AFBVV95cUxOa1NhT2pXSnEteVVWWW5RUmFEakxZU0Q0eFJBbUZwUklld0hZOHk0a1lISWtEcVUzNjhRNU05VUlsNmxrX0c4ZWNPWVhOZjRjRDhoSnVHRlpZUjZ5bVFmbVB3aGZlT3lwbkVzWjFabUJRQThvUnBQMDJmUzhMbldLWUNtZzYzRWM4b0RJUUJoZnVCZWdrMVQ3TlFkV09URElLWm9OSzE2LUFGcFVpME4ySXBEMHJqNE42S2pfWVE0bmx2ZnhMMUx3SmhmSjJFU2JV?oc=5",
           "date": "2026-04-03",
           "quote": "Riba-roja alerta a vecinos y senderistas de los riesgos \"ocultos\" del Parque Natural del Túria tras la dana",
@@ -201,7 +212,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -239,7 +250,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -299,7 +310,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -323,7 +334,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -361,7 +372,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -381,7 +392,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -389,7 +400,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -408,7 +419,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -427,7 +438,7 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
@@ -471,24 +482,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5uMVVmN3VPWmVDZ1lSOGdTQWhVUTFKYVJUTXpmQnZuU211TkhnLTBpRkJyRm9ZN2VJNjVZY0g0SktheFB1RDNydFhuaEh3bE8xLXVTYWNFMFB6d0s3MHdXZ0l2YV9hdDY5NG9YeE1yRQ?oc=5",
-          "date": "2026-04-08",
-          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
-          "kind": "press",
-          "publisher": "Comunica GVA",
-          "matchedKeywords": [
-            "avanza",
-            "inversion"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxOSHY1QkxhM0RydFZ1czRKZmM1WWo0cU9VSTRNNERwZ01Yd0FGbXBBNXlEMFJTY0hpRC1nUDlEcU92VTJ6NFVrUWJjZ2xNc0JoTHpMdk41Z1RNUWx2YjBKczRSUWRfUUhvWjR5WEN2T2d3SkR4TjRrOVpIaTNrZVBoOVdVaS0yQQ?oc=5",
           "date": "2026-04-08",
@@ -499,10 +499,21 @@
             "avanza",
             "inversion"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "avanza",
+            "inversion"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -555,7 +566,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -596,7 +607,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -638,24 +649,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
       "proposedStatus": "en-progreso",
-      "confidence": 0.35,
+      "confidence": 0.3,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQUnZSUFExcEE5eW45OVNPbFJtZng4RGQ4MzhSNm51dFlYUGkzT3ZfTUdvTWZDdGFlZFdqd2o5MjJNb1Z5RFpMNHktbEJzUExaVnFBa2dCRG9ITVdBVmc5N3pGSHlqSVByMDVuTXZ5cFo0bFVrM1A3akl3X0h6Qzk2MDlvMHJUMVl2em14djE0UlE2MUxYdUR2T3c5d3A2OUxETHZ5S2E1RGJMRmxVdndteWNuN0FnU2pSTWZycTc2M2drNFHSAcgBQVVfeXFMTm9qWkRyeERlUUd4SWhOY0dObERxSHU1VVFpRl9vYTlTZ01yOHIwa2R1TUNyZjB5Y1lOdDdtbnNHTUFmbElkUmZockc4STFHY2t1QW5jbjBMWFVpbm5XR1ZubXUzaWl5QnVERXhGZk9aQjd1WWVQbFpiZi1pV0NqU3dUdFRTV1FmVWJnSGktNC11c1ZQLUxCNk9jNlFjYVE0ZUxEMnEta29Ib3lNa2pWaUN4eW5QWTJuTEpMTU5ldnpOOS0tU214bWo?oc=5",
-          "date": "2025-09-10",
-          "quote": "Riba-roja ahorra 731.000 euros en la adjudicación del servicio de recogida de residuos sólidos",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "ahorra",
-            "euro"
-          ]
-        },
         {
           "url": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333",
           "date": "2026-03-16",
@@ -668,7 +668,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-07T07:27:01.736Z"
+      "generatedAt": "2026-05-09T06:32:46.804Z"
     }
   ],
   "llmEvidence": [],
