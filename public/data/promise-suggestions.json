@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-09T06:32:46.876Z",
+  "generatedAt": "2026-05-10T07:12:21.671Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -56,6 +56,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
+          "date": "2026-04-15",
+          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
@@ -65,21 +76,10 @@
             "millon",
             "euro"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-          "date": "2026-03-17",
-          "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "presupuesto",
-            "2026"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -212,7 +212,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -236,21 +236,10 @@
             "suelo",
             "ambicioso"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcnRfSHBHWmlmR2JwNWlRYW9rRl9keTFwdVNYdkI3YllUN0pVU0NHXzJuN045NGNvU2pESnVfWnBLS05VcnBGSVJScVJpUXFmdjNPUWktNjBGTG5uNjFwdlFqU1BUSUgtUnNCYkNNa2kyRk1qdmgwYmI1QldCdEhrUFpuUVZEZFhpTVpRY0w0YzNiR1hOU2V5bm9VQmVBa2hCMjZ6N1g1ODg1Y3ZXMlM5SVQycXVmMndPd3fSAb8BQVVfeXFMUGg0SXk2OHZ2TXNxdzR2SFgzQXZmLU9wNG9GQjd1TTl0bm95V0tvaGt1amdtTmJXUUdtMXc0d3pLNjNNSHhtUmZMNEF6N1lDMl9ud0t6bTQ2dDVCSWtQR2hwWXJZVjVuVmhfOWZKRnljSkNWUktsdDNsdEpCQU1faS1fbEx3Q2FqazNoLTVSMUcyZ3FxbWlZNjFPaUJXcHl5QjFBQjlBQWFPTkJIRURDRnJhZGo5NmJiTnJybVR4NzQ?oc=5",
-          "date": "2026-01-27",
-          "quote": "Así será el nuevo PAI de Riba-roja: 830 viviendas plurifamiliares y unifamiliares",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "nuevo",
-            "vivienda"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -310,7 +299,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -334,7 +323,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -372,7 +361,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -392,7 +381,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -400,7 +389,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -419,7 +408,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -432,6 +421,17 @@
           "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
           "kind": "press",
           "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
+          "date": "2026-04-15",
+          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -482,7 +482,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -513,13 +513,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "en-progreso",
       "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
+          "date": "2026-04-13",
+          "quote": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "servicio",
+            "vecino"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
           "date": "2026-03-17",
@@ -566,7 +577,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -607,7 +618,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -649,7 +660,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -668,7 +679,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-09T06:32:46.804Z"
+      "generatedAt": "2026-05-10T07:12:21.604Z"
     }
   ],
   "llmEvidence": [],
