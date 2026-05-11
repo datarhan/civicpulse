@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-10T07:10:35.136Z",
+  "generatedAt": "2026-05-11T07:59:38.259Z",
   "source": {
     "boundary": "https://overpass-api.de/api/interpreter",
     "neighborhoods": "https://overpass-api.de/api/interpreter",
@@ -2198,6 +2198,7 @@
         "id": "way-39691984",
         "kind": "subway",
         "ref": "VT-005",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5434905,
@@ -2386,6 +2387,7 @@
         "id": "way-100968225",
         "kind": "subway",
         "ref": "VT-005",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5496357,
@@ -2401,6 +2403,7 @@
         "id": "way-144078422",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5366006,
@@ -2416,6 +2419,7 @@
         "id": "way-144078425",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5365342,
@@ -2451,6 +2455,7 @@
         "id": "way-144078426",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5359082,
@@ -2466,6 +2471,7 @@
         "id": "way-144078427",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5354268,
@@ -2785,6 +2791,7 @@
         "id": "way-144113984",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5435579,
@@ -2914,6 +2921,7 @@
         "id": "way-325444971",
         "kind": "subway",
         "ref": "VT-005",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5496357,
@@ -3001,6 +3009,7 @@
         "id": "way-325444973",
         "kind": "subway",
         "ref": "VT-005",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5496296,
@@ -3016,6 +3025,7 @@
         "id": "way-325444974",
         "kind": "subway",
         "ref": "VT-005",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5492662,
@@ -3199,6 +3209,7 @@
         "id": "way-325444979",
         "kind": "subway",
         "ref": "VT-005",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5580126,
@@ -3302,6 +3313,7 @@
         "id": "way-325744503",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5377571,
@@ -3345,6 +3357,7 @@
         "id": "way-325744504",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5435301,
@@ -3396,6 +3409,7 @@
         "id": "way-554308940",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5377571,
@@ -3415,6 +3429,7 @@
         "id": "way-554308941",
         "kind": "subway",
         "ref": "VT-012",
+        "operator": "Ferrocarrils de la Generalitat Valenciana",
         "line": [
           [
             39.5385855,
