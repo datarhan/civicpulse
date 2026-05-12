@@ -425,7 +425,7 @@ export default function DepartamentoDetalle() {
         provienen de actas oficiales del pleno y son el hecho primario. Las promesas electorales son
         secundarias y nunca cambian de estado de forma automática. Un plazo vencido sin evidencia de
         ejecución se marca como aviso editorial, no como juicio.{' '}
-        <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+        <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
           Leer metodología →
         </a>
       </div>

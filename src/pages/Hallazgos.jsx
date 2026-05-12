@@ -229,7 +229,7 @@ function FindingDetailCard({ f, permalink }) {
           }}
         >
           ¿Eres el grupo afectado? Contacta con la redacción para ejercer derecho de réplica · ver{' '}
-          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
             /aviso-legal
           </a>
         </div>
@@ -545,7 +545,10 @@ export default function Hallazgos() {
         contrasta con la base documental municipal y redacta una nota editorial que cita verbatim.
         Los grupos afectados pueden responder con cita literal a través del enlace «Responder como
         grupo afectado».{' '}
-        <a href="/metodologia#verificacion-declaraciones" style={{ color: 'var(--civic)' }}>
+        <a
+          href="/metodologia#verificacion-declaraciones"
+          style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+        >
           Leer metodología →
         </a>
       </div>

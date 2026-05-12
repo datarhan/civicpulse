@@ -447,7 +447,7 @@ export default function CargoDetalle() {
       >
         <strong style={{ color: 'var(--ink)' }}>Atribución.</strong>{' '}
         {t('cargos.detalle.methodology')}{' '}
-        <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+        <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
           {t('cargos.detalle.methodology.link')}
         </a>
       </div>

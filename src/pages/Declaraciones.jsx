@@ -84,7 +84,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
     >
       {label}
       {count != null && (
-        <span className="mono" style={{ marginLeft: 6, opacity: 0.7, fontSize: 10.5 }}>
+        <span className="mono" style={{ marginLeft: 6, fontSize: 10.5 }}>
           {count.toLocaleString('es-ES')}
         </span>
       )}

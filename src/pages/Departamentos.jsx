@@ -99,20 +99,25 @@ function DepartmentCard({ bucket, frozen }) {
 function Stat({ label, value, tone, muted }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
+  // Muting fades the numeric value only — the small uppercase label keeps full
+  // opacity so 9.5px text stays above the WCAG AA 4.5:1 contrast floor.
   return (
-    <div style={{ opacity: muted ? 0.55 : 1 }}>
+    <div>
       <div
         className="mono"
         style={{
           fontSize: 9.5,
-          color: 'var(--ink50)',
+          color: 'var(--ink80)',
           textTransform: 'uppercase',
           letterSpacing: '.06em',
         }}
       >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 16, fontWeight: 600, color }}>
+      <div
+        className="mono"
+        style={{ fontSize: 16, fontWeight: 600, color, opacity: muted ? 0.55 : 1 }}
+      >
         {value}
       </div>
     </div>
