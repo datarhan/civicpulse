@@ -75,7 +75,16 @@ async function main() {
   // absent (keeps the nightly cron working even if Ollama isn't running on
   // the CI runner).
   const enableLlm = process.argv.includes('--llm') && !frozen
-  const llmEvidence: Array<{ promiseId: string; evidenceUrl: string; publisher: string; date: string; quote: string; reasoning: string; confidence: number; corpus: string }> = []
+  const llmEvidence: Array<{
+    promiseId: string
+    evidenceUrl: string
+    publisher: string
+    date: string
+    quote: string
+    reasoning: string
+    confidence: number
+    corpus: string
+  }> = []
   const llmStats = { processed: 0, emitted: 0, frozen: 0, hallucinated: 0, invalidStatus: 0 }
 
   if (enableLlm) {
@@ -92,12 +101,18 @@ async function main() {
     // are a defamation risk.
     const transcriptDir = join(PROJECT_ROOT, 'public/data/pleno-transcripts')
     const { readdirSync, readFileSync: readFileSyncImpl, existsSync } = await import('node:fs')
-    const transcripts: Array<{ url: string; title: string; date: string; publisher: string; text: string }> = []
+    const transcripts: Array<{
+      url: string
+      title: string
+      date: string
+      publisher: string
+      text: string
+    }> = []
     if (existsSync(transcriptDir) && plenoVideos?.items) {
       const videosByPlenoDate = new Map<string, { url: string; title: string; plenoDate: string }>()
       for (const v of plenoVideos.items) videosByPlenoDate.set(v.plenoDate, v)
       const plenosById = new Map<string, { id: string; date: string; title: string }>()
-      for (const p of (plenos?.items ?? [])) plenosById.set(p.id, p)
+      for (const p of plenos?.items ?? []) plenosById.set(p.id, p)
       for (const f of readdirSync(transcriptDir)) {
         if (!f.endsWith('.txt')) continue
         const id = f.replace(/\.txt$/, '')
@@ -105,13 +120,13 @@ async function main() {
         if (!pleno) continue
         const video = videosByPlenoDate.get(pleno.date)
         const text = readFileSyncImpl(join(transcriptDir, f), 'utf8')
-        if (text.length < 500) continue  // empty or tiny → skip
+        if (text.length < 500) continue // empty or tiny → skip
         transcripts.push({
           url: video?.url ?? pleno.link ?? `https://civicpulse-virid.vercel.app/plenos`,
           title: pleno.title,
           date: pleno.date,
           publisher: 'Ayuntamiento Riba-roja de Túria · transcripción automática',
-          text: text.slice(0, 120_000),  // cap per-document size so the retriever BM25 scoring isn't dominated by one huge transcript
+          text: text.slice(0, 120_000), // cap per-document size so the retriever BM25 scoring isn't dominated by one huge transcript
         })
       }
     }
@@ -119,18 +134,109 @@ async function main() {
     for (const promise of snap.items) {
       llmStats.processed += 1
       const input: RetrievalInput = {
-        promise: { id: promise.id, title: promise.title, quote: promise.quote, topic: promise.topic },
+        promise: {
+          id: promise.id,
+          title: promise.title,
+          quote: promise.quote,
+          topic: promise.topic,
+        },
         corpora: [
-          press?.items ? { corpus: 'press' as const, documents: press.items.map((i: { link: string; title: string; date: string; source: string }) => ({ url: i.link, title: i.title, date: i.date, publisher: i.source, text: i.title })) } : null,
-          agendas?.plenos ? { corpus: 'pleno_agenda' as const, documents: agendas.plenos.flatMap((s: { id: string; date: string; link: string; agenda?: { title: string; department?: string; expediente?: string }[] }) => (s.agenda || []).map((a) => ({ url: s.link, title: `${a.department ?? ''} · ${a.title}`, date: s.date, publisher: 'Ayuntamiento Riba-roja', text: `${a.department ?? ''} ${a.title} ${a.expediente ?? ''}` }))) } : null,
-          tenders?.contracts ? { corpus: 'tender' as const, documents: tenders.contracts.slice(0, 500).map((c: { permalink: string; title: string; awardDate: string | null; assignee: string; categoryTitle: string }) => ({ url: c.permalink, title: c.title, date: c.awardDate || '2020-01-01', publisher: c.assignee, text: `${c.title} ${c.categoryTitle}` })) } : null,
-          bdns?.items ? { corpus: 'bdns' as const, documents: bdns.items.map((b: { sourceUrl: string; description: string; date: string; organ: string }) => ({ url: b.sourceUrl, title: b.description, date: b.date, publisher: b.organ, text: b.description })) } : null,
-          budget?.snapshot ? { corpus: 'budget' as const, documents: [{ url: budget.source?.url ?? 'https://hacienda.gob.es/conprel', title: `Presupuesto municipal ${budget.snapshot.year}`, date: `${budget.snapshot.year}-01-01`, publisher: 'MinHac CONPREL', text: `Presupuesto ${budget.snapshot.year} · ${budget.snapshot.totalExpense}€ gasto total` }] } : null,
-          transcripts.length > 0 ? { corpus: 'pleno_transcript' as const, documents: transcripts } : null,
+          press?.items
+            ? {
+                corpus: 'press' as const,
+                documents: press.items.map(
+                  (i: { link: string; title: string; date: string; source: string }) => ({
+                    url: i.link,
+                    title: i.title,
+                    date: i.date,
+                    publisher: i.source,
+                    text: i.title,
+                  }),
+                ),
+              }
+            : null,
+          agendas?.plenos
+            ? {
+                corpus: 'pleno_agenda' as const,
+                documents: agendas.plenos.flatMap(
+                  (s: {
+                    id: string
+                    date: string
+                    link: string
+                    agenda?: { title: string; department?: string; expediente?: string }[]
+                  }) =>
+                    (s.agenda || []).map((a) => ({
+                      url: s.link,
+                      title: `${a.department ?? ''} · ${a.title}`,
+                      date: s.date,
+                      publisher: 'Ayuntamiento Riba-roja',
+                      text: `${a.department ?? ''} ${a.title} ${a.expediente ?? ''}`,
+                    })),
+                ),
+              }
+            : null,
+          tenders?.contracts
+            ? {
+                corpus: 'tender' as const,
+                documents: tenders.contracts
+                  .slice(0, 500)
+                  .map(
+                    (c: {
+                      permalink: string
+                      title: string
+                      awardDate: string | null
+                      assignee: string
+                      categoryTitle: string
+                    }) => ({
+                      url: c.permalink,
+                      title: c.title,
+                      date: c.awardDate || '2020-01-01',
+                      publisher: c.assignee,
+                      text: `${c.title} ${c.categoryTitle}`,
+                    }),
+                  ),
+              }
+            : null,
+          bdns?.items
+            ? {
+                corpus: 'bdns' as const,
+                documents: bdns.items.map(
+                  (b: { sourceUrl: string; description: string; date: string; organ: string }) => ({
+                    url: b.sourceUrl,
+                    title: b.description,
+                    date: b.date,
+                    publisher: b.organ,
+                    text: b.description,
+                  }),
+                ),
+              }
+            : null,
+          budget?.snapshot
+            ? {
+                corpus: 'budget' as const,
+                documents: [
+                  {
+                    url: budget.source?.url ?? 'https://hacienda.gob.es/conprel',
+                    title: `Presupuesto municipal ${budget.snapshot.year}`,
+                    date: `${budget.snapshot.year}-01-01`,
+                    publisher: 'MinHac CONPREL',
+                    text: `Presupuesto ${budget.snapshot.year} · ${budget.snapshot.totalExpense}€ gasto total`,
+                  },
+                ],
+              }
+            : null,
+          transcripts.length > 0
+            ? { corpus: 'pleno_transcript' as const, documents: transcripts }
+            : null,
         ].filter((x): x is NonNullable<typeof x> => x !== null),
       }
-      const result = await minePromiseEvidence(input, { snapshot: { frozenUntil: snap.frozenUntil } })
-      if (result.stats.frozen) { llmStats.frozen += 1; continue }
+      const result = await minePromiseEvidence(input, {
+        snapshot: { frozenUntil: snap.frozenUntil },
+      })
+      if (result.stats.frozen) {
+        llmStats.frozen += 1
+        continue
+      }
       llmStats.emitted += result.items.length
       llmStats.hallucinated += result.stats.itemsRejected.hallucinatedUrl
       llmStats.invalidStatus += result.stats.itemsRejected.invalidStatus
@@ -161,7 +267,7 @@ async function main() {
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(
-    `[promise-suggestions] wrote ${OUT}${frozen ? ' (frozen)' : ''} — ${regexSuggestions.length} propuestas`
+    `[promise-suggestions] wrote ${OUT}${frozen ? ' (frozen)' : ''} — ${regexSuggestions.length} propuestas`,
   )
 }
 
