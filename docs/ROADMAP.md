@@ -2,7 +2,7 @@
 
 ## Context
 
-The app has everything an MVP dashboard needs: 16 real-data adapters, 272 vitest + 21 Playwright tests, WCAG AA, bilingual UI, the full LLM advisory layer (Phase 0–3 shipped this session), and a working Whisper transcription pipeline. But it has **zero real citizen complaints flowing**, the Telegram bot is in dev mode (BOT_TOKEN set, CHANNEL_ID + ADMIN_USER_IDS missing), only 1 pleno has been transcribed, and the LLM engines have produced 0 public outputs (correctly — the single transcript was noisy and the safety gate fired).
+The app has everything an MVP dashboard needs: 16 real-data adapters, 696 vitest + 78 Playwright tests (every public route + cross-cutting chrome + 17-route WCAG 2.1 AA strict pass), bilingual UI, the full LLM advisory layer (Phase 0–3 shipped this session), and a working Whisper transcription pipeline. But it has **zero real citizen complaints flowing**, the Telegram bot is in dev mode (BOT_TOKEN set, CHANNEL_ID + ADMIN_USER_IDS missing), only 1 pleno has been transcribed, and the LLM engines have produced 0 public outputs (correctly — the single transcript was noisy and the safety gate fired).
 
 At this stage, *features are not the bottleneck*. Citizen utility is. The roadmap below is the shortest path from "beautiful dashboard of public data" to "working accountability tool that actual Riba-roja vecinos use." Three themes, then deferred work. Every item has clear acceptance criteria.
 

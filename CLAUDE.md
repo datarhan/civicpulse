@@ -11,7 +11,7 @@ npm run build          # production build to dist/
 npm run preview        # serve the production build locally
 npm test               # Vitest suite (runs all adapter tests once)
 npm run test:watch     # Vitest in watch mode
-npm run test:e2e       # Playwright e2e (landing + quejas + mobile + axe a11y)
+npm run test:e2e       # Playwright e2e (per-route specs + chrome + mobile + axe a11y)
 npm run test:e2e:ui    # Playwright in headed UI mode
 
 # Real-data ingestion (re-run after any upstream change; all idempotent).
@@ -319,10 +319,21 @@ cd bot && npm run export            # SQLite → ../public/data/quejas.json
 
 No linter or formatter is configured. The unit/integration suite is Vitest +
 happy-dom; fixtures live in `tests/fixtures/`. The end-to-end suite is
-Playwright (`tests/e2e/*.spec.ts`): landing smoke test, quejas empty-state,
-mobile viewport checks across 7 routes + hamburger drawer, and axe-core WCAG
-2.1 AA scans across all 10 public routes. CI runs E2E on every push/PR via
-`.github/workflows/e2e.yml`.
+Playwright (`tests/e2e/*.spec.ts`) and covers **78 tests, zero failures**:
+
+- per-route specs: landing, cargos (+ /:slug), presupuesto, plenos,
+  promesas, departamentos (+ /:slug), hallazgos, declaraciones, datos,
+  quejas (+ dashboard + /:id), cambios, metodologia, aviso-legal, and
+  the catch-all redirect
+- cross-cutting (`chrome.spec.ts`): Cmd+K spotlight, dark-mode toggle,
+  i18n switch (es ↔ ca), and every sidebar nav link
+- mobile shell at 375px across 17 routes + hamburger drawer
+- axe-core WCAG 2.1 AA strict-pass across 17 routes
+  (`a11y.spec.ts`'s `STRICT_ROUTES`). The file also exposes a
+  `KNOWN_DEBT_ROUTES` scaffold for quarantining future regressions
+  without losing visibility — currently empty.
+
+CI runs E2E on every push/PR via `.github/workflows/e2e.yml`.
 
 ## Architecture
 
@@ -492,14 +503,24 @@ loop.
 
 ### Nightly refresh
 
-`.github/workflows/scrape.yml` runs `npm run scrape:all` every day at
-**04:30 UTC** (06:30 Europe/Madrid summer, 05:30 winter). The job:
+`.github/workflows/nightly-scrape.yml` runs `npm run scrape:all` every
+day at **04:30 UTC** (06:30 Europe/Madrid summer, 05:30 winter). The job:
 
 1. Installs deps + runs the 14 autonomous adapters in sequence,
 2. Runs the vitest suite against the fresh fixtures,
 3. `git add public/data && git commit && git push` only if there's a
    diff (no-op runs land a summary log but no commit),
-4. Vercel's GitHub integration picks up the push and redeploys.
+4. `.github/workflows/deploy-vercel.yml` fires on completion via a
+   `workflow_run` trigger and redeploys to Vercel.
+
+**Why the workflow_run trigger exists (do not remove):** the nightly
+scrape pushes using `secrets.GITHUB_TOKEN`. GitHub deliberately does
+NOT trigger downstream workflows for pushes authored by that token
+(anti-loop protection), so without the `workflow_run` hook the
+`chore(data): nightly real-data refresh (…)` commits would land on
+`main` but never cause a Vercel deploy. The site would silently freeze
+on the last human push. Verified: this happened between 2026-05-03 and
+2026-05-12, fixed by commit `8917053`.
 
 `workflow_dispatch` accepts an `adapters` input so a single pipeline
 can be re-run on demand. Add new adapter names to the `case` switch
