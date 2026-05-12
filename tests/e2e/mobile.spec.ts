@@ -1,6 +1,24 @@
 import { test, expect } from '@playwright/test'
 
-const ROUTES = ['/', '/cargos', '/presupuesto', '/plenos', '/promesas', '/quejas', '/quejas/dashboard']
+const ROUTES = [
+  '/',
+  '/cargos',
+  '/cargos/robert-raga-gadea',
+  '/presupuesto',
+  '/plenos',
+  '/promesas',
+  '/departamentos',
+  '/departamentos/urbanismo',
+  '/hallazgos',
+  '/declaraciones',
+  '/datos',
+  '/quejas',
+  '/quejas/dashboard',
+  '/quejas/q-no-existe',
+  '/cambios',
+  '/metodologia',
+  '/aviso-legal',
+]
 
 test.describe('Mobile shell (iPhone 13 mini / 375px)', () => {
   for (const path of ROUTES) {
