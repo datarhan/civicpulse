@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-11T08:03:02.695Z",
+  "generatedAt": "2026-05-12T07:25:42.193Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -45,6 +45,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "kind": "press",
+          "publisher": "iberdrolaespana.com",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
           "date": "2026-04-29",
           "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
@@ -65,21 +76,10 @@
             "millon",
             "euro"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-          "date": "2026-03-17",
-          "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "presupuesto",
-            "2026"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -117,11 +117,11 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
           "kind": "press",
-          "publisher": "El Periódico de Aquí",
+          "publisher": "iberdrolaespana.com",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -139,19 +139,19 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZVF3ZlQxckM0bjhXWV81S2hBTjlGa1g2VTJnOFMxd2xTR1dqUUtwWElza3VQYjkyb2RDczNHcTVXRWpGcFJoTGptcWU0MzhOZDRqeFVIbGFNbDI2eld3YUpUSUFHYWtVYVlIOFMzS3NMMlFiUmFmc0djd21rY0FITDd2Ym9KYk1IZ1RCNGZJVm1OZ3dIOE9sUmE3Tl9tdUZTa1pfbHd3ZzZ0Ti13eXY1Q2dCcmczc01PS3ZlaWFHMDNjQ3dmZGZsZVUtNFMxcXU3Z0hoUnpIMXBOUlJUbkNqSmI2cFRxbmViTzZ3Wlk4c2l0X3ViNGFKZUhn?oc=5",
-          "date": "2026-04-27",
-          "quote": "Riba-roja destinará este año 3,3 millones en inversiones públicas gracias al superávit de las cuentas de 2025",
+          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
+          "date": "2026-04-29",
+          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "El Periódico de Aquí",
           "matchedKeywords": [
-            "inversion",
-            "millon"
+            "millon",
+            "euro"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -189,30 +189,44 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxPM0dvdXpaelp5NVNtaEE3WXBQZjN3bUtHQjhWR29Uc0I5Mzl1QlowUWMxLU1VMFVBSTNyWUthTWh1OF9PRDJpa1JOY2ZBQ1VnX1FKb0U2WmJmX2FpSEV5ajRvOEFvd2dVT25xVUROal8yMFdyN1YwWUFmY3NuYTViN0dxcUpfckR3NEVSODg1cDdhWk9KZjA1WHNsdVlqWE84V2lPY2t5SWZfZlphQ29MYllNS1dLZXV5RGphZXVqRWpxelJUVWVucEg5eGw0clFXeHZLTmR3UmRoZzBPR1RmRFB4d1E4SWNSdnN5Yg?oc=5",
-          "date": "2026-05-08",
-          "quote": "Riba-roja de Túria repone señalética en el Parque Natural del Túria y casco histórico tras la Dana",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
+            "millon",
             "tras"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNOWVXUUV4UVNhQ2NPYmw3enYzLVQ2YlJOM2NGbFVLUDNoRHN1UWd0TXpQU2NFNmJEQ2tfX2E0eHpZbmZocjcwX255azBadkMzNm9YR0RrRDBRRU8xR1V6c0tkeDkxU3Q0WGlnYWxId1NOM0l1M0VYMXo5Q2VoSGtOUlRVLUlCX0lVcV9VcmtqTDdfdkpLSFRzb3V2UTc1V1NVUjdKM1hmN0lqVVdXZ0ZUX0FnaEhxSHdNRmg3UHR4V0JMSjVERnFKN1d0ONIB0AFBVV95cUxOa1NhT2pXSnEteVVWWW5RUmFEakxZU0Q0eFJBbUZwUklld0hZOHk0a1lISWtEcVUzNjhRNU05VUlsNmxrX0c4ZWNPWVhOZjRjRDhoSnVHRlpZUjZ5bVFmbVB3aGZlT3lwbkVzWjFabUJRQThvUnBQMDJmUzhMbldLWUNtZzYzRWM4b0RJUUJoZnVCZWdrMVQ3TlFkV09URElLWm9OSzE2LUFGcFVpME4ySXBEMHJqNE42S2pfWVE0bmx2ZnhMMUx3SmhmSjJFU2JV?oc=5",
-          "date": "2026-04-03",
-          "quote": "Riba-roja alerta a vecinos y senderistas de los riesgos \"ocultos\" del Parque Natural del Túria tras la dana",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1WY3RGeEtOTmJsQjVRNTZTTk5ob3J2dnRGUkJ3SFVTY2tVN1dMQ0dXTUZZd0kxVHpTMGRHRUF5TDZMVHFsUUNNT0R6a0ViR3lVYl9NV2FWUGVNLWhYeUpVYkxqLTh1ZUtNeXZaYW9XQlhWWW1WMEFXVFIwY3Jmdw?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja tras paso de la dana",
           "kind": "press",
-          "publisher": "ESdiario",
+          "publisher": "HarianBasis.co",
           "matchedKeywords": [
             "dana",
+            "millon",
+            "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPcUFXVF95Z3ZoYXp3cjdEVVJwMGNhWV9uWkJObl9GU0lvbDNIQ0hDdUYtRlNMemdpRXJIRVJwMzNKZ0E5NXVvaWFpSC1faFNPUHV4SkVzbFZGOExUQW44cUVEeXYycm9ieHJzenRFR1RUZ0xjRXdEWXhIQ3dENk0xY0VaNzh5OVNfQnNhamFYU016dHg3ZVRGMGdkV1NqSW9adDNOOXhOMjEydW1VWnU1QWlrbmk4eXUtZkNNbjJUUVlUZnhpWnptemFTMA?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola refuerza Riba-roja tras la dana con más de 10 millones para una red eléctrica más moderna y resiliente",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "dana",
+            "millon",
             "tras"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -236,42 +250,16 @@
             "suelo",
             "ambicioso"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQcnRfSHBHWmlmR2JwNWlRYW9rRl9keTFwdVNYdkI3YllUN0pVU0NHXzJuN045NGNvU2pESnVfWnBLS05VcnBGSVJScVJpUXFmdjNPUWktNjBGTG5uNjFwdlFqU1BUSUgtUnNCYkNNa2kyRk1qdmgwYmI1QldCdEhrUFpuUVZEZFhpTVpRY0w0YzNiR1hOU2V5bm9VQmVBa2hCMjZ6N1g1ODg1Y3ZXMlM5SVQycXVmMndPd3fSAb8BQVVfeXFMUGg0SXk2OHZ2TXNxdzR2SFgzQXZmLU9wNG9GQjd1TTl0bm95V0tvaGt1amdtTmJXUUdtMXc0d3pLNjNNSHhtUmZMNEF6N1lDMl9ud0t6bTQ2dDVCSWtQR2hwWXJZVjVuVmhfOWZKRnljSkNWUktsdDNsdEpCQU1faS1fbEx3Q2FqazNoLTVSMUcyZ3FxbWlZNjFPaUJXcHl5QjFBQjlBQWFPTkJIRURDRnJhZGo5NmJiTnJybVR4NzQ?oc=5",
-          "date": "2026-01-27",
-          "quote": "Así será el nuevo PAI de Riba-roja: 830 viviendas plurifamiliares y unifamiliares",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "nuevo",
-            "vivienda"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
       "confidence": 0.4,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxOdHpMLWQwcHhpYUw0dUo4ZnpNRXdvazBFUE11SkZNdGc5V3RJcXR5SEtFUXQzaVBRVF9lT0hRTEFCaVBlRmtmRklMazlfM19kRTdOYWVMcU84clE1eklERl9jX1U2MWJHdWVvSk1aTjhiaXdrb0VPYTN1d2UtcEVMUHBuRWVyenBWcUVHYlJLUjlxY28wUkdvWXJQbUlzUjRtYnF4NFdJbjRSUktRZEJTaGQ0UFV4Vk4wS2ppMHZxemxFNXdsN1RaOVQtTmpFSG4yOEdBMDE1ZGt3MzVqSEZaOEEwTURLQdIB6wFBVV95cUxPcVQzbGJMQnVHdGJId3drRFowN1RDUUVNTFlsdWk3VWpHMTlUVmU4NHdPUk9VTmVDOFhpR3F4Yk5jNlVQeWF0SDBIZGUyLV8yRnRxNVlrMS1iel82Y2NLNU1iU3AzOHRLTW4xa2xLZk84RDNidkhtZm1Dc3VQSUlaN2pUS2Y3NjVwd2VvblduZ2hPM0JjUEhjWTZmTnE1TXBHS2RuNWRJZU1reXhzVG5yR2RpcUNMTHIyS2FPdEJMX1U0VHI1X05GS3lvUXJrSXZTTzItTHUyUHVWRDFWLXpHVF9wWXp6VFc2SHAw?oc=5",
-          "date": "2026-01-05",
-          "quote": "Riba-roja de Túria impulsará la construcción de vivienda pública en el periodo 2026-2029",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "construccion",
-            "vivienda",
-            "2026",
-            "2029",
-            "impulsara",
-            "periodo"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
           "date": "2026-01-02",
@@ -310,7 +298,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -334,7 +322,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -372,7 +360,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -392,7 +380,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -400,7 +388,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -419,55 +407,67 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
       "proposedStatus": "en-progreso",
-      "confidence": 0.35,
+      "confidence": 0.575,
       "reasoning": [
         {
-          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
           "kind": "press",
-          "publisher": "El Periódico de Aquí",
+          "publisher": "iberdrolaespana.com",
           "matchedKeywords": [
+            "dana",
             "millon",
             "euro"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
-          "date": "2026-04-08",
-          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "Comunica GVA",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
-            "millon",
-            "euro"
+            "dana",
+            "millon"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
-          "date": "2026-03-27",
-          "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1WY3RGeEtOTmJsQjVRNTZTTk5ob3J2dnRGUkJ3SFVTY2tVN1dMQ0dXTUZZd0kxVHpTMGRHRUF5TDZMVHFsUUNNT0R6a0ViR3lVYl9NV2FWUGVNLWhYeUpVYkxqLTh1ZUtNeXZaYW9XQlhWWW1WMEFXVFIwY3Jmdw?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja tras paso de la dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "HarianBasis.co",
           "matchedKeywords": [
-            "millon",
-            "euro"
+            "dana",
+            "millon"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQkJrTllwdmN3clZkRXV1eTEtVFpsSkpfTmFUeXJZMFQ2R0w5R3ZxNkJ1TGw5REpETTFySXpzdHlCWFhleWJ3a3hMRkJobkpfZkxvUWM0TXZLNEk0ZWlpVDFzVXotYkNjVXRyTFJZYmhtUXZtZlcwbTlGSk5BY1dqb0lkTUgzY0ZQSFhLVFA0bFpmOU94cXd3SkM1aFlPcTVUeGFqcGFPcUNjajJRakFGdlVWUUpjQ2JMYlJWbUdNT1F5dVoyYVlYN19n?oc=5",
-          "date": "2026-03-16",
-          "quote": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMnlfdjAxdlpGZ2hOejB5OS0xQVVUOGdONkswYS1hLWtjNjVETy1wQ1VUUkhBdDUyUjRFejhwQUNKWmRLSzFzeG52cGIzWTNDQWxsOWk1ZzBteEdvZHAyMHQ3XzQzZTFCdWEwN2pWX0liWVZndXd0Q01Cc2pOUzZDaNIBgAFBVV95cUxPZ0lnNkRITFBueE1wcUl2SC1RVWsybnNpaXlZVmZld3MyUzBDZ1JNYWpIcGpCWjliTUc1NFVod0htOTVfNTk5d2JQbmM5NDB5LU55T1lLNFg4QlVsRUxBTjlJbmRDZlg2NzBRRE1vME1JQ2hrN2wyZHR0dl9hd0huRw?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para la renovación de instalaciones afectadas por la dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Expansión",
           "matchedKeywords": [
-            "millon",
-            "euro"
+            "dana",
+            "millon"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPcUFXVF95Z3ZoYXp3cjdEVVJwMGNhWV9uWkJObl9GU0lvbDNIQ0hDdUYtRlNMemdpRXJIRVJwMzNKZ0E5NXVvaWFpSC1faFNPUHV4SkVzbFZGOExUQW44cUVEeXYycm9ieHJzenRFR1RUZ0xjRXdEWXhIQ3dENk0xY0VaNzh5OVNfQnNhamFYU016dHg3ZVRGMGdkV1NqSW9adDNOOXhOMjEydW1VWnU1QWlrbmk4eXUtZkNNbjJUUVlUZnhpWnptemFTMA?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola refuerza Riba-roja tras la dana con más de 10 millones para una red eléctrica más moderna y resiliente",
+          "kind": "press",
+          "publisher": "elperiodic.com",
+          "matchedKeywords": [
+            "dana",
+            "millon"
           ]
         },
         {
@@ -482,7 +482,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -513,7 +513,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -566,7 +566,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -607,7 +607,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -649,7 +649,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -668,7 +668,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-11T08:03:02.628Z"
+      "generatedAt": "2026-05-12T07:25:42.126Z"
     }
   ],
   "llmEvidence": [],
