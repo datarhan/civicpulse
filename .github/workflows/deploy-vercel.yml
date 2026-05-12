@@ -19,6 +19,16 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Also fire when the nightly scrape pushes a fresh data commit. GitHub
+  # deliberately doesn't trigger downstream workflows for pushes made with
+  # the default GITHUB_TOKEN (anti-loop protection), so without this hook
+  # the bot's "chore(data): nightly real-data refresh" commits would never
+  # cause a Vercel deploy — and the deployed site stays frozen on whatever
+  # the last human push was.
+  workflow_run:
+    workflows: ['Nightly real-data refresh']
+    types: [completed]
+    branches: [main]
 
 permissions:
   contents: read
@@ -29,8 +39,15 @@ jobs:
     # Skip the deploy when the commit message ends with the sentinel
     # "[no-deploy]" (on its own line at the end of the body) so doc-only or
     # test-only commits can opt out without triggering on messages that
-    # merely *document* the sentinel.
-    if: "!endsWith(github.event.head_commit.message, '[no-deploy]')"
+    # merely *document* the sentinel. workflow_run events have no
+    # head_commit field, so for those we deploy iff the upstream concluded
+    # successfully.
+    if: >
+      (github.event_name != 'push' ||
+        !endsWith(github.event.head_commit.message, '[no-deploy]'))
+      &&
+      (github.event_name != 'workflow_run' ||
+        github.event.workflow_run.conclusion == 'success')
     steps:
       - uses: actions/checkout@v4
 

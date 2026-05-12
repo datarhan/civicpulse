@@ -161,7 +161,7 @@ async function main() {
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(
-    `[promise-suggestions] wrote ${OUT}${frozen ? ' (frozen)' : ''} — ${suggestions.length} propuestas`
+    `[promise-suggestions] wrote ${OUT}${frozen ? ' (frozen)' : ''} — ${regexSuggestions.length} propuestas`
   )
 }
 
