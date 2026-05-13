@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T07:25:42.193Z",
+  "generatedAt": "2026-05-13T07:38:28.067Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -117,6 +117,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNQk9qM2k0T1VhUG15NkQzTzVmQzFQV3hVV3J3Zms3YWJaMVJjeTRNdGRna1B2dTF5NUt2RWxzT1BDWU1oNHRoWnJxM1VPMnlfQzkxd1Y5N3FYUFI4eldsYk5WTkNVanhWZS15QXNnTWt0dXBkOGpJUm1telJhWXNpMzFjMS1fQ0g2TnlrcFVmX1R4Mnd3?oc=5",
+          "date": "2026-05-12",
+          "quote": "La red eléctrica de Riba-roja de Túria se moderniza con más de 10 millones de inversión",
+          "kind": "press",
+          "publisher": "EDATV News",
+          "matchedKeywords": [
+            "inversion",
+            "millon"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
           "date": "2026-05-11",
           "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
@@ -137,21 +148,10 @@
             "inversion",
             "millon"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi_wFBVV95cUxNdkZ5M3B2eExXdFBKY0E2Vm11aVFxSUZmR3BLSmczcGNCcS1vYzFVTnE0YXZKZmVBSm1heG1seENjUnpYRmh0TE5KTWx6MFFkM0Fla2toQS1SSzhOdEpEY3pIekxLeFhIUG1BdENBWWFPYk1pS1V3U3VkN1hpN19NLWxYUDBobnlPYnVUQ05qd2p0aTJOZEQ2NjM4TGZvV2pzcUZWeWpRMzFOLVh3WWNjTUcxSUhCUF94d2swVjAyVUk4amUxWFNlWHA5MWV2WURZLXBOblJpNkRBMlRIUy05X05ydVdCTzVybVRDaXJDdndSTEhZMnR4LVJhU3dFRkE?oc=5",
-          "date": "2026-04-29",
-          "quote": "Riba-roja suma en los últimos diez años 87 millones de euros en el valor del patrimonio municipal",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -226,7 +226,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -250,10 +250,21 @@
             "suelo",
             "ambicioso"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQkVYcWNrcnJnSmZlQmplQ3EzQVR5Sm0yS1lPNDZnNGtZQk1BVUJ3WTdraXZBcUVPS1A5dkdxc29fSXNVekYzX0VyaUFiVDdrQ0QyUzZyaGpBRm44LS1ReDFVNmVfZGlyWEdfYVViSm1EQzFyVkV1UzVRTlBqbmpMeVVBZlBZXzdXS0d0ZGJrMXpGREZTLU95alZpNFJmU0JGZWY2U2NWYVd3bW9OcC1QYjczUzd2OFVpOW1ldmJEN1pVTDh6WkhlMEIwSzEyNzJOWnZmWWVVbzdYUzFMdmczTlpaZlNhc0c5NmtBU9IBgAJBVV95cUxOdHpSa1Q2X2pXWGkzM3ZHOFpxRURUeldOUkVod0FoT3RWaE5pekRkTDRkS3BscHZxWTlqUl85M2YwVV9sdjJyXzZUS0hpYTdfVmhVZEoyVzd6elItTUFhSEZ3Y2MyZ1QyY1lxb2JDMFVhZkl1N0xwTzdFSXZCZVp2S2JFRDBEbDFIbURTRjV1QVJ2RGdlb1VNMHI2MVNCOFpNcUV1b1ZRN3QwZGE2emQ0SndpaUV2VHRoQjdGeFRIWGFLRTREQzhHQk9XYThfcXpfX25JbG8xRF9JQVhBV0NUTzFfWkdWR0xkSjV0M0hiYk56a2ExMUNKRGdOM0xUOVZa?oc=5",
+          "date": "2026-05-13",
+          "quote": "Solo 5 municipios y todos del PSPV se presentan al plan estatal de vivienda dana",
+          "kind": "press",
+          "publisher": "La Razón",
+          "matchedKeywords": [
+            "plan",
+            "vivienda"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -273,6 +284,17 @@
             "2029",
             "impulsara",
             "periodo",
+            "municipio"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQkVYcWNrcnJnSmZlQmplQ3EzQVR5Sm0yS1lPNDZnNGtZQk1BVUJ3WTdraXZBcUVPS1A5dkdxc29fSXNVekYzX0VyaUFiVDdrQ0QyUzZyaGpBRm44LS1ReDFVNmVfZGlyWEdfYVViSm1EQzFyVkV1UzVRTlBqbmpMeVVBZlBZXzdXS0d0ZGJrMXpGREZTLU95alZpNFJmU0JGZWY2U2NWYVd3bW9OcC1QYjczUzd2OFVpOW1ldmJEN1pVTDh6WkhlMEIwSzEyNzJOWnZmWWVVbzdYUzFMdmczTlpaZlNhc0c5NmtBU9IBgAJBVV95cUxOdHpSa1Q2X2pXWGkzM3ZHOFpxRURUeldOUkVod0FoT3RWaE5pekRkTDRkS3BscHZxWTlqUl85M2YwVV9sdjJyXzZUS0hpYTdfVmhVZEoyVzd6elItTUFhSEZ3Y2MyZ1QyY1lxb2JDMFVhZkl1N0xwTzdFSXZCZVp2S2JFRDBEbDFIbURTRjV1QVJ2RGdlb1VNMHI2MVNCOFpNcUV1b1ZRN3QwZGE2emQ0SndpaUV2VHRoQjdGeFRIWGFLRTREQzhHQk9XYThfcXpfX25JbG8xRF9JQVhBV0NUTzFfWkdWR0xkSjV0M0hiYk56a2ExMUNKRGdOM0xUOVZa?oc=5",
+          "date": "2026-05-13",
+          "quote": "Solo 5 municipios y todos del PSPV se presentan al plan estatal de vivienda dana",
+          "kind": "press",
+          "publisher": "La Razón",
+          "matchedKeywords": [
+            "vivienda",
             "municipio"
           ]
         },
@@ -298,7 +320,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -322,7 +344,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -360,7 +382,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -380,7 +402,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -388,7 +410,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -407,7 +429,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -424,6 +446,17 @@
             "dana",
             "millon",
             "euro"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOQkVYcWNrcnJnSmZlQmplQ3EzQVR5Sm0yS1lPNDZnNGtZQk1BVUJ3WTdraXZBcUVPS1A5dkdxc29fSXNVekYzX0VyaUFiVDdrQ0QyUzZyaGpBRm44LS1ReDFVNmVfZGlyWEdfYVViSm1EQzFyVkV1UzVRTlBqbmpMeVVBZlBZXzdXS0d0ZGJrMXpGREZTLU95alZpNFJmU0JGZWY2U2NWYVd3bW9OcC1QYjczUzd2OFVpOW1ldmJEN1pVTDh6WkhlMEIwSzEyNzJOWnZmWWVVbzdYUzFMdmczTlpaZlNhc0c5NmtBU9IBgAJBVV95cUxOdHpSa1Q2X2pXWGkzM3ZHOFpxRURUeldOUkVod0FoT3RWaE5pekRkTDRkS3BscHZxWTlqUl85M2YwVV9sdjJyXzZUS0hpYTdfVmhVZEoyVzd6elItTUFhSEZ3Y2MyZ1QyY1lxb2JDMFVhZkl1N0xwTzdFSXZCZVp2S2JFRDBEbDFIbURTRjV1QVJ2RGdlb1VNMHI2MVNCOFpNcUV1b1ZRN3QwZGE2emQ0SndpaUV2VHRoQjdGeFRIWGFLRTREQzhHQk9XYThfcXpfX25JbG8xRF9JQVhBV0NUTzFfWkdWR0xkSjV0M0hiYk56a2ExMUNKRGdOM0xUOVZa?oc=5",
+          "date": "2026-05-13",
+          "quote": "Solo 5 municipios y todos del PSPV se presentan al plan estatal de vivienda dana",
+          "kind": "press",
+          "publisher": "La Razón",
+          "matchedKeywords": [
+            "dana",
+            "municipio"
           ]
         },
         {
@@ -460,17 +493,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPcUFXVF95Z3ZoYXp3cjdEVVJwMGNhWV9uWkJObl9GU0lvbDNIQ0hDdUYtRlNMemdpRXJIRVJwMzNKZ0E5NXVvaWFpSC1faFNPUHV4SkVzbFZGOExUQW44cUVEeXYycm9ieHJzenRFR1RUZ0xjRXdEWXhIQ3dENk0xY0VaNzh5OVNfQnNhamFYU016dHg3ZVRGMGdkV1NqSW9adDNOOXhOMjEydW1VWnU1QWlrbmk4eXUtZkNNbjJUUVlUZnhpWnptemFTMA?oc=5",
-          "date": "2026-05-11",
-          "quote": "Iberdrola refuerza Riba-roja tras la dana con más de 10 millones para una red eléctrica más moderna y resiliente",
-          "kind": "press",
-          "publisher": "elperiodic.com",
-          "matchedKeywords": [
-            "dana",
-            "millon"
-          ]
-        },
-        {
           "url": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821",
           "date": "2026-04-20",
           "quote": "ASUNTO DE URGENCIA, Expediente 1562/2018/GEN, Aceptación propuesta de adjudicación mesa de contratación relativo al contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio Riba-roja de Túria, por procedimiento abierto, mejor relación calidad precio, varios criterios de adjudicación y con cláusulas medioambientales y con condición especial de ejecución de carácter medioambiental y social. (Ctto. 27/2018)",
@@ -482,7 +504,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -513,7 +535,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -566,7 +588,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -607,7 +629,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -649,7 +671,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -668,7 +690,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-05-12T07:25:42.126Z"
+      "generatedAt": "2026-05-13T07:38:27.999Z"
     }
   ],
   "llmEvidence": [],
