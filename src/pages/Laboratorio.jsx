@@ -477,7 +477,9 @@ export default function Laboratorio() {
 
   const totalAudited = lab.trust?.articles?.length ?? 0
   const totalClaims = lab.verified.length
-  const verificadoClaims = lab.verified.filter((r) => r.verification.verdict === 'verificado').length
+  const verificadoClaims = lab.verified.filter(
+    (r) => r.verification.verdict === 'verificado',
+  ).length
   const contradichoClaims = lab.verified.filter(
     (r) => r.verification.verdict === 'contradicho',
   ).length
@@ -521,9 +523,9 @@ export default function Laboratorio() {
             maxWidth: 820,
           }}
         >
-          Cada titular sobre Riba-roja se extrae, sintetiza y contrasta contra los datos
-          municipales públicos (presupuesto, contratos PLACSP, subvenciones BDNS, padrón
-          INE, paro SEPE, plenos). Indicadores de fiabilidad inspirados en el{' '}
+          Cada titular sobre Riba-roja se extrae, sintetiza y contrasta contra los datos municipales
+          públicos (presupuesto, contratos PLACSP, subvenciones BDNS, padrón INE, paro SEPE,
+          plenos). Indicadores de fiabilidad inspirados en el{' '}
           <a
             href="https://thetrustproject.org/"
             target="_blank"
@@ -562,11 +564,7 @@ export default function Laboratorio() {
           value={fmtNumber(triangulated3Plus)}
           hint="historias cubiertas por ≥3 medios"
         />
-        <KPI
-          label="Hallazgos editoriales"
-          value={fmtNumber(lab.findings.length)}
-          hint="curados"
-        />
+        <KPI label="Hallazgos editoriales" value={fmtNumber(lab.findings.length)} hint="curados" />
       </div>
 
       <div
@@ -644,11 +642,10 @@ export default function Laboratorio() {
               />
               <p style={{ fontSize: 13, color: 'var(--ink70)', marginTop: 6 }}>
                 Si acabas de instalar el laboratorio, ejecuta{' '}
-                <code>npm run extract:press-claims</code> +{' '}
-                <code>npm run verify:press-claims</code> +{' '}
-                <code>npm run summarize:press</code> +{' '}
-                <code>npm run compute:press-analytics</code> para poblar los snapshots.
-                La cadena completa también corre cada noche.
+                <code>npm run extract:press-claims</code> + <code>npm run verify:press-claims</code>{' '}
+                + <code>npm run summarize:press</code> +{' '}
+                <code>npm run compute:press-analytics</code> para poblar los snapshots. La cadena
+                completa también corre cada noche.
               </p>
             </Card>
           )}
@@ -666,10 +663,7 @@ export default function Laboratorio() {
 
         <aside style={{ display: 'grid', gap: 14, position: 'sticky', top: 24 }}>
           <Card>
-            <SectionHead
-              eyebrow="Tabla de fiabilidad"
-              title="Medios auditados (últimos 30 días)"
-            />
+            <SectionHead eyebrow="Tabla de fiabilidad" title="Medios auditados (últimos 30 días)" />
             <div style={{ marginTop: 8 }}>
               <OutletScoreboard outlets={lab.trust?.outlets ?? []} />
             </div>
@@ -729,14 +723,11 @@ export default function Laboratorio() {
               lineHeight: 1.55,
             }}
           >
-            <strong style={{ color: 'var(--ink)' }}>Política editorial.</strong> Los
-            veredictos verificado/discrepa contrastan datos municipales públicos contra
-            las afirmaciones del medio citado. Nunca atribuimos opinión a periodistas
-            individuales; sólo a la línea institucional del medio.{' '}
-            <a
-              href="/metodologia"
-              style={{ color: 'var(--civic)', textDecoration: 'underline' }}
-            >
+            <strong style={{ color: 'var(--ink)' }}>Política editorial.</strong> Los veredictos
+            verificado/discrepa contrastan datos municipales públicos contra las afirmaciones del
+            medio citado. Nunca atribuimos opinión a periodistas individuales; sólo a la línea
+            institucional del medio.{' '}
+            <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
               Leer metodología →
             </a>
           </div>

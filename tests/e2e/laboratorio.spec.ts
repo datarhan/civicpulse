@@ -27,9 +27,7 @@ test.describe('Laboratorio (/laboratorio)', () => {
     await expect(page.getByLabel('Filtrar por veredicto')).toBeVisible()
 
     await expect(page.getByText(/Medios auditados/i).first()).toBeVisible()
-    await expect(
-      page.getByText(/Lo que la prensa local no está siguiendo/i).first(),
-    ).toBeVisible()
+    await expect(page.getByText(/Lo que la prensa local no está siguiendo/i).first()).toBeVisible()
 
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
