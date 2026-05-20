@@ -99,6 +99,69 @@ function safeDate(raw: string | null): string {
   return Number.isFinite(d.getTime()) ? d.toISOString() : new Date(0).toISOString()
 }
 
+/**
+ * Parse a standard WordPress / Atom-style RSS feed (one fixed publisher, no
+ * Google-News " - Pub" title suffix). Used for direct publisher feeds like
+ * infoturia.com/feed/, where the entire feed belongs to one outlet.
+ *
+ *   opts.defaultSource — publisher name to stamp on every item (e.g. the
+ *     channel <title>: "Periòdic del Camp de Túria").
+ *   opts.defaultHost   — host string for the `sourceHost` field
+ *     (e.g. "infoturia.com"). Falls back to the item link's host.
+ */
+export function parseStandardRss(
+  xml: string,
+  opts: { defaultSource: string; defaultHost?: string | null },
+): NewsItem[] {
+  const items: NewsItem[] = []
+  const seen = new Set<string>()
+
+  for (const raw of extractItems(xml)) {
+    const title = pickTag(raw, 'title') || ''
+    const link = pickTag(raw, 'link') || ''
+    const pubDate = pickTag(raw, 'pubDate') || pickTag(raw, 'dc:date')
+
+    if (!title || !link) continue
+
+    const fingerprint = fingerprintFor(title)
+    if (seen.has(fingerprint)) continue
+    seen.add(fingerprint)
+
+    const sourceHost = opts.defaultHost ?? extractHost(link)
+    items.push({
+      id: fnvHash(link || title),
+      title,
+      link,
+      source: opts.defaultSource,
+      sourceHost,
+      date: safeDate(pubDate),
+      fingerprint,
+    })
+  }
+
+  items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return items
+}
+
+/**
+ * Merge multiple NewsItem lists, deduping by fingerprint (so the same story
+ * picked up by both Google News and a direct publisher feed collapses to
+ * one row). The first occurrence wins — pass the higher-trust list first.
+ */
+export function mergeNewsItems(...lists: NewsItem[][]): NewsItem[] {
+  const seen = new Set<string>()
+  const out: NewsItem[] = []
+  for (const list of lists) {
+    for (const it of list) {
+      if (seen.has(it.fingerprint)) continue
+      seen.add(it.fingerprint)
+      out.push(it)
+    }
+  }
+  out.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return out
+}
+
 export function parseGoogleNewsRss(xml: string): NewsItem[] {
   const items: NewsItem[] = []
   const seen = new Set<string>()
