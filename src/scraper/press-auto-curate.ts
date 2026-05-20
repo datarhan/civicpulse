@@ -211,10 +211,8 @@ export function composeFinding(opts: ComposeOpts): PressFinding {
     .map(([v, n]) => `${n} ${v}`)
     .join(' · ')
 
-  const title = `Auditoría · ${lead.claim.articleSource}: ${lead.claim.verbatim.slice(0, 80)}`.slice(
-    0,
-    200,
-  )
+  const title =
+    `Auditoría · ${lead.claim.articleSource}: ${lead.claim.verbatim.slice(0, 80)}`.slice(0, 200)
   const summary =
     `Los datos municipales contrastan con la cobertura citada. ` +
     `Veredictos del lote: ${verdictSummary}. ` +

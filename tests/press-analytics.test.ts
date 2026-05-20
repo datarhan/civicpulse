@@ -22,9 +22,7 @@ function makePress(overrides: Partial<PressArticleLite> = {}): PressArticleLite 
   }
 }
 
-function makeVerifiedRow(
-  overrides: Partial<VerifiedClaimRow['claim']> = {},
-): VerifiedClaimRow {
+function makeVerifiedRow(overrides: Partial<VerifiedClaimRow['claim']> = {}): VerifiedClaimRow {
   return {
     claim: {
       id: 'a-1-0-num',
@@ -152,10 +150,7 @@ describe('press-analytics — computeTriangulation', () => {
   })
 
   it('reports amountDrift when ≥2 verified claims cite different amounts on the same story', () => {
-    const press = [
-      makePress({ id: 'a-1', source: 'A' }),
-      makePress({ id: 'a-2', source: 'B' }),
-    ]
+    const press = [makePress({ id: 'a-1', source: 'A' }), makePress({ id: 'a-2', source: 'B' })]
     const verified = [
       makeVerifiedRow({
         id: 'a-1-0-num',

@@ -132,8 +132,7 @@ export function computeTrustIndicators(opts: {
   const articles: ArticleTrustRow[] = press.map((p) => {
     const claims = claimsByArticle.get(p.id) ?? []
     const opinionCount = claims.filter(
-      (c) =>
-        c.claim.type === 'acusacion_publica' && c.claim.accusationSubtype === 'opinativa',
+      (c) => c.claim.type === 'acusacion_publica' && c.claim.accusationSubtype === 'opinativa',
     ).length
     const opinionFraction = claims.length === 0 ? 0 : opinionCount / claims.length
 
@@ -195,8 +194,7 @@ export function computeTrustIndicators(opts: {
         totalClaims += 1
       }
     }
-    const meanTrustScore =
-      rows.reduce((acc, r) => acc + r.score, 0) / Math.max(rows.length, 1)
+    const meanTrustScore = rows.reduce((acc, r) => acc + r.score, 0) / Math.max(rows.length, 1)
     const verifiedRatio = totalClaims === 0 ? 0 : verdictCounts.verificado / totalClaims
     const contradictedRatio = totalClaims === 0 ? 0 : verdictCounts.contradicho / totalClaims
 
@@ -315,8 +313,7 @@ export function computeTriangulation(opts: {
   }
 
   clusters.sort(
-    (a, b) =>
-      b.outlets.length - a.outlets.length || a.fingerprint.localeCompare(b.fingerprint),
+    (a, b) => b.outlets.length - a.outlets.length || a.fingerprint.localeCompare(b.fingerprint),
   )
 
   return {

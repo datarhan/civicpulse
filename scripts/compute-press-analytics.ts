@@ -66,18 +66,16 @@ async function main() {
     items?: VerifiedClaimRow[]
   } | null
   const verified = verifiedSnap?.items ?? []
-  const agendas = (await readJson(PATHS.agendas)) as
-    | {
-        plenos?: Array<{
-          id: string
-          date: string
-          agenda?: Array<{ number: number; title: string; department?: string }>
-        }>
-      }
-    | null
-  const promises = (await readJson(PATHS.promises)) as
-    | { items?: Array<{ id: string; title: string; madeAt: string }> }
-    | null
+  const agendas = (await readJson(PATHS.agendas)) as {
+    plenos?: Array<{
+      id: string
+      date: string
+      agenda?: Array<{ number: number; title: string; department?: string }>
+    }>
+  } | null
+  const promises = (await readJson(PATHS.promises)) as {
+    items?: Array<{ id: string; title: string; madeAt: string }>
+  } | null
 
   const trust = computeTrustIndicators({ press: press.items, verified })
   const triangulation = computeTriangulation({ press: press.items, verified })

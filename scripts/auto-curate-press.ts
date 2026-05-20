@@ -34,10 +34,7 @@ import {
   renderQuarantineMarkdown,
   type VerifiedPressItem,
 } from '../src/scraper/press-auto-curate'
-import {
-  validatePressFindingsSnapshot,
-  type PressFinding,
-} from '../src/scraper/press-finding'
+import { validatePressFindingsSnapshot, type PressFinding } from '../src/scraper/press-finding'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

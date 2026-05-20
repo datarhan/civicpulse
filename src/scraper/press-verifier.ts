@@ -161,18 +161,17 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
   const { claim } = inputs
 
   if (claim.type === 'dato_municipal') {
-    const result =
-      verifyDatoMunicipal(claim, {
-        padron: inputs.padron,
-        paro: inputs.paro,
-        budget: inputs.budget,
-      }) ?? {
-        claimId: claim.id,
-        verdict: 'sin-datos' as const,
-        summary: 'No se ha encontrado el dato municipal en las series locales.',
-        evidence: [],
-        checkedAgainst: [],
-      }
+    const result = verifyDatoMunicipal(claim, {
+      padron: inputs.padron,
+      paro: inputs.paro,
+      budget: inputs.budget,
+    }) ?? {
+      claimId: claim.id,
+      verdict: 'sin-datos' as const,
+      summary: 'No se ha encontrado el dato municipal en las series locales.',
+      evidence: [],
+      checkedAgainst: [],
+    }
     return {
       ...result,
       articleUrl: claim.articleUrl,

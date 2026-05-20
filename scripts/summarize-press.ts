@@ -64,9 +64,7 @@ async function main() {
       fingerprint: string
     }>
   }
-  const claims = (await maybeReadJson(CLAIMS_IN)) as
-    | { items: Array<{ articleId: string }> }
-    | null
+  const claims = (await maybeReadJson(CLAIMS_IN)) as { items: Array<{ articleId: string }> } | null
 
   const allow = claims
     ? new Set(claims.items.map((c) => c.articleId))
