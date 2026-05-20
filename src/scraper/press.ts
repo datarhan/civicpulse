@@ -70,7 +70,7 @@ function fnvHash(s: string): string {
   return h.toString(36)
 }
 
-function fingerprintFor(title: string): string {
+export function fingerprintFor(title: string): string {
   const canonical = title
     .toLowerCase()
     .normalize('NFD')
