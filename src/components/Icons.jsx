@@ -131,4 +131,9 @@ export const Ic = {
       <path d="M4 17V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v12M4 17h12M7 8h1M12 8h1M7 11h1M12 11h1M9 17v-3h2v3" />
     </svg>
   ),
+  lab: (p) => (
+    <svg {...p} viewBox="0 0 20 20" {...common}>
+      <path d="M8 3v5L4 16a1 1 0 0 0 .9 1.5h10.2A1 1 0 0 0 16 16l-4-8V3M7 3h6M8 11h4" />
+    </svg>
+  ),
 }

@@ -23,6 +23,7 @@ const Departamentos = lazy(() => import('./pages/Departamentos'))
 const DepartamentoDetalle = lazy(() => import('./pages/DepartamentoDetalle'))
 const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
+const Laboratorio = lazy(() => import('./pages/Laboratorio'))
 const Metodologia = lazy(() => import('./pages/Metodologia'))
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
 const Cambios = lazy(() => import('./pages/Cambios'))
@@ -101,6 +102,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas" element={<Quejas />} />
               <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
               <Route path="/quejas/:id" element={<QuejaDetail />} />
+              <Route path="/laboratorio" element={<Laboratorio />} />
               <Route path="/cambios" element={<Cambios />} />
               {Curator && <Route path="/curator" element={<Curator />} />}
               <Route path="/metodologia" element={<Metodologia />} />

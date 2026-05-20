@@ -32,6 +32,7 @@ const CATALOGUE = {
     'nav.declaraciones': 'Declaraciones',
     'nav.datos': 'Datos',
     'nav.quejas': 'Quejas',
+    'nav.laboratorio': 'Laboratorio',
     'nav.section': 'Navegación',
 
     // Topbar
@@ -176,6 +177,7 @@ const CATALOGUE = {
     'nav.declaraciones': 'Declaracions',
     'nav.datos': 'Dades',
     'nav.quejas': 'Queixes',
+    'nav.laboratorio': 'Laboratori',
     'nav.section': 'Navegació',
 
     'topbar.search': 'Cerca queixes, càrrecs, plens…',
