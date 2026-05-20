@@ -80,9 +80,7 @@ describe('press-finding — validatePressFindingsSnapshot', () => {
         contradiction: [],
       }),
     ])
-    expect(() => validatePressFindingsSnapshot(JSON.stringify(snap))).toThrow(
-      /critical requires/,
-    )
+    expect(() => validatePressFindingsSnapshot(JSON.stringify(snap))).toThrow(/critical requires/)
   })
 
   it('accepts severity=critical when contradiction is present', () => {

@@ -59,7 +59,9 @@ describe('press-claim — validatePressClaim', () => {
 
   it('rejects an unknown claim type', () => {
     // @ts-expect-error testing runtime validation
-    expect(() => validatePressClaim(makeClaim({ type: 'not-a-type' }))).toThrow(/type must be one of/)
+    expect(() => validatePressClaim(makeClaim({ type: 'not-a-type' }))).toThrow(
+      /type must be one of/,
+    )
   })
 
   it('rejects an unknown attributedSource', () => {

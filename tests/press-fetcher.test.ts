@@ -143,11 +143,7 @@ describe('press-fetcher — extractReadableBody', () => {
 describe('press-fetcher — fetchArticleBody', () => {
   it('returns the body when robots allows + fetch succeeds', async () => {
     const fakeFetch = makeFakeFetch({
-      'https://example.test/robots.txt': makeResponse(
-        'User-agent: *\nAllow: /',
-        200,
-        'text/plain',
-      ),
+      'https://example.test/robots.txt': makeResponse('User-agent: *\nAllow: /', 200, 'text/plain'),
       'https://example.test/article/1': makeResponse(
         '<html><body><article><p>Article content one two three.</p></article></body></html>',
         200,
@@ -211,11 +207,7 @@ describe('press-fetcher — fetchArticleBody', () => {
 
   it('expires the cache after bodyTtlMs and refetches', async () => {
     const fakeFetch = makeFakeFetch({
-      'https://expire.test/robots.txt': makeResponse(
-        'User-agent: *\nAllow: /',
-        200,
-        'text/plain',
-      ),
+      'https://expire.test/robots.txt': makeResponse('User-agent: *\nAllow: /', 200, 'text/plain'),
       'https://expire.test/a': makeResponse(
         '<html><body><article><p>Fresh body content after expiry.</p></article></body></html>',
         200,

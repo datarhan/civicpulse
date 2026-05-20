@@ -211,8 +211,7 @@ export async function fetchArticleBody(
     maxBodyBytes: options.maxBodyBytes ?? MAX_BODY_BYTES,
     fetchImpl: options.fetchImpl ?? fetch,
     now: options.now ?? Date.now,
-    sleep:
-      options.sleep ?? ((ms: number) => new Promise<void>((r) => setTimeout(r, ms))),
+    sleep: options.sleep ?? ((ms: number) => new Promise<void>((r) => setTimeout(r, ms))),
   }
 
   const cacheKey = sha256(url)

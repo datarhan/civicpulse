@@ -238,7 +238,8 @@ export function validatePressClaim(c: PressClaim, idx = 0): PressClaim {
   const where = `item ${idx} (${c?.id || 'no-id'})`
   if (!c || typeof c !== 'object') throw new Error(`${where}: not an object`)
   if (typeof c.id !== 'string' || !c.id) throw new Error(`${where}: id missing`)
-  if (typeof c.articleId !== 'string' || !c.articleId) throw new Error(`${where}: articleId missing`)
+  if (typeof c.articleId !== 'string' || !c.articleId)
+    throw new Error(`${where}: articleId missing`)
   if (typeof c.articleFingerprint !== 'string' || !c.articleFingerprint)
     throw new Error(`${where}: articleFingerprint missing`)
   if (typeof c.articleSource !== 'string') throw new Error(`${where}: articleSource missing`)
