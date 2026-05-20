@@ -223,6 +223,76 @@ export const AutoCurateResponseSchema = z.object({
 
 export type AutoCurateResponse = z.infer<typeof AutoCurateResponseSchema>
 
+// ─── Phase 6 · Press fact-check laboratory ────────────────────────────────
+
+export const PressTriageResponseSchema = z.object({
+  hasCheckableClaim: z.boolean(),
+  reasoning: z.string().max(200),
+  expectedClaimTypes: z.array(
+    z.enum([
+      'promesa',
+      'afirmacion_numerica',
+      'cita_obra',
+      'cita_convenio',
+      'acusacion_publica',
+      'dato_municipal',
+    ]),
+  ),
+  needsBody: z.boolean(),
+})
+export type PressTriageResponse = z.infer<typeof PressTriageResponseSchema>
+
+export const PressClaimExtractionSchema = z.object({
+  type: z.enum([
+    'promesa',
+    'afirmacion_numerica',
+    'cita_obra',
+    'cita_convenio',
+    'acusacion_publica',
+    'dato_municipal',
+  ]),
+  attributedSource: z.enum(['outlet', 'municipal', 'opposition', 'unspecified']),
+  verbatim: z.string().min(20),
+  context: z.string().max(400),
+  topic: z.enum([
+    'fiscal',
+    'vivienda',
+    'movilidad',
+    'medio-ambiente',
+    'social',
+    'cultura',
+    'seguridad',
+    'empleo',
+    'urbanismo',
+    'salud',
+    'transparencia',
+    'educacion',
+    'demografia',
+    'other',
+  ]),
+  entities: z.object({
+    amountEuros: z.number().nullable(),
+    count: z.number().nullable(),
+    countUnit: z.string().nullable(),
+    date: z.string().nullable(),
+    referencedEntity: z.string().nullable(),
+  }),
+  accusationSubtype: z.enum(['factual', 'opinativa', 'contra-datos']).nullable(),
+  confidence: z.number().min(0).max(1),
+  reasoning: z.string().max(280),
+})
+export type PressClaimExtraction = z.infer<typeof PressClaimExtractionSchema>
+
+export const PressClaimResponseSchema = z.object({
+  claims: z.array(PressClaimExtractionSchema),
+})
+export type PressClaimResponse = z.infer<typeof PressClaimResponseSchema>
+
+export const PressSummaryResponseSchema = z.object({
+  summary: z.string().min(40).max(500),
+})
+export type PressSummaryResponse = z.infer<typeof PressSummaryResponseSchema>
+
 // ─── Utility ────────────────────────────────────────────────────────────────
 
 /**

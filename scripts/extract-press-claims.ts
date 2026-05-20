@@ -1,0 +1,152 @@
+#!/usr/bin/env tsx
+/**
+ * Extract press claims from public/data/press.json using the
+ * press-claim-llm two-stage pipeline (headline triage → body fetch
+ * when needed → claim extraction). Writes
+ * public/data/press-claims-suggestions.json with requiresHumanApproval
+ * stamped on every row.
+ *
+ * Usage:
+ *   npm run extract:press-claims                       # all items
+ *   npm run extract:press-claims -- --max 20           # cap items
+ *   npm run extract:press-claims -- --since 2026-05-01 # date floor
+ *   npm run extract:press-claims -- --source levante   # filter by sourceHost substring
+ *   npm run extract:press-claims -- --headline-only    # skip body fetch
+ */
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+import { extractPressClaimsBatch, type PressNewsItem } from '../src/scraper/press-claim-llm'
+import { fetchArticleBody } from '../src/scraper/press-fetcher'
+import {
+  ALLOWED_PRESS_CLAIM_TYPES,
+  ALLOWED_CLAIM_TOPICS,
+  ALLOWED_ATTRIBUTED_SOURCES,
+  type PressClaimsSnapshot,
+} from '../src/scraper/press-claim'
+import { resetBudget } from '../src/llm/client'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
+const PROJECT_ROOT = join(__dirname, '..')
+const IN = join(PROJECT_ROOT, 'public/data/press.json')
+const OUT = join(PROJECT_ROOT, 'public/data/press-claims-suggestions.json')
+
+function getFlag(name: string): string | null {
+  const i = process.argv.indexOf(name)
+  if (i < 0) return null
+  return process.argv[i + 1] ?? null
+}
+
+function hasFlag(name: string): boolean {
+  return process.argv.includes(name)
+}
+
+async function main() {
+  resetBudget()
+
+  const since = getFlag('--since')
+  const sourceFilter = getFlag('--source')
+  const max = Number(getFlag('--max')) || Infinity
+  const headlineOnly = hasFlag('--headline-only')
+
+  const pressRaw = await readFile(IN, 'utf8')
+  const press = JSON.parse(pressRaw) as {
+    items: Array<{
+      id: string
+      title: string
+      link: string
+      source: string
+      sourceHost: string | null
+      date: string
+      fingerprint: string
+    }>
+  }
+
+  let items: PressNewsItem[] = press.items.map((i) => ({
+    id: i.id,
+    title: i.title,
+    link: i.link,
+    source: i.source,
+    sourceHost: i.sourceHost,
+    date: i.date,
+    fingerprint: i.fingerprint,
+  }))
+
+  if (since) items = items.filter((it) => it.date >= since)
+  if (sourceFilter) {
+    const needle = sourceFilter.toLowerCase()
+    items = items.filter(
+      (it) =>
+        (it.sourceHost ?? '').toLowerCase().includes(needle) ||
+        it.source.toLowerCase().includes(needle),
+    )
+  }
+  items = items.slice(0, max)
+
+  console.log(
+    `[extract:press-claims] processing ${items.length} items` +
+      (since ? ` (since ${since})` : '') +
+      (sourceFilter ? ` (source≈${sourceFilter})` : '') +
+      (headlineOnly ? ' (headline-only mode)' : ''),
+  )
+
+  const result = await extractPressClaimsBatch(items, {
+    bodyFetcher: headlineOnly
+      ? undefined
+      : async (url: string) => {
+          const fr = await fetchArticleBody(url)
+          return fr.body || null
+        },
+    forceHeadlineOnly: headlineOnly,
+  })
+
+  const byType: Record<string, number> = Object.fromEntries(
+    ALLOWED_PRESS_CLAIM_TYPES.map((t) => [t, 0]),
+  )
+  const byTopic: Record<string, number> = Object.fromEntries(
+    ALLOWED_CLAIM_TOPICS.map((t) => [t, 0]),
+  )
+  const byAttributedSource: Record<string, number> = Object.fromEntries(
+    ALLOWED_ATTRIBUTED_SOURCES.map((s) => [s, 0]),
+  )
+  const bySource: Record<string, number> = {}
+  for (const c of result.claims) {
+    byType[c.type] = (byType[c.type] || 0) + 1
+    byTopic[c.topic] = (byTopic[c.topic] || 0) + 1
+    byAttributedSource[c.attributedSource] = (byAttributedSource[c.attributedSource] || 0) + 1
+    bySource[c.articleSource] = (bySource[c.articleSource] || 0) + 1
+  }
+
+  const snapshot: PressClaimsSnapshot = {
+    generatedAt: new Date().toISOString(),
+    source: {
+      description: 'Press claims extracted by the laboratory pipeline',
+      contract: 'src/scraper/press-claim.ts',
+    },
+    stats: {
+      total: result.claims.length,
+      byType: byType as never,
+      bySource,
+      byTopic: byTopic as never,
+      byAttributedSource: byAttributedSource as never,
+    },
+    items: result.claims,
+  }
+
+  await mkdir(dirname(OUT), { recursive: true })
+  await writeFile(OUT, JSON.stringify(snapshot, null, 2) + '\n')
+
+  console.log(
+    `[extract:press-claims] wrote ${OUT}` +
+      ` · ${result.stats.claimsEmitted} claims · ` +
+      `triage=${result.stats.triageHits}/${result.stats.total} hits, ` +
+      `body=${result.stats.bodyFetches} fetches`,
+  )
+}
+
+main().catch((err) => {
+  console.error('[extract:press-claims] failed:', err)
+  process.exit(1)
+})

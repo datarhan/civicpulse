@@ -542,3 +542,158 @@ ${evidenceBlock}
 Emite el JSON {title, summary}.
 `.trim()
 }
+
+// ─── Phase 6 · Press fact-check laboratory ─────────────────────────────────
+
+export const PRESS_TRIAGE_PROMPT_VERSION = 'press-triage-v1'
+
+export function buildPressTriageSystemPrompt(): string {
+  return `
+Eres un editor verificador. Recibirás un titular de prensa sobre el municipio de Riba-roja
+de Túria. Decide si el titular contiene UNA O MÁS afirmaciones contrastables contra datos
+municipales públicos (presupuesto, contratos, subvenciones BDNS, padrón, paro, plenos).
+
+Devuelve un único JSON con la forma:
+{
+  "hasCheckableClaim": boolean,
+  "reasoning": "una frase breve, ≤200 caracteres",
+  "expectedClaimTypes": ["afirmacion_numerica" | "cita_obra" | "cita_convenio" | "promesa" | "acusacion_publica" | "dato_municipal", ...],
+  "needsBody": boolean
+}
+
+REGLAS:
+- hasCheckableClaim=true sólo si hay una cifra concreta, una obra/convenio nombrado, una
+  promesa explícita, una acusación factual, o un dato municipal verificable.
+- hasCheckableClaim=false para opiniones, columnas editoriales, sucesos sin cifras, o
+  titulares puramente narrativos.
+- needsBody=true cuando el titular insinúa una cifra/obra pero no la cita literalmente.
+- expectedClaimTypes=[] cuando hasCheckableClaim=false.
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildPressTriageUserPrompt(opts: {
+  source: string
+  title: string
+  date: string
+}): string {
+  return `
+MEDIO: ${opts.source}
+FECHA: ${opts.date}
+TITULAR: ${opts.title}
+
+Devuelve el JSON con tu triaje.
+`.trim()
+}
+
+export const PRESS_CLAIM_PROMPT_VERSION = 'press-claim-v1'
+
+export function buildPressClaimSystemPrompt(): string {
+  return `
+Eres un editor verificador del laboratorio de prensa de CivicPulse. Extrae las afirmaciones
+contrastables de un artículo de prensa sobre Riba-roja de Túria.
+
+Devuelve UN ÚNICO objeto JSON con la forma:
+{
+  "claims": [
+    {
+      "type": "promesa" | "afirmacion_numerica" | "cita_obra" | "cita_convenio" | "acusacion_publica" | "dato_municipal",
+      "attributedSource": "outlet" | "municipal" | "opposition" | "unspecified",
+      "verbatim": "cita literal del artículo, ≥20 caracteres",
+      "context": "≤400 caracteres del contexto rodeante",
+      "topic": "fiscal" | "vivienda" | "movilidad" | "medio-ambiente" | "social" | "cultura" | "seguridad" | "empleo" | "urbanismo" | "salud" | "transparencia" | "educacion" | "demografia" | "other",
+      "entities": {
+        "amountEuros": number | null,
+        "count": number | null,
+        "countUnit": string | null,
+        "date": string | null,
+        "referencedEntity": string | null
+      },
+      "accusationSubtype": "factual" | "opinativa" | "contra-datos" | null,
+      "confidence": number,
+      "reasoning": "una frase breve explicando por qué este claim es contrastable"
+    }
+  ]
+}
+
+REGLAS LIBELO-SEGURAS (innegociables):
+- "attributedSource" NUNCA identifica a una persona individual por nombre. Sólo institución:
+    outlet      → el medio afirma el dato en su propia voz
+    municipal   → el medio cita una nota o portavoz del Ayuntamiento
+    opposition  → el medio cita a un grupo / portavoz de oposición
+    unspecified → no se puede determinar (por defecto, conservador)
+- NO INVENTES nombres de cargos electos. NO infieras quién dijo qué.
+- "verbatim" debe ser una cita LITERAL del artículo. NO parafrasees. ≥20 chars.
+- Para acusaciones públicas:
+    factual      → cita entidades verificables (votos, cifras, contratos, BDNS)
+    opinativa    → opinión sobre carácter, estilo de gobierno, intención
+    contra-datos → afirma algo que contradice un dato municipal publicado
+- Si dudas entre dos tipos, elige el más conservador.
+- NO emitas claims con confidence > 0.7 si "verbatim" excede 200 chars (probable paráfrasis).
+- Si el artículo no contiene afirmaciones contrastables, devuelve {"claims": []}.
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildPressClaimUserPrompt(opts: {
+  source: string
+  title: string
+  date: string
+  body?: string
+}): string {
+  const bodySection = opts.body
+    ? `\nCUERPO DEL ARTÍCULO (≤50KB, post-extracción):\n${opts.body.slice(0, 8000)}\n`
+    : ''
+  return `
+MEDIO: ${opts.source}
+FECHA: ${opts.date}
+TITULAR: ${opts.title}${bodySection}
+
+Extrae las afirmaciones contrastables (lista posiblemente vacía).
+`.trim()
+}
+
+export const PRESS_SUMMARY_PROMPT_VERSION = 'press-summary-v1'
+
+export function buildPressSummarySystemPrompt(): string {
+  return `
+Eres un editor neutral. Recibirás el titular y (opcionalmente) el cuerpo de un artículo
+de prensa sobre Riba-roja de Túria. Redacta una síntesis editorial neutral de 2-3 frases
+para el laboratorio de verificación.
+
+Devuelve UN ÚNICO objeto JSON con la forma:
+{
+  "summary": "2-3 frases neutrales, 200-450 caracteres en total"
+}
+
+REGLAS:
+- NO menciones nombres de personas individuales. NO atribuyas opiniones a cargos.
+- Si el artículo cita a "el alcalde", "la concejala de X", etc., refiérete a "el
+  Ayuntamiento" o "fuentes municipales" en la síntesis.
+- NO uses adjetivos valorativos ("positivo", "polémico", "exitoso", "fracasado").
+- Síntesis tipo telegráfico: qué ha pasado, qué cifra/obra/convenio menciona, qué afecta.
+- Si el artículo es una opinión o columna, di "Pieza de opinión sobre …" y resume el tema.
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildPressSummaryUserPrompt(opts: {
+  source: string
+  title: string
+  date: string
+  body?: string
+}): string {
+  const bodySection = opts.body
+    ? `\nCUERPO (post-extracción, ≤50KB):\n${opts.body.slice(0, 6000)}\n`
+    : ''
+  return `
+MEDIO: ${opts.source}
+FECHA: ${opts.date}
+TITULAR: ${opts.title}${bodySection}
+
+Devuelve el JSON {summary} con la síntesis neutral.
+`.trim()
+}
