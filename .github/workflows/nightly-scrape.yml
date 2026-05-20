@@ -39,7 +39,19 @@ jobs:
         run: |
           set -euo pipefail
           case "${{ inputs.adapters || 'all' }}" in
-            all)                   npm run scrape:all ;;
+            all)
+              npm run scrape:all
+              # Press fact-check laboratory chain (Phase 1-8 of the
+              # /laboratorio plan). Each step uses `|| true` so a
+              # transient LLM-API outage or missing key doesn't kill
+              # the whole nightly. auto-curate-press has its own LOREG
+              # hard-stop built in.
+              npm run extract:press-claims -- --max 60 || true
+              npm run verify:press-claims || true
+              npm run summarize:press -- --max 40 || true
+              npm run compute:press-analytics || true
+              npm run auto-curate-press || true
+              ;;
             officials)             npm run scrape:officials ;;
             budget)                npm run scrape:budget ;;
             tenders)               npm run scrape:tenders ;;

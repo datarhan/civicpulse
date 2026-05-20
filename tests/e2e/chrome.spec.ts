@@ -96,6 +96,7 @@ test.describe('Sidebar navigation (desktop InnerShell)', () => {
     { label: 'Declaraciones', url: /\/declaraciones$/ },
     { label: 'Datos', url: /\/datos$/ },
     { label: 'Quejas', url: /\/quejas$/ },
+    { label: 'Laboratorio', url: /\/laboratorio$/ },
   ]
 
   for (const { label, url } of NAV_LINKS) {

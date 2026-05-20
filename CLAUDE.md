@@ -379,6 +379,7 @@ reads real JSON. The file is only kept as a compile reference.
 - `/quejas` — public feed + heatmap + Síndic/CTBG resolution cards
 - `/quejas/dashboard` — analytics surface (KPIs, LPACAP lifecycle, per-concejalía SLA)
 - `/quejas/:id` — detail view (timeline, legal clock, right-of-reply)
+- `/laboratorio` — press fact-check observatory · LLM-extracted claims + verifier verdicts + Trust Project indicators + outlet scoreboard + coverage gaps + triangulation across outlets. Single audience (curators / journalists / civic-tech readers). Does NOT touch landing, live ticker, or `/cambios` — the lab is its own surface.
 - `/metodologia` + `/aviso-legal` — editorial contract
 - catch-all → redirect to `/`
 

@@ -10,6 +10,7 @@ playwright-report/
 test-results/
 .llm-cache/
 .embed-cache/
+.press-cache/
 .curator-jobs/
 .voiceprints/
 tmp/
