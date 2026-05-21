@@ -48,6 +48,27 @@ test.describe('Hallazgos (/hallazgos)', () => {
     await link.click()
     await expect(page).toHaveURL(/\/hallazgos$/)
   })
+
+  test('publishes schema.org/ClaimReview JSON-LD per pleno finding', async ({ page }) => {
+    await page.goto('/hallazgos', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText(/Verificaci.n editorial/i).first()).toBeVisible({
+      timeout: 8000,
+    })
+
+    const ldScripts = await page.locator('script[type="application/ld+json"]').allTextContents()
+    expect(ldScripts.length).toBeGreaterThan(0)
+    for (const raw of ldScripts) {
+      const payload = JSON.parse(raw)
+      expect(payload['@context']).toBe('https://schema.org')
+      expect(payload['@type']).toBe('ClaimReview')
+      expect(payload.author?.name).toBe('CivicPulse')
+      expect(payload.reviewRating?.ratingValue).toBeGreaterThanOrEqual(1)
+      expect(payload.reviewRating?.ratingValue).toBeLessThanOrEqual(5)
+      expect(typeof payload.claimReviewed).toBe('string')
+      // Pleno findings always point at the council session, never an outlet.
+      expect(payload.itemReviewed?.appearance?.[0]?.url).toContain('/plenos')
+    }
+  })
 })
 
 test.describe('Cargo detail (/cargos/:slug)', () => {
