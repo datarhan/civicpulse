@@ -89,6 +89,14 @@ export interface ClaimVerification {
 export interface VerifierInputs {
   claim: PlenoClaim
   tenders?: unknown
+  /**
+   * Optional EU TED (Tenders Electronic Daily) snapshot. Merged with
+   * `tenders` before the amount-based cross-reference so EU-threshold
+   * contracts (DANA recovery, NextGenerationEU, supplies >€143k) also
+   * become matchable. Same projected row shape — see
+   * `src/scraper/tenders-ted.ts:asTenderRow`.
+   */
+  tendersTed?: unknown
   bdns?: unknown
   budget?: unknown
   promises?: unknown
@@ -288,7 +296,14 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const checked: string[] = []
   const evidence: ClaimEvidence[] = []
 
-  const tenderList = inputs.tenders ? (checked.push('tenders'), readTenders(inputs.tenders)) : []
+  const localTenders = inputs.tenders ? (checked.push('tenders'), readTenders(inputs.tenders)) : []
+  // TED rows have the same projected shape (see tenders-ted.ts:asTenderRow);
+  // merging here means the existing amount + entity-overlap paths fire for
+  // both PLACSP and EU notices without further changes downstream.
+  const tedTenders = inputs.tendersTed
+    ? (checked.push('tenders-ted'), readTenders(inputs.tendersTed))
+    : []
+  const tenderList = [...localTenders, ...tedTenders]
   const bdnsList = inputs.bdns ? (checked.push('bdns'), readBdns(inputs.bdns)) : []
   const promiseList = inputs.promises
     ? (checked.push('promises'), readPromises(inputs.promises))

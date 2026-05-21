@@ -143,6 +143,8 @@ function verifyDatoMunicipal(
 export interface PressVerifierInputs {
   claim: PressClaim
   tenders?: unknown
+  /** Optional EU TED snapshot — merged with `tenders` by the inner verifier. */
+  tendersTed?: unknown
   bdns?: unknown
   budget?: unknown
   promises?: unknown
@@ -267,6 +269,7 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
   const innerResult = verifyClaim({
     claim: projected,
     tenders: inputs.tenders,
+    tendersTed: inputs.tendersTed,
     bdns: inputs.bdns,
     budget: inputs.budget,
     promises: inputs.promises,

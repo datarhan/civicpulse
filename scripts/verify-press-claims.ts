@@ -14,6 +14,7 @@ import { fileURLToPath } from 'node:url'
 
 import { verifyPressClaimsBatch } from '../src/scraper/press-verifier'
 import type { PressClaim } from '../src/scraper/press-claim'
+import { asTenderRow, type TenderTedRow } from '../src/scraper/tenders-ted'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -22,6 +23,7 @@ const PROJECT_ROOT = join(__dirname, '..')
 const PATHS = {
   claims: join(PROJECT_ROOT, 'public/data/press-claims-suggestions.json'),
   tenders: join(PROJECT_ROOT, 'public/data/tenders.json'),
+  tendersTed: join(PROJECT_ROOT, 'public/data/tenders-ted.json'),
   bdns: join(PROJECT_ROOT, 'public/data/bdns.json'),
   budget: join(PROJECT_ROOT, 'public/data/budget.json'),
   promises: join(PROJECT_ROOT, 'public/data/promises.json'),
@@ -48,21 +50,30 @@ async function main() {
   }
   const claims = claimsSnap.items
 
-  const [tenders, bdns, budget, promises, padron, paro, factcheckSnap] = await Promise.all([
-    readJson(PATHS.tenders),
-    readJson(PATHS.bdns),
-    readJson(PATHS.budget),
-    readJson(PATHS.promises),
-    readJson(PATHS.padron),
-    readJson(PATHS.paro),
-    readJson(PATHS.factcheck),
-  ])
+  const [tenders, tendersTedSnap, bdns, budget, promises, padron, paro, factcheckSnap] =
+    await Promise.all([
+      readJson(PATHS.tenders),
+      readJson(PATHS.tendersTed),
+      readJson(PATHS.bdns),
+      readJson(PATHS.budget),
+      readJson(PATHS.promises),
+      readJson(PATHS.padron),
+      readJson(PATHS.paro),
+      readJson(PATHS.factcheck),
+    ])
   const factchecks =
     (factcheckSnap as { items?: import('../src/scraper/factcheck').FactCheckRow[] } | null)
       ?.items ?? []
 
+  // Project the TED snapshot (TenderTedRow shape) onto the same field set the
+  // claim-verifier already understands for PLACSP. Wrapping in `{contracts:…}`
+  // lets the existing readTenders() pick them up alongside the local tenders.
+  const tedRows = (tendersTedSnap as { items?: TenderTedRow[] } | null)?.items ?? []
+  const tendersTed = tedRows.length > 0 ? { contracts: tedRows.map(asTenderRow) } : null
+
   console.log(
     `[verify:press-claims] verifying ${claims.length} claims` +
+      (tedRows.length > 0 ? ` + ${tedRows.length} TED notices` : '') +
       (factchecks.length > 0
         ? ` against ${factchecks.length} third-party fact-checks`
         : ' (no fact-checks indexed)'),
@@ -70,6 +81,7 @@ async function main() {
 
   const snap = verifyPressClaimsBatch(claims, {
     tenders,
+    tendersTed,
     bdns,
     budget,
     promises,
