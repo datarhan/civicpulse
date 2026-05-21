@@ -25,6 +25,7 @@ import {
 import type { PlenoClaim, ClaimTopic as PlenoClaimTopic } from './pleno-claim'
 import type { PressClaim, ClaimTopic as PressClaimTopic } from './press-claim'
 import { matchFactChecks, type FactCheckRow } from './factcheck'
+import type { BoeRow } from './boe'
 
 // PressClaim's topic enum extends pleno's with 'demografia' — keep
 // the projection sane by mapping the press-only value to the existing
@@ -160,6 +161,14 @@ export interface PressVerifierInputs {
    * a non-unknown rating.
    */
   factchecks?: FactCheckRow[]
+  /**
+   * Optional BOE (Boletín Oficial del Estado) entries that mention
+   * Riba-roja. When a press claim cites an "ordenanza" / "decreto" /
+   * "resolución" / "convenio", a token-overlap match against the
+   * BOE titulo lifts the verdict from sin-datos to verificado — the
+   * gazette is the authoritative public record of those actos.
+   */
+  boe?: BoeRow[]
 }
 
 export interface PressClaimVerification extends ClaimVerification {
@@ -239,9 +248,104 @@ function applyFactCheckCrossRef(
   }
 }
 
+// ─── BOE cross-reference ───────────────────────────────────────────────────
+
+const BOE_TRIGGER_RE =
+  /\b(ordenanza|decreto|resoluci[óo]n|reglamento|convenio|expropiaci[óo]n|sanci[óo]n|plan general|subvenci[óo]n)\b/i
+
+function tokenise(s: string): Set<string> {
+  return new Set(
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[̀-ͯ]/g, '')
+      .replace(/[^a-z0-9 ]+/g, ' ')
+      .split(/\s+/)
+      .filter((w) => w.length > 4),
+  )
+}
+
+interface BoeMatch {
+  row: BoeRow
+  score: number
+}
+
+/**
+ * Token-overlap match between a press claim's verbatim text and the
+ * BOE corpus. Conservative thresholds: ≥3 shared significant tokens
+ * AND Jaccard ≥ 0.08. The bar is intentionally lower than factcheck's
+ * 0.15 because BOE titulos are much longer than the press claim and
+ * therefore inflate the union size.
+ */
+function matchBoe(claim: PressClaim, corpus: BoeRow[]): BoeMatch[] {
+  const claimTokens = tokenise(claim.verbatim)
+  if (claimTokens.size === 0) return []
+  const matches: BoeMatch[] = []
+  for (const row of corpus) {
+    const haystack = `${row.titulo} ${row.departamento} ${row.epigrafe}`
+    const corpusTokens = tokenise(haystack)
+    const intersection = new Set([...claimTokens].filter((t) => corpusTokens.has(t)))
+    if (intersection.size < 3) continue
+    const union = new Set([...claimTokens, ...corpusTokens])
+    const score = union.size === 0 ? 0 : intersection.size / union.size
+    if (score < 0.08) continue
+    matches.push({ row, score: Math.round(score * 1000) / 1000 })
+  }
+  matches.sort((a, b) => b.score - a.score)
+  return matches.slice(0, 3)
+}
+
+/**
+ * Cross-reference a press claim against the BOE snapshot. The
+ * verbatim text must contain at least one acto-administrativo
+ * trigger word ("ordenanza" / "decreto" / "resolución" / "convenio"
+ * / "expropiación" / "sanción" / "plan general" / "subvención") to
+ * even be eligible — otherwise the matcher is too noisy on generic
+ * press text.
+ *
+ * Verdict-upgrade rule:
+ *   - Inner verdict was sin-datos AND we found ≥1 BOE match → adopt
+ *     'verificado'. BOE is the gazette of record; presence proves
+ *     the acto exists.
+ *   - Otherwise just attach the evidence rows.
+ */
+function applyBoeCrossRef(
+  inner: ClaimVerification,
+  claim: PressClaim,
+  boe: BoeRow[],
+): ClaimVerification {
+  if (boe.length === 0) return inner
+  if (!BOE_TRIGGER_RE.test(claim.verbatim)) return inner
+  const matches = matchBoe(claim, boe)
+  if (matches.length === 0) return inner
+
+  const newEvidence: ClaimEvidence[] = matches.map((m) => ({
+    kind: 'boe',
+    ref: m.row.urlHtml || m.row.urlPdf,
+    snippet: `BOE ${m.row.identificador} · ${m.row.departamento} · ${m.row.titulo.slice(0, 160)}`,
+    similarity: m.score,
+  }))
+
+  const checkedAgainst = [...inner.checkedAgainst, 'boe']
+  let verdict = inner.verdict
+  let summary = inner.summary
+  if (inner.verdict === 'sin-datos') {
+    verdict = 'verificado'
+    summary = `Acto administrativo localizado en el BOE (${matches[0].row.identificador}). El gazette estatal es registro autoritativo de la disposición citada.`
+  }
+  return {
+    ...inner,
+    verdict,
+    summary,
+    evidence: [...inner.evidence, ...newEvidence],
+    checkedAgainst,
+  }
+}
+
 export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerification {
   const { claim } = inputs
   const factchecks = inputs.factchecks ?? []
+  const boe = inputs.boe ?? []
 
   if (claim.type === 'dato_municipal') {
     const base = verifyDatoMunicipal(claim, {
@@ -255,7 +359,8 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
       evidence: [],
       checkedAgainst: [],
     }
-    const result = applyFactCheckCrossRef(base, claim, factchecks)
+    const withFactchecks = applyFactCheckCrossRef(base, claim, factchecks)
+    const result = applyBoeCrossRef(withFactchecks, claim, boe)
     return {
       ...result,
       articleUrl: claim.articleUrl,
@@ -275,7 +380,8 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
     promises: inputs.promises,
     priorClaims: inputs.priorClaims,
   })
-  const result = applyFactCheckCrossRef(innerResult, claim, factchecks)
+  const withFactchecks = applyFactCheckCrossRef(innerResult, claim, factchecks)
+  const result = applyBoeCrossRef(withFactchecks, claim, boe)
 
   return {
     ...result,

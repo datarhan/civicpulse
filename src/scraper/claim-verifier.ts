@@ -67,7 +67,7 @@ export type ClaimVerdict =
   | 'promesa-repetida'
 
 export interface ClaimEvidence {
-  kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'prior-claim' | 'factcheck'
+  kind: 'tender' | 'bdns' | 'budget' | 'promise' | 'prior-claim' | 'factcheck' | 'boe'
   /** URL or synthetic ref for the curator to click through. */
   ref: string
   /** One-line citation showing what matched. */

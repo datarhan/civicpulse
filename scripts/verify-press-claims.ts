@@ -30,6 +30,7 @@ const PATHS = {
   padron: join(PROJECT_ROOT, 'public/data/padron.json'),
   paro: join(PROJECT_ROOT, 'public/data/paro.json'),
   factcheck: join(PROJECT_ROOT, 'public/data/factcheck.json'),
+  boe: join(PROJECT_ROOT, 'public/data/boe.json'),
   out: join(PROJECT_ROOT, 'public/data/press-claims-verified.json'),
 }
 
@@ -50,7 +51,7 @@ async function main() {
   }
   const claims = claimsSnap.items
 
-  const [tenders, tendersTedSnap, bdns, budget, promises, padron, paro, factcheckSnap] =
+  const [tenders, tendersTedSnap, bdns, budget, promises, padron, paro, factcheckSnap, boeSnap] =
     await Promise.all([
       readJson(PATHS.tenders),
       readJson(PATHS.tendersTed),
@@ -60,10 +61,12 @@ async function main() {
       readJson(PATHS.padron),
       readJson(PATHS.paro),
       readJson(PATHS.factcheck),
+      readJson(PATHS.boe),
     ])
   const factchecks =
     (factcheckSnap as { items?: import('../src/scraper/factcheck').FactCheckRow[] } | null)
       ?.items ?? []
+  const boe = (boeSnap as { items?: import('../src/scraper/boe').BoeRow[] } | null)?.items ?? []
 
   // Project the TED snapshot (TenderTedRow shape) onto the same field set the
   // claim-verifier already understands for PLACSP. Wrapping in `{contracts:…}`
@@ -74,6 +77,7 @@ async function main() {
   console.log(
     `[verify:press-claims] verifying ${claims.length} claims` +
       (tedRows.length > 0 ? ` + ${tedRows.length} TED notices` : '') +
+      (boe.length > 0 ? ` + ${boe.length} BOE entries` : '') +
       (factchecks.length > 0
         ? ` against ${factchecks.length} third-party fact-checks`
         : ' (no fact-checks indexed)'),
@@ -88,6 +92,7 @@ async function main() {
     padron,
     paro,
     factchecks,
+    boe,
   })
 
   await mkdir(dirname(PATHS.out), { recursive: true })

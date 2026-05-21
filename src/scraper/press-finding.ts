@@ -59,6 +59,7 @@ export interface PressFindingRef {
     | 'document'
     | 'transcript'
     | 'factcheck'
+    | 'boe'
   /** Absolute URL when possible; synthetic ref ("budget:2025:cap3") otherwise. */
   ref: string
   /** Short citation, ≤240 chars. */
@@ -185,6 +186,7 @@ const ALLOWED_REF_KINDS: PressFindingRef['kind'][] = [
   'document',
   'transcript',
   'factcheck',
+  'boe',
 ]
 
 function validateRef(r: unknown, idx: number, label: string, ri: number): PressFindingRef {
