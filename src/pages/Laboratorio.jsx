@@ -798,6 +798,72 @@ export default function Laboratorio() {
                       {f.publishedAt}
                     </span>
                     {f.title}
+                    {f.corrections?.length > 0 && (
+                      <details
+                        style={{
+                          marginTop: 6,
+                          paddingLeft: 8,
+                          borderLeft: '2px solid var(--border)',
+                        }}
+                      >
+                        <summary
+                          style={{
+                            cursor: 'pointer',
+                            fontSize: 10.5,
+                            color: 'var(--ink70)',
+                            textTransform: 'uppercase',
+                            letterSpacing: '.06em',
+                          }}
+                        >
+                          Bitácora de correcciones · {f.corrections.length}
+                        </summary>
+                        <ol
+                          style={{
+                            margin: '6px 0 0',
+                            paddingLeft: 18,
+                            display: 'grid',
+                            gap: 8,
+                            fontSize: 11.5,
+                          }}
+                        >
+                          {f.corrections.map((c, idx) => (
+                            <li key={idx}>
+                              <div
+                                className="mono"
+                                style={{
+                                  fontSize: 9.5,
+                                  color: 'var(--ink60)',
+                                  marginBottom: 2,
+                                }}
+                              >
+                                {c.field} · {c.correctedAt.slice(0, 10)} · {c.editor}
+                              </div>
+                              <div
+                                style={{
+                                  textDecoration: 'line-through',
+                                  color: 'var(--ink60)',
+                                }}
+                              >
+                                {c.original}
+                              </div>
+                              <div style={{ color: 'var(--ink90)', marginTop: 1 }}>
+                                {c.corrected}
+                              </div>
+                              <div
+                                style={{
+                                  marginTop: 2,
+                                  fontStyle: 'italic',
+                                  color: 'var(--ink70)',
+                                  fontSize: 10.5,
+                                }}
+                              >
+                                Motivo: {c.reason}
+                              </div>
+                            </li>
+                          ))}
+                        </ol>
+                      </details>
+                    )}
                   </li>
                 ))}
               </ul>
