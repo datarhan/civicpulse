@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-05-21T08:06:57.151Z",
+  "windowDays": 14,
+  "items": [
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:1",
+      "label": "Aprobación Acta anterior de fecha 20 de abril de 2026",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:2",
+      "label": "INTERVENCIÓN · Aprobación expediente Reconocimiento Extrajudicial nº 13/2026. Lista de facturas 12026000031, relación de obligaciones 12026000100",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:3",
+      "label": "POLICÍA · Felicitación Guía Canino",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:4",
+      "label": "INTERVENCIÓN · Aprobación transferencia de crédito para cambio de destino del crédito PMS 2022 dentro del mismo proyecto con distinta área de gasto 15/2026 PMS expropiaciones (Sin dictaminar)",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:9",
+      "label": "Asuntos de Urgencia",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:10",
+      "label": "TESORERÍA · Dación cuenta al Pleno de la información trimestral correspondiente al Primer Trimestre de 2026: Cálculo del Período Medio de Pago a proveedores e Informe trimestral de seguimiento de deuda comercial",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:11",
+      "label": "TESORERÍA · Dación cuenta de los informes de las distintas áreas del Departamento de Tesorería del Ejercicio 2025",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:13",
+      "label": "FOMENTO ECONÓMICO, Expediente 2458/2026/GEN, Rendición de cuentas al Pleno sobre la reinvención de la Feria del Comercio para mejorar (Sin dictaminar)",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:14",
+      "label": "Dar cuenta de las Resoluciones de la número 1262/2026 a la 1481/2026",
+      "date": "2026-05-11",
+      "keyword": ""
+    },
+    {
+      "kind": "pleno-item",
+      "refId": "10yl550:15",
+      "label": "Ruegos y preguntas",
+      "date": "2026-05-11",
+      "keyword": ""
+    }
+  ],
+  "stats": {
+    "plenoItemsUncovered": 10,
+    "promisesUncovered": 0
+  }
+}
