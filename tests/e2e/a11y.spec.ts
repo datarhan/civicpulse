@@ -19,6 +19,7 @@ const STRICT_ROUTES = [
   '/quejas/q-no-existe',
   '/cambios',
   '/laboratorio',
+  '/lab-health',
   '/metodologia',
   '/aviso-legal',
 ]

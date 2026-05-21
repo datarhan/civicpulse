@@ -490,6 +490,17 @@ export default function Datos() {
           Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo, investigación y
           transparencia.
         </div>
+        <div style={{ marginTop: 8, fontSize: 12 }}>
+          <a
+            href="/lab-health"
+            style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+          >
+            Salud del laboratorio →
+          </a>{' '}
+          <span style={{ color: 'var(--ink50)' }}>
+            diagnóstico nocturno de cada snapshot (frescura, filas, tamaño)
+          </span>
+        </div>
       </div>
 
       <div style={{ marginBottom: 16 }}>

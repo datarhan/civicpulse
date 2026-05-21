@@ -479,6 +479,15 @@ export default function Metodologia() {
             curatorial; no llega al verificador automático.
           </li>
         </ul>
+        <p style={{ marginTop: 8, fontSize: 13.5 }}>
+          La página{' '}
+          <a href="/lab-health" style={{ color: 'var(--civic)' }}>
+            Diagnóstico de fuentes →
+          </a>{' '}
+          publica en directo cuándo se generó cada snapshot, cuántas filas trae y si el scraper
+          nocturno está funcionando. Permite auditar la frescura del corpus sin tener que ejecutar
+          ningún script.
+        </p>
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>Alineación con IFCN</h3>
         <p style={{ marginTop: 6, fontSize: 13.5 }}>
