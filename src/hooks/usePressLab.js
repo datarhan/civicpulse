@@ -17,6 +17,7 @@ const FILES = [
   '/data/press-coverage-gaps.json',
   '/data/press-findings.json',
   '/data/factcheck.json',
+  '/data/press-link-rot.json',
 ]
 
 async function fetchOptional(url) {
@@ -40,13 +41,24 @@ export function usePressLab() {
     gaps: null,
     findings: [],
     factcheck: null,
+    linkRot: new Map(),
   })
 
   useEffect(() => {
     let cancelled = false
     Promise.all(FILES.map(fetchOptional)).then((blobs) => {
       if (cancelled) return
-      const [press, summaries, verified, trust, triangulation, gaps, findings, factcheck] = blobs
+      const [press, summaries, verified, trust, triangulation, gaps, findings, factcheck, linkRot] =
+        blobs
+      const linkRotMap = new Map()
+      for (const row of linkRot?.items ?? []) {
+        if (!row?.articleUrl) continue
+        linkRotMap.set(row.articleUrl, {
+          archivedUrl: row.archivedUrl ?? null,
+          archivedAt: row.archivedAt ?? null,
+          status: row.status ?? 'error',
+        })
+      }
       setState({
         loading: false,
         press: press?.items ?? [],
@@ -57,6 +69,7 @@ export function usePressLab() {
         gaps: gaps ?? null,
         findings: findings?.items ?? [],
         factcheck: factcheck ?? null,
+        linkRot: linkRotMap,
       })
     })
     return () => {

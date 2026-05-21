@@ -202,7 +202,7 @@ function ClaimLedger({ claims }) {
   )
 }
 
-function LabPressCard({ article, summary, claims, trust, triangulation }) {
+function LabPressCard({ article, summary, claims, trust, triangulation, linkRot }) {
   const claimRows = claims || []
   const counts = claimRows.reduce((acc, r) => {
     acc[r.verification.verdict] = (acc[r.verification.verdict] || 0) + 1
@@ -316,10 +316,33 @@ function LabPressCard({ article, summary, claims, trust, triangulation }) {
           href={article.link}
           target="_blank"
           rel="noreferrer"
-          style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+          style={{
+            color: linkRot?.status === 'dead' ? 'var(--crit)' : 'var(--civic)',
+            textDecoration: 'underline',
+          }}
+          title={
+            linkRot?.status === 'dead'
+              ? 'Esta URL devolvió 4xx/5xx en la última auditoría — usa el snapshot de Wayback al lado'
+              : undefined
+          }
         >
-          Ver original ↗
+          {linkRot?.status === 'dead' ? 'Ver original ⚠︎' : 'Ver original ↗'}
         </a>
+        {linkRot?.archivedUrl && (
+          <a
+            href={linkRot.archivedUrl}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
+            title={
+              linkRot.archivedAt
+                ? `Snapshot del Internet Archive · ${linkRot.archivedAt.slice(0, 10)}`
+                : 'Snapshot del Internet Archive'
+            }
+          >
+            🔗 Wayback ↗
+          </a>
+        )}
         <a
           href="https://github.com/datarhan/civicpulse/issues/new?template=press-finding-response.yml"
           target="_blank"
@@ -715,6 +738,7 @@ export default function Laboratorio() {
               claims={byArticleClaims.get(article.id)}
               trust={byArticleTrust.get(article.id)}
               triangulation={byFingerprintTriangulation.get(article.fingerprint)}
+              linkRot={lab.linkRot?.get(article.link) ?? null}
             />
           ))}
         </div>
