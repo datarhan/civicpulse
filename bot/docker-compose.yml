@@ -1,0 +1,49 @@
+# Local-testing compose for the MuniGraph / CivicPulse bot.
+#
+# Production lives on Fly.io (see bot/DEPLOY.md). This file exists so a
+# Mac dev can run the bot 24/7 alongside the SPA without fighting macOS
+# TCC (which blocks launchd from invoking ~/Documents/ scripts).
+#
+# Build context is the MONOREPO ROOT (`..`) — the bot's Dockerfile reads
+# ../src/scraper/queja-router.ts and ../public/data/*.json. Don't move
+# this compose file out of bot/ without updating the build context too.
+#
+# Usage (from bot/):
+#   docker compose up -d --build      # first run / after Dockerfile change
+#   docker compose logs -f            # tail bot output
+#   docker compose down               # stop (data persists in ./data)
+#   docker compose restart            # pick up a new bot/.env value
+#
+# Export to public/data/quejas.json — run on the HOST, not in the
+# container, since SQLite WAL is fine across the shared bind mount:
+#   cd bot && npm run export
+
+services:
+  bot:
+    build:
+      context: ..
+      dockerfile: bot/Dockerfile
+    image: munigraph-bot:local
+    container_name: munigraph-bot
+    restart: unless-stopped
+    env_file: .env
+    # Long-polling mode: WEBHOOK_URL must NOT be set in .env. If it is,
+    # the bot will try to register a webhook and fail because Telegram
+    # can't reach localhost. Leave the var unset for local testing.
+    volumes:
+      - ./data:/data
+    healthcheck:
+      # Long-polling mode exposes /health on PORT (default 3000).
+      # We don't publish that port — there's nothing for the host to do
+      # with it — but the container can still curl itself.
+      test: ['CMD-SHELL', 'wget -q -O- http://127.0.0.1:3000/health || exit 1']
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+    # Drop kernel caps the bot doesn't need. SQLite + grammy + node is
+    # boring CRUD; we don't ptrace, mknod, or bind ports <1024.
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

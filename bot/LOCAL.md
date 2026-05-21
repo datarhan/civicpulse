@@ -1,21 +1,61 @@
 # Running the bot locally on macOS (no cloud services)
 
-If you want to avoid Fly.io / Railway / etc., the bot runs fine as a
-macOS launchd user agent in long-polling mode:
+If you want to avoid Fly.io / Railway / etc., the bot runs fine on
+your Mac in long-polling mode. There are two paths:
+
+- **Docker (recommended for local testing).** A single
+  `docker compose up -d` from `bot/`. Auto-restarts on crash. Survives
+  reboot. Mirrors the same image you'd push to a VPS. Sidesteps the
+  macOS TCC trap that blocks launchd from invoking scripts under
+  `~/Documents/`.
+- **launchd user agent.** Native macOS, no Docker Desktop overhead.
+  Documented further down as the "alternative" path. Works fine when
+  the repo lives outside `~/Documents/`; broken when inside it (the
+  current location).
+
+Either way:
 
 - **No public ingress** — the bot connects outbound to Telegram. Zero
   exposure, zero Tailscale/ngrok/port-forward setup.
-- **Auto-restart on crash** — `KeepAlive` in the plist re-launches the
-  bot after any crash (with a 10s backoff).
-- **Auto-start at login** — `RunAtLoad` brings the bot up whenever you
-  sign in, so a reboot just needs login.
 - **Persistent SQLite** — `bot/data/bot.db` survives restarts.
 
 **Caveat: the Mac must be awake.** Sleep pauses the bot. Plug the laptop
 in and keep it open, or use a dedicated always-on machine when you're
 ready.
 
-## One-command install
+## Docker (recommended)
+
+From `bot/`:
+
+```bash
+docker compose up -d --build      # first run / after Dockerfile change
+docker compose logs -f            # tail bot output (Ctrl+C to detach)
+docker compose down               # stop (SQLite + WAL persist in ./data)
+docker compose restart            # pick up a new bot/.env value
+```
+
+The container:
+- runs in long-polling mode (no `WEBHOOK_URL` in `.env` ⇒ no inbound),
+- bind-mounts `bot/data/` so SQLite + logs survive `down`,
+- restarts on crash via `restart: unless-stopped`,
+- auto-starts when Docker Desktop boots (the typical Mac flow on login).
+
+Export the SQLite to `public/data/quejas.json` (refreshes the SPA) —
+run on the HOST, not in the container. SQLite WAL is happy with the
+shared bind mount:
+
+```bash
+cd bot && npm run export
+```
+
+When you want a daily auto-export, add a `cron` line (or a host-side
+launchd agent) that wraps that command. Container itself stays
+focused on Telegram ingestion only.
+
+When going to production, the same `bot/Dockerfile` ships to Fly.io
+or your VPS — see `bot/DEPLOY.md`. No image rebuild needed.
+
+## launchd (alternative) — one-command install
 
 From the repo root:
 
