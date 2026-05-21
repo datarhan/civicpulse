@@ -172,6 +172,131 @@ export function parseFactCheckResponse(pages: ApiResponse[]): FactCheckRow[] {
   return rows
 }
 
+// ─── RSS parser (direct publisher feeds: Maldita, Newtral) ──────────────
+//
+// The Google Fact Check Tools API indexes ClaimReview structured data, but
+// Maldita + Newtral don't always emit ClaimReview JSON-LD — they often
+// publish the same articles through their RSS feeds with a category tag
+// that maps to a verdict ("Falso", "Engañoso", "Fakes", …). Parsing the
+// RSS gives us a fallback path so we're not 100% dependent on the API.
+
+const FEED_MATCH_RE = /\b(riba[\s-]?roja|ribarroja|ribaroja)\b/i
+
+function pickTag(xml: string, tag: string): string | null {
+  const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i')
+  const m = xml.match(re)
+  if (!m) return null
+  return m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim() || null
+}
+
+function pickAllTags(xml: string, tag: string): string[] {
+  const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'gi')
+  const out: string[] = []
+  let m: RegExpExecArray | null
+  while ((m = re.exec(xml)) !== null) {
+    const value = m[1].replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1').trim()
+    if (value) out.push(value)
+  }
+  return out
+}
+
+function extractRssItems(xml: string): string[] {
+  const out: string[] = []
+  const re = /<item[\s\S]*?<\/item>/gi
+  let m: RegExpExecArray | null
+  while ((m = re.exec(xml)) !== null) out.push(m[0])
+  return out
+}
+
+/**
+ * Heuristic: map an RSS feed's category list to one of our normalised
+ * verdict buckets. Maldita uses "Bulo", "Falso", "Engañoso"; Newtral
+ * uses "Fakes", "Datos", "Zona de verificación". When nothing maps,
+ * normalizeVerdict() will land on 'unknown' and the curator can
+ * inspect manually.
+ */
+function categoriesToVerdict(categories: string[]): string {
+  for (const cat of categories) {
+    const c = cat.toLowerCase()
+    if (/\bbulo\b|\bfake|\bfalso\b|enganos|engaños/.test(c)) return 'Falso'
+    if (/\bverdad|veracidad|cierto/.test(c)) return 'Verdadero'
+    if (/a\s+medias|engañoso\s+a\s+medias|sólo\s+a\s+medias|mostly/.test(c)) return 'A medias'
+    if (/sin\s+contexto|sin\s+evidencia|insufficient/.test(c)) return 'Sin contexto'
+  }
+  return ''
+}
+
+export interface ParseFactcheckRssOptions {
+  /** Publisher name stamped on every row (e.g. "Maldita.es", "Newtral"). */
+  reviewerName: string
+  /** Host string (e.g. "maldita.es"). */
+  reviewerSite: string
+  /** Skip items whose title + description don't mention Riba-roja. Default true. */
+  filterByMunicipio?: boolean
+}
+
+/**
+ * Parse a publisher-direct RSS 2.0 feed (Maldita or Newtral) and
+ * project items onto FactCheckRow. By default only items whose title
+ * or description mention Riba-roja are kept — the publisher feeds
+ * cover everything they fact-check nationally and we don't want
+ * the noise.
+ */
+export function parseFactcheckRss(xml: string, opts: ParseFactcheckRssOptions): FactCheckRow[] {
+  const items = extractRssItems(xml)
+  const rows: FactCheckRow[] = []
+  const seen = new Set<string>()
+  const filter = opts.filterByMunicipio !== false
+  for (const item of items) {
+    const title = pickTag(item, 'title') ?? ''
+    const link = pickTag(item, 'link') ?? ''
+    const description = pickTag(item, 'description') ?? ''
+    const pubDate = pickTag(item, 'pubDate') ?? pickTag(item, 'dc:date') ?? null
+    if (!title || !link) continue
+    if (seen.has(link)) continue
+    seen.add(link)
+    const haystack = `${title} ${description}`
+    if (filter && !FEED_MATCH_RE.test(haystack)) continue
+    const categories = pickAllTags(item, 'category')
+    const verdict = categoriesToVerdict(categories)
+    rows.push({
+      id: sha256(link),
+      claim: title,
+      claimant: null,
+      claimDate: null,
+      reviewerName: opts.reviewerName,
+      reviewerSite: opts.reviewerSite,
+      reviewTitle: title,
+      reviewUrl: link,
+      reviewDate: safeDate(pubDate),
+      verdict,
+      normalizedVerdict: verdict ? normalizeVerdict(verdict) : 'unknown',
+      languageCode: 'es',
+    })
+  }
+  rows.sort((a, b) => b.reviewDate.localeCompare(a.reviewDate))
+  return rows
+}
+
+/**
+ * Merge multiple FactCheckRow lists, deduping by reviewUrl. The first
+ * occurrence wins — pass the higher-trust list first (typically the
+ * Google API result before RSS supplements).
+ */
+export function mergeFactCheckRows(...lists: FactCheckRow[][]): FactCheckRow[] {
+  const seen = new Set<string>()
+  const out: FactCheckRow[] = []
+  for (const list of lists) {
+    for (const row of list) {
+      if (seen.has(row.reviewUrl)) continue
+      seen.add(row.reviewUrl)
+      out.push(row)
+    }
+  }
+  out.sort((a, b) => b.reviewDate.localeCompare(a.reviewDate))
+  return out
+}
+
 // ─── Matcher: link FactCheckRow to a press claim ────────────────────────
 
 function tokenise(s: string): Set<string> {
