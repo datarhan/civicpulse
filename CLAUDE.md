@@ -336,7 +336,7 @@ npm run llm:cost -- --json           # raw JSON
 npm run llm:cost -- --since 7        # last 7 days only
 
 # Telegram bot (sibling package under /bot — Sprints A→E)
-cd bot && npm install && npm test   # 36 tests (db + batch + escalation)
+cd bot && npm install && npm test   # 54 tests (db + batch + escalation + digest)
 cd bot && npm run dev               # long-polling (set BOT_TOKEN in bot/.env)
 cd bot && npm run export            # SQLite → ../public/data/quejas.json
 # Admin-only bot commands (ADMIN_USER_IDS env):
@@ -606,7 +606,7 @@ Key pieces worth knowing from this file:
   `promises.json frozenUntil` field as the front-end; gates broadcasts
   AND silencio auto-transitions.
 
-Bot-side tests: **36** (17 db + 10 batch + 9 escalation). Front-end
+Bot-side tests: **54** (26 db + 10 batch + 9 escalation + 9 digest). Front-end
 tests: **161** (parser schemas + inference engines + queja-router +
 sindic schema). `tsc --noEmit` must stay clean on both sides.
 

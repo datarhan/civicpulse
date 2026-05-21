@@ -139,7 +139,7 @@ export function startDigestCron(bot: Bot<MyContext>, db: Db): () => void {
 
     try {
       const r = runDigestOnce(db, sendDm, now)
-      logger.info('digest.run', r)
+      logger.info('digest.run', { ...r })
     } catch (err) {
       logger.error('digest.tick_error', { err: err instanceof Error ? err.message : String(err) })
     }

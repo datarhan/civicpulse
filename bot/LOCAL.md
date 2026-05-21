@@ -77,6 +77,28 @@ launchctl kickstart -k "gui/$(id -u)/com.civicpulse.munigraph.bot"
 2. Edit `bot/.env` with the new value.
 3. `launchctl kickstart -k "gui/$(id -u)/com.civicpulse.munigraph.bot"` — picks up the new env.
 
+**Troubleshooting · `Operation not permitted`:**
+
+Symptom: `launchctl list | grep munigraph` shows the export agent
+last-status as `126` and `bot/data/logs/export.err.log` contains
+`/bin/bash: …/local-export.sh: Operation not permitted`. macOS's TCC
+(Privacy & Security) blocks launchd-spawned shells from touching
+files under `~/Documents/` by default. Fix once per Mac:
+
+1. System Settings → Privacy & Security → Full Disk Access.
+2. Click `+`, navigate to `/bin/bash` (or `/usr/local/bin/bash` if you
+   use Homebrew bash). Press Cmd+Shift+. inside the file picker to
+   reveal hidden files.
+3. Toggle it ON.
+4. Kick the agent: `launchctl kickstart -k "gui/$(id -u)/com.civicpulse.munigraph.export"`.
+
+The bot agent itself (`com.civicpulse.munigraph.bot`) runs fine because
+it invokes `node` directly via an absolute path — only the bash-wrapped
+scripts (`local-export.sh`, `auto-curate-weekly.sh`) hit the TCC wall.
+The semantic-diff guard inside `local-export.sh` means a stuck export
+doesn't fabricate a fresh timestamp — `public/data/quejas.json` keeps
+its real last-successful-run date until the script actually runs.
+
 **Uninstall everything:**
 ```bash
 bash bot/scripts/launchd-install.sh uninstall
