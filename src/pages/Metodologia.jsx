@@ -337,10 +337,161 @@ export default function Metodologia() {
         </ol>
       </Card>
 
+      <Card id="laboratorio-prensa" style={{ marginTop: 22, scrollMarginTop: 24 }}>
+        <SectionHead
+          eyebrow="Laboratorio de prensa"
+          title="Cómo auditamos noticias publicadas sobre Riba-roja"
+        />
+        <p style={{ marginTop: 8 }}>
+          El <a href="/laboratorio" style={{ color: 'var(--civic)' }}>laboratorio</a> aplica el
+          contraste editorial habitual de la verificación de hechos al flujo de prensa local. Cada
+          afirmación citada se extrae de forma textual y se cruza, de forma determinista, contra el
+          rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE, presupuesto CONPREL,
+          plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
+        </p>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>Escala de veredictos</h3>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Verificado.</strong> El número, fecha o hecho citado coincide con el documento
+            municipal autoritativo (contrato adjudicado, convocatoria BDNS, gaceta BOE, asiento
+            presupuestario).
+          </li>
+          <li>
+            <strong>Parcial.</strong> Existe la entidad pero el detalle no coincide en su totalidad
+            (importe distinto, fecha distinta, condicionantes no mencionados).
+          </li>
+          <li>
+            <strong>Contradicho.</strong> El documento municipal contradice la afirmación. Estos
+            veredictos requieren ≥1 enlace público a la pieza que contradice antes de poder
+            promoverse a hallazgo crítico.
+          </li>
+          <li>
+            <strong>Sin datos.</strong> El verificador no ha encontrado señal municipal. La
+            ausencia de evidencia no es evidencia de falsedad: el hallazgo no se publica como
+            crítico.
+          </li>
+          <li>
+            <strong>Promesa repetida.</strong> La afirmación corresponde a un compromiso ya
+            registrado en <a href="/promesas" style={{ color: 'var(--civic)' }}>/promesas</a>.
+          </li>
+        </ul>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>Disciplina antilibellos</h3>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Acusaciones opinativas.</strong> Cuando el LLM extrae una "acusación pública"
+            cuyo subtipo es <em>opinativa</em>, el verificador la marca <em>sin datos</em>
+            automáticamente y nunca se publica como verificada o contradicha. Es política, no
+            heurística.
+          </li>
+          <li>
+            <strong>Atribución por medio, no por periodista.</strong> Los hallazgos editoriales
+            citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
+          </li>
+          <li>
+            <strong>Severity crítico exige evidencia.</strong> El validador rechaza un hallazgo
+            etiquetado como <code>critical</code> sin al menos una referencia de contradicción
+            dateada y enlazada.
+          </li>
+        </ul>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>Preservación de fuentes (Wayback)</h3>
+        <p style={{ marginTop: 6 }}>
+          Una tarea diaria recorre cada URL citada y la archiva en Internet Archive
+          (<code>web.archive.org</code>). El snapshot resultante se publica junto al enlace
+          original en cada tarjeta del laboratorio, siguiendo la regla GIJN <em>"archivar antes
+          de citar"</em>. Si el medio retira la pieza después, el lector aún puede acceder a la
+          copia congelada.
+        </p>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>ClaimReview (schema.org)</h3>
+        <p style={{ marginTop: 6 }}>
+          Publicamos cada hallazgo editorial con datos estructurados{' '}
+          <a
+            href="https://schema.org/ClaimReview"
+            style={{ color: 'var(--civic)' }}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            schema.org/ClaimReview
+          </a>{' '}
+          embebidos en la página. Es el mismo estándar W3C que la API de Google Fact Check Tools
+          indexa — y del que <em>leemos</em> a Newtral, Maldita, EFE Verifica y AFP Factual. Al
+          publicarlo, terceros pueden cosecharnos en igualdad de condiciones.
+        </p>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>Política de correcciones</h3>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
+          <li>
+            Cada modificación posterior al primer publicado a <code>title</code>,{' '}
+            <code>summary</code> o <code>severity</code> se aplica vía la herramienta{' '}
+            <code>npm run correct-press-finding</code>, que añade al hallazgo una fila
+            permanente con texto original, texto corregido, motivo (≥20 caracteres), editor/a y
+            fecha ISO.
+          </li>
+          <li>
+            La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
+            historial es <em>append-only</em>.
+          </li>
+          <li>
+            Las refutaciones del medio citado pasan por el formulario público{' '}
+            <code>finding-response</code> y se publican verbatim.
+          </li>
+        </ul>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>Fuentes auditadas</h3>
+        <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 13.5 }}>
+          <li>
+            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en
+            licitación.
+          </li>
+          <li>
+            <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral
+            UE, incluido NextGenerationEU / DANA.
+          </li>
+          <li>
+            <strong>BOE</strong> — gaceta oficial estatal (convenios, expropiaciones,
+            subvenciones nominativas).
+          </li>
+          <li>
+            <strong>BDNS</strong> — base nacional de subvenciones.
+          </li>
+          <li>
+            <strong>Presupuesto CONPREL (MinHac)</strong> — capítulos de gasto e ingreso anuales.
+          </li>
+          <li>
+            <strong>Plenos de Riba-roja</strong> — actas + votos transcritos.
+          </li>
+          <li>
+            <strong>INE / SEPE</strong> — padrón y paro registrado mensual.
+          </li>
+          <li>
+            <strong>Google Fact Check Tools + Maldita + Newtral RSS</strong> — fact-checks de
+            terceros (cruzamos para "promesa repetida" y consenso externo).
+          </li>
+          <li>
+            <strong>Catastro (OVC)</strong> — referencia catastral y dirección, sólo en revisión
+            curatorial; no llega al verificador automático.
+          </li>
+        </ul>
+
+        <h3 style={{ marginTop: 16, fontSize: 15 }}>Alineación con IFCN</h3>
+        <p style={{ marginTop: 6, fontSize: 13.5 }}>
+          Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso
+          con la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
+          transparencia de fuentes — cada hallazgo cita documento + fecha + URL primaria; (3)
+          transparencia de financiación — el proyecto no recibe financiación pública ni privada y
+          su código es íntegramente público; (4) transparencia de metodología — esta sección; (5)
+          política abierta y honesta de correcciones — la bitácora pública sobre el propio
+          hallazgo.
+        </p>
+      </Card>
+
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 30 de abril de 2026 (añadida la pasada con LLM sobre
-        veredictos <code>sin-datos</code> y la regla de citas estructuradas con anclaje literal).
-        Cambios futuros sólo mediante PR público.
+        Última revisión de este documento: 21 de mayo de 2026 (añadida la sección "Laboratorio
+        de prensa" con escala de veredictos, disciplina antilibellos, Wayback, ClaimReview,
+        bitácora de correcciones y mapeo IFCN). Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )
