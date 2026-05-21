@@ -19,6 +19,7 @@
 import { useMemo, useState } from 'react'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { usePressLab } from '../hooks/usePressLab'
+import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 
 const VERDICT_LABEL = {
   verificado: 'Verificado',
@@ -761,6 +762,7 @@ export default function Laboratorio() {
               >
                 {lab.findings.slice(0, 5).map((f) => (
                   <li key={f.id} style={{ fontSize: 12 }}>
+                    <ClaimReviewJsonLd finding={f} />
                     <span
                       className="mono"
                       style={{
