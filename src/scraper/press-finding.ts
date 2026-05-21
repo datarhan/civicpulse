@@ -121,6 +121,30 @@ export interface PressFinding {
     sourceUrl?: string
     respondedAt: string
   } | null
+  /**
+   * Corrections log. Each entry records a curator-initiated change to
+   * an already-published finding, with the original text, the corrected
+   * text, a reason ≥20 chars, the editor's name, and an ISO date.
+   * IFCN signatory requirement: public corrections trail.
+   */
+  corrections?: PressFindingCorrection[]
+}
+
+/**
+ * Per-correction record. Fields are deliberately narrow — corrections
+ * apply only to title/summary/severity (the curator-editable ones).
+ * To rewrite quotes or evidence refs, retract the finding + republish.
+ */
+export interface PressFindingCorrection {
+  field: 'title' | 'summary' | 'severity'
+  original: string
+  corrected: string
+  /** Curator's plain-language explanation (≥20 chars). */
+  reason: string
+  /** Editor's name as recorded on the publishing repo. */
+  editor: string
+  /** ISO date of the correction. */
+  correctedAt: string
 }
 
 export interface PressFindingsSnapshot {
@@ -205,6 +229,45 @@ function validateRef(r: unknown, idx: number, label: string, ri: number): PressF
     kind: o.kind as PressFindingRef['kind'],
     ref: o.ref as string,
     snippet: o.snippet as string,
+  }
+}
+
+const CORRECTION_FIELDS: PressFindingCorrection['field'][] = ['title', 'summary', 'severity']
+
+function validateCorrection(c: unknown, idx: number, ci: number): PressFindingCorrection {
+  must(typeof c === 'object' && c !== null, `items[${idx}].corrections[${ci}] must be object`)
+  const o = c as Record<string, unknown>
+  must(
+    typeof o.field === 'string' && (CORRECTION_FIELDS as string[]).includes(o.field),
+    `items[${idx}].corrections[${ci}].field must be one of ${CORRECTION_FIELDS.join(',')}`,
+  )
+  must(
+    typeof o.original === 'string' && o.original.length > 0,
+    `items[${idx}].corrections[${ci}].original required`,
+  )
+  must(
+    typeof o.corrected === 'string' && o.corrected.length > 0,
+    `items[${idx}].corrections[${ci}].corrected required`,
+  )
+  must(
+    typeof o.reason === 'string' && o.reason.trim().length >= 20,
+    `items[${idx}].corrections[${ci}].reason must be ≥20 chars`,
+  )
+  must(
+    typeof o.editor === 'string' && o.editor.length > 0,
+    `items[${idx}].corrections[${ci}].editor required`,
+  )
+  must(
+    typeof o.correctedAt === 'string' && ISO_DATE.test(o.correctedAt),
+    `items[${idx}].corrections[${ci}].correctedAt must be ISO date`,
+  )
+  return {
+    field: o.field as PressFindingCorrection['field'],
+    original: o.original as string,
+    corrected: o.corrected as string,
+    reason: (o.reason as string).trim(),
+    editor: o.editor as string,
+    correctedAt: o.correctedAt as string,
   }
 }
 
@@ -316,6 +379,9 @@ function validateFinding(f: unknown, idx: number): PressFinding {
     }
   }
 
+  const rawCorrections = Array.isArray(o.corrections) ? (o.corrections as unknown[]) : []
+  const corrections = rawCorrections.map((c, ci) => validateCorrection(c, idx, ci))
+
   return {
     id: o.id as string,
     sourceClaimIds: o.sourceClaimIds as string[],
@@ -335,6 +401,7 @@ function validateFinding(f: unknown, idx: number): PressFinding {
     curatorName: o.curatorName as string,
     publishedAt: o.publishedAt as string,
     response,
+    corrections,
   }
 }
 

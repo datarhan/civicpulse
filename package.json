@@ -34,6 +34,7 @@
     "scrape:boe": "npx tsx scripts/scrape-boe.ts",
     "lookup-catastro": "npx tsx scripts/lookup-catastro.ts",
     "audit-press-links": "npx tsx scripts/audit-press-links.ts",
+    "correct-press-finding": "npx tsx scripts/correct-press-finding.ts",
     "scrape:pleno-agendas": "npx tsx scripts/scrape-pleno-agendas.ts",
     "scrape:ctbg": "npx tsx scripts/scrape-ctbg.ts",
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
