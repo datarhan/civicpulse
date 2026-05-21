@@ -163,9 +163,7 @@ export default function LabHealth() {
         >
           Diagnóstico de fuentes
         </div>
-        <div
-          style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}
-        >
+        <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
           Salud del laboratorio
         </div>
         <p

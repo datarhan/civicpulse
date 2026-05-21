@@ -62,7 +62,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Contratos públicos',
-      rows: tenders?.stats?.totalContracts ? `${tenders.stats.totalContracts.toLocaleString('es-ES')} contratos` : '—',
+      rows: tenders?.stats?.totalContracts
+        ? `${tenders.stats.totalContracts.toLocaleString('es-ES')} contratos`
+        : '—',
       updated: formatDate(tenders?.generatedAt),
       source: 'Gobierto · PLACSP',
       path: '/data/tenders.json',
@@ -110,7 +112,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Padrón municipal',
-      rows: padron?.latestTotal ? `${padron.latestTotal.toLocaleString('es-ES')} hab. (${padron.latestYear})` : '—',
+      rows: padron?.latestTotal
+        ? `${padron.latestTotal.toLocaleString('es-ES')} hab. (${padron.latestYear})`
+        : '—',
       updated: formatDate(padron?.generatedAt),
       source: 'INE · Tempus3 tabla 2903',
       path: '/data/padron.json',
@@ -118,7 +122,9 @@ function DatasetsCatalog() {
     },
     {
       name: 'Paro registrado',
-      rows: paro?.latestTotal ? `${paro.latestTotal.toLocaleString('es-ES')} personas (${paro.latestPeriod})` : '—',
+      rows: paro?.latestTotal
+        ? `${paro.latestTotal.toLocaleString('es-ES')} personas (${paro.latestPeriod})`
+        : '—',
       updated: formatDate(paro?.generatedAt),
       source: 'SEPE · serie municipal',
       path: '/data/paro.json',
@@ -151,12 +157,27 @@ function DatasetsCatalog() {
   ]
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 14 }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+        gap: 14,
+      }}
+    >
       {items.map((d) => (
         <Card key={d.path} hover>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'flex-start',
+              gap: 10,
+            }}
+          >
             <div style={{ minWidth: 0, flex: 1 }}>
-              <div style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-.005em' }}>{d.name}</div>
+              <div style={{ fontSize: 14.5, fontWeight: 600, letterSpacing: '-.005em' }}>
+                {d.name}
+              </div>
               <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
                 {d.rows}
               </div>
@@ -169,7 +190,15 @@ function DatasetsCatalog() {
             </div>
             <Ic.chart width={16} height={16} style={{ color: 'var(--ink40)', flexShrink: 0 }} />
           </div>
-          <div style={{ display: 'flex', gap: 4, marginTop: 12, alignItems: 'center', justifyContent: 'space-between' }}>
+          <div
+            style={{
+              display: 'flex',
+              gap: 4,
+              marginTop: 12,
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
             <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
               {d.fmt.map((f) => (
                 <Pill key={f} tone="ghost" size="xs">
@@ -182,7 +211,12 @@ function DatasetsCatalog() {
               target="_blank"
               rel="noreferrer"
               className="mono"
-              style={{ fontSize: 10.5, color: 'var(--civic)', textDecoration: 'none', fontWeight: 600 }}
+              style={{
+                fontSize: 10.5,
+                color: 'var(--civic)',
+                textDecoration: 'none',
+                fontWeight: 600,
+              }}
             >
               abrir →
             </a>
@@ -235,10 +269,7 @@ function WikidataCard() {
   )
   return (
     <Card>
-      <SectionHead
-        eyebrow={`Identidad del municipio · Wikidata ${f.qid}`}
-        title={f.label}
-      />
+      <SectionHead eyebrow={`Identidad del municipio · Wikidata ${f.qid}`} title={f.label} />
       <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 2, marginBottom: 12 }}>
         {f.description} · actualizado {generated}
       </div>
@@ -250,14 +281,22 @@ function WikidataCard() {
           marginBottom: 14,
         }}
       >
-        {stat('Población', f.population ? `${f.population.value.toLocaleString('es-ES')} (${f.population.year})` : '—')}
+        {stat(
+          'Población',
+          f.population
+            ? `${f.population.value.toLocaleString('es-ES')} (${f.population.year})`
+            : '—',
+        )}
         {stat('Superficie', f.areaKm2 ? `${f.areaKm2.toFixed(1)} km²` : '—')}
         {stat('Altitud', f.elevation ? `${f.elevation} m` : '—')}
         {stat(
           'Coordenadas',
-          f.coordinates ? `${f.coordinates.lat.toFixed(4)}, ${f.coordinates.lng.toFixed(4)}` : '—'
+          f.coordinates ? `${f.coordinates.lat.toFixed(4)}, ${f.coordinates.lng.toFixed(4)}` : '—',
         )}
-        {stat('Densidad', f.population && f.areaKm2 ? `${Math.round(f.population.value / f.areaKm2)} hab/km²` : '—')}
+        {stat(
+          'Densidad',
+          f.population && f.areaKm2 ? `${Math.round(f.population.value / f.areaKm2)} hab/km²` : '—',
+        )}
       </div>
       <div
         style={{
@@ -270,34 +309,42 @@ function WikidataCard() {
         }}
       >
         <div>
-          <span className="mono" style={{ color: 'var(--ink50)' }}>INE: </span>
-          <span className="mono" style={{ fontWeight: 700 }}>{f.identifiers.ine || '—'}</span>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>
+            INE:{' '}
+          </span>
+          <span className="mono" style={{ fontWeight: 700 }}>
+            {f.identifiers.ine || '—'}
+          </span>
         </div>
         <div>
-          <span className="mono" style={{ color: 'var(--ink50)' }}>OSM: </span>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>
+            OSM:{' '}
+          </span>
           {link(
             f.identifiers.osmRelation
               ? `https://www.openstreetmap.org/relation/${f.identifiers.osmRelation}`
               : null,
-            f.identifiers.osmRelation ? `rel/${f.identifiers.osmRelation}` : '—'
+            f.identifiers.osmRelation ? `rel/${f.identifiers.osmRelation}` : '—',
           )}
         </div>
         <div>
-          <span className="mono" style={{ color: 'var(--ink50)' }}>GeoNames: </span>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>
+            GeoNames:{' '}
+          </span>
           {link(
-            f.identifiers.geonames
-              ? `https://www.geonames.org/${f.identifiers.geonames}`
-              : null,
-            f.identifiers.geonames || '—'
+            f.identifiers.geonames ? `https://www.geonames.org/${f.identifiers.geonames}` : null,
+            f.identifiers.geonames || '—',
           )}
         </div>
         <div>
-          <span className="mono" style={{ color: 'var(--ink50)' }}>Commons: </span>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>
+            Commons:{' '}
+          </span>
           {link(
             f.identifiers.commonsCat
               ? `https://commons.wikimedia.org/wiki/Category:${encodeURIComponent(f.identifiers.commonsCat)}`
               : null,
-            f.identifiers.commonsCat || '—'
+            f.identifiers.commonsCat || '—',
           )}
         </div>
         <div style={{ marginLeft: 'auto' }}>
@@ -310,7 +357,12 @@ function WikidataCard() {
 
 function PopulationChart() {
   const { loading, error, data } = usePadron()
-  if (loading) return <Card><div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando padrón INE…</div></Card>
+  if (loading)
+    return (
+      <Card>
+        <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando padrón INE…</div>
+      </Card>
+    )
   if (error || !data) return null
 
   const pts = data.series.total
@@ -330,16 +382,16 @@ function PopulationChart() {
   const innerH = H - PAD_T - PAD_B
   const xAt = (i) => PAD_L + (i / (pts.length - 1)) * innerW
   const yAt = (v) => PAD_T + innerH - ((v - minV) / (maxV - minV || 1)) * innerH
-  const path = pts.map((p, i) => (i === 0 ? 'M' : 'L') + xAt(i).toFixed(1) + ',' + yAt(p.value).toFixed(1)).join(' ')
+  const path = pts
+    .map((p, i) => (i === 0 ? 'M' : 'L') + xAt(i).toFixed(1) + ',' + yAt(p.value).toFixed(1))
+    .join(' ')
   const area =
     'M' +
     xAt(0).toFixed(1) +
     ',' +
     (PAD_T + innerH).toFixed(1) +
     ' ' +
-    pts
-      .map((p, i) => 'L' + xAt(i).toFixed(1) + ',' + yAt(p.value).toFixed(1))
-      .join(' ') +
+    pts.map((p, i) => 'L' + xAt(i).toFixed(1) + ',' + yAt(p.value).toFixed(1)).join(' ') +
     ' L' +
     xAt(pts.length - 1).toFixed(1) +
     ',' +
@@ -371,7 +423,9 @@ function PopulationChart() {
         eyebrow={`Padrón oficial INE · ${years[0]}–${years[years.length - 1]}`}
         title="Población residente"
       />
-      <div style={{ display: 'flex', gap: 20, alignItems: 'baseline', marginTop: 4, marginBottom: 4 }}>
+      <div
+        style={{ display: 'flex', gap: 20, alignItems: 'baseline', marginTop: 4, marginBottom: 4 }}
+      >
         <div>
           <div className="mono" style={{ fontSize: 28, fontWeight: 800, letterSpacing: '-.01em' }}>
             {latest.value.toLocaleString('es-ES')}
@@ -453,12 +507,7 @@ function PopulationChart() {
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
           fuente:{' '}
-          <a
-            href={data.source}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
+          <a href={data.source} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
             ine.es
           </a>
         </div>
@@ -470,7 +519,10 @@ function PopulationChart() {
 export default function Datos() {
   const t = useT()
   return (
-    <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}>
+    <div
+      className="cp-page"
+      style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
+    >
       <div style={{ marginBottom: 18 }}>
         <div
           className="mono"
@@ -487,8 +539,8 @@ export default function Datos() {
           {t('datos.title')}
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 620 }}>
-          Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo, investigación y
-          transparencia.
+          Todo lo que alimenta CivicPulse, descargable y consultable vía API. Periodismo,
+          investigación y transparencia.
         </div>
         <div style={{ marginTop: 8, fontSize: 12 }}>
           <a

@@ -58,18 +58,36 @@ required. Set `WEBHOOK_URL` to flip to webhook + HTTP server mode.
 
 ## Running locally (macOS, no cloud)
 
-See [`LOCAL.md`](LOCAL.md) for the launchd install. TL;DR:
+See [`LOCAL.md`](LOCAL.md) for the full walk-through. TL;DR — two paths:
 
+**Docker (recommended for local testing):**
 ```bash
 cp .env.example .env    # fill in BOT_TOKEN
+docker compose up -d --build       # bot as a container, auto-restart
+docker compose logs -f             # tail output
+```
+
+**launchd user agent (alternative, native macOS):**
+```bash
 bash scripts/launchd-install.sh              # bot as user agent
 bash scripts/launchd-install-export.sh       # daily export → git push at 04:00 local
 ```
 
+Use launchd only when the repo lives outside `~/Documents/` — macOS
+TCC blocks launchd-spawned shells from invoking scripts inside
+`~/Documents/`. See `LOCAL.md § Troubleshooting`.
+
+Export the SQLite to `public/data/quejas.json` (host-side, container
+or not):
+```bash
+npm run export
+```
+
 Status:
 ```bash
-launchctl list | grep munigraph
-tail -f data/logs/bot.err.log
+docker compose ps                          # docker path
+launchctl list | grep munigraph            # launchd path
+tail -f data/logs/bot.err.log              # both paths share this log
 ```
 
 ## Deploying to Fly.io
