@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
@@ -85,6 +86,7 @@ function RefList({ refs, kind }) {
 function FindingDetailCard({ f, permalink }) {
   return (
     <Card id={f.id} style={{ scrollMarginTop: 24 }}>
+      <ClaimReviewJsonLd finding={f} />
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
         <Pill tone={SEVERITY_TONE[f.severity] || 'neutral'} size="xs">
           {SEVERITY_LABEL[f.severity] || f.severity}

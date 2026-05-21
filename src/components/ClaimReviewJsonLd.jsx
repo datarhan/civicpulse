@@ -66,9 +66,72 @@ function buildPayload(finding) {
   }
 }
 
+/**
+ * Pleno-finding variant. Schema differs from the press variant:
+ *   · no `attributedOutlets[].articleUrl[]` — the "source" is the
+ *     pleno session itself (acta URL when available, otherwise the
+ *     session permalink on /plenos).
+ *   · `itemReviewed.author` is the bloc (or named councillor when a
+ *     curator promoted an individualSpeaker via promote-claim).
+ *   · `appearance` collapses to a single CreativeWork pointing at
+ *     the session — there's only one source per pleno finding.
+ */
+function buildPlenoPayload(finding) {
+  const rating = SEVERITY_TO_RATING[finding.severity] ?? SEVERITY_TO_RATING.informational
+  const findingUrl = `${SITE_URL}/hallazgos#${finding.id}`
+  const plenoUrl = `${SITE_URL}/plenos#${finding.plenoId}`
+  const claimQuote = finding.quotes?.[0]?.text ?? finding.title
+  const author =
+    finding.individualSpeaker?.name ??
+    finding.quotes?.[0]?.speakerGroup ??
+    'Pleno municipal'
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ClaimReview',
+    url: findingUrl,
+    claimReviewed: claimQuote.slice(0, 280),
+    datePublished: finding.publishedAt || finding.plenoDate,
+    author: {
+      '@type': 'Organization',
+      name: 'CivicPulse',
+      url: SITE_URL,
+    },
+    itemReviewed: {
+      '@type': 'Claim',
+      author: { '@type': 'Person', name: author },
+      datePublished: finding.plenoDate,
+      appearance: [
+        {
+          '@type': 'CreativeWork',
+          url: plenoUrl,
+          publisher: { '@type': 'GovernmentOrganization', name: 'Ajuntament de Riba-roja de Túria' },
+        },
+      ],
+    },
+    reviewRating: {
+      '@type': 'Rating',
+      ratingValue: rating.ratingValue,
+      bestRating: 5,
+      worstRating: 1,
+      alternateName: rating.alternateName,
+    },
+  }
+}
+
+/**
+ * Discriminator: press findings carry `attributedOutlets`; pleno
+ * findings carry `plenoId`. Pick the right builder so each surface
+ * gets a schema.org-valid payload without intermixing fields that
+ * Rich Results would reject.
+ */
+function isPlenoFinding(finding) {
+  return Boolean(finding && finding.plenoId)
+}
+
 export default function ClaimReviewJsonLd({ finding }) {
   if (!finding || !finding.title) return null
-  const payload = buildPayload(finding)
+  const payload = isPlenoFinding(finding) ? buildPlenoPayload(finding) : buildPayload(finding)
   // dangerouslySetInnerHTML + JSON.stringify is the canonical pattern —
   // React doesn't trust `<script>` contents, but JSON-LD is data, not code.
   return (
@@ -79,4 +142,4 @@ export default function ClaimReviewJsonLd({ finding }) {
   )
 }
 
-export { buildPayload as _buildPayload }
+export { buildPayload as _buildPayload, buildPlenoPayload as _buildPlenoPayload }

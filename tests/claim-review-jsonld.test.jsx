@@ -8,7 +8,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { _buildPayload } from '../src/components/ClaimReviewJsonLd.jsx'
+import { _buildPayload, _buildPlenoPayload } from '../src/components/ClaimReviewJsonLd.jsx'
 
 const baseFinding = {
   id: 'F-2026-001',
@@ -63,7 +63,9 @@ describe('ClaimReviewJsonLd._buildPayload', () => {
   })
 
   it('maps severity onto a rating between 1 and 5', () => {
-    expect(_buildPayload({ ...baseFinding, severity: 'informational' }).reviewRating.ratingValue).toBe(5)
+    expect(
+      _buildPayload({ ...baseFinding, severity: 'informational' }).reviewRating.ratingValue,
+    ).toBe(5)
     expect(_buildPayload({ ...baseFinding, severity: 'notable' }).reviewRating.ratingValue).toBe(3)
     expect(_buildPayload({ ...baseFinding, severity: 'critical' }).reviewRating.ratingValue).toBe(1)
   })
@@ -98,6 +100,72 @@ describe('ClaimReviewJsonLd._buildPayload', () => {
 
   it('serializes cleanly as JSON (no circular refs / undefineds)', () => {
     const payload = _buildPayload(baseFinding)
+    expect(() => JSON.parse(JSON.stringify(payload))).not.toThrow()
+  })
+})
+
+const basePlenoFinding = {
+  id: 'PF-2026-001',
+  plenoId: '2026-04',
+  plenoDate: '2026-04-15',
+  title: 'Verificación de declaración del bloc PP sobre presupuesto',
+  summary:
+    'El bloc PP afirmó que el presupuesto crecía un 20%. Los datos CONPREL muestran un crecimiento del 8%.',
+  severity: 'notable',
+  sourceClaimIds: ['C-pleno-001'],
+  quotes: [
+    {
+      text: 'El presupuesto municipal crecerá un 20% el próximo ejercicio',
+      speakerGroup: 'PP',
+      claimId: 'C-pleno-001',
+    },
+  ],
+  corroboration: [],
+  contradiction: [],
+  relatedPromiseIds: [],
+  curatorName: 'Curador',
+  publishedAt: '2026-05-01',
+}
+
+describe('ClaimReviewJsonLd._buildPlenoPayload', () => {
+  it('emits a ClaimReview envelope with the pleno session as the source', () => {
+    const payload = _buildPlenoPayload(basePlenoFinding)
+    expect(payload['@type']).toBe('ClaimReview')
+    expect(payload.url).toContain('/hallazgos#PF-2026-001')
+    expect(payload.itemReviewed.appearance).toHaveLength(1)
+    expect(payload.itemReviewed.appearance[0].url).toContain('/plenos#2026-04')
+    expect(payload.itemReviewed.appearance[0].publisher.name).toBe(
+      'Ajuntament de Riba-roja de Túria',
+    )
+  })
+
+  it('uses the bloc name as itemReviewed.author when no individualSpeaker is promoted', () => {
+    const payload = _buildPlenoPayload(basePlenoFinding)
+    expect(payload.itemReviewed.author['@type']).toBe('Person')
+    expect(payload.itemReviewed.author.name).toBe('PP')
+  })
+
+  it('prefers the individualSpeaker name when present (curator promoted)', () => {
+    const payload = _buildPlenoPayload({
+      ...basePlenoFinding,
+      individualSpeaker: { slug: 'jane-doe', name: 'Jane Doe', party: 'PP' },
+    })
+    expect(payload.itemReviewed.author.name).toBe('Jane Doe')
+  })
+
+  it('falls back to "Pleno municipal" when no speaker is recorded', () => {
+    const payload = _buildPlenoPayload({ ...basePlenoFinding, quotes: [] })
+    expect(payload.itemReviewed.author.name).toBe('Pleno municipal')
+  })
+
+  it('maps severity onto a rating between 1 and 5', () => {
+    expect(_buildPlenoPayload({ ...basePlenoFinding, severity: 'critical' }).reviewRating.ratingValue).toBe(1)
+    expect(_buildPlenoPayload({ ...basePlenoFinding, severity: 'notable' }).reviewRating.ratingValue).toBe(3)
+    expect(_buildPlenoPayload({ ...basePlenoFinding, severity: 'informational' }).reviewRating.ratingValue).toBe(5)
+  })
+
+  it('serializes cleanly as JSON', () => {
+    const payload = _buildPlenoPayload(basePlenoFinding)
     expect(() => JSON.parse(JSON.stringify(payload))).not.toThrow()
   })
 })
