@@ -138,3 +138,60 @@ describe('press-verifier — verifyPressClaimsBatch', () => {
     expect(snap.stats.byVerdict['sin-datos']).toBeGreaterThanOrEqual(1)
   })
 })
+
+describe('press-verifier — Google Fact Check Tools cross-reference', () => {
+  const newtralReview = {
+    id: 'fc-newtral-1',
+    claim: 'Riba-roja invertirá 50 millones de euros en el parque del Túria',
+    claimant: null,
+    claimDate: null,
+    reviewerName: 'Newtral',
+    reviewerSite: 'newtral.es',
+    reviewTitle: 'No es cierto que Riba-roja invertirá 50 millones',
+    reviewUrl: 'https://www.newtral.es/riba-roja-fake-claim/20260201/',
+    reviewDate: '2026-02-01',
+    verdict: 'Falso',
+    normalizedVerdict: 'contradicho' as const,
+    languageCode: 'es',
+  }
+
+  it('appends a kind:factcheck evidence row when a fact-check matches', () => {
+    const claim = makeClaim({
+      verbatim: 'Riba-roja invertirá 50 millones de euros en el parque del Túria',
+    })
+    const result = verifyPressClaim({
+      claim,
+      tenders: { contracts: [] },
+      factchecks: [newtralReview],
+    })
+    const fcEvidence = result.evidence.find((e) => e.kind === 'factcheck')
+    expect(fcEvidence?.ref).toBe(newtralReview.reviewUrl)
+    expect(fcEvidence?.snippet).toMatch(/Newtral/)
+    expect(result.checkedAgainst).toContain('factcheck')
+  })
+
+  it('upgrades a sin-datos verdict to the fact-checker consensus', () => {
+    const claim = makeClaim({
+      verbatim: 'Riba-roja invertirá 50 millones de euros en el parque del Túria',
+    })
+    const result = verifyPressClaim({
+      claim,
+      tenders: { contracts: [] },
+      factchecks: [newtralReview],
+    })
+    expect(result.verdict).toBe('contradicho')
+    expect(result.summary).toMatch(/consenso de fact-checkers/)
+  })
+
+  it('ignores factchecks when none have meaningful token overlap', () => {
+    const claim = makeClaim({
+      verbatim: 'Headline about national tax reform with no Riba-roja content',
+    })
+    const result = verifyPressClaim({
+      claim,
+      tenders: { contracts: [] },
+      factchecks: [newtralReview],
+    })
+    expect(result.evidence.some((e) => e.kind === 'factcheck')).toBe(false)
+  })
+})

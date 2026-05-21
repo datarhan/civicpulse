@@ -46,6 +46,10 @@ jobs:
               # transient LLM-API outage or missing key doesn't kill
               # the whole nightly. auto-curate-press has its own LOREG
               # hard-stop built in.
+              # scrape:factcheck runs FIRST so verify:press-claims can
+              # cross-reference Newtral / Maldita / EFE Verifica.
+              # Gracefully no-ops when GOOGLE_FACT_CHECK_API_KEY is absent.
+              npm run scrape:factcheck || true
               npm run extract:press-claims -- --max 60 || true
               npm run verify:press-claims || true
               npm run summarize:press -- --max 40 || true

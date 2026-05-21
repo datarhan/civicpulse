@@ -16,6 +16,7 @@ const FILES = [
   '/data/press-triangulation.json',
   '/data/press-coverage-gaps.json',
   '/data/press-findings.json',
+  '/data/factcheck.json',
 ]
 
 async function fetchOptional(url) {
@@ -38,13 +39,14 @@ export function usePressLab() {
     triangulation: null,
     gaps: null,
     findings: [],
+    factcheck: null,
   })
 
   useEffect(() => {
     let cancelled = false
     Promise.all(FILES.map(fetchOptional)).then((blobs) => {
       if (cancelled) return
-      const [press, summaries, verified, trust, triangulation, gaps, findings] = blobs
+      const [press, summaries, verified, trust, triangulation, gaps, findings, factcheck] = blobs
       setState({
         loading: false,
         press: press?.items ?? [],
@@ -54,6 +56,7 @@ export function usePressLab() {
         triangulation: triangulation ?? null,
         gaps: gaps ?? null,
         findings: findings?.items ?? [],
+        factcheck: factcheck ?? null,
       })
     })
     return () => {

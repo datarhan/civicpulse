@@ -29,6 +29,7 @@
     "scrape:plenos": "npx tsx scripts/scrape-plenos.ts",
     "scrape:wikidata": "npx tsx scripts/scrape-wikidata.ts",
     "scrape:promise-suggestions": "npx tsx scripts/scrape-promise-suggestions.ts",
+    "scrape:factcheck": "npx tsx scripts/scrape-factcheck.ts",
     "scrape:pleno-agendas": "npx tsx scripts/scrape-pleno-agendas.ts",
     "scrape:ctbg": "npx tsx scripts/scrape-ctbg.ts",
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",

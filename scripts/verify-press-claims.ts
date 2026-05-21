@@ -27,6 +27,7 @@ const PATHS = {
   promises: join(PROJECT_ROOT, 'public/data/promises.json'),
   padron: join(PROJECT_ROOT, 'public/data/padron.json'),
   paro: join(PROJECT_ROOT, 'public/data/paro.json'),
+  factcheck: join(PROJECT_ROOT, 'public/data/factcheck.json'),
   out: join(PROJECT_ROOT, 'public/data/press-claims-verified.json'),
 }
 
@@ -47,16 +48,25 @@ async function main() {
   }
   const claims = claimsSnap.items
 
-  const [tenders, bdns, budget, promises, padron, paro] = await Promise.all([
+  const [tenders, bdns, budget, promises, padron, paro, factcheckSnap] = await Promise.all([
     readJson(PATHS.tenders),
     readJson(PATHS.bdns),
     readJson(PATHS.budget),
     readJson(PATHS.promises),
     readJson(PATHS.padron),
     readJson(PATHS.paro),
+    readJson(PATHS.factcheck),
   ])
+  const factchecks =
+    (factcheckSnap as { items?: import('../src/scraper/factcheck').FactCheckRow[] } | null)?.items ??
+    []
 
-  console.log(`[verify:press-claims] verifying ${claims.length} claims`)
+  console.log(
+    `[verify:press-claims] verifying ${claims.length} claims` +
+      (factchecks.length > 0
+        ? ` against ${factchecks.length} third-party fact-checks`
+        : ' (no fact-checks indexed)'),
+  )
 
   const snap = verifyPressClaimsBatch(claims, {
     tenders,
@@ -65,6 +75,7 @@ async function main() {
     promises,
     padron,
     paro,
+    factchecks,
   })
 
   await mkdir(dirname(PATHS.out), { recursive: true })

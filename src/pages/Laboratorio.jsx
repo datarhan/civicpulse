@@ -380,6 +380,63 @@ function OutletScoreboard({ outlets }) {
   )
 }
 
+function FactCheckRail({ factcheck }) {
+  const items = factcheck?.items ?? []
+  if (items.length === 0) {
+    return (
+      <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 8, lineHeight: 1.55 }}>
+        Sin verificaciones de terceros indexadas para Riba-roja en este periodo. Fuente: Google
+        Fact Check Tools API (Newtral, Maldita, EFE Verifica, AFP Factual). Configurar{' '}
+        <code>GOOGLE_FACT_CHECK_API_KEY</code> en .env para activar.
+      </div>
+    )
+  }
+  return (
+    <ul style={{ margin: '8px 0 0', padding: 0, listStyle: 'none', display: 'grid', gap: 8 }}>
+      {items.slice(0, 6).map((row) => {
+        const tone = VERDICT_TONE[row.normalizedVerdict] || 'neutral'
+        return (
+          <li key={row.id} style={{ fontSize: 12, lineHeight: 1.45 }}>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
+              <Pill tone={tone} size="xs">
+                {row.verdict || VERDICT_LABEL[row.normalizedVerdict] || row.normalizedVerdict}
+              </Pill>
+              <span
+                className="mono"
+                style={{
+                  fontSize: 10,
+                  color: 'var(--civic)',
+                  textTransform: 'uppercase',
+                  fontWeight: 700,
+                  letterSpacing: '.06em',
+                }}
+              >
+                {row.reviewerName}
+              </span>
+              <span className="mono" style={{ fontSize: 10, color: 'var(--ink60)' }}>
+                {row.reviewDate.slice(0, 10)}
+              </span>
+            </div>
+            <a
+              href={row.reviewUrl}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              {row.reviewTitle}
+            </a>
+          </li>
+        )
+      })}
+      {items.length > 6 && (
+        <li className="mono" style={{ fontSize: 11, color: 'var(--ink60)' }}>
+          +{items.length - 6} verificaciones más
+        </li>
+      )}
+    </ul>
+  )
+}
+
 function CoverageGaps({ items }) {
   if (!items || items.length === 0) {
     return (
@@ -677,6 +734,14 @@ export default function Laboratorio() {
             <div style={{ marginTop: 8 }}>
               <CoverageGaps items={lab.gaps?.items ?? []} />
             </div>
+          </Card>
+
+          <Card>
+            <SectionHead
+              eyebrow="Verificaciones externas"
+              title="Fact-checkers terceros (Google FCT)"
+            />
+            <FactCheckRail factcheck={lab.factcheck} />
           </Card>
 
           {lab.findings.length > 0 && (

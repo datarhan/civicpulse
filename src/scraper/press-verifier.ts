@@ -24,6 +24,7 @@ import {
 } from './claim-verifier'
 import type { PlenoClaim, ClaimTopic as PlenoClaimTopic } from './pleno-claim'
 import type { PressClaim, ClaimTopic as PressClaimTopic } from './press-claim'
+import { matchFactChecks, type FactCheckRow } from './factcheck'
 
 // PressClaim's topic enum extends pleno's with 'demografia' — keep
 // the projection sane by mapping the press-only value to the existing
@@ -148,6 +149,15 @@ export interface PressVerifierInputs {
   padron?: unknown
   paro?: unknown
   priorClaims?: PlenoClaim[]
+  /**
+   * Optional third-party fact-checks from the Google Fact Check Tools
+   * API (Newtral / Maldita / EFE Verifica / AFP Factual). When passed,
+   * the verifier looks for token-overlap matches against the press
+   * claim and appends them as evidence rows with kind='factcheck'.
+   * A sin-datos verdict is upgraded when ≥1 published fact-check has
+   * a non-unknown rating.
+   */
+  factchecks?: FactCheckRow[]
 }
 
 export interface PressClaimVerification extends ClaimVerification {
@@ -157,11 +167,82 @@ export interface PressClaimVerification extends ClaimVerification {
   articleFingerprint: string
 }
 
+/**
+ * Cross-reference a press claim against the third-party fact-check
+ * index. Adds up to 3 `kind: 'factcheck'` evidence rows to the
+ * incoming ClaimVerification + (optionally) upgrades the verdict
+ * when our verifier returned sin-datos but the fact-checkers agree.
+ *
+ * Verdict-upgrade rule (deliberately conservative):
+ *   - Our verdict was sin-datos AND the fact-checker majority verdict
+ *     is verificado / parcial / contradicho → adopt their verdict.
+ *   - Our verdict was already definitive → keep ours, just attach
+ *     the fact-check rows as additional corroboration.
+ *   - When fact-checkers disagree among themselves, keep our verdict
+ *     and leave a curator note.
+ */
+function applyFactCheckCrossRef(
+  inner: ClaimVerification,
+  claim: PressClaim,
+  factchecks: FactCheckRow[],
+): ClaimVerification {
+  if (factchecks.length === 0) return inner
+  const matches = matchFactChecks(
+    { claimVerbatim: claim.verbatim, articleUrl: claim.articleUrl },
+    factchecks,
+  )
+  if (matches.length === 0) return inner
+
+  // Aggregate fact-checker verdicts (ignore 'unknown').
+  const nonUnknown = matches.filter((m) => m.row.normalizedVerdict !== 'unknown')
+  const consensusKey = (() => {
+    if (nonUnknown.length === 0) return null
+    const counts: Record<string, number> = {}
+    for (const m of nonUnknown) {
+      const k = m.row.normalizedVerdict
+      counts[k] = (counts[k] || 0) + 1
+    }
+    const [top] = Object.entries(counts).sort((a, b) => b[1] - a[1])
+    // Require a clear plurality (top > rest combined).
+    const others = nonUnknown.length - top[1]
+    return top[1] > others ? (top[0] as ClaimVerdict) : null
+  })()
+
+  const newEvidence: ClaimEvidence[] = matches.map((m) => ({
+    kind: 'factcheck',
+    ref: m.row.reviewUrl,
+    snippet: `${m.row.reviewerName}: "${m.row.verdict}" — ${m.row.reviewTitle.slice(0, 180)}`,
+    similarity: m.score,
+  }))
+
+  const checkedAgainst = [...inner.checkedAgainst, 'factcheck']
+
+  // Upgrade only when our verifier had no data of its own to go on.
+  let verdict = inner.verdict
+  let summary = inner.summary
+  if (inner.verdict === 'sin-datos' && consensusKey) {
+    verdict = consensusKey
+    summary = `Adoptado del consenso de fact-checkers terceros (${nonUnknown
+      .map((m) => m.row.reviewerName)
+      .filter((v, i, arr) => arr.indexOf(v) === i)
+      .join(', ')}). Datos municipales no aportaron señal.`
+  }
+
+  return {
+    ...inner,
+    verdict,
+    summary,
+    evidence: [...inner.evidence, ...newEvidence],
+    checkedAgainst,
+  }
+}
+
 export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerification {
   const { claim } = inputs
+  const factchecks = inputs.factchecks ?? []
 
   if (claim.type === 'dato_municipal') {
-    const result = verifyDatoMunicipal(claim, {
+    const base = verifyDatoMunicipal(claim, {
       padron: inputs.padron,
       paro: inputs.paro,
       budget: inputs.budget,
@@ -172,6 +253,7 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
       evidence: [],
       checkedAgainst: [],
     }
+    const result = applyFactCheckCrossRef(base, claim, factchecks)
     return {
       ...result,
       articleUrl: claim.articleUrl,
@@ -182,7 +264,7 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
   }
 
   const projected = projectPressClaim(claim)
-  const result = verifyClaim({
+  const innerResult = verifyClaim({
     claim: projected,
     tenders: inputs.tenders,
     bdns: inputs.bdns,
@@ -190,6 +272,7 @@ export function verifyPressClaim(inputs: PressVerifierInputs): PressClaimVerific
     promises: inputs.promises,
     priorClaims: inputs.priorClaims,
   })
+  const result = applyFactCheckCrossRef(innerResult, claim, factchecks)
 
   return {
     ...result,
