@@ -55,6 +55,11 @@ jobs:
               npm run summarize:press -- --max 40 || true
               npm run compute:press-analytics || true
               npm run auto-curate-press || true
+              # Daily link-rot audit + Wayback availability lookup.
+              # Surfaces dead source URLs on /laboratorio so curators
+              # can cite the frozen snapshot instead of the 404. Runs
+              # LAST so it sees every claim the night's extract added.
+              npm run audit-press-links || true
               ;;
             officials)             npm run scrape:officials ;;
             budget)                npm run scrape:budget ;;
