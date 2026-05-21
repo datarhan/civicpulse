@@ -107,13 +107,9 @@ describe('factcheck — parseFactCheckResponse', () => {
   })
 
   it('produces stable 12-char ids per review URL', () => {
-    const rows = parseFactCheckResponse([
-      { claims: [{ text: 'x', claimReview: [FAKE_REVIEW] }] },
-    ])
+    const rows = parseFactCheckResponse([{ claims: [{ text: 'x', claimReview: [FAKE_REVIEW] }] }])
     expect(rows[0].id).toMatch(/^[a-f0-9]{12}$/)
-    const again = parseFactCheckResponse([
-      { claims: [{ text: 'x', claimReview: [FAKE_REVIEW] }] },
-    ])
+    const again = parseFactCheckResponse([{ claims: [{ text: 'x', claimReview: [FAKE_REVIEW] }] }])
     expect(again[0].id).toBe(rows[0].id)
   })
 })

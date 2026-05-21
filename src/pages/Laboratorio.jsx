@@ -385,8 +385,8 @@ function FactCheckRail({ factcheck }) {
   if (items.length === 0) {
     return (
       <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 8, lineHeight: 1.55 }}>
-        Sin verificaciones de terceros indexadas para Riba-roja en este periodo. Fuente: Google
-        Fact Check Tools API (Newtral, Maldita, EFE Verifica, AFP Factual). Configurar{' '}
+        Sin verificaciones de terceros indexadas para Riba-roja en este periodo. Fuente: Google Fact
+        Check Tools API (Newtral, Maldita, EFE Verifica, AFP Factual). Configurar{' '}
         <code>GOOGLE_FACT_CHECK_API_KEY</code> en .env para activar.
       </div>
     )

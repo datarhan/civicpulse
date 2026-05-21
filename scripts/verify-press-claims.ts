@@ -58,8 +58,8 @@ async function main() {
     readJson(PATHS.factcheck),
   ])
   const factchecks =
-    (factcheckSnap as { items?: import('../src/scraper/factcheck').FactCheckRow[] } | null)?.items ??
-    []
+    (factcheckSnap as { items?: import('../src/scraper/factcheck').FactCheckRow[] } | null)
+      ?.items ?? []
 
   console.log(
     `[verify:press-claims] verifying ${claims.length} claims` +

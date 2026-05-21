@@ -88,9 +88,7 @@ export function normalizeVerdict(textualRating: string): ClaimVerdict | 'unknown
     return 'parcial'
   if (/sin\s+evidencia|sin\s+pruebas|insufficient|no\s+evidence|sin\s+contexto/.test(r))
     return 'sin-datos'
-  if (
-    /\bfalso\b|fake|false\b|engañoso|misleading|incorrecto|erróneo|bulo|desinforma/.test(r)
-  )
+  if (/\bfalso\b|fake|false\b|engañoso|misleading|incorrecto|erróneo|bulo|desinforma/.test(r))
     return 'contradicho'
   if (/\bverdader|true\b|cierto|correcto|confirmado|verified/.test(r)) return 'verificado'
   return 'unknown'
