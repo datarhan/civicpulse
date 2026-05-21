@@ -168,6 +168,7 @@ function norm(s: string | undefined | null): string {
  * project-specific tokens.
  */
 const STOPWORDS = new Set([
+  // Place + project boilerplate (es)
   'riba',
   'roja',
   'rivaroja',
@@ -184,6 +185,24 @@ const STOPWORDS = new Set([
   'proyectos',
   'plan',
   'ejecucion',
+  // Debate / press-quote verbs (es) — these inflate every score against
+  // every tender title because the press uses them constantly.
+  'presenta',
+  'solicita',
+  'demanda',
+  'insta',
+  'anuncia',
+  'comparece',
+  'aprueba',
+  'rechaza',
+  'comunica',
+  'destaca',
+  // Same set, Valencian variants — the lab consumes both languages.
+  'presentar',
+  'sollicita',
+  'sol·licita',
+  'demana',
+  'comuneca',
 ])
 
 /** Very cheap word-overlap score between two normalized strings. */
@@ -216,7 +235,14 @@ function tenderAmount(r: TenderRow): number | null {
 }
 
 function tenderTitle(r: TenderRow): string {
-  return [r.title, r.contractor].filter(Boolean).join(' · ')
+  // Concatenate every searchable text field. The PLACSP feed includes
+  // contractor (awarded entity), assignee (concejalía / dept responsible)
+  // and categoryTitle (CPV-style category) on top of `title`. Before
+  // 2026-05, the matcher only saw `title · contractor`, which dropped
+  // a lot of real matches where the press named the dept or the CPV
+  // category but not the literal tender title.
+  const r2 = r as TenderRow & { assignee?: string; categoryTitle?: string }
+  return [r.title, r.contractor, r2.assignee, r2.categoryTitle].filter(Boolean).join(' · ')
 }
 
 function readBdns(data: unknown): BdnsRow[] {
@@ -429,9 +455,19 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   //    contains the referencedEntity. Skip if section 2 already pushed
   //    a tender evidence row for this claim — otherwise we'd double-count.
   const alreadyHasTenderEvidence = evidence.some((e) => e.kind === 'tender')
+  // Entity-only matching applies to:
+  //   · cita_obra — speaker names a work / project
+  //   · acusacion_publica with subtype='factual' or 'contra-datos' — speaker
+  //     names a specific verifiable entity (tender, BDNS, contract). The
+  //     amount-based block above runs first; this fills the gap when the
+  //     accusation cites an entity but no euro figure.
+  const eligibleForEntityMatch =
+    claim.type === 'cita_obra' ||
+    (claim.type === 'acusacion_publica' &&
+      (claim.accusationSubtype === 'factual' || claim.accusationSubtype === 'contra-datos'))
   if (
     !alreadyHasTenderEvidence &&
-    claim.type === 'cita_obra' &&
+    eligibleForEntityMatch &&
     claim.entities.referencedEntity &&
     tenderList.length > 0
   ) {
@@ -439,11 +475,13 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     const claimsCompleted = COMPLETION_PATTERNS.some((rx) => rx.test(claim.verbatim))
     for (const t of tenderList) {
       const textSim = overlapScore(claim.entities.referencedEntity, tenderTitle(t))
-      // 0.65 threshold — lower lets spurious single-word-overlap matches
-      // leak through ("Escoto" in two unrelated tenders, generic "plan"
-      // matching any plan document). 0.65 requires meaningful multi-word
-      // agreement.
-      if (textSim >= 0.65) {
+      // 0.50 floor — lowered from 0.65 once tenderTitle was extended to
+      // include contractor + assignee + categoryTitle (so a 50%-overlap
+      // hit on 4 concatenated fields is meaningfully stricter than a
+      // 50% hit on just `title`). The LLM second pass (claim-verifier-llm.ts)
+      // catches false positives via cite-grounding; we lose precision
+      // hardly any and gain a lot of recall on real municipal-work claims.
+      if (textSim >= 0.5) {
         evidence.push({
           kind: 'tender',
           ref: t.permalink ?? '',
