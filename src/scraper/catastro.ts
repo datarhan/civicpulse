@@ -154,9 +154,7 @@ function projectRefCatParcel(bico: ApiBienInmuebleDir | undefined): CatastroParc
   if (!bico?.bi) return null
   const refCat = refCatFromRc(bico.bi.idbi?.rc)
   if (!refCat) return null
-  const direccion = bico.bi.dt
-    ? buildDireccion({ dt: bico.bi.dt } as ApiDirParcel)
-    : ''
+  const direccion = bico.bi.dt ? buildDireccion({ dt: bico.bi.dt } as ApiDirParcel) : ''
   return {
     id: sha256(refCat),
     refCatastral: refCat,

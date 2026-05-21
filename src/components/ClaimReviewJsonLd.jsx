@@ -82,9 +82,7 @@ function buildPlenoPayload(finding) {
   const plenoUrl = `${SITE_URL}/plenos#${finding.plenoId}`
   const claimQuote = finding.quotes?.[0]?.text ?? finding.title
   const author =
-    finding.individualSpeaker?.name ??
-    finding.quotes?.[0]?.speakerGroup ??
-    'Pleno municipal'
+    finding.individualSpeaker?.name ?? finding.quotes?.[0]?.speakerGroup ?? 'Pleno municipal'
 
   return {
     '@context': 'https://schema.org',
@@ -105,7 +103,10 @@ function buildPlenoPayload(finding) {
         {
           '@type': 'CreativeWork',
           url: plenoUrl,
-          publisher: { '@type': 'GovernmentOrganization', name: 'Ajuntament de Riba-roja de Túria' },
+          publisher: {
+            '@type': 'GovernmentOrganization',
+            name: 'Ajuntament de Riba-roja de Túria',
+          },
         },
       ],
     },

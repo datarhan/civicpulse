@@ -102,9 +102,7 @@ async function fetchRssRows(): Promise<FactCheckRow[]> {
         }
         return rows
       } catch (err) {
-        console.warn(
-          `[scrape:factcheck] ${feed.reviewerName} RSS error: ${(err as Error).message}`,
-        )
+        console.warn(`[scrape:factcheck] ${feed.reviewerName} RSS error: ${(err as Error).message}`)
         return []
       }
     }),

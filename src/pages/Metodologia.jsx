@@ -343,11 +343,14 @@ export default function Metodologia() {
           title="Cómo auditamos noticias publicadas sobre Riba-roja"
         />
         <p style={{ marginTop: 8 }}>
-          El <a href="/laboratorio" style={{ color: 'var(--civic)' }}>laboratorio</a> aplica el
-          contraste editorial habitual de la verificación de hechos al flujo de prensa local. Cada
-          afirmación citada se extrae de forma textual y se cruza, de forma determinista, contra el
-          rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE, presupuesto CONPREL,
-          plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
+          El{' '}
+          <a href="/laboratorio" style={{ color: 'var(--civic)' }}>
+            laboratorio
+          </a>{' '}
+          aplica el contraste editorial habitual de la verificación de hechos al flujo de prensa
+          local. Cada afirmación citada se extrae de forma textual y se cruza, de forma
+          determinista, contra el rastro de datos municipales públicos (PLACSP, TED, BDNS, BOE,
+          presupuesto CONPREL, plenos, padrón INE, paro SEPE). La fuente primaria siempre gana.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>Escala de veredictos</h3>
@@ -367,13 +370,16 @@ export default function Metodologia() {
             promoverse a hallazgo crítico.
           </li>
           <li>
-            <strong>Sin datos.</strong> El verificador no ha encontrado señal municipal. La
-            ausencia de evidencia no es evidencia de falsedad: el hallazgo no se publica como
-            crítico.
+            <strong>Sin datos.</strong> El verificador no ha encontrado señal municipal. La ausencia
+            de evidencia no es evidencia de falsedad: el hallazgo no se publica como crítico.
           </li>
           <li>
             <strong>Promesa repetida.</strong> La afirmación corresponde a un compromiso ya
-            registrado en <a href="/promesas" style={{ color: 'var(--civic)' }}>/promesas</a>.
+            registrado en{' '}
+            <a href="/promesas" style={{ color: 'var(--civic)' }}>
+              /promesas
+            </a>
+            .
           </li>
         </ul>
 
@@ -398,11 +404,11 @@ export default function Metodologia() {
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>Preservación de fuentes (Wayback)</h3>
         <p style={{ marginTop: 6 }}>
-          Una tarea diaria recorre cada URL citada y la archiva en Internet Archive
-          (<code>web.archive.org</code>). El snapshot resultante se publica junto al enlace
-          original en cada tarjeta del laboratorio, siguiendo la regla GIJN <em>"archivar antes
-          de citar"</em>. Si el medio retira la pieza después, el lector aún puede acceder a la
-          copia congelada.
+          Una tarea diaria recorre cada URL citada y la archiva en Internet Archive (
+          <code>web.archive.org</code>). El snapshot resultante se publica junto al enlace original
+          en cada tarjeta del laboratorio, siguiendo la regla GIJN{' '}
+          <em>"archivar antes de citar"</em>. Si el medio retira la pieza después, el lector aún
+          puede acceder a la copia congelada.
         </p>
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>ClaimReview (schema.org)</h3>
@@ -426,9 +432,8 @@ export default function Metodologia() {
           <li>
             Cada modificación posterior al primer publicado a <code>title</code>,{' '}
             <code>summary</code> o <code>severity</code> se aplica vía la herramienta{' '}
-            <code>npm run correct-press-finding</code>, que añade al hallazgo una fila
-            permanente con texto original, texto corregido, motivo (≥20 caracteres), editor/a y
-            fecha ISO.
+            <code>npm run correct-press-finding</code>, que añade al hallazgo una fila permanente
+            con texto original, texto corregido, motivo (≥20 caracteres), editor/a y fecha ISO.
           </li>
           <li>
             La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
@@ -443,16 +448,15 @@ export default function Metodologia() {
         <h3 style={{ marginTop: 16, fontSize: 15 }}>Fuentes auditadas</h3>
         <ul style={{ margin: '6px 0 0', paddingLeft: 20, fontSize: 13.5 }}>
           <li>
-            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en
-            licitación.
+            <strong>PLACSP / Gobierto</strong> — contratos municipales adjudicados y en licitación.
           </li>
           <li>
-            <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral
-            UE, incluido NextGenerationEU / DANA.
+            <strong>TED (Tenders Electronic Daily)</strong> — contratos europeos sobre el umbral UE,
+            incluido NextGenerationEU / DANA.
           </li>
           <li>
-            <strong>BOE</strong> — gaceta oficial estatal (convenios, expropiaciones,
-            subvenciones nominativas).
+            <strong>BOE</strong> — gaceta oficial estatal (convenios, expropiaciones, subvenciones
+            nominativas).
           </li>
           <li>
             <strong>BDNS</strong> — base nacional de subvenciones.
@@ -478,20 +482,19 @@ export default function Metodologia() {
 
         <h3 style={{ marginTop: 16, fontSize: 15 }}>Alineación con IFCN</h3>
         <p style={{ marginTop: 6, fontSize: 13.5 }}>
-          Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso
-          con la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
+          Este apartado cubre los cinco pilares del Código de Principios de IFCN: (1) compromiso con
+          la <em>no partisanía</em> y la equidad — el mismo criterio se aplica a cada bloc; (2)
           transparencia de fuentes — cada hallazgo cita documento + fecha + URL primaria; (3)
-          transparencia de financiación — el proyecto no recibe financiación pública ni privada y
-          su código es íntegramente público; (4) transparencia de metodología — esta sección; (5)
-          política abierta y honesta de correcciones — la bitácora pública sobre el propio
-          hallazgo.
+          transparencia de financiación — el proyecto no recibe financiación pública ni privada y su
+          código es íntegramente público; (4) transparencia de metodología — esta sección; (5)
+          política abierta y honesta de correcciones — la bitácora pública sobre el propio hallazgo.
         </p>
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 21 de mayo de 2026 (añadida la sección "Laboratorio
-        de prensa" con escala de veredictos, disciplina antilibellos, Wayback, ClaimReview,
-        bitácora de correcciones y mapeo IFCN). Cambios futuros sólo mediante PR público.
+        Última revisión de este documento: 21 de mayo de 2026 (añadida la sección "Laboratorio de
+        prensa" con escala de veredictos, disciplina antilibellos, Wayback, ClaimReview, bitácora de
+        correcciones y mapeo IFCN). Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )

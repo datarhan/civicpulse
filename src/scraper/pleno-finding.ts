@@ -320,18 +320,13 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     }
   }
 
-  const CORRECTION_FIELDS: PlenoFindingCorrection['field'][] = [
-    'title',
-    'summary',
-    'severity',
-  ]
+  const CORRECTION_FIELDS: PlenoFindingCorrection['field'][] = ['title', 'summary', 'severity']
   const rawCorrections = Array.isArray(o.corrections) ? (o.corrections as unknown[]) : []
   const corrections: PlenoFindingCorrection[] = rawCorrections.map((c, ci) => {
     must(typeof c === 'object' && c !== null, `items[${idx}].corrections[${ci}] must be object`)
     const co = c as Record<string, unknown>
     must(
-      typeof co.field === 'string' &&
-        (CORRECTION_FIELDS as string[]).includes(co.field),
+      typeof co.field === 'string' && (CORRECTION_FIELDS as string[]).includes(co.field),
       `items[${idx}].corrections[${ci}].field must be one of ${CORRECTION_FIELDS.join(',')}`,
     )
     must(

@@ -5,10 +5,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import {
-  validateFindingsSnapshot,
-  type PlenoFindingCorrection,
-} from '../src/scraper/pleno-finding'
+import { validateFindingsSnapshot, type PlenoFindingCorrection } from '../src/scraper/pleno-finding'
 
 const BASE = {
   version: '1.0',

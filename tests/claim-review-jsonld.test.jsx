@@ -159,9 +159,16 @@ describe('ClaimReviewJsonLd._buildPlenoPayload', () => {
   })
 
   it('maps severity onto a rating between 1 and 5', () => {
-    expect(_buildPlenoPayload({ ...basePlenoFinding, severity: 'critical' }).reviewRating.ratingValue).toBe(1)
-    expect(_buildPlenoPayload({ ...basePlenoFinding, severity: 'notable' }).reviewRating.ratingValue).toBe(3)
-    expect(_buildPlenoPayload({ ...basePlenoFinding, severity: 'informational' }).reviewRating.ratingValue).toBe(5)
+    expect(
+      _buildPlenoPayload({ ...basePlenoFinding, severity: 'critical' }).reviewRating.ratingValue,
+    ).toBe(1)
+    expect(
+      _buildPlenoPayload({ ...basePlenoFinding, severity: 'notable' }).reviewRating.ratingValue,
+    ).toBe(3)
+    expect(
+      _buildPlenoPayload({ ...basePlenoFinding, severity: 'informational' }).reviewRating
+        .ratingValue,
+    ).toBe(5)
   })
 
   it('serializes cleanly as JSON', () => {

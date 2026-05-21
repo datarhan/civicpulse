@@ -46,10 +46,9 @@ describe('archiveOnWayback', () => {
 
   it('falls back to the body when no header carries a timestamp', async () => {
     const fetchImpl = async () =>
-      new Response(
-        '<html>...href="/web/20260519235959/https://example.com/z"...</html>',
-        { status: 200 },
-      ) as unknown as Response
+      new Response('<html>...href="/web/20260519235959/https://example.com/z"...</html>', {
+        status: 200,
+      }) as unknown as Response
     const result = await archiveOnWayback('https://example.com/z', { fetchImpl })
     expect(result.timestamp).toBe('20260519235959')
   })

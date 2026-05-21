@@ -122,8 +122,7 @@ export function parseTedResponse(pages: ApiResponse[]): TenderTedRow[] {
       const { amount, currency } = projectAmount(n['total-value'])
       const pdfUrl = n.links?.pdf?.SPA ?? n.links?.pdf?.ENG ?? null
       const htmlUrl =
-        n.links?.pdf?.SPA?.replace('/pdf', '/notice') ??
-        `https://ted.europa.eu/en/notice/${pubNum}`
+        n.links?.pdf?.SPA?.replace('/pdf', '/notice') ?? `https://ted.europa.eu/en/notice/${pubNum}`
       rows.push({
         id: sha256(pubNum),
         publicationNumber: pubNum,

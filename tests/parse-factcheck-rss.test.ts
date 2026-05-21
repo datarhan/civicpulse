@@ -7,11 +7,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import {
-  mergeFactCheckRows,
-  parseFactcheckRss,
-  type FactCheckRow,
-} from '../src/scraper/factcheck'
+import { mergeFactCheckRows, parseFactcheckRss, type FactCheckRow } from '../src/scraper/factcheck'
 
 const mockMalditaXml = `<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
