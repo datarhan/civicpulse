@@ -117,6 +117,30 @@ export interface PlenoFinding {
     sourceUrl?: string
     respondedAt: string
   } | null
+  /**
+   * Public corrections log. Each entry records a post-publication
+   * curator edit with original text, corrected text, reason (≥20
+   * chars), editor and ISO date. IFCN signatory baseline; mirrors
+   * the field added to PressFinding in Package 4b.
+   */
+  corrections?: PlenoFindingCorrection[]
+}
+
+/**
+ * Per-correction record for pleno findings. Fields are deliberately
+ * narrow — corrections apply only to title/summary/severity (the
+ * curator-editable surface). Quote text and evidence refs are
+ * append-only; to change them, retract + republish.
+ */
+export interface PlenoFindingCorrection {
+  field: 'title' | 'summary' | 'severity'
+  original: string
+  corrected: string
+  /** Curator's plain-language explanation (≥20 chars). */
+  reason: string
+  editor: string
+  /** ISO date of the correction. */
+  correctedAt: string
 }
 
 export interface PlenoFindingsSnapshot {
@@ -295,6 +319,51 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
       )
     }
   }
+
+  const CORRECTION_FIELDS: PlenoFindingCorrection['field'][] = [
+    'title',
+    'summary',
+    'severity',
+  ]
+  const rawCorrections = Array.isArray(o.corrections) ? (o.corrections as unknown[]) : []
+  const corrections: PlenoFindingCorrection[] = rawCorrections.map((c, ci) => {
+    must(typeof c === 'object' && c !== null, `items[${idx}].corrections[${ci}] must be object`)
+    const co = c as Record<string, unknown>
+    must(
+      typeof co.field === 'string' &&
+        (CORRECTION_FIELDS as string[]).includes(co.field),
+      `items[${idx}].corrections[${ci}].field must be one of ${CORRECTION_FIELDS.join(',')}`,
+    )
+    must(
+      typeof co.original === 'string' && co.original.length > 0,
+      `items[${idx}].corrections[${ci}].original required`,
+    )
+    must(
+      typeof co.corrected === 'string' && co.corrected.length > 0,
+      `items[${idx}].corrections[${ci}].corrected required`,
+    )
+    must(
+      typeof co.reason === 'string' && co.reason.trim().length >= 20,
+      `items[${idx}].corrections[${ci}].reason must be ≥20 chars`,
+    )
+    must(
+      typeof co.editor === 'string' && co.editor.length > 0,
+      `items[${idx}].corrections[${ci}].editor required`,
+    )
+    must(
+      typeof co.correctedAt === 'string' && ISO_DATE.test(co.correctedAt),
+      `items[${idx}].corrections[${ci}].correctedAt must be ISO date`,
+    )
+    return {
+      field: co.field as PlenoFindingCorrection['field'],
+      original: co.original as string,
+      corrected: co.corrected as string,
+      reason: (co.reason as string).trim(),
+      editor: co.editor as string,
+      correctedAt: co.correctedAt as string,
+    }
+  })
+
   return {
     id: o.id as string,
     plenoId: o.plenoId as string,
@@ -311,6 +380,7 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     publishedAt: o.publishedAt as string,
     ...(individualSpeaker ? { individualSpeaker } : {}),
     response: response ?? null,
+    corrections,
   }
 }
 
