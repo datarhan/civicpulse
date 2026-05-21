@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
@@ -327,6 +328,7 @@ function CorporacionMunicipal() {
         <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           · datos reales de ribarroja.es · actualizado {generatedDate}
         </div>
+        <DataAsOf iso={data.generatedAt} label="Officials" />
       </div>
 
       {mayor && (

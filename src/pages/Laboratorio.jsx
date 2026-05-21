@@ -20,6 +20,7 @@ import { useMemo, useState } from 'react'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
+import DataAsOf from '../components/DataAsOf'
 
 const VERDICT_LABEL = {
   verificado: 'Verificado',
@@ -626,6 +627,9 @@ export default function Laboratorio() {
           </a>
           .
         </p>
+        <div style={{ marginTop: 10 }}>
+          <DataAsOf iso={lab.generatedAt} label="Laboratorio" />
+        </div>
       </div>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>

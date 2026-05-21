@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import {
   usePromises,
   usePromiseSuggestions,
@@ -486,6 +487,9 @@ export default function Promesas() {
           estados se mantienen en <strong>documentada</strong> o <strong>en verificación</strong>{' '}
           salvo que exista prueba directa (pleno, presupuesto, resolución) que justifique otro
           estado.
+        </div>
+        <div style={{ marginTop: 10 }}>
+          <DataAsOf iso={data?.generatedAt} label="Promesas" />
         </div>
       </div>
 

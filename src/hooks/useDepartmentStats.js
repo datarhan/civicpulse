@@ -61,5 +61,18 @@ export function useDepartmentStats() {
     claims.error,
   ])
 
-  return { loading, error, data }
+  // Worst-case freshness across the 5 required inputs. A page that
+  // aggregates 5 sources is only as fresh as its oldest one.
+  const generatedAt = useMemo(() => {
+    const stamps = [
+      officials.data?.generatedAt,
+      promises.data?.generatedAt,
+      agendas.data?.generatedAt,
+      votes.data?.generatedAt,
+      quejas.data?.generatedAt,
+    ].filter(Boolean)
+    return stamps.length > 0 ? stamps.sort()[0] : null
+  }, [officials.data, promises.data, agendas.data, votes.data, quejas.data])
+
+  return { loading, error, data, generatedAt }
 }

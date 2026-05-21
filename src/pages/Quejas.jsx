@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead, ShareWA } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import {
   useQuejas,
   STATE_LABEL,
@@ -512,6 +513,9 @@ export default function Quejas() {
           </a>
           . Feed agregado y anónimo — base legal LPACAP + Ley 19/2013.{' '}
           <Link to="/quejas/dashboard" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>Dashboard analítico →</Link>
+        </div>
+        <div style={{ marginTop: 10 }}>
+          <DataAsOf iso={data?.generatedAt} label="Quejas" />
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
 import { useT, useLocale } from '../i18n'
@@ -150,11 +151,14 @@ export default function Departamentos() {
         eyebrow={t('departamentos.eyebrow')}
         title={t('departamentos.title')}
         right={
-          !frozen && totalVencidos > 0 ? (
-            <Pill tone="warn" size="sm">
-              ⚠ {totalVencidos} {t('liveTicker.plazosVencidos')}
-            </Pill>
-          ) : null
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+            {!frozen && totalVencidos > 0 && (
+              <Pill tone="warn" size="sm">
+                ⚠ {totalVencidos} {t('liveTicker.plazosVencidos')}
+              </Pill>
+            )}
+            <DataAsOf iso={stats.generatedAt} label="Departamentos" />
+          </div>
         }
       />
       <p

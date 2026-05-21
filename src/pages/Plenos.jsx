@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import { ClaimLedgerSection } from '../components/ClaimLedger'
 import { PlenoFindingsSection } from '../components/PlenoFindings'
 import { useParticipa, KIND_ICON, KIND_LABEL } from '../hooks/useParticipa'
@@ -224,6 +225,7 @@ function RealPlenosList() {
         <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           · {data.stats.total} sesiones · ribarroja.es/plenos
         </div>
+        <DataAsOf iso={data.generatedAt} label="Plenos" />
       </div>
       <TopDepartmentsCard agendas={agendas} />
       <Card>

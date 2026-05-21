@@ -1,4 +1,5 @@
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
 import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
@@ -247,9 +248,10 @@ function RealBudgetHeader() {
             Datos reales de la Dirección General de Fondos Comunitarios y Coordinación Financiera con las Entidades Locales. Actualizado {generatedDate}.
           </div>
         </div>
-        <div style={{ display: 'flex', gap: 8 }}>
+        <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
           <Pill tone="civic">{s.year}</Pill>
           <Pill tone="ok">REAL</Pill>
+          <DataAsOf iso={data.generatedAt} label="CONPREL" />
         </div>
       </div>
 

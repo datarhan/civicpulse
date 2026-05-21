@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
+import DataAsOf from '../components/DataAsOf'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
@@ -421,6 +422,9 @@ export default function Hallazgos() {
           presupuesto, promesas). Incluye corroboración, contradicción y derecho de réplica literal
           para el grupo afectado.
         </p>
+        <div style={{ marginTop: 10 }}>
+          <DataAsOf iso={data?.generatedAt} label="Hallazgos" />
+        </div>
       </div>
 
       {/* Summary stats */}

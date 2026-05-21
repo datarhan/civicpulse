@@ -42,6 +42,7 @@ export function usePressLab() {
     findings: [],
     factcheck: null,
     linkRot: new Map(),
+    generatedAt: null,
   })
 
   useEffect(() => {
@@ -59,6 +60,12 @@ export function usePressLab() {
           status: row.status ?? 'error',
         })
       }
+      // Lab freshness = the oldest of the two canonical inputs the page
+      // editorially leans on (verifier output + curated findings).
+      // Worst-case wins so the chip doesn't claim a fresher snapshot
+      // than the verifier actually ran.
+      const stamps = [verified?.generatedAt, findings?.generatedAt].filter(Boolean)
+      const generatedAt = stamps.length > 0 ? stamps.sort()[0] : null
       setState({
         loading: false,
         press: press?.items ?? [],
@@ -70,6 +77,7 @@ export function usePressLab() {
         findings: findings?.items ?? [],
         factcheck: factcheck ?? null,
         linkRot: linkRotMap,
+        generatedAt,
       })
     })
     return () => {
