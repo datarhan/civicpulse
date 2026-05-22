@@ -1,9 +1,9 @@
 {
-  "generatedAt": "2026-05-21T08:06:52.049Z",
+  "generatedAt": "2026-05-22T07:57:18.459Z",
   "source": {
     "url": "https://factchecktools.googleapis.com/v1alpha1/claims:search",
     "query": "\"Riba-roja de Túria\"",
-    "description": "Google Fact Check Tools API · GOOGLE_FACT_CHECK_API_KEY not set"
+    "description": "No sources active (API key missing AND RSS feeds returned nothing)"
   },
   "stats": {
     "total": 0,
