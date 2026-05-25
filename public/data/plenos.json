@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-05-14T07:29:56.400Z",
+  "generatedAt": "2026-05-25T07:23:21.493Z",
   "source": {
-    "baseUrl": "http://www.ribarroja.es",
-    "platform": "Ayuntamiento de Riba-roja de Túria — /plenos/<year>"
+    "baseUrl": "https://regmeet.com",
+    "platform": "Regmeet — aytoribarroja/sesiones_categorias/3b56be67439045acfbc7c1552d87a166/<year>"
   },
   "stats": {
-    "total": 54,
+    "total": 57,
     "byYear": {
-      "2023": 16,
-      "2024": 17,
-      "2025": 14,
+      "2023": 17,
+      "2024": 18,
+      "2025": 15,
       "2026": 7
     },
     "latestDate": "2026-05-11"
@@ -17,381 +17,402 @@
   "items": [
     {
       "id": "10yl550",
-      "title": "Pleno ordinario 11 de mayo de 2026",
+      "title": "Sesión de fecha 11 de mayo de 2026",
       "date": "2026-05-11",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/noticias/pleno_ordinario_11_de_mayo_de_2026/contenidos/6976023/4043625"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano"
     },
     {
       "id": "k4olcs",
-      "title": "Pleno ordinario 20 de abril de 2026",
+      "title": "Sesión de fecha 20 de abril de 2026",
       "date": "2026-04-20",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_20_de_abril_de_2026/contenidos/6648092/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/1d2a48c55f6f10010887cc7d849469a1?idioma=castellano"
     },
     {
       "id": "ma87e0",
-      "title": "Pleno extraordinario y urgente 16 de marzo de 2026",
+      "title": "Sesión de fecha 16 de marzo de 2026",
       "date": "2026-03-16",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_16_de_marzo_de_2026_contenidos_8468717_9323821/contenidos/8468717/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/b5a1d925221b37e2e399f7b319038ba0?idioma=castellano"
     },
     {
       "id": "1sqj7is",
-      "title": "Pleno ordinario 9 de marzo de 2026",
+      "title": "Sesión de fecha 09 de marzo de 2026",
       "date": "2026-03-09",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_marzo_de_2026/contenidos/7335406/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano"
     },
     {
       "id": "rx4hb4",
-      "title": "Pleno ordinario 9 de febrero de 2026",
+      "title": "Sesión de fecha 09 de febrero de 2026",
       "date": "2026-02-09",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_9_de_febrero_de_2026/contenidos/7240659/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano"
     },
     {
       "id": "19gax3o",
-      "title": "Pleno ordinario 19 de enero de 2026",
+      "title": "Sesión de fecha 19 de enero de 2026",
       "date": "2026-01-19",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_19_de_enero_de_2026/contenidos/6449942/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/6a8018b3a00b69c008601b8becae392b?idioma=castellano"
     },
     {
       "id": "1pe3qs8",
-      "title": "Pleno extraordinario y urgente 7 de enero de 2026",
+      "title": "Sesión de fecha 07 de enero de 2026",
       "date": "2026-01-07",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_y_urgente_7_de_enero_de_2026/contenidos/5750799/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/b89c30965ebc74912de879f22da62dbf?idioma=castellano"
     },
     {
       "id": "toa3rc",
-      "title": "Pleno extraordinario y urgente 26 de diciembre de 2025",
+      "title": "Sesión de fecha 26 de diciembre de 2025",
       "date": "2025-12-26",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_y_urgente_26_de_diciembre_de_2025/contenidos/4809578/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/cdd0500dc0ef6682fa6ec6d2e6b577c4?idioma=castellano"
     },
     {
       "id": "1qi8axv",
-      "title": "Pleno extraordinario y urgente 23 de diciembre de 2025",
+      "title": "Sesión de fecha 23 de diciembre de 2025",
       "date": "2025-12-23",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_extraordinario_y_urgente_23_de_diciembre_de_2025/contenidos/8801506/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano"
     },
     {
       "id": "qz6weg",
-      "title": "Pleno ordinario 1 de diciembre de 2025",
+      "title": "Sesión de fecha 01 de diciembre de 2025",
       "date": "2025-12-01",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_1_de_diciembre_de_2025_contenidos_7426584_9323821_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_8465333_contenidos_7426584_contenidos_7426584_8465333/contenidos/7426584/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano"
     },
     {
       "id": "1du4rf5",
-      "title": "Pleno ordinario 3 de noviembre de 2025",
+      "title": "Sesión de fecha 03 de noviembre de 2025",
       "date": "2025-11-03",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_2_de_noviembre_de_2025/contenidos/9549928/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano"
     },
     {
       "id": "otxq2c",
-      "title": "Pleno ordinario 6 de octubre de 2025",
+      "title": "Sesión de fecha 06 de octubre de 2025",
       "date": "2025-10-06",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_6_de_octubre_de_2025/contenidos/9993001/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/291d43c696d8c3704cdbe0a72ade5f6c?idioma=castellano"
     },
     {
       "id": "c8kr44",
-      "title": "Pleno ordinario 8 de septiembre de 2025",
+      "title": "Sesión de fecha 08 de septiembre de 2025",
       "date": "2025-09-08",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_8_de_septiembre_de_2025_contenidos_9994299_8465333/contenidos/9994299"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/0dbb3fb9a5cd1d5f8a9075b5bb8070aa?idioma=castellano"
     },
     {
       "id": "rmtyr",
-      "title": "Pleno extraordinario y urgente 31 de julio de 2025",
+      "title": "Sesión de fecha 31 de julio de 2025",
       "date": "2025-07-31",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_extraordinario_y_urgente_31_de_julio_de_2025/contenidos/6156620/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/87f7ee4fdb57bdfd52179947211b7ebb?idioma=castellano"
     },
     {
       "id": "anrfd5",
-      "title": "Pleno ordinario 28 de julio de 2025",
+      "title": "Sesión de fecha 28 de julio de 2025",
       "date": "2025-07-28",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_28_de_julio_de_2025/contenidos/5828886/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/7535bbb91c8fde347ad861f293126633?idioma=castellano"
     },
     {
       "id": "1sk3q3c",
-      "title": "Pleno ordinario 7 de julio de 2025",
+      "title": "Sesión de fecha 07 de julio de 2025",
       "date": "2025-07-07",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_7_de_julio_de_2025/contenidos/918830/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/6dbd2699e8e7ec0047de2d5d1b28a75b?idioma=castellano"
     },
     {
       "id": "1ci5p5s",
-      "title": "Pleno ordinario 2 de junio de 2025",
+      "title": "Sesión de fecha 02 de junio de 2025",
       "date": "2025-06-02",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_2_de_junio_de_2025_contenidos_2653378_9323821/contenidos/2653378/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/73fed7fd472e502d8908794430511f4d?idioma=castellano"
     },
     {
       "id": "1uqimx0",
-      "title": "Pleno ordinario 12 de mayo de 2025",
+      "title": "Sesión de fecha 12 de mayo de 2025",
       "date": "2025-05-12",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_12_de_mayo_de_2025_contenidos_2684464_8465333_contenidos_2684464_9323821/contenidos/2684464"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/473447ac58e1cd7e96172575f48dca3b?idioma=castellano"
     },
     {
       "id": "hp3y4s",
-      "title": "Pleno ordinario 7 de abril de 2025",
+      "title": "Sesión de fecha 07 de abril de 2025",
       "date": "2025-04-07",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_7_de_abril_de_2025_contenidos_752124_9323821/contenidos/752124/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/643de7cf7ba769c7466ccbc4adfd7fac?idioma=castellano"
+    },
+    {
+      "id": "4kokik",
+      "title": "Sesión de fecha 03 de marzo de 2025",
+      "date": "2025-03-03",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/c6b8c8d762da15fa8dbbdfb6baf9e260?idioma=castellano"
     },
     {
       "id": "11k71c8",
-      "title": "Pleno ordinario 10 de febrero de 2025",
+      "title": "Sesión de fecha 10 de febrero de 2025",
       "date": "2025-02-10",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_10_de_febrero_de_2025_contenidos_4250086_9323821_contenidos_4250086_9323821/contenidos/4250086"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/2517756c5a9be6ac007fe9bb7fb92611?idioma=castellano"
     },
     {
       "id": "of2npg",
-      "title": "Pleno ordinario 20 de enero de 2025",
+      "title": "Sesión de fecha 20 de enero de 2025",
       "date": "2025-01-20",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos/pleno_ordinario_20_de_enero_de_2025/contenidos/5461004/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/285da2198b2b496c9d447cc4ac6b0734?idioma=castellano"
     },
     {
       "id": "1e0jjw",
-      "title": "Pleno extraordinario 26 de diciembre de 2024",
+      "title": "Sesión de fecha 26 de diciembre de 2024",
       "date": "2024-12-26",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/pleno_extraordinario_26_de_diciembre_de_2024_contenidos_8722152_contenidos_8722152/contenidos/8722152/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/8d9766a69b764fefc12f56739424d136?idioma=castellano"
     },
     {
       "id": "19m20g0",
-      "title": "Pleno ordinario 2 de diciembre de 2024",
+      "title": "Sesión de fecha 02 de diciembre de 2024",
       "date": "2024-12-02",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_ordinario_2_de_diciembre_de_2024_contenidos_4591316_9323821/contenidos/4591316/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/38a77aa456fc813af07bb428f2363c8d?idioma=castellano"
     },
     {
       "id": "o48cdr",
-      "title": "Pleno ordinario 4 de noviembre de 2024",
+      "title": "Sesión de fecha 04 de noviembre de 2024",
       "date": "2024-11-04",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_4_de_noviembre_de_2024/contenidos/131394/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/c46482dd5d39742f0bfd417b492d0e8e?idioma=castellano"
     },
     {
       "id": "18ei96g",
-      "title": "Pleno extraordinario 21 de octubre de 2024",
+      "title": "Sesión de fecha 21 de octubre de 2024",
       "date": "2024-10-21",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_extraordinario_21_de_octubre_de_2024_contenidos_3575920_8465333_contenidos_3575920_9323821/contenidos/3575920"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/69386f6bb1dfed68692a24c8686939b9?idioma=castellano"
     },
     {
       "id": "lpwudo",
-      "title": "Pleno ordinario 7 de octubre de 2024",
+      "title": "Sesión de fecha 07 de octubre de 2024",
       "date": "2024-10-07",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_7_de_octubre_de_2024/contenidos/1330810/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/36ed197b3f31618fdbadb3df86f804bd?idioma=castellano"
     },
     {
       "id": "19xkzxw",
-      "title": "Pleno ordinario 9 de septiembre de 2024",
+      "title": "Sesión de fecha 09 de septiembre de 2024",
       "date": "2024-09-09",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_9_de_septiembre_de_2024/contenidos/8978627/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/f24ad6f72d6cc4cb51464f2b29ab69d3?idioma=castellano"
     },
     {
       "id": "1tgd1h4",
-      "title": "Pleno ordinario 29 de julio de 2024",
+      "title": "Sesión de fecha 29 de julio de 2024",
       "date": "2024-07-29",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_29_de_julio_de_2024/contenidos/368519/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/52b738b303d90a884137546353e09ebb?idioma=castellano"
     },
     {
       "id": "1pe6awk",
-      "title": "Pleno extraordinario 22 de julio de 2024",
+      "title": "Sesión de fecha 22 de julio de 2024",
       "date": "2024-07-22",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_22_de_julio_de_2024_contenidos_595237_9323821_contenidos_595237_9323821/contenidos/595237"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/b98249b38337c5088bbc660d8f872d6a?idioma=castellano"
     },
     {
       "id": "1pdx0lc",
-      "title": "Pleno ordinario 1 de julio de 2024",
+      "title": "Sesión de fecha 01 de julio de 2024",
       "date": "2024-07-01",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_1_de_julio_de_2024/contenidos/5364051/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/8deb8d1dd92840f975b6931ab3a3c61e?idioma=castellano"
+    },
+    {
+      "id": "15jtq5k",
+      "title": "Sesión de fecha 14 de junio de 2024",
+      "date": "2024-06-14",
+      "kind": "extraordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/88e1ce84f9feef5a08d0df0334c53468?idioma=castellano"
     },
     {
       "id": "1wqaaog",
-      "title": "Pleno ordinario 3 de junio de 2024",
+      "title": "Sesión de fecha 03 de junio de 2024",
       "date": "2024-06-03",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_3_de_junio_de_2024/contenidos/8058078/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/d309cd6396e744600c943fada20f686a?idioma=castellano"
     },
     {
       "id": "yhp4sc",
-      "title": "Pleno extraordinario 13 de mayo de 2024",
+      "title": "Sesión de fecha 13 de mayo de 2024",
       "date": "2024-05-13",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_extraordinario_13_de_mayo_de_2024/contenidos/3911220/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/f5c150afbfbcef941def203e85cf40bc?idioma=castellano"
     },
     {
       "id": "fkwdd8",
-      "title": "Pleno ordinario 6 de mayo de 2024",
+      "title": "Sesión de fecha 06 de mayo de 2024",
       "date": "2024-05-06",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/plenos/2024/pleno_ordinario_6_de_mayo_de_2024/contenidos/4718345/6527233"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/e2eacaff46787bfeefcaa24cf35264c7?idioma=castellano"
     },
     {
       "id": "1080zow",
-      "title": "Pleno ordinario 15 de abril de 2024",
+      "title": "Sesión de fecha 15 de abril de 2024",
       "date": "2024-04-15",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_15_de_abril_de_2024/contenidos/6898682/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/640258597cbc50037072712f964cf5d8?idioma=castellano"
     },
     {
       "id": "1rb2dsm",
-      "title": "Pleno extraordinario y urgente 28 de marzo de 2024",
+      "title": "Sesión de fecha 28 de marzo de 2024",
       "date": "2024-03-28",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_y_urgente_28_de_marzo_de_2024_contenidos_8271467_9323821/contenidos/8271467/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/766e428d1e232bbdd58664b41346196c?idioma=castellano"
     },
     {
       "id": "umsqbk",
-      "title": "Pleno ordinario 4 de marzo de 2024",
+      "title": "Sesión de fecha 04 de marzo de 2024",
       "date": "2024-03-04",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_4_de_marzo_de_2024/contenidos/8281648/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/91378b331327b40e564390c43cd6b2be?idioma=castellano"
     },
     {
       "id": "1ue92u4",
-      "title": "Pleno ordinario 5 de febrero de 2024",
+      "title": "Sesión de fecha 05 de febrero de 2024",
       "date": "2024-02-05",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/avisos/pleno_ordinario_5_de_febrero_de_2024/contenidos/80665/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/20c86a628232a67e7bd46f76fba7ce12?idioma=castellano"
     },
     {
       "id": "1qisc4g",
-      "title": "Pleno ordinario 15 de enero de 2024",
+      "title": "Sesión de fecha 15 de enero de 2024",
       "date": "2024-01-15",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_15_de_enero_de_2024/contenidos/5014586/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/86b20716fbd5b253d27cec43127089bc?idioma=castellano"
     },
     {
       "id": "mvb5nl",
-      "title": "Pleno extraordinario y urgente 15 de diciembre de 2023",
+      "title": "Sesión de fecha 15 de diciembre de 2023",
       "date": "2023-12-15",
       "kind": "urgente",
-      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_ordinario_15_de_diciembre_de_2023_contenidos_5391076_8465333_contenidos_5391076_9323821/contenidos/5391076/9783518"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/58191d2a914c6dae66371c9dcdc91b41?idioma=castellano"
     },
     {
       "id": "1u4otgk",
-      "title": "Pleno ordinario 4 de diciembre de 2023",
+      "title": "Sesión de fecha 04 de diciembre de 2023",
       "date": "2023-12-04",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes_pleno_ordinario_4_de_diciembre_de_2023_contenidos_6906487_8465333/contenidos/6906487/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/75b9b6dc7fe44437c6e0a69fd863dbab?idioma=castellano"
     },
     {
       "id": "15158ww",
-      "title": "Pleno ordinario 6 de noviembre de 2023",
+      "title": "Sesión de fecha 06 de noviembre de 2023",
       "date": "2023-11-06",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_6_de_noviembre_de_2023/contenidos/2391772/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/2bb0502c80b7432eee4c5847a5fd077b?idioma=castellano"
     },
     {
       "id": "z7prps",
-      "title": "Pleno extraordinario 24 de octubre de 2023",
+      "title": "Sesión de fecha 24 de octubre de 2023",
       "date": "2023-10-24",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_avisos_pleno_extraordinario_24_de_octubre_de_2023_contenidos_5577867_9323821/contenidos/5577867/9323821"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/6917ff2a7b53421ff4066020e2d89eec?idioma=castellano"
     },
     {
       "id": "1ea8wn5",
-      "title": "Pleno ordinario 2 de octubre de 2023",
+      "title": "Sesión de fecha 02 de octubre de 2023",
       "date": "2023-10-02",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/avisos_urgentes/pleno_ordinario_2_de_octubre_de_2023/contenidos/4370892/8465333"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/0a5c79b1eaf15445da252ada718857e9?idioma=castellano"
+    },
+    {
+      "id": "1g1d38x",
+      "title": "Sesión de fecha 11 de septiembre de 2023",
+      "date": "2023-09-11",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/d9b1655c134b831076d6c45620a78c33?idioma=castellano"
     },
     {
       "id": "jpr4fk",
-      "title": "Pleno ordinario 24 de julio de 2023",
+      "title": "Sesión de fecha 24 de julio de 2023",
       "date": "2023-07-24",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/plenos_2023_pleno_ordinario_24_de_julio_de_2023_contenidos_8757251_0768111_contenidos_8757251_0892965/contenidos/8757251/0892965"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/e5522f7ac7cd76f19b396595c9c25b40?idioma=castellano"
     },
     {
       "id": "16ujrlm",
-      "title": "Pleno extraordinario 7 de julio de 2023",
+      "title": "Sesión de fecha 07 de julio de 2023",
       "date": "2023-07-07",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/plenos/2023/pleno_ordinario_7_de_julio_de_2023/contenidos/2172018/0768111"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/5a01f0597ac4bdf35c24846734ee9a76?idioma=castellano"
+    },
+    {
+      "id": "1vh1bhs",
+      "title": "Sesión de fecha 23 de junio de 2023",
+      "date": "2023-06-23",
+      "kind": "extraordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/769675d7c11f336ae6573e7e533570ec?idioma=castellano"
     },
     {
       "id": "9jatoj",
-      "title": "Pleno 17 de junio de 2023",
+      "title": "Sesión de fecha 17 de junio de 2023",
       "date": "2023-06-17",
-      "kind": "otro",
-      "link": "http://www.ribarroja.es/plenos/2023/pleno_17_de_junio_de_2023/contenidos/8198854/0768111"
-    },
-    {
-      "id": "1ouu5s0",
-      "title": "Pleno extraordinario 14 de junio de 2023",
-      "date": "2023-06-14",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/plenos/2023/pleno_extraordinario_14_de_junio_de_2023/contenidos/9796286/0768111"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/a0b83c02d720415dada82e08bc09e9f3?idioma=castellano"
     },
     {
       "id": "15000go",
-      "title": "Pleno ordinario 24 de mayo de 2023",
+      "title": "Sesión de fecha 24 de mayo de 2023",
       "date": "2023-05-24",
-      "kind": "ordinario",
-      "link": "http://www.ribarroja.es/plenos_2023_pleno_ordinario_24_de_mayo_de_2023_contenidos_6570023_0768111/contenidos/6570023/0892965"
+      "kind": "extraordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/ad8e88c0f76fa4fc8e5474384142a00a?idioma=castellano"
     },
     {
       "id": "67qdq8",
-      "title": "Pleno ordinario 8 de mayo de 2023",
+      "title": "Sesión de fecha 08 de mayo de 2023",
       "date": "2023-05-08",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/plenos_2023_pleno_ordinario_8_de_mayo_de_2023_contenidos_3744470_0768111_contenidos_3744470_0892965_contenidos_3744470/contenidos/3744470/0892965"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/8e930496927757aac0dbd2438cb3f4f6?idioma=castellano"
     },
     {
       "id": "buag5g",
-      "title": "Pleno extraordinario 2 de mayo de 2023",
+      "title": "Sesión de fecha 02 de mayo de 2023",
       "date": "2023-05-02",
       "kind": "extraordinario",
-      "link": "http://www.ribarroja.es/plenos/2023/pleno_extraordinario_2_de_mayo_de_2023/contenidos/3393920/0768111"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/56c82ccd658e09e829f16bb99457bcbc?idioma=castellano"
     },
     {
       "id": "1wum8h8",
-      "title": "Pleno ordinario 3 de abril de 2023",
+      "title": "Sesión de fecha 03 de abril de 2023",
       "date": "2023-04-03",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento_tv_riba_roja_pleno_ordinario_3_de_abril_de_2023_contenidos_6017366_0892965/contenidos/6017366/0892965"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/9e82757e9a1c12cb710ad680db11f6f1?idioma=castellano"
     },
     {
       "id": "1edrlv4",
-      "title": "Pleno ordinario 6 de marzo de 2023",
+      "title": "Sesión de fecha 06 de marzo de 2023",
       "date": "2023-03-06",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/tv_riba_roja/pleno_ordinario_6_de_marzo_de_2023/contenidos/6462601/0892965"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/7f018eb7b301a66658931cb8a93fd6e8?idioma=castellano"
     },
     {
       "id": "1l7hhu7",
-      "title": "Pleno ordinario 13 de febrero de 2023",
+      "title": "Sesión de fecha 13 de febrero de 2023",
       "date": "2023-02-13",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/ayuntamiento/tv_riba_roja/pleno_ordinario_13_de_febrero_de_2023/contenidos/4135040/0892965"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/c61f571dbd2fb949d3fe5ae1608dd48b?idioma=castellano"
     },
     {
       "id": "1r6yy0",
-      "title": "Pleno ordinario 23 de enero de 2023",
+      "title": "Sesión de fecha 23 de enero de 2023",
       "date": "2023-01-23",
       "kind": "ordinario",
-      "link": "http://www.ribarroja.es/plenos/2023/pleno_ordinario_23_de_enero_de_2023/contenidos/944276/0768111"
+      "link": "https://regmeet.com/aytoribarroja/participaciones/1397386b7a1507535c59764a15ee0c98?idioma=castellano"
     }
   ]
 }
