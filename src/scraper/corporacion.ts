@@ -100,9 +100,12 @@ function extractName(text: string): { honorific: 'Sr.' | 'Sra.'; name: string } 
 }
 
 function findMainTable($: CheerioAPI) {
-  // The corporation page nests its roster inside div.cuerpo > table.
-  const tables = $('div.cuerpo table')
-  // Pick the widest table (or the one containing "Alcalde" label).
+  // The legacy ribarroja.es theme nested the roster inside div.cuerpo > table.
+  // The 2026-05 rebuild dropped that wrapper, so fall back to every <table>
+  // on the page when the scoped lookup is empty. Either way, prefer the table
+  // that contains both "Alcalde" and "Concejales" markers.
+  let tables = $('div.cuerpo table')
+  if (tables.length === 0) tables = $('table')
   let best: ReturnType<CheerioAPI> | null = null
   tables.each((_, el) => {
     const t = $(el)

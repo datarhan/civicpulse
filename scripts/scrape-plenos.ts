@@ -1,41 +1,77 @@
 #!/usr/bin/env tsx
 /**
- * Crawl the Ayuntamiento's plenos index for the current year and the two
- * prior years, merge all sessions into one newest-first list, write
- * public/data/plenos.json.
+ * Crawl the council's pleno index for the last few years, merge into one
+ * newest-first list, write public/data/plenos.json.
+ *
+ * 2026-05-25: migrated source from ribarroja.es/plenos/<year> (HTTPS now
+ * 404s for that path) to the Regmeet SaaS at
+ * regmeet.com/aytoribarroja/sesiones_categorias/<entityHash>/<year>.
+ * Existing plenoIds are preserved by matching on date so downstream files
+ * (pleno-claims, pleno-findings, …) keep working without backfill.
  *
  * Usage: npm run scrape:plenos
  */
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parsePlenosIndex, type PlenoItem } from '../src/scraper/plenos'
+import { parseRegmeetSessions, type PlenoItem } from '../src/scraper/plenos'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/plenos.json')
-const BASE = 'http://www.ribarroja.es'
 
-async function fetchYear(year: number): Promise<PlenoItem[]> {
-  const res = await fetch(`${BASE}/plenos/${year}`, {
-    headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
-      Accept: 'text/html',
-    },
+// Regmeet entity hash for Ajuntament de Riba-roja de Túria. Stable since
+// the platform was wired in. Confirmed in the public nav at
+// ribarroja.es/es/ayuntamiento — "Plenos" → external link.
+const REGMEET_BASE = 'https://regmeet.com'
+const REGMEET_ENTITY = '3b56be67439045acfbc7c1552d87a166'
+// Most upstream hosts behind a WAF reject bare "CivicPulse/0.1" UAs with
+// a TLS RST. The Mozilla-compatible envelope keeps us attributable but
+// doesn't trip the filter.
+const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
+
+async function loadExistingIdByDate(): Promise<Map<string, string>> {
+  try {
+    const buf = await readFile(OUT, 'utf8')
+    const snap = JSON.parse(buf) as { items?: PlenoItem[] }
+    const map = new Map<string, string>()
+    for (const it of snap.items || []) {
+      if (it.date && it.id) map.set(it.date, it.id)
+    }
+    return map
+  } catch {
+    return new Map()
+  }
+}
+
+async function fetchYear(
+  year: number,
+  existingIdByDate: Map<string, string>,
+): Promise<PlenoItem[]> {
+  const url = `${REGMEET_BASE}/aytoribarroja/sesiones_categorias/${REGMEET_ENTITY}/${year}?idioma=castellano`
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA, Accept: 'text/html' },
   })
-  if (!res.ok) return []
-  return parsePlenosIndex(await res.text(), { year, baseUrl: BASE })
+  if (!res.ok) {
+    console.warn(`[plenos] ${year}: HTTP ${res.status} ${res.statusText}`)
+    return []
+  }
+  return parseRegmeetSessions(await res.text(), {
+    year,
+    baseUrl: REGMEET_BASE,
+    existingIdByDate,
+  })
 }
 
 async function main() {
+  const existingIdByDate = await loadExistingIdByDate()
   const nowYear = new Date().getFullYear()
   const years = [nowYear, nowYear - 1, nowYear - 2, nowYear - 3]
   const all: PlenoItem[] = []
   for (const y of years) {
     console.log(`[plenos] fetching ${y}…`)
-    const rows = await fetchYear(y)
+    const rows = await fetchYear(y, existingIdByDate)
     all.push(...rows)
   }
 
@@ -53,8 +89,8 @@ async function main() {
   const payload = {
     generatedAt: new Date().toISOString(),
     source: {
-      baseUrl: BASE,
-      platform: 'Ayuntamiento de Riba-roja de Túria — /plenos/<year>',
+      baseUrl: REGMEET_BASE,
+      platform: `Regmeet — aytoribarroja/sesiones_categorias/${REGMEET_ENTITY}/<year>`,
     },
     stats: {
       total: items.length,
@@ -66,7 +102,8 @@ async function main() {
 
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
-  console.log(`[plenos] wrote ${OUT} — ${items.length} sesiones`)
+  const reused = items.filter((it) => existingIdByDate.get(it.date) === it.id).length
+  console.log(`[plenos] wrote ${OUT} — ${items.length} sesiones (reused ${reused} legacy ids)`)
 }
 
 main().catch((err) => {

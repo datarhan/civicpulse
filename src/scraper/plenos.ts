@@ -1,11 +1,15 @@
 /**
- * Parse the Ayuntamiento's plenos index page.
- * URL pattern: http://www.ribarroja.es/plenos/<year>
+ * Two parsers for the same conceptual data — the council's pleno index —
+ * across two source platforms:
  *
- * Links look like:
- *   <a href="/avisos_urgentes/pleno_ordinario_4_de_diciembre_de_2023/…">
- *     Pleno ordinario 4 de diciembre de 2023
- *   </a>
+ * 1. `parsePlenosIndex` — legacy ribarroja.es /plenos/<year> HTML. Kept
+ *    available so the historical fixture test continues to pass.
+ *    Upstream retired 2026-05-25 (HTTP path ECONNRESET, HTTPS 404).
+ *
+ * 2. `parseRegmeetSessions` — new Regmeet SaaS index at
+ *    regmeet.com/aytoribarroja/sesiones_categorias/<entityHash>/<year>.
+ *    Server-rendered table; each row is a <tr class="tabla-sesiones">
+ *    with date, type label, and a participaciones/<hash> "Ver" link.
  */
 
 export type PlenoKind = 'ordinario' | 'extraordinario' | 'urgente' | 'otro'
@@ -65,6 +69,88 @@ function fnv(s: string): string {
     h = (h * 0x01000193) >>> 0
   }
   return h.toString(36)
+}
+
+interface RegmeetParseOpts {
+  year: number
+  /** Origin used to build absolute participaciones URLs. Defaults to regmeet.com. */
+  baseUrl?: string
+  /**
+   * Optional date→id table so net-new sessions reuse the IDs already in
+   * plenos.json. Downstream files (pleno-claims, pleno-findings, …) key
+   * off plenoId; rotating IDs on a source migration would orphan them.
+   */
+  existingIdByDate?: Map<string, string>
+}
+
+const REGMEET_BASE = 'https://regmeet.com'
+const REGMEET_LINK_RE = /\/aytoribarroja\/participaciones\/[a-f0-9]+/i
+const REGMEET_DATE_RE = /(\d{2})-(\d{2})-(\d{4})/
+const REGMEET_LONG_DATE_RE = /Sesi[oó]n\s+de\s+fecha\s+(\d{1,2})\s+de\s+(\w+)\s+de\s+(\d{4})/i
+
+function classifyRegmeet(typeLabel: string): PlenoKind {
+  const lc = typeLabel.toLowerCase()
+  if (lc.includes('extraordinaria') && lc.includes('urgent')) return 'urgente'
+  if (lc.includes('extraordinaria')) return 'extraordinario'
+  if (lc.includes('urgent')) return 'urgente'
+  if (lc.includes('ordinaria')) return 'ordinario'
+  return 'otro'
+}
+
+/**
+ * Parse a single year's Regmeet session-index page. Returns newest-first.
+ *
+ * The HTML is server-rendered (jQuery DataTables seed) with one
+ * `<tr class="tabla-sesiones">` per session containing:
+ *
+ *   - `<td>DD-MM-YYYY</td>`             (short date)
+ *   - `<td>Sesiones plenarias …</td>`   (type label, drives kind)
+ *   - `<td>Sesión de fecha … de … de YYYY</td>`  (display title)
+ *   - `<td><a href="/aytoribarroja/participaciones/<hash>?…"></a></td>`
+ */
+export function parseRegmeetSessions(html: string, opts: RegmeetParseOpts): PlenoItem[] {
+  const base = (opts.baseUrl || REGMEET_BASE).replace(/\/+$/, '')
+  const items: PlenoItem[] = []
+  const seenLink = new Set<string>()
+  // Split into <tr class="tabla-sesiones"> blocks. Each is self-contained.
+  const rowRe = /<tr[^>]*class="[^"]*tabla-sesiones[^"]*"[^>]*>([\s\S]*?)<\/tr>/gi
+  let rowMatch: RegExpExecArray | null
+  while ((rowMatch = rowRe.exec(html)) !== null) {
+    const block = rowMatch[1]
+    const dateMatch = block.match(REGMEET_DATE_RE)
+    if (!dateMatch) continue
+    const [, dd, mm, yyyy] = dateMatch
+    const date = `${yyyy}-${mm}-${dd}`
+    if (!date.startsWith(String(opts.year))) continue
+    const linkMatch = block.match(REGMEET_LINK_RE)
+    if (!linkMatch) continue
+    const path = linkMatch[0]
+    const link = base + path + '?idioma=castellano'
+    if (seenLink.has(link)) continue
+    seenLink.add(link)
+    // Title preference: the "Sesión de fecha …" long form if present, else
+    // build one from the date so /plenos still shows something readable.
+    const longMatch = block.match(REGMEET_LONG_DATE_RE)
+    const title = longMatch
+      ? longMatch[0].replace(/\s+/g, ' ').trim()
+      : `Sesión de ${dd}-${mm}-${yyyy}`
+    // Type label drives kind classification.
+    const cells = [...block.matchAll(/<td[^>]*>([\s\S]*?)<\/td>/gi)].map((m) =>
+      m[1]
+        .replace(/<[^>]+>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    )
+    const typeLabel = cells.find((c) => /sesiones plenarias/i.test(c)) || ''
+    const kind = classifyRegmeet(typeLabel)
+    // ID preservation: prefer an existing plenos.json id keyed by date so
+    // downstream cross-references (pleno-claims, pleno-findings, …) survive
+    // the source migration. New sessions get an FNV hash of the Regmeet link.
+    const id = opts.existingIdByDate?.get(date) ?? fnv(link)
+    items.push({ id, title, date, kind, link })
+  }
+  items.sort((a, b) => b.date.localeCompare(a.date))
+  return items
 }
 
 export function parsePlenosIndex(html: string, opts: ParseOpts): PlenoItem[] {

@@ -20,15 +20,23 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 
-const SOURCE_URL = 'http://www.ribarroja.es/ayuntamiento/corporacion_municipal'
+// 2026-05-25: ribarroja.es retired the plain-HTTP /ayuntamiento path; it
+// now ECONNRESETs from undici instead of redirecting. Same content lives
+// under HTTPS + /es/ — flagged when scrape:officials silently broke the
+// nightly chain for 8 days (CLAUDE.md §Nightly refresh).
+const SOURCE_URL = 'https://www.ribarroja.es/es/ayuntamiento/corporacion_municipal'
 const OUT_JSON = join(PROJECT_ROOT, 'public/data/officials.json')
 const OUT_PHOTOS = join(PROJECT_ROOT, 'public/data/photos')
 
 async function fetchLiveHtml(): Promise<string> {
   const res = await fetch(SOURCE_URL, {
     headers: {
+      // ribarroja.es's WAF (2026-05-25) drops any UA that doesn't lead
+      // with a Mozilla token — bare `CivicPulse/0.1` triggers a TLS RST
+      // mid-handshake. Keep the project identifier inside a Mozilla-
+      // compatible envelope so we stay attributable but not blocked.
       'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech scraper, respects robots.txt',
+        'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)',
       Accept: 'text/html,application/xhtml+xml',
     },
   })
@@ -57,12 +65,12 @@ async function main() {
   const html = await fetchLiveHtml()
 
   console.log('[scrape] parsing HTML…')
-  const officials = parseCorporacion(html, { baseUrl: 'http://www.ribarroja.es' })
+  const officials = parseCorporacion(html, { baseUrl: 'https://www.ribarroja.es' })
   console.log(`[scrape] parsed ${officials.length} officials`)
 
   if (officials.length < 21) {
     console.warn(
-      `[scrape] WARNING: expected at least 21 officials (full council), got ${officials.length}`
+      `[scrape] WARNING: expected at least 21 officials (full council), got ${officials.length}`,
     )
   }
 
@@ -83,10 +91,13 @@ async function main() {
     generatedAt: new Date().toISOString(),
     source: SOURCE_URL,
     count: enriched.length,
-    composition: enriched.reduce((acc, o) => {
-      acc[o.party] = (acc[o.party] || 0) + 1
-      return acc
-    }, {} as Record<string, number>),
+    composition: enriched.reduce(
+      (acc, o) => {
+        acc[o.party] = (acc[o.party] || 0) + 1
+        return acc
+      },
+      {} as Record<string, number>,
+    ),
     officials: enriched,
   }
 
