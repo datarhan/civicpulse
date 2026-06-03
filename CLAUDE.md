@@ -347,9 +347,10 @@ ESLint + Prettier are configured (`eslint.config.mjs` owns correctness,
 Prettier owns formatting): `npm run lint`, `npm run lint:fix`, `npm run format`,
 `npm run format:check`. A husky pre-commit hook runs `npm run lint` (fails on
 errors, not warnings). Type-checking runs via `npm run typecheck`
-(`tsc --noEmit`, configured by the root `tsconfig.json`; the uncommitted
-journalist subsystem and the test tree are currently excluded from its
-`include`). The unit/integration suite is Vitest +
+(`tsc --noEmit`, configured by the root `tsconfig.json`, which now type-checks
+the journalist subsystem too; only the test tree and the dead
+`scripts/draft-finding-suggestions.ts` stay outside its `include`). The
+unit/integration suite is Vitest +
 happy-dom; fixtures live in `tests/fixtures/`. The end-to-end suite is
 Playwright (`tests/e2e/*.spec.ts`) and covers **78 tests, zero failures**:
 
@@ -856,14 +857,25 @@ Files (mirror the promises → claims → findings 3-layer contract):
 
 Architecture:
 
-- Schemas + validators: `src/scraper/journalist.ts` (vanilla TS, mirrors
+  Each of the three big modules below was decomposed (May 2026) into a directory
+  behind a thin **barrel** of the same name — every `import … from
+  '…/scraper/journalist*'` keeps resolving unchanged, and the barrels re-export
+  only the original public surface.
+- Schemas + validators: `src/scraper/journalist.ts` — barrel over
+  `journalist/{types,core,sections,validators}.ts` (vanilla TS, mirrors
   `pleno-finding.ts` discipline — `must()` invariants, snapshot-wide
-  re-validation on every write).
-- Tools: `src/scraper/journalist-tools.ts` (pure functions —
-  `searchLocalSnapshots`, `fetchOfficialBySlug`, `fetchPressForSubject`,
-  `fetchWikidata`, `fetchWikipedia`, `fetchUrl`, `webSearch` Exa, `audit`
-  with Wayback). Network results cached at `.research-cache/<sha256>.json`.
-- 4-stage pipeline: `src/scraper/journalist-agent.ts` — `runJournalistAgent`:
+  re-validation on every write). `journalist/validators.ts` owns the single
+  `isHighSensitivity()` libel predicate shared by the validator and
+  `computeLegalSensitivity` (no drift).
+- Tools: `src/scraper/journalist-tools.ts` — barrel over
+  `journalist-tools/{internal,local,web,gazette,bio-extract,citations}.ts`
+  (pure functions — `searchLocalSnapshots`, `fetchOfficialBySlug`,
+  `fetchPressForSubject`, `fetchWikidata`, `fetchWikipedia`, `fetchUrl`,
+  `webSearch` Exa, `audit` with Wayback). Network results cached at
+  `.research-cache/<sha256>.json` (the `internal` module).
+- 4-stage pipeline: `src/scraper/journalist-agent.ts` — the orchestrator
+  (helpers + section builders extracted to `journalist-agent/{shared,builders}.ts`)
+  — `runJournalistAgent`:
   1. **Plan** (LLM, `JOURNALIST_PLAN_VERSION`) — emits 4–8 research questions, each tagged with a tool.
   2. **Research** (deterministic Node) — dispatches each question through the tools; accumulates `SourceCitation[]` + parallel `evidence[]` rows.
   3. **Synth** (LLM, `JOURNALIST_SYNTH_VERSION`) — projects the evidence into a draft skeleton (portrait, narratives, timeline, relationships, sparkline, promise-board, quote-cards).
@@ -960,15 +972,25 @@ Wikidata + Wikipedia.
   sources, written to `public/data/souls/<slug>.md`. CLI:
   `npm run journalist:export-soul -- <assignmentId>`.
 - **UI redesign** (`src/pages/AgenteReporte.jsx` +
-  `src/components/journalist/index.jsx`): editorial-longform 3-col grid
+  `src/components/journalist/index.jsx` — a barrel over
+  `journalist/{Citations,HeroBand,Navigation,Sections,SourceLedger}.jsx` +
+  the `ReportSectionRenderer` dispatcher): editorial-longform 3-col grid
   (hero band + sticky TOC + main content + sticky facts sidebar +
   full-width sortable source ledger). Citation pills carry hover
   popovers. Relationship graph zoom-modal. Mobile collapses to one
   column. Typography tokens in `src/index.css`
   (`--type-display`, `--type-h2`, etc.).
-- **Plan + synth prompts bumped to v2** (`src/llm/prompts.ts`); planner
-  now knows about `pdf-fetch / headless-fetch / boe-search / dogv-search
-  / dialnet-search / hemeroteca-search` tool kinds.
+- **Prompts** (`src/llm/prompts.ts`): synth v2; **plan v3** — the planner
+  knows `pdf-fetch / headless-fetch / boe-search / dogv-search /
+  dialnet-search / hemeroteca-search`, AND those six are now present in the
+  `JournalistPlanQuestion.suggestedTool` Zod enum (`src/llm/schemas.ts`), so
+  validated plan output can actually request them (until May 2026 they were
+  advertised but the schema rejected them — they were unreachable). The plan
+  prompt also states `officials/press/plenoclaims/promises` are pre-seeded
+  and must not be requested; the research dispatch treats them as explicit
+  no-ops and `warns` on any genuinely-unhandled tool kind instead of dropping
+  it silently. A planner-requested URL that fetches nothing now appends a
+  `warnings[]` row (it used to be dropped silently).
 - **PDF auto-routing:** `fetchTopUrls` detects URLs whose pathname ends
   in `.pdf` (case-insensitive, query/fragment stripped) via the local
   `looksLikePdf()` helper and routes them through `fetchPdfUrl`
