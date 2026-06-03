@@ -23,7 +23,6 @@
  *     callers go through audit() for explicit archival decisions
  */
 
-
 // ───────────────────────────────────────────────────────────────────────────
 // Decomposed in the journalist-agent refactor. Thin barrel over
 // ./journalist-tools/* so every existing import keeps resolving. The shared

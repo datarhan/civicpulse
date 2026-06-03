@@ -169,4 +169,3 @@ export function extractBioEntities(bodyText: string, subjectName: string): BioEn
 
   return out
 }
-

@@ -73,7 +73,13 @@ describe('defect #1 — JournalistPlanResponseSchema tool reachability', () => {
     for (const tool of ['local-snapshot', 'wikidata', 'web-search', 'fetch-url', 'audit-url']) {
       const parsed = JournalistPlanResponseSchema.safeParse({
         questions: [
-          { id: 'q_t', question: '¿Pregunta de prueba sobre el sujeto?', suggestedTool: tool, queryHint: null, rationale: 'comprobación' },
+          {
+            id: 'q_t',
+            question: '¿Pregunta de prueba sobre el sujeto?',
+            suggestedTool: tool,
+            queryHint: null,
+            rationale: 'comprobación',
+          },
         ],
       })
       expect(parsed.success, tool).toBe(true)
@@ -161,7 +167,12 @@ describe('defect #3 — unparseable financial source URL fails closed', () => {
           kind: 'financial',
           payload: {
             items: [
-              { year: 2023, metric: 'salary', description: 'Salario municipal', sourceIds: ['src-fin'] },
+              {
+                year: 2023,
+                metric: 'salary',
+                description: 'Salario municipal',
+                sourceIds: ['src-fin'],
+              },
             ],
           },
         },

@@ -11,7 +11,8 @@ import { resolve, join } from 'node:path'
 // ─── Cache layer ───────────────────────────────────────────────────────────
 
 export const CACHE_DIR = resolve('.research-cache')
-export const UA = 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) journalist-agent research'
+export const UA =
+  'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) journalist-agent research'
 
 interface CacheEntry<T> {
   fetchedAt: string

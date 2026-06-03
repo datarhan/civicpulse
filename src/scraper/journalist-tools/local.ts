@@ -207,4 +207,3 @@ export function fetchPromisesForParty(party: string, limit = 25): PromiseHit[] {
   }
   return hits
 }
-
