@@ -11,6 +11,7 @@ test-results/
 .llm-cache/
 .embed-cache/
 .press-cache/
+.research-cache/
 .curator-jobs/
 .voiceprints/
 tmp/
