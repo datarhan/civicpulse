@@ -13,7 +13,8 @@
  * "failed" with an error message on exception. Re-validates both
  * snapshots before writing.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
+import { loadSnapshot, writeSnapshot, writeJsonChunk } from './lib/snapshot-io'
 import { resolve } from 'node:path'
 import {
   validateAssignmentsSnapshot,
@@ -77,17 +78,15 @@ function loadAssignments(): JournalistAssignmentsSnapshot {
 }
 
 function loadDrafts(): JournalistDraftsSnapshot {
-  if (!existsSync(DRAFTS)) {
-    return { version: '1.0', generatedAt: new Date().toISOString(), items: [] }
-  }
-  return validateDraftsSnapshot(readFileSync(DRAFTS, 'utf8'))
+  return loadSnapshot(DRAFTS, validateDraftsSnapshot, {
+    version: '1.0',
+    generatedAt: new Date().toISOString(),
+    items: [],
+  })
 }
 
 function writeDraftChunk(draft: JournalistReportDraft): string {
-  mkdirSync(CHUNK_DIR, { recursive: true })
-  const p = resolve(CHUNK_DIR, `${draft.assignmentId}.draft.json`)
-  writeFileSync(p, JSON.stringify(draft, null, 2) + '\n')
-  return p
+  return writeJsonChunk(CHUNK_DIR, `${draft.assignmentId}.draft.json`, draft)
 }
 
 async function main(): Promise<void> {
@@ -107,9 +106,7 @@ async function main(): Promise<void> {
   runningCopy.items[idx] = { ...assignment, status: 'running' }
   runningCopy.generatedAt = new Date().toISOString()
   if (!opts.dryRun) {
-    const serialized = JSON.stringify(runningCopy, null, 2) + '\n'
-    validateAssignmentsSnapshot(serialized)
-    writeFileSync(ASSIGNMENTS, serialized, 'utf8')
+    writeSnapshot(ASSIGNMENTS, runningCopy, validateAssignmentsSnapshot)
   }
 
   let draft: JournalistReportDraft | null = null
@@ -167,9 +164,7 @@ async function main(): Promise<void> {
   }
 
   // Persist assignment status.
-  const assignmentsOut = JSON.stringify(next, null, 2) + '\n'
-  validateAssignmentsSnapshot(assignmentsOut)
-  writeFileSync(ASSIGNMENTS, assignmentsOut, 'utf8')
+  writeSnapshot(ASSIGNMENTS, next, validateAssignmentsSnapshot)
 
   if (!draft) {
     process.stderr.write(`[journalist:run] agent failed: ${errMsg}\n`)
@@ -187,9 +182,7 @@ async function main(): Promise<void> {
     generatedAt: new Date().toISOString(),
     items,
   }
-  const serialized = JSON.stringify(draftsOut, null, 2) + '\n'
-  validateDraftsSnapshot(serialized)
-  writeFileSync(DRAFTS, serialized, 'utf8')
+  writeSnapshot(DRAFTS, draftsOut, validateDraftsSnapshot)
   const chunkPath = writeDraftChunk(draft)
   process.stdout.write(
     `[journalist:run] saved draft ${draft.id} → ${DRAFTS}\n` +

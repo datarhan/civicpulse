@@ -18,7 +18,8 @@
  *
  * Re-validates the whole reports snapshot before writing.
  */
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
+import { rewriteJsonIfPresent, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
 import {
   validateReportsSnapshot,
@@ -166,14 +167,9 @@ function main(): void {
   const items = [...snap.items]
   items[idx] = next
   const out: JournalistReportsSnapshot = { ...snap, generatedAt: new Date().toISOString(), items }
-  const serialized = JSON.stringify(out, null, 2) + '\n'
-  validateReportsSnapshot(serialized)
-  writeFileSync(REPORTS, serialized, 'utf8')
+  writeSnapshot(REPORTS, out, validateReportsSnapshot)
   // Refresh per-id chunk if present.
-  const chunkPath = resolve(CHUNK_DIR, `${next.assignmentId}.json`)
-  if (existsSync(chunkPath)) {
-    writeFileSync(chunkPath, JSON.stringify(next, null, 2) + '\n')
-  }
+  rewriteJsonIfPresent(resolve(CHUNK_DIR, `${next.assignmentId}.json`), next)
   process.stdout.write(
     `[correct-journalist-report] applied correction to ${report.id} · field=${opts.field} · editor=${opts.editor}\n`,
   )

@@ -11,7 +11,7 @@
  * Re-validates the whole assignments snapshot before writing. Refuses to
  * overwrite an existing assignment id unless --force is passed.
  */
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { loadSnapshot, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
 import {
   ALLOWED_ASSIGNMENT_KINDS,
@@ -92,16 +92,13 @@ function parseArgs(argv: string[]): Opts {
   return o
 }
 
-function loadSnapshot(): JournalistAssignmentsSnapshot {
-  if (!existsSync(PATH)) {
-    return { version: '1.0', generatedAt: new Date().toISOString(), items: [] }
-  }
-  return validateAssignmentsSnapshot(readFileSync(PATH, 'utf8'))
-}
-
 function main(): void {
   const o = parseArgs(process.argv.slice(2))
-  const snap = loadSnapshot()
+  const snap = loadSnapshot(PATH, validateAssignmentsSnapshot, {
+    version: '1.0',
+    generatedAt: new Date().toISOString(),
+    items: [],
+  })
   const existingIdx = snap.items.findIndex((a) => a.id === o.id)
   if (existingIdx >= 0 && !o.force) {
     process.stderr.write(
@@ -130,9 +127,7 @@ function main(): void {
     generatedAt: new Date().toISOString(),
     items,
   }
-  const serialized = JSON.stringify(out, null, 2) + '\n'
-  validateAssignmentsSnapshot(serialized)
-  writeFileSync(PATH, serialized, 'utf8')
+  writeSnapshot(PATH, out, validateAssignmentsSnapshot)
   process.stdout.write(
     `[journalist:assign] ${existingIdx >= 0 ? 'updated' : 'created'} assignment ${o.id} → ${PATH}\n`,
   )

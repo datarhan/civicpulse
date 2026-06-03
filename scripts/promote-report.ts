@@ -21,7 +21,8 @@
  * libel-discipline gate: it forces a human to confirm a legal review
  * has happened before the report goes public.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
+import { loadSnapshot, writeJsonChunk, writeJsonFile, writeSnapshot } from './lib/snapshot-io'
 import { resolve } from 'node:path'
 import {
   validateAssignmentsSnapshot,
@@ -90,17 +91,14 @@ function loadDrafts(): JournalistReportDraft[] {
 }
 
 function loadReports(): JournalistReportsSnapshot {
-  if (!existsSync(REPORTS)) {
-    return {
-      version: '1.0',
-      generatedAt: new Date().toISOString(),
-      legalNotice: DEFAULT_LEGAL_NOTICE,
-      contactUrl: 'https://github.com/datarhan/civicpulse/issues/new/choose',
-      methodologyUrl: '/metodologia',
-      items: [],
-    }
-  }
-  return validateReportsSnapshot(readFileSync(REPORTS, 'utf8'))
+  return loadSnapshot(REPORTS, validateReportsSnapshot, {
+    version: '1.0',
+    generatedAt: new Date().toISOString(),
+    legalNotice: DEFAULT_LEGAL_NOTICE,
+    contactUrl: 'https://github.com/datarhan/civicpulse/issues/new/choose',
+    methodologyUrl: '/metodologia',
+    items: [],
+  })
 }
 
 function loadAssignments(): JournalistAssignmentsSnapshot | null {
@@ -109,10 +107,7 @@ function loadAssignments(): JournalistAssignmentsSnapshot | null {
 }
 
 function writeChunk(report: JournalistReport): string {
-  mkdirSync(CHUNK_DIR, { recursive: true })
-  const p = resolve(CHUNK_DIR, `${report.assignmentId}.json`)
-  writeFileSync(p, JSON.stringify(report, null, 2) + '\n')
-  return p
+  return writeJsonChunk(CHUNK_DIR, `${report.assignmentId}.json`, report)
 }
 
 function main(): void {
@@ -153,7 +148,7 @@ function main(): void {
 
   if (opts.edit) {
     const tmp = `/tmp/journalist-report-${report.id}.json`
-    writeFileSync(tmp, JSON.stringify(report, null, 2) + '\n')
+    writeJsonFile(tmp, report)
     process.stdout.write(
       `[promote-report] EDIT MODE — wrote ${tmp} (not applied).\n` +
         `  Review, then re-run without --edit to publish.\n`,
@@ -172,9 +167,7 @@ function main(): void {
     generatedAt: new Date().toISOString(),
     items,
   }
-  const serialized = JSON.stringify(out, null, 2) + '\n'
-  validateReportsSnapshot(serialized)
-  writeFileSync(REPORTS, serialized, 'utf8')
+  writeSnapshot(REPORTS, out, validateReportsSnapshot)
   const chunkPath = writeChunk(report)
 
   // Bump the assignment status to "promoted" if the snapshot exists.
@@ -184,9 +177,7 @@ function main(): void {
     if (aIdx >= 0) {
       assignments.items[aIdx] = { ...assignments.items[aIdx], status: 'promoted' }
       assignments.generatedAt = new Date().toISOString()
-      const aOut = JSON.stringify(assignments, null, 2) + '\n'
-      validateAssignmentsSnapshot(aOut)
-      writeFileSync(ASSIGNMENTS, aOut, 'utf8')
+      writeSnapshot(ASSIGNMENTS, assignments, validateAssignmentsSnapshot)
     }
   }
 
