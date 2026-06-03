@@ -144,8 +144,11 @@ function TrustIndicators({ indicators }) {
               padding: '2px 7px',
               borderRadius: 11,
               background: on ? 'var(--ok-soft)' : 'var(--soft)',
+              // Inactive chips keep the muted --ink60 ink but DROP the extra
+              // 0.7 opacity, which compounded the translucency down to a
+              // 2.7:1 contrast against --soft. Full --ink60 is 5.2:1 (light) /
+              // 8.2:1 (dark) — WCAG AA, still visibly muted vs the active state.
               color: on ? 'var(--ok-ink)' : 'var(--ink60)',
-              opacity: on ? 1 : 0.7,
             }}
           >
             <span style={{ fontSize: 9 }}>{on ? '●' : '○'}</span>
