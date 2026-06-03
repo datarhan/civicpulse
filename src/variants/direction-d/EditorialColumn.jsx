@@ -83,8 +83,7 @@ function Kicker({ tone = 'ink', children }) {
 }
 
 function QuejaCTA() {
-  // eslint-disable-next-line no-unused-vars
-  const LOOM_URL = '' // TODO operator: paste Loom share URL here to enable the embed
+  // TODO operator: paste a Loom share URL here to enable the embed.
   return (
     <div
       style={{

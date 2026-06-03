@@ -74,7 +74,7 @@ function computePerNeighborhood(items, neighborhoods) {
 export default function QuejasHeatmap() {
   const { data: geo } = useGeo()
   const { data: quejas } = useQuejas()
-  const items = quejas?.items ?? []
+  const items = useMemo(() => quejas?.items ?? [], [quejas])
   const hasData = items.some((q) => q.address_string)
   const perNeighborhood = useMemo(
     () => computePerNeighborhood(items, geo?.neighborhoods),

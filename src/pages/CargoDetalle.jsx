@@ -1,15 +1,9 @@
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
-import {
-  usePromises,
-  isPromiseFrozen,
-  PARTY_TONE,
-  STATUS_LABEL,
-  STATUS_TONE,
-} from '../hooks/usePromises'
+import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
-import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
+import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT, useLocale } from '../i18n'
 
@@ -74,7 +68,6 @@ export default function CargoDetalle() {
   const promisesSnap = usePromises()
   const agendasSnap = usePlenoAgendas()
   const quejasSnap = useQuejas()
-  const frozen = isPromiseFrozen(promisesSnap.data)
 
   if (officialsSnap.loading) {
     return (

@@ -128,7 +128,7 @@ function KindCard({ kind, items, formatDate }) {
 export default function Cambios() {
   const t = useT()
   const [days, setDays] = useState(7)
-  const { loading, changes, byKind, totalCount, windowDays, formatDate } = useCambios(days)
+  const { loading, byKind, totalCount, windowDays, formatDate } = useCambios(days)
   useDocumentTitle(t('cambios.title') || 'Novedades')
 
   const kinds = ['queja', 'pleno', 'licitacion', 'subvencion', 'prensa', 'participa']

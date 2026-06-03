@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { useLocation } from 'react-router-dom'
+import { Card, Pill } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
@@ -305,7 +305,7 @@ function FindingDetailCard({ f, permalink }) {
   )
 }
 
-function Chip({ active, label, count, onClick, tone }) {
+function Chip({ active, label, count, onClick }) {
   return (
     <button
       onClick={onClick}
@@ -337,13 +337,12 @@ function Chip({ active, label, count, onClick, tone }) {
 export default function Hallazgos() {
   const t = useT()
   const location = useLocation()
-  const navigate = useNavigate()
   const { loading, error, data } = usePlenoFindings()
   const [severityFilter, setSeverityFilter] = useState(null)
   const [speakerFilter, setSpeakerFilter] = useState(null)
   const [plenoFilter, setPlenoFilter] = useState(null)
 
-  const items = data?.items ?? []
+  const items = useMemo(() => data?.items ?? [], [data])
 
   const counts = useMemo(() => {
     const bySeverity = {}

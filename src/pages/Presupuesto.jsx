@@ -415,7 +415,7 @@ function RealBudgetHeader() {
             {[...s.expenseByEconomicChapter]
               .filter((c) => c.amount > 0)
               .sort((a, b) => b.amount - a.amount)
-              .map((c, i) => (
+              .map((c) => (
                 <ChapterRow
                   key={c.code}
                   label={`Cap.${c.code} · ${c.label}`}
@@ -435,7 +435,7 @@ function RealBudgetHeader() {
             {[...s.expenseByProgram]
               .filter((g) => g.amount > 0)
               .sort((a, b) => b.amount - a.amount)
-              .map((g, i) => (
+              .map((g) => (
                 <ChapterRow
                   key={g.label}
                   label={g.label}

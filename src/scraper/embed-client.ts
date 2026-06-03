@@ -44,7 +44,6 @@ const OPENAI_DIM = 1536
 const GEMINI_MODEL = 'text-embedding-004'
 const GEMINI_DIM = 768
 const OLLAMA_MODEL = 'nomic-embed-text'
-const OLLAMA_DIM = 768 // nomic-embed-text default
 const OLLAMA_DEFAULT_HOST = 'http://localhost:11434'
 const MAX_TOKENS_PER_INPUT = 8000 // text-embedding-3-* hard limit is 8192
 const OPENAI_MAX_INPUTS = 2048

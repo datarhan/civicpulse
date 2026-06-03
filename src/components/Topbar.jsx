@@ -1,49 +1,6 @@
 import { Ic } from './Icons'
 import { useT } from '../i18n'
 
-function IconBtn({ icon: I, badge }) {
-  return (
-    <button
-      style={{
-        width: 32,
-        height: 32,
-        borderRadius: 7,
-        display: 'grid',
-        placeItems: 'center',
-        color: 'var(--ink60)',
-        position: 'relative',
-      }}
-      onMouseEnter={(e) => (e.currentTarget.style.background = 'var(--soft)')}
-      onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
-    >
-      <I width={16} height={16} />
-      {badge && (
-        <span
-          className="mono"
-          style={{
-            position: 'absolute',
-            top: 4,
-            right: 4,
-            background: 'var(--crit)',
-            color: 'white',
-            fontSize: 9,
-            minWidth: 14,
-            height: 14,
-            borderRadius: 7,
-            padding: '0 4px',
-            display: 'grid',
-            placeItems: 'center',
-            fontWeight: 700,
-            lineHeight: 1,
-          }}
-        >
-          {badge}
-        </span>
-      )}
-    </button>
-  )
-}
-
 export function Topbar({ crumb, onOpenCmdK, onOpenSidebar }) {
   const t = useT()
   return (

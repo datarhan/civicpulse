@@ -14,7 +14,7 @@
 
 import type { Db } from '../db/client.ts'
 import type { QuejaRow } from '../db/queries.ts'
-import { getQueja, setState } from '../db/queries.ts'
+import { setState } from '../db/queries.ts'
 import { routeUsingLocalOfficials } from './router.ts'
 import { isLoregFrozen } from './freeze.ts'
 import type { Channel } from './channel.ts'

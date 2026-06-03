@@ -195,7 +195,7 @@ export default function Declaraciones() {
   const [search, setSearch] = useState('')
   const [shown, setShown] = useState(PAGE_SIZE)
 
-  const items = claims.data?.items ?? []
+  const items = useMemo(() => claims.data?.items ?? [], [claims.data])
 
   // Aggregate counts for the chip badges, computed once per snapshot.
   const stats = useMemo(() => {

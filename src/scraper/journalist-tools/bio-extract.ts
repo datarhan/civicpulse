@@ -77,7 +77,7 @@ export function extractBioEntities(bodyText: string, subjectName: string): BioEn
   if (!out.birthplace && out.dateOfBirth) {
     const after = text.slice(text.search(/\b\d{1,2}\s+(?:de\s+)?[A-Z]/i))
     const placeCv = after.match(
-      /(?:\d{4})\s+([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\-]+(?:\s+(?:DE|DEL|LA|EL|LOS|LAS)\s+)?(?:[A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\-]+\s*)*)/,
+      /(?:\d{4})\s+([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ-]+(?:\s+(?:DE|DEL|LA|EL|LOS|LAS)\s+)?(?:[A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ-]+\s*)*)/,
     )
     if (placeCv) out.birthplace = placeCv[1].replace(/\s+/g, ' ').trim()
   }
@@ -124,7 +124,7 @@ export function extractBioEntities(bodyText: string, subjectName: string): BioEn
   // ─── Career spans ───────────────────────────────────────────────────────
   // Prose: "1991-2003 economista en X" or "entre 1991 y 2003"
   const careerRx =
-    /(\d{4})\s*[-–—]\s*(\d{4}|presente|actualidad)\s*[:,]?\s+([\w\sÁÉÍÓÚÑáéíóúñ.,\-]{3,80}?)(?:\s+en\s+([\w\sÁÉÍÓÚÑáéíóúñ.,\-]{2,80}?))?(?:[.;]|$)/g
+    /(\d{4})\s*[-–—]\s*(\d{4}|presente|actualidad)\s*[:,]?\s+([\w\sÁÉÍÓÚÑáéíóúñ.,-]{3,80}?)(?:\s+en\s+([\w\sÁÉÍÓÚÑáéíóúñ.,-]{2,80}?))?(?:[.;]|$)/g
   let cm: RegExpExecArray | null
   while ((cm = careerRx.exec(text))) {
     const startYear = Number(cm[1])
@@ -140,7 +140,7 @@ export function extractBioEntities(bodyText: string, subjectName: string): BioEn
   }
   // CV-bullet career: "ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA"
   const careerCvRx =
-    /([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑa-záéíóúñ\s]{2,40}?)\s*[•·]\s*(\d{4})\s*[-–—]\s*(\d{4}|ACTUAL|ACTUALIDAD|PRESENTE)\s*[•·]\s*([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑa-záéíóúñ\s.,\-]{2,80})/g
+    /([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑa-záéíóúñ\s]{2,40}?)\s*[•·]\s*(\d{4})\s*[-–—]\s*(\d{4}|ACTUAL|ACTUALIDAD|PRESENTE)\s*[•·]\s*([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑa-záéíóúñ\s.,-]{2,80})/g
   let ccm: RegExpExecArray | null
   while ((ccm = careerCvRx.exec(text)) && out.careerSpans.length < 18) {
     const startYear = Number(ccm[2])

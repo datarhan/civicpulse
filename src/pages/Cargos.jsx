@@ -47,14 +47,6 @@ function QuejaBadge({ slug }) {
   )
 }
 
-function primaryDepartmentSlug(portfolios) {
-  for (const p of portfolios ?? []) {
-    const slug = canonicalizeDepartment(p)
-    if (slug) return slug
-  }
-  return null
-}
-
 function DepartmentLinks({ portfolios }) {
   const { locale } = useLocale()
   // Collect unique slugs from all portfolios — some officials own 3-4

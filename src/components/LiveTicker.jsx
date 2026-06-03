@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSpainTicker, formatEur, formatPct, signArrow } from '../hooks/useSpainTicker'
+import { useSpainTicker, signArrow } from '../hooks/useSpainTicker'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePromises, isPromiseFrozen } from '../hooks/usePromises'
-import { useT } from '../i18n'
 
 /* ============================================================
    Bloomberg-style auto-scrolling data ticker.

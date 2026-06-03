@@ -7,7 +7,6 @@ import {
   STATE_TONE,
   CATEGORY_LABEL,
   prettyNeighborhood,
-  timeAgo,
 } from '../hooks/useQuejas'
 import { useCtbg } from '../hooks/useCtbg'
 import { useConsellCv } from '../hooks/useConsellCv'

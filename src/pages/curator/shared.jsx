@@ -10,7 +10,6 @@ class SectionErrorBoundary extends Component {
     return { error, info: null }
   }
   componentDidCatch(error, info) {
-    // eslint-disable-next-line no-console
     console.error(`[Curator section "${this.props.label}" crashed]`, error, info)
     this.setState({ error, info })
   }

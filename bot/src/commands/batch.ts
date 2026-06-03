@@ -17,7 +17,7 @@ import type { Bot } from 'grammy'
 import type { Db } from '../db/client.ts'
 import type { MyContext } from '../types.ts'
 import type { Channel } from '../services/channel.ts'
-import { buildBatch, registerBatch, selectBatch } from '../services/batch.ts'
+import { registerBatch, selectBatch } from '../services/batch.ts'
 
 function parseAdmins(): Set<number> {
   const raw = process.env.ADMIN_USER_IDS ?? ''

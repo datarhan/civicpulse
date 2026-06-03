@@ -1,6 +1,5 @@
 import type { Bot } from 'grammy'
 import { InlineKeyboard } from 'grammy'
-import type { Conversation } from '@grammyjs/conversations'
 import { createConversation } from '@grammyjs/conversations'
 import type { Db } from '../db/client.ts'
 import { createQueja, type NewQuejaInput } from '../db/queries.ts'

@@ -74,10 +74,6 @@ function addEntry(agg: Agg, e: CacheEntry) {
   else agg.hitCount += 1
 }
 
-function daysBetween(iso: string, now: Date): number {
-  return Math.floor((now.getTime() - new Date(iso).getTime()) / 86_400_000)
-}
-
 function table(title: string, rows: Array<Record<string, string | number>>) {
   if (rows.length === 0) return
   console.log('\n' + title)

@@ -424,7 +424,6 @@ function PlenoVotesBlock() {
 }
 
 function PlenoVoteSuggestionsBlock() {
-  const t = useT()
   const { data } = usePlenoVoteSuggestions()
   const items = data?.items || []
   if (items.length === 0) return null // hide entirely when there's nothing to surface

@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import {
   usePromises,
@@ -426,7 +426,7 @@ export default function Promesas() {
   const [partyFilter, setPartyFilter] = useState('all')
   const [topicFilter, setTopicFilter] = useState('all')
 
-  const items = data?.items || []
+  const items = useMemo(() => data?.items || [], [data])
   const parties = useMemo(() => Array.from(new Set(items.map((p) => p.party))).sort(), [items])
   const topics = useMemo(() => Array.from(new Set(items.map((p) => p.topic))).sort(), [items])
 

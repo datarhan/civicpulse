@@ -169,7 +169,6 @@ function PromisesSection({ slug, frozen }) {
 }
 
 function UnvotedAgendasSection({ slug, votesSnap }) {
-  const t = useT()
   const agendas = usePlenoAgendas()
   if (agendas.loading || votesSnap.loading) return null
   const voteIndex = new Set(

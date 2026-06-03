@@ -175,7 +175,6 @@ function GtfsSchedulePopup({ gtfs, match, name }) {
   const isTerminus = match?.kind === 'l9' && match.station.terminus
   const station = match?.station
   const lineColor = match?.kind === 'other' ? station.lineBadgeBg : '#A47E52'
-  const lineLabel = match?.kind === 'other' ? station.line : 'L9'
   const departures = isTerminus
     ? gtfs.departures.filter((d) => d.heading !== 'Riba-roja')
     : gtfs.departures

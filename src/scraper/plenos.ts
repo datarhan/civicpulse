@@ -51,7 +51,7 @@ function classify(title: string): PlenoKind {
   return 'otro'
 }
 
-function extractDate(title: string, fallbackYear: number): string | null {
+function extractDate(title: string, _fallbackYear: number): string | null {
   // "Pleno ordinario 4 de diciembre de 2023"
   const m = title.match(/(\d{1,2})\s+de\s+(\w+)\s+de\s+(\d{4})/i)
   if (!m) return null
