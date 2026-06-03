@@ -41,8 +41,9 @@ test.describe('Plenos (/plenos)', () => {
     const expander = page.getByRole('button', { name: /^Ver$/ }).first()
     await expect(expander).toBeVisible({ timeout: 8000 })
     await expander.click()
-    // Once expanded, agenda rows render canonical UPPERCASE department tags.
-    await expect(page.getByText(/URBANISMO|HACIENDA|EDUCACI/).first()).toBeVisible({
+    // Once expanded, agenda rows render section pills (every item carries a
+    // section). Robust to the sparse department inference of the regmeet feed.
+    await expect(page.getByText(/Resolutiva|Informativa|Ruegos y preguntas/).first()).toBeVisible({
       timeout: 5000,
     })
   })

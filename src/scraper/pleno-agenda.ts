@@ -20,7 +20,8 @@
  *   "1.- Aprobación Actas anteriores de fecha 9 de marzo 2026…"
  */
 
-import { canonicalizeDepartment, type DepartmentSlug } from './departments'
+import { load } from 'cheerio'
+import { canonicalizeDepartment, DEPARTMENT_LABEL, type DepartmentSlug } from './departments'
 
 export type PlenoSection = 'resolutiva' | 'informativa' | 'ruegos' | 'apertura' | 'otro'
 
@@ -210,8 +211,82 @@ function parseItems(text: string): { items: PlenoAgendaItem[]; raw: string } {
   return { items, raw: body.slice(0, 5000) }
 }
 
+/**
+ * Parse the Regmeet (post-2026-05 upstream) session page. The Ayuntamiento
+ * migrated its plenos from the in-house ribarroja.es CMS to regmeet.com, which
+ * publishes the orden del día as `<table id="tableOrdenDia">`. Each numbered
+ * row ("N. …") is an agenda item; the interleaved rows (speaker name + cargo)
+ * are filtered out. Regmeet does NOT tag a department per item — unlike the old
+ * "DEPARTMENT, Expediente:" prefix — so the department is INFERRED from the
+ * item title via canonicalizeDepartment (keyword match, null when none).
+ */
+function parseRegmeetAgenda(html: string): { items: PlenoAgendaItem[]; raw: string } | null {
+  const $ = load(html)
+  const table = $('#tableOrdenDia')
+  if (!table.length) return null
+
+  const items: PlenoAgendaItem[] = []
+  table.find('tr').each((_, tr) => {
+    const cell = $(tr).find('td').first()
+    cell.find('script, style').remove()
+    const cellText = cell.text().replace(/\s+/g, ' ').trim()
+    const m = cellText.match(/^(\d{1,3})\.\s+(.+)$/)
+    if (!m) return // speaker / non-item row (no leading "N. ")
+    const number = parseInt(m[1], 10)
+
+    // Drop the audio-player tail: the "(HH:MM:SS)" timestamp + outcome and any
+    // leftover inline CSS/JS braces that bleed into the cell text.
+    let body = m[2]
+      .replace(/\(\d{1,2}:\d{2}:\d{2}\)[\s\S]*$/, '')
+      .replace(/[{#][\s\S]*$/, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+
+    // Expediente: "Expediente: 1926/2026/GEN", "Expediente 2162/2026/GEN", or a
+    // leading moción code "13/2026/PGRU". Strip it out of the title once found.
+    let expediente: string | null = null
+    const expLabelled = body.match(/Expediente:?\s*(\d+\/\d{4}(?:\/[A-Z]+)?)/i)
+    if (expLabelled) {
+      expediente = expLabelled[1]
+      body = body.replace(/Expediente:?\s*\d+\/\d{4}(?:\/[A-Z]+)?,?\s*/i, '').trim()
+    } else {
+      const leadCode = body.match(/^(\d+\/\d{4}\/[A-Z]+),?\s*(.*)$/)
+      if (leadCode) {
+        expediente = leadCode[1]
+        body = (leadCode[2] || body).trim()
+      }
+    }
+
+    const title = body.replace(/\.$/, '').trim()
+    if (title.length < 3) return
+
+    // Section: ruegos y preguntas > informativa (dación/dar cuenta) > resolutiva.
+    const section: PlenoSection = /ruegos?\s+y\s+preguntas|^ruegos\b|\bpreguntas?\b/i.test(title)
+      ? 'ruegos'
+      : /daci[oó]n\s+(?:de\s+)?cuenta|dar\s+cuenta|rendici[oó]n\s+de\s+cuentas/i.test(title)
+        ? 'informativa'
+        : 'resolutiva'
+
+    const slug = canonicalizeDepartment(title)
+    const department = slug ? DEPARTMENT_LABEL[slug].es : null
+
+    items.push({ number, title, section, department, departmentSlug: slug, expediente })
+  })
+
+  if (items.length === 0) return null
+  items.sort((a, b) => a.number - b.number)
+  return { items, raw: table.text().replace(/\s+/g, ' ').slice(0, 5000) }
+}
+
 export function parsePlenoAgenda(input: Buffer | string): PlenoAgenda | null {
   const html = decodeBuffer(input)
+
+  // Regmeet (current upstream) publishes the agenda in <table id="tableOrdenDia">.
+  if (/id=["']tableOrdenDia["']/i.test(html)) {
+    return parseRegmeetAgenda(html)
+  }
+
+  // Legacy ribarroja.es CMS (<div class="cuerpo"> … Orden del día :).
   const cuerpo = extractCuerpo(html)
   if (!cuerpo) return null
   const text = htmlToText(cuerpo)

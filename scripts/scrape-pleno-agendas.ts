@@ -26,8 +26,10 @@ async function fetchPage(url: string): Promise<Buffer | null> {
   try {
     const res = await fetch(url, {
       headers: {
+        // Browser-like UA: regmeet.com (the post-2026-05 plenos upstream) WAF
+        // rejects the bare "CivicPulse/…" UA. Matches scrape-plenos.ts.
         'User-Agent':
-          'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+          'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)',
         Accept: 'text/html',
       },
       signal: AbortSignal.timeout(15_000),
@@ -105,9 +107,9 @@ async function main() {
   const payload = {
     generatedAt: new Date().toISOString(),
     source: {
-      baseUrl: 'http://www.ribarroja.es',
+      baseUrl: 'https://regmeet.com',
       description:
-        "Ayuntamiento de Riba-roja de Túria — páginas individuales de 'Pleno ordinario/extraordinario' con la convocatoria y orden del día.",
+        'Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto.',
     },
     stats: {
       plenosFetched: results.length,

@@ -82,10 +82,7 @@ test.describe('Departamentos (/departamentos)', () => {
     // The TopDepartmentsCard + its /departamentos/ chips only render when the
     // agenda snapshot has departments; skip when the upstream scraper has not
     // populated them (not a frontend bug — the page honestly hides the card).
-    test.skip(
-      !agendaHasDepartments(),
-      'plenos-agendas.json has no departments in this snapshot',
-    )
+    test.skip(!agendaHasDepartments(), 'plenos-agendas.json has no departments in this snapshot')
     await page.goto('/plenos', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText(/Ver dashboard por departamento/i).first()).toBeVisible({
       timeout: 8000,

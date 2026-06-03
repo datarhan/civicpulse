@@ -81,3 +81,57 @@ describe('scraper/pleno-agenda — parsePlenoAgenda', () => {
     }
   })
 })
+
+// ── Regmeet upstream (post-2026-05 migration) ──────────────────────────────
+// The Ayuntamiento moved its plenos to regmeet.com, which publishes the orden
+// del día in <table id="tableOrdenDia"> instead of the old <div class="cuerpo">.
+describe('scraper/pleno-agenda — parsePlenoAgenda (regmeet format)', () => {
+  const FIXTURE = join(__dirname, 'fixtures', 'regmeet_pleno_sample.html')
+  let result: ReturnType<typeof parsePlenoAgenda>
+
+  beforeAll(() => {
+    result = parsePlenoAgenda(readFileSync(FIXTURE))
+  })
+
+  it('parses the #tableOrdenDia agenda', () => {
+    expect(result).not.toBeNull()
+    // 5 numbered items (1, 2, 5, 10, 11); the bare speaker row is filtered out.
+    expect(result!.items.map((i) => i.number)).toEqual([1, 2, 5, 10, 11])
+  })
+
+  it('filters out speaker rows (Cargo / Pertenece a) — agenda items only', () => {
+    for (const it of result!.items) {
+      expect(it.title).not.toMatch(/Cargo:|Pertenece a:/)
+    }
+  })
+
+  it('strips the audio-player timestamp, outcome and inline CSS/JS from titles', () => {
+    for (const it of result!.items) {
+      expect(it.title).not.toMatch(/\(\d{2}:\d{2}:\d{2}\)/) // no timestamp
+      expect(it.title).not.toMatch(/[{}]/) // no leaked CSS/JS braces
+      expect(it.title).not.toMatch(/\bAprobada\b/) // outcome dropped
+    }
+  })
+
+  it('extracts expedientes (labelled and leading moción codes)', () => {
+    const byNum = Object.fromEntries(result!.items.map((i) => [i.number, i]))
+    expect(byNum[2].expediente).toBe('717/2026/GEN')
+    expect(byNum[5].expediente).toBe('13/2026/PGRU') // leading moción code
+    expect(byNum[1].expediente).toBeNull()
+  })
+
+  it('infers the department from the item title (regmeet does not tag it)', () => {
+    const byNum = Object.fromEntries(result!.items.map((i) => [i.number, i]))
+    expect(byNum[2].departmentSlug).toBe('urbanismo')
+    expect(byNum[5].departmentSlug).toBe('vivienda')
+    expect(byNum[10].departmentSlug).toBe('hacienda')
+    expect(byNum[1].departmentSlug).toBeNull() // "Aprobación Acta anterior" — no dept keyword
+  })
+
+  it('classifies sections (resolutiva / informativa / ruegos)', () => {
+    const byNum = Object.fromEntries(result!.items.map((i) => [i.number, i]))
+    expect(byNum[2].section).toBe('resolutiva')
+    expect(byNum[10].section).toBe('informativa') // "Dación cuenta …"
+    expect(byNum[11].section).toBe('ruegos') // "Ruegos y preguntas"
+  })
+})
