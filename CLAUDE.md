@@ -343,7 +343,13 @@ cd bot && npm run export            # SQLite → ../public/data/quejas.json
 #   /batch  /batch_register  /escalar  — weekly batch to sede + Síndic escalation
 ```
 
-No linter or formatter is configured. The unit/integration suite is Vitest +
+ESLint + Prettier are configured (`eslint.config.mjs` owns correctness,
+Prettier owns formatting): `npm run lint`, `npm run lint:fix`, `npm run format`,
+`npm run format:check`. A husky pre-commit hook runs `npm run lint` (fails on
+errors, not warnings). Type-checking runs via `npm run typecheck`
+(`tsc --noEmit`, configured by the root `tsconfig.json`; the uncommitted
+journalist subsystem and the test tree are currently excluded from its
+`include`). The unit/integration suite is Vitest +
 happy-dom; fixtures live in `tests/fixtures/`. The end-to-end suite is
 Playwright (`tests/e2e/*.spec.ts`) and covers **78 tests, zero failures**:
 
@@ -366,7 +372,7 @@ CI runs E2E on every push/PR via `.github/workflows/e2e.yml`.
 CivicPulse is a **front-end-only SPA** (Vite + React 18 + React Router 6)
 backed by a sibling **Node.js Telegram bot** (`/bot/`) that runs on
 macOS launchd as a local long-polling service. All primary data comes
-from static JSON in `/public/data/*.json`, produced by 15 nightly
+from static JSON in `/public/data/*.json`, produced by 20 nightly
 scrapers. The bot writes its own snapshot (`quejas.json`) to the same
 tree via a daily launchd export agent.
 
@@ -426,12 +432,12 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**18 adapters** feed Riba-roja de Túria (INE **46214** · Wikidata
-**Q23701** · OSM relation **342356**). 17 are autonomous scrapers that
-refresh nightly via GitHub Actions at 04:30 UTC; 2 are curated files
-that only move via the `npm run reply` / `npm run sindic:add` / `npm
-run queja-reply` CLIs. Follow the RED→GREEN→wire TDD cadence when
-adding adapter #18.
+**20 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
+at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
+handful of curated files only move via the `npm run reply` / `npm run
+sindic:add` / `npm run queja-reply` CLIs. Follow the RED→GREEN→wire TDD
+cadence when adding the next adapter.
 
 **Architecture**: `scripts/scrape-*.ts` fetch the raw payload → call a
 pure TypeScript parser in `src/scraper/*.ts` → write a typed snapshot
@@ -441,7 +447,7 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (16):
+# Autonomous scrapers (20):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
@@ -459,6 +465,9 @@ scripts/scrape-wikidata.ts            →  src/scraper/wikidata.ts          → 
 scripts/scrape-spain-ticker.ts        →  src/scraper/spain-ticker.ts      →  public/data/spain-ticker.json
 scripts/scrape-ctbg.ts                →  src/scraper/ctbg.ts              →  public/data/ctbg.json
 scripts/scrape-promise-suggestions.ts →  src/scraper/promise-inference.ts →  public/data/promise-suggestions.json
+scripts/scrape-consell-cv.ts          →  src/scraper/consell-cv.ts        →  public/data/consell-cv.json
+scripts/scrape-tenders-ted.ts         →  src/scraper/tenders-ted.ts       →  public/data/tenders-ted.json
+scripts/scrape-boe.ts                 →  src/scraper/boe.ts               →  public/data/boe.json
 
 # Curated (human-edited) — NEVER touched by automated scrapers:
 public/data/promises.json            (schema: src/scraper/promises.ts)
@@ -541,7 +550,7 @@ loop.
 `.github/workflows/nightly-scrape.yml` runs `npm run scrape:all` every
 day at **04:30 UTC** (06:30 Europe/Madrid summer, 05:30 winter). The job:
 
-1. Installs deps + runs the 14 autonomous adapters in sequence,
+1. Installs deps + runs the 20 autonomous adapters in sequence,
 2. Runs the vitest suite against the fresh fixtures,
 3. `git add public/data && git commit && git push` only if there's a
    diff (no-op runs land a summary log but no commit),
@@ -559,7 +568,7 @@ on the last human push. Verified: this happened between 2026-05-03 and
 
 `workflow_dispatch` accepts an `adapters` input so a single pipeline
 can be re-run on demand. Add new adapter names to the `case` switch
-when you add adapter #16+.
+when you add the next adapter.
 
 A second workflow `.github/workflows/pull-quejas.yml` is feature-flagged
 by `vars.BOT_EXPORT_URL` — it's a no-op until a remote bot deploy
@@ -640,7 +649,7 @@ come from the Telegram bot, not a simulator.
 
 ### Legal / ethical guardrails
 
-All 14 automated sources are public-sector / ODbL / CC-BY open data
+All 20 automated sources are public-sector / ODbL / CC-BY open data
 (Transparencia Act 19/2013, datos.gob.es CC-BY 4.0, PLACSP/BDNS open
 reuse clauses, OSM ODbL, Wikidata CC0, CTBG open XLSX).
 
@@ -824,6 +833,155 @@ Libel rules applicable when editing this subsystem:
 5. `/metodologia#verificacion-declaraciones` is the published
    editorial contract. Update it via PR whenever this pipeline's
    behavior changes.
+
+### Journalist agent (`/laboratorio/agentes`, sensitive subsystem)
+
+The journalist agent is the first iterative-LLM subsystem in the repo.
+It accepts an investigative assignment (kickoff: a public-record
+biography of alcalde Robert Raga, slug `robert-raga-gadea`) and emits a
+machine-drafted report that a curator promotes before publication.
+
+Files (mirror the promises → claims → findings 3-layer contract):
+
+- `public/data/journalist-assignments.json` — curator-seeded via
+  `npm run journalist:assign`. Status: `pending → running → drafted →
+  promoted | failed`.
+- `public/data/journalist-reports-suggestions.json` —
+  **machine-written**, every record carries `requiresHumanApproval:true`.
+  **Never rendered on a public page.** Visible only on the `/curator`
+  preview surface.
+- `public/data/journalist-reports.json` — **curator-promoted**, what
+  the SPA renders. The validator strips `requiresHumanApproval` and
+  refuses to accept it on this shape.
+
+Architecture:
+
+- Schemas + validators: `src/scraper/journalist.ts` (vanilla TS, mirrors
+  `pleno-finding.ts` discipline — `must()` invariants, snapshot-wide
+  re-validation on every write).
+- Tools: `src/scraper/journalist-tools.ts` (pure functions —
+  `searchLocalSnapshots`, `fetchOfficialBySlug`, `fetchPressForSubject`,
+  `fetchWikidata`, `fetchWikipedia`, `fetchUrl`, `webSearch` Exa, `audit`
+  with Wayback). Network results cached at `.research-cache/<sha256>.json`.
+- 4-stage pipeline: `src/scraper/journalist-agent.ts` — `runJournalistAgent`:
+  1. **Plan** (LLM, `JOURNALIST_PLAN_VERSION`) — emits 4–8 research questions, each tagged with a tool.
+  2. **Research** (deterministic Node) — dispatches each question through the tools; accumulates `SourceCitation[]` + parallel `evidence[]` rows.
+  3. **Synth** (LLM, `JOURNALIST_SYNTH_VERSION`) — projects the evidence into a draft skeleton (portrait, narratives, timeline, relationships, sparkline, promise-board, quote-cards).
+  4. **Verify** (LLM, `JOURNALIST_VERIFY_VERSION`) — re-reads the draft + sources, escalates `legalSensitivity`, appends warnings.
+- LLM I/O via the existing `callLLM` infra (cache, telemetry, backend
+  fallback chain). Token budget per assignment: `JOURNALIST_TOKEN_BUDGET`
+  (default 200K).
+- Right-of-reply: `.github/ISSUE_TEMPLATE/journalist-report-response.yml`
+  + `.github/workflows/ingest-journalist-responses.yml` — fires when an
+  issue gains BOTH labels `derecho-replica` AND `periodista`, parses the
+  form, calls `npm run journalist-reply`, commits, closes the issue.
+
+Curator CLIs (`scripts/`):
+
+```bash
+npm run journalist:assign -- --id a-robert-raga-bio --kind biography \
+    --subject-slug robert-raga-gadea --subject-name "Robert Raga Gadea" \
+    --subject-kind official --brief "<≥40 chars>"
+
+EXA_API_KEY=… npm run journalist:run -- a-robert-raga-bio \
+    [--token-budget N] [--dry-run] [--stop-after plan|research|synth|verify]
+
+npm run promote-report -- a-robert-raga-bio \
+    [--curator "<name>"] [--curator-notes "<text>"] \
+    [--ack-legal-review]      # required when draft.legalSensitivity = 'high'
+    [--edit]                  # write to /tmp instead of persisting
+
+npm run correct-journalist-report -- <reportId> \
+    --field <narrative.<heading>.bodyMarkdown | narrative.<heading>.heading | quote.<index>.attributedTo> \
+    --new "<text>" --reason "<≥20 chars>" --editor "<name>"
+
+npm run journalist-reply -- <reportId> <PSOE|PP|VOX|Compromís|Ciudadanos|Otro|person> \
+    "<verbatim ≥20 chars>" [sourceUrl] [YYYY-MM-DD]
+```
+
+**Libel rules — non-negotiable, encoded in code:**
+
+1. **`legalSensitivity:'high'` blocks `promote-report` without
+   `--ack-legal-review`.** Auto-stamped by `computeLegalSensitivity()` +
+   schema validator whenever a `SourceCitation.excerpt`/`title` or a
+   `warnings[]` row matches `JUDICIAL_TOKENS` regex set (`PA \d+/\d+`,
+   `Sentencia`, `recurso contencioso-administrativo`, `querella`,
+   `demanda penal`, `imputad[oa]`, `investigad[oa]`).
+2. **The published-report shape forbids `requiresHumanApproval`.** The
+   curator promotion step strips it; the validator rejects on its
+   presence — defence in depth.
+3. **Every narrative + every relationship edge must cite ≥1 known
+   `sourceId`.** Unsupported prose is dropped at section-build time;
+   schema rejects orphan refs.
+4. **The agent's prompts** in `src/llm/prompts.ts` explicitly forbid
+   inventing facts about living persons, paraphrasing court rulings
+   without a verbatim docket cite, or drawing causal lines between
+   officials and contractors without evidence.
+5. **LOREG freeze** (`isJournalistFrozen`) halts both `journalist:run`
+   and `promote-report` — same gate as `auto-curate-findings.ts`.
+6. **Corrections log is mandatory** (`corrections: []` on every
+   published row); the CLI is the only path that mutates a published
+   report.
+
+**Web-search backend (Stage 2):** the agent's `web-search` tool prefers a
+self-hosted **SearXNG** instance over the paid Exa REST API. Bootstrap
+once with `npm run searxng:up` (requires Docker; compose file at
+`scripts/searxng/docker-compose.yml`), then set
+`SEARXNG_URL=http://localhost:8888` in `.env`. The dispatcher in
+`src/scraper/journalist-tools.ts::webSearch()` picks SearXNG first, falls
+back to Exa only when `SEARXNG_URL` is unset AND `EXA_API_KEY` is set,
+and otherwise returns an empty result set with a helpful error so the
+agent silently skips open-web queries and relies on local snapshots +
+Wikidata + Wikipedia.
+
+**Phase A→D — soul.md dossier & editorial-longform UI (May 2026):**
+
+- **New research tools** (`src/scraper/journalist-tools.ts`):
+  `fetchPdfUrl` (pdf-parse v1), `fetchUrlHeadless` (Playwright SPA renderer
+  with hostname allowlist), `fetchBoeForSubject`, `fetchDogvForSubject`,
+  `fetchDialnet`, `fetchHemerotecaQuery`, `extractBioEntities` (Spanish
+  regex for DOB/birthplace/degrees/career/judicial refs).
+- **10 new ReportSection kinds** (`src/scraper/journalist.ts`):
+  `identity`, `education`, `career-political`, `career-professional`,
+  `legal-record`, `financial`, `online-presence`, `awards`, `publications`,
+  `gaps-detected`. Schema validators enforce three new libel rules:
+  legal-record auto-bumps `legalSensitivity:'high'`; family rows with
+  names require all-`trust:'high'` citations; financial rows must cite
+  hosts on `FINANCIAL_SOURCE_ALLOW` (transparentia.newtral.es, boe.es,
+  dogv.gva.es).
+- **New Stage 2c (bio-extract)** (`src/scraper/journalist-agent.ts`):
+  LLM call between research and synth that distills fetched bodies +
+  regex hints into a `JournalistBioResponse` the agent projects into
+  the new section kinds. Falls back to regex-only when the LLM fails.
+  Always emits `gaps-detected` for biography/profile assignments.
+- **soul.md exporter** (`src/scraper/journalist-soul-export.ts` +
+  `scripts/journalist-export-soul.ts`):
+  deterministic `JournalistReport → markdown` with footnote-cited
+  sources, written to `public/data/souls/<slug>.md`. CLI:
+  `npm run journalist:export-soul -- <assignmentId>`.
+- **UI redesign** (`src/pages/AgenteReporte.jsx` +
+  `src/components/journalist/index.jsx`): editorial-longform 3-col grid
+  (hero band + sticky TOC + main content + sticky facts sidebar +
+  full-width sortable source ledger). Citation pills carry hover
+  popovers. Relationship graph zoom-modal. Mobile collapses to one
+  column. Typography tokens in `src/index.css`
+  (`--type-display`, `--type-h2`, etc.).
+- **Plan + synth prompts bumped to v2** (`src/llm/prompts.ts`); planner
+  now knows about `pdf-fetch / headless-fetch / boe-search / dogv-search
+  / dialnet-search / hemeroteca-search` tool kinds.
+- **PDF auto-routing:** `fetchTopUrls` detects URLs whose pathname ends
+  in `.pdf` (case-insensitive, query/fragment stripped) via the local
+  `looksLikePdf()` helper and routes them through `fetchPdfUrl`
+  (pdf-parse) instead of `fetchUrl` (HTML). Validated against the PSOE
+  flyer: same URL now returns 871 chars of clean text, which the regex
+  extractor parses into DOB `1966-04-09`, birthplace `RIBA-ROJA DE
+  TÚRIA`, 4 degrees, 4 career spans. The bio-extract LLM stage receives
+  the same body, so subsequent biography drafts populate
+  identity/education/career-professional from PDFs the agent finds via
+  the year-binned web sweep.
+
+Update `/metodologia` whenever this pipeline's behavior changes —
+that page is the published editorial contract.
 
 Councillor photos are re-hosted from the Ayuntamiento's own publication.
 Keep scrapers polite: every CLI sends a `User-Agent` identifying the

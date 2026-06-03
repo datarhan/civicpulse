@@ -1,0 +1,535 @@
+{
+  "id": "r-robert-raga-bio-2026-05-23",
+  "assignmentId": "a-robert-raga-bio",
+  "generatedAt": "2026-05-23T19:44:56.431Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v2;bio=journalist-bio-v1;synth=journalist-synth-v2;verify=journalist-verify-v1",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "robert-raga-gadea",
+        "photoPath": "/data/photos/robert-raga-gadea.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Alcaldía",
+          "Innovación",
+          "Planificación estratégica y grandes proyectos y cooperación nacional e internacional"
+        ],
+        "cvUrl": "http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "residence": "Riba-roja de Túria",
+        "sourceIds": [
+          "src-001"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Perfil y cargo actual",
+        "bodyMarkdown": "Robert Raga Gadea es el actual alcalde de Riba-roja de Túria por el Partido Socialista Obrero Español (PSOE). Sus responsabilidades como alcalde-presidente incluyen las áreas de Innovación, Planificación Estratégica, Grandes Proyectos y Cooperación Nacional e Internacional. Su nombramiento y representación del ayuntamiento constan en diversas resoluciones oficiales publicadas en el Boletín Oficial del Estado (BOE).",
+        "sourceIds": [
+          "src-001",
+          "src-013",
+          "src-015",
+          "src-016",
+          "src-017"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Gestión municipal y proyectos",
+        "bodyMarkdown": "La gestión de Raga incluye la supervisión de proyectos de infraestructuras, como la reconstrucción de áreas afectadas por la DANA y las obras del Pont Vell. Durante los plenos municipales se han tratado temas como la prórroga de contratos de servicios y la gestión de fondos europeos FEDER. En un pleno se mencionó un acuerdo con Cáritas para destinar fondos a la restauración del campanario en lugar de a gasto corriente de la entidad.",
+        "sourceIds": [
+          "src-002",
+          "src-003",
+          "src-005",
+          "src-006",
+          "src-008"
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Alcalde-Presidente",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2025,
+            "sourceIds": [
+              "src-001",
+              "src-013",
+              "src-015"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2026-04-20",
+            "label": "Recibe críticas en el pleno sobre la gestión de fondos europeos para la Formación Profesional.",
+            "sourceIds": [
+              "src-004"
+            ]
+          },
+          {
+            "date": "2026-03-24",
+            "label": "Comunica la necesidad de iniciar las obras del Pont Vell después del curso escolar.",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "date": "2026-03-16",
+            "label": "Expone en el pleno un acuerdo con Cáritas para invertir en el campanario.",
+            "sourceIds": [
+              "src-006"
+            ]
+          },
+          {
+            "date": "2026-02-09",
+            "label": "Analiza junto a Mompó la evolución de la reconstrucción post-DANA.",
+            "sourceIds": [
+              "src-003"
+            ]
+          },
+          {
+            "date": "2025-07-02",
+            "label": "Representa al Ayuntamiento en una resolución publicada en el BOE.",
+            "sourceIds": [
+              "src-015"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Robert Raga Gadea",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "PSOE",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Ayuntamiento de Riba-roja de Túria",
+            "tone": "civic",
+            "kind": "entity"
+          },
+          {
+            "id": "n4",
+            "label": "Mompó",
+            "tone": "neutral",
+            "kind": "person"
+          },
+          {
+            "id": "n5",
+            "label": "Cáritas",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n6",
+            "label": "PP",
+            "tone": "neutral",
+            "kind": "party"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "Milita en",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "Alcalde de",
+            "sourceIds": [
+              "src-001",
+              "src-013",
+              "src-015"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "Analiza reconstrucción DANA con",
+            "sourceIds": [
+              "src-003"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n5",
+            "relation": "Dialoga sobre inversiones con",
+            "sourceIds": [
+              "src-006"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "press-sparkline",
+      "payload": {
+        "points": [
+          {
+            "date": "2026-02-01",
+            "count": 1
+          },
+          {
+            "date": "2026-03-01",
+            "count": 1
+          }
+        ],
+        "headlines": [
+          {
+            "title": "Robert Raga traslada la necesidad de iniciar las obras del Pont Vell tras el curso escolar para no afectar a los vecinos",
+            "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOMzd5MWpmZkF4a3MtYnhUY2JVOXBEZHV5Mmh1NzVZbm5aVXpoeFdxZVB4Q0ZSWEhRaGIxREhSbGo4akNhQ2ppRE1oSlY0YlR2ZXpTMzZ2V2FfRlJxcXpnSVl4azFKQjhOemZ3UEk4VVN1engtOFp0R2lia05GOXlTakRseTZhY21TS2dTT1hpaW1MSEVsY3VPMFNWU0owM0NnZ3cwTl9hTDlaLW9ZQklCdUtVR1ZScjc5bFkweUNYQkVMQ2lDS1VYRVFfSGhVcWZ5anJhM3BaX1FJTkHSAeABQVVfeXFMUHlXQ1lfV0Mwb1RmVUZlUzl4cTYydTFMTlI3Yl9PSXh4RFlFNkhrYkpOeVE0SU5mb2hWLWExbmo2OFR1b215Yi1sTGRlN21NQjRIMnR0YTRiMG9mX0thakc5bGxMQWpBVDJKY1RNLWMyX2tPZmJQU2J1QzdGQWtOQVdJamtjY1ZSZHRaQXBMWlZzbE54ZzFmbW8yNEhORTdIM1pDSU5pemhNckFDNzRaanZ2WFZ0ZThBNTc1T2FocDdMcTcteUlaVVZRVDdRcGdyZlZvX21STjEtRTlJNmtlc1k?oc=5",
+            "date": "2026-03-24"
+          },
+          {
+            "title": "Mompó y Raga analizan cómo evoluciona la reconstrucción de Riba-roja tras la Dana",
+            "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZE9KTzd5UERSRTFKTm1TWW1Vc2FaU1RXUUlzeUNCLXNBZ3RwMzR5VU9lU2UweVUxNlVrWXNUN1hHWHJGeG5XRTZTZ2xET0VyckRVeTZONEgzd0tvdjNIWlJoOGR3T3hLTFZTbXdhZEx4WTBMU1RDNXFjckZPYXRYaG1kX1dIRy0wS0hMSEVFeGdoVnNPZUZkVDA3NUM0VGZaRGdtc3VIc2tuUFdXQ0NNVEI3Z2lQUGd2OVB5UGpXMWFNNkFRNVRCamdsbVZZTE05aDhsRk93?oc=5",
+            "date": "2026-02-09"
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-alumbrado-led-680k",
+          "psoe-metro-l9-agosto"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos",
+        "attributedTo": "Oposición (Pleno)",
+        "date": "2026-04-20",
+        "sourceId": "src-004"
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.",
+        "attributedTo": "Cáritas (según Alcaldía)",
+        "date": "2026-03-16",
+        "sourceId": "src-006"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "identity.dateOfBirth",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "identity.birthplace",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "identity.nationality",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "identity.family",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "education",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "careerProfessional",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "legalRecord",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "financial",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "onlinePresence",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "awards",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "publications",
+            "reason": "no supporting citation"
+          },
+          {
+            "field": "fecha de nacimiento",
+            "reason": "no encontrado en fuentes accesibles"
+          },
+          {
+            "field": "formación",
+            "reason": "no encontrado en fuentes accesibles"
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — Robert Raga Gadea",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional"
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOMzd5MWpmZkF4a3MtYnhUY2JVOXBEZHV5Mmh1NzVZbm5aVXpoeFdxZVB4Q0ZSWEhRaGIxREhSbGo4akNhQ2ppRE1oSlY0YlR2ZXpTMzZ2V2FfRlJxcXpnSVl4azFKQjhOemZ3UEk4VVN1engtOFp0R2lia05GOXlTakRseTZhY21TS2dTT1hpaW1MSEVsY3VPMFNWU0owM0NnZ3cwTl9hTDlaLW9ZQklCdUtVR1ZScjc5bFkweUNYQkVMQ2lDS1VYRVFfSGhVcWZ5anJhM3BaX1FJTkHSAeABQVVfeXFMUHlXQ1lfV0Mwb1RmVUZlUzl4cTYydTFMTlI3Yl9PSXh4RFlFNkhrYkpOeVE0SU5mb2hWLWExbmo2OFR1b215Yi1sTGRlN21NQjRIMnR0YTRiMG9mX0thakc5bGxMQWpBVDJKY1RNLWMyX2tPZmJQU2J1QzdGQWtOQVdJamtjY1ZSZHRaQXBMWlZzbE54ZzFmbW8yNEhORTdIM1pDSU5pemhNckFDNzRaanZ2WFZ0ZThBNTc1T2FocDdMcTcteUlaVVZRVDdRcGdyZlZvX21STjEtRTlJNmtlc1k?oc=5",
+      "title": "Robert Raga traslada la necesidad de iniciar las obras del Pont Vell tras el curso escolar para no afectar a los vecinos",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "trust": "medium",
+      "publisher": "Levante-EMV",
+      "publishedAt": "2026-03-24"
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxPZE9KTzd5UERSRTFKTm1TWW1Vc2FaU1RXUUlzeUNCLXNBZ3RwMzR5VU9lU2UweVUxNlVrWXNUN1hHWHJGeG5XRTZTZ2xET0VyckRVeTZONEgzd0tvdjNIWlJoOGR3T3hLTFZTbXdhZEx4WTBMU1RDNXFjckZPYXRYaG1kX1dIRy0wS0hMSEVFeGdoVnNPZUZkVDA3NUM0VGZaRGdtc3VIc2tuUFdXQ0NNVEI3Z2lQUGd2OVB5UGpXMWFNNkFRNVRCamdsbVZZTE05aDhsRk93?oc=5",
+      "title": "Mompó y Raga analizan cómo evoluciona la reconstrucción de Riba-roja tras la Dana",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "trust": "medium",
+      "publisher": "Valencia Plaza",
+      "publishedAt": "2026-02-09"
+    },
+    {
+      "id": "src-004",
+      "kind": "local-snapshot",
+      "title": "Pleno claim k4olcs-089-acu-1d6828 · 2026-04-20 · acusacion_publica",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos"
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Pleno claim k4olcs-088-cit-2c649f · 2026-04-20 · cita_convenio",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "esos recursos europeos, FEDER y de la Unión Europea"
+    },
+    {
+      "id": "src-006",
+      "kind": "local-snapshot",
+      "title": "Pleno claim ma87e0-107-cit-f9724f · 2026-03-16 · cita_convenio",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro."
+    },
+    {
+      "id": "src-007",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-137-cit-78abd7 · 2026-01-19 · cita_obra",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil."
+    },
+    {
+      "id": "src-008",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1qi8axv-003-cit-0209e8 · 2025-12-23 · cita_obra",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "pasamos a votar el punto 2, que es la prórroga del contrato."
+    },
+    {
+      "id": "src-009",
+      "kind": "local-snapshot",
+      "title": "Pleno claim qz6weg-073-acu-1c7836 · 2025-12-01 · acusacion_publica",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "ustedes vienen aquí a remover otra vez la historia y la historia."
+    },
+    {
+      "id": "src-010",
+      "kind": "local-snapshot",
+      "title": "Pleno claim qz6weg-101-acu-b5cd74 · 2025-12-01 · acusacion_publica",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "vosotros, Alianza Popular, se va a fundar por Manuel Fraga, va a refundarlo e"
+    },
+    {
+      "id": "src-011",
+      "kind": "local-snapshot",
+      "title": "Pleno claim qz6weg-106-afi-f29f3d · 2025-12-01 · afirmacion_numerica",
+      "retrievedAt": "2026-05-23T19:30:46.622Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "repartidos entre diferentes entidades bancarias."
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
+      "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-05-23T19:30:49.380Z",
+      "trust": "medium",
+      "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/seccion/alcaldia",
+      "title": "Áreas - Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-05-23T19:30:49.380Z",
+      "trust": "medium",
+      "excerpt": "17 mar 2026 · Robert Raga Gadea. Lugar Ayuntamiento. +−. Leaflet ... El alcalde de Riba-roja de Túria, Robert Raga recorrerá durante los ..."
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://www.transfermarkt.es/robert-sanchez/profil/spieler/403151",
+      "title": "Robert Sánchez - Perfil del jugador 25/26 | Transfermarkt",
+      "retrievedAt": "2026-05-23T19:30:49.380Z",
+      "trust": "medium",
+      "excerpt": "18 de nov de 1997 · Robert Sánchez, 28, España Chelsea FC, desde 2023 Portero Valor de mercado: 22,00 mill. € * 18/11/1997 en Cartagena, España."
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-15570",
+      "title": "BOE-A-2025-15570 Resolución de 2 de julio de 2025, de la Dirección ...",
+      "retrievedAt": "2026-05-23T19:30:50.075Z",
+      "trust": "medium",
+      "excerpt": "2 jul 2025 · Y el Ayuntamiento de Riba-roja de Túria, representado por don Robert Raga Gadea, Alcalde-Presidente nombrado en el pleno del Ayuntamiento de ..."
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-11409",
+      "title": "BOE-A-2025-11409 Resolución de 28 de mayo de 2025, de la Secretaría ...",
+      "retrievedAt": "2026-05-23T19:30:50.075Z",
+      "trust": "medium",
+      "excerpt": "28 may 2025 · Y de otra parte, don Roberto Pascual Raga Gadea, Alcalde del Ayuntamiento de Riba-roja de Túria (en adelante, el Ayuntamiento), nombrado por ..."
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-5654",
+      "title": "BOE-A-2026-5654 Resolución de 27 de febrero de 2026, del ...",
+      "retrievedAt": "2026-05-23T19:30:50.075Z",
+      "trust": "medium",
+      "excerpt": "27 feb 2026 · Riba-roja de Túria, 27 de febrero de 2026.–El Alcalde, Roberto Pascual Raga Gadea. Análisis. ANÁLISIS. Rango: Resolución; Fecha de disposición ..."
+    },
+    {
+      "id": "src-018",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
+      "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-05-23T19:30:53.443Z",
+      "trust": "medium",
+      "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …"
+    },
+    {
+      "id": "src-019",
+      "kind": "web",
+      "url": "https://www.transfermarkt.es/robert-sanchez/profil/spieler/403151",
+      "title": "Robert Sánchez - Perfil del jugador 25/26 | Transfermarkt",
+      "retrievedAt": "2026-05-23T19:30:53.443Z",
+      "trust": "medium",
+      "excerpt": "18 de nov de 1997 · Robert Sánchez, 28, España Chelsea FC, desde 2023 Portero Valor de mercado: 22,00 mill. € * 18/11/1997 en Cartagena, España."
+    },
+    {
+      "id": "src-020",
+      "kind": "web",
+      "url": "https://dictionnaire.lerobert.com/",
+      "title": "Dictionnaire français gratuit – Dico en ligne Le Robert",
+      "retrievedAt": "2026-05-23T19:30:53.443Z",
+      "trust": "medium",
+      "excerpt": "Découvrez encore plus de contenus (étymologie, citations littéraires, définitions plus détaillées…) ainsi que de nombreuses fonctionnalités qui vous permettront d’effectuer des recherches passionnantes …"
+    },
+    {
+      "id": "src-021",
+      "kind": "web",
+      "url": "https://robertsspaceindustries.com/en/star-citizen",
+      "title": "Star-Citizen",
+      "retrievedAt": "2026-05-23T19:30:53.443Z",
+      "trust": "medium",
+      "excerpt": "Roberts Space Industries is the official go-to website for all news about Star Citizen and Squadron 42. It also hosts the online store for game items and merch, as well as all the community tools used by our …"
+    },
+    {
+      "id": "src-022",
+      "kind": "web",
+      "url": "https://www.europapress.es/sociedad/noticia-robert-prevost-cardenal-eeuu-ascendencia-espanola-misionero-agustino-peru-jefe-obispos-20250507145212.html",
+      "title": "Robert Prevost, cardenal de EE.UU y ascendencia española, misionero ...",
+      "retrievedAt": "2026-05-23T19:30:53.443Z",
+      "trust": "medium",
+      "excerpt": "9 de may de 2025 · MADRID, 8 May. (EUROPA PRESS) - El cardenal estadounidense Robert Prevost se ha convertido este jueves en el Papa 267 de la historia con el nombre de León XIV."
+    },
+    {
+      "id": "src-023",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-05-23T19:30:54.424Z",
+      "trust": "high",
+      "excerpt": "Robert (muñeco) - Wikipedia, la enciclopedia libre <link rel=\"dn",
+      "archiveUrl": "http://web.archive.org/web/20251230231709/https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)"
+    }
+  ],
+  "warnings": [
+    "Source pool contains irrelevant documents: src-012/src-018 (toy doll Wikipedia), src-014/src-019 (footballer Robert Sánchez Transfermarkt), src-020 (French dictionary). Not cited in draft but must be purged to prevent accidental citation.",
+    "relationships: node n6 (PP) has no edges and no direct citation in the draft; its inclusion in the relationship graph is unsupported. Remove the node or add a cited edge."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

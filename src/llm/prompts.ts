@@ -697,3 +697,402 @@ TITULAR: ${opts.title}${bodySection}
 Devuelve el JSON {summary} con la síntesis neutral.
 `.trim()
 }
+
+// ─── Phase 7 · Journalist agent (research → synthesis → verify) ────────────
+
+export const JOURNALIST_PLAN_VERSION = 'journalist-plan-v2'
+
+export interface JournalistAssignmentPayload {
+  id: string
+  kind: string
+  subjectName: string
+  subjectSlug?: string
+  subjectKind: string
+  brief: string
+}
+
+export interface JournalistLocalHintsPayload {
+  officialRow?: Record<string, unknown> | null
+  pressCount: number
+  plenoClaimCount: number
+  promiseCount: number
+  judicialMentions: number
+}
+
+export function buildJournalistPlanSystemPrompt(): string {
+  return `
+You are the planning module of CivicPulse's investigative journalist agent.
+You receive an investigative assignment about a public figure or topic in
+the municipality of Riba-roja de Túria (Spain) and a summary of what we
+already know locally. Your job is to emit a short research plan — a list
+of concrete questions, each tagged with the tool the agent should use to
+answer it.
+
+Hard rules (libel-material):
+  · Treat every subject as if they may sue. Default to verifiable, dated
+    sources. Never plan a question that asks "What rumours circulate
+    about X?" — that's not a research question.
+  · For living people, prefer questions whose answers can be sourced to
+    official documents, Wikidata, Wikipedia, the municipal press
+    archive, or BOE. Open web search is a fallback, not the default.
+  · NEVER plan a question that asks the LLM to *invent* a fact.
+  · When the local data already contains a judicial reference (e.g.
+    "PA NNNN/YYYY", "Sentencia"), plan ONE question that asks for the
+    public docket source — do not multiply judicial questions.
+
+Output schema — a single JSON object \`{ questions: [...], notes: "..." }\`:
+  · questions: 4 to 8 entries, each:
+      - id: short slug, snake_case (e.g. "q_cv_official")
+      - question: a single Spanish sentence ending with "?"
+      - suggestedTool: one of
+          local-snapshot · officials · press · plenoclaims · promises ·
+          wikidata · wikipedia · web-search · fetch-url · audit-url ·
+          pdf-fetch · headless-fetch · boe-search · dogv-search ·
+          dialnet-search · hemeroteca-search
+      - queryHint: search string or URL appropriate for the tool. For
+        wikidata pass a QID like "Q12345" if known, else null. For
+        wikipedia pass the article title. For fetch-url pass the URL.
+        For pdf-fetch pass the PDF URL. For headless-fetch pass a SPA
+        URL on the headless allowlist (transparentia.newtral.es,
+        linkedin.com). For boe-search / dogv-search / dialnet-search
+        pass the subject's full name. For hemeroteca-search pass
+        "<name>|<year>".
+        For audit-url same. For web-search pass the search query in
+        Spanish (the journalist's audience reads Spanish first).
+      - rationale: one short sentence on why this question helps the
+        report.
+  · notes: ≤200 chars — free-text shortlist of caveats for the agent
+    (e.g. "subject is the sitting mayor; legal sensitivity is high").
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildJournalistPlanUserPrompt(opts: {
+  assignment: JournalistAssignmentPayload
+  localHints: JournalistLocalHintsPayload
+}): string {
+  const officialBlock = opts.localHints.officialRow
+    ? `Local officials.json record:\n${JSON.stringify(opts.localHints.officialRow, null, 2)}\n`
+    : 'No matching record in officials.json.\n'
+  return `
+ASSIGNMENT:
+  id: ${opts.assignment.id}
+  kind: ${opts.assignment.kind}
+  subject: ${opts.assignment.subjectName} (kind=${opts.assignment.subjectKind}${opts.assignment.subjectSlug ? `, slug=${opts.assignment.subjectSlug}` : ''})
+  brief:
+    ${opts.assignment.brief}
+
+LOCAL KNOWLEDGE SUMMARY:
+${officialBlock}
+  press mentions: ${opts.localHints.pressCount}
+  pleno-claim mentions: ${opts.localHints.plenoClaimCount}
+  promises (party-level): ${opts.localHints.promiseCount}
+  judicial-token mentions in local data: ${opts.localHints.judicialMentions}
+
+Emit the JSON research plan.
+`.trim()
+}
+
+// ─── Phase B: bio-extract stage (between research and synth) ──────────────
+//
+// Reads fetched URL/PDF bodies and a regex-hinted BioEntityExtraction,
+// emits a structured JournalistBioResponse the agent then projects into
+// identity / education / career-political / career-professional /
+// legal-record / financial / online-presence / awards / publications /
+// gaps-detected section payloads. Pure text in → pure JSON out; no I/O.
+
+export const JOURNALIST_BIO_VERSION = 'journalist-bio-v1'
+
+export interface JournalistBioBodySnippet {
+  citationId: string
+  url?: string
+  title: string
+  excerpt: string
+}
+
+export interface JournalistBioRegexHints {
+  dateOfBirth?: string
+  birthplace?: string
+  degrees: Array<{ degree: string; institution?: string; startYear?: number; endYear?: number }>
+  careerSpans: Array<{ role: string; org?: string; startYear?: number; endYear?: number }>
+  judicialRefs: Array<{ caseRef: string; verbatim: string }>
+}
+
+export function buildJournalistBioSystemPrompt(): string {
+  return `
+You are the biographical-entity extractor for CivicPulse's journalist agent.
+You receive (a) a regex-mined hint table — high-recall, possibly noisy —
+and (b) raw body excerpts from fetched URLs/PDFs. Your task is to emit a
+CLEAN structured JSON object the synth stage will project directly into
+the dossier's identity / education / career-* / legal-record / financial /
+online-presence / awards / publications / gaps-detected sections.
+
+Hard rules:
+  · Every emitted entity MUST be supported by at least one body excerpt.
+    If you can't point to a specific citationId, emit the entity in
+    \`gapsDetected\` with reason "no supporting citation".
+  · Verbatim case-number tokens (PA NNNN/YYYY, "Sentencia",
+    "recurso contencioso-administrativo") trigger a judicial entry —
+    DO NOT paraphrase the docket. Quote the docket reference verbatim.
+  · NEVER invent dates, institutions, employers, or family members. If
+    the body doesn't say it, omit it.
+  · Family names: only emit when an official transparency portal or
+    a high-trust citation names the person explicitly. Default omit.
+  · Financial figures: only when the source URL host is
+    transparentia.newtral.es, boe.es, or dogv.gva.es. Otherwise omit.
+  · Spanish names retain their original orthography (no normalisation).
+
+OUTPUT — a single JSON object matching the schema:
+
+{
+  "identity": {
+    "dateOfBirth": "YYYY-MM-DD" | null,
+    "birthplace": "string" | null,
+    "residence": "string" | null,
+    "nationality": "string" | null,
+    "family": [
+      { "relation": "string", "name": "string" | null, "citationIds": ["src-NNN"] }
+    ]
+  } | null,
+  "education": [
+    { "degree": "string", "institution": "string" | null,
+      "startYear": 1900..2099 | null, "endYear": 1900..2099 | null,
+      "citationIds": ["src-NNN"] }
+  ],
+  "careerPolitical": [
+    { "role": "string", "org": "string", "startYear": 1900..2099,
+      "endYear": 1900..2099 | null, "citationIds": ["src-NNN"] }
+  ],
+  "careerProfessional": [
+    { "role": "string", "org": "string",
+      "startYear": 1900..2099 | null, "endYear": 1900..2099 | null,
+      "citationIds": ["src-NNN"] }
+  ],
+  "legalRecord": [
+    { "caseRef": "string", "court": "string",
+      "date": "YYYY-MM-DD" | null, "outcome": "string" | null,
+      "verbatimRef": "≥20 char verbatim excerpt",
+      "citationIds": ["src-NNN"] }
+  ],
+  "financial": [
+    { "year": 1900..2099, "metric": "salary" | "declared-assets" | "business",
+      "amountEuros": number | null, "description": "string",
+      "citationIds": ["src-NNN"] }
+  ],
+  "onlinePresence": [
+    { "platform": "string", "handle": "string", "url": "string",
+      "verifiedAt": "YYYY-MM-DD" | null, "citationIds": ["src-NNN"] }
+  ],
+  "awards": [
+    { "name": "string", "awardedBy": "string", "year": 1900..2099 | null,
+      "citationIds": ["src-NNN"] }
+  ],
+  "publications": [
+    { "title": "string", "venue": "string", "year": 1900..2099 | null,
+      "url": "string" | null, "citationIds": ["src-NNN"] }
+  ],
+  "gapsDetected": [
+    { "field": "string", "reason": "string" }
+  ]
+}
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildJournalistBioUserPrompt(opts: {
+  subjectName: string
+  subjectSlug?: string
+  hints: JournalistBioRegexHints
+  bodies: JournalistBioBodySnippet[]
+}): string {
+  const bodyBlock = opts.bodies
+    .slice(0, 8)
+    .map(
+      (b) =>
+        `  [${b.citationId}] ${b.title}\n    url: ${b.url ?? '(local)'}\n    excerpt: ${b.excerpt.slice(0, 1200)}`,
+    )
+    .join('\n')
+  return `
+SUBJECT: ${opts.subjectName}${opts.subjectSlug ? ` (slug: ${opts.subjectSlug})` : ''}
+
+REGEX HINTS (high-recall, may contain leakage from CV/PDF formatting —
+trust the bodies below over these):
+${JSON.stringify(opts.hints, null, 2)}
+
+FETCHED BODIES (cite by citationId in every emitted entity):
+${bodyBlock || '  (none)'}
+
+Emit the JSON dossier.
+`.trim()
+}
+
+export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v2'
+
+export interface JournalistEvidenceItem {
+  citationId: string
+  kind: string
+  title: string
+  url?: string
+  publishedAt?: string
+  trust: 'high' | 'medium' | 'low'
+  excerpt?: string
+}
+
+export function buildJournalistSynthSystemPrompt(): string {
+  return `
+You are the synthesis module of CivicPulse's journalist agent. You receive
+the assignment, all evidence the research stage gathered, and a precise
+output schema. Produce a structured draft report that a human curator
+will review before publication.
+
+Hard rules (libel-material):
+  · Every sentence in narrative.bodyMarkdown about a person, organisation
+    or event must be supported by at least one citationId listed in
+    \`sources\`. If you cannot find support, OMIT the sentence — do not
+    paraphrase or extrapolate.
+  · Quote cards use VERBATIM excerpts of ≥20 characters drawn from the
+    \`excerpt\` field of a single citation. Do not invent quotes.
+  · For relationship edges between named persons, include at least one
+    citationId in sourceIds. Edges without sources are rejected.
+  · Use Spanish, neutral register. Frame the report as DOCUMENTING
+    public-record facts, not adjudicating them.
+  · Severity / sensitivity of judicial mentions: when the evidence
+    cites a court docket (regex \`PA \\d+/\\d+\`, "Sentencia",
+    "recurso contencioso-administrativo"), include the verbatim docket
+    reference + outcome in a quote-card and add a warning string in the
+    \`warnings\` array reading "subject has active or past judicial
+    reference: <docket>". The agent code will auto-escalate
+    legalSensitivity to 'high'.
+
+OUTPUT SCHEMA — a single JSON object:
+{
+  "portrait": {
+    "officialSlug": "kebab-case slug (REQUIRED if subjectKind=official)",
+    "cvUrl": "optional CV URL"
+  } | null,
+  "narratives": [
+    {
+      "heading": "≥3 chars",
+      "bodyMarkdown": "40-2000 chars of Spanish prose",
+      "citationIds": ["src-001", ...]
+    }
+  ],
+  "timeline": [{ "date": "YYYY-MM-DD", "label": "≥3 chars", "citationIds": [...] }],
+  "relationships": {
+    "nodes": [{ "id": "n1", "label": "Display name", "tone": "civic|ok|warn|crit|intel|neutral|ghost", "kind": "person|party|entity" }],
+    "edges": [{ "from": "n1", "to": "n2", "relation": "≥1 char", "citationIds": [...] }]
+  } | null,
+  "pressSparkline": {
+    "points": [{ "date": "YYYY-MM-DD", "count": 0..N }],
+    "headlines": [{ "title": "...", "url": "https://...", "date": "YYYY-MM-DD" }]
+  } | null,
+  "promiseBoardIds": ["promise-id-1", ...] | null,
+  "quoteCards": [
+    { "verbatim": "≥20 chars", "attributedTo": "PSOE|PP|... or proper name",
+      "date": "YYYY-MM-DD (optional)", "citationId": "src-NNN" }
+  ],
+  "warnings": ["≤200 chars each"]
+}
+
+Length budget: keep the entire response under 6000 tokens. Prefer fewer,
+higher-quality sections over breadth.
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildJournalistSynthUserPrompt(opts: {
+  assignment: JournalistAssignmentPayload
+  evidence: JournalistEvidenceItem[]
+  pressHits: Array<{ title: string; source: string; publishedAt: string; url: string }>
+  promiseHits: Array<{ id: string; title: string; party: string }>
+}): string {
+  const evidenceBlock = opts.evidence
+    .map(
+      (e) =>
+        `  [${e.citationId}] (${e.kind}, trust=${e.trust})\n    title: ${e.title}\n    url: ${e.url ?? '(local)'}\n    publishedAt: ${e.publishedAt ?? '?'}\n    excerpt: ${e.excerpt?.slice(0, 320) ?? '(none)'}`,
+    )
+    .join('\n')
+  const pressBlock = opts.pressHits
+    .slice(0, 12)
+    .map((p) => `  · ${p.publishedAt} · ${p.source} · ${p.title} · ${p.url}`)
+    .join('\n')
+  const promiseBlock = opts.promiseHits
+    .slice(0, 12)
+    .map((p) => `  · [${p.id}] ${p.party} · ${p.title}`)
+    .join('\n')
+  return `
+ASSIGNMENT:
+  id: ${opts.assignment.id}
+  kind: ${opts.assignment.kind}
+  subject: ${opts.assignment.subjectName} (${opts.assignment.subjectKind})
+  brief:
+    ${opts.assignment.brief}
+
+EVIDENCE (cite by citationId in the schema's *citationIds fields):
+${evidenceBlock || '  (none)'}
+
+PRESS HEADLINES (for pressSparkline payload):
+${pressBlock || '  (none)'}
+
+PROMISES (eligible promiseBoardIds):
+${promiseBlock || '  (none)'}
+
+Emit the JSON.
+`.trim()
+}
+
+export const JOURNALIST_VERIFY_VERSION = 'journalist-verify-v1'
+
+export function buildJournalistVerifySystemPrompt(): string {
+  return `
+You are the self-verification module of CivicPulse's journalist agent.
+You receive the agent's own draft (narrative + quotes + relationships +
+warnings) and the source citations it relied on. Your job is to flag
+unsupported claims and escalate legal sensitivity.
+
+Hard rules:
+  · For every narrative block, check that the bodyMarkdown's factual
+    sentences are plausibly supported by the cited citationIds. If a
+    sentence references a fact NOT present in any cited excerpt, add a
+    warning like "narrative[2]: claim about X has no supporting citation".
+  · For every quoteCard, check that the verbatim text appears in the
+    excerpt of the cited source. If not, add a warning
+    "quoteCard[1]: verbatim not found in cited excerpt".
+  · For every relationship edge, check that both endpoints are real
+    persons or entities backed by ≥1 citation. Add warnings for
+    speculative edges.
+  · If any citation excerpt or warning contains a judicial token
+    (PA NNNN/YYYY, Sentencia, recurso contencioso-administrativo,
+    querella, demanda, imputado, investigado), emit
+    \`escalateLegalSensitivity\` = "high".
+  · Otherwise, infer \`escalateLegalSensitivity\` as "medium" for any
+    report about a named living elected official; "low" for topic-only
+    or fully-archived material.
+
+OUTPUT SCHEMA — single JSON object:
+{
+  "warnings": ["≤200 chars each, may extend the existing list"],
+  "escalateLegalSensitivity": "low" | "medium" | "high"
+}
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildJournalistVerifyUserPrompt(opts: {
+  draftJson: string
+  sourcesJson: string
+}): string {
+  return `
+DRAFT (truncate at 6KB to fit):
+${opts.draftJson.slice(0, 6000)}
+
+SOURCES (truncate at 8KB):
+${opts.sourcesJson.slice(0, 8000)}
+
+Emit the verification JSON.
+`.trim()
+}

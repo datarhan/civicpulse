@@ -138,7 +138,9 @@ export const PromiseEvidenceItemSchema = z.object({
   // The LLM is explicitly ALLOWED to propose only the safe V1 statuses —
   // everything else must come from a curator reading the evidence. Any output
   // attempting to promote past the gate is rejected post-parse.
-  proposedStatus: z.enum([...V1_STATUSES] as [(typeof V1_STATUSES)[number]]).optional(),
+  proposedStatus: z
+    .enum([...V1_STATUSES] as [(typeof V1_STATUSES)[number], ...(typeof V1_STATUSES)[number][]])
+    .optional(),
   corpus: PromiseEvidenceKind,
   evidenceUrl: z.string().url(),
   publisher: z.string().min(1).max(120),
@@ -292,6 +294,233 @@ export const PressSummaryResponseSchema = z.object({
   summary: z.string().min(40).max(500),
 })
 export type PressSummaryResponse = z.infer<typeof PressSummaryResponseSchema>
+
+// ─── Phase 7 · Journalist agent ────────────────────────────────────────────
+// Stage 1 (planning) emits a research plan with 4-8 questions; Stage 3
+// (synthesis) emits the draft report skeleton the agent then projects into
+// the formal ReportSection shape; Stage 4 (self-verify) emits warnings +
+// legal-sensitivity escalation. Kept liberal (.nullable() everywhere) so
+// the LLM can opt out of a section without failing schema validation.
+
+export const JournalistPlanQuestionSchema = z.object({
+  id: z.string().min(2).max(60),
+  question: z.string().min(8).max(400),
+  suggestedTool: z.enum([
+    'local-snapshot',
+    'officials',
+    'press',
+    'plenoclaims',
+    'promises',
+    'wikidata',
+    'wikipedia',
+    'web-search',
+    'fetch-url',
+    'audit-url',
+  ]),
+  queryHint: z.string().nullable(),
+  rationale: z.string().max(280),
+})
+
+export const JournalistPlanResponseSchema = z.object({
+  questions: z.array(JournalistPlanQuestionSchema).min(1).max(10),
+  notes: z.string().max(400).nullable().optional(),
+})
+
+export type JournalistPlanResponse = z.infer<typeof JournalistPlanResponseSchema>
+
+export const JournalistSynthPortraitSchema = z.object({
+  officialSlug: z
+    .string()
+    .min(2)
+    .max(80)
+    .regex(/^[a-z0-9][a-z0-9-]*$/),
+  cvUrl: z.string().url().nullable().optional(),
+})
+
+export const JournalistSynthNarrativeSchema = z.object({
+  heading: z.string().min(3).max(160),
+  bodyMarkdown: z.string().min(40).max(4000),
+  citationIds: z.array(z.string().min(2).max(40)).min(1).max(12),
+})
+
+export const JournalistSynthTimelineEventSchema = z.object({
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  label: z.string().min(3).max(200),
+  citationIds: z.array(z.string().min(2).max(40)).max(8),
+})
+
+export const JournalistSynthRelationshipNodeSchema = z.object({
+  id: z.string().min(1).max(40),
+  label: z.string().min(1).max(120),
+  tone: z.enum(['civic', 'ok', 'warn', 'crit', 'intel', 'neutral', 'ghost']),
+  kind: z.enum(['person', 'party', 'entity']),
+})
+
+export const JournalistSynthRelationshipEdgeSchema = z.object({
+  from: z.string().min(1).max(40),
+  to: z.string().min(1).max(40),
+  relation: z.string().min(1).max(80),
+  citationIds: z.array(z.string().min(2).max(40)).min(1).max(8),
+})
+
+export const JournalistSynthSparklinePointSchema = z.object({
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  count: z.number().int().nonnegative().max(10_000),
+})
+
+export const JournalistSynthHeadlineSchema = z.object({
+  title: z.string().min(1).max(280),
+  url: z.string().url(),
+  date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+})
+
+export const JournalistSynthQuoteCardSchema = z.object({
+  verbatim: z.string().min(20).max(500),
+  attributedTo: z.string().min(1).max(120),
+  date: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .nullable()
+    .optional(),
+  citationId: z.string().min(2).max(40),
+})
+
+export const JournalistSynthResponseSchema = z.object({
+  portrait: JournalistSynthPortraitSchema.nullable(),
+  narratives: z.array(JournalistSynthNarrativeSchema).min(1).max(8),
+  timeline: z.array(JournalistSynthTimelineEventSchema).max(20),
+  relationships: z
+    .object({
+      nodes: z.array(JournalistSynthRelationshipNodeSchema).min(1).max(20),
+      edges: z.array(JournalistSynthRelationshipEdgeSchema).max(40),
+    })
+    .nullable(),
+  pressSparkline: z
+    .object({
+      points: z.array(JournalistSynthSparklinePointSchema).max(60),
+      headlines: z.array(JournalistSynthHeadlineSchema).max(20),
+    })
+    .nullable(),
+  promiseBoardIds: z.array(z.string().min(2).max(80)).max(20).nullable(),
+  quoteCards: z.array(JournalistSynthQuoteCardSchema).max(12),
+  warnings: z.array(z.string().min(2).max(280)).max(20),
+})
+export type JournalistSynthResponse = z.infer<typeof JournalistSynthResponseSchema>
+
+export const JournalistVerifyResponseSchema = z.object({
+  warnings: z.array(z.string().min(2).max(280)).max(20),
+  escalateLegalSensitivity: z.enum(['low', 'medium', 'high']),
+})
+export type JournalistVerifyResponse = z.infer<typeof JournalistVerifyResponseSchema>
+
+// ─── Phase B: bio-extract (soul.md dossier entities) ──────────────────────
+// Liberal nullables — the LLM should omit rather than invent. Citation
+// arrays are kept tight (≤4 per entity) so a single hallucinated source
+// doesn't drag a whole section into the validator's reject path. The
+// agent projects this output into the 10 new ReportSection kinds added
+// in Phase B.
+
+const Year = z.number().int().min(1900).max(2099)
+const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
+const CitationId = z.string().min(2).max(40)
+const CitationList = z.array(CitationId).max(4)
+
+export const JournalistBioFamilyMember = z.object({
+  relation: z.string().min(2).max(60),
+  name: z.string().min(2).max(160).nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioIdentity = z.object({
+  dateOfBirth: IsoDate.nullable().optional(),
+  birthplace: z.string().min(2).max(160).nullable().optional(),
+  residence: z.string().min(2).max(160).nullable().optional(),
+  nationality: z.string().min(2).max(80).nullable().optional(),
+  family: z.array(JournalistBioFamilyMember).max(8).optional(),
+})
+
+export const JournalistBioEducationItem = z.object({
+  degree: z.string().min(2).max(200),
+  institution: z.string().min(2).max(200).nullable().optional(),
+  startYear: Year.nullable().optional(),
+  endYear: Year.nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioCareerPoliticalItem = z.object({
+  role: z.string().min(2).max(200),
+  org: z.string().min(2).max(200),
+  startYear: Year,
+  endYear: Year.nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioCareerProfessionalItem = z.object({
+  role: z.string().min(2).max(200),
+  org: z.string().min(2).max(200),
+  startYear: Year.nullable().optional(),
+  endYear: Year.nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioLegalRecordItem = z.object({
+  caseRef: z.string().min(3).max(120),
+  court: z.string().min(3).max(200),
+  date: IsoDate.nullable().optional(),
+  outcome: z.string().min(2).max(400).nullable().optional(),
+  verbatimRef: z.string().min(20).max(800),
+  citationIds: CitationList.min(1),
+})
+
+export const JournalistBioFinancialItem = z.object({
+  year: Year,
+  metric: z.enum(['salary', 'declared-assets', 'business']),
+  amountEuros: z.number().nonnegative().nullable().optional(),
+  description: z.string().min(2).max(400),
+  citationIds: CitationList.min(1),
+})
+
+export const JournalistBioOnlinePresenceItem = z.object({
+  platform: z.string().min(1).max(40),
+  handle: z.string().min(1).max(80),
+  url: z.string().url(),
+  verifiedAt: IsoDate.nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioAwardItem = z.object({
+  name: z.string().min(2).max(200),
+  awardedBy: z.string().min(2).max(200),
+  year: Year.nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioPublicationItem = z.object({
+  title: z.string().min(3).max(300),
+  venue: z.string().min(2).max(200),
+  year: Year.nullable().optional(),
+  url: z.string().url().nullable().optional(),
+  citationIds: CitationList,
+})
+
+export const JournalistBioGap = z.object({
+  field: z.string().min(2).max(120),
+  reason: z.string().min(2).max(280),
+})
+
+export const JournalistBioResponseSchema = z.object({
+  identity: JournalistBioIdentity.nullable(),
+  education: z.array(JournalistBioEducationItem).max(12),
+  careerPolitical: z.array(JournalistBioCareerPoliticalItem).max(12),
+  careerProfessional: z.array(JournalistBioCareerProfessionalItem).max(20),
+  legalRecord: z.array(JournalistBioLegalRecordItem).max(8),
+  financial: z.array(JournalistBioFinancialItem).max(16),
+  onlinePresence: z.array(JournalistBioOnlinePresenceItem).max(8),
+  awards: z.array(JournalistBioAwardItem).max(12),
+  publications: z.array(JournalistBioPublicationItem).max(20),
+  gapsDetected: z.array(JournalistBioGap).max(20),
+})
+export type JournalistBioResponse = z.infer<typeof JournalistBioResponseSchema>
 
 // ─── Utility ────────────────────────────────────────────────────────────────
 

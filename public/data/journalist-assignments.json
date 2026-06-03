@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-05-23T19:48:57.374Z",
+  "items": [
+    {
+      "id": "a-robert-raga-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "robert-raga-gadea",
+        "name": "Robert Raga Gadea",
+        "kind": "official"
+      },
+      "brief": "Biografía pública del alcalde de Riba-roja de Túria con foco en trayectoria política, expedientes judiciales abiertos, compromisos electorales 2023-2027 y red de relaciones institucionales.",
+      "createdBy": "session-curator",
+      "createdAt": "2026-05-23T12:02:33.613Z",
+      "status": "promoted",
+      "lastRunAt": "2026-05-23T19:44:56.431Z"
+    }
+  ]
+}

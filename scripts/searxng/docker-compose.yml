@@ -1,0 +1,54 @@
+# Self-hosted SearXNG for the journalist agent's Stage-2 web search.
+#
+# SearXNG is an open-source metasearch aggregator (Google, Bing,
+# DuckDuckGo, Wikipedia, Wikidata, news engines). The journalist agent
+# calls its JSON endpoint via SEARXNG_URL — no API key, no quota, no
+# scraping fragility, no paid plan.
+#
+# Usage (from repo root):
+#   npm run searxng:up         # start the container in the background
+#   npm run searxng:down       # stop + remove the container
+#
+# Then in .env or shell env:
+#   SEARXNG_URL=http://localhost:8888
+#
+# Verify it responds with JSON before running the agent:
+#   curl -s 'http://localhost:8888/search?q=test&format=json' | head -c 400
+#
+# This file is intended for LOCAL dev. For VPS, mirror this snippet
+# alongside the bot's compose file and set SEARXNG_URL to the
+# container's internal hostname.
+
+services:
+  searxng:
+    image: searxng/searxng:latest
+    container_name: civicpulse-searxng
+    restart: unless-stopped
+    # Bind to 8888 to avoid clashing with Vite (5173) and other
+    # common dev ports. Inside the container SearXNG listens on 8080.
+    ports:
+      - '8888:8080'
+    environment:
+      # SearXNG reads these to render absolute URLs in its (unused) UI.
+      BASE_URL: http://localhost:8888/
+      INSTANCE_NAME: civicpulse-journalist
+    volumes:
+      - ./settings.yml:/etc/searxng/settings.yml:ro
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -q -O- http://127.0.0.1:8080/healthz || exit 1']
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'

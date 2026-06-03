@@ -1,0 +1,101 @@
+# SearXNG settings for the CivicPulse journalist agent.
+#
+# Key change vs. the upstream default: the JSON output format is
+# explicitly enabled under `search.formats`. Without that, requests
+# with `&format=json` get rejected with HTTP 400.
+#
+# The instance is for the local agent only — no UI users, no rate
+# limiter on localhost (see limiter.toml). DO NOT expose this port to
+# the public internet without re-enabling the limiter, since it would
+# otherwise let arbitrary clients use Google/Bing via your IP.
+
+use_default_settings: true
+
+general:
+  instance_name: civicpulse-journalist
+  privacypolicy_url: false
+  donation_url: false
+  contact_url: false
+  enable_metrics: false
+
+server:
+  # 32-char hex secret — only signs UI links (which we never use) and
+  # CSRF tokens. Hard-coded so re-creating the container doesn't break
+  # bookmarks (we have none) or reset session state.
+  secret_key: 0bf3ac1d7e95428c8e2d9b06f4a2c1d4
+  base_url: http://localhost:8888/
+  # Image proxy is irrelevant for the JSON-only consumer.
+  image_proxy: false
+  # Disable the bot-detection limiter entirely — the agent runs from
+  # localhost and would otherwise trip the per-IP throttle on bursty
+  # planning queries. Don't enable this in a public-facing instance.
+  limiter: false
+  public_instance: false
+  # Disable the public method-restriction headers that would block
+  # cross-origin probes during local development.
+  method: GET
+  default_http_headers:
+    X-Content-Type-Options: nosniff
+    X-Download-Options: noopen
+    X-Robots-Tag: noindex, nofollow
+    Referrer-Policy: no-referrer
+
+search:
+  safe_search: 0
+  autocomplete: ''
+  default_lang: es
+  ban_time_on_fail: 5
+  max_ban_time_on_fail: 120
+  formats:
+    - html
+    - json
+
+outgoing:
+  request_timeout: 6.0
+  max_request_timeout: 10.0
+  pool_connections: 100
+  pool_maxsize: 20
+  enable_http2: true
+  retries: 1
+
+ui:
+  static_use_hash: true
+  default_locale: es
+  query_in_title: false
+  infinite_scroll: false
+  center_alignment: false
+  results_on_new_tab: false
+
+engines:
+  - name: google
+    disabled: false
+    timeout: 6.0
+  - name: bing
+    disabled: false
+    timeout: 6.0
+  - name: duckduckgo
+    disabled: false
+    timeout: 6.0
+  - name: wikipedia
+    disabled: false
+  - name: wikidata
+    disabled: false
+  - name: bing news
+    disabled: false
+    timeout: 6.0
+  - name: google news
+    disabled: false
+    timeout: 6.0
+  # Engines we don't want noise from in a municipal-accountability context.
+  - name: wolframalpha
+    disabled: true
+  - name: youtube
+    disabled: true
+  - name: soundcloud
+    disabled: true
+  - name: 9gag
+    disabled: true
+  - name: reddit
+    disabled: true
+  - name: imdb
+    disabled: true

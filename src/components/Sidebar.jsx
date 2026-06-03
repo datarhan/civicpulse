@@ -97,6 +97,14 @@ export const NAV = [
     icon: Ic.lab,
     shortcut: 'G B',
   },
+  {
+    to: '/laboratorio/agentes',
+    id: 'agentes',
+    labelKey: 'nav.agentes',
+    label: 'Periodistas',
+    icon: Ic.lab,
+    shortcut: 'G A',
+  },
   // /curator is dev-only — surfaces in the sidebar only when running
   // `npm run dev` on a curator's laptop. Production builds tree-shake
   // this entry out via the import.meta.env.MODE check below.

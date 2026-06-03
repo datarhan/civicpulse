@@ -24,6 +24,8 @@ const DepartamentoDetalle = lazy(() => import('./pages/DepartamentoDetalle'))
 const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Laboratorio = lazy(() => import('./pages/Laboratorio'))
+const Agentes = lazy(() => import('./pages/Agentes'))
+const AgenteReporte = lazy(() => import('./pages/AgenteReporte'))
 const Metodologia = lazy(() => import('./pages/Metodologia'))
 const LabHealth = lazy(() => import('./pages/LabHealth'))
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
@@ -104,6 +106,8 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
               <Route path="/quejas/:id" element={<QuejaDetail />} />
               <Route path="/laboratorio" element={<Laboratorio />} />
+              <Route path="/laboratorio/agentes" element={<Agentes />} />
+              <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />
               <Route path="/lab-health" element={<LabHealth />} />
               <Route path="/cambios" element={<Cambios />} />
               {Curator && <Route path="/curator" element={<Curator />} />}

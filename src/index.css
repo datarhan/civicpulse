@@ -35,6 +35,18 @@
 
   --font-body: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* Phase D — editorial-longform typography + spacing tokens. Used by
+     the redesigned /laboratorio/agentes/:id report page. */
+  --type-display: clamp(28px, 4vw, 44px);   /* hero H1 */
+  --type-h2: clamp(20px, 2.5vw, 28px);      /* section heading */
+  --type-h3: clamp(16px, 1.8vw, 20px);
+  --type-lede: clamp(15px, 1.4vw, 18px);    /* narrative body */
+  --type-meta: 11px;                         /* date/source meta */
+  --type-mono: 12.5px;
+  --reading-w: min(720px, 90vw);             /* narrative column max-width */
+  --gap-section: 48px;
+  --gap-block: 24px;
 }
 
 html.dark {
