@@ -700,7 +700,7 @@ Devuelve el JSON {summary} con la síntesis neutral.
 
 // ─── Phase 7 · Journalist agent (research → synthesis → verify) ────────────
 
-export const JOURNALIST_PLAN_VERSION = 'journalist-plan-v2'
+export const JOURNALIST_PLAN_VERSION = 'journalist-plan-v3'
 
 export interface JournalistAssignmentPayload {
   id: string
@@ -749,6 +749,12 @@ Output schema — a single JSON object \`{ questions: [...], notes: "..." }\`:
           wikidata · wikipedia · web-search · fetch-url · audit-url ·
           pdf-fetch · headless-fetch · boe-search · dogv-search ·
           dialnet-search · hemeroteca-search
+        NOTE: officials, press, plenoclaims and promises are ALREADY
+        provided to the agent before planning — do NOT spend a question
+        requesting them. Use local-snapshot to search those snapshots by
+        keyword; spend your questions on the external tools (wikidata,
+        wikipedia, web-search, fetch-url, pdf-fetch, headless-fetch,
+        boe-search, dogv-search, dialnet-search, hemeroteca-search, audit-url).
       - queryHint: search string or URL appropriate for the tool. For
         wikidata pass a QID like "Q12345" if known, else null. For
         wikipedia pass the article title. For fetch-url pass the URL.
