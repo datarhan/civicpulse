@@ -3,7 +3,7 @@ import { parse } from 'csv-parse/sync'
 // ---------------------------------------------------------------------------
 // Status normalisation
 // ---------------------------------------------------------------------------
-const CONTRACT_STATUS = new Set([
+const CONTRACT_STATUS = new Set<ContractStatus>([
   'awarded',
   'revoked',
   'in_progress',
@@ -15,7 +15,7 @@ const CONTRACT_STATUS = new Set([
   'unknown',
 ])
 
-const TENDER_STATUS = new Set([
+const TENDER_STATUS = new Set<TenderStatus>([
   'awarded',
   'open',
   'evaluation',

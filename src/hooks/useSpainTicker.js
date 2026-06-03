@@ -1,26 +1,8 @@
 // @ts-check
-import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 export function useSpainTicker() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let cancelled = false
-    fetch('/data/spain-ticker.json', { cache: 'no-cache' })
-      .then((r) => {
-        if (!r.ok) throw new Error(`spain-ticker.json returned ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
-        if (!cancelled) setState({ loading: false, error: null, data })
-      })
-      .catch((err) => {
-        if (!cancelled) setState({ loading: false, error: err, data: null })
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-  return state
+  return useJsonFetch('/data/spain-ticker.json')
 }
 
 export function formatEur(value, { maximumFractionDigits = 3 } = {}) {

@@ -1,5 +1,5 @@
 // @ts-check
-import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 export const STATE_LABEL = {
   capturada: 'Capturada',
@@ -59,67 +59,13 @@ export const CATEGORY_LABEL = {
 }
 
 export function useQuejas() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let cancelled = false
-    fetch('/data/quejas.json', { cache: 'no-cache' })
-      .then((r) => {
-        if (!r.ok) throw new Error(`quejas.json ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
-        if (!cancelled) setState({ loading: false, error: null, data })
-      })
-      .catch((err) => {
-        if (!cancelled) setState({ loading: false, error: err, data: null })
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-  return state
+  return useJsonFetch('/data/quejas.json')
 }
 
 export function useQuejaResponses() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let cancelled = false
-    fetch('/data/quejas-responses.json', { cache: 'no-cache' })
-      .then((r) => {
-        if (!r.ok) throw new Error(`quejas-responses.json ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
-        if (!cancelled) setState({ loading: false, error: null, data })
-      })
-      .catch((err) => {
-        if (!cancelled) setState({ loading: false, error: err, data: null })
-      })
-    return () => {
-      cancelled = true
-    }
-  }, [])
-  return state
+  return useJsonFetch('/data/quejas-responses.json')
 }
 
-export function prettyNeighborhood(slug) {
-  if (!slug) return ''
-  return slug
-    .split(/[-_\s]/)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ')
-}
-
-export function timeAgo(iso) {
-  if (!iso) return ''
-  const now = Date.now()
-  const then = new Date(iso).getTime()
-  const mins = Math.round((now - then) / 60000)
-  if (mins < 1) return 'ahora'
-  if (mins < 60) return `hace ${mins} min`
-  const hours = Math.round(mins / 60)
-  if (hours < 24) return `hace ${hours} h`
-  const days = Math.round(hours / 24)
-  if (days < 30) return `hace ${days} d`
-  return new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
-}
+// Re-exported from the shared formatters module so existing call sites
+// (`import { timeAgo, prettyNeighborhood } from '../hooks/useQuejas'`) keep working.
+export { timeAgo, prettyNeighborhood } from '../lib/formatters'

@@ -15,6 +15,7 @@
     "lint:fix": "eslint --fix src scripts bot/src bot/tests",
     "format": "prettier -w src scripts bot/src bot/tests",
     "format:check": "prettier -c src scripts bot/src bot/tests",
+    "typecheck": "tsc --noEmit",
     "scrape:officials": "npx tsx scripts/scrape-officials.ts",
     "scrape:budget": "npx tsx scripts/scrape-budget.ts",
     "scrape:tenders": "npx tsx scripts/scrape-tenders.ts",

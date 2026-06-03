@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": false,
+    "jsx": "react-jsx",
+    "strict": false
+  },
+  "include": ["src/**/*", "scripts/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "bot",
+    "src/scraper/journalist.ts",
+    "src/scraper/journalist-agent.ts",
+    "src/scraper/journalist-tools.ts",
+    "src/scraper/journalist-soul-export.ts",
+    "scripts/journalist-assign.ts",
+    "scripts/journalist-run.ts",
+    "scripts/journalist-export-soul.ts",
+    "scripts/apply-journalist-response.ts",
+    "scripts/correct-journalist-report.ts",
+    "scripts/promote-report.ts",
+    "scripts/draft-finding-suggestions.ts"
+  ]
+}

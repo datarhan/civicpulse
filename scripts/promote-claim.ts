@@ -91,7 +91,10 @@ function evidenceToRefs(ev: ClaimVerification['evidence']): {
     // Truncate snippet to the schema's 240-char cap so long tender titles
     // don't break the validator on promotion.
     const snippet = e.snippet.length > 237 ? e.snippet.slice(0, 237).trimEnd() + '…' : e.snippet
-    const ref: FindingRef = { kind: e.kind, ref: e.ref, snippet }
+    // Evidence kinds are a superset of FindingRef kinds (they also include
+    // 'factcheck'/'boe'); preserve the existing runtime behaviour and let the
+    // findings validator be the gate on which kinds are accepted.
+    const ref: FindingRef = { kind: e.kind as FindingRef['kind'], ref: e.ref, snippet }
     // Heuristic — very strong matches or high-similarity rows corroborate;
     // rows with low similarity or mismatched-amount notes contradict.
     if ((e.similarity ?? 0) >= 0.65 && !e.snippet.includes('no coincide')) {

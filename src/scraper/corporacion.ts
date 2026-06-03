@@ -1,4 +1,5 @@
-import { load, type CheerioAPI, type AnyNode } from 'cheerio'
+import { load, type CheerioAPI } from 'cheerio'
+import type { AnyNode } from 'domhandler'
 import { slugify } from './normalize'
 
 export type Party = 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'

@@ -30,6 +30,7 @@ import { topicToDeptSlugs } from './department-claim-topics'
  * @property {object} plenoAgendas { total, sinVoto }
  * @property {object} promesas  { total, docs, enProgreso, plazosVencidos }
  * @property {object} quejas  { abiertas, silencios, total }
+ * @property {object} declaraciones  { total, verificado, parcial, contradicho, promesaRepetida, sinDatos, conEvidencia }
  */
 
 function emptyBucket(slug) {
@@ -93,6 +94,14 @@ function flattenAgendas(agendasSnapshot) {
  * Main entry point. All inputs are tolerant of null/undefined — returns
  * an always-populated result with zero counts for absent data. Stable
  * deterministic output order = ALLOWED_DEPARTMENT_SLUGS order.
+ * @param {Object} input
+ * @param {any} [input.officials]
+ * @param {any} [input.promises]
+ * @param {any} [input.agendas]
+ * @param {any} [input.votes]
+ * @param {any} [input.quejas]
+ * @param {any} [input.claims]
+ * @param {Date} [input.now]
  */
 export function computeDepartmentStats({
   officials,

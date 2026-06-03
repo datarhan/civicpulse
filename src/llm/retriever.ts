@@ -31,7 +31,14 @@ export interface RetrievalInput {
   }
   /** Per-corpus raw documents. Each doc must have url+title+date+some text. */
   corpora: Array<{
-    corpus: 'press' | 'pleno_agenda' | 'pleno_vote' | 'tender' | 'bdns' | 'budget'
+    corpus:
+      | 'press'
+      | 'pleno_agenda'
+      | 'pleno_vote'
+      | 'pleno_transcript'
+      | 'tender'
+      | 'bdns'
+      | 'budget'
     documents: Array<{
       url: string
       title: string
@@ -82,14 +89,28 @@ export function retrieveCandidates(input: RetrievalInput): RetrievalOutput {
       const docKw = extractKeywords(`${doc.title} ${doc.text}`)
       const matched = docKw.filter((kw) => promiseKw.includes(kw))
       if (matched.length === 0) {
-        return { url: doc.url, title: doc.title, date: doc.date, publisher: doc.publisher, text: doc.text, score: 0 }
+        return {
+          url: doc.url,
+          title: doc.title,
+          date: doc.date,
+          publisher: doc.publisher,
+          text: doc.text,
+          score: 0,
+        }
       }
       // Simple proportion-of-promise-keywords-hit, capped. Not full BM25 but
       // good enough: corpora are ≤2000 items so the LLM reranker does the
       // heavy lifting anyway.
       const ratio = matched.length / Math.min(promiseKw.length, 8)
       const score = Math.min(1, ratio + 0.08 * (matched.length - 1))
-      return { url: doc.url, title: doc.title, date: doc.date, publisher: doc.publisher, text: doc.text, score }
+      return {
+        url: doc.url,
+        title: doc.title,
+        date: doc.date,
+        publisher: doc.publisher,
+        text: doc.text,
+        score,
+      }
     })
 
     const ranked = scored
