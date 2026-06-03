@@ -13,11 +13,15 @@ export function useTenderQuejaCorrelations() {
     let alive = true
     fetch('/data/tender-queja-correlations.json')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((data) => { if (alive) setState({ loading: false, error: null, data }) })
+      .then((data) => {
+        if (alive) setState({ loading: false, error: null, data })
+      })
       .catch(() => {
         if (alive) setState({ loading: false, error: null, data: { items: [], stats: {} } })
       })
-    return () => { alive = false }
+    return () => {
+      alive = false
+    }
   }, [])
   return state
 }

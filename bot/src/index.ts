@@ -71,7 +71,10 @@ function makeBot() {
       { command: 'apoyar', description: 'Apoyar una queja existente' },
       { command: 'mis', description: 'Mis quejas' },
       { command: 'olvidar', description: 'Eliminar una queja mía (RGPD art. 17)' },
-      { command: 'subscribe', description: 'Suscribirse a resumen semanal (barrio/concejalía/categoría)' },
+      {
+        command: 'subscribe',
+        description: 'Suscribirse a resumen semanal (barrio/concejalía/categoría)',
+      },
       { command: 'unsubscribe', description: 'Cancelar una suscripción' },
       { command: 'subscriptions', description: 'Ver mis suscripciones activas' },
       { command: 'barrio', description: 'Quejas por barrio' },
@@ -261,6 +264,9 @@ async function main() {
 }
 
 main().catch((err) => {
-  logger.error('bot.fatal', { err: err instanceof Error ? err.message : String(err), stack: err instanceof Error ? err.stack : undefined })
+  logger.error('bot.fatal', {
+    err: err instanceof Error ? err.message : String(err),
+    stack: err instanceof Error ? err.stack : undefined,
+  })
   process.exit(1)
 })

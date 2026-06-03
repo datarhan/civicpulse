@@ -6,7 +6,11 @@ import type { MyContext } from '../types.ts'
 
 function parseQuejaId(raw: string | undefined): string | null {
   if (!raw) return null
-  const trimmed = raw.trim().toUpperCase().replace(/^\/ESTADO[_\s]?/, '').replace(/^Q[-_]?/, '')
+  const trimmed = raw
+    .trim()
+    .toUpperCase()
+    .replace(/^\/ESTADO[_\s]?/, '')
+    .replace(/^Q[-_]?/, '')
   if (!/^[0-9A-Z]{4,}$/.test(trimmed)) return null
   return 'Q-' + trimmed
 }
@@ -26,18 +30,20 @@ function formatDate(iso: string | null | undefined): string {
 
 function stateLabel(state: string): string {
   return (
-    {
-      capturada: '📥 Capturada',
-      apoyada_verificada: '👍 Verificada por la comunidad',
-      registrada: '🗃 Registrada en sede',
-      notificada_10d: '📨 Acuse recibido',
-      en_tramite: '⚙️ En trámite',
-      resuelta: '✅ Resuelta',
-      silencio_negativo: '⚠️ Silencio administrativo',
-      escalada_sindic: '⚖️ Escalada al Síndic',
-      cerrada_no_registrada: '❌ Cerrada sin registrar',
-    } as Record<string, string>
-  )[state] ?? state
+    (
+      {
+        capturada: '📥 Capturada',
+        apoyada_verificada: '👍 Verificada por la comunidad',
+        registrada: '🗃 Registrada en sede',
+        notificada_10d: '📨 Acuse recibido',
+        en_tramite: '⚙️ En trámite',
+        resuelta: '✅ Resuelta',
+        silencio_negativo: '⚠️ Silencio administrativo',
+        escalada_sindic: '⚖️ Escalada al Síndic',
+        cerrada_no_registrada: '❌ Cerrada sin registrar',
+      } as Record<string, string>
+    )[state] ?? state
+  )
 }
 
 export function registerEstado(bot: Bot<MyContext>, db: Db) {

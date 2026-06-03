@@ -58,7 +58,7 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, channel: Chann
     const items = selectBatch(db)
     if (items.length === 0) {
       await ctx.reply(
-        '📭 Sin quejas verificadas (≥10 apoyos) ahora mismo. Avisa a vecinos que apoyen las quejas pendientes.'
+        '📭 Sin quejas verificadas (≥10 apoyos) ahora mismo. Avisa a vecinos que apoyen las quejas pendientes.',
       )
       return
     }
@@ -78,7 +78,7 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, channel: Chann
       `🗂 *Lote listo · ${items.length} quejas · ${total} apoyos totales*\n\n${body}${extra}\n\n` +
         `Para registrar tras firmar en sede:\n` +
         `\`/batch_register <nº asiento> <CSV>\``,
-      { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } }
+      { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } },
     )
   })
 
@@ -91,7 +91,7 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, channel: Chann
     }
     await ctx.reply(
       `📎 Documento del lote actual:\n• Markdown: ${host}/batch/current.md\n• HTML (imprimible): ${host}/batch/current.html\n\nCopia el contenido al formulario de solicitud genérica en sede.ribarroja.es y firma con Cl@ve.`,
-      { link_preview_options: { is_disabled: true } }
+      { link_preview_options: { is_disabled: true } },
     )
   })
 
@@ -106,15 +106,13 @@ export function registerBatchCommand(bot: Bot<MyContext>, db: Db, channel: Chann
       await ctx.reply(
         'Uso: `/batch_register <nº asiento> <CSV> [Q-XXXX Q-YYYY ...]`\n\n' +
           'Si omites los IDs, se usa el lote actual (top 10 verificadas).',
-        { parse_mode: 'Markdown' }
+        { parse_mode: 'Markdown' },
       )
       return
     }
     const [entryNumber, csv, ...ids] = parts
     const selectedIds =
-      ids.length > 0
-        ? ids.map((s) => s.toUpperCase())
-        : selectBatch(db).map((it) => it.queja.id)
+      ids.length > 0 ? ids.map((s) => s.toUpperCase()) : selectBatch(db).map((it) => it.queja.id)
 
     if (selectedIds.length === 0) {
       await ctx.reply('No hay quejas verificadas que registrar.')

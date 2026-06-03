@@ -65,7 +65,7 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
     if (q.state !== 'silencio_negativo' && q.state !== 'registrada') {
       await ctx.reply(
         `\`${id}\` está en estado *${q.state}*. Solo puedes escalar quejas en silencio_negativo o registrada (con el plazo vencido).`,
-        { parse_mode: 'Markdown' }
+        { parse_mode: 'Markdown' },
       )
       return
     }
@@ -89,7 +89,7 @@ export function registerEscalar(bot: Bot<MyContext>, db: Db, channel: Channel) {
 
     await ctx.reply(
       `⚖️ *Escalado \`${q.id}\`* al Síndic de Greuges CV.\n\n${preview}\n…${links}\n\nPresenta en https://www.elsindic.com/es/presenta-una-queja`,
-      { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } }
+      { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } },
     )
   })
 }

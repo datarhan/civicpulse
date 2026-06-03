@@ -81,7 +81,7 @@ function num(v: unknown): number {
 
 export function parseConprelBudget(
   buffer: Buffer | ArrayBuffer,
-  opts: ParseOpts
+  opts: ParseOpts,
 ): BudgetSnapshot | null {
   const wb = XLSX.read(buffer, { type: 'buffer' })
   const sheetName = opts.sheetName ?? 'Comunitat Valenciana'
@@ -99,8 +99,12 @@ export function parseConprelBudget(
 
   for (const row of rows) {
     if (!row || row.length < 30) continue
-    const rowPr = String(row[0] ?? '').replace(/\D/g, '').padStart(2, '0')
-    const rowCor = String(row[1] ?? '').replace(/\D/g, '').padStart(3, '0')
+    const rowPr = String(row[0] ?? '')
+      .replace(/\D/g, '')
+      .padStart(2, '0')
+    const rowCor = String(row[1] ?? '')
+      .replace(/\D/g, '')
+      .padStart(3, '0')
     if (rowPr !== pr || rowCor !== cor) continue
 
     // Column layout (0-indexed):

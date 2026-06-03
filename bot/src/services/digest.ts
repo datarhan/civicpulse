@@ -101,11 +101,7 @@ function buildDigestText(
     .map(({ q, matched }) => {
       const firstLine = (q.detail || '').split('\n')[0].slice(0, 120)
       const tags = matched.map((m) => `${m.filter_kind}=${m.filter_value}`).join(' · ')
-      return (
-        `*${q.id}* · ${q.state}\n` +
-        `${firstLine}\n` +
-        `_${tags}_`
-      )
+      return `*${q.id}* · ${q.state}\n` + `${firstLine}\n` + `_${tags}_`
     })
     .join('\n\n')
   const footer =

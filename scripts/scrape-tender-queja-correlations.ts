@@ -49,12 +49,14 @@ async function main() {
   }
 
   const tendersFile = existsSync(TENDERS)
-    ? JSON.parse(readFileSync(TENDERS, 'utf8')) as { contracts?: Array<Record<string, unknown>> }
+    ? (JSON.parse(readFileSync(TENDERS, 'utf8')) as { contracts?: Array<Record<string, unknown>> })
     : { contracts: [] }
   const agendasFile = existsSync(AGENDAS)
-    ? JSON.parse(readFileSync(AGENDAS, 'utf8')) as { plenos?: Array<Record<string, unknown>> }
+    ? (JSON.parse(readFileSync(AGENDAS, 'utf8')) as { plenos?: Array<Record<string, unknown>> })
     : { plenos: [] }
-  const snap = existsSync(PROMISES) ? validatePromisesSnapshot(readFileSync(PROMISES, 'utf8')) : { frozenUntil: null }
+  const snap = existsSync(PROMISES)
+    ? validatePromisesSnapshot(readFileSync(PROMISES, 'utf8'))
+    : { frozenUntil: null }
 
   const quejas: QuejaForCorrelation[] = rawQuejas
     .filter((q) => q.category && q.createdAt)
@@ -72,7 +74,12 @@ async function main() {
     contractor: c.contractor ? String(c.contractor) : undefined,
     assignee: c.assignee ? String(c.assignee) : undefined,
     awardDate: c.awardDate ? String(c.awardDate) : null,
-    amount: typeof c.finalAmount === 'number' ? c.finalAmount : (typeof c.initialAmount === 'number' ? c.initialAmount : null),
+    amount:
+      typeof c.finalAmount === 'number'
+        ? c.finalAmount
+        : typeof c.initialAmount === 'number'
+          ? c.initialAmount
+          : null,
     categoryTitle: c.categoryTitle ? String(c.categoryTitle) : undefined,
     cpvs: Array.isArray(c.cpvs) ? (c.cpvs as unknown[]).map(String) : [],
     id: c.id ? String(c.id) : undefined,
@@ -80,7 +87,11 @@ async function main() {
   }))
 
   const agendaItems: PlenoAgendaItem[] = (agendasFile.plenos ?? []).flatMap((sess) => {
-    const items = ((sess.agenda ?? []) as Array<{ title?: string; department?: string; expediente?: string | null }>)
+    const items = (sess.agenda ?? []) as Array<{
+      title?: string
+      department?: string
+      expediente?: string | null
+    }>
     return items.map((it) => ({
       sessionId: String(sess.id ?? ''),
       sessionLink: String(sess.link ?? ''),
@@ -125,8 +136,14 @@ function writeEmpty(reason: string) {
       contract: 'Machine-written; never claims causation. Human review required.',
     },
     stats: {
-      frozen: false, quejasScanned: 0, expedienteMatches: 0, fuzzyShortlistsConsidered: 0,
-      llmCalls: 0, llmMatches: 0, llmRejectedHallucinated: 0, llmRejectedLowConfidence: 0,
+      frozen: false,
+      quejasScanned: 0,
+      expedienteMatches: 0,
+      fuzzyShortlistsConsidered: 0,
+      llmCalls: 0,
+      llmMatches: 0,
+      llmRejectedHallucinated: 0,
+      llmRejectedLowConfidence: 0,
       reason,
     },
     items: [],

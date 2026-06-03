@@ -1,11 +1,6 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import {
-  addApoyo,
-  createQueja,
-  setState,
-  type NewQuejaInput,
-} from '../src/db/queries'
+import { addApoyo, createQueja, setState, type NewQuejaInput } from '../src/db/queries'
 import {
   buildBatch,
   registerBatch,

@@ -14,32 +14,40 @@ interface Digest {
 
 export function computeDigest(db: Db, windowDays = 7): Digest {
   const window = `-${windowDays} days`
-  const newCount = (db
-    .prepare(`SELECT COUNT(*) as n FROM quejas WHERE date(created_at) > date('now', ?)`)
-    .get(window) as { n: number }).n
-  const resueltas = (db
-    .prepare(
-      `SELECT COUNT(*) as n FROM quejas WHERE state = 'resuelta' AND date(resolved_at) > date('now', ?)`
-    )
-    .get(window) as { n: number }).n
-  const silencios = (db
-    .prepare(
-      `SELECT COUNT(*) as n FROM quejas WHERE state = 'silencio_negativo'`
-    )
-    .get() as { n: number }).n
-  const escaladas = (db
-    .prepare(`SELECT COUNT(*) as n FROM quejas WHERE state = 'escalada_sindic'`)
-    .get() as { n: number }).n
-  const pendientes = (db
-    .prepare(
-      `SELECT COUNT(*) as n FROM quejas WHERE state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite')`
-    )
-    .get() as { n: number }).n
+  const newCount = (
+    db
+      .prepare(`SELECT COUNT(*) as n FROM quejas WHERE date(created_at) > date('now', ?)`)
+      .get(window) as { n: number }
+  ).n
+  const resueltas = (
+    db
+      .prepare(
+        `SELECT COUNT(*) as n FROM quejas WHERE state = 'resuelta' AND date(resolved_at) > date('now', ?)`,
+      )
+      .get(window) as { n: number }
+  ).n
+  const silencios = (
+    db.prepare(`SELECT COUNT(*) as n FROM quejas WHERE state = 'silencio_negativo'`).get() as {
+      n: number
+    }
+  ).n
+  const escaladas = (
+    db.prepare(`SELECT COUNT(*) as n FROM quejas WHERE state = 'escalada_sindic'`).get() as {
+      n: number
+    }
+  ).n
+  const pendientes = (
+    db
+      .prepare(
+        `SELECT COUNT(*) as n FROM quejas WHERE state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite')`,
+      )
+      .get() as { n: number }
+  ).n
   const topCategorias = db
     .prepare(
       `SELECT category, COUNT(*) as n FROM quejas
        WHERE date(created_at) > date('now', ?)
-       GROUP BY category ORDER BY n DESC LIMIT 5`
+       GROUP BY category ORDER BY n DESC LIMIT 5`,
     )
     .all(window) as Array<{ category: string; n: number }>
   return {

@@ -37,8 +37,7 @@ async function tryYear(year: number): Promise<BudgetSnapshot | null> {
   const url = conprelUrl(year)
   const res = await fetch(url, {
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
     },
   })
@@ -85,7 +84,7 @@ async function main() {
   console.log(`[budget] wrote ${OUT}`)
   console.log(
     `[budget] ${latest.year} total: €${latest.totalRevenue.toLocaleString('es-ES')} ingresos / ` +
-      `€${latest.totalExpense.toLocaleString('es-ES')} gastos`
+      `€${latest.totalExpense.toLocaleString('es-ES')} gastos`,
   )
 }
 

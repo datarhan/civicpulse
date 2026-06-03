@@ -38,10 +38,13 @@ function loadSnapshot(): PlenoVotesSnapshot {
       source: {
         description:
           'Curated voting records transcribed from published pleno actas (Ayuntamiento de Riba-roja de Túria).',
-        contract:
-          'Human-edited, schema-validated. Mutations only via npm run pleno-vote CLI.',
+        contract: 'Human-edited, schema-validated. Mutations only via npm run pleno-vote CLI.',
       },
-      stats: { total: 0, byOutcome: { aprobado: 0, rechazado: 0, retirado: 0, aplazado: 0 }, byPleno: {} },
+      stats: {
+        total: 0,
+        byOutcome: { aprobado: 0, rechazado: 0, retirado: 0, aplazado: 0 },
+        byPleno: {},
+      },
       items: [],
     }
   }
@@ -58,15 +61,20 @@ function parseVoteTuples(spec: string) {
       throw new Error(`unknown bloc "${bloc}" (allowed: ${ALLOWED_BLOCS.join(', ')})`)
     }
     if (!(ALLOWED_DIRECTIONS as readonly string[]).includes(direction)) {
-      throw new Error(`unknown direction "${direction}" (allowed: ${ALLOWED_DIRECTIONS.join(', ')})`)
+      throw new Error(
+        `unknown direction "${direction}" (allowed: ${ALLOWED_DIRECTIONS.join(', ')})`,
+      )
     }
     return { bloc: bloc as VoteBloc, direction: direction as VoteDirection }
   })
 }
 
 function lookupPleno(plenoId: string): { date: string } {
-  if (!existsSync(PLENOS_PATH)) throw new Error('plenos.json not found — run `npm run scrape:plenos` first')
-  const plenos = JSON.parse(readFileSync(PLENOS_PATH, 'utf8')) as { items: { id: string; date: string }[] }
+  if (!existsSync(PLENOS_PATH))
+    throw new Error('plenos.json not found — run `npm run scrape:plenos` first')
+  const plenos = JSON.parse(readFileSync(PLENOS_PATH, 'utf8')) as {
+    items: { id: string; date: string }[]
+  }
   const match = plenos.items.find((p) => p.id === plenoId)
   if (!match) throw new Error(`pleno id "${plenoId}" not found in plenos.json`)
   return { date: match.date }
@@ -123,7 +131,11 @@ function main() {
   }
 
   // sort newest session first, then item ascending
-  snap.items.sort((a, b) => (a.plenoDate === b.plenoDate ? a.itemNumber - b.itemNumber : b.plenoDate.localeCompare(a.plenoDate)))
+  snap.items.sort((a, b) =>
+    a.plenoDate === b.plenoDate
+      ? a.itemNumber - b.itemNumber
+      : b.plenoDate.localeCompare(a.plenoDate),
+  )
 
   snap.generatedAt = new Date().toISOString()
   const validated = validateSnapshot(snap)

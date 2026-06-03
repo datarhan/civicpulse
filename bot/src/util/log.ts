@@ -45,7 +45,7 @@ export function log(level: Level, event: string, context: Record<string, unknown
 /** Convenience wrappers so call sites stay tight. */
 export const logger = {
   debug: (event: string, ctx?: Record<string, unknown>) => log('debug', event, ctx),
-  info:  (event: string, ctx?: Record<string, unknown>) => log('info',  event, ctx),
-  warn:  (event: string, ctx?: Record<string, unknown>) => log('warn',  event, ctx),
+  info: (event: string, ctx?: Record<string, unknown>) => log('info', event, ctx),
+  warn: (event: string, ctx?: Record<string, unknown>) => log('warn', event, ctx),
   error: (event: string, ctx?: Record<string, unknown>) => log('error', event, ctx),
 }

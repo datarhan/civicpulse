@@ -22,7 +22,7 @@ export function registerBarrio(bot: Bot<MyContext>, db: Db) {
       }
       if (byNeigh.size === 0) {
         await ctx.reply(
-          'Aún no hay quejas con ubicación. Usa /queja y comparte tu ubicación para empezar a mapear.'
+          'Aún no hay quejas con ubicación. Usa /queja y comparte tu ubicación para empezar a mapear.',
         )
         return
       }
@@ -32,14 +32,16 @@ export function registerBarrio(bot: Bot<MyContext>, db: Db) {
         .map(([slug, n]) => `• ${prettyBarrio(slug)} — ${n}`)
       await ctx.reply(
         `🗺 *Quejas por barrio* (últimas 30)\n\n${lines.join('\n')}\n\nUso: \`/barrio <slug>\` para ver las de un barrio concreto.`,
-        { parse_mode: 'Markdown' }
+        { parse_mode: 'Markdown' },
       )
       return
     }
     const slug = arg.toLowerCase().replace(/\s+/g, '-')
     const rows = listByNeighborhood(db, slug, 15)
     if (rows.length === 0) {
-      await ctx.reply(`Sin quejas en *${prettyBarrio(slug)}* por ahora.`, { parse_mode: 'Markdown' })
+      await ctx.reply(`Sin quejas en *${prettyBarrio(slug)}* por ahora.`, {
+        parse_mode: 'Markdown',
+      })
       return
     }
     const body = rows

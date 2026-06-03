@@ -13,7 +13,7 @@ import { parseChannelFeed } from '../src/scraper/pleno-videos'
 
 const CHANNEL_URL = 'https://www.youtube.com/@ajuntam_riba_roja_de_turia'
 const OUT_PATH = resolve('public/data/pleno-videos.json')
-const PLAYLIST_LIMIT = 60  // enough to cover ~2 years of monthly sessions
+const PLAYLIST_LIMIT = 60 // enough to cover ~2 years of monthly sessions
 
 function run(): string {
   try {

@@ -49,15 +49,15 @@ export const ALLOWED_MATERIAS = [
 export type SindicMateria = (typeof ALLOWED_MATERIAS)[number]
 
 export interface SindicResolucion {
-  id: string                   // e.g. "sindic-202400427"
-  expediente: string           // Síndic's internal nº (e.g. "202400427")
-  fecha: string                // ISO date yyyy-mm-dd
+  id: string // e.g. "sindic-202400427"
+  expediente: string // Síndic's internal nº (e.g. "202400427")
+  fecha: string // ISO date yyyy-mm-dd
   materia: SindicMateria
   sentido: SindicSentido
-  titulo: string               // short description (≤200 chars)
-  resumen: string              // verbatim resumen (≤2000 chars, no editorial)
-  urlPdf: string               // https://www.elsindic.com/... full PDF
-  quejaIdRelacionada: string | null  // our Q-XXX if linked, else null
+  titulo: string // short description (≤200 chars)
+  resumen: string // verbatim resumen (≤2000 chars, no editorial)
+  urlPdf: string // https://www.elsindic.com/... full PDF
+  quejaIdRelacionada: string | null // our Q-XXX if linked, else null
 }
 
 export interface SindicSnapshot {
@@ -78,7 +78,8 @@ export function validateResolucion(r: unknown): SindicResolucion {
   const o = r as Record<string, unknown>
 
   const id = String(o.id ?? '').trim()
-  if (!id.startsWith('sindic-')) throw new Error(`id must start with 'sindic-': got ${JSON.stringify(id)}`)
+  if (!id.startsWith('sindic-'))
+    throw new Error(`id must start with 'sindic-': got ${JSON.stringify(id)}`)
 
   const expediente = String(o.expediente ?? '').trim()
   if (!/^[0-9]{5,}$/.test(expediente))
@@ -112,7 +113,9 @@ export function validateResolucion(r: unknown): SindicResolucion {
   const quejaIdRelacionada =
     qRaw === null || qRaw === undefined || qRaw === '' ? null : String(qRaw).trim().toUpperCase()
   if (quejaIdRelacionada && !quejaIdRe.test(quejaIdRelacionada))
-    throw new Error(`quejaIdRelacionada must match ${quejaIdRe}: got ${JSON.stringify(quejaIdRelacionada)}`)
+    throw new Error(
+      `quejaIdRelacionada must match ${quejaIdRe}: got ${JSON.stringify(quejaIdRelacionada)}`,
+    )
 
   return {
     id,
@@ -139,7 +142,9 @@ export function validateSnapshot(raw: unknown): SindicSnapshot {
   // Enforce chronological order (newest first) when there are ≥ 2 items.
   for (let i = 1; i < items.length; i++) {
     if (items[i - 1].fecha < items[i].fecha) {
-      throw new Error(`items must be sorted newest first: ${items[i - 1].id} precedes ${items[i].id}`)
+      throw new Error(
+        `items must be sorted newest first: ${items[i - 1].id} precedes ${items[i].id}`,
+      )
     }
   }
   return {

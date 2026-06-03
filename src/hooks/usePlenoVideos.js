@@ -21,9 +21,15 @@ export function usePlenoVideos() {
     let alive = true
     fetch('/data/pleno-videos.json')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((data) => { if (alive) setState({ loading: false, error: null, data }) })
-      .catch((error) => { if (alive) setState({ loading: false, error, data: null }) })
-    return () => { alive = false }
+      .then((data) => {
+        if (alive) setState({ loading: false, error: null, data })
+      })
+      .catch((error) => {
+        if (alive) setState({ loading: false, error, data: null })
+      })
+    return () => {
+      alive = false
+    }
   }, [])
   return state
 }
@@ -34,13 +40,18 @@ export function usePlenoVoteSuggestions() {
     let alive = true
     fetch('/data/pleno-votes-suggestions.json')
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((data) => { if (alive) setState({ loading: false, error: null, data }) })
+      .then((data) => {
+        if (alive) setState({ loading: false, error: null, data })
+      })
       .catch(() => {
         // Missing suggestions file is expected before any transcription has run;
         // surface as empty rather than error.
-        if (alive) setState({ loading: false, error: null, data: { items: [], stats: { total: 0 } } })
+        if (alive)
+          setState({ loading: false, error: null, data: { items: [], stats: { total: 0 } } })
       })
-    return () => { alive = false }
+    return () => {
+      alive = false
+    }
   }, [])
   return state
 }

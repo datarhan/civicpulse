@@ -31,7 +31,7 @@ function usage(): never {
   console.error(
     'Usage: npm run sindic:add -- <expediente> <fecha> <materia> <sentido> "<titulo>" "<resumen>" <urlPdf> [Q-XXXX]\n' +
       `\nAllowed materia: ${ALLOWED_MATERIAS.join(' | ')}\n` +
-      `Allowed sentido: ${ALLOWED_SENTIDOS.join(' | ')}`
+      `Allowed sentido: ${ALLOWED_SENTIDOS.join(' | ')}`,
   )
   process.exit(2)
 }
@@ -58,7 +58,9 @@ function main() {
   const rawSnap = JSON.parse(readFileSync(path, 'utf8')) as SindicSnapshot
   // Reject if id already present
   if (rawSnap.items.some((i) => i.id === validated.id)) {
-    console.error(`[sindic:add] ${validated.id} already present. Remove or edit it in public/data/sindic.json first.`)
+    console.error(
+      `[sindic:add] ${validated.id} already present. Remove or edit it in public/data/sindic.json first.`,
+    )
     process.exit(3)
   }
   const merged = [...rawSnap.items, validated].sort((a, b) => (a.fecha < b.fecha ? 1 : -1))

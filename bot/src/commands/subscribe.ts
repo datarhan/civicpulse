@@ -42,7 +42,10 @@ export function registerSubscribe(bot: Bot<MyContext>, db: Db) {
     }
     const r = addSubscription(db, ctx.from!.id, kind, value)
     if (!r.added) {
-      await ctx.reply(`Ya tenías esa suscripción activa (\`${kind}: ${value}\`). Usa /subscriptions para ver todas.`, { parse_mode: 'Markdown' })
+      await ctx.reply(
+        `Ya tenías esa suscripción activa (\`${kind}: ${value}\`). Usa /subscriptions para ver todas.`,
+        { parse_mode: 'Markdown' },
+      )
       return
     }
     await ctx.reply(
@@ -63,7 +66,9 @@ export function registerSubscribe(bot: Bot<MyContext>, db: Db) {
     }
     const r = removeSubscription(db, ctx.from!.id, kind, value)
     if (!r.removed) {
-      await ctx.reply(`No tenías esa suscripción activa. /subscriptions para ver las que sí tienes.`)
+      await ctx.reply(
+        `No tenías esa suscripción activa. /subscriptions para ver las que sí tienes.`,
+      )
       return
     }
     await ctx.reply(`🗑 Suscripción cancelada: *${kind}* = _${value}_`, { parse_mode: 'Markdown' })

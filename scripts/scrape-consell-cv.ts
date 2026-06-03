@@ -39,7 +39,7 @@ async function main() {
   mkdirSync(dirname(OUT), { recursive: true })
   writeFileSync(OUT, JSON.stringify(snap, null, 2))
   console.log(
-    `[consell-cv] total=${snap.stats.totalEntries} matched=${snap.stats.matchedEntries} years=${snap.stats.years.length} → ${OUT}`
+    `[consell-cv] total=${snap.stats.totalEntries} matched=${snap.stats.matchedEntries} years=${snap.stats.years.length} → ${OUT}`,
   )
 }
 

@@ -23,8 +23,7 @@ async function main() {
   console.log(`[padron] fetching ${SOURCE}`)
   const res = await fetch(SOURCE, {
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'text/csv,text/plain',
     },
   })
@@ -61,7 +60,7 @@ async function main() {
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[padron] wrote ${OUT}`)
   console.log(
-    `[padron] ${series.name.trim()} ${series.latestYear}: ${latest.toLocaleString('es-ES')} hab. (+${growth10y.toFixed(1)}% 10y)`
+    `[padron] ${series.name.trim()} ${series.latestYear}: ${latest.toLocaleString('es-ES')} hab. (+${growth10y.toFixed(1)}% 10y)`,
   )
 }
 

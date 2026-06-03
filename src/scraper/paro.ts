@@ -57,7 +57,9 @@ function munoTotal(rows: unknown[][], muniKey: string): number | null {
   for (let i = hit; i < Math.min(hit + 30, rows.length); i++) {
     const row = rows[i]
     if (!row) continue
-    const label = String(row[1] ?? '').trim().toUpperCase()
+    const label = String(row[1] ?? '')
+      .trim()
+      .toUpperCase()
     if (label !== 'TOTAL') continue
     // Last non-empty cell is the grand total.
     for (let j = row.length - 1; j >= 0; j--) {
@@ -74,7 +76,7 @@ function munoTotal(rows: unknown[][], muniKey: string): number | null {
 
 export function parseSepeParoMonth(
   buf: Buffer | ArrayBuffer,
-  opts: ParseOpts
+  opts: ParseOpts,
 ): ParoSnapshot | null {
   const totalSheet = readSheet(buf, 'AMBOS SEXOS PARO')
   const menSheet = readSheet(buf, 'HOMBRES PARO')

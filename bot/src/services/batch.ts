@@ -67,7 +67,7 @@ export function selectBatch(db: Db, limit = 10): BatchItem[] {
        ) a ON a.queja_id = q.id
        WHERE q.state = 'apoyada_verificada'
        ORDER BY apoyos_count DESC, q.created_at ASC
-       LIMIT ?`
+       LIMIT ?`,
     )
     .all(limit) as Array<QuejaRow & { apoyos_count: number }>
 
@@ -82,7 +82,8 @@ export function selectBatch(db: Db, limit = 10): BatchItem[] {
       queja: r,
       apoyos: r.apoyos_count,
       plazoDias: plazo,
-      baseLegal: `${routing.legalBasis[0]?.law ?? ''} ${routing.legalBasis[0]?.article ?? ''}`.trim(),
+      baseLegal:
+        `${routing.legalBasis[0]?.law ?? ''} ${routing.legalBasis[0]?.article ?? ''}`.trim(),
       silencio: routing.silencio,
       area: routing.concejalia.area,
       responsibleName: routing.concejalia.responsible?.name ?? null,
@@ -113,13 +114,17 @@ export function renderBatchMarkdown(batch: Batch): string {
   lines.push('Ante el Registro Electrónico General del')
   lines.push('**Ayuntamiento de Riba-roja de Túria**')
   lines.push('')
-  lines.push(`Presentada por **${batch.moderator}** (vecino/a de Riba-roja de Túria), en representación de sí mismo/a como ciudadano/a y trasladando las incidencias recopiladas por la plataforma pública CivicPulse.`)
+  lines.push(
+    `Presentada por **${batch.moderator}** (vecino/a de Riba-roja de Túria), en representación de sí mismo/a como ciudadano/a y trasladando las incidencias recopiladas por la plataforma pública CivicPulse.`,
+  )
   lines.push('')
   lines.push('---')
   lines.push('')
   lines.push('## Exposición')
   lines.push('')
-  lines.push('Al amparo de los artículos 18 de la Ley 7/1985, reguladora de las Bases del Régimen Local, y 16, 66 y 68 de la Ley 39/2015, del Procedimiento Administrativo Común de las Administraciones Públicas, traslado al Ayuntamiento de Riba-roja de Túria las siguientes incidencias detectadas por la ciudadanía, cada una de ellas avalada por un mínimo de diez apoyos vecinales verificados a través de la plataforma CivicPulse:')
+  lines.push(
+    'Al amparo de los artículos 18 de la Ley 7/1985, reguladora de las Bases del Régimen Local, y 16, 66 y 68 de la Ley 39/2015, del Procedimiento Administrativo Común de las Administraciones Públicas, traslado al Ayuntamiento de Riba-roja de Túria las siguientes incidencias detectadas por la ciudadanía, cada una de ellas avalada por un mínimo de diez apoyos vecinales verificados a través de la plataforma CivicPulse:',
+  )
   lines.push('')
 
   batch.items.forEach((item, i) => {
@@ -147,10 +152,18 @@ export function renderBatchMarkdown(batch: Batch): string {
   lines.push('')
   lines.push('## Solicita')
   lines.push('')
-  lines.push(`1. Que se tenga por presentada esta solicitud con las **${batch.items.length} incidencias** anteriores, anotándose el correspondiente asiento en el Registro Electrónico General (art. 16 LPACAP) y emitiéndose recibo acreditativo con CSV.`)
-  lines.push('2. Que, conforme al art. 21.4 LPACAP, se notifique en el plazo de diez días hábiles el plazo máximo aplicable y los efectos del silencio administrativo para cada una de las incidencias.')
-  lines.push('3. Que se dicte resolución expresa sobre cada incidencia en los plazos legalmente previstos (art. 21.3 LPACAP).')
-  lines.push('4. Que, de conformidad con el art. 132 de la Ley 7/1985, la información agregada sobre el tiempo medio de resolución por concejalía se incorpore al informe anual de la Comisión Especial de Sugerencias y Reclamaciones elevado al Pleno.')
+  lines.push(
+    `1. Que se tenga por presentada esta solicitud con las **${batch.items.length} incidencias** anteriores, anotándose el correspondiente asiento en el Registro Electrónico General (art. 16 LPACAP) y emitiéndose recibo acreditativo con CSV.`,
+  )
+  lines.push(
+    '2. Que, conforme al art. 21.4 LPACAP, se notifique en el plazo de diez días hábiles el plazo máximo aplicable y los efectos del silencio administrativo para cada una de las incidencias.',
+  )
+  lines.push(
+    '3. Que se dicte resolución expresa sobre cada incidencia en los plazos legalmente previstos (art. 21.3 LPACAP).',
+  )
+  lines.push(
+    '4. Que, de conformidad con el art. 132 de la Ley 7/1985, la información agregada sobre el tiempo medio de resolución por concejalía se incorpore al informe anual de la Comisión Especial de Sugerencias y Reclamaciones elevado al Pleno.',
+  )
   lines.push('')
   lines.push(`Riba-roja de Túria, ${date}.`)
   lines.push('')
@@ -159,7 +172,9 @@ export function renderBatchMarkdown(batch: Batch): string {
   lines.push('')
   lines.push('---')
   lines.push('')
-  lines.push(`*Documento generado automáticamente por CivicPulse a partir de quejas ciudadanas públicas con apoyo vecinal verificado. Total de apoyos vecinales que respaldan esta solicitud: ${batch.totalApoyos}.*`)
+  lines.push(
+    `*Documento generado automáticamente por CivicPulse a partir de quejas ciudadanas públicas con apoyo vecinal verificado. Total de apoyos vecinales que respaldan esta solicitud: ${batch.totalApoyos}.*`,
+  )
   return lines.join('\n')
 }
 
@@ -168,8 +183,7 @@ export function renderBatchHtml(batch: Batch): string {
   const md = renderBatchMarkdown(batch)
   // Tiny markdown → HTML (headers + paragraphs + blockquote + lists only).
   // Intentional: no markdown lib dependency. Scope is bounded.
-  const escape = (s: string) =>
-    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   const html = md
     .split('\n')
     .map((line) => {
@@ -243,13 +257,11 @@ export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchR
       })
       if (updated) registered.push(updated)
     }
-    db.prepare(
-      `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'batch_registered', ?)`
-    )
+    db.prepare(`INSERT INTO events (queja_id, kind, payload) VALUES (?, 'batch_registered', ?)`)
     // Log the batch at each queja for audit
     for (const r of registered) {
       db.prepare(
-        `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'batch_registered', ?)`
+        `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'batch_registered', ?)`,
       ).run(
         r.id,
         JSON.stringify({
@@ -257,7 +269,7 @@ export function registerBatch(db: Db, input: RegisterBatchInput): RegisterBatchR
           entry_number: input.entry_number,
           csv: input.csv,
           moderator_user_id: input.moderator_user_id,
-        })
+        }),
       )
     }
   })

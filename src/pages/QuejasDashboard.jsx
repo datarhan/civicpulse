@@ -15,17 +15,32 @@ const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
 
 function StatTile({ label, value, tone = 'neutral', sub }) {
   const color =
-    tone === 'ok' ? 'var(--ok)' :
-    tone === 'warn' ? 'var(--warn)' :
-    tone === 'crit' ? 'var(--crit)' :
-    tone === 'civic' ? 'var(--civic)' :
-    'var(--ink)'
+    tone === 'ok'
+      ? 'var(--ok)'
+      : tone === 'warn'
+        ? 'var(--warn)'
+        : tone === 'crit'
+          ? 'var(--crit)'
+          : tone === 'civic'
+            ? 'var(--civic)'
+            : 'var(--ink)'
   return (
     <Card>
-      <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+        }}
+      >
         {label}
       </div>
-      <div className="mono" style={{ fontSize: 28, fontWeight: 800, color, marginTop: 4, letterSpacing: '-.02em' }}>
+      <div
+        className="mono"
+        style={{ fontSize: 28, fontWeight: 800, color, marginTop: 4, letterSpacing: '-.02em' }}
+      >
         {value}
       </div>
       {sub && <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 3 }}>{sub}</div>}
@@ -36,13 +51,45 @@ function StatTile({ label, value, tone = 'neutral', sub }) {
 function Bar({ label, n, max, color, subline }) {
   const pct = max > 0 ? Math.round((n / max) * 100) : 0
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '160px 1fr min-content', alignItems: 'center', gap: 10, padding: '4px 0' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '160px 1fr min-content',
+        alignItems: 'center',
+        gap: 10,
+        padding: '4px 0',
+      }}
+    >
       <span style={{ fontSize: 13 }}>{label}</span>
-      <div style={{ position: 'relative', height: 8, background: 'var(--border2)', borderRadius: 4, overflow: 'hidden' }}>
-        <div style={{ width: `${pct}%`, height: '100%', background: color, transition: 'width .3s ease' }} />
+      <div
+        style={{
+          position: 'relative',
+          height: 8,
+          background: 'var(--border2)',
+          borderRadius: 4,
+          overflow: 'hidden',
+        }}
+      >
+        <div
+          style={{
+            width: `${pct}%`,
+            height: '100%',
+            background: color,
+            transition: 'width .3s ease',
+          }}
+        />
       </div>
-      <span className="mono" style={{ fontSize: 12, color: 'var(--ink60)', minWidth: 24, textAlign: 'right' }}>{n}</span>
-      {subline && <div style={{ gridColumn: '1 / 4', fontSize: 10.5, color: 'var(--ink50)', marginTop: -2 }}>{subline}</div>}
+      <span
+        className="mono"
+        style={{ fontSize: 12, color: 'var(--ink60)', minWidth: 24, textAlign: 'right' }}
+      >
+        {n}
+      </span>
+      {subline && (
+        <div style={{ gridColumn: '1 / 4', fontSize: 10.5, color: 'var(--ink50)', marginTop: -2 }}>
+          {subline}
+        </div>
+      )}
     </div>
   )
 }
@@ -66,7 +113,10 @@ function SlaPanel({ byConcejal, officials }) {
   if (entries.length === 0) return null
   return (
     <Card style={{ marginTop: 14 }}>
-      <SectionHead eyebrow="Rendición de cuentas · concejalía" title="Quejas por responsable político" />
+      <SectionHead
+        eyebrow="Rendición de cuentas · concejalía"
+        title="Quejas por responsable político"
+      />
       <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 6 }}>
         {entries.map((e) => (
           <div
@@ -99,21 +149,44 @@ function SlaPanel({ byConcejal, officials }) {
                   {e.party}
                 </span>
               )}
-              <div style={{ fontSize: 13.5, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <div
+                style={{
+                  fontSize: 13.5,
+                  fontWeight: 500,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {e.name}
               </div>
             </div>
-            <div className="mono" style={{ fontSize: 12, color: 'var(--ok)', textAlign: 'right' }}>✓ {e.resueltas}</div>
-            <div className="mono" style={{ fontSize: 12, color: 'var(--civic)', textAlign: 'right' }}>⏳ {e.pendientes}</div>
-            <div className="mono" style={{ fontSize: 12, color: e.silencios > 0 ? 'var(--crit)' : 'var(--ink40)', textAlign: 'right' }}>
+            <div className="mono" style={{ fontSize: 12, color: 'var(--ok)', textAlign: 'right' }}>
+              ✓ {e.resueltas}
+            </div>
+            <div
+              className="mono"
+              style={{ fontSize: 12, color: 'var(--civic)', textAlign: 'right' }}
+            >
+              ⏳ {e.pendientes}
+            </div>
+            <div
+              className="mono"
+              style={{
+                fontSize: 12,
+                color: e.silencios > 0 ? 'var(--crit)' : 'var(--ink40)',
+                textAlign: 'right',
+              }}
+            >
               ⚠ {e.silencios}
             </div>
           </div>
         ))}
       </div>
       <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 10, lineHeight: 1.5 }}>
-        ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios (&gt;plazo LPACAP sin respuesta). Las
-        quejas se asignan al área municipal competente automáticamente; el responsable político figura como titular de esa área.
+        ✓ resueltas · ⏳ pendientes (capturadas + registradas + en trámite) · ⚠ silencios (&gt;plazo
+        LPACAP sin respuesta). Las quejas se asignan al área municipal competente automáticamente;
+        el responsable político figura como titular de esa área.
       </div>
     </Card>
   )
@@ -142,12 +215,17 @@ function StateBreakdown({ byState, total }) {
           if (n === 0) return null
           const tone = STATE_TONE[s] || 'neutral'
           const color =
-            tone === 'ok' ? 'var(--ok)' :
-            tone === 'warn' ? 'var(--warn)' :
-            tone === 'crit' ? 'var(--crit)' :
-            tone === 'civic' ? 'var(--civic)' :
-            tone === 'intel' ? 'var(--civic)' :
-            'var(--ink40)'
+            tone === 'ok'
+              ? 'var(--ok)'
+              : tone === 'warn'
+                ? 'var(--warn)'
+                : tone === 'crit'
+                  ? 'var(--crit)'
+                  : tone === 'civic'
+                    ? 'var(--civic)'
+                    : tone === 'intel'
+                      ? 'var(--civic)'
+                      : 'var(--ink40)'
           return <Bar key={s} label={STATE_LABEL[s] || s} n={n} max={max} color={color} />
         })}
       </div>
@@ -195,7 +273,14 @@ function plazoForCategory(cat) {
 function ReadyToEscalate({ items }) {
   const now = Date.now()
   const urgent = (items || [])
-    .filter((q) => q.registered_at && (q.status === 'registrada' || q.status === 'notificada_10d' || q.status === 'en_tramite' || q.status === 'silencio_negativo'))
+    .filter(
+      (q) =>
+        q.registered_at &&
+        (q.status === 'registrada' ||
+          q.status === 'notificada_10d' ||
+          q.status === 'en_tramite' ||
+          q.status === 'silencio_negativo'),
+    )
     .map((q) => {
       const plazo = plazoForCategory(q.service_code)
       const regMs = new Date(q.registered_at).getTime()
@@ -216,9 +301,9 @@ function ReadyToEscalate({ items }) {
         title="Quejas cerca de o en silencio administrativo"
       />
       <div style={{ fontSize: 12, color: 'var(--ink60)', marginTop: 4, lineHeight: 1.5 }}>
-        Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas
-        para <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento —
-        se generará el template para el Síndic de Greuges CV.
+        Quejas registradas en sede cuyo plazo LPACAP lleva ≥80% consumido. Candidatas para{' '}
+        <code>/escalar Q-XXXX</code> si no llega respuesta antes del vencimiento — se generará el
+        template para el Síndic de Greuges CV.
       </div>
       <div style={{ marginTop: 10 }}>
         {urgent.map(({ q, plazo, ageDays, pct }) => {
@@ -289,7 +374,9 @@ function ReadyToEscalate({ items }) {
 function TopPending({ items }) {
   const pending = (items || [])
     .filter((q) =>
-      ['capturada', 'apoyada_verificada', 'registrada', 'notificada_10d', 'en_tramite'].includes(q.status)
+      ['capturada', 'apoyada_verificada', 'registrada', 'notificada_10d', 'en_tramite'].includes(
+        q.status,
+      ),
     )
     .sort((a, b) => b.apoyos - a.apoyos)
     .slice(0, 10)
@@ -317,7 +404,15 @@ function TopPending({ items }) {
               {q.service_request_id}
             </span>
             <div style={{ minWidth: 0 }}>
-              <div style={{ fontSize: 13.5, fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+              <div
+                style={{
+                  fontSize: 13.5,
+                  fontWeight: 500,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {q.description}
               </div>
               <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
@@ -325,7 +420,10 @@ function TopPending({ items }) {
                 {q.address_string ? ` · ${prettyNeighborhood(q.address_string)}` : ''}
               </div>
             </div>
-            <span className="mono" style={{ fontSize: 12, color: 'var(--civic)', fontWeight: 700, textAlign: 'right' }}>
+            <span
+              className="mono"
+              style={{ fontSize: 12, color: 'var(--civic)', fontWeight: 700, textAlign: 'right' }}
+            >
               👍 {q.apoyos}
             </span>
             <Pill tone={STATE_TONE[q.status] || 'ghost'} size="xs">
@@ -346,23 +444,37 @@ export default function QuejasDashboard() {
 
   if (loading) {
     return (
-      <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
+      >
         <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando feed…</div>
       </div>
     )
   }
   if (error || !data) {
     return (
-      <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}>
+      <div
+        className="cp-page"
+        style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
+      >
         <Card>
-          <div style={{ color: 'var(--warn)', fontSize: 13 }}>No se pudo cargar /data/quejas.json.</div>
+          <div style={{ color: 'var(--warn)', fontSize: 13 }}>
+            No se pudo cargar /data/quejas.json.
+          </div>
         </Card>
       </div>
     )
   }
 
   const items = data.items || []
-  const stats = data.stats || { total: 0, byState: {}, byNeighborhood: {}, byCategory: {}, byConcejal: {} }
+  const stats = data.stats || {
+    total: 0,
+    byState: {},
+    byNeighborhood: {},
+    byCategory: {},
+    byConcejal: {},
+  }
   const resueltas = stats.byState.resuelta || 0
   const silencios = (stats.byState.silencio_negativo || 0) + (stats.byState.escalada_sindic || 0)
   const pendientes =
@@ -374,9 +486,20 @@ export default function QuejasDashboard() {
   const resolucionPct = stats.total > 0 ? Math.round((resueltas / stats.total) * 100) : 0
 
   return (
-    <div className="cp-page" style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}>
+    <div
+      className="cp-page"
+      style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
+    >
       <div style={{ marginBottom: 18 }}>
-        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', textTransform: 'uppercase', letterSpacing: '.08em' }}>
+        <div
+          className="mono"
+          style={{
+            fontSize: 10.5,
+            color: 'var(--ink50)',
+            textTransform: 'uppercase',
+            letterSpacing: '.08em',
+          }}
+        >
           {t('dashboard.eyebrow')}
         </div>
         <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.015em', marginTop: 2 }}>
@@ -384,11 +507,21 @@ export default function QuejasDashboard() {
         </div>
         <div style={{ fontSize: 13.5, color: 'var(--ink60)', marginTop: 4, maxWidth: 720 }}>
           Vista agregada de todas las quejas capturadas vía{' '}
-          <a href={TELEGRAM_BOT_URL} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+          <a
+            href={TELEGRAM_BOT_URL}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
             Telegram
           </a>
           . Métricas LPACAP, concejalía responsable y presión vecinal.{' '}
-          <Link to="/quejas" style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}>← Feed público</Link>
+          <Link
+            to="/quejas"
+            style={{ color: 'var(--civic)', textDecoration: 'underline', textUnderlineOffset: 2 }}
+          >
+            ← Feed público
+          </Link>
         </div>
       </div>
 
@@ -397,20 +530,55 @@ export default function QuejasDashboard() {
           <SectionHead eyebrow="Sin datos" title="El canal está abierto, aún no hay quejas" />
           <div style={{ fontSize: 14, color: 'var(--ink70)', marginTop: 8, lineHeight: 1.55 }}>
             Este dashboard muestra métricas cuando haya quejas registradas. Presenta la primera vía{' '}
-            <a href={TELEGRAM_BOT_URL} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>@munigraph_bot</a>
-            {' '}con el comando <code>/queja</code>.
+            <a
+              href={TELEGRAM_BOT_URL}
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--civic)' }}
+            >
+              @munigraph_bot
+            </a>{' '}
+            con el comando <code>/queja</code>.
           </div>
         </Card>
       ) : (
         <>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12, marginBottom: 14 }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+              gap: 12,
+              marginBottom: 14,
+            }}
+          >
             <StatTile label="Total quejas" value={stats.total} sub="desde el inicio del canal" />
-            <StatTile label="Resueltas" value={resueltas} tone="ok" sub={`${resolucionPct}% del total`} />
-            <StatTile label="Pendientes" value={pendientes} tone="civic" sub="en trámite o capturadas" />
-            <StatTile label="Silencios + escaladas" value={silencios} tone={silencios > 0 ? 'crit' : 'ok'} sub=">plazo LPACAP" />
+            <StatTile
+              label="Resueltas"
+              value={resueltas}
+              tone="ok"
+              sub={`${resolucionPct}% del total`}
+            />
+            <StatTile
+              label="Pendientes"
+              value={pendientes}
+              tone="civic"
+              sub="en trámite o capturadas"
+            />
+            <StatTile
+              label="Silencios + escaladas"
+              value={silencios}
+              tone={silencios > 0 ? 'crit' : 'ok'}
+              sub=">plazo LPACAP"
+            />
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 14 }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 14,
+            }}
+          >
             <StateBreakdown byState={stats.byState} total={stats.total} />
             <CategoryBreakdown byCategory={stats.byCategory} />
             <NeighborhoodBreakdown byNeighborhood={stats.byNeighborhood} />

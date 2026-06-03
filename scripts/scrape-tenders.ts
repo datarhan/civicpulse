@@ -95,7 +95,10 @@ async function main() {
   console.log(
     `[tenders] ${contracts.length} contracts (${payload.stats.awardedContracts} awarded, € ${awardedTotal
       .toFixed(0)
-      .replace(/\B(?=(\d{3})+(?!\d))/g, '.')}), ${tenders.length} tenders (${payload.stats.openTenders} open)`
+      .replace(
+        /\B(?=(\d{3})+(?!\d))/g,
+        '.',
+      )}), ${tenders.length} tenders (${payload.stats.openTenders} open)`,
   )
 }
 

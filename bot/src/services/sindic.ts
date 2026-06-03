@@ -25,7 +25,7 @@ export interface SindicTemplate {
 export function buildSindicTemplate(
   queja: QuejaRow,
   routing: QuejaRouting,
-  now: Date = new Date()
+  now: Date = new Date(),
 ): SindicTemplate {
   const registered = queja.registered_at ? new Date(queja.registered_at) : null
   const diasTranscurridos = registered
@@ -56,7 +56,7 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push('## Hechos')
   lines.push('')
   lines.push(
-    `1. El/la reclamante, vecino/a de Riba-roja de Túria, presentó la siguiente solicitud ante el Registro Electrónico General del Ayuntamiento:`
+    `1. El/la reclamante, vecino/a de Riba-roja de Túria, presentó la siguiente solicitud ante el Registro Electrónico General del Ayuntamiento:`,
   )
   lines.push('')
   lines.push(`   - **Expediente interno (CivicPulse):** \`${q.id}\``)
@@ -78,29 +78,27 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push(`   > ${q.detail.replace(/\n+/g, '\n   > ')}`)
   lines.push('')
   lines.push(
-    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo} días naturales** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${diasTranscurridos} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`
+    `3. Conforme al artículo 21.3 de la Ley 39/2015 (LPACAP), el plazo máximo para dictar y notificar resolución expresa era de **${plazo} días naturales** desde la entrada en registro. A fecha de hoy (${today}), han transcurrido **${diasTranscurridos} días** sin que la Administración haya dictado resolución expresa ni haya sido notificado el plazo máximo en los términos del art. 21.4 LPACAP.`,
   )
   lines.push('')
   lines.push(
-    `4. Ha operado el silencio administrativo ${routing.silencio} previsto en el artículo 24 de la LPACAP, sin que ello libere a la Administración de su obligación de resolver expresamente (art. 21.6).`
+    `4. Ha operado el silencio administrativo ${routing.silencio} previsto en el artículo 24 de la LPACAP, sin que ello libere a la Administración de su obligación de resolver expresamente (art. 21.6).`,
   )
   lines.push('')
   lines.push('---')
   lines.push('')
   lines.push('## Solicitud al Síndic')
   lines.push('')
-  lines.push(
-    'Al amparo de lo dispuesto en la Ley 11/1988 del Síndic de Greuges, se solicita:'
-  )
+  lines.push('Al amparo de lo dispuesto en la Ley 11/1988 del Síndic de Greuges, se solicita:')
   lines.push('')
   lines.push(
-    `1. Que el Síndic admita a trámite la presente queja frente al Ayuntamiento de Riba-roja de Túria por **inactividad administrativa** en el expediente referido.`
+    `1. Que el Síndic admita a trámite la presente queja frente al Ayuntamiento de Riba-roja de Túria por **inactividad administrativa** en el expediente referido.`,
   )
   lines.push(
-    `2. Que el Síndic requiera al Ayuntamiento un informe sobre las causas de la falta de resolución expresa dentro del plazo legal (art. 18 Ley 11/1988).`
+    `2. Que el Síndic requiera al Ayuntamiento un informe sobre las causas de la falta de resolución expresa dentro del plazo legal (art. 18 Ley 11/1988).`,
   )
   lines.push(
-    `3. Que, tras las actuaciones oportunas, se dicte resolución pública que establezca las recomendaciones, sugerencias o recordatorios de deberes legales que procedan (art. 29 Ley 11/1988), y que dicha resolución quede publicada en el registro de resoluciones del Síndic.`
+    `3. Que, tras las actuaciones oportunas, se dicte resolución pública que establezca las recomendaciones, sugerencias o recordatorios de deberes legales que procedan (art. 29 Ley 11/1988), y que dicha resolución quede publicada en el registro de resoluciones del Síndic.`,
   )
   lines.push('')
   lines.push('---')
@@ -117,15 +115,14 @@ export function renderSindicMarkdown(t: SindicTemplate): string {
   lines.push(`Riba-roja de Túria, ${today}.`)
   lines.push('')
   lines.push(
-    `*Documento generado por CivicPulse a partir del seguimiento público del expediente ${q.id}. El reclamante puede añadir, modificar o retirar cualquier parte de este texto antes de presentarlo en ${SINDIC_PORTAL}.*`
+    `*Documento generado por CivicPulse a partir del seguimiento público del expediente ${q.id}. El reclamante puede añadir, modificar o retirar cualquier parte de este texto antes de presentarlo en ${SINDIC_PORTAL}.*`,
   )
   return lines.join('\n')
 }
 
 export function renderSindicHtml(t: SindicTemplate): string {
   const md = renderSindicMarkdown(t)
-  const escape = (s: string) =>
-    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  const escape = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   const html = md
     .split('\n')
     .map((line) => {

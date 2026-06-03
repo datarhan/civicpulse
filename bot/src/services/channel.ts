@@ -43,7 +43,10 @@ class NoopChannel implements Channel {
 }
 
 class TelegramChannel implements Channel {
-  constructor(private bot: Bot<MyContext>, private chatId: string) {}
+  constructor(
+    private bot: Bot<MyContext>,
+    private chatId: string,
+  ) {}
 
   private async send(text: string) {
     // LOREG art. 50 — during the electoral freeze window all institutional
@@ -88,7 +91,7 @@ class TelegramChannel implements Channel {
         `*${q.title}*`,
         '',
         `${apoyos} apoyos vecinales — entra en el próximo lote semanal al Registro Electrónico.`,
-      ].join('\n')
+      ].join('\n'),
     )
   }
 
@@ -103,7 +106,7 @@ class TelegramChannel implements Channel {
         '⏱ El reloj legal ha empezado. 3 meses hasta silencio administrativo.',
       ]
         .filter(Boolean)
-        .join('\n')
+        .join('\n'),
     )
   }
 
@@ -114,7 +117,7 @@ class TelegramChannel implements Channel {
         `*${q.title}*`,
         '',
         `⏱ ${days} días desde registro · 🏛 ${q.concejalia_area ?? 'Ayuntamiento'}`,
-      ].join('\n')
+      ].join('\n'),
     )
   }
 
@@ -126,7 +129,7 @@ class TelegramChannel implements Channel {
         '',
         '90 días desde el registro sin respuesta expresa. Silencio negativo (art. 24 LPACAP).',
         'Escalamos al Síndic de Greuges de la Comunitat Valenciana.',
-      ].join('\n')
+      ].join('\n'),
     )
   }
 
@@ -138,7 +141,7 @@ class TelegramChannel implements Channel {
         '',
         'Queja remitida al Síndic de Greuges CV (https://www.elsindic.com).',
         'Sus resoluciones son públicas y tienen autoridad estatutaria.',
-      ].join('\n')
+      ].join('\n'),
     )
   }
 }

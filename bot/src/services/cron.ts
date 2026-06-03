@@ -27,11 +27,7 @@ export interface SilencioResult {
   checked: number
 }
 
-export function checkSilencio(
-  db: Db,
-  channel: Channel,
-  now: Date = new Date()
-): SilencioResult {
+export function checkSilencio(db: Db, channel: Channel, now: Date = new Date()): SilencioResult {
   if (isLoregFrozen(now)) {
     return { transitioned: [], skippedFrozen: true, checked: 0 }
   }
@@ -39,7 +35,7 @@ export function checkSilencio(
     .prepare(
       `SELECT * FROM quejas
        WHERE state IN ('registrada','notificada_10d')
-         AND registered_at IS NOT NULL`
+         AND registered_at IS NOT NULL`,
     )
     .all() as QuejaRow[]
 
@@ -80,7 +76,7 @@ export function startSilencioCron(db: Db, channel: Channel): () => void {
         console.log('[cron] silencio check paused — LOREG freeze active')
       } else if (r.transitioned.length > 0) {
         console.log(
-          `[cron] silencio check: ${r.transitioned.length} transitioned · ${r.checked} checked`
+          `[cron] silencio check: ${r.transitioned.length} transitioned · ${r.checked} checked`,
         )
       }
     } catch (err) {

@@ -65,7 +65,9 @@ describe('bot · digest runDigestOnce', () => {
 
   it('emits one DM per user with ≥1 matching queja', () => {
     const captured: Array<{ userId: number; text: string }> = []
-    const sendDm = async (userId: number, text: string) => { captured.push({ userId, text }) }
+    const sendDm = async (userId: number, text: string) => {
+      captured.push({ userId, text })
+    }
 
     createQueja(db, q({ telegram_user_id: 1, neighborhood: 'casco', category: 'via_publica' }))
     createQueja(db, q({ telegram_user_id: 2, neighborhood: 'polígono', category: 'limpieza' }))
@@ -82,7 +84,9 @@ describe('bot · digest runDigestOnce', () => {
 
   it('emits zero DMs when no subscription matches any queja', () => {
     const captured: Array<{ userId: number; text: string }> = []
-    const sendDm = async (userId: number, text: string) => { captured.push({ userId, text }) }
+    const sendDm = async (userId: number, text: string) => {
+      captured.push({ userId, text })
+    }
 
     createQueja(db, q({ neighborhood: 'casco' }))
     addSubscription(db, 999, 'barrio', 'polígono')
@@ -93,7 +97,9 @@ describe('bot · digest runDigestOnce', () => {
 
   it('respects LOPD soft-delete: deleted quejas never appear in digests', () => {
     const captured: Array<{ userId: number; text: string }> = []
-    const sendDm = async (userId: number, text: string) => { captured.push({ userId, text }) }
+    const sendDm = async (userId: number, text: string) => {
+      captured.push({ userId, text })
+    }
 
     const queja = createQueja(db, q({ telegram_user_id: 1, neighborhood: 'casco' }))
     softDeleteQueja(db, queja.id, 1)
@@ -104,17 +110,19 @@ describe('bot · digest runDigestOnce', () => {
     expect(captured).toHaveLength(0)
   })
 
-  it('dedupes a queja that matches two of the same user\'s filters', () => {
+  it("dedupes a queja that matches two of the same user's filters", () => {
     const captured: Array<{ userId: number; text: string }> = []
-    const sendDm = async (userId: number, text: string) => { captured.push({ userId, text }) }
+    const sendDm = async (userId: number, text: string) => {
+      captured.push({ userId, text })
+    }
 
     createQueja(db, q({ neighborhood: 'casco', category: 'via_publica' }))
     addSubscription(db, 999, 'barrio', 'casco')
     addSubscription(db, 999, 'categoria', 'via_publica')
 
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))
-    expect(r.totalMatches).toBe(1)          // one queja, not two
-    expect(captured).toHaveLength(1)         // one DM, not two
+    expect(r.totalMatches).toBe(1) // one queja, not two
+    expect(captured).toHaveLength(1) // one DM, not two
     // Both filters are mentioned in the digest body.
     expect(captured[0].text).toContain('barrio=casco')
     expect(captured[0].text).toContain('categoria=via_publica')
@@ -122,11 +130,16 @@ describe('bot · digest runDigestOnce', () => {
 
   it('ignores quejas older than the 7-day window', () => {
     const captured: Array<{ userId: number; text: string }> = []
-    const sendDm = async (userId: number, text: string) => { captured.push({ userId, text }) }
+    const sendDm = async (userId: number, text: string) => {
+      captured.push({ userId, text })
+    }
 
     // Simulate an old queja by backdating created_at.
     const queja = createQueja(db, q({ neighborhood: 'casco' }))
-    db.prepare(`UPDATE quejas SET created_at = ? WHERE id = ?`).run('2020-01-01T00:00:00Z', queja.id)
+    db.prepare(`UPDATE quejas SET created_at = ? WHERE id = ?`).run(
+      '2020-01-01T00:00:00Z',
+      queja.id,
+    )
 
     addSubscription(db, 999, 'barrio', 'casco')
     const r = runDigestOnce(db, sendDm, new Date('2026-04-21T09:00:00Z'))

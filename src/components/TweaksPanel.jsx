@@ -100,15 +100,13 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
       >
         <Ic.settings width={14} height={14} style={{ color: 'var(--ink50)' }} />
         <div style={{ fontSize: 12.5, fontWeight: 600, flex: 1 }}>{t('tweaks.title')}</div>
-        <button
-          onClick={onClose}
-          className="mono"
-          style={{ fontSize: 10, color: 'var(--ink40)' }}
-        >
+        <button onClick={onClose} className="mono" style={{ fontSize: 10, color: 'var(--ink40)' }}>
           {t('tweaks.close')}
         </button>
       </div>
-      <div style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 14, fontSize: 12.5 }}>
+      <div
+        style={{ padding: 14, display: 'flex', flexDirection: 'column', gap: 14, fontSize: 12.5 }}
+      >
         <TwkSelect
           label={t('tweaks.lang.label')}
           value={locale}

@@ -136,10 +136,12 @@ export function softDeleteQueja(db: Db, id: string, userId: number): boolean {
     | { telegram_user_id: number; deleted_at: string | null }
     | undefined
   if (!row) return false
-  if (row.telegram_user_id !== userId) return false  // never confirm existence cross-user
-  if (row.deleted_at) return true  // idempotent — already deleted counts as success
+  if (row.telegram_user_id !== userId) return false // never confirm existence cross-user
+  if (row.deleted_at) return true // idempotent — already deleted counts as success
   const tx = db.transaction(() => {
-    db.prepare(`UPDATE quejas SET deleted_at = datetime('now'), updated_at = datetime('now') WHERE id = ?`).run(id)
+    db.prepare(
+      `UPDATE quejas SET deleted_at = datetime('now'), updated_at = datetime('now') WHERE id = ?`,
+    ).run(id)
     db.prepare(`INSERT INTO events (queja_id, kind, payload) VALUES (?, 'anonymised', ?)`).run(
       id,
       JSON.stringify({ reason: 'user_requested_deletion' }),
@@ -153,28 +155,36 @@ export function listUserQuejas(db: Db, userId: number, limit = 20): QuejaRow[] {
   // Includes soft-deleted rows so the citizen can confirm their /olvidar
   // request took effect. The UI marks them visually.
   return db
-    .prepare('SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, id DESC LIMIT ?')
+    .prepare(
+      'SELECT * FROM quejas WHERE telegram_user_id = ? ORDER BY created_at DESC, id DESC LIMIT ?',
+    )
     .all(userId, limit) as QuejaRow[]
 }
 
 export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
   return db
-    .prepare('SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, id DESC LIMIT ?')
+    .prepare(
+      'SELECT * FROM quejas WHERE deleted_at IS NULL ORDER BY created_at DESC, id DESC LIMIT ?',
+    )
     .all(limit) as QuejaRow[]
 }
 
 export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): QuejaRow[] {
   return db
-    .prepare('SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, id DESC LIMIT ?')
+    .prepare(
+      'SELECT * FROM quejas WHERE deleted_at IS NULL AND neighborhood = ? ORDER BY created_at DESC, id DESC LIMIT ?',
+    )
     .all(neighborhood, limit) as QuejaRow[]
 }
 
 export function addApoyo(
   db: Db,
   quejaId: string,
-  userId: number
+  userId: number,
 ): { added: boolean; count: number } {
-  const insert = db.prepare('INSERT OR IGNORE INTO apoyos (queja_id, telegram_user_id) VALUES (?, ?)')
+  const insert = db.prepare(
+    'INSERT OR IGNORE INTO apoyos (queja_id, telegram_user_id) VALUES (?, ?)',
+  )
   const result = insert.run(quejaId, userId)
   const count = countApoyos(db, quejaId)
   if (result.changes === 0) return { added: false, count }
@@ -184,10 +194,9 @@ export function addApoyo(
       .prepare(`SELECT 1 FROM events WHERE queja_id = ? AND kind = 'apoyada_verificada' LIMIT 1`)
       .get(quejaId)
     if (!already) {
-      db.prepare(`INSERT INTO events (queja_id, kind, payload) VALUES (?, 'apoyada_verificada', ?)`).run(
-        quejaId,
-        JSON.stringify({ count })
-      )
+      db.prepare(
+        `INSERT INTO events (queja_id, kind, payload) VALUES (?, 'apoyada_verificada', ?)`,
+      ).run(quejaId, JSON.stringify({ count }))
     }
   }
   return { added: true, count }
@@ -210,7 +219,7 @@ export function setState(
   db: Db,
   id: string,
   state: QuejaState,
-  registro?: { entry_number: string; csv: string }
+  registro?: { entry_number: string; csv: string },
 ): QuejaRow | null {
   const update = registro
     ? db.prepare(
@@ -218,14 +227,14 @@ export function setState(
          SET state = ?, registro_entry_number = ?, registro_csv = ?,
              registered_at = COALESCE(registered_at, datetime('now')),
              updated_at = datetime('now')
-         WHERE id = ?`
+         WHERE id = ?`,
       )
     : db.prepare(`UPDATE quejas SET state = ?, updated_at = datetime('now') WHERE id = ?`)
 
   const resolvedPatch =
     state === 'resuelta'
       ? db.prepare(
-          `UPDATE quejas SET resolved_at = COALESCE(resolved_at, datetime('now')) WHERE id = ?`
+          `UPDATE quejas SET resolved_at = COALESCE(resolved_at, datetime('now')) WHERE id = ?`,
         )
       : null
 
@@ -239,7 +248,7 @@ export function setState(
     db.prepare('INSERT INTO events (queja_id, kind, payload) VALUES (?, ?, ?)').run(
       id,
       state,
-      registro ? JSON.stringify(registro) : null
+      registro ? JSON.stringify(registro) : null,
     )
   })
   tx()
@@ -321,9 +330,11 @@ export function findMatchingQuejas(
   const cutoffIso = cutoff.toISOString()
   const pattern = `%${value.trim().toLowerCase()}%`
   const col =
-    kind === 'barrio'     ? 'LOWER(COALESCE(neighborhood, \'\'))' :
-    kind === 'concejalia' ? 'LOWER(COALESCE(concejalia_area, \'\'))' :
-                            'LOWER(category)'
+    kind === 'barrio'
+      ? "LOWER(COALESCE(neighborhood, ''))"
+      : kind === 'concejalia'
+        ? "LOWER(COALESCE(concejalia_area, ''))"
+        : 'LOWER(category)'
   return db
     .prepare(
       `SELECT * FROM quejas
@@ -340,27 +351,39 @@ export function aggregateStats(db: Db): AggregateStats {
   // All public-facing aggregates EXCLUDE soft-deleted rows. The audit trail
   // in `events` keeps the record, but every public surface (UI stats, snapshot
   // export, dashboard) must look through a deleted_at filter.
-  const total = (db.prepare('SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL').get() as { n: number }).n
+  const total = (
+    db.prepare('SELECT COUNT(*) as n FROM quejas WHERE deleted_at IS NULL').get() as { n: number }
+  ).n
   const byState = Object.fromEntries(
-    (db.prepare('SELECT state, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY state').all() as Array<{
-      state: string
-      n: number
-    }>).map((r) => [r.state, r.n])
+    (
+      db
+        .prepare('SELECT state, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY state')
+        .all() as Array<{
+        state: string
+        n: number
+      }>
+    ).map((r) => [r.state, r.n]),
   )
   const byNeighborhood = Object.fromEntries(
     (
       db
         .prepare(
-          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND neighborhood IS NOT NULL GROUP BY neighborhood`
+          `SELECT neighborhood, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL AND neighborhood IS NOT NULL GROUP BY neighborhood`,
         )
         .all() as Array<{ neighborhood: string; n: number }>
-    ).map((r) => [r.neighborhood, r.n])
+    ).map((r) => [r.neighborhood, r.n]),
   )
   const byCategory = Object.fromEntries(
-    (db.prepare('SELECT category, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY category').all() as Array<{
-      category: string
-      n: number
-    }>).map((r) => [r.category, r.n])
+    (
+      db
+        .prepare(
+          'SELECT category, COUNT(*) as n FROM quejas WHERE deleted_at IS NULL GROUP BY category',
+        )
+        .all() as Array<{
+        category: string
+        n: number
+      }>
+    ).map((r) => [r.category, r.n]),
   )
   const concejalRows = db
     .prepare(
@@ -371,7 +394,7 @@ export function aggregateStats(db: Db): AggregateStats {
               SUM(CASE WHEN state IN ('capturada','apoyada_verificada','registrada','notificada_10d','en_tramite') THEN 1 ELSE 0 END) as pendientes
        FROM quejas
        WHERE deleted_at IS NULL AND concejal_slug IS NOT NULL AND concejal_slug != ''
-       GROUP BY concejal_slug`
+       GROUP BY concejal_slug`,
     )
     .all() as Array<{
     concejal_slug: string
@@ -389,7 +412,7 @@ export function aggregateStats(db: Db): AggregateStats {
         silencios: r.silencios,
         pendientes: r.pendientes,
       },
-    ])
+    ]),
   )
   return { total, byState, byNeighborhood, byCategory, byConcejal }
 }

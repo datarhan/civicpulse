@@ -21,8 +21,7 @@ async function main() {
   console.log('[wikidata] fetching', URL)
   const res = await fetch(URL, {
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/json',
     },
   })
@@ -41,7 +40,7 @@ async function main() {
   console.log(
     `[wikidata] wrote ${OUT} — ${facts.label} · INE ${facts.identifiers.ine} · ` +
       `pop ${facts.population?.value} (${facts.population?.year}) · ` +
-      `${facts.areaKm2} km² · ${facts.elevation} m`
+      `${facts.areaKm2} km² · ${facts.elevation} m`,
   )
 }
 

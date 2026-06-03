@@ -63,8 +63,7 @@ export function parseBdnsConvocatorias(json: string): BdnsItem[] {
     // as "received".
     const nivel2 = (r.nivel2 ?? '').toUpperCase()
     const nivel3 = (r.nivel3 ?? '').toUpperCase()
-    const isGranted =
-      nivel2.includes('RIBA-ROJA') && /AYUNTAMIENTO/.test(nivel3)
+    const isGranted = nivel2.includes('RIBA-ROJA') && /AYUNTAMIENTO/.test(nivel3)
 
     out.push({
       id: r.id,

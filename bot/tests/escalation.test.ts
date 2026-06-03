@@ -1,16 +1,7 @@
 import { describe, expect, it, beforeEach } from 'vitest'
 import { openDb, type Db } from '../src/db/client'
-import {
-  addApoyo,
-  createQueja,
-  setState,
-  type NewQuejaInput,
-} from '../src/db/queries'
-import {
-  buildSindicTemplate,
-  renderSindicMarkdown,
-  renderSindicHtml,
-} from '../src/services/sindic'
+import { addApoyo, createQueja, setState, type NewQuejaInput } from '../src/db/queries'
+import { buildSindicTemplate, renderSindicMarkdown, renderSindicHtml } from '../src/services/sindic'
 import { checkSilencio } from '../src/services/cron'
 import { routeUsingLocalOfficials } from '../src/services/router'
 

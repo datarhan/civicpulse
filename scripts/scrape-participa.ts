@@ -22,8 +22,7 @@ const CATEGORIES_URL = `${BASE}/categories?per_page=100`
 async function fetchJson(url: string): Promise<string> {
   const res = await fetch(url, {
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/json',
     },
   })
@@ -61,7 +60,7 @@ async function main() {
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[participa] wrote ${OUT}`)
   console.log(
-    `[participa] ${items.length} posts · ${payload.stats.activities} actividades · ${payload.stats.surveys} encuestas`
+    `[participa] ${items.length} posts · ${payload.stats.activities} actividades · ${payload.stats.surveys} encuestas`,
   )
 }
 

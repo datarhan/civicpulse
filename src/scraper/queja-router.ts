@@ -101,7 +101,7 @@ export interface QuejaRouting {
   confidence: 'low' | 'medium' | 'high'
   concejalia: {
     area: string
-    responsible: Official & { portfolioMatched: string } | null
+    responsible: (Official & { portfolioMatched: string }) | null
     alcaldeFallback: Pick<Official, 'slug' | 'name' | 'email'>
   }
   legalBasis: LegalArticle[]
@@ -204,9 +204,9 @@ export const LEGAL_CATALOG: Record<string, LegalArticle> = {
 
 interface CategoryDef {
   id: QuejaCategory
-  keywords: string[]       // exact-stem matches → high confidence
-  softKeywords?: string[]  // partial matches → medium confidence
-  portfolioKeys: string[]  // portfolio strings to match concejalías against
+  keywords: string[] // exact-stem matches → high confidence
+  softKeywords?: string[] // partial matches → medium confidence
+  portfolioKeys: string[] // portfolio strings to match concejalías against
 }
 
 const CATEGORIES: CategoryDef[] = [
@@ -226,7 +226,13 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: 'urbanismo',
-    keywords: ['licencia de obra', 'licencia urbanistica', 'licencia urbanística', 'pgou', 'planeamiento'],
+    keywords: [
+      'licencia de obra',
+      'licencia urbanistica',
+      'licencia urbanística',
+      'pgou',
+      'planeamiento',
+    ],
     softKeywords: ['urbanismo', 'urbanistic'],
     portfolioKeys: ['urbanismo'],
   },
@@ -261,7 +267,13 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: 'ruido',
-    keywords: ['ruido', 'ruidos', 'ruido nocturno', 'contaminacion acustica', 'contaminación acústica'],
+    keywords: [
+      'ruido',
+      'ruidos',
+      'ruido nocturno',
+      'contaminacion acustica',
+      'contaminación acústica',
+    ],
     portfolioKeys: ['seguridad', 'medio ambiente'],
   },
   {
@@ -294,7 +306,13 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: 'accesibilidad',
-    keywords: ['accesibilidad', 'silla de ruedas', 'rampa', 'barrera arquitectonica', 'barrera arquitectónica'],
+    keywords: [
+      'accesibilidad',
+      'silla de ruedas',
+      'rampa',
+      'barrera arquitectonica',
+      'barrera arquitectónica',
+    ],
     portfolioKeys: ['obra publica', 'obra pública', 'movilidad'],
   },
   {
@@ -327,7 +345,14 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: 'mayores',
-    keywords: ['tercera edad', 'mayor', 'mayores', 'centro de dia', 'centro de día', 'residencia de mayores'],
+    keywords: [
+      'tercera edad',
+      'mayor',
+      'mayores',
+      'centro de dia',
+      'centro de día',
+      'residencia de mayores',
+    ],
     portfolioKeys: ['mayores'],
   },
   {
@@ -348,7 +373,13 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: 'deportes',
-    keywords: ['polideportivo', 'piscina municipal', 'pista deportiva', 'campo de futbol', 'campo de fútbol'],
+    keywords: [
+      'polideportivo',
+      'piscina municipal',
+      'pista deportiva',
+      'campo de futbol',
+      'campo de fútbol',
+    ],
     softKeywords: ['deporte', 'deportes'],
     portfolioKeys: ['deportes'],
   },
@@ -376,9 +407,22 @@ const CATEGORIES: CategoryDef[] = [
   },
   {
     id: 'medio_ambiente',
-    keywords: ['contaminacion', 'contaminación', 'vertido', 'emisiones', 'calidad del aire', 'rio turia', 'río turia'],
+    keywords: [
+      'contaminacion',
+      'contaminación',
+      'vertido',
+      'emisiones',
+      'calidad del aire',
+      'rio turia',
+      'río turia',
+    ],
     softKeywords: ['medio ambiente', 'emergencia climatica', 'emergencia climática'],
-    portfolioKeys: ['medio ambiente', 'emergencia climatica', 'emergencia climática', 'agenda 2030'],
+    portfolioKeys: [
+      'medio ambiente',
+      'emergencia climatica',
+      'emergencia climática',
+      'agenda 2030',
+    ],
   },
 ]
 
@@ -392,9 +436,11 @@ function normalize(s: string): string {
     .trim()
 }
 
-export function classifyQueja(
-  q: QuejaInput
-): { category: QuejaCategory; confidence: 'low' | 'medium' | 'high'; matchedCategory?: CategoryDef } {
+export function classifyQueja(q: QuejaInput): {
+  category: QuejaCategory
+  confidence: 'low' | 'medium' | 'high'
+  matchedCategory?: CategoryDef
+} {
   if (q.category) {
     const def = CATEGORIES.find((c) => c.id === q.category)
     return { category: q.category, confidence: 'high', matchedCategory: def }
@@ -424,7 +470,7 @@ export function classifyQueja(
 // ============================================================================
 
 interface LegalProfile {
-  basis: string[]             // keys into LEGAL_CATALOG
+  basis: string[] // keys into LEGAL_CATALOG
   acuseDays: number
   resolucionDays: number
   silencio: 'positivo' | 'negativo'
@@ -432,7 +478,15 @@ interface LegalProfile {
 }
 
 const PROFILE_STANDARD: LegalProfile = {
-  basis: ['LRBRL_18', 'LRBRL_132', 'LPACAP_16', 'LPACAP_21_3', 'LPACAP_21_4', 'LPACAP_24', 'CONSTITUCION_29'],
+  basis: [
+    'LRBRL_18',
+    'LRBRL_132',
+    'LPACAP_16',
+    'LPACAP_21_3',
+    'LPACAP_21_4',
+    'LPACAP_24',
+    'CONSTITUCION_29',
+  ],
   acuseDays: 10,
   resolucionDays: 90,
   silencio: 'negativo',
@@ -501,7 +555,8 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
     {
       step: 5,
       whenDays: 90,
-      action: 'Queja al Síndic de Greuges de la Comunitat Valenciana (sin coste, no perjudica otros recursos)',
+      action:
+        'Queja al Síndic de Greuges de la Comunitat Valenciana (sin coste, no perjudica otros recursos)',
       who: 'Síndic de Greuges CV',
       basis: LEGAL_CATALOG.SINDIC_CV,
       template: 'https://www.elsindic.com/es/presenta-una-queja',
@@ -532,7 +587,8 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
     {
       step: 3,
       whenDays: 30,
-      action: 'Reclamación ante el Consell de Transparència de la CV (o CTBG) · 1 mes para interponerla',
+      action:
+        'Reclamación ante el Consell de Transparència de la CV (o CTBG) · 1 mes para interponerla',
       who: 'Consell de Transparència CV / CTBG',
       basis: LEGAL_CATALOG.LTBG_24,
       template: 'https://www.consejodetransparencia.es/ct_Home/Actividad/Reclamaciones.html',
@@ -540,7 +596,8 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
     {
       step: 4,
       whenDays: 90,
-      action: 'Recurso contencioso-administrativo (2 meses desde resolución de la reclamación, o 6 meses si silencio)',
+      action:
+        'Recurso contencioso-administrativo (2 meses desde resolución de la reclamación, o 6 meses si silencio)',
       who: 'Ciudadano · órgano judicial',
       basis: LEGAL_CATALOG.LJCA_46,
     },
@@ -553,8 +610,8 @@ export const ESCALATION_PROFILES: Record<string, EscalationStep[]> = {
 
 function matchConcejalia(
   portfolioKeys: string[] | undefined,
-  officials: Official[]
-): { responsible: Official & { portfolioMatched: string } | null; area: string } {
+  officials: Official[],
+): { responsible: (Official & { portfolioMatched: string }) | null; area: string } {
   if (!portfolioKeys || portfolioKeys.length === 0) {
     return { responsible: null, area: 'Alcaldía' }
   }
@@ -589,7 +646,7 @@ export function routeQueja(q: QuejaInput, officials: OfficialsSnapshot): QuejaRo
   // alcalde represents the Ayuntamiento and answers for omission).
   const effectiveResponsible =
     responsible ||
-    (({ ...alcalde, portfolioMatched: 'Alcaldía' } as Official & { portfolioMatched: string }))
+    ({ ...alcalde, portfolioMatched: 'Alcaldía' } as Official & { portfolioMatched: string })
 
   const profile = profileFor(category, q)
   const legalBasis: LegalArticle[] = profile.basis.map((k) => LEGAL_CATALOG[k]).filter(Boolean)
@@ -606,9 +663,7 @@ export function routeQueja(q: QuejaInput, officials: OfficialsSnapshot): QuejaRo
     kind: 'resolucion',
     days: profile.resolucionDays,
     basis:
-      profile.escalationKey === 'transparencia'
-        ? LEGAL_CATALOG.LTBG_20
-        : LEGAL_CATALOG.LPACAP_21_3,
+      profile.escalationKey === 'transparencia' ? LEGAL_CATALOG.LTBG_20 : LEGAL_CATALOG.LPACAP_21_3,
   })
 
   const escalation = ESCALATION_PROFILES[profile.escalationKey].map((s) => ({ ...s }))
@@ -664,7 +719,11 @@ function composeExplanation(ctx: {
       : 'silencio administrativo negativo (se entiende desestimada si no hay resolución expresa en plazo, sin perjuicio de la obligación de resolver)'
 
   const resolucionHumano =
-    profile.resolucionDays === 30 ? '1 mes' : profile.resolucionDays === 90 ? '3 meses' : `${profile.resolucionDays} días`
+    profile.resolucionDays === 30
+      ? '1 mes'
+      : profile.resolucionDays === 90
+        ? '3 meses'
+        : `${profile.resolucionDays} días`
 
   return [
     `Asunto: ${queja.title}`,

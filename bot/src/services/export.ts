@@ -17,14 +17,14 @@ import { buildSnapshot } from './snapshot.ts'
 function main() {
   const outPath = resolve(
     process.cwd(),
-    process.argv[2] ?? process.env.QUEJAS_JSON_OUT ?? '../public/data/quejas.json'
+    process.argv[2] ?? process.env.QUEJAS_JSON_OUT ?? '../public/data/quejas.json',
   )
   const db = openDb()
   const snap = buildSnapshot(db)
   mkdirSync(dirname(outPath), { recursive: true })
   writeFileSync(outPath, JSON.stringify(snap, null, 2))
   console.log(
-    `[export] wrote ${snap.items.length} quejas · total=${snap.stats.total} · to ${outPath}`
+    `[export] wrote ${snap.items.length} quejas · total=${snap.stats.total} · to ${outPath}`,
   )
 }
 

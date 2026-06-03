@@ -30,7 +30,7 @@ function computeRanking(db: Db): BarrioStats[] {
        FROM quejas
        WHERE neighborhood IS NOT NULL
          AND date(created_at) > date('now','-60 days')
-       GROUP BY neighborhood`
+       GROUP BY neighborhood`,
     )
     .all() as Array<{
     neighborhood: string
@@ -52,7 +52,7 @@ export function registerRanking(bot: Bot<MyContext>, db: Db) {
     const stats = computeRanking(db)
     if (stats.length === 0) {
       await ctx.reply(
-        '🏁 Aún no hay datos suficientes (últimos 60 días). Vuelve cuando tengamos más quejas con ubicación y resoluciones registradas.'
+        '🏁 Aún no hay datos suficientes (últimos 60 días). Vuelve cuando tengamos más quejas con ubicación y resoluciones registradas.',
       )
       return
     }
@@ -62,7 +62,7 @@ export function registerRanking(bot: Bot<MyContext>, db: Db) {
     })
     await ctx.reply(
       `🏁 *Ranking barrios · 60 días*\n\n${lines.join('\n')}\n\n_Las cifras se basan en transiciones de estado, no en valoraciones editoriales._`,
-      { parse_mode: 'Markdown' }
+      { parse_mode: 'Markdown' },
     )
   })
 }

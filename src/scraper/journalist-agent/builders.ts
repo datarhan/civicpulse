@@ -443,4 +443,3 @@ function nextDraftId(assignmentId: string): string {
   const base = assignmentId.replace(/^a-/, '')
   return `r-${base}-${today}`
 }
-

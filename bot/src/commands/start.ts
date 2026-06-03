@@ -1,7 +1,8 @@
 import type { Bot } from 'grammy'
 import type { MyContext } from '../types.ts'
 
-const WELCOME = `👋 *Bienvenido a CivicPulse · Riba-roja*
+const WELCOME =
+  `👋 *Bienvenido a CivicPulse · Riba-roja*
 
 Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 
@@ -35,6 +36,9 @@ Al presentar una queja aceptas que el texto, categoría y barrio aproximado se `
 
 export function registerStart(bot: Bot<MyContext>) {
   bot.command(['start', 'help'], async (ctx) => {
-    await ctx.reply(WELCOME, { parse_mode: 'Markdown', link_preview_options: { is_disabled: true } })
+    await ctx.reply(WELCOME, {
+      parse_mode: 'Markdown',
+      link_preview_options: { is_disabled: true },
+    })
   })
 }

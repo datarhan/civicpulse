@@ -1,13 +1,13 @@
 import { Ic } from './Icons'
 
 const TONES = {
-  neutral: { bg: 'var(--soft)',       fg: 'var(--ink)' },
-  civic:   { bg: 'var(--civic-soft)', fg: 'var(--civic-ink)' },
-  ok:      { bg: 'var(--ok-soft)',    fg: 'var(--ok-ink)' },
-  warn:    { bg: 'var(--warn-soft)',  fg: 'var(--warn-ink)' },
-  crit:    { bg: 'var(--crit-soft)',  fg: 'var(--crit-ink)' },
-  intel:   { bg: 'var(--intel-soft)', fg: 'var(--intel-ink)' },
-  ghost:   { bg: 'transparent',       fg: 'var(--ink60)', border: '1px solid var(--border)' },
+  neutral: { bg: 'var(--soft)', fg: 'var(--ink)' },
+  civic: { bg: 'var(--civic-soft)', fg: 'var(--civic-ink)' },
+  ok: { bg: 'var(--ok-soft)', fg: 'var(--ok-ink)' },
+  warn: { bg: 'var(--warn-soft)', fg: 'var(--warn-ink)' },
+  crit: { bg: 'var(--crit-soft)', fg: 'var(--crit-ink)' },
+  intel: { bg: 'var(--intel-soft)', fg: 'var(--intel-ink)' },
+  ghost: { bg: 'transparent', fg: 'var(--ink60)', border: '1px solid var(--border)' },
 }
 
 export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
@@ -38,7 +38,11 @@ export function Pill({ tone = 'neutral', children, size = 'sm', style = {} }) {
 
 export function Delta({ v, size = 11 }) {
   if (v === 0) {
-    return <span className="mono" style={{ color: 'var(--ink50)', fontSize: size }}>—</span>
+    return (
+      <span className="mono" style={{ color: 'var(--ink50)', fontSize: size }}>
+        —
+      </span>
+    )
   }
   const up = v > 0
   return (
@@ -54,14 +58,23 @@ export function Delta({ v, size = 11 }) {
       }}
     >
       {up ? <Ic.up width={8} height={8} /> : <Ic.down width={8} height={8} />}
-      {up ? '+' : ''}{v.toFixed(1)}
+      {up ? '+' : ''}
+      {v.toFixed(1)}
     </span>
   )
 }
 
 export function Card({ children, style = {}, pad = true, hover = false }) {
-  const onEnter = hover ? (e) => { e.currentTarget.style.borderColor = 'var(--border)' } : undefined
-  const onLeave = hover ? (e) => { e.currentTarget.style.borderColor = 'var(--border2)' } : undefined
+  const onEnter = hover
+    ? (e) => {
+        e.currentTarget.style.borderColor = 'var(--border)'
+      }
+    : undefined
+  const onLeave = hover
+    ? (e) => {
+        e.currentTarget.style.borderColor = 'var(--border2)'
+      }
+    : undefined
   return (
     <div
       onMouseEnter={onEnter}
@@ -82,7 +95,15 @@ export function Card({ children, style = {}, pad = true, hover = false }) {
 
 export function SectionHead({ eyebrow, title, right }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 10, gap: 12 }}>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'baseline',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+        gap: 12,
+      }}
+    >
       <div style={{ minWidth: 0 }}>
         {eyebrow && (
           <div
@@ -97,7 +118,14 @@ export function SectionHead({ eyebrow, title, right }) {
             {eyebrow}
           </div>
         )}
-        <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: '-.01em', marginTop: eyebrow ? 3 : 0 }}>
+        <div
+          style={{
+            fontSize: 15,
+            fontWeight: 600,
+            letterSpacing: '-.01em',
+            marginTop: eyebrow ? 3 : 0,
+          }}
+        >
           {title}
         </div>
       </div>
@@ -119,8 +147,17 @@ export function Button({ variant = 'ghost', children, ...rest }) {
     transition: 'background .15s, opacity .15s',
   }
   const solid = { ...base, background: 'var(--ink)', color: 'var(--paper)' }
-  const ghost = { ...base, background: 'var(--paper)', color: 'var(--ink)', border: '1px solid var(--border)' }
-  return <button style={variant === 'solid' ? solid : ghost} {...rest}>{children}</button>
+  const ghost = {
+    ...base,
+    background: 'var(--paper)',
+    color: 'var(--ink)',
+    border: '1px solid var(--border)',
+  }
+  return (
+    <button style={variant === 'solid' ? solid : ghost} {...rest}>
+      {children}
+    </button>
+  )
 }
 
 export function LinkArrow({ children, ...rest }) {

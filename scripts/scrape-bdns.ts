@@ -15,8 +15,7 @@ const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/bdns.json')
 
-const BASE =
-  'https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda'
+const BASE = 'https://www.pap.hacienda.gob.es/bdnstrans/api/convocatorias/busqueda'
 const QUERY = 'riba-roja'
 const PER_PAGE = 50
 
@@ -24,8 +23,7 @@ async function fetchPage(page: number): Promise<unknown[]> {
   const url = `${BASE}?page=${page}&vpd=GE&descripcion=${encodeURIComponent(QUERY)}`
   const res = await fetch(url, {
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/json',
     },
   })
@@ -68,7 +66,7 @@ async function main() {
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(`[bdns] wrote ${OUT}`)
   console.log(
-    `[bdns] ${items.length} convocatorias · ${granted.length} municipales · ${received.length} externas`
+    `[bdns] ${items.length} convocatorias · ${granted.length} municipales · ${received.length} externas`,
   )
 }
 

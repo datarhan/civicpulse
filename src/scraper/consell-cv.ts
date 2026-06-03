@@ -35,9 +35,9 @@ export const CONSELL_CV_TABLES: Array<{ year: number; url: string }> = [
 
 export interface ConsellEntry {
   year: number
-  numero: string      // "1/2026"
-  fecha: string       // ISO yyyy-mm-dd when parseable, else raw
-  expediente: string  // "GESOC/RE/2025/10"
+  numero: string // "1/2026"
+  fecha: string // ISO yyyy-mm-dd when parseable, else raw
+  expediente: string // "GESOC/RE/2025/10"
   administracion: string // "Ayuntamiento de Riba-roja de Túria"
   motivo: string
   materia: string
@@ -198,10 +198,7 @@ export const DEFAULT_ALIASES = [
   'Ribarroja del Turia',
 ]
 
-export function filterEntries(
-  entries: ConsellEntry[],
-  query: string | string[]
-): ConsellEntry[] {
+export function filterEntries(entries: ConsellEntry[], query: string | string[]): ConsellEntry[] {
   const terms = Array.isArray(query) ? query : [query]
   const needles = terms.map(normalise).filter((n) => n.length > 0)
   if (needles.length === 0) return []
@@ -218,7 +215,7 @@ export function buildSnapshot(
   entries: ConsellEntry[],
   query: string | string[],
   tables: Array<{ year: number; url: string }> = CONSELL_CV_TABLES,
-  now: Date = new Date()
+  now: Date = new Date(),
 ): ConsellSnapshot {
   const matched = filterEntries(entries, query)
   const years = [...new Set(entries.map((e) => e.year))].sort()
@@ -234,7 +231,8 @@ export function buildSnapshot(
     generatedAt: now.toISOString(),
     source: {
       portal: 'https://conselltransparencia.gva.es',
-      platform: 'Consell de Transparència, Accés a la Informació Pública i Bon Govern · Comunitat Valenciana',
+      platform:
+        'Consell de Transparència, Accés a la Informació Pública i Bon Govern · Comunitat Valenciana',
       tables,
     },
     query: Array.isArray(query) ? query.join(' | ') : query,

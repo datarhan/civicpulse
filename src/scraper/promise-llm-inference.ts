@@ -20,20 +20,24 @@
 
 import { callLLM, type CallLlmOptions } from '../llm/client'
 import type { ZodTypeAny, z } from 'zod'
-import {
-  PromiseEvidenceBatchSchema,
-  type PromiseEvidenceItem,
-} from '../llm/schemas'
+import { PromiseEvidenceBatchSchema, type PromiseEvidenceItem } from '../llm/schemas'
 import {
   PROMISE_EVIDENCE_PROMPT_VERSION,
   buildPromiseEvidenceSystemPrompt,
   buildPromiseEvidenceUserPrompt,
   type PromiseEvidenceInput,
 } from '../llm/prompts'
-import { buildUrlAllowlist, type RetrievalInput, type RetrievalOutput, retrieveCandidates } from '../llm/retriever'
+import {
+  buildUrlAllowlist,
+  type RetrievalInput,
+  type RetrievalOutput,
+  retrieveCandidates,
+} from '../llm/retriever'
 import { isFrozen, V1_STATUSES, type PromisesSnapshot } from './promises'
 
-export type LlmCaller = <TSchema extends ZodTypeAny>(opts: CallLlmOptions<TSchema>) => Promise<z.infer<TSchema> | null>
+export type LlmCaller = <TSchema extends ZodTypeAny>(
+  opts: CallLlmOptions<TSchema>,
+) => Promise<z.infer<TSchema> | null>
 
 export interface EvidenceMiningOptions {
   snapshot: Pick<PromisesSnapshot, 'frozenUntil'>

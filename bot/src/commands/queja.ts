@@ -46,7 +46,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       '📝 *Nueva queja ciudadana*\n\n' +
         'Voy a guiarte paso a paso. Tu queja se añadirá al tablón público de Riba-roja de Túria. Cuando alcance 10 apoyos, entrará en el lote semanal al Registro Electrónico del Ayuntamiento.\n\n' +
         'Primer paso: *categoría*.',
-      { parse_mode: 'Markdown', reply_markup: categoryKeyboard() }
+      { parse_mode: 'Markdown', reply_markup: categoryKeyboard() },
     )
 
     const catCtx = await conv.waitForCallbackQuery(/^cat:/)
@@ -61,7 +61,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
 
     await ctx.reply(
       `Categoría: *${catLabel}*\n\nAhora, escribe un *título breve* (máx. 140 caracteres). Ejemplo: _Bache profundo en Av. Primera_.`,
-      { parse_mode: 'Markdown' }
+      { parse_mode: 'Markdown' },
     )
     const titleMsg = await conv.waitFor('message:text')
     const title = titleMsg.message.text.trim().slice(0, 140)
@@ -72,7 +72,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
 
     await ctx.reply(
       '✍️ *Describe lo que pasa* con el detalle que puedas (máx. 2000 caracteres). Cuanto más concreto, más fácil de resolver.',
-      { parse_mode: 'Markdown' }
+      { parse_mode: 'Markdown' },
     )
     const detailMsg = await conv.waitFor('message:text')
     const detail = detailMsg.message.text.trim().slice(0, 2000)
@@ -83,7 +83,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
 
     await ctx.reply(
       '📍 *Ubicación* — comparte la ubicación del incidente (botón 📎 → Ubicación), o escribe `saltar` si prefieres no indicarla.',
-      { parse_mode: 'Markdown' }
+      { parse_mode: 'Markdown' },
     )
     const locMsg = await conv.waitFor(['message:location', 'message:text'])
     let lat: number | null = null
@@ -97,7 +97,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
 
     await ctx.reply(
       '📸 *Foto* (opcional) — adjunta una foto, o escribe `saltar`. Las fotos se publican tras moderación; se anonimizan caras y matrículas.',
-      { parse_mode: 'Markdown' }
+      { parse_mode: 'Markdown' },
     )
     const photoMsg = await conv.waitFor(['message:photo', 'message:text'])
     let photoFileId: string | null = null
@@ -132,9 +132,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
       `✅ *Queja registrada:* \`${saved.id}\`\n\n` +
       `*Categoría:* ${catLabel}\n` +
       `*Área responsable:* ${routing.concejalia.area}\n` +
-      (responsible
-        ? `*Responsable político:* ${responsible.name} (${responsible.party})\n`
-        : '') +
+      (responsible ? `*Responsable político:* ${responsible.name} (${responsible.party})\n` : '') +
       `\n*Plazo legal:* ${routing.timeLimits.find((t) => t.kind === 'resolucion')?.days} días (${routing.silencio === 'positivo' ? 'silencio positivo' : 'silencio negativo'})\n` +
       `*Base legal:* ${routing.legalBasis[0]?.law} ${routing.legalBasis[0]?.article}\n\n` +
       `Al llegar a *10 apoyos*, entrará en el lote semanal al Registro Electrónico.\n` +

@@ -36,8 +36,7 @@ function haversine(a: [number, number], b: [number, number]): number {
   const dLng = toRad(b[1] - a[1])
   const la1 = toRad(a[0])
   const la2 = toRad(b[0])
-  const h =
-    Math.sin(dLat / 2) ** 2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dLng / 2) ** 2
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(la1) * Math.cos(la2) * Math.sin(dLng / 2) ** 2
   return 2 * R * Math.asin(Math.sqrt(h))
 }
 

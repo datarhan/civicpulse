@@ -148,10 +148,7 @@ export const DEFAULT_ALIASES = [
   'Ribarroja del Turia',
 ]
 
-export function filterEntries(
-  entries: CtbgEntry[],
-  query: string | string[]
-): CtbgEntry[] {
+export function filterEntries(entries: CtbgEntry[], query: string | string[]): CtbgEntry[] {
   const terms = Array.isArray(query) ? query : [query]
   const needles = terms.map(normalise).filter((n) => n.length > 0)
   if (needles.length === 0) return []
@@ -165,7 +162,9 @@ export function filterEntries(
       ...e.criterio,
       e.palabrasClave,
       e.organismo,
-    ].map(normalise).join('')
+    ]
+      .map(normalise)
+      .join('')
     return needles.some((n) => haystack.includes(n))
   })
 }
@@ -173,7 +172,7 @@ export function filterEntries(
 export function buildSnapshot(
   entries: CtbgEntry[],
   query: string | string[],
-  now: Date = new Date()
+  now: Date = new Date(),
 ): CtbgSnapshot {
   const matched = filterEntries(entries, query)
   const years = [...new Set(entries.map((e) => e.sheetYear))].sort()

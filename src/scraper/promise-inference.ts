@@ -63,11 +63,55 @@ export interface PromiseSuggestion {
 }
 
 const STOP_WORDS = new Set([
-  'de', 'del', 'la', 'el', 'los', 'las', 'y', 'o', 'en', 'a', 'al', 'por',
-  'con', 'un', 'una', 'unos', 'unas', 'para', 'que', 'es', 'son', 'se',
-  'su', 'sus', 'lo', 'le', 'les', 'este', 'esta', 'estos', 'estas', 'ha',
-  'más', 'mas', 'muy', 'sobre', 'como', 'pero', 'si', 'no', 'ya', 'le',
-  'ribarroja', 'riba', 'roja', 'turia', 'túria', 'ayuntamiento', 'municipal',
+  'de',
+  'del',
+  'la',
+  'el',
+  'los',
+  'las',
+  'y',
+  'o',
+  'en',
+  'a',
+  'al',
+  'por',
+  'con',
+  'un',
+  'una',
+  'unos',
+  'unas',
+  'para',
+  'que',
+  'es',
+  'son',
+  'se',
+  'su',
+  'sus',
+  'lo',
+  'le',
+  'les',
+  'este',
+  'esta',
+  'estos',
+  'estas',
+  'ha',
+  'más',
+  'mas',
+  'muy',
+  'sobre',
+  'como',
+  'pero',
+  'si',
+  'no',
+  'ya',
+  'le',
+  'ribarroja',
+  'riba',
+  'roja',
+  'turia',
+  'túria',
+  'ayuntamiento',
+  'municipal',
 ])
 
 export function normalize(s: string): string {
@@ -93,13 +137,7 @@ export function stem(w: string): string {
 
 export function extractKeywords(text: string): string[] {
   const tokens = normalize(text).split(' ')
-  return Array.from(
-    new Set(
-      tokens
-        .filter((t) => t.length >= 4 && !STOP_WORDS.has(t))
-        .map(stem)
-    )
-  )
+  return Array.from(new Set(tokens.filter((t) => t.length >= 4 && !STOP_WORDS.has(t)).map(stem)))
 }
 
 function commonKeywords(a: string[], b: string[]): string[] {
@@ -110,7 +148,10 @@ function commonKeywords(a: string[], b: string[]): string[] {
 // Score the match between a promise's keywords and a candidate text.
 // Returns 0..1 based on proportion of promise keywords hit, with a
 // small boost for longer matches.
-function matchScore(promiseKw: string[], candidateText: string): { score: number; matched: string[] } {
+function matchScore(
+  promiseKw: string[],
+  candidateText: string,
+): { score: number; matched: string[] } {
   if (promiseKw.length === 0) return { score: 0, matched: [] }
   const candidateKw = extractKeywords(candidateText)
   const matched = commonKeywords(promiseKw, candidateKw)
@@ -125,7 +166,7 @@ function toIsoDate(iso: string): string {
 
 export function inferPromiseSuggestions(
   promises: CurPromise[],
-  input: InferenceInput
+  input: InferenceInput,
 ): PromiseSuggestion[] {
   const now = new Date().toISOString()
   const pressItems = input.press?.items ?? []
@@ -188,8 +229,12 @@ export function inferPromiseSuggestions(
     let proposed: ProposedStatus = 'documentada'
     let confidence = 0
     if (reasoning.length > 0) {
-      const joined = reasoning.map((r) => r.quote).join(' ').toLowerCase()
-      const progressVerbs = /pone en marcha|abre|inaugur|termin|finaliz|completa|firma|apruebla?\b|adjudic/i
+      const joined = reasoning
+        .map((r) => r.quote)
+        .join(' ')
+        .toLowerCase()
+      const progressVerbs =
+        /pone en marcha|abre|inaugur|termin|finaliz|completa|firma|apruebla?\b|adjudic/i
       if (progressVerbs.test(joined)) {
         proposed = 'en-progreso'
         confidence = Math.min(0.7, pressMatches[0]?.score ?? 0.3)

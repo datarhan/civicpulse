@@ -18,8 +18,18 @@ const OUT = join(PROJECT_ROOT, 'public/data/paro.json')
 
 const MUNI = 'Riba-roja de Túria'
 const MONTHS_ES = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre',
+  'enero',
+  'febrero',
+  'marzo',
+  'abril',
+  'mayo',
+  'junio',
+  'julio',
+  'agosto',
+  'septiembre',
+  'octubre',
+  'noviembre',
+  'diciembre',
 ]
 
 function candidateUrl(year: number, monthIdx: number): string {
@@ -35,8 +45,7 @@ async function tryMonth(year: number, monthIdx: number): Promise<ParoSnapshot | 
   const url = candidateUrl(year, monthIdx)
   const res = await fetch(url, {
     headers: {
-      'User-Agent':
-        'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
     },
   })
@@ -59,9 +68,7 @@ async function main() {
     const snap = await tryMonth(d.getFullYear(), d.getMonth())
     if (snap) {
       results.push(snap)
-      console.log(
-        `[paro] ${snap.period}: ${snap.total} total (${snap.men}H / ${snap.women}M)`
-      )
+      console.log(`[paro] ${snap.period}: ${snap.total} total (${snap.men}H / ${snap.women}M)`)
     }
   }
   results.sort((a, b) => a.period.localeCompare(b.period))

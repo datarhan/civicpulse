@@ -20,11 +20,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import {
-  validatePromisesSnapshot,
-  ALLOWED_PARTIES,
-  type Party,
-} from '../src/scraper/promises'
+import { validatePromisesSnapshot, ALLOWED_PARTIES, type Party } from '../src/scraper/promises'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -42,7 +38,7 @@ Arguments:
   quote        Verbatim response (≥20 chars). Will be published as-is.
   source-url   Optional. Absolute http(s) URL to the party's public statement.
   publisher    Optional. Where the statement was published.
-  responded-at Optional ISO date. Defaults to today.`
+  responded-at Optional ISO date. Defaults to today.`,
   )
   process.exit(2)
 }
@@ -53,9 +49,7 @@ async function main() {
 
   if (!promiseId || !partyRaw || !quoteRaw) usage()
   if (!(ALLOWED_PARTIES as readonly string[]).includes(partyRaw)) {
-    console.error(
-      `[reply] party must be one of: ${ALLOWED_PARTIES.join(', ')} (got "${partyRaw}")`
-    )
+    console.error(`[reply] party must be one of: ${ALLOWED_PARTIES.join(', ')} (got "${partyRaw}")`)
     process.exit(2)
   }
   const party = partyRaw as Party

@@ -68,10 +68,7 @@ function classify(labels: string[]): PostKind {
   return 'other'
 }
 
-export function parseParticipaPosts(
-  postsJson: string,
-  opts: ParseOpts = {}
-): ParticipaItem[] {
+export function parseParticipaPosts(postsJson: string, opts: ParseOpts = {}): ParticipaItem[] {
   const posts = JSON.parse(postsJson) as WpPost[]
   const categories: Record<number, string> = {}
   if (opts.categoriesJson) {
@@ -86,8 +83,8 @@ export function parseParticipaPosts(
       new Set(
         (p.categories || [])
           .map((id) => categories[id])
-          .filter((n): n is string => typeof n === 'string' && n.length > 0)
-      )
+          .filter((n): n is string => typeof n === 'string' && n.length > 0),
+      ),
     )
     items.push({
       id: p.id,

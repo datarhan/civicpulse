@@ -115,7 +115,15 @@ export const ALLOWED_RELATIONSHIP_NODE_KINDS: readonly RelationshipNodeKind[] = 
   'entity',
 ] as const
 
-export const RESPONSE_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro', 'person'] as const
+export const RESPONSE_BLOCS = [
+  'PSOE',
+  'PP',
+  'VOX',
+  'Compromís',
+  'Ciudadanos',
+  'Otro',
+  'person',
+] as const
 
 // Tokens that mark judicial sensitivity. Used by reports the LLM emits to
 // auto-promote legalSensitivity to 'high'. Mirrors the libel-discipline list

@@ -261,7 +261,14 @@ describe('bot db — aggregateStats', () => {
 
   it('groups by state + neighborhood + category + concejal', () => {
     const a = createQueja(db, sampleQueja({ neighborhood: 'casco', category: 'via_publica' }))
-    const b = createQueja(db, sampleQueja({ neighborhood: 'casco', category: 'limpieza', concejal_slug: 'rafael-gomez-sanchez' }))
+    const b = createQueja(
+      db,
+      sampleQueja({
+        neighborhood: 'casco',
+        category: 'limpieza',
+        concejal_slug: 'rafael-gomez-sanchez',
+      }),
+    )
     const c = createQueja(db, sampleQueja({ neighborhood: 'sector14', category: 'via_publica' }))
     setState(db, b.id, 'resuelta')
     const s = aggregateStats(db)

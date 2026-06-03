@@ -38,19 +38,12 @@ interface WDEntity {
           type?: string
         }
       }
-      qualifiers?: Record<
-        string,
-        Array<{ datavalue?: { value: unknown; type?: string } }>
-      >
+      qualifiers?: Record<string, Array<{ datavalue?: { value: unknown; type?: string } }>>
     }>
   >
 }
 
-function valueOf<T = any>(
-  entity: WDEntity,
-  prop: string,
-  pick: (v: any) => T | null
-): T | null {
+function valueOf<T = any>(entity: WDEntity, prop: string, pick: (v: any) => T | null): T | null {
   const claims = entity.claims?.[prop]
   if (!claims) return null
   for (const c of claims) {
@@ -75,9 +68,9 @@ export function parseWikidataEntity(json: string): WikidataFacts | null {
   if (!entity) return null
   const qid = Object.keys(data.entities)[0]
 
-  const label = entity.labels?.es?.value ?? entity.labels?.ca?.value ?? entity.labels?.en?.value ?? qid
-  const description =
-    entity.descriptions?.es?.value ?? entity.descriptions?.en?.value ?? null
+  const label =
+    entity.labels?.es?.value ?? entity.labels?.ca?.value ?? entity.labels?.en?.value ?? qid
+  const description = entity.descriptions?.es?.value ?? entity.descriptions?.en?.value ?? null
 
   const coord = valueOf(entity, 'P625', (v: any) => {
     if (typeof v?.latitude === 'number' && typeof v?.longitude === 'number') {
@@ -116,20 +109,20 @@ export function parseWikidataEntity(json: string): WikidataFacts | null {
 
   const ine = valueOf(entity, 'P772', (v: any) => (typeof v === 'string' ? v : null))
   const inspire = valueOf(entity, 'P4547', (v: any) => (typeof v === 'string' ? v : null))
-  const osmRelation = valueOf(entity, 'P402', (v: any) =>
-    typeof v === 'string' ? v : null
-  )
-  const geonames = valueOf(entity, 'P1566', (v: any) =>
-    typeof v === 'string' ? v : null
-  )
-  const commonsCat = valueOf(entity, 'P373', (v: any) =>
-    typeof v === 'string' ? v : null
-  )
+  const osmRelation = valueOf(entity, 'P402', (v: any) => (typeof v === 'string' ? v : null))
+  const geonames = valueOf(entity, 'P1566', (v: any) => (typeof v === 'string' ? v : null))
+  const commonsCat = valueOf(entity, 'P373', (v: any) => (typeof v === 'string' ? v : null))
 
   // Images
-  const image = valueOf(entity, 'P18', (v: any) => (typeof v === 'string' ? commonsFileUrl(v) : null))
-  const flag = valueOf(entity, 'P41', (v: any) => (typeof v === 'string' ? commonsFileUrl(v) : null))
-  const coat = valueOf(entity, 'P94', (v: any) => (typeof v === 'string' ? commonsFileUrl(v) : null))
+  const image = valueOf(entity, 'P18', (v: any) =>
+    typeof v === 'string' ? commonsFileUrl(v) : null,
+  )
+  const flag = valueOf(entity, 'P41', (v: any) =>
+    typeof v === 'string' ? commonsFileUrl(v) : null,
+  )
+  const coat = valueOf(entity, 'P94', (v: any) =>
+    typeof v === 'string' ? commonsFileUrl(v) : null,
+  )
 
   return {
     qid,

@@ -83,11 +83,11 @@ async function main() {
 
   await writeFile(PROMISES, serialized)
   console.log(
-    `[freeze] ${before.frozenUntil || 'null'} → ${nextFrozenUntil || 'null'} (${before.items.length} promesas)`
+    `[freeze] ${before.frozenUntil || 'null'} → ${nextFrozenUntil || 'null'} (${before.items.length} promesas)`,
   )
   if (nextFrozenUntil) {
     console.log(
-      `[freeze] /promesas UI entrará en modo solo-lectura hasta ${nextFrozenUntil}. Las sugerencias del motor seguirán ejecutándose pero no alterarán estados.`
+      `[freeze] /promesas UI entrará en modo solo-lectura hasta ${nextFrozenUntil}. Las sugerencias del motor seguirán ejecutándose pero no alterarán estados.`,
     )
   } else {
     console.log(`[freeze] tracker de vuelta a modo curación normal.`)

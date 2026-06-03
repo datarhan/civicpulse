@@ -78,7 +78,7 @@ export default function QuejasHeatmap() {
   const hasData = items.some((q) => q.address_string)
   const perNeighborhood = useMemo(
     () => computePerNeighborhood(items, geo?.neighborhoods),
-    [items, geo?.neighborhoods]
+    [items, geo?.neighborhoods],
   )
 
   if (!hasData || perNeighborhood.length === 0) return null
@@ -135,8 +135,8 @@ export default function QuejasHeatmap() {
                   <span style={{ color: '#2463EB' }}>⏳ {n.pendientes}</span>
                   {n.silencios > 0 && (
                     <>
-                      {' '}·{' '}
-                      <span style={{ color: '#DC2626' }}>⚠ {n.silencios}</span>
+                      {' '}
+                      · <span style={{ color: '#DC2626' }}>⚠ {n.silencios}</span>
                     </>
                   )}
                 </div>

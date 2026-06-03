@@ -51,8 +51,8 @@ const VALENCIAN_MONTHS: Record<string, string> = {
   gener: '01',
   febrer: '02',
   // "març" has a cedilla (ç) and sometimes appears as "marc" with bad encoding.
-  'març': '03',
-  'marc': '03',
+  març: '03',
+  marc: '03',
   abril: '04',
   maig: '05',
   juny: '06',
@@ -70,9 +70,9 @@ const VALENCIAN_MONTHS: Record<string, string> = {
  */
 function normaliseTitle(raw: string): string {
   return raw
-    .replace(/\u00a0/g, ' ')         // NBSP → space
-    .replace(/\s+/g, ' ')            // collapse repeated spaces
-    .replace(/[´`‘’]/g, "'")         // normalise apostrophes/acute accents used as apostrophes
+    .replace(/\u00a0/g, ' ') // NBSP → space
+    .replace(/\s+/g, ' ') // collapse repeated spaces
+    .replace(/[´`‘’]/g, "'") // normalise apostrophes/acute accents used as apostrophes
     .trim()
 }
 
@@ -84,8 +84,8 @@ function normaliseTitle(raw: string): string {
 function inferKind(title: string): PlenoVideoKind {
   const t = title.toLowerCase()
   if (/\bple\s+extraordinari\s+i\s+urgent\b/.test(t)) return 'urgente'
-  if (/\bple\s+extraordinari\b/.test(t))                return 'extraordinario'
-  if (/\bple\s+ordinari\b/.test(t))                     return 'ordinario'
+  if (/\bple\s+extraordinari\b/.test(t)) return 'extraordinario'
+  if (/\bple\s+ordinari\b/.test(t)) return 'ordinario'
   return 'otro'
 }
 
@@ -111,9 +111,7 @@ function extractDate(title: string): string | null {
 
   // Parse the (d[ 'd'] MONTH) token. The day is 1-31; apostrophe before a
   // vowel-starting month ("d'abril") counts as "de".
-  const m = t.match(
-    /(\d{1,2})\s*(?:de|d'|d ')\s*([a-zñç]+)\s+de\s+(\d{4})/i,
-  )
+  const m = t.match(/(\d{1,2})\s*(?:de|d'|d ')\s*([a-zñç]+)\s+de\s+(\d{4})/i)
   if (!m) return null
 
   const day = Number(m[1])
@@ -144,9 +142,10 @@ export function parseVideoEntry(raw: RawYtdlpEntry): PlenoVideoEntry | null {
   if (!plenoDate) return null
 
   const kind = inferKind(raw.title)
-  const url = typeof raw.url === 'string' && raw.url.startsWith('https://')
-    ? raw.url
-    : `https://www.youtube.com/watch?v=${raw.id}`
+  const url =
+    typeof raw.url === 'string' && raw.url.startsWith('https://')
+      ? raw.url
+      : `https://www.youtube.com/watch?v=${raw.id}`
 
   return {
     ytId: raw.id,
@@ -174,7 +173,11 @@ export function parseChannelFeed(
   for (const line of lines) {
     totalVideosScanned += 1
     let parsed: unknown
-    try { parsed = JSON.parse(line) } catch { continue }
+    try {
+      parsed = JSON.parse(line)
+    } catch {
+      continue
+    }
     const entry = parseVideoEntry(parsed as RawYtdlpEntry)
     if (!entry) continue
     if (seen.has(entry.ytId)) continue
@@ -185,7 +188,10 @@ export function parseChannelFeed(
   items.sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
 
   const byKind: Record<PlenoVideoKind, number> = {
-    ordinario: 0, extraordinario: 0, urgente: 0, otro: 0,
+    ordinario: 0,
+    extraordinario: 0,
+    urgente: 0,
+    otro: 0,
   }
   for (const i of items) byKind[i.kind] += 1
 

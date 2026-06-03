@@ -62,7 +62,9 @@ export interface QuejaForCorrelation {
   createdAt: string
 }
 
-export type LlmCaller = <TSchema extends ZodTypeAny>(opts: CallLlmOptions<TSchema>) => Promise<z.infer<TSchema> | null>
+export type LlmCaller = <TSchema extends ZodTypeAny>(
+  opts: CallLlmOptions<TSchema>,
+) => Promise<z.infer<TSchema> | null>
 
 export interface CorrelateOptions {
   /** Shortlist window: accept tenders awarded between quejaDate and
@@ -192,11 +194,15 @@ function buildShortlist(
   const scored = eligible.map((t) => {
     const divs = (t.cpvs || []).map(cpvDivision).filter((d): d is string => d !== null)
     const cpvScore = Math.max(...divs.map((d) => priority.get(d) ?? 0), 0)
-    const ageMonths = (new Date(t.awardDate || '1970-01-01').getTime() - qTime) / (1000 * 60 * 60 * 24 * 30)
+    const ageMonths =
+      (new Date(t.awardDate || '1970-01-01').getTime() - qTime) / (1000 * 60 * 60 * 24 * 30)
     const dateScore = Math.max(0, 1 - Math.abs(ageMonths - 3) / 15) // peak at 3 months
     return { t, score: cpvScore + dateScore }
   })
-  return scored.sort((a, b) => b.score - a.score).slice(0, topN).map((s) => s.t)
+  return scored
+    .sort((a, b) => b.score - a.score)
+    .slice(0, topN)
+    .map((s) => s.t)
 }
 
 // ─── Entry point ────────────────────────────────────────────────────────────

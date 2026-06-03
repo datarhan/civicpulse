@@ -36,9 +36,7 @@ interface QuejaResponsesSnapshot {
 }
 
 function usage(): never {
-  console.error(
-    'Usage: npm run queja-reply -- <Q-ID> "<role>" "<firmante>" "<text>" [source-url]'
-  )
+  console.error('Usage: npm run queja-reply -- <Q-ID> "<role>" "<firmante>" "<text>" [source-url]')
   process.exit(2)
 }
 

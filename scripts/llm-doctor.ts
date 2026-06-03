@@ -14,9 +14,11 @@ const PingSchema = z.object({ reply: z.string() })
 
 async function main() {
   const config = loadConfigFromEnv()
-  resetBudget(10_000)  // tiny budget — ping should use ≤100 tokens
+  resetBudget(10_000) // tiny budget — ping should use ≤100 tokens
 
-  process.stdout.write(`[llm-doctor] backend=${config.backend} model=${config.backend === 'ollama' ? config.ollamaModel : config.openaiModel}\n`)
+  process.stdout.write(
+    `[llm-doctor] backend=${config.backend} model=${config.backend === 'ollama' ? config.ollamaModel : config.openaiModel}\n`,
+  )
   process.stdout.write(`[llm-doctor] cache=${config.cacheDir}\n`)
 
   const stats = gatherCacheStats(config.cacheDir)
@@ -44,6 +46,8 @@ async function main() {
 }
 
 main().catch((err) => {
-  process.stderr.write(`[llm-doctor] EXCEPTION: ${err instanceof Error ? err.message : String(err)}\n`)
+  process.stderr.write(
+    `[llm-doctor] EXCEPTION: ${err instanceof Error ? err.message : String(err)}\n`,
+  )
   process.exit(1)
 })

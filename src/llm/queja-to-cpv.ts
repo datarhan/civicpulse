@@ -56,36 +56,36 @@
 import type { QuejaCategory } from '../scraper/queja-router'
 
 export const QUEJA_CATEGORY_TO_CPV: Record<QuejaCategory, string[]> = {
-  via_publica:       ['45', '50', '71'],       // construction / repair / engineering
-  limpieza:          ['90', '50'],              // cleaning services / maintenance
-  zonas_verdes:      ['77', '45', '50'],        // horticulture / groundworks / upkeep
-  alumbrado:         ['45', '50', '31'],        // installation / repair / electrical kit
-  trafico:           ['45', '34', '71'],        // road works / vehicles / signage design
-  mobiliario_urbano: ['39', '44', '45'],        // furniture / construction materials / install
-  ruido:             ['79', '50', '71'],        // env. assessment / upkeep / engineering
-  agua_saneamiento:  ['45', '65', '71'],        // civil works / utilities / engineering
-  transporte:        ['60', '34', '63'],        // transport service / vehicles / aux services
-  transparencia:     ['72', '79', '75'],        // IT services / business services / admin
-  urbanismo:         ['71', '45', '79'],        // engineering / construction / services
-  accesibilidad:     ['45', '50', '71'],        // construction / repair / engineering
-  seguridad:         ['35', '79', '75'],        // security equipment / services / admin
-  cultura:           ['92', '79'],              // cultural services / events
-  educacion:         ['80', '45', '39'],        // training / school building / furniture
-  servicios_sociales:['85', '79'],              // health/social work / services
-  medio_ambiente:    ['90', '77', '71'],        // environmental / horticulture / engineering
-  residuos:          ['90', '34'],              // refuse / specialist vehicles
-  comercio:          ['79', '55'],              // business / retail trade
-  fiestas:           ['92', '79', '98'],        // cultural / services / personal services
-  vivienda:          ['45', '70'],              // construction / real estate
-  agricultura:       ['77', '03', '16'],        // horticulture / ag products / ag machinery
-  mayores:           ['85', '55'],              // social work / meal services
-  juventud:          ['92', '80', '79'],        // recreation / education / services
-  turismo:           ['79', '92'],              // services / cultural
-  salud:             ['85', '33'],              // health / medical equipment
-  deportes:          ['37', '45', '92'],        // sports goods / construction / recreation
-  igualdad:          ['79', '85', '98'],        // services / social work / community
-  bienestar_animal:  ['85', '77', '98'],        // veterinary (85) / ag. services / community
-  otros:             ['79', '50'],              // generic services fallback
+  via_publica: ['45', '50', '71'], // construction / repair / engineering
+  limpieza: ['90', '50'], // cleaning services / maintenance
+  zonas_verdes: ['77', '45', '50'], // horticulture / groundworks / upkeep
+  alumbrado: ['45', '50', '31'], // installation / repair / electrical kit
+  trafico: ['45', '34', '71'], // road works / vehicles / signage design
+  mobiliario_urbano: ['39', '44', '45'], // furniture / construction materials / install
+  ruido: ['79', '50', '71'], // env. assessment / upkeep / engineering
+  agua_saneamiento: ['45', '65', '71'], // civil works / utilities / engineering
+  transporte: ['60', '34', '63'], // transport service / vehicles / aux services
+  transparencia: ['72', '79', '75'], // IT services / business services / admin
+  urbanismo: ['71', '45', '79'], // engineering / construction / services
+  accesibilidad: ['45', '50', '71'], // construction / repair / engineering
+  seguridad: ['35', '79', '75'], // security equipment / services / admin
+  cultura: ['92', '79'], // cultural services / events
+  educacion: ['80', '45', '39'], // training / school building / furniture
+  servicios_sociales: ['85', '79'], // health/social work / services
+  medio_ambiente: ['90', '77', '71'], // environmental / horticulture / engineering
+  residuos: ['90', '34'], // refuse / specialist vehicles
+  comercio: ['79', '55'], // business / retail trade
+  fiestas: ['92', '79', '98'], // cultural / services / personal services
+  vivienda: ['45', '70'], // construction / real estate
+  agricultura: ['77', '03', '16'], // horticulture / ag products / ag machinery
+  mayores: ['85', '55'], // social work / meal services
+  juventud: ['92', '80', '79'], // recreation / education / services
+  turismo: ['79', '92'], // services / cultural
+  salud: ['85', '33'], // health / medical equipment
+  deportes: ['37', '45', '92'], // sports goods / construction / recreation
+  igualdad: ['79', '85', '98'], // services / social work / community
+  bienestar_animal: ['85', '77', '98'], // veterinary (85) / ag. services / community
+  otros: ['79', '50'], // generic services fallback
 }
 
 /** Given a CPV code string (e.g. "45233141-9" or "45000000-7"), return its 2-digit division. */
