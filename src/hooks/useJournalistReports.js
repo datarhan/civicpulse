@@ -1,5 +1,5 @@
 // @ts-check
-import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 export const LEGAL_SENSITIVITY_LABEL = {
   low: 'Sensibilidad legal: baja',
@@ -28,35 +28,19 @@ export const CITATION_TRUST_TONE = {
   low: 'crit',
 }
 
+// Shipped before the first `promote-report` run produces the file → a 404
+// resolves to this empty snapshot instead of erroring the page.
+const EMPTY_REPORTS = {
+  version: '1.0',
+  generatedAt: '',
+  legalNotice: '',
+  contactUrl: '',
+  methodologyUrl: '/metodologia',
+  items: [],
+}
+
 export function useJournalistReports() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let alive = true
-    fetch('/data/journalist-reports.json', { cache: 'no-cache' })
-      .then((r) => {
-        if (r.status === 404)
-          return {
-            version: '1.0',
-            generatedAt: '',
-            legalNotice: '',
-            contactUrl: '',
-            methodologyUrl: '/metodologia',
-            items: [],
-          }
-        if (!r.ok) throw new Error(`journalist-reports returned ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
-        if (alive) setState({ loading: false, error: null, data })
-      })
-      .catch((error) => {
-        if (alive) setState({ loading: false, error, data: null })
-      })
-    return () => {
-      alive = false
-    }
-  }, [])
-  return state
+  return useJsonFetch('/data/journalist-reports.json', EMPTY_REPORTS)
 }
 
 export function useJournalistReportById(assignmentOrReportId) {

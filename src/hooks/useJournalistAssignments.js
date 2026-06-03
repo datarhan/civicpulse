@@ -1,5 +1,5 @@
 // @ts-check
-import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 export const ASSIGNMENT_STATUS_LABEL = {
   pending: 'Pendiente',
@@ -17,25 +17,10 @@ export const ASSIGNMENT_STATUS_TONE = {
   failed: 'crit',
 }
 
+// Shipped before the first `journalist:assign` run produces the file → a 404
+// resolves to this empty snapshot instead of erroring the page.
+const EMPTY_ASSIGNMENTS = { version: '1.0', generatedAt: '', items: [] }
+
 export function useJournalistAssignments() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let alive = true
-    fetch('/data/journalist-assignments.json', { cache: 'no-cache' })
-      .then((r) => {
-        if (r.status === 404) return { version: '1.0', generatedAt: '', items: [] }
-        if (!r.ok) throw new Error(`journalist-assignments returned ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
-        if (alive) setState({ loading: false, error: null, data })
-      })
-      .catch((error) => {
-        if (alive) setState({ loading: false, error, data: null })
-      })
-    return () => {
-      alive = false
-    }
-  }, [])
-  return state
+  return useJsonFetch('/data/journalist-assignments.json', EMPTY_ASSIGNMENTS)
 }
