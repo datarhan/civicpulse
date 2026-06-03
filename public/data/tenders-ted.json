@@ -1,0 +1,792 @@
+{
+  "generatedAt": "2026-05-25T06:59:18.211Z",
+  "source": {
+    "url": "https://api.ted.europa.eu/v3/notices/search",
+    "query": "buyer-name~\"Riba-roja\"",
+    "description": "EU Tenders Electronic Daily (TED) — contracts above the EU threshold, free API, no auth."
+  },
+  "stats": {
+    "total": 54,
+    "byContractNature": {
+      "services": 54,
+      "supplies": 16,
+      "works": 2
+    }
+  },
+  "items": [
+    {
+      "id": "3ba4e3dea9a1",
+      "publicationNumber": "242372-2024",
+      "title": "Anuncio TED 242372-2024",
+      "buyerName": "Ajuntament de Riba-Roja de Turia",
+      "contractNature": [
+        "services",
+        "services"
+      ],
+      "publicationDate": "2024-04-24T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/242372-2024/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/242372-2024/notice"
+    },
+    {
+      "id": "3e56dc2f7007",
+      "publicationNumber": "142719-2024",
+      "title": "Anuncio TED 142719-2024",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services",
+        "services"
+      ],
+      "publicationDate": "2024-03-08T00:00:00.000Z",
+      "totalValueEur": 940519.6,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/142719-2024/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/142719-2024/notice"
+    },
+    {
+      "id": "8f61061415df",
+      "publicationNumber": "212641-2016",
+      "title": "Anuncio TED 212641-2016",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 197219.52,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/212641-2016/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/212641-2016/notice"
+    },
+    {
+      "id": "7a339b297a05",
+      "publicationNumber": "66594-2018",
+      "title": "Anuncio TED 66594-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1168761.06,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/66594-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/66594-2018/notice"
+    },
+    {
+      "id": "8573e85efaf6",
+      "publicationNumber": "106719-2018",
+      "title": "Anuncio TED 106719-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 305901.89,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/106719-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/106719-2018/notice"
+    },
+    {
+      "id": "75f62b2e2196",
+      "publicationNumber": "175450-2018",
+      "title": "Anuncio TED 175450-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/175450-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/175450-2018/notice"
+    },
+    {
+      "id": "4ea35e4cd0f9",
+      "publicationNumber": "194443-2018",
+      "title": "Anuncio TED 194443-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/194443-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/194443-2018/notice"
+    },
+    {
+      "id": "daf64d4abe07",
+      "publicationNumber": "457857-2018",
+      "title": "Anuncio TED 457857-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/457857-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/457857-2018/notice"
+    },
+    {
+      "id": "ca8a8600b354",
+      "publicationNumber": "471421-2018",
+      "title": "Anuncio TED 471421-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 386945.38,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/471421-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/471421-2018/notice"
+    },
+    {
+      "id": "3caae7f43d32",
+      "publicationNumber": "489328-2018",
+      "title": "Anuncio TED 489328-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1168761.06,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/489328-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/489328-2018/notice"
+    },
+    {
+      "id": "922b7c114254",
+      "publicationNumber": "495212-2018",
+      "title": "Anuncio TED 495212-2018",
+      "buyerName": "Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1160688.48,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/495212-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/495212-2018/notice"
+    },
+    {
+      "id": "5dee5f5c2ed9",
+      "publicationNumber": "538510-2018",
+      "title": "Anuncio TED 538510-2018",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/538510-2018/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/538510-2018/notice"
+    },
+    {
+      "id": "c21f9549378c",
+      "publicationNumber": "61177-2019",
+      "title": "Anuncio TED 61177-2019",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/61177-2019/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/61177-2019/notice"
+    },
+    {
+      "id": "6148ce70451e",
+      "publicationNumber": "155114-2019",
+      "title": "Anuncio TED 155114-2019",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1234273.4,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/155114-2019/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/155114-2019/notice"
+    },
+    {
+      "id": "9e61f22de92c",
+      "publicationNumber": "198145-2019",
+      "title": "Anuncio TED 198145-2019",
+      "buyerName": "Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 55685178.79,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/198145-2019/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/198145-2019/notice"
+    },
+    {
+      "id": "bc41197e7a7f",
+      "publicationNumber": "419886-2019",
+      "title": "Anuncio TED 419886-2019",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 609613.2,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/419886-2019/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/419886-2019/notice"
+    },
+    {
+      "id": "76cddd9bf814",
+      "publicationNumber": "37842-2020",
+      "title": "Anuncio TED 37842-2020",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 607850.68,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/37842-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/37842-2020/notice"
+    },
+    {
+      "id": "27c4dcdf98b1",
+      "publicationNumber": "221605-2020",
+      "title": "Anuncio TED 221605-2020",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 220000,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/221605-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/221605-2020/notice"
+    },
+    {
+      "id": "610f2d68e7c2",
+      "publicationNumber": "231838-2020",
+      "title": "Anuncio TED 231838-2020",
+      "buyerName": "Ayuntamiento de Riba-Roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 142352.86,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/231838-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/231838-2020/notice"
+    },
+    {
+      "id": "581b6371ba07",
+      "publicationNumber": "492370-2020",
+      "title": "Anuncio TED 492370-2020",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "works"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 720000,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/492370-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/492370-2020/notice"
+    },
+    {
+      "id": "82e9de81c8b7",
+      "publicationNumber": "584586-2020",
+      "title": "Anuncio TED 584586-2020",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 509262,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/584586-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/584586-2020/notice"
+    },
+    {
+      "id": "7bed93a6a553",
+      "publicationNumber": "584588-2020",
+      "title": "Anuncio TED 584588-2020",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 470248.19,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/584588-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/584588-2020/notice"
+    },
+    {
+      "id": "c2c86b2663ae",
+      "publicationNumber": "588475-2020",
+      "title": "Anuncio TED 588475-2020",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 330578.51,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/588475-2020/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/588475-2020/notice"
+    },
+    {
+      "id": "36e837cf8e3b",
+      "publicationNumber": "60612-2021",
+      "title": "Anuncio TED 60612-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 3940644.55,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/60612-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/60612-2021/notice"
+    },
+    {
+      "id": "c16a08bde18f",
+      "publicationNumber": "273250-2021",
+      "title": "Anuncio TED 273250-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 276493.96,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/273250-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/273250-2021/notice"
+    },
+    {
+      "id": "3ecfd30e210f",
+      "publicationNumber": "339944-2021",
+      "title": "Anuncio TED 339944-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 939803.96,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/339944-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/339944-2021/notice"
+    },
+    {
+      "id": "1b63e8f64615",
+      "publicationNumber": "361369-2021",
+      "title": "Anuncio TED 361369-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 332000,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/361369-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/361369-2021/notice"
+    },
+    {
+      "id": "995344d95517",
+      "publicationNumber": "404829-2021",
+      "title": "Anuncio TED 404829-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 4753448.75,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/404829-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/404829-2021/notice"
+    },
+    {
+      "id": "3de9c9748adb",
+      "publicationNumber": "447219-2021",
+      "title": "Anuncio TED 447219-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/447219-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/447219-2021/notice"
+    },
+    {
+      "id": "1c47a2f2f65a",
+      "publicationNumber": "479880-2021",
+      "title": "Anuncio TED 479880-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 604448.8,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/479880-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/479880-2021/notice"
+    },
+    {
+      "id": "0d711864ccbf",
+      "publicationNumber": "599748-2021",
+      "title": "Anuncio TED 599748-2021",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 321120,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/599748-2021/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/599748-2021/notice"
+    },
+    {
+      "id": "3cdfd5a5f40d",
+      "publicationNumber": "87246-2022",
+      "title": "Anuncio TED 87246-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 257730,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/87246-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/87246-2022/notice"
+    },
+    {
+      "id": "1a718409e09d",
+      "publicationNumber": "129335-2022",
+      "title": "Anuncio TED 129335-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 455483.46,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/129335-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/129335-2022/notice"
+    },
+    {
+      "id": "0ebcfaa17435",
+      "publicationNumber": "179571-2022",
+      "title": "Anuncio TED 179571-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 367533.73,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/179571-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/179571-2022/notice"
+    },
+    {
+      "id": "9f2cd01b6fad",
+      "publicationNumber": "234196-2022",
+      "title": "Anuncio TED 234196-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1435142,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/234196-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/234196-2022/notice"
+    },
+    {
+      "id": "e4d193c8a770",
+      "publicationNumber": "279888-2022",
+      "title": "Anuncio TED 279888-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 788000,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/279888-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/279888-2022/notice"
+    },
+    {
+      "id": "c92dc11ccc6a",
+      "publicationNumber": "356608-2022",
+      "title": "Anuncio TED 356608-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1493061.68,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/356608-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/356608-2022/notice"
+    },
+    {
+      "id": "6c3a2f717355",
+      "publicationNumber": "463084-2022",
+      "title": "Anuncio TED 463084-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "works"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/463084-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/463084-2022/notice"
+    },
+    {
+      "id": "c1b491fe0d33",
+      "publicationNumber": "466526-2022",
+      "title": "Anuncio TED 466526-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/466526-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/466526-2022/notice"
+    },
+    {
+      "id": "4f6bcac83916",
+      "publicationNumber": "477014-2022",
+      "title": "Anuncio TED 477014-2022",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/477014-2022/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/477014-2022/notice"
+    },
+    {
+      "id": "1d874ccffdb8",
+      "publicationNumber": "80568-2023",
+      "title": "Anuncio TED 80568-2023",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1016665.37,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/80568-2023/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/80568-2023/notice"
+    },
+    {
+      "id": "512eae485fdc",
+      "publicationNumber": "453610-2023",
+      "title": "Anuncio TED 453610-2023",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1040774.4,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/453610-2023/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/453610-2023/notice"
+    },
+    {
+      "id": "bee69ec15d93",
+      "publicationNumber": "560011-2023",
+      "title": "Anuncio TED 560011-2023",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1706073.84,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/560011-2023/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/560011-2023/notice"
+    },
+    {
+      "id": "dbe6d94ad9a9",
+      "publicationNumber": "568670-2023",
+      "title": "Anuncio TED 568670-2023",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": null,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/568670-2023/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/568670-2023/notice"
+    },
+    {
+      "id": "b225fa5e34f5",
+      "publicationNumber": "455019-2024",
+      "title": "Anuncio TED 455019-2024",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 761804.86,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/455019-2024/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/455019-2024/notice"
+    },
+    {
+      "id": "fdd88272962f",
+      "publicationNumber": "682593-2024",
+      "title": "Anuncio TED 682593-2024",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "supplies",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1255106.24,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/682593-2024/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/682593-2024/notice"
+    },
+    {
+      "id": "e80fd82b7c85",
+      "publicationNumber": "780229-2024",
+      "title": "Anuncio TED 780229-2024",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1040700.74,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/780229-2024/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/780229-2024/notice"
+    },
+    {
+      "id": "47f84b18850a",
+      "publicationNumber": "249954-2025",
+      "title": "Anuncio TED 249954-2025",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 16632795.3,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/249954-2025/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/249954-2025/notice"
+    },
+    {
+      "id": "ec78e0fceff3",
+      "publicationNumber": "298788-2025",
+      "title": "Anuncio TED 298788-2025",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 314285.16,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/298788-2025/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/298788-2025/notice"
+    },
+    {
+      "id": "7a08d86e21bd",
+      "publicationNumber": "409066-2025",
+      "title": "Anuncio TED 409066-2025",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 1040700.74,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/409066-2025/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/409066-2025/notice"
+    },
+    {
+      "id": "572570aa1f57",
+      "publicationNumber": "499291-2025",
+      "title": "Anuncio TED 499291-2025",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "services",
+        "services"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 450000,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/499291-2025/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/499291-2025/notice"
+    },
+    {
+      "id": "abaf0490aa8f",
+      "publicationNumber": "151278-2026",
+      "title": "Anuncio TED 151278-2026",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies",
+        "supplies",
+        "supplies",
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 270000,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/151278-2026/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/151278-2026/notice"
+    },
+    {
+      "id": "98bfd1bb7adf",
+      "publicationNumber": "164554-2026",
+      "title": "Anuncio TED 164554-2026",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies",
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 289124,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/164554-2026/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/164554-2026/notice"
+    },
+    {
+      "id": "808c631beea5",
+      "publicationNumber": "216035-2026",
+      "title": "Anuncio TED 216035-2026",
+      "buyerName": "Alcaldía del Ayuntamiento de Riba-roja de Túria",
+      "contractNature": [
+        "supplies",
+        "supplies"
+      ],
+      "publicationDate": "1970-01-01T00:00:00.000Z",
+      "totalValueEur": 257730,
+      "currency": "EUR",
+      "pdfUrl": "https://ted.europa.eu/es/notice/216035-2026/pdf",
+      "htmlUrl": "https://ted.europa.eu/es/notice/216035-2026/notice"
+    }
+  ]
+}
