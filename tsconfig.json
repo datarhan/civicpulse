@@ -22,16 +22,6 @@
     "node_modules",
     "dist",
     "bot",
-    "src/scraper/journalist.ts",
-    "src/scraper/journalist-agent.ts",
-    "src/scraper/journalist-tools.ts",
-    "src/scraper/journalist-soul-export.ts",
-    "scripts/journalist-assign.ts",
-    "scripts/journalist-run.ts",
-    "scripts/journalist-export-soul.ts",
-    "scripts/apply-journalist-response.ts",
-    "scripts/correct-journalist-report.ts",
-    "scripts/promote-report.ts",
     "scripts/draft-finding-suggestions.ts"
   ]
 }

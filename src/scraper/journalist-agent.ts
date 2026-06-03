@@ -48,6 +48,7 @@ import {
   JournalistPlanResponseSchema,
   JournalistSynthResponseSchema,
   JournalistVerifyResponseSchema,
+  type JournalistBioResponse,
   type JournalistPlanResponse,
   type JournalistSynthResponse,
   type JournalistVerifyResponse,
@@ -758,7 +759,7 @@ export async function runJournalistAgent(
     //  - reference unknown citation ids (validateRefs)
     //  - violate libel rules (financial requires allowlisted host;
     //    family names require all-high-trust citations)
-    const proj = bio ?? {
+    const proj: JournalistBioResponse = bio ?? {
       identity:
         hints.dateOfBirth || hints.birthplace
           ? {

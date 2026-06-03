@@ -306,6 +306,9 @@ export const JournalistPlanQuestionSchema = z.object({
   id: z.string().min(2).max(60),
   question: z.string().min(8).max(400),
   suggestedTool: z.enum([
+    // Pre-seeded local data (officials/press/plenoclaims/promises are injected
+    // before planning; requesting them is a no-op but kept in the enum so a
+    // planner that names one does not fail validation).
     'local-snapshot',
     'officials',
     'press',
@@ -316,6 +319,15 @@ export const JournalistPlanQuestionSchema = z.object({
     'web-search',
     'fetch-url',
     'audit-url',
+    // External fetch/search tools dispatched in journalist-agent.ts. These were
+    // added to the dispatch switch + planner prompt but were missing here, which
+    // made them unreachable through validated plan output until this was fixed.
+    'pdf-fetch',
+    'headless-fetch',
+    'boe-search',
+    'dogv-search',
+    'dialnet-search',
+    'hemeroteca-search',
   ]),
   queryHint: z.string().nullable(),
   rationale: z.string().max(280),
