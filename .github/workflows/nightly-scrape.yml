@@ -42,24 +42,41 @@ jobs:
             all)
               npm run scrape:all
               # Press fact-check laboratory chain (Phase 1-8 of the
-              # /laboratorio plan). Each step uses `|| true` so a
-              # transient LLM-API outage or missing key doesn't kill
-              # the whole nightly. auto-curate-press has its own LOREG
-              # hard-stop built in.
+              # /laboratorio plan). Each step is RESILIENT (a transient
+              # LLM-API outage or missing key must not kill the whole
+              # nightly) but never SILENT: run_lab records each exit
+              # code into the step summary, so a failing stage can't
+              # hide behind a green tick — the pattern that froze
+              # press.json for 8 days. auto-curate-press has its own
+              # LOREG hard-stop built in.
               # scrape:factcheck runs FIRST so verify:press-claims can
               # cross-reference Newtral / Maldita / EFE Verifica.
               # Gracefully no-ops when GOOGLE_FACT_CHECK_API_KEY is absent.
-              npm run scrape:factcheck || true
-              npm run extract:press-claims -- --max 60 || true
-              npm run verify:press-claims || true
-              npm run summarize:press -- --max 40 || true
-              npm run compute:press-analytics || true
-              npm run auto-curate-press || true
+              LAB_RESULTS=""
+              run_lab() {
+                local label="$1"; shift
+                if "$@"; then
+                  LAB_RESULTS="${LAB_RESULTS}- ✅ ${label}\n"
+                else
+                  LAB_RESULTS="${LAB_RESULTS}- ❌ ${label} (exit $?)\n"
+                fi
+              }
+              run_lab "scrape:factcheck"        npm run scrape:factcheck
+              run_lab "extract:press-claims"    npm run extract:press-claims -- --max 60
+              run_lab "verify:press-claims"     npm run verify:press-claims
+              run_lab "summarize:press"         npm run summarize:press -- --max 40
+              run_lab "compute:press-analytics" npm run compute:press-analytics
+              run_lab "auto-curate-press"       npm run auto-curate-press
               # Daily link-rot audit + Wayback availability lookup.
               # Surfaces dead source URLs on /laboratorio so curators
               # can cite the frozen snapshot instead of the 404. Runs
               # LAST so it sees every claim the night's extract added.
-              npm run audit-press-links || true
+              run_lab "audit-press-links"       npm run audit-press-links
+              {
+                echo "### Press-lab chain"
+                printf '%b' "$LAB_RESULTS"
+                echo ""
+              } >> "$GITHUB_STEP_SUMMARY"
               ;;
             officials)             npm run scrape:officials ;;
             budget)                npm run scrape:budget ;;
@@ -110,7 +127,11 @@ jobs:
           echo "- Pipelines: \`${{ inputs.adapters || 'all' }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Changed: \`${{ steps.commit.outputs.changed }}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
+          # generatedAt per file: a frozen adapter is invisible in file
+          # sizes (yesterday's JSON has yesterday's size) but jumps out
+          # as a stale timestamp here.
           echo "Public JSON files:" >> "$GITHUB_STEP_SUMMARY"
           for f in public/data/*.json; do
-            echo "  - $f ($(du -h "$f" | cut -f1))" >> "$GITHUB_STEP_SUMMARY"
+            GEN=$(node -e "try{const j=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(j.generatedAt||'—')}catch{process.stdout.write('?')}" "$f")
+            echo "  - $f ($(du -h "$f" | cut -f1)) · generatedAt: $GEN" >> "$GITHUB_STEP_SUMMARY"
           done

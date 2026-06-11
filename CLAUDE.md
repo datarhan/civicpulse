@@ -382,8 +382,8 @@ JSON. The bot process reads + writes SQLite locally; exports are
 committed back to git (daily at 04:00 local, or on demand via
 `bash bot/scripts/local-export.sh`).
 
-`src/data/mockData.js` is **retired** — every production surface now
-reads real JSON. The file is only kept as a compile reference.
+`src/data/mockData.js` was retired and has since been **deleted** —
+every production surface reads real JSON.
 
 ### Layout
 - `src/App.jsx` — SPA root. `/` renders `DirectionD` as the landing
@@ -616,9 +616,11 @@ Key pieces worth knowing from this file:
   `promises.json frozenUntil` field as the front-end; gates broadcasts
   AND silencio auto-transitions.
 
-Bot-side tests: **54** (26 db + 10 batch + 9 escalation + 9 digest). Front-end
-tests: **161** (parser schemas + inference engines + queja-router +
-sindic schema). `tsc --noEmit` must stay clean on both sides.
+Bot-side tests: **54** (26 db + 10 batch + 9 escalation + 9 digest).
+Front-end vitest suite: **995 checks across 71 files** (parser schemas +
+inference engines + queja-router + sindic schema + LLM client/schemas +
+journalist subsystem + hooks). `tsc --noEmit` must stay clean on both
+sides.
 
 ### TDD cadence
 
@@ -635,18 +637,19 @@ Every new adapter lands in three commits:
    generated `public/data/*.json` alongside the code change.
 
 Fixtures are committed to the repo (they're the RED contract). Current
-coverage: **448 front-end + 36 bot = 484 vitest checks green** across
-34 front test files (adapter parsers + promise schema/inference +
-queja-router + sindic schema + department taxonomy + stats aggregator
-+ pleno-vote inference with dueBy extraction) and 3 bot test files
-(db + batch + escalation).
+coverage: **995 front-end + 54 bot vitest checks green** (the front-end
+counts grow with every adapter; treat the number in this file as a
+floor, not an exact pin). Shared parser primitives live in
+`src/scraper/normalize.ts` (diacritics fold, `normalizeAlphanumeric`,
+`RIBA_ROJA_ALIASES`) and `src/scraper/hash.ts` (`fnv32`, `sha256Short`
+— node-only; these are the STABLE IDS press/plenos/boe/tenders-ted key
+their rows by, so never fork a local copy).
 
 ### No more mocks
 
-`src/data/mockData.js` is retired — every production surface reads
-real JSON now. The file is only still imported as a compile reference
-and contains no data a page actually renders. Queja capture streams
-come from the Telegram bot, not a simulator.
+`src/data/mockData.js` is retired and deleted — every production
+surface reads real JSON. Queja capture streams come from the Telegram
+bot, not a simulator.
 
 ### Legal / ethical guardrails
 
