@@ -8,12 +8,8 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import {
-  asTenderRow,
-  fetchTedNotices,
-  parseTedResponse,
-  type TenderTedRow,
-} from '../src/scraper/tenders-ted'
+import { asTenderRow, parseTedResponse, type TenderTedRow } from '../src/scraper/tenders-ted'
+import { fetchTedNotices } from '../src/scraper/tenders-ted-fetch'
 
 const samplePage = {
   notices: [

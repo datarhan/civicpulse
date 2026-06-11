@@ -7,7 +7,8 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { fetchBoeRows, parseBoeSumario, type ApiSumarioResponse } from '../src/scraper/boe'
+import { parseBoeSumario, type ApiSumarioResponse } from '../src/scraper/boe'
+import { fetchBoeRows } from '../src/scraper/boe-fetch'
 
 function makeSumario(
   items: Array<{ identificador: string; titulo: string }>,

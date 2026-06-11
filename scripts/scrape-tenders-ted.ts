@@ -15,11 +15,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import {
-  fetchTedNotices,
-  parseTedResponse,
-  type TenderTedSnapshot,
-} from '../src/scraper/tenders-ted'
+import { parseTedResponse, type TenderTedSnapshot } from '../src/scraper/tenders-ted'
+import { fetchTedNotices } from '../src/scraper/tenders-ted-fetch'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)

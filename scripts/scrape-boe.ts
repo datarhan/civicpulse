@@ -17,7 +17,8 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { fetchBoeRows, type BoeSnapshot } from '../src/scraper/boe'
+import { type BoeSnapshot } from '../src/scraper/boe'
+import { fetchBoeRows } from '../src/scraper/boe-fetch'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
