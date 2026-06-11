@@ -1,0 +1,251 @@
+import { useOfficials, partyColor } from '../../../hooks/useOfficials'
+import { usePromises } from '../../../hooks/usePromises'
+import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
+import { useBudget, formatEuros as formatBudgetEuros } from '../../../hooks/useBudget'
+import { useTenders } from '../../../hooks/useTenders'
+import { useBdns } from '../../../hooks/useBdns'
+import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../../../scraper/departments'
+import { PALETTE, MONO } from '../tokens'
+
+export function AlcaldeBox() {
+  const { loading, error, data } = useOfficials()
+  const { data: promisesData } = usePromises()
+  const { data: agendasData } = usePlenoAgendas()
+  const { data: budgetData } = useBudget()
+  const { data: tendersData } = useTenders()
+  const { data: bdnsData } = useBdns()
+  if (loading || error || !data) return null
+  const mayor = data.officials.find((o) => o.role === 'alcalde')
+  if (!mayor) return null
+
+  // Municipal-government-level stats for the mandate. These are NOT
+  // attributed personally to the mayor — they are the numbers of the
+  // government he presides over. The strip label "Gobierno municipal ·
+  // <year>" makes this explicit.
+  const budgetYear = budgetData?.snapshot?.year
+  const budgetEuros = budgetData?.snapshot?.totalExpense
+  const tendersAwarded = tendersData?.stats?.awardedContracts
+  const tendersEuros = tendersData?.stats?.awardedTotalEuros
+  const bdnsGranted = bdnsData?.stats?.granted
+
+  // Canonicalise mayor's portfolios to dept slugs (dedup). The mayor owns
+  // several concejalías; surface all of them as chips so the reader can
+  // drill into any of his accountability surfaces.
+  const slugs = []
+  const seenSlugs = new Set()
+  for (const p of mayor.portfolios ?? []) {
+    const slug = canonicalizeDepartment(p)
+    if (slug && !seenSlugs.has(slug)) {
+      slugs.push(slug)
+      seenSlugs.add(slug)
+    }
+  }
+
+  const partyPromises = (promisesData?.items ?? []).filter((p) => p.party === mayor.party).length
+
+  // Count agenda items that fall inside the mayor's portfolio slugs — these
+  // are the pleno points his concejalías proposed. Doesn't attribute votes
+  // to him personally (that's a libel line), just "items from his areas".
+  let agendaHits = 0
+  if (agendasData?.plenos && seenSlugs.size > 0) {
+    for (const p of agendasData.plenos) {
+      for (const it of p.agenda || []) {
+        const s = it.departmentSlug || canonicalizeDepartment(it.department)
+        if (s && seenSlugs.has(s)) agendaHits += 1
+      }
+    }
+  }
+
+  return (
+    <div
+      style={{
+        padding: '12px 0',
+        borderTop: '1px solid ' + PALETTE.hair,
+        borderBottom: '1px solid ' + PALETTE.hair,
+        margin: '14px 0',
+      }}
+    >
+      <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+        {mayor.photoUrl ? (
+          <img
+            src={mayor.photoUrl}
+            alt={mayor.name}
+            width={52}
+            height={52}
+            style={{
+              width: 52,
+              height: 52,
+              borderRadius: 8,
+              objectFit: 'cover',
+              border: `2px solid ${partyColor(mayor.party)}44`,
+              flexShrink: 0,
+            }}
+          />
+        ) : null}
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 9.5,
+              color: PALETTE.ink60,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Alcalde
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 700, marginTop: 2, letterSpacing: '-.01em' }}>
+            {mayor.name}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4 }}>
+            <span
+              className="mono"
+              style={{
+                fontSize: 9,
+                fontWeight: 700,
+                letterSpacing: '.12em',
+                textTransform: 'uppercase',
+                background: partyColor(mayor.party),
+                color: 'white',
+                padding: '2px 6px',
+                borderRadius: 3,
+              }}
+            >
+              {mayor.party}
+            </span>
+            <span className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+              {mayor.email}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {(partyPromises > 0 || agendaHits > 0) && (
+        <div
+          style={{
+            display: 'flex',
+            gap: 14,
+            marginTop: 10,
+            fontSize: 11,
+            color: PALETTE.ink80,
+            fontFamily: MONO,
+          }}
+        >
+          {partyPromises > 0 && (
+            <a
+              href="/promesas"
+              style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+              title={`Promesas documentadas del grupo ${mayor.party}`}
+            >
+              <span style={{ fontWeight: 700 }}>{partyPromises}</span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>promesas · {mayor.party}</span>
+            </a>
+          )}
+          {agendaHits > 0 && slugs[0] && (
+            <a
+              href={`/departamentos/${slugs[0]}`}
+              style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+              title="Puntos de orden del día gestionados por concejalías del Alcalde"
+            >
+              <span style={{ fontWeight: 700 }}>{agendaHits}</span>
+              <span style={{ color: PALETTE.ink50, marginLeft: 5 }}>puntos en pleno</span>
+            </a>
+          )}
+        </div>
+      )}
+
+      {slugs.length > 0 && (
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 5,
+            marginTop: 8,
+          }}
+        >
+          {slugs.map((slug) => (
+            <a
+              key={slug}
+              href={`/departamentos/${slug}`}
+              className="mono"
+              style={{
+                fontSize: 9.5,
+                padding: '2px 7px',
+                background: '#EEF4FF',
+                color: PALETTE.civic,
+                borderRadius: 3,
+                letterSpacing: '.04em',
+                textDecoration: 'none',
+                fontWeight: 600,
+              }}
+            >
+              {DEPARTMENT_LABEL[slug].es} →
+            </a>
+          ))}
+        </div>
+      )}
+
+      {(budgetEuros || tendersAwarded || bdnsGranted) && (
+        <div style={{ marginTop: 10, paddingTop: 8, borderTop: '1px dashed ' + PALETTE.hair }}>
+          <div
+            className="mono"
+            style={{
+              fontSize: 8.5,
+              color: PALETTE.ink50,
+              letterSpacing: '.12em',
+              textTransform: 'uppercase',
+              marginBottom: 4,
+            }}
+          >
+            Gobierno municipal{budgetYear ? ` · ${budgetYear}` : ''}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              columnGap: 14,
+              rowGap: 4,
+              fontSize: 10.5,
+              fontFamily: MONO,
+              color: PALETTE.ink60,
+            }}
+          >
+            {budgetEuros && (
+              <a
+                href="/presupuesto"
+                style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                title="Presupuesto municipal total de gasto"
+              >
+                <span style={{ fontWeight: 700 }}>{formatBudgetEuros(budgetEuros)}</span>{' '}
+                <span style={{ color: PALETTE.ink50 }}>presupuesto</span>
+              </a>
+            )}
+            {tendersAwarded && (
+              <a
+                href="/presupuesto"
+                style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                title="Contratos adjudicados por el Ayuntamiento durante el mandato"
+              >
+                <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
+                <span style={{ color: PALETTE.ink50 }}>
+                  contratos
+                  {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
+                </span>
+              </a>
+            )}
+            {bdnsGranted && (
+              <a
+                href="/presupuesto"
+                style={{ color: PALETTE.ink80, textDecoration: 'none' }}
+                title="Subvenciones concedidas por el Ayuntamiento (registro BDNS)"
+              >
+                <span style={{ fontWeight: 700 }}>{bdnsGranted}</span>{' '}
+                <span style={{ color: PALETTE.ink50 }}>subvenciones</span>
+              </a>
+            )}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
