@@ -12,6 +12,8 @@
  *    with date, type label, and a participaciones/<hash> "Ver" link.
  */
 
+import { fnv32 } from './hash'
+
 export type PlenoKind = 'ordinario' | 'extraordinario' | 'urgente' | 'otro'
 
 export interface PlenoItem {
@@ -62,14 +64,8 @@ function extractDate(title: string, _fallbackYear: number): string | null {
   return `${yr}-${String(mes).padStart(2, '0')}-${String(day).padStart(2, '0')}`
 }
 
-function fnv(s: string): string {
-  let h = 0x811c9dc5
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i)
-    h = (h * 0x01000193) >>> 0
-  }
-  return h.toString(36)
-}
+// Shared impl — pleno ids are PRIMARY KEYS cited by pleno-claims/findings.
+const fnv = fnv32
 
 interface RegmeetParseOpts {
   year: number

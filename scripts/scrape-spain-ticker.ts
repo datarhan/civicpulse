@@ -39,6 +39,7 @@ function todayMadrid(offsetDays = 0): string {
 async function safeFetch(label: string, url: string, accept = 'application/json'): Promise<string> {
   const res = await fetch(url, {
     headers: { 'User-Agent': UA, Accept: accept },
+    signal: AbortSignal.timeout(30_000),
   })
   if (!res.ok) throw new Error(`${label}: HTTP ${res.status}`)
   return res.text()
@@ -63,7 +64,12 @@ async function fetchPvpc() {
     `https://apidatos.ree.es/es/datos/mercados/precios-mercados-tiempo-real?start_date=${d}T00:00&end_date=${d}T23:59&time_trunc=hour&geo_limit=peninsular&geo_ids=8741`
   const [raw, prevRaw] = await Promise.all([
     safeFetch('pvpc', mk(today)),
-    safeFetch('pvpc-prev', mk(yesterday)).catch(() => ''),
+    safeFetch('pvpc-prev', mk(yesterday)).catch((e) => {
+      // Degraded, not fatal: today's price still renders, but the
+      // day-over-day delta will be null. Leave a trace in the nightly log.
+      console.warn('[pvpc-prev] fetch failed — delta will be null:', e?.message || e)
+      return ''
+    }),
   ])
   return parsePvpc(raw, { previousDayRaw: prevRaw || undefined })
 }

@@ -51,6 +51,7 @@ async function fetchXml(url: string): Promise<string> {
       'User-Agent': UA,
       Accept: 'application/rss+xml,application/xml,text/xml,*/*',
     },
+    signal: AbortSignal.timeout(30_000),
   })
   if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`)
   return res.text()

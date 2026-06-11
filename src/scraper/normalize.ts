@@ -36,3 +36,28 @@ export function slugify(s: string): string {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
 }
+
+/**
+ * Aggressive matcher fold: lowercase, strip accents, drop every
+ * non-alphanumeric char — so "Riba-roja", "riba roja", "ribarroja" and
+ * "Ribarroja" all collapse to the same token. Previously duplicated
+ * verbatim in ctbg.ts and consell-cv.ts.
+ */
+export function normalizeAlphanumeric(s: string): string {
+  return stripDiacritics(s.toLowerCase()).replace(/[^a-z0-9]/g, '')
+}
+
+/**
+ * The four orthographic variants of the municipality in administrative
+ * texts — Catalán (Riba-roja / Túria) × Castilian (Ribarroja / Turia).
+ * Every alias keeps the "de Túria / del Turia" disambiguator so the
+ * Ebro-river dam "embalse de Riba-roja" (Aragón/Cataluña) never matches.
+ * This is shared POLICY for the CTBG + Consell CV filters, not an
+ * incidental constant — change it in one place only.
+ */
+export const RIBA_ROJA_ALIASES = [
+  'Riba-roja de Túria',
+  'Riba-roja del Turia',
+  'Ribarroja de Túria',
+  'Ribarroja del Turia',
+]

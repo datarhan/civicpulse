@@ -18,6 +18,7 @@
  */
 
 import * as XLSX from 'xlsx'
+import { normalizeAlphanumeric, RIBA_ROJA_ALIASES } from './normalize'
 
 // Canonical known tables. The Consell publishes one XLSX/ODS per year;
 // URLs are stable once minted but the UUID suffix is opaque so we
@@ -177,26 +178,15 @@ export function parseConsellTable(buffer: Buffer | ArrayBuffer, year: number): C
   return out
 }
 
-function normalise(s: string): string {
-  return s
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]/g, '')
-}
+// Shared fold (see normalize.ts).
+const normalise = normalizeAlphanumeric
 
 /**
  * Riba-roja de Túria has two orthographic variants in Valencian
  * administrative texts: "Riba-roja" (Catalán, single r) and
- * "Ribarroja" (Castellano, double r). Both normalise to distinct
- * alphanumeric strings, so we check both.
+ * "Ribarroja" (Castellano, double r). The shared alias list covers both.
  */
-export const DEFAULT_ALIASES = [
-  'Riba-roja de Túria',
-  'Riba-roja del Turia',
-  'Ribarroja de Túria',
-  'Ribarroja del Turia',
-]
+export const DEFAULT_ALIASES = RIBA_ROJA_ALIASES
 
 export function filterEntries(entries: ConsellEntry[], query: string | string[]): ConsellEntry[] {
   const terms = Array.isArray(query) ? query : [query]

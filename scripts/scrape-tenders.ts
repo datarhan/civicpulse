@@ -33,6 +33,8 @@ async function fetchCsv(url: string): Promise<string> {
       'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'text/csv',
     },
+    // The full contratos CSV is a few MB — generous but bounded.
+    signal: AbortSignal.timeout(60_000),
   })
   if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`)
   return res.text()

@@ -83,6 +83,8 @@ async function runQuery(ql: string): Promise<string> {
       Accept: 'application/json',
     },
     body,
+    // Client-side ceiling for Overpass queue + transfer time.
+    signal: AbortSignal.timeout(180_000),
   })
   if (!res.ok) throw new Error(`Overpass -> HTTP ${res.status}`)
   return res.text()

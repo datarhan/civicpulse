@@ -26,6 +26,8 @@ async function main() {
       'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'text/csv,text/plain',
     },
+    // Full province CSV is a few MB — generous but bounded.
+    signal: AbortSignal.timeout(120_000),
   })
   if (!res.ok) throw new Error(`INE returned ${res.status} ${res.statusText}`)
   const csv = await res.text()

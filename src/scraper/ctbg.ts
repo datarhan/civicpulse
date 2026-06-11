@@ -17,6 +17,7 @@
  */
 
 import * as XLSX from 'xlsx'
+import { normalizeAlphanumeric, RIBA_ROJA_ALIASES } from './normalize'
 
 export const CTBG_XLSX_URL =
   'https://consejodetransparencia.es/content/dam/ctransparencia/portal-ctbg/reclamaciones/nuestras-resoluciones/resoluciones-%C3%A1mbito-estatal/ResolucionesAE.xlsx'
@@ -121,32 +122,19 @@ export function parseCtbgWorkbook(buffer: Buffer | ArrayBuffer): CtbgEntry[] {
   return out
 }
 
-function normalise(s: string): string {
-  // Strip accents and every non-alphanumeric char so "Riba-roja",
-  // "riba roja", "ribarroja" and "Ribarroja" all collapse to the same
-  // token. This is deliberately aggressive because our search query
-  // ("Riba-roja") has no natural false-positive risk in Spanish legal
-  // texts.
-  return s
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]/g, '')
-}
+// Shared fold (see normalize.ts) - deliberately aggressive because our
+// search query ("Riba-roja") has no natural false-positive risk in
+// Spanish legal texts.
+const normalise = normalizeAlphanumeric
 
 /**
  * Riba-roja de Túria (INE 46214, Valencia) must be disambiguated from
  * the Ebro-river dam "embalse de Riba-roja" (Aragón/Cataluña) and
- * other hydroelectric references. We require the "de Túria" /
- * "del Turia" disambiguator in every alias. Four orthographic forms
- * cover Catalán (Riba-roja / Túria) and Castilian (Ribarroja / Turia).
+ * other hydroelectric references. The shared alias list keeps the
+ * "de Túria" / "del Turia" disambiguator in every variant — Catalán
+ * (Riba-roja / Túria) × Castilian (Ribarroja / Turia).
  */
-export const DEFAULT_ALIASES = [
-  'Riba-roja de Túria',
-  'Riba-roja del Turia',
-  'Ribarroja de Túria',
-  'Ribarroja del Turia',
-]
+export const DEFAULT_ALIASES = RIBA_ROJA_ALIASES
 
 export function filterEntries(entries: CtbgEntry[], query: string | string[]): CtbgEntry[] {
   const terms = Array.isArray(query) ? query : [query]

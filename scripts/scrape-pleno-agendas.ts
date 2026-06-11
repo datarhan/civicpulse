@@ -34,10 +34,16 @@ async function fetchPage(url: string): Promise<Buffer | null> {
       },
       signal: AbortSignal.timeout(15_000),
     })
-    if (!res.ok) return null
+    if (!res.ok) {
+      console.warn(`\n[pleno-agendas] ${url} -> HTTP ${res.status}`)
+      return null
+    }
     const ab = await res.arrayBuffer()
     return Buffer.from(ab)
-  } catch {
+  } catch (err) {
+    // A silent null here once hid a WAF block for days (the 0-items
+    // incident fixed in f4fa424) — always leave a trace.
+    console.warn(`\n[pleno-agendas] ${url} failed: ${(err as Error).message}`)
     return null
   }
 }
@@ -61,10 +67,12 @@ async function main() {
 
   console.log(`[pleno-agendas] fetching ${take} plenos (of ${plenos.length})`)
   const results: EnrichedPleno[] = []
+  let fetchFailures = 0
   for (let i = 0; i < take; i++) {
     const p = plenos[i]
     process.stdout.write(`[${i + 1}/${take}] ${p.date} ${p.title.slice(0, 50)} … `)
     const buf = await fetchPage(p.link)
+    if (!buf) fetchFailures += 1
     let agenda: PlenoAgendaItem[] = []
     if (buf) {
       const parsed = parsePlenoAgenda(buf)
@@ -92,6 +100,19 @@ async function main() {
   // Rank department frequency for quick dashboards.
   const deptCount: Record<string, number> = {}
   const itemCount = results.reduce((s, r) => s + r.agendaCount, 0)
+
+  // All-zero across an active council is never real (this exact state was
+  // the f4fa424 incident: a dead upstream silently zeroed every department
+  // dashboard). Keep yesterday's snapshot and fail the run instead.
+  if (take > 0 && itemCount === 0) {
+    console.error(
+      `[pleno-agendas] 0 agenda items across ${take} plenos (${fetchFailures} fetch failures) — leaving the existing snapshot untouched`,
+    )
+    process.exit(1)
+  }
+  if (fetchFailures > 0) {
+    console.warn(`[pleno-agendas] ${fetchFailures}/${take} pleno pages failed to fetch`)
+  }
   for (const r of results) {
     for (const d of r.departments) deptCount[d] = (deptCount[d] || 0) + 1
   }

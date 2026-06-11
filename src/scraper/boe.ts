@@ -20,7 +20,7 @@
  * Auth: none. Open data.
  * Politeness: throttled to 1 req/600ms in the CLI; the parser is pure.
  */
-import { createHash } from 'node:crypto'
+import { sha256Short } from './hash'
 
 const SUMARIO_URL = (yyyymmdd: string) =>
   `https://www.boe.es/datosabiertos/api/boe/sumario/${yyyymmdd}`
@@ -65,9 +65,8 @@ export interface BoeSnapshot {
   items: BoeRow[]
 }
 
-function sha256(text: string): string {
-  return createHash('sha256').update(text).digest('hex').slice(0, 12)
-}
+// Shared impl — BOE row ids are stable keys the press verifier cites.
+const sha256 = sha256Short
 
 function isoDateFromYyyymmdd(yyyymmdd: string): string {
   if (!/^\d{8}$/.test(yyyymmdd)) return new Date(0).toISOString()
@@ -211,6 +210,7 @@ export async function fetchBoeRows(opts: FetchOptions = {}): Promise<{
   const rows: BoeRow[] = []
   let daysFetched = 0
   let daysWithMatches = 0
+  let daysFailed = 0
   for (let i = 0; i < days; i += 1) {
     const d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() - i))
     const stamp = yyyymmdd(d)
@@ -218,13 +218,20 @@ export async function fetchBoeRows(opts: FetchOptions = {}): Promise<{
     try {
       const res = await fetchImpl(SUMARIO_URL(stamp), {
         headers: { 'User-Agent': UA, Accept: 'application/json' },
+        // Per-day budget — 30 sequential requests; one stall must not hang all.
+        signal: AbortSignal.timeout(30_000),
       })
       if (!res.ok) {
+        // 404/non-200 on weekends and festivos is the normal no-sumario case.
         await delay(delayMs)
         continue
       }
       payload = (await res.json()) as ApiSumarioResponse
-    } catch {
+    } catch (err) {
+      // Network-level failure is NOT the weekend case — leave a trace so a
+      // full BOE outage doesn't masquerade as "30 quiet days".
+      daysFailed += 1
+      console.warn(`[boe] ${stamp} fetch failed: ${(err as Error).message}`)
       await delay(delayMs)
       continue
     }
@@ -239,6 +246,9 @@ export async function fetchBoeRows(opts: FetchOptions = {}): Promise<{
       rows.push(...dayRows)
     }
     await delay(delayMs)
+  }
+  if (daysFailed > 0) {
+    console.warn(`[boe] ${daysFailed}/${days} days failed at the network level`)
   }
   rows.sort((a, b) => b.publicacionDate.localeCompare(a.publicacionDate))
   return { rows, daysFetched, daysWithMatches }

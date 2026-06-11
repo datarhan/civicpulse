@@ -124,7 +124,10 @@ function extractCuerpo(html: string): string | null {
   // Find the <div class="cuerpo"> … </div> enclosing the orden del día.
   const m = html.match(/<div\s+class="cuerpo"[^>]*>([\s\S]*?)<div[^>]+class="pie"/i)
   if (m) return m[1]
-  const alt = html.match(/<div\s+class="cuerpo"[^>]*>([\s\S]*)$/i)
+  // Fallback when no "pie" closer exists: bound the scan — a real cuerpo
+  // fits comfortably in 200 KB, and an arbitrarily-corrupt CMS page should
+  // not make this unanchored tail-capture chew the whole document.
+  const alt = html.slice(0, 200_000).match(/<div\s+class="cuerpo"[^>]*>([\s\S]*)$/i)
   return alt ? alt[1] : null
 }
 

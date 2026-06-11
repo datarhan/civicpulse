@@ -306,10 +306,13 @@ export interface AemetSnapshot {
   sourceUrl: string
 }
 
-export function parseAemetAvisosHtml(raw: string): AemetSnapshot {
+export function parseAemetAvisosHtml(raw: string, opts: { now?: Date } = {}): AemetSnapshot {
+  // Injectable clock (same pattern as parsePvpc) keeps the parser pure —
+  // identical input must produce identical output for snapshot tests.
+  const asOf = (opts.now ?? new Date()).toISOString()
   const base: AemetSnapshot = {
     ok: false,
-    asOf: new Date().toISOString(),
+    asOf,
     active: false,
     highestLevel: null,
     counts: null,
@@ -330,7 +333,7 @@ export function parseAemetAvisosHtml(raw: string): AemetSnapshot {
     nRojo > 0 ? 'rojo' : nNaranja > 0 ? 'naranja' : nAmarillo > 0 ? 'amarillo' : null
   return {
     ok: true,
-    asOf: new Date().toISOString(),
+    asOf,
     active,
     highestLevel,
     counts,
@@ -357,10 +360,11 @@ export interface DgtSnapshot {
   sourceUrl: string
 }
 
-export function parseDgtDatex2(raw: string, opts: { roads: string[] }): DgtSnapshot {
+export function parseDgtDatex2(raw: string, opts: { roads: string[]; now?: Date }): DgtSnapshot {
+  // Injectable clock — see parseAemetAvisosHtml.
   const base: DgtSnapshot = {
     ok: false,
-    asOf: new Date().toISOString(),
+    asOf: (opts.now ?? new Date()).toISOString(),
     incidents: [],
     sourceUrl: 'https://infocar.dgt.es',
   }

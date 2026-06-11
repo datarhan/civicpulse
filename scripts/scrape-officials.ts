@@ -39,6 +39,7 @@ async function fetchLiveHtml(): Promise<string> {
         'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)',
       Accept: 'text/html,application/xhtml+xml',
     },
+    signal: AbortSignal.timeout(30_000),
   })
   if (!res.ok) throw new Error(`Source returned ${res.status} ${res.statusText}`)
   return res.text()
@@ -46,7 +47,7 @@ async function fetchLiveHtml(): Promise<string> {
 
 async function downloadPhoto(url: string, slug: string): Promise<string | null> {
   try {
-    const res = await fetch(url)
+    const res = await fetch(url, { signal: AbortSignal.timeout(30_000) })
     if (!res.ok) return null
     const contentType = res.headers.get('content-type') || 'image/jpeg'
     const ext = contentType.includes('png') ? 'png' : contentType.includes('webp') ? 'webp' : 'jpg'

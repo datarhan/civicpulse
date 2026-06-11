@@ -41,10 +41,15 @@ function normalize(raw: unknown): Raw[] {
 
 function parseDate(s: string): string {
   if (!s) return new Date(0).toISOString()
-  // BDNS feeds ISO-ish "2026-01-19" or "19/01/2026"
-  if (/^\d{4}-\d{2}-\d{2}/.test(s)) return new Date(s).toISOString()
+  // BDNS feeds ISO-ish "2026-01-19" (occasionally with a zoneless time
+  // suffix) or "19/01/2026". Pin the calendar date at UTC midnight: feeding
+  // a zoneless datetime to new Date() parses it in the HOST zone, which can
+  // shift the day (e.g. "…T00:30:00" on a UTC+1 host lands on the previous
+  // UTC day) and silently mis-order stats.latestDate.
+  const iso = s.match(/^(\d{4}-\d{2}-\d{2})/)
+  if (iso) return new Date(`${iso[1]}T00:00:00.000Z`).toISOString()
   const m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})/)
-  if (m) return new Date(`${m[3]}-${m[2]}-${m[1]}`).toISOString()
+  if (m) return new Date(`${m[3]}-${m[2]}-${m[1]}T00:00:00.000Z`).toISOString()
   return new Date(s).toISOString()
 }
 

@@ -35,6 +35,37 @@ interface QuejaResponsesSnapshot {
   items: QuejaResponseItem[]
 }
 
+/**
+ * Snapshot-wide validation — same contract as every other curator CLI:
+ * an edit that broke an invariant throws BEFORE the file is overwritten.
+ * This was the one curated file written with a bare type-cast.
+ */
+function validateQuejaResponsesSnapshot(json: string): QuejaResponsesSnapshot {
+  const snap = JSON.parse(json) as QuejaResponsesSnapshot
+  if (!snap || typeof snap !== 'object') throw new Error('snapshot is not an object')
+  if (!Array.isArray(snap.items)) throw new Error('snapshot.items is not an array')
+  const seen = new Set<string>()
+  for (const it of snap.items) {
+    if (!it.id || typeof it.id !== 'string') throw new Error('item without id')
+    if (seen.has(it.id)) throw new Error(`duplicate response id ${it.id}`)
+    seen.add(it.id)
+    if (!/^Q-[0-9A-Z]{4,}$/.test(it.queja_id ?? '')) {
+      throw new Error(`${it.id}: invalid queja_id "${it.queja_id}"`)
+    }
+    if ((it.role ?? '').trim().length < 3) throw new Error(`${it.id}: role too short`)
+    if ((it.firmante ?? '').trim().length < 3) throw new Error(`${it.id}: firmante too short`)
+    const len = (it.text ?? '').trim().length
+    if (len < 20 || len > 2000) throw new Error(`${it.id}: text must be 20..2000 chars (${len})`)
+    if (it.source_url != null && !/^https?:\/\//.test(it.source_url)) {
+      throw new Error(`${it.id}: source_url must be absolute`)
+    }
+    if (!it.appliedAt || Number.isNaN(Date.parse(it.appliedAt))) {
+      throw new Error(`${it.id}: appliedAt is not a valid ISO date`)
+    }
+  }
+  return snap
+}
+
 function usage(): never {
   console.error('Usage: npm run queja-reply -- <Q-ID> "<role>" "<firmante>" "<text>" [source-url]')
   process.exit(2)
@@ -72,7 +103,7 @@ function main() {
   }
 
   const path = resolve(process.cwd(), 'public/data/quejas-responses.json')
-  const snap = JSON.parse(readFileSync(path, 'utf8')) as QuejaResponsesSnapshot
+  const snap = validateQuejaResponsesSnapshot(readFileSync(path, 'utf8'))
 
   const newId = `qr-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`
   const entry: QuejaResponseItem = {
@@ -86,7 +117,11 @@ function main() {
   }
   snap.items.push(entry)
   snap.generatedAt = new Date().toISOString()
-  writeFileSync(path, JSON.stringify(snap, null, 2) + '\n')
+  // RE-validate the whole snapshot before writing — a malformed edit must
+  // throw while the on-disk file is still intact.
+  const serialized = JSON.stringify(snap, null, 2) + '\n'
+  validateQuejaResponsesSnapshot(serialized)
+  writeFileSync(path, serialized)
   console.log(`[queja-reply] applied ${newId} → ${id} (${firmante})`)
 }
 

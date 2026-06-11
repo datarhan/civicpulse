@@ -19,7 +19,10 @@ const OUT = resolve(process.cwd(), 'public/data/consell-cv.json')
 
 async function fetchYear({ year, url }: { year: number; url: string }): Promise<ConsellEntry[]> {
   console.log(`[consell-cv] fetching ${year} · ${url.slice(0, 80)}…`)
-  const res = await fetch(url, { headers: { 'User-Agent': UA } })
+  const res = await fetch(url, {
+    headers: { 'User-Agent': UA },
+    signal: AbortSignal.timeout(60_000),
+  })
   if (!res.ok) {
     console.warn(`[consell-cv] ${year} fetch failed: ${res.status} ${res.statusText}`)
     return []

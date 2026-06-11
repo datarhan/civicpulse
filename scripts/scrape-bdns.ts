@@ -26,6 +26,8 @@ async function fetchPage(page: number): Promise<unknown[]> {
       'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/json',
     },
+    // Per-page budget — a stalled BDNS must not hang the nightly chain.
+    signal: AbortSignal.timeout(30_000),
   })
   if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`)
   const body = (await res.json()) as { content?: unknown[] }

@@ -11,6 +11,7 @@
  *
  * Usage: npm run scrape:plenos
  */
+import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -32,17 +33,25 @@ const REGMEET_ENTITY = '3b56be67439045acfbc7c1552d87a166'
 const UA = 'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 
 async function loadExistingIdByDate(): Promise<Map<string, string>> {
+  // Absent file = first-run bootstrap (fine). A PRESENT-but-unparseable file
+  // is different: regenerating every pleno id would silently orphan the
+  // pleno-claims / pleno-findings rows that cite the old ids, so refuse.
+  if (!existsSync(OUT)) return new Map()
+  const buf = await readFile(OUT, 'utf8')
+  let snap: { items?: PlenoItem[] }
   try {
-    const buf = await readFile(OUT, 'utf8')
-    const snap = JSON.parse(buf) as { items?: PlenoItem[] }
-    const map = new Map<string, string>()
-    for (const it of snap.items || []) {
-      if (it.date && it.id) map.set(it.date, it.id)
-    }
-    return map
-  } catch {
-    return new Map()
+    snap = JSON.parse(buf) as { items?: PlenoItem[] }
+  } catch (err) {
+    console.error(
+      `[plenos] ${OUT} exists but is unparseable (${(err as Error).message}) — refusing to regenerate ids over a corrupt snapshot`,
+    )
+    process.exit(1)
   }
+  const map = new Map<string, string>()
+  for (const it of snap.items || []) {
+    if (it.date && it.id) map.set(it.date, it.id)
+  }
+  return map
 }
 
 async function fetchYear(
@@ -52,6 +61,7 @@ async function fetchYear(
   const url = `${REGMEET_BASE}/aytoribarroja/sesiones_categorias/${REGMEET_ENTITY}/${year}?idioma=castellano`
   const res = await fetch(url, {
     headers: { 'User-Agent': UA, Accept: 'text/html' },
+    signal: AbortSignal.timeout(30_000),
   })
   if (!res.ok) {
     console.warn(`[plenos] ${year}: HTTP ${res.status} ${res.statusText}`)

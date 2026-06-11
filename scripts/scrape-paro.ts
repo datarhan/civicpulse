@@ -48,6 +48,8 @@ async function tryMonth(year: number, monthIdx: number): Promise<ParoSnapshot | 
       'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
     },
+    // Per-month budget — one stalled SEPE download must not hang the chain.
+    signal: AbortSignal.timeout(120_000),
   })
   if (!res.ok) return null
   const ct = res.headers.get('content-type') || ''
@@ -72,6 +74,14 @@ async function main() {
     }
   }
   results.sort((a, b) => a.period.localeCompare(b.period))
+
+  // Zero months parsed across a 24-month walk is never a real data state —
+  // it means SEPE moved/blocked the feed. Refuse to overwrite yesterday's
+  // snapshot with an empty one (the silent-freeze failure mode).
+  if (results.length === 0) {
+    console.error('[paro] 0/24 months fetched — leaving the existing snapshot untouched')
+    process.exit(1)
+  }
 
   const payload = {
     generatedAt: new Date().toISOString(),

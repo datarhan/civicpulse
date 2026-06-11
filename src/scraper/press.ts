@@ -17,6 +17,8 @@
  *  - sort newest-first.
  */
 
+import { fnv32 } from './hash'
+
 export interface NewsItem {
   id: string
   title: string
@@ -61,14 +63,8 @@ function extractItems(xml: string): string[] {
   return items
 }
 
-function fnvHash(s: string): string {
-  let h = 0x811c9dc5
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i)
-    h = (h * 0x01000193) >>> 0
-  }
-  return h.toString(36)
-}
+// Shared impl — these hashes are the stable NewsItem ids + fingerprints.
+const fnvHash = fnv32
 
 export function fingerprintFor(title: string): string {
   const canonical = title

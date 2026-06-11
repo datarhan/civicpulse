@@ -24,6 +24,7 @@ async function main() {
       'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/json',
     },
+    signal: AbortSignal.timeout(30_000),
   })
   if (!res.ok) throw new Error(`HTTP ${res.status}`)
   const json = await res.text()

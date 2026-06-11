@@ -188,7 +188,11 @@ async function main() {
     process.stderr.write(`\n[verify-llm] ${sig} — flushing partial snapshot…\n`)
     try {
       flushSnapshot()
-    } catch {}
+    } catch (err) {
+      // The flush IS the checkpoint — if it failed, the operator must know
+      // the on-disk snapshot is stale before deciding whether to re-run.
+      process.stderr.write(`[verify-llm] flush FAILED: ${(err as Error).message}\n`)
+    }
     process.exit(130)
   }
   process.on('SIGINT', () => onSignal('SIGINT'))

@@ -167,8 +167,11 @@ function toIsoDate(iso: string): string {
 export function inferPromiseSuggestions(
   promises: CurPromise[],
   input: InferenceInput,
+  // Injectable clock — identical inputs must produce identical output so
+  // tests can snapshot the result; the CLI passes nothing (real clock).
+  nowIso: string = new Date().toISOString(),
 ): PromiseSuggestion[] {
-  const now = new Date().toISOString()
+  const now = nowIso
   const pressItems = input.press?.items ?? []
   const plenoItems = input.plenos?.items ?? []
 

@@ -15,7 +15,7 @@
  * via [...local.contracts, ...ted.items] in the verifier inputs.
  */
 
-import { createHash } from 'node:crypto'
+import { sha256Short } from './hash'
 
 const API_URL = 'https://api.ted.europa.eu/v3/notices/search'
 const UA = 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion'
@@ -71,9 +71,8 @@ interface ApiResponse {
   iterationNextToken?: string | null
 }
 
-function sha256(text: string): string {
-  return createHash('sha256').update(text).digest('hex').slice(0, 12)
-}
+// Shared impl — TED notice ids are stable keys across runs.
+const sha256 = sha256Short
 
 function pickLang(map: Record<string, string[]> | undefined, langs: string[]): string {
   if (!map) return ''
@@ -177,6 +176,8 @@ export async function fetchTedNotices(opts: FetchOptions = {}): Promise<ApiRespo
         Accept: 'application/json',
       },
       body: JSON.stringify(body),
+      // Per-page budget — a stalled TED API must not hang the nightly chain.
+      signal: AbortSignal.timeout(30_000),
     })
     if (!res.ok) {
       const text = await res.text()

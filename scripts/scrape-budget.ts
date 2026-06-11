@@ -40,6 +40,8 @@ async function tryYear(year: number): Promise<BudgetSnapshot | null> {
       'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
       Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
     },
+    // CONPREL XLS download — generous but bounded.
+    signal: AbortSignal.timeout(120_000),
   })
   if (!res.ok) {
     console.warn(`[budget] ${year}: HTTP ${res.status}, skipping`)
