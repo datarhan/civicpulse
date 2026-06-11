@@ -291,7 +291,10 @@ export const PressClaimResponseSchema = z.object({
 export type PressClaimResponse = z.infer<typeof PressClaimResponseSchema>
 
 export const PressSummaryResponseSchema = z.object({
-  summary: z.string().min(40).max(500),
+  // The prompt asks for 200–450 chars; 150 keeps a tolerance band below that
+  // while rejecting obviously-truncated outputs (a 60-char "summary" used to
+  // pass, get cached, and ship to /laboratorio with no retry).
+  summary: z.string().min(150).max(500),
 })
 export type PressSummaryResponse = z.infer<typeof PressSummaryResponseSchema>
 

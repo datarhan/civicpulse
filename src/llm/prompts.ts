@@ -195,7 +195,10 @@ export function buildPlenoClaimUserPrompt(segment: string): string {
 
 // ─── Phase 2 · Promise evidence mining ──────────────────────────────────────
 
-export const PROMISE_EVIDENCE_PROMPT_VERSION = 'promise-evidence-v2'
+// v3: added "pleno_transcript" to the corpus enum line — the schema and the
+// special handling rules below always accepted it, but the enum list told
+// the model it was invalid (so compliant models never cited transcripts).
+export const PROMISE_EVIDENCE_PROMPT_VERSION = 'promise-evidence-v3'
 
 export interface PromiseEvidenceInput {
   promise: {
@@ -220,7 +223,7 @@ Recibirás UNA promesa y varios candidatos ya pre-filtrados por similitud textua
 
 Para cada candidato que REALMENTE aporte evidencia (positiva o negativa) a la promesa:
 - promiseId: el id de la promesa (tal cual viene)
-- corpus: "press" | "pleno_agenda" | "pleno_vote" | "tender" | "bdns" | "budget"
+- corpus: "press" | "pleno_agenda" | "pleno_vote" | "pleno_transcript" | "tender" | "bdns" | "budget"
 - evidenceUrl: URL del candidato (debe existir en la lista que te doy — no inventes)
 - publisher: fuente (ej. "Levante-EMV", "Ayuntamiento Riba-roja", "BOE")
 - date: fecha ISO YYYY-MM-DD

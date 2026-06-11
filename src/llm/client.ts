@@ -35,6 +35,16 @@ import { zodToJsonSchema } from './schemas'
 // ─── Resilience primitives ─────────────────────────────────────────────────
 
 /**
+ * Network ceiling per metered-API HTTP call. Node's fetch has NO default
+ * timeout, so without this a single stalled TLS connection can deadlock an
+ * entire extract batch (every concurrency worker waiting forever). 120 s is
+ * generous for the largest windows; override via LLM_FETCH_TIMEOUT_MS.
+ * Deliberately NOT applied to Ollama — local CPU generation on big prompts
+ * can legitimately exceed any sane HTTP ceiling.
+ */
+const FETCH_TIMEOUT_MS = Number(process.env.LLM_FETCH_TIMEOUT_MS || 120_000)
+
+/**
  * Typed retryable error thrown by backend-specific callers when the server
  * is rate-limiting or overloaded. callLLM's retry loop honors `retryAfterMs`
  * by sleeping before the next attempt, and treats these as the signal to
@@ -347,7 +357,19 @@ async function callOllama(req: RawCall): Promise<RawResult> {
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(body),
   })
-  if (!res.ok) throw new Error(`Ollama ${res.status}: ${await res.text()}`)
+  if (!res.ok) {
+    const text = await res.text()
+    // A local daemon overloaded by parallel extraction (429/5xx) deserves
+    // the same backoff-and-retry treatment the metered backends get —
+    // a plain Error here would burn all retries instantly with no sleep.
+    if (res.status === 429 || res.status >= 500) {
+      throw new RetryableError(`Ollama ${res.status}: ${text.slice(0, 200)}`, {
+        retryAfterMs: parseRetryAfter(res.headers.get('retry-after')),
+        status: res.status,
+      })
+    }
+    throw new Error(`Ollama ${res.status}: ${text.slice(0, 200)}`)
+  }
   const data = (await res.json()) as {
     message: { content: string }
     prompt_eval_count?: number
@@ -445,6 +467,9 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify(body),
+    // Node fetch has NO default timeout — a stalled connection would hang
+    // the whole batch (all concurrency workers can deadlock on one stall).
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   })
   if (!res.ok) {
     const body = await res.text()
@@ -756,6 +781,8 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
       authorization: `Bearer ${req.config.openaiApiKey}`,
     },
     body: JSON.stringify(body),
+    // See FETCH_TIMEOUT_MS — a stalled connection must not hang the batch.
+    signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   })
   if (!res.ok) {
     const body = await res.text()
