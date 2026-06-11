@@ -18,13 +18,10 @@ export function isPromiseFrozen(snap, now = new Date()) {
   }
 }
 
-export const PARTY_TONE = {
-  PSOE: '#D01832',
-  PP: '#2463EB',
-  VOX: '#3A8018',
-  Compromís: '#A06116',
-  Otro: '#64748B',
-}
+// Historical alias of the canonical palette (despite the name it holds hex
+// values, not design-token tones). Gains Ciudadanos for free; Otro stays
+// the neutral slate.
+export { PARTY_COLORS as PARTY_TONE } from '../lib/party-colors'
 
 export const STATUS_LABEL = {
   documentada: 'Documentada',

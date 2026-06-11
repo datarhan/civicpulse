@@ -9,18 +9,7 @@ export function useOfficials() {
   return useJsonFetch('/data/officials.json')
 }
 
-// Party brand colors, tuned so white text at ≥9px bold meets WCAG AA (≥4.5:1).
-// The original brand values fail contrast; these are the darkened AA-safe variants
-// used in Spanish political press for print.
-export const PARTY_COLORS = {
-  PSOE: '#D01832',
-  PP: '#2463EB',
-  VOX: '#3A8018',
-  Compromís: '#A06116',
-  Ciudadanos: '#B05A10',
-  Otro: '#6D3FE5',
-}
-
-export function partyColor(party) {
-  return PARTY_COLORS[party] || '#64748B'
-}
+// Canonical palette lives in lib/party-colors (shared with usePromises'
+// PARTY_TONE alias); re-exported here because pages historically import
+// partyColor from this hook.
+export { PARTY_COLORS, partyColor } from '../lib/party-colors'
