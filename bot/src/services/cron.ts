@@ -25,11 +25,50 @@ export interface SilencioResult {
   transitioned: QuejaRow[]
   skippedFrozen: boolean
   checked: number
+  /**
+   * Detached broadcast outcome — the state transitions themselves are
+   * synchronous and never blocked on Telegram, but callers (and the cron
+   * log) can await this to learn how many [SILENCIO] posts actually
+   * landed. A failed broadcast is otherwise invisible: the transition
+   * succeeds while citizens never see the notification.
+   */
+  broadcasts: Promise<{ sent: number; failed: number }>
 }
 
-export function checkSilencio(db: Db, channel: Channel, now: Date = new Date()): SilencioResult {
+/** One retry after a short backoff — Telegram 429s clear in seconds. */
+async function postSilencioWithRetry(
+  channel: Channel,
+  q: QuejaRow,
+  retryDelayMs: number,
+): Promise<boolean> {
+  try {
+    await channel.postSilencio(q)
+    return true
+  } catch {
+    await new Promise((resolve) => setTimeout(resolve, retryDelayMs))
+    try {
+      await channel.postSilencio(q)
+      return true
+    } catch (err) {
+      console.error(`[cron] broadcast failed twice for ${q.id}:`, err)
+      return false
+    }
+  }
+}
+
+export function checkSilencio(
+  db: Db,
+  channel: Channel,
+  now: Date = new Date(),
+  retryDelayMs = 5_000,
+): SilencioResult {
   if (isLoregFrozen(now)) {
-    return { transitioned: [], skippedFrozen: true, checked: 0 }
+    return {
+      transitioned: [],
+      skippedFrozen: true,
+      checked: 0,
+      broadcasts: Promise.resolve({ sent: 0, failed: 0 }),
+    }
   }
   const rows = db
     .prepare(
@@ -61,11 +100,19 @@ export function checkSilencio(db: Db, channel: Channel, now: Date = new Date()):
     }
   }
 
-  // Fire-and-forget broadcasts (non-blocking).
-  for (const q of transitioned) {
-    channel.postSilencio(q).catch((e) => console.error('[cron] broadcast:', e))
-  }
-  return { transitioned, skippedFrozen: false, checked: rows.length }
+  // Detached broadcasts (non-blocking for the transition path) with one
+  // retry each + an aggregate count so missed notifications leave a trace.
+  const broadcasts = Promise.all(
+    transitioned.map((q) => postSilencioWithRetry(channel, q, retryDelayMs)),
+  ).then((oks) => {
+    const sent = oks.filter(Boolean).length
+    const failed = oks.length - sent
+    if (failed > 0) {
+      console.error(`[cron] ${failed}/${oks.length} silencio broadcasts failed permanently`)
+    }
+    return { sent, failed }
+  })
+  return { transitioned, skippedFrozen: false, checked: rows.length, broadcasts }
 }
 
 export function startSilencioCron(db: Db, channel: Channel): () => void {
