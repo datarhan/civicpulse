@@ -1,5 +1,6 @@
 // @ts-check
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 /**
  * Load the GTFS-derived metro schedule written by
@@ -22,21 +23,7 @@ import { useEffect, useMemo, useState } from 'react'
  * should fall back to the hardcoded tables in `useNextMetro.js`.
  */
 export function useMetroSchedule() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let alive = true
-    fetch('/data/metro-schedule.json')
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((data) => {
-        if (alive) setState({ loading: false, error: null, data })
-      })
-      .catch((error) => {
-        if (alive) setState({ loading: false, error, data: null })
-      })
-    return () => {
-      alive = false
-    }
-  }, [])
+  const state = useJsonFetch('/data/metro-schedule.json')
 
   const findNext = useMemo(() => {
     const data = state.data

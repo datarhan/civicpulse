@@ -1,5 +1,5 @@
 // @ts-check
-import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 export const OUTCOME_LABEL = {
   aprobado: 'Aprobado',
@@ -30,24 +30,7 @@ export const DIRECTION_TONE = {
 }
 
 export function usePlenoVotes() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-
-  useEffect(() => {
-    let alive = true
-    fetch('/data/pleno-votes.json')
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
-      .then((data) => {
-        if (alive) setState({ loading: false, error: null, data })
-      })
-      .catch((error) => {
-        if (alive) setState({ loading: false, error, data: null })
-      })
-    return () => {
-      alive = false
-    }
-  }, [])
-
-  return state
+  return useJsonFetch('/data/pleno-votes.json')
 }
 
 /** Count how many votes each bloc has cast *a favor* / *en contra* / *abstención*

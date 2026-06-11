@@ -1,5 +1,9 @@
 // @ts-check
-import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
+
+// The findings file ships empty until the first curator promotion; a 404
+// resolves to an empty snapshot rather than an error.
+const EMPTY_FINDINGS = { items: [] }
 
 export const SEVERITY_LABEL = {
   informational: 'Informativo',
@@ -14,24 +18,5 @@ export const SEVERITY_TONE = {
 }
 
 export function usePlenoFindings() {
-  const [state, setState] = useState({ loading: true, error: null, data: null })
-  useEffect(() => {
-    let alive = true
-    fetch('/data/pleno-findings.json', { cache: 'no-cache' })
-      .then((r) => {
-        if (r.status === 404) return { items: [] }
-        if (!r.ok) throw new Error(`pleno-findings returned ${r.status}`)
-        return r.json()
-      })
-      .then((data) => {
-        if (alive) setState({ loading: false, error: null, data })
-      })
-      .catch((error) => {
-        if (alive) setState({ loading: false, error, data: null })
-      })
-    return () => {
-      alive = true
-    }
-  }, [])
-  return state
+  return useJsonFetch('/data/pleno-findings.json', EMPTY_FINDINGS)
 }
