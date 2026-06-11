@@ -32,10 +32,14 @@ function loadPromisesSnapshot(): PromisesSnapshotLite | null {
     cached = JSON.parse(readFileSync(path, 'utf8'))
     cachedAt = now
     return cached
-  } catch {
-    cached = null
-    cachedAt = now
-    return null
+  } catch (err) {
+    // Keep the LAST KNOWN state on a transient read failure (e.g. the file
+    // mid-atomic-replace by a scrape run) instead of silently flipping to
+    // "not frozen" — that flip is a LOREG art. 50 hazard. Log so the
+    // operator sees a persistent failure in the launchd log.
+    console.error('[freeze] promises.json read failed:', (err as Error).message)
+    cachedAt = now // back off for the cache window before retrying
+    return cached
   }
 }
 

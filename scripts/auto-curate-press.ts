@@ -83,7 +83,15 @@ async function main() {
   }
 
   const promises = (await readJson(PATHS.promises)) as { frozenUntil?: string | null } | null
-  const frozenUntil = promises?.frozenUntil ?? null
+  // Fail CLOSED on the legal gate: an unreadable promises.json means the
+  // LOREG freeze state is unknowable — refuse to auto-publish findings
+  // rather than defaulting to "not frozen" (LOREG art. 50).
+  if (!promises) {
+    throw new Error(
+      `[auto-curate-press] ${PATHS.promises} missing or unreadable — cannot determine LOREG freeze state, refusing to publish.`,
+    )
+  }
+  const frozenUntil = promises.frozenUntil ?? null
 
   const result = selectBundles(verifiedSnap.items, { maxFindings: max, frozenUntil })
 

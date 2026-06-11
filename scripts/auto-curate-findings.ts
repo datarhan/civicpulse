@@ -170,6 +170,16 @@ async function main() {
   const videos = loadJson<{ items: PlenoVideoEntry[] }>(VIDEOS)
   const promises = loadJson<PromisesSnap>(PROMISES)
 
+  // Fail CLOSED on the legal gate: an absent/unreadable promises.json means
+  // the LOREG freeze state is unknowable — refusing to publish is reversible,
+  // publishing during a freeze is not (LOREG art. 50).
+  if (!promises) {
+    process.stderr.write(
+      `[auto-curate] ${PROMISES} missing or unreadable — cannot determine LOREG freeze state, refusing to publish\n`,
+    )
+    process.exit(1)
+  }
+
   if (isFrozen(promises)) {
     process.stderr.write(
       `[auto-curate] LOREG electoral freeze active until ${promises?.frozenUntil} — exiting without publishing\n`,
