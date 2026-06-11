@@ -10,6 +10,7 @@ import {
   STATUS_TONE,
   TOPIC_LABEL,
 } from '../hooks/usePromises'
+import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 
 function FreezeBanner({ snap }) {
@@ -32,14 +33,9 @@ function FreezeBanner({ snap }) {
         Periodo electoral en vigor — tracker en modo solo-lectura.
       </strong>
       <div style={{ marginTop: 4, color: 'var(--ink70)' }}>
-        Los estados quedan congelados hasta{' '}
-        {new Date(snap.frozenUntil).toLocaleDateString('es-ES', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })}{' '}
-        (LOREG art. 50). El motor de sugerencias sigue ejecutándose pero no publica cambios de
-        estado. Para correcciones durante este periodo, abre una issue en{' '}
+        Los estados quedan congelados hasta {fmtDateLong(snap.frozenUntil)} (LOREG art. 50). El
+        motor de sugerencias sigue ejecutándose pero no publica cambios de estado. Para correcciones
+        durante este periodo, abre una issue en{' '}
         <a
           href={snap.contactUrl}
           target="_blank"
@@ -147,8 +143,7 @@ function CompositionBar({ items }) {
 
 function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
   const color = PARTY_TONE[p.party] || '#64748B'
-  const fmt = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
+  const fmt = fmtDateLong
   const showSuggestion = suggestion && !frozen && suggestion.reasoning.length > 0
   const llmItems = (llmEvidence || []).filter((e) => e.promiseId === p.id)
   const showLlm = !frozen && llmItems.length > 0

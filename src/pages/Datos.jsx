@@ -14,18 +14,10 @@ import { useParticipa } from '../hooks/useParticipa'
 import { useParo } from '../hooks/useParo'
 import { useGeo } from '../hooks/useGeo'
 import { usePromises } from '../hooks/usePromises'
+import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 
 function formatDate(iso) {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return '—'
-  }
+  return fmtDateShort(iso) || '—'
 }
 
 function DatasetsCatalog() {
@@ -231,11 +223,7 @@ function WikidataCard() {
   const { loading, error, data } = useWikidata()
   if (loading || error || !data?.facts) return null
   const f = data.facts
-  const generated = new Date(data.generatedAt).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const generated = fmtDateLong(data.generatedAt)
   const link = (href, label) =>
     href ? (
       <a
@@ -411,11 +399,7 @@ function PopulationChart() {
   }
 
   const latest = pts[pts.length - 1]
-  const generated = new Date(data.generatedAt).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const generated = fmtDateLong(data.generatedAt)
 
   return (
     <Card>

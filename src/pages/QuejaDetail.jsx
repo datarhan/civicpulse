@@ -14,6 +14,7 @@ import {
 } from '../hooks/useTenderQuejaCorrelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { fmtDateLong } from '../lib/formatters'
 
 const SINDIC_PORTAL = 'https://www.elsindic.com/es/presenta-una-queja'
 
@@ -33,16 +34,7 @@ function fmt(iso) {
 }
 
 function fmtDate(iso) {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    })
-  } catch {
-    return iso
-  }
+  return fmtDateLong(iso) || '—'
 }
 
 function daysSince(iso) {

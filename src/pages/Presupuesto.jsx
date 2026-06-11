@@ -4,6 +4,7 @@ import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks
 import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
 import { useCorrelationMaps } from '../hooks/useTenderQuejaCorrelations'
+import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 
 function ChapterRow({ label, amount, total, color }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
@@ -66,11 +67,7 @@ function RealContracts() {
     )
   }
   const recent = data.top?.recentAwarded || []
-  const generatedDate = new Date(data.generatedAt).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const generatedDate = fmtDateLong(data.generatedAt)
   const formatEur = (n) =>
     new Intl.NumberFormat('es-ES', {
       style: 'currency',
@@ -169,8 +166,7 @@ function RealSubsidies() {
   if (loading || error || !data) return null
   const items = (data.items || []).filter((i) => i.direction === 'granted').slice(0, 6)
   if (items.length === 0) return null
-  const fmt = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  const fmt = fmtDateShort
   return (
     <Card>
       <SectionHead
@@ -255,11 +251,7 @@ function RealBudgetHeader() {
 
   const s = data.snapshot
   const perCapita = s.population > 0 ? s.totalExpense / s.population : 0
-  const generatedDate = new Date(data.generatedAt).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const generatedDate = fmtDateLong(data.generatedAt)
 
   return (
     <>

@@ -308,6 +308,7 @@ function FindingDetailCard({ f, permalink }) {
 function Chip({ active, label, count, onClick }) {
   return (
     <button
+      type="button"
       onClick={onClick}
       className="mono"
       style={{

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Ic } from './Icons'
 import { Pill } from './Primitives'
@@ -11,60 +11,79 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 export function CmdK({ open, onClose, onOpen }) {
   const navigate = useNavigate()
   const [q, setQ] = useState('')
+  const trapRef = useRef(null)
   const { data: officials } = useOfficials()
   const { data: promises } = usePromises()
   const { data: quejas } = useQuejas()
   const { data: findings } = usePlenoFindings()
 
-  const all = [
-    ...NAV.map((n) => ({ kind: 'Página', label: n.label, to: n.to, icon: n.icon })),
-    ...(officials?.officials ?? []).map((o) => ({
-      kind: o.role === 'alcalde' ? 'Alcalde' : 'Concejal·a',
-      label: o.name,
-      sub: (o.party || '') + (o.portfolios?.length ? ' · ' + o.portfolios[0] : ''),
-      to: '/cargos',
-      icon: Ic.people,
-    })),
-    ...(promises?.items ?? []).slice(0, 10).map((p) => ({
-      kind: 'Promesa',
-      label: p.title,
-      sub: p.party,
-      to: '/promesas',
-      icon: Ic.check,
-    })),
-    ...(quejas?.items ?? []).slice(0, 40).map((qu) => ({
-      kind: 'Queja',
-      label: `${qu.service_request_id} · ${(qu.description || '').slice(0, 80)}`,
-      sub:
-        (CATEGORY_LABEL[qu.service_code] || qu.service_code) +
-        ' · ' +
-        (STATE_LABEL[qu.status] || qu.status) +
-        (qu.concejalia_area ? ' · ' + qu.concejalia_area : ''),
-      to: `/quejas/${qu.service_request_id.toLowerCase()}`,
-      icon: Ic.warn,
-    })),
-    ...(findings?.items ?? []).map((f) => ({
-      kind: 'Hallazgo',
-      label: f.title,
-      sub:
-        (f.severity ? f.severity + ' · ' : '') +
-        f.plenoDate +
-        (f.quotes?.[0]?.speakerGroup ? ' · ' + f.quotes[0].speakerGroup : '') +
-        ' · ' +
-        (f.quotes?.[0]?.text?.slice(0, 80) ?? ''),
-      to: `/hallazgos#${f.id}`,
-      icon: Ic.warn,
-    })),
-    { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },
-    { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
-    { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
-  ]
-  const filtered = q
-    ? all.filter((x) => (x.label + ' ' + (x.sub || '')).toLowerCase().includes(q.toLowerCase()))
-    : all
+  // The index only changes when a snapshot loads — not on every keystroke.
+  const all = useMemo(
+    () => [
+      ...NAV.map((n) => ({ kind: 'Página', label: n.label, to: n.to, icon: n.icon })),
+      ...(officials?.officials ?? []).map((o) => ({
+        kind: o.role === 'alcalde' ? 'Alcalde' : 'Concejal·a',
+        label: o.name,
+        sub: (o.party || '') + (o.portfolios?.length ? ' · ' + o.portfolios[0] : ''),
+        to: '/cargos',
+        icon: Ic.people,
+      })),
+      ...(promises?.items ?? []).slice(0, 10).map((p) => ({
+        kind: 'Promesa',
+        label: p.title,
+        sub: p.party,
+        to: '/promesas',
+        icon: Ic.check,
+      })),
+      ...(quejas?.items ?? []).slice(0, 40).map((qu) => ({
+        kind: 'Queja',
+        label: `${qu.service_request_id} · ${(qu.description || '').slice(0, 80)}`,
+        sub:
+          (CATEGORY_LABEL[qu.service_code] || qu.service_code) +
+          ' · ' +
+          (STATE_LABEL[qu.status] || qu.status) +
+          (qu.concejalia_area ? ' · ' + qu.concejalia_area : ''),
+        to: `/quejas/${qu.service_request_id.toLowerCase()}`,
+        icon: Ic.warn,
+      })),
+      ...(findings?.items ?? []).map((f) => ({
+        kind: 'Hallazgo',
+        label: f.title,
+        sub:
+          (f.severity ? f.severity + ' · ' : '') +
+          f.plenoDate +
+          (f.quotes?.[0]?.speakerGroup ? ' · ' + f.quotes[0].speakerGroup : '') +
+          ' · ' +
+          (f.quotes?.[0]?.text?.slice(0, 80) ?? ''),
+        to: `/hallazgos#${f.id}`,
+        icon: Ic.warn,
+      })),
+      { kind: 'Datos', label: 'Dashboard de quejas', to: '/quejas/dashboard', icon: Ic.chart },
+      { kind: 'Datos', label: 'Ver catálogo de datos abiertos', to: '/datos', icon: Ic.chart },
+      { kind: 'Datos', label: 'Metodología del tracker', to: '/metodologia', icon: Ic.chart },
+    ],
+    [officials, promises, quejas, findings],
+  )
+  const filtered = useMemo(
+    () =>
+      q
+        ? all.filter((x) => (x.label + ' ' + (x.sub || '')).toLowerCase().includes(q.toLowerCase()))
+        : all,
+    [all, q],
+  )
 
   useEffect(() => {
     if (open) setQ('')
+  }, [open])
+
+  // Return focus to whatever had it before the palette opened (a11y: the
+  // dialog steals focus via autoFocus; closing must restore it).
+  useEffect(() => {
+    if (!open) return
+    const prev = document.activeElement
+    return () => {
+      if (prev && typeof prev.focus === 'function') prev.focus()
+    }
   }, [open])
 
   useEffect(() => {
@@ -87,6 +106,23 @@ export function CmdK({ open, onClose, onOpen }) {
     onClose()
   }
 
+  // Keep Tab/Shift+Tab cycling inside the dialog — screen-reader and
+  // keyboard users must not land on the page behind the backdrop.
+  const onTrapKeyDown = (e) => {
+    if (e.key !== 'Tab' || !trapRef.current) return
+    const focusables = trapRef.current.querySelectorAll('input, button')
+    if (focusables.length === 0) return
+    const first = focusables[0]
+    const last = focusables[focusables.length - 1]
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault()
+      last.focus()
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault()
+      first.focus()
+    }
+  }
+
   return (
     <div
       onClick={onClose}
@@ -102,7 +138,12 @@ export function CmdK({ open, onClose, onOpen }) {
       }}
     >
       <div
+        ref={trapRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Buscador rápido"
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={onTrapKeyDown}
         style={{
           width: 560,
           maxWidth: 'calc(100vw - 32px)',
@@ -146,6 +187,7 @@ export function CmdK({ open, onClose, onOpen }) {
           {filtered.slice(0, 12).map((x, i) => (
             <button
               key={i}
+              type="button"
               onClick={() => go(x.to)}
               style={{
                 display: 'flex',

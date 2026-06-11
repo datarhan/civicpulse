@@ -21,6 +21,7 @@ import { Card, Pill, SectionHead } from '../components/Primitives'
 import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
+import { fmtDateShort } from '../lib/formatters'
 
 const VERDICT_LABEL = {
   verificado: 'Verificado',
@@ -38,16 +39,7 @@ const VERDICT_TONE = {
 }
 
 function fmtDate(iso) {
-  if (!iso) return '—'
-  try {
-    return new Date(iso).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return iso.slice(0, 10)
-  }
+  return fmtDateShort(iso) || '—'
 }
 
 function fmtNumber(n) {

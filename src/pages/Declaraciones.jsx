@@ -69,6 +69,7 @@ function FilterChip({ active, label, count, onClick, tone }) {
           : 'var(--ink)'
   return (
     <button
+      type="button"
       onClick={onClick}
       style={{
         padding: '4px 10px',

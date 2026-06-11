@@ -3,12 +3,45 @@
  * Shared presentation formatters. Kept dependency-free (no React, no fetch)
  * so any hook, component, or page can import them.
  *
- * NOTE on scope: `formatEuros` (useBudget) and `formatDate` (useTenders) are
- * deliberately NOT centralised here. Despite sharing names with local copies
- * in ClaimLedger.jsx / Datos.jsx, those copies have genuinely different output
- * (suffix "M €" vs prefix "€…M"; "—" vs "" fallbacks), so they are distinct
- * formatters, not duplicates. Only the truly-duplicated `timeAgo` was unified.
+ * NOTE on scope: `formatEuros` (useBudget) stays deliberately NOT centralised
+ * here — its local copies (ClaimLedger.jsx etc.) have genuinely different
+ * output (suffix "M €" vs prefix "€…M"). `useTenders.formatDate` remains the
+ * import path pages historically use, but it now delegates to fmtDateShort;
+ * the "—"-fallback variants (Datos/Laboratorio/QuejaDetail) compose it as
+ * `fmtDateShort(iso) || '—'`.
  */
+
+/**
+ * The two canonical Spanish absolute-date formats. Previously ~21 inline
+ * `.toLocaleDateString('es-ES', …)` copies across pages had already drifted
+ * (some omitted the year); pages should import these instead. The deliberate
+ * exceptions that stay local: the landing topbar's weekday-long banner
+ * (tokens.jsx) and the day+month-no-year KPI chips (KpiStrip/EditorialColumn).
+ *
+ * @param {string|null|undefined} iso
+ * @returns {string} e.g. "3 jun 2026" — empty string when iso is falsy
+ */
+export function fmtDateShort(iso) {
+  if (!iso) return ''
+  return new Date(iso).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+}
+
+/**
+ * @param {string|null|undefined} iso
+ * @returns {string} e.g. "3 de junio de 2026" — empty string when iso is falsy
+ */
+export function fmtDateLong(iso) {
+  if (!iso) return ''
+  return new Date(iso).toLocaleDateString('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  })
+}
 
 /**
  * Relative-time label in Spanish ("ahora", "hace 5 min", "hace 3 h",

@@ -18,6 +18,7 @@ import {
 } from '../hooks/useSindic'
 import QuejasHeatmap from '../components/QuejasHeatmap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
 
 const TELEGRAM_BOT_URL = 'https://t.me/munigraph_bot'
@@ -58,11 +59,7 @@ function SindicCard() {
                   Expte {r.expediente}
                 </span>
                 <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)' }}>
-                  {new Date(r.fecha).toLocaleDateString('es-ES', {
-                    day: 'numeric',
-                    month: 'short',
-                    year: 'numeric',
-                  })}
+                  {fmtDateShort(r.fecha)}
                 </span>
                 <Pill tone={SINDIC_SENTIDO_TONE[r.sentido] || 'ghost'} size="xs">
                   {SINDIC_SENTIDO_LABEL[r.sentido] || r.sentido}
@@ -96,13 +93,7 @@ function SindicCard() {
             </div>
           ))}
           <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 6 }}>
-            Lista curada manualmente · actualizado{' '}
-            {new Date(data.generatedAt).toLocaleDateString('es-ES', {
-              day: 'numeric',
-              month: 'short',
-              year: 'numeric',
-            })}
-            . Fuente:{' '}
+            Lista curada manualmente · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
             <a
               href="https://www.elsindic.com"
               target="_blank"
@@ -123,13 +114,7 @@ function ConsellCvCard() {
   const { data } = useConsellCv()
   if (!data) return null
   const { stats, matched } = data
-  const when = data.generatedAt
-    ? new Date(data.generatedAt).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-      })
-    : ''
+  const when = fmtDateShort(data.generatedAt)
   const sentidoColor = (s) => {
     if (/estimatoria/i.test(s)) return 'var(--warn)'
     if (/desestimat/i.test(s)) return 'var(--ok)'
@@ -237,13 +222,7 @@ function CtbgCard() {
   const { data } = useCtbg()
   if (!data) return null
   const { stats, matched } = data
-  const when = data.generatedAt
-    ? new Date(data.generatedAt).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-      })
-    : ''
+  const when = fmtDateShort(data.generatedAt)
   return (
     <Card style={{ marginTop: 14 }}>
       <SectionHead

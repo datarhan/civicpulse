@@ -74,6 +74,17 @@ function MunicipalBoundary() {
   )
 }
 
+// Leaflet divIcon html is raw innerHTML. Neighborhood names come verbatim
+// from community-edited OSM tags, so escape them — a poisoned tag must never
+// execute in visitors' browsers.
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+}
+
 function OsmNeighborhoods() {
   const { loading, error, data } = useGeo()
   if (loading || error || !data?.neighborhoods) return null
@@ -83,7 +94,7 @@ function OsmNeighborhoods() {
         const icon = L.divIcon({
           className: 'cp-osm-neigh',
           html: `<div class="cp-osm-neigh-dot"></div>
-                 <div class="cp-osm-neigh-label">${n.name}</div>`,
+                 <div class="cp-osm-neigh-label">${escapeHtml(n.name)}</div>`,
           iconSize: [140, 20],
           iconAnchor: [6, 6],
         })

@@ -14,6 +14,7 @@ import {
   indexVideosByPleno,
 } from '../hooks/usePlenoVideos'
 import { partyColor } from '../hooks/useOfficials'
+import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
 
 function AgendaRow({ item }) {
@@ -63,8 +64,7 @@ function AgendaRow({ item }) {
 }
 
 function PlenoRow({ p, agenda, video, expanded, onToggle }) {
-  const fmt = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })
+  const fmt = fmtDateLong
   return (
     <div style={{ borderBottom: '1px solid var(--border2)', padding: '10px 0' }}>
       <div
@@ -95,6 +95,7 @@ function PlenoRow({ p, agenda, video, expanded, onToggle }) {
         <div style={{ textAlign: 'right' }}>
           {agenda && agenda.agendaCount > 0 && (
             <button
+              type="button"
               onClick={onToggle}
               style={{
                 marginRight: 6,
@@ -295,8 +296,7 @@ function PlenoVotesBlock() {
   const { loading, error, data } = usePlenoVotes()
   if (loading) return null
   const items = data?.items || []
-  const fmtDate = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  const fmtDate = fmtDateShort
 
   return (
     <div style={{ marginTop: 28 }}>
@@ -427,8 +427,7 @@ function PlenoVoteSuggestionsBlock() {
   const { data } = usePlenoVoteSuggestions()
   const items = data?.items || []
   if (items.length === 0) return null // hide entirely when there's nothing to surface
-  const fmtDate = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  const fmtDate = fmtDateShort
 
   return (
     <div style={{ marginTop: 28 }}>
@@ -555,13 +554,8 @@ function ParticipaBlock() {
   if (loading || error || !data) return null
   const items = data.items || []
   if (items.length === 0) return null
-  const generated = new Date(data.generatedAt).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
-  const fmtDate = (iso) =>
-    new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+  const generated = fmtDateLong(data.generatedAt)
+  const fmtDate = fmtDateShort
 
   return (
     <div style={{ marginTop: 28 }}>

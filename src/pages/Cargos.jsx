@@ -4,6 +4,7 @@ import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
+import { fmtDateLong } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
 
 function QuejaBadge({ slug }) {
@@ -297,11 +298,7 @@ function CorporacionMunicipal() {
 
   const mayor = data.officials.find((o) => o.role === 'alcalde')
   const rest = data.officials.filter((o) => o.role !== 'alcalde')
-  const generatedDate = new Date(data.generatedAt).toLocaleDateString('es-ES', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-  })
+  const generatedDate = fmtDateLong(data.generatedAt)
 
   return (
     <div style={{ marginBottom: 28 }}>

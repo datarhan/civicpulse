@@ -1,5 +1,6 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
+import { fmtDateShort } from '../lib/formatters'
 
 export function useTenders() {
   return useJsonFetch('/data/tenders.json')
@@ -33,15 +34,7 @@ export const STATUS_TONE = {
   unknown: 'ghost',
 }
 
+// Kept as a re-export shim — pages historically import formatDate from here.
 export function formatDate(iso) {
-  if (!iso) return ''
-  try {
-    return new Date(iso).toLocaleDateString('es-ES', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric',
-    })
-  } catch {
-    return iso
-  }
+  return fmtDateShort(iso)
 }

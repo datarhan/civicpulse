@@ -24,7 +24,7 @@ export function formatEuros(amount, opts = {}) {
   }).format(amount)
 }
 
-// Canonical colour per expense chapter (for the Donut / BudgetBars components).
+// Canonical colour per expense chapter (used by the /presupuesto bar charts).
 export const EXPENSE_COLORS = [
   '#2463EB', // 1 Personal
   '#16A34A', // 2 Bienes corrientes
