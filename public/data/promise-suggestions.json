@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T16:13:42.567Z",
+  "generatedAt": "2026-06-18T16:33:37.258Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -151,7 +151,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -221,31 +221,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-          "date": "2026-01-05",
-          "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-          "kind": "press",
-          "publisher": "elDiario.es",
-          "matchedKeywords": [
-            "plan",
-            "crear",
-            "hogar",
-            "nuevo",
-            "lucha",
-            "contra",
-            "falta",
-            "suelo",
-            "ambicioso"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNaEJsUTdyRUV5NThIUjRwRDltZlFoNERLaGZ6ekIxRkJFTDBMaXk3Q1VHN2FnTi1DZmZmcVUwRHRmb0k1R2dsT0gwWWFxRmhxMjQybkh3UFJwR2tqaFVZMmNrV0VmbUw1TDZTQ1drSnVmWDBJTnVYUGlNS2xYZHhfZnE5NUtZUVY1Y2xhYw?oc=5",
           "date": "2026-05-18",
@@ -270,7 +252,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -346,7 +328,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -381,7 +363,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -419,7 +401,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -439,7 +421,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -447,7 +429,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -455,7 +437,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -519,7 +501,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -539,7 +521,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -579,7 +561,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -623,7 +605,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -667,7 +649,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -686,7 +668,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-18T16:13:42.492Z"
+      "generatedAt": "2026-06-18T16:33:37.182Z"
     }
   ],
   "llmEvidence": [],

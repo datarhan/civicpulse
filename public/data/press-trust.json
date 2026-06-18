@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-06-18T16:13:52.924Z",
+  "generatedAt": "2026-06-18T16:33:47.058Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "19rci0",
+      "articleFingerprint": "1u922jg",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWGVHM2RvYVo3X0wzU2ZuSFQ0Q1BGSlpIOTcxSDNLS2h6bjc1dHV2MnJfNThrQ0FSQzZfWDJQQWFlVnhzUFpPNlFORlRtWm1rYjc5QTItaTVfa3IwQldFNUg3a0VmRDJ0eGNKNF9sQTBSaDZqU2hXVGsyQ1NjNVZsSHJNdGlEdzZ2TDFMak9CZE5RZlJ2Q1hCdVZPbVVPeERwY0FEWVR0N2c2YThFVGtXNTVtZUVkWGNxcVNzQU96dEtMNGh2S1N4eVdQdmlKTFl2b2Z2aE1qY25pMWJHVmZKMw?oc=5",
+      "date": "2026-06-18T16:05:25.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
     {
       "articleId": "15a7v34",
       "articleFingerprint": "d9sbmg",
@@ -687,7 +704,7 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 13,
+      "articleCount": 14,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,

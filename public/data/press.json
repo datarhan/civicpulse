@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-18T16:06:34.905Z",
+  "generatedAt": "2026-06-18T16:25:26.130Z",
   "feeds": [
     {
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
@@ -16,8 +16,8 @@
   ],
   "stats": {
     "total": 108,
-    "sources": 18,
-    "latestDate": "2026-06-18T15:53:55.000Z"
+    "sources": 17,
+    "latestDate": "2026-06-18T16:05:25.000Z"
   },
   "sources": [
     "Actualidad Valencia",
@@ -34,12 +34,20 @@
     "Valencia News",
     "Valencia Plaza",
     "Valenciabonita",
-    "elDiario.es",
     "elperiodic.com",
     "esmartcity",
     "www.diariodelpuerto.com"
   ],
   "items": [
+    {
+      "id": "19rci0",
+      "title": "Vacas emboladas en Llíria: ANPBA solicita la nulidad de la autorización porque 'la norma solo contempla toros'",
+      "link": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWGVHM2RvYVo3X0wzU2ZuSFQ0Q1BGSlpIOTcxSDNLS2h6bjc1dHV2MnJfNThrQ0FSQzZfWDJQQWFlVnhzUFpPNlFORlRtWm1rYjc5QTItaTVfa3IwQldFNUg3a0VmRDJ0eGNKNF9sQTBSaDZqU2hXVGsyQ1NjNVZsSHJNdGlEdzZ2TDFMak9CZE5RZlJ2Q1hCdVZPbVVPeERwY0FEWVR0N2c2YThFVGtXNTVtZUVkWGNxcVNzQU96dEtMNGh2S1N4eVdQdmlKTFl2b2Z2aE1qY25pMWJHVmZKMw?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-06-18T16:05:25.000Z",
+      "fingerprint": "1u922jg"
+    },
     {
       "id": "15a7v34",
       "title": "Riba-roja forma a 15 desocupats com a operaris d’injecció de plàstics",
@@ -903,15 +911,6 @@
       "sourceHost": "lasprovincias.es",
       "date": "2026-01-07T08:00:00.000Z",
       "fingerprint": "184b50k"
-    },
-    {
-      "id": "sjcvqo",
-      "title": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-      "source": "elDiario.es",
-      "sourceHost": "eldiario.es",
-      "date": "2026-01-05T08:00:00.000Z",
-      "fingerprint": "1ru2evg"
     },
     {
       "id": "lwaaso",
