@@ -220,7 +220,7 @@ export function PressBlockD() {
               className="mono"
               style={{
                 fontSize: 10,
-                color: PALETTE.accent,
+                color: p.official ? PALETTE.civic : PALETTE.accent,
                 letterSpacing: '.08em',
                 textTransform: 'uppercase',
                 fontWeight: 700,
@@ -228,6 +228,24 @@ export function PressBlockD() {
             >
               {p.source}
             </span>
+            {p.official && (
+              <span
+                className="mono"
+                title="Fuente primaria · Ayuntamiento"
+                style={{
+                  fontSize: 8.5,
+                  fontWeight: 700,
+                  letterSpacing: '.08em',
+                  textTransform: 'uppercase',
+                  color: 'white',
+                  background: PALETTE.civic,
+                  padding: '1px 5px',
+                  borderRadius: 3,
+                }}
+              >
+                Oficial
+              </span>
+            )}
             <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
               {pressTimeAgo(p.date)}
             </span>

@@ -11,12 +11,16 @@
  *  2. infoturia.com /riba-roja-de-turia/feed/ — direct WordPress feed of
  *     the local Camp de Túria comarcal paper. Catches stories the Google
  *     News indexer misses (small-outlet recency lag).
+ *  3. ribarroja.es /es/noticias/rss.xml — the Ayuntamiento's OWN Drupal
+ *     news feed (primary source, official:true + Sección taxonomy). Needs a
+ *     Mozilla-leading UA to clear the ribarroja.es WAF.
  *
- * Items are merged + deduped by FNV title fingerprint (first-list wins),
- * which means an infoturia.com story that Google News also indexed keeps
- * its direct attribution. To add a future source, append another entry
- * to the fetch block — parseStandardRss handles any WordPress-style feed,
- * while Google News needs the dedicated parser due to its " - Pub" suffix.
+ * Items are merged + deduped by FNV title fingerprint (first-list wins): the
+ * official feed is passed first so the town hall's attribution wins when the
+ * same story also surfaces via press aggregation. To add a future source,
+ * append another entry to the fetch block — parseStandardRss handles any
+ * WordPress-style feed, parseOfficialNewsRss the official Drupal feed, while
+ * Google News needs its dedicated parser for the " - Pub" suffix.
  *
  * Usage: npm run scrape:press
  */
@@ -26,6 +30,7 @@ import { fileURLToPath } from 'node:url'
 import {
   parseGoogleNewsRss,
   parseStandardRss,
+  parseOfficialNewsRss,
   mergeNewsItems,
   type NewsItem,
 } from '../src/scraper/press'
@@ -42,13 +47,18 @@ const GOOGLE_URL =
   '&hl=es&gl=ES&ceid=ES:es'
 
 const INFOTURIA_URL = 'https://www.infoturia.com/riba-roja-de-turia/feed/'
+const OFICIAL_URL = 'https://www.ribarroja.es/es/noticias/rss.xml'
 
 const UA = 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion'
+// ribarroja.es sits behind a WAF that TLS-resets any User-Agent not leading
+// with a Mozilla/ token, so the official feed must announce itself like this.
+const MOZILLA_UA =
+  'Mozilla/5.0 (compatible; CivicPulse/0.1; +https://github.com/datarhan/civicpulse)'
 
-async function fetchXml(url: string): Promise<string> {
+async function fetchXml(url: string, ua: string = UA): Promise<string> {
   const res = await fetch(url, {
     headers: {
-      'User-Agent': UA,
+      'User-Agent': ua,
       Accept: 'application/rss+xml,application/xml,text/xml,*/*',
     },
     signal: AbortSignal.timeout(30_000),
@@ -57,10 +67,10 @@ async function fetchXml(url: string): Promise<string> {
   return res.text()
 }
 
-async function safeFetch(label: string, url: string): Promise<string | null> {
+async function safeFetch(label: string, url: string, ua: string = UA): Promise<string | null> {
   try {
     console.log(`[press] fetching ${label}: ${url}`)
-    return await fetchXml(url)
+    return await fetchXml(url, ua)
   } catch (err) {
     // Local feeds occasionally 5xx — log and continue with the rest so we
     // never freeze press.json on a transient outage of one source.
@@ -103,10 +113,27 @@ async function main() {
     feedsMeta.push({ url: INFOTURIA_URL, platform: 'WordPress RSS', ok: false, items: 0 })
   }
 
-  // Merge with infoturia first so its direct attribution wins when the
-  // same story also appears via Google News (first-list-wins per the
-  // mergeNewsItems contract).
-  const items = mergeNewsItems(infoturiaItems, gnewsItems)
+  // The Ayuntamiento's OWN news feed (Drupal). Primary source — stamped
+  // official:true + a Sección taxonomy by parseOfficialNewsRss. Needs the
+  // Mozilla UA to clear the ribarroja.es WAF.
+  let officialItems: NewsItem[] = []
+  const officialXml = await safeFetch('ribarroja.es (oficial)', OFICIAL_URL, MOZILLA_UA)
+  if (officialXml) {
+    officialItems = parseOfficialNewsRss(officialXml)
+    feedsMeta.push({
+      url: OFICIAL_URL,
+      platform: 'Drupal RSS (oficial)',
+      ok: true,
+      items: officialItems.length,
+    })
+  } else {
+    feedsMeta.push({ url: OFICIAL_URL, platform: 'Drupal RSS (oficial)', ok: false, items: 0 })
+  }
+
+  // Merge official first (the town hall's primary-source voice), then
+  // infoturia (direct local outlet), then Google News aggregation — so the
+  // higher-trust attribution wins on a fingerprint collision (first-wins).
+  const items = mergeNewsItems(officialItems, infoturiaItems, gnewsItems)
   const sources = Array.from(new Set(items.map((i) => i.source))).sort()
 
   const payload = {
@@ -126,7 +153,7 @@ async function main() {
   console.log(`[press] wrote ${OUT}`)
   console.log(
     `[press] ${items.length} items from ${sources.length} sources ` +
-      `(google=${gnewsItems.length}, infoturia=${infoturiaItems.length})`,
+      `(oficial=${officialItems.length}, infoturia=${infoturiaItems.length}, google=${gnewsItems.length})`,
   )
 }
 

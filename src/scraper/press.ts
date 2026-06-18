@@ -27,6 +27,8 @@ export interface NewsItem {
   sourceHost: string | null
   date: string // ISO 8601
   fingerprint: string
+  official?: boolean // true only for the Ayuntamiento's OWN feed (primary source)
+  section?: string | null // Drupal "Sección" taxonomy term (official feed only)
 }
 
 function decode(html: string): string {
@@ -132,6 +134,69 @@ export function parseStandardRss(
       sourceHost,
       date: safeDate(pubDate),
       fingerprint,
+    })
+  }
+
+  items.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  return items
+}
+
+const OFFICIAL_SOURCE = 'Ayuntamiento de Riba-roja de Túria'
+const OFFICIAL_HOST = 'ribarroja.es'
+
+/**
+ * Lift the Drupal "Sección" taxonomy term out of an item's description HTML.
+ * The municipal feed renders it as a field block:
+ *   <div class="…field-name-field-seccion…"><h3 class="field__label">Sección</h3>
+ *     <div class="field__items"><div class="field__item">Educacion</div></div></div>
+ * Returns null when an item carries no section.
+ */
+function extractSection(description: string | null): string | null {
+  if (!description) return null
+  const m = description.match(
+    /field-name-field-seccion[\s\S]*?<div class="field__item[^"]*">([\s\S]*?)<\/div>/i,
+  )
+  if (!m) return null
+  const term = m[1]
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+  return term || null
+}
+
+/**
+ * Parse the official municipal news feed (ribarroja.es/es/noticias/rss.xml).
+ * Unlike the third-party press feeds (Google News, infoturia), this is the
+ * Ayuntamiento's OWN voice, so every row is stamped `official: true` — the
+ * /laboratorio surface uses that flag to triangulate official claims against
+ * independent coverage. The Drupal feed embeds a `Sección` taxonomy term per
+ * item, lifted into `section` for topic routing. Standard RSS otherwise, so it
+ * shares the same extract/decode/fingerprint helpers as the other feeds.
+ */
+export function parseOfficialNewsRss(xml: string): NewsItem[] {
+  const items: NewsItem[] = []
+  const seen = new Set<string>()
+
+  for (const raw of extractItems(xml)) {
+    const title = pickTag(raw, 'title') || ''
+    const link = pickTag(raw, 'link') || ''
+    const pubDate = pickTag(raw, 'pubDate') || pickTag(raw, 'dc:date')
+    if (!title || !link) continue
+
+    const fingerprint = fingerprintFor(title)
+    if (seen.has(fingerprint)) continue
+    seen.add(fingerprint)
+
+    items.push({
+      id: fnvHash(link || title),
+      title,
+      link,
+      source: OFFICIAL_SOURCE,
+      sourceHost: OFFICIAL_HOST,
+      date: safeDate(pubDate),
+      fingerprint,
+      official: true,
+      section: extractSection(pickTag(raw, 'description')),
     })
   }
 
