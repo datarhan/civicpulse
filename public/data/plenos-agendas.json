@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-03T20:01:11.038Z",
+  "generatedAt": "2026-06-18T16:13:27.305Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
   },
   "stats": {
     "plenosFetched": 30,
-    "agendaItemsTotal": 309,
-    "plenosWithRuegos": 5,
+    "agendaItemsTotal": 316,
+    "plenosWithRuegos": 6,
     "uniqueDepartments": 10,
     "plazosVencidosCount": 0,
     "deptCoverage": 26
@@ -65,6 +65,90 @@
     }
   ],
   "plenos": [
+    {
+      "id": "11025xk",
+      "date": "2026-06-01",
+      "title": "Sesión de fecha 01 de junio de 2026",
+      "kind": "ordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprobación Acta anterior de fecha 11 de mayo de 2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Modificación puntual nº 25 del PGOU: Relativa a determinados Usos Dotacionales",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "414/2024/GEN"
+        },
+        {
+          "number": 3,
+          "title": "Moción conjunta de los Grupos Municipales Socialista de Riba-roja, Compromís per Riba-roja y EU-Podem Día Internacional del Orgullo LGTBIQ+ 2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "16/2026/PGRU"
+        },
+        {
+          "number": 4,
+          "title": "Moción del Grupo Municipal Socialista de Riba-roja para exigir a la Generalitat Valenciana la ejecución del proyecto de prolongación de la línea 9 de Metrovalencia al centro urbano y construcción de la pasarela peatonal de València la Vella",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "15/2026/PGRU"
+        },
+        {
+          "number": 5,
+          "title": "Asuntos de Urgencia",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Dación cuenta nombramiento de la Jueza de Paz sustituta de Riba-roja de Túria",
+          "section": "informativa",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "3567/2025/GEN"
+        },
+        {
+          "number": 7,
+          "title": "Dación cuenta de la Sentencia nº 100/2026 emitida por el Juzgado de lo Contencioso-Administrativo nº9 en el PO 248/2025",
+          "section": "informativa",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "3863/2025/GEN"
+        },
+        {
+          "number": 8,
+          "title": "Dar cuenta de las Resoluciones de la número 1482/2026 a la 1825/2026",
+          "section": "informativa",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "Ruegos y preguntas",
+          "section": "ruegos",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 9,
+      "departments": [],
+      "hasRuegos": true
+    },
     {
       "id": "10yl550",
       "date": "2026-05-11",
@@ -2900,34 +2984,6 @@
         "Servicios generales",
         "Cultura"
       ],
-      "hasRuegos": false
-    },
-    {
-      "id": "1pe6awk",
-      "date": "2024-07-22",
-      "title": "Sesión de fecha 22 de julio de 2024",
-      "kind": "extraordinario",
-      "link": "https://regmeet.com/aytoribarroja/participaciones/b98249b38337c5088bbc660d8f872d6a?idioma=castellano",
-      "agenda": [
-        {
-          "number": 1,
-          "title": "Expedient: 2852/2024/GEN, Aprovació inicial Pressupost Municipal 2024",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 2,
-          "title": "Expedient: 3723/2024/GEN Aprovació de la xifra global del capítol I del pressupost 2024 i de la introducció de modificacions en la RPT i la plantilla de personal d'este exercici.",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        }
-      ],
-      "agendaCount": 2,
-      "departments": [],
       "hasRuegos": false
     }
   ]

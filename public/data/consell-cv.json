@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-25T07:01:32.858Z",
+  "generatedAt": "2026-06-18T16:13:38.237Z",
   "source": {
     "portal": "https://conselltransparencia.gva.es",
     "platform": "Consell de Transparència, Accés a la Informació Pública i Bon Govern · Comunitat Valenciana",
@@ -16,11 +16,10 @@
   },
   "query": "Riba-roja de Túria | Riba-roja del Turia | Ribarroja de Túria | Ribarroja del Turia",
   "stats": {
-    "totalEntries": 393,
+    "totalEntries": 311,
     "matchedEntries": 0,
     "years": [
-      2025,
-      2026
+      2025
     ],
     "bySentido": {},
     "byMateria": {}
