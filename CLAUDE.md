@@ -21,6 +21,7 @@ npm run scrape:budget               # CONPREL municipal budget XLS (MinHac)
 npm run scrape:tenders              # Gobierto tender/contract feed (mirrors PLACSP)
 npm run scrape:tenders-ted          # EU TED v3 — contracts above EU threshold (Riba-roja buyer)
 npm run scrape:boe                  # BOE last 30 days · filters titulos mentioning Riba-roja
+npm run scrape:bop                  # BOP València last 30 days · Riba-roja edictos (PDF walk)
 npm run scrape:padron               # INE Tempus3 30-year population series
 npm run scrape:participa            # Votiveu (WordPress) citizen-participation blog
 npm run scrape:press                # Google News + infoturia + Ayuntamiento RSS
@@ -434,7 +435,7 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**21 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**22 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -449,7 +450,7 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (21):
+# Autonomous scrapers (22):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
@@ -471,6 +472,7 @@ scripts/scrape-promise-suggestions.ts →  src/scraper/promise-inference.ts → 
 scripts/scrape-consell-cv.ts          →  src/scraper/consell-cv.ts        →  public/data/consell-cv.json
 scripts/scrape-tenders-ted.ts         →  src/scraper/tenders-ted.ts       →  public/data/tenders-ted.json
 scripts/scrape-boe.ts                 →  src/scraper/boe.ts               →  public/data/boe.json
+scripts/scrape-bop.ts                 →  src/scraper/bop.ts               →  public/data/bop.json
 
 # Curated (human-edited) — NEVER touched by automated scrapers:
 public/data/promises.json            (schema: src/scraper/promises.ts)
@@ -547,6 +549,7 @@ loop.
 - `useQuejas` + `useQuejaResponses` + `STATE_LABEL` / `STATE_TONE` / `CATEGORY_LABEL` / `prettyNeighborhood` / `timeAgo`
 - `usePlenoVotes` + `OUTCOME_LABEL` / `OUTCOME_TONE` / `DIRECTION_LABEL` / `DIRECTION_TONE` + `tallyByBloc()`
 - `useCtbg`
+- `useBop` + `formatBopDate`
 - `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
 
 ### Nightly refresh

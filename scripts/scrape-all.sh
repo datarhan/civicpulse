@@ -19,6 +19,7 @@ SCRAPERS=(
   scrape:tenders
   scrape:tenders-ted
   scrape:boe
+  scrape:bop
   scrape:padron
   scrape:participa
   scrape:press
@@ -56,6 +57,7 @@ BEST_EFFORT=(
   scrape:metro-network
   scrape:geo
   scrape:participa
+  scrape:bop
 )
 
 is_best_effort() {

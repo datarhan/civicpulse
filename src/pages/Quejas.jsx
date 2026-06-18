@@ -9,6 +9,7 @@ import {
   prettyNeighborhood,
 } from '../hooks/useQuejas'
 import { useCtbg } from '../hooks/useCtbg'
+import { useBop, formatBopDate } from '../hooks/useBop'
 import { useConsellCv } from '../hooks/useConsellCv'
 import {
   useSindic,
@@ -664,6 +665,63 @@ function DashboardView({ data }) {
   )
 }
 
+function BopCard() {
+  const { data } = useBop()
+  if (!data) return null
+  const anuncios = (data.anuncios || []).slice(0, 6)
+  const when = fmtDateShort(data.generatedAt)
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <SectionHead
+        eyebrow="Edictos oficiales · BOP València"
+        title="Anuncios del Ayuntamiento en el Boletín Oficial de la Provincia"
+      />
+      {anuncios.length === 0 ? (
+        <div style={{ marginTop: 10, fontSize: 13, color: 'var(--ink50)' }}>
+          Sin anuncios del Ayuntamiento en el BOP en los últimos 30 días.
+        </div>
+      ) : (
+        <div style={{ marginTop: 10 }}>
+          {anuncios.map((a, i) => (
+            <div
+              key={a.id}
+              style={{ padding: '10px 0', borderTop: i === 0 ? 'none' : '1px solid var(--border)' }}
+            >
+              <div
+                className="mono"
+                style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 2 }}
+              >
+                {formatBopDate(a.date)} · Reg. {a.regNumber}
+              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
+                <a
+                  href={a.pdfUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {a.title}
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      <div style={{ marginTop: 10, fontSize: 11, color: 'var(--ink50)' }}>
+        {data.stats?.total ?? 0} anuncio(s) · comprobado {when} ·{' '}
+        <a
+          href={data.source?.home}
+          target="_blank"
+          rel="noreferrer"
+          style={{ color: 'var(--civic)' }}
+        >
+          BOP oficial
+        </a>
+      </div>
+    </Card>
+  )
+}
+
 export default function Quejas() {
   const t = useT()
   useDocumentTitle(t('quejas.title'))
@@ -726,6 +784,7 @@ export default function Quejas() {
       <SindicCard />
       <ConsellCvCard />
       <CtbgCard />
+      <BopCard />
     </div>
   )
 }
