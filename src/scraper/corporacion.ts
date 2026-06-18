@@ -50,6 +50,27 @@ function absolutise(url: string | undefined, base: string): string {
   return `${base}/${url}`
 }
 
+/**
+ * Canonicalise the biographical-data link the corporación page emits into the
+ * live HTTPS Spanish path. The page still links the pre-redesign Valencian path
+ * (http, …/continguts/<id>) which now 404s; the same content — one shared index
+ * page for all councillors (content-id 864708/0835919) — is live under the
+ * Spanish …/contenidos/<id> path. We anchor on the stable content-id so a future
+ * id change still follows. Verified live 2026-06-18.
+ */
+export function canonicalCvUrl(href: string | undefined | null, base: string): string | null {
+  if (!href) return null
+  const abs = absolutise(href, base)
+  const id = abs.match(/\/(?:continguts|contenidos)\/(\d+\/\d+)/)
+  if (!id) return abs
+  return (
+    'https://www.ribarroja.es/es/portal_de_transparencia/' +
+    'informacion_sobre_la_corporacion_municipal/' +
+    'datos_biograficos_del_alcalde_sa_y_concejales/contenidos/' +
+    id[1]
+  )
+}
+
 function makeSlug(name: string): string {
   return slugify(name)
 }
@@ -206,15 +227,17 @@ export function parseCorporacion(html: string, opts: ParseOptions = {}): Officia
       }
     }
 
-    // CV link — anchor wrapping the CV icon
+    // CV link — anchor wrapping the CV icon. The page still emits the
+    // pre-redesign Valencian path (dades_biografiques, http) which now 404s;
+    // canonicalCvUrl rewrites it to the live HTTPS Spanish bio index.
     const cvAnchor = infoCell
       .find('a')
       .filter((_, a) => {
         const href = $(a).attr('href') || ''
-        return /portal_de_transparencia.*dades_biografiques/i.test(href)
+        return /portal_de_transparencia.*(dades_biografiques|datos_biograficos)/i.test(href)
       })
       .first()
-    const cvUrl = cvAnchor.attr('href') ? absolutise(cvAnchor.attr('href'), base) : null
+    const cvUrl = canonicalCvUrl(cvAnchor.attr('href'), base)
 
     const name = parsed.name
     officials.push({

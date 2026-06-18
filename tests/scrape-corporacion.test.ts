@@ -1,9 +1,37 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseCorporacion } from '../src/scraper/corporacion'
+import { parseCorporacion, canonicalCvUrl } from '../src/scraper/corporacion'
 
 const FIXTURE = join(__dirname, 'fixtures', 'corporacion_2026-04-19.html')
+
+describe('scraper/corporacion — canonicalCvUrl (biography link repair)', () => {
+  const base = 'https://www.ribarroja.es'
+  const LIVE =
+    'https://www.ribarroja.es/es/portal_de_transparencia/' +
+    'informacion_sobre_la_corporacion_municipal/' +
+    'datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919'
+
+  it('rewrites the dead Valencian/HTTP bio link to the live HTTPS Spanish path', () => {
+    const dead =
+      'http://www.ribarroja.es/portal_de_transparencia/informacio_sobre_la_corporacio_municipal/' +
+      'dades_biografiques_de_lalcalde_sa_i_regidors_es/continguts/864708/0835919'
+    expect(canonicalCvUrl(dead, base)).toBe(LIVE)
+  })
+
+  it('preserves the content-id regardless of source language/path', () => {
+    expect(canonicalCvUrl(LIVE, base)).toBe(LIVE)
+  })
+
+  it('returns null when there is no link', () => {
+    expect(canonicalCvUrl(null, base)).toBeNull()
+    expect(canonicalCvUrl(undefined, base)).toBeNull()
+  })
+
+  it('leaves an unrecognised href absolutised but untouched', () => {
+    expect(canonicalCvUrl('/es/otra-pagina', base)).toBe('https://www.ribarroja.es/es/otra-pagina')
+  })
+})
 
 describe('scraper/corporacion — parseCorporacion', () => {
   let html: string
