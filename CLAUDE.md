@@ -552,11 +552,34 @@ loop.
 day at **04:30 UTC** (06:30 Europe/Madrid summer, 05:30 winter). The job:
 
 1. Installs deps + runs the 20 autonomous adapters in sequence,
-2. Runs the vitest suite against the fresh fixtures,
-3. `git add public/data && git commit && git push` only if there's a
-   diff (no-op runs land a summary log but no commit),
-4. `.github/workflows/deploy-vercel.yml` fires on completion via a
-   `workflow_run` trigger and redeploys to Vercel.
+2. Runs the vitest suite against the fresh fixtures (`continue-on-error`
+   so a flaky test can't skip the data commit),
+3. `git add public/data && git commit && git push` **runs even when a
+   scraper failed** (`if: !cancelled()`), so the adapters that DID
+   refresh always land — one broken upstream no longer freezes the whole
+   site. No-op when there's no diff.
+4. A final **Health gate** reds the run only on a CRITICAL scraper
+   failure or a test failure (the commit already happened, so fresh data
+   is saved either way),
+5. `.github/workflows/deploy-vercel.yml` fires on completion via a
+   `workflow_run` trigger and redeploys to Vercel **iff the run
+   concluded `success`** — so a red (critical-failure) night commits its
+   partial data but defers the deploy to the next green night.
+
+**Commit-then-gate / best-effort design (do not collapse back):** the
+May 2026 fix made `scrape-all.sh` exit non-zero on any failure — which
+loudly surfaced breakage but, because the commit step was gated on the
+scrape step succeeding, let a single flaky scraper (Overpass 429, the
+decommissioned `participa.ribarroja.es`) block the commit of the ~18
+healthy adapters and freeze the live site for ~25 days (discovered
+2026-06-18). The fix: (a) `scrape-all.sh` classes `scrape:metro-network`
++ `scrape:participa` as **best-effort** — they still run + log + show in
+the summary, but don't count toward its exit code; (b) the workflow
+captures the scrape exit in `steps.scrape.outputs.rc`, commits
+unconditionally, then reds the run in a trailing Health gate. Net:
+best-effort flaking → green → deploys; a critical source breaking → red
+→ alarm + deploy-block, with the healthy data still committed for the
+next green night.
 
 **Why the workflow_run trigger exists (do not remove):** the nightly
 scrape pushes using `secrets.GITHUB_TOKEN`. GitHub deliberately does

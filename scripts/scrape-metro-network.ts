@@ -21,7 +21,19 @@ const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/metro-network.json')
 
-const OVERPASS = 'https://overpass-api.de/api/interpreter'
+// Overpass mirrors, tried in order. overpass-api.de is the primary but
+// load-sheds with HTTP 429 under contention; the kumi + mail.ru mirrors run
+// the same software against the same planet, so any one answering suffices.
+// metro geometry is near-static, so this redundancy is belt-and-braces.
+const OVERPASS_ENDPOINTS = [
+  'https://overpass-api.de/api/interpreter',
+  'https://overpass.kumi.systems/api/interpreter',
+  'https://maps.mail.ru/osm/tools/overpass/api/interpreter',
+]
+// Recorded in the emitted payload for provenance.
+const OVERPASS = OVERPASS_ENDPOINTS[0]
+
+const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms))
 
 // Route relations (one per line × direction) + their members. `>` recurses
 // to pull way geometry; we then re-hit station nodes explicitly because
@@ -75,19 +87,53 @@ type OsmElement = OsmNode | OsmWay | OsmRelation
 
 async function runQuery(ql: string): Promise<string> {
   const body = new URLSearchParams({ data: ql }).toString()
-  const res = await fetch(OVERPASS, {
-    method: 'POST',
-    headers: {
-      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Accept: 'application/json',
-    },
-    body,
-    // Client-side ceiling for Overpass queue + transfer time.
-    signal: AbortSignal.timeout(180_000),
-  })
-  if (!res.ok) throw new Error(`Overpass -> HTTP ${res.status}`)
-  return res.text()
+  const headers = {
+    'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Accept: 'application/json',
+  }
+  const MAX_ATTEMPTS = 3
+  let lastErr = 'no attempt made'
+  for (const endpoint of OVERPASS_ENDPOINTS) {
+    for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+      let res: Response
+      try {
+        res = await fetch(endpoint, {
+          method: 'POST',
+          headers,
+          body,
+          // Client-side ceiling for Overpass queue + transfer time.
+          signal: AbortSignal.timeout(180_000),
+        })
+      } catch (err) {
+        // Network error / timeout — retryable on the same endpoint.
+        lastErr = `${endpoint}: ${String(err).slice(0, 120)}`
+        console.warn(`[metro-network] ${lastErr} — attempt ${attempt}/${MAX_ATTEMPTS}`)
+        if (attempt < MAX_ATTEMPTS) await sleep(attempt * 3_000)
+        continue
+      }
+      if (res.ok) return res.text()
+      lastErr = `${endpoint} -> HTTP ${res.status}`
+      // 429 (rate-limit) and 5xx (overload/gateway) are transient — back off,
+      // honoring Retry-After when present. Other 4xx won't self-heal, so jump
+      // straight to the next mirror.
+      if (res.status === 429 || res.status >= 500) {
+        const retryAfter = Number(res.headers.get('retry-after'))
+        const waitMs =
+          Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1_000 : attempt * 3_000
+        console.warn(
+          `[metro-network] ${lastErr} — backoff ${Math.round(waitMs / 1_000)}s, attempt ${attempt}/${MAX_ATTEMPTS}`,
+        )
+        if (attempt < MAX_ATTEMPTS) await sleep(waitMs)
+        continue
+      }
+      console.warn(`[metro-network] ${lastErr} — non-retryable, trying next mirror`)
+      break
+    }
+  }
+  throw new Error(
+    `Overpass: all ${OVERPASS_ENDPOINTS.length} mirror(s) exhausted — last: ${lastErr}`,
+  )
 }
 
 function normaliseRef(raw: string | undefined): string | null {

@@ -66,6 +66,23 @@ async function main() {
 }
 
 main().catch((err) => {
-  console.error('[participa] failed:', err)
+  // participa.ribarroja.es was decommissioned mid-2026: the host now serves
+  // the main municipal portal (HTTP 404) behind a TLS certificate valid only
+  // for an unrelated municipality (ERR_TLS_CERT_ALTNAME_INVALID). We keep
+  // hitting the original URL so the adapter self-heals if the Votiveu
+  // WordPress API is ever restored. Until then scrape-all.sh treats participa
+  // as best-effort (its failure does not red the nightly) and main() throws
+  // before writing, so the last good participa.json stays in place.
+  const msg = String((err as { message?: unknown })?.message ?? err)
+  if (/altname|certificate|ENOTFOUND|ECONNREFUSED|ECONNRESET|fetch failed/i.test(msg)) {
+    console.error(
+      '[participa] upstream unreachable — participa.ribarroja.es appears decommissioned ' +
+        '(wrong-host TLS cert / portal 404). Keeping the existing participa.json. ' +
+        'If the participation platform moved, repoint BASE in this script. Detail: ' +
+        msg,
+    )
+  } else {
+    console.error('[participa] failed:', err)
+  }
   process.exit(1)
 })

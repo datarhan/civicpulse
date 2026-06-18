@@ -37,7 +37,31 @@ SCRAPERS=(
   extract:all-pleno-votes
 )
 
+# Best-effort adapters: known-flaky or near-static upstreams whose failure
+# must NOT red the nightly — and therefore must not block the commit of the
+# adapters that DID refresh. They still run, still log, and still surface in
+# the summary as a soft warning; they just don't count toward the exit code.
+#   - scrape:metro-network — OSM Overpass routinely 429s; metro geometry is
+#     near-static, so yesterday's snapshot is fine for another day.
+#   - scrape:participa — participa.ribarroja.es was decommissioned (the host
+#     now serves the main portal's 404 behind a wrong-host TLS cert). Upstream
+#     problem, not ours; we keep hitting it so it self-heals if the council
+#     ever restores the Votiveu WordPress API.
+BEST_EFFORT=(
+  scrape:metro-network
+  scrape:participa
+)
+
+is_best_effort() {
+  local needle="$1" x
+  for x in "${BEST_EFFORT[@]}"; do
+    [ "$x" = "$needle" ] && return 0
+  done
+  return 1
+}
+
 failures=()
+soft_failures=()
 
 for s in "${SCRAPERS[@]}"; do
   echo ""
@@ -48,8 +72,13 @@ for s in "${SCRAPERS[@]}"; do
     echo "[scrape-all] ok: $s"
   else
     code=$?
-    echo "[scrape-all] FAILED ($code): $s"
-    failures+=("$s")
+    if is_best_effort "$s"; then
+      echo "[scrape-all] SOFT-FAILED ($code): $s — best-effort, not counted"
+      soft_failures+=("$s")
+    else
+      echo "[scrape-all] FAILED ($code): $s"
+      failures+=("$s")
+    fi
   fi
 done
 
@@ -68,11 +97,17 @@ echo ""
 echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
+if [ ${#soft_failures[@]} -gt 0 ]; then
+  echo "[scrape-all] ${#soft_failures[@]} best-effort soft-failure(s) (not fatal):"
+  for f in "${soft_failures[@]}"; do
+    echo "  - $f"
+  done
+fi
 if [ ${#failures[@]} -eq 0 ]; then
-  echo "[scrape-all] all ${#SCRAPERS[@]} scrapers + compute:dept-stats succeeded"
+  echo "[scrape-all] all critical scrapers + compute:dept-stats succeeded"
   exit 0
 else
-  echo "[scrape-all] ${#failures[@]} failure(s):"
+  echo "[scrape-all] ${#failures[@]} critical failure(s):"
   for f in "${failures[@]}"; do
     echo "  - $f"
   done

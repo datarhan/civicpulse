@@ -17,7 +17,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     permissions:
       contents: write
     steps:
@@ -36,11 +36,21 @@ jobs:
         run: npm ci
 
       - name: Run scraper(s)
+        id: scrape
+        # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
+        # input can never break out of the case "..." quoting into the shell.
+        env:
+          ADAPTERS: ${{ inputs.adapters || 'all' }}
         run: |
-          set -euo pipefail
-          case "${{ inputs.adapters || 'all' }}" in
+          # Deliberately NOT 'set -e': a scraper failure must not abort this
+          # step. We capture it in `rc`, let the Commit step push whatever DID
+          # refresh, and red the run later in the health gate. That is what
+          # stops one flaky/dead upstream from freezing the whole site.
+          set -uo pipefail
+          rc=0
+          case "$ADAPTERS" in
             all)
-              npm run scrape:all
+              npm run scrape:all || rc=$?
               # Press fact-check laboratory chain (Phase 1-8 of the
               # /laboratorio plan). Each step is RESILIENT (a transient
               # LLM-API outage or missing key must not kill the whole
@@ -78,32 +88,53 @@ jobs:
                 echo ""
               } >> "$GITHUB_STEP_SUMMARY"
               ;;
-            officials)             npm run scrape:officials ;;
-            budget)                npm run scrape:budget ;;
-            tenders)               npm run scrape:tenders ;;
-            padron)                npm run scrape:padron ;;
-            participa)             npm run scrape:participa ;;
-            press)                 npm run scrape:press ;;
-            geo)                   npm run scrape:geo ;;
-            bdns)                  npm run scrape:bdns ;;
-            paro)                  npm run scrape:paro ;;
-            plenos)                npm run scrape:plenos ;;
-            pleno-agendas)         npm run scrape:pleno-agendas ;;
-            wikidata)              npm run scrape:wikidata ;;
-            ctbg)                  npm run scrape:ctbg ;;
-            consell-cv)            npm run scrape:consell-cv ;;
-            spain-ticker)          npm run scrape:spain-ticker ;;
-            promise-suggestions)   npm run scrape:promise-suggestions ;;
+            officials)             npm run scrape:officials || rc=$? ;;
+            budget)                npm run scrape:budget || rc=$? ;;
+            tenders)               npm run scrape:tenders || rc=$? ;;
+            padron)                npm run scrape:padron || rc=$? ;;
+            participa)             npm run scrape:participa || rc=$? ;;
+            press)                 npm run scrape:press || rc=$? ;;
+            geo)                   npm run scrape:geo || rc=$? ;;
+            bdns)                  npm run scrape:bdns || rc=$? ;;
+            paro)                  npm run scrape:paro || rc=$? ;;
+            plenos)                npm run scrape:plenos || rc=$? ;;
+            pleno-agendas)         npm run scrape:pleno-agendas || rc=$? ;;
+            wikidata)              npm run scrape:wikidata || rc=$? ;;
+            ctbg)                  npm run scrape:ctbg || rc=$? ;;
+            consell-cv)            npm run scrape:consell-cv || rc=$? ;;
+            spain-ticker)          npm run scrape:spain-ticker || rc=$? ;;
+            promise-suggestions)   npm run scrape:promise-suggestions || rc=$? ;;
             *) echo "unknown adapter set"; exit 1 ;;
           esac
+          # Surface the critical-failure code to later steps. rc is 0 whenever
+          # only best-effort adapters (metro-network / participa) failed —
+          # scrape-all.sh excludes those from its exit code on purpose.
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          if [ "$rc" -ne 0 ]; then
+            echo "::warning::A critical scraper failed (rc=$rc). The adapters that DID refresh are still committed; the health gate will red this run after the commit."
+          fi
 
+      # Tests validate the parser CODE against fixtures (independent of today's
+      # live data). continue-on-error so a failure here can't skip the commit
+      # of fresh data — it is folded into the health gate instead.
       - name: Run tests
+        id: tests
+        continue-on-error: true
         run: npm test
 
+      # Runs even when a scraper failed (!cancelled). Commits + pushes whatever
+      # adapters refreshed, so a critical failure no longer freezes the whole
+      # site — the healthy data still lands. On a red run it stays in git and
+      # ships on the next green nightly (the workflow_run deploy needs success).
       - name: Commit refreshed JSON
         id: commit
+        if: ${{ !cancelled() }}
+        env:
+          ADAPTERS: ${{ inputs.adapters || 'all' }}
+          EVENT_NAME: ${{ github.event_name }}
+          SCRAPE_RC: ${{ steps.scrape.outputs.rc }}
         run: |
-          set -euo pipefail
+          set -uo pipefail
           git config user.name  "civicpulse-bot"
           git config user.email "bot@civicpulse"
           git add public/data
@@ -114,18 +145,27 @@ jobs:
             TODAY=$(date -u +%Y-%m-%d)
             git commit \
               -m "chore(data): nightly real-data refresh ($TODAY)" \
-              -m "Pipelines: ${{ inputs.adapters || 'all' }}" \
-              -m "Triggered: ${{ github.event_name }}"
+              -m "Pipelines: $ADAPTERS" \
+              -m "Triggered: $EVENT_NAME" \
+              -m "Scrape rc: ${SCRAPE_RC:-0} (partial refresh commits the adapters that succeeded)"
             git push origin HEAD
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Summary
+        if: ${{ !cancelled() }}
+        env:
+          ADAPTERS: ${{ inputs.adapters || 'all' }}
+          CHANGED: ${{ steps.commit.outputs.changed }}
+          SCRAPE_RC: ${{ steps.scrape.outputs.rc }}
+          TESTS_OUTCOME: ${{ steps.tests.outcome }}
         run: |
           echo "### Nightly scrape summary" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Pipelines: \`${{ inputs.adapters || 'all' }}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Changed: \`${{ steps.commit.outputs.changed }}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Pipelines: \`$ADAPTERS\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Changed: \`${CHANGED:-false}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Critical scrape rc: \`${SCRAPE_RC:-0}\` (0 = all critical adapters ok; best-effort metro-network/participa never set this)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Tests: \`${TESTS_OUTCOME:-skipped}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           # generatedAt per file: a frozen adapter is invisible in file
           # sizes (yesterday's JSON has yesterday's size) but jumps out
@@ -135,3 +175,28 @@ jobs:
             GEN=$(node -e "try{const j=JSON.parse(require('fs').readFileSync(process.argv[1],'utf8'));process.stdout.write(j.generatedAt||'—')}catch{process.stdout.write('?')}" "$f")
             echo "  - $f ($(du -h "$f" | cut -f1)) · generatedAt: $GEN" >> "$GITHUB_STEP_SUMMARY"
           done
+
+      # Final gate — runs AFTER the commit so fresh data is already pushed.
+      # Reds the run (blocking the Vercel deploy) only on a CRITICAL scraper
+      # failure or a test failure. Best-effort metro-network/participa never
+      # reach here (scrape-all.sh keeps rc=0 for them) — so their flaking
+      # still produces a green run that deploys.
+      - name: Health gate
+        if: ${{ !cancelled() }}
+        env:
+          SCRAPE_RC: ${{ steps.scrape.outputs.rc }}
+          TESTS_OUTCOME: ${{ steps.tests.outcome }}
+        run: |
+          fail=0
+          if [ "${SCRAPE_RC:-0}" -ne 0 ]; then
+            echo "::error::One or more CRITICAL scrapers failed (rc=${SCRAPE_RC}). Fresh data from the healthy adapters was committed; this red run intentionally blocks the deploy until the critical source is fixed."
+            fail=1
+          fi
+          if [ "${TESTS_OUTCOME}" = "failure" ]; then
+            echo "::error::npm test failed on main — blocking deploy."
+            fail=1
+          fi
+          if [ "$fail" -eq 0 ]; then
+            echo "All critical adapters + tests green (best-effort metro-network/participa failures, if any, are non-blocking)."
+          fi
+          exit "$fail"
