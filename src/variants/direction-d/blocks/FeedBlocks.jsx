@@ -1,6 +1,7 @@
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
 import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
+import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
 import { PALETTE } from '../tokens'
 
 export function LiveContracts() {
@@ -259,6 +260,74 @@ export function PressBlockD() {
             >
               {p.title.length > 110 ? p.title.slice(0, 110) + '…' : p.title}
             </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function EventsBlockD() {
+  const { loading, error, data } = useEvents()
+  if (loading || error || !data) return null
+  const items = upcomingEvents(data).slice(0, 4)
+  if (items.length === 0) return null
+  return (
+    <div style={{ marginBottom: 18, borderTop: '1px solid ' + PALETTE.hair, paddingTop: 14 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 10,
+          color: PALETTE.ink60,
+          letterSpacing: '.12em',
+          textTransform: 'uppercase',
+          fontWeight: 700,
+          marginBottom: 8,
+        }}
+      >
+        Próximos eventos · {data.stats?.upcoming ?? items.length}
+      </div>
+      {items.map((e, i) => (
+        <div
+          key={e.id}
+          style={{
+            display: 'flex',
+            gap: 10,
+            padding: '10px 0',
+            borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
+            alignItems: 'flex-start',
+          }}
+        >
+          <div
+            className="mono"
+            style={{
+              flexShrink: 0,
+              width: 46,
+              fontSize: 11,
+              fontWeight: 700,
+              color: PALETTE.civic,
+              lineHeight: 1.2,
+              textTransform: 'uppercase',
+            }}
+          >
+            {formatEventWhen(e.eventDate, e.eventDateText)}
+          </div>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
+              <a
+                href={e.link}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                {e.title.length > 80 ? e.title.slice(0, 80) + '…' : e.title}
+              </a>
+            </div>
+            {e.eventDateText && (
+              <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+                {e.eventDateText}
+              </div>
+            )}
           </div>
         </div>
       ))}

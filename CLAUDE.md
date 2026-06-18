@@ -23,7 +23,8 @@ npm run scrape:tenders-ted          # EU TED v3 — contracts above EU threshold
 npm run scrape:boe                  # BOE last 30 days · filters titulos mentioning Riba-roja
 npm run scrape:padron               # INE Tempus3 30-year population series
 npm run scrape:participa            # Votiveu (WordPress) citizen-participation blog
-npm run scrape:press                # Google News RSS aggregator
+npm run scrape:press                # Google News + infoturia + Ayuntamiento RSS
+npm run scrape:events               # Ayuntamiento events/agenda RSS feed
 npm run scrape:geo                  # OSM Overpass boundary + 21 neighborhoods
 npm run scrape:metro-network        # OSM Metrovalencia L1–L10 full network + stations
 npm run scrape:fgv-gtfs             # FGV GTFS static schedule (4 local L9/L2 stops)
@@ -433,7 +434,7 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**20 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**21 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -448,13 +449,14 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (20):
+# Autonomous scrapers (21):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
 scripts/scrape-padron.ts              →  src/scraper/padron.ts            →  public/data/padron.json
 scripts/scrape-participa.ts           →  src/scraper/participa.ts         →  public/data/participa.json
 scripts/scrape-press.ts               →  src/scraper/press.ts             →  public/data/press.json
+scripts/scrape-events.ts              →  src/scraper/events.ts            →  public/data/events.json
 scripts/scrape-geo.ts                 →  src/scraper/geo.ts               →  public/data/geo.json
 scripts/scrape-metro-network.ts       →  (inline parser)                  →  public/data/metro-network.json
 scripts/scrape-fgv-gtfs.ts            →  (inline parser)                  →  public/data/metro-schedule.json
@@ -529,6 +531,7 @@ loop.
 - `usePlenos` + `PLENO_TONE` / `PLENO_LABEL`
 - `usePlenoAgendas` + `SECTION_LABEL` / `SECTION_TONE`
 - `useParticipa` + `KIND_ICON` / `KIND_LABEL`
+- `useEvents` + `upcomingEvents` / `formatEventWhen`
 - `usePress` + `timeAgo()`
 - `useGeo`
 - `useMetroNetwork` + `indexLineColors`

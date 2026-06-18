@@ -1,0 +1,514 @@
+{
+  "generatedAt": "2026-06-18T17:20:48.927Z",
+  "source": {
+    "url": "https://www.ribarroja.es/es/eventos/rss.xml",
+    "platform": "Drupal RSS (oficial)"
+  },
+  "stats": {
+    "total": 50,
+    "upcoming": 36,
+    "nextDate": "2026-07-05T20:00:00.000Z"
+  },
+  "events": [
+    {
+      "id": "10jym2l",
+      "title": "Cine 'Desalojo'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27desalojo%27",
+      "eventDate": "2026-05-21T18:00:00.000Z",
+      "eventDateText": "21 de mayo de 2026 20:00",
+      "publishedDate": "2026-05-21T17:29:13.000Z",
+      "excerpt": "Cortometraje con entrada gratuita en el Auditori de Riba roja y que esta realizado por el director local Carlos Bigorra Badia, interpretado por Lola Molto y Nando Pascual.",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20pelicula.jpg?itok=nQKyt6WE"
+    },
+    {
+      "id": "1poi9bk",
+      "title": "Competiciones deportivas 28 de mayo de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-28-de-mayo-de-2026",
+      "eventDate": "2026-05-28T17:00:00.000Z",
+      "eventDateText": "28 de mayo de 2026 19:00",
+      "publishedDate": "2026-05-27T12:53:04.000Z",
+      "excerpt": null,
+      "image": null
+    },
+    {
+      "id": "x0m01s",
+      "title": "IV Festival de Guitarra",
+      "link": "https://www.ribarroja.es/es/evento/iv-festival-de-guitarra",
+      "eventDate": "2026-05-29T16:30:00.000Z",
+      "eventDateText": "29 de mayo de 2026 18:30",
+      "publishedDate": "2026-05-25T16:11:43.000Z",
+      "excerpt": "Viernes 29 de mayo a las 18:30 horas en la Sala Noble del Castillo, tendrá lugar el IV Festival de Guitarra del Conservatorio Profesional Municipal de Música de Riba-roja de Túria.",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260525%20Festival%20Guitarra.jpeg?itok=BoM61a8z"
+    },
+    {
+      "id": "cjza2g",
+      "title": "Competiciones deportivas 30 de mayo de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-30-de-mayo-de-2026",
+      "eventDate": "2026-05-30T06:00:00.000Z",
+      "eventDateText": "30 de mayo de 2026 08:00",
+      "publishedDate": "2026-05-27T12:43:45.000Z",
+      "excerpt": null,
+      "image": null
+    },
+    {
+      "id": "zc3q5g",
+      "title": "V Jornadas de Memòria Històrica",
+      "link": "https://www.ribarroja.es/es/evento/v-jornadas-de-mem%C3%B2ria-hist%C3%B2rica",
+      "eventDate": "2026-05-30T08:00:00.000Z",
+      "eventDateText": "30 de mayo de 2026 10:00",
+      "publishedDate": "2026-05-25T16:15:57.000Z",
+      "excerpt": "Sábado 30 de mayo de 10:00 a13:45 horas en la Sala Noble del Castell, tendrán lugar las V Jornadas de Memòria Històrica de Riba-roja de Turia",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260525%20Memoria%202026%202.jpeg?itok=OGC4fULf"
+    },
+    {
+      "id": "qpij0w",
+      "title": "Concurso de dibujo y pintura de la Coordinadora en Defensa de los Bosques del Turia",
+      "link": "https://www.ribarroja.es/es/evento/concurso-de-dibujo-y-pintura-de-la-coordinadora-en-defensa-de-los-bosques-del-turia",
+      "eventDate": "2026-05-30T09:00:00.000Z",
+      "eventDateText": "30 de mayo de 2026 11:00",
+      "publishedDate": "2026-05-25T17:06:40.000Z",
+      "excerpt": "Sábado 30 de mayo en la Sala Ascensión Chirivella, tendrá lugar, el concurso de dibujo y pintura impulsado por la&nbsp; Coordinadora en Defensa de los Bosques del Turia &nbsp;que está dirigido a escolares de los municipi…",
+      "image": null
+    },
+    {
+      "id": "1fhplya",
+      "title": "Competiciones deportivas 31 de mayo de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-31-de-mayo-de-2026",
+      "eventDate": "2026-05-31T07:00:00.000Z",
+      "eventDateText": "31 de mayo de 2026 09:00",
+      "publishedDate": "2026-05-27T12:50:20.000Z",
+      "excerpt": null,
+      "image": null
+    },
+    {
+      "id": "uxwbx2",
+      "title": "Competiciones deportivas 6 de junio de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-6-de-junio-de-2026",
+      "eventDate": "2026-06-06T07:30:00.000Z",
+      "eventDateText": "06 de junio de 2026 09:30",
+      "publishedDate": "2026-06-04T10:51:35.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas.jpg?itok=QwfknWQ4"
+    },
+    {
+      "id": "y2sn57",
+      "title": "Cine 'Michael'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27michael%27",
+      "eventDate": "2026-06-06T20:30:00.000Z",
+      "eventDateText": "06 de junio de 2026 22:30",
+      "publishedDate": "2026-05-22T10:14:01.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260521%20michael_1.jpg?itok=VVbvdj1v"
+    },
+    {
+      "id": "ntnzkw",
+      "title": "Competiciones deportivas 7 de junio de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-7-de-junio-de-2026",
+      "eventDate": "2026-06-07T07:30:00.000Z",
+      "eventDateText": "07 de junio de 2026 09:30",
+      "publishedDate": "2026-06-04T10:53:57.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_0.jpg?itok=SmAN0llL"
+    },
+    {
+      "id": "b37x58",
+      "title": "Cine 'Los legendarios'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27los-legendarios%27",
+      "eventDate": "2026-06-07T15:00:00.000Z",
+      "eventDateText": "07 de junio de 2026 17:00",
+      "publishedDate": "2026-05-22T10:18:36.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260521%20los%20legendarios.jpg?itok=CuKj3Oty"
+    },
+    {
+      "id": "1g9ngsg",
+      "title": "Cine 'Michael'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27michael%27-0",
+      "eventDate": "2026-06-07T17:00:00.000Z",
+      "eventDateText": "07 de junio de 2026 19:00",
+      "publishedDate": "2026-05-22T11:05:20.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260521%20michael_0.jpg?itok=8Y9bZ0AD"
+    },
+    {
+      "id": "1hi28cw",
+      "title": "Competiciones deportivas 13 de junio de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-13-de-junio-de-2026",
+      "eventDate": "2026-06-13T13:00:00.000Z",
+      "eventDateText": "13 de junio de 2026 15:00",
+      "publishedDate": "2026-06-11T10:32:00.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_1.jpg?itok=a2cQQxSs"
+    },
+    {
+      "id": "7r9o6k",
+      "title": "Competiciones deportivas 14 de junio de 2026",
+      "link": "https://www.ribarroja.es/es/evento/competiciones-deportivas-14-de-junio-de-2026",
+      "eventDate": "2026-06-14T07:00:00.000Z",
+      "eventDateText": "14 de junio de 2026 09:00",
+      "publishedDate": "2026-06-11T10:35:07.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Competiciones%20deportivas_2.jpg?itok=gSz0fTro"
+    },
+    {
+      "id": "1m8j5h0",
+      "title": "Cine 'Aida y vuelta'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27aida-y-vuelta%27",
+      "eventDate": "2026-07-05T20:00:00.000Z",
+      "eventDateText": "05 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T16:03:05.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Aida%20y%20vuelta.jpg?itok=9cAvxjOP"
+    },
+    {
+      "id": "jhapkw",
+      "title": "Cine 'He-man y los masters del Universo'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27he-man-y-los-masters-del-universo%27",
+      "eventDate": "2026-07-09T20:00:00.000Z",
+      "eventDateText": "09 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:22:12.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/he%20man%20y%20los%20masters%20del%20universo.jpg?itok=2ZExO_BP"
+    },
+    {
+      "id": "teypk",
+      "title": "Cine 'He-man y los masters del Universo'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27he-man-y-los-masters-del-universo%27-0",
+      "eventDate": "2026-07-11T20:00:00.000Z",
+      "eventDateText": "11 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:24:25.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/he%20man%20y%20los%20masters%20del%20universo_0.jpg?itok=_C8UQy7X"
+    },
+    {
+      "id": "9ma110",
+      "title": "Cine 'Mortal Kombat II'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27mortal-kombat-ii%27",
+      "eventDate": "2026-07-12T20:00:00.000Z",
+      "eventDateText": "12 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:26:56.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/mortal%20kombat%20II.jpg?itok=dM5BNkn9"
+    },
+    {
+      "id": "11vov5k",
+      "title": "Cine 'Toy Story 5'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27toy-story-5%27",
+      "eventDate": "2026-07-15T20:00:00.000Z",
+      "eventDateText": "15 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:29:13.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/TOYSTORY5.jpg?itok=xq37Ni_b"
+    },
+    {
+      "id": "1syvl58",
+      "title": "Cine 'Drems'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27drems%27",
+      "eventDate": "2026-07-16T20:00:00.000Z",
+      "eventDateText": "16 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T16:23:52.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/dreams.jpg?itok=mnXehIdT"
+    },
+    {
+      "id": "1kbfaw0",
+      "title": "Cine 'Toy Story 5'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27toy-story-5%27-0",
+      "eventDate": "2026-07-17T20:00:00.000Z",
+      "eventDateText": "17 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:33:28.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/TOYSTORY5_0.jpg?itok=0BllX275"
+    },
+    {
+      "id": "11ozhow",
+      "title": "Cine 'Viaje al país de los blancos'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27viaje-al-pa%C3%ADs-de-los-blancos%27",
+      "eventDate": "2026-07-19T20:00:00.000Z",
+      "eventDateText": "19 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:40:11.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/viaje%20al%20pais%20de%20los%20blancos.jpg?itok=DFmClDUZ"
+    },
+    {
+      "id": "f2sjfw",
+      "title": "Cine 'Mi robot favorito'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27mi-robot-favorito%27",
+      "eventDate": "2026-07-22T20:00:00.000Z",
+      "eventDateText": "22 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:41:53.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/mi%20robot%20favorito.jpg?itok=MIlLZYNt"
+    },
+    {
+      "id": "olcen0",
+      "title": "Cine 'Supergirl'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27supergirl%27",
+      "eventDate": "2026-07-23T20:00:00.000Z",
+      "eventDateText": "23 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T16:32:06.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Supergirl.jpg?itok=1odK4JCD"
+    },
+    {
+      "id": "18zv4kc",
+      "title": "Cine 'Las obejas detectives'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27las-obejas-detectives%27",
+      "eventDate": "2026-07-24T20:00:00.000Z",
+      "eventDateText": "24 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:46:47.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/las%20ovejas%20dectetives.jpg?itok=rGCyO6Ae"
+    },
+    {
+      "id": "1krqmpo",
+      "title": "Cine 'Supergirl'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27supergirl%27-0",
+      "eventDate": "2026-07-25T20:00:00.000Z",
+      "eventDateText": "25 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T16:33:41.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Supergirl_0.jpg?itok=0emNQUN_"
+    },
+    {
+      "id": "17f23b0",
+      "title": "Cine 'Las obejas detectives'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27las-obejas-detectives%27-0",
+      "eventDate": "2026-07-26T20:00:00.000Z",
+      "eventDateText": "26 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:48:16.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/las%20ovejas%20dectetives_0.jpg?itok=u2F2R4JE"
+    },
+    {
+      "id": "epr2hz",
+      "title": "Cine 'Patrick'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27patrick%27",
+      "eventDate": "2026-07-29T20:00:00.000Z",
+      "eventDateText": "29 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T16:38:43.000Z",
+      "excerpt": "Película gratuita",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/patrik.jpg?itok=ft3zN-Zv"
+    },
+    {
+      "id": "11odcp7",
+      "title": "Cine 'Buffalo Kids'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27buffalo-kids%27",
+      "eventDate": "2026-07-30T20:00:00.000Z",
+      "eventDateText": "30 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T16:41:08.000Z",
+      "excerpt": "Película gratuita",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/bufalo%20kids.jpg?itok=jDFKoTD_"
+    },
+    {
+      "id": "85xn0k",
+      "title": "Cine 'Napoleón'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27napole%C3%B3n%27",
+      "eventDate": "2026-07-31T20:00:00.000Z",
+      "eventDateText": "31 de julio de 2026 22:00",
+      "publishedDate": "2026-05-21T15:54:35.000Z",
+      "excerpt": "Película gratuita",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/napoleon.jpg?itok=ernEo9Zb"
+    },
+    {
+      "id": "1k00uk8",
+      "title": "Cine 'La sirenita'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27la-sirenita%27",
+      "eventDate": "2026-08-01T20:00:00.000Z",
+      "eventDateText": "01 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T15:56:11.000Z",
+      "excerpt": "Película gratuita",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/la%20sirenita%202023.jpg?itok=DL4vZmB3"
+    },
+    {
+      "id": "1o6shi8",
+      "title": "Cine 'Aquaman y el reino perdido'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27aquaman-y-el-reino-perdido%27",
+      "eventDate": "2026-08-02T20:00:00.000Z",
+      "eventDateText": "02 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T15:57:41.000Z",
+      "excerpt": "Película gratuita",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/aquaman_.jpg?itok=l6myF9f_"
+    },
+    {
+      "id": "1axqhko",
+      "title": "Cine 'Coco'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27coco%27",
+      "eventDate": "2026-08-05T20:00:00.000Z",
+      "eventDateText": "05 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T15:59:32.000Z",
+      "excerpt": "Película gratuita",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/coco.jpg?itok=TnN1fQ52"
+    },
+    {
+      "id": "bcssg",
+      "title": "Cine 'La Odisea'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27la-odisea%27",
+      "eventDate": "2026-08-19T20:00:00.000Z",
+      "eventDateText": "19 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:49:45.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/la%20odisea.jpg?itok=PQ36rUoo"
+    },
+    {
+      "id": "1s5aqw4",
+      "title": "Cine 'Minions & monsters'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27minions-%26-monsters%27",
+      "eventDate": "2026-08-20T20:00:00.000Z",
+      "eventDateText": "20 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:53:22.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/minioms.jpg?itok=07ULjsBg"
+    },
+    {
+      "id": "x0mov8",
+      "title": "Cine 'La Odisea'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27la-odisea%27-0",
+      "eventDate": "2026-08-21T20:00:00.000Z",
+      "eventDateText": "21 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:03:21.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/la%20odisea_0.jpg?itok=Hqoyw5zI"
+    },
+    {
+      "id": "1uw36kg",
+      "title": "Cine 'Minions & monsters'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27minions-%26-monsters%27-0",
+      "eventDate": "2026-08-22T20:00:00.000Z",
+      "eventDateText": "22 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:55:22.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/minioms_0.jpg?itok=CEuQd6eX"
+    },
+    {
+      "id": "1q2k9ro",
+      "title": "Cine 'Spider-man Brand New Day'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27spider-man-brand-new-day%27",
+      "eventDate": "2026-08-23T20:00:00.000Z",
+      "eventDateText": "23 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:08:45.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/spider-man.jpg?itok=BIV7J2BK"
+    },
+    {
+      "id": "1f0uqd8",
+      "title": "Cine 'Días de agosto'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27d%C3%ADas-de-agosto%27",
+      "eventDate": "2026-08-26T20:00:00.000Z",
+      "eventDateText": "26 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:58:53.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/dias%20de%20agosto.jpg?itok=_H5rZ_5c"
+    },
+    {
+      "id": "ormhys",
+      "title": "Cine 'Star Wars: the Mandalorian & Grogu'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27star-wars%3A-the-mandalorian-%26-grogu%27",
+      "eventDate": "2026-08-27T20:00:00.000Z",
+      "eventDateText": "27 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T16:12:06.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/star%20wards.jpg?itok=QehXEgIP"
+    },
+    {
+      "id": "1axe945",
+      "title": "Cine 'Vaiana'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27vaiana%27",
+      "eventDate": "2026-08-28T20:00:00.000Z",
+      "eventDateText": "28 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T17:04:18.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/vaiana.jpg?itok=Qh2ByK0i"
+    },
+    {
+      "id": "1gnjgas",
+      "title": "Cine 'Star Wars: the Mandalorian & Grogu'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27star-wars%3A-the-mandalorian-%26-grogu%27-0",
+      "eventDate": "2026-08-29T20:00:00.000Z",
+      "eventDateText": "29 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T17:02:28.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/star%20wards_0.jpg?itok=TJEvJzh8"
+    },
+    {
+      "id": "ij8po8",
+      "title": "Cine 'Vaiana'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27vaiana%27-0",
+      "eventDate": "2026-08-30T20:00:00.000Z",
+      "eventDateText": "30 de agosto de 2026 22:00",
+      "publishedDate": "2026-05-21T17:05:49.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/vaiana_0.jpg?itok=ZsLnVUEc"
+    },
+    {
+      "id": "1p72p3g",
+      "title": "Teatro 'Don Quijote en los infiernos'",
+      "link": "https://www.ribarroja.es/es/evento/teatro-%27don-quijote-en-los-infiernos%27",
+      "eventDate": "2026-09-19T17:00:00.000Z",
+      "eventDateText": "19 de septiembre de 2026 19:00",
+      "publishedDate": "2026-05-31T11:53:47.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/19%20don%20quijote%20en%20los%20infiernos.jpg?itok=VK0geBLc"
+    },
+    {
+      "id": "1v4yj6t",
+      "title": "Musical 'Viaje a Oz'",
+      "link": "https://www.ribarroja.es/es/evento/musical-%27viaje-a-oz%27",
+      "eventDate": "2026-09-20T16:00:00.000Z",
+      "eventDateText": "20 de septiembre de 2026 18:00",
+      "publishedDate": "2026-05-31T11:10:31.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20%20viaje%20a%20oz.jpg?itok=SNEXbncR"
+    },
+    {
+      "id": "1s18y44",
+      "title": "Ópera 'Madama Butterfly'",
+      "link": "https://www.ribarroja.es/es/evento/%C3%B3pera-%27madama-butterfly%27",
+      "eventDate": "2026-09-26T17:00:00.000Z",
+      "eventDateText": "26 de septiembre de 2026 19:00",
+      "publishedDate": "2026-05-31T12:01:10.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/21%20madama%20buterflay.jpg?itok=ZByBU8pL"
+    },
+    {
+      "id": "1q71hzg",
+      "title": "Musical 'We love disco'",
+      "link": "https://www.ribarroja.es/es/evento/musical-%27we-love-disco%27",
+      "eventDate": "2026-10-04T17:00:00.000Z",
+      "eventDateText": "04 de octubre de 2026 19:00",
+      "publishedDate": "2026-05-31T12:03:07.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/22%20disco%20we%20love.jpg?itok=_mKFwwl6"
+    },
+    {
+      "id": "v2hrac",
+      "title": "Música 'Del Barroco al Jazz'",
+      "link": "https://www.ribarroja.es/es/evento/m%C3%BAsica-%27del-barroco-al-jazz%27",
+      "eventDate": "2026-10-22T17:00:00.000Z",
+      "eventDateText": "22 de octubre de 2026 19:00",
+      "publishedDate": "2026-05-31T11:16:05.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/23%20del%20barroco%20al%20jazz.jpg?itok=5H2l6gkN"
+    },
+    {
+      "id": "d04qgp",
+      "title": "Teatro 'Asesinato en el Orient Express'",
+      "link": "https://www.ribarroja.es/es/evento/teatro-%27asesinato-en-el-orient-express%27",
+      "eventDate": "2026-10-30T19:00:00.000Z",
+      "eventDateText": "30 de octubre de 2026 20:00",
+      "publishedDate": "2026-05-31T11:17:59.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/24%20asesinato%20en%20el%20orient%20expres.jpg?itok=zr4P61cJ"
+    },
+    {
+      "id": "1pr460",
+      "title": "Teatro 'Piter Pan, la batalla final'",
+      "link": "https://www.ribarroja.es/es/evento/teatro-%27piter-pan%2C-la-batalla-final%27",
+      "eventDate": "2026-10-31T18:00:00.000Z",
+      "eventDateText": "31 de octubre de 2026 19:00",
+      "publishedDate": "2026-05-31T11:20:23.000Z",
+      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/25%20peter%20pan.jpg?itok=x4Gcr-Q-"
+    }
+  ]
+}

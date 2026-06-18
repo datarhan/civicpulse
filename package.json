@@ -22,6 +22,7 @@
     "scrape:padron": "npx tsx scripts/scrape-padron.ts",
     "scrape:participa": "npx tsx scripts/scrape-participa.ts",
     "scrape:press": "npx tsx scripts/scrape-press.ts",
+    "scrape:events": "npx tsx scripts/scrape-events.ts",
     "scrape:geo": "npx tsx scripts/scrape-geo.ts",
     "scrape:metro-network": "npx tsx scripts/scrape-metro-network.ts",
     "scrape:fgv-gtfs": "npx tsx scripts/scrape-fgv-gtfs.ts",

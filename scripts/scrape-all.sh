@@ -22,6 +22,7 @@ SCRAPERS=(
   scrape:padron
   scrape:participa
   scrape:press
+  scrape:events
   scrape:geo
   scrape:metro-network
   scrape:fgv-gtfs
