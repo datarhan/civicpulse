@@ -43,12 +43,17 @@ SCRAPERS=(
 # the summary as a soft warning; they just don't count toward the exit code.
 #   - scrape:metro-network — OSM Overpass routinely 429s; metro geometry is
 #     near-static, so yesterday's snapshot is fine for another day.
+#   - scrape:geo — same OSM Overpass upstream (boundary + neighborhoods +
+#     railways), also near-static. Shares metro's mirror-retry now, but a
+#     simultaneous outage of all Overpass mirrors still must not freeze the
+#     whole site.
 #   - scrape:participa — participa.ribarroja.es was decommissioned (the host
 #     now serves the main portal's 404 behind a wrong-host TLS cert). Upstream
 #     problem, not ours; we keep hitting it so it self-heals if the council
 #     ever restores the Votiveu WordPress API.
 BEST_EFFORT=(
   scrape:metro-network
+  scrape:geo
   scrape:participa
 )
 

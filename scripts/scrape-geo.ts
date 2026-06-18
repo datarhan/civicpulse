@@ -10,13 +10,16 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseOsmBoundary, parseOsmNeighborhoods, parseOsmRailways } from '../src/scraper/geo'
+import { fetchOverpass, OVERPASS_ENDPOINTS } from '../src/scraper/overpass-fetch'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/geo.json')
 
-const OVERPASS = 'https://overpass-api.de/api/interpreter'
+// Recorded in the emitted payload for provenance; the shared fetcher rotates
+// across all OVERPASS_ENDPOINTS with 429/5xx retry.
+const OVERPASS = OVERPASS_ENDPOINTS[0]
 
 const BOUNDARY_QL = `[out:json][timeout:30];
 relation["name"="Riba-roja de Túria"]["admin_level"="8"]["boundary"="administrative"];
@@ -42,23 +45,7 @@ area["wikidata"="Q23701"]->.muni;
 );
 out geom tags;`
 
-async function runQuery(ql: string): Promise<string> {
-  const body = new URLSearchParams({ data: ql }).toString()
-  const res = await fetch(OVERPASS, {
-    method: 'POST',
-    headers: {
-      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
-      'Content-Type': 'application/x-www-form-urlencoded',
-      Accept: 'application/json',
-    },
-    body,
-    // Overpass declares its own [timeout:30] server-side; this is the
-    // client-side ceiling for queue + transfer time.
-    signal: AbortSignal.timeout(180_000),
-  })
-  if (!res.ok) throw new Error(`Overpass -> HTTP ${res.status}`)
-  return res.text()
-}
+const runQuery = (ql: string) => fetchOverpass(ql, { label: 'geo' })
 
 async function main() {
   console.log('[geo] fetching municipal boundary…')
