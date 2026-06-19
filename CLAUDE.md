@@ -482,6 +482,7 @@ scripts/scrape-bop.ts                 →  src/scraper/bop.ts               → 
 public/data/promises.json            (schema: src/scraper/promises.ts)
 public/data/quejas-responses.json    (schema: scripts/apply-queja-response.ts)
 public/data/sindic.json              (schema: src/scraper/sindic.ts)
+public/data/plantilla.json           (curated · cited · municipal-workforce headcount on /cargos)
 
 # Bot-owned, exported daily by launchd agent:
 public/data/quejas.json              (schema: bot/src/services/snapshot.ts)

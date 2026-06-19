@@ -3,6 +3,7 @@ import { Card } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useIspa, ispaLatest, formatEuros } from '../hooks/useIspa'
+import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { fmtDateLong } from '../lib/formatters'
@@ -230,6 +231,62 @@ function RetribucionesPanel() {
             style={{ color: 'var(--civic)' }}
           >
             Fuente: ISPA · Ministerio de Hacienda y Función Pública ↗
+          </a>
+        )}
+      </div>
+    </Card>
+  )
+}
+
+function PlantillaCard() {
+  const { data } = useJsonFetch('/data/plantilla.json', null)
+  if (!data || !data.total) return null
+  const pct = (n) => Math.round((n / data.total) * 100)
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink60)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+          fontWeight: 700,
+          marginBottom: 10,
+        }}
+      >
+        Plantilla municipal{data.asOf ? ` · ${String(data.asOf).slice(0, 4)}` : ''}
+      </div>
+      <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', alignItems: 'baseline' }}>
+        <div>
+          <div className="mono" style={{ fontSize: 22, fontWeight: 800 }}>
+            {data.total}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>empleados públicos</div>
+        </div>
+        {typeof data.women === 'number' && typeof data.men === 'number' && (
+          <div style={{ fontSize: 12, color: 'var(--ink70)' }}>
+            <span className="mono" style={{ fontWeight: 700 }}>
+              {data.women}
+            </span>{' '}
+            mujeres ({pct(data.women)}%) ·{' '}
+            <span className="mono" style={{ fontWeight: 700 }}>
+              {data.men}
+            </span>{' '}
+            hombres ({pct(data.men)}%)
+          </div>
+        )}
+      </div>
+      <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
+        {data.note}{' '}
+        {data.source?.url && (
+          <a
+            href={data.source.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            Fuente: {data.source.publisher} ({String(data.source.date).slice(0, 4)}) ↗
           </a>
         )}
       </div>
@@ -472,6 +529,7 @@ function CorporacionMunicipal() {
 
       <CompositionBar composition={data.composition} total={data.count} />
       <RetribucionesPanel />
+      <PlantillaCard />
 
       <div
         className="mono"
