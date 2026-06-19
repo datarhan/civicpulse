@@ -17,6 +17,7 @@ npm run test:e2e:ui    # Playwright in headed UI mode
 # Real-data ingestion (re-run after any upstream change; all idempotent).
 # GitHub Actions runs scrape:all nightly at 04:30 UTC (see §Nightly refresh).
 npm run scrape:officials            # 21 councillors + photos from ribarroja.es
+npm run scrape:transparency         # Portal de Transparencia doc index (RPT + CV PDFs)
 npm run scrape:budget               # CONPREL municipal budget XLS (MinHac)
 npm run scrape:tenders              # Gobierto tender/contract feed (mirrors PLACSP)
 npm run scrape:tenders-ted          # EU TED v3 — contracts above EU threshold (Riba-roja buyer)
@@ -435,7 +436,7 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**22 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**23 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -450,8 +451,9 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (22):
+# Autonomous scrapers (23):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
+scripts/scrape-transparency.ts        →  src/scraper/transparency.ts      →  public/data/transparency-docs.json
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
 scripts/scrape-padron.ts              →  src/scraper/padron.ts            →  public/data/padron.json
@@ -526,6 +528,7 @@ wired (yet) — React Query / SWR can be added when we hit a real refresh
 loop.
 
 - `useOfficials` + `partyColor()`
+- `useTransparencyDocs` + `groupTransparencyDocs`
 - `useBudget` + `formatEuros()` + `EXPENSE_COLORS` / `PROGRAM_COLORS`
 - `useTenders` + `STATUS_LABEL` / `STATUS_TONE` + `formatDate()`
 - `usePadron`

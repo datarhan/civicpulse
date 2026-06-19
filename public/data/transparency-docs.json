@@ -1,0 +1,239 @@
+{
+  "generatedAt": "2026-06-19T10:31:12.014Z",
+  "source": {
+    "name": "Portal de Transparencia · Ayuntamiento de Riba-roja de Túria"
+  },
+  "sources": [
+    {
+      "category": "rpt",
+      "label": "Relación de puestos de trabajo (RPT) y plantilla",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/1_transparencia_activa_e_informacion_sobre_la_corporacion_municipal/relacion_de_puesto_de_trabajo_del_ayuntamiento/contenidos/7559961/0835919",
+      "ok": true,
+      "count": 9
+    },
+    {
+      "category": "cv",
+      "label": "Datos biográficos / CV de los cargos",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "ok": true,
+      "count": 17
+    }
+  ],
+  "stats": {
+    "total": 26,
+    "byCategory": {
+      "cv": 17,
+      "rpt": 9
+    }
+  },
+  "docs": [
+    {
+      "id": "65a32d0011f0",
+      "title": "Dades biogràfiques Robert Raga",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Robert-Raga-Gadea.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "62c72d812cd6",
+      "title": "Dades biogràfiques Teresa Pozuelo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250817-CV-TERESA-POZUELO.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "38f623cc5df3",
+      "title": "Dades biogràfiques José Luis Ramos",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Luis-Ramos.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "4a13adbaa7e6",
+      "title": "Dades biogràfiques José Ángel Hernández",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250818-CURRICULUM-JOSE769-A769NGEL-HERNA769NDEZ.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "31a610fbe5e5",
+      "title": "Dades biogràfiques Eva Lara Catalá",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "3d061199b6e5",
+      "title": "Dades biogràfiques Rafael Gómez Sánchez",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "6ac45bcf941a",
+      "title": "Dades biogràfiques Esther Gómez Laredo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "2e4fce84c5e3",
+      "title": "Dades biogràfiques José Manuel Vila Oltra",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Manuel-Vila-Oltra.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "39806b9365e3",
+      "title": "Dades biogràfiques Raquel Pamblanco Paredes",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "ef7e2812de91",
+      "title": "Dades biogràfiques Alfredo Pla Gimenez",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Alfredo-Pla-Gimenez.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "f5579cf91c06",
+      "title": "Dades biogràfiques David Barbancho",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20241118-CV_DAVID_BARRANCHO_2.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "ef616ac99a5a",
+      "title": "Dades biogràfiques Alberto J Gimeno Calvo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "46f013ffb07e",
+      "title": "Dades biogràfiques María José Pradas Ramo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "e4490aea6b13",
+      "title": "Dades biogràfiques Salvador Ferrer Cortina",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "9278cb2c548b",
+      "title": "Dades biogràfiques José Luis Fernández Santamaria",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "59fe2f6d6c57",
+      "title": "Dades biogràfiques Rafa Folgado Navarro",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "f9a34c1af4d4",
+      "title": "Dades biogràfiques José Manuel Gallardo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/EU_UP-Jose-Manuel-Gallardo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "ac1ef482dc42",
+      "title": "Relació llocs de treball i plantilla personal 2024",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20241122-2-Plantilla-personal-2024.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2024
+    },
+    {
+      "id": "72c394bb41f9",
+      "title": "Relació llocs de treball i plantilla personal 2023",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20241119-RPT-Y-PLANTILLA-PERSONAL-2023-VERSION-DEF-1.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2023
+    },
+    {
+      "id": "b99ce313d35e",
+      "title": "Relació llocs de treball i plantilla personal 2022",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20221215-Relac-puestos-trabajo-y-plantilla-personal-2022.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2022
+    },
+    {
+      "id": "e792bff5a6cb",
+      "title": "Relació de Llocs de treball 2021",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20210308-Relacin-de-los-Puestos-de-Trabajo-2021.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2021
+    },
+    {
+      "id": "b0874a574728",
+      "title": "Relació de Llocs de treball 2020",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20200227-3-Relacin-de-puestos-de-trabajo-2020.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2020
+    },
+    {
+      "id": "87978404c595",
+      "title": "Relació de Llocs de treball 2019",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/20200227-Relaci-de-llocs-de-treball-2019.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2019
+    },
+    {
+      "id": "982e1b9f53e3",
+      "title": "Relació de Llocs de Treball 2018",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/Relacin-de-puestos-de-trabajo-2018.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2018
+    },
+    {
+      "id": "2080ea67c65b",
+      "title": "Relació de Llocs de Treball 2017",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/Relacin-de-puestos-de-trabajo-2017.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2017
+    },
+    {
+      "id": "e0d245929947",
+      "title": "Relació de Llocs de Treball 2016",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7559961/filesGroup/Relacin-de-puestos-de-trabajo-2016.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2016
+    }
+  ]
+}

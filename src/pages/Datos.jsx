@@ -14,6 +14,7 @@ import { useParticipa } from '../hooks/useParticipa'
 import { useParo } from '../hooks/useParo'
 import { useGeo } from '../hooks/useGeo'
 import { usePromises } from '../hooks/usePromises'
+import { useTransparencyDocs, groupTransparencyDocs } from '../hooks/useTransparencyDocs'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 
 function formatDate(iso) {
@@ -500,6 +501,64 @@ function PopulationChart() {
   )
 }
 
+function TransparencyDocsCard() {
+  const { data } = useTransparencyDocs()
+  if (!data || (data.stats?.total ?? 0) === 0) return null
+  const groups = groupTransparencyDocs(data)
+  return (
+    <Card>
+      <SectionHead
+        eyebrow="Portal de Transparencia · documentos oficiales"
+        title="Documentos del Ayuntamiento (RPT, plantilla y CV de los cargos)"
+      />
+      <div style={{ marginTop: 12, display: 'grid', gap: 16 }}>
+        {groups.map((g) => (
+          <div key={g.label}>
+            <div
+              className="mono"
+              style={{
+                fontSize: 10.5,
+                color: 'var(--ink60)',
+                textTransform: 'uppercase',
+                letterSpacing: '.06em',
+                marginBottom: 6,
+              }}
+            >
+              {g.label} · {g.docs.length}
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {g.docs.map((d) => (
+                <a
+                  key={d.id}
+                  href={d.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mono"
+                  style={{
+                    fontSize: 11,
+                    color: 'var(--civic)',
+                    textDecoration: 'none',
+                    border: '1px solid var(--border)',
+                    borderRadius: 4,
+                    padding: '3px 8px',
+                  }}
+                >
+                  {d.title}
+                  {d.year ? ` · ${d.year}` : ''} ↗
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 10 }}>
+        Catálogo de enlaces a los PDF oficiales · sin extracción de datos sensibles ·{' '}
+        {fmtDateShort(data.generatedAt)}
+      </div>
+    </Card>
+  )
+}
+
 export default function Datos() {
   const t = useT()
   return (
@@ -545,6 +604,10 @@ export default function Datos() {
 
       <div style={{ marginBottom: 18 }}>
         <PopulationChart />
+      </div>
+
+      <div style={{ marginBottom: 18 }}>
+        <TransparencyDocsCard />
       </div>
 
       <div
