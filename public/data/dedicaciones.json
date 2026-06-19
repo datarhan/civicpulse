@@ -1,0 +1,62 @@
+{
+  "generatedAt": "2026-06-19T00:00:00.000Z",
+  "mandate": "2023-2027",
+  "source": {
+    "title": "Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+    "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20231130-Asignaciones-Acuerdo-Pleno-07072023-Mandato-2023-2027.pdf",
+    "expediente": "4533/2023/GEN",
+    "date": "2023-07-07",
+    "quote": "se atribuye dedicación exclusiva: - Alcaldía: 48.234,08 € brutos anuales (+ trienios). - Primer Teniente de Alcalde, con coordinación de las áreas de Territorio, Agenda Urbana y Servicios Públicos: 43.067,36 € brutos anuales."
+  },
+  "note": "Retribuciones brutas anuales con dedicación exclusiva asignadas POR CARGO en el acuerdo de pleno; cada cargo se mapea a su concejal por las áreas delegadas (coinciden literalmente con officials.json). Los otros 14 concejales no tienen dedicación y perciben solo asistencias por sesión.",
+  "brackets": [
+    { "amountEuros": 48234.08, "count": 1 },
+    { "amountEuros": 43067.36, "count": 2 },
+    { "amountEuros": 38891.66, "count": 4 }
+  ],
+  "sinDedicacionCount": 14,
+  "byOfficial": [
+    {
+      "slug": "robert-raga-gadea",
+      "amountEuros": 48234.08,
+      "dedicacion": "exclusiva",
+      "role": "Alcaldía"
+    },
+    {
+      "slug": "teresa-pozuelo-martin",
+      "amountEuros": 43067.36,
+      "dedicacion": "exclusiva",
+      "role": "1ª Teniente de Alcalde · Territorio y Agenda Urbana"
+    },
+    {
+      "slug": "jose-angel-hernandez-carrizosa",
+      "amountEuros": 43067.36,
+      "dedicacion": "exclusiva",
+      "role": "3er Teniente de Alcalde · Administración, RR. HH., Hacienda y Fomento"
+    },
+    {
+      "slug": "rafael-gomez-sanchez",
+      "amountEuros": 38891.66,
+      "dedicacion": "exclusiva",
+      "role": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes"
+    },
+    {
+      "slug": "raquel-pamblanco-paredes",
+      "amountEuros": 38891.66,
+      "dedicacion": "exclusiva",
+      "role": "Concejala delegada · Seguridad, Igualdad y Comunicación"
+    },
+    {
+      "slug": "maria-esther-gomez-laredo",
+      "amountEuros": 38891.66,
+      "dedicacion": "exclusiva",
+      "role": "Concejala delegada · Participación, Atención ciudadana y Turismo"
+    },
+    {
+      "slug": "david-barbancho-martinez",
+      "amountEuros": 38891.66,
+      "dedicacion": "exclusiva",
+      "role": "Concejal delegado · Acción social, Mayores y Juventud"
+    }
+  ]
+}

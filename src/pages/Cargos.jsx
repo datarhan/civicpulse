@@ -3,6 +3,7 @@ import { Card } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useIspa, ispaLatest, formatEuros } from '../hooks/useIspa'
+import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
@@ -96,13 +97,14 @@ function DepartmentLinks({ portfolios }) {
   )
 }
 
-// Only the alcalde is shown a per-person figure: ISPA anonymises the rank-and-
-// file councillors (dedicación + amount, no name), so attributing an amount to
-// a named concejal would be a guess. The corporation panel carries the rest.
+// Per-councillor salary mapped by ROLE: the pleno acuerdo (Exp 4533/2023)
+// assigns each dedicación exclusiva to a cargo + its delegated áreas, which
+// match the officials.json portfolios verbatim → a named, cited figure for each
+// of the 7. The 14 sin-dedicación councillors get no figure (asistencias only).
 function RetribucionBadge({ official }) {
-  const { data } = useIspa()
-  const latest = ispaLatest(data)
-  if (!latest || official.role !== 'alcalde' || !latest.alcalde) return null
+  const { data } = useDedicaciones()
+  const d = dedicacionForSlug(data, official.slug)
+  if (!d) return null
   return (
     <div
       style={{
@@ -117,21 +119,19 @@ function RetribucionBadge({ official }) {
       }}
     >
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
-        {formatEuros(latest.alcalde.amountEuros)}/año
+        {formatEuros(d.amountEuros)}/año
       </span>
-      <span>
-        · {latest.alcalde.dedicacionLabel} · {latest.year}
-      </span>
-      {data.source?.home && (
+      <span>· dedicación {d.dedicacion}</span>
+      {data.source?.url && (
         <a
-          href={data.source.home}
+          href={data.source.url}
           target="_blank"
           rel="noreferrer"
-          title={data.source.note}
+          title={`${d.role} — ${data.source.title}`}
           className="mono"
           style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 10.5 }}
         >
-          ISPA ↗
+          acuerdo ↗
         </a>
       )}
     </div>
