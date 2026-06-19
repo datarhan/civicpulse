@@ -16,6 +16,7 @@ set -uo pipefail
 SCRAPERS=(
   scrape:officials
   scrape:transparency
+  scrape:ispa
   scrape:budget
   scrape:tenders
   scrape:tenders-ted
@@ -60,6 +61,7 @@ BEST_EFFORT=(
   scrape:participa
   scrape:bop
   scrape:transparency
+  scrape:ispa
 )
 
 is_best_effort() {

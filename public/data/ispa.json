@@ -1,0 +1,817 @@
+{
+  "generatedAt": "2026-06-19T11:51:24.425Z",
+  "source": {
+    "name": "ISPA · Ministerio de Hacienda y Función Pública",
+    "home": "https://funcionpublica.digital.gob.es/funcion-publica/ispa.html",
+    "note": "Retribuciones de cargos electos de las Entidades Locales. Las filas de concejales son anónimas (dedicación + importe, sin nombre); solo el alcalde es identificable como titular del cargo."
+  },
+  "municipality": "Riba-roja de Túria",
+  "latestYear": 2024,
+  "alcaldeTrend": [
+    {
+      "year": 2020,
+      "amountEuros": 45461.94
+    },
+    {
+      "year": 2021,
+      "amountEuros": 45916.56
+    },
+    {
+      "year": 2022,
+      "amountEuros": 52855.48
+    },
+    {
+      "year": 2024,
+      "amountEuros": 48647.5
+    }
+  ],
+  "years": [
+    {
+      "year": 2020,
+      "alcalde": {
+        "dedicacion": "exclusiva",
+        "dedicacionLabel": "dedicación exclusiva",
+        "amountEuros": 45461.94
+      },
+      "concejales": [
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 40596
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 40596
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 36659.96
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 36659.96
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 36659.96
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 36659.96
+        },
+        {
+          "dedicacion": "parcial",
+          "dedicacionLabel": "dedicación parcial",
+          "amountEuros": 18330.02
+        },
+        {
+          "dedicacion": "parcial",
+          "dedicacionLabel": "dedicación parcial",
+          "amountEuros": 18330.02
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13261.03
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13161.09
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 11676.5
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 11594.59
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 9139.7
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 9058.13
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 9056.43
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 8881.3
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 8728.36
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 4912.3
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 4718.59
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 4453.3
+        }
+      ],
+      "summary": {
+        "total": 21,
+        "totalAnnualEuros": 418595.14,
+        "conDedicacion": 9,
+        "sinDedicacion": 12,
+        "brackets": [
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 45461.94,
+            "count": 1
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 40596,
+            "count": 2
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 36659.96,
+            "count": 4
+          },
+          {
+            "dedicacion": "dedicación parcial",
+            "amountEuros": 18330.02,
+            "count": 2
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13261.03,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13161.09,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 11676.5,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 11594.59,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 9139.7,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 9058.13,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 9056.43,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 8881.3,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 8728.36,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 4912.3,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 4718.59,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 4453.3,
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "year": 2021,
+      "alcalde": {
+        "dedicacion": "exclusiva",
+        "dedicacionLabel": "dedicación exclusiva",
+        "amountEuros": 45916.56
+      },
+      "concejales": [
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 41001.96
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 41001.96
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 37026.56
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 37026.56
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 37026.56
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 37026.56
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 18604.8
+        },
+        {
+          "dedicacion": "parcial",
+          "dedicacionLabel": "dedicación parcial",
+          "amountEuros": 18513.32
+        },
+        {
+          "dedicacion": "parcial",
+          "dedicacionLabel": "dedicación parcial",
+          "amountEuros": 18513.32
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 14912.4
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 14310.6
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13520.1
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 10608
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 10434.6
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 10434.6
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 10347.9
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 8879.1
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 5559
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 5538.6
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 5125.5
+        }
+      ],
+      "summary": {
+        "total": 21,
+        "totalAnnualEuros": 441328.56,
+        "conDedicacion": 9,
+        "sinDedicacion": 12,
+        "brackets": [
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 45916.56,
+            "count": 1
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 41001.96,
+            "count": 2
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 37026.56,
+            "count": 4
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 18604.8,
+            "count": 1
+          },
+          {
+            "dedicacion": "dedicación parcial",
+            "amountEuros": 18513.32,
+            "count": 2
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 14912.4,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 14310.6,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13520.1,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 10608,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 10434.6,
+            "count": 2
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 10347.9,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 8879.1,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 5559,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 5538.6,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 5125.5,
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "year": 2022,
+      "alcalde": {
+        "dedicacion": "exclusiva",
+        "dedicacionLabel": "dedicación exclusiva",
+        "amountEuros": 52855.48
+      },
+      "concejales": [
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 43067.36
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 43067.36
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 38891.66
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 38891.66
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 38891.66
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 38891.66
+        },
+        {
+          "dedicacion": "parcial",
+          "dedicacionLabel": "dedicación parcial",
+          "amountEuros": 19445.83
+        },
+        {
+          "dedicacion": "parcial",
+          "dedicacionLabel": "dedicación parcial",
+          "amountEuros": 19445.83
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 17416.1
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 14902.8
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 14676.1
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13150.89
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 9422.96
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 9072.7
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 8769.58
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 8343.45
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 7499.68
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 6200.21
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 5546.18
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 5390.88
+        }
+      ],
+      "summary": {
+        "total": 21,
+        "totalAnnualEuros": 453840.03,
+        "conDedicacion": 9,
+        "sinDedicacion": 12,
+        "brackets": [
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 52855.48,
+            "count": 1
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 43067.36,
+            "count": 2
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 38891.66,
+            "count": 4
+          },
+          {
+            "dedicacion": "dedicación parcial",
+            "amountEuros": 19445.83,
+            "count": 2
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 17416.1,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 14902.8,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 14676.1,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13150.89,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 9422.96,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 9072.7,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 8769.58,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 8343.45,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 7499.68,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 6200.21,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 5546.18,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 5390.88,
+            "count": 1
+          }
+        ]
+      }
+    },
+    {
+      "year": 2024,
+      "alcalde": {
+        "dedicacion": "exclusiva",
+        "dedicacionLabel": "dedicación exclusiva",
+        "amountEuros": 48647.5
+      },
+      "concejales": [
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 43436.42
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 43436.42
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 39224.98
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 39224.98
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 39224.98
+        },
+        {
+          "dedicacion": "exclusiva",
+          "dedicacionLabel": "dedicación exclusiva",
+          "amountEuros": 39224.98
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 16858.04
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13893.72
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13807.13
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 13320.2
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 11691.82
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 11691.82
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 10619.94
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 9862.49
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 6367.9
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 6281.36
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 6156.91
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 5821.46
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 4771.88
+        },
+        {
+          "dedicacion": "sin-dedicacion",
+          "dedicacionLabel": "sin dedicación",
+          "amountEuros": 4582.49
+        }
+      ],
+      "summary": {
+        "total": 21,
+        "totalAnnualEuros": 428147.42,
+        "conDedicacion": 7,
+        "sinDedicacion": 14,
+        "brackets": [
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 48647.5,
+            "count": 1
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 43436.42,
+            "count": 2
+          },
+          {
+            "dedicacion": "dedicación exclusiva",
+            "amountEuros": 39224.98,
+            "count": 4
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 16858.04,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13893.72,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13807.13,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 13320.2,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 11691.82,
+            "count": 2
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 10619.94,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 9862.49,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 6367.9,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 6281.36,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 6156.91,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 5821.46,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 4771.88,
+            "count": 1
+          },
+          {
+            "dedicacion": "sin dedicación",
+            "amountEuros": 4582.49,
+            "count": 1
+          }
+        ]
+      }
+    }
+  ]
+}

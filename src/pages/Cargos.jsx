@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
-import { useRetribuciones, retribucionForOfficial, formatEuros } from '../hooks/useRetribuciones'
+import { useIspa, ispaLatest, formatEuros } from '../hooks/useIspa'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { fmtDateLong } from '../lib/formatters'
@@ -95,10 +95,13 @@ function DepartmentLinks({ portfolios }) {
   )
 }
 
-function RetribucionBadge({ slug }) {
-  const { data } = useRetribuciones()
-  const r = retribucionForOfficial(data, slug)
-  if (!r) return null
+// Only the alcalde is shown a per-person figure: ISPA anonymises the rank-and-
+// file councillors (dedicación + amount, no name), so attributing an amount to
+// a named concejal would be a guess. The corporation panel carries the rest.
+function RetribucionBadge({ official }) {
+  const { data } = useIspa()
+  const latest = ispaLatest(data)
+  if (!latest || official.role !== 'alcalde' || !latest.alcalde) return null
   return (
     <div
       style={{
@@ -113,19 +116,21 @@ function RetribucionBadge({ slug }) {
       }}
     >
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
-        {formatEuros(r.amountEuros)}/año
+        {formatEuros(latest.alcalde.amountEuros)}/año
       </span>
-      <span>· {r.regime}</span>
-      {data.source?.url && (
+      <span>
+        · {latest.alcalde.dedicacionLabel} · {latest.year}
+      </span>
+      {data.source?.home && (
         <a
-          href={data.source.url}
+          href={data.source.home}
           target="_blank"
           rel="noreferrer"
-          title={data.source.quote}
+          title={data.source.note}
           className="mono"
           style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 10.5 }}
         >
-          fuente ↗
+          ISPA ↗
         </a>
       )}
     </div>
@@ -133,9 +138,11 @@ function RetribucionBadge({ slug }) {
 }
 
 function RetribucionesPanel() {
-  const { data } = useRetribuciones()
-  const c = data?.corporation
-  if (!c) return null
+  const { data } = useIspa()
+  const latest = ispaLatest(data)
+  if (!latest) return null
+  const s = latest.summary
+  const trend = data.alcaldeTrend || []
   return (
     <Card style={{ marginTop: 14 }}>
       <div
@@ -149,56 +156,80 @@ function RetribucionesPanel() {
           marginBottom: 10,
         }}
       >
-        Retribuciones de la corporación · mandato {data.mandate}
+        Retribuciones de la corporación · ISPA {latest.year}
       </div>
       <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginBottom: 12 }}>
         <div>
           <div className="mono" style={{ fontSize: 18, fontWeight: 800 }}>
-            {c.dedicacionCount} / {c.seats}
+            {s.conDedicacion} / {s.total}
           </div>
           <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
-            con dedicación{c.previousDedicacionCount ? ` · antes ${c.previousDedicacionCount}` : ''}
+            con dedicación · {s.sinDedicacion} solo asistencias
           </div>
         </div>
         <div>
           <div className="mono" style={{ fontSize: 18, fontWeight: 800 }}>
-            {formatEuros(c.totalAnnualEuros)}
+            {formatEuros(s.totalAnnualEuros)}
           </div>
-          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
-            coste anual
-            {c.savingAnnualEuros
-              ? ` · −${formatEuros(c.savingAnnualEuros)} vs mandato anterior`
-              : ''}
-          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>coste anual de la corporación</div>
         </div>
       </div>
-      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-        {c.brackets.map((b, i) => (
-          <span
-            key={i}
-            className="mono"
-            style={{
-              fontSize: 11,
-              border: '1px solid var(--border)',
-              borderRadius: 4,
-              padding: '3px 8px',
-              color: 'var(--ink70)',
-            }}
-          >
-            {b.count}× {formatEuros(b.amountEuros)} · {b.label}
-          </span>
-        ))}
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 12 }}>
+        {s.brackets
+          .filter((b) => /dedicaci/i.test(b.dedicacion))
+          .map((b, i) => (
+            <span
+              key={i}
+              className="mono"
+              style={{
+                fontSize: 11,
+                border: '1px solid var(--border)',
+                borderRadius: 4,
+                padding: '3px 8px',
+                color: 'var(--ink70)',
+              }}
+            >
+              {b.count}× {formatEuros(b.amountEuros)} · {b.dedicacion}
+            </span>
+          ))}
       </div>
+      {trend.length >= 2 && (
+        <div style={{ marginBottom: 12 }}>
+          <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 5 }}>
+            Retribución del alcalde por año (ISPA)
+          </div>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'baseline' }}>
+            {trend.map((t, i) => {
+              const prev = trend[i - 1]
+              const up = prev && t.amountEuros > prev.amountEuros
+              const down = prev && t.amountEuros < prev.amountEuros
+              return (
+                <span key={t.year} className="mono" style={{ fontSize: 11.5 }}>
+                  <span style={{ color: 'var(--ink50)' }}>{t.year}</span>{' '}
+                  <span style={{ fontWeight: 700 }}>{formatEuros(t.amountEuros)}</span>{' '}
+                  {prev && (
+                    <span
+                      style={{ color: up ? 'var(--ok)' : down ? 'var(--crit)' : 'var(--ink60)' }}
+                    >
+                      {up ? '↑' : down ? '↓' : '→'}
+                    </span>
+                  )}
+                </span>
+              )
+            })}
+          </div>
+        </div>
+      )}
       <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5 }}>
-        {data.note}{' '}
-        {data.source?.url && (
+        {data.source?.note}{' '}
+        {data.source?.home && (
           <a
-            href={data.source.url}
+            href={data.source.home}
             target="_blank"
             rel="noreferrer"
             style={{ color: 'var(--civic)' }}
           >
-            Fuente: {data.source.publisher} ({data.source.date}) ↗
+            Fuente: ISPA · Ministerio de Hacienda y Función Pública ↗
           </a>
         )}
       </div>
@@ -329,7 +360,7 @@ function OfficialCard({ o, big = false }) {
           </a>
         )}
       </div>
-      <RetribucionBadge slug={o.slug} />
+      <RetribucionBadge official={o} />
       <DepartmentLinks portfolios={o.portfolios} />
       <QuejaBadge slug={o.slug} />
     </Card>

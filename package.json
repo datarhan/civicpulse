@@ -18,6 +18,7 @@
     "typecheck": "tsc --noEmit",
     "scrape:officials": "npx tsx scripts/scrape-officials.ts",
     "scrape:transparency": "npx tsx scripts/scrape-transparency.ts",
+    "scrape:ispa": "npx tsx scripts/scrape-ispa.ts",
     "scrape:budget": "npx tsx scripts/scrape-budget.ts",
     "scrape:tenders": "npx tsx scripts/scrape-tenders.ts",
     "scrape:padron": "npx tsx scripts/scrape-padron.ts",
