@@ -480,6 +480,7 @@ scripts/scrape-bop.ts                 →  src/scraper/bop.ts               → 
 public/data/promises.json            (schema: src/scraper/promises.ts)
 public/data/quejas-responses.json    (schema: scripts/apply-queja-response.ts)
 public/data/sindic.json              (schema: src/scraper/sindic.ts)
+public/data/retribuciones.json       (schema: src/scraper/retribuciones.ts)
 
 # Bot-owned, exported daily by launchd agent:
 public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
@@ -528,6 +529,7 @@ wired (yet) — React Query / SWR can be added when we hit a real refresh
 loop.
 
 - `useOfficials` + `partyColor()`
+- `useRetribuciones` + `retribucionForOfficial` / `formatEuros` (curated · cited · `/cargos`)
 - `useTransparencyDocs` + `groupTransparencyDocs`
 - `useBudget` + `formatEuros()` + `EXPENSE_COLORS` / `PROGRAM_COLORS`
 - `useTenders` + `STATUS_LABEL` / `STATUS_TONE` + `formatDate()`

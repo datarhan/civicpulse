@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
+import { useRetribuciones, retribucionForOfficial, formatEuros } from '../hooks/useRetribuciones'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { fmtDateLong } from '../lib/formatters'
@@ -91,6 +92,117 @@ function DepartmentLinks({ portfolios }) {
         </Link>
       ))}
     </div>
+  )
+}
+
+function RetribucionBadge({ slug }) {
+  const { data } = useRetribuciones()
+  const r = retribucionForOfficial(data, slug)
+  if (!r) return null
+  return (
+    <div
+      style={{
+        marginTop: 8,
+        paddingTop: 8,
+        borderTop: '1px dashed var(--border2)',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        fontSize: 11.5,
+        color: 'var(--ink60)',
+      }}
+    >
+      <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
+        {formatEuros(r.amountEuros)}/año
+      </span>
+      <span>· {r.regime}</span>
+      {data.source?.url && (
+        <a
+          href={data.source.url}
+          target="_blank"
+          rel="noreferrer"
+          title={data.source.quote}
+          className="mono"
+          style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 10.5 }}
+        >
+          fuente ↗
+        </a>
+      )}
+    </div>
+  )
+}
+
+function RetribucionesPanel() {
+  const { data } = useRetribuciones()
+  const c = data?.corporation
+  if (!c) return null
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <div
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink60)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+          fontWeight: 700,
+          marginBottom: 10,
+        }}
+      >
+        Retribuciones de la corporación · mandato {data.mandate}
+      </div>
+      <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', marginBottom: 12 }}>
+        <div>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 800 }}>
+            {c.dedicacionCount} / {c.seats}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            con dedicación{c.previousDedicacionCount ? ` · antes ${c.previousDedicacionCount}` : ''}
+          </div>
+        </div>
+        <div>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 800 }}>
+            {formatEuros(c.totalAnnualEuros)}
+          </div>
+          <div style={{ fontSize: 11, color: 'var(--ink50)' }}>
+            coste anual
+            {c.savingAnnualEuros
+              ? ` · −${formatEuros(c.savingAnnualEuros)} vs mandato anterior`
+              : ''}
+          </div>
+        </div>
+      </div>
+      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
+        {c.brackets.map((b, i) => (
+          <span
+            key={i}
+            className="mono"
+            style={{
+              fontSize: 11,
+              border: '1px solid var(--border)',
+              borderRadius: 4,
+              padding: '3px 8px',
+              color: 'var(--ink70)',
+            }}
+          >
+            {b.count}× {formatEuros(b.amountEuros)} · {b.label}
+          </span>
+        ))}
+      </div>
+      <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5 }}>
+        {data.note}{' '}
+        {data.source?.url && (
+          <a
+            href={data.source.url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            Fuente: {data.source.publisher} ({data.source.date}) ↗
+          </a>
+        )}
+      </div>
+    </Card>
   )
 }
 
@@ -217,6 +329,7 @@ function OfficialCard({ o, big = false }) {
           </a>
         )}
       </div>
+      <RetribucionBadge slug={o.slug} />
       <DepartmentLinks portfolios={o.portfolios} />
       <QuejaBadge slug={o.slug} />
     </Card>
@@ -327,6 +440,7 @@ function CorporacionMunicipal() {
       )}
 
       <CompositionBar composition={data.composition} total={data.count} />
+      <RetribucionesPanel />
 
       <div
         className="mono"

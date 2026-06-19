@@ -1,0 +1,40 @@
+{
+  "generatedAt": "2026-06-19T00:00:00.000Z",
+  "mandate": "2023-2027",
+  "source": {
+    "publisher": "elperiodic.com",
+    "url": "https://www.elperiodic.com/ribaroja_turia/riba-roja-reduce-numero-concejales-dedicacion-exclusiva-permite-ahorrar-42000-euros-anuales-arcas-municipales_912543",
+    "date": "2023-07-07",
+    "quote": "La propuesta del equipo de gobierno en dedicaciones para los concejales supone una reducción de hasta 42.000 euros anuales al pasar de los 337.000 euros de la legislatura 2019-2023 a los 294.900 euros de la legislatura que se inicia ahora.",
+    "corroboration": [
+      "https://valenciaplaza.com/riba-roja-reduce-el-numero-de-concejales-con-dedicacion-exclusiva-y-ahorra-42000-euros-anuales"
+    ]
+  },
+  "note": "Retribuciones brutas anuales aprobadas en el pleno de organización del mandato 2023-2027. 7 de los 21 concejales tienen dedicación (exclusiva o parcial) con retribución fija; el resto percibe únicamente asistencias por sesión. Las cifras por tramo son públicas, pero el acuerdo no se ha localizado en una fuente que asigne cada importe a un concejal nombrado, por lo que solo se atribuye individualmente la retribución del Alcalde. El resto se muestra a nivel de corporación.",
+  "corporation": {
+    "seats": 21,
+    "dedicacionCount": 7,
+    "previousDedicacionCount": 9,
+    "totalAnnualEuros": 294900,
+    "previousTotalAnnualEuros": 337000,
+    "savingAnnualEuros": 42000,
+    "brackets": [
+      { "role": "alcalde", "amountEuros": 48234, "count": 1, "label": "Alcalde" },
+      {
+        "role": "concejal",
+        "amountEuros": 43067,
+        "count": 2,
+        "label": "2 concejalías (mayor volumen de gestión)"
+      },
+      { "role": "concejal", "amountEuros": 38891, "count": 4, "label": "4 concejalías" }
+    ]
+  },
+  "byOfficial": [
+    {
+      "slug": "robert-raga-gadea",
+      "amountEuros": 48234,
+      "regime": "dedicación exclusiva",
+      "note": "Retribución del Alcalde fijada por el pleno de organización (07/07/2023)."
+    }
+  ]
+}
