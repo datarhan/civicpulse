@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Card } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
-import { useIspa, ispaLatest, formatEuros } from '../hooks/useIspa'
+import { useIspa, ispaLatest, formatEuros, alcaldeGrowth } from '../hooks/useIspa'
 import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useQuejas } from '../hooks/useQuejas'
@@ -134,6 +134,55 @@ function RetribucionBadge({ official }) {
           acuerdo ↗
         </a>
       )}
+    </div>
+  )
+}
+
+// Salary growth, only where the data supports it. The alcalde's office has a
+// continuous ISPA series → real %s per window (with "—" where ISPA has no base
+// year). Councillors' dedicación dates from the 2023 acuerdo, so they carry an
+// honest "no prior history" note instead of an invented figure.
+function SalaryGrowth({ official }) {
+  const ispa = useIspa()
+  const { data: dedic } = useDedicaciones()
+  if (!dedicacionForSlug(dedic, official.slug)) return null
+  if (official.role !== 'alcalde') {
+    return (
+      <div className="mono" style={{ marginTop: 6, fontSize: 10, color: 'var(--ink50)' }}>
+        Salario fijado en el acuerdo de 2023 · sin variación interanual disponible
+      </div>
+    )
+  }
+  const windows = alcaldeGrowth(ispa.data)
+  if (windows.length === 0) return null
+  return (
+    <div
+      className="mono"
+      title="Variación del salario del alcalde según ISPA (importe percibido por año). 1, 5 y 10 años no disponibles: la serie ISPA cubre 2020-2024 y los años electorales 2019/2023 son anómalos."
+      style={{
+        marginTop: 6,
+        fontSize: 10,
+        color: 'var(--ink50)',
+        display: 'flex',
+        gap: 10,
+        flexWrap: 'wrap',
+        alignItems: 'baseline',
+      }}
+    >
+      <span style={{ textTransform: 'uppercase', letterSpacing: '.06em' }}>Δ salario (ISPA)</span>
+      {windows.map((w) => (
+        <span key={w.years}>
+          {w.years} a.{' '}
+          {w.pct === null ? (
+            <span style={{ color: 'var(--ink40)' }}>—</span>
+          ) : (
+            <span style={{ color: w.pct >= 0 ? 'var(--ok)' : 'var(--crit)', fontWeight: 700 }}>
+              {w.pct >= 0 ? '+' : ''}
+              {w.pct.toFixed(1).replace('.', ',')}%
+            </span>
+          )}
+        </span>
+      ))}
     </div>
   )
 }
@@ -418,6 +467,7 @@ function OfficialCard({ o, big = false }) {
         )}
       </div>
       <RetribucionBadge official={o} />
+      <SalaryGrowth official={o} />
       <DepartmentLinks portfolios={o.portfolios} />
       <QuejaBadge slug={o.slug} />
     </Card>
