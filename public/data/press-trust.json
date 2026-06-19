@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-18T16:33:47.058Z",
+  "generatedAt": "2026-06-19T09:24:54.703Z",
   "windowDays": 30,
   "articles": [
     {
-      "articleId": "19rci0",
+      "articleId": "j40tno",
       "articleFingerprint": "1u922jg",
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWGVHM2RvYVo3X0wzU2ZuSFQ0Q1BGSlpIOTcxSDNLS2h6bjc1dHV2MnJfNThrQ0FSQzZfWDJQQWFlVnhzUFpPNlFORlRtWm1rYjc5QTItaTVfa3IwQldFNUg3a0VmRDJ0eGNKNF9sQTBSaDZqU2hXVGsyQ1NjNVZsSHJNdGlEdzZ2TDFMak9CZE5RZlJ2Q1hCdVZPbVVPeERwY0FEWVR0N2c2YThFVGtXNTVtZUVkWGNxcVNzQU96dEtMNGh2S1N4eVdQdmlKTFl2b2Z2aE1qY25pMWJHVmZKMw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWGVHM2RvYVo3X0wzU2ZuSFQ0Q1BGSlpIOTcxSDNLS2h6bjc1dHV2MnJfNThrQ0FSQzZfWDJQQWFlVnhzUFpPNlFORlRtWm1rYjc5QTItaTVfa3IwQldFNUg3a0VmRDJ0eGNKNF9sQTBSaDZqU2hXVGsyQ1NjNVZsSHJNdGlEdzZ2TDFMak9CZE5RZlJ2Q1hCdVZPbVVPeERwY0FEWVR0N2c2YThFVGtXNTVtZUVkWGNxcVNzQU96dEtMNGh2S1N4eVdQdmlKTFl2b2Z2aE1qY25pMWJHVmZKM9IB5gFBVV95cUxNY1RLZHU5UDh1eWh1anFaQk80MlpWSHhqUUhDdm1vdm53eWNvdk8tZTlKOHFxTndmSGY5ZlNLTmRyTXY3SFlUM0ZqekY4TXphaVZObnR3eEo4N0RoQUl5aEZKZ3REYjdGRUZsSHRJLWpWM2xwRWJrYl9FcGtHblljRjVJR2hUemxldFJVMkxzZ1hPbHRCeVVycTRURFNNc2R3TkVGVW1Cemw2azJHQlh2bUVFZkRPT05nYnlwVDh6NmZxOTdiNEZMZkV2enhicFJWT2JlTE45SFg0TXJUVkM4MUVnZXJidw?oc=5",
       "date": "2026-06-18T16:05:25.000Z",
       "indicators": {
         "localCoverage": true,
@@ -54,6 +54,23 @@
       "score": 3
     },
     {
+      "articleId": "tld57k",
+      "articleFingerprint": "1dt9if0",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-forma-a-quince-personas-desempleadas-como-operarios-de-inyecci%C3%B3n-de-pl%C3%A1sticos",
+      "date": "2026-06-18T12:20:36.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "ec0r0k",
       "articleFingerprint": "1wdzzto",
       "outlet": "Levante-EMV",
@@ -71,12 +88,80 @@
       "score": 3
     },
     {
+      "articleId": "1gdzlug",
+      "articleFingerprint": "1pb4pmk",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-accesibilidad-en-val%C3%A8ncia-la-vella-y-pla-de-nadal",
+      "date": "2026-06-18T11:28:05.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "21k8px",
+      "articleFingerprint": "11t66hs",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/proceso-selectivo-mejora-de-empleo-t%C3%A9cnico/a-de-gesti%C3%B3n-a2-de-recursos-humanos",
+      "date": "2026-06-18T10:52:34.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "ydd77v",
+      "articleFingerprint": "1wd6a58",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/listado-definitivo-de-admitidos-en-la-escuela-infantil-municipal-%27riu-t%C3%BAria%27-curso-2026-2027",
+      "date": "2026-06-18T09:19:17.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "1gvtbet",
       "articleFingerprint": "4i08ps",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/84239-els-jaciments-de-valencia-vella-i-pla-de-nadal-ja-son-accessibles.html",
       "date": "2026-06-17T16:32:06.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "ymucqt",
+      "articleFingerprint": "1k3g16v",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/talleres-de-sensibilizaci%C3%B3n-musical-del-conservatorio-de-m%C3%BAsica-para-el-curso-2026-2027",
+      "date": "2026-06-17T15:06:53.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -173,6 +258,74 @@
       "score": 2
     },
     {
+      "articleId": "teweq0",
+      "articleFingerprint": "cczxrc",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/bases-subvenciones-a-asociaciones-de-fiestas%2C-comisiones-de-fiestas-y-asociaciones-vecinales-de-urbanizaciones-2026",
+      "date": "2026-06-16T11:49:58.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "42py3v",
+      "articleFingerprint": "3bdkph",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
+      "date": "2026-06-16T11:19:13.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1npgw8k",
+      "articleFingerprint": "x2tc4t",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/inscripci%C3%B3n-al-taller-infantil-de-danza-del-conservatorio-profesional-municipal-de-danza-curso-2026-2027",
+      "date": "2026-06-16T10:00:25.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "16j03i4",
+      "articleFingerprint": "4bzm78",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-celebra-el-d%C3%ADa-internacional-del-orgullo-lgtbi%2B-con-una-programaci%C3%B3n-participativa-y-reivindicativa",
+      "date": "2026-06-16T09:28:40.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "1pg30ew",
       "articleFingerprint": "48r8pk",
       "outlet": "Levante-EMV",
@@ -188,6 +341,23 @@
         "opinionFraction": 0
       },
       "score": 3
+    },
+    {
+      "articleId": "2yha68",
+      "articleFingerprint": "1hn4rrd",
+      "outlet": "rfet.es",
+      "outletHost": "rfet.es",
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPazJhZWw2NDlpVTBjRzI2Q3haT0o4MG9rU3ZWelgyc19DZFA3TF8wN3A4LTJRQTVvRTN0LVZ3M3NXbEtiNDBKYU9oN1pZRml5LWg2eV95TS1oOXJxNzBiNy13S1V5LVloVFlpZEkzUGV2SFY3ajNkT3lrU1FYUm16N0dOellydER6Xzh1LWs2UzRLYUV6a1V6SEtqWHlrQ2RvM3c?oc=5",
+      "date": "2026-06-15T15:17:25.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
     },
     {
       "articleId": "xurjku",
@@ -207,12 +377,63 @@
       "score": 3
     },
     {
+      "articleId": "19u84aw",
+      "articleFingerprint": "7nljfx",
+      "outlet": "Paterna Ahora",
+      "outletHost": "paternaahora.com",
+      "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxOU1psN2pKVm5mUFRFbnphVERrQVMtalJpRFNvQmxfVl9WbnVEY1dvSXBrMnJYaUZzZUh3anVFN3liOE5vbUROWFk2YVFlbGw3RDRyMlkwaV9ueDVWbkdjSy1xQU15dWdqZHdNWmhjNTh5aFJvc2FoVmViVVExWm95SDZpaVJ3R1RfNUg0V1hIOHpoX2dwOXUyZjZRS3ozbmRTcmVyenBIbFdRVkZua0VyVnlkMnVQTmtMRkh3UmlYUm9Ha1dmN08tTWhuZHQ5VnR6Vk9zUHd3WnEtTmwyVVE1YzY4VFYycnJiV084Y09zZ0V5Q1Zza2pFMHR3WlF1MldPa1EwN0plUUdWeG83LXk3YU5TRzBfVk5MZ1VXRFVMWmg1V0k?oc=5",
+      "date": "2026-06-12T11:35:55.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "1gjsmko",
+      "articleFingerprint": "1ho6138",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/horario-de-verano-2026-en-el-cementerio-municipal",
+      "date": "2026-06-12T11:26:30.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "4dnj1g",
       "articleFingerprint": "1ri8e5w",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/84045-riba-roja-executa-un-30-de-les-obres-de-les-infraestructures-hidriques-despres-de-la-dana.html",
       "date": "2026-06-11T16:36:46.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1jx640o",
+      "articleFingerprint": "1ayozpp",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPUENvaWozNXRkUFl6cjh4blNDaWFCSG82ZTlteC1xZXJRNFlWYlYtUTRCT29BNWpuS1ZHZkFPSzFSel9qR3MtZ00yQVByZTl3OENIdm01bVhrc2VuWHZacXRZV0dtNFZTd003TVFGaUU0Unczd0JPQ1doVWlicUFGQTJSb3BvVEU1QlgzNHJOUlRic0o2b1JTSmtYSWU1WmVpa3hNYTNlNU9jcjJZS1dpeFc4aGFQZVNoT0NXVnZjeGJBdHE1QjdrNHZtONIB0AFBVV95cUxNckRXNEk1dmliZG5vM3o3WEg4aFlxWUo0R1pYMzVna1EtRjVERFE5TVVuNXlJZmFqWTNwTHJBalk5TE5NTjk3dk9TX0x5U0J0TGpCdVlZaVRMV21lRElIRmZWNk5rZjJQUFpUeG02cDRGR1R2RnpzVU5xc1N4YTc3aXNvcEg1aUpZV1AzZnBhSHd2cl9sa3JMd0hRUHdCSTAwNDd1MEtXZWZkSk5iQ2pEeVBVcWJYWlpvVGtzV3hBZ29aeWN4d3RYLW84U2NFdmtK?oc=5",
+      "date": "2026-06-11T12:32:52.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -258,6 +479,40 @@
       "score": 2
     },
     {
+      "articleId": "1iqks4s",
+      "articleFingerprint": "1v8db01",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
+      "date": "2026-06-11T11:28:21.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "pxqjqc",
+      "articleFingerprint": "kkbqhk",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/matricula-escuela-oficial-de-idiomas-curso-2026-2027",
+      "date": "2026-06-11T08:37:11.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "ev0sm",
       "articleFingerprint": "17xv8qc",
       "outlet": "Levante-EMV",
@@ -275,12 +530,12 @@
       "score": 3
     },
     {
-      "articleId": "17rrcuk",
-      "articleFingerprint": "1j7u7hc",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxOWUdBblFhUGhva29BYURHeEdVN1pib0xPYzFJX2tKd08wWmw0bkpCaE9Zd1B5T1hiZ0Itd0s3S1BSajcxbURjODZFczVGS2c5dXI3aVk0bUh0WGhwTC1jVlVFbVN3YjM4NV80TmJkdk5GOE85Q2x6bXV2OUFhbnlCYmlfMlNlSkZfWldHY1didXhwekpaLXpvRl9TLUdZTk9ldlVJSGt5R3RfUm1IMEh5bWNfclp2RXJWTVF4R3NxSW1yR2NVOTFRS25ZN2RZNUlLSHdMa0x5RHpocU1QVDRhOGZRdFoyeldrU1FrSDlybzROUHJacUpV?oc=5",
-      "date": "2026-06-08T16:31:20.000Z",
+      "articleId": "1j5bx9c",
+      "articleFingerprint": "o1znw4",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/regantes-del-t%C3%BAria-se-re%C3%BAnen-en-el-castell-de-riba-roja-para-celebrar-la-junta-general-del-sindicato-de-regulaci%C3%B3n-de-las-aguas-del-t%C3%BAria",
+      "date": "2026-06-10T13:14:14.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -298,6 +553,40 @@
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/83963-riba-roja-demana-la-linia-9-de-metre-fins-al-nucli-urba.html",
       "date": "2026-06-08T15:34:11.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1ipta7w",
+      "articleFingerprint": "1j7u7hc",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-reclama-a-la-generalitat-la-reactivaci%C3%B3n-del-proyecto-para-prolongar-la-llegada-del-metro-hasta-el-centro-del-casco-urbano-y-una-pasarela-en-val%C3%A8ncia-la-vella",
+      "date": "2026-06-08T12:51:52.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "ai2e0",
+      "articleFingerprint": "wuo42e",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/listados-definitivos-de-la-escuela-de-verano-2026",
+      "date": "2026-06-08T10:25:06.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -394,12 +683,12 @@
       "score": 3
     },
     {
-      "articleId": "6ej37r",
+      "articleId": "17j0jc",
       "articleFingerprint": "ghhn8c",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMijAJBVV95cUxOeXNrVDZ3cmc3bTRNRmwyTmhhRmx2VTB1bjNWR2NFVmE3cm1GU19xbmN2aXV5Sk5ocF9ET0RVQnBrZFdlRndhOUdYQ1pVc2lXX2FLT0pvdy00THRTZGZldE1GSmtkaHp0T3ZORXFkUlNuWkQwV1I2bjJVRTZmMzRlWFpmME05eFoybV9UanZyZWZFcVZCdGFZQUNUa3NlQi1ZSm1NZnRxU3dxOEpvOWZObjNMQUk0YmdNaGhWY0ZsazNwMlo5TzEtNkc5VHFWQ05JU2dObVdLZWJEajVlT1FkaFZUQVpTLTZfc2o5cTQxYlJJTzFrTU9GeDJJdFRPLVkySXRDeUVBVGZpYm9Z?oc=5",
-      "date": "2026-06-05T14:00:18.000Z",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/una-mota-de-1%2C3-kil%C3%B3metros-sobre-el-barranco-de-poyo-refuerza-la-seguridad-del-%C3%A1rea-industrial-y-de-residencial-la-reva",
+      "date": "2026-06-05T15:27:07.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -445,6 +734,23 @@
       "score": 3
     },
     {
+      "articleId": "nt6ri3",
+      "articleFingerprint": "w14jao",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/listado-provisional-de-admitidos-en-la-escuela-infantil-municipal-%27riu-t%C3%BAria%27-curso-2026-2027",
+      "date": "2026-06-04T10:04:37.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "1vgqfo8",
       "articleFingerprint": "iv4qpp",
       "outlet": "Levante-EMV",
@@ -462,12 +768,46 @@
       "score": 3
     },
     {
+      "articleId": "gvtzxt",
+      "articleFingerprint": "8wo8bk",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/los-infantillos-del-corpus-deslumbran-en-riba-roja-de-turia-con-sus-tradicionales-danzas",
+      "date": "2026-06-03T10:05:47.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "16t0xh4",
       "articleFingerprint": "tv25mc",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/83874-riba-roja-injecta-un-25-mes-dajudes-directes-al-comerc-local.html",
       "date": "2026-06-02T16:39:58.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "ok7uw0",
+      "articleFingerprint": "1xg5g",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-inyecta-un-25%25-m%C3%A1s-de-ayudas-econ%C3%B3micas-directas-al-comercio-local-previstas-para-el-a%C3%B1o-2026-y-sit%C3%BAa-la-partida-en-550.000-euros-encaminada-a-la-reactivaci%C3%B3n-del-sector",
+      "date": "2026-06-02T15:47:23.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -513,6 +853,57 @@
       "score": 3
     },
     {
+      "articleId": "1qpxors",
+      "articleFingerprint": "8ot394",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/vii-ciclo-band%C3%ADstico-%E2%80%98ara-sona-riba-roja%E2%80%99",
+      "date": "2026-06-02T06:24:39.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "12m45t4",
+      "articleFingerprint": "wnf7gy",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/listados-provisionales-escuela-de-verano-2026",
+      "date": "2026-06-01T12:37:41.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "15duw24",
+      "articleFingerprint": "1np4y6k",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/bolsa-comisi%C3%B3n-de-servicios-agentes-de-la-polic%C3%ADa-local",
+      "date": "2026-06-01T10:02:05.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "187dc20",
       "articleFingerprint": "hic6yp",
       "outlet": "Cadena SER",
@@ -547,12 +938,80 @@
       "score": 3
     },
     {
+      "articleId": "ccyceq",
+      "articleFingerprint": "18p2oeg",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-acoge-la-entrega-de-premios-del-ii-concurso-de-dibujo-y-pintura-del-parque-natural-del-t%C3%BAria",
+      "date": "2026-05-28T11:04:42.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1fqtrzw",
+      "articleFingerprint": "17pqlw7",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/tesorer%C3%ADa",
+      "date": "2026-05-27T17:54:54.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1w2sjb4",
+      "articleFingerprint": "55k7xs",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/plenos-2026",
+      "date": "2026-05-27T16:36:29.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "b4a0fo",
       "articleFingerprint": "obvra8",
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
       "url": "https://www.infoturia.com/riba-roja-de-turia/83733-liciten-les-obres-duna-nova-rotonda-dacces-al-poligon-de-la-reva.html",
       "date": "2026-05-27T12:56:31.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1w6s3y1",
+      "articleFingerprint": "1v0cu0x",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/la-diputaci%C3%B3-licita-en-riba-roja-de-t%C3%BAria-una-nueva-glorieta-de-la-cv-374-para-reducir-los-atascos-en-el-acceso-al-pol%C3%ADgono-industrial-la-reva",
+      "date": "2026-05-27T11:34:36.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -581,6 +1040,74 @@
       "score": 3
     },
     {
+      "articleId": "956sns",
+      "articleFingerprint": "xmejag",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/proceso-selectivo-bolsa-de-ingeniero-t%C3%A9cnico",
+      "date": "2026-05-26T16:45:01.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1tl8xz0",
+      "articleFingerprint": "jav370",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/proceso-selectivo-promoci%C3%B3n-interna-restringida-18-plazas-t%C3%A9cnico/a-superior-educaci%C3%B3n-infantil",
+      "date": "2026-05-26T16:29:57.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1dy29ds",
+      "articleFingerprint": "166i28x",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/proceso-selectivo-bolsa-director/a-coordinador/a-auditorio",
+      "date": "2026-05-26T16:14:14.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "yys9f6",
+      "articleFingerprint": "lcmpmw",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/la-asociaci%C3%B3n-para-la-recuperaci%C3%B3n-de-la-memoria-hist%C3%B3rica-%28armh%29-de-riba-roja-de-t%C3%BAria-organiza-las-v-jornadas-de-memoria-hist%C3%B3rica.-di%C3%A1logos-de-dignidad-y-reparaci%C3%B3n",
+      "date": "2026-05-26T11:45:42.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
       "articleId": "112vb0o",
       "articleFingerprint": "1gx2kyw",
       "outlet": "Periòdic del Camp de Túria",
@@ -596,6 +1123,23 @@
         "opinionFraction": 0
       },
       "score": 3
+    },
+    {
+      "articleId": "rqetmn",
+      "articleFingerprint": "oy3rs8",
+      "outlet": "Valencia News",
+      "outletHost": "valencianews.es",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOdDYxbUNDVUxNWFlMbkNCOHNXejBsaEtleXpmdTRaWW5zUjVqNEhkcjlTLV95TlVrSWRmQXA3MGltS0tFOHhzcV9iZ2tnNnU0N25BWEFyb2MzSGttcTdCc3FZUjJXS2pfNkVFUl9JSEgtQmxyT1BnZHlKeHpsWXo0RGlMaXdEeWpZeHRiY3Z5V3pnemxCOGF1YU9tZmFkUW1YSUVYNk15c0hrTjc2djhyVFNjaHVBWVR5ZzI1bVRXOXlKam5kN1ZYdjZjRFNfRXc1dlUzQUdrTlo?oc=5",
+      "date": "2026-05-26T10:22:01.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
     },
     {
       "articleId": "1hdvgd4",
@@ -649,12 +1193,29 @@
       "score": 2
     },
     {
-      "articleId": "1xyzbnc",
+      "articleId": "1hgy28c",
+      "articleFingerprint": "9or2kk",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/mig-any-2026-asociaci%C3%B3n-de-moros-y-cristianos",
+      "date": "2026-05-25T17:19:34.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "1jqr6qg",
       "articleFingerprint": "89zzzw",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMihgJBVV95cUxPa3VYeE1zNnI1TVV0NlJoMFd6d05XTWhTc3JIR0kwUkRCS0ZWSW05cFdnX096ZXh6cnQ1OXN4Wl9FVEF1NDZvYWRPNFN6eUlrWWItbmxDbmpSRzVUVi14NVo1UHF5TE5EaVRFdXpuXzEyUTN5OVFKRVJIbGNFeEp3LVhsY1RhTGk1d3lPaHZ2cTcwUWhIQnNydUxDNFNYd2U0QWg1U1NDNHU0bTdjRTdEd0VZZ0RxZlN1Y3ktNzVXMUZCR3N3bnJTbVlwdDJ1bm83c1lQeWlGU0xLZW9iczQyTXJCNUNGT0VhRHRMdGZFYktDUnMxdmJNMnZBYWh4RVpKVWZ4YUpB?oc=5",
-      "date": "2026-05-25T07:00:00.000Z",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-inaugura-la-casa-del-abogado-en-el-d%C3%ADa-internacional-de-los-museos-como-nuevo-espacio-cultural-y-muse%C3%ADstico",
+      "date": "2026-05-25T15:44:06.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -666,12 +1227,12 @@
       "score": 3
     },
     {
-      "articleId": "1ms3sfu",
-      "articleFingerprint": "npd73k",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPcjcyT0Zsd0dmRUNMQ0lXQXNETDN5R1oyUGNvRlBTa2tDMk8zdVFIaUZxSFB2TVdFT243Y2FNajc3elRVNW9PSlFqUTZFVHRSaVVxTTVIZVRQcDF2RkJGeGY5VElTRVRvaHN1c2xERUFpMWhQZnlQNUhScmkwVHl0UGJzdi1GWVZ3eGRFZDNSZTlURktjN2tPSUVXZF80dm9hMk9JOWZDam9HTld2ZWMtcHF6TVlKR1d3eUJBdWRJbUwxUdIBxwFBVV95cUxQNndFT19fV09LYlRZOFdnMnpnQ2lCUENiUFBvM3ItVkxFN2JLYUtHaFZRRVIxc0VsM0d3amJoOE9vbTkzdTYzb2tyLVBMSC1iSkhPUzdUT28yVm1IYlVUZ3o3WFREWnl6NXVmVG1JbWNXQmtVbG1sNXdXdFFUVlpHTGZXbG5SbVVXRlA4eFk0SW1oZndsanBDTlZBYnQxRVUzT1M4d0tta3F1TE9aVUU1TE54NzI3UUxsUExBcTEwdXJPM0xrTHRV?oc=5",
-      "date": "2026-05-21T07:00:00.000Z",
+      "articleId": "6cs0pc",
+      "articleFingerprint": "ld12au",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/%C3%B3rganos-complementarios",
+      "date": "2026-05-25T11:06:00.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -683,28 +1244,111 @@
       "score": 3
     },
     {
-      "articleId": "1oia5bc",
-      "articleFingerprint": "1590mng",
-      "outlet": "www.diariodelpuerto.com",
-      "outletHost": "diariodelpuerto.com",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNVlV2TW5mZ0tRLWY5anNSOEN5ZVhwX0R5dHF0NHFCTkFoSkloMXNNR2VSVHdmUHBCUUFPMVExcWIxZlhQd054blczcFRSYll0MUhxR2JPbDBjREJwZ1h2b0xZX184alFRcWNYclowblJzVWRNX2F6emhfT3JmMEhHVUVpaDl3TmtpM3RtZVB4ckM4clFvNDZJN1pGTzRMUk5DaXVsemZRSTR4TUg5MFBvdVRoNVRUbURMRHAw?oc=5",
-      "date": "2026-05-20T07:00:00.000Z",
+      "articleId": "1988sk4",
+      "articleFingerprint": "qo9msg",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/comisiones-informativas",
+      "date": "2026-05-25T10:42:25.000Z",
       "indicators": {
-        "localCoverage": false,
+        "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
         "corroboratedAcrossOutlets": false,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
+    },
+    {
+      "articleId": "92r680",
+      "articleFingerprint": "117eq1c",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/ivl-planriba-plus",
+      "date": "2026-05-24T08:57:16.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "dytzp8",
+      "articleFingerprint": "jrcjnn",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-felicita-al-agente-de-polic%C3%ADa-luis-miguel-benavent-muedra-por-la-obtenci%C3%B3n-del-premio-al-mejor-ejercicio-en-el-v-campeonato-nacional-de-gu%C3%ADas-caninos-de-granada",
+      "date": "2026-05-22T12:21:59.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "19wvjzk",
+      "articleFingerprint": "1g18650",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/pruebas-para-la-obtenci%C3%B3n-directa-del-certificado-de-ense%C3%B1anzas-elementales-en-los-conservatorios-profesionales-municipales-de-m%C3%BAsica-y-danza-a%C3%B1o-2026",
+      "date": "2026-05-22T11:36:07.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "f5wuaw",
+      "articleFingerprint": "1i3wci0",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-lanza-la-campa%C3%B1a-%27fes-li-l%27ullet-al-marr%C3%B3%27-para-promover-la-recogida-de-biorresiduos-entre-la-poblaci%C3%B3n",
+      "date": "2026-05-20T10:56:20.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
     }
   ],
   "outlets": [
     {
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "articleCount": 38,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 3,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 14,
+      "articleCount": 15,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -734,21 +1378,6 @@
     {
       "outlet": "Las Provincias",
       "outletHost": "lasprovincias.es",
-      "articleCount": 5,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 3,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
       "articleCount": 4,
       "verdictCounts": {
         "verificado": 0,
@@ -792,6 +1421,51 @@
       "contradictedRatio": 0
     },
     {
+      "outlet": "rfet.es",
+      "outletHost": "rfet.es",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
+      "outlet": "Paterna Ahora",
+      "outletHost": "paternaahora.com",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 3,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
       "outlet": "Cadena SER",
       "outletHost": "cadenaser.com",
       "articleCount": 1,
@@ -807,8 +1481,8 @@
       "contradictedRatio": 0
     },
     {
-      "outlet": "Agronews Comunitat Valenciana",
-      "outletHost": "agronewscomunitatvalenciana.com",
+      "outlet": "Valencia News",
+      "outletHost": "valencianews.es",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
@@ -822,8 +1496,8 @@
       "contradictedRatio": 0
     },
     {
-      "outlet": "www.diariodelpuerto.com",
-      "outletHost": "diariodelpuerto.com",
+      "outlet": "Agronews Comunitat Valenciana",
+      "outletHost": "agronewscomunitatvalenciana.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,

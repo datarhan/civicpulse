@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-18T17:35:38.296Z",
+  "generatedAt": "2026-06-19T09:18:15.535Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 5,
+    "total": 4,
     "daysCovered": 22,
     "latestDate": "2026-06-18"
   },
@@ -50,16 +50,6 @@
       "bulletinDate": "27/05/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F06127",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=27%2F05%2F2026"
-    },
-    {
-      "id": "952c72d9d7a9",
-      "regNumber": "2026/05664",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del padrón relativo al impuesto de bienes inmuebles de naturaleza urbana ejercicio 2026",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-05-20",
-      "bulletinDate": "20/05/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F05664",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=20%2F05%2F2026"
     }
   ]
 }
