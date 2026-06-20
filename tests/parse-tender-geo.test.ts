@@ -64,6 +64,7 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
       [
         { id: 'open1', title: 'Obras en urbanización La Reva', status: 'open', finalAmount: 0 },
         { id: 'inprog1', title: 'Adecuación Senda Molinet', status: 'in_progress', finalAmount: 90000 },
+        { id: 'open2', title: 'Servicio limpieza viaria', status: 'open', finalAmount: 50000 },
         { id: 'awz', title: 'Obras Monte Alcedo', status: 'awarded', finalAmount: 0 },
       ],
       ZONES, OPTS,
