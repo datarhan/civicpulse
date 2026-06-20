@@ -74,6 +74,20 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.universe.totalAmount).toBe(0)
   })
 
+  it('counts full-universe awarded DANA separately from located DANA', () => {
+    const snap = matchContractsToZones(
+      [
+        { id: 'dz', title: 'Alumbrado urbanización La Reva por DANA', status: 'awarded', finalAmount: 50000 },
+        { id: 'du', title: 'Reparación de viales varios por el temporal de lluvias (DANA)', status: 'awarded', finalAmount: 60000 },
+      ],
+      ZONES, OPTS,
+    )
+    expect(snap.universe.danaAwardedAmount).toBe(110000) // both DANA-awarded contracts
+    expect(snap.universe.danaAwardedContracts).toBe(2)
+    expect(snap.universe.danaAmount).toBe(50000) // only the located one (dz)
+    expect(snap.assignments.length).toBe(1) // 'du' names no zone
+  })
+
   it('foldText lowercases, strips accents, and turns apostrophes into spaces', () => {
     expect(foldText("Mas d'Escoto")).toBe('mas d escoto')
     expect(foldText('València la Vella')).toBe('valencia la vella')

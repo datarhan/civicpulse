@@ -46,6 +46,8 @@ export interface TenderGeoSnapshot {
     locatedAmount: number
     danaContracts: number
     danaAmount: number
+    danaAwardedContracts: number
+    danaAwardedAmount: number
     dateMin: string | null
     dateMax: string | null
   }
@@ -114,6 +116,8 @@ export function matchContractsToZones(
   let locatedAmount = 0
   let danaContracts = 0
   let danaAmount = 0
+  let danaAwardedContracts = 0
+  let danaAwardedAmount = 0
   let dateMin: string | null = null
   let dateMax: string | null = null
 
@@ -123,8 +127,12 @@ export function matchContractsToZones(
     totalContracts++
     totalAmount += amt.amount
 
-    const folded = foldText(c.title)
+    const folded = foldText(c.title || '')
     const dana = DANA_RE.test(folded)
+    if (dana) {
+      danaAwardedContracts++
+      danaAwardedAmount += amt.amount
+    }
     const matched: Record<string, string> = {}
     for (const [slug, aliases] of Object.entries(ZONE_ALIASES)) {
       if (!zoneBySlug.has(slug) || aliases.length === 0) continue
@@ -183,6 +191,8 @@ export function matchContractsToZones(
       locatedAmount,
       danaContracts,
       danaAmount,
+      danaAwardedContracts,
+      danaAwardedAmount,
       dateMin,
       dateMax,
     },

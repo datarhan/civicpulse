@@ -37,7 +37,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
       sum += amt
     }
     const r = [...m.entries()].map(([k, v]) => ({ k, v })).sort((a, b) => b.v - a.v)
-    const dpct = sum > 0 ? ((snapshot?.universe?.danaAmount || 0) / sum) * 100 : 0
+    const dpct = sum > 0 ? ((snapshot?.universe?.danaAwardedAmount || 0) / sum) * 100 : 0
     return { rows: r, total: sum, danaPct: dpct }
   }, [contracts, snapshot])
   if (total <= 0) return null

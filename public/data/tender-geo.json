@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-20T18:24:45.587Z",
+  "generatedAt": "2026-06-20T19:23:16.789Z",
   "source": {
     "tenders": "2026-06-20T08:01:47.445Z",
     "geo": "2026-06-20T08:08:09.667Z"
@@ -11,6 +11,8 @@
     "locatedAmount": 994815.21,
     "danaContracts": 9,
     "danaAmount": 331847.61,
+    "danaAwardedContracts": 73,
+    "danaAwardedAmount": 2705097.9400000004,
     "dateMin": "2018-01-24",
     "dateMax": "2025-10-30"
   },
