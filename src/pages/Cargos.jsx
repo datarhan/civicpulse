@@ -339,6 +339,38 @@ function PlantillaCard() {
           </a>
         )}
       </div>
+      {data.authorized && typeof data.authorized.plazas === 'number' && (
+        <div
+          style={{
+            marginTop: 12,
+            paddingTop: 10,
+            borderTop: '1px solid var(--border)',
+            fontSize: 11.5,
+            color: 'var(--ink60)',
+            lineHeight: 1.5,
+          }}
+        >
+          <span className="mono" style={{ fontSize: 15, fontWeight: 800, color: 'var(--ink)' }}>
+            {data.authorized.approx ? '≈' : ''}
+            {data.authorized.plazas}
+          </span>{' '}
+          {data.authorized.label}
+          {data.authorized.asOf ? ` · ${data.authorized.asOf}` : ''}
+          <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
+            {data.authorized.note}{' '}
+            {data.authorized.source?.url && (
+              <a
+                href={data.authorized.source.url}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)' }}
+              >
+                Fuente: {data.authorized.source.publisher} ↗
+              </a>
+            )}
+          </div>
+        </div>
+      )}
     </Card>
   )
 }
