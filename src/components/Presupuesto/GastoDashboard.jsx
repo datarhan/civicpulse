@@ -107,6 +107,7 @@ export default function GastoDashboard() {
           {TABS.map((t) => (
             <button
               key={t.id}
+              id={`tab-${t.id}`}
               role="tab"
               aria-selected={tab === t.id}
               onClick={() => setTab(t.id)}
@@ -124,7 +125,7 @@ export default function GastoDashboard() {
             </button>
           ))}
         </div>
-        <div role="tabpanel" style={{ paddingTop: 12 }}>
+        <div role="tabpanel" aria-labelledby={`tab-${tab}`} style={{ paddingTop: 12 }}>
           {tab === 'explorar' && <ContractsExplorer contracts={contracts} snapshot={tg} />}
           {tab === 'contratistas' && <ContractorLeaderboard contracts={contracts} />}
           {tab === 'tipos' && <SpendingTypeBreakdown contracts={contracts} snapshot={tg} />}
