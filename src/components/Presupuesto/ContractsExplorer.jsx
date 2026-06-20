@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Pill } from '../Primitives'
 import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
-import { fmtDateShort } from '../../lib/formatters'
+import { fmtDateShort, safeHref } from '../../lib/formatters'
 import { filterContracts } from '../../lib/tender-geo'
 
 const fmtEur = (n) =>
@@ -88,18 +88,23 @@ export default function ContractsExplorer({ contracts, snapshot }) {
           }}
         >
           <div style={{ minWidth: 0 }}>
-            {c.permalink ? (
-              <a
-                href={c.permalink}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'inherit', textDecoration: 'none' }}
-              >
-                {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
-              </a>
-            ) : (
-              c.title
-            )}
+            {(() => {
+              const href = safeHref(c.permalink)
+              return href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
+                </a>
+              ) : c.title.length > 100 ? (
+                c.title.slice(0, 100) + '…'
+              ) : (
+                c.title
+              )
+            })()}
             <div style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
               {c.assignee || '—'} · {fmtDateShort(c.awardDate) || '—'}
             </div>

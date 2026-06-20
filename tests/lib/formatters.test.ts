@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { timeAgo, prettyNeighborhood } from '../../src/lib/formatters'
+import { timeAgo, prettyNeighborhood, safeHref } from '../../src/lib/formatters'
 
 // Build an ISO string a given number of milliseconds in the past.
 const ago = (ms: number) => new Date(Date.now() - ms).toISOString()
@@ -50,5 +50,16 @@ describe('prettyNeighborhood', () => {
     expect(prettyNeighborhood('santa-rosa')).toBe('Santa Rosa')
     expect(prettyNeighborhood('l_oliveral')).toBe('L Oliveral')
     expect(prettyNeighborhood('vallesa de mandor')).toBe('Vallesa De Mandor')
+  })
+})
+
+describe('safeHref', () => {
+  it('allows http/https, rejects javascript:/data:/relative/null', () => {
+    expect(safeHref('https://contrataciondelestado.es/x')).toBe('https://contrataciondelestado.es/x')
+    expect(safeHref('http://example.com')).toBe('http://example.com')
+    expect(safeHref('javascript:alert(1)')).toBe(null)
+    expect(safeHref('data:text/html,<script>x</script>')).toBe(null)
+    expect(safeHref(null)).toBe(null)
+    expect(safeHref('not a url')).toBe(null)
   })
 })

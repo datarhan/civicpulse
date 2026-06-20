@@ -92,7 +92,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
         </div>
       ))}
       <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 8 }}>
-        Recuperación DANA ≈ {danaPct.toFixed(0)}% del importe contratado situable.
+        Recuperación DANA ≈ {danaPct.toFixed(0)}% del importe adjudicado.
       </div>
     </div>
   )

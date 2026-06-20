@@ -15,6 +15,7 @@ export default function ContractorLeaderboard({ contracts }) {
     const m = new Map()
     for (const c of contracts || []) {
       if (!c.assignee) continue
+      if (!(c.status === 'awarded' && c.finalAmount > 0)) continue
       const arr = m.get(c.assignee) || []
       arr.push(c)
       m.set(c.assignee, arr)
@@ -31,6 +32,7 @@ export default function ContractorLeaderboard({ contracts }) {
         >
           <button
             onClick={() => setOpen(open === t.assignee ? null : t.assignee)}
+            aria-expanded={open === t.assignee}
             style={{
               all: 'unset',
               cursor: 'pointer',

@@ -1,6 +1,6 @@
 import { Pill } from '../Primitives'
 import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
-import { fmtDateShort } from '../../lib/formatters'
+import { fmtDateShort, safeHref } from '../../lib/formatters'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -35,18 +35,21 @@ export default function ZoneDrilldown({ snapshot, zoneSlug, contractsById, danaO
           <div key={a.id} style={{ padding: '8px 0', borderBottom: '1px solid var(--border2)' }}>
             <div style={{ display: 'flex', gap: 8, alignItems: 'baseline' }}>
               <div style={{ flex: 1, fontSize: 12.5, fontWeight: 500, lineHeight: 1.3 }}>
-                {c.permalink ? (
-                  <a
-                    href={c.permalink}
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ color: 'inherit', textDecoration: 'none' }}
-                  >
-                    {c.title}
-                  </a>
-                ) : (
-                  c.title
-                )}
+                {(() => {
+                  const href = safeHref(c.permalink)
+                  return href ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      style={{ color: 'inherit', textDecoration: 'none' }}
+                    >
+                      {c.title}
+                    </a>
+                  ) : (
+                    c.title
+                  )
+                })()}
                 {a.dana && (
                   <span
                     style={{
