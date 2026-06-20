@@ -123,7 +123,8 @@ deterministic/local → classed as a normal (not best-effort) step.
   "universe": {
     "totalContracts": 0, "totalAmount": 0,        // universe = awarded contracts with finalAmount>0
     "locatedContracts": 0, "locatedAmount": 0,    // deduped by id  (≤ total*)
-    "danaContracts": 0, "danaAmount": 0,
+    "danaContracts": 0, "danaAmount": 0,          // located-DANA (drives the map)
+    "danaAwardedContracts": 0, "danaAwardedAmount": 0,  // full awarded-DANA (spending-type tab share)
     "dateMin": "ISO|null", "dateMax": "ISO|null"  // over located contracts (for slider)
   },
   "zones": [                                       // one per OSM zone WITH ≥1 placement

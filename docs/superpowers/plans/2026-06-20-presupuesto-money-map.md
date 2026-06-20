@@ -123,6 +123,7 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
       [
         { id: 'open1', title: 'Obras en urbanización La Reva', status: 'open', finalAmount: 0 },
         { id: 'inprog1', title: 'Adecuación Senda Molinet', status: 'in_progress', finalAmount: 90000 },
+        { id: 'open2', title: 'Servicio limpieza viaria', status: 'open', finalAmount: 50000 },
         { id: 'awz', title: 'Obras Monte Alcedo', status: 'awarded', finalAmount: 0 },
       ],
       ZONES, OPTS,
@@ -195,6 +196,8 @@ export interface TenderGeoSnapshot {
     locatedAmount: number
     danaContracts: number
     danaAmount: number
+    danaAwardedContracts: number
+    danaAwardedAmount: number
     dateMin: string | null
     dateMax: string | null
   }
@@ -497,12 +500,13 @@ describe('lib/tender-geo', () => {
   it('filterContracts narrows by text, zone, and dana', () => {
     const contracts = [
       { id: 'a', title: 'Obra en Molinet', assignee: 'ACME', awardDate: '2024-01-01', categoryTitle: 'construction', contractType: 'construction' },
+      { id: 'b', title: 'Obra DANA La Reva', assignee: 'ACME', awardDate: '2025-06-01', categoryTitle: 'construction', contractType: 'construction' },
       { id: 'c', title: 'Servicio limpieza', assignee: 'BETA', awardDate: '2024-01-01', categoryTitle: 'other', contractType: 'services' },
     ]
     const byId = new Map(ASSIGN.map((x) => [x.id, x]))
     expect(filterContracts(contracts, { text: 'molinet' }, byId).map((c) => c.id)).toEqual(['a'])
-    expect(filterContracts(contracts, { zoneSlug: 'z2' }, byId).map((c) => c.id)).toEqual(['c'])
-    expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual([])
+    expect(filterContracts(contracts, { zoneSlug: 'z2' }, byId).map((c) => c.id).sort()).toEqual(['b', 'c'])
+    expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual(['b'])
   })
 })
 ```
@@ -540,7 +544,9 @@ export const EMPTY_TENDER_GEO = {
 
 /**
  * Per-zone {amount,count} for assignments dated on/before `at` (cumulative),
- * optionally restricted to DANA. Assignments with no date are always included.
+ * optionally restricted to DANA. Assignments with NO date are excluded from this
+ * timeline view (they have no position on it); their value still lives in the
+ * snapshot's precomputed `zones[]`/`universe` all-time aggregates (spec §11).
  * @param {any[]} assignments
  * @param {{at?: number, danaOnly?: boolean}} [opts]
  * @returns {Map<string,{amount:number,count:number}>}
@@ -549,7 +555,7 @@ export function zoneAmountsAt(assignments, { at = Infinity, danaOnly = false } =
   const m = new Map()
   for (const a of assignments || []) {
     if (danaOnly && !a.dana) continue
-    if (a.date && new Date(a.date).getTime() > at) continue
+    if (!a.date || new Date(a.date).getTime() > at) continue
     for (const slug of a.zones) {
       const cur = m.get(slug) || { amount: 0, count: 0 }
       cur.amount += a.amount
@@ -590,7 +596,7 @@ export function filterContracts(contracts, opts = {}, assignmentsById = new Map(
   const { text = '', zoneSlug = '', category = '', year = '', dana = false, type = '' } = opts
   const q = text.trim().toLowerCase()
   return (contracts || []).filter((c) => {
-    if (q && !c.title.toLowerCase().includes(q) && !(c.assignee || '').toLowerCase().includes(q)) return false
+    if (q && !(c.title || '').toLowerCase().includes(q) && !(c.assignee || '').toLowerCase().includes(q)) return false
     if (category && c.categoryTitle !== category) return false
     if (type && c.contractType !== type) return false
     if (year) {
@@ -1532,3 +1538,5 @@ git commit -m "docs(presupuesto): document the money-map honesty contract"
 - **Map prominence, not absolute hero**: `RealBudgetHeader` keeps the page title + KPIs above the map (the map sits directly below the KPI strip). Splitting the title off entirely was judged unnecessary churn.
 - **Component testing**: Leaflet does not render under happy-dom, so map/panel behaviour is gated by Playwright e2e (Task 12), not vitest. The pure logic (matcher + helpers) carries the unit-test burden (Tasks 1, 3).
 - **Fixtures inlined**: the matcher test inlines its data (mirrors `tests/department-stats.test.ts`) rather than adding `tests/fixtures/tenders_geo_sample.json`.
+- **DANA share basis (final-review fix)**: the spending-type tab's DANA percentage uses `universe.danaAwardedAmount` (full awarded-DANA, ≈€2.7M / 16.6%), NOT the located-only `universe.danaAmount` (≈€332k). Dividing located-DANA by the full universe would have understated flood-recovery spend ~8× — the same like-for-unlike error the honesty contract forbids.
+- **Delivered coverage reality**: under the awarded-only basis + conservative alias table, ~30 contracts / 8 zones / €0.99M are located = ~6% of awarded contracting. This is far below §4's illustrative all-status estimates (which counted in-execution contracts now excluded); it is the honest figure, and the coverage meter exists precisely to show it.
