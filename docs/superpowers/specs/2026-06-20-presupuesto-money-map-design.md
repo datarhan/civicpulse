@@ -34,7 +34,7 @@ forbids. These invariants are load-bearing and must be enforced in code + reflec
    Generic words ("calle", "parque", "obras") never, on their own, assign a zone.
 3. **The coverage meter compares like-for-like.** Numerator = Σ amount of located
    contracts (deduped by contract `id`); denominator = Σ amount over the same universe
-   (contracts with `amount > 0`). The ratio is therefore always ≤ 100%. The meter
+   (awarded contracts with `finalAmount > 0`). The ratio is therefore always ≤ 100%. The meter
    prominently shows the *unplaced* remainder and states plainly that the rest
    (salaries, services, supplies) has no single location and is **not** guessed at.
 4. **Every placement is auditable.** Each assignment stores the exact substring that
@@ -43,9 +43,8 @@ forbids. These invariants are load-bearing and must be enforced in code + reflec
 5. **Multi-zone contracts** (e.g. "…Monte Alcedo y Valencia la Vella") appear in *both*
    zones on the map but are counted **once** in the coverage total. Per-zone sums are
    therefore non-additive — this is stated in the UI microcopy and the spec.
-6. **No fabricated amounts.** The drill-down shows each contract's real
-   `finalAmount`; when only `initialAmount` exists the row is labelled "en ejecución /
-   importe de licitación". No per-line amount is ever invented.
+6. **No fabricated amounts.** The drill-down shows each contract's real awarded
+   `finalAmount`. No per-line amount is ever invented.
 
 ## 3. Scope
 
@@ -122,7 +121,7 @@ deterministic/local → classed as a normal (not best-effort) step.
   "generatedAt": "ISO",
   "source": { "tenders": "<tenders.generatedAt>", "geo": "<geo.generatedAt>" },
   "universe": {
-    "totalContracts": 0, "totalAmount": 0,        // universe = contracts with amount>0
+    "totalContracts": 0, "totalAmount": 0,        // universe = awarded contracts with finalAmount>0
     "locatedContracts": 0, "locatedAmount": 0,    // deduped by id  (≤ total*)
     "danaContracts": 0, "danaAmount": 0,
     "dateMin": "ISO|null", "dateMax": "ISO|null"  // over located contracts (for slider)
@@ -154,7 +153,7 @@ The slider recomputes per-zone amounts at time *T* client-side from `assignments
   tokens. Seeded from the 21 OSM `geo.json` names + curated landmarks; documented as
   curator-maintained.
 - `matchContractsToZones(contracts, zones)`:
-  1. Restrict to universe = contracts with `amount = finalAmount ?? initialAmount > 0`.
+  1. Restrict to universe = awarded contracts (`status === 'awarded'`) with `finalAmount > 0`; `amount = finalAmount`.
   2. Fold + lowercase the title (reuse `src/scraper/normalize.ts`).
   3. For each zone, test its aliases (longest-first to avoid substring collisions, e.g.
      "poio de reva" vs "la reva"); on hit, record zone + the matched alias.
@@ -225,7 +224,7 @@ date)`, `topContractors(contracts)`, `filterContracts(...)`).
 
 - **No located contracts** → map hidden, honest empty state ("Aún no hay obras situables").
 - **Null date** → excluded from slider timeline; still in all-time totals, flagged "sin fecha".
-- **finalAmount null** → use `initialAmount`, labelled "en ejecución".
+- **Non-awarded or zero-final contract** → excluded from the universe, map, and meter entirely.
 - **Dark mode** → CartoDB Voyager tiles + token-driven circle colors verified for contrast.
 - **Mobile 375px** → single-column collapse (covered by the mobile e2e shell).
 

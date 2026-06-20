@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - **Honesty contract (load-bearing):** a contract is placed ONLY when its title contains a zone-specific alias; generic words never place it. Coverage = located€ / universe€ on the SAME basis (always ≤100%). Multi-zone contracts show in each zone but count once in `locatedAmount`. Per-zone sums are non-additive. No fabricated amounts. Budget chapters are never mapped.
-- **Amount basis:** `amount = finalAmount (if >0) else initialAmount (if >0) else skip`. Universe = contracts with `amount > 0`.
+- **Amount basis:** universe = AWARDED contracts only (`status === 'awarded'`) with `finalAmount > 0`; `amount = finalAmount`. Matches the page's existing "€16.3M adjudicado" headline. Non-awarded contracts (open/in-tender/in-progress) are excluded from the universe, the map, and the coverage meter.
 - **Pure modules call no `fetch`/`fs` and no `Date.now()`/`new Date()` with no arg** — `generatedAt` is injected by the CLI. `fetch`/`fs` live only in CLI wrappers.
 - **Diacritics:** reuse `stripDiacritics` from `src/scraper/normalize.ts`; never fork it.
 - **i18n:** `/presupuesto` is currently 100% hard-coded Spanish (no `t()` usage). New components follow suit (Spanish hard-coded). i18n wiring is explicitly deferred — do NOT add it here.
@@ -72,7 +72,7 @@ const OPTS = { generatedAt: '2026-06-20T00:00:00.000Z', tendersGeneratedAt: 't',
 describe('scraper/tender-geo — matchContractsToZones', () => {
   it('places a contract by a zone-specific alias and records the matched alias', () => {
     const snap = matchContractsToZones(
-      [{ id: 'c1', title: 'Reurbanización Zona Verde Monte Alcedo', finalAmount: 100000, awardDate: '2024-05-01', contractType: 'construction', categoryTitle: 'construction' }],
+      [{ id: 'c1', title: 'Reurbanización Zona Verde Monte Alcedo', status: 'awarded', finalAmount: 100000, awardDate: '2024-05-01', contractType: 'construction', categoryTitle: 'construction' }],
       ZONES, OPTS,
     )
     const a = snap.assignments.find((x) => x.id === 'c1')!
@@ -83,7 +83,7 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
 
   it('assigns a contract naming two zones to both, but counts it once in locatedAmount', () => {
     const snap = matchContractsToZones(
-      [{ id: 'c2', title: 'Centros Culturales en Urb. Monte Alcedo y Valencia La Vella', finalAmount: 200000 }],
+      [{ id: 'c2', title: 'Centros Culturales en Urb. Monte Alcedo y Valencia La Vella', status: 'awarded', finalAmount: 200000 }],
       ZONES, OPTS,
     )
     const a = snap.assignments.find((x) => x.id === 'c2')!
@@ -96,8 +96,8 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
   it('flags DANA works and never confuses La Reva with Poio de Reva', () => {
     const snap = matchContractsToZones(
       [
-        { id: 'd1', title: 'Alumbrado público urbanización La Reva como consecuencia del temporal de lluvias (DANA)', finalAmount: 50000 },
-        { id: 'p1', title: 'Glorieta acceso Polígon Industrial Poio de Reva', finalAmount: 40000 },
+        { id: 'd1', title: 'Alumbrado público urbanización La Reva como consecuencia del temporal de lluvias (DANA)', status: 'awarded', finalAmount: 50000 },
+        { id: 'p1', title: 'Glorieta acceso Polígon Industrial Poio de Reva', status: 'awarded', finalAmount: 40000 },
       ],
       ZONES, OPTS,
     )
@@ -107,28 +107,29 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.assignments.find((x) => x.id === 'p1')!.dana).toBe(false)
   })
 
-  it('skips contracts with no zone-specific alias and no amount', () => {
+  it('counts an awarded no-alias contract in the universe but not as located', () => {
+    const snap = matchContractsToZones(
+      [{ id: 'n1', title: '1 vehículo híbrido todoterreno uso gabinete alcaldía', status: 'awarded', finalAmount: 30000 }],
+      ZONES, OPTS,
+    )
+    expect(snap.assignments.length).toBe(0)
+    expect(snap.universe.totalContracts).toBe(1)
+    expect(snap.universe.totalAmount).toBe(30000)
+    expect(snap.universe.locatedAmount).toBe(0)
+  })
+
+  it('excludes non-awarded contracts and awarded-with-zero-final from the universe', () => {
     const snap = matchContractsToZones(
       [
-        { id: 'n1', title: '1 vehículo híbrido todoterreno uso gabinete alcaldía', finalAmount: 30000 },
-        { id: 'n2', title: 'Obras en urbanización La Reva', finalAmount: 0, initialAmount: 0 },
+        { id: 'open1', title: 'Obras en urbanización La Reva', status: 'open', finalAmount: 0 },
+        { id: 'inprog1', title: 'Adecuación Senda Molinet', status: 'in_progress', finalAmount: 90000 },
+        { id: 'awz', title: 'Obras Monte Alcedo', status: 'awarded', finalAmount: 0 },
       ],
       ZONES, OPTS,
     )
     expect(snap.assignments.length).toBe(0)
-    expect(snap.universe.totalContracts).toBe(1) // n1 counts in universe (has amount); n2 has none
-    expect(snap.universe.locatedAmount).toBeLessThanOrEqual(snap.universe.totalAmount)
-  })
-
-  it('falls back to initialAmount and labels the amountKind', () => {
-    const snap = matchContractsToZones(
-      [{ id: 'i1', title: 'Adecuación Senda Molinet', finalAmount: 0, initialAmount: 75000, startDate: '2025-01-01' }],
-      ZONES, OPTS,
-    )
-    const a = snap.assignments.find((x) => x.id === 'i1')!
-    expect(a.amount).toBe(75000)
-    expect(a.amountKind).toBe('initial')
-    expect(a.zones).toEqual(['el-molinet'])
+    expect(snap.universe.totalContracts).toBe(0)
+    expect(snap.universe.totalAmount).toBe(0)
   })
 
   it('foldText lowercases, strips accents, and turns apostrophes into spaces', () => {
@@ -151,6 +152,7 @@ import { stripDiacritics } from './normalize'
 export interface ContractInput {
   id: string
   title: string
+  status?: string
   finalAmount?: number
   initialAmount?: number
   awardDate?: string | null
@@ -237,10 +239,10 @@ export function foldText(s: string): string {
 }
 
 function amountOf(c: ContractInput): { amount: number; kind: 'final' | 'initial' } | null {
-  if (typeof c.finalAmount === 'number' && c.finalAmount > 0)
+  // Awarded-only universe: matches the page's "€16.3M adjudicado" headline.
+  // Non-awarded contracts (open/in-tender/in-progress) are excluded entirely.
+  if (c.status === 'awarded' && typeof c.finalAmount === 'number' && c.finalAmount > 0)
     return { amount: c.finalAmount, kind: 'final' }
-  if (typeof c.initialAmount === 'number' && c.initialAmount > 0)
-    return { amount: c.initialAmount, kind: 'initial' }
   return null
 }
 
@@ -479,12 +481,13 @@ describe('lib/tender-geo', () => {
     expect(m.get('z1')).toEqual({ amount: 200, count: 1 })
     expect(m.get('z2')).toEqual({ amount: 200, count: 1 })
   })
-  it('topContractors ranks by summed amount', () => {
+  it('topContractors ranks awarded final amounts and ignores non-awarded', () => {
     const top = topContractors(
       [
-        { assignee: 'ACME', finalAmount: 100, initialAmount: 0 },
-        { assignee: 'ACME', finalAmount: 0, initialAmount: 40 },
-        { assignee: 'BETA', finalAmount: 90, initialAmount: 0 },
+        { assignee: 'ACME', status: 'awarded', finalAmount: 100 },
+        { assignee: 'ACME', status: 'awarded', finalAmount: 40 },
+        { assignee: 'ACME', status: 'open', finalAmount: 0, initialAmount: 999 },
+        { assignee: 'BETA', status: 'awarded', finalAmount: 90 },
       ],
       10,
     )
@@ -565,12 +568,12 @@ export function zoneAmountsAt(assignments, { at = Infinity, danaOnly = false } =
 export function topContractors(contracts, n = 15) {
   const m = new Map()
   for (const c of contracts || []) {
+    // Awarded money only — "who received the awarded money".
+    if (c.status !== 'awarded' || !(c.finalAmount > 0)) continue
     const name = c.assignee
     if (!name) continue
-    const amt = c.finalAmount > 0 ? c.finalAmount : c.initialAmount > 0 ? c.initialAmount : 0
-    if (amt <= 0) continue
     const cur = m.get(name) || { assignee: name, amount: 0, count: 0 }
-    cur.amount += amt
+    cur.amount += c.finalAmount
     cur.count += 1
     m.set(name, cur)
   }
@@ -780,14 +783,14 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   return (
     <div>
       <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
-        De <strong>{fmtEur(total)}</strong> en contratos con importe, <strong>{fmtEur(located)}</strong> ({pct.toFixed(0)}%) se pueden situar en el mapa.
+        De <strong>{fmtEur(total)}</strong> adjudicados en contratos, <strong>{fmtEur(located)}</strong> ({pct.toFixed(0)}%) se pueden situar en el mapa.
       </div>
       <div style={{ height: 14, borderRadius: 7, overflow: 'hidden', display: 'flex', border: '1px solid var(--border2)', margin: '8px 0 6px' }}>
         <div style={{ width: pct + '%', background: 'var(--civic)' }} />
         <div style={{ flex: 1, background: 'var(--soft)' }} />
       </div>
       <div style={{ fontSize: 11, color: 'var(--ink50)', fontStyle: 'italic', lineHeight: 1.4 }}>
-        El resto (sueldos, servicios, suministros) no tiene una ubicación única: no se inventa. Un contrato que cita dos zonas suma en ambas, pero cuenta una sola vez aquí.
+        El resto son contratos adjudicados cuyo título no nombra una zona (servicios, suministros y obras sin lugar citado): no se inventa una ubicación. Un contrato que cita dos zonas suma en ambas, pero cuenta una sola vez aquí.
       </div>
       <div style={{ marginTop: 10, display: 'flex', flexDirection: 'column', gap: 5 }}>
         {top.map((z) => (
@@ -1158,7 +1161,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
     const m = new Map()
     let sum = 0
     for (const c of contracts || []) {
-      const amt = c.finalAmount > 0 ? c.finalAmount : c.initialAmount > 0 ? c.initialAmount : 0
+      const amt = c.status === 'awarded' && c.finalAmount > 0 ? c.finalAmount : 0
       if (amt <= 0) continue
       const k = c.contractType || 'other'
       m.set(k, (m.get(k) || 0) + amt)
@@ -1504,8 +1507,8 @@ npm run compute:tender-geo          # match contract titles → OSM zones · wri
             Situamos en el mapa únicamente los contratos cuyo título nombra una zona concreta
             (urbanización, polígono o paraje). No existe un campo de «lugar de ejecución» en la
             fuente (Gobierto/PLACSP), así que el título es la única señal disponible. El medidor de
-            cobertura muestra qué parte del importe contratado se puede situar y qué parte no: el
-            gasto sin ubicación (sueldos, servicios, suministros) nunca se reparte por zonas. Un
+            cobertura muestra qué parte del importe adjudicado se puede situar y qué parte no: el
+            gasto sin ubicación (servicios, suministros y obras sin lugar citado) nunca se reparte por zonas. Un
             contrato que cita dos zonas aparece en ambas, pero cuenta una sola vez en el total situado.
           </p>
         </Card>
