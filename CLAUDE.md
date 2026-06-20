@@ -91,6 +91,7 @@ npm run lookup-catastro -- --refcat 4720001YJ2742S0001JF
 
 # Cross-source department accountability scalar (runs inside scrape:all)
 npm run compute:dept-stats          # writes plazosVencidosCount into plenos-agendas.json.stats
+npm run compute:tender-geo          # match contract titles → OSM zones · writes tender-geo.json · runs in scrape:all
 
 # Claim extraction pipeline (LLM-extracted verbatim claims → deterministic
 # verifier → human-curated editorial findings). Requires transcripts on disk
@@ -477,6 +478,7 @@ scripts/scrape-consell-cv.ts          →  src/scraper/consell-cv.ts        → 
 scripts/scrape-tenders-ted.ts         →  src/scraper/tenders-ted.ts       →  public/data/tenders-ted.json
 scripts/scrape-boe.ts                 →  src/scraper/boe.ts               →  public/data/boe.json
 scripts/scrape-bop.ts                 →  src/scraper/bop.ts               →  public/data/bop.json
+scripts/compute-tender-geo.ts         →  src/scraper/tender-geo.ts        →  public/data/tender-geo.json
 
 # Curated (human-edited) — NEVER touched by automated scrapers:
 public/data/promises.json            (schema: src/scraper/promises.ts)
@@ -558,6 +560,7 @@ loop.
 - `usePlenoVotes` + `OUTCOME_LABEL` / `OUTCOME_TONE` / `DIRECTION_LABEL` / `DIRECTION_TONE` + `tallyByBloc()`
 - `useCtbg`
 - `useBop` + `formatBopDate`
+- `useTenderGeo` + `src/lib/tender-geo.js` (`zoneAmountsAt` / `topContractors` / `filterContracts`)
 - `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
 
 ### Nightly refresh

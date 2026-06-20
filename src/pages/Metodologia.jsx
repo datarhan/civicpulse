@@ -500,6 +500,22 @@ export default function Metodologia() {
         </p>
       </Card>
 
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead
+          eyebrow="Transparencia · /presupuesto"
+          title="Mapa del gasto: qué situamos y qué no"
+        />
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          Situamos en el mapa únicamente los contratos cuyo título nombra una zona concreta
+          (urbanización, polígono o paraje). No existe un campo de «lugar de ejecución» en la fuente
+          (Gobierto/PLACSP), así que el título es la única señal disponible. El medidor de cobertura
+          muestra qué parte del importe adjudicado se puede situar y qué parte no: el gasto sin
+          ubicación (servicios, suministros y obras sin lugar citado) nunca se reparte por zonas. Un
+          contrato que cita dos zonas aparece en ambas, pero cuenta una sola vez en el total
+          situado.
+        </p>
+      </Card>
+
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
         Última revisión de este documento: 21 de mayo de 2026 (añadida la sección "Laboratorio de
         prensa" con escala de veredictos, disciplina antilibellos, Wayback, ClaimReview, bitácora de
