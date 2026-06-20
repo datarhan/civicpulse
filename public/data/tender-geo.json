@@ -1,75 +1,20 @@
 {
-  "generatedAt": "2026-06-20T18:10:49.750Z",
+  "generatedAt": "2026-06-20T18:24:45.587Z",
   "source": {
     "tenders": "2026-06-20T08:01:47.445Z",
     "geo": "2026-06-20T08:08:09.667Z"
   },
   "universe": {
-    "totalContracts": 758,
-    "totalAmount": 143217824.76000002,
-    "locatedContracts": 49,
-    "locatedAmount": 3623608.4,
+    "totalContracts": 375,
+    "totalAmount": 16303226.080000002,
+    "locatedContracts": 30,
+    "locatedAmount": 994815.21,
     "danaContracts": 9,
     "danaAmount": 331847.61,
     "dateMin": "2018-01-24",
-    "dateMax": "2026-05-27"
+    "dateMax": "2025-10-30"
   },
   "zones": [
-    {
-      "slug": "el-pou-d-escoto",
-      "name": "el Pou d'Escoto",
-      "centroid": [
-        39.5483742,
-        -0.5912189
-      ],
-      "contractCount": 11,
-      "amount": 989837.8400000001,
-      "danaAmount": 19822.25
-    },
-    {
-      "slug": "el-molinet",
-      "name": "el Molinet",
-      "centroid": [
-        39.5544196,
-        -0.5510476
-      ],
-      "contractCount": 7,
-      "amount": 790065.3700000001,
-      "danaAmount": 0
-    },
-    {
-      "slug": "urbanitzacio-valencia-la-vella",
-      "name": "Urbanització València la Vella",
-      "centroid": [
-        39.5344276,
-        -0.5307458
-      ],
-      "contractCount": 8,
-      "amount": 752859.7299999999,
-      "danaAmount": 0
-    },
-    {
-      "slug": "monte-alcedo",
-      "name": "Monte Alcedo",
-      "centroid": [
-        39.5558464,
-        -0.5425281
-      ],
-      "contractCount": 4,
-      "amount": 686334.1699999999,
-      "danaAmount": 0
-    },
-    {
-      "slug": "l-oliveral",
-      "name": "l'Oliveral",
-      "centroid": [
-        39.4710524,
-        -0.5366921
-      ],
-      "contractCount": 9,
-      "amount": 531753,
-      "danaAmount": 164869.5
-    },
     {
       "slug": "urbanitzacio-la-reva",
       "name": "Urbanització La Reva",
@@ -82,15 +27,48 @@
       "danaAmount": 119352.53
     },
     {
-      "slug": "santa-rosa",
-      "name": "Santa Rosa",
+      "slug": "l-oliveral",
+      "name": "l'Oliveral",
       "centroid": [
-        39.5508312,
-        -0.5333969
+        39.4710524,
+        -0.5366921
       ],
-      "contractCount": 2,
-      "amount": 240471.77000000002,
+      "contractCount": 8,
+      "amount": 251627.11,
+      "danaAmount": 164869.5
+    },
+    {
+      "slug": "urbanitzacio-valencia-la-vella",
+      "name": "Urbanització València la Vella",
+      "centroid": [
+        39.5344276,
+        -0.5307458
+      ],
+      "contractCount": 3,
+      "amount": 215159.55,
       "danaAmount": 0
+    },
+    {
+      "slug": "monte-alcedo",
+      "name": "Monte Alcedo",
+      "centroid": [
+        39.5558464,
+        -0.5425281
+      ],
+      "contractCount": 1,
+      "amount": 186413.34,
+      "danaAmount": 0
+    },
+    {
+      "slug": "el-pou-d-escoto",
+      "name": "el Pou d'Escoto",
+      "centroid": [
+        39.5483742,
+        -0.5912189
+      ],
+      "contractCount": 5,
+      "amount": 108259.06,
+      "danaAmount": 19822.25
     },
     {
       "slug": "urbanitzacio-els-pous",
@@ -104,36 +82,14 @@
       "danaAmount": 41611.4
     },
     {
-      "slug": "poligono-industrial-entrevias",
-      "name": "Polígono Industrial Entrevías",
+      "slug": "el-molinet",
+      "name": "el Molinet",
       "centroid": [
-        39.5405303,
-        -0.5508958
+        39.5544196,
+        -0.5510476
       ],
-      "contractCount": 1,
-      "amount": 66008.77,
-      "danaAmount": 0
-    },
-    {
-      "slug": "vallesa-de-mandor",
-      "name": "Vallesa de Mandor",
-      "centroid": [
-        39.5487635,
-        -0.5280143
-      ],
-      "contractCount": 1,
-      "amount": 40910.1,
-      "danaAmount": 0
-    },
-    {
-      "slug": "urbanitzacio-santa-monica",
-      "name": "Urbanització Santa Mònica",
-      "centroid": [
-        39.5577449,
-        -0.5539922
-      ],
-      "contractCount": 1,
-      "amount": 15846.26,
+      "contractCount": 2,
+      "amount": 44881.93,
       "danaAmount": 0
     },
     {
@@ -180,36 +136,6 @@
       "categoryTitle": "other"
     },
     {
-      "id": "4973577#3",
-      "zones": [
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 43342.2,
-      "amountKind": "final",
-      "date": "2026-04-01",
-      "contractType": "supplies",
-      "categoryTitle": "culture"
-    },
-    {
-      "id": "5106922",
-      "zones": [
-        "urbanitzacio-valencia-la-vella"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella"
-      },
-      "dana": false,
-      "amount": 108876.11,
-      "amountKind": "final",
-      "date": "2026-05-27",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
       "id": "4559761",
       "zones": [
         "urbanitzacio-la-reva"
@@ -221,21 +147,6 @@
       "amount": 71269,
       "amountKind": "final",
       "date": "2024-11-06",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "269749",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 83265.61,
-      "amountKind": "final",
-      "date": "2019-12-17",
       "contractType": "construction",
       "categoryTitle": "construction"
     },
@@ -253,23 +164,6 @@
       "date": "2024-12-04",
       "contractType": "services",
       "categoryTitle": "maintenance"
-    },
-    {
-      "id": "32437",
-      "zones": [
-        "urbanitzacio-valencia-la-vella",
-        "monte-alcedo"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella",
-        "monte-alcedo": "monte alcedo"
-      },
-      "dana": false,
-      "amount": 150000,
-      "amountKind": "initial",
-      "date": "2019-01-01",
-      "contractType": "construction",
-      "categoryTitle": "construction"
     },
     {
       "id": "4598693",
@@ -349,21 +243,6 @@
       "categoryTitle": "architecture"
     },
     {
-      "id": "1884889",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": false,
-      "amount": 280125.89,
-      "amountKind": "final",
-      "date": "2022-10-07",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
       "id": "29500",
       "zones": [
         "urbanitzacio-la-llobatera"
@@ -394,21 +273,6 @@
       "categoryTitle": "construction"
     },
     {
-      "id": "94467",
-      "zones": [
-        "santa-rosa"
-      ],
-      "matchedAlias": {
-        "santa-rosa": "santa rosa"
-      },
-      "dana": false,
-      "amount": 45796.08,
-      "amountKind": "final",
-      "date": "2018-01-26",
-      "contractType": "services",
-      "categoryTitle": "architecture"
-    },
-    {
       "id": "66749",
       "zones": [
         "urbanitzacio-valencia-la-vella",
@@ -422,23 +286,6 @@
       "amount": 186413.34,
       "amountKind": "final",
       "date": "2019-08-19",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "96520",
-      "zones": [
-        "urbanitzacio-valencia-la-vella",
-        "monte-alcedo"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella",
-        "monte-alcedo": "monte alcedo"
-      },
-      "dana": false,
-      "amount": 186413.34,
-      "amountKind": "final",
-      "date": "2019-11-03",
       "contractType": "construction",
       "categoryTitle": "construction"
     },
@@ -471,51 +318,6 @@
       "date": "2019-12-28",
       "contractType": "supplies",
       "categoryTitle": "other"
-    },
-    {
-      "id": "1045077",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 30555.55,
-      "amountKind": "final",
-      "date": "2021-01-24",
-      "contractType": "services",
-      "categoryTitle": "architecture"
-    },
-    {
-      "id": "1520813",
-      "zones": [
-        "urbanitzacio-valencia-la-vella"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella"
-      },
-      "dana": false,
-      "amount": 26401.96,
-      "amountKind": "final",
-      "date": "2022-01-11",
-      "contractType": "supplies",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "1608861",
-      "zones": [
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 228507.29,
-      "amountKind": "final",
-      "date": "2022-06-07",
-      "contractType": "construction",
-      "categoryTitle": "construction"
     },
     {
       "id": "3733354",
@@ -578,21 +380,6 @@
       "categoryTitle": "construction"
     },
     {
-      "id": "68394",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 72080.34,
-      "amountKind": "final",
-      "date": "2018-05-09",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
       "id": "2739773",
       "zones": [
         "urbanitzacio-valencia-la-vella"
@@ -638,23 +425,6 @@
       "categoryTitle": "transportation"
     },
     {
-      "id": "74419",
-      "zones": [
-        "santa-rosa",
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "santa-rosa": "santa rosa",
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 194675.69,
-      "amountKind": "final",
-      "date": "2018-08-14",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
       "id": "4580111",
       "zones": [
         "urbanitzacio-la-reva"
@@ -685,51 +455,6 @@
       "categoryTitle": "construction"
     },
     {
-      "id": "77392",
-      "zones": [
-        "vallesa-de-mandor"
-      ],
-      "matchedAlias": {
-        "vallesa-de-mandor": "vallesa"
-      },
-      "dana": false,
-      "amount": 40910.1,
-      "amountKind": "final",
-      "date": "2018-06-06",
-      "contractType": "supplies",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "4811930",
-      "zones": [
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 262812,
-      "amountKind": "final",
-      "date": "2025-09-24",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "1705844",
-      "zones": [
-        "monte-alcedo"
-      ],
-      "matchedAlias": {
-        "monte-alcedo": "monte alcedo"
-      },
-      "dana": false,
-      "amount": 163507.49,
-      "amountKind": "final",
-      "date": "2022-07-27",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
       "id": "2196998",
       "zones": [
         "el-pou-d-escoto"
@@ -743,25 +468,6 @@
       "date": "2023-04-26",
       "contractType": "supplies",
       "categoryTitle": "electrical"
-    },
-    {
-      "id": "1554203",
-      "zones": [
-        "el-pou-d-escoto",
-        "urbanitzacio-valencia-la-vella",
-        "poligono-industrial-entrevias"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto",
-        "urbanitzacio-valencia-la-vella": "valencia la vella",
-        "poligono-industrial-entrevias": "entrevias"
-      },
-      "dana": false,
-      "amount": 66008.77,
-      "amountKind": "final",
-      "date": "2022-01-11",
-      "contractType": "construction",
-      "categoryTitle": "construction"
     },
     {
       "id": "8678128",
@@ -796,36 +502,6 @@
       "categoryTitle": "environment"
     },
     {
-      "id": "4299590",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 332554.46,
-      "amountKind": "initial",
-      "date": "2023-09-04",
-      "contractType": "services",
-      "categoryTitle": "environment"
-    },
-    {
-      "id": "4299590#1",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 297114.05,
-      "amountKind": "initial",
-      "date": "2023-09-04",
-      "contractType": "services",
-      "categoryTitle": "environment"
-    },
-    {
       "id": "9012998",
       "zones": [
         "urbanitzacio-la-reva"
@@ -852,23 +528,6 @@
       "amount": 30916.05,
       "amountKind": "final",
       "date": "2019-12-28",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "43208#1",
-      "zones": [
-        "urbanitzacio-santa-monica",
-        "el-molinet"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-santa-monica": "santa monica",
-        "el-molinet": "molinet"
-      },
-      "dana": false,
-      "amount": 15846.26,
-      "amountKind": "final",
-      "date": "2019-06-05",
       "contractType": "construction",
       "categoryTitle": "construction"
     },

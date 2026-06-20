@@ -13,7 +13,7 @@ const OPTS = { generatedAt: '2026-06-20T00:00:00.000Z', tendersGeneratedAt: 't',
 describe('scraper/tender-geo — matchContractsToZones', () => {
   it('places a contract by a zone-specific alias and records the matched alias', () => {
     const snap = matchContractsToZones(
-      [{ id: 'c1', title: 'Reurbanización Zona Verde Monte Alcedo', finalAmount: 100000, awardDate: '2024-05-01', contractType: 'construction', categoryTitle: 'construction' }],
+      [{ id: 'c1', title: 'Reurbanización Zona Verde Monte Alcedo', status: 'awarded', finalAmount: 100000, awardDate: '2024-05-01', contractType: 'construction', categoryTitle: 'construction' }],
       ZONES, OPTS,
     )
     const a = snap.assignments.find((x) => x.id === 'c1')!
@@ -24,7 +24,7 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
 
   it('assigns a contract naming two zones to both, but counts it once in locatedAmount', () => {
     const snap = matchContractsToZones(
-      [{ id: 'c2', title: 'Centros Culturales en Urb. Monte Alcedo y Valencia La Vella', finalAmount: 200000 }],
+      [{ id: 'c2', title: 'Centros Culturales en Urb. Monte Alcedo y Valencia La Vella', status: 'awarded', finalAmount: 200000 }],
       ZONES, OPTS,
     )
     const a = snap.assignments.find((x) => x.id === 'c2')!
@@ -37,8 +37,8 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
   it('flags DANA works and never confuses La Reva with Poio de Reva', () => {
     const snap = matchContractsToZones(
       [
-        { id: 'd1', title: 'Alumbrado público urbanización La Reva como consecuencia del temporal de lluvias (DANA)', finalAmount: 50000 },
-        { id: 'p1', title: 'Glorieta acceso Polígon Industrial Poio de Reva', finalAmount: 40000 },
+        { id: 'd1', title: 'Alumbrado público urbanización La Reva como consecuencia del temporal de lluvias (DANA)', status: 'awarded', finalAmount: 50000 },
+        { id: 'p1', title: 'Glorieta acceso Polígon Industrial Poio de Reva', status: 'awarded', finalAmount: 40000 },
       ],
       ZONES, OPTS,
     )
@@ -48,28 +48,29 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.assignments.find((x) => x.id === 'p1')!.dana).toBe(false)
   })
 
-  it('skips contracts with no zone-specific alias and no amount', () => {
+  it('counts an awarded no-alias contract in the universe but not as located', () => {
+    const snap = matchContractsToZones(
+      [{ id: 'n1', title: '1 vehículo híbrido todoterreno uso gabinete alcaldía', status: 'awarded', finalAmount: 30000 }],
+      ZONES, OPTS,
+    )
+    expect(snap.assignments.length).toBe(0)
+    expect(snap.universe.totalContracts).toBe(1)
+    expect(snap.universe.totalAmount).toBe(30000)
+    expect(snap.universe.locatedAmount).toBe(0)
+  })
+
+  it('excludes non-awarded contracts and awarded-with-zero-final from the universe', () => {
     const snap = matchContractsToZones(
       [
-        { id: 'n1', title: '1 vehículo híbrido todoterreno uso gabinete alcaldía', finalAmount: 30000 },
-        { id: 'n2', title: 'Obras en urbanización La Reva', finalAmount: 0, initialAmount: 0 },
+        { id: 'open1', title: 'Obras en urbanización La Reva', status: 'open', finalAmount: 0 },
+        { id: 'inprog1', title: 'Adecuación Senda Molinet', status: 'in_progress', finalAmount: 90000 },
+        { id: 'awz', title: 'Obras Monte Alcedo', status: 'awarded', finalAmount: 0 },
       ],
       ZONES, OPTS,
     )
     expect(snap.assignments.length).toBe(0)
-    expect(snap.universe.totalContracts).toBe(1) // n1 counts in universe (has amount); n2 has none
-    expect(snap.universe.locatedAmount).toBeLessThanOrEqual(snap.universe.totalAmount)
-  })
-
-  it('falls back to initialAmount and labels the amountKind', () => {
-    const snap = matchContractsToZones(
-      [{ id: 'i1', title: 'Adecuación Senda Molinet', finalAmount: 0, initialAmount: 75000, startDate: '2025-01-01' }],
-      ZONES, OPTS,
-    )
-    const a = snap.assignments.find((x) => x.id === 'i1')!
-    expect(a.amount).toBe(75000)
-    expect(a.amountKind).toBe('initial')
-    expect(a.zones).toEqual(['el-molinet'])
+    expect(snap.universe.totalContracts).toBe(0)
+    expect(snap.universe.totalAmount).toBe(0)
   })
 
   it('foldText lowercases, strips accents, and turns apostrophes into spaces', () => {

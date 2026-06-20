@@ -3,6 +3,7 @@ import { stripDiacritics } from './normalize'
 export interface ContractInput {
   id: string
   title: string
+  status?: string
   finalAmount?: number
   initialAmount?: number
   awardDate?: string | null
@@ -89,10 +90,10 @@ export function foldText(s: string): string {
 }
 
 function amountOf(c: ContractInput): { amount: number; kind: 'final' | 'initial' } | null {
-  if (typeof c.finalAmount === 'number' && c.finalAmount > 0)
+  // Awarded-only universe: matches the page's "€16.3M adjudicado" headline.
+  // Non-awarded contracts (open/in-tender/in-progress) are excluded entirely.
+  if (c.status === 'awarded' && typeof c.finalAmount === 'number' && c.finalAmount > 0)
     return { amount: c.finalAmount, kind: 'final' }
-  if (typeof c.initialAmount === 'number' && c.initialAmount > 0)
-    return { amount: c.initialAmount, kind: 'initial' }
   return null
 }
 
