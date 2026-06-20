@@ -34,11 +34,12 @@ describe('lib/tender-geo', () => {
   it('filterContracts narrows by text, zone, and dana', () => {
     const contracts = [
       { id: 'a', title: 'Obra en Molinet', assignee: 'ACME', awardDate: '2024-01-01', categoryTitle: 'construction', contractType: 'construction' },
+      { id: 'b', title: 'Obra DANA La Reva', assignee: 'ACME', awardDate: '2025-06-01', categoryTitle: 'construction', contractType: 'construction' },
       { id: 'c', title: 'Servicio limpieza', assignee: 'BETA', awardDate: '2024-01-01', categoryTitle: 'other', contractType: 'services' },
     ]
     const byId = new Map(ASSIGN.map((x) => [x.id, x]))
     expect(filterContracts(contracts, { text: 'molinet' }, byId).map((c) => c.id)).toEqual(['a'])
-    expect(filterContracts(contracts, { zoneSlug: 'z2' }, byId).map((c) => c.id)).toEqual(['c'])
-    expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual([])
+    expect(filterContracts(contracts, { zoneSlug: 'z2' }, byId).map((c) => c.id).sort()).toEqual(['b', 'c'])
+    expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual(['b'])
   })
 })

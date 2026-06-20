@@ -23,7 +23,9 @@ export const EMPTY_TENDER_GEO = {
 
 /**
  * Per-zone {amount,count} for assignments dated on/before `at` (cumulative),
- * optionally restricted to DANA. Assignments with no date are always included.
+ * optionally restricted to DANA. Assignments with NO date are excluded from this
+ * timeline view (they have no position on it); their value still lives in the
+ * snapshot's precomputed `zones[]`/`universe` all-time aggregates (spec §11).
  * @param {any[]} assignments
  * @param {{at?: number, danaOnly?: boolean}} [opts]
  * @returns {Map<string,{amount:number,count:number}>}
@@ -73,7 +75,11 @@ export function filterContracts(contracts, opts = {}, assignmentsById = new Map(
   const { text = '', zoneSlug = '', category = '', year = '', dana = false, type = '' } = opts
   const q = text.trim().toLowerCase()
   return (contracts || []).filter((c) => {
-    if (q && !c.title.toLowerCase().includes(q) && !(c.assignee || '').toLowerCase().includes(q))
+    if (
+      q &&
+      !(c.title || '').toLowerCase().includes(q) &&
+      !(c.assignee || '').toLowerCase().includes(q)
+    )
       return false
     if (category && c.categoryTitle !== category) return false
     if (type && c.contractType !== type) return false
