@@ -56,22 +56,14 @@ trap 'rm -rf "$WORKDIR"' EXIT
 
 mkdir -p "$TRANSCRIPT_DIR"
 
-# Look up the video URL (requires node + jq-style lookup via node inline).
-VIDEO_URL=$(node -e "
-const fs = require('fs')
-const plenos = JSON.parse(fs.readFileSync(process.env.HOME + '/dummy/plenos.json', 'utf8').catch ? '{\"items\":[]}' : '{\"items\":[]}')
-" 2>/dev/null || true)
-
-VIDEO_URL=$(node -e "
-const fs = require('fs')
-const plenos = JSON.parse(fs.readFileSync('$REPO_ROOT/public/data/plenos.json','utf8')).items
-const videos = JSON.parse(fs.readFileSync('$VIDEOS_JSON','utf8')).items
-const target = plenos.find(p => p.id === '$PLENO_ID')
-if (!target) { console.error('pleno not found'); process.exit(1) }
-const v = videos.find(x => x.plenoDate === target.date)
-if (!v) { console.error('no video matched for date ' + target.date); process.exit(1) }
-process.stdout.write(v.url)
-") || { echo "lookup failed"; exit 1; }
+# Resolve the video URL via the tested matcher (src/scraper/pleno-video-match.ts).
+# It matches by date, disambiguates by kind, and ABORTS on a missing/ambiguous
+# match rather than risk transcribing the WRONG recording (which would attribute
+# claims to the wrong session). Warnings (e.g. kind mismatch) print to stderr.
+VIDEO_URL=$(npx tsx "$REPO_ROOT/scripts/resolve-pleno-video.ts" "$PLENO_ID") || {
+  echo "[transcribe] video resolution failed (see message above) — refusing to transcribe" >&2
+  exit 1
+}
 
 echo "[transcribe] pleno $PLENO_ID → $VIDEO_URL"
 echo "[transcribe] workdir: $WORKDIR"
