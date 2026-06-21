@@ -1,5 +1,11 @@
 import { test, expect } from '@playwright/test'
 import AxeBuilder from '@axe-core/playwright'
+import { readFileSync } from 'node:fs'
+
+// A real pleno id with claims, read from the committed manifest (for /plenos/:id).
+const FIRST_PLENO_ID = JSON.parse(
+  readFileSync('public/data/pleno-claims/index.json', 'utf8'),
+).plenos?.[0]?.plenoId
 
 // Routes the suite enforces — must stay free of critical/serious violations.
 const STRICT_ROUTES = [
@@ -8,6 +14,7 @@ const STRICT_ROUTES = [
   '/cargos/robert-raga-gadea',
   '/presupuesto',
   '/plenos',
+  `/plenos/${FIRST_PLENO_ID}`,
   '/promesas',
   '/departamentos',
   '/departamentos/urbanismo',
