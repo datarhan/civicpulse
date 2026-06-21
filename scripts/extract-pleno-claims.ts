@@ -21,6 +21,7 @@ import type {
   ClaimTopic,
 } from '../src/scraper/pleno-claim'
 import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../src/scraper/pleno-claim'
+import { assessTranscript } from '../src/scraper/transcript-quality'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
@@ -150,6 +151,17 @@ async function runOne(
     return []
   }
   const transcript = readFileSync(path, 'utf8')
+  // Content-sanity gate: never extract claims from an empty, truncated, or
+  // non-transcript file (a failed download / interrupted Whisper run) — junk
+  // claims would flow toward curated findings. Skip loudly instead.
+  const quality = assessTranscript(transcript)
+  if (!quality.ok) {
+    process.stderr.write(
+      `[extract·claims] ${plenoId}: transcripción no apta, se omite — ${quality.issues.join('; ')} ` +
+        `(${quality.stats.chars} chars, ${quality.stats.timestampedLines}/${quality.stats.nonEmptyLines} líneas con marca de tiempo)\n`,
+    )
+    return []
+  }
   const agendaItems = loadAgendaFor(plenoId)
   const allowedSpeakers = loadAllowedSpeakersFor(plenoId)
   if (allowedSpeakers.length > 0) {
