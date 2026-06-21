@@ -47,7 +47,7 @@ function RefList({ refs, kind }) {
   )
 }
 
-function FindingCard({ f }) {
+export function FindingCard({ f }) {
   return (
     <Card>
       <div
