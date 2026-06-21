@@ -104,14 +104,27 @@ const CATALOGUE = {
     'plenos.votes.empty.title': 'No hay votaciones registradas todavía',
 
     // Claim ledger (declaraciones contrastadas)
-    'ledger.search': 'Buscar en las declaraciones…',
-    'ledger.showSinDatos': 'mostrar sin datos',
     'ledger.loadMore': 'Cargar más',
-    'ledger.allTypes': 'Todos los tipos',
-    'ledger.allPlenos': 'Todos los plenos',
-    'ledger.allGroups': 'Todos los grupos',
-    'ledger.empty': 'Sin declaraciones contrastables todavía para este filtro.',
-    'ledger.methodology': 'Cómo se filtran estas declaraciones',
+
+    // Pleno index (/plenos)
+    'plenosIndex.crossSession': 'Verificación de declaraciones (todas las sesiones) →',
+    'plenosIndex.points': 'puntos',
+    'plenosIndex.findings': 'hallazgos',
+
+    // Pleno detail (/plenos/:id)
+    'plenoDetail.notFound': 'Sesión no encontrada',
+    'plenoDetail.back': '← Todos los plenos',
+    'plenoDetail.agenda': 'Orden del día',
+    'plenoDetail.votes': 'Votaciones',
+    'plenoDetail.declarations': 'Declaraciones contrastadas',
+    'plenoDetail.findings': 'Hallazgos editoriales',
+    'plenoDetail.transcript': 'Ver transcripción',
+    'plenoDetail.transcriptLoading': 'Cargando transcripción…',
+    'plenoDetail.transcriptMissing': 'Transcripción no disponible para esta sesión.',
+    'plenoDetail.video': '▸ Ver vídeo',
+    'plenoDetail.empty.agenda': 'Sin orden del día publicado para esta sesión.',
+    'plenoDetail.empty.votes': 'Sin votaciones transcritas del acta para esta sesión.',
+    'plenoDetail.empty.findings': 'Sin hallazgos editoriales para esta sesión.',
 
     // Quejas empty state
     'quejas.empty.title': 'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
@@ -253,14 +266,27 @@ const CATALOGUE = {
     'plenos.votes.empty.title': 'Encara no hi ha votacions registrades',
 
     // Claim ledger (declaracions contrastades)
-    'ledger.search': 'Cerca en les declaracions…',
-    'ledger.showSinDatos': 'mostra sense dades',
     'ledger.loadMore': 'Carrega més',
-    'ledger.allTypes': 'Tots els tipus',
-    'ledger.allPlenos': 'Tots els plens',
-    'ledger.allGroups': 'Tots els grups',
-    'ledger.empty': 'Encara no hi ha declaracions contrastables per a aquest filtre.',
-    'ledger.methodology': 'Com es filtren aquestes declaracions',
+
+    // Pleno index (/plenos)
+    'plenosIndex.crossSession': 'Verificació de declaracions (totes les sessions) →',
+    'plenosIndex.points': 'punts',
+    'plenosIndex.findings': 'troballes',
+
+    // Pleno detail (/plenos/:id)
+    'plenoDetail.notFound': 'Sessió no trobada',
+    'plenoDetail.back': '← Tots els plens',
+    'plenoDetail.agenda': 'Ordre del dia',
+    'plenoDetail.votes': 'Votacions',
+    'plenoDetail.declarations': 'Declaracions contrastades',
+    'plenoDetail.findings': 'Troballes editorials',
+    'plenoDetail.transcript': 'Veure transcripció',
+    'plenoDetail.transcriptLoading': 'Carregant transcripció…',
+    'plenoDetail.transcriptMissing': 'Transcripció no disponible per a aquesta sessió.',
+    'plenoDetail.video': '▸ Veure vídeo',
+    'plenoDetail.empty.agenda': 'Sense ordre del dia publicat per a aquesta sessió.',
+    'plenoDetail.empty.votes': "Sense votacions transcrites de l'acta per a aquesta sessió.",
+    'plenoDetail.empty.findings': 'Sense troballes editorials per a aquesta sessió.',
 
     'quejas.empty.title': 'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
     'dashboard.empty.title': 'El canal està obert, encara no hi ha queixes',
