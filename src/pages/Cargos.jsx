@@ -44,9 +44,9 @@ function QuejaBadge({ slug }) {
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
         {stats.total}
       </span>
-      <span style={{ color: 'var(--ok)' }}>✓ {ok}</span>
+      <span style={{ color: 'var(--ok-ink)' }}>✓ {ok}</span>
       <span style={{ color: 'var(--civic)' }}>⏳ {pending}</span>
-      {silencios > 0 && <span style={{ color: 'var(--crit)' }}>⚠ {silencios}</span>}
+      {silencios > 0 && <span style={{ color: 'var(--crit-ink)' }}>⚠ {silencios}</span>}
     </div>
   )
 }
