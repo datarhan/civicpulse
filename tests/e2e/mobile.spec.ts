@@ -1,4 +1,9 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
+
+// A real pleno id with claims, read from the committed manifest (for /plenos/:id).
+const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8'))
+  .plenos?.[0]?.plenoId
 
 const ROUTES = [
   '/',
@@ -6,6 +11,7 @@ const ROUTES = [
   '/cargos/robert-raga-gadea',
   '/presupuesto',
   '/plenos',
+  `/plenos/${FIRST_PLENO_ID}`,
   '/promesas',
   '/departamentos',
   '/departamentos/urbanismo',
