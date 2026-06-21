@@ -13,7 +13,7 @@
 
 import { useMemo } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Card, SectionHead } from '../components/Primitives'
+import { Card, ExtLink, SectionHead } from '../components/Primitives'
 import {
   FactsSidebar,
   HeroBand,
@@ -142,14 +142,9 @@ function ResponseBlock({ response, reportId }) {
       <div className="mono" style={{ marginTop: 8, fontSize: 10.5, color: 'var(--ink50)' }}>
         {response.respondedAt}
         {response.sourceUrl && (
-          <a
-            href={response.sourceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ marginLeft: 8, color: 'var(--ink60)' }}
-          >
+          <ExtLink href={response.sourceUrl} style={{ marginLeft: 8, color: 'var(--ink60)' }}>
             Fuente ↗
-          </a>
+          </ExtLink>
         )}
       </div>
     </Card>

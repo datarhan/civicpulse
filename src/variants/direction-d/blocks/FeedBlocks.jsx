@@ -3,6 +3,7 @@ import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
 import { PALETTE } from '../tokens'
+import { ExtLink } from '../../../components/Primitives'
 
 export function LiveContracts() {
   const { loading, error, data } = useTenders()
@@ -70,18 +71,9 @@ export function LiveContracts() {
             </span>
           </div>
           <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, marginBottom: 2 }}>
-            {c.permalink ? (
-              <a
-                href={c.permalink}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'inherit', textDecoration: 'none' }}
-              >
-                {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
-              </a>
-            ) : (
-              c.title
-            )}
+            <ExtLink href={c.permalink} style={{ color: 'inherit', textDecoration: 'none' }}>
+              {c.title.length > 100 ? c.title.slice(0, 100) + '…' : c.title}
+            </ExtLink>
           </div>
           <div style={{ display: 'flex', gap: 10, fontSize: 11.5, color: PALETTE.ink60 }}>
             <span>{c.contractor || 'Sin adjudicatario'}</span>
@@ -152,14 +144,9 @@ export function ParticipaBlockD() {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
-              <a
-                href={it.link}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'inherit', textDecoration: 'none' }}
-              >
+              <ExtLink href={it.link} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {it.title.length > 80 ? it.title.slice(0, 80) + '…' : it.title}
-              </a>
+              </ExtLink>
             </div>
             <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
               {fmt(it.date)} · {it.categories[0] || 'aviso'}
@@ -252,14 +239,9 @@ export function PressBlockD() {
             </span>
           </div>
           <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
+            <ExtLink href={p.link} style={{ color: 'inherit', textDecoration: 'none' }}>
               {p.title.length > 110 ? p.title.slice(0, 110) + '…' : p.title}
-            </a>
+            </ExtLink>
           </div>
         </div>
       ))}
@@ -314,14 +296,9 @@ export function EventsBlockD() {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.3, marginBottom: 2 }}>
-              <a
-                href={e.link}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'inherit', textDecoration: 'none' }}
-              >
+              <ExtLink href={e.link} style={{ color: 'inherit', textDecoration: 'none' }}>
                 {e.title.length > 80 ? e.title.slice(0, 80) + '…' : e.title}
-              </a>
+              </ExtLink>
             </div>
             {e.eventDateText && (
               <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>

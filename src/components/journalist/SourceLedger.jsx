@@ -1,6 +1,6 @@
 // Journalist UI — the full-width sortable source ledger + per-row expander.
 import { useMemo, useState } from 'react'
-import { Card, Pill, SectionHead } from '../Primitives'
+import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { CITATION_KIND_LABEL, CITATION_TRUST_TONE } from '../../hooks/useJournalistReports'
 
 // ─── Source ledger (sortable, full-width) ────────────────────────────────
@@ -115,15 +115,13 @@ function SourceRow({ src, num }) {
         </td>
         <td style={{ padding: '8px 10px', color: 'var(--ink80)', verticalAlign: 'top' }}>
           {src.url ? (
-            <a
+            <ExtLink
               href={src.url}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
               style={{ color: 'var(--ink80)' }}
             >
               {src.title}
-            </a>
+            </ExtLink>
           ) : (
             src.title
           )}
@@ -150,15 +148,13 @@ function SourceRow({ src, num }) {
         </td>
         <td style={{ padding: '8px 10px', verticalAlign: 'top' }}>
           {src.archiveUrl ? (
-            <a
+            <ExtLink
               href={src.archiveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
               style={{ color: 'var(--ink60)', fontSize: 11.5 }}
             >
               Wayback ↗
-            </a>
+            </ExtLink>
           ) : src.localPath ? (
             <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10.5 }}>
               local

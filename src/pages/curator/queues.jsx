@@ -1,4 +1,4 @@
-import { Pill } from '../../components/Primitives'
+import { ExtLink, Pill } from '../../components/Primitives'
 import { VerdictPill, shortDate } from './shared'
 
 function ContradichoBundleRow({ bundle, onOpen }) {
@@ -45,10 +45,8 @@ function ContradichoBundleRow({ bundle, onOpen }) {
 
 function IssueRow({ issue }) {
   return (
-    <a
+    <ExtLink
       href={issue.url}
-      target="_blank"
-      rel="noreferrer"
       style={{
         display: 'block',
         padding: '10px 14px',
@@ -69,7 +67,7 @@ function IssueRow({ issue }) {
           {issue.bodyExcerpt.slice(0, 200)}…
         </div>
       )}
-    </a>
+    </ExtLink>
   )
 }
 

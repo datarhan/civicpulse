@@ -1,4 +1,4 @@
-import { Card, Pill, SectionHead } from './Primitives'
+import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 
 function RefList({ refs, kind }) {
@@ -30,15 +30,13 @@ function RefList({ refs, kind }) {
           </>
         )
         return isUrl ? (
-          <a
+          <ExtLink
             key={i}
             href={r.ref}
-            target="_blank"
-            rel="noreferrer"
             style={{ display: 'block', padding: '2px 0', textDecoration: 'none', color: 'inherit' }}
           >
             {body}
-          </a>
+          </ExtLink>
         ) : (
           <div key={i} style={{ padding: '2px 0' }}>
             {body}

@@ -1,4 +1,4 @@
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { Ic } from '../components/Icons'
 import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
@@ -227,14 +227,9 @@ function WikidataCard() {
   const generated = fmtDateLong(data.generatedAt)
   const link = (href, label) =>
     href ? (
-      <a
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        style={{ color: 'var(--civic)', textDecoration: 'none' }}
-      >
+      <ExtLink href={href} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
         {label}
-      </a>
+      </ExtLink>
     ) : (
       <span style={{ color: 'var(--ink50)' }}>—</span>
     )
@@ -492,9 +487,9 @@ function PopulationChart() {
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
           fuente:{' '}
-          <a href={data.source} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+          <ExtLink href={data.source} style={{ color: 'var(--civic)' }}>
             ine.es
-          </a>
+          </ExtLink>
         </div>
       </div>
     </Card>
@@ -528,11 +523,9 @@ function TransparencyDocsCard() {
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
               {g.docs.map((d) => (
-                <a
+                <ExtLink
                   key={d.id}
                   href={d.url}
-                  target="_blank"
-                  rel="noreferrer"
                   className="mono"
                   style={{
                     fontSize: 11,
@@ -545,7 +538,7 @@ function TransparencyDocsCard() {
                 >
                   {d.title}
                   {d.year ? ` · ${d.year}` : ''} ↗
-                </a>
+                </ExtLink>
               ))}
             </div>
           </div>

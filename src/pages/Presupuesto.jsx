@@ -1,4 +1,4 @@
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
 import { useBdns } from '../hooks/useBdns'
@@ -77,14 +77,9 @@ function RealSubsidies() {
             </span>
           </div>
           <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
-            <a
-              href={s.sourceUrl}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
+            <ExtLink href={s.sourceUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
               {s.description.length > 180 ? s.description.slice(0, 180) + '…' : s.description}
-            </a>
+            </ExtLink>
           </div>
         </div>
       ))}

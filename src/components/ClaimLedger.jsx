@@ -1,4 +1,4 @@
-import { Card, Pill, SectionHead } from './Primitives'
+import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import {
   usePlenoClaims,
   CLAIM_TYPE_LABEL,
@@ -47,14 +47,12 @@ function EvidenceRow({ e }) {
   )
   if (e.ref && /^https?:\/\//.test(e.ref)) {
     return (
-      <a
+      <ExtLink
         href={e.ref}
-        target="_blank"
-        rel="noreferrer"
         style={{ display: 'block', padding: '4px 0', textDecoration: 'none', color: 'inherit' }}
       >
         {body}
-      </a>
+      </ExtLink>
     )
   }
   return <div style={{ padding: '4px 0' }}>{body}</div>

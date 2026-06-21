@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
@@ -210,14 +210,12 @@ export default function CargoDetalle() {
               {official.email || 'alcaldia@ribarroja.es'}
             </a>
             {official.cvUrl && (
-              <a
+              <ExtLink
                 href={official.cvUrl}
-                target="_blank"
-                rel="noreferrer"
                 style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
               >
                 Biografía →
-              </a>
+              </ExtLink>
             )}
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { PlazoVencidoBadge } from '../components/PlazoVencidoBadge'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import {
@@ -81,10 +81,8 @@ function VotesSection({ slug, frozen }) {
               )}
             </div>
           )}
-          <a
+          <ExtLink
             href={v.sourceUrl}
-            target="_blank"
-            rel="noreferrer"
             style={{
               display: 'inline-block',
               marginTop: 10,
@@ -94,7 +92,7 @@ function VotesSection({ slug, frozen }) {
             }}
           >
             Acta oficial →
-          </a>
+          </ExtLink>
         </Card>
       ))}
     </div>

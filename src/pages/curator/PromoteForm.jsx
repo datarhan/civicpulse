@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Card, Pill, SectionHead } from '../../components/Primitives'
+import { Card, ExtLink, Pill, SectionHead } from '../../components/Primitives'
 import { callCurator, callCommit, VerdictPill, shortDate } from './shared'
 
 function PromoteForm({ bundle, onClose, onCompleted }) {
@@ -364,9 +364,7 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         {e.kind}
                       </span>
                       {/^https?:\/\//.test(e.ref) ? (
-                        <a href={e.ref} target="_blank" rel="noreferrer">
-                          {e.snippet}
-                        </a>
+                        <ExtLink href={e.ref}>{e.snippet}</ExtLink>
                       ) : (
                         e.snippet
                       )}
@@ -464,15 +462,13 @@ function PromoteForm({ bundle, onClose, onCompleted }) {
                         </span>
                       )}
                       {ev.sourceUrl && (
-                        <a
+                        <ExtLink
                           href={ev.sourceUrl}
-                          target="_blank"
-                          rel="noreferrer"
                           className="mono"
                           style={{ fontSize: 10, color: 'var(--ink50)' }}
                         >
                           source ↗
-                        </a>
+                        </ExtLink>
                       )}
                     </div>
                     <div style={{ fontSize: 11.5, color: 'var(--ink60)', lineHeight: 1.4 }}>

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Card, Pill } from '../components/Primitives'
+import { Card, Pill, ExtLink } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
@@ -65,15 +65,13 @@ function RefList({ refs, kind }) {
           </>
         )
         return isUrl ? (
-          <a
+          <ExtLink
             key={i}
             href={r.ref}
-            target="_blank"
-            rel="noreferrer"
             style={{ display: 'block', padding: '2px 0', textDecoration: 'none', color: 'inherit' }}
           >
             {body}
-          </a>
+          </ExtLink>
         ) : (
           <div key={i} style={{ padding: '2px 0' }}>
             {body}
@@ -95,7 +93,7 @@ function FindingDetailCard({ f, permalink }) {
         <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           {f.plenoDate} · pleno {f.plenoId} · editado por {f.curatorName}
         </span>
-        <a
+        <ExtLink
           href={permalink}
           style={{
             marginLeft: 'auto',
@@ -106,7 +104,7 @@ function FindingDetailCard({ f, permalink }) {
           title="Enlace permanente a este hallazgo"
         >
           #{f.id.slice(-12)}
-        </a>
+        </ExtLink>
       </div>
       <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
       {f.individualSpeaker && (
@@ -212,14 +210,12 @@ function FindingDetailCard({ f, permalink }) {
           «{f.response.quote}»
           {f.response.sourceUrl && (
             <div style={{ marginTop: 4 }}>
-              <a
+              <ExtLink
                 href={f.response.sourceUrl}
-                target="_blank"
-                rel="noreferrer"
                 style={{ fontSize: 11, color: 'var(--civic)', textDecoration: 'none' }}
               >
                 Fuente →
-              </a>
+              </ExtLink>
             </div>
           )}
         </div>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead, ShareWA } from '../components/Primitives'
+import { Card, Pill, SectionHead, ShareWA, ExtLink } from '../components/Primitives'
 import { useCambios, KIND_LABEL_ES, KIND_TONE } from '../hooks/useCambios'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { useT } from '../i18n'
@@ -74,10 +74,8 @@ function KindCard({ kind, items, formatDate }) {
             </span>
             <div style={{ minWidth: 0 }}>
               {it.external ? (
-                <a
+                <ExtLink
                   href={it.url}
-                  target="_blank"
-                  rel="noreferrer"
                   style={{
                     color: 'var(--ink80)',
                     textDecoration: 'none',
@@ -86,7 +84,7 @@ function KindCard({ kind, items, formatDate }) {
                   }}
                 >
                   {it.title}
-                </a>
+                </ExtLink>
               ) : (
                 <Link
                   to={it.url}
