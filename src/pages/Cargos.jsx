@@ -174,7 +174,9 @@ function SalaryGrowth({ official }) {
           {w.pct === null ? (
             <span style={{ color: 'var(--ink40)' }}>—</span>
           ) : (
-            <span style={{ color: w.pct >= 0 ? 'var(--ok)' : 'var(--crit)', fontWeight: 700 }}>
+            <span
+              style={{ color: w.pct >= 0 ? 'var(--ok-ink)' : 'var(--crit-ink)', fontWeight: 700 }}
+            >
               {w.pct >= 0 ? '+' : ''}
               {w.pct.toFixed(1).replace('.', ',')}%
             </span>
