@@ -32,6 +32,47 @@ test.describe('Plenos (/plenos)', () => {
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 
+  test('claim ledger is editorially gated + signal-first', async ({ page }) => {
+    // Capture every per-pleno chunk the SPA fetches (not the manifest).
+    const chunkBodies: Array<{ items?: unknown[] }> = []
+    page.on('response', async (res) => {
+      const url = res.url()
+      if (/\/data\/pleno-claims\/[^/]+\.json$/.test(url) && !url.endsWith('index.json')) {
+        try {
+          chunkBodies.push(await res.json())
+        } catch {
+          /* non-JSON / aborted — ignore */
+        }
+      }
+    })
+
+    await page.goto('/plenos', { waitUntil: 'domcontentloaded' })
+    await page.waitForLoadState('networkidle')
+
+    // The deployed chunks must never contain a hidden item — an opinativa
+    // accusation, or any acusacion_publica left sin-datos. This is the
+    // build-time gate's core guarantee and holds on any static server
+    // (vite preview does not apply .vercelignore, so we assert the chunks
+    // themselves, which are gated at build time, not the monolith's absence).
+    const shipped = chunkBodies.flatMap((c) => (c.items ?? []) as Array<Record<string, any>>)
+    expect(shipped.length).toBeGreaterThan(0)
+    const hidden = shipped.filter(
+      (it) =>
+        it.claim?.type === 'acusacion_publica' &&
+        ((it.claim?.accusationSubtype ?? 'opinativa') === 'opinativa' ||
+          it.verification?.verdict === 'sin-datos'),
+    )
+    expect(hidden).toEqual([])
+
+    // Every shipped item carries the visibility stamp from the build-time gate.
+    expect(shipped.every((it) => typeof it.visibility === 'string')).toBe(true)
+
+    // The signal-first controls render: a search box + the most-newsworthy
+    // "Contradicho" verdict chip (data has contradicho claims at this snapshot).
+    await expect(page.getByPlaceholder(/Buscar en las declaraciones/i)).toBeVisible()
+    await expect(page.getByRole('button', { name: /Contradicho/ }).first()).toBeVisible()
+  })
+
   test('"Ver" expander reveals agenda items inline', async ({ page }) => {
     // The agenda expander needs per-pleno agenda items; skip when the agenda
     // snapshot is empty (upstream scraper not populated — not a frontend bug).
