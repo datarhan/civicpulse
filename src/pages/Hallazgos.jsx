@@ -93,7 +93,7 @@ function FindingDetailCard({ f, permalink }) {
         <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
           {f.plenoDate} · pleno {f.plenoId} · editado por {f.curatorName}
         </span>
-        <ExtLink
+        <a
           href={permalink}
           style={{
             marginLeft: 'auto',
@@ -104,7 +104,7 @@ function FindingDetailCard({ f, permalink }) {
           title="Enlace permanente a este hallazgo"
         >
           #{f.id.slice(-12)}
-        </ExtLink>
+        </a>
       </div>
       <div style={{ fontSize: 16, fontWeight: 600, lineHeight: 1.35 }}>{f.title}</div>
       {f.individualSpeaker && (
