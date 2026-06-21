@@ -1,5 +1,6 @@
 // @ts-check
 import { useEffect, useState } from 'react'
+import { useJsonFetch } from './useJsonFetch'
 
 export const CLAIM_TYPE_LABEL = {
   promesa: 'Promesa',
@@ -101,4 +102,28 @@ export function usePlenoClaims() {
     }
   }, [])
   return state
+}
+
+const EMPTY_MANIFEST = { plenos: [], totals: { items: 0, byVerdict: {} } }
+const EMPTY_CHUNK = { items: [] }
+
+/**
+ * Per-pleno claim descriptors (counts only) from the chunk manifest — the
+ * light source for the /plenos index, which needs per-session verdict counts
+ * but not the chunk bodies. 404 → empty.
+ */
+export function usePlenoClaimsManifest() {
+  return useJsonFetch('/data/pleno-claims/index.json', EMPTY_MANIFEST)
+}
+
+/**
+ * One pleno's verified claims (a single chunk) — the light source for the
+ * /plenos/:id detail page. A falsy id fetches a sentinel path that 404s to
+ * the empty fallback. 404 → empty items.
+ */
+export function usePlenoChunk(plenoId) {
+  return useJsonFetch(
+    plenoId ? `/data/pleno-claims/${plenoId}.json` : '/data/pleno-claims/__none__.json',
+    EMPTY_CHUNK,
+  )
 }
