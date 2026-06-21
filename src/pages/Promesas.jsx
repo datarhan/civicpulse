@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Card, Pill } from '../components/Primitives'
+import { Card, Pill, ExtLink } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import {
   usePromises,
@@ -36,14 +36,9 @@ function FreezeBanner({ snap }) {
         Los estados quedan congelados hasta {fmtDateLong(snap.frozenUntil)} (LOREG art. 50). El
         motor de sugerencias sigue ejecutándose pero no publica cambios de estado. Para correcciones
         durante este periodo, abre una issue en{' '}
-        <a
-          href={snap.contactUrl}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'var(--civic)' }}
-        >
+        <ExtLink href={snap.contactUrl} style={{ color: 'var(--civic)' }}>
           GitHub
-        </a>
+        </ExtLink>
         .
       </div>
     </div>
@@ -71,14 +66,9 @@ function LegalFooter({ snap }) {
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
           Aviso legal →
         </a>
-        <a
-          href={snap.contactUrl}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'var(--civic)' }}
-        >
+        <ExtLink href={snap.contactUrl} style={{ color: 'var(--civic)' }}>
           Proponer corrección / añadir fuente →
-        </a>
+        </ExtLink>
       </div>
     </div>
   )
@@ -198,14 +188,12 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       <div
         style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 6, fontSize: 11.5 }}
       >
-        <a
+        <ExtLink
           href={p.source.url}
-          target="_blank"
-          rel="noreferrer"
           style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
         >
           Fuente: {p.source.publisher} →
-        </a>
+        </ExtLink>
         <Pill tone={STATUS_TONE[p.status] || 'ghost'} size="xs">
           {STATUS_LABEL[p.status] || p.status}
         </Pill>
@@ -228,9 +216,9 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           {p.evidence.map((e, i) => (
             <div key={i} style={{ fontSize: 11.5, color: 'var(--ink60)', marginBottom: 3 }}>
               <span className="mono">{e.date}</span> · {e.publisher} ·{' '}
-              <a href={e.url} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+              <ExtLink href={e.url} style={{ color: 'var(--civic)' }}>
                 ver
-              </a>
+              </ExtLink>
             </div>
           ))}
         </div>
@@ -335,10 +323,8 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
                   </span>
                   {' · '}
                   <span className="mono">{ev.date}</span> · {ev.publisher} ·{' '}
-                  <a
+                  <ExtLink
                     href={ev.evidenceUrl}
-                    target="_blank"
-                    rel="noreferrer"
                     style={{
                       color: 'var(--civic)',
                       textDecoration: 'underline',
@@ -346,7 +332,7 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
                     }}
                   >
                     {ev.quote.length > 90 ? ev.quote.slice(0, 90) + '…' : ev.quote}
-                  </a>{' '}
+                  </ExtLink>{' '}
                   <span className="mono" style={{ color: 'var(--ink50)', fontSize: 10 }}>
                     (conf. {(ev.confidence * 100).toFixed(0)}%)
                   </span>
@@ -376,14 +362,9 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
           {p.response.source && (
             <>
               {' '}
-              <a
-                href={p.response.source.url}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--civic)' }}
-              >
+              <ExtLink href={p.response.source.url} style={{ color: 'var(--civic)' }}>
                 (fuente)
-              </a>
+              </ExtLink>
             </>
           )}
         </div>

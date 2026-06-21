@@ -1,5 +1,6 @@
 import { useTodayEvents } from '../../hooks/useTodayEvents'
 import { SANS, MONO } from './tokens'
+import { ExtLink } from '../../components/Primitives'
 
 function EventTicker() {
   const { events } = useTodayEvents()
@@ -24,11 +25,9 @@ function EventTicker() {
       }}
     >
       {top.map((ev) => (
-        <a
+        <ExtLink
           key={ev.id}
           href={ev.url}
-          target="_blank"
-          rel="noreferrer"
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -87,7 +86,7 @@ function EventTicker() {
           >
             participa ›
           </span>
-        </a>
+        </ExtLink>
       ))}
     </div>
   )

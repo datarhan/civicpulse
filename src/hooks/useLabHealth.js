@@ -56,12 +56,15 @@ export const LAB_SOURCES = [
   { path: '/data/factcheck.json', label: 'Fact-checks de terceros', group: 'lab' },
   // — Pleno editorial
   { path: '/data/pleno-findings.json', label: 'Hallazgos pleno · curados', group: 'pleno' },
+  // The ungated monoliths (pleno-claims-{suggestions,verified}.json) are
+  // curator/CLI-only and excluded from deploy (.vercelignore) so opinativa /
+  // sin-datos accusation verbatim is never fetchable. The SPA reads the gated
+  // chunk manifest instead — that's the published, health-tracked artifact.
   {
-    path: '/data/pleno-claims-suggestions.json',
-    label: 'Pleno claims · sugeridos',
+    path: '/data/pleno-claims/index.json',
+    label: 'Pleno claims · verificados (chunks)',
     group: 'pleno',
   },
-  { path: '/data/pleno-claims-verified.json', label: 'Pleno claims · verificados', group: 'pleno' },
   { path: '/data/pleno-videos.json', label: 'Pleno · videos', group: 'pleno' },
 ]
 
@@ -71,6 +74,7 @@ function countOf(blob) {
   if (Array.isArray(blob.contracts)) return blob.contracts.length
   if (Array.isArray(blob.suggestions)) return blob.suggestions.length
   if (blob.stats && typeof blob.stats.total === 'number') return blob.stats.total
+  if (blob.totals && typeof blob.totals.items === 'number') return blob.totals.items
   if (blob.snapshot && typeof blob.snapshot === 'object') return 1
   return null
 }

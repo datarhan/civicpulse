@@ -18,6 +18,7 @@ import {
 } from '../../hooks/useNextMetro'
 import { useMetroNetwork, indexLineColors } from '../../hooks/useMetroNetwork'
 import { useMetroSchedule } from '../../hooks/useMetroSchedule'
+import { ExtLink } from '../Primitives'
 
 /** Map each local station's OSM name to the GTFS slug in
  *  metro-schedule.json. Keep in sync with TARGET_STOPS in
@@ -427,10 +428,8 @@ function StationSchedulePopup({ name, match, rawStation }) {
             Válido hasta {sched.scheduleValidUntil} · confirma en fgv.es
           </div>
         )}
-        <a
+        <ExtLink
           href={station.scheduleUrl}
-          target="_blank"
-          rel="noreferrer"
           style={{
             marginTop: 6,
             display: 'inline-block',
@@ -440,7 +439,7 @@ function StationSchedulePopup({ name, match, rawStation }) {
           }}
         >
           Horario oficial {station.line} →
-        </a>
+        </ExtLink>
       </div>
     )
   }

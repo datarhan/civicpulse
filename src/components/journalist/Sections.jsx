@@ -3,7 +3,7 @@
 // in ./index.jsx.
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../Primitives'
+import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { CitationPills } from './Citations'
 
@@ -322,14 +322,9 @@ export function OnlinePresenceRow({ payload, sourceMap }) {
             <Pill tone="intel" size="sm">
               {a.platform}
             </Pill>
-            <a
-              href={a.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: 'var(--ink80)' }}
-            >
+            <ExtLink href={a.url} style={{ color: 'var(--ink80)' }}>
               {a.handle}
-            </a>
+            </ExtLink>
             {a.verifiedAt && (
               <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)' }}>
                 verificado {a.verifiedAt}
@@ -388,14 +383,9 @@ export function PublicationsList({ payload, sourceMap }) {
               </div>
               <div style={{ color: 'var(--ink60)', fontSize: 11.5 }}>
                 {p.url ? (
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ color: 'var(--ink60)' }}
-                  >
+                  <ExtLink href={p.url} style={{ color: 'var(--ink60)' }}>
                     {p.venue} ↗
-                  </a>
+                  </ExtLink>
                 ) : (
                   p.venue
                 )}
@@ -686,14 +676,9 @@ export function PressSparklineBlock({ payload }) {
             <span className="mono" style={{ color: 'var(--ink50)', minWidth: 78 }}>
               {h.date}
             </span>
-            <a
-              href={h.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: 'var(--ink80)', flex: 1 }}
-            >
+            <ExtLink href={h.url} style={{ color: 'var(--ink80)', flex: 1 }}>
               {h.title}
-            </a>
+            </ExtLink>
           </li>
         ))}
       </ul>

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card } from '../components/Primitives'
+import { Card, ExtLink } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useIspa, ispaLatest, formatEuros, alcaldeGrowth } from '../hooks/useIspa'
@@ -44,9 +44,9 @@ function QuejaBadge({ slug }) {
       <span className="mono" style={{ fontWeight: 700, color: 'var(--ink)' }}>
         {stats.total}
       </span>
-      <span style={{ color: 'var(--ok)' }}>✓ {ok}</span>
+      <span style={{ color: 'var(--ok-ink)' }}>✓ {ok}</span>
       <span style={{ color: 'var(--civic)' }}>⏳ {pending}</span>
-      {silencios > 0 && <span style={{ color: 'var(--crit)' }}>⚠ {silencios}</span>}
+      {silencios > 0 && <span style={{ color: 'var(--crit-ink)' }}>⚠ {silencios}</span>}
     </div>
   )
 }
@@ -123,16 +123,14 @@ function RetribucionBadge({ official }) {
       </span>
       <span>· dedicación {d.dedicacion}</span>
       {data.source?.url && (
-        <a
+        <ExtLink
           href={data.source.url}
-          target="_blank"
-          rel="noreferrer"
           title={`${d.role} — ${data.source.title}`}
           className="mono"
           style={{ color: 'var(--civic)', marginLeft: 'auto', fontSize: 10.5 }}
         >
           acuerdo ↗
-        </a>
+        </ExtLink>
       )}
     </div>
   )
@@ -176,7 +174,9 @@ function SalaryGrowth({ official }) {
           {w.pct === null ? (
             <span style={{ color: 'var(--ink40)' }}>—</span>
           ) : (
-            <span style={{ color: w.pct >= 0 ? 'var(--ok)' : 'var(--crit)', fontWeight: 700 }}>
+            <span
+              style={{ color: w.pct >= 0 ? 'var(--ok-ink)' : 'var(--crit-ink)', fontWeight: 700 }}
+            >
               {w.pct >= 0 ? '+' : ''}
               {w.pct.toFixed(1).replace('.', ',')}%
             </span>
@@ -273,14 +273,9 @@ function RetribucionesPanel() {
       <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5 }}>
         {data.source?.note}{' '}
         {data.source?.home && (
-          <a
-            href={data.source.home}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
+          <ExtLink href={data.source.home} style={{ color: 'var(--civic)' }}>
             Fuente: ISPA · Ministerio de Hacienda y Función Pública ↗
-          </a>
+          </ExtLink>
         )}
       </div>
     </Card>
@@ -329,14 +324,9 @@ function PlantillaCard() {
       <div style={{ fontSize: 11, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
         {data.note}{' '}
         {data.source?.url && (
-          <a
-            href={data.source.url}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
+          <ExtLink href={data.source.url} style={{ color: 'var(--civic)' }}>
             Fuente: {data.source.publisher} ({String(data.source.date).slice(0, 4)}) ↗
-          </a>
+          </ExtLink>
         )}
       </div>
       {data.authorized && typeof data.authorized.plazas === 'number' && (
@@ -359,14 +349,9 @@ function PlantillaCard() {
           <div style={{ marginTop: 4, color: 'var(--ink50)' }}>
             {data.authorized.note}{' '}
             {data.authorized.source?.url && (
-              <a
-                href={data.authorized.source.url}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: 'var(--civic)' }}
-              >
+              <ExtLink href={data.authorized.source.url} style={{ color: 'var(--civic)' }}>
                 Fuente: {data.authorized.source.publisher} ↗
-              </a>
+              </ExtLink>
             )}
           </div>
         </div>
@@ -488,14 +473,12 @@ function OfficialCard({ o, big = false }) {
           {o.email || 'alcaldia@ribarroja.es'}
         </a>
         {o.cvUrl && (
-          <a
+          <ExtLink
             href={o.cvUrl}
-            target="_blank"
-            rel="noreferrer"
             style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
           >
             Biografía →
-          </a>
+          </ExtLink>
         )}
       </div>
       <RetribucionBadge official={o} />

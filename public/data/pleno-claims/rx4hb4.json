@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T10:31:33.384Z",
+  "generatedAt": "2026-06-21T10:15:44.650Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -36,7 +36,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -69,41 +70,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "rx4hb4-439-acu-75f41b",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 439,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en esos 3 meses que ha pasado porque estamos un poco al límite vale",
-        "context": "El concejal implica que el ayuntamiento ha dejado pasar los 3 meses del plazo sin actuar, llegando al límite: 'en esos 3 meses que ha pasado porque estamos un poco al límite vale'. La expresión sugiere una crítica a la gestión del tiempo disponible.",
-        "topic": "fiscal",
-        "entities": {
-          "count": 3,
-          "countUnit": "meses",
-          "referencedEntity": "convocatoria dana"
-        },
-        "accusationSubtype": "opinativa",
-        "confidence": 0.52,
-        "reasoning": "El hablante insinúa que la corporación ha gestionado con retraso la convocatoria DANA al llegar 'al límite' del plazo de 3 meses. La afirmación es valorativa sobre la gestión sin citar cifras concretas de inversión ni entidades formales verificables, por lo que se clasifica como opinativa.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "rx4hb4-439-acu-75f41b",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -134,7 +102,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -168,7 +137,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -203,7 +173,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -234,7 +205,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -266,7 +238,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -300,7 +273,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -333,7 +307,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -367,7 +342,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -400,7 +376,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -444,7 +421,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -476,7 +454,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -507,7 +486,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -548,7 +528,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -579,7 +560,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -614,7 +596,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -655,7 +638,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -690,7 +674,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -725,7 +710,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -756,7 +742,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -787,7 +774,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -818,7 +806,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -851,7 +840,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -882,7 +872,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -913,7 +904,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -946,7 +938,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -988,7 +981,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1019,7 +1013,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1052,7 +1047,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1083,7 +1079,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1114,7 +1111,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1145,7 +1143,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1182,7 +1181,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1229,7 +1229,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1270,7 +1271,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1303,7 +1305,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1335,39 +1338,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "rx4hb4-456-acu-41d6fc",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 456,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "dos o tres años trabajando en ello o sea antes de la DANA es un espacio afectado por la DANA el más afectado por la DANA para invertir",
-        "context": "El interviniente cuestiona que el espacio en que se van a invertir los fondos de reconstrucción post-DANA sea realmente un espacio afectado por la DANA, señalando que llevaban «dos o tres años trabajando en ello» antes del evento, lo que implicaría que el proyecto preexistía a la catástrofe y no debería acogerse al marco de reconstrucción.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "agenda urbana de reconstrucción post-dana / proyecto previo a la dana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.65,
-        "reasoning": "La acusación es factual: si existieran expedientes municipales o contratos licitados con anterioridad a octubre 2024 para ese espacio, contradiría la justificación de acogerse a los fondos DANA; verificable contra el registro de tenders/licitaciones y actas de plenos previos a la DANA.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "rx4hb4-456-acu-41d6fc",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1399,7 +1371,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1430,39 +1403,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "rx4hb4-457-acu-e8dddb",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 457,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "excusarte en la DANA de hace un año",
-        "context": "El interviniente concluye su argumento reprochando al grupo gobernante que use la DANA —ocurrida aproximadamente un año antes del pleno (octubre-noviembre 2024)— como excusa para justificar retrasos en un proyecto ya en marcha.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "dana octubre-noviembre 2024"
-        },
-        "accusationSubtype": "opinativa",
-        "confidence": 0.55,
-        "reasoning": "Acusación de usar la DANA como coartada; no cita entidades, importes ni votos concretos, por lo que se clasifica como opinativa y no se verifica automáticamente. La datación implícita ('hace un año') es consistente con la fecha del pleno (febrero 2026).",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "rx4hb4-457-acu-e8dddb",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1498,7 +1440,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1534,7 +1477,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1572,7 +1516,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1608,37 +1553,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "rx4hb4-459-acu-3fc66c",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 459,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "lo desconectamos porque no participáis a la oposición de todo lo que estáis llevando a cabo",
-        "context": "El interviniente justifica su desconexión o falta de apoyo alegando que el equipo de gobierno no hace partícipe a la oposición de los proyectos que está desarrollando.",
-        "topic": "transparencia",
-        "entities": {},
-        "accusationSubtype": "opinativa",
-        "confidence": 0.6,
-        "reasoning": "Acusación de opacidad hacia la oposición sin cifras ni entidades verificables concretas; calificada como opinativa porque se refiere a un patrón de comportamiento general sin citar acto administrativo específico. No se verifica automáticamente.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "rx4hb4-459-acu-3fc66c",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1669,7 +1585,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1700,7 +1617,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1741,7 +1659,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     }
   ]
 }

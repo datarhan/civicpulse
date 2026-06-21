@@ -34,6 +34,8 @@ export interface VerifiedClaimItem {
     evidence?: unknown[]
     [k: string]: unknown
   }
+  /** Public-ledger visibility, stamped by the build-time gate (claim-public-gate.ts). */
+  visibility?: 'shown' | 'toggle' | 'hidden'
 }
 
 export interface VerifiedSnapshot {
@@ -57,6 +59,8 @@ export interface PlenoClaimsChunkManifest {
     plenoDate: string
     chunkPath: string
     itemCount: number
+    /** Count of `toggle` (sin-datos non-accusation) items in this chunk. */
+    toggleCount: number
     byVerdict: Record<string, number>
     byType: Partial<Record<ClaimType, number>>
     byTopic: Partial<Record<ClaimTopic, number>>
@@ -124,11 +128,13 @@ export function buildChunkAndDescriptor(
   const byVerdict: Record<string, number> = {}
   const byType: Partial<Record<ClaimType, number>> = {}
   const byTopic: Partial<Record<ClaimTopic, number>> = {}
+  let toggleCount = 0
   for (const it of items) {
     const v = it.verification?.verdict
     if (typeof v === 'string') byVerdict[v] = (byVerdict[v] ?? 0) + 1
     byType[it.claim.type] = (byType[it.claim.type] ?? 0) + 1
     byTopic[it.claim.topic] = (byTopic[it.claim.topic] ?? 0) + 1
+    if (it.visibility === 'toggle') toggleCount += 1
   }
   const chunk: PlenoClaimsChunk = {
     generatedAt,
@@ -145,6 +151,7 @@ export function buildChunkAndDescriptor(
       plenoDate,
       chunkPath: `pleno-claims/${plenoId}.json`,
       itemCount: items.length,
+      toggleCount,
       byVerdict,
       byType,
       byTopic,

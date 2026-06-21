@@ -107,6 +107,15 @@ fi
 
 echo ""
 echo "================================================================"
+echo "[scrape-all] running: compute:tender-geo"
+echo "================================================================"
+if ! npm run compute:tender-geo; then
+  echo "[scrape-all] FAILED: compute:tender-geo"
+  failures+=("compute:tender-geo")
+fi
+
+echo ""
+echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
 if [ ${#soft_failures[@]} -gt 0 ]; then

@@ -1,5 +1,5 @@
 // Journalist UI — full-width hero band (portrait, party, quick facts, actions).
-import { Pill } from '../Primitives'
+import { ExtLink, Pill } from '../Primitives'
 
 // ─── Hero band ───────────────────────────────────────────────────────────
 
@@ -104,14 +104,9 @@ export function HeroBand({ subjectName, portraitPayload, report, soulDownloadUrl
           )}
           <div style={{ marginTop: 16, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {portraitPayload?.cvUrl && (
-              <a
-                href={portraitPayload.cvUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={heroActionStyle}
-              >
+              <ExtLink href={portraitPayload.cvUrl} style={heroActionStyle}>
                 CV oficial ↗
-              </a>
+              </ExtLink>
             )}
             {soulDownloadUrl && (
               <a href={soulDownloadUrl} download style={heroActionStyle}>

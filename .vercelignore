@@ -1,0 +1,7 @@
+# Curator/CLI-only artifacts — the SPA reads the gated chunks under
+# public/data/pleno-claims/, never these monoliths. Keeping them out of
+# the deploy ensures ungated (opinativa / sin-datos) accusation verbatim
+# is never fetchable from the live site. They remain in git for the
+# promote-claim / auto-curate / verify CLIs on the curator's machine.
+public/data/pleno-claims-verified.json
+public/data/pleno-claims-suggestions.json

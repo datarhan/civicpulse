@@ -26,6 +26,7 @@ import {
   groupItemsByPleno,
   type VerifiedSnapshot,
 } from '../src/scraper/pleno-claims-chunks'
+import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
 
 const MONOLITH = resolve('public/data/pleno-claims-verified.json')
 const CHUNKS_DIR = resolve('public/data/pleno-claims')
@@ -63,7 +64,10 @@ export function rewriteChunksFromMonolith(opts: { dryRun?: boolean } = {}): {
     throw new Error(`[chunk-claims] ${MONOLITH} missing — run npm run verify:pleno-claims first.`)
   }
   const monolith = JSON.parse(readFileSync(MONOLITH, 'utf8')) as VerifiedSnapshot
-  const items = monolith.items ?? []
+  // Editorial gate: drop `hidden` items (opinativa / sin-datos accusations)
+  // and stamp each survivor with its visibility BEFORE chunking, so the
+  // deployed chunks never contain ungated accusation verbatim.
+  const items = gateItemsForPublic(monolith.items ?? [])
   const grouped = groupItemsByPleno(items)
   const generatedAt = new Date().toISOString()
   const { manifest, chunks } = buildManifest(grouped, generatedAt)

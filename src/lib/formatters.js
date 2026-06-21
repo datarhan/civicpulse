@@ -83,3 +83,19 @@ export function prettyNeighborhood(slug) {
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join(' ')
 }
+
+/**
+ * Return the URL only when it uses a safe web scheme (http/https), else null.
+ * Guards against javascript:/data: hrefs from scraped external data (XSS).
+ * @param {string|null|undefined} url
+ * @returns {string|null}
+ */
+export function safeHref(url) {
+  if (!url) return null
+  try {
+    const p = new URL(url)
+    return p.protocol === 'http:' || p.protocol === 'https:' ? url : null
+  } catch {
+    return null
+  }
+}

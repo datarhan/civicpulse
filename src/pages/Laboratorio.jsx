@@ -17,7 +17,7 @@
  */
 
 import { useMemo, useState } from 'react'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
@@ -233,10 +233,8 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
         <span style={{ flex: 1 }} />
         <VerdictMix counts={counts} />
       </div>
-      <a
+      <ExtLink
         href={article.link}
-        target="_blank"
-        rel="noreferrer"
         style={{
           fontSize: 15.5,
           fontWeight: 600,
@@ -247,7 +245,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
         }}
       >
         {article.title}
-      </a>
+      </ExtLink>
       {summary && (
         <>
           <div
@@ -308,10 +306,8 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           fontSize: 11.5,
         }}
       >
-        <a
+        <ExtLink
           href={article.link}
-          target="_blank"
-          rel="noreferrer"
           style={{
             color: linkRot?.status === 'dead' ? 'var(--crit)' : 'var(--civic)',
             textDecoration: 'underline',
@@ -323,12 +319,10 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
           }
         >
           {linkRot?.status === 'dead' ? 'Ver original ⚠︎' : 'Ver original ↗'}
-        </a>
+        </ExtLink>
         {linkRot?.archivedUrl && (
-          <a
+          <ExtLink
             href={linkRot.archivedUrl}
-            target="_blank"
-            rel="noreferrer"
             style={{ color: 'var(--ink70)', textDecoration: 'underline' }}
             title={
               linkRot.archivedAt
@@ -337,7 +331,7 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
             }
           >
             🔗 Wayback ↗
-          </a>
+          </ExtLink>
         )}
         <a
           href="https://github.com/datarhan/civicpulse/issues/new?template=press-finding-response.yml"
@@ -437,14 +431,9 @@ function FactCheckRail({ factcheck }) {
                 {row.reviewDate.slice(0, 10)}
               </span>
             </div>
-            <a
-              href={row.reviewUrl}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
+            <ExtLink href={row.reviewUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
               {row.reviewTitle}
-            </a>
+            </ExtLink>
           </li>
         )
       })}

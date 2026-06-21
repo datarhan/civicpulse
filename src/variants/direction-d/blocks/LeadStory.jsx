@@ -1,5 +1,6 @@
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { PALETTE, SERIF, MONO } from '../tokens'
+import { ExtLink } from '../../../components/Primitives'
 
 function Kicker({ tone = 'ink', children }) {
   const c = {
@@ -45,14 +46,9 @@ export function LeadStory() {
           margin: '8px 0 10px',
         }}
       >
-        <a
-          href={top.link}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'inherit', textDecoration: 'none' }}
-        >
+        <ExtLink href={top.link} style={{ color: 'inherit', textDecoration: 'none' }}>
           {top.title}
-        </a>
+        </ExtLink>
       </h1>
       {excerpt && (
         <div
@@ -77,14 +73,12 @@ export function LeadStory() {
         }}
       >
         {pressTimeAgo(top.date).toUpperCase()} ·{' '}
-        <a
+        <ExtLink
           href={top.link}
-          target="_blank"
-          rel="noreferrer"
           style={{ color: PALETTE.civic, textDecoration: 'none', fontWeight: 600 }}
         >
           Leer en {top.source} →
-        </a>
+        </ExtLink>
       </div>
     </article>
   )

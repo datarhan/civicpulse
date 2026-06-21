@@ -18,3 +18,6 @@ tmp/
 mlx_models/
 editorial/
 scripts/logs/
+
+# Visual brainstorming companion (local mockups)
+.superpowers/

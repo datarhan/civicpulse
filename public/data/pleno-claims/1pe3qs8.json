@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-29T10:31:33.384Z",
+  "generatedAt": "2026-06-21T10:15:44.650Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
@@ -34,131 +34,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-001-acu-89a1a4",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 1,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la evasión definitiva de la penalidad imposta al contractista por incumplimiento de la inscripción de los medios personales y materiales compromisos desde el inicio del contrato en el OT1 para la prestación de este servicio, el servicio de recogida de residuos sólidos y urbanos, poder y voluminosos del municipio, iniciar resolución del contrato para continuar el incumplimien",
-        "context": "El portavoz describe el punto 2: elevación a definitiva de la penalidad al contratista por incumplimiento de adscripción de medios en el Lote 1 del contrato de recogida de residuos sólidos urbanos, poda y voluminosos, e inicio de resolución del contrato.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "expediente 615/2025/gen - lote 1 recogida de residuos sólidos urbanos (garbialdi s.a. / iss facility services s.a.u.)"
-        },
-        "confidence": 0.52,
-        "reasoning": "El incumplimiento del contratista en Lote 1 es verificable contra exp. 615/2025/GEN y PLACSP/tenders.json. Múltiples errores Whisper: 'evasión'→'elevación', 'inscripción'→'adscripción', 'OT1'→'Lote 1', 'poder'→'poda'.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "1pe3qs8-001-acu-89a1a4",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-002-acu-8b9c04",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 2,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "el evidente incumplimiento de la prestación del servicio de recogida de residuos sólidos urbanos, poda y voluminosos por parte de la empresa resultante adjudicataria del nuevo contrato con todos los graves problemas que ha ocasionado y está ocasionando a nuestro municipio",
-        "context": "José Ángel, identificado como 'rechidor de contractos' (regidor de contratos, Whisper), abre su intervención sobre el punto 2 del orden del día afirmando el incumplimiento de la empresa adjudicataria del contrato de recogida de residuos (lote 1, expediente 615/2025/GEN).",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "empresa adjudicataria lote 1 servicio recogida residuos sólidos urbanos poda y voluminosos (garbialdi s.a. / iss facility services s.a.u.)"
-        },
-        "confidence": 0.82,
-        "reasoning": "Afirmación verificable: el incumplimiento contractual y las penalidades impuestas están referenciados en el expediente 615/2025/GEN, contrastarble contra PLACSP/tenders.json y el propio acuerdo plenario que se vota en esta sesión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-002-acu-8b9c04",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-003-acu-201219",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 3,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Los reiterados e insistentes requerimientos y exigencias realizadas por el Ayuntamiento para que tomara las medidas necesarias y urgentes para corregir y encauzar el servicio para su realización adecuada, tal y como se recoge en el contrato y a la que la empresa se comprometió con su oferta a la propia empresa adjudicataria",
-        "context": "Los reiterados e insistentes requerimientos y exigencias realizadas por el Ayuntamiento para que tomara las medidas necesarias y urgentes para corregir y encauzar el servicio para su realización adecuada, tal y como se recoge en el contrato y a la que la empresa se comprometió con su oferta a la propia empresa adjudicataria. Y pese a nuestros requerimientos, como he dicho...",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "requerimientos formales del ayuntamiento de riba-roja al contratista del servicio de recogida de residuos (expediente 615/2025/gen)"
-        },
-        "confidence": 0.78,
-        "reasoning": "Afirmación sobre la existencia de múltiples requerimientos formales documentados en el expediente administrativo, verificable contra las notificaciones y comunicaciones obrantes en el expediente 615/2025/GEN.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-003-acu-201219",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-003-acu-ca83e2",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 3,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la compañía ha continuado prestando un servicio inadecuado, deficiente e ineficaz, incumpliendo las estipulaciones de los pliegos y su p",
-        "context": "Y pese a nuestros requerimientos, como he dicho, la compañía ha continuado prestando un servicio inadecuado, deficiente e ineficaz, incumpliendo las estipulaciones de los pliegos y su p[ropuesta] — fragmento cortado al final de la transcripción.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "pliegos del contrato lote 1 servicio recogida residuos sólidos urbanos, poda y voluminosos"
-        },
-        "confidence": 0.7,
-        "reasoning": "Acusación de incumplimiento continuado de los pliegos contractuales, verificable contra el pliego de condiciones del contrato y el acuerdo de elevación a definitiva de la penalidad del Expediente 615/2025/GEN; confianza reducida por fragmento Whisper truncado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-003-acu-ca83e2",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -195,7 +72,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -226,7 +104,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -257,7 +136,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -292,7 +172,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -325,7 +206,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -360,100 +242,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-005-acu-2ebb7e",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 5,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "las evidencias y de la lamentable situación de los contenedores repletos y desbordados que toda la ciudadanía de Riva Roja lo hemos visto y padecido",
-        "context": "El portavoz invoca como evidencia adicional del incumplimiento del contratista la situación pública y observable de los contenedores desbordados, presentándola como corroboración ciudadana de los informes técnicos.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "garbialdi s.a. / iss facility services s.a.u. — contratista recogida rsu lote 1"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirmación sobre conducta del contratista (incumplimiento de adscripción de medios) respaldada por referencia a evidencias documentales del expediente; verificable cruzando el expediente 615/2025/GEN con tenders.json y los informes técnicos del Ayuntamiento.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "1pe3qs8-005-acu-2ebb7e",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-006-acu-3dfa31",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 6,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "vencido el plazo establecido, el contratista no ha presentado alegación alguna al respecto",
-        "context": "Tras la apertura del expediente de imposición de la penalización, vencido el plazo establecido, el contratista no ha presentado alegación alguna al respecto, con lo que se propone al Pleno elevar a definitiva la penalidad impuesta.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "garbialdi s.a., expediente 615/2025/gen"
-        },
-        "confidence": 0.87,
-        "reasoning": "La no-presentación de alegaciones en plazo es un hecho procedimental verificable contra el expediente 615/2025/GEN y la notificación fehaciente al contratista; los datos de licitaciones del sistema pueden confirmar la identidad y estado del contrato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-006-acu-3dfa31",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-006-acu-19ef51",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 6,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "se propone al Pleno elevar a definitiva la penalidad impuesta al contratista por incumplimiento en la adecuada realización del servicio de recogida de residuos sólidos urbanos, por la ley 9.017 de Contratos del Sector Público",
-        "context": "Con lo que se propone al Pleno elevar a definitiva la penalidad impuesta al contratista por incumplimiento en la adecuada realización del servicio de recogida de residuos sólidos urbanos, por la ley 9.017 de Contratos del Sector Público.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "garbialdi s.a., ley 9/2017 lcsp, servicio recogida rsu"
-        },
-        "confidence": 0.83,
-        "reasoning": "El incumplimiento de Garbialdi S.A. en la recogida de RSU es verificable contra tenders.json y el expediente de penalidades. Nota: 'ley 9.017' es transcripción Whisper de 'Ley 9/2017 de Contratos del Sector Público'.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-006-acu-19ef51",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -488,256 +278,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-006-acu-f5a48c",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 6,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la lamentable situación de los contenedores repletos y desbordados que toda la ciudadanía de Riva Roja lo hemos visto y padecido",
-        "context": "Constan las evidencias y de la lamentable situación de los contenedores repletos y desbordados que toda la ciudadanía de Riva Roja lo hemos visto y padecido, además de los informes técnicos y jurídicos del propio ayuntamiento.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "garbialdi s.a., servicio recogida rsu riba-roja de túria"
-        },
-        "confidence": 0.68,
-        "reasoning": "El fallo observable del servicio (contenedores desbordados) atribuible a Garbialdi S.A. podría corroborarse con quejas ciudadanas en quejas.json o prensa local. Confianza reducida: sin fecha ni ubicación específica; 'Riva Roja' es error Whisper de 'Riba-roja'.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "1pe3qs8-006-acu-f5a48c",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-007-acu-b5fa0b",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "se propone notificar el presente acuerdo al contratista Garbialdi S.A. y al avalista Banco Santander S.A.",
-        "context": "Dado que la empresa continúa realizando un servicio claramente deficiente, se propone notificar el presente acuerdo al contratista Garbialdi S.A. y al avalista Banco Santander S.A.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "banco santander s.a. como avalista de garbialdi s.a."
-        },
-        "confidence": 0.88,
-        "reasoning": "La identificación de Banco Santander S.A. como entidad avalista del contrato es un hecho verificable contra el pliego de condiciones y el contrato publicado en la plataforma de contratación (PLACSP/Gobierto).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-007-acu-b5fa0b",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-007-acu-adc941",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en el informe de fecha 5 de enero de este lunes pasado, de 5 de enero de 2026, de la empresa Avalista. La auditora del servicio concluye que el servicio sigue siendo globalmente deficiente.",
-        "context": "Dado que la empresa continúa realizando un servicio claramente deficiente, insuficiente, incumpliendo el contrato y con los informes técnicos y jurídicos, en el informe de fecha 5 de enero de este lunes pasado, de 5 de enero de 2026, de la empresa Avalista. La auditora del servicio concluye que el servicio sigue siendo globalmente deficiente.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2026-01-05",
-          "referencedEntity": "informe auditoría servicio rsu — 5 de enero de 2026"
-        },
-        "confidence": 0.72,
-        "reasoning": "La existencia y conclusión de un informe de auditoría datado el 2026-01-05 es verificable contra los informes técnicos obrantes en el expediente 615/2025/GEN. Confianza reducida porque 'empresa Avalista' es probable error de Whisper (nombre real de la auditora no transcrito correctamente).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-007-acu-adc941",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-007-acu-16c353",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "La empresa Garbialdi continúa sin disponer de los medios materiales y humanos mínimos comprometidos.",
-        "context": "Dado que la empresa continúa realizando un servicio claramente deficiente, insuficiente, incumpliendo el contrato y con los informes técnicos y jurídicos, La empresa Garbialdi continúa sin disponer de los medios materiales y humanos mínimos comprometidos.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "garbialdi s.a. — adscripción de medios comprometidos en contrato lote 1"
-        },
-        "confidence": 0.91,
-        "reasoning": "La adscripción de medios personales y materiales comprometidos en el contrato (lote 1) está documentada en el pliego; el incumplimiento es directamente contrastable contra el Plan de Trabajo y los informes de seguimiento del expediente 615/2025/GEN.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-007-acu-16c353",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-007-acu-0e9681",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Falta de conductores, vehículos averiados sin sustitución",
-        "context": "La empresa Garbialdi continúa sin disponer de los medios materiales y humanos mínimos comprometidos. Falta de conductores, vehículos averiados sin sustitución, con [fragmento cortado].",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "garbialdi s.a. — incumplimiento medios materiales y humanos lote 1 rsu"
-        },
-        "confidence": 0.78,
-        "reasoning": "Las deficiencias concretas (conductores, vehículos) son verificables contra los partes de incidencias e informes técnicos del expediente. Confianza algo reducida por fragmento incompleto (corte de transcripción en 'con').",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-007-acu-0e9681",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-008-acu-b77121",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 8,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "las rutas de RSU no se han ejecutado ningún día conforme a lo previsto, persisten contenedores sin vaciar y desbordados.",
-        "context": "Se afirma que las rutas de recogida de residuos sólidos urbanos no se han cumplido en ninguna jornada según lo planificado, y que los contenedores continúan sin vaciarse y desbordados.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "rutas rsu contrato lote 1 garbialdi"
-        },
-        "confidence": 0.84,
-        "reasoning": "Afirmación absoluta ('ningún día') sobre incumplimiento de rutas, verificable contra los registros de seguimiento del servicio y el informe de la auditora externa recogido en el expediente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-008-acu-b77121",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-008-acu-056800",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 8,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "No se realiza los servicios de voluminosos con normalidad, ni otros servicios como limpieza de vertederos y contenedores.",
-        "context": "Se denuncia que, además de las rutas de RSU, los servicios de recogida de voluminosos y la limpieza de vertederos y contenedores tampoco se están prestando con normalidad por parte de Garbialdi.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "servicios voluminosos y limpieza vertederos - contrato lote 1 garbialdi"
-        },
-        "confidence": 0.81,
-        "reasoning": "Incumplimiento verificable de servicios contractualmente definidos (voluminosos, limpieza) contrastable contra el pliego del contrato y los informes técnicos municipales y de auditoría externa.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-008-acu-056800",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-009-acu-c33bfe",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 9,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "tratos de personal sin formalizar",
-        "context": "Fragmento inicial (continuación de intervención previa) que enumera incumplimientos del contratista: tratos de personal sin formalizar, rutas RSU no ejecutadas, contenedores desbordados.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "contrato lote 1 recogida rsu garbialdi s.a."
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirma que el contratista no ha formalizado contratos de personal; verificable contra los expedientes de contratación (PLACSP/Gobierto) y auditoría externa citada. Confianza reducida porque el verbatim llega truncado por corte de fragmento y Whisper pudo corromper 'contratos' en 'tratos'.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-009-acu-c33bfe",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -769,7 +311,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -800,7 +343,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -831,7 +375,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -862,193 +407,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-010-acu-f121c8",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 10,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "se propone al Pleno, inicio de la resolución del contrato, por incumplimiento grave y reiterado de las obligaciones esenciales de ejecución del servicio",
-        "context": "Tras exponer evidencias ciudadanas del mal servicio, el ponente justifica ante el Pleno la apertura del procedimiento de rescisión del contrato de RSU (lote 1) adjudicado a Garbialdi, alegando incumplimiento grave y reiterado de las obligaciones esenciales.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "contrato servicio rsu lote 1 — garbialdi s.a. (expediente 136/2025)"
-        },
-        "confidence": 0.87,
-        "reasoning": "El incumplimiento grave y reiterado es una calificación jurídica aplicada al contratista; verificable cruzando el expediente 136/2025 y el historial de penalidades en tenders.json y el acta del pleno ordinario previo.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "1pe3qs8-010-acu-f121c8",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-010-acu-ab5f9a",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 10,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la empresa adjudicataria ha sido absorbida por la empresa ISS Facility Service, requiriendo a esta empresa la transmisión del contrato por absorción de la empresa Garbialdi, adjudicataria inicial del servicio de RSU",
-        "context": "El ponente informa al Pleno de que Garbialdi —adjudicataria original del contrato de RSU— ha sido absorbida por ISS Facility Services, y que se le ha requerido la sucesión contractual; sin embargo, la sucesión no opera de modo automático sino que exige acuerdo expreso del órgano de contratación.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "absorción garbialdi s.a. por iss facility services s.a.u. — expediente 615/2025/gen"
-        },
-        "confidence": 0.88,
-        "reasoning": "La operación de absorción mercantil es un hecho verificable en el Registro Mercantil y en la documentación del expediente 615/2025/GEN; la identidad de ISS Facility Services como absorbente puede contrastarse contra tenders.json y el PLACSP.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-010-acu-ab5f9a",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-011-acu-dd58bf",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 11,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "A la vista de los reiterados incumplimientos del servicio, concurren fundamentos jurídicos suficientes para denegar la solicitud de sucesión del contratista, con base a los siguientes motivos.",
-        "context": "El interviniente expone el marco jurídico sobre sucesión de contratistas (requiere acuerdo expreso del órgano de contratación + verificación de capacidad, solvencia y ausencia de prohibición de contratar) y concluye que los incumplimientos reiterados del servicio de RSU son base suficiente para denegar la solicitud de sucesión presentada en el expediente 615/2025/GEN (absorción de Garbialdi S.A. por ISS Facility Services S.A.U.).",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "expediente 615/2025/gen - contrato rsu / garbialdi s.a. absorbida por iss facility services s.a.u."
-        },
-        "confidence": 0.78,
-        "reasoning": "La afirmación de 'reiterados incumplimientos del servicio' es verificable contra el expediente de contratación 615/2025/GEN, los informes de inspección y las actas de penalidades previas que el propio orden del día reconoce; contratable también contra el pliego del contrato de RSU publicado en PLACSP/Gobierto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-011-acu-dd58bf",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-012-acu-62506e",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 12,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Falta de medios de personal y materiales que fueron determinantes a la hora de la adjudicación.",
-        "context": "El ponente enumera los motivos jurídicos para denegar la solicitud de sucesión del contratista (Garbialdi/ISS) en el contrato RSU lote 1; la falta de medios comprometidos figura como uno de los fundamentos principales.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "contrato rsu lote 1 garbialdi s.a. / expediente 615/2025/gen"
-        },
-        "confidence": 0.78,
-        "reasoning": "Verificable cruzando el pliego de cláusulas administrativas del contrato RSU lote 1 (medios adscritos comprometidos en la oferta) con el acervo documental del expediente sancionador 615/2025/GEN que evidencia el incumplimiento real.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-012-acu-62506e",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-012-acu-ac6b70",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 12,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Expediente de penalidades que evidencian una quiebra. Relevante de la correcta ejecución del contrato.",
-        "context": "El ponente cita la existencia de un expediente de penalidades como evidencia objetiva de incumplimiento grave en la ejecución del servicio de RSU, dentro de los motivos para denegar la sucesión.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "expediente 615/2025/gen"
-        },
-        "confidence": 0.65,
-        "reasoning": "La existencia y contenido del expediente de penalidades es verificable en el registro del Expediente 615/2025/GEN referenciado en el orden del día; Whisper parece haber fragmentado la frase original ('quiebra relevante' puede ser un único sintagma), lo que reduce la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-012-acu-ac6b70",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "1pe3qs8-012-acu-1df2d5",
-        "plenoId": "1pe3qs8",
-        "plenoDate": "2026-01-07",
-        "segmentIndex": 12,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Riesgo de la elusión de responsabilidades contractuales al solicitarse la sucesión precisamente en el momento en que la empresa originaria se enfrenta a penalidades.",
-        "context": "Se argumenta que la solicitud de sucesión mediante absorción de Garbialdi por ISS Facility Services coincide temporalmente con el momento en que Garbialdi afronta penalidades, lo que se califica como elusión de responsabilidades y motivo adicional para denegarla.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "absorción garbialdi s.a. por iss facility services s.a.u. — expediente 136/2025"
-        },
-        "confidence": 0.8,
-        "reasoning": "La coincidencia temporal entre la solicitud de sucesión (Expediente 136/2025) y el inicio del expediente sancionador (615/2025/GEN) es un dato objetivo contrastable con las fechas registradas en ambos expedientes; la afirmación es específica y el verificador puede falsarla o confirmarla.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1pe3qs8-012-acu-1df2d5",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { Card, Pill, SectionHead, ShareWA } from '../components/Primitives'
+import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import {
   useQuejas,
   useQuejaResponses,
@@ -187,10 +187,8 @@ function CorrelationsCard({ quejaId }) {
           >
             {c.reasoning}
           </div>
-          <a
+          <ExtLink
             href={c.tenderPermalink}
-            target="_blank"
-            rel="noreferrer"
             style={{
               fontSize: 11,
               color: 'var(--civic)',
@@ -199,7 +197,7 @@ function CorrelationsCard({ quejaId }) {
             }}
           >
             Ver contrato en contrataciondelestado.es →
-          </a>
+          </ExtLink>
         </div>
       ))}
     </Card>
@@ -559,14 +557,9 @@ export default function QuejaDetail() {
                 </div>
                 {r.source_url && (
                   <div style={{ marginTop: 6, fontSize: 12 }}>
-                    <a
-                      href={r.source_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ color: 'var(--civic)' }}
-                    >
+                    <ExtLink href={r.source_url} style={{ color: 'var(--civic)' }}>
                       Fuente primaria →
-                    </a>
+                    </ExtLink>
                   </div>
                 )}
               </div>

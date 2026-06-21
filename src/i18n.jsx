@@ -103,6 +103,16 @@ const CATALOGUE = {
     'plenos.votes.empty.eyebrow': 'Sin datos',
     'plenos.votes.empty.title': 'No hay votaciones registradas todavía',
 
+    // Claim ledger (declaraciones contrastadas)
+    'ledger.search': 'Buscar en las declaraciones…',
+    'ledger.showSinDatos': 'mostrar sin datos',
+    'ledger.loadMore': 'Cargar más',
+    'ledger.allTypes': 'Todos los tipos',
+    'ledger.allPlenos': 'Todos los plenos',
+    'ledger.allGroups': 'Todos los grupos',
+    'ledger.empty': 'Sin declaraciones contrastables todavía para este filtro.',
+    'ledger.methodology': 'Cómo se filtran estas declaraciones',
+
     // Quejas empty state
     'quejas.empty.title': 'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
     'dashboard.empty.title': 'El canal está abierto, aún no hay quejas',
@@ -241,6 +251,16 @@ const CATALOGUE = {
     'plenos.votes.heading': 'Votacions registrades',
     'plenos.votes.empty.eyebrow': 'Sense dades',
     'plenos.votes.empty.title': 'Encara no hi ha votacions registrades',
+
+    // Claim ledger (declaracions contrastades)
+    'ledger.search': 'Cerca en les declaracions…',
+    'ledger.showSinDatos': 'mostra sense dades',
+    'ledger.loadMore': 'Carrega més',
+    'ledger.allTypes': 'Tots els tipus',
+    'ledger.allPlenos': 'Tots els plens',
+    'ledger.allGroups': 'Tots els grups',
+    'ledger.empty': 'Encara no hi ha declaracions contrastables per a aquest filtre.',
+    'ledger.methodology': 'Com es filtren aquestes declaracions',
 
     'quejas.empty.title': 'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
     'dashboard.empty.title': 'El canal està obert, encara no hi ha queixes',

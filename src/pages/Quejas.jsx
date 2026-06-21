@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead, ShareWA } from '../components/Primitives'
+import { Card, ExtLink, Pill, SectionHead, ShareWA } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import {
   useQuejas,
@@ -74,14 +74,9 @@ function SindicCard() {
                 {r.resumen}
               </div>
               <div style={{ marginTop: 6, fontSize: 11, display: 'flex', gap: 14 }}>
-                <a
-                  href={r.urlPdf}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: 'var(--civic)' }}
-                >
+                <ExtLink href={r.urlPdf} style={{ color: 'var(--civic)' }}>
                   PDF del Síndic →
-                </a>
+                </ExtLink>
                 {r.quejaIdRelacionada && (
                   <Link
                     to={`/quejas/${r.quejaIdRelacionada.toLowerCase()}`}
@@ -178,14 +173,12 @@ function ConsellCvCard() {
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
           Comprobado {when} ·{' '}
-          <a
+          <ExtLink
             href={data.source?.portal || 'https://conselltransparencia.gva.es'}
-            target="_blank"
-            rel="noreferrer"
             style={{ color: 'var(--civic)' }}
           >
             conselltransparencia.gva.es
-          </a>
+          </ExtLink>
         </div>
       </div>
       {matched && matched.length > 0 && (
@@ -281,14 +274,9 @@ function CtbgCard() {
         </div>
         <div style={{ marginLeft: 'auto', fontSize: 11, color: 'var(--ink50)' }}>
           Comprobado {when} ·{' '}
-          <a
-            href={data.source?.url}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: 'var(--civic)' }}
-          >
+          <ExtLink href={data.source?.url} style={{ color: 'var(--civic)' }}>
             XLSX oficial
-          </a>
+          </ExtLink>
         </div>
       </div>
       {matched && matched.length > 0 && (
@@ -694,14 +682,9 @@ function BopCard() {
                 {formatBopDate(a.date)} · Reg. {a.regNumber}
               </div>
               <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
-                <a
-                  href={a.pdfUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
+                <ExtLink href={a.pdfUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
                   {a.title}
-                </a>
+                </ExtLink>
               </div>
             </div>
           ))}
@@ -709,14 +692,9 @@ function BopCard() {
       )}
       <div style={{ marginTop: 10, fontSize: 11, color: 'var(--ink50)' }}>
         {data.stats?.total ?? 0} anuncio(s) · comprobado {when} ·{' '}
-        <a
-          href={data.source?.home}
-          target="_blank"
-          rel="noreferrer"
-          style={{ color: 'var(--civic)' }}
-        >
+        <ExtLink href={data.source?.home} style={{ color: 'var(--civic)' }}>
           BOP oficial
-        </a>
+        </ExtLink>
       </div>
     </Card>
   )

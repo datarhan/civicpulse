@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ExtLink } from './Primitives'
 import { useSpainTicker, signArrow } from '../hooks/useSpainTicker'
 import { usePress, timeAgo as pressTimeAgo } from '../hooks/usePress'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
@@ -566,10 +567,8 @@ function DetailPanel({ item, onClose }) {
         )}
 
       {url && (
-        <a
+        <ExtLink
           href={url}
-          target="_blank"
-          rel="noreferrer"
           style={{
             display: 'inline-block',
             fontSize: 11.5,
@@ -580,7 +579,7 @@ function DetailPanel({ item, onClose }) {
           }}
         >
           Fuente oficial →
-        </a>
+        </ExtLink>
       )}
     </div>
   )

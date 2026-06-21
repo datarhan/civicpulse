@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { ClaimLedgerSection } from '../components/ClaimLedger'
 import { PlenoFindingsSection } from '../components/PlenoFindings'
@@ -80,14 +80,12 @@ function PlenoRow({ p, agenda, video, expanded, onToggle }) {
           {fmt(p.date)}
         </div>
         <div style={{ minWidth: 0 }}>
-          <a
+          <ExtLink
             href={p.link}
-            target="_blank"
-            rel="noreferrer"
             style={{ color: 'inherit', textDecoration: 'none', fontWeight: 500 }}
           >
             {p.title}
-          </a>
+          </ExtLink>
         </div>
         <div className="mono" style={{ fontSize: 11, color: 'var(--ink60)', textAlign: 'right' }}>
           {agenda && agenda.agendaCount > 0 ? `${agenda.agendaCount} puntos` : '—'}
@@ -112,10 +110,8 @@ function PlenoRow({ p, agenda, video, expanded, onToggle }) {
             </button>
           )}
           {video && (
-            <a
+            <ExtLink
               href={video.url}
-              target="_blank"
-              rel="noreferrer"
               title={video.title}
               className="mono"
               style={{
@@ -130,7 +126,7 @@ function PlenoRow({ p, agenda, video, expanded, onToggle }) {
               }}
             >
               ▸ vídeo
-            </a>
+            </ExtLink>
           )}
           <Pill tone={PLENO_TONE[p.kind] || 'ghost'} size="xs">
             {PLENO_LABEL[p.kind] || p.kind}
@@ -144,9 +140,9 @@ function PlenoRow({ p, agenda, video, expanded, onToggle }) {
           ))}
           <div style={{ marginTop: 8, fontSize: 11, color: 'var(--ink50)' }}>
             Fuente:{' '}
-            <a href={p.link} target="_blank" rel="noreferrer" style={{ color: 'var(--civic)' }}>
+            <ExtLink href={p.link} style={{ color: 'var(--civic)' }}>
               ribarroja.es
-            </a>{' '}
+            </ExtLink>{' '}
             · orden del día de la convocatoria
           </div>
         </div>
@@ -402,10 +398,8 @@ function PlenoVotesBlock() {
                 ))}
               </div>
               <div style={{ fontSize: 11, color: 'var(--ink60)' }}>
-                <a
+                <ExtLink
                   href={rec.sourceUrl}
-                  target="_blank"
-                  rel="noreferrer"
                   style={{
                     color: 'var(--civic)',
                     textDecoration: 'underline',
@@ -413,7 +407,7 @@ function PlenoVotesBlock() {
                   }}
                 >
                   Ver acta en {rec.sourcePublisher} →
-                </a>
+                </ExtLink>
               </div>
             </div>
           ))}
@@ -609,10 +603,8 @@ function ParticipaBlock() {
                     {fmtDate(i.date)}
                   </span>
                 </div>
-                <a
+                <ExtLink
                   href={i.link}
-                  target="_blank"
-                  rel="noreferrer"
                   style={{
                     color: 'inherit',
                     textDecoration: 'none',
@@ -622,7 +614,7 @@ function ParticipaBlock() {
                   }}
                 >
                   {i.title.length > 90 ? i.title.slice(0, 90) + '…' : i.title}
-                </a>
+                </ExtLink>
               </div>
             </div>
             <div
@@ -639,14 +631,12 @@ function ParticipaBlock() {
               {i.excerpt}
             </div>
             <div style={{ marginTop: 10, fontSize: 11 }}>
-              <a
+              <ExtLink
                 href={i.link}
-                target="_blank"
-                rel="noreferrer"
                 style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
               >
                 Ver convocatoria →
-              </a>
+              </ExtLink>
             </div>
           </Card>
         ))}
@@ -684,10 +674,10 @@ export default function Plenos() {
       <PlenoVoteSuggestionsBlock />
       <PlenoFindingsSection />
       <ClaimLedgerSection
+        controls
         eyebrow="Verificación automática de declaraciones"
         title="Declaraciones hechas en el pleno · contraste con los datos"
-        hint="Los concejales hacen afirmaciones en las intervenciones: cifras presupuestarias, obras en marcha, convenios cerrados, promesas. Esta página cruza cada declaración con los datos municipales (contratos publicados, subvenciones BDNS, presupuesto, promesas ya documentadas) y emite un veredicto: verificado, parcial, sin datos, o promesa repetida. Todas las citas son verbatim; la atribución se queda a nivel de grupo municipal nunca a personas."
-        limit={30}
+        hint="Los concejales hacen afirmaciones en las intervenciones: cifras presupuestarias, obras en marcha, convenios cerrados, promesas. Cada declaración se cruza con los datos municipales (contratos, subvenciones BDNS, presupuesto, promesas) y recibe un veredicto. Solo se muestran declaraciones contrastables con datos; la atribución se queda a nivel de grupo, nunca a personas."
       />
       <ParticipaBlock />
     </div>

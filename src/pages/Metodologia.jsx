@@ -392,6 +392,20 @@ export default function Metodologia() {
             heurística.
           </li>
           <li>
+            <strong>Qué se publica en el registro público.</strong> La página <code>/plenos</code>{' '}
+            solo muestra declaraciones <em>contrastables con datos</em>: verificadas, parciales,
+            contradichas o promesas ya documentadas. Las acusaciones de subtipo <em>opinativa</em>,
+            y cualquier acusación que el verificador deja <em>sin datos</em>, no se publican en
+            bruto: solo llegan al público si una persona curadora las convierte en un{' '}
+            <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+              hallazgo
+            </a>{' '}
+            editorial con contexto y derecho de réplica. Las declaraciones numéricas{' '}
+            <em>sin datos</em> (no acusatorias) quedan ocultas tras el conmutador «mostrar sin
+            datos». Este filtro se aplica al generar los datos, no solo en pantalla: el material no
+            publicable no se incluye en los ficheros descargables.
+          </li>
+          <li>
             <strong>Atribución por medio, no por periodista.</strong> Los hallazgos editoriales
             citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
           </li>
@@ -497,6 +511,22 @@ export default function Metodologia() {
           transparencia de financiación — el proyecto no recibe financiación pública ni privada y su
           código es íntegramente público; (4) transparencia de metodología — esta sección; (5)
           política abierta y honesta de correcciones — la bitácora pública sobre el propio hallazgo.
+        </p>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead
+          eyebrow="Transparencia · /presupuesto"
+          title="Mapa del gasto: qué situamos y qué no"
+        />
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          Situamos en el mapa únicamente los contratos cuyo título nombra una zona concreta
+          (urbanización, polígono o paraje). No existe un campo de «lugar de ejecución» en la fuente
+          (Gobierto/PLACSP), así que el título es la única señal disponible. El medidor de cobertura
+          muestra qué parte del importe adjudicado se puede situar y qué parte no: el gasto sin
+          ubicación (servicios, suministros y obras sin lugar citado) nunca se reparte por zonas. Un
+          contrato que cita dos zonas aparece en ambas, pero cuenta una sola vez en el total
+          situado.
         </p>
       </Card>
 

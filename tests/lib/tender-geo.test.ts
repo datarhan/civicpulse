@@ -1,0 +1,45 @@
+import { describe, it, expect } from 'vitest'
+import { zoneAmountsAt, topContractors, filterContracts } from '../../src/lib/tender-geo'
+
+const ASSIGN = [
+  { id: 'a', zones: ['z1'], dana: false, amount: 100, date: '2024-01-01' },
+  { id: 'b', zones: ['z1', 'z2'], dana: true, amount: 200, date: '2025-06-01' },
+  { id: 'c', zones: ['z2'], dana: false, amount: 50, date: null },
+]
+
+describe('lib/tender-geo', () => {
+  it('zoneAmountsAt accumulates cumulatively up to a timestamp', () => {
+    const m = zoneAmountsAt(ASSIGN, { at: new Date('2024-12-31').getTime() })
+    expect(m.get('z1')).toEqual({ amount: 100, count: 1 }) // b is after the cutoff
+    expect(m.has('z2')).toBe(false)
+  })
+  it('zoneAmountsAt filters to DANA only', () => {
+    const m = zoneAmountsAt(ASSIGN, { danaOnly: true })
+    expect(m.get('z1')).toEqual({ amount: 200, count: 1 })
+    expect(m.get('z2')).toEqual({ amount: 200, count: 1 })
+  })
+  it('topContractors ranks awarded final amounts and ignores non-awarded', () => {
+    const top = topContractors(
+      [
+        { assignee: 'ACME', status: 'awarded', finalAmount: 100 },
+        { assignee: 'ACME', status: 'awarded', finalAmount: 40 },
+        { assignee: 'ACME', status: 'open', finalAmount: 0, initialAmount: 999 },
+        { assignee: 'BETA', status: 'awarded', finalAmount: 90 },
+      ],
+      10,
+    )
+    expect(top[0]).toEqual({ assignee: 'ACME', amount: 140, count: 2 })
+    expect(top[1].assignee).toBe('BETA')
+  })
+  it('filterContracts narrows by text, zone, and dana', () => {
+    const contracts = [
+      { id: 'a', title: 'Obra en Molinet', assignee: 'ACME', awardDate: '2024-01-01', categoryTitle: 'construction', contractType: 'construction' },
+      { id: 'b', title: 'Obra DANA La Reva', assignee: 'ACME', awardDate: '2025-06-01', categoryTitle: 'construction', contractType: 'construction' },
+      { id: 'c', title: 'Servicio limpieza', assignee: 'BETA', awardDate: '2024-01-01', categoryTitle: 'other', contractType: 'services' },
+    ]
+    const byId = new Map(ASSIGN.map((x) => [x.id, x]))
+    expect(filterContracts(contracts, { text: 'molinet' }, byId).map((c) => c.id)).toEqual(['a'])
+    expect(filterContracts(contracts, { zoneSlug: 'z2' }, byId).map((c) => c.id).sort()).toEqual(['b', 'c'])
+    expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual(['b'])
+  })
+})

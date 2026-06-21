@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Card, Pill, SectionHead } from '../../components/Primitives'
+import { Card, ExtLink, Pill, SectionHead } from '../../components/Primitives'
 import { useJsonResource, callCurator, shortDate, PartyChip } from './shared'
 
 function VoiceEnrollmentSection() {
@@ -120,14 +120,9 @@ function VoiceEnrollmentSection() {
                 </div>
                 {enrolled && r.enrollment.sourceUrl && (
                   <div style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 2 }}>
-                    <a
-                      href={r.enrollment.sourceUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      style={{ color: 'inherit' }}
-                    >
+                    <ExtLink href={r.enrollment.sourceUrl} style={{ color: 'inherit' }}>
                       source ↗
-                    </a>
+                    </ExtLink>
                   </div>
                 )}
               </div>

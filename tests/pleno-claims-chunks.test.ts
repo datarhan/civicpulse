@@ -5,6 +5,7 @@ import {
   buildManifest,
   type VerifiedClaimItem,
 } from '../src/scraper/pleno-claims-chunks'
+import { gateItemsForPublic } from '../src/scraper/claim-public-gate'
 
 const baseClaim = {
   id: 'x',
@@ -125,5 +126,36 @@ describe('buildManifest', () => {
     expect(manifest.plenos).toHaveLength(0)
     expect(manifest.totals.items).toBe(0)
     expect(chunks.size).toBe(0)
+  })
+})
+
+describe('chunker applies the public gate', () => {
+  const mk = (id: string, type: string, verdict: string, accusationSubtype?: string) => ({
+    claim: {
+      ...baseClaim,
+      id,
+      plenoId: 'p1',
+      plenoDate: '2026-04-20',
+      type,
+      accusationSubtype,
+    },
+    verification: { verdict, confidence: 1 },
+  })
+
+  it('excludes hidden items and keeps visibility on survivors', () => {
+    const gated = gateItemsForPublic([
+      mk('a', 'acusacion_publica', 'sin-datos', 'opinativa') as never, // hidden
+      mk('b', 'afirmacion_numerica', 'verificado') as never, // shown
+      mk('c', 'afirmacion_numerica', 'sin-datos') as never, // toggle
+    ])
+    const { manifest, chunks } = buildManifest(
+      groupItemsByPleno(gated),
+      '2026-06-21T00:00:00.000Z',
+    )
+    const items = chunks.get('p1')!.items
+    expect(items.map((i) => i.claim.id).sort()).toEqual(['b', 'c'])
+    expect(items.every((i) => i.visibility)).toBe(true)
+    expect(manifest.plenos[0].toggleCount).toBe(1)
+    expect(manifest.totals.items).toBe(2)
   })
 })

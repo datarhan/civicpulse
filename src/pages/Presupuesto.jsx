@@ -1,10 +1,9 @@
-import { Card, Pill, SectionHead } from '../components/Primitives'
+import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
-import { useTenders, STATUS_LABEL, STATUS_TONE, formatDate } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
-import { useCorrelationMaps } from '../hooks/useTenderQuejaCorrelations'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
+import GastoDashboard from '../components/Presupuesto/GastoDashboard'
 
 function ChapterRow({ label, amount, total, color }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
@@ -46,121 +45,6 @@ function ChapterRow({ label, amount, total, color }) {
   )
 }
 
-function RealContracts() {
-  const { loading, error, data } = useTenders()
-  const { byTender } = useCorrelationMaps()
-  if (loading) {
-    return (
-      <Card>
-        <SectionHead eyebrow="Últimos contratos adjudicados" title="Cargando contratos…" />
-      </Card>
-    )
-  }
-  if (error || !data) {
-    return (
-      <Card>
-        <SectionHead eyebrow="Últimos contratos adjudicados" title="Contratos municipales" />
-        <div style={{ fontSize: 12.5, color: 'var(--warn)' }}>
-          Ejecuta <code>npm run scrape:tenders</code> para regenerar los datos.
-        </div>
-      </Card>
-    )
-  }
-  const recent = data.top?.recentAwarded || []
-  const generatedDate = fmtDateLong(data.generatedAt)
-  const formatEur = (n) =>
-    new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
-      maximumFractionDigits: 0,
-    }).format(n)
-
-  return (
-    <Card>
-      <SectionHead
-        eyebrow={`${data.stats.totalContracts} contratos totales · € ${new Intl.NumberFormat(
-          'es-ES',
-          {
-            maximumFractionDigits: 0,
-          },
-        ).format(data.stats.awardedTotalEuros)} adjudicados`}
-        title="Últimos contratos adjudicados"
-      />
-      <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2, marginBottom: 10 }}>
-        Datos reales de ribalicita.ribarroja.es (Gobierto) · actualizado {generatedDate}
-      </div>
-      {recent.slice(0, 8).map((c, i) => (
-        <div
-          key={c.id}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 110px 100px',
-            padding: '10px 0',
-            borderBottom: i === recent.slice(0, 8).length - 1 ? 'none' : '1px solid var(--border2)',
-            alignItems: 'center',
-            fontSize: 13,
-            gap: 10,
-          }}
-        >
-          <div style={{ minWidth: 0 }}>
-            <div style={{ fontWeight: 500, lineHeight: 1.3 }}>
-              {c.permalink ? (
-                <a
-                  href={c.permalink}
-                  target="_blank"
-                  rel="noreferrer"
-                  style={{ color: 'inherit', textDecoration: 'none' }}
-                >
-                  {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title}
-                </a>
-              ) : (
-                <span>{c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title}</span>
-              )}
-            </div>
-            <div style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 2 }}>
-              {c.contractor || 'Sin adjudicatario'} · {c.awardDate ? formatDate(c.awardDate) : '—'}
-            </div>
-          </div>
-          <div className="mono" style={{ fontSize: 13, fontWeight: 700, textAlign: 'right' }}>
-            {formatEur(c.finalAmount)}
-          </div>
-          <div
-            style={{
-              textAlign: 'right',
-              display: 'flex',
-              gap: 6,
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-            }}
-          >
-            {(byTender.get(c.permalink) || []).length > 0 && (
-              <span
-                className="mono"
-                title={`${byTender.get(c.permalink).length} queja(s) posiblemente relacionadas — requiere verificación humana`}
-                style={{
-                  fontSize: 9.5,
-                  padding: '1px 6px',
-                  borderRadius: 3,
-                  background: 'var(--intel-soft)',
-                  color: 'var(--intel-ink)',
-                  fontWeight: 700,
-                  letterSpacing: '.04em',
-                }}
-              >
-                ↔ {byTender.get(c.permalink).length} queja
-                {byTender.get(c.permalink).length === 1 ? '' : 's'}
-              </span>
-            )}
-            <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">
-              {STATUS_LABEL[c.status] || c.status}
-            </Pill>
-          </div>
-        </div>
-      ))}
-    </Card>
-  )
-}
-
 function RealSubsidies() {
   const { loading, error, data } = useBdns()
   if (loading || error || !data) return null
@@ -193,14 +77,9 @@ function RealSubsidies() {
             </span>
           </div>
           <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
-            <a
-              href={s.sourceUrl}
-              target="_blank"
-              rel="noreferrer"
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
+            <ExtLink href={s.sourceUrl} style={{ color: 'inherit', textDecoration: 'none' }}>
               {s.description.length > 180 ? s.description.slice(0, 180) + '…' : s.description}
-            </a>
+            </ExtLink>
           </div>
         </div>
       ))}
@@ -396,7 +275,16 @@ function RealBudgetHeader() {
           </div>
         </Card>
       </div>
+    </>
+  )
+}
 
+function BudgetCharts() {
+  const { loading, error, data } = useBudget()
+  if (loading || error || !data) return null
+  const s = data.snapshot
+  return (
+    <>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
         <Card>
           <SectionHead
@@ -439,7 +327,6 @@ function RealBudgetHeader() {
           </div>
         </Card>
       </div>
-
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 16, marginBottom: 28 }}>
         <Card>
           <SectionHead
@@ -473,11 +360,10 @@ export default function Presupuesto() {
       style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
     >
       <RealBudgetHeader />
-
       <div style={{ marginBottom: 16 }}>
-        <RealContracts />
+        <GastoDashboard />
       </div>
-
+      <BudgetCharts />
       <div style={{ marginBottom: 16 }}>
         <RealSubsidies />
       </div>
