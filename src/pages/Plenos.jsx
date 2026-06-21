@@ -674,10 +674,10 @@ export default function Plenos() {
       <PlenoVoteSuggestionsBlock />
       <PlenoFindingsSection />
       <ClaimLedgerSection
+        controls
         eyebrow="Verificación automática de declaraciones"
         title="Declaraciones hechas en el pleno · contraste con los datos"
-        hint="Los concejales hacen afirmaciones en las intervenciones: cifras presupuestarias, obras en marcha, convenios cerrados, promesas. Esta página cruza cada declaración con los datos municipales (contratos publicados, subvenciones BDNS, presupuesto, promesas ya documentadas) y emite un veredicto: verificado, parcial, sin datos, o promesa repetida. Todas las citas son verbatim; la atribución se queda a nivel de grupo municipal nunca a personas."
-        limit={30}
+        hint="Los concejales hacen afirmaciones en las intervenciones: cifras presupuestarias, obras en marcha, convenios cerrados, promesas. Cada declaración se cruza con los datos municipales (contratos, subvenciones BDNS, presupuesto, promesas) y recibe un veredicto. Solo se muestran declaraciones contrastables con datos; la atribución se queda a nivel de grupo, nunca a personas."
       />
       <ParticipaBlock />
     </div>
