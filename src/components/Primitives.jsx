@@ -1,4 +1,5 @@
 import { Ic } from './Icons'
+import { safeHref } from '../lib/formatters'
 
 const TONES = {
   neutral: { bg: 'var(--soft)', fg: 'var(--ink)' },
@@ -168,6 +169,26 @@ export function LinkArrow({ children, ...rest }) {
     >
       {children}
     </button>
+  )
+}
+
+/**
+ * External hyperlink with an XSS-safe href. Renders an
+ * `<a target="_blank" rel="noreferrer">` ONLY when the URL is http(s);
+ * otherwise falls back to a plain `<span>` with the same children/props — so a
+ * `javascript:`/`data:` URL from scraped data can never become a live href.
+ *
+ * Use for scraped/external URLs (press links, source URLs, PDFs, permalinks).
+ * Do NOT use for internal routes (`#anchors`, `/paths`), `mailto:`/`tel:`, or
+ * download/blob URLs — those are not http(s) and would render as plain text.
+ */
+export function ExtLink({ href, children, ...rest }) {
+  const safe = safeHref(href)
+  if (!safe) return <span {...rest}>{children}</span>
+  return (
+    <a href={safe} target="_blank" rel="noreferrer" {...rest}>
+      {children}
+    </a>
   )
 }
 
