@@ -39,12 +39,40 @@ const COMPLETION_PATTERNS = [
   /\btermin(ad[oa]|aron|amos|ada s)\b/i,
   /\bfinaliz(ad[oa]|aron|amos)\b/i,
   /\bcompletad[oa]\b/i,
+  /\bconcluid[oa]\b/i,
   /\becha[da]?\s+(y[a]?\s+)?hecha?\b/i,
   /\binaugurad[oa]\b/i,
   /\babierta\s+al\s+p[uú]blico\b/i,
-  /\bobra\s+entregada\b/i,
+  /\bentregad[oa]\b/i,
   /\bestá\s+funcionando\b/i,
+  /\ben\s+funcionamiento\b/i,
+  /\boperativ[oa]\b/i,
+  /\b(puest[oa]\s+)?en\s+servicio\b/i,
+  /\bpuest[oa]\s+en\s+marcha\b/i,
 ]
+
+// Negation cues that flip a completion verb: "no está terminada", "aún no se
+// ha finalizado", "sin terminar". When one appears just BEFORE the completion
+// match we must NOT treat the line as a completion claim — otherwise we'd emit
+// a FALSE contradicho against a speaker who said the work is NOT done, which is
+// both an accuracy bug and a libel risk. Errs toward NOT flagging (libel-safe).
+const NEGATION_CUE = /\b(no|ni|sin|tampoco|nunca|jam[áa]s)\b/i
+
+/**
+ * True when the verbatim asserts the work is finished/done — negation-aware.
+ * For each completion verb that matches, we reject the match if a negation cue
+ * sits within the ~30 characters immediately preceding it.
+ */
+export function claimsCompletion(verbatim: string): boolean {
+  for (const rx of COMPLETION_PATTERNS) {
+    const m = rx.exec(verbatim)
+    if (!m) continue
+    const before = verbatim.slice(Math.max(0, m.index - 30), m.index)
+    if (NEGATION_CUE.test(before)) continue // negated → not a completion claim
+    return true
+  }
+  return false
+}
 
 const TENDER_NOT_DONE_STATUSES = new Set([
   'open',
@@ -486,8 +514,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     claim.entities.referencedEntity &&
     tenderList.length > 0
   ) {
-    // Did the speaker claim the work is COMPLETED?
-    const claimsCompleted = COMPLETION_PATTERNS.some((rx) => rx.test(claim.verbatim))
+    // Did the speaker claim the work is COMPLETED? (negation-aware)
+    const claimsCompleted = claimsCompletion(claim.verbatim)
     for (const t of tenderList) {
       const textSim = overlapScore(claim.entities.referencedEntity, tenderTitle(t))
       // 0.50 floor — lowered from 0.65 once tenderTitle was extended to

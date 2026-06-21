@@ -219,6 +219,91 @@ describe('verifyClaim — contradicho on completion vs tender status', () => {
   })
 })
 
+describe('verifyClaim — completion detection is negation-aware (libel-safe)', () => {
+  const openTender = {
+    contracts: [
+      {
+        permalink: 'https://contrataciones.example/r04',
+        title: 'Reconstrucción post-DANA fase 1',
+        status: 'open',
+      },
+    ],
+  }
+
+  it('does NOT emit contradicho when the speaker says the work is NOT finished', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        topic: 'urbanismo',
+        verbatim: 'la reconstrucción post-DANA no está terminada todavía',
+        entities: { referencedEntity: 'reconstruccion dana' },
+      }),
+      tenders: openTender,
+    })
+    // Speaker AGREES it is not done — flagging this as "contradicho" would
+    // falsely claim their statement is contradicted by the data.
+    expect(v.verdict).not.toBe('contradicho')
+  })
+
+  it('does NOT emit contradicho for "aún no se ha finalizado"', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        topic: 'urbanismo',
+        verbatim: 'aún no se ha finalizado la reconstrucción post-DANA',
+        entities: { referencedEntity: 'reconstruccion dana' },
+      }),
+      tenders: openTender,
+    })
+    expect(v.verdict).not.toBe('contradicho')
+  })
+
+  it('still emits contradicho when "no" appears AFTER the completion verb (unrelated)', () => {
+    const v = verifyClaim({
+      claim: baseClaim({
+        type: 'cita_obra',
+        topic: 'urbanismo',
+        verbatim: 'la reconstrucción post-DANA está terminada, no como dicen otros',
+        entities: { referencedEntity: 'reconstruccion dana' },
+      }),
+      tenders: openTender,
+    })
+    expect(v.verdict).toBe('contradicho')
+  })
+})
+
+describe('verifyClaim — completion synonyms (recall)', () => {
+  const openTender = {
+    contracts: [
+      {
+        permalink: 'https://contrataciones.example/r05',
+        title: 'Urbanización del polígono norte',
+        status: 'pendiente',
+      },
+    ],
+  }
+  for (const phrase of [
+    'el polígono norte ya está operativo',
+    'el polígono norte se ha puesto en servicio',
+    'el polígono norte está en funcionamiento',
+    'la urbanización del polígono norte se ha puesto en marcha',
+    'la urbanización del polígono norte está concluida',
+  ]) {
+    it(`flags contradicho for "${phrase}" vs a still-pending tender`, () => {
+      const v = verifyClaim({
+        claim: baseClaim({
+          type: 'cita_obra',
+          topic: 'urbanismo',
+          verbatim: phrase,
+          entities: { referencedEntity: 'urbanización del polígono norte' },
+        }),
+        tenders: openTender,
+      })
+      expect(v.verdict).toBe('contradicho')
+    })
+  }
+})
+
 describe('verifyClaim — BDNS match', () => {
   it('finds a matching grant in BDNS and returns verificado', () => {
     const v = verifyClaim({
