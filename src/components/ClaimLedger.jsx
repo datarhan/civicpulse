@@ -9,7 +9,7 @@ import {
   VERDICT_LABEL,
   VERDICT_TONE,
 } from '../hooks/usePlenoClaims'
-import { gateForDisplay, sortSignalFirst, filterClaims, facetCounts } from '../lib/claim-ledger'
+import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
 
 function formatEuros(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
@@ -162,176 +162,29 @@ function ClaimCard({ item }) {
   )
 }
 
-const SIGNAL_VERDICTS = ['contradicho', 'verificado', 'parcial', 'promesa-repetida']
-
-function VerdictChip({ verdict, count, active, onClick }) {
-  const tone = VERDICT_TONE[verdict] || 'neutral'
-  return (
-    <button
-      type="button"
-      aria-pressed={active}
-      onClick={onClick}
-      className="mono"
-      style={{
-        fontSize: 11,
-        padding: '3px 9px',
-        borderRadius: 999,
-        cursor: 'pointer',
-        border: `1px solid ${active ? `var(--${tone}-ink)` : 'var(--border2)'}`,
-        background: active ? `var(--${tone}-soft)` : 'transparent',
-        color: active ? `var(--${tone}-ink)` : 'var(--ink60)',
-        fontWeight: active ? 700 : 500,
-      }}
-    >
-      {VERDICT_LABEL[verdict] || verdict} · {count}
-    </button>
-  )
-}
-
-function LedgerControls({ items, state, set }) {
-  const t = useT()
-  const counts = useMemo(() => facetCounts(items), [items])
-  const plenos = useMemo(() => {
-    const seen = new Map()
-    for (const it of items) if (it.claim?.plenoId) seen.set(it.claim.plenoId, it.claim.plenoDate)
-    return [...seen.entries()].sort((a, b) => String(b[1]).localeCompare(String(a[1])))
-  }, [items])
-  const grupos = useMemo(
-    () => [...new Set(items.map((it) => it.claim?.speakerGroup).filter(Boolean))].sort(),
-    [items],
-  )
-  const selStyle = {
-    fontSize: 12,
-    padding: '4px 8px',
-    borderRadius: 6,
-    border: '1px solid var(--border2)',
-    background: 'var(--paper)',
-    color: 'var(--ink)',
-  }
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 12 }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-        {SIGNAL_VERDICTS.filter((v) => counts.verdict[v]).map((v) => (
-          <VerdictChip
-            key={v}
-            verdict={v}
-            count={counts.verdict[v]}
-            active={state.verdict === v}
-            onClick={() => set({ verdict: state.verdict === v ? null : v })}
-          />
-        ))}
-      </div>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
-        <input
-          type="search"
-          aria-label={t('ledger.search')}
-          placeholder={t('ledger.search')}
-          value={state.query}
-          onChange={(e) => set({ query: e.target.value })}
-          style={{ ...selStyle, flex: '1 1 200px', minWidth: 160 }}
-        />
-        <select
-          aria-label={t('ledger.allTypes')}
-          value={state.type ?? ''}
-          onChange={(e) => set({ type: e.target.value || null })}
-          style={selStyle}
-        >
-          <option value="">{t('ledger.allTypes')}</option>
-          {Object.keys(counts.type).map((ty) => (
-            <option key={ty} value={ty}>
-              {CLAIM_TYPE_LABEL[ty] || ty}
-            </option>
-          ))}
-        </select>
-        <select
-          aria-label={t('ledger.allPlenos')}
-          value={state.pleno ?? ''}
-          onChange={(e) => set({ pleno: e.target.value || null })}
-          style={selStyle}
-        >
-          <option value="">{t('ledger.allPlenos')}</option>
-          {plenos.map(([id, date]) => (
-            <option key={id} value={id}>
-              {date}
-            </option>
-          ))}
-        </select>
-        <select
-          aria-label={t('ledger.allGroups')}
-          value={state.grupo ?? ''}
-          onChange={(e) => set({ grupo: e.target.value || null })}
-          style={selStyle}
-        >
-          <option value="">{t('ledger.allGroups')}</option>
-          {grupos.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
-        <label
-          className="mono"
-          style={{
-            fontSize: 11,
-            color: 'var(--ink60)',
-            display: 'inline-flex',
-            gap: 6,
-            alignItems: 'center',
-            cursor: 'pointer',
-          }}
-        >
-          <input
-            type="checkbox"
-            checked={state.showSinDatos}
-            onChange={(e) => set({ showSinDatos: e.target.checked })}
-          />
-          {t('ledger.showSinDatos')}
-        </label>
-      </div>
-    </div>
-  )
-}
-
 /**
- * The public claim ledger. Always gated (drops `hidden` — opinativa /
- * sin-datos accusations) via claim-public-gate, then signal-sorted. With
- * `controls` it renders verdict chips + type/pleno/grupo selects + search
- * + a "mostrar sin datos" toggle (the /plenos surface). Without controls
- * (e.g. /departamentos/:slug) it shows the gated+sorted list, sin-datos
- * included, narrowed by the `filter` prop.
+ * The claim ledger. Always gated (drops `hidden` — opinativa / sin-datos
+ * accusations — via claim-public-gate) then signal-sorted. Source is either
+ * the `items` prop (e.g. one pleno's chunk on /plenos/:id) or, when omitted,
+ * the full claim set via usePlenoClaims (e.g. /departamentos narrowed by
+ * `filter`). Cross-session filtering/search lives on /declaraciones.
  *
- * Honest empty state when no data-grounded declarations exist yet — the
- * pipeline hasn't surfaced contrastable claims, not that the government is
- * clean.
+ * Honest empty state when no data-grounded declarations exist — the pipeline
+ * hasn't surfaced contrastable claims, not that the government is clean.
  */
-export function ClaimLedger({ filter, limit = 20, emptyHint, controls = false }) {
+export function ClaimLedger({ filter, limit = 20, emptyHint, items }) {
   const t = useT()
-  const { loading, data } = usePlenoClaims()
-  const [state, setState] = useState({
-    verdict: null,
-    type: null,
-    pleno: null,
-    grupo: null,
-    query: '',
-    showSinDatos: false,
-  })
+  const fetched = usePlenoClaims()
+  const loading = items ? false : fetched.loading
   const [shown, setShown] = useState(limit)
-  const set = (patch) => {
-    setState((s) => ({ ...s, ...patch }))
-    setShown(limit)
-  }
 
-  // Gate (defense-in-depth) → apply external topic filter → signal-sort.
+  // Gate (defense-in-depth) → optional external filter → signal-first sort.
   const base = useMemo(() => {
-    const gated = gateForDisplay(data?.items ?? [])
+    const source = items ?? fetched.data?.items ?? []
+    const gated = gateForDisplay(source)
     const scoped = filter ? gated.filter(filter) : gated
     return sortSignalFirst(scoped)
-  }, [data, filter])
-
-  const visible = useMemo(() => {
-    // controls surface: honor the toggle. Department surface: include sin-datos.
-    return controls ? filterClaims(base, state) : filterClaims(base, { showSinDatos: true })
-  }, [base, controls, state])
+  }, [items, fetched.data, filter])
 
   if (loading) {
     return (
@@ -359,14 +212,10 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, controls = false })
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      {controls && <LedgerControls items={base} state={state} set={set} />}
-      {visible.length === 0 && (
-        <div style={{ padding: 12, fontSize: 12, color: 'var(--ink60)' }}>{t('ledger.empty')}</div>
-      )}
-      {visible.slice(0, shown).map((it) => (
+      {base.slice(0, shown).map((it) => (
         <ClaimCard key={it.claim.id} item={it} />
       ))}
-      {visible.length > shown && (
+      {base.length > shown && (
         <button
           type="button"
           onClick={() => setShown((n) => n + 25)}
@@ -382,14 +231,14 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, controls = false })
             cursor: 'pointer',
           }}
         >
-          {t('ledger.loadMore')} ({visible.length - shown})
+          {t('ledger.loadMore')} ({base.length - shown})
         </button>
       )}
     </div>
   )
 }
 
-export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint, controls }) {
+export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint }) {
   return (
     <section style={{ marginTop: 28 }}>
       <SectionHead
@@ -413,7 +262,7 @@ export function ClaimLedgerSection({ filter, limit, title, eyebrow, hint, contro
           </Link>
         </p>
       )}
-      <ClaimLedger filter={filter} limit={limit} controls={controls} />
+      <ClaimLedger filter={filter} limit={limit} />
     </section>
   )
 }
