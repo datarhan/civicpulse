@@ -1,225 +1,9 @@
 {
-  "generatedAt": "2026-04-29T10:31:33.384Z",
+  "generatedAt": "2026-06-21T10:15:44.650Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
   "items": [
-    {
-      "claim": {
-        "id": "ma87e0-082-acu-aa8590",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 82,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "tanto el Partido Popular como Vox hablan de carga ideológica o componente ideológico, de este presupuesto",
-        "context": "El portavoz, que señala hablar el último en todas las rondas, atribuye a PP y VOX haber descrito el presupuesto municipal 2026 como cargado de componente ideológico, antes de referirse a las fuerzas progresistas como el equipo de gobierno.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.62,
-        "reasoning": "Atribuye posiciones concretas y expresadas en la misma sesión a dos partidos nombrados (PP y VOX) sobre el presupuesto 2026; verificable contrastando la transcripción de sus propias intervenciones en el mismo pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-082-acu-aa8590",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-083-acu-ee8bc8",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 83,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "no me sorprende que tanto el Partido Popular como Vox hablan de carga ideológica o componente ideológico, de este presupuesto",
-        "context": "El portavoz de Compromís, hablando en último turno, responde a las intervenciones previas de PP y VOX sobre el Presupuesto 2026, afirmando que no le sorprende que esos grupos califiquen el presupuesto de ideológico.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.78,
-        "reasoning": "Atribuye a PP y VOX haber empleado la expresión 'carga ideológica / componente ideológico' al referirse al presupuesto en el mismo pleno; verificable contrastando las intervenciones anteriores en la transcripción completa del acta.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-083-acu-ee8bc8",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-083-acu-d9b252",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 83,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "Habla el Partido Popular de mejorar servicios básicos y habla de retallar impuestos",
-        "context": "El portavoz de Compromís atribuye al PP haber defendido simultáneamente la mejora de servicios básicos y la reducción de impuestos en el debate del presupuesto 2026, insinuando la incoherencia de ambas propuestas.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "propuesta pp reducción de impuestos y mejora servicios básicos"
-        },
-        "confidence": 0.8,
-        "reasoning": "Atribuye al PP posiciones concretas expresadas en el mismo pleno; contrastable con las intervenciones previas del grupo popular recogidas en el acta o la transcripción.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-083-acu-d9b252",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-084-acu-7896db",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 84,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "reducir esas subvenciones de carácter social o cultural, pues nos parece una barbaridad",
-        "context": "Portavoz de Compromís critica la propuesta del PP en el presupuesto 2026, atribuyéndole una reducción de subvenciones sociales y culturales: 'predisponemos la vida de las personas, la estabilidad de las familias y sobre todo la igualdad entre todos y todas. Y por eso creemos que realmente, que reducir esas subvenciones de carácter social o cultural, pues nos parece una barbaridad.'",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "subvenciones sociales y culturales presupuesto 2026"
-        },
-        "confidence": 0.72,
-        "reasoning": "Atribución verificable: los capítulos de gasto social y cultural del borrador del presupuesto 2026 pueden cotejarse en el CONPREL/budget.json para confirmar si existe reducción respecto al ejercicio anterior, y las enmiendas del PP en acta confirmarían la autoría de la propuesta.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-084-acu-7896db",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-084-acu-32acf7",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 84,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "habla de incrementar subvenciones a algunas entidades, que seguramente no serán ideológicas, pienso yo",
-        "context": "Tras acusar al PP de incongruencia fiscal, el portavoz de Compromís añade: 'Y a la vez habla de incrementar subvenciones a algunas entidades, que seguramente no serán ideológicas, pienso yo.' La frase es claramente sarcástica, insinuando afinidad ideológica entre las entidades beneficiadas y el PP.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "subvenciones a entidades pp presupuesto 2026"
-        },
-        "confidence": 0.6,
-        "reasoning": "La parte factual (PP propone aumentar subvenciones a ciertas entidades) podría verificarse en BDNS/tenders; pero el juicio de 'afinidad ideológica' es especulativo y sarcástico, sin entidades nombradas. Subtype opinativa porque la afirmación central es una insinuación de intención sin cifras ni nombre de beneficiario.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-084-acu-32acf7",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-085-acu-33fea3",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 85,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "a la vez habla de incrementar subvenciones a algunas entidades, que seguramente no serán ideológicas",
-        "context": "El speaker critica la propuesta presupuestaria de otro grupo, señalando que pretende a la vez reducir impuestos e incrementar subvenciones a entidades que insinúa son ideológicamente afines.",
-        "topic": "fiscal",
-        "entities": {},
-        "confidence": 0.62,
-        "reasoning": "Insinuación sin cifras ni entidades nombradas; no es contrastable automáticamente contra BDNS/tenders. Clasificada opinativa porque la carga de la frase es valorativa ('seguramente no serán ideológicas'), no factual.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-085-acu-33fea3",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-085-acu-d953a1",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 85,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Vox, que casi me sorprendió cuando ha dicho en su parlamento al final, dice libertad, seguridad y prosperidad.",
-        "context": "El speaker menciona la intervención de VOX en el mismo pleno, citando el lema final empleado por su representante: 'libertad, seguridad y prosperidad', y expresa sorpresa ante ello.",
-        "topic": "other",
-        "entities": {
-          "date": "2026-03-16",
-          "referencedEntity": "vox — intervención en el pleno de 2026-03-16"
-        },
-        "confidence": 0.72,
-        "reasoning": "Atribuye a VOX una cita verbal específica ('libertad, seguridad y prosperidad') pronunciada en este mismo pleno; verificable cruzando con la transcripción completa de la sesión o el acta.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-085-acu-d953a1",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
     {
       "claim": {
         "id": "ma87e0-087-pro-06aff1",
@@ -251,38 +35,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-087-acu-b155f8",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 87,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "venimos reclamando desde hace ya algunos presupuestos y que por culpa de las situaciones sobrevivientes, que la verdad es que ya no sé lo que puede pasar más para que al final no podamos tener un año tranquilo.",
-        "context": "El portavoz de Compromís justifica por qué sus dos condiciones son legítimas, afirmando que llevan varios ciclos presupuestarios reclamándolas al equipo de gobierno sin éxito, atribuyendo los retrasos a circunstancias externas sucesivas.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuestos municipales ejercicios anteriores"
-        },
-        "confidence": 0.55,
-        "reasoning": "La afirmación de que esas demandas constan en plenos/presupuestos anteriores es contrastable contra las actas y órdenes del día de ejercicios previos (plenos-agendas.json). La vaguedad de 'algunos presupuestos' limita la precisión de la verificación.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-087-acu-b155f8",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -315,7 +69,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -346,7 +101,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -377,7 +133,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -408,38 +165,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-089-acu-9ac496",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 89,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "Hemos hablado ya de muchos presupuestos",
-        "context": "Compromís justifica la urgencia de su demanda sobre el Museo Faller indicando que el proyecto lleva siendo debatido en varios ciclos presupuestarios consecutivos sin materializarse.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "museo faller"
-        },
-        "confidence": 0.58,
-        "reasoning": "Acusación implícita de reiterado aplazamiento del Museo Faller; sin cifra concreta de ejercicios, la verificación requiere revisar actas de plenos y órdenes del día anteriores donde el proyecto haya sido mencionado.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-089-acu-9ac496",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -470,7 +197,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -501,38 +229,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-090-acu-d5621f",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 90,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "pedimos el compromiso del PSOE de ponerlo en marcha lo más pronto posible. Y eso condicionaría nuestro voto en este presupuesto.",
-        "context": "El portavoz vincula explícitamente el voto favorable al presupuesto 2026 a que el PSOE se comprometa públicamente con la creación del Museo Faller, señalando implícitamente que dicho compromiso no existe todavía.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "presupuesto municipal 2026"
-        },
-        "confidence": 0.74,
-        "reasoning": "La condición del voto es verificable cruzando el registro de votación del pleno (pleno-votes.json) con cualquier compromiso público posterior del PSOE sobre el Museo Faller; la ausencia de compromiso previo es el hecho implícito que el verificador puede contrastar.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-090-acu-d5621f",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -563,7 +261,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -595,7 +294,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -627,7 +327,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -658,38 +359,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-093-acu-f0abf0",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 93,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "No se puede soplar y sorber a la vez. Como decía un tal Felipe González. A Vox. La motosierra.",
-        "context": "En la segunda ronda de intervenciones, el concejal identificado como José dirige tres titulares a los grupos de la oposición: al Partido Popular le lanza la expresión atribuida a Felipe González 'no se puede soplar y sorber a la vez', y a Vox la referencia a 'la motosierra'.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "partido popular"
-        },
-        "confidence": 0.6,
-        "reasoning": "Acusación de contradicción o doble rasero dirigida al PP mediante un refrán sin cifras ni entidades concretas; subclasificada como opinativa porque no cita contratos, votos ni importes verificables. No se verifica automáticamente; sólo revisión editorial.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-093-acu-f0abf0",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -721,7 +392,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -752,7 +424,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -783,7 +456,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -814,7 +488,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -847,7 +522,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -880,7 +556,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -911,38 +588,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-101-acu-914570",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 101,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "el Partido Popular dice que no hemos sido previsores, que nos hemos ajustado en ciento y pico mil euros",
-        "context": "El orador refuta la crítica del PP sobre falta de previsión presupuestaria, citando que el PP alega que el ajuste ha sido de aproximadamente cien mil euros, y contrapone esa cifra con datos del endeudamiento y la política de superávit.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "ajuste presupuestario 2026 riba-roja de túria"
-        },
-        "confidence": 0.65,
-        "reasoning": "Atribuye al PP una posición verificable en el pleno (su voto y argumentación sobre el presupuesto 2026 constan en acta); el importe de 'ciento y pico mil euros' de ajuste es contrastable con el expediente presupuestario.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-101-acu-914570",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -974,7 +621,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1006,7 +654,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1038,7 +687,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1069,7 +719,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1104,7 +755,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1135,7 +787,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1166,7 +819,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1201,7 +855,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1232,7 +887,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1267,7 +923,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1305,7 +962,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1353,7 +1011,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1395,7 +1054,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1431,7 +1091,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1462,7 +1123,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1493,7 +1155,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1524,7 +1187,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1555,98 +1219,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-107-acu-4c9912",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 107,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Una curiosidad, la marca blanca que dice Compromís, el PSOE, ¿cuál es la marca blanca entre el Partido Popular y Vox?",
-        "context": "El portavoz contraataca a Compromís, que habría calificado al PSOE como 'marca blanca', preguntando retóricamente si el PP desempeña ese mismo papel respecto a VOX en el pleno.",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.55,
-        "reasoning": "Acusación de subordinación política entre PP y VOX formulada como pregunta retórica; no cita cifras, contratos ni votos concretos — es valoración de intenciones/estilo sin entidades verificables, queda en revisión editorial únicamente.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-107-acu-4c9912",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-108-acu-96017c",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 108,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "la marca blanca que dice Compromís, el PSOE, ¿cuál es la marca blanca entre el Partido Popular y Vox?",
-        "context": "El orador responde a la acusación de Compromís de que el PSOE sería 'marca blanca' del PP, y lanza la pregunta retórica de qué relación análoga existiría entre PP y VOX, insinuando una dependencia política entre ambos partidos.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "pp, vox, compromís, psoe"
-        },
-        "confidence": 0.55,
-        "reasoning": "El orador (contexto apunta a PSOE) atribuye a Compromís la afirmación de que PSOE es 'marca blanca' de PP, y reformula la acusación hacia PP-VOX. Es una caracterización política sin cifras ni convenios citables; el verificador solo podría contrastarla con patrones de voto comunes PP-VOX, pero al formularse como pregunta retórica sin datos concretos se clasifica como opinativa.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-108-acu-96017c",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-109-acu-d98d7d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 109,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Para ustedes es un gasto ideológico y para nosotros no responde más que a una necesidad, por ejemplo, de actuar contra la violencia de género.",
-        "context": "El orador debate sobre la naturaleza del gasto público y afirma que lo que la oposición califica de 'gasto ideológico' es para su grupo una necesidad social, poniendo como ejemplo los programas contra la violencia de género.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "programas contra la violencia de género"
-        },
-        "confidence": 0.55,
-        "reasoning": "El orador acusa implícitamente a la parte contraria de etiquetar el gasto en violencia de género como 'ideológico'. No hay cifras ni entidades contractuales citadas; es una valoración sobre la intención/posición política del otro grupo. Sólo revisión editorial, no verificación automática.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-109-acu-d98d7d",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1679,7 +1253,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1711,7 +1286,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1744,7 +1320,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1777,7 +1354,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1810,7 +1388,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1841,7 +1420,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1872,7 +1452,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1903,7 +1484,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1938,7 +1520,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1970,7 +1553,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2003,7 +1587,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2035,7 +1620,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2068,7 +1654,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2101,7 +1688,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2134,40 +1722,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-115-acu-f6e4c5",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 115,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "esa situación de descontrol de la Generalitat en ingresar, por lo menos, a este ayuntamiento",
-        "context": "Pues, como comprenderán con esa situación de descontrol de la Generalitat en ingresar, por lo menos, a este ayuntamiento, pues a veces… [fragmento cortado]. El contexto previo cifra la deuda de la Generalitat en ~4 M€ al 31-12-2025.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 4000000,
-          "date": "2025-12-31",
-          "referencedEntity": "generalitat valenciana — deuda pendiente con ayuntamiento de riba-roja de túria"
-        },
-        "confidence": 0.75,
-        "reasoning": "Acusación de incumplimiento de pago por la Generalitat Valenciana, anclada en cifras concretas (~4 M€ a 31-12-2025) verificables contra los estados de liquidación municipal y los informes del Ministerio de Hacienda sobre morosidad de CCAA con entes locales (art. 18 LOEPSF).",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-115-acu-f6e4c5",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2200,7 +1756,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2232,100 +1789,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-117-acu-5dfd9e",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 117,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Algunos han tenido la voluntad de hacerlo y otros no. En fin, cada uno está en la suya, por hacer lo que considere oportuno de hacer.",
-        "context": "Hemos tenido tiempo para dialogar, para consensuar, para hablar. Algunos han tenido la voluntad de hacerlo y otros no. En fin, cada uno está en la suya, por hacer lo que considere oportuno de hacer.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "negociación presupuesto 2026"
-        },
-        "confidence": 0.65,
-        "reasoning": "Acusación implícita de falta de voluntad negociadora dirigida a grupos de la oposición sin nombrarlos explícitamente ni aportar cifras ni entidades concretas. Al carecer de referencia a votos, importes o contratos verificables, la clasificación es 'opinativa' y solo procede revisión editorial; no se puede contrastar automáticamente.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-117-acu-5dfd9e",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-119-acu-f48d77",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 119,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "el plan de bibliotecas, nosotros hemos esmenado desde el Partido Popular para que la partida de bibliotecas aumente",
-        "context": "Intervención de un portavoz del PP en el debate sobre el presupuesto 2026. El orador, tras reconocer que los presupuestos tienen un componente ideológico, afirma que el PP ha presentado enmiendas (esmenes) concretas al borrador presupuestario para incrementar la dotación de bibliotecas.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "partida de bibliotecas presupuesto 2026"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirmación verificable: PP declara haber registrado una enmienda al presupuesto 2026 para aumentar la partida de bibliotecas. Se puede contrastar con el expediente presupuestario (Expte. Presupuesto 2026) y las actas de la Comisión donde se dictaminaron o rechazaron enmiendas. 'Esmenado' es probable transcripción Whisper del valenciano 'esmenat' (enmendado).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-119-acu-f48d77",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-119-acu-846b15",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 119,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "La parte de la promoción lingüística del Valencia, nosotros hemos esmenado también para que aumente",
-        "context": "Mismo portavoz del PP, inmediatamente a continuación de la mención al plan de bibliotecas, afirma haber presentado igualmente una enmienda presupuestaria para aumentar la dotación destinada a la promoción lingüística del Valencià.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "partida promoción lingüística del valencià"
-        },
-        "confidence": 0.68,
-        "reasoning": "Segunda enmienda presupuestaria declarada por PP, esta vez sobre promoción lingüística del Valencià. Verificable a través de las enmiendas formalizadas en el expediente del presupuesto 2026. Confianza algo reducida porque Whisper transcribe 'Valencia' en lugar de 'Valencià' (error fonético esperable con WER ~5-10%).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-119-acu-846b15",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2357,69 +1822,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-120-acu-b71062",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 120,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "nosotros tenemos un borrador desde octubre. Desde octubre del 24 y no ha variado mucho",
-        "context": "El portavoz del PP argumenta que el borrador presupuestario lleva disponible (o fue compartido con los grupos) desde octubre de 2024 y que el contenido apenas ha evolucionado, lo que implica una crítica al ritmo de la negociación.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "borrador presupuesto municipal 2026 (octubre 2024)"
-        },
-        "confidence": 0.7,
-        "reasoning": "Afirmación sobre el momento en que el borrador presupuestario fue elaborado o compartido con la oposición; verificable contra el registro de entrada/actas de comisión de hacienda o los metadatos del expediente de aprobación inicial.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-120-acu-b71062",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-120-acu-93a812",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 120,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "nosotros hemos esmenado desde el Partido Popular para que la partida de bibliotecas aumente",
-        "context": "El portavoz del PP enumera las enmiendas presentadas al presupuesto 2026, señalando que el PP ha enmendado al alza la partida destinada a bibliotecas.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "partida presupuestaria bibliotecas 2026"
-        },
-        "confidence": 0.72,
-        "reasoning": "PP afirma haber presentado enmienda al alza sobre la partida de bibliotecas; verificable contra el expediente de enmiendas al presupuesto 2026 (pleno o comisión informativa de hacienda). 'Esmenado' es probable transcripción Whisper de 'enmendado'/'esmenat' (val.).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-120-acu-93a812",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2451,7 +1855,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2485,7 +1890,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2526,7 +1932,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2561,7 +1968,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2602,7 +2010,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2633,7 +2042,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2674,7 +2084,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2715,7 +2126,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2750,7 +2162,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2781,7 +2194,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2816,7 +2230,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2847,7 +2262,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2889,38 +2305,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-127-acu-51991f",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 127,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "hay partidas y aplicaciones que han pasado del capítulo 2 de gastos al capítulo 4, han desaparecido del capítulo 2 al capítulo 4",
-        "context": "Nosotros, el apartado del capítulo 4 de transferencias, como decía José Ángel el 31 de octubre, pero hay partidas y aplicaciones que han pasado del capítulo 2 de gastos al capítulo 4, han desaparecido del capítulo 2 al capítulo 4. Entonces, hasta que no tienes exactamente e",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "capítulo 2 gastos corrientes / capítulo 4 transferencias corrientes presupuesto 2026"
-        },
-        "confidence": 0.78,
-        "reasoning": "Afirma un reclasificado contable entre capítulos presupuestarios (Cap. 2 → Cap. 4) que puede verificarse comparando el presupuesto 2026 con el del ejercicio anterior en el CONPREL publicado por MinHac; si partidas reaparecen bajo Cap. 4 con destinatarios distintos podría indicar opacidad en la ejecución.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-127-acu-51991f",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2951,7 +2337,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2999,7 +2386,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3030,71 +2418,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-129-acu-bef0f7",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 129,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "si en este presupuesto está incluida la bonificación que ha hablado el señor alcalde en la tasa de la basura por el detrimento del servicio que se ha hecho durante el año 2024",
-        "context": "Un portavoz de la oposición pregunta al equipo de gobierno si el presupuesto 2026 recoge la bonificación en la tasa de basura que el alcalde habría mencionado públicamente, vinculada al deterioro del servicio durante el año 2024.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2024-01-01",
-          "referencedEntity": "bonificación tasa basura detrimento servicio 2024 alcalde"
-        },
-        "confidence": 0.72,
-        "reasoning": "Atribuye al alcalde (PSOE) haber anunciado una bonificación concreta en la tasa de basura por deterioro del servicio en 2024; verificable contra actas de plenos anteriores, declaraciones públicas o documentos presupuestarios.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-129-acu-bef0f7",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-129-acu-9d55e0",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 129,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la bonificación del mes de septiembre del 2024 está incluida en este presupuesto, porque hoy en día no se ha hecho efectivo y ya hace más de dos años",
-        "context": "El mismo portavoz afirma que la bonificación de septiembre de 2024 sobre la tasa de basura no se ha hecho efectiva a la fecha del pleno (marzo 2026) y estima que llevan 'más de dos años' esperando, lo que es cronológicamente inconsistente con la fecha citada.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2024-09-01",
-          "referencedEntity": "bonificación tasa basura septiembre 2024"
-        },
-        "confidence": 0.58,
-        "reasoning": "Afirma que la bonificación de septiembre 2024 no se ha abonado; verificable contra registros de tesorería o acuerdo plenario que la aprobó. La expresión 'más de dos años' es inconsistente con la fecha citada (sept 2024 – mar 2026 ≈ 18 meses), lo que baja la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-129-acu-9d55e0",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3125,7 +2450,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3157,7 +2483,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3188,7 +2515,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3219,69 +2547,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-131-acu-4e6da3",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 131,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Las bonificaciones o las subvenciones al deporte femenino minoren",
-        "context": "También quería decir que en la parte del deporte, el deporte femenino minora. Las bonificaciones o las subvenciones al deporte femenino minoren. Y no hay subvenciones.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "subvenciones deporte femenino presupuesto 2026"
-        },
-        "confidence": 0.62,
-        "reasoning": "Afirma una reducción de las subvenciones al deporte femenino en el presupuesto 2026; verificable cruzando las partidas del capítulo de deportes en budget.json y las convocatorias BDNS del Ayuntamiento filtradas por modalidad/género.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-131-acu-4e6da3",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-132-acu-ace878",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 132,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "nosotros tampoco creemos bien que se haga la distinción entre los clubes históricos o no históricos a la hora de la formación",
-        "context": "El orador critica que el sistema de subvenciones o ayudas a la formación deportiva municipal establezca una categoría diferenciada para 'clubes históricos' frente al resto, lo que a su juicio perjudica a los deportes minoritarios.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "criterio clubes históricos subvenciones formación deportiva"
-        },
-        "confidence": 0.52,
-        "reasoning": "La afirmación implica que las bases reguladoras de las subvenciones municipales al deporte contemplan expresamente la categoría 'club histórico' como criterio de reparto. Esto es verificable contra las convocatorias BDNS y las bases aprobadas en pleno. El framing 'nosotros no creemos bien' es opinativo, pero la existencia del criterio diferenciador es un hecho comprobable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-132-acu-ace878",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3317,7 +2584,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3358,7 +2626,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3389,7 +2658,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3420,38 +2690,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-136-acu-2ba8f3",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 136,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la morosidad va no solamente por parte de la Generalitat, que si tiene que pagar lo tiene que pagar, está claro, estoy de acuerdo con u",
-        "context": "Y, efectivamente, la morosidad va no solamente por parte de la Generalitat, que si tiene que pagar lo tiene que pagar, está claro, estoy de acuerdo con u [fragmento cortado].",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "generalitat valenciana"
-        },
-        "confidence": 0.55,
-        "reasoning": "Se imputa a la Generalitat Valenciana mora de pago frente al Ayuntamiento; es una acusación factual verificable contra el estado de ejecución presupuestaria municipal (derechos reconocidos pendientes de cobro de la GVA) o convenios de financiación. Confianza baja porque el fragmento está cortado y el importe no se cita.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-136-acu-2ba8f3",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3482,7 +2722,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3513,69 +2754,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-139-acu-66a866",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 139,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "agradezco al Partido Socialista su aceptación de las propuestas y también agradezco al espacio político que representa",
-        "context": "Un segundo interviniente, distinto al que habló hasta [5865.8], declara que el Partido Socialista aceptó sus propuestas durante el debate del presupuesto 2026, en el marco de la aprobación inicial del presupuesto municipal.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "partido socialista - aceptación de propuestas presupuestarias 2026"
-        },
-        "confidence": 0.62,
-        "reasoning": "El hablante afirma explícitamente que el PSOE aceptó sus propuestas durante la tramitación del presupuesto; verificable cruzando el acta del pleno, enmiendas admitidas y el sentido del voto de cada grupo en el punto 1 del orden del día.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-139-acu-66a866",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-140-acu-5dfbee",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 140,
-        "type": "acusacion_publica",
-        "speakerGroup": "Otro",
-        "verbatim": "el ejercicio que ha hecho Esquerra Unida Podem de presentar estas propuestas en muchísima antelación de hecho ya el año pasado, incluso a principios de este año, es cuando nos presentaron este documento",
-        "context": "creo, sinceramente, que el ejercicio que ha hecho Esquerra Unida Podem de presentar estas propuestas en muchísima antelación de hecho ya el año pasado, incluso a principios de este año, es cuando nos presentaron este documento. Creo que esta práctica política es la ideal para poder llegar a un acuerdo",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "esquerra unida podem"
-        },
-        "confidence": 0.68,
-        "reasoning": "Afirma que Esquerra Unida Podem presentó sus propuestas presupuestarias en 2025 y a principios de 2026. Contrastable con el registro de entradas del expediente 2026 y actas de plenos previos. speakerGroup 'Otro' porque la referencia en 3ª persona sugiere pertenencia a ese espacio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-140-acu-5dfbee",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3608,36 +2788,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-141-acu-b917c8",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 141,
-        "type": "acusacion_publica",
-        "speakerGroup": "Otro",
-        "verbatim": "Esquerra Radical, como algunos lo denominan, llega a acuerdos frente a otros espacios políticos que no son capaces de presentar sus puntos de vista o su ideología en tiempo y forma",
-        "context": "El portavoz concluye su intervención contraponiendo la capacidad negociadora de Esquerra Unida Podem con la de otros grupos, a los que acusa implícitamente de no haber presentado sus enmiendas al presupuesto dentro de los plazos establecidos.",
-        "topic": "transparencia",
-        "entities": {},
-        "confidence": 0.72,
-        "reasoning": "Crítica implícita a otros grupos políticos (sin nombrarlos ni citar importes, fechas ni contratos concretos) por su falta de diligencia en la presentación de propuestas presupuestarias; es una valoración de conducta política sin cifras verificables, por lo que se clasifica como opinativa y no se someterá a verificación automática.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-141-acu-b917c8",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3669,7 +2821,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3700,7 +2853,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3731,7 +2885,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3764,7 +2919,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3796,39 +2952,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-143-acu-585d3f",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 143,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Eso fue lo primero que ustedes, cuando entraron a gobernar en 2023, se encargaron",
-        "context": "El portavoz del PSOE acusa al grupo actualmente en el gobierno (PP) de que, al tomar posesión en 2023, lo primero que hicieron fue ocuparse de deshacer la adhesión al Plan Conviviente (implicado por el contexto anterior sobre residencias y centros de día).",
-        "topic": "social",
-        "entities": {
-          "date": "2023-06-01",
-          "referencedEntity": "adhesión al plan conviviente 2021-2025 — revocación por pp tras toma de posesión 2023"
-        },
-        "confidence": 0.58,
-        "reasoning": "Acusación verificable: se puede contrastar si el PP, tras constituirse el nuevo gobierno en junio 2023, retiró o no la adhesión municipal al Plan Conviviente mediante acuerdo plenario o resolución de alcaldía. La frase queda incompleta en el fragmento, lo que reduce la confianza.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-143-acu-585d3f",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3859,7 +2984,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3890,129 +3016,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-145-acu-8392af",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 145,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "ustedes lo único que han hecho, como decía el regidor, es traer el motosierra y cerrar todos los avances y mejoras que pudieran tener nuestros vecinos y vecinas.",
-        "context": "Tras referirse al acuerdo con la GV sobre los conservatorios, el orador acusa al grupo gobernante de haber paralizado avances y mejoras para los vecinos mediante recortes presupuestarios, usando la metáfora del motosierra.",
-        "topic": "cultura",
-        "entities": {},
-        "confidence": 0.58,
-        "reasoning": "Acusación retórica sin cifras ni entidades verificables; 'motosierra' es metáfora política y 'cerrar todos los avances' es valoración subjetiva sin indicadores objetivos contrastables.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-145-acu-8392af",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-146-acu-39e082",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 146,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "ustedes que son partidarios de Milei en Argentina y que harán lo mismo, ellos, porque su representante, el señor Figaredo, ese familiar del malogrado ministro Isenda Rodrigo Rato, tenía que explicarle a la gente, hombre, que alguien ha dicho que aplicarán las mismas políticas que en Argentina.",
-        "context": "El orador acusa al grupo interpelado de defender las políticas de Milei en Argentina y de haber anunciado que aplicarán las mismas medidas, citando la figura de Figaredo como representante de esas posiciones.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "milei, argentina, figaredo"
-        },
-        "confidence": 0.52,
-        "reasoning": "Aunque el núcleo de la acusación ('aplicarán las mismas políticas que en Argentina') podría rastrearse en declaraciones públicas atribuibles a un cargo concreto, la formulación 'alguien ha dicho' es indeterminada y el resto de la carga es valorativa sobre intenciones políticas, lo que la clasifica como opinativa. No se verifica automáticamente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-146-acu-39e082",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-147-acu-d432aa",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 147,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "ustedes que son partidarios de Milei en Argentina y que harán lo mismo",
-        "context": "El portavoz de Compromís (identifica su color como 'taranjo') interpela al grupo opositor acusándoles de ser partidarios de las políticas de Milei en Argentina y de pretender aplicarlas en el municipio.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "políticas de milei en argentina"
-        },
-        "confidence": 0.72,
-        "reasoning": "Valoración política sin cifras ni entidades contractuales; no contrastable automáticamente contra BDNS/tenders, sólo revisión editorial. speakerGroup inferido por 'nuestro color es el taranjo' (color corporativo de Compromís).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-147-acu-d432aa",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-147-acu-783f72",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 147,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "alguien ha dicho que aplicarán las mismas políticas que en Argentina",
-        "context": "El portavoz de Compromís cita una declaración previa (atribuida implícitamente al 'señor Figaredo' o a su grupo) en la que se habría afirmado públicamente la intención de aplicar políticas equivalentes a las de Milei en Argentina.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "políticas económicas de argentina (gobierno milei)"
-        },
-        "confidence": 0.61,
-        "reasoning": "Cita una declaración pública específica atribuible a un concejal o portavoz; verificable contra hemeroteca local (press.json) y actas de plenos anteriores. 'Alguien ha dicho' introduce incertidumbre sobre el emisor original.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-147-acu-783f72",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4043,7 +3048,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4074,7 +3080,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4112,69 +3119,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-152-acu-88eda5",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 152,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "reduicen esa parte de la Creu Rocha, que la reduicen claramente",
-        "context": "El portavoz argumenta que el presupuesto reduce la partida de Cruz Roja (Creu Roja en valenciano, transcrita por Whisper como 'Creu Rocha') y que dicha reducción impediría ejecutar proyectos como el Rivadona o el Plan de Empleo Ciudad Jardín.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "cruz roja / creu roja"
-        },
-        "confidence": 0.52,
-        "reasoning": "La reducción de la partida destinada a Cruz Roja en el presupuesto 2026 es verificable contra budget.json (capítulo de transferencias corrientes / gasto social). La distorsión Whisper 'Creu Rocha' → 'Creu Roja' reduce la confianza en el nombre exacto de la entidad.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-152-acu-88eda5",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-152-acu-a5c959",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 152,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Reduicen también el tema de lo que dije, de los estudios y trabajos técnicos. Si reducimos esta partida, no pueden hacer estudios y trabajos técnicos para planificar qué necesitas tener en las bibliotecas.",
-        "context": "El portavoz acusa al equipo de gobierno de reducir la partida de estudios y trabajos técnicos en el presupuesto 2026, argumentando que ello impediría planificar las necesidades de las bibliotecas municipales.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "partida de estudios y trabajos técnicos; bibliotecas municipales"
-        },
-        "confidence": 0.63,
-        "reasoning": "La existencia y cuantía de la partida 'estudios y trabajos técnicos' en el presupuesto 2026 es verificable contra budget.json (capítulo II gastos corrientes en bienes y servicios). Una reducción interanual quedaría documentada en el histórico presupuestario.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-152-acu-a5c959",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4209,193 +3155,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-153-acu-071789",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 153,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Reduicen también el tema de lo que dije, de los estudios y trabajos técnicos. Si reducimos esta partida, no pueden hacer estudios y trabajos técnicos para planificar qué necesitas tener en las bibliotecas.",
-        "context": "Intervención de oposición criticando reducciones en el borrador de presupuesto 2026. El orador señala que la partida de estudios y trabajos técnicos destinada a la planificación de necesidades bibliotecarias ha sido recortada.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "partida estudios y trabajos técnicos – bibliotecas"
-        },
-        "confidence": 0.68,
-        "reasoning": "Reducción de una partida presupuestaria nominada verificable contra budget.json (capítulo estudios y trabajos técnicos) y el presupuesto aprobado 2026; WER de Whisper afecta 'Reduicen' pero la afirmación es inteligible.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-153-acu-071789",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-153-acu-17930b",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 153,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "he visto una que, como la Rivadactiva, innovación en el impulso del talento y el emprendimiento, foro logístico, hay una reducción ahí en un tema tan importante",
-        "context": "El orador enumera partidas recortadas en el presupuesto 2026 y cita el programa Rivadactiva —descrito como de innovación, talento emprendedor y foro logístico— como una de las líneas con reducción.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "rivadactiva – innovación, talento y emprendimiento, foro logístico"
-        },
-        "confidence": 0.6,
-        "reasoning": "Programa municipal nominado cuya dotación presupuestaria es verificable contra budget.json; 'Rivadactiva' puede ser distorsión Whisper de un nombre real, lo que reduce confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-153-acu-17930b",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-153-acu-3b4d0d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 153,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en materia de ocupación y en materia de impuestos, eso hay que decirlo, es que se cargue en todo la partida.",
-        "context": "Tras mencionar 'Rivad Rocha' (probable distorsión Whisper de 'Riba-roja'), el orador afirma que la partida completa relativa a ocupación e impuestos municipales ha sido eliminada del presupuesto 2026.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "partida ocupación e impuestos – riba-roja"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirmación de eliminación total de una partida presupuestaria verificable contra budget.json; WER elevado en este segmento ('Rivad Rocha', 'tesis empresarial') rebaja la fiabilidad del verbatim.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-153-acu-3b4d0d",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-153-acu-92ac88",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 153,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "el Centro Europeo de Empresas Innovadoras, se la carreguen, claro, a lo mejor es que no conocen lo que es eso, y eso es un tema muy importante",
-        "context": "Continuando la enumeración de recortes, el orador denuncia que la partida del Centro Europeo de Empresas Innovadoras (CEEI) es eliminada ('se la carreguen', mezcla castellano-valenciano) en el presupuesto 2026, añadiendo que es un asunto muy importante.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "centro europeo de empresas innovadoras (ceei)"
-        },
-        "confidence": 0.75,
-        "reasoning": "El CEEI es una entidad real de la red IVACE/GVA; la eliminación de su partida en el presupuesto municipal 2026 es verificable contra budget.json y tenders.json.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-153-acu-92ac88",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-154-acu-d63d6d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 154,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "hay una reducción ahí en un tema tan importante, en el tesis empresarial tan importante, que era Rivad Rocha, en materia de ocupación y en materia de impuestos, eso hay que decirlo, es que se cargue en todo la partida.",
-        "context": "El orador critica que el presupuesto 2026 elimina por completo la partida relativa al tejido empresarial local (transcrito como 'tesis empresarial' / 'Rivad Rocha' por Whisper), en materia de ocupación e impuestos.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "partida presupuestaria tejido empresarial / ocupación riba-roja 2026"
-        },
-        "confidence": 0.55,
-        "reasoning": "El orador afirma que la partida de tejido empresarial/ocupación se elimina íntegramente en el presupuesto 2026; verificable contra el CONPREL o el capítulo funcional correspondiente. Confianza reducida por distorsión de Whisper ('tesis empresarial' en lugar de 'tejido empresarial', 'Rivad Rocha' en lugar de 'Riba-roja').",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-154-acu-d63d6d",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-154-acu-2b2fb3",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 154,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Tienen así también alguna que reduicen, que es el Centro Europeo de Empresas Innovadoras, se la carreguen, claro, a lo mejor es que no conocen lo que es eso",
-        "context": "El orador acusa a quienes presentan el presupuesto de eliminar la partida destinada al Centro Europeo de Empresas Innovadoras (CEEI), insinuando desconocimiento del programa por parte del equipo de gobierno.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "centro europeo de empresas innovadoras (ceei)"
-        },
-        "confidence": 0.72,
-        "reasoning": "La eliminación de la línea presupuestaria del CEEI es contrastable en el CONPREL 2026 frente al ejercicio anterior. El CEEI Valencia es una entidad real de la GVA; la existencia del convenio/partida municipal es verificable en BDNS o en el propio presupuesto.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-154-acu-2b2fb3",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4426,7 +3187,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4457,7 +3219,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4488,7 +3251,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4519,7 +3283,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4550,7 +3315,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4581,7 +3347,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4612,7 +3379,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4653,7 +3421,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4688,7 +3457,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4729,7 +3499,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4760,7 +3531,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4791,7 +3563,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4826,7 +3599,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4857,7 +3631,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4904,7 +3679,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4939,7 +3715,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4970,7 +3747,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5001,7 +3779,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5032,7 +3811,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5063,7 +3843,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5094,7 +3875,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5125,7 +3907,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5163,7 +3946,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5194,7 +3978,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5225,98 +4010,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-164-acu-7d6236",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 164,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Vox es un partido en descomposición.",
-        "context": "El portavoz (presumiblemente PSOE) responde a la crítica de José Luis sobre «la nefasta gestión» y contraataca calificando a VOX de partido en descomposición, antes de aludir a fugas en dicho partido.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "vox"
-        },
-        "confidence": 0.62,
-        "reasoning": "Calificación valorativa sobre el estado interno de VOX sin cifras ni entidades contractuales verificables; clasificada como opinativa. El verificador automático no puede contrastarla contra tenders/BDNS/pleno-votes.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-164-acu-7d6236",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-165-acu-819a8f",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 165,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Ustedes han tenido fugas de Smith, en Serra, en Acre, en Torrent, en Extremadura. Ustedes son el partido de las fugas.",
-        "context": "El portavoz rebate la crítica de VOX a la gestión municipal y pasa al contraataque afirmando que VOX sufre deserciones internas en múltiples municipios y comunidades: 'Vox es un partido en descomposición. Ustedes han tenido fugas de Smith, en Serra, en Acre, en Torrent, en Extremadura.'",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "fugas / deserciones de concejales de vox en serra, torrent, extremadura"
-        },
-        "confidence": 0.52,
-        "reasoning": "Afirmación factual que atribuye a VOX bajas o deserciones orgánicas en municipios concretos (Serra, Torrent) y en Extremadura, verificable contra hemeroteca y actas de plenos locales. Confianza reducida porque Whisper parece haber degradado al menos dos nombres propios: 'Smith' (posiblemente un apellido o topónimo mal transcrito) y 'Acre' (podría ser 'Alcàsser' u otro municipio valenciano).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-165-acu-819a8f",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-166-acu-0e1532",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 166,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Ustedes son el partido de las fugas. Y están en descomposición.",
-        "context": "El orador dirige una acusación global al partido interpelado, calificándolo de partido con fugas de militantes y en proceso de desintegración interna, tras citar varios municipios y territorios donde habrían ocurrido dichas bajas.",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.55,
-        "reasoning": "Caracterización global sin cifras ni entidades concretas; la verificación automática no aplica. Solo revisión editorial.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-166-acu-0e1532",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5348,7 +4043,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5379,38 +4075,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-169-acu-5456b6",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 169,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "son un partido anti-autonomía, lo han dicho claramente",
-        "context": "nosotros sí que estamos en el principio de la autonomía, que es constitucional, y ustedes no, son un partido anti-autonomía, lo han dicho claramente.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "vox / abascal"
-        },
-        "confidence": 0.6,
-        "reasoning": "Acusación dirigida a VOX (referenciado por Abascal inmediatamente antes) sobre su posición respecto al estado autonómico. No cita ni votación concreta ni documento ni cifra; es valoración de posicionamiento ideológico. Clasificada opinativa porque carece de entidad verificable de forma autónoma.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-169-acu-5456b6",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5441,7 +4107,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5472,40 +4139,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-170-acu-70d7ae",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 170,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Cosa que no pasa en los 20 años del Partido Popular. Ningún año.",
-        "context": "siempre hemos conseguido el presupuesto sin el voto único del PSOE. Siempre. Cosa que no pasa en los 20 años del Partido Popular. Ningún año. Yo estoy en el banquillo hace 8 años",
-        "topic": "fiscal",
-        "entities": {
-          "count": 20,
-          "countUnit": "años",
-          "referencedEntity": "gobierno partido popular riba-roja de túria"
-        },
-        "confidence": 0.7,
-        "reasoning": "Acusación factual: afirma que el PP en sus ~20 años de gobierno nunca aprobó presupuesto con apoyo multipartidista; contrastable contra actas plenarias históricas de aprobaciones presupuestarias anteriores a 2015.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-170-acu-70d7ae",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5537,7 +4172,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5570,7 +4206,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5603,7 +4240,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5635,7 +4273,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5667,7 +4306,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5699,7 +4339,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5732,7 +4373,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5765,38 +4407,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-172-acu-fb17e9",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 172,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "no hay impuestos más baratos que tenía el Partido Popular. Hoy. Porque bajaron.",
-        "context": "El orador defiende la política fiscal del gobierno actual frente a la era del Partido Popular. 'Nosotros hoy podemos decir, todavía, que no hay impuestos más baratos que tenía el Partido Popular. Hoy. Porque bajaron. Bajaron cuando po[...]'",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "ordenanzas fiscales riba-roja de túria — comparativa psoe vs pp"
-        },
-        "confidence": 0.7,
-        "reasoning": "Afirma que los impuestos municipales actuales (bajo PSOE) son iguales o inferiores a los de la era PP. Verificable cruzando las ordenanzas fiscales aprobadas en pleno durante ambos mandatos (IBI, IAE, tasas). El BOP Valencia publica las modificaciones de ordenanzas año a año.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-172-acu-fb17e9",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5828,38 +4440,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-173-acu-5cee2b",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 173,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Nosotros hoy podemos decir, todavía, que no hay impuestos más baratos que tenía el Partido Popular.",
-        "context": "El interviniente reivindica que los tipos impositivos municipales durante su etapa de gobierno fueron los más bajos registrados, usando el historial fiscal del Partido Popular como referencia de mínimo histórico, con implicación comparativa respecto al período actual.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "partido popular"
-        },
-        "confidence": 0.5,
-        "reasoning": "Afirmación comparativa sobre tipos impositivos históricos del PP en el municipio; verificable contra ordenanzas fiscales publicadas en el BOP de Valencia. La ambigüedad sintáctica del fragmento (¿PP hablando de sí mismo o referencia de tercero?) y el WER de Whisper reducen la confianza.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-173-acu-5cee2b",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5890,7 +4472,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5921,7 +4504,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5952,7 +4536,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5983,7 +4568,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6014,36 +4600,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-175-acu-947cd4",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 175,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "no ha habido un incremento de coeficiente incorrecto que otros pueblos han hecho.",
-        "context": "El portavoz arguye que, a diferencia de otros municipios, Riba-roja no ha subido incorrectamente el coeficiente de sus impuestos, presentándolo como una señal de moderación fiscal.",
-        "topic": "fiscal",
-        "entities": {},
-        "confidence": 0.52,
-        "reasoning": "Acusación implícita de mala praxis fiscal hacia otros ayuntamientos sin nombrarlos; la calificación de 'incorrecto' es valorativa y sin entidad o cifra concreta que permita verificación objetiva.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-175-acu-947cd4",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6076,7 +4634,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6107,7 +4666,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6138,289 +4698,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-178-acu-8bd21a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 178,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "programas como Arriba Activa que el PP vota en contra",
-        "context": "Enumerando actuaciones del equipo de gobierno: 'Pero también han impulsado en programas como Arriba Activa que el PP vota en contra. El PP vota en contra porque es el partido del no.'",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "programa arriba activa"
-        },
-        "confidence": 0.65,
-        "reasoning": "Acusación factual de que PP votó en contra del programa 'Arriba Activa'. Verificable cruzando pleno-votes.json con el nombre del programa; confianza moderada por posible distorsión de Whisper en el nombre propio del programa.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-178-acu-8bd21a",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-178-acu-13c556",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 178,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "al final del presupuesto van a votar que no. Votan que no",
-        "context": "Sobre la actitud del PP ante el presupuesto 2026 en debate en este mismo pleno: 'te pueden hacer seis alegaciones, pero al final del presupuesto van a votar que no. Votan que no y eso lo puedo de'",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2026-03-16",
-          "referencedEntity": "presupuesto municipal ejercicio 2026 (punto 1 orden del día)"
-        },
-        "confidence": 0.73,
-        "reasoning": "Afirmación de que PP vota en contra del presupuesto 2026, que es el punto 1 del orden del día de este mismo pleno. Directamente verificable contra pleno-votes.json para el plenoId del 2026-03-16, ítem 1; si el registro de voto contradice esta afirmación sería contra-datos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-178-acu-13c556",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-4d3356",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "han impulsado en programas como Arriba Activa que el PP vota en contra",
-        "context": "El concejal defiende los logros del equipo de gobierno y acusa al PP de votar en contra del programa municipal 'Arriba Activa', dentro de una argumentación que lo califica como 'el partido del no'.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "programa arriba activa"
-        },
-        "confidence": 0.83,
-        "reasoning": "Acusa al PP de votar en contra de un programa municipal concreto llamado 'Arriba Activa'; verificable cruzando pleno-votes.json con el punto del orden del día que aprobó dicho programa.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-4d3356",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-9d59fe",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "te pueden hacer seis alegaciones, pero al final del presupuesto van a votar que no. Votan que no",
-        "context": "En el mismo pleno en que se debate la Aprobación Inicial del Presupuesto 2026 (punto 1 del orden del día), el concejal del PSOE predice que el PP votará en contra del presupuesto pese a haber presentado alegaciones.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2026-03-16",
-          "referencedEntity": "aprobación inicial presupuesto municipal 2026"
-        },
-        "confidence": 0.86,
-        "reasoning": "Predicción sobre el voto del PP en el punto 1 del orden del día de esta misma sesión; directamente verificable contra el registro de pleno-votes.json para la sesión 2026-03-16, ítem 1.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-9d59fe",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-7656ce",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votan que no a los conservadores",
-        "context": "El concejal enumera una serie de proyectos e infraestructuras a los que PP habría votado en contra; 'conservadores' probablemente es error de Whisper por 'conservatorio' dado el contexto de equipamientos culturales.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "conservatorio municipal"
-        },
-        "confidence": 0.5,
-        "reasoning": "Alta probabilidad de distorsión Whisper ('conservadores' por 'conservatorio'); si el referente es el conservatorio, el voto sería verificable en pleno-votes.json, pero la ambigüedad léxica reduce la confianza.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-7656ce",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-9c2cf8",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votan que no al auditorio",
-        "context": "Dentro de la lista de infraestructuras y proyectos municipales a los que el PP habría votado en contra, el concejal cita explícitamente el auditorio.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "auditorio municipal de riba-roja de túria"
-        },
-        "confidence": 0.83,
-        "reasoning": "Acusación de voto negativo a un equipamiento cultural concreto; verificable buscando en pleno-votes.json la sesión en que se aprobó la construcción o licitación del auditorio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-9c2cf8",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-a095a2",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votan que no al pabellón",
-        "context": "Dentro de la lista de infraestructuras y proyectos municipales a los que el PP habría votado en contra, el concejal cita explícitamente el pabellón deportivo.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "pabellón polideportivo municipal"
-        },
-        "confidence": 0.83,
-        "reasoning": "Acusación de voto negativo al pabellón deportivo; verificable en pleno-votes.json localizando el punto en que se aprobó su construcción o licitación.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-a095a2",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-42e37b",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votan que no a la compra de paquedal",
-        "context": "El concejal acusa al PP de haber votado en contra de la adquisición del espacio denominado 'Paquedal', vinculada a inversiones de 9,5 millones de euros.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "compra del paquedal"
-        },
-        "confidence": 0.78,
-        "reasoning": "Acusación de voto en contra a una adquisición patrimonial concreta; verificable en pleno-votes.json y en tenders.json (contratos de compraventa de suelo o cesión patrimonial).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-42e37b",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-179-acu-ef457d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 179,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votan que no a las inversiones de 9 millones y medio de paquedal",
-        "context": "El concejal cifra en 9,5 millones de euros el importe de las inversiones asociadas al Paquedal y acusa al PP de haber votado en contra de las mismas en pleno.",
-        "topic": "urbanismo",
-        "entities": {
-          "amountEuros": 9500000,
-          "referencedEntity": "inversiones paquedal"
-        },
-        "confidence": 0.8,
-        "reasoning": "Cifra concreta de 9,5 M€ atribuida a inversiones en el Paquedal; verificable contra budget.json (capítulo VI inversiones reales) y pleno-votes.json para localizar el voto negativo del PP.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-179-acu-ef457d",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6452,36 +4731,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-180-acu-255fc5",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 180,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Y es el partido del no. Y después escuda cuatro propuestas ahí para ver qué pasa.",
-        "context": "Tras enumerar los votos negativos de la oposición (auditorio, pabellón, paquedal), el orador concluye: 'Y aquí tendré cuajo para votar también contra todos. Y es el partido del no.'",
-        "topic": "other",
-        "entities": {},
-        "confidence": 0.62,
-        "reasoning": "Etiqueta política ('partido del no') sin cifra ni entidad concreta verificable; calificación de estilo de voto de la oposición. No se verifica automáticamente — solo revisión editorial.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-180-acu-255fc5",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6512,7 +4763,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6544,7 +4796,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6578,7 +4831,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6609,7 +4863,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6641,7 +4896,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6674,7 +4930,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6707,7 +4964,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6738,7 +4996,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6770,69 +5029,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-186-acu-feea6c",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 186,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votar no es votar no. Votar no es votar a todas las subvenciones. Es votar en contra del Campanari. Es votar no, no.",
-        "context": "Al cierre del debate sobre el presupuesto 2026, el orador advierte a los grupos de la oposición de que un voto en contra del presupuesto equivale materialmente a votar en contra de la subvención al Campanari y a todas las aportaciones a colectivos.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "campanari"
-        },
-        "confidence": 0.67,
-        "reasoning": "Acusación retórica dirigida implícitamente a los grupos que voten en contra del presupuesto; no cita contrato, importe adicional ni entidad verificable más allá del propio Campanari, por lo que se clasifica como opinativa y no se verifica automáticamente.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-186-acu-feea6c",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-187-acu-111c32",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 187,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Votar no es votar a todas las subvenciones. Es votar en contra del Campanari. Es votar no, no.",
-        "context": "El portavoz argumenta que quienes voten en contra del presupuesto 2026 no solo rechazan el conjunto de subvenciones, sino que específicamente están votando en contra de la partida destinada al Campanari, apelando a las consecuencias concretas del voto negativo.",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "el campanari"
-        },
-        "confidence": 0.7,
-        "reasoning": "Afirmación verificable: implica que 'El Campanari' (posiblemente la torre campanario o una festividad local homónima) tiene una línea de financiación en el presupuesto/subvenciones 2026 votado en este pleno. Contratable contra el detalle de subvenciones del presupuesto aprobado y/o BDNS; también contrastable con el sentido del voto de cada grupo en pleno-votes.json.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-187-acu-111c32",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6864,69 +5062,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-188-acu-f81ba9",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 188,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "el Trump, el que apoya a Vox y el PP, la bocacalleta, su chicoteta, que también apoya, pues está haciendo lo que no debería de hacer. En marcha del derecho internacional, bombardear, hacer lo que tenga la gana",
-        "context": "El orador, en el contexto del debate presupuestario, vincula la guerra comercial/conflicto internacional que afecta al municipio con Trump, a quien acusa de apoyar a VOX y al PP, y de actuar contra el derecho internacional.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "trump, vox, pp"
-        },
-        "confidence": 0.55,
-        "reasoning": "Afirmación política de carácter valorativo sobre la alineación ideológica entre Trump, VOX y PP. No cita cifras, contratos ni votos concretos que permitan contraste automático; es revisión editorial por su subjetividad, no verificación de datos.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-188-acu-f81ba9",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-189-acu-f9314a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 189,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "si alguien ha financiado algún partido de siraníes, no es el PSOE. No es el PSOE. Podéis buscar a quién ha financiado algún fondo, algún banco iraní, a qué partido ha financiado.",
-        "context": "El orador, aparentemente del PSOE, niega que su partido haya recibido financiación de fondos o bancos iraníes e insinúa que otro partido sí lo ha hecho, instando al pleno a comprobarlo. 'Siraníes' es presumiblemente 'iraníes' distorsionado por Whisper.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "fondo iraní / banco iraní / financiación de partidos"
-        },
-        "confidence": 0.6,
-        "reasoning": "Afirmación verificable en principio contra informes de financiación de partidos del Tribunal de Cuentas y resoluciones del CNMC/Fiscalía; cita entidades concretas (fondo, banco iraní). Confidence moderada porque 'siraníes' es probable error Whisper y la acusación no nombra explícitamente el partido receptor.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-189-acu-f9314a",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6957,7 +5094,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6988,7 +5126,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7019,7 +5158,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7066,100 +5206,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-192-acu-bf84bd",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 192,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "Y acaba el tema del negacionismo climático, que hace constantemente el Partido de Vox también recosado por el Partido Popular. Esto ha pasado en la Generalitat.",
-        "context": "Al final de su intervención, el portavoz acusa a VOX de negar sistemáticamente el cambio climático y al PP de secundarle ('recosado' es probable error de Whisper por 'apoyado'/'respaldado'), situando esta conducta en la Generalitat Valenciana.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "generalitat valenciana"
-        },
-        "confidence": 0.58,
-        "reasoning": "La calificación de 'negacionismo climático' es una valoración político-editorial sin cifra ni entidad normativa concreta; no es automáticamente verificable contra los datos del proyecto aunque podría contrastarse con votaciones en Les Corts si se especificaran.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-192-acu-bf84bd",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-193-acu-df55d5",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 193,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "el negacionismo climático, que hace constantemente el Partido de Vox también recosado por el Partido Popular. Esto ha pasado en la Generalitat.",
-        "context": "El orador acusa a VOX de negar el cambio climático de forma constante, atribuyendo al PP el papel de aval o respaldo ('recosado' — posible deformación Whisper de 'arropado') en el ámbito de la Generalitat Valenciana.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "referencedEntity": "generalitat valenciana · pp · vox"
-        },
-        "confidence": 0.7,
-        "reasoning": "Acusación de posicionamiento ideológico sin citar votaciones ni actos concretos; subtype opinativa porque es una valoración de conducta política sin cifras ni entidades documentales verificables. No procede verificación automática.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-193-acu-df55d5",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-193-acu-cdd502",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 193,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "todavía no nos ha demostrado ninguno de los dos, la responsabilidad de qué hay para Rivarrocha en la Generalitat en todo lo que haya que hacer así.",
-        "context": "El portavoz afirma que ni PP ni VOX han acreditado qué compromisos o recursos concretos han obtenido de la Generalitat para Riba-roja de Túria ('Rivarrocha' es deformación Whisper).",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "generalitat valenciana · pp · vox · riba-roja de túria"
-        },
-        "confidence": 0.62,
-        "reasoning": "Acusación de falta de rendición de cuentas sobre transferencias o compromisos de la Generalitat hacia el municipio; opinativa porque no cita importe ni convenio específico incumplido. Podría cotejarse contra BDNS y convenios GVA si se concretara.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-193-acu-cdd502",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7190,7 +5238,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7237,38 +5286,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-194-acu-a1e33d",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 194,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la Generalitat, de moment, de forment ni un gra",
-        "context": "Tras afirmar que la Diputación sí está cumpliendo sus compromisos, el orador concluye que la Generalitat Valenciana no ha aportado nada a Riba-roja ('de forment ni un gra' es expresión valenciana equivalente a 'ni un grano'; 'Rivarrocha' es transcripción Whisper de 'Riba-roja').",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "generalitat valenciana"
-        },
-        "confidence": 0.6,
-        "reasoning": "Afirmación de que la GVA no ha transferido fondos ni ejecutado proyectos en Riba-roja; contrastable cruzando subvenciones BDNS con convocante GVA, transferencias del capítulo IV/VII del presupuesto municipal y licitaciones cofinanciadas por la Generalitat.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-194-acu-a1e33d",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7299,69 +5318,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-195-acu-137cb8",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 195,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Lo de la Diputación, es verdad que está pactado todo antes, pero está llegando, las cosas como sean. Y bueno, había acuerdos antes que están cumpliendo, podrían haberlos parado, están cumpliendo",
-        "context": "El orador contrasta la conducta de la Diputación de Valencia (que estaría cumpliendo compromisos previos pactados antes de esta legislatura) con la inacción de la Generalitat. Reconoce que los acuerdos podían haberse parado pero se están honrando.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "diputación de valencia"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirmación factual sobre cumplimiento de acuerdos previos por la Diputación de Valencia; verificable cruzando BDNS (convocatorias/concesiones de Diputación a Riba-roja) y el feed de tenders para transferencias o contratos de la Diputación en la legislatura actual.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-195-acu-137cb8",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-195-acu-2bb779",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 195,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "pero la Generalitat, de moment, de forment ni un gra. De forment ni un gra.",
-        "context": "Tras reconocer que la Diputación cumple sus acuerdos, el orador afirma que la Generalitat Valenciana no ha entregado absolutamente nada ('de forment ni un gra', expr. valenciana: 'ni un grano de trigo'). Lo repite dos veces para enfatizar.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "generalitat valenciana"
-        },
-        "confidence": 0.78,
-        "reasoning": "Acusación factual de incumplimiento total por la GVA en esta legislatura; contrastable contra BDNS (transferencias/subvenciones GVA a Riba-roja desde 2023) y contra los tenders de obras de competencia autonómica en el municipio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-195-acu-2bb779",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7399,7 +5357,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7446,7 +5405,8 @@
         "checkedAgainst": [
           "llm-second-pass"
         ]
-      }
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7484,70 +5444,8 @@
           "promises",
           "budget"
         ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-195-acu-18a88a",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 195,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "eso es responsabilidad de la Generalitat, pero no vosotros, porque estaba todo aprobado. Estaba todo aprobado, en el gobernante tan mal que era el del Botánico.",
-        "context": "El orador exime parcialmente al gobierno municipal (PSOE) de las carencias enumeradas (Centro de Salud, Metro, pabellón), argumentando que los proyectos habían sido aprobados por el anterior Govern del Botànic (PSPV-Compromís-Podemos en la GVA 2015-2023) pero no ejecutados.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "govern del botànic (gva 2015-2023)"
-        },
-        "confidence": 0.63,
-        "reasoning": "Afirmación factual de que los proyectos tenían aprobación formal en la etapa del Botànic; verificable contra actas del Consell de la GVA, DOGV y compromisos presupuestarios autonómicos 2019-2023 para Riba-roja. El término 'gobernante' es ambiguo pero la referencia al Botànic es clara.",
-        "requiresHumanApproval": true
       },
-      "verification": {
-        "claimId": "ma87e0-195-acu-18a88a",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
-    },
-    {
-      "claim": {
-        "id": "ma87e0-197-acu-438337",
-        "plenoId": "ma87e0",
-        "plenoDate": "2026-03-16",
-        "segmentIndex": 197,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "La directora le daba al regidor, el del PP, venía, ya 21 millones de euros.",
-        "context": "El interviniente afirma que bajo el gobierno del PP el presupuesto era de 21 millones, elaborado de forma sumaria ('la directora le daba al regidor… ya 21 millones'), contrastándolo con los 46 millones actuales para justificar la complejidad del proceso.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 21000000,
-          "referencedEntity": "presupuesto municipal época pp"
-        },
-        "confidence": 0.72,
-        "reasoning": "Afirma que el presupuesto bajo el PP era de 21 M€, cifra contrastable con los CONPREL históricos de Riba-roja publicados en MinHac. La transcripción de Whisper muestra cortes ('los…', 'Bueno, ya lo sabemos') que reducen levemente la fiabilidad literal, pero la cantidad es nítida.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "ma87e0-197-acu-438337",
-        "verdict": "sin-datos",
-        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
-        ]
-      }
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7579,7 +5477,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7610,7 +5509,8 @@
           "promises",
           "budget"
         ]
-      }
+      },
+      "visibility": "toggle"
     }
   ]
 }
