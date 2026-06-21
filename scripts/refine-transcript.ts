@@ -12,9 +12,10 @@
  * Whisper-mistranscribed forms of a known noun, and writes
  * `<plenoId>.txt.refined` alongside the original.
  *
- * `--apply` atomically renames `.refined` → `.txt` (overwriting the
- * Whisper output). Without `--apply`, the curator inspects the
- * side-by-side first.
+ * `--apply` applies `.refined` → `.txt`, first preserving the pristine
+ * Whisper output as `<plenoId>.txt.orig` (written once, so re-applying a
+ * second refinement never clobbers the true original — reversible).
+ * Without `--apply`, the curator inspects the side-by-side first.
  *
  * Audit log: every replacement (original → canonical) is captured in
  * `scripts/logs/refine-transcript-<plenoId>-<ts>.log` so spot-checks
@@ -28,7 +29,14 @@
  * tokens alone when uncertain. Aggressive correction would corrupt
  * extractor input (worse than no correction).
  */
-import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  renameSync,
+  writeFileSync,
+} from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { z } from 'zod'
 import { callLLM, resetBudget } from '../src/llm/client'
@@ -46,6 +54,31 @@ const TENDERS = resolve('public/data/tenders.json')
 const PROMPT_VERSION = 'refine-transcript-v2'
 const CHUNK_LINES = 80 // ~25 min of pleno audio per chunk
 const MAX_TOP_ASSIGNEES = 50
+
+/**
+ * Apply a `.refined` transcript over the original, non-destructively.
+ *
+ * The original Whisper output is preserved exactly once as `<txt>.orig` so
+ * `--apply` is reversible — re-running --apply after another refinement pass
+ * never clobbers the pristine first original. Returns whether a backup was
+ * written and its path. Throws if the refined file is missing.
+ */
+export function applyRefinement(
+  transcriptPath: string,
+  refinedPath: string,
+): { backupPath: string; backedUp: boolean } {
+  if (!existsSync(refinedPath)) {
+    throw new Error(`refined file missing — refusing to apply: ${refinedPath}`)
+  }
+  const backupPath = `${transcriptPath}.orig`
+  let backedUp = false
+  if (existsSync(transcriptPath) && !existsSync(backupPath)) {
+    copyFileSync(transcriptPath, backupPath)
+    backedUp = true
+  }
+  renameSync(refinedPath, transcriptPath)
+  return { backupPath, backedUp }
+}
 
 interface CliArgs {
   plenoId: string
@@ -322,14 +355,21 @@ async function main() {
   process.stderr.write(`[refine-transcript] total replacements: ${allReplacements.length}\n`)
 
   if (opts.apply) {
-    // Atomic rename. Fails noisily if anything's wrong with the refined file.
-    if (!existsSync(refinedPath)) {
-      process.stderr.write(`[refine-transcript] refined file missing — refusing to apply\n`)
+    // Non-destructive: preserve the pristine original as <txt>.orig (once),
+    // then apply the refined text. Reversible if the LLM mangled a token.
+    let result: { backupPath: string; backedUp: boolean }
+    try {
+      result = applyRefinement(transcriptPath, refinedPath)
+    } catch (err) {
+      process.stderr.write(
+        `[refine-transcript] ${err instanceof Error ? err.message : String(err)}\n`,
+      )
       process.exit(1)
     }
-    renameSync(refinedPath, transcriptPath)
     process.stderr.write(
-      `[refine-transcript] APPLIED — original transcript replaced. Audit log preserved.\n`,
+      `[refine-transcript] APPLIED — original transcript replaced` +
+        (result.backedUp ? ` (backup: ${result.backupPath})` : ` (.orig backup already existed)`) +
+        `. Audit log preserved.\n`,
     )
   } else {
     process.stderr.write(
@@ -354,9 +394,13 @@ async function main() {
   void dirname // silence unused-import lint
 }
 
-main().catch((err) => {
-  process.stderr.write(
-    `[refine-transcript] fatal: ${err instanceof Error ? err.message : String(err)}\n`,
-  )
-  process.exit(1)
-})
+// Only run as a CLI — guarded so the module can be imported (e.g. by tests
+// for applyRefinement) without executing main().
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch((err) => {
+    process.stderr.write(
+      `[refine-transcript] fatal: ${err instanceof Error ? err.message : String(err)}\n`,
+    )
+    process.exit(1)
+  })
+}

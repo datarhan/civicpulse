@@ -272,8 +272,10 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           Whisper-mistranscribed proper nouns ONLY.
 #                           Conservative replacement discipline — leaves
 #                           uncertain tokens alone. Writes <id>.txt.refined
-#                           alongside the original; --apply atomic-renames
-#                           it. Audit log per replacement at
+#                           alongside the original; --apply applies it after
+#                           preserving the pristine original as <id>.txt.orig
+#                           (written once, reversible). Audit log per
+#                           replacement at
 #                           scripts/logs/refine-transcript-<id>-<ts>.log.
 #                           Cost: ~$0 on Gemini Pro plan, ~$0.30 metered.
 

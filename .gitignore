@@ -21,3 +21,6 @@ scripts/logs/
 
 # Visual brainstorming companion (local mockups)
 .superpowers/
+
+# refine-transcript --apply local backups of the pristine Whisper output
+public/data/pleno-transcripts/*.txt.orig
