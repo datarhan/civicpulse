@@ -392,6 +392,20 @@ export default function Metodologia() {
             heurística.
           </li>
           <li>
+            <strong>Qué se publica en el registro público.</strong> La página <code>/plenos</code>{' '}
+            solo muestra declaraciones <em>contrastables con datos</em>: verificadas, parciales,
+            contradichas o promesas ya documentadas. Las acusaciones de subtipo <em>opinativa</em>,
+            y cualquier acusación que el verificador deja <em>sin datos</em>, no se publican en
+            bruto: solo llegan al público si una persona curadora las convierte en un{' '}
+            <a href="/hallazgos" style={{ color: 'var(--civic)' }}>
+              hallazgo
+            </a>{' '}
+            editorial con contexto y derecho de réplica. Las declaraciones numéricas{' '}
+            <em>sin datos</em> (no acusatorias) quedan ocultas tras el conmutador «mostrar sin
+            datos». Este filtro se aplica al generar los datos, no solo en pantalla: el material no
+            publicable no se incluye en los ficheros descargables.
+          </li>
+          <li>
             <strong>Atribución por medio, no por periodista.</strong> Los hallazgos editoriales
             citan únicamente al medio que publicó la pieza. Nunca al/a la firmante.
           </li>
