@@ -1,7 +1,24 @@
 {
-  "generatedAt": "2026-06-21T08:57:25.506Z",
+  "generatedAt": "2026-06-22T10:29:12.308Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "s2d0h4",
+      "articleFingerprint": "ynduy0",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQNGZLYWtsR01QcEZ5THNKcnpTMWhKVllkQU9VVGNYYzNwTFYyZFltY0taUE03amllbUtuczJEMjZDZUFnYWo2SWQ2SUNESF9aV1RINDMxeVBMcHRnemw2Nm5zSzJpaUFNc0J4X0VTNlhhWWJWSVp5amMyZ2p5LXNoMUM4NW52UGRBdVo1bmp5M0JsSUxQalNOaVhDeHVuSEpvU0JlcjFVbTUtdXJaVE1YUWc2aEJ6Q19WdG01dzhDeXfSAcABQVVfeXFMUDRmS2FrbEdNUHBGeUxzSnJ6UzFoSlZZZEFPVVRjWGMzcExWMmRZbWNLWlBNN2ppZW1LbnMyRDI2Q2VBZ2FqNklkNklDREhfWldUSDQzMXlQTHB0Z3psNjZuc0syaWlBTXNCeF9FUzZYYVliVklaeWpjMmdqeS1zaDFDODVudlBkQXVaNW5qeTNCbElMUGpTTmlYQ3h1bkhKb1NCZXIxVW01LXVyWlRNWFFnNmhCekNfVnRtNXc4Q3l3?oc=5",
+      "date": "2026-06-21T22:12:58.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
     {
       "articleId": "13jpc93",
       "articleFingerprint": "1j6nu4k",
@@ -343,23 +360,6 @@
       "score": 2
     },
     {
-      "articleId": "xurjku",
-      "articleFingerprint": "qrphcg",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNUGNTY3hQa05YcDR3a0EwUWkwRTJISHQxeDhHM2FyNFlSUmMtQ1JpVENBUVdGN2Q4OTVfbUFaLXFoa3R3NGRmR1FJcm1MYllYblpVTmlHSDdBeU5ncHNja1V6T2ppcWh3SGdZZmxTcGdfOEpTX24xcXVUT1h5OXNqWjB2SW1GdFR6bEM4OUtmWWVIaG5BcFJxa1ozckllTUtRZVQ4eTQ5OWMwelFwWDBlXzc0blFZVFNjRV9ydtIBwgFBVV95cUxOcVRsbkFGWWFaaVlwQWZUSldTU0NCRlp6Nl9PYVBMN3ExeC1ReXE1ZEpmazEzVW1VY3draEVPa2p2OW9JaXdEMGZUNnpweUdKZ3QzU0xwQ0NROXNkaXFXZl9kcW1COEhqVGNoSlVoM3ZOZTMtVjhFNThMSl9GTXlTcUZqYlNoM25aeF9jVktFM2ltd2cxeW1VOXRtTkJFRXkxclBaT2lrOXNTOVg2SmZCNkJwMmxyWmhzcVJYNnZ4eUpiZw?oc=5",
-      "date": "2026-06-15T13:23:29.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
       "articleId": "1gjsmko",
       "articleFingerprint": "1ho6138",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -394,12 +394,12 @@
       "score": 3
     },
     {
-      "articleId": "6pb02e",
-      "articleFingerprint": "89en1s",
-      "outlet": "Actualidad Valencia",
-      "outletHost": "actualidadvalencia.com",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBMTlhKU2FNUkxqb2pwRkVka3BWOE9VeXVhaEVic0VkdmttUDFiNmRLLXJlaDZ2Qm51YTNKeVRjTjd2ZDdiWTloZkY4Q0hoWXBrWWR6dUNZRVVCZWZZZlZJS3NxQ0xTV3BDOWI5cTVR?oc=5",
-      "date": "2026-06-11T12:02:31.000Z",
+      "articleId": "1m86s2g",
+      "articleFingerprint": "n46n6t",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQdmw1cmVCQWVPX2VlZnlURmNvQUlnZ2lxVEU1eDF2MDUzQ2h1bFczVVU5dWYyYVJpR2wwYXRqYV9OOHFBcDJrUXZIaWp5cmpsYm1FRkVoci1MRHlTV3h1VVRYN1BFd2VBZ2lmUTVUZXU5NUFWQW94OUQ0X0tCY25IR3pmR3hoX1lQekpHUDJYMWt3R2VmaHBLYUdsOXhuR2o1Z1BNVmF0SW1nZTVtVEhTcmlmZXFTQVItXzAxb2JFZXF5YlBMMWFZYVVuT3FRSTlqemQySEE5RUh0ZDROVEtENVdNalFvMllkQ2Jxa2FBczdKYmN0?oc=5",
+      "date": "2026-06-11T11:50:25.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -411,12 +411,12 @@
       "score": 2
     },
     {
-      "articleId": "1m86s2g",
-      "articleFingerprint": "n46n6t",
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxQdmw1cmVCQWVPX2VlZnlURmNvQUlnZ2lxVEU1eDF2MDUzQ2h1bFczVVU5dWYyYVJpR2wwYXRqYV9OOHFBcDJrUXZIaWp5cmpsYm1FRkVoci1MRHlTV3h1VVRYN1BFd2VBZ2lmUTVUZXU5NUFWQW94OUQ0X0tCY25IR3pmR3hoX1lQekpHUDJYMWt3R2VmaHBLYUdsOXhuR2o1Z1BNVmF0SW1nZTVtVEhTcmlmZXFTQVItXzAxb2JFZXF5YlBMMWFZYVVuT3FRSTlqemQySEE5RUh0ZDROVEtENVdNalFvMllkQ2Jxa2FBczdKYmN0?oc=5",
-      "date": "2026-06-11T11:50:25.000Z",
+      "articleId": "182ujks",
+      "articleFingerprint": "2vgzqg",
+      "outlet": "Actualidad Valencia",
+      "outletHost": "actualidadvalencia.com",
+      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1wV091VTdUNUV1cHlMcF92YkZPMUw1X2Zld25GUFIzdGhqeXVSdXZTWFd6cHNTcVdzcVhVNHNRUDN4MWJiUUlfM3pVR1pzTEZpOW0zR1RfbEVsSFcwVWVMUWZkUVlMOURVVG51RWRaZzFROW9xMTBn?oc=5",
+      "date": "2026-06-11T11:34:19.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -451,6 +451,23 @@
       "outletHost": "ribarroja.es",
       "url": "https://www.ribarroja.es/es/noticia/matricula-escuela-oficial-de-idiomas-curso-2026-2027",
       "date": "2026-06-11T08:37:11.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "rd3l4s",
+      "articleFingerprint": "7nljfx",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTC1XUXd4VkU3SHlmVFAtV0Z6UTU0TzAzRlIycy11MS1sR01MOWhpYWRsT2hQb0QxSmdhVHdmTTVYT2VuVFVieUJSdUVVWU1yaXlJLTlUOGJ3MW1ObVpaaG83YjJUVWFOTmkyZFkwMHVkNmYyRXBQTzlwUGp5OExSR2I4NGY3V2R3U05fZEM4bFoxbVVkdDR4MHFJb2JyMXc3ZmRLUXl5T1Z6cnVUVzBQNWx2UUpwZXc1NDZz0gHAAUFVX3lxTFBXSTdSdFZmcDhVd2kwYlBUY29mM0dfZS1xeVRXSVZVMGZBRDRvSGlmZ3F2S3RSdFRnZ2xNWlI2S3dtVHRfZGNKVTRGYXJGdEpTWWR5dXRNU0hsZWNURU9aS2puYlZjdzhOTzJwV1BNRWhtbnZ6bHdiNE5GRWp0cjMtb1NZMEhZVzJaYWVsV2RiVjhoM0hMSXpuVVFDd1ZINzVVQjcxbTRlSlNPZUFwU19qQUJZdUJoYi00YUhtME44MA?oc=5",
+      "date": "2026-06-11T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -1023,6 +1040,23 @@
       "score": 2
     },
     {
+      "articleId": "40ec54",
+      "articleFingerprint": "12icsx4",
+      "outlet": "elperiodic.com",
+      "outletHost": "elperiodic.com",
+      "url": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxOZWFrUHpFMzZmaEJ1WkZmWktFSUk2Q0tyRXVJZTRSakZWQTFhV3AzazI4c0pkOWtSSU1HbFdfRzZIM0J6M2ctcF9lR043YjRCV2ZQaUNBSUJXdmVkQU93N3FtZ19QY1FUX1lVeVFIcWlZYnQ3dkIzaXJZVURySVluYmVnRTZKVTBXal9fdXBVci1FZGZ0NC1pZDZReFNCU1JaX1QwenVNbnpCZGprekZvRXlBQldCT2wxVXdCX3NsdnRmODlKNVhwV3A4ZnlZdUZUYXk2Nmx5eDJEcHVWbmhwZE9iMkpQMW5ncVE?oc=5",
+      "date": "2026-05-27T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
       "articleId": "956sns",
       "articleFingerprint": "xmejag",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -1259,47 +1293,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "dytzp8",
-      "articleFingerprint": "jrcjnn",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-felicita-al-agente-de-polic%C3%ADa-luis-miguel-benavent-muedra-por-la-obtenci%C3%B3n-del-premio-al-mejor-ejercicio-en-el-v-campeonato-nacional-de-gu%C3%ADas-caninos-de-granada",
-      "date": "2026-05-22T12:21:59.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "19wvjzk",
-      "articleFingerprint": "1g18650",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/pruebas-para-la-obtenci%C3%B3n-directa-del-certificado-de-ense%C3%B1anzas-elementales-en-los-conservatorios-profesionales-municipales-de-m%C3%BAsica-y-danza-a%C3%B1o-2026",
-      "date": "2026-05-22T11:36:07.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 37,
+      "articleCount": 35,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1314,7 +1314,7 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 12,
+      "articleCount": 13,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1342,21 +1342,6 @@
       "contradictedRatio": 0
     },
     {
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "articleCount": 5,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
       "outlet": "Las Provincias",
       "outletHost": "lasprovincias.es",
       "articleCount": 5,
@@ -1368,6 +1353,21 @@
         "promesa-repetida": 0
       },
       "meanTrustScore": 3,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "articleCount": 5,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1434,6 +1434,21 @@
     {
       "outlet": "València Extra",
       "outletHost": "valenciaextra.com",
+      "articleCount": 1,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
+      "outlet": "elperiodic.com",
+      "outletHost": "elperiodic.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T08:57:17.007Z",
+  "generatedAt": "2026-06-22T10:29:01.385Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
