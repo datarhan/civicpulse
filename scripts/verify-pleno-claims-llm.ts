@@ -104,6 +104,9 @@ async function main() {
   const candidates = snap.items.filter((it) => {
     if (it.verification.verdict !== 'sin-datos') return false
     if (shouldSkipLlmVerification(it.claim)) return false
+    // Resume: skip claims a prior run already fully evaluated (kept). A
+    // re-run thus only does new/failed work — no wasted LLM calls.
+    if (it.verification.llmAttempted) return false
     if (opts.plenoId && it.claim.plenoId !== opts.plenoId) return false
     return true
   })
@@ -130,12 +133,14 @@ async function main() {
     const inputs: VerifierInputs = { claim: it.claim, tenders, bdns, budget, promises }
     const shortlist = await getShortlist(inputs, 8)
     if (shortlist.length === 0) {
+      it.verification.llmAttempted = true // fully evaluated: nothing to cite
       stats.kept += 1
       return
     }
     const r = await verifyClaimWithLlm({ claim: it.claim, candidates: shortlist })
     stats.attempted += 1
     if (!r) {
+      // transient LLM failure — leave unmarked so a re-run retries it
       stats.kept += 1
       return
     }
@@ -156,6 +161,7 @@ async function main() {
       }
       stats.upgraded += 1
     } else {
+      it.verification.llmAttempted = true // attempted, kept sin-datos
       stats.kept += 1
     }
     if (r.rejectedIndexes.length > 0) stats.rejected += r.rejectedIndexes.length

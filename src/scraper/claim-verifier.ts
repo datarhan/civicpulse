@@ -112,6 +112,14 @@ export interface ClaimVerification {
   evidence: ClaimEvidence[]
   /** Datasets that were queried for audit. */
   checkedAgainst: string[]
+  /**
+   * Set by the LLM second pass when it has fully evaluated this sin-datos
+   * claim without upgrading it (empty shortlist, or LLM kept it sin-datos).
+   * Lets a re-run resume — skipping claims already attempted — instead of
+   * re-issuing the expensive LLM call. Not set on a transient LLM failure,
+   * so those retry on the next run.
+   */
+  llmAttempted?: boolean
 }
 
 export interface VerifierInputs {
