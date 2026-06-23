@@ -104,9 +104,11 @@ export function makeNliVerifier(opts: { model?: string } = {}): VerifierFn {
   return async (claim, ctx) => {
     const det = verifyClaim(inputsFor(claim, ctx))
     if (det.verdict !== 'sin-datos') return det
-    // Task 8 adds the preloaded-corpus passthrough; until then getShortlist
-    // self-loads the corpus (fine for the ~50-claim eval, fixed for the runner).
-    const shortlist = await getShortlist(inputsFor(claim, ctx), 8)
+    const shortlist = await getShortlist(
+      inputsFor(claim, ctx),
+      8,
+      ctx.corpus ? { corpus: ctx.corpus } : {},
+    )
     if (shortlist.length === 0) return det
     const r = await verifyClaimWithNli({ claim, candidates: shortlist }, scorer)
     return r?.upgraded ? r.verification : det

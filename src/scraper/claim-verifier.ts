@@ -747,6 +747,12 @@ export interface ShortlistDispatcherOptions {
    * `.embed-cache/verifier-corpus.jsonl`. Ignored in `lexical` mode.
    */
   corpusPath?: string
+  /**
+   * A preloaded corpus. When provided, getShortlist skips the per-call
+   * loadCorpus disk read+parse (audit B1) — the runner loads it once and
+   * passes it in. Takes precedence over `corpusPath`.
+   */
+  corpus?: import('./semantic-shortlist').Corpus
 }
 
 /**
@@ -780,15 +786,19 @@ export async function getShortlist(
     return shortlistCandidates(inputs, topK)
   }
 
-  const corpusPath = opts.corpusPath ?? '.embed-cache/verifier-corpus.jsonl'
   let corpus: import('./semantic-shortlist').Corpus
-  try {
-    corpus = semanticModule.loadCorpus(corpusPath)
-  } catch (err) {
-    process.stderr.write(
-      `[verifier] semantic corpus missing (${(err as Error).message}); using lexical\n`,
-    )
-    return shortlistCandidates(inputs, topK)
+  if (opts.corpus) {
+    corpus = opts.corpus // preloaded — skip the per-call disk read+parse (B1)
+  } else {
+    const corpusPath = opts.corpusPath ?? '.embed-cache/verifier-corpus.jsonl'
+    try {
+      corpus = semanticModule.loadCorpus(corpusPath)
+    } catch (err) {
+      process.stderr.write(
+        `[verifier] semantic corpus missing (${(err as Error).message}); using lexical\n`,
+      )
+      return shortlistCandidates(inputs, topK)
+    }
   }
 
   // Embed backend auto-detect: prefer EMBED_BACKEND if set, else whichever
