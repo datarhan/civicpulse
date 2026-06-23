@@ -68,6 +68,7 @@
     "embed:verifier-corpus": "npx tsx scripts/embed-verifier-corpus.ts",
     "verify:pleno-claims": "npx tsx scripts/verify-pleno-claims.ts",
     "verify:pleno-claims:llm": "npx tsx scripts/verify-pleno-claims-llm.ts",
+    "verify:pleno-claims:nli": "npx tsx scripts/verify-pleno-claims-nli.ts",
     "eval:gold-prefill": "npx tsx scripts/eval-gold-prefill.ts",
     "eval:verifier": "npx tsx scripts/eval-verifier.ts",
     "extract-and-verify:pleno-claims": "bash scripts/extract-and-verify-pleno-claims.sh",
