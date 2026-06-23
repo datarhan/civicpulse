@@ -29,3 +29,6 @@ public/data/pleno-transcripts/*.txt.orig
 # P2 deterministic base — reproducible via `npm run verify:pleno-claims`; only
 # the overlay (curator/NLI decisions) + the merged verified.json are committed.
 public/data/pleno-claims-verified-base.json
+# P2 re-grounding review queue — derived/threshold-dependent; regenerate via
+# `npm run reground:verdicts`. A curator working file, not committed.
+public/data/pleno-claims-regrounding-flags.json
