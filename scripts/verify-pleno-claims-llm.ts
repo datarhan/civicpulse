@@ -1,4 +1,11 @@
 /**
+ * ⚠️ LEGACY / SUPERSEDED (P2). The production second pass is now the local,
+ * $0, no-quota NLI runner — `npm run verify:pleno-claims:nli` — which writes
+ * upgrades to the base/overlay split. This metered-LLM runner predates the split
+ * and still writes pleno-claims-verified.json DIRECTLY, so its writes are NOT
+ * overlay-protected and would be overwritten by the next `verify:pleno-claims`
+ * rebuild. Kept for reference / A-B comparison only; do not use in the pipeline.
+ *
  * LLM second-pass verifier — runs only on sin-datos claims and tries to
  * upgrade them by cross-referencing the open-data trail with the LLM's
  * semantic reasoning. Reads pleno-claims-verified.json (deterministic
