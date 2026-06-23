@@ -1,0 +1,485 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-23T11:06:00.433Z",
+  "rows": [
+    {
+      "claimId": "19gax3o-028-pro-ac6aa5",
+      "claimType": "promesa",
+      "verbatim": "en el 2027, que espero que estemos todos aquí, nos volverá a pasar lo mismo.",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "19gax3o-030-afi-8eff52",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "sobre el tema del 5% para centros especiales de empleo y demás",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=K1v0iRi%2Ff7NvYnTkQN0%2FZA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "19gax3o-132-cit-35c4f5",
+      "claimType": "cita_obra",
+      "verbatim": "el complejo la malla se presupuesto en el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "19gax3o-133-pro-0fb62f",
+      "claimType": "promesa",
+      "verbatim": "ahora dada la situación hay que hacer una inversión inversión que se contempla en el presupuesto 2026 en el capítulo 2",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "19gax3o-137-cit-78abd7",
+      "claimType": "cita_obra",
+      "verbatim": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil.",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R44fZo7q7XZt5r0ngvMetA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1du4rf5-047-acu-e27a43",
+      "claimType": "acusacion_publica",
+      "verbatim": "los informes técnicos que lo que plantean es que no se ha hecho ningún cambio",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1du4rf5-063-acu-8c5948",
+      "claimType": "acusacion_publica",
+      "verbatim": "nos haga llegar la factura de este suministro y colocación de bancos",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1du4rf5-083-pro-aa49e3",
+      "claimType": "promesa",
+      "verbatim": "Se amplía la interoperabilidad de los sistemas autonómicos de información de este sistema con el objetivo de reducir los pasos de resolución y eliminar duplicidades administrativas.",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1du4rf5-098-pro-2f7b40",
+      "claimType": "promesa",
+      "verbatim": "Sobre tus enmiendas, David, las acepto, las cinco, las aceptamos y las añadiremos y se lo pasaremos a la secretaria.",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "1du4rf5-188-pro-f1ca3d",
+      "claimType": "promesa",
+      "verbatim": "Nosotros votaremos en contra de la moción",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1du4rf5-197-cit-a77022",
+      "claimType": "cita_obra",
+      "verbatim": "Vuelve a retornar a las comunidades autónomas y a los ayuntamientos la capacidad de decidir si quieren o no reconocer la tauromaquia como parte de su patrimonio.",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "1qi8axv-000-cit-efb4d6",
+      "claimType": "cita_obra",
+      "verbatim": "el informe del técnico del área de Parc Sitchardins de la idoneidad de hacer esa prórroga.",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "1qi8axv-033-acu-3c3d08",
+      "claimType": "acusacion_publica",
+      "verbatim": "¿Tienen personal? No tienen. ¿Tienen vehículos? O no tienen, porque esto es algo muy go",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O83XFzEeamkBPRBxZ4nJ%2Fg%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1qi8axv-069-acu-84d314",
+      "claimType": "acusacion_publica",
+      "verbatim": "ustedes sabían desde hace dos meses que estaban en trámites para pedir una póliza, porque había tensión en la liquidez.",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WzpHq1tTBfcQK2TEfXGy%2BA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1sqj7is-053-pro-68944b",
+      "claimType": "promesa",
+      "verbatim": "propuestas como esta que sirven para mejorar la forma de contratar, que sirven para reducir los extrajudiciales",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOevTJeejQESugstABGr5A%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FxOcSrQ966OcCF8sV%2BqtYA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-129-afi-dca7d4",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "durante el próximo año\n[0.0 → 0.0] 2025",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ROL5%2F%2BMMtzqkU02jNGj1Fw%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-158-afi-b68cce",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "de acuerdo con lo previsto en el Título VI de la Ley 2/2023.",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-166-cit-76085f",
+      "claimType": "cita_convenio",
+      "verbatim": "con relación directa o indirecta con el Ayuntamiento de Riba-roja de Túria.",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-197-cit-725463",
+      "claimType": "cita_convenio",
+      "verbatim": "los datos de contacto para los canales externos de información previstos en el título III,",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Y44NDznkNwwQK2TEfXGy%2BA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fYHm8Bv%2BhW%2BiEJrVRqloyA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-232-cit-f7a440",
+      "claimType": "cita_obra",
+      "verbatim": "Comunicar a la Conselleria competente, por medio del procedimiento que se establezca reglamentariamente, los datos referidos a los medios empleados y/o centros contratados para la gestión de animales abandonados de su municipio",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F%2BU8w37GCn5vYnTkQN0%2FZA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-252-afi-82e339",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "Ley 7/2023, de 28 de marzo",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-321-pro-e1aa15",
+      "claimType": "promesa",
+      "verbatim": "Convocar una concentració per cadascuna de les dones assassinades",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "1tgd1h4-392-cit-23dd08",
+      "claimType": "cita_obra",
+      "verbatim": "se elaboró un plan\nde acción",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-021-afi-b6f856",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "la construcción es de 2008.",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=s8dOx1%2FkmfJvYnTkQN0%2FZA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-024-afi-eb50e3",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "La vivienda, conforme a la solicitud, ya dispone de agua potable, dispone también de suministro eléctrico.",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g7ocl8m3pyMQK2TEfXGy%2BA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-036-acu-a81f01",
+      "claimType": "acusacion_publica",
+      "verbatim": "faltan incluso ayudas individuales, aprendizajes en necesidades especiales",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://www.pap.hacienda.gob.es/bdnstrans/GE/es/convocatoria/350935",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-077-pro-02ea8a",
+      "claimType": "promesa",
+      "verbatim": "El compromiso de Vox es garantizar una enseñanza de calidad, con libertad,",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-126-pro-a6380b",
+      "claimType": "promesa",
+      "verbatim": "si no nos los pagan para el 2026, tenemos un problema",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-152-afi-9d9dca",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "que no hay un plazo de tiempo",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-154-cit-18d379",
+      "claimType": "cita_obra",
+      "verbatim": "que el comercio se puede inscribir en la fiera porque la realidad es lo que queremos es que se inscriban los comercios",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-159-afi-61a6eb",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "el plazo de tiempo que se va a dar es de 15-20 días",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "k4olcs-168-acu-7c01ea",
+      "claimType": "acusacion_publica",
+      "verbatim": "se sabía abonar el 2025 y no ser se sabonan el 2025 lo que correspondía al 2024",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "ma87e0-102-afi-c93bb9",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "por prevención no hemos incluido ni el canon del agua ni hemos incluido la liquidación de las participaciones de los ingresos del Estado, que pueden alcanzar más de tres millones de euros que ingrese el Ayuntamiento",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "ma87e0-104-cit-528973",
+      "claimType": "cita_obra",
+      "verbatim": "Con ella se va a financiar también una parte de las instalaciones deportivas. ¿Cuántas veces tenemos aquí? Pues lo entendemos que hay necesidades en las instalaciones deportivas que hay que mejorar. Pues ahí se va a financiar.",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ngqf58oaRxQQK2TEfXGy%2BA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "ma87e0-122-afi-4fed79",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "hemos aumentado a partir de la protección civil, para espacios degradados, que ustedes también han aumentado la partida",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "ma87e0-195-cit-1a0535",
+      "claimType": "cita_obra",
+      "verbatim": "no tiene el Metro, no tiene el edificante",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "otxq2c-037-cit-6c4d24",
+      "claimType": "cita_convenio",
+      "verbatim": "de los grupos de apoyo psicológico, social, jurídico y en otros ámbitos. Y trasladar todos estos puntos de acuerdo al Ministerio de Igualdad, a la Delegación de Gobierno, a la Generalitat Valenciana, Federación Valenciana de Municipios y Provincias, al Consejo de Igualdad de Río Roja y a todas las asociaciones de nuestro municipio que trabajan por y para las mujeres.",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y%2B4KpfdCiqmiEJrVRqloyA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MT4UDr1mVSrnSoTX3z%2F7wA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L6ABbu5%2BhfgQK2TEfXGy%2BA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "otxq2c-099-afi-8b88c4",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "En 1947, la Asamblea General de las Naciones Unidas aprobó la resolución 181",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-017-acu-bbdc30",
+      "claimType": "acusacion_publica",
+      "verbatim": "que era un auténtico desastre involucrado en el prenotazo urbanístico",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-027-cit-a55965",
+      "claimType": "cita_convenio",
+      "verbatim": "en ese convenio en el que además eran conocedores de que ese dinero nuestro iba a salir precisamente",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Cp2xOIZ42esQK2TEfXGy%2BA%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-043-cit-c7185a",
+      "claimType": "cita_convenio",
+      "verbatim": "verá que hay un convenio que nos envía la Generalitat Valenciana",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-044-cit-b9f02a",
+      "claimType": "cita_convenio",
+      "verbatim": "hay un convenio que nos envía la Generalitat Valenciana",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-051-cit-b30734",
+      "claimType": "cita_convenio",
+      "verbatim": "financiados por la Unión Europea en el marco del Plan de Recuperación, Transformación y Resiliencia.",
+      "goldVerdict": "verificado",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POJYBO8NDn2cCF8sV%2BqtYA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ujgt5qEIoTA2wEhQbcAqug%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fGWK7%2B%2Fp3sZJ8Trn0ZPzLw%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-052-cit-9f8de0",
+      "claimType": "cita_convenio",
+      "verbatim": "se otorgó a la mil euros para ejecución de actuaciones incardinadas dentro de ejes 1, 2 y 4 de esta estrategia.",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-052-cit-aa34de",
+      "claimType": "cita_obra",
+      "verbatim": "la mancomunidad asume el proceso de ejecución de los proyectos, todos los distintos pasos de licitación, redacción de proyectos, dirección de obras",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g2tcyB7NsGk%2B1TMyIiZmzw%3D%3D",
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-096-acu-237cd5",
+      "claimType": "acusacion_publica",
+      "verbatim": "El Partido Socialista, en su ADN, tiene el odio al que no piensa como él y no el respeto.",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "qz6weg-230-acu-a58b75",
+      "claimType": "acusacion_publica",
+      "verbatim": "Lo hacen las empresas amigas tuyas, las amigas de la anterior",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "rx4hb4-442-cit-722cbf",
+      "claimType": "cita_obra",
+      "verbatim": "hay 29 proyectos que recuperarán el polígono al 100% la pedanía el tema de la Riva",
+      "goldVerdict": "sin-datos",
+      "reviewed": false
+    },
+    {
+      "claimId": "rx4hb4-458-acu-3fb391",
+      "claimType": "acusacion_publica",
+      "verbatim": "estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
+      "goldVerdict": "contradicho",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D"
+      ],
+      "reviewed": false
+    },
+    {
+      "claimId": "rx4hb4-459-acu-7f378c",
+      "claimType": "acusacion_publica",
+      "verbatim": "vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
+      "goldVerdict": "parcial",
+      "goldEvidenceRefs": [
+        "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WUIrTpS4RqweC9GJQOEBkQ%3D%3D"
+      ],
+      "reviewed": false
+    }
+  ]
+}
