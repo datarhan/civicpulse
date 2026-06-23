@@ -24,6 +24,8 @@ import {
   type VerifierInputs,
 } from './claim-verifier'
 import { verifyClaimWithLlm } from './claim-verifier-llm'
+import { verifyClaimWithNli } from './claim-verifier-nli'
+import { scoreNliPairs, type NliPair } from './nli-client'
 import type { Corpus } from './semantic-shortlist'
 
 export interface VerifierContext {
@@ -92,6 +94,26 @@ export const currentVerifier: VerifierFn = async (claim, ctx) => {
   const r = await verifyClaimWithLlm({ claim, candidates: shortlist })
   return r?.upgraded ? r.verification : det
 }
+
+/**
+ * deterministic → if sin-datos, NLI grounding pass (local, $0). `model`
+ * selects the sidecar model (default mDeBERTa-xnli; 'minicheck' for benchmark).
+ */
+export function makeNliVerifier(opts: { model?: string } = {}): VerifierFn {
+  const scorer = (pairs: NliPair[]) => scoreNliPairs(pairs, opts.model ? { model: opts.model } : {})
+  return async (claim, ctx) => {
+    const det = verifyClaim(inputsFor(claim, ctx))
+    if (det.verdict !== 'sin-datos') return det
+    // Task 8 adds the preloaded-corpus passthrough; until then getShortlist
+    // self-loads the corpus (fine for the ~50-claim eval, fixed for the runner).
+    const shortlist = await getShortlist(inputsFor(claim, ctx), 8)
+    if (shortlist.length === 0) return det
+    const r = await verifyClaimWithNli({ claim, candidates: shortlist }, scorer)
+    return r?.upgraded ? r.verification : det
+  }
+}
+
+export const nliVerifier: VerifierFn = makeNliVerifier()
 
 /**
  * Reads the verdict already in a verified snapshot — the shipped baseline,

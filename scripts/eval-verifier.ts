@@ -19,6 +19,8 @@ import {
   deterministicVerifier,
   currentVerifier,
   makeStoredVerifier,
+  nliVerifier,
+  makeNliVerifier,
   type VerifierFn,
 } from '../src/scraper/verifier-runner'
 
@@ -56,10 +58,8 @@ async function pickVerifier(name: string, snapshot: VerifiedSnapshot): Promise<V
   if (name === 'stored') return makeStoredVerifier(snapshot)
   if (name === 'deterministic') return deterministicVerifier
   if (name === 'current') return currentVerifier
-  if (name === 'nli' || name === 'nli-minicheck') {
-    process.stderr.write('[eval] the nli verifier lands in P1 Task 7 — not wired yet\n')
-    process.exit(2)
-  }
+  if (name === 'nli') return nliVerifier
+  if (name === 'nli-minicheck') return makeNliVerifier({ model: 'minicheck' })
   process.stderr.write(`[eval] unknown --verifier ${name}\n`)
   process.exit(2)
 }

@@ -120,6 +120,17 @@ export interface ClaimVerification {
    * so those retry on the next run.
    */
   llmAttempted?: boolean
+  /**
+   * Support confidence in [0,1] from the NLI grounding pass (best entailment
+   * probability). A real number — unlike the LLM second pass, which parsed a
+   * confidence then dropped it (audit R1).
+   */
+  confidence?: number
+  /**
+   * Set by the NLI grounding pass once it has evaluated this sin-datos claim,
+   * so a re-run resumes instead of re-scoring. Mirrors `llmAttempted`.
+   */
+  nliAttempted?: boolean
 }
 
 export interface VerifierInputs {
