@@ -25,3 +25,7 @@ scripts/logs/
 
 # refine-transcript --apply local backups of the pristine Whisper output
 public/data/pleno-transcripts/*.txt.orig
+
+# P2 deterministic base — reproducible via `npm run verify:pleno-claims`; only
+# the overlay (curator/NLI decisions) + the merged verified.json are committed.
+public/data/pleno-claims-verified-base.json
