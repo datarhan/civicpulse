@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { deterministicVerifier, loadVerifierContext, type VerifierContext } from './verifier-runner'
-import type { PlenoClaim } from './pleno-claim'
+import {
+  deterministicVerifier,
+  loadVerifierContext,
+  type VerifierContext,
+} from '../../src/scraper/verifier-runner'
+import type { PlenoClaim } from '../../src/scraper/pleno-claim'
 
 const claim = {
   id: 'x',

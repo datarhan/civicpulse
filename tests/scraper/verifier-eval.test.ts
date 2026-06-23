@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { scoreVerifier, type GoldRow } from './verifier-eval'
-import type { ClaimVerdict, ClaimVerification } from './claim-verifier'
+import { scoreVerifier, type GoldRow } from '../../src/scraper/verifier-eval'
+import type { ClaimVerdict, ClaimVerification } from '../../src/scraper/claim-verifier'
 
 function pred(claimId: string, verdict: ClaimVerdict, refs: string[] = []): ClaimVerification {
   return {

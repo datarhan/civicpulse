@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { scoreNliPairs, NliUnavailableError, type NliPair } from './nli-client'
+import { scoreNliPairs, NliUnavailableError, type NliPair } from '../../src/scraper/nli-client'
 
 describe('scoreNliPairs', () => {
   it('serializes pairs to JSONL stdin and parses JSONL stdout into a Map', async () => {

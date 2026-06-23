@@ -1,7 +1,12 @@
 import { describe, it, expect } from 'vitest'
-import { stratifiedSample, mergeGold, toGoldRow, type VerifiedItemLike } from './gold-prefill'
-import type { ClaimVerdict } from './claim-verifier'
-import type { GoldRow } from './verifier-eval'
+import {
+  stratifiedSample,
+  mergeGold,
+  toGoldRow,
+  type VerifiedItemLike,
+} from '../../src/scraper/gold-prefill'
+import type { ClaimVerdict } from '../../src/scraper/claim-verifier'
+import type { GoldRow } from '../../src/scraper/verifier-eval'
 
 function item(
   id: string,

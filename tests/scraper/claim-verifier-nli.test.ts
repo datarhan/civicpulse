@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest'
-import { verifyClaimWithNli } from './claim-verifier-nli'
-import type { PlenoClaim } from './pleno-claim'
-import type { CandidateShortlist } from './claim-verifier'
-import type { NliPair, NliScore } from './nli-client'
+import { verifyClaimWithNli } from '../../src/scraper/claim-verifier-nli'
+import type { PlenoClaim } from '../../src/scraper/pleno-claim'
+import type { CandidateShortlist } from '../../src/scraper/claim-verifier'
+import type { NliPair, NliScore } from '../../src/scraper/nli-client'
 
 const claim = (over: Record<string, unknown> = {}): PlenoClaim =>
   ({
