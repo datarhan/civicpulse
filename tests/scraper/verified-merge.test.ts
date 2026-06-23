@@ -2,10 +2,12 @@ import { describe, it, expect } from 'vitest'
 import {
   mergeVerified,
   isDowngrade,
+  validateOverlay,
+  applyOverlayEntries,
   type VerifiedItem,
   type Overlay,
 } from '../../src/scraper/verified-merge'
-import type { ClaimVerification } from '../../src/scraper/claim-verifier'
+import type { ClaimVerdict, ClaimVerification } from '../../src/scraper/claim-verifier'
 
 function item(id: string, verdict: ClaimVerification['verdict']): VerifiedItem {
   return {
@@ -66,5 +68,117 @@ describe('isDowngrade', () => {
     expect(isDowngrade('parcial', 'verificado')).toBe(false)
     expect(isDowngrade('parcial', 'parcial')).toBe(false)
     expect(isDowngrade('parcial', 'contradicho')).toBe(false) // never "downgrade" INTO contradicho
+  })
+})
+
+function vrf(id: string, verdict: ClaimVerdict): ClaimVerification {
+  return { claimId: id, verdict, summary: 's', evidence: [], checkedAgainst: [] }
+}
+
+describe('validateOverlay', () => {
+  it('accepts a well-formed overlay and rejects malformed entries', () => {
+    const ok: Overlay = {
+      version: 1,
+      generatedAt: 'x',
+      entries: { a: { verification: vrf('a', 'parcial'), source: 'nli', appliedAt: 'x' } },
+    }
+    expect(() => validateOverlay(ok)).not.toThrow()
+    // missing verification
+    expect(() =>
+      validateOverlay({
+        version: 1,
+        generatedAt: 'x',
+        entries: { a: { source: 'nli', appliedAt: 'x' } },
+      } as unknown as Overlay),
+    ).toThrow()
+    // curator-downgrade with reason < 20 chars
+    expect(() =>
+      validateOverlay({
+        version: 1,
+        generatedAt: 'x',
+        entries: {
+          a: {
+            verification: vrf('a', 'sin-datos'),
+            source: 'curator-downgrade',
+            appliedAt: 'x',
+            reason: 'too short',
+          },
+        },
+      } as Overlay),
+    ).toThrow()
+  })
+})
+
+describe('applyOverlayEntries', () => {
+  const empty: Overlay = { version: 1, generatedAt: 'x', entries: {} }
+
+  it('adds an nli entry and stamps appliedAt + generatedAt', () => {
+    const out = applyOverlayEntries(
+      empty,
+      [{ claimId: 'a', verification: vrf('a', 'verificado'), source: 'nli' }],
+      'TS',
+    )
+    expect(out.entries.a.source).toBe('nli')
+    expect(out.entries.a.appliedAt).toBe('TS')
+    expect(out.generatedAt).toBe('TS')
+    expect(empty.entries.a).toBeUndefined() // input not mutated
+  })
+
+  it('rejects a curator-downgrade with a short reason', () => {
+    const base = new Map<string, ClaimVerdict>([['a', 'verificado']])
+    expect(() =>
+      applyOverlayEntries(
+        empty,
+        [
+          {
+            claimId: 'a',
+            verification: vrf('a', 'sin-datos'),
+            source: 'curator-downgrade',
+            reason: 'short',
+          },
+        ],
+        'TS',
+        base,
+      ),
+    ).toThrow()
+  })
+
+  it('rejects a curator-downgrade that is not actually a downgrade', () => {
+    const base = new Map<string, ClaimVerdict>([['a', 'sin-datos']])
+    expect(() =>
+      applyOverlayEntries(
+        empty,
+        [
+          {
+            claimId: 'a',
+            verification: vrf('a', 'verificado'),
+            source: 'curator-downgrade',
+            reason: 'this is a sufficiently long reason to pass the gate',
+          },
+        ],
+        'TS',
+        base,
+      ),
+    ).toThrow()
+  })
+
+  it('accepts a valid curator downgrade (contradicho → sin-datos)', () => {
+    const base = new Map<string, ClaimVerdict>([['a', 'contradicho']])
+    const out = applyOverlayEntries(
+      empty,
+      [
+        {
+          claimId: 'a',
+          verification: vrf('a', 'sin-datos'),
+          source: 'curator-downgrade',
+          reason: 'the cited evidence does not actually contradict the claim',
+          editor: 'sergei',
+        },
+      ],
+      'TS',
+      base,
+    )
+    expect(out.entries.a.verification.verdict).toBe('sin-datos')
+    expect(out.entries.a.reason).toContain('does not actually contradict')
   })
 })
