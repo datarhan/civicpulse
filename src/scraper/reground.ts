@@ -17,11 +17,17 @@
  */
 import type { ClaimVerdict } from './claim-verifier'
 
+// Calibrated on the reviewed gold (scripts/calibrate-reground.ts, 2026-06-24).
+// NLI entailment of a 1-line tender snippet vs a spoken claim is a WEAK separator
+// (over-claims + genuine verdicts both cluster low; precision tops ~0.68). 0.2 is
+// the best recall/precision balance for verificado/parcial. For contradicho the
+// signal is inverted (misfires often have HIGH NLI contradiction), and every
+// sampled contradicho was a misfire — so we flag ALL of them for human review
+// rather than trust a contradiction score. The gate is a coarse triage, not a
+// precise filter; the real over-claiming fix is the P3 verdict engine.
 export const REGROUND_THRESHOLDS = {
   /** verificado/parcial below this max entailment → ungrounded. */
-  entail: 0.5,
-  /** contradicho below this max contradiction → weak-contradicho. */
-  contra: 0.5,
+  entail: 0.2,
 }
 
 export interface RegroundItem {
@@ -36,7 +42,7 @@ export interface RegroundFlag {
   claimId: string
   verbatim: string
   currentVerdict: ClaimVerdict
-  reason: 'ungrounded' | 'weak-contradicho'
+  reason: 'ungrounded' | 'contradicho-review'
   maxEntail: number
   maxContra: number
   evidence: { ref: string; snippet: string }[]
@@ -67,8 +73,9 @@ export function regroundDecision(
     return null
   }
   if (verdict === 'contradicho') {
-    if (maxContra < REGROUND_THRESHOLDS.contra) return { ...base, reason: 'weak-contradicho' }
-    return null
+    // Always flag: NLI contradiction can't distinguish a genuine contradicho from
+    // a surface-contradiction misfire, and contradicho is the libel boundary.
+    return { ...base, reason: 'contradicho-review' }
   }
   return null // sin-datos / promesa-repetida — out of scope
 }

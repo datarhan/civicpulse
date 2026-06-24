@@ -16,14 +16,17 @@ function item(verdict: ClaimVerdict, nEvidence = 1): RegroundItem {
   }
 }
 
-describe('regroundDecision', () => {
+describe('regroundDecision (calibrated: entail<0.2 → ungrounded; all contradicho flagged)', () => {
   it('flags a verificado whose best evidence does not entail the claim', () => {
-    const f = regroundDecision(item('verificado'), [{ entailment: 0.3, contradiction: 0.1 }])
+    const f = regroundDecision(item('verificado'), [{ entailment: 0.1, contradiction: 0.1 }])
     expect(f?.reason).toBe('ungrounded')
-    expect(f?.maxEntail).toBeCloseTo(0.3)
+    expect(f?.maxEntail).toBeCloseTo(0.1)
   })
 
-  it('does NOT flag a verificado that is genuinely entailed', () => {
+  it('does NOT flag a verificado entailed above the floor', () => {
+    expect(
+      regroundDecision(item('verificado'), [{ entailment: 0.3, contradiction: 0.1 }]),
+    ).toBeNull()
     expect(
       regroundDecision(item('verificado'), [{ entailment: 0.8, contradiction: 0.1 }]),
     ).toBeNull()
@@ -31,33 +34,31 @@ describe('regroundDecision', () => {
 
   it('flags a parcial below the entail floor', () => {
     expect(
-      regroundDecision(item('parcial'), [{ entailment: 0.4, contradiction: 0.0 }])?.reason,
+      regroundDecision(item('parcial'), [{ entailment: 0.05, contradiction: 0.0 }])?.reason,
     ).toBe('ungrounded')
   })
 
-  it('flags a contradicho whose evidence does not actually contradict', () => {
-    const f = regroundDecision(item('contradicho'), [{ entailment: 0.1, contradiction: 0.2 }])
-    expect(f?.reason).toBe('weak-contradicho')
-    expect(f?.maxContra).toBeCloseTo(0.2)
-  })
-
-  it('does NOT flag a contradicho with a genuine contradiction', () => {
+  it('flags EVERY contradicho for review regardless of contradiction score', () => {
+    // misfire with high surface-contradiction → still flagged (NLI cannot validate it)
     expect(
-      regroundDecision(item('contradicho'), [{ entailment: 0.05, contradiction: 0.9 }]),
-    ).toBeNull()
+      regroundDecision(item('contradicho'), [{ entailment: 0.05, contradiction: 0.9 }])?.reason,
+    ).toBe('contradicho-review')
+    // and one with low contradiction → also flagged
+    expect(
+      regroundDecision(item('contradicho'), [{ entailment: 0.1, contradiction: 0.1 }])?.reason,
+    ).toBe('contradicho-review')
   })
 
-  it('takes the MAX over multiple evidence rows', () => {
-    // one weak + one strong → entailed → not flagged
+  it('takes the MAX entailment over multiple evidence rows', () => {
     expect(
       regroundDecision(item('verificado', 2), [
-        { entailment: 0.2, contradiction: 0.0 },
+        { entailment: 0.1, contradiction: 0.0 },
         { entailment: 0.7, contradiction: 0.0 },
       ]),
-    ).toBeNull()
+    ).toBeNull() // best evidence (0.7) entails → not flagged
   })
 
-  it('returns null for items with no evidence and for out-of-scope verdicts', () => {
+  it('returns null for no evidence and for out-of-scope verdicts', () => {
     expect(
       regroundDecision(
         { ...item('verificado'), verification: { verdict: 'verificado', evidence: [] } },
@@ -72,8 +73,8 @@ describe('regroundDecision', () => {
     ).toBeNull()
   })
 
-  it('exposes tunable thresholds', () => {
+  it('exposes the tunable entail threshold', () => {
     expect(REGROUND_THRESHOLDS.entail).toBeGreaterThan(0)
-    expect(REGROUND_THRESHOLDS.contra).toBeGreaterThan(0)
+    expect(REGROUND_THRESHOLDS.entail).toBeLessThan(1)
   })
 })

@@ -111,7 +111,8 @@
     "searxng:up": "docker compose -f scripts/searxng/docker-compose.yml up -d",
     "searxng:down": "docker compose -f scripts/searxng/docker-compose.yml down",
     "scrape:all": "bash scripts/scrape-all.sh",
-    "prepare": "husky || true"
+    "prepare": "husky || true",
+    "calibrate:reground": "npx tsx scripts/calibrate-reground.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

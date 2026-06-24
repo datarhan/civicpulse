@@ -114,7 +114,7 @@ async function main() {
   }
 
   const ungrounded = flags.filter((f) => f.reason === 'ungrounded').length
-  const weakContra = flags.filter((f) => f.reason === 'weak-contradicho').length
+  const contradichoReview = flags.filter((f) => f.reason === 'contradicho-review').length
   writeFileSync(
     FLAGS,
     JSON.stringify(
@@ -122,7 +122,7 @@ async function main() {
         generatedAt: new Date().toISOString(),
         model: opts.model ?? 'mDeBERTa-xnli',
         thresholds: REGROUND_THRESHOLDS,
-        counts: { total: flags.length, ungrounded, weakContra, examined: queue.length },
+        counts: { total: flags.length, ungrounded, contradichoReview, examined: queue.length },
         flags,
       },
       null,
@@ -130,7 +130,7 @@ async function main() {
     ) + '\n',
   )
   process.stdout.write(
-    `[reground] done. ${flags.length} flagged of ${queue.length} (ungrounded=${ungrounded} · weak-contradicho=${weakContra}) → ${FLAGS}\n` +
+    `[reground] done. ${flags.length} flagged of ${queue.length} (ungrounded=${ungrounded} · contradicho-review=${contradichoReview}) → ${FLAGS}\n` +
       `[reground] review with \`npm run regrounding:review\`; apply with \`npm run downgrade-verdict\`. No verdict was changed.\n`,
   )
 }
