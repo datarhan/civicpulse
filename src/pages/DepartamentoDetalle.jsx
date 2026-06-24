@@ -14,6 +14,7 @@ import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVot
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
 import { ClaimLedger } from '../components/ClaimLedger'
+import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { deptSlugToClaimTopics, promiseDeptSlug } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
 
@@ -44,6 +45,7 @@ function VotesSection({ slug, frozen }) {
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginTop: 12 }}>
+      <DirectionLegend />
       {votes.map((v) => (
         <Card key={v.id}>
           <div
@@ -65,6 +67,11 @@ function VotesSection({ slug, frozen }) {
               {OUTCOME_LABEL[v.outcome] || v.outcome}
             </Pill>
           </div>
+          {v.votes?.length > 0 && (
+            <div style={{ marginTop: 8 }}>
+              <VoteTallyBar tally={v.votes} />
+            </div>
+          )}
           {v.dueBy && (
             <div style={{ marginTop: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
               {v.outcome === 'aprobado' ? (

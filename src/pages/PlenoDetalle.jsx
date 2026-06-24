@@ -2,12 +2,13 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { AgendaRow } from '../components/plenos/AgendaRow'
+import { VoteTallyBar, DirectionLegend } from '../components/plenos/VoteTallyBar'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoChunk } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
-import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE, DIRECTION_LABEL } from '../hooks/usePlenoVotes'
+import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
 import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort } from '../lib/formatters'
@@ -135,15 +136,6 @@ function VoteOutcomeBar({ votes }) {
   )
 }
 
-const SEATS = { PSOE: 11, PP: 7, VOX: 1, Compromís: 1, Otro: 1 }
-const DIR_COLOR = {
-  a_favor: 'var(--ok)',
-  en_contra: 'var(--crit)',
-  abstencion: 'var(--warn)',
-  ausente: 'var(--ink40)',
-}
-const DIR_ORDER = { a_favor: 0, abstencion: 1, ausente: 2, en_contra: 3 }
-
 /** Uppercase mono section label used inside the Resumen tab. */
 function OLabel({ children }) {
   return (
@@ -158,58 +150,6 @@ function OLabel({ children }) {
       }}
     >
       {children}
-    </div>
-  )
-}
-
-/** Per-bloc tally folded into one compact bar: each bloc a segment sized by
- *  seats, coloured by its vote direction (a_favor/en_contra/abstención/ausente). */
-function VoteTallyBar({ tally }) {
-  const sorted = [...tally].sort(
-    (a, b) => (DIR_ORDER[a.direction] ?? 9) - (DIR_ORDER[b.direction] ?? 9),
-  )
-  return (
-    <div style={{ display: 'flex', height: 20, borderRadius: 5, overflow: 'hidden', gap: 1 }}>
-      {sorted.map((v) => {
-        const seats = v.seats || SEATS[v.bloc] || 1
-        return (
-          <div
-            key={v.bloc}
-            title={`${v.bloc} · ${DIRECTION_LABEL[v.direction] || v.direction} · ${seats}`}
-            style={{
-              flex: seats,
-              background: DIR_COLOR[v.direction] || 'var(--ink40)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              minWidth: 16,
-            }}
-          >
-            <span
-              className="mono"
-              style={{ fontSize: 9, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap' }}
-            >
-              {v.bloc}
-            </span>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
-
-function DirectionLegend() {
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginBottom: 12 }}>
-      {Object.entries(DIR_COLOR).map(([k, c]) => (
-        <span
-          key={k}
-          style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11 }}
-        >
-          <span style={{ width: 9, height: 9, borderRadius: 2, background: c }} />
-          <span style={{ color: 'var(--ink70)' }}>{DIRECTION_LABEL[k] || k}</span>
-        </span>
-      ))}
     </div>
   )
 }
