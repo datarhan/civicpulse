@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-06-24T10:25:15.496Z",
+  "generatedAt": "2026-06-24T10:47:46.205Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -7631,6 +7631,51 @@
       "reason": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
       "editor": "ai-gold-review",
       "appliedAt": "2026-06-24T07:18:12.464Z"
+    },
+    "19gax3o-092-cit-cbd431": {
+      "verification": {
+        "claimId": "19gax3o-092-cit-cbd431",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ]
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (gpt-5.4-mini) re-judged verificado→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+      "editor": "verdict-engine:gpt-5.4-mini",
+      "appliedAt": "2026-06-24T10:47:46.205Z"
+    },
+    "1qi8axv-051-cit-a7b553": {
+      "verification": {
+        "claimId": "1qi8axv-051-cit-a7b553",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ]
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (gpt-5.4-mini) re-judged verificado→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+      "editor": "verdict-engine:gpt-5.4-mini",
+      "appliedAt": "2026-06-24T10:47:46.205Z"
+    },
+    "1tgd1h4-204-cit-5ef83b": {
+      "verification": {
+        "claimId": "1tgd1h4-204-cit-5ef83b",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ]
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (gpt-5.4-mini) re-judged parcial→sin-datos: No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+      "editor": "verdict-engine:gpt-5.4-mini",
+      "appliedAt": "2026-06-24T10:47:46.205Z"
     }
   }
 }

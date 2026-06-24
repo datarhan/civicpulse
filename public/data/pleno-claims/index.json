@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T10:25:15.561Z",
+  "generatedAt": "2026-06-24T10:47:46.268Z",
   "version": "1",
   "plenos": [
     {
@@ -126,10 +126,10 @@
       "plenoDate": "2026-01-19",
       "chunkPath": "pleno-claims/19gax3o.json",
       "itemCount": 349,
-      "toggleCount": 290,
+      "toggleCount": 291,
       "byVerdict": {
-        "sin-datos": 290,
-        "verificado": 23,
+        "sin-datos": 291,
+        "verificado": 22,
         "parcial": 36
       },
       "byType": {
@@ -153,7 +153,7 @@
         "social": 4,
         "educacion": 2
       },
-      "bytes": 512881
+      "bytes": 512571
     },
     {
       "plenoId": "1pe3qs8",
@@ -182,11 +182,11 @@
       "plenoDate": "2025-12-23",
       "chunkPath": "pleno-claims/1qi8axv.json",
       "itemCount": 161,
-      "toggleCount": 145,
+      "toggleCount": 146,
       "byVerdict": {
-        "sin-datos": 145,
+        "sin-datos": 146,
         "parcial": 7,
-        "verificado": 9
+        "verificado": 8
       },
       "byType": {
         "afirmacion_numerica": 116,
@@ -205,7 +205,7 @@
         "salud": 1,
         "cultura": 2
       },
-      "bytes": 226377
+      "bytes": 226080
     },
     {
       "plenoId": "qz6weg",
@@ -312,11 +312,11 @@
       "plenoDate": "2024-07-29",
       "chunkPath": "pleno-claims/1tgd1h4.json",
       "itemCount": 1011,
-      "toggleCount": 919,
+      "toggleCount": 920,
       "byVerdict": {
-        "sin-datos": 919,
+        "sin-datos": 920,
         "verificado": 44,
-        "parcial": 48
+        "parcial": 47
       },
       "byType": {
         "afirmacion_numerica": 296,
@@ -340,16 +340,16 @@
         "educacion": 1,
         "vivienda": 2
       },
-      "bytes": 1477603
+      "bytes": 1477280
     }
   ],
   "totals": {
     "items": 3078,
     "plenos": 11,
     "byVerdict": {
-      "verificado": 157,
-      "sin-datos": 2750,
-      "parcial": 171
+      "verificado": 155,
+      "sin-datos": 2753,
+      "parcial": 170
     }
   }
 }

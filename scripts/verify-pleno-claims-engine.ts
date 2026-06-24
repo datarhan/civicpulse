@@ -35,14 +35,16 @@ interface Args {
   plenoId: string | null
   max: number
   dryRun: boolean
+  base: boolean
 }
 
 function parseArgs(argv: string[]): Args {
-  const out: Args = { plenoId: null, max: Infinity, dryRun: false }
+  const out: Args = { plenoId: null, max: Infinity, dryRun: false, base: false }
   for (let i = 0; i < argv.length; i++) {
     if (argv[i] === '--plenoId') out.plenoId = argv[++i]
     else if (argv[i] === '--max') out.max = Number(argv[++i])
     else if (argv[i] === '--dry-run') out.dryRun = true
+    else if (argv[i] === '--base') out.base = true
     else {
       process.stderr.write(`[verify-engine] unknown flag ${argv[i]}\n`)
       process.exit(2)
@@ -64,18 +66,36 @@ async function main() {
   )
 
   let overlay = loadOverlay()
-  // Targets: claims the LLM second pass upgraded to verificado/parcial — the
-  // over-claim pool. Skip any already re-derived by the engine (resume).
   const targets: string[] = []
-  for (const [id, e] of Object.entries(overlay.entries)) {
-    if (e.source !== 'llm') continue
-    if (e.verification.verdict !== 'verificado' && e.verification.verdict !== 'parcial') continue
-    if (args.plenoId && !id.startsWith(args.plenoId)) continue
-    targets.push(id)
+  if (args.base) {
+    // --base: re-judge the pure deterministic-base verificado/parcial that no
+    // overlay entry has ever touched (the LLM ones are handled by the default
+    // mode). Same downgrade-to-sin-datos-only policy. Resume: a verdict-engine
+    // entry already exists ⇒ the claimId is in the overlay ⇒ skipped below.
+    const ovIds = new Set(Object.keys(overlay.entries))
+    for (const it of snap.items) {
+      const v = it.verification.verdict
+      if (v !== 'verificado' && v !== 'parcial') continue
+      if (ovIds.has(it.claim.id)) continue // overlay-sourced (already vetted) or already re-judged
+      if (args.plenoId && !it.claim.id.startsWith(args.plenoId)) continue
+      targets.push(it.claim.id)
+    }
+    process.stderr.write(
+      `[verify-engine] --base: ${targets.length} pure-base verificado/parcial verdicts to re-judge (model ${MODEL})\n`,
+    )
+  } else {
+    // Default: claims the LLM second pass upgraded to verificado/parcial — the
+    // over-claim pool. Skip any already re-derived by the engine (resume).
+    for (const [id, e] of Object.entries(overlay.entries)) {
+      if (e.source !== 'llm') continue
+      if (e.verification.verdict !== 'verificado' && e.verification.verdict !== 'parcial') continue
+      if (args.plenoId && !id.startsWith(args.plenoId)) continue
+      targets.push(id)
+    }
+    process.stderr.write(
+      `[verify-engine] ${targets.length} LLM verificado/parcial verdicts to re-judge (model ${MODEL})\n`,
+    )
   }
-  process.stderr.write(
-    `[verify-engine] ${targets.length} LLM verificado/parcial verdicts to re-judge (model ${MODEL})\n`,
-  )
 
   const ctx = await loadVerifierContext({ withCorpus: false })
   const engine = makeEngineVerifier({ consistency: false })

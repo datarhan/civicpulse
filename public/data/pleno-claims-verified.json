@@ -7,10 +7,10 @@
   "stats": {
     "total": 4658,
     "byVerdict": {
-      "verificado": 157,
-      "parcial": 171,
+      "verificado": 155,
+      "parcial": 170,
       "contradicho": 0,
-      "sin-datos": 4330,
+      "sin-datos": 4333,
       "promesa-repetida": 0
     }
   },
@@ -35915,21 +35915,11 @@
       },
       "verification": {
         "claimId": "19gax3o-092-cit-cbd431",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9LNl%2FM0VyDuiEJrVRqloyA%3D%3D",
-            "snippet": "Carta de servicios municipal · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "verdict-engine"
         ]
       }
     },
@@ -49632,21 +49622,11 @@
       },
       "verification": {
         "claimId": "1qi8axv-051-cit-a7b553",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio limpieza · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "verdict-engine"
         ]
       }
     },
@@ -130324,21 +130304,11 @@
       },
       "verification": {
         "claimId": "1tgd1h4-204-cit-5ef83b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 0.67
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "verdict-engine"
         ]
       }
     },
