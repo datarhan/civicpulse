@@ -2,13 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { AgendaRow } from '../components/plenos/AgendaRow'
-import { VoteTuple } from '../components/plenos/VoteTuple'
 import { FindingCard } from '../components/PlenoFindings'
 import { ClaimLedger } from '../components/ClaimLedger'
 import { usePlenos, PLENO_TONE, PLENO_LABEL } from '../hooks/usePlenos'
 import { usePlenoChunk } from '../hooks/usePlenoClaims'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
-import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVotes'
+import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE, DIRECTION_LABEL } from '../hooks/usePlenoVotes'
 import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort } from '../lib/formatters'
@@ -136,6 +135,124 @@ function VoteOutcomeBar({ votes }) {
   )
 }
 
+const SEATS = { PSOE: 11, PP: 7, VOX: 1, Compromís: 1, Otro: 1 }
+const DIR_COLOR = {
+  a_favor: 'var(--ok)',
+  en_contra: 'var(--crit)',
+  abstencion: 'var(--warn)',
+  ausente: 'var(--ink40)',
+}
+const DIR_ORDER = { a_favor: 0, abstencion: 1, ausente: 2, en_contra: 3 }
+
+/** Uppercase mono section label used inside the Resumen tab. */
+function OLabel({ children }) {
+  return (
+    <div
+      className="mono"
+      style={{
+        fontSize: 10,
+        color: 'var(--ink50)',
+        textTransform: 'uppercase',
+        letterSpacing: '.06em',
+        marginBottom: 8,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
+/** Per-bloc tally folded into one compact bar: each bloc a segment sized by
+ *  seats, coloured by its vote direction (a_favor/en_contra/abstención/ausente). */
+function VoteTallyBar({ tally }) {
+  const sorted = [...tally].sort(
+    (a, b) => (DIR_ORDER[a.direction] ?? 9) - (DIR_ORDER[b.direction] ?? 9),
+  )
+  return (
+    <div style={{ display: 'flex', height: 20, borderRadius: 5, overflow: 'hidden', gap: 1 }}>
+      {sorted.map((v) => {
+        const seats = v.seats || SEATS[v.bloc] || 1
+        return (
+          <div
+            key={v.bloc}
+            title={`${v.bloc} · ${DIRECTION_LABEL[v.direction] || v.direction} · ${seats}`}
+            style={{
+              flex: seats,
+              background: DIR_COLOR[v.direction] || 'var(--ink40)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 16,
+            }}
+          >
+            <span
+              className="mono"
+              style={{ fontSize: 9, fontWeight: 700, color: '#fff', whiteSpace: 'nowrap' }}
+            >
+              {v.bloc}
+            </span>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+function DirectionLegend() {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 14px', marginBottom: 12 }}>
+      {Object.entries(DIR_COLOR).map(([k, c]) => (
+        <span
+          key={k}
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11 }}
+        >
+          <span style={{ width: 9, height: 9, borderRadius: 2, background: c }} />
+          <span style={{ color: 'var(--ink70)' }}>{DIRECTION_LABEL[k] || k}</span>
+        </span>
+      ))}
+    </div>
+  )
+}
+
+/** con-evidencia vs sin-contraste proportion for the session's declarations. */
+function DeclMixBar({ items }) {
+  const g = items.filter((it) => GROUNDED.has(it.verification?.verdict)).length
+  const s = items.filter((it) => it.verification?.verdict === 'sin-datos').length
+  if (g + s === 0) return null
+  return (
+    <div>
+      <div
+        style={{
+          display: 'flex',
+          height: 10,
+          borderRadius: 5,
+          overflow: 'hidden',
+          background: 'var(--soft)',
+        }}
+      >
+        {g > 0 && <div style={{ flex: g, background: 'var(--ok)' }} />}
+        {s > 0 && <div style={{ flex: s, background: 'var(--ink40)' }} />}
+      </div>
+      <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 11.5 }}>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+          <span style={{ width: 9, height: 9, borderRadius: 2, background: 'var(--ok)' }} />
+          <span style={{ color: 'var(--ink70)' }}>con evidencia</span>
+          <strong className="mono" style={{ color: 'var(--ink)' }}>
+            {g}
+          </strong>
+        </span>
+        <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5 }}>
+          <span style={{ width: 9, height: 9, borderRadius: 2, background: 'var(--ink40)' }} />
+          <span style={{ color: 'var(--ink70)' }}>sin contraste</span>
+          <strong className="mono" style={{ color: 'var(--ink)' }}>
+            {s}
+          </strong>
+        </span>
+      </div>
+    </div>
+  )
+}
+
 export default function PlenoDetalle() {
   const t = useT()
   const { id } = useParams()
@@ -145,7 +262,7 @@ export default function PlenoDetalle() {
   const { data: votesData } = usePlenoVotes()
   const { data: findingsData } = usePlenoFindings()
   const { data: videosData } = usePlenoVideos()
-  const [tab, setTab] = useState('agenda')
+  const [tab, setTab] = useState('resumen')
 
   const pleno = useMemo(() => (plenosData?.items ?? []).find((p) => p.id === id), [plenosData, id])
   const agenda = useMemo(
@@ -188,6 +305,7 @@ export default function PlenoDetalle() {
   }
 
   const TABS = [
+    { key: 'resumen', label: t('plenoDetail.summary'), count: null },
     { key: 'agenda', label: t('plenoDetail.agenda'), count: agendaItems.length },
     { key: 'votos', label: t('plenoDetail.votes'), count: votes.length },
     { key: 'declaraciones', label: t('plenoDetail.declarations'), count: groundedCount || null },
@@ -312,6 +430,96 @@ export default function PlenoDetalle() {
       </div>
 
       {/* Tab content */}
+      {tab === 'resumen' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
+          <div style={{ fontSize: 13.5, color: 'var(--ink70)', lineHeight: 1.55 }}>
+            <strong style={{ color: 'var(--ink)' }}>{agendaItems.length}</strong> puntos en el orden
+            del día
+            {votes.length > 0 && (
+              <>
+                {' · '}
+                <strong style={{ color: 'var(--ink)' }}>{votes.length}</strong> votaciones (
+                {aprobados} aprobadas)
+              </>
+            )}
+            {' · '}
+            <strong style={{ color: 'var(--ink)' }}>{groundedCount}</strong> declaraciones con
+            evidencia
+            {findings.length > 0 && (
+              <>
+                {' · '}
+                <strong style={{ color: 'var(--crit-ink)' }}>{findings.length}</strong> hallazgos
+                editoriales
+              </>
+            )}
+          </div>
+
+          {votes.length > 0 && (
+            <div>
+              <OLabel>{t('plenoDetail.votes')}</OLabel>
+              <VoteOutcomeBar votes={votes} />
+            </div>
+          )}
+
+          {claimItems.length > 0 && (
+            <div>
+              <OLabel>{t('plenoDetail.declarations')}</OLabel>
+              <DeclMixBar items={claimItems} />
+            </div>
+          )}
+
+          {findings.length > 0 && (
+            <div>
+              <OLabel>{t('plenoDetail.findings')}</OLabel>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {findings.map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setTab('hallazgos')}
+                    style={{
+                      textAlign: 'left',
+                      appearance: 'none',
+                      background: 'var(--soft)',
+                      border: '1px solid var(--border2)',
+                      borderRadius: 8,
+                      padding: '8px 12px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      gap: 8,
+                      alignItems: 'baseline',
+                    }}
+                  >
+                    <Pill
+                      tone={
+                        f.severity === 'critical'
+                          ? 'crit'
+                          : f.severity === 'notable'
+                            ? 'warn'
+                            : 'neutral'
+                      }
+                      size="xs"
+                    >
+                      {f.severity}
+                    </Pill>
+                    <span style={{ fontSize: 13, color: 'var(--ink)', fontWeight: 600 }}>
+                      {f.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {votes.length === 0 && claimItems.length === 0 && findings.length === 0 && (
+            <EmptyNote>
+              Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni
+              hallazgos para esta sesión.
+            </EmptyNote>
+          )}
+        </div>
+      )}
+
       {tab === 'agenda' &&
         (agendaItems.length > 0 ? (
           <Card>
@@ -326,7 +534,7 @@ export default function PlenoDetalle() {
       {tab === 'votos' &&
         (votes.length > 0 ? (
           <>
-            <VoteOutcomeBar votes={votes} />
+            <DirectionLegend />
             <Card>
               {votes.map((rec) => (
                 <div
@@ -352,11 +560,7 @@ export default function PlenoDetalle() {
                   <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>
                     {rec.itemNumber}. {rec.title}
                   </div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                    {rec.votes.map((v) => (
-                      <VoteTuple key={v.bloc} v={v} />
-                    ))}
-                  </div>
+                  <VoteTallyBar tally={rec.votes} />
                 </div>
               ))}
             </Card>

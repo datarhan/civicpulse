@@ -114,6 +114,7 @@ const CATALOGUE = {
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sesión no encontrada',
     'plenoDetail.back': '← Todos los plenos',
+    'plenoDetail.summary': 'Resumen',
     'plenoDetail.agenda': 'Orden del día',
     'plenoDetail.votes': 'Votaciones',
     'plenoDetail.declarations': 'Declaraciones contrastadas',
@@ -277,6 +278,7 @@ const CATALOGUE = {
     // Pleno detail (/plenos/:id)
     'plenoDetail.notFound': 'Sessió no trobada',
     'plenoDetail.back': '← Tots els plens',
+    'plenoDetail.summary': 'Resum',
     'plenoDetail.agenda': 'Ordre del dia',
     'plenoDetail.votes': 'Votacions',
     'plenoDetail.declarations': 'Declaracions contrastades',
