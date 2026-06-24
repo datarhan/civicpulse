@@ -181,4 +181,56 @@ describe('applyOverlayEntries', () => {
     expect(out.entries.a.verification.verdict).toBe('sin-datos')
     expect(out.entries.a.reason).toContain('does not actually contradict')
   })
+
+  it('accepts a verdict-engine entry (re-derivation) with a grounded reason', () => {
+    const out = applyOverlayEntries(
+      empty,
+      [
+        {
+          claimId: 'a',
+          verification: vrf('a', 'sin-datos'),
+          source: 'verdict-engine',
+          reason: 'ningun candidato respalda el importe ni el sujeto de la afirmacion',
+          editor: 'verdict-engine:gpt-5.4-mini',
+        },
+      ],
+      'TS',
+    )
+    expect(out.entries.a.source).toBe('verdict-engine')
+    expect(out.entries.a.verification.verdict).toBe('sin-datos')
+  })
+
+  it('rejects a verdict-engine entry with a short reason', () => {
+    expect(() =>
+      applyOverlayEntries(
+        empty,
+        [
+          {
+            claimId: 'a',
+            verification: vrf('a', 'sin-datos'),
+            source: 'verdict-engine',
+            reason: 'x',
+          },
+        ],
+        'TS',
+      ),
+    ).toThrow()
+  })
+
+  it('rejects a verdict-engine entry that emits contradicho', () => {
+    expect(() =>
+      applyOverlayEntries(
+        empty,
+        [
+          {
+            claimId: 'a',
+            verification: vrf('a', 'contradicho'),
+            source: 'verdict-engine',
+            reason: 'the engine must never be allowed to emit a contradicho verdict',
+          },
+        ],
+        'TS',
+      ),
+    ).toThrow()
+  })
 })

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -204,21 +204,14 @@
       },
       "verification": {
         "claimId": "otxq2c-004-cit-5f8041",
-        "verdict": "parcial",
-        "summary": "The claim mentions \"Magenta Urbana\" as a strategic instrument, which has a partial, but very loose, topical relation to a tender for urban electric motorcycles due to the shared term \"Urbana\".",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F5cJBe2hB%2BxvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Suministro de Moto eléctrica de 1,9 Kw a 2,5 Kw. Urbana",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -273,21 +266,14 @@
       },
       "verification": {
         "claimId": "otxq2c-004-cit-31b22d",
-        "verdict": "parcial",
-        "summary": "A tender for \"Premios RIV - Riba Innovación Viva\" indicates innovation activities linked to the Rivalab hub, though it does not explicitly confirm an artificial intelligence integration program.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -342,21 +328,14 @@
       },
       "verification": {
         "claimId": "otxq2c-005-afi-dc7ee5",
-        "verdict": "parcial",
-        "summary": "Un concurso para la realización de talleres formativos en la EPA es temáticamente relevante para la afirmación de programas formativos, pero no especifica si estos son para el personal municipal.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Km8GNhaVu5IQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio para la realización de talleres formativos en la EPA durante el curso escolar",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -417,21 +396,14 @@
       },
       "verification": {
         "claimId": "otxq2c-005-pro-be5f92",
-        "verdict": "parcial",
-        "summary": "El ayuntamiento ha contratado un servicio para desarrollar un Plan de Destinos Turísticos Inteligentes, lo cual se relaciona con la temática de ciudades inteligentes, pero no es la adhesión directa a la red española mencionada.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -521,21 +493,14 @@
       },
       "verification": {
         "claimId": "otxq2c-008-cit-8ae62b",
-        "verdict": "parcial",
-        "summary": "The claim refers to 'networks' where important cities are involved in 'innovation'. Candidate 1, 'Premios RIV - Riba Innovación Viva,' indicates an initiative related to innovation within Riba-roja de Túria, establishing a topical, though not direct, connection.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -783,21 +748,14 @@
       },
       "verification": {
         "claimId": "otxq2c-012-cit-9a82c5",
-        "verdict": "parcial",
-        "summary": "The candidate, a tender for \"Premios RIV - Riba Innovación Viva\", shares the theme of innovation with the claim's mention of \"innovación financiada\". However, it does not directly corroborate the employment of a worker or the 40,000 euro grant.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1109,21 +1067,14 @@
       },
       "verification": {
         "claimId": "otxq2c-014-cit-6169b2",
-        "verdict": "parcial",
-        "summary": "The tender is related to innovation in Riba-roja, which aligns with the claim's context of having a sandbox for innovation, but it does not explicitly confirm the existence of a 'Sandbox'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1275,21 +1226,14 @@
       },
       "verification": {
         "claimId": "otxq2c-016-cit-f4de4f",
-        "verdict": "parcial",
-        "summary": "La afirmación general sobre Riba-roja de Túria como \"ejemplo piloto\" en el desarrollo de empresas o para otros ayuntamientos se relaciona parcialmente con un contrato para el \"Plan de Destinos Turísticos Inteligentes\", que implica desarrollo y una visión innovadora.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R7hBeG%2Fn5eqmq21uxhbaVQ%3D%3D",
-            "snippet": "servicio de dirección y desarrollo del Plan de Destinos Turísticos Inteligentes para Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1311,21 +1255,14 @@
       },
       "verification": {
         "claimId": "otxq2c-016-cit-3f671c",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre querer probar productos o innovación en Riba-roja de Túria se relaciona parcialmente con la existencia de los 'Premios RIV - Riba Innovación Viva', que fomenta la innovación en el municipio.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1510,27 +1447,14 @@
       },
       "verification": {
         "claimId": "otxq2c-019-cit-2a2ae2",
-        "verdict": "parcial",
-        "summary": "Los candidatos se refieren a servicios de ayuda a domicilio para personas con y sin dependencia, lo que muestra una relación temática con la 'dependencia'. Sin embargo, no corroboran la afirmación de evitar la dependencia mediante una ordenanza.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1889,39 +1813,14 @@
       },
       "verification": {
         "claimId": "otxq2c-024-cit-f56122",
-        "verdict": "parcial",
-        "summary": "The claim refers to a general 'tool' for assisting vulnerable families. The provided tenders are specific social services and programs for people with various functional diversities and dependency levels, aligning thematically with the claim's intent to support people facing difficulties.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
-            "snippet": "Programa municipal personas con diversidad funcional intelectual",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1943,27 +1842,14 @@
       },
       "verification": {
         "claimId": "otxq2c-024-pro-683f46",
-        "verdict": "parcial",
-        "summary": "Los servicios de Ayuda a Domicilio, tanto para personas dependientes como no dependientes, se alinean temáticamente con la promesa de restaurar autonomía y dignidad, aunque la promesa es muy general.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2273,27 +2159,14 @@
       },
       "verification": {
         "claimId": "otxq2c-028-pro-1e2129",
-        "verdict": "parcial",
-        "summary": "Tenders para 'Aplicativo área de policía local' y 'Prevención ajeno: especialidades' se relacionan con aspectos de las 'estrategias de prevención' y 'detección temprana' mencionadas en la promesa, aunque no cubren el alcance completo del diseño o las acciones formativas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "tender · Aplicativo área de policía local",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "tender · Prevención ajeno: especialidades",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2379,21 +2252,14 @@
       },
       "verification": {
         "claimId": "otxq2c-029-cit-39d415",
-        "verdict": "parcial",
-        "summary": "El contrato sobre el uso responsable de la IA se alinea parcialmente con la implementación de campañas sobre uso responsable de la tecnología, aunque no se especifica en centros educativos ni incluye los demás temas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9o3whv5AvFmP66GS%2BONYvQ%3D%3D",
-            "snippet": "Contrato de servicio de elaboración de un decálogo municipal sobre uso responsable de la IA y formación práctica para la gestión pública en IA",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2788,33 +2654,14 @@
       },
       "verification": {
         "claimId": "otxq2c-031-cit-8ffc2f",
-        "verdict": "parcial",
-        "summary": "Los contratos relacionados con la prevención de salud y ayuda a domicilio pueden estar indirectamente vinculados a la protección infantil y juvenil, pero no hay un encaje exacto.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
-            "snippet": "Programa municipal personas con diversidad funcional intelectual",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2964,27 +2811,14 @@
       },
       "verification": {
         "claimId": "otxq2c-036-cit-5362d9",
-        "verdict": "parcial",
-        "summary": "Los contratos mencionados son relacionados con la seguridad y mantenimiento de sistemas tecnológicos del ayuntamiento, pero no especifican una dotación económica, técnica y humana suficiente para garantizar la plena implementación, mantenimiento y funcionamiento del sistema.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento sistema bando WIFI",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fSAyhRzwiqWmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3336,43 +3170,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "otxq2c-049-acu-8cb9ab",
-        "plenoId": "otxq2c",
-        "plenoDate": "2025-10-06",
-        "segmentIndex": 49,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "ha habido ahora un nuevo contrato y este contrato, esta nueva empresa que gestiona este sistema, ha tenido diversos problemas y es verdad que se han intensificado.",
-        "context": "Es decir, no es una cosa nueva. ni del gobierno estatal, ni del PP, ni del PSOE? Y es verdad que ha habido ahora un nuevo contrato y este contrato, esta nueva empresa que gestiona este sistema, ha tenido diversos problemas y es verdad que se han intensificado.",
-        "topic": "seguridad",
-        "entities": {
-          "referencedEntity": "nuevo contrato del sistema cometa"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Menciona un nuevo contrato y problemas de la empresa gestora; es verificable en expedientes de contratación y documentación del servicio.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "otxq2c-049-acu-8cb9ab",
-        "verdict": "parcial",
-        "summary": "Se encontró una licitación para el mantenimiento del sistema de bando WIFI, lo que apoya la existencia de un contrato relacionado con un sistema, pero no corrobora la afirmación sobre los problemas del servicio.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Licitación para el 'Mantenimiento sistema bando WIFI', lo que indica un contrato para la gestión de un sistema.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -4336,33 +4133,14 @@
       },
       "verification": {
         "claimId": "otxq2c-072-cit-d5c436",
-        "verdict": "parcial",
-        "summary": "Tenders are related to actions involving Generalitat and municipal services of prevention and repair, partially supporting the claim of collaboration and participation in related programs.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: especialidades · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sigih%2BOEc2d7h85%2Fpmmsfw%3D%3D",
-            "snippet": "obras de reparación goteras en edificios municipales. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6462,21 +6240,14 @@
       },
       "verification": {
         "claimId": "otxq2c-180-cit-c1b1ca",
-        "verdict": "parcial",
-        "summary": "El candidato 0, 'Premios RIV - Riba Innovación Viva', se relaciona con la mención de 'premios' en la afirmación. Sin embargo, no proporciona detalles sobre la 'Consejería de Educación' ni la publicación de la resolución.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7389,21 +7160,14 @@
       },
       "verification": {
         "claimId": "otxq2c-190-pro-4d4456",
-        "verdict": "parcial",
-        "summary": "El candidato 2 describe un contrato de servicio público de recogida de residuos, que está relacionado con el contexto de la afirmación sobre el 'contrato de rescate' de residuos. Sin embargo, no especifica la entrada en vigor de la gestión de una 'nueva empresa'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7425,21 +7189,14 @@
       },
       "verification": {
         "claimId": "otxq2c-191-cit-757115",
-        "verdict": "parcial",
-        "summary": "Se relaciona un contrato de servicio público para la recogida de residuos sólidos urbanos con la mención de un contrato de rescate de residuos y la gestión por una nueva empresa.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9604,27 +9361,14 @@
       },
       "verification": {
         "claimId": "otxq2c-219-pro-61cd4a",
-        "verdict": "verificado",
-        "summary": "El presupuesto de 2026, al que se refiere la moción, ha sido aprobado y el alcalde ha retomado los encuentros con los vecinos para explicarlo, lo que corrobora que se puede plasmar lo dicho en el pleno en dicho presupuesto.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
-            "snippet": "PSOE «Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones»",
-            "similarity": 0.33
-          },
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-            "snippet": "PSOE «El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026»",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

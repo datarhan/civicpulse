@@ -18,14 +18,14 @@ export interface VerifiedItem {
   verification: ClaimVerification
 }
 
-export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade'
+export type OverlaySource = 'nli' | 'llm' | 'curator-downgrade' | 'verdict-engine'
 
 export interface OverlayEntry {
   verification: ClaimVerification
   source: OverlaySource
-  /** Required (≥20 chars) for curator-downgrade entries. */
+  /** Required (≥20 chars) for curator-downgrade AND verdict-engine entries. */
   reason?: string
-  /** Curator name, for curator-downgrade entries. */
+  /** Curator name (curator-downgrade) or model id (verdict-engine). */
   editor?: string
   appliedAt: string
 }
@@ -80,7 +80,7 @@ export interface ApplyEntry {
   editor?: string
 }
 
-const VALID_SOURCES: OverlaySource[] = ['nli', 'llm', 'curator-downgrade']
+const VALID_SOURCES: OverlaySource[] = ['nli', 'llm', 'curator-downgrade', 'verdict-engine']
 
 /** Throws on a malformed overlay (called on every write — defence in depth). */
 export function validateOverlay(o: Overlay): void {
@@ -97,6 +97,14 @@ export function validateOverlay(o: Overlay): void {
     if (typeof e.appliedAt !== 'string') throw new Error(`[overlay] ${id}: missing appliedAt`)
     if (e.source === 'curator-downgrade' && (!e.reason || e.reason.trim().length < 20)) {
       throw new Error(`[overlay] ${id}: curator-downgrade needs a reason of at least 20 chars`)
+    }
+    if (e.source === 'verdict-engine') {
+      if (!e.reason || e.reason.trim().length < 20) {
+        throw new Error(`[overlay] ${id}: verdict-engine needs a reason of at least 20 chars`)
+      }
+      if (e.verification.verdict === 'contradicho') {
+        throw new Error(`[overlay] ${id}: verdict-engine may never emit contradicho`)
+      }
     }
   }
 }
@@ -130,6 +138,19 @@ export function applyOverlayEntries(
         throw new Error(
           `[overlay] ${e.claimId}: ${from} → ${e.verification.verdict} is not a downgrade`,
         )
+      }
+    }
+    if (e.source === 'verdict-engine') {
+      // Re-derivation by the local engine. Downgrade-only policy is enforced by
+      // the runner (vs the current published verdict); here we guard the
+      // invariants: a grounded reason, and never contradicho.
+      if (!e.reason || e.reason.trim().length < 20) {
+        throw new Error(
+          `[overlay] ${e.claimId}: verdict-engine needs a reason of at least 20 chars`,
+        )
+      }
+      if (e.verification.verdict === 'contradicho') {
+        throw new Error(`[overlay] ${e.claimId}: verdict-engine may never emit contradicho`)
       }
     }
     next.entries[e.claimId] = {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -801,21 +801,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-031-cit-05029c",
-        "verdict": "parcial",
-        "summary": "The claim mentions a normative plan from the Department of Tax Management aligned with SDGs. Candidate [1] is a service for collaboration in tax management, which is topically related but does not explicitly refer to a normative plan or its alignment with SDGs.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HcG5nDY0D30QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de colaboración en la gestión tributaria, censal, inspectora y recaudatoria del Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -838,21 +831,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-032-cit-a86a2a",
-        "verdict": "parcial",
-        "summary": "Candidate [0] relates to tax management services, aligning with the department mentioned in the claim. However, it does not directly corroborate the specific initiative or date (March 5, 2026) regarding the regulatory plan aligned with SDGs.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HcG5nDY0D30QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de colaboración en la gestión tributaria, censal, inspectora y recaudatoria del Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1076,21 +1062,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-037-pro-525397",
-        "verdict": "parcial",
-        "summary": "Los candidatos demuestran la existencia y actividad en la plataforma de contratación, lo cual es parte de la afirmación, pero no confirman la publicación de las instrucciones del sistema de racionalización técnica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9xjipJFNRB8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Actualización y mantenimiento de la plataforma Esigna 3.X",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1218,33 +1197,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-040-cit-e48c35",
-        "verdict": "verificado",
-        "summary": "La existencia de varios contratos derivados del Sistema Dinámico de Adquisición corrobora que el sistema descrito en la afirmación está operativo y se utiliza para diversos procesos de contratación, lo cual se alinea con la descripción de un sistema más ágil.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4roXkK9o42irz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para TALLERES de INFORMÁTICA en la EPA.",
-            "similarity": 0.43
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=NhvbGm6OZ9xvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición de servicios para la prestación del TALLER de FOTOGRAFÍA en la escuela pública de adultos del Ayuntamiento de Riba-roja de Turia.",
-            "similarity": 0.27
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xvIBbbr5nwuGCFcHcNGIlQ%3D%3D",
-            "snippet": "Contrato de adquisición de mobiliario para el Centro de Información Juvenil del Ayuntamiento de Riba-Roja de Túria, contrato derivado del Sistema Dinámico de adquisición aprobado de suministros de diversa índole (SDA1/2022).",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1298,27 +1258,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-042-pro-b06cf6",
-        "verdict": "verificado",
-        "summary": "The claim of implementing extra control of management through the Contracting Committee for transparency is corroborated by a tender for a transparency viewer and a tool for control of tenders.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria.",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1340,21 +1287,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-043-pro-068679",
-        "verdict": "parcial",
-        "summary": "Un contrato de servicio de asistencia técnica para control y supervisión es tangencialmente relevante a la promesa de supervisión extra, aunque el objeto de dicho control es el contrato de recogida de residuos y no directamente el Sistema Dinámico de Adquisición.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria.",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1634,21 +1574,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-063-pro-eeb37e",
-        "verdict": "verificado",
-        "summary": "La promesa de maximizar el control y la fiscalización de los contratos se corrobora directamente con una licitación para un visor de transparencia de contratación y una herramienta para el control de licitaciones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2179,21 +2112,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-075-cit-1a987a",
-        "verdict": "parcial",
-        "summary": "Aunque no se encuentra un informe ambiental y territorial estratégico favorable explícito, existe un proceso en curso para la redacción de un plan estratégico territorial sostenible, lo cual es temáticamente relacionado.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EPfBoyapDZkQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2374,21 +2300,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-078-pro-2803bd",
-        "verdict": "parcial",
-        "summary": "El candidato [7] describe un servicio de redacción de un 'plan de reforma interior de mejora', lo que se relaciona temáticamente con la promesa de someter un Plan de Reforma Interior a información pública, aunque no coincide directamente con la acción de información pública ni el plazo de 45 días.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BVq1UOx8Xb4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio redacción de proyectos y documentación técnica correspondiente: alternativa técnica incluyendo un plan de reforma interior de mejora",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2509,21 +2428,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-080-afi-eab2ad",
-        "verdict": "parcial",
-        "summary": "A tender for 'UE casco 5' is related to the claimed 'Casco 1' urban planning unit, but the specific numerical identifier does not match, indicating a partial alignment with the statement of two units in process.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "UE casco 5",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2623,21 +2535,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-081-pro-af1f89",
-        "verdict": "verificado",
-        "summary": "La licitación para la 'UE casco 5' corrobora la intención de continuar con las unidades de ejecución urbanísticas, como se mencionó en la promesa del pleno.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "El expediente 'UE casco 5' es una licitación de urbanismo que se alinea directamente con la promesa de continuar con las unidades de ejecución.",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2661,21 +2566,14 @@
       },
       "verification": {
         "claimId": "1sqj7is-083-afi-8f67b5",
-        "verdict": "parcial",
-        "summary": "El candidato 0, 'UE casco 5', está relacionado con el tema de urbanismo de la afirmación, pero la cantidad numérica no coincide con las '22 unidades afectadas' mencionadas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "UE casco 5",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

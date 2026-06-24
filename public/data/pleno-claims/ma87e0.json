@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -986,33 +986,14 @@
       },
       "verification": {
         "claimId": "ma87e0-104-afi-b55596",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones relacionadas con servicios de formación, lo cual coincide con la temática de la afirmación. Sin embargo, ninguna de las evidencias proporcionadas especifica el monto exacto de 62.000 euros, impidiendo una verificación completa de la afirmación numérica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80500000-Servicios de formación. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80510000-Servicios de formación especializada. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80000000-Servicios de enseñanza y formación. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1078,21 +1059,14 @@
       },
       "verification": {
         "claimId": "ma87e0-105-pro-67d01e",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para servicios de formación dirigidos a personas con diversidad funcional o dificultades de aprendizaje, lo cual se alinea con la promesa de crear planes de formación para personas en exclusión social, pero no se especifica la cantidad de 62.000 € mencionada en la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1507,21 +1481,14 @@
       },
       "verification": {
         "claimId": "ma87e0-113-pro-f9dd62",
-        "verdict": "parcial",
-        "summary": "A tender for a 'Bar Parque Maldonado' is topically related to the claimed investments in Maldonado Park, but does not explicitly confirm preliminary projects for the park's general needs.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
-            "snippet": "A tender for Bar Parque Maldonado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1913,27 +1880,14 @@
       },
       "verification": {
         "claimId": "ma87e0-122-afi-4fed79",
-        "verdict": "parcial",
-        "summary": "The claim about increased budget for civil protection for degraded spaces is partially corroborated by a civil protection vehicle acquisition and a local waste management plan, but lacks direct numerical evidence for a specific budget increase.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil.",
-            "similarity": 0.67
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1991,27 +1945,14 @@
       },
       "verification": {
         "claimId": "ma87e0-123-afi-2cd46a",
-        "verdict": "parcial",
-        "summary": "Tenders related to civil protection and waste management suggest spending in areas mentioned in the claim's context regarding increased budget for degraded spaces and civil protection, but do not explicitly confirm an overall increase in a budget line item.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil.",
-            "similarity": 0.67
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2107,27 +2048,14 @@
       },
       "verification": {
         "claimId": "ma87e0-124-afi-350662",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para servicios de formación en el Ayuntamiento de Riba-roja de Túria, lo que sugiere una aplicación presupuestaria para programas de capacitación, aunque el nombre específico 'Riva Dona' no figura en los registros de la oferta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80500000-Servicios de formación. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80000000-Servicios de enseñanza y formación. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2217,21 +2145,14 @@
       },
       "verification": {
         "claimId": "ma87e0-124-pro-c61668",
-        "verdict": "verificado",
-        "summary": "La promesa de mejorar el mercado municipal se corrobora con una licitación para obras de reforma en su segunda planta.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BECD%2FdwxZPKXQV0WE7lYPw%3D%3D",
-            "snippet": "Obras de reforma segunda planta mercado municipal",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2286,27 +2207,14 @@
       },
       "verification": {
         "claimId": "ma87e0-126-afi-095f32",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre el gasto en comunicación y propaganda del ayuntamiento está parcialmente respaldada por licitaciones de servicios de publicidad institucional y un plan integral de comunicación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ut2KnA7FDokBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan integral de comunicación del ayuntamiento de Riba-roja de Túria.",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sCcudNlMjpSiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de publicidad institucional en medios digitales y/o impresos",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2361,33 +2269,14 @@
       },
       "verification": {
         "claimId": "ma87e0-128-pro-92e8f2",
-        "verdict": "parcial",
-        "summary": "Los contratos de servicio de recogida de residuos sólidos urbanos y el plan local de residuos son temáticamente relevantes, pero ninguno de ellos corrobora directamente la bonificación en la tasa de la basura o el detrimento del servicio en 2024.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TO7sKuaZmazpxJFXpLZ%2B2A%3D%3D",
-            "snippet": "Contrato de servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo.",
-            "similarity": 0.23
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2571,21 +2460,14 @@
       },
       "verification": {
         "claimId": "ma87e0-133-pro-a5978a",
-        "verdict": "verificado",
-        "summary": "El candidato [2] corrobora directamente la afirmación de votar en contra del presupuesto municipal al reportar que el PP votó en contra de 9.5 millones de euros para el municipio en una fecha cercana a la del reclamo.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://www.elperiodic.com/ribaroja_turia",
-            "snippet": "PP «El PP de Riba-roja vota en contra de los 9,5 millones de euros para el municipio» · 2026-02-12",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3142,21 +3024,14 @@
       },
       "verification": {
         "claimId": "ma87e0-152-cit-786d7e",
-        "verdict": "parcial",
-        "summary": "El programa 'Rivadactiva', enfocado en innovación y emprendimiento, encuentra una corroboración parcial en la licitación 'Premios RIV - Riba Innovación Viva', que se alinea con los aspectos de innovación y desarrollo de talento.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3444,21 +3319,14 @@
       },
       "verification": {
         "claimId": "ma87e0-157-pro-7ce20e",
-        "verdict": "parcial",
-        "summary": "El candidato [4] se refiere a la ampliación de un parque, lo que se alinea parcialmente con la promesa de proyectos de parques, aunque no menciona específicamente el parque 'Valencia la Bella'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3586,21 +3454,14 @@
       },
       "verification": {
         "claimId": "ma87e0-159-pro-e9e8d0",
-        "verdict": "verificado",
-        "summary": "El servicio de mantenimiento de instalaciones térmicas en colegios corrobora el plan de aplicar soluciones energéticas en centros educativos para reducir el gasto.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones térmicas colegios. · Ayuntamiento de Riba-roja de Túria · unknown · sim=0.25",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3654,33 +3515,14 @@
       },
       "verification": {
         "claimId": "ma87e0-161-pro-7efb98",
-        "verdict": "verificado",
-        "summary": "Several tenders for repairs, installations, and maintenance in municipal buildings corroborate the claim of opening budgetary lines for conditioning buildings.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sigih%2BOEc2d7h85%2Fpmmsfw%3D%3D",
-            "snippet": "obras de reparación goteras en edificios municipales.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fxWLhf4BvkQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato menor de suministro de desfibriladores semi-automáticos para instalar en edificios municipales.",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z9Rkh6a2Oj8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Mantenimiento de las instalaciones contraincendios en edificios municipales",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3702,21 +3544,14 @@
       },
       "verification": {
         "claimId": "ma87e0-161-cit-352bbc",
-        "verdict": "parcial",
-        "summary": "The claim mentions improvements in buildings, including a multi-purpose building. A tender for waterproofing a multi-purpose building is a partial match.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JZ%2F2pX4u%2B497h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de obras de impermeabilización cubierta Edificio Polivalente por procedimiento abierto súper simplificado",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5181,33 +5016,14 @@
       },
       "verification": {
         "claimId": "ma87e0-192-pro-97e8c3",
-        "verdict": "verificado",
-        "summary": "Múltiples contratos confirman obras de mejora en infraestructuras viarias, incluyendo reparación de asfalto y reurbanización de aceras, alineándose con la promesa de destinar superávit a estas mejoras.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3slUMo66PqSrz3GQd5r6SQ%3D%3D",
-            "snippet": "Obras de reurbanización de las aceras de la C/ Bodeguetes del 101 al 103",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2BBaI2vC%2FxTLIx6q1oPaMg%3D%3D",
-            "snippet": "Contrato menor reparación asfalto en Camino els Pagos en Riba-roja de Turia.",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8c5VLmSbG%2BQ7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Obras de mejora viaria, señalización y áreas de descanso en PLV.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5261,33 +5077,14 @@
       },
       "verification": {
         "claimId": "ma87e0-194-cit-60c58e",
-        "verdict": "verificado",
-        "summary": "Múltiples contratos basados en Acuerdos Marco o servicios de la Diputación de Valencia han sido adjudicados o están en ejecución, corroborando la afirmación de que los acuerdos previos con la Diputación se están cumpliendo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mnBqUxlODqGAAM7L03kM8A%3D%3D",
-            "snippet": "Contrato suministro gas natural derivado del acuerdo marco suscrito con suministro de gas natural contrato derivado del Acuerdo Marco suscrito por Diputación de Valencia.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xyu3L5puEXjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato basado en el Acuerdo Marco de la Diputación de Valencia, para el suministro de gas natural.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

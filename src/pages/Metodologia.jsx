@@ -295,6 +295,20 @@ export default function Metodologia() {
             determinista base, de modo que recalcular la base nunca borra esas decisiones.
           </li>
           <li>
+            <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada
+            de fundamentación —«razonar y luego formatear» sobre los mismos candidatos del corpus,
+            con la regla de <em>no-evidencia por defecto</em> y la misma comprobación de que el
+            valor citado aparezca literalmente en el extracto— vuelve a juzgar los veredictos que la
+            pasada LLM había marcado verificado/parcial. En una muestra de control etiquetada a
+            mano, su veredicto <code>sin-datos</code> acierta ~92&nbsp;%, así que{' '}
+            <strong>
+              sólo aplicamos sus retractaciones a <code>sin-datos</code>
+            </strong>{' '}
+            (nunca sube ni introduce un veredicto nuevo). El resultado es más conservador: retira
+            afirmaciones que el trazado de datos abiertos no atestigua, dejando el motivo verbatim
+            en el overlay. Nunca marca <em>contradicho</em>.
+          </li>
+          <li>
             <strong>Hallazgos editoriales</strong> curados por una persona. Cuando un veredicto
             merece contexto, un curador escribe un hallazgo en <code>pleno-findings.json</code> con
             título, resumen (≥40 caracteres), citas verbatim y referencias explícitas de

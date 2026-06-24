@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -888,21 +888,14 @@
       },
       "verification": {
         "claimId": "19gax3o-015-pro-f31e0c",
-        "verdict": "parcial",
-        "summary": "The claim emphasizes approving the budget for higher execution, while one candidate mentions the mayor explaining the 2026 budget, showing a topical connection but not direct verification of the claim's specific action or outcome.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-            "snippet": "PSOE «El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026»",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1930,21 +1923,14 @@
       },
       "verification": {
         "claimId": "19gax3o-034-cit-919a2f",
-        "verdict": "parcial",
-        "summary": "El tramo vial mencionado en la obra de movilidad vial es relevante pero no se especifica que sea parte del complejo deportivo La Mayá.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción y dirección del proyecto de obras de movilidad vial de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2070,27 +2056,14 @@
       },
       "verification": {
         "claimId": "19gax3o-034-cit-00cda5",
-        "verdict": "parcial",
-        "summary": "The claim refers to the drafting of the construction project for the CV336 roundabout. While some candidates involve drafting construction projects or projects for new access roads, none specifically match the 'rotonda CV336'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de redacción de proyecto de obra para la construcción de una pasarela peatonal",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TyXr4k8N77%2BXQV0WE7lYPw%3D%3D",
-            "snippet": "Contrato de servicios para la realización del PROYECTO DE CONSTRUCCIÓN “ACTUALIZACIÓN DEL PROYECTO DE CONSTRUCCIÓN DE “NUEVO ACCESO A LA A-3 (ENLACE GODELLETA)",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2146,27 +2119,14 @@
       },
       "verification": {
         "claimId": "19gax3o-035-afi-78cfde",
-        "verdict": "parcial",
-        "summary": "Los candidatos describen herramientas para la transparencia en contratación pública, lo cual es un objetivo de la ley mencionada en la afirmación. Sin embargo, no confirman directamente la existencia o detalles específicos de la \"ley del 2017\" ni su implementación en esa fecha.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aToX2uafgoyiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor servicio de acceso a base de datos en materia de contratación pública (Gobierto Contratación)",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2189,27 +2149,14 @@
       },
       "verification": {
         "claimId": "19gax3o-036-afi-5d4209",
-        "verdict": "parcial",
-        "summary": "Los candidatos son herramientas relacionadas con la transparencia en la contratación pública, lo cual concuerda con el tema de la ley de contratación pública de 2017 mencionada en la afirmación. Sin embargo, no verifican directamente la existencia de dicha ley ni que los planes se deriven de ella.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Visor de transparencia de contratación y herramienta para el control y santificación de licitaciones.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aToX2uafgoyiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor servicio de acceso a base de datos en materia de contratación pública (Gobierto Contratación)",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2592,21 +2539,14 @@
       },
       "verification": {
         "claimId": "19gax3o-044-cit-d684fe",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre una 'agenda urbana de reconstrucción' se relaciona parcialmente con la elaboración de un Plan de Movilidad Urbana Sostenible (PMUS) mencionado en las licitaciones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
-            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2966,21 +2906,14 @@
       },
       "verification": {
         "claimId": "19gax3o-047-cit-3720c5",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre una agenda urbana de reconstrucción vinculada a La Dana se relaciona parcialmente con una licitación de obras de reconstrucción de vallados dañados por la DANA, estableciendo una conexión temática pero no una confirmación directa de la agenda como documento.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3195,21 +3128,14 @@
       },
       "verification": {
         "claimId": "19gax3o-049-cit-ea1202",
-        "verdict": "verificado",
-        "summary": "La afirmación menciona una \"ampliación de la existente\" y el candidato es una licitación para la \"Ampliación zona de esparcimiento canino “La Malla”\", lo que corrobora directamente el tipo de obra y el tema de urbanismo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vg7AGxmu7nKrz3GQd5r6SQ%3D%3D",
-            "snippet": "Ampliación zona de esparcimiento canino “La Malla”",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3455,21 +3381,14 @@
       },
       "verification": {
         "claimId": "19gax3o-054-pro-93a6db",
-        "verdict": "parcial",
-        "summary": "The claim proposes a national reconstruction plan focused on civil protection, while candidate 0 is a municipal tender for a civil protection vehicle. This shows a topical connection but a significant mismatch in scale and scope.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil.",
-            "similarity": 0.67
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3762,67 +3681,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "19gax3o-061-acu-3969ce",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 61,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "por lo que ustedes aprobaron el mismo día de la gana del 29 de octubre del 2024",
-        "context": "esa libertad entendemos que, lo dirán, por lo que ustedes aprobaron el mismo día de la gana del 29 de octubre del 2024,",
-        "topic": "transparencia",
-        "entities": {
-          "date": "2024-10-29"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.61,
-        "reasoning": "Atribuye a 'ustedes' una aprobación en una fecha concreta; puede contrastarse con el acta/votación del pleno del 2024-10-29.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-061-acu-3969ce",
-        "verdict": "verificado",
-        "summary": "Múltiples licitaciones de emergencia para servicios de limpieza y suministro de equipos, con fecha del 29 de octubre de 2024, corroboran la aprobación de acciones el mismo día de la DANA.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8nJHtO7mD29LAIVZdUs8KA%3D%3D",
-            "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XxhtCkJuMDVVkTabT%2FRM8A%3D%3D",
-            "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=P3VZBqKMUDh%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Suministro de sustitución de cuatro sistemas de robo instalados en edificios de titularidad municipal como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024.",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=l7D%2FGlSsaZ9LAIVZdUs8KA%3D%3D",
-            "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cTNZh9lq8DZQFSeKCRun4Q%3D%3D",
-            "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-            "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -4309,21 +4167,14 @@
       },
       "verification": {
         "claimId": "19gax3o-068-cit-176ae0",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre el uso de una subvención CEDER para el desarrollo de un espacio público en la zona de Pakadar se relaciona parcialmente con una licitación para obras de un aparcamiento provisional en la misma zona, aunque el instrumento de financiación no se especifica como subvención CEDER.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
-            "snippet": "El objeto es la ejecución de las obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023).",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6155,21 +6006,14 @@
       },
       "verification": {
         "claimId": "19gax3o-095-cit-b7b12e",
-        "verdict": "parcial",
-        "summary": "The candidate is a tender for 'Premios RIV - Riba Innovación Viva', confirming the existence of awards which align with the claim about an act where 'estos premios' were delivered. However, the tender does not corroborate details about the event being on YouTube or the presenter.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6191,21 +6035,14 @@
       },
       "verification": {
         "claimId": "19gax3o-096-cit-c79884",
-        "verdict": "parcial",
-        "summary": "El candidato 0 es una licitación para los 'Premios RIV', lo cual está temáticamente relacionado con los 'premios' mencionados en la reclamación, pero no es directamente 'el acto' de entrega de premios al que se refiere la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xX4MskNW8lRVkTabT%2FRM8A%3D%3D",
-            "snippet": "Premios RIV - Riba Innovación Viva.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7782,43 +7619,6 @@
     },
     {
       "claim": {
-        "id": "19gax3o-126-acu-9e9eb0",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 126,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "que eran problemas en el agua y desde entonces no se ha subsanado.",
-        "context": "...porque supongo que la salud es un problema que tiene el pabellón y el complejo esportivo, porque supongo que la salud es un problema que tiene el pabellón y el complejo esportivo, porque supongo que la salud es un problema que tiene el pabellón y el complejo esportivo, porque supongo que la salud es un problema que tiene el pabellón y el complejo esportivo, porque supongo que la salud es un problema que tiene el pabellón y el complejo esportivo, porque supongo que la salud es un problema que",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "problemas en el agua del pabellón y complejo esportivo"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.74,
-        "reasoning": "Atribuye la existencia de problemas en el agua y afirma que no se han subsanado desde entonces; es verificable contrastando incidencias, reparaciones o partes de mantenimiento del pabellón/complejo deportivo.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-126-acu-9e9eb0",
-        "verdict": "parcial",
-        "summary": "Una licitación para el mantenimiento de la calidad del agua ha sido adjudicada, lo cual está relacionado con la afirmación de problemas de agua sin resolver, pero no se detalla su impacto en la subsanación de esos problemas específicos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "19gax3o-126-acu-d49e67",
         "plenoId": "19gax3o",
         "plenoDate": "2026-01-19",
@@ -8078,33 +7878,14 @@
       },
       "verification": {
         "claimId": "19gax3o-133-afi-884a48",
-        "verdict": "verificado",
-        "summary": "Múltiples licitaciones de mantenimiento de instalaciones térmicas y ascensores corroboran la existencia de partidas de mantenimiento y la realización de reparaciones no consideradas inversiones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones térmicas deportes. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones térmicas colegios. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AB1HaKg7oyUBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Mantenimiento de ascensores y elevadores de titularidad municipal · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8127,21 +7908,14 @@
       },
       "verification": {
         "claimId": "19gax3o-133-pro-0fb62f",
-        "verdict": "parcial",
-        "summary": "The 2026 municipal budget of Riba-roja de Túria has been approved, indicating that investments for that year are contemplated, though the specific mention of 'capítulo 2' is not explicitly corroborated by the available information.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
-            "snippet": "PSOE «Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones»",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8226,21 +8000,14 @@
       },
       "verification": {
         "claimId": "19gax3o-137-afi-2af3a2",
-        "verdict": "parcial",
-        "summary": "Se encontró un contrato para un servicio de asesoramiento de auditoría, lo que se relaciona con la afirmación. Sin embargo, no se especifica el monto de dos millones de euros en la descripción del contrato.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RUFKyK5kMoYuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Servicio de asesoramiento de la auditoría ex ante del proyecto europeo Guardian",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8820,27 +8587,14 @@
       },
       "verification": {
         "claimId": "19gax3o-143-afi-66333d",
-        "verdict": "parcial",
-        "summary": "Los candidatos muestran inversiones relacionadas con el mantenimiento de la calidad del agua y obras exteriores, lo que parcialmente coincide con el tema de la afirmación, pero no corroboran la cifra específica de un millón de euros.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JzHHiBu%2F2Lurz3GQd5r6SQ%3D%3D",
-            "snippet": "Obras de reforma exterior pista deportiva del Polideportivo Municipal",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9486,21 +9240,14 @@
       },
       "verification": {
         "claimId": "19gax3o-151-afi-de1a33",
-        "verdict": "parcial",
-        "summary": "The claim mentions the pool's annual cost is almost €300,000, with a significant portion attributed to energy. A tender exists for electricity supply, which is topically related to the energy cost but doesn't confirm the exact amount or deficit.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g7ocl8m3pyMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Suministro energía eléctrica · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9912,27 +9659,14 @@
       },
       "verification": {
         "claimId": "19gax3o-158-afi-74749c",
-        "verdict": "parcial",
-        "summary": "Tenders for water quality maintenance at CD La Mallá are topically related to the claim about water issues at the facility, but they do not confirm a closure in September 2024.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jPftQNYOGpWrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de mantenimiento de la calidad del agua de las piscinas municipales del CD La Mallá y del Polideportivo",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jPftQNYOGpWrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de mantenimiento de la calidad del agua de las piscinas municipales del CD La Mallá y del Polideportivo",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -10575,21 +10309,14 @@
       },
       "verification": {
         "claimId": "19gax3o-170-pro-849d7e",
-        "verdict": "parcial",
-        "summary": "The claim refers to general investments in 'that complex', while the candidate is a tender for maintenance services specifically for 'La Malla sports complex'. It's topically related but not a direct match for an 'investment' as a promise.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -10611,21 +10338,14 @@
       },
       "verification": {
         "claimId": "19gax3o-171-pro-e7d0d1",
-        "verdict": "parcial",
-        "summary": "The claim refers to investing in a complex, and a tender exists for maintenance services in the La Malla sports complex. While related by the term 'complex', the actions (investment vs. maintenance) are different.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -10680,21 +10400,14 @@
       },
       "verification": {
         "claimId": "19gax3o-171-afi-dce585",
-        "verdict": "parcial",
-        "summary": "La afirmación menciona el gasto de \"mucho dinero\" en bicicletas y dos calderas. El candidato [4] es una licitación de \"Bicicletas estáticas sala ciclo-indoor\", lo que se relaciona con una parte de la afirmación, pero no verifica el monto total, las calderas ni el documento público prometido.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SafzgnHFCyq5HQrHoP3G5A%3D%3D",
-            "snippet": "La licitación de 'Bicicletas estáticas sala ciclo-indoor' se relaciona con la parte de la afirmación sobre el gasto en bicicletas, pero no corrobora el \"mucho dinero\", las \"dos calderas\" o el documento público.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -11232,21 +10945,14 @@
       },
       "verification": {
         "claimId": "19gax3o-184-afi-3e1aee",
-        "verdict": "verificado",
-        "summary": "The claim regarding the conditions of urban waste and pruning waste services is corroborated by a public service contract for urban solid waste collection in the municipality.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -11593,33 +11299,14 @@
       },
       "verification": {
         "claimId": "19gax3o-189-afi-f634c2",
-        "verdict": "parcial",
-        "summary": "Multiple tenders for various maintenance services confirm the municipality allocates a budget for maintenance, corroborating the claim of having a maintenance budget, although not explicitly detailing 'money saved' for a specific, undefined 'problem'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fSAyhRzwiqWmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja · awarded",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b3AN%2BCmqliZQFSeKCRun4Q%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua (piscina verano).",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -11641,33 +11328,14 @@
       },
       "verification": {
         "claimId": "19gax3o-189-afi-380e85",
-        "verdict": "verificado",
-        "summary": "Múltiples licitaciones confirman la existencia de un presupuesto destinado a servicios de mantenimiento dentro del Ayuntamiento de Riba-roja de Túria, abarcando diversas áreas como software, calidad del agua y sistemas de gestión de personal.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento SW Deepfreeze.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua.",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fSAyhRzwiqWmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -11770,21 +11438,14 @@
       },
       "verification": {
         "claimId": "19gax3o-192-pro-d528bf",
-        "verdict": "parcial",
-        "summary": "La promesa de inversión en la piscina, posiblemente para mejoras como duchas, tiene una relación parcial con la licitación de un 'Bar Piscina Polideportivo', ya que es una infraestructura en la misma zona pero no especifica la inversión mencionada.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=U84335CaunpvYnTkQN0%2FZA%3D%3D",
-            "snippet": "tender · Bar Piscina Polideportivo · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

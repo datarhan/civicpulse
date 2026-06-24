@@ -113,7 +113,8 @@
     "scrape:all": "bash scripts/scrape-all.sh",
     "prepare": "husky || true",
     "calibrate:reground": "npx tsx scripts/calibrate-reground.ts",
-    "apply-gold-downgrades": "npx tsx scripts/apply-gold-downgrades.ts"
+    "apply-gold-downgrades": "npx tsx scripts/apply-gold-downgrades.ts",
+    "verify:pleno-claims:engine": "npx tsx scripts/verify-pleno-claims-engine.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

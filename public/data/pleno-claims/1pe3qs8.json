@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
@@ -59,21 +59,14 @@
       },
       "verification": {
         "claimId": "1pe3qs8-004-afi-409d52",
-        "verdict": "parcial",
-        "summary": "La alegación sobre el expediente de penalización al contratista del servicio de recogida de residuos se relaciona con el contrato de servicio público de recogida de residuos sólidos urbanos, aunque el candidato no especifica la penalización o el monto.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -159,21 +152,14 @@
       },
       "verification": {
         "claimId": "1pe3qs8-004-afi-098488",
-        "verdict": "parcial",
-        "summary": "El candidato [0] se refiere a un servicio de mantenimiento de la calidad del agua, lo cual es temáticamente similar al área de medio ambiente de la afirmación. Sin embargo, no proporciona detalles sobre informes de Auditesa o requisitos de subcontratación para corregir incumplimientos.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -265,21 +251,14 @@
       },
       "verification": {
         "claimId": "1pe3qs8-006-cit-b453d1",
-        "verdict": "parcial",
-        "summary": "El candidato es una licitación para el servicio de recogida de residuos sólidos urbanos, que es el contrato al que el acuerdo menciona en el contexto, aunque el fragmento no cita específicamente a Garbialdi S.A. ni a Banco Santander S.A.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

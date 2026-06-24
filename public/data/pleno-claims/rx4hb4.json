@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -160,21 +160,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-441-pro-5a50ba",
-        "verdict": "verificado",
-        "summary": "El presupuesto municipal de Riba-roja de Túria para el año 2026, que incluirá la primera partida para el proyecto mencionado, ha sido aprobado, confirmando su existencia.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
-            "snippet": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -402,27 +395,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-443-pro-278117",
-        "verdict": "parcial",
-        "summary": "Algunas licitaciones se relacionan con el urbanismo del casco urbano, pero no hay evidencia directa que corrobore la cantidad de 29 proyectos ni el monto de €24.180.000 para la recuperación integral de todas las áreas mencionadas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "La licitación 'UE casco 5' es temáticamente afín a la recuperación de zonas urbanas.",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
-            "snippet": "La licitación 'Reasfaltado casco urbano' se relaciona con mejoras en el área urbana.",
-            "similarity": 0.67
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -509,27 +489,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-445-cit-479bf6",
-        "verdict": "verificado",
-        "summary": "El municipio de Riba-roja de Túria ha licitado obras de reconstrucción de vallados en polígonos industriales específicamente por los daños de la DANA, lo cual corrobora la existencia de convocatorias o financiación especial para municipios afectados por este evento.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA · awarded",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -619,27 +586,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-446-cit-2bb401",
-        "verdict": "parcial",
-        "summary": "The claim asserts the program covers more than just reconstruction, including prevention and residence. Tenders confirm 'Prevención' actions and that 'Reconstrucción' is part of the scope. However, direct evidence for 'residencia' is absent.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: especialidades",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -661,21 +615,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-447-cit-6f2305",
-        "verdict": "verificado",
-        "summary": "El candidato 4 corrobora la afirmación de que se realizó un estudio de inundabilidad con un contrato \"awarded\", ya que describe la \"Redacción estudio de inundabilidad... awarded\".",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
-            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -697,21 +644,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-447-afi-285aa4",
-        "verdict": "parcial",
-        "summary": "La afirmación se basa en un estudio de inundabilidad. El candidato 1 es la licitación para la redacción de un estudio de inundabilidad, lo que establece una conexión temática directa con el contexto de la afirmación, aunque no verifica la cantidad exacta de agua ni las infraestructuras específicas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
-            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -962,27 +902,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-451-cit-152d64",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre una subvención de 126.000€ del Ministerio para la agenda urbana y reconstrucción post-DANA tiene un anclaje parcial en licitaciones de obras de reconstrucción de vallados tras la DANA, aunque no se detalla el monto ni el tipo de ayuda (subvención vs. licitación de obras).",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1168,21 +1095,14 @@
       },
       "verification": {
         "claimId": "rx4hb4-454-pro-2fc92e",
-        "verdict": "parcial",
-        "summary": "A tender was found for the installation of turf for four paddle courts, which is related to new sports facilities but differs in quantity and type from the claimed two multi-purpose courts.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2ispnjmQgmCXQV0WE7lYPw%3D%3D",
-            "snippet": "Contrato menor para el suministro e instalación del césped para 4 pistas de padel de titularidad municipal",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1405,43 +1325,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rx4hb4-458-acu-c41475",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 458,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "basarse en la agenda urbana de reconstrucción para hacer un proyecto que todos dos o tres años trabajando y después excusarte en la DANA de hace un año",
-        "context": "El interviniente critica que proyectos que llevan en desarrollo dos o tres años se justifican ahora bajo la agenda urbana de reconstrucción post-DANA, tachándolo de excusa posterior.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "agenda urbana de reconstrucción post-dana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.62,
-        "reasoning": "Afirmación verificable cruzando la fecha de inicio de los expedientes urbanísticos (plenos-agendas.json, tenders.json) con la fecha de la DANA (oct-2024) para comprobar si los proyectos son efectivamente anteriores.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rx4hb4-458-acu-c41475",
-        "verdict": "parcial",
-        "summary": "Existe un registro de una licitación para obras de reconstrucción post-DANA en polígonos industriales, lo que se relaciona temáticamente con la agenda de reconstrucción mencionada en la acusación, aunque no aborda si el proyecto fue una excusa o su duración.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

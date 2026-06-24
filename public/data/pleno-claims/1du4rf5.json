@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -186,76 +186,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-010-cit-8d9ca2",
-        "verdict": "verificado",
-        "summary": "Múltiples contratos de licitación corroboran la realización de obras de reforma en edificaciones existentes en Riba-roja de Túria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jWidbGlyMpRvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Reforma en edificio sito en C/ Mayor, 37",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BECD%2FdwxZPKXQV0WE7lYPw%3D%3D",
-            "snippet": "Obras de reforma segunda planta mercado municipal",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mbYyMjsxWu7nSoTX3z%2F7wA%3D%3D",
-            "snippet": "Obras de reforma de aseos en CEIP Mas d'escoto",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-010-acu-1c84f8",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 10,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "no se permiten hasta que no esté la minimización tramitada",
-        "context": "se han realizado obras de reforma en la edificación existente, siendo que éstas se permiten con la minimización tramitada, es decir, que no se permiten hasta que no esté la",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "minimización tramitada"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Se afirma que las obras no están permitidas hasta la finalización de un proceso administrativo ('minimización tramitada'), lo cual es verificable mediante la consulta del estado de dicho trámite.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-010-acu-1c84f8",
-        "verdict": "parcial",
-        "summary": "Los contratos de licitación de obras de reforma son temáticamente relevantes para la afirmación sobre la prohibición de tales obras hasta la tramitación de la minimización, pero no aportan detalles sobre dicha tramitación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jWidbGlyMpRvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -307,33 +245,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-012-cit-23f1f4",
-        "verdict": "parcial",
-        "summary": "The claim states that 'the works are already done'. Multiple awarded tenders for various reform works are topically related, suggesting these projects are either completed or in progress, thus partially corroborating the claim without explicit confirmation of completion.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jWidbGlyMpRvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Awarded tender for the reform of the Social Center, suggesting works are either completed or in progress, partially aligning with the claim.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Awarded tender for reform in a building on C/ Mayor, 37, suggesting works are either completed or in progress, partially aligning with the claim.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BECD%2FdwxZPKXQV0WE7lYPw%3D%3D",
-            "snippet": "Awarded tender for reform works on the second floor of the municipal market, suggesting works are either completed or in progress, partially aligning with the claim.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -668,49 +587,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-018-acu-c6a470",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 18,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "El expediente para nada es erróneo, o sea, la documentación que le hemos facilitado Alberto que la solicitó es un expediente independiente de esto.",
-        "context": "expresado en ese aspecto. El expediente para nada es erróneo, o sea, la documentación que le hemos facilitado Alberto que la solicitó es un expediente independiente de esto. Este señor que presenta la minimización pues como otros muchos tiene este suelo y otro.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "expediente y documentación facilitada a alberto"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "The accuracy of the expediente and the documentation provided to Alberto can be verified by reviewing official municipal records and documentation requests/deliveries.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-018-acu-c6a470",
-        "verdict": "parcial",
-        "summary": "Los candidatos 1 y 2 son licitaciones para la redacción de proyectos y estudios relacionados con urbanismo y suelo, lo cual es temáticamente relevante para el \"expediente\" mencionado en la reclamación. Sin embargo, no corroboran directamente si un expediente específico es correcto o independiente.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wVAIKDGLCDsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicios de redacción proyecto de evaluación ambiental y territorio estratégica para reclasificar las zonas de la Sargueta y Pozalet como suelo urbanizable",
-            "similarity": 0.23
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
-            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial",
-            "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-018-cit-3591c6",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -843,41 +719,6 @@
           "bdns",
           "promises",
           "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-022-acu-0e99c6",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 22,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en esta parcela pone que hay elementos impropios y ningún expediente de disciplina urbanística",
-        "context": "ha hecho un informe de otra parcela, porque si en esta parcela pone que hay elementos impropios y ningún expediente de disciplina urbanística, entiendo que tú",
-        "topic": "urbanismo",
-        "entities": {},
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Se pueden consultar los registros y documentación oficial de la parcela para verificar la existencia de 'elementos impropios' y la ausencia de expedientes de disciplina urbanística.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-022-acu-0e99c6",
-        "verdict": "parcial",
-        "summary": "El expediente de licitación se refiere a obras de acondicionamiento en una parcela, lo cual está relacionado con el tema de urbanismo, pero no aborda directamente la existencia de elementos impropios o la ausencia de expedientes de disciplina urbanística mencionados en la reclamación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=D4mlhF3eeDx7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Obras de acondicionamiento parcela 481 en P.I. El Oliveral",
-            "similarity": 0.33
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
         ]
       },
       "visibility": "shown"
@@ -1893,21 +1734,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-038-cit-3c95d4",
-        "verdict": "parcial",
-        "summary": "Una licitación para la redacción de un estudio de inundabilidad y ampliación de suelo industrial es topícamente similar al 'estudio de detalle' mencionado en el reclamo, aunque no aborda directamente la remisión de una copia digital para registro en la Consellería de Territorio y Urbanismo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ek5miXvwRWCmq21uxhbaVQ%3D%3D",
-            "snippet": "Redacción estudio de inundabilidad para la modificación puntual nº 23 ampliación de suelo industrial",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2508,27 +2342,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-050-afi-30564b",
-        "verdict": "verificado",
-        "summary": "Los contratos de ornamentación del alumbrado navideño para el periodo 2024-2025 corroboran que se realizaron gastos en el ejercicio 2025 con presupuesto prorrogado.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2800,21 +2621,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-059-afi-3e9100",
-        "verdict": "parcial",
-        "summary": "La afirmación general sobre inversiones declaradas se relaciona parcialmente con un contrato de obras de intervención arqueológica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i1Kx2n2ILwRvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Obras de intervención arqueológica en la Plaza la Torre",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4642,41 +4456,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-093-acu-0d2b9e",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 93,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "no ha llegado a presentar propuesta de presupuestos generales",
-        "context": "ado esa otra frase más, pero que no ha llegado a presentar propuesta de presupuestos generales, sí que la hemos dejado, porque nos parece algo que es algo lógico y real y no podíamos quitarlo. Luego, sobre lo que me estás diciendo, Rafa, nosotros no dejamos de poner en valor los 500 millones de euros aprobados hace una semana, pero es que llegan mal y tarde.",
-        "topic": "fiscal",
-        "entities": {},
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "This claims that no general budget proposal has been presented, which can be verified by checking official records of budget submissions.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-093-acu-0d2b9e",
-        "verdict": "parcial",
-        "summary": "The municipality is in the process of acquiring modules for budget elaboration, which is a preparatory step for creating a general budget, but this does not directly confirm or contradict the claim that a general budget proposal has not yet been presented.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Suministro módulos elaboración de presupuestos y RPT.",
-            "similarity": 0.25
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-093-afi-379d06",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -4900,49 +4679,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-096-acu-02c543",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 96,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en cuanto a notificaciones personales sobre esto que se acaba de aprobar, de momento no han recibido ninguna, salvo lo que han podido leer en redes sociales, internet, etcétera.",
-        "context": "ellos me añaden que, en cuanto a notificaciones personales sobre esto que se acaba de aprobar, de momento no han recibido ninguna, salvo lo que han podido leer en redes sociales, internet, etcétera. Tras un año de",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "notificaciones personales"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verifiable by investigating the communication channels used by the authorities to inform ELA patients about new aid and checking if personal notifications were indeed sent.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-096-acu-02c543",
-        "verdict": "parcial",
-        "summary": "Los candidatos son contratos para la gestión de redes sociales y comunicación, lo que tiene una relación temática con la forma en que el reclamante obtuvo la información (redes sociales/internet), aunque no abordan directamente la falta de notificaciones personales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.29
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -5779,43 +5515,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-118-acu-f7652a",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 118,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "los dineros de la Generalitat han aplicado más y antes que los dineros del gobierno",
-        "context": "o con todo y ya está. De todas formas, los dineros de la Generalitat han aplicado más y antes que los dineros del gobierno, que probablemente los dineros del gobierno español apliquen. Pero los dineros de la Generalitat han aplicado antes.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "dineros de la generalitat, dineros del gobierno español"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "This statement claims a difference in the amount and timing of applied funds between the Generalitat and the national government, which can be verified by consulting public financial reports and budget execution data from both administrations.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-118-acu-f7652a",
-        "verdict": "parcial",
-        "summary": "The tender for the 'Amplicación parque Generalitat' is thematically related to 'dineros de la Generalitat' but does not provide sufficient detail regarding amounts or timing to corroborate the claim about broader or earlier application of funds compared to the government.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat",
-            "similarity": 0.33
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -6929,49 +6628,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-188-acu-d33014",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 188,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Aunque el gobierno lo omita y lo amague en las redes sociales. Pero es el ayuntamiento. el que lo organiza y el que lo patrocina.",
-        "context": "Pero así se hacen muchos en la calle. Aunque el gobierno lo omita y lo amague en las redes sociales. Pero es el ayuntamiento. el que lo organiza y el que lo patrocina. Sí, sí, se esconde.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "el ayuntamiento"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "This claims the town council organizes and sponsors bullfighting events while intentionally hiding this information on social media. This can be verified by checking public records of event organization and sponsorship, and by reviewing the town council's official social media presence for mentions of such events.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-188-acu-d33014",
-        "verdict": "parcial",
-        "summary": "Los contratos para la gestión de comunicación social y mantenimiento de redes sociales por parte del Ayuntamiento son relevantes, ya que la afirmación se refiere a la omisión de información en esas mismas plataformas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales",
-            "similarity": 0.29
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-188-acu-2d45cc",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -7619,27 +7275,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-254-cit-04d14f",
-        "verdict": "parcial",
-        "summary": "Registros de contratación relacionados con servicios de prevención general y vigilancia de la salud tocan el tema de la salud pública, pero no hay correspondencia directa con un programa valenciano de prevención de cáncer de mama.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "tender · Prevención ajeno: especialidades · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0rlFYENVpkYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "tender · Prevención ajeno: vigilancia de la salud · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8166,27 +7809,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-272-cit-b203de",
-        "verdict": "parcial",
-        "summary": "Aunque existen contratos de 'Prevención ajeno' y 'vigilancia de la salud', estos no especifican la integración de unidades de prevención de cáncer de mama en la estructura hospitalaria, siendo solo parcialmente relacionados con la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yjJ9S9J1XkoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: especialidades",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0rlFYENVpkYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Prevención ajeno: vigilancia de la salud",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

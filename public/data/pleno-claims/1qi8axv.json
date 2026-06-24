@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:40:24.973Z",
+  "generatedAt": "2026-06-24T10:25:15.561Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -929,64 +929,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-016-afi-2057d7",
-        "verdict": "parcial",
-        "summary": "El claim menciona un monto de 143.539 euros y un plazo de siete días para medidas correctoras. El candidato [0] es un contrato menor para un estudio de medidas correctoras, lo que coincide temáticamente pero no en los detalles numéricos específicos del monto o plazo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=75db7K%2BmQwkS7pcxhTeWOg%3D%3D",
-            "snippet": "contrato menor de Servicio de redacción de estudio de medidas correctoras para la prevención de la inundación en zonas residenciales y de las causas de la inundación de áreas fuera de la envolvente del SNZCI tras la DANA",
-            "similarity": 0.27
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-016-acu-a798b0",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 16,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "los servicios de otra empresa por parte del contratista para que cubra los servicios que ellos no pueden realizar con los medios actuales, realizar un plan estratégico para el servicio con el personal existente, con la finalidad de no tener que realizar el servicio cada día si no lo han establecido, mejora de la coordinación y la comunicación dentro de la empresa y poner en funcionamiento a la mayor brevedad posible el vehículo establecido en el contrato para la realización de las tareas de rep",
-        "context": "los servicios de otra empresa por parte del contratista para que cubra los servicios que ellos no pueden realizar con los medios actuales, realizar un plan estratégico para el servicio con el personal existente, con la finalidad de no tener que realizar el servicio cada día si no lo han establecido, mejora de la coordinación y la comunicación dentro de la empresa y poner en funcionamiento a la mayor brevedad posible el vehículo establecido en el contrato para la realización de las tareas de rep",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "contratista / plan de medidas correctoras / vehículo establecido en el contrato"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.78,
-        "reasoning": "Atribuye al contratista un incumplimiento y menciona medios y vehículo comprometidos en contrato; es contrastable con el expediente y la documentación contractual.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-016-acu-a798b0",
-        "verdict": "parcial",
-        "summary": "The claim refers to a strategic service plan and a contracted vehicle. There is a tender for a communication plan and another for a civil protection vehicle, showing partial topical alignment.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ut2KnA7FDokBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan integral de comunicación del ayuntamiento de Riba-roja de Túria.",
-            "similarity": 0.4
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil.",
-            "similarity": 0.33
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1581,21 +1531,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-038-afi-0222fe",
-        "verdict": "parcial",
-        "summary": "The claim of a contract to audit and control the garbage service is partially supported by a contract for the elaboration of a local waste management plan, which is thematically related but not an explicit audit or control contract for an ongoing service.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1617,21 +1560,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-039-cit-f70621",
-        "verdict": "parcial",
-        "summary": "Existe un contrato para la elaboración de un plan local de residuos, lo cual está relacionado con la gestión de basura, pero no directamente con su auditoría y control.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1653,21 +1589,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-039-afi-7b98cf",
-        "verdict": "parcial",
-        "summary": "Candidate [1] is a minor service contract for a local waste plan, topically related to the claim's context of waste collection. However, the contract is marked as 'awarded', which does not align with the claim's implication of being 'pegando la vuelta' (still in process/pending).",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria. · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2343,21 +2272,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-057-afi-c1ba98",
-        "verdict": "parcial",
-        "summary": "A tender for a local waste plan is topically related to the claim of increasing daily container collection efficiency, though it does not confirm the specific numerical target of reaching 100%.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2379,21 +2301,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-057-cit-fb178a",
-        "verdict": "parcial",
-        "summary": "The claim refers to a 'shock plan' for waste removal, which is partially corroborated by a contract for the elaboration of a local waste management plan.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2417,27 +2332,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-057-afi-e76c4d",
-        "verdict": "parcial",
-        "summary": "Los contratos para la gestión y sensorización de contenedores y la elaboración de un plan local de residuos están relacionados con el objetivo de mejorar la recogida de residuos, aunque no confirman las cifras exactas del reclamo sobre porcentajes actuales o metas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
-            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU...",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2459,21 +2361,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-057-afi-f5238c",
-        "verdict": "parcial",
-        "summary": "El contrato de servicio público de recogida de residuos sólidos urbanos del municipio está relacionado con la gestión de los contenedores, aunque no especifica el cambio o soterramiento de los mismos como menciona la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2495,21 +2390,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-058-afi-fe267e",
-        "verdict": "parcial",
-        "summary": "El plan local de residuos es temáticamente relevante para la afirmación sobre el aumento de la retirada de residuos, pero no corrobora los porcentajes específicos mencionados.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xPIfUVJm2tQBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor de servicio para la elaboración del plan local de residuos para el municipio de Riba-roja de Túria.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3053,21 +2941,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-074-afi-11666f",
-        "verdict": "parcial",
-        "summary": "Existe una licitación para el suministro de módulos de elaboración de presupuestos, lo que indica actividad relacionada con la preparación de presupuestos, pero no confirma directamente la aprobación o publicación del presupuesto de 2025.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Suministro módulos elaboración de presupuestos y RPT.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3358,43 +3239,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-088-acu-493e95",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 88,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "se ha insistido mucho en la mala situación, en los números negativos, en los reiterados informes diciendo que no había suficiente liquidez.",
-        "context": "se ha insistido mucho en la mala situación, en los números negativos, en los reiterados informes diciendo que no había suficiente liquidez. En el último pleno vimos una auditoría",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "informes de liquidez y auditoría externa"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.88,
-        "reasoning": "Atribuye a informes y auditoría externa la existencia de falta de liquidez; es verificable contrastando esos informes y el acta del pleno.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-088-acu-493e95",
-        "verdict": "parcial",
-        "summary": "El candidato se refiere a un servicio de asesoramiento para una auditoría ex ante de un proyecto europeo, lo cual está relacionado temáticamente con la mención de una auditoría y problemas de liquidez en la afirmación, aunque no es un informe directo sobre la liquidez general del ayuntamiento.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RUFKyK5kMoYuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Servicio de asesoramiento de la auditoría ex ante del proyecto europeo Guardian",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -4846,21 +4690,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-115-afi-ba430a",
-        "verdict": "parcial",
-        "summary": "Los expedientes de contratación para el servicio de alumbrado navideño 2024-2025 sugieren que esta actividad anual debería estar reflejada en el presupuesto de 2025.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4883,27 +4720,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-115-afi-b25606",
-        "verdict": "parcial",
-        "summary": "Las licitaciones corresponden a un servicio de ornamentación de alumbrado navideño para 2024-2025, una actividad que se realiza comúnmente de forma anual, lo cual se alinea parcialmente con la premisa de la afirmación sobre actos que se hacen 'todos los años'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5215,33 +5039,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-122-afi-3eebaf",
-        "verdict": "verificado",
-        "summary": "El Ayuntamiento de Riba-roja de Túria mantiene contratos para la actualización y el mantenimiento de sus plataformas de administración electrónica, lo que facilita el acceso digital a informes y expedientes sin necesidad de desplazarse.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9xjipJFNRB8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Actualización y mantenimiento de la plataforma Esigna 3.X",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento plataforma de administración electrónica.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9xjipJFNRB8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Actualización y mantenimiento de la plataforma Esigna 3.X",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5263,27 +5068,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-123-afi-780865",
-        "verdict": "verificado",
-        "summary": "La existencia de licitaciones para el mantenimiento y actualización de la 'plataforma Esigna' y la 'plataforma de administración electrónica' corrobora la afirmación de que el ayuntamiento utiliza estas herramientas para gestionar y hacer accesibles los expedientes, apoyando la transparencia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9xjipJFNRB8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Actualización y mantenimiento de la plataforma Esigna 3.X · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento plataforma de administración electrónica. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "verdict-engine"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
