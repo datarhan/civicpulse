@@ -82,6 +82,11 @@ function DepartmentCard({ bucket, frozen }) {
             value={bucket.declaraciones.conEvidencia}
             tone={bucket.declaraciones.contradicho > 0 ? 'crit' : undefined}
             muted={bucket.declaraciones.conEvidencia === 0}
+            sub={
+              bucket.declaraciones.sinDatos > 0
+                ? `${bucket.declaraciones.sinDatos} ${t('departamentos.card.sinContraste')}`
+                : undefined
+            }
           />
           {!frozen && (
             <Stat
@@ -97,7 +102,7 @@ function DepartmentCard({ bucket, frozen }) {
   )
 }
 
-function Stat({ label, value, tone, muted }) {
+function Stat({ label, value, tone, muted, sub }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
   // Muting fades the numeric value only — the small uppercase label keeps full
@@ -121,6 +126,11 @@ function Stat({ label, value, tone, muted }) {
       >
         {value}
       </div>
+      {sub && (
+        <div className="mono" style={{ fontSize: 9, color: 'var(--ink50)', marginTop: 1 }}>
+          {sub}
+        </div>
+      )}
     </div>
   )
 }
