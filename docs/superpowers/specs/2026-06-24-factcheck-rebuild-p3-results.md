@@ -56,20 +56,19 @@ contradicho 0`. Shipped in commit `147a72b`; `/metodologia` documents it.
 - **15 amount-bearing retractions** (all `parcial→sin-datos`), eyeballed: mostly
   vague/program/penalty figures correctly ruled unverifiable (€24M program totals,
   €143k penalty expedientes). Sound in direction.
-- **Known limitation:** the production run used **lexical** shortlists, so a few
-  specific amount claims (e.g. €35,252.87 cartelería, €126k ministry grant) may
-  have a real match the lexical retrieval missed. A lexical miss errs **conservative**
-  (the verdict honestly says "not attested by the open-data trail" → a recall loss,
-  never a false claim about an official).
+- **Lexical-retrieval limitation — CHECKED and resolved.** The production run used
+  lexical shortlists, so the 15 amount-bearing retractions were re-run with
+  **semantic (hybrid) retrieval** (nomic-embed) to see if any had a real match
+  lexical missed. Result: **0/15 recoverable** — semantic retrieval found no
+  grounded match either. The figures are spoken investments/penalties/program
+  totals with no record in the tenders/BDNS/budget feeds, so `sin-datos` is the
+  correct verdict, not a retrieval artifact. The retractions are sound.
 
 ## Optional follow-ups (deferred — NOT libel-blocking)
 
-- A **semantic/hybrid-shortlist re-check** of the amount-bearing `sin-datos` to
-  surface any genuine match lexical missed — but only as curator *suggestions*
-  (auto-upgrading is the libel-risky direction; the engine's upgrade precision is
-  low). Needs `ollama serve` + nomic-embed.
 - A deliberate TED-aware deterministic refresh (tighten the R2 0.5 parcial floor
-  first); full pyserini hybrid retrieval.
+  first); full pyserini hybrid retrieval. Both are recall refinements; the
+  published state is already conservative and honest.
 
 The libel-critical surface is clean (`contradicho 0`) and the published state is
 conservative and honest.
