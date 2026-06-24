@@ -172,7 +172,7 @@ function ClaimCard({ item }) {
  * Honest empty state when no data-grounded declarations exist — the pipeline
  * hasn't surfaced contrastable claims, not that the government is clean.
  */
-export function ClaimLedger({ filter, limit = 20, emptyHint, items }) {
+export function ClaimLedger({ filter, limit = 20, emptyHint, items, showSummary = false }) {
   const t = useT()
   const fetched = usePlenoClaims()
   const loading = items ? false : fetched.loading
@@ -185,6 +185,13 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items }) {
     const scoped = filter ? gated.filter(filter) : gated
     return sortSignalFirst(scoped)
   }, [items, fetched.data, filter])
+
+  // Honest proportion: signal-first + a small limit otherwise oversells coverage
+  // by hiding the (usually majority) sin-datos behind "load more".
+  const mix = useMemo(() => {
+    const sinContraste = base.filter((it) => it?.verification?.verdict === 'sin-datos').length
+    return { conEvidencia: base.length - sinContraste, sinContraste }
+  }, [base])
 
   if (loading) {
     return (
@@ -212,6 +219,22 @@ export function ClaimLedger({ filter, limit = 20, emptyHint, items }) {
   }
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {showSummary && (
+        <div
+          className="mono"
+          style={{
+            fontSize: 11,
+            color: 'var(--ink60)',
+            letterSpacing: '.03em',
+            paddingBottom: 2,
+          }}
+        >
+          <strong style={{ color: 'var(--ink)' }}>{mix.conEvidencia}</strong> con evidencia
+          {' · '}
+          <strong style={{ color: 'var(--ink)' }}>{mix.sinContraste}</strong> sin contraste en los
+          datos
+        </div>
+      )}
       {base.slice(0, shown).map((it) => (
         <ClaimCard key={it.claim.id} item={it} />
       ))}

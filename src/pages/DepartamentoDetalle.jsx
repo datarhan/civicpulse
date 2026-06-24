@@ -403,6 +403,7 @@ export default function DepartamentoDetalle() {
             return topics.has(it.claim.topic)
           }}
           limit={10}
+          showSummary
           emptyHint="Sin declaraciones verificadas para esta concejalía todavía."
         />
       </section>
