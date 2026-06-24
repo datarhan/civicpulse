@@ -16,6 +16,12 @@ import { resolve, basename } from 'node:path'
 import { inferVotesFromTranscript, type InferredVote } from '../src/scraper/pleno-vote-inference'
 import { inferVotesWithLlm } from '../src/scraper/pleno-vote-llm'
 import { resetBudget } from '../src/llm/client'
+import {
+  parseRegmeetOutcomes,
+  isNonVote,
+  type RegmeetItem,
+  type RegmeetOutcome,
+} from '../src/scraper/regmeet'
 import { partyColor } from '../src/hooks/useOfficials.js' // JS module; imported for PARTY_COLORS keys
 // We only need bloc names here — read the officials JSON directly to derive
 // current seat counts, rather than depending on the React hooks.
@@ -33,6 +39,97 @@ interface PlenoMeta {
   id: string
   date: string
   title?: string
+  /** regmeet.com session page — the cross-check source. */
+  link?: string
+}
+
+/** regmeet cross-check stamped onto a suggestion when --cross-check is passed. */
+interface RegmeetCheck {
+  regmeetOutcome: RegmeetOutcome | null
+  regmeetTitle?: string
+  status: 'match' | 'outcome-mismatch' | 'not-a-vote' | 'item-not-found' | 'no-regmeet'
+}
+type AnnotatedVote = InferredVote & { regmeetCheck?: RegmeetCheck }
+
+// Suggestion outcome (…o) → regmeet label outcome (…a).
+const OUTCOME_TO_REGMEET: Record<string, RegmeetOutcome> = {
+  aprobado: 'aprobada',
+  rechazado: 'rechazada',
+  retirado: 'retirada',
+  aplazado: 'aplazada',
+}
+
+const BROWSER_UA =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36'
+
+async function fetchRegmeetOutcomes(url: string): Promise<RegmeetItem[] | null> {
+  try {
+    const res = await fetch(url, {
+      headers: { 'user-agent': BROWSER_UA },
+      signal: AbortSignal.timeout(25000),
+    })
+    if (!res.ok) return null
+    return parseRegmeetOutcomes(await res.text())
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Stamp each suggestion with the regmeet orden-del-día cross-check. regmeet is
+ * authoritative for OUTCOME + title (not per-bloc tally) — this catches the LLM
+ * recording a vote on an informational "dar cuenta" item, and outcome
+ * disagreements, before a curator promotes.
+ */
+async function crossCheckRegmeet(
+  items: InferredVote[],
+  plenos: PlenoMeta[],
+): Promise<AnnotatedVote[]> {
+  const linkOf = new Map(plenos.map((p) => [p.id, p.link]))
+  const cache = new Map<string, RegmeetItem[] | null>()
+  const out: AnnotatedVote[] = []
+  let flagged = 0
+  for (const s of items) {
+    const link = linkOf.get(s.plenoId)
+    if (!link) {
+      out.push({ ...s, regmeetCheck: { regmeetOutcome: null, status: 'no-regmeet' } })
+      continue
+    }
+    if (!cache.has(s.plenoId)) {
+      const parsed = await fetchRegmeetOutcomes(link)
+      cache.set(s.plenoId, parsed)
+      process.stderr.write(
+        `[cross-check] ${s.plenoId}: ${parsed ? parsed.length + ' regmeet items' : 'fetch failed'}\n`,
+      )
+    }
+    const reg = cache.get(s.plenoId)
+    if (!reg) {
+      out.push({ ...s, regmeetCheck: { regmeetOutcome: null, status: 'no-regmeet' } })
+      continue
+    }
+    const item = reg.find((r) => r.number === s.itemNumber)
+    if (!item) {
+      out.push({ ...s, regmeetCheck: { regmeetOutcome: null, status: 'item-not-found' } })
+      continue
+    }
+    let status: RegmeetCheck['status']
+    if (isNonVote(item.outcome)) {
+      status = 'not-a-vote'
+      flagged++
+    } else {
+      const expected = s.outcome ? OUTCOME_TO_REGMEET[s.outcome] : undefined
+      status = expected && expected === item.outcome ? 'match' : 'outcome-mismatch'
+      if (status === 'outcome-mismatch') flagged++
+    }
+    out.push({
+      ...s,
+      regmeetCheck: { regmeetOutcome: item.outcome, regmeetTitle: item.title, status },
+    })
+  }
+  process.stderr.write(
+    `[cross-check] ${out.length} suggestions · ${flagged} flagged (not-a-vote / outcome-mismatch)\n`,
+  )
+  return out
 }
 
 interface AgendaPlenoDoc {
@@ -146,6 +243,7 @@ async function main() {
   const args = process.argv.slice(2)
   let engine: Engine = 'regex'
   let minConfidence = 0.6
+  let crossCheck = false
   const targets: string[] = []
   for (let i = 0; i < args.length; i++) {
     const a = args[i]
@@ -161,11 +259,16 @@ async function main() {
       targets.push('--all')
       continue
     }
+    if (a === '--cross-check') {
+      crossCheck = true
+      continue
+    }
     targets.push(a)
   }
   if (targets.length !== 1 || !['regex', 'llm', 'both'].includes(engine)) {
     process.stderr.write(
-      'usage: extract-pleno-votes.ts <plenoId|--all> [--engine regex|llm|both] [--min-confidence 0.4]\n',
+      'usage: extract-pleno-votes.ts <plenoId|--all> [--engine regex|llm|both] [--min-confidence 0.4] [--cross-check]\n' +
+        '  --cross-check  stamp each suggestion with the regmeet orden-del-día outcome (authoritative for outcome+title; flags dar-cuenta non-votes + outcome mismatches)\n',
     )
     process.exit(2)
   }
@@ -218,6 +321,9 @@ async function main() {
   })
   const items = [...keep, ...fresh].sort((a, b) => b.plenoDate.localeCompare(a.plenoDate))
 
+  // Optional regmeet cross-check (authoritative orden-del-día outcome + title).
+  const finalItems: AnnotatedVote[] = crossCheck ? await crossCheckRegmeet(items, plenos) : items
+
   const out = {
     generatedAt: new Date().toISOString(),
     source: {
@@ -238,7 +344,7 @@ async function main() {
         return acc
       }, {}),
     },
-    items,
+    items: finalItems,
   }
   writeFileSync(OUT_PATH, JSON.stringify(out, null, 2) + '\n', 'utf8')
   process.stdout.write(`[extract] wrote ${items.length} suggestion(s) → ${OUT_PATH}\n`)

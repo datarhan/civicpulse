@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T13:24:06.982Z",
+  "generatedAt": "2026-06-24T14:15:44.708Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
@@ -58,7 +58,12 @@
       ],
       "confidence": 0.83,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "10/2026/PGRU, Moció del Grup Municipal Socialista de Riba-roja per a la defensa de l’educació pública",
+        "status": "match"
+      }
     },
     {
       "plenoId": "k4olcs",
@@ -95,7 +100,12 @@
       ],
       "confidence": 0.91,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 1562/2018/GEN, Acceptació proposada d'adjudicació mesa de contractació relatiu al contracte de concessió del servici públic de proveïment d'aigua potable, servici de gestió de clavegueram, control d'abocaments i depuració del municipi Riba-roja de Túria, per procediment obert, millor relació qualitat preu, diversos criteris d'adjudicació i amb clàusules mediambientals i amb condició especial d'execució de caràcter mediambiental i social. (Ctto. 27/2018)",
+        "status": "match"
+      }
     },
     {
       "plenoId": "ma87e0",
@@ -117,7 +127,12 @@
       ],
       "confidence": 0.72,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expediente: 4916/2025/GEN, Aprobación Inicial Presupuesto, ejercicio 2026.(Sin dictaminar)",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "ma87e0",
@@ -154,7 +169,11 @@
       ],
       "confidence": 0.62,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
     },
     {
       "plenoId": "ma87e0",
@@ -171,7 +190,12 @@
       ],
       "confidence": 0.77,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expediente: 4916/2025/GEN, Aprobación Inicial Presupuesto, ejercicio 2026.(Sin dictaminar)",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -193,7 +217,11 @@
       ],
       "confidence": 0.96,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -230,7 +258,12 @@
       ],
       "confidence": 0.77,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expediente: 13/2019/GEN, Acuerdo relativo al sometimiento a información pública de la versión inicial del PRI de la UE Casco 1",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -267,7 +300,12 @@
       ],
       "confidence": 0.81,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expediente: 1038/2026/GEN, Reconocimiento público de la figura de Salvador Ronda Soriano, Alcalde de Riba-roja de Túria durante la II República Española, otorgándole el nombre de una vía urbana.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -284,7 +322,12 @@
       ],
       "confidence": 0.64,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "08/2026/PGRU Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO).",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -306,7 +349,12 @@
       ],
       "confidence": 0.84,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "07/2026/PGRU Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -343,7 +391,12 @@
       ],
       "confidence": 0.81,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "07/2026/PGRU Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -380,7 +433,12 @@
       ],
       "confidence": 0.86,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "09/2026/PGRU, Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -417,7 +475,12 @@
       ],
       "confidence": 0.84,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "07/2026/PGRU Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -454,7 +517,12 @@
       ],
       "confidence": 0.77,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "07/2026/PGRU Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -476,7 +544,12 @@
       ],
       "confidence": 0.72,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "09/2026/PGRU, Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -513,7 +586,12 @@
       ],
       "confidence": 0.69,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "08/2026/PGRU Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO).",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -535,7 +613,12 @@
       ],
       "confidence": 0.72,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Asunto de Urgencia. Expediente 615/2025/GEN, Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -559,7 +642,12 @@
       "requiresHumanApproval": true,
       "dueBy": "2027-03-09",
       "dueBySource": "que va a cubrir el servicio durante un año",
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Asunto de Urgencia. Expediente 615/2025/GEN, Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -596,7 +684,12 @@
       ],
       "confidence": 0.78,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Asunto de Urgencia. Expediente 615/2025/GEN, Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -628,7 +721,12 @@
       ],
       "confidence": 0.79,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "dar-cuenta",
+        "regmeetTitle": "Expediente 1562/2018/GEN, Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio.",
+        "status": "not-a-vote"
+      }
     },
     {
       "plenoId": "1sqj7is",
@@ -660,35 +758,12 @@
       ],
       "confidence": 0.79,
       "requiresHumanApproval": true,
-      "engine": "llm"
-    },
-    {
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "itemNumber": null,
-      "excerpt": "caso\n[14288.4 → 14290.4] y los otros compañeros en otros casos\n[14290.4 → 14292.4] trabajar, trabajar y trabajar\n[14292.4 → 14294.4] así que vamos a pasar a la votación de este punto\n[14294.4 → 14296.4] es un punto importante pero me ha quedado muy desagradable\n[14296.4 → 14298.4] lo que ha pasado, vamos a votar por favor\n[14298.4 → 14301.3] voto a favor, abstención\n[14301.3 → 14303.3] voto en con",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor"
-        },
-        {
-          "bloc": "PP",
-          "direction": "en_contra"
-        },
-        {
-          "bloc": "VOX",
-          "direction": "abstencion"
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "abstencion"
-        }
-      ],
-      "confidence": 0.7,
-      "requiresHumanApproval": true,
-      "engine": "regex"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "dar-cuenta",
+        "regmeetTitle": "Expediente 1562/2018/GEN, Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio.",
+        "status": "not-a-vote"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -705,7 +780,12 @@
       ],
       "confidence": 0.93,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 5490/2025/GEN, Acord relatiu a Resolució d'al·legacions a l'Inici de la Resolució de la condició d'agent urbanitzador de la UE núm. 2 del Sector NPR-1 LA GAVINA.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -722,7 +802,12 @@
       ],
       "confidence": 0.78,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "3/2026/PGRU Moció del Grup Municipal VOX Riba-roja de Túria per a regular l'accés a dependències municipals en casos d'ocultació integral del rostre (niqab, burca o altres peces equivalents)",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -739,7 +824,12 @@
       ],
       "confidence": 0.74,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "3/2026/PGRU Moció del Grup Municipal VOX Riba-roja de Túria per a regular l'accés a dependències municipals en casos d'ocultació integral del rostre (niqab, burca o altres peces equivalents)",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -756,7 +846,12 @@
       ],
       "confidence": 0.77,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "4/2026/PGRU Moció del Grup Municipal Socialista de Riba-roja per la defensa del nou model de finançament autonòmic proposat pel Govern.",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -788,7 +883,12 @@
       ],
       "confidence": 0.92,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "2/2026/PGRU Moció del Grup Municipal Popular Riba-roja de Túria per a reclamar un finançament just per a la Comunitat Valenciana",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -825,7 +925,12 @@
       ],
       "confidence": 0.76,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "6/2026/PGRU Moció conjunta dels Grups Municipals Socialista de Riba-roja i Compromís per Riba-roja en defensa del benestar i la tinença responsable dels animals domèstics a Riba-roja de Túria",
+        "status": "match"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -862,7 +967,12 @@
       ],
       "confidence": 0.94,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "6/2026/PGRU Moció conjunta dels Grups Municipals Socialista de Riba-roja i Compromís per Riba-roja en defensa del benestar i la tinença responsable dels animals domèstics a Riba-roja de Túria",
+        "status": "match"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -901,7 +1011,12 @@
       "requiresHumanApproval": true,
       "dueBy": "2026-02-14",
       "dueBySource": "el día 14 este sábado es el último día",
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Assumptes d'Urgència – Expedient 647/2026/GEN, “Aprovació PAI EDIL i sol·licitud de la convocatòria de senda financera”",
+        "status": "match"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -930,7 +1045,12 @@
       "requiresHumanApproval": true,
       "dueBy": "2026-02-14",
       "dueBySource": "es el día 14 dedicar la urgencia",
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Assumptes d'Urgència – Expedient 647/2026/GEN, “Aprovació PAI EDIL i sol·licitud de la convocatòria de senda financera”",
+        "status": "match"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -969,7 +1089,12 @@
       "requiresHumanApproval": true,
       "dueBy": "2026-02-14",
       "dueBySource": "es el día 14 de ahí la premura que es el día 14",
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Assumptes d'Urgència – Expedient 647/2026/GEN, “Aprovació PAI EDIL i sol·licitud de la convocatòria de senda financera”",
+        "status": "match"
+      }
     },
     {
       "plenoId": "rx4hb4",
@@ -1001,7 +1126,44 @@
       ],
       "confidence": 0.94,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2.",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": null,
+      "excerpt": "caso\n[14288.4 → 14290.4] y los otros compañeros en otros casos\n[14290.4 → 14292.4] trabajar, trabajar y trabajar\n[14292.4 → 14294.4] así que vamos a pasar a la votación de este punto\n[14294.4 → 14296.4] es un punto importante pero me ha quedado muy desagradable\n[14296.4 → 14298.4] lo que ha pasado, vamos a votar por favor\n[14298.4 → 14301.3] voto a favor, abstención\n[14301.3 → 14303.3] voto en con",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -1025,7 +1187,12 @@
       "requiresHumanApproval": true,
       "dueBy": "2030-12-31",
       "dueBySource": "\"...hasta el 2030. Y segundo, dar publicidad del presente acuerdo en el BOC, el tablero de anuncios municipal, así como publicarlo en el portal de transparencia de la web municipal.\"",
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 6267/2025/GEN, Aprovació Agenda Urbana de Reconstrucció",
+        "status": "match"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -1042,7 +1209,11 @@
       ],
       "confidence": 0.63,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "item-not-found"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -1079,7 +1250,12 @@
       ],
       "confidence": 0.82,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Moció",
+        "status": "match"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -1111,7 +1287,12 @@
       ],
       "confidence": 0.82,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "dar-cuenta",
+        "regmeetTitle": "Expedient:  5396/2025/GEN,  Donar  compte  de  l'execució  pressupostària (3t 2025) i la informació a subministrar al Ple Municipal",
+        "status": "not-a-vote"
+      }
     },
     {
       "plenoId": "19gax3o",
@@ -1148,7 +1329,12 @@
       ],
       "confidence": 0.86,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "dar-cuenta",
+        "regmeetTitle": "Expedient:  5396/2025/GEN,  Donar  compte  de  l'execució  pressupostària (3t 2025) i la informació a subministrar al Ple Municipal",
+        "status": "not-a-vote"
+      }
     },
     {
       "plenoId": "1pe3qs8",
@@ -1170,7 +1356,12 @@
       ],
       "confidence": 0.96,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Ratificar el caràcter urgent de la sessió.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1pe3qs8",
@@ -1192,7 +1383,12 @@
       ],
       "confidence": 0.93,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Ratificar el caràcter urgent de la sessió.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1pe3qs8",
@@ -1214,7 +1410,12 @@
       ],
       "confidence": 0.94,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Ratificar el caràcter urgent de la sessió.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1pe3qs8",
@@ -1236,7 +1437,12 @@
       ],
       "confidence": 0.76,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 615/2025/GEN: Elevació a definitiva penalitat imposada al contractista per incompliment de l'adscripció de mitjans personals i materials compromesos des de l'inici del contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi; inicie resolució del contracte per continuar l'incompliment del contracte; i desestimació de sol·licitud de successió en la posició de contractista del contracte de contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi (Expedient 136/2025), en virtut d'operació de transmissió de branca d'activitat mitjançant absorció de l'empresa contractista Garbialdi, S. a. per la mercantil ISS Facility Services, S.A.O., en el marc de l'article 98 de la Llei 9/2017, de 8 de novembre, de Contractes del Sector Públic.",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "1pe3qs8",
@@ -1258,7 +1464,12 @@
       ],
       "confidence": 0.77,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 615/2025/GEN: Elevació a definitiva penalitat imposada al contractista per incompliment de l'adscripció de mitjans personals i materials compromesos des de l'inici del contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi; inicie resolució del contracte per continuar l'incompliment del contracte; i desestimació de sol·licitud de successió en la posició de contractista del contracte de contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi (Expedient 136/2025), en virtut d'operació de transmissió de branca d'activitat mitjançant absorció de l'empresa contractista Garbialdi, S. a. per la mercantil ISS Facility Services, S.A.O., en el marc de l'article 98 de la Llei 9/2017, de 8 de novembre, de Contractes del Sector Públic.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1qi8axv",
@@ -1295,7 +1506,12 @@
       ],
       "confidence": 0.96,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "debate",
+        "regmeetTitle": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit.",
+        "status": "not-a-vote"
+      }
     },
     {
       "plenoId": "1qi8axv",
@@ -1332,7 +1548,12 @@
       ],
       "confidence": 0.96,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "debate",
+        "regmeetTitle": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit.",
+        "status": "not-a-vote"
+      }
     },
     {
       "plenoId": "1qi8axv",
@@ -1354,7 +1575,12 @@
       ],
       "confidence": 0.83,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 5477/2025/GEN: Proposta d'acord amb el Ple Operació de Tresoreria 2025-2026.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1qi8axv",
@@ -1386,7 +1612,12 @@
       ],
       "confidence": 0.89,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 5477/2025/GEN: Proposta d'acord amb el Ple Operació de Tresoreria 2025-2026.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "qz6weg",
@@ -1423,7 +1654,12 @@
       ],
       "confidence": 0.98,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 5472/2025/GEN, Esmena d'errors materials subvencions nominatives bases d'execució 2025 (Proposta remesa des d'Intervenció a la Comissió Informativa núm. 4 relativa, entre altres, a Festes)",
+        "status": "match"
+      }
     },
     {
       "plenoId": "qz6weg",
@@ -1460,7 +1696,12 @@
       ],
       "confidence": 0.9,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 5565/2025/GEN, Retirada d'honors i distincions a Francisco Franco.",
+        "status": "match"
+      }
     },
     {
       "plenoId": "qz6weg",
@@ -1497,7 +1738,12 @@
       ],
       "confidence": 0.84,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "31/2025/PGRU, Moció del Grup Municipal Popular Riba-roja de Túria en defensa dels treballadors autònoms",
+        "status": "outcome-mismatch"
+      }
     },
     {
       "plenoId": "qz6weg",
@@ -1529,7 +1775,12 @@
       ],
       "confidence": 0.86,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "31/2025/PGRU, Moció del Grup Municipal Popular Riba-roja de Túria en defensa dels treballadors autònoms",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1du4rf5",
@@ -1556,7 +1807,12 @@
       ],
       "confidence": 0.86,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 2032/2025/GEN, Acord relatiu a l'Estudi de Detall de l'Av. Santiago Apostol-Els Pous de Riba-roja de Túria",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1du4rf5",
@@ -1588,7 +1844,12 @@
       ],
       "confidence": 0.91,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient: 4073/2025/GEN, Aprovació Reconeixement Extrajudicial 27B/2025. Llista de factures 12025000090 – INVERSIÓ",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1du4rf5",
@@ -1625,7 +1886,12 @@
       ],
       "confidence": 0.86,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "30/2025/PGRU, Moció conjunta dels Grups Municipals Compromís per Riba-roja i EU-Podem amb motiu del primer aniversari de la DANA que patim el 29 d'octubre de 2024",
+        "status": "match"
+      }
     },
     {
       "plenoId": "1du4rf5",
@@ -1657,7 +1923,12 @@
       ],
       "confidence": 0.83,
       "requiresHumanApproval": true,
-      "engine": "llm"
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "27/2025/PGRU, Moció conjunta dels Grups Municipals EU-Podem i Compromís per Riba-roja de suport a la ILP “No és la meua cultura”",
+        "status": "match"
+      }
     }
   ]
 }
