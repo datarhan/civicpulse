@@ -93,7 +93,7 @@ export function parseCite(snippet: string): { field: string; value: string } | n
  * Numeric grouping (`.` / `,` / non-breaking spaces / euro sign) routinely
  * differs between the LLM output and the snippet we showed it.
  */
-function looselyContains(haystack: string, needle: string): boolean {
+export function looselyContains(haystack: string, needle: string): boolean {
   const norm = (s: string) =>
     s
       .toLowerCase()
