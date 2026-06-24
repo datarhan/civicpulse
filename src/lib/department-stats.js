@@ -18,7 +18,7 @@ import {
   canonicalizeDepartment,
   resolveResponsibleOfficial,
 } from '../scraper/departments'
-import { topicToDeptSlugs } from './department-claim-topics'
+import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
 
 /**
  * @typedef {Object} DepartmentStats
@@ -153,7 +153,7 @@ export function computeDepartmentStats({
   // Promises
   const promiseList = promises?.items ?? []
   for (const p of promiseList) {
-    const slug = p.departmentSlug
+    const slug = promiseDeptSlug(p)
     if (!slug || !buckets[slug]) continue
     buckets[slug].promesas.total += 1
     if (p.status === 'documentada') buckets[slug].promesas.docs += 1

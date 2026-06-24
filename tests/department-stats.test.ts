@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { computeDepartmentStats } from '../src/lib/department-stats'
+import { promiseDeptSlug } from '../src/lib/department-claim-topics'
 
 const NOW = new Date('2026-04-21T00:00:00Z')
 
@@ -181,6 +182,35 @@ describe('computeDepartmentStats', () => {
     expect(r.bySlug.transparencia.promesas.plazosVencidos).toBe(0)
   })
 
+  it('routes a promise with no departmentSlug to its topic department (fallback)', () => {
+    const base = {
+      party: 'PSOE',
+      quote: 'a quote long enough to satisfy the validator contract',
+      source: { url: 'https://x.test', publisher: 'T' },
+      madeAt: '2024-01-01',
+      kind: 'programa-electoral',
+      status: 'documentada',
+      evidence: [],
+      createdAt: '2024-01-01',
+    }
+    const noSlug = {
+      items: [
+        { ...base, id: 'pf', title: 'Fiscal', topic: 'fiscal' }, // → hacienda
+        { ...base, id: 'pp', title: 'Participa', topic: 'participacion' }, // → transparencia
+      ],
+    }
+    const r = computeDepartmentStats({
+      officials,
+      promises: noSlug,
+      agendas,
+      votes,
+      quejas,
+      now: NOW,
+    })
+    expect(r.bySlug.hacienda.promesas.total).toBe(1)
+    expect(r.bySlug.transparencia.promesas.total).toBe(1)
+  })
+
   it('counts quejas per dept (open vs silencios)', () => {
     const r = computeDepartmentStats({ officials, promises, agendas, votes, quejas, now: NOW })
     expect(r.bySlug.urbanismo.quejas.total).toBe(2)
@@ -207,6 +237,17 @@ describe('computeDepartmentStats', () => {
     })
     expect(r.plazosVencidosCount).toBe(0)
     expect(r.list.every((b) => b.plenoVotes.total === 0)).toBe(true)
+  })
+})
+
+describe('promiseDeptSlug', () => {
+  it('prefers a curated departmentSlug, else routes by topic, else null', () => {
+    expect(promiseDeptSlug({ departmentSlug: 'cultura', topic: 'fiscal' })).toBe('cultura') // curated wins
+    expect(promiseDeptSlug({ topic: 'fiscal' })).toBe('hacienda')
+    expect(promiseDeptSlug({ topic: 'participacion' })).toBe('transparencia')
+    expect(promiseDeptSlug({ topic: 'vivienda' })).toBe('vivienda')
+    expect(promiseDeptSlug({ topic: 'other' })).toBe(null) // honest "no department"
+    expect(promiseDeptSlug({})).toBe(null)
   })
 })
 

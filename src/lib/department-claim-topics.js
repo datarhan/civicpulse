@@ -56,3 +56,44 @@ export function topicToDeptSlugs(topic) {
   }
   return out
 }
+
+/**
+ * Promise routing: a promise's `topic` (ALLOWED_TOPICS in scraper/promises.ts)
+ * → the single concejalía that owns it. Used ONLY as a fallback when a curated
+ * `departmentSlug` is absent, so curators can still override per record.
+ *
+ * One-to-one (unlike the claim-topic map) because a promise belongs to one
+ * department. `participacion` routes to `transparencia` (Transparencia /
+ * Gobierno Abierto / Participación are one área in this ayuntamiento); `other`
+ * stays unrouted (null) — an honest "no department" rather than a guess.
+ * Every target is a valid ALLOWED_DEPARTMENT_SLUGS entry.
+ */
+export const PROMISE_TOPIC_TO_DEPT = Object.freeze({
+  fiscal: 'hacienda',
+  vivienda: 'vivienda',
+  movilidad: 'movilidad',
+  'medio-ambiente': 'medio-ambiente',
+  social: 'servicios-sociales',
+  cultura: 'cultura',
+  seguridad: 'seguridad',
+  empleo: 'empleo-economia',
+  urbanismo: 'urbanismo',
+  salud: 'salud',
+  participacion: 'transparencia',
+  educacion: 'educacion',
+  deporte: 'deportes',
+  juventud: 'juventud',
+  mayores: 'mayores',
+  igualdad: 'igualdad',
+  transparencia: 'transparencia',
+  // 'other' → unrouted
+})
+
+/**
+ * A promise's effective department slug: the curated `departmentSlug` wins;
+ * otherwise route by `topic`; otherwise null (e.g. topic 'other'). Mirrors the
+ * `departmentSlug || canonicalizeDepartment(...)` fallback used for agendas.
+ */
+export function promiseDeptSlug(p) {
+  return p?.departmentSlug || PROMISE_TOPIC_TO_DEPT[p?.topic] || null
+}

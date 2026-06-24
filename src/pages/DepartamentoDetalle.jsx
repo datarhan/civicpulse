@@ -14,7 +14,7 @@ import { usePlenoVotes, OUTCOME_LABEL, OUTCOME_TONE } from '../hooks/usePlenoVot
 import { useQuejas, STATE_LABEL, STATE_TONE } from '../hooks/useQuejas'
 import { canonicalizeDepartment } from '../scraper/departments'
 import { ClaimLedger } from '../components/ClaimLedger'
-import { deptSlugToClaimTopics } from '../lib/department-claim-topics.js'
+import { deptSlugToClaimTopics, promiseDeptSlug } from '../lib/department-claim-topics.js'
 import { useT, useLocale } from '../i18n'
 
 function flattenAgendas(snap) {
@@ -103,7 +103,7 @@ function PromisesSection({ slug, frozen }) {
   const t = useT()
   const snap = usePromises()
   if (snap.loading) return null
-  const items = (snap.data?.items ?? []).filter((p) => p.departmentSlug === slug)
+  const items = (snap.data?.items ?? []).filter((p) => promiseDeptSlug(p) === slug)
   if (items.length === 0) {
     return (
       <p style={{ fontSize: 12.5, color: 'var(--ink50)', lineHeight: 1.5, marginTop: 8 }}>
