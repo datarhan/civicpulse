@@ -208,6 +208,28 @@ export const ClaimVerifierLlmResponseSchema = z.object({
 
 export type ClaimVerifierLlmResponse = z.infer<typeof ClaimVerifierLlmResponseSchema>
 
+// ─── Phase 3 (rebuild) · Verdict engine (reason-then-format) ─────────────────
+
+/** Free-text reasoning step (scratchpad before the structured extract). */
+export const EngineReasoningSchema = z.object({
+  reasoning: z.string().min(1).max(2000),
+})
+export type EngineReasoning = z.infer<typeof EngineReasoningSchema>
+
+/** Verdict extract — engine NEVER emits contradicho (deterministic + curator only). */
+export const EngineExtractSchema = z.object({
+  verdict: z.enum(['verificado', 'parcial', 'sin-datos']),
+  cites: z
+    .array(
+      z.object({
+        candidateIndex: z.number().int(),
+        snippet: z.string(),
+      }),
+    )
+    .max(5),
+})
+export type EngineExtract = z.infer<typeof EngineExtractSchema>
+
 // ─── Phase 6 · Auto-curation (LLM-written title + summary) ──────────────────
 // Generates the editorial chrome for an auto-published finding. The CLI
 // (scripts/auto-curate-findings.ts) gates by safety rules (no contradicho,

@@ -25,8 +25,21 @@ import {
 } from './claim-verifier'
 import { verifyClaimWithLlm } from './claim-verifier-llm'
 import { verifyClaimWithNli } from './claim-verifier-nli'
+import { verifyClaimWithEngine, type EngineDeps } from './claim-verifier-engine'
 import { scoreNliPairs, type NliPair } from './nli-client'
 import type { Corpus } from './semantic-shortlist'
+import { callLLM } from '../llm/client'
+import { EngineReasoningSchema, EngineExtractSchema } from '../llm/schemas'
+import {
+  buildEngineReasonSystemPrompt,
+  buildEngineReasonUserPrompt,
+  buildEngineExtractSystemPrompt,
+  buildEngineExtractUserPrompt,
+  buildEngineArgueAgainstPrompt,
+  ENGINE_REASON_VERSION,
+  ENGINE_EXTRACT_VERSION,
+  ENGINE_ARGUE_VERSION,
+} from '../llm/prompts'
 
 export interface VerifierContext {
   tenders: unknown
@@ -116,6 +129,81 @@ export function makeNliVerifier(opts: { model?: string } = {}): VerifierFn {
 }
 
 export const nliVerifier: VerifierFn = makeNliVerifier()
+
+/**
+ * P3 verdict engine: deterministic → if sin-datos, reason-then-format over the
+ * shortlist (local qwen via ollama) with NEI-default + cite-grounding + an
+ * optional PCC consistency gate (argue-both-sides → mDeBERTa contradiction).
+ * Never emits contradicho. Set LLM_BACKEND=ollama + OLLAMA_MODEL=qwen2.5:14b-instruct.
+ */
+export function makeEngineVerifier(opts: { consistency?: boolean } = {}): VerifierFn {
+  const deps: EngineDeps = {
+    reasonFn: async (claim, candidates) => {
+      const r = await callLLM({
+        systemPrompt: buildEngineReasonSystemPrompt(),
+        userPrompt: buildEngineReasonUserPrompt(claim, candidates),
+        promptVersion: ENGINE_REASON_VERSION,
+        schema: EngineReasoningSchema,
+        input: { claimId: claim.id },
+      })
+      return r?.reasoning ?? ''
+    },
+    extractFn: async (reasoning, claim, candidates) => {
+      const r = await callLLM({
+        systemPrompt: buildEngineExtractSystemPrompt(),
+        userPrompt: buildEngineExtractUserPrompt(reasoning, claim, candidates),
+        promptVersion: ENGINE_EXTRACT_VERSION,
+        schema: EngineExtractSchema,
+        input: { claimId: claim.id, reasoning },
+      })
+      return r ?? { verdict: 'sin-datos', cites: [] }
+    },
+    consistencyFn:
+      opts.consistency === false
+        ? undefined
+        : async (claim, candidates) => {
+            // PCC: argue-for vs argue-against; high NLI contradiction = ambiguous
+            // = low confidence → force sin-datos.
+            const [forR, againstR] = await Promise.all([
+              callLLM({
+                systemPrompt: buildEngineReasonSystemPrompt(),
+                userPrompt: buildEngineReasonUserPrompt(claim, candidates),
+                promptVersion: ENGINE_REASON_VERSION,
+                schema: EngineReasoningSchema,
+                input: { claimId: claim.id, role: 'for' },
+              }),
+              callLLM({
+                systemPrompt: buildEngineReasonSystemPrompt(),
+                userPrompt: buildEngineArgueAgainstPrompt(claim, candidates),
+                promptVersion: ENGINE_ARGUE_VERSION,
+                schema: EngineReasoningSchema,
+                input: { claimId: claim.id, role: 'against' },
+              }),
+            ])
+            const forText = forR?.reasoning ?? ''
+            const againstText = againstR?.reasoning ?? ''
+            if (!forText || !againstText) return true // can't check → don't block
+            const scores = await scoreNliPairs([
+              { id: 'c', premise: forText, hypothesis: againstText },
+            ])
+            return (scores.get('c')?.contradiction ?? 0) < 0.5
+          },
+  }
+  return async (claim, ctx) => {
+    const det = verifyClaim(inputsFor(claim, ctx))
+    if (det.verdict !== 'sin-datos') return det
+    const shortlist = await getShortlist(
+      inputsFor(claim, ctx),
+      8,
+      ctx.corpus ? { corpus: ctx.corpus } : {},
+    )
+    if (shortlist.length === 0) return det
+    const r = await verifyClaimWithEngine({ claim, candidates: shortlist }, deps)
+    return r?.upgraded ? r.verification : det
+  }
+}
+
+export const engineVerifier: VerifierFn = makeEngineVerifier()
 
 /**
  * Reads the verdict already in a verified snapshot — the shipped baseline,

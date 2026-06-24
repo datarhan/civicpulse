@@ -456,6 +456,108 @@ Emite el JSON. Si ningún candidato encaja: verdict=sin-datos, evidence=[].
 `.trim()
 }
 
+// ─── Phase 3 (rebuild) · Verdict engine: reason-then-format ──────────────────
+
+export const ENGINE_REASON_VERSION = 'engine-reason-v1'
+export const ENGINE_EXTRACT_VERSION = 'engine-extract-v1'
+export const ENGINE_ARGUE_VERSION = 'engine-argue-v1'
+
+interface EngineClaimLike {
+  type: string
+  topic: string
+  speakerGroup?: string | null
+  verbatim: string
+  context?: string
+  entities: { amountEuros?: number | null; count?: number | null; date?: string | null }
+}
+interface EngineCandLike {
+  kind: string
+  ref: string
+  snippet: string
+  similarity?: number
+}
+
+function engineCandBlock(candidates: EngineCandLike[]): string {
+  return candidates.length === 0
+    ? '(sin candidatos)'
+    : candidates
+        .map(
+          (c, i) =>
+            `  [${i}] ${c.kind} · ${c.snippet}${c.similarity != null ? ` · sim=${c.similarity.toFixed(2)}` : ''}`,
+        )
+        .join('\n')
+}
+
+function engineClaimBlock(c: EngineClaimLike): string {
+  const ent =
+    [
+      c.entities.amountEuros != null ? `monto: €${c.entities.amountEuros}` : null,
+      c.entities.count != null ? `cantidad: ${c.entities.count}` : null,
+      c.entities.date ? `fecha: ${c.entities.date}` : null,
+    ]
+      .filter(Boolean)
+      .join(' · ') || '(sin entidades numéricas)'
+  return `tipo: ${c.type} · tema: ${c.topic}\n  entidades: ${ent}\n  verbatim: "${c.verbatim}"${c.context ? `\n  contexto: ${c.context}` : ''}`
+}
+
+export function buildEngineReasonSystemPrompt(): string {
+  return `
+Eres un verificador de hechos ESCÉPTICO para una plataforma municipal española.
+Te doy una AFIRMACIÓN de un pleno y CANDIDATOS (registros reales: contratos,
+subvenciones, presupuesto, promesas). RAZONA en texto libre (español) sobre si
+algún candidato respalda GENUINAMENTE la afirmación.
+
+Sé escéptico por defecto:
+  · Una coincidencia de palabra o tema NO es respaldo (p. ej. un contrato de
+    "feria del comercio 2019" no prueba que "no hubo feria el año pasado").
+  · Una entidad distinta NO es respaldo (vehículos del Ayuntamiento ≠ vehículos
+    de una empresa contratista).
+  · Una cifra de orden distinto NO es respaldo.
+  · Un texto recitado (ley, ordenanza) o una opinión NO es verificable.
+Sólo hay respaldo si los valores concretos (importe / fecha / sujeto) de un
+candidato coinciden con la afirmación. NO decidas aún el veredicto — sólo razona.
+`.trim()
+}
+
+export function buildEngineReasonUserPrompt(
+  c: EngineClaimLike,
+  candidates: EngineCandLike[],
+): string {
+  return `AFIRMACIÓN:\n  ${engineClaimBlock(c)}\n\nCANDIDATOS:\n${engineCandBlock(candidates)}\n\nRazona en 2-4 frases. ¿Algún candidato respalda de verdad la afirmación, y con qué fuerza?`
+}
+
+export function buildEngineExtractSystemPrompt(): string {
+  return `
+Dada una AFIRMACIÓN, sus CANDIDATOS y el RAZONAMIENTO de un verificador, emite un
+veredicto JSON:
+  · verificado — un candidato corrobora claramente (importe/fecha/sujeto coinciden)
+  · parcial    — relacionado temáticamente pero no es coincidencia directa
+  · sin-datos  — ningún candidato encaja de verdad. ÚSALO LIBREMENTE: preferimos
+                 un sin-datos honesto a un verificado forzado.
+NUNCA emitas "contradicho".
+
+Cita los candidatos que respaldan por índice. Cada cita.snippet DEBE empezar por
+\`<dataset>[<i>].<campo>=<valor> · justificación\`, donde <valor> es una subcadena
+LITERAL del snippet del candidato (no un parafraseo ni un número redondeado). Si
+nada respalda de verdad: verdict="sin-datos", cites=[]. Sólo JSON.
+`.trim()
+}
+
+export function buildEngineExtractUserPrompt(
+  reasoning: string,
+  c: EngineClaimLike,
+  candidates: EngineCandLike[],
+): string {
+  return `AFIRMACIÓN:\n  ${engineClaimBlock(c)}\n\nCANDIDATOS:\n${engineCandBlock(candidates)}\n\nRAZONAMIENTO:\n${reasoning}\n\nEmite el JSON {verdict, cites}.`
+}
+
+export function buildEngineArgueAgainstPrompt(
+  c: EngineClaimLike,
+  candidates: EngineCandLike[],
+): string {
+  return `${buildEngineReasonUserPrompt(c, candidates)}\n\nAhora argumenta lo CONTRARIO: defiende con la mayor fuerza posible que NINGÚN candidato respalda la afirmación (que el veredicto debería ser sin-datos). 2-4 frases.`
+}
+
 // ─── Phase 6 · Auto-curation prompts ────────────────────────────────────────
 
 export const AUTO_CURATE_PROMPT_VERSION = 'auto-curate-v1'
