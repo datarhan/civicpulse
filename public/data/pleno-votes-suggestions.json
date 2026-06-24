@@ -1,13 +1,1663 @@
 {
-  "generatedAt": "2026-06-24T08:06:30.937Z",
+  "generatedAt": "2026-06-24T13:24:06.982Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 0,
-    "byEngine": {},
-    "byPleno": {}
+    "total": 55,
+    "byEngine": {
+      "llm": 54,
+      "regex": 1
+    },
+    "byPleno": {
+      "k4olcs": 2,
+      "ma87e0": 3,
+      "1sqj7is": 16,
+      "rx4hb4": 12,
+      "19gax3o": 5,
+      "1pe3qs8": 5,
+      "1qi8axv": 4,
+      "qz6weg": 4,
+      "1du4rf5": 4
+    }
   },
-  "items": []
+  "items": [
+    {
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "itemNumber": 6,
+      "excerpt": "Pasemos a la votación de este punto. Bueno, vamos a votar. 13 se ha aprobado, por 13 votos a favor, 8 en contra. Grupo Socialista, Partido Popular, Vox, Esquerra Unida y Podemos, compromiso. A favor.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.83,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "itemNumber": 7,
+      "excerpt": "\"falta un voto, se ha aprobado unanimidad la urgencia. Pasemos al 5.2. José, explica el punto. Sí, empezamos, o iniciamos con un pequeño extracto de dónde venimos para saber dónde vamos ahora. Bueno, en la mesa de contratación del 16 de octubre del 2000,\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.91,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "itemNumber": 2,
+      "excerpt": "\"...Pensamos que se puede mejorar y por eso votaremos en contra de estos presupuestos.\"",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "itemNumber": null,
+      "excerpt": "“votaremos a favor. ... En ese plan votaremos a favor algunos, no todos, pero algunos sí.”",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.62,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "ma87e0",
+      "plenoDate": "2026-03-16",
+      "itemNumber": 2,
+      "excerpt": "\"No obstante esto nosotros hemos votado a favor del presupuesto y en este punto evidentemente votaremos también a favor. Gracias.\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.77,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 2,
+      "excerpt": "En nuestro grupo, en ningún momento, dejemos en duda que el servicio no se haya hecho y no se haya contratado a precio de mercado. Es más, por estos motivos, en nuestro grupo vamos a votar a favor de que se paguen estas facturas. No vamos a bloquear el pagamiento.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.96,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 5,
+      "excerpt": "\"pasemos al punto este del cinquero del casco a votarlo... vamos a votar... 20 votos a favor una abstención... Partido Popular a favor... Vox a favor... el Primer Podem compromiso\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.77,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 7,
+      "excerpt": "Y con todo ello votaremos, por supuesto, en contra de esta propuesta ... Podem ha animado a dar todo el apoyo, el reconocimiento de la figura de Salvador Ronda a Soriano, agradecer a la regidora de memoria histórica, a Eva, del equipo de gobierno",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.81,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 10,
+      "excerpt": "lo que le importa a ciudadanos es la gestión, el pago de las facturas, la recogida de basuras, etc. Así que me parece una auténtica barbaridad esta moción que presentan ustedes y que por supuesto vamos a votar en contra.\n...\nPor lo tanto, mira si le interesa a la ciudadanía que esta propuesta no ve como tal el espacio político del equipo de gobierno, ve una asociación que",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.64,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 8,
+      "excerpt": "no estábamos seguros de nuestro voto pero creo que en la contestación que ha hecho la rechidora del equipo de gobierno se lo ha aclarado y vamos a votar a favor de la de la moción porque esperábamos que diera alguna información de que todas estas propuestas que hace el Partido Popular pues que estén ya en marcha.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.84,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 8,
+      "excerpt": "Por tanto, tiene sentido, tenemos que votar que sí a la moción, no que no, sino que sí. ... la votaremos a favor. En este caso la votaremos a favor. Pasemos a las votaciones de la moción. ... Falta, me falta un voto. ... 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. ... Compromiso.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.81,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 9,
+      "excerpt": "\"Pasemos a las votaciones de la moción. ... 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. ... Compromiso. Pasemos al 100 puntos del día. El punto 9, que hemos hecho el Grupo Municipal Vox\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.86,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 8,
+      "excerpt": "\"la votaremos a favor. En este caso la votaremos a favor. Pasemos a las votaciones de la moción. ... 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. ... Compromiso. Pasemos al 100 puntos del día.\",",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.84,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 8,
+      "excerpt": "\"Pasemos a las votaciones de la moción. ... Falta, me falta un voto. ... Ya está. 20 a favor y una extensión. Grupo Socialista. Partido Popular. Vox. ... Compromiso.\n[9122.8 → 9126.3] Pasemos al 100 puntos del día.\n[9126.3 → 9128.3] El punto 9, que hemos hecho el Grupo Municipal\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.77,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 9,
+      "excerpt": "\"Grupo Municipal Socialista votaremos en contra. Muchas gracias.\"\n\"el Partido Popular va a votar a favor. Y sí que quiero recalcar...\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 10,
+      "excerpt": "\"Pues ya está votada. No queda aprobada. Persteche Vox en contra y 8 en favor. Grupo Popular. Grupo Socialista, perdón. Grupo Popular. Vox. Escarmi de Podem. Rafa. Compromiso. Pasemos al 100 puntos. El 11. Es una urgencia que llevamos al pleno,\",\"confidence\":0.69,\"reasoning\":\"La votación corresponde a la moción del Grupo Popular sobre la Xarxa MAO (punto 10), que es la que se comenta justo antes de decir 'Pasemos al 11'; el resultado indica que no queda aprobada y se menciona Vox en contra con 8 a favor.\",\"dueBy\":null,\"dueBySource\":null}}}】【。assistant to=final  大发时时彩计划final  红鼎  重庆时时彩彩  վիճ]]>",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.69,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 11,
+      "excerpt": "\"vamos a votar a favor de esta propuesta. Gracias. ... igual que votaremos a favor de la penalización del contrato, vamos a votar a favor de este acuerdo.\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 11,
+      "excerpt": "\"Y igual que votaremos a favor de la penalización del contrato, vamos a votar a favor de este acuerdo. Gracias.\n...\nGracias también a la Secretaría de Contratación por el curso y al técnico por el trabajo desde el fin de semana, porque desde la carta de aceptación de Garbialdi a la carta de aceptación por parte de la Secretaría de Contratación que va a cubrir el servicio durante un año\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.66,
+      "requiresHumanApproval": true,
+      "dueBy": "2027-03-09",
+      "dueBySource": "que va a cubrir el servicio durante un año",
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 11,
+      "excerpt": "\"Y igual que votaremos a favor de la penalización del contrato, vamos a votar a favor de este acuerdo. Gracias.\" ... \"Bueno, pues a partir de ahora se resuelve\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.78,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 13,
+      "excerpt": "el 10 de abril del 2019 con votos favorables del Partido Socialista de Esquerra Unida, de Compromiso y entonces Ciudadanos. Votaremos en contra...",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.79,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 13,
+      "excerpt": "el 10 de abril del 2019\ncon votos favorables\ndel Partido Socialista\nde Esquerra Unida, de Compromiso\ny entonces Ciudadanos.\nVotaremos en contra\ncomo votaremos también en contra\ndel nuevo país de los chinos ... y ahora nos dan la razón también\nen este contrato",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.79,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": null,
+      "excerpt": "caso\n[14288.4 → 14290.4] y los otros compañeros en otros casos\n[14290.4 → 14292.4] trabajar, trabajar y trabajar\n[14292.4 → 14294.4] así que vamos a pasar a la votación de este punto\n[14294.4 → 14296.4] es un punto importante pero me ha quedado muy desagradable\n[14296.4 → 14298.4] lo que ha pasado, vamos a votar por favor\n[14298.4 → 14301.3] voto a favor, abstención\n[14301.3 → 14303.3] voto en con",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "engine": "regex"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 4,
+      "excerpt": "\"Pasemos a la votación de este punto, que es importante, a ver si lo podemos solventar. Ahora se puede? Yo no lo veo. Vamos a votar la mano. Voy a favor del punto 4. Se ha aprobado la unanimidad.\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        }
+      ],
+      "confidence": 0.93,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 6,
+      "excerpt": "Por tanto, desde el Partido Socialista vamos a votar en contra. Primero, porque esta moción carece de razones jurídicas.",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        }
+      ],
+      "confidence": 0.78,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 6,
+      "excerpt": "Y por eso vamos a votar en contra de esta moción. Gracias.\n[3536.1 → 3540.9] Última intervención, José Luis. Un minuto te queda, si quieres.\n[3540.9 → 3548.0] Muchas gracias. Evidentemente la izquierda, como siempre, o mejor dicho la extrema extrema izquierda",
+      "outcome": null,
+      "votes": [
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.74,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 7,
+      "excerpt": "\"Por eso, nosotros, esta moción del Partido Socialista, pensamos que es infundar, bueno, la moción y el plan de financiamiento. Y por lo tanto, votaremos en contra. Gracias.\"",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        }
+      ],
+      "confidence": 0.77,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 9,
+      "excerpt": "por favor, vamos a votar esta propuesta\nla propuesta del Partido Popular\nvoto a favor\nabstenciones, voto en contra\nno queda aprobada pero voto\na favor del Partido Popular, abstención de votos\ny en contra, ruido socialista\nEsquerra Unida Podem y\nCompromís y pasemos al\n100 puntos de orden del día",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "PSOE",
+          "direction": "abstencion",
+          "seats": 11
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.92,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 10,
+      "excerpt": "hemos denunciado públicamente casos en los que este tipo de sistema se ha convertido en menos instrumentos recaudatorios sin ningún tipo de efectividad práctica por todo ello votaremos en contra de la moción con su redacción actual gracias\n\nNosaltres desde Esquerra unida a Podem vamos a afegir a esta moción",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.76,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 10,
+      "excerpt": "vamos a votar esta moción\n[12639.6 → 12641.9] vale\n[12641.9 → 12643.9] el punto 10\n[12643.9 → 12646.5] voto a favor\n[12646.5 → 12648.8] abstenciones, voto en contra\n[12648.8 → 12650.8] queda aprobado pero voto a favor\n[12650.8 → 12652.8] de bolsa de vista, compromiso del CAU y de Podem\n[12652.8 → 12654.8] y abstención\n[12654.8 → 12656.8] del Partido Popular y en contra de\n[12656.8 → 12658.8] Vox",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.94,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 11,
+      "excerpt": "\"aprobado pero voto a favor\n[12650.8 → 12652.8] de bolsa de vista, compromiso del CAU y de Podem\n[12652.8 → 12654.8] y abstención\n[12654.8 → 12656.8] del Partido Popular y en contra de\n[12656.8 → 12658.8] Vox, pasemos al punto 11\n[12658.8 → 12660.8] que es muy importante\n[12660.8 → 12662.8] primero votemos la urgencia\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.78,
+      "requiresHumanApproval": true,
+      "dueBy": "2026-02-14",
+      "dueBySource": "el día 14 este sábado es el último día",
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 11,
+      "excerpt": "vamos a votar la urgencia y pasemos al desenvolvimiento del punto voto a favor de la urgencia, abstenciones voto en contra, queda aprobada la urgencia pero bolsa de vista, voto abstención voto en contra, voto en contra, voto en contra del PPP pasemos al punto aprobación del PAY y solicitud de la convocatoria de la agenda financiera",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.84,
+      "requiresHumanApproval": true,
+      "dueBy": "2026-02-14",
+      "dueBySource": "es el día 14 dedicar la urgencia",
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 11,
+      "excerpt": "“vamos a votar la urgencia y pasemos al desenvolvimiento del punto... voto a favor de la urgencia, abstenciones... voto en contra, queda aprobada la urgencia... voto abstención, voto en contra, voto en contra, voto en contra del PPP... pasemos al punto aprobación del PAY y solicitud de la convocatoria de la agenda financiera”",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.93,
+      "requiresHumanApproval": true,
+      "dueBy": "2026-02-14",
+      "dueBySource": "es el día 14 de ahí la premura que es el día 14",
+      "engine": "llm"
+    },
+    {
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 2,
+      "excerpt": "\"así que vamos a pasar a la votación de este punto... pues vale, queda aprobado... voto a favor del socialista... de Esquerra Unida Podem, de Compromís... la abstención de Vox... y el voto en contra del Partido Popular\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.94,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": 5,
+      "excerpt": "\"...nosotros nos abstendremos en este punto. Gracias. Muchas gracias, José Luis Box. Gracias, alcalde. Yo aquí creo que me voy a quedar solo porque desde luego, Vox rechaza de forma\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.72,
+      "requiresHumanApproval": true,
+      "dueBy": "2030-12-31",
+      "dueBySource": "\"...hasta el 2030. Y segundo, dar publicidad del presente acuerdo en el BOC, el tablero de anuncios municipal, así como publicarlo en el portal de transparencia de la web municipal.\"",
+      "engine": "llm"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": null,
+      "excerpt": "Bueno, nosotros vamos a votar a favor de esta modificación de crédito para subsanar los problemas que tiene el pabellón y el complejo esportivo",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        }
+      ],
+      "confidence": 0.63,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": 7,
+      "excerpt": "entonces, por responsabilidad votaremos a favor lo hemos explicado y es la solución para cuando antes en febrero que tenga el audio cuando toque y no hace un año y meses que tiene ese problema eso ha ido engrachándose, se ha hecho más grueso conforme ha ido pasando el tiempo hasta hace dos o tres meses que ya el audio te agarraba tanto que no podía ser de todas maneras, podéis hacer un otro vídeo y explicarlo tranquilamente pasando la bolsita de deporte, que también le queda bien pasemos a la votación\n[7200.0 → 7230.0] si quieres después en el punto, pues dices algo si preguntas también, vale",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.82,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": 8,
+      "excerpt": "pasemos a la votación\n[7200.0 → 7230.0] si quieres después en el punto, pues dices algo si preguntas también, vale así que votemos y vamos a ir, vale, vamos a votar estamos votando, 18 20, falta un voto a ver me falta un voto\n[7230.0 → 7260.0] falta un voto ahora sí, no te preocupes bueno, pues queda, no ha aprobado por cierto, Esquerrón ya ha votado a favor habías dicho abstención, no? ah, vale, pues te había interrumpido, disculpa tres chavos a favor, PSOE a favor PP abstención Vox, Esquerrón y Podem a favor vale\n[7260.0 → 7290.0] ¿Rafa? Vale, creo que no quería pedir la palabra después te",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 3
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "ausente",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.82,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": 8,
+      "excerpt": "pasemos a la votación\n[7200.0 → 7230.0] si quieres después en el punto, pues dices algo si preguntas también, vale así que votemos y vamos a ir, vale, vamos a votar estamos votando, 18 20, falta un voto a ver me falta un voto\n[7230.0 → 7260.0] falta un voto ahora sí, no te preocupes bueno, pues queda, no ha aprobado por cierto, Esquerrón ya ha votado a favor habías dicho abstención, no? ah, vale, pues te había interrumpido, disculpa tres chavos a favor, PSOE a favor PP abstención Vox, Esquerrón y Podem a favor vale\n[7260.0 → 7290.0] ¿Rafa? Vale, creo que no quería pedir la palabra después te",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.86,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1pe3qs8",
+      "plenoDate": "2026-01-07",
+      "itemNumber": 1,
+      "excerpt": "el carácter urgente de la sesión, lo importante.\n[42.3 → 47.0] Hemos hecho una junta portavoz ya que informan el dilluns de todas las cuestiones.\n[48.2 → 50.7] Y bueno, ya hacemos este pleito que es lo importante.\n[51.2 → 52.8] ¿Tenemos que votar la ofensiva?\n[52.9 → 53.2] Sí.\n[54.4 → 55.6] Pues, ¿votaremos?\n[56.9 → 57.4] ¿Votaremos?\n[57.8 → 58.7] Vamos a votar a la mano.\n[58.8 → 59.2] ¿Votamos a favor?\n[60.9 → 61.3] ¿Abstención?\n[62.1 → 62.8] Pues, ¿qué aprobamos?\n[62.9 → 65.7] Pues, votamos a favor del grupo socialista y la abstención del grupo político.\n[67.0 → 68.2] Pasaríamos al punto dos",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.96,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1pe3qs8",
+      "plenoDate": "2026-01-07",
+      "itemNumber": 1,
+      "excerpt": "Hemos hecho una junta portavoz ya que informan el dilluns de todas las cuestiones.\n[48.2 → 50.7] Y bueno, ya hacemos este pleito que es lo importante.\n[51.2 → 52.8] ¿Tenemos que votar la ofensiva?\n[52.9 → 53.2] Sí.\n[54.4 → 55.6] Pues, ¿votaremos?\n[56.9 → 57.4] ¿Votaremos?\n[57.8 → 58.7] Vamos a votar a la mano.\n[58.8 → 59.2] ¿Votamos a favor?\n[60.9 → 61.3] ¿Abstención?\n[62.1 → 62.8] Pues, ¿qué aprobamos?\n[62.9 → 65.7] Pues, votamos a favor del grupo socialista y la abstención del grupo político.\n[67.0 → 68.2] Pasaríamos al punto dos.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.93,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1pe3qs8",
+      "plenoDate": "2026-01-07",
+      "itemNumber": 1,
+      "excerpt": "Hemos hecho una junta portavoz ya que informan el dilluns de todas las cuestiones.\nY bueno, ya hacemos este pleito que es lo importante.\n¿Tenemos que votar la ofensiva?\nSí.\nPues, ¿votaremos?\n¿Votaremos?\nVamos a votar a la mano.\n¿Votamos a favor?\n¿Abstención?\nPues, ¿qué aprobamos?\nPues, votamos a favor del grupo socialista y la abstención del grupo político.\nPasaríamos al punto dos.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.94,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1pe3qs8",
+      "plenoDate": "2026-01-07",
+      "itemNumber": 2,
+      "excerpt": "Nosotros, ya dijéramos en su día, votaremos en contra de este contrato y en su día dijéramos que si la empresa se podría haber contactado el día 1 de diciembre, que es cuando se puso en vigor el contrato en esta empresa, si estaba preparada para realizar el servicio. Estamos a favor de las penalidades, por supuesto. Somos, bueno, todos somos conscientes de la falta de un servicio eficiente y eficaz, que se ha dado a cabo en este mes de diciembre y en este mes de enero que estamos. Nosotros, desde nuestra parte, entendemos que se inicie la resolución del contrato, pero tenemos dudas en que eso",
+      "outcome": null,
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.76,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1pe3qs8",
+      "plenoDate": "2026-01-07",
+      "itemNumber": 2,
+      "excerpt": "Entonces nosotros en este caso nos abstendremos. Votaremos en su día en contra, pensamos que la duración del contrato sigue siendo una exageración 14 años, podríamos haber hecho que SAP continuara en el servicio, que ya era deficiente, como Beto y sabemos, pero mejor que lo que teníamos hasta diciembre, hasta que Garbialdi, si alguna vez iba a estar preparado, pudiera regresar al servicio.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.77,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "itemNumber": 4,
+      "excerpt": "\"pasamos a la votación y ... vamos a proceder a votar el punto número 4 María Teresa Pozuelo Martín a favor José Luis Ramos Mar a favor José Ángel Hernández Carrizosa sí Eva Lara Catara sí Rafael Gómez Sánchez a favor María Estel Gómez Laredo sí José Manuel Vilaoltra\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.96,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "itemNumber": 4,
+      "excerpt": "el voto anterior el punto anterior no ha sido aprobado hablamos de el préstamo de la operación de préstamo ... pasamos a la votación de siguiente",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.96,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "itemNumber": 5,
+      "excerpt": "Pasamos al punto 6, entonces. Pasaríamos al 5, la votación del punto 5. En este caso también necesitamos el cuorón de mayoría absoluta. Vale.\n[4710.0 → 4740.0] Teresa Pozuelo. Sí. José Luis Ramos. Sí. José Ángel Fernández. Sí. Eva Lara. Sí. Rafa Gómez Sánchez. Sí. María Esther Gómez Laredo. Sí. José Manuel Vila Oltra. Sí. Raquel Panblanco. Sí. Alfredo Plat",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "confidence": 0.83,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "itemNumber": 5,
+      "excerpt": "Pasamos al punto 6, entonces. Pasaríamos al 5, la votación del punto 5. En este caso también necesitamos el cuorón de mayoría absoluta. Vale.\n[4710.0 → 4740.0] Teresa Pozuelo. Sí. José Luis Ramos. Sí. José Ángel Fernández. Sí. Eva Lara. Sí. Rafa Gómez Sánchez. Sí. María Esther Gómez Laredo. Sí. José Manuel Vila Oltra. Sí. Raquel Panblanco. Sí. Alfredo Plath Jiménez. Sí. José Manuel Vila Oltra. Sí. Raquel Panblanco. Sí. Alfredo Plath Jiménez. Sí. Raquel Panblanco. Sí. Alfredo Plath Jiménez. Sí. José Manuel Vila Oltra. Sí.\n[4740.0 → 4770.0] David Barbancho. Sí. Alberto José Jiménez Calvo. No.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.89,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 10,
+      "excerpt": "\"Se aprueba por unanimidad, pasemos al 5.2 del día, que es el punto 10, que es feste, es mena de arroz, material, subvenciones nominativas, base de ejecución del 2025. José Ángel. Si en este caso, como habéis visto, es una modificación de...\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.98,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 12,
+      "excerpt": "Vamos a votar, estamos alzadas mientras busquemos la parte de diferencias técnicas. ¿Voy a favor de este punto? ¿Astención? ¿Voy en contra?\n[7830.0 → 7860.0] ¿Compromiso? ¿Partido Popular? ¿Vox? Escarro de Podemos. Compromiso. Vale, pues queda aprobado este punto por once y dos. Trece a favor, ¿no? Sería trece a favor. Sete abstenciones y un voto en contra. Pasemos al cien punto del orden del día, que sería el número trece, donar content de la memoria de la Secretaría del 2024 del Ayuntamiento de Turía y de la República.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.9,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 14,
+      "excerpt": "No, no vamos a votar una moción que dice que la política fiscal en autónomos del gobierno es errónea... Y a eso no vamos a votarlo.",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "ausente",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.84,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 14,
+      "excerpt": "ablarles, al siguiente punto, que es el de la asociación de autónomos, [10980.0 → 11010.0] que tenemos que hacer. Y por eso, por ejemplo, nosotros vamos a hacer una moción sobre los autónomos y la vamos a dar en el debate. ¿Qué os está diciendo? Por lo tanto, no ha aceptado la esmena, no pasa nada. Votaremos en contra, al menos según se ha visto. Porque no ha aceptado la esmena de lo que realmente demandan los autónomos. Los demás son demagogia en contra del gobierno de España. Vamos a pasar a la votación.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.86,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 4,
+      "excerpt": "\"pasemos a la votación y cada uno que vota, el que tenga que votar... Aprobar, perdón, se vota a favor, se hace en contra y una abstención, Grupo Socialista, Partido Popular, Vox... Bueno, pues muchas gracias, pasemos al cien punto del día, que es el punto cinco, que es el urbanismo, acuerdo relativo al estudio de detalle de la avenida de Santiago Apóstol\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.86,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 6,
+      "excerpt": "Vamos a votar este punto. El reconocimiento del punto 6. ¿Vamos a votarlo? ... ¿Lot C a favor? ... Cruz Socialista? ... A favor. Grupo Popular. Vox. ¿Compromiso a Esquerra y Podemos? ¿Y compromiso? ... Pasemos al 5 punto del orden del día, que es el punto 7.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.91,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 8,
+      "excerpt": "Pues trece votos a favor y ocho en contra. Grupo Socialista. A favor. Partido Popular. Partido Popular. En contra. Vox. En contra. Esquerra Unida Podemos. A favor. Compromiso.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.86,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    },
+    {
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 9,
+      "excerpt": "\"Pues trece votos a favor y ocho en contra.\\nGrupo Socialista.\\nA favor.\\nPartido Popular.\\nPartido Popular.\\nEn contra.\\nVox.\\nEn contra.\\nEsquerra Unida Podemos.\\nA favor.\\nCompromiso.\\nA favor.\\nPasemos al cien punto de orden del día,\\nque es una moción conjunta de grupos municipales,\\npopular y...\"",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.83,
+      "requiresHumanApproval": true,
+      "engine": "llm"
+    }
+  ]
 }

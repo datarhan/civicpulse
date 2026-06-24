@@ -1,13 +1,733 @@
 {
-  "generatedAt": "2026-04-20T00:00:00.000Z",
+  "generatedAt": "2026-06-24T13:34:26.830Z",
   "source": {
     "description": "Curated voting records transcribed verbatim from published pleno actas (Ayuntamiento de Riba-roja de Túria). Each record cites the source acta URL and the retrieval date.",
     "contract": "Human-edited, schema-validated. Mutations only via npm run pleno-vote CLI or GH Issue ingestion workflow."
   },
   "stats": {
-    "total": 0,
-    "byOutcome": { "aprobado": 0, "rechazado": 0, "retirado": 0, "aplazado": 0 },
-    "byPleno": {}
+    "total": 20,
+    "byOutcome": {
+      "aprobado": 19,
+      "rechazado": 1,
+      "retirado": 0,
+      "aplazado": 0
+    },
+    "byPleno": {
+      "k4olcs": 2,
+      "1sqj7is": 6,
+      "rx4hb4": 3,
+      "19gax3o": 1,
+      "1qi8axv": 2,
+      "qz6weg": 3,
+      "1du4rf5": 3
+    }
   },
-  "items": []
+  "items": [
+    {
+      "id": "k4olcs-06",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "itemNumber": 6,
+      "title": "Moció del Grup Municipal Socialista de Riba-roja per a la defensa de l’educació pública",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "expediente": "10/2026/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/1d2a48c55f6f10010887cc7d849469a1?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "k4olcs-07",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "itemNumber": 7,
+      "title": "Expedient 1562/2018/GEN, Acceptació proposada d'adjudicació mesa de contractació relatiu al contracte de concessió del servici públic de proveïment d'aigua potable, servici de gestió de clavegueram, control d'abocaments i depuració del municipi Riba-roja de Túria, per procediment obert, millor relació qualitat preu, diversos criteris d'adjudicació i amb clàusules mediambientals i amb condició especial d'execució de caràcter mediambiental i social. (Ctto. 27/2018)",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/1d2a48c55f6f10010887cc7d849469a1?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1sqj7is-05",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 5,
+      "title": "Acuerdo relativo al sometimiento a información pública de la versión inicial del PRI de la UE Casco 1",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "expediente": "13/2019/GEN",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1sqj7is-07",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 7,
+      "title": "Reconocimiento público de la figura de Salvador Ronda Soriano, Alcalde de Riba-roja de Túria durante la II República Española, otorgándole el nombre de una vía urbana",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "expediente": "1038/2026/GEN",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1sqj7is-08",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 8,
+      "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para una aplicación real de Riba-roja de Túria como una Smart City",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        }
+      ],
+      "expediente": "07/2026/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1sqj7is-09",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 9,
+      "title": "Moción del Grupo Municipal VOX Riba-roja de Túria coordinada sobre la regularización masiva de inmigrantes ilegales",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "expediente": "09/2026/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1sqj7is-11",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 11,
+      "title": "Asunto de Urgencia. Acuerdo relativo a la resolución definitiva del contrato \"servicio de recogida de residuos sólidos urbanos, poda y voluminosos del municipio” (expte. 136/2025 – lote 1) por incumplimiento culpable del contratista, previa resolución de las alegaciones formuladas",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "department": "Medio ambiente",
+      "expediente": "615/2025/GEN",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1sqj7is-13",
+      "plenoId": "1sqj7is",
+      "plenoDate": "2026-03-09",
+      "itemNumber": 13,
+      "title": "Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        }
+      ],
+      "department": "Contratación",
+      "expediente": "1562/2018/GEN",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "rx4hb4-02",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 2,
+      "title": "Expedient: 5543/2020/GEN, Acord relatiu al sotmetiment a informació pública de la versió inicial del PRI de la UE Santa Rosa 2",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "rx4hb4-10",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 10,
+      "title": "Moció conjunta dels Grups Municipals Socialista de Riba-roja i Compromís per Riba-roja en defensa del benestar i la tinença responsable dels animals domèstics a Riba-roja de Túria",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "expediente": "6/2026/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "rx4hb4-11",
+      "plenoId": "rx4hb4",
+      "plenoDate": "2026-02-09",
+      "itemNumber": 11,
+      "title": "Assumptes d'Urgència – Expedient 647/2026/GEN, “Aprovació PAI EDIL i sol·licitud de la convocatòria de senda financera”",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "dueBy": "2026-02-14",
+      "dueBySource": "el día 14 este sábado es el último día",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "19gax3o-08",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": 8,
+      "title": "Expedient: 5396/2025/GEN, Donar compte de l'execució pressupostària (3t 2025) i la informació a subministrar al Ple Municipal",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 3
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 1
+        },
+        {
+          "bloc": "VOX",
+          "direction": "ausente",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/6a8018b3a00b69c008601b8becae392b?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1qi8axv-04",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "itemNumber": 4,
+      "title": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1qi8axv-05",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "itemNumber": 5,
+      "title": "Expedient 5477/2025/GEN: Proposta d'acord amb el Ple Operació de Tresoreria 2025-2026",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "qz6weg-10",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 10,
+      "title": "Expedient: 5472/2025/GEN, Esmena d'errors materials subvencions nominatives bases d'execució 2025 (Proposta remesa des d'Intervenció a la Comissió Informativa núm. 4 relativa, entre altres, a Festes)",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "qz6weg-12",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 12,
+      "title": "Expedient: 5565/2025/GEN, Retirada d'honors i distincions a Francisco Franco",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "abstencion",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "qz6weg-14",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "itemNumber": 14,
+      "title": "Moció del Grup Municipal Popular Riba-roja de Túria en defensa dels treballadors autònoms",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "ausente",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "expediente": "31/2025/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1du4rf5-06",
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 6,
+      "title": "Expedient: 4073/2025/GEN, Aprovació Reconeixement Extrajudicial 27B/2025. Llista de factures 12025000090 – INVERSIÓ",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1du4rf5-08",
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 8,
+      "title": "Moció conjunta dels Grups Municipals Compromís per Riba-roja i EU-Podem amb motiu del primer aniversari de la DANA que patim el 29 d'octubre de 2024",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "expediente": "30/2025/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    },
+    {
+      "id": "1du4rf5-09",
+      "plenoId": "1du4rf5",
+      "plenoDate": "2025-11-03",
+      "itemNumber": 9,
+      "title": "Moció conjunta dels Grups Municipals EU-Podem i Compromís per Riba-roja de suport a la ILP “No és la meua cultura”",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor",
+          "seats": 1
+        }
+      ],
+      "department": "Cultura",
+      "expediente": "27/2025/PGRU",
+      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano",
+      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-06-24"
+    }
+  ]
 }
