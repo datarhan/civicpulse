@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:18:12.524Z",
+  "generatedAt": "2026-06-24T07:40:24.973Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -1206,56 +1206,6 @@
     },
     {
       "claim": {
-        "id": "1qi8axv-028-acu-7ac1a4",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 28,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "la auditora, junto con el técnico, se persona en la empresa y hace comprobación de la falta de medios y de vehículos al tercer día.",
-        "context": "de hecho, ya el tercer día, el 3 de diciembre, la auditora, junto con el técnico, se persona en la empresa y hace comprobación de la falta de medios y de vehículos al tercer día. Ahí es cuando se empieza a iniciar toda la información",
-        "topic": "transparencia",
-        "entities": {
-          "date": "2025-12-03",
-          "referencedEntity": "empresa contratista"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.86,
-        "reasoning": "Atribuye a una empresa contratista una falta concreta de medios y vehículos en una fecha determinada; es verificable con actas, inspecciones o expediente del contrato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-028-acu-7ac1a4",
-        "verdict": "contradicho",
-        "summary": "La plataforma está licitando o ha adjudicado contratos para la adquisición y suministro de vehículos y combustible, lo que contradice la afirmación de que una auditora constató la falta de vehículos el 3 de diciembre de 2025.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Dos vehículos tipo moto.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
-            "snippet": "Dos vehículos, furgoneta de 9 plazas y maletero.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
-            "snippet": "Comprendido por CUATRO vehículos turismo híbridos.",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1qi8axv-029-afi-5d2a1d",
         "plenoId": "1qi8axv",
         "plenoDate": "2025-12-23",
@@ -1513,43 +1463,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-032-acu-c166df",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 32,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "la falta de vehículos, la falta de personal cualificado, todos los avales",
-        "context": "Aquí ustedes no valoran, no miran el histórico de la compañía, porque una cosa es lo que reflejan los papeles, su finanza, su economía, pero no sé, la falta de vehículos, la falta de personal cualificado, todos los avales",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "compañía"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.63,
-        "reasoning": "Afirma carencias concretas de medios y personal de una compañía; puede contrastarse con documentación del contrato o solvencia aportada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-032-acu-c166df",
-        "verdict": "contradicho",
-        "summary": "La afirmación sobre la falta de vehículos es directamente contradicha por una licitación adjudicada para la adquisición de cuatro vehículos híbridos. Los otros puntos de la queja, como la falta de personal cualificado y los avales, no se abordan en los candidatos proporcionados.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
-            "snippet": "Comprendido por CUATRO vehículos turismo híbridos. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

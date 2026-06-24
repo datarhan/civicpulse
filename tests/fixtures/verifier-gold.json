@@ -4,6 +4,16 @@
   "reviewedBy": "AI (Claude Opus 4.8), 2026-06-23 — conservative/libel-leaning. Spot-check the downgrades, especially former-contradicho rows, before trusting as ground truth.",
   "rows": [
     {
+      "claimId": "19gax3o-019-afi-0a4414",
+      "claimType": "afirmacion_numerica",
+      "verbatim": "la consecuencia de no durlo en adelante es que no se pueda hacer un contrato",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: garbled conditional; the cited contracts are unrelated to the claim"
+    },
+    {
       "claimId": "19gax3o-028-pro-ac6aa5",
       "claimType": "promesa",
       "verbatim": "en el 2027, que espero que estemos todos aquí, nos volverá a pasar lo mismo.",
@@ -25,6 +35,16 @@
       "goldEvidenceRefs": [
         "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=K1v0iRi%2Ff7NvYnTkQN0%2FZA%3D%3D"
       ]
+    },
+    {
+      "claimId": "19gax3o-128-acu-623b1c",
+      "claimType": "acusacion_publica",
+      "verbatim": "lo que pasa es que no se ha hecho nada en ese edificio, como en el pabellón que al final tiene que cerrar y como en otra",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: works on OTHER buildings do not refute \"nothing was done to that building\""
     },
     {
       "claimId": "19gax3o-132-cit-35c4f5",
@@ -93,6 +113,26 @@
       "notes": "policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)"
     },
     {
+      "claimId": "1du4rf5-095-acu-511643",
+      "claimType": "acusacion_publica",
+      "verbatim": "desde la aprobación en 2024 ninguna ayuda.",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: \"ninguna ayuda\" means subsidies; evidence is home-help SERVICE contracts (referent mismatch)"
+    },
+    {
+      "claimId": "1du4rf5-096-acu-beea8d",
+      "claimType": "acusacion_publica",
+      "verbatim": "desde la aprobación en 2024 ninguna ayuda.",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: duplicate — subsidy accusation vs home-help service contracts (referent mismatch)"
+    },
+    {
       "claimId": "1du4rf5-098-pro-2f7b40",
       "claimType": "promesa",
       "verbatim": "Sobre tus enmiendas, David, las acepto, las cinco, las aceptamos y las añadiremos y se lo pasaremos a la secretaria.",
@@ -101,6 +141,26 @@
       "reviewer": "ai-opus-4.8",
       "reviewedAt": "2026-06-23",
       "notes": "procedural (accepting amendments)"
+    },
+    {
+      "claimId": "1du4rf5-108-cit-d68a7b",
+      "claimType": "cita_obra",
+      "verbatim": "al funeral de estado de la DANA.",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral"
+    },
+    {
+      "claimId": "1du4rf5-138-acu-cf53cf",
+      "claimType": "acusacion_publica",
+      "verbatim": "ustedes son compromiso fuera de las instituciones de la comunidad autonómica valenciana, del Ayuntamiento de Valencia, d",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: a political jab matched to unrelated gas/comms contracts; really opinativa, not factual"
     },
     {
       "claimId": "1du4rf5-188-pro-f1ca3d",
@@ -133,6 +193,26 @@
       "notes": "references an internal technical report; not in open data"
     },
     {
+      "claimId": "1qi8axv-028-acu-7ac1a4",
+      "claimType": "acusacion_publica",
+      "verbatim": "la auditora, junto con el técnico, se persona en la empresa y hace comprobación de la falta de medios y de vehículos al ",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: accusation about a COMPANY lacking vehicles; evidence is the Ayuntamiento own vehicles (wrong entity)"
+    },
+    {
+      "claimId": "1qi8axv-032-acu-c166df",
+      "claimType": "acusacion_publica",
+      "verbatim": "la falta de vehículos, la falta de personal cualificado, todos los avales",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: same wrong-entity — a company lacking vehicles vs the Ayuntamiento vehicle contracts"
+    },
+    {
       "claimId": "1qi8axv-033-acu-3c3d08",
       "claimType": "acusacion_publica",
       "verbatim": "¿Tienen personal? No tienen. ¿Tienen vehículos? O no tienen, porque esto es algo muy go",
@@ -153,6 +233,26 @@
       "notes": "\"poliza\" = a liquidity credit line; evidence is workers life-insurance (coincidental) (was parcial)"
     },
     {
+      "claimId": "1sqj7is-007-acu-5fcbd4",
+      "claimType": "acusacion_publica",
+      "verbatim": "la omisión de la función interventora, el gasto sin procedimiento de contratación,",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: duplicate — the bus contract does not refute the unrelated no-procedure accusation"
+    },
+    {
+      "claimId": "1sqj7is-008-acu-4a7fa7",
+      "claimType": "acusacion_publica",
+      "verbatim": "la omisión de la función interventora, el gasto sin procedimiento de contratación",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: a bus contract WITH an open procedure does not refute an accusation about a DIFFERENT spend lacking procedure"
+    },
+    {
       "claimId": "1sqj7is-053-pro-68944b",
       "claimType": "promesa",
       "verbatim": "propuestas como esta que sirven para mejorar la forma de contratar, que sirven para reducir los extrajudiciales",
@@ -166,6 +266,26 @@
         "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HOevTJeejQESugstABGr5A%3D%3D",
         "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2FxOcSrQ966OcCF8sV%2BqtYA%3D%3D"
       ]
+    },
+    {
+      "claimId": "1tgd1h4-093-acu-69bea6",
+      "claimType": "acusacion_publica",
+      "verbatim": "La instalación de estufas u otros elementos de calefacción sin la oportuna autorización.",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: recited bylaw text (heaters without authorization); a boiler contract is coincidental"
+    },
+    {
+      "claimId": "1tgd1h4-093-acu-ec4e96",
+      "claimType": "acusacion_publica",
+      "verbatim": "La no conservación de la zona ocupada en perfecto estado de salubridad, limpieza y ornato,",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: a recited bylaw-infraction text, not an accusation; the cleaning contracts are coincidental"
     },
     {
       "claimId": "1tgd1h4-129-afi-dca7d4",
@@ -318,6 +438,16 @@
       "notes": "false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)"
     },
     {
+      "claimId": "k4olcs-153-acu-4d8e08",
+      "claimType": "acusacion_publica",
+      "verbatim": "públicamente nosotros hemos dicho que en Guayn no había fiesta del comercio, el año pasad",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: a 2019 fair contract does not refute \"no fair last year\" (year mismatch, coincidental)"
+    },
+    {
       "claimId": "k4olcs-154-cit-18d379",
       "claimType": "cita_obra",
       "verbatim": "que el comercio se puede inscribir en la fiera porque la realidad es lo que queremos es que se inscriban los comercios",
@@ -349,6 +479,16 @@
       "reviewer": "ai-opus-4.8",
       "reviewedAt": "2026-06-23",
       "notes": "garbled accusation; year-token match to a Christmas-lighting contract (was verificado)"
+    },
+    {
+      "claimId": "k4olcs-169-acu-4606a7",
+      "claimType": "acusacion_publica",
+      "verbatim": "desde hace tiempo que no había gira de comercio",
+      "goldVerdict": "sin-datos",
+      "reviewed": true,
+      "reviewer": "ai-opus-4.8",
+      "reviewedAt": "2026-06-24",
+      "notes": "false contradicho: an old 2019 fair contract does not refute \"no fair for a while\" (coincidental)"
     },
     {
       "claimId": "ma87e0-102-afi-c93bb9",

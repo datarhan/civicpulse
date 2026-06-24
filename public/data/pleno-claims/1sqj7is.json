@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:18:12.524Z",
+  "generatedAt": "2026-06-24T07:40:24.973Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -232,92 +232,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-007-acu-5fcbd4",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "la omisión de la función interventora, el gasto sin procedimiento de contratación,",
-        "context": "PP concluye la lista de irregularidades señalando que el interventor municipal no fiscalizó el gasto previamente y que éste se ejecutó sin el preceptivo procedimiento de contratación.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "función interventora municipal"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.71,
-        "reasoning": "La omisión de fiscalización previa por el interventor es un hecho administrativo verificable en el expediente del reconocimiento extrajudicial: si no constan reparos previos ni fiscalización, la acusación queda corroborada.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-007-acu-5fcbd4",
-        "verdict": "contradicho",
-        "summary": "Los candidatos presentan contratos de suministro que fueron tramitados mediante un 'procedimiento abierto', lo cual contradice directamente la afirmación de que el gasto se realizó sin procedimiento de contratación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-008-acu-4a7fa7",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 8,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "la omisión de la función interventora, el gasto sin procedimiento de contratación",
-        "context": "El orador continúa enumerando los defectos hallados en los informes técnicos, subrayando que el interventor municipal no fiscalizó el gasto y que éste se realizó sin procedimiento de contratación.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "función interventora municipal · expediente de gasto sin contratación"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.75,
-        "reasoning": "La omisión de la función interventora es un incumplimiento tasado en la LCSP y en la LRHL; el verificador puede cruzar las facturas del reconocimiento extrajudicial (punto 2 del orden del día, relaciones 1202600045/44) contra los informes de intervención que deben constar en el expediente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-008-acu-4a7fa7",
-        "verdict": "contradicho",
-        "summary": "La afirmación sobre gastos sin procedimiento de contratación es contradicha por los candidatos, que detallan contratos adjudicados mediante un procedimiento abierto.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto · awarded",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

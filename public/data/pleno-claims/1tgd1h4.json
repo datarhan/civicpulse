@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:18:12.524Z",
+  "generatedAt": "2026-06-24T07:40:24.973Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -7573,49 +7573,6 @@
     },
     {
       "claim": {
-        "id": "1tgd1h4-093-acu-ec4e96",
-        "plenoId": "1tgd1h4",
-        "plenoDate": "2024-07-29",
-        "segmentIndex": 93,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "La no conservación de la zona ocupada en perfecto estado de salubridad, limpieza y ornato,",
-        "context": "[0.0 → 0.0] h.La no conservación de la zona ocupada en perfecto estado de salubridad, limpieza y ornato,\n[0.0 → 0.0] cuando sea con carácter grave o reiterado.",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "zona ocupada"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.95,
-        "reasoning": "Describe un incumplimiento concreto de la ordenanza; puede verificarse con el texto aprobado y con actas o expedientes que acrediten la infracción.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1tgd1h4-093-acu-ec4e96",
-        "verdict": "contradicho",
-        "summary": "La existencia de contratos adjudicados para la conservación, mantenimiento y limpieza de parques, jardines y otras zonas municipales contradice la acusación de falta de salubridad, limpieza y ornato en zonas ocupadas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PWq6zyuzw1qmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio de conservación, mantenimiento, limpieza y mejora de los Parques, jardines, zonas verdes, interfaz, zonas de esparcimiento canino, zona ajardinada de la CV-370, carril bici, solares de propiedad municipal",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio limpieza",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1tgd1h4-093-acu-4e6437",
         "plenoId": "1tgd1h4",
         "plenoDate": "2024-07-29",
@@ -7643,43 +7600,6 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9TcmWcPo2P4mMOlAXxDEjw%3D%3D",
             "snippet": "Contrato para el suministro de elementos para la sustitución, por reparación, de las puertas de salida de emergencia en el auditorio municipal, del Ayuntamiento de Riba-roja de Túria.",
             "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1tgd1h4-093-acu-69bea6",
-        "plenoId": "1tgd1h4",
-        "plenoDate": "2024-07-29",
-        "segmentIndex": 93,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "La instalación de estufas u otros elementos de calefacción sin la oportuna autorización.",
-        "context": "[0.0 → 0.0] m.La instalación de estufas u otros elementos de calefacción sin la oportuna autorización.\n[0.0 → 0.0] n.No disponer de",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "estufas u otros elementos de calefacción"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.96,
-        "reasoning": "Es una conducta objetivable en la ordenanza; se verifica comparando autorizaciones concedidas con instalaciones detectadas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1tgd1h4-093-acu-69bea6",
-        "verdict": "contradicho",
-        "summary": "Existe un contrato menor para el suministro e instalación de una caldera de gas para un sistema de calefacción en una escuela infantil, lo que sugiere una instalación autorizada, contradiciendo la acusación de instalaciones sin autorización.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=X3%2BQGvf9bkisNfRW6APEDw%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor de suministro e instalación de caldera de gas para sistema de calefacción en la escoleta infantil CEIP Cervantes.",
-            "similarity": 0.25
           }
         ],
         "checkedAgainst": [

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:18:12.524Z",
+  "generatedAt": "2026-06-24T07:40:24.973Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -8007,43 +8007,6 @@
     },
     {
       "claim": {
-        "id": "k4olcs-153-acu-4d8e08",
-        "plenoId": "k4olcs",
-        "plenoDate": "2026-04-20",
-        "segmentIndex": 153,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "públicamente nosotros hemos dicho que en Guayn no había fiesta del comercio, el año pasad",
-        "context": "Y públicamente nosotros hemos dicho que en Guayn no había fiesta del comercio, el año pasad",
-        "topic": "cultura",
-        "entities": {
-          "referencedEntity": "fiesta del comercio"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.58,
-        "reasoning": "Atribuye una declaración pública sobre la inexistencia de la fiesta del comercio el año pasado; puede verificarse en grabaciones, notas de prensa o actas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "k4olcs-153-acu-4d8e08",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no hubo fiesta del comercio el año pasado es contradicha por un contrato adjudicado para una \"Actuación musical feria del comercio 2019\" en Riba-roja de Túria, lo que indica que sí se realizó un evento relacionado con la feria en 2019.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019 · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "k4olcs-154-afi-4d9ce6",
         "plenoId": "k4olcs",
         "plenoDate": "2026-04-20",
@@ -8888,43 +8851,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "k4olcs-169-acu-4606a7",
-        "plenoId": "k4olcs",
-        "plenoDate": "2026-04-20",
-        "segmentIndex": 169,
-        "type": "acusacion_publica",
-        "speakerGroup": "Otro",
-        "verbatim": "desde hace tiempo que no había gira de comercio",
-        "context": "Bueno, Rafa, precisamente tú que sabes que desde hace tiempo que no había gira de comercio. No obstante, tengo así los datos ahora mismo, que me han traído ya.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "gira de comercio"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.61,
-        "reasoning": "Afirma la inexistencia de una 'gira de comercio' durante un periodo; es verificable si hubo o no esa actividad en agendas o expedientes municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "k4olcs-169-acu-4606a7",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no ha habido una gira de comercio durante mucho tiempo se contradice con un contrato de 2019 para una 'feria del comercio'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

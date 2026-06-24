@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:18:12.524Z",
+  "generatedAt": "2026-06-24T07:40:24.973Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -4839,49 +4839,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-095-acu-511643",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 95,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "desde la aprobación en 2024 ninguna ayuda.",
-        "context": "Por eso, también, la importancia de traer esta moción al pleno, porque desde la aprobación en 2024 ninguna ayuda. Las subvenciones de la",
-        "topic": "salud",
-        "entities": {
-          "referencedEntity": "aprobación en 2024"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Afirma que no ha habido ayudas desde una aprobación en 2024. Esto es verificable buscando registros de ayudas o subvenciones implementadas desde esa fecha.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-095-acu-511643",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no ha habido ayudas desde 2024 es contradicha por dos licitaciones adjudicadas para el 'Servicio Ayuda a Domicilio' del Ayuntamiento de Riba-roja de Túria, lo que indica que sí se proporcionó ayuda.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-096-cit-f55d6b",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -4911,49 +4868,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-096-acu-beea8d",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 96,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "desde la aprobación en 2024 ninguna ayuda.",
-        "context": "la importancia de traer esta moción al pleno, porque desde la aprobación en 2024 ninguna ayuda. Las subvenciones de la Generalitat están en trámites, pero por lo menos se han podido ir tramitando.",
-        "topic": "social",
-        "entities": {
-          "referencedEntity": "ayuda para ela"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verifiable by checking official records and public announcements of aid or subsidies specifically for ELA patients since the year 2024.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-096-acu-beea8d",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no ha habido ayudas desde 2024 es contradicha por la adjudicación de servicios de ayuda a domicilio para personas con y sin grado de dependencia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -5567,27 +5481,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-108-cit-d68a7b",
-        "verdict": "contradicho",
-        "summary": "The claim mentions a 'state funeral of DANA,' but official records (tenders) clearly identify 'DANA' as a meteorological event necessitating emergency public lighting works, not a person to be mourned.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6273,55 +6174,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-138-acu-cf53cf",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 138,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "ustedes son compromiso fuera de las instituciones de la comunidad autonómica valenciana, del Ayuntamiento de Valencia, de la Diputación de Valencia, de todos los cargos que pueden,",
-        "context": "Cuando el pueblo valenciano, en marzo de 2023, se diga que ustedes son compromiso fuera de las instituciones de la comunidad autonómica valenciana, del Ayuntamiento de Valencia, de la Diputación de Valencia, de todos los cargos que pueden, esa voz del pueblo valenciano ya no es tan buena.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "instituciones de la comunidad autonómica valenciana, ayuntamiento de valencia, diputación de valencia"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "This claim asserts that 'Compromís' (implied political group by context) is outside specific institutions. This can be verified by checking the electoral results and governmental composition of the Comunidad Valenciana, Ayuntamiento de Valencia, and Diputación de Valencia after March 2023.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-138-acu-cf53cf",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que el grupo está \"fuera de las instituciones de la Diputación de Valencia\" es contradicha por múltiples licitaciones que muestran al Ayuntamiento de Riba-roja de Túria involucrado en contratos y servicios con la Diputación de Valencia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mnBqUxlODqGAAM7L03kM8A%3D%3D",
-            "snippet": "Contrato suministro gas natural derivado del acuerdo marco suscrito con suministro de gas natural contrato derivado del Acuerdo Marco suscrito por Diputación de Valencia.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xyu3L5puEXjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato basado en el Acuerdo Marco de la Diputación de Valencia, para el suministro de gas natural.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia",
-            "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

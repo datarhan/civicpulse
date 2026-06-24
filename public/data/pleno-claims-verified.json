@@ -9,8 +9,8 @@
     "byVerdict": {
       "verificado": 208,
       "parcial": 362,
-      "contradicho": 14,
-      "sin-datos": 4074,
+      "contradicho": 0,
+      "sin-datos": 4088,
       "promesa-repetida": 0
     }
   },
@@ -12740,18 +12740,11 @@
       },
       "verification": {
         "claimId": "k4olcs-153-acu-4d8e08",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no hubo fiesta del comercio el año pasado es contradicha por un contrato adjudicado para una \"Actuación musical feria del comercio 2019\" en Riba-roja de Túria, lo que indica que sí se realizó un evento relacionado con la feria en 2019.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019 · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: a 2019 fair contract does not refute \"no fair last year\" (year mismatch, coincidental)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -13495,18 +13488,11 @@
       },
       "verification": {
         "claimId": "k4olcs-169-acu-4606a7",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no ha habido una gira de comercio durante mucho tiempo se contradice con un contrato de 2019 para una 'feria del comercio'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=82sUgR%2BfOSyXQV0WE7lYPw%3D%3D",
-            "snippet": "Actuación musical feria del comercio 2019",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: an old 2019 fair contract does not refute \"no fair for a while\" (coincidental)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -23175,24 +23161,11 @@
       },
       "verification": {
         "claimId": "1sqj7is-008-acu-4a7fa7",
-        "verdict": "contradicho",
-        "summary": "La afirmación sobre gastos sin procedimiento de contratación es contradicha por los candidatos, que detallan contratos adjudicados mediante un procedimiento abierto.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: a bus contract WITH an open procedure does not refute an accusation about a DIFFERENT spend lacking procedure",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -23313,24 +23286,11 @@
       },
       "verification": {
         "claimId": "1sqj7is-007-acu-5fcbd4",
-        "verdict": "contradicho",
-        "summary": "Los candidatos presentan contratos de suministro que fueron tramitados mediante un 'procedimiento abierto', lo cual contradice directamente la afirmación de que el gasto se realizó sin procedimiento de contratación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CkF2IP5HyiYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Contrato de suministro de autobús urbano por procedimiento abierto",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: duplicate — the bus contract does not refute the unrelated no-procedure accusation",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -29876,30 +29836,11 @@
       },
       "verification": {
         "claimId": "19gax3o-019-afi-0a4414",
-        "verdict": "contradicho",
-        "summary": "The claim asserts that contracts cannot be made. However, the provided tenders clearly show that multiple contracts have been awarded, and one was even initiated and then revoked, directly refuting the claim that no contracts can be established.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3dTzivflSF2sNfRW6APEDw%3D%3D",
-            "snippet": "Contrato verbal de suministro compra hornillo gas y desechables para familia afectada como consecuencia del temporal de lluvias (DANA)... · awarded",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3dTzivflSF2sNfRW6APEDw%3D%3D",
-            "snippet": "Contrato verbal de suministro compra hornillo gas y desechables para familia afectada como consecuencia del temporal de lluvias (DANA)... · revoked",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: garbled conditional; the cited contracts are unrelated to the claim",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -39007,24 +38948,11 @@
       },
       "verification": {
         "claimId": "19gax3o-128-acu-623b1c",
-        "verdict": "contradicho",
-        "summary": "La reclamación de inacción general en edificios y 'otras cosas' es contradicha por licitaciones activas para obras en el edificio principal del Ayuntamiento y en un edificio en C/ Mayor, demostrando que se han realizado actuaciones en el ámbito de urbanismo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Reforma en edificio sito en C/ Mayor, 37",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: works on OTHER buildings do not refute \"nothing was done to that building\"",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -48819,30 +48747,11 @@
       },
       "verification": {
         "claimId": "1qi8axv-028-acu-7ac1a4",
-        "verdict": "contradicho",
-        "summary": "La plataforma está licitando o ha adjudicado contratos para la adquisición y suministro de vehículos y combustible, lo que contradice la afirmación de que una auditora constató la falta de vehículos el 3 de diciembre de 2025.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Dos vehículos tipo moto.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
-            "snippet": "Dos vehículos, furgoneta de 9 plazas y maletero.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
-            "snippet": "Comprendido por CUATRO vehículos turismo híbridos.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: accusation about a COMPANY lacking vehicles; evidence is the Ayuntamiento own vehicles (wrong entity)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -48962,18 +48871,11 @@
       },
       "verification": {
         "claimId": "1qi8axv-032-acu-c166df",
-        "verdict": "contradicho",
-        "summary": "La afirmación sobre la falta de vehículos es directamente contradicha por una licitación adjudicada para la adquisición de cuatro vehículos híbridos. Los otros puntos de la queja, como la falta de personal cualificado y los avales, no se abordan en los candidatos proporcionados.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
-            "snippet": "Comprendido por CUATRO vehículos turismo híbridos. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: same wrong-entity — a company lacking vehicles vs the Ayuntamiento vehicle contracts",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -86531,24 +86433,11 @@
       },
       "verification": {
         "claimId": "1du4rf5-095-acu-511643",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no ha habido ayudas desde 2024 es contradicha por dos licitaciones adjudicadas para el 'Servicio Ayuda a Domicilio' del Ayuntamiento de Riba-roja de Túria, lo que indica que sí se proporcionó ayuda.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: \"ninguna ayuda\" means subsidies; evidence is home-help SERVICE contracts (referent mismatch)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -86730,24 +86619,11 @@
       },
       "verification": {
         "claimId": "1du4rf5-096-acu-beea8d",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que no ha habido ayudas desde 2024 es contradicha por la adjudicación de servicios de ayuda a domicilio para personas con y sin grado de dependencia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas con grado de dependencia · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: duplicate — subsidy accusation vs home-help service contracts (referent mismatch)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -87718,24 +87594,11 @@
       },
       "verification": {
         "claimId": "1du4rf5-108-cit-d68a7b",
-        "verdict": "contradicho",
-        "summary": "The claim mentions a 'state funeral of DANA,' but official records (tenders) clearly identify 'DANA' as a meteorological event necessitating emergency public lighting works, not a person to be mourned.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i7R1v8v1LLWKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato de emergencia de obras de actuación alumbrado público zona este por DANA",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: coincidental \"DANA\" — a lighting contract does not relate to attending a state funeral",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -90601,30 +90464,11 @@
       },
       "verification": {
         "claimId": "1du4rf5-138-acu-cf53cf",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que el grupo está \"fuera de las instituciones de la Diputación de Valencia\" es contradicha por múltiples licitaciones que muestran al Ayuntamiento de Riba-roja de Túria involucrado en contratos y servicios con la Diputación de Valencia.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mnBqUxlODqGAAM7L03kM8A%3D%3D",
-            "snippet": "Contrato suministro gas natural derivado del acuerdo marco suscrito con suministro de gas natural contrato derivado del Acuerdo Marco suscrito por Diputación de Valencia.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xyu3L5puEXjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato basado en el Acuerdo Marco de la Diputación de Valencia, para el suministro de gas natural.",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: a political jab matched to unrelated gas/comms contracts; really opinativa, not factual",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -123694,24 +123538,11 @@
       },
       "verification": {
         "claimId": "1tgd1h4-093-acu-ec4e96",
-        "verdict": "contradicho",
-        "summary": "La existencia de contratos adjudicados para la conservación, mantenimiento y limpieza de parques, jardines y otras zonas municipales contradice la acusación de falta de salubridad, limpieza y ornato en zonas ocupadas.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PWq6zyuzw1qmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio de conservación, mantenimiento, limpieza y mejora de los Parques, jardines, zonas verdes, interfaz, zonas de esparcimiento canino, zona ajardinada de la CV-370, carril bici, solares de propiedad municipal",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio limpieza",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: a recited bylaw-infraction text, not an accusation; the cleaning contracts are coincidental",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },
@@ -123836,18 +123667,11 @@
       },
       "verification": {
         "claimId": "1tgd1h4-093-acu-69bea6",
-        "verdict": "contradicho",
-        "summary": "Existe un contrato menor para el suministro e instalación de una caldera de gas para un sistema de calefacción en una escuela infantil, lo que sugiere una instalación autorizada, contradiciendo la acusación de instalaciones sin autorización.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=X3%2BQGvf9bkisNfRW6APEDw%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor de suministro e instalación de caldera de gas para sistema de calefacción en la escoleta infantil CEIP Cervantes.",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: recited bylaw text (heaters without authorization); a boiler contract is coincidental",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       }
     },

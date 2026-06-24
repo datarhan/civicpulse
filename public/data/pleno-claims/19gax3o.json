@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:18:12.524Z",
+  "generatedAt": "2026-06-24T07:40:24.973Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -1292,33 +1292,14 @@
       },
       "verification": {
         "claimId": "19gax3o-019-afi-0a4414",
-        "verdict": "contradicho",
-        "summary": "The claim asserts that contracts cannot be made. However, the provided tenders clearly show that multiple contracts have been awarded, and one was even initiated and then revoked, directly refuting the claim that no contracts can be established.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3dTzivflSF2sNfRW6APEDw%3D%3D",
-            "snippet": "Contrato verbal de suministro compra hornillo gas y desechables para familia afectada como consecuencia del temporal de lluvias (DANA)... · awarded",
-            "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3dTzivflSF2sNfRW6APEDw%3D%3D",
-            "snippet": "Contrato verbal de suministro compra hornillo gas y desechables para familia afectada como consecuencia del temporal de lluvias (DANA)... · revoked",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: garbled conditional; the cited contracts are unrelated to the claim",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7865,49 +7846,6 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
             "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla.",
             "similarity": 0.4
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "19gax3o-128-acu-623b1c",
-        "plenoId": "19gax3o",
-        "plenoDate": "2026-01-19",
-        "segmentIndex": 128,
-        "type": "acusacion_publica",
-        "speakerGroup": "Otro",
-        "verbatim": "lo que pasa es que no se ha hecho nada en ese edificio, como en el pabellón que al final tiene que cerrar y como en otras cosas",
-        "context": "el ferro por supuesto, que si se pinta y se trata cada 5 o 10 años no se robella pues supongo que también, lo que pasa es que no se ha hecho nada en ese edificio, como en el pabellón que al final tiene que cerrar y como en otras cosas, entonces tirar la culpa siempre a que el PP os hace mal en el día",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "ese edificio / el pabellón"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.74,
-        "reasoning": "Atribuye una falta de actuación concreta sobre un edificio y un pabellón; es verificable contrastando expedientes, mantenimiento u obras ejecutadas en esos inmuebles.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "19gax3o-128-acu-623b1c",
-        "verdict": "contradicho",
-        "summary": "La reclamación de inacción general en edificios y 'otras cosas' es contradicha por licitaciones activas para obras en el edificio principal del Ayuntamiento y en un edificio en C/ Mayor, demostrando que se han realizado actuaciones en el ámbito de urbanismo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Reforma en edificio sito en C/ Mayor, 37",
-            "similarity": 0.25
           }
         ],
         "checkedAgainst": [
