@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -5380,33 +5380,14 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-1a0535",
-        "verdict": "contradicho",
-        "summary": "La afirmación 'no tiene el edificante' se contradice con varias licitaciones para obras en diferentes edificios municipales, incluyendo el edificio principal del Ayuntamiento y otros inmuebles.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Reforma en edificio sito en C/ Mayor, 37",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

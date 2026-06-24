@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -2425,49 +2425,6 @@
     },
     {
       "claim": {
-        "id": "1du4rf5-047-acu-e27a43",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 47,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "los informes técnicos que lo que plantean es que no se ha hecho ningún cambio",
-        "context": "He hecho esta pregunta por los informes técnicos que lo que plantean es que no se ha hecho\n[2609.1 → 2616.1] ningún cambio y por eso lo he planteado. Y no lo he planteado en las comisiones informativas\n[2617.2 → 2622.1] porque este dato no lo tenía. Igualmente, si cualquier cosa que se plantee en las comisiones",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "informes técnicos"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "La afirmación sobre el contenido de informes técnicos específicos es verificable consultando dichos documentos para confirmar si realmente plantean la ausencia de cambios.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-047-acu-e27a43",
-        "verdict": "contradicho",
-        "summary": "The claim states that no changes have been made. However, municipal records include tenders for a 'Change of roof and structural restoration in La Sebera', which directly contradicts the assertion of no changes.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "tender · ref=https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D Cambio de cubierta y restauración estructural en la \"Sebera\"",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "tender · ref=https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D Cambio de cubierta y restauración estructural en la \"Sebera\"",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1du4rf5-049-afi-563aa1",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -2989,49 +2946,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-063-acu-8c5948",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 63,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "nos haga llegar la factura de este suministro y colocación de bancos",
-        "context": "Entonces, sí que me gustaría que, si no usted, porque entiendo que a usted le llega la factura al área que nos haga llegar la factura de este suministro y colocación de bancos, porque la diferencia es notable y antes de sacar cualquier conclusión me gustaría revisarla, la factura. Gracias.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "factura de este suministro y colocación de bancos"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verifiable by checking municipal financial records and public transparency portals for the mentioned invoice.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-063-acu-8c5948",
-        "verdict": "verificado",
-        "summary": "Se han encontrado contratos de suministro con una alta similitud con el objeto de la reclamación (suministro de bancos), corroborando la existencia de tales operaciones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D",
-            "snippet": "Contrato de suministro de · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D",
-            "snippet": "Contrato de suministro de · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -4287,21 +4201,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-083-pro-aa49e3",
-        "verdict": "verificado",
-        "summary": "La promesa de ampliar la interoperabilidad de los sistemas autonómicos de información para reducir duplicidades administrativas está corroborada por una licitación para el mantenimiento de una aplicación de interoperabilidad.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento aplicación de interoperabilidad Agente SC",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7274,21 +7181,14 @@
       },
       "verification": {
         "claimId": "1du4rf5-188-pro-f1ca3d",
-        "verdict": "contradicho",
-        "summary": "El Partido Socialista afirmó que votaría en contra de la moción, pero la evidencia muestra que el grupo socialista votó a favor de la moción.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
-            "snippet": "La moción fue votada a favor por el grupo socialista, Compromís, Eu-Podem y la abstención de Vox",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

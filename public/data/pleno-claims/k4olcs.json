@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -1532,21 +1532,14 @@
       },
       "verification": {
         "claimId": "k4olcs-021-afi-b6f856",
-        "verdict": "contradicho",
-        "summary": "La afirmación sobre la construcción de una vivienda unifamiliar en 2008 es contradicha por un expediente de demolición de una vivienda unifamiliar.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=s8dOx1%2FkmfJvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato de carácter menor relativo a las obras de derribo de vivienda unifamiliar aislada.",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1791,27 +1784,14 @@
       },
       "verification": {
         "claimId": "k4olcs-024-afi-eb50e3",
-        "verdict": "verificado",
-        "summary": "Un contrato adjudicado para el asfaltado de un camino rural corrobora el buen estado del acceso. Un contrato de suministro de energía eléctrica (estado desconocido) ofrece respaldo parcial a la disponibilidad de electricidad.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
-            "snippet": "El contrato adjudicado para 'Asfaltado camino rural.' confirma la existencia de mejoras en el acceso, corroborando que el camino está en buen estado.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g7ocl8m3pyMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "La existencia de un contrato de 'Suministro energía eléctrica', aunque con estado desconocido, provee evidencia parcial sobre la disponibilidad de suministro eléctrico.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4186,21 +4166,14 @@
       },
       "verification": {
         "claimId": "k4olcs-077-pro-02ea8a",
-        "verdict": "parcial",
-        "summary": "La promesa de VOX sobre garantizar una enseñanza de calidad se relaciona parcialmente con la licitación municipal de servicios de enseñanza y formación, aunque la licitación no corrobora directamente el compromiso del partido ni el aspecto de 'libertad para las familias'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80000000-Servicios de enseñanza y formación. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7273,21 +7246,14 @@
       },
       "verification": {
         "claimId": "k4olcs-126-pro-a6380b",
-        "verdict": "parcial",
-        "summary": "The claim mentions a potential financial issue regarding 6 million euros recognized for 2026. Candidate 0 discusses the explanation of the 2026 budget, which is topically related but does not confirm or deny the specific financial problem or amount.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-            "snippet": "PSOE «El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026» · 2026-03-17",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7958,27 +7924,14 @@
       },
       "verification": {
         "claimId": "k4olcs-152-afi-9d9dca",
-        "verdict": "contradicho",
-        "summary": "Los contratos de suministro [0] y [1] establecen explícitamente un plazo de 2 meses, lo cual contradice la afirmación de que no hay un plazo de tiempo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
-            "snippet": "puente de Suministro por plazo de 2 meses",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-            "snippet": "puente de Suministro por plazo de 2 meses",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8367,39 +8320,14 @@
       },
       "verification": {
         "claimId": "k4olcs-159-afi-61a6eb",
-        "verdict": "contradicho",
-        "summary": "La afirmación indica un plazo de 15-20 días, pero la evidencia de licitaciones municipales muestra plazos diferentes de 2 meses o 5 días, contradiciendo la duración específica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 2 furgonetas de 5 plazas y 2 furgonetas de 9 plazas destinadas al el Plan de Empleo DANA a favor de NO",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del s",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del s",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8960,44 +8888,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "k4olcs-168-acu-7c01ea",
-        "plenoId": "k4olcs",
-        "plenoDate": "2026-04-20",
-        "segmentIndex": 168,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "se sabía abonar el 2025 y no ser se sabonan el 2025 lo que correspondía al 2024",
-        "context": "material que pueden tener en existencia sino en otras cuestiones que porten a la fila y después respecte a los de los municipales se ha dicho así y avanz que se sabía abonar el 2025 y no ser se sabonan el 2025 lo que correspondía al 2024 lo que correspondía al 2024 y yo así",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2025-01-01",
-          "referencedEntity": "pagos municipales correspondientes a 2024"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.58,
-        "reasoning": "Afirma que se iba a pagar en 2025 lo correspondiente a 2024 y que no se abonó; es contrastable con expedientes de pago y presupuestos municipales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "k4olcs-168-acu-7c01ea",
-        "verdict": "verificado",
-        "summary": "The claim states that payments expected in 2025 for services corresponding to 2024 are not being made. A revoked tender for Christmas lighting spanning 2024-2025 directly supports this, as its revocation would mean associated payments are not proceeding.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025 · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 0.4
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

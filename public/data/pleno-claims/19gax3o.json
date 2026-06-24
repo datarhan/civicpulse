@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -8038,8 +8038,8 @@
       },
       "verification": {
         "claimId": "19gax3o-132-cit-35c4f5",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
         "evidence": [
           {
             "kind": "tender",
@@ -8049,10 +8049,7 @@
           }
         ],
         "checkedAgainst": [
-          "tenders",
-          "bdns",
-          "promises",
-          "budget"
+          "curator-downgrade"
         ]
       },
       "visibility": "shown"
@@ -8261,21 +8258,14 @@
       },
       "verification": {
         "claimId": "19gax3o-137-cit-78abd7",
-        "verdict": "contradicho",
-        "summary": "The claim asserts that a football field installed by the PP is in poor condition and being neglected. However, a public tender for the maintenance of artificial turf on football fields contradicts the idea of neglect, indicating active management of such facilities.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R44fZo7q7XZt5r0ngvMetA%3D%3D",
-            "snippet": "Servicio de mantenimiento césped artificial en campos de fútbol.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

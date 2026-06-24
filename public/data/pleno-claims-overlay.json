@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-04-30T18:37:55.059Z",
+  "generatedAt": "2026-06-24T07:18:12.464Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -267,40 +267,17 @@
     "k4olcs-159-afi-61a6eb": {
       "verification": {
         "claimId": "k4olcs-159-afi-61a6eb",
-        "verdict": "contradicho",
-        "summary": "La afirmación indica un plazo de 15-20 días, pero la evidencia de licitaciones municipales muestra plazos diferentes de 2 meses o 5 días, contradiciendo la duración específica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 2 furgonetas de 5 plazas y 2 furgonetas de 9 plazas destinadas al el Plan de Empleo DANA a favor de NO",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-            "snippet": "Inicio expediente y adjudicación directa del contrato menor puente de Suministro por plazo de 2 meses mediante arrendamiento de 4 furgonetas de 5 plazas destinadas al el Plan de Empleo DANA a favor de TRANSTEL SA con CIF A46063814",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del s",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del s",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: 15-20 day claim vs unrelated 2-month supply contracts (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-016-cit-683445": {
       "verification": {
@@ -431,22 +408,17 @@
     "k4olcs-021-afi-b6f856": {
       "verification": {
         "claimId": "k4olcs-021-afi-b6f856",
-        "verdict": "contradicho",
-        "summary": "La afirmación sobre la construcción de una vivienda unifamiliar en 2008 es contradicha por un expediente de demolición de una vivienda unifamiliar.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=s8dOx1%2FkmfJvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato de carácter menor relativo a las obras de derribo de vivienda unifamiliar aislada.",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: a demolition contract neither confirms nor refutes a 2008 construction date (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-023-cit-21bb84": {
       "verification": {
@@ -529,28 +501,17 @@
     "k4olcs-024-afi-eb50e3": {
       "verification": {
         "claimId": "k4olcs-024-afi-eb50e3",
-        "verdict": "verificado",
-        "summary": "Un contrato adjudicado para el asfaltado de un camino rural corrobora el buen estado del acceso. Un contrato de suministro de energía eléctrica (estado desconocido) ofrece respaldo parcial a la disponibilidad de electricidad.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
-            "snippet": "El contrato adjudicado para 'Asfaltado camino rural.' confirma la existencia de mejoras en el acceso, corroborando que el camino está en buen estado.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g7ocl8m3pyMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "La existencia de un contrato de 'Suministro energía eléctrica', aunque con estado desconocido, provee evidencia parcial sobre la disponibilidad de suministro eléctrico.",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): generic municipal supply contracts do not attest a specific dwelling utilities (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-028-afi-f0c0ed": {
       "verification": {
@@ -707,22 +668,17 @@
     "k4olcs-077-pro-02ea8a": {
       "verification": {
         "claimId": "k4olcs-077-pro-02ea8a",
-        "verdict": "parcial",
-        "summary": "La promesa de VOX sobre garantizar una enseñanza de calidad se relaciona parcialmente con la licitación municipal de servicios de enseñanza y formación, aunque la licitación no corrobora directamente el compromiso del partido ni el aspecto de 'libertad para las familias'.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r3klh8VqH0GTylGzYmBF9Q%3D%3D",
-            "snippet": "tender · 80000000-Servicios de enseñanza y formación. · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): party value-statement; generic education CPV match (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-076-afi-853250": {
       "verification": {
@@ -983,48 +939,32 @@
     "k4olcs-126-pro-a6380b": {
       "verification": {
         "claimId": "k4olcs-126-pro-a6380b",
-        "verdict": "parcial",
-        "summary": "The claim mentions a potential financial issue regarding 6 million euros recognized for 2026. Candidate 0 discusses the explanation of the 2026 budget, which is topically related but does not confirm or deny the specific financial problem or amount.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
-            "snippet": "PSOE «El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026» · 2026-03-17",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): 6M payment claim; Espai Obert press is unrelated, coincidental \"2026\" (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-152-afi-9d9dca": {
       "verification": {
         "claimId": "k4olcs-152-afi-9d9dca",
-        "verdict": "contradicho",
-        "summary": "Los contratos de suministro [0] y [1] establecen explícitamente un plazo de 2 meses, lo cual contradice la afirmación de que no hay un plazo de tiempo.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fBL%2BZkj49u04NavIWzMcHA%3D%3D",
-            "snippet": "puente de Suministro por plazo de 2 meses",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=W%2Fgt%2FOWQ%2FxbzAq95uGTrDQ%3D%3D",
-            "snippet": "puente de Suministro por plazo de 2 meses",
-            "similarity": 0.5
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: degenerate repeated fragment; supply-bridge plazo is a different referent (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-152-cit-0a683a": {
       "verification": {
@@ -1195,22 +1135,17 @@
     "k4olcs-168-acu-7c01ea": {
       "verification": {
         "claimId": "k4olcs-168-acu-7c01ea",
-        "verdict": "verificado",
-        "summary": "The claim states that payments expected in 2025 for services corresponding to 2024 are not being made. A revoked tender for Christmas lighting spanning 2024-2025 directly supports this, as its revocation would mean associated payments are not proceeding.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025 · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 0.4
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): garbled accusation; year-token match to a Christmas-lighting contract (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): garbled accusation; year-token match to a Christmas-lighting contract (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "k4olcs-170-cit-4f09f8": {
       "verification": {
@@ -1935,34 +1870,17 @@
     "ma87e0-195-cit-1a0535": {
       "verification": {
         "claimId": "ma87e0-195-cit-1a0535",
-        "verdict": "contradicho",
-        "summary": "La afirmación 'no tiene el edificante' se contradice con varias licitaciones para obras en diferentes edificios municipales, incluyendo el edificio principal del Ayuntamiento y otros inmuebles.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F4Ce7P89aVwSugstABGr5A%3D%3D",
-            "snippet": "Reforma en edificio sito en C/ Mayor, 37",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: garbled \"el edificante\"; the Metro-extension claim is unrelated to building contracts (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1sqj7is-008-acu-4a7fa7": {
       "verification": {
@@ -2223,8 +2141,8 @@
     "1sqj7is-053-pro-68944b": {
       "verification": {
         "claimId": "1sqj7is-053-pro-68944b",
-        "verdict": "verificado",
-        "summary": "Múltiples contratos derivados del Sistema Dinámico de Adquisición (SDA) demuestran la implementación de propuestas destinadas a mejorar los procesos de contratación municipal, corroborando el uso del sistema mencionado en la declaración.",
+        "verdict": "parcial",
+        "summary": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
         "evidence": [
           {
             "kind": "tender",
@@ -2246,11 +2164,13 @@
           }
         ],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1sqj7is-054-cit-3dc74c": {
       "verification": {
@@ -2703,42 +2623,32 @@
     "rx4hb4-458-acu-3fb391": {
       "verification": {
         "claimId": "rx4hb4-458-acu-3fb391",
-        "verdict": "contradicho",
-        "summary": "The claim alleges DANA funds are being spent on projects not affected by the DANA. However, candidate [3] explicitly describes a tender for emergency actions directly following damages caused by the DANA, indicating that funds were allocated for DANA-affected projects.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
-            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025).",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: one DANA-emergency contract does not refute the misuse accusation (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: one DANA-emergency contract does not refute the misuse accusation (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "rx4hb4-459-acu-7f378c": {
       "verification": {
         "claimId": "rx4hb4-459-acu-7f378c",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre el uso de fondos DANA en proyectos no afectados por DANA, como obras en el polideportivo, se relaciona parcialmente con un contrato para el mantenimiento estructural del pabellón municipal, sin detalles sobre la fuente de financiación o el impacto de DANA.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WUIrTpS4RqweC9GJQOEBkQ%3D%3D",
-            "snippet": "Contrato administrativo de obras para la ejecución del proyecto “Mantenimiento y refuerzo estructural del pabellón polideportivo municipal”",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): libel-sensitive misuse accusation; the polideportivo contract exists but does not verify DANA-fund misuse (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): libel-sensitive misuse accusation; the polideportivo contract exists but does not verify DANA-fund misuse (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "rx4hb4-461-cit-85e069": {
       "verification": {
@@ -3551,22 +3461,17 @@
     "19gax3o-137-cit-78abd7": {
       "verification": {
         "claimId": "19gax3o-137-cit-78abd7",
-        "verdict": "contradicho",
-        "summary": "The claim asserts that a football field installed by the PP is in poor condition and being neglected. However, a public tender for the maintenance of artificial turf on football fields contradicts the idea of neglect, indicating active management of such facilities.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R44fZo7q7XZt5r0ngvMetA%3D%3D",
-            "snippet": "Servicio de mantenimiento césped artificial en campos de fútbol.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: garbled, names an individual, maintenance tender does not refute (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "19gax3o-137-afi-2af3a2": {
       "verification": {
@@ -4261,40 +4166,17 @@
     "1qi8axv-033-acu-3c3d08": {
       "verification": {
         "claimId": "1qi8axv-033-acu-3c3d08",
-        "verdict": "contradicho",
-        "summary": "Multiple tender records directly contradict the claim, showing that the municipality procures transportation services with driver personnel and acquires various types of vehicles, such as motorcycles, vans, and hybrid cars.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O83XFzEeamkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Servicio de transporte de diversa índole ... con criterios ambientales en los vehículos, el personal conductor y",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Dos vehículos tipo moto. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
-            "snippet": "Dos vehículos, furgoneta de 9 plazas y maletero. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
-            "snippet": "Comprendido por CUATRO vehículos turismo híbridos. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: accusation about a COMPANY lacking vehicles; evidence is the Ayuntamiento own vehicles (wrong entity) (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: accusation about a COMPANY lacking vehicles; evidence is the Ayuntamiento own vehicles (wrong entity) (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1qi8axv-038-afi-0222fe": {
       "verification": {
@@ -4577,22 +4459,17 @@
     "1qi8axv-069-acu-84d314": {
       "verification": {
         "claimId": "1qi8axv-069-acu-84d314",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre una póliza por tensión de liquidez no se corrobora directamente. El candidato [2] es una licitación de seguro de vida y accidentes para empleados, que es un tipo de póliza pero no se relaciona con la tensión de liquidez o la fecha mencionada en la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WzpHq1tTBfcQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Vida y Accidentes para los trabajadores del Ayuntamiento",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): \"poliza\" = a liquidity credit line; evidence is workers life-insurance (coincidental) (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): \"poliza\" = a liquidity credit line; evidence is workers life-insurance (coincidental) (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1qi8axv-074-afi-11666f": {
       "verification": {
@@ -4867,22 +4744,17 @@
     "qz6weg-027-cit-a55965": {
       "verification": {
         "claimId": "qz6weg-027-cit-a55965",
-        "verdict": "parcial",
-        "summary": "La afirmación menciona un convenio relacionado con la educación en música y danza. El candidato es una licitación para clases de educación ambiental en colegios, mostrando una relación temática con la educación pero no una coincidencia directa con el tipo de convenio o el área específica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Cp2xOIZ42esQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Licitación para 'Impartición clases de educación ambiental en colegios del municipio', que se relaciona con el tema educación, pero no con la música y danza del convenio mencionado.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "qz6weg-039-cit-bef239": {
       "verification": {
@@ -5181,34 +5053,17 @@
     "qz6weg-052-cit-aa34de": {
       "verification": {
         "claimId": "qz6weg-052-cit-aa34de",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que la mancomunidad asume la ejecución de proyectos, incluyendo la redacción y dirección de obras, se contradice con múltiples licitaciones públicas donde el Ayuntamiento de Riba-roja de Túria figura como entidad contratante para dichos servicios.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción y dirección del proyecto de obras de movilidad vial de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g2tcyB7NsGk%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato Menor del Servicio de Redacción Memoria y Dirección de Obra trabajos Interfaz Els Pous · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de redacción de proyecto de obra para la construcción de una pasarela peatonal · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "qz6weg-054-cit-d4e5fa": {
       "verification": {
@@ -6257,28 +6112,17 @@
     "1du4rf5-047-acu-e27a43": {
       "verification": {
         "claimId": "1du4rf5-047-acu-e27a43",
-        "verdict": "contradicho",
-        "summary": "The claim states that no changes have been made. However, municipal records include tenders for a 'Change of roof and structural restoration in La Sebera', which directly contradicts the assertion of no changes.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "tender · ref=https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D Cambio de cubierta y restauración estructural en la \"Sebera\"",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "tender · ref=https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=b%2BoVnoaH6w9vYnTkQN0%2FZA%3D%3D Cambio de cubierta y restauración estructural en la \"Sebera\"",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: 0.2 lexical match on \"cambio\"; accusation not refuted (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: 0.2 lexical match on \"cambio\"; accusation not refuted (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1du4rf5-050-afi-30564b": {
       "verification": {
@@ -6329,48 +6173,32 @@
     "1du4rf5-063-acu-8c5948": {
       "verification": {
         "claimId": "1du4rf5-063-acu-8c5948",
-        "verdict": "verificado",
-        "summary": "Se han encontrado contratos de suministro con una alta similitud con el objeto de la reclamación (suministro de bancos), corroborando la existencia de tales operaciones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D",
-            "snippet": "Contrato de suministro de · Ayuntamiento de Riba-roja de Túria · awarded",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VLUPO50qSvw%2Bk2oCbDosIw%3D%3D",
-            "snippet": "Contrato de suministro de · Ayuntamiento de Riba-roja de Túria · revoked",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): a request, not an assertion; generic supply contract, no \"bancos\" match (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): a request, not an assertion; generic supply contract, no \"bancos\" match (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1du4rf5-083-pro-aa49e3": {
       "verification": {
         "claimId": "1du4rf5-083-pro-aa49e3",
-        "verdict": "verificado",
-        "summary": "La promesa de ampliar la interoperabilidad de los sistemas autonómicos de información para reducir duplicidades administrativas está corroborada por una licitación para el mantenimiento de una aplicación de interoperabilidad.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Mantenimiento aplicación de interoperabilidad Agente SC",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): policy recitation re autonomic systems; coincidental \"interoperabilidad\" match (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1du4rf5-084-cit-0135bd": {
       "verification": {
@@ -6701,22 +6529,17 @@
     "1du4rf5-188-pro-f1ca3d": {
       "verification": {
         "claimId": "1du4rf5-188-pro-f1ca3d",
-        "verdict": "contradicho",
-        "summary": "El Partido Socialista afirmó que votaría en contra de la moción, pero la evidencia muestra que el grupo socialista votó a favor de la moción.",
-        "evidence": [
-          {
-            "kind": "promise",
-            "ref": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-pp-de-riba-roja-vota-en-contra-de-optar-a-9-5-millones-de-fondos-europeos-para-el-proyecto-pacadar-avanza/100005216",
-            "snippet": "La moción fue votada a favor por el grupo socialista, Compromís, Eu-Podem y la abstención de Vox",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false contradicho: stated voting intention vs outcome record, speaker group unknown (was contradicho)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1du4rf5-254-cit-04d14f": {
       "verification": {
@@ -7309,34 +7132,17 @@
     "otxq2c-037-cit-6c4d24": {
       "verification": {
         "claimId": "otxq2c-037-cit-6c4d24",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para un plan de inclusión social municipal, servicios de asesoramiento jurídico y habilitación de locales para asociaciones, lo cual está relacionado con la afirmación sobre grupos de apoyo psicológico, social y jurídico, y la colaboración con asociaciones locales de mujeres.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y%2B4KpfdCiqmiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor, servicio para la elaboración del Plan de Inclusión y Cohesión Social Municipal para el municipio de Riba-roja de Túria.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MT4UDr1mVSrnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Servicio de asesoramiento jurídico y defensa procesal del Ayuntamiento",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L6ABbu5%2BhfgQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Habilitación de locales de ctra. villamarchante, 119, para asociaciones municipales",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "otxq2c-036-cit-5362d9": {
       "verification": {
@@ -8261,28 +8067,17 @@
     "1tgd1h4-129-afi-dca7d4": {
       "verification": {
         "claimId": "1tgd1h4-129-afi-dca7d4",
-        "verdict": "verificado",
-        "summary": "Dos licitaciones se refieren a actividades que tienen lugar durante o se extienden hasta el año 2025, lo que corrobora directamente la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ROL5%2F%2BMMtzqkU02jNGj1Fw%3D%3D",
-            "snippet": "Contrato menor de servicios de asistencia técnica para la modelación del municipio... (Ctto.191M/2025)",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1tgd1h4-135-cit-05d14c": {
       "verification": {
@@ -8479,22 +8274,17 @@
     "1tgd1h4-158-afi-b68cce": {
       "verification": {
         "claimId": "1tgd1h4-158-afi-b68cce",
-        "verdict": "parcial",
-        "summary": "The claim mentions adherence to data protection provisions under Title VI of Law 2/2023. Candidate 4 is a tender for integral consultancy on data protection, which is topically related but does not explicitly cite the specific law.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos.",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1tgd1h4-161-afi-7b7b9e": {
       "verification": {
@@ -8525,22 +8315,17 @@
     "1tgd1h4-166-cit-76085f": {
       "verification": {
         "claimId": "1tgd1h4-166-cit-76085f",
-        "verdict": "parcial",
-        "summary": "These tenders demonstrate direct contractual relationships between companies and the Ayuntamiento. This partially corroborates the claim that entities, specifically persons as per the context, can have direct or indirect ties with the City Council of Riba-roja de Túria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1tgd1h4-166-cit-3485a2": {
       "verification": {
@@ -8935,28 +8720,17 @@
     "1tgd1h4-197-cit-725463": {
       "verification": {
         "claimId": "1tgd1h4-197-cit-725463",
-        "verdict": "verificado",
-        "summary": "La existencia de datos de contacto para canales externos de información, como direcciones postales y números de teléfono, se corrobora con contratos de servicios postales y de comunicaciones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Y44NDznkNwwQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio postal",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fYHm8Bv%2BhW%2BiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de comunicaciones (telefonía y datos)",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "source": "llm",
-      "appliedAt": "2026-04-30T18:37:55.059Z"
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     },
     "1tgd1h4-203-acu-baf08d": {
       "verification": {
@@ -9859,6 +9633,28 @@
       },
       "source": "llm",
       "appliedAt": "2026-04-30T18:37:55.059Z"
+    },
+    "19gax3o-132-cit-35c4f5": {
+      "verification": {
+        "claimId": "19gax3o-132-cit-35c4f5",
+        "verdict": "parcial",
+        "summary": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "curator-downgrade"
+        ]
+      },
+      "source": "curator-downgrade",
+      "reason": "Gold review (ai): La Malla complex confirmed via maintenance tender; 2006 budget + reparations not verified (was verificado)",
+      "editor": "ai-gold-review",
+      "appliedAt": "2026-06-24T07:18:12.464Z"
     }
   }
 }

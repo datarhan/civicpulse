@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "otxq2c",
   "plenoDate": "2025-10-06",
@@ -3102,33 +3102,14 @@
       },
       "verification": {
         "claimId": "otxq2c-037-cit-6c4d24",
-        "verdict": "parcial",
-        "summary": "Existen licitaciones para un plan de inclusión social municipal, servicios de asesoramiento jurídico y habilitación de locales para asociaciones, lo cual está relacionado con la afirmación sobre grupos de apoyo psicológico, social y jurídico, y la colaboración con asociaciones locales de mujeres.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y%2B4KpfdCiqmiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor, servicio para la elaboración del Plan de Inclusión y Cohesión Social Municipal para el municipio de Riba-roja de Túria.",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MT4UDr1mVSrnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Servicio de asesoramiento jurídico y defensa procesal del Ayuntamiento",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L6ABbu5%2BhfgQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Habilitación de locales de ctra. villamarchante, 119, para asociaciones municipales",
-            "similarity": 0.29
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): motion recitation (forward to ministries); inclusion-plan match too loose for the specific support groups (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

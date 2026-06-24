@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -1445,43 +1445,6 @@
     },
     {
       "claim": {
-        "id": "rx4hb4-458-acu-3fb391",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 458,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
-        "context": "El interviniente acusa al equipo de gobierno de destinar fondos del Ministerio canalizados por la DANA a proyectos que no sufrieron daños por esa catástrofe, poniendo como ejemplo posible el techo del polideportivo.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "fondos ministerio dana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.67,
-        "reasoning": "Acusación verificable contra el BDNS (bdns.json) y tenders (tenders.json): si los contratos o subvenciones vinculados a fondos DANA financian obras en instalaciones sin constancia de daños en la DANA de octubre 2024.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rx4hb4-458-acu-3fb391",
-        "verdict": "contradicho",
-        "summary": "The claim alleges DANA funds are being spent on projects not affected by the DANA. However, candidate [3] explicitly describes a tender for emergency actions directly following damages caused by the DANA, indicating that funds were allocated for DANA-affected projects.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
-            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025).",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rx4hb4-458-cit-b68f07",
         "plenoId": "rx4hb4",
         "plenoDate": "2026-02-09",
@@ -1515,43 +1478,6 @@
           "bdns",
           "promises",
           "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rx4hb4-459-acu-7f378c",
-        "plenoId": "rx4hb4",
-        "plenoDate": "2026-02-09",
-        "segmentIndex": 459,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA",
-        "context": "El interviniente sugiere que podrían usarse fondos del ministerio para la DANA en proyectos como el techo del polideportivo, y acusa directamente: 'vosotros ya también estáis gastando los dineros del ministerio de la DANA en esos proyectos que no son afectados por la DANA'.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "fondos ministerio dana"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.65,
-        "reasoning": "Acusación concreta y verificable: afirma que fondos ministeriales para la DANA se estarían destinando a proyectos no dañados por el desastre. Contrastable contra los expedientes de gasto de la convocatoria DANA (BDNS/tenders) y los proyectos declarados elegibles.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rx4hb4-459-acu-7f378c",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre el uso de fondos DANA en proyectos no afectados por DANA, como obras en el polideportivo, se relaciona parcialmente con un contrato para el mantenimiento estructural del pabellón municipal, sin detalles sobre la fuente de financiación o el impacto de DANA.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WUIrTpS4RqweC9GJQOEBkQ%3D%3D",
-            "snippet": "Contrato administrativo de obras para la ejecución del proyecto “Mantenimiento y refuerzo estructural del pabellón polideportivo municipal”",
-            "similarity": 0.22
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
         ]
       },
       "visibility": "shown"

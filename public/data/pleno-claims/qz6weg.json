@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -1336,21 +1336,14 @@
       },
       "verification": {
         "claimId": "qz6weg-027-cit-a55965",
-        "verdict": "parcial",
-        "summary": "La afirmación menciona un convenio relacionado con la educación en música y danza. El candidato es una licitación para clases de educación ambiental en colegios, mostrando una relación temática con la educación pero no una coincidencia directa con el tipo de convenio o el área específica.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Cp2xOIZ42esQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Licitación para 'Impartición clases de educación ambiental en colegios del municipio', que se relaciona con el tema educación, pero no con la música y danza del convenio mencionado.",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): the evidence reasoning itself states it does NOT match the music/dance convenio (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3201,33 +3194,14 @@
       },
       "verification": {
         "claimId": "qz6weg-052-cit-aa34de",
-        "verdict": "contradicho",
-        "summary": "La afirmación de que la mancomunidad asume la ejecución de proyectos, incluyendo la redacción y dirección de obras, se contradice con múltiples licitaciones públicas donde el Ayuntamiento de Riba-roja de Túria figura como entidad contratante para dichos servicios.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción y dirección del proyecto de obras de movilidad vial de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.5
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g2tcyB7NsGk%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato Menor del Servicio de Redacción Memoria y Dirección de Obra trabajos Interfaz Els Pous · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de redacción de proyecto de obra para la construcción de una pasarela peatonal · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false contradicho: Ayto project contracts do not refute that some projects run via the mancomunidad (was contradicho)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

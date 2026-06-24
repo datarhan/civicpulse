@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -1553,61 +1553,6 @@
     },
     {
       "claim": {
-        "id": "1qi8axv-033-acu-3c3d08",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 33,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "¿Tienen personal? No tienen. ¿Tienen vehículos? O no tienen, porque esto es algo muy go",
-        "context": "...¿Tienen personal? No tienen. ¿Tienen vehículos? O no tienen, porque esto es algo muy go",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "compañía"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.78,
-        "reasoning": "Atribuye a la compañía la falta de personal y vehículos; puede verificarse con los medios comprometidos o adscritos al contrato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-033-acu-3c3d08",
-        "verdict": "contradicho",
-        "summary": "Multiple tender records directly contradict the claim, showing that the municipality procures transportation services with driver personnel and acquires various types of vehicles, such as motorcycles, vans, and hybrid cars.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O83XFzEeamkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Servicio de transporte de diversa índole ... con criterios ambientales en los vehículos, el personal conductor y",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Dos vehículos tipo moto. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.33
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wUcyhisXvYlxseVhcqrkhw%3D%3D",
-            "snippet": "Dos vehículos, furgoneta de 9 plazas y maletero. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CvrtUkEK4CSiEJrVRqloyA%3D%3D",
-            "snippet": "Comprendido por CUATRO vehículos turismo híbridos. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1qi8axv-034-afi-59840a",
         "plenoId": "1qi8axv",
         "plenoDate": "2025-12-23",
@@ -3075,43 +3020,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1qi8axv-069-acu-84d314",
-        "plenoId": "1qi8axv",
-        "plenoDate": "2025-12-23",
-        "segmentIndex": 69,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "ustedes sabían desde hace dos meses que estaban en trámites para pedir una póliza, porque había tensión en la liquidez.",
-        "context": "Y la solicitud a los bancos es el 23 de octubre, hace dos meses. O sea, ustedes sabían desde hace dos meses que estaban en trámites para pedir una póliza, porque había tensión en la liquidez.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "trámites para pedir una póliza"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.88,
-        "reasoning": "Imputa conocimiento previo y trámites para una póliza por tensión de liquidez; es contrastable con expedientes, informes de tesorería y fechas de solicitud.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1qi8axv-069-acu-84d314",
-        "verdict": "parcial",
-        "summary": "La afirmación sobre una póliza por tensión de liquidez no se corrobora directamente. El candidato [2] es una licitación de seguro de vida y accidentes para empleados, que es un tipo de póliza pero no se relaciona con la tensión de liquidez o la fecha mencionada en la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WzpHq1tTBfcQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Vida y Accidentes para los trabajadores del Ayuntamiento",
-            "similarity": 0.2
-          }
-        ],
-        "checkedAgainst": [
-          "llm-second-pass"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -10595,27 +10595,14 @@
       },
       "verification": {
         "claimId": "1tgd1h4-129-afi-dca7d4",
-        "verdict": "verificado",
-        "summary": "Dos licitaciones se refieren a actividades que tienen lugar durante o se extienden hasta el año 2025, lo que corrobora directamente la afirmación.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ROL5%2F%2BMMtzqkU02jNGj1Fw%3D%3D",
-            "snippet": "Contrato menor de servicios de asistencia técnica para la modelación del municipio... (Ctto.191M/2025)",
-            "similarity": 0.2
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025",
-            "similarity": 0.2
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): fragment \"...proximo ano 2025\", no assertion; year-token match (was verificado)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -12680,21 +12667,14 @@
       },
       "verification": {
         "claimId": "1tgd1h4-158-afi-b68cce",
-        "verdict": "parcial",
-        "summary": "The claim mentions adherence to data protection provisions under Title VI of Law 2/2023. Candidate 4 is a tender for integral consultancy on data protection, which is topically related but does not explicitly cite the specific law.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos.",
-            "similarity": 0.22
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): legal recitation (Ley 2/2023); data-protection tender adjacent only (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -13279,21 +13259,14 @@
       },
       "verification": {
         "claimId": "1tgd1h4-166-cit-76085f",
-        "verdict": "parcial",
-        "summary": "These tenders demonstrate direct contractual relationships between companies and the Ayuntamiento. This partially corroborates the claim that entities, specifically persons as per the context, can have direct or indirect ties with the City Council of Riba-roja de Túria.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hl2l7TQ3Q61xseVhcqrkhw%3D%3D",
-            "snippet": "Servicio para el mantenimiento para la calidad del agua. · Ayuntamiento de Riba-roja de Túria",
-            "similarity": 0.25
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): fragment; water tender matched only on \"Ayuntamiento\" (was parcial)",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -15785,27 +15758,14 @@
       },
       "verification": {
         "claimId": "1tgd1h4-197-cit-725463",
-        "verdict": "verificado",
-        "summary": "La existencia de datos de contacto para canales externos de información, como direcciones postales y números de teléfono, se corrobora con contratos de servicios postales y de comunicaciones.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Y44NDznkNwwQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio postal",
-            "similarity": 1
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fYHm8Bv%2BhW%2BiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de comunicaciones (telefonía y datos)",
-            "similarity": 0.33
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Gold review (ai): false verificado: whistleblower-law recitation; \"Servicio postal\" coincidental",
+        "evidence": [],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

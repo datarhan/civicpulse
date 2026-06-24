@@ -112,7 +112,8 @@
     "searxng:down": "docker compose -f scripts/searxng/docker-compose.yml down",
     "scrape:all": "bash scripts/scrape-all.sh",
     "prepare": "husky || true",
-    "calibrate:reground": "npx tsx scripts/calibrate-reground.ts"
+    "calibrate:reground": "npx tsx scripts/calibrate-reground.ts",
+    "apply-gold-downgrades": "npx tsx scripts/apply-gold-downgrades.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

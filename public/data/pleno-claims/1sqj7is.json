@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-21T10:15:44.650Z",
+  "generatedAt": "2026-06-24T07:18:12.524Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -1533,8 +1533,8 @@
       },
       "verification": {
         "claimId": "1sqj7is-053-pro-68944b",
-        "verdict": "verificado",
-        "summary": "Múltiples contratos derivados del Sistema Dinámico de Adquisición (SDA) demuestran la implementación de propuestas destinadas a mejorar los procesos de contratación municipal, corroborando el uso del sistema mencionado en la declaración.",
+        "verdict": "parcial",
+        "summary": "Gold review (ai): SDA mechanism confirmed via derived contracts; the \"improves contracting\" claim is opinion (was verificado)",
         "evidence": [
           {
             "kind": "tender",
@@ -1556,7 +1556,7 @@
           }
         ],
         "checkedAgainst": [
-          "llm-second-pass"
+          "curator-downgrade"
         ]
       },
       "visibility": "shown"
