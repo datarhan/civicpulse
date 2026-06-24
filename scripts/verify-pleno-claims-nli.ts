@@ -27,6 +27,8 @@ import { shouldSkipLlmVerification } from '../src/scraper/claim-verifier-llm'
 import { verifyClaimWithNli, type NliScorer } from '../src/scraper/claim-verifier-nli'
 import { scoreNliPairs, NliUnavailableError, type NliPair } from '../src/scraper/nli-client'
 import { loadVerifierContext, type VerifierContext } from '../src/scraper/verifier-runner'
+import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
+import { applyOverlayEntries, type ApplyEntry } from '../src/scraper/verified-merge'
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const CHUNK_CLAIMS = 400 // claims per NLI spawn (model reloads per chunk; checkpoint boundary)
@@ -81,13 +83,9 @@ async function main() {
   const ctx = await loadVerifierContext({ withCorpus: true })
   const corpusOpt = ctx.corpus ? { corpus: ctx.corpus } : {}
 
-  const indexById = new Map<string, number>()
-  snap.items.forEach((it, i) => indexById.set(it.claim.id, i))
-
   const candidates = snap.items.filter((it) => {
     if (it.verification.verdict !== 'sin-datos') return false
     if (shouldSkipLlmVerification(it.claim)) return false
-    if (it.verification.nliAttempted) return false
     if (opts.plenoId && it.claim.plenoId !== opts.plenoId) return false
     return true
   })
@@ -98,30 +96,21 @@ async function main() {
 
   const stats = { upgraded: 0, kept: 0, contradictionFlags: 0 }
   const flaggedIds: string[] = []
-
-  function flush() {
-    const byVerdict: Record<ClaimVerdict, number> = {
-      verificado: 0,
-      parcial: 0,
-      contradicho: 0,
-      'sin-datos': 0,
-      'promesa-repetida': 0,
-    }
-    for (const it of snap.items) byVerdict[it.verification.verdict] += 1
-    snap.stats = { total: snap.items.length, byVerdict }
-    snap.generatedAt = new Date().toISOString()
-    writeFileSync(VERIFIED, JSON.stringify(snap, null, 2) + '\n')
-  }
+  // Upgrades go to the OVERLAY (so a deterministic re-run can't clobber them);
+  // verified.json is rebuilt as base ⊕ overlay at the end. No nliAttempted marker
+  // — NLI is local/$0, so a re-run just re-scans (idempotent into the overlay).
+  let overlay = loadOverlay()
+  const flushOverlay = () => writeFileSync(OVERLAY, JSON.stringify(overlay, null, 2) + '\n')
 
   let interrupted = false
   const onSignal = (sig: string) => {
     if (interrupted) return
     interrupted = true
-    process.stderr.write(`\n[verify-nli] ${sig} — flushing partial snapshot…\n`)
+    process.stderr.write(`\n[verify-nli] ${sig} — saving overlay…\n`)
     try {
-      flush()
+      flushOverlay()
     } catch (err) {
-      process.stderr.write(`[verify-nli] flush FAILED: ${(err as Error).message}\n`)
+      process.stderr.write(`[verify-nli] overlay save FAILED: ${(err as Error).message}\n`)
     }
     process.exit(130)
   }
@@ -152,7 +141,8 @@ async function main() {
       }
       const globalScores = await scoreNliPairs(pairs, opts.model ? { model: opts.model } : {})
 
-      // 3. Assign verdicts per claim from the precomputed scores (no extra spawn).
+      // 3. Assign verdicts; collect upgrades as overlay entries (no snap mutation).
+      const chunkEntries: ApplyEntry[] = []
       for (const it of chunk) {
         const sl = shortlists.get(it.claim.id)!
         const lookup: NliScorer = async (ps) =>
@@ -163,9 +153,7 @@ async function main() {
               .map((s) => [s.id, s]),
           )
         const r = await verifyClaimWithNli({ claim: it.claim, candidates: sl }, lookup)
-        const idx = indexById.get(it.claim.id)
-        if (idx == null || !r) {
-          it.verification.nliAttempted = true
+        if (!r) {
           stats.kept += 1
           continue
         }
@@ -174,29 +162,21 @@ async function main() {
           flaggedIds.push(it.claim.id)
         }
         if (r.upgraded) {
-          snap.items[idx] = {
-            claim: it.claim,
-            verification: {
-              ...r.verification,
-              nliAttempted: true,
-              checkedAgainst: [
-                'nli-grounding',
-                ...it.verification.checkedAgainst.filter((x) => x !== 'nli-grounding'),
-              ],
-            },
-          }
+          chunkEntries.push({
+            claimId: it.claim.id,
+            verification: { ...r.verification, checkedAgainst: ['nli-grounding'] },
+            source: 'nli',
+          })
           stats.upgraded += 1
         } else {
-          it.verification = {
-            ...it.verification,
-            nliAttempted: true,
-            confidence: r.verification.confidence,
-          }
           stats.kept += 1
         }
       }
 
-      flush()
+      if (chunkEntries.length > 0) {
+        overlay = applyOverlayEntries(overlay, chunkEntries, new Date().toISOString())
+        flushOverlay()
+      }
       process.stdout.write(
         `[verify-nli]   ${Math.min(start + CHUNK_CLAIMS, queue.length)}/${queue.length} · upgraded=${stats.upgraded} kept=${stats.kept} contra-flags=${stats.contradictionFlags}\n`,
       )
@@ -209,32 +189,21 @@ async function main() {
     throw err
   }
 
-  flush()
+  flushOverlay()
   if (flaggedIds.length > 0) {
     process.stderr.write(
       `[verify-nli] ${flaggedIds.length} claims flagged with an NLI contradiction (curator review, NOT auto-published): ${flaggedIds.slice(0, 20).join(', ')}${flaggedIds.length > 20 ? ' …' : ''}\n`,
     )
   }
+  const rebuilt = await rebuildVerified()
   process.stdout.write(
-    `[verify-nli] done. upgraded=${stats.upgraded} kept=${stats.kept} contra-flags=${stats.contradictionFlags} · ` +
-      Object.entries(snap.stats.byVerdict)
+    `[verify-nli] done. upgraded=${stats.upgraded} (→ overlay) kept=${stats.kept} contra-flags=${stats.contradictionFlags} · ` +
+      Object.entries(rebuilt.byVerdict)
         .filter(([, n]) => n > 0)
         .map(([k, n]) => `${k}:${n}`)
         .join(' · ') +
-      `\n`,
+      `\n[verify-nli]   merged base ⊕ overlay → verified.json + chunks\n`,
   )
-
-  try {
-    const { rewriteChunksFromMonolith } = await import('./chunk-pleno-claims')
-    const r = rewriteChunksFromMonolith()
-    process.stdout.write(
-      `[verify-nli]   chunks: ${r.written} written · ${r.removed} stale pruned · manifest=${r.manifestBytes}B\n`,
-    )
-  } catch (err) {
-    process.stderr.write(
-      `[verify-nli]   chunk refresh FAILED: ${err instanceof Error ? err.message : String(err)}\n`,
-    )
-  }
 }
 
 main().catch((err) => {

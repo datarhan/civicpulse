@@ -269,21 +269,30 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>
-              Segunda pasada con LLM sobre los <code>sin-datos</code>
+              Segunda pasada de fundamentación con un modelo NLI local sobre los{' '}
+              <code>sin-datos</code>
             </strong>{' '}
-            (opcional, sólo cuando el contraste determinista no encontró nada). Tomamos un máximo de
-            8 candidatos del corpus municipal (contratos, subvenciones, promesas previas)
-            seleccionados por una combinación de coincidencia léxica y semántica (cosine sobre
-            embeddings), y le pedimos al modelo que decida si alguno corrobora o contradice la
-            afirmación.{' '}
-            <strong>El LLM sólo puede citar por índice de la lista que le entregamos</strong> —
-            nunca puede inventar una URL ni un contrato. Además, cada cita debe tener la forma{' '}
-            <code>{'<dataset>[i].<campo>=<valor>'}</code> y el valor citado debe aparecer{' '}
-            <em>literalmente</em> en el extracto del candidato que vio el modelo. Si la cita es
-            sintácticamente inválida o el valor no aparece verbatim, el sistema la descarta como
-            alucinación. Esta tubería se reporta en cada ejecución (telemetría:{' '}
-            <code>missing-cite</code>, <code>cite-not-in-snippet</code>) para auditar deriva del
-            modelo.
+            (opcional, sólo cuando el contraste determinista no encontró nada). Tomamos hasta 8
+            candidatos del corpus municipal (contratos, subvenciones, promesas previas) por
+            coincidencia léxica y semántica, y un modelo de inferencia de lenguaje natural (NLI,
+            mDeBERTa multilingüe) ejecutado <strong>localmente</strong> —coste cero, sin cuota—
+            decide si algún extracto <em>implica</em> (entailment) la afirmación. El modelo no
+            genera texto: puntúa el par (extracto, afirmación), de modo que{' '}
+            <strong>no puede inventar evidencia</strong> — la cita es siempre una fila real del
+            corpus. Sólo puede <strong>subir</strong> un veredicto <code>sin-datos</code> a
+            verificado/parcial; <strong>nunca</strong> marca <em>contradicho</em> de forma
+            automática (una contradicción fuerte sólo se <em>señala</em> para revisión humana).
+          </li>
+          <li>
+            <strong>Re-fundamentación de veredictos publicados (sólo señalización).</strong> El
+            mismo modelo NLI revisa los veredictos ya publicados (verificado / parcial /
+            contradicho): si la evidencia citada no implica la afirmación —o, para un{' '}
+            <em>contradicho</em>, no la contradice— el veredicto se{' '}
+            <strong>marca para revisión de un curador</strong>. Esa revisión{' '}
+            <strong>no cambia ningún veredicto</strong>: sólo una persona puede rebajarlo (nunca
+            subirlo) con una herramienta dedicada, dejando el motivo verbatim. Las decisiones de
+            segunda pasada y de curación viven en una capa («overlay») separada del veredicto
+            determinista base, de modo que recalcular la base nunca borra esas decisiones.
           </li>
           <li>
             <strong>Hallazgos editoriales</strong> curados por una persona. Cuando un veredicto

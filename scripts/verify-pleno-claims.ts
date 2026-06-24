@@ -17,9 +17,9 @@ import {
   type ClaimVerification,
   type ClaimVerdict,
 } from '../src/scraper/claim-verifier'
+import { BASE, rebuildVerified } from './verified-rebuild'
 
 const CLAIMS = resolve('public/data/pleno-claims-suggestions.json')
-const OUT = resolve('public/data/pleno-claims-verified.json')
 const DATA = resolve('public/data')
 
 function loadIfExists(name: string): unknown {
@@ -78,30 +78,27 @@ async function main() {
     },
     items,
   }
-  writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n')
+  // Write the deterministic BASE. The published verified.json is base ⊕ overlay
+  // (second-pass + curator decisions), rebuilt below — so re-running this never
+  // clobbers those decisions (audit R4/B5).
+  writeFileSync(BASE, JSON.stringify(out, null, 2) + '\n')
   process.stdout.write(
     `[verify] ${verifications.length} claims · ` +
       Object.entries(byVerdict)
         .filter(([, n]) => n > 0)
         .map(([k, n]) => `${k}:${n}`)
         .join(' · ') +
-      ` → ${OUT}\n`,
+      ` → base\n`,
   )
-  // Refresh the per-pleno chunks the SPA reads. The monolith above
-  // remains the canonical source for CLIs (auto-curate, promote-claim,
-  // …) where 7 MB doesn't matter; the chunks are what the browser
-  // hits via /data/pleno-claims/. See src/scraper/pleno-claims-chunks.ts.
+  // Merge base ⊕ overlay → verified.json + chunks (the SPA reads the chunks).
   try {
-    const { rewriteChunksFromMonolith } = await import('./chunk-pleno-claims')
-    const r = rewriteChunksFromMonolith()
+    const r = await rebuildVerified()
     process.stdout.write(
-      `[verify]   chunks: ${r.written} written · ${r.removed} stale pruned · manifest=${r.manifestBytes}B\n`,
+      `[verify]   merged base ⊕ overlay (${r.overlayApplied} overlay entries) → verified.json + chunks\n`,
     )
   } catch (err) {
-    // Don't break verify if the chunker fails — the SPA will fall back
-    // to the legacy monolith path until the curator re-runs the chunker.
     process.stderr.write(
-      `[verify]   chunk refresh FAILED: ${err instanceof Error ? err.message : String(err)}\n`,
+      `[verify]   rebuild FAILED: ${err instanceof Error ? err.message : String(err)}\n`,
     )
   }
 }
