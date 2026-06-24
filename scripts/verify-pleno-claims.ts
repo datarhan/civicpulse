@@ -37,15 +37,27 @@ async function main() {
   }
 
   const claims = JSON.parse(readFileSync(CLAIMS, 'utf8')) as { items: PlenoClaim[] }
-  const [tenders, bdns, budget, promises] = await Promise.all([
+  const [tenders, tendersTed, bdns, budget, promises] = await Promise.all([
     loadIfExists('tenders.json'),
+    loadIfExists('tenders-ted.json'),
     loadIfExists('bdns.json'),
     loadIfExists('budget.json'),
     loadIfExists('promises.json'),
   ])
 
+  // tendersTed: EU TED notices merged into the amount cross-ref (audit R3 — the
+  // production runner used to omit them, so EU-threshold/DANA/NextGen contracts
+  // read as sin-datos). priorClaims feeds the promesa-repetida audit trail.
   const verifications: ClaimVerification[] = claims.items.map((c) =>
-    verifyClaim({ claim: c, tenders, bdns, budget, promises }),
+    verifyClaim({
+      claim: c,
+      tenders,
+      tendersTed,
+      bdns,
+      budget,
+      promises,
+      priorClaims: claims.items,
+    }),
   )
 
   const byVerdict: Record<ClaimVerdict, number> = {
