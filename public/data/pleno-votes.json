@@ -5,18 +5,17 @@
     "contract": "Human-edited, schema-validated. Mutations only via npm run pleno-vote CLI or GH Issue ingestion workflow."
   },
   "stats": {
-    "total": 20,
+    "total": 18,
     "byOutcome": {
-      "aprobado": 19,
+      "aprobado": 17,
       "rechazado": 1,
       "retirado": 0,
       "aplazado": 0
     },
     "byPleno": {
       "k4olcs": 2,
-      "1sqj7is": 6,
+      "1sqj7is": 5,
       "rx4hb4": 3,
-      "19gax3o": 1,
       "1qi8axv": 2,
       "qz6weg": 3,
       "1du4rf5": 3
@@ -267,41 +266,6 @@
       "retrievedAt": "2026-06-24"
     },
     {
-      "id": "1sqj7is-13",
-      "plenoId": "1sqj7is",
-      "plenoDate": "2026-03-09",
-      "itemNumber": 13,
-      "title": "Dación cuenta al Pleno de la Sentencia 205/2026, de 23 de febrero de 2026 dictada por el Tribunal Supremo en relación al recurso de casación 1584/2023 en materia de contratación. contrato de concesión del servicio público de abastecimiento de agua potable, servicio de gestión de alcantarillado, control de vertidos y depuración del municipio",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor",
-          "seats": 11
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "a_favor",
-          "seats": 1
-        },
-        {
-          "bloc": "PP",
-          "direction": "en_contra",
-          "seats": 7
-        },
-        {
-          "bloc": "VOX",
-          "direction": "en_contra",
-          "seats": 1
-        }
-      ],
-      "department": "Contratación",
-      "expediente": "1562/2018/GEN",
-      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
-      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
-      "retrievedAt": "2026-06-24"
-    },
-    {
       "id": "rx4hb4-02",
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
@@ -410,39 +374,6 @@
       "dueBy": "2026-02-14",
       "dueBySource": "el día 14 este sábado es el último día",
       "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano",
-      "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
-      "retrievedAt": "2026-06-24"
-    },
-    {
-      "id": "19gax3o-08",
-      "plenoId": "19gax3o",
-      "plenoDate": "2026-01-19",
-      "itemNumber": 8,
-      "title": "Expedient: 5396/2025/GEN, Donar compte de l'execució pressupostària (3t 2025) i la informació a subministrar al Ple Municipal",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor",
-          "seats": 3
-        },
-        {
-          "bloc": "PP",
-          "direction": "abstencion",
-          "seats": 1
-        },
-        {
-          "bloc": "VOX",
-          "direction": "ausente",
-          "seats": 1
-        },
-        {
-          "bloc": "Otro",
-          "direction": "a_favor",
-          "seats": 1
-        }
-      ],
-      "sourceUrl": "https://regmeet.com/aytoribarroja/participaciones/6a8018b3a00b69c008601b8becae392b?idioma=castellano",
       "sourcePublisher": "Ayuntamiento de Riba-roja de Túria",
       "retrievedAt": "2026-06-24"
     },
