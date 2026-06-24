@@ -65,7 +65,15 @@ function TranscriptPanel({ plenoId }) {
   useEffect(() => {
     let alive = true
     fetch(`/data/pleno-transcripts/${plenoId}.txt`, { cache: 'no-cache' })
-      .then((r) => (r.ok ? r.text() : Promise.reject(new Error(String(r.status)))))
+      .then(async (r) => {
+        // A missing .txt falls through to the SPA index.html (HTTP 200, text/html)
+        // on the dev server — don't render the page DOM as a "transcript".
+        const ct = r.headers.get('content-type') || ''
+        if (!r.ok || ct.includes('text/html')) throw new Error('missing')
+        const text = await r.text()
+        if (/^\s*<(!doctype|html)\b/i.test(text)) throw new Error('missing') // body guard
+        return text
+      })
       .then((text) => alive && setState({ loading: false, text, missing: false }))
       .catch(() => alive && setState({ loading: false, text: null, missing: true }))
     return () => {
