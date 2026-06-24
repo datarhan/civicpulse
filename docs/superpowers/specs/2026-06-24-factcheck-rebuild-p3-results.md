@@ -1,54 +1,75 @@
 # Phase 3: Verdict Engine — Results (2026-06-24)
 
-## Outcome: engine BUILT + unit-tested; eval BLOCKED by local inference speed; nothing shipped.
+## Outcome: SHIPPED. Engine cleared the gold gate and retracted 242 LLM over-claims to sin-datos.
 
-The verdict engine is code-complete and unit-tested (`claim-verifier-engine.ts`,
-7 tests): reason-then-format, NEI-by-default, cite-grounding (reuses P1's
-`parseCite`/`looselyContains`), an optional PCC consistency gate (argue-both-sides
-→ mDeBERTa contradiction), and it structurally never emits `contradicho`. It's
-wired into the eval seam (`--verifier engine` / `engine-no-consistency`) and a
-production runner is specced.
+The reason-then-format verdict engine (`claim-verifier-engine.ts`: NEI-default +
+cite-grounding + optional PCC consistency gate; never emits `contradicho`) is
+built, unit-tested, wired into the eval seam, and **in production** via
+`npm run verify:pleno-claims:engine`.
 
-**But the eval (the ship gate) could not be completed here.** On this hardware,
-`qwen2.5:14b-instruct` via ollama runs a reason+extract pair on the order of
-~1 minute per claim (15 minutes of running produced **0** cached completions).
-The 64-claim gold eval is 20+ minutes and a full 426-claim production re-derivation
-would be **hours**. A single diagnostic claim that reached the engine did not
-return within minutes; claims with empty shortlists returned instantly
-(deterministic, no LLM call), which is why the run *looked* alive but produced
-nothing.
+### The detour (and the real cause)
 
-This is a **hardware/throughput limit, not a code defect** — the architecture
-matches the 2024–2026 SOTA (ClaimCheck/HerO2). The engine needs a faster backend
-to validate + run:
-- a GPU box (qwen3-4B/8B quantized per HerO2 runs in ~seconds), or
-- a small **metered** batch (the eval is only 64 claims — ~$0.04/claim on a
-  GPT-4o-class batch per AIC CTU → ~$3 to settle the gate), or
-- a smaller local model (hermes3-8B is installed) — faster but lower quality;
-  worth an ablation if staying fully local.
+The first attempt looked blocked: `qwen2.5:14b` via ollama ran ~1 min/claim, and
+every metered retry "hung." The root cause was **not** the model or hardware — it
+was that **the repo loads no `.env`** (no dotenv, no `--env-file`). `npx tsx` /
+`npm run` never saw `OPENAI_API_KEY`, so the OpenAI call fell back down the chain
+to spawning the gemini CLI, which hung and orphaned 8GB processes that starved RAM
+to ~67MB and made every spawn crawl. Two fixes unblocked it:
+- `fix(llm)`: omit `temperature`/`seed` for gpt-5.x / o-series reasoning models
+  (they 400 on sampling params → retry-burn → fallback). `isReasoningModel()`.
+- Run metered commands with `set -a; source <(grep -E '^[A-Za-z_].*=' .env); set +a`.
 
-## Gate status: UNMET → nothing shipped
+After OpenAI billing was topped up, `gpt-5.4-mini` ran a claim in ~2.8s.
 
-The `current`/LLM-pass baseline (~48% label-acc, 20% false-`contradicho` from P1)
-and the deterministic baseline (65.6% on the 64-gold) stand. The engine produced
-no validated scorecard, so **no engine verdict was applied to production** — the
-published state is unchanged from the step-1–3 + contradicho cleanup
-(`verificado 208 · parcial 362 · contradicho 0 · sin-datos 4088`).
+### Eval (the gate) — CLEARED on gpt-5.4-mini, 64-row gold
 
-## What this leaves
+| metric | engine | deterministic | LLM pass |
+|---|---|---|---|
+| label-accuracy | **67.2%** | 65.6% | ~48% |
+| false-sin-datos | **27.3%** | 54.5% | — |
+| false-contradicho | 0% | 0% | 20% |
+| sin-datos precision | **~92%** | 86% | — |
 
-- The engine code (T1–T3) is tested + additive + eval-gated — it cannot
-  auto-ship a verdict. Safe to keep or merge; running it is a deliberate op on a
-  faster backend.
-- The decision the rebuild has now surfaced three times over: precise
-  de-over-claiming of the ~426 LLM `verificado`/`parcial` needs a verdict method
-  that's both accurate AND fast enough to run — i.e. the engine on a faster
-  backend, validated on the gold before any production use.
+The PCC consistency gate was a no-op at τ=0.5 (identical scorecard) → shipped the
+cheaper no-consistency config.
 
-## Recommendation
+### Production re-derivation (downgrade-to-sin-datos ONLY)
 
-Validate the engine with a **one-off small metered batch** (~$3, 64 gold claims)
-OR a GPU/smaller-model pass. If it beats deterministic on accuracy + false-positives,
-run the 426-claim re-derivation there and ship via the overlay
-(`verify:pleno-claims:engine`, already specced). Until then, the conservative
-state (contradicho 0, the 40 reviewed retractions) is the honest published state.
+Because the engine's `sin-datos` precision is ~92% but its verificado/parcial
+precision is weak, the runner trusts **only** its `sin-datos` verdict, as a
+retraction of LLM verificado/parcial — never raises, never introduces a verdict.
+Re-judged the 387 LLM verdicts → **retracted 242 → sin-datos, kept 145**. Written
+as a new `verdict-engine` overlay source (reason≥20, never-contradicho, validated);
+the 40 curator downgrades are untouched.
+
+Published verdicts: `verificado 208→157 · parcial 362→171 · sin-datos 4088→4330 ·
+contradicho 0`. Shipped in commit `147a72b`; `/metodologia` documents it.
+
+### Post-ship verification (QA)
+
+- **Published-state accuracy on the gold: 95.3%** label-acc via the `stored`
+  verifier (up from the ~48% over-claiming state). Caveat: ~40 gold rows had their
+  verdict set *from* the gold review (curator downgrades), so that figure is partly
+  circular; the clean independent measure is the engine's 67.2%.
+- **51 `verificado→sin-datos` retractions: 0 carry a € amount** — all are
+  non-numeric procedural/internal statements the LLM had over-claimed. Clean.
+- **15 amount-bearing retractions** (all `parcial→sin-datos`), eyeballed: mostly
+  vague/program/penalty figures correctly ruled unverifiable (€24M program totals,
+  €143k penalty expedientes). Sound in direction.
+- **Known limitation:** the production run used **lexical** shortlists, so a few
+  specific amount claims (e.g. €35,252.87 cartelería, €126k ministry grant) may
+  have a real match the lexical retrieval missed. A lexical miss errs **conservative**
+  (the verdict honestly says "not attested by the open-data trail" → a recall loss,
+  never a false claim about an official).
+
+## Optional follow-ups (deferred — NOT libel-blocking)
+
+- A **semantic/hybrid-shortlist re-check** of the amount-bearing `sin-datos` to
+  surface any genuine match lexical missed — but only as curator *suggestions*
+  (auto-upgrading is the libel-risky direction; the engine's upgrade precision is
+  low). Needs `ollama serve` + nomic-embed.
+- A deliberate TED-aware deterministic refresh (tighten the R2 0.5 parcial floor
+  first); full pyserini hybrid retrieval.
+
+The libel-critical surface is clean (`contradicho 0`) and the published state is
+conservative and honest.
