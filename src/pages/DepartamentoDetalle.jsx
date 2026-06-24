@@ -248,6 +248,96 @@ function QuejasSection({ slug }) {
   )
 }
 
+/**
+ * Verdict-mix infographic: a stacked proportion bar + legend over the
+ * concejalía's pleno declarations. Surfaces "how much of what this department
+ * said is actually grounded in the open data" at a glance, instead of burying
+ * it in the text ledger below.
+ */
+function VerdictMixBar({ d }) {
+  const segs = [
+    { n: d.verificado || 0, color: 'var(--ok)', label: 'Verificado' },
+    { n: d.parcial || 0, color: 'var(--warn)', label: 'Parcial' },
+    { n: d.contradicho || 0, color: 'var(--crit)', label: 'Contradicho' },
+    { n: d.sinDatos || 0, color: 'var(--ink40)', label: 'Sin contraste' },
+  ]
+  const total = segs.reduce((a, s) => a + s.n, 0)
+  if (total === 0) return null
+  const pct = Math.round(((d.conEvidencia || 0) / total) * 100)
+  const visible = segs.filter((s) => s.n > 0)
+  return (
+    <div
+      style={{
+        marginTop: 16,
+        padding: '14px 16px',
+        border: '1px solid var(--border2)',
+        borderRadius: 10,
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'baseline',
+          gap: 10,
+          marginBottom: 10,
+        }}
+      >
+        <span
+          className="mono"
+          style={{
+            fontSize: 10,
+            textTransform: 'uppercase',
+            letterSpacing: '.06em',
+            color: 'var(--ink50)',
+          }}
+        >
+          Verificación de declaraciones
+        </span>
+        <span style={{ fontSize: 11.5, color: 'var(--ink60)' }}>
+          <strong className="mono" style={{ fontSize: 16, color: 'var(--ink)' }}>
+            {pct}%
+          </strong>{' '}
+          con evidencia · {total} en total
+        </span>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          height: 12,
+          borderRadius: 6,
+          overflow: 'hidden',
+          background: 'var(--soft)',
+        }}
+      >
+        {visible.map((s) => (
+          <div
+            key={s.label}
+            title={`${s.label}: ${s.n}`}
+            style={{ width: `${(s.n / total) * 100}%`, background: s.color }}
+          />
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 14px', marginTop: 10 }}>
+        {visible.map((s) => (
+          <span
+            key={s.label}
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11.5 }}
+          >
+            <span
+              style={{ width: 9, height: 9, borderRadius: 2, background: s.color, flexShrink: 0 }}
+            />
+            <span style={{ color: 'var(--ink70)' }}>{s.label}</span>
+            <strong className="mono" style={{ color: 'var(--ink)' }}>
+              {s.n}
+            </strong>
+          </span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function DepartamentoDetalle() {
   const { slug } = useParams()
   const t = useT()
@@ -372,6 +462,8 @@ export default function DepartamentoDetalle() {
         <MiniStat label={t('departamentos.card.quejas')} value={bucket.quejas.abiertas} />
       </div>
 
+      <VerdictMixBar d={bucket.declaraciones} />
+
       <section style={{ marginTop: 28 }}>
         <SectionHead title={t('departamentos.detalle.compromisos')} />
         <VotesSection slug={slug} frozen={frozen} />
@@ -408,10 +500,10 @@ export default function DepartamentoDetalle() {
         />
       </section>
 
-      <div
+      <details
         style={{
           marginTop: 40,
-          padding: 14,
+          padding: '10px 14px',
           background: 'var(--soft)',
           borderRadius: 8,
           fontSize: 11.5,
@@ -419,14 +511,27 @@ export default function DepartamentoDetalle() {
           lineHeight: 1.55,
         }}
       >
-        <strong style={{ color: 'var(--ink)' }}>Metodología.</strong> Los votos transcritos
-        provienen de actas oficiales del pleno y son el hecho primario. Las promesas electorales son
-        secundarias y nunca cambian de estado de forma automática. Un plazo vencido sin evidencia de
-        ejecución se marca como aviso editorial, no como juicio.{' '}
-        <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
-          Leer metodología →
-        </a>
-      </div>
+        <summary
+          className="mono"
+          style={{
+            cursor: 'pointer',
+            fontSize: 10,
+            textTransform: 'uppercase',
+            letterSpacing: '.06em',
+            color: 'var(--ink50)',
+          }}
+        >
+          Metodología
+        </summary>
+        <p style={{ margin: '8px 0 0' }}>
+          Los votos transcritos provienen de actas oficiales del pleno y son el hecho primario. Las
+          promesas electorales son secundarias y nunca cambian de estado de forma automática. Un
+          plazo vencido sin evidencia de ejecución se marca como aviso editorial, no como juicio.{' '}
+          <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'underline' }}>
+            Leer metodología →
+          </a>
+        </p>
+      </details>
     </div>
   )
 }
