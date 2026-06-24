@@ -21,6 +21,8 @@ import {
   makeStoredVerifier,
   nliVerifier,
   makeNliVerifier,
+  engineVerifier,
+  makeEngineVerifier,
   type VerifierFn,
 } from '../src/scraper/verifier-runner'
 
@@ -60,6 +62,8 @@ async function pickVerifier(name: string, snapshot: VerifiedSnapshot): Promise<V
   if (name === 'current') return currentVerifier
   if (name === 'nli') return nliVerifier
   if (name === 'nli-minicheck') return makeNliVerifier({ model: 'minicheck' })
+  if (name === 'engine') return engineVerifier
+  if (name === 'engine-no-consistency') return makeEngineVerifier({ consistency: false })
   process.stderr.write(`[eval] unknown --verifier ${name}\n`)
   process.exit(2)
 }
@@ -114,7 +118,9 @@ async function main() {
   const snapshot = JSON.parse(readFileSync(VERIFIED, 'utf8')) as VerifiedSnapshot
   const claimsById = new Map(snapshot.items.map((it) => [it.claim.id, it.claim]))
 
-  const ctx = await loadVerifierContext({ withCorpus: args.verifier.startsWith('nli') })
+  const ctx = await loadVerifierContext({
+    withCorpus: args.verifier.startsWith('nli') || args.verifier.startsWith('engine'),
+  })
   const verifier = await pickVerifier(args.verifier, snapshot)
 
   const predictions = new Map<string, ClaimVerification>()
