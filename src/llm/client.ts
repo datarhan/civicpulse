@@ -755,6 +755,16 @@ async function callGemini(req: RawCall): Promise<RawResult> {
   })
 }
 
+/**
+ * gpt-5.x and o-series are reasoning models: the chat-completions API rejects
+ * sampling params (temperature, seed, top_p, …) for them — only the default is
+ * allowed. We drop those params for these model ids so requests don't 400.
+ * (The `-chat` variants do accept them, but dropping is harmless there.)
+ */
+export function isReasoningModel(model: string): boolean {
+  return /^(o\d|gpt-5)/i.test(model)
+}
+
 async function callOpenAI(req: RawCall): Promise<RawResult> {
   if (!req.config.openaiApiKey) throw new Error('OPENAI_API_KEY not set')
   const body = {
@@ -771,8 +781,11 @@ async function callOpenAI(req: RawCall): Promise<RawResult> {
         schema: toOpenAIStrictSchema(zodToJsonSchema(req.schema)),
       },
     },
-    temperature: 0,
-    seed: 42,
+    // Reasoning models (gpt-5.x / o-series) reject sampling params (temperature,
+    // seed, …) — only the default is allowed, and sending them 400s (which then
+    // burns the retry budget and falls back to a slower backend). Classic chat
+    // models keep the determinism params.
+    ...(isReasoningModel(req.config.openaiModel) ? {} : { temperature: 0, seed: 42 }),
   }
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',

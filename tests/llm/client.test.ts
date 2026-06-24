@@ -9,7 +9,13 @@ import { mkdtempSync, rmSync, readdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { resolve } from 'node:path'
 import { z } from 'zod'
-import { callLLM, gatherCacheStats, loadConfigFromEnv, resetBudget } from '../../src/llm/client'
+import {
+  callLLM,
+  gatherCacheStats,
+  loadConfigFromEnv,
+  resetBudget,
+  isReasoningModel,
+} from '../../src/llm/client'
 
 const TestSchema = z.object({ reply: z.string() })
 
@@ -400,5 +406,27 @@ describe('LLM client · resilience', () => {
     })
     expect(result).toBeNull()
     expect(fetchSpy).toHaveBeenCalledTimes(callsAfterTrip)
+  })
+})
+
+describe('isReasoningModel (gpt-5.x / o-series reject sampling params)', () => {
+  it('flags gpt-5.x and o-series reasoning models', () => {
+    for (const m of [
+      'gpt-5',
+      'gpt-5.4-mini',
+      'gpt-5.4-mini-2026-03-17',
+      'gpt-5.2',
+      'gpt-5-pro',
+      'o1',
+      'o3-mini',
+      'o4',
+    ]) {
+      expect(isReasoningModel(m), m).toBe(true)
+    }
+  })
+  it('leaves classic chat models alone (they keep temperature + seed)', () => {
+    for (const m of ['gpt-4o', 'gpt-4o-mini', 'gpt-4.1', 'gpt-4.1-mini', 'gpt-4-turbo']) {
+      expect(isReasoningModel(m), m).toBe(false)
+    }
   })
 })
