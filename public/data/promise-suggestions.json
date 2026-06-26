@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-25T08:06:03.723Z",
+  "generatedAt": "2026-06-26T08:11:44.891Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -30,19 +30,6 @@
             "aprueba",
             "alto",
             "historia"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiowJBVV95cUxQbDQ3RkE3aE11bTBHOVZ0bl9DTXR1Mkl1cGVMS2c4eFJMcUNqaTNNTkVJN2lfY0xzRDFlbTJHZGRnczFleElBMUpuM1BBa3JFRVdRbC1QRlhOUTRUallGdHk5UmUxMTFaZlFwMjZtNXZJWWowYmZ0dncwWGIwN25BbW1Lejh1dExvcGY3VjhIaHJObXhDWU1fOVNGZ3dNYWY1TVdKa3R5Slk0djJ6WExjUS14TWZOV1FqdXZ0ZjJ5cnJhcVBhOElTZFdOZkt0NTJ4YWlfT2Q4aTRTQVFKWFJyTU9YMkJtSFp5bi1GTGpadnNSTWNRcFlQNVVVUlNpbGNxVy16R0tUZWlWT3IxanFmM0o4c25vU3B2MF9lQmJuRTAwUW8?oc=5",
-          "date": "2026-03-17",
-          "quote": "Riba-roja de Túria aprueba un presupuesto de 46 millones de euros enfocado a la financiación de los servicios públicos municipales",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "presupuesto",
-            "millon",
-            "euro",
-            "aprueba"
           ]
         },
         {
@@ -78,10 +65,21 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-inyecta-un-25%25-m%C3%A1s-de-ayudas-econ%C3%B3micas-directas-al-comercio-local-previstas-para-el-a%C3%B1o-2026-y-sit%C3%BAa-la-partida-en-550.000-euros-encaminada-a-la-reactivaci%C3%B3n-del-sector",
+          "date": "2026-06-02",
+          "quote": "Riba-roja de Túria inyecta un 25% más de ayudas económicas directas al comercio local previstas para el año 2026 y sitúa la partida en 550.000 euros encaminada a la reactivación del sector",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -155,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -215,11 +213,11 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/iberdrola-invierte-m%C3%A1s-de-10-millones-de-euros-en-riba-roja-para-la-renovaci%C3%B3n-de-instalaciones-afectadas-por-la-dana",
-          "date": "2026-05-13",
-          "quote": "Iberdrola invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la dana",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "iberdrolaespana.com",
           "matchedKeywords": [
             "dana",
             "millon"
@@ -227,7 +225,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -258,7 +256,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -334,7 +332,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -369,7 +367,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -407,7 +405,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -427,7 +425,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -435,7 +433,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -443,7 +441,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -475,18 +473,6 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/iberdrola-invierte-m%C3%A1s-de-10-millones-de-euros-en-riba-roja-para-la-renovaci%C3%B3n-de-instalaciones-afectadas-por-la-dana",
-          "date": "2026-05-13",
-          "quote": "Iberdrola invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la dana",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "dana",
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
           "date": "2026-05-11",
           "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
@@ -508,10 +494,21 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -531,7 +528,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -571,7 +568,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -615,7 +612,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -659,13 +656,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
       "proposedStatus": "en-progreso",
-      "confidence": 0.3,
+      "confidence": 0.35,
       "reasoning": [
+        {
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-n%C3%BAmero-de-parados-en-casi-1.100-personas-en-los-%C3%BAltimos-a%C3%B1os-y-sit%C3%BAa-la-tasa-de-desempleados-en-8%E2%80%9990%25-sobre-el-total",
+          "date": "2026-06-26",
+          "quote": "Riba-roja reduce el número de parados en casi 1.100 personas en los últimos años y sitúa la tasa de desempleados en 8’90% sobre el total",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "reduce",
+            "numero"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/b5a1d925221b37e2e399f7b319038ba0?idioma=castellano",
           "date": "2026-03-16",
@@ -678,7 +686,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-25T08:06:03.659Z"
+      "generatedAt": "2026-06-26T08:11:44.811Z"
     }
   ],
   "llmEvidence": [],
