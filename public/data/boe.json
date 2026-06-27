@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-26T08:06:42.332Z",
+  "generatedAt": "2026-06-27T07:32:05.901Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -7,11 +7,10 @@
   },
   "stats": {
     "daysFetched": 26,
-    "daysWithMatches": 2,
-    "total": 2,
+    "daysWithMatches": 1,
+    "total": 1,
     "byDepartamento": {
-      "SERVICIOS COMUNES PROCESALES": 1,
-      "OTROS ENTES": 1
+      "SERVICIOS COMUNES PROCESALES": 1
     }
   },
   "items": [
@@ -25,17 +24,6 @@
       "titulo": "RIBARROJA TURIA",
       "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-17849",
       "urlPdf": "https://www.boe.es/boe/dias/2026/05/30/pdfs/BOE-B-2026-17849.pdf"
-    },
-    {
-      "id": "bc90863f726c",
-      "identificador": "BOE-B-2026-17517",
-      "publicacionDate": "2026-05-28T00:00:00.000Z",
-      "departamento": "OTROS ENTES",
-      "seccion": "V. Anuncios. - B. Otros anuncios oficiales",
-      "epigrafe": "",
-      "titulo": "Anuncio de la Comunidad de Regantes Lorca y Quint de Ribarroja del Turia sobre convocatoria de Junta General Ordinaria.",
-      "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-17517",
-      "urlPdf": "https://www.boe.es/boe/dias/2026/05/28/pdfs/BOE-B-2026-17517.pdf"
     }
   ]
 }
