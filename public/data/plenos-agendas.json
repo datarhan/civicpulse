@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-06-27T07:39:39.345Z",
+  "generatedAt": "2026-06-28T08:09:36.168Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
   },
   "stats": {
     "plenosFetched": 30,
-    "agendaItemsTotal": 289,
+    "agendaItemsTotal": 316,
     "plenosWithRuegos": 6,
     "uniqueDepartments": 10,
     "plazosVencidosCount": 0,
@@ -15,7 +15,7 @@
   "topDepartments": [
     {
       "department": "Cultura",
-      "count": 4,
+      "count": 5,
       "departmentSlug": "cultura"
     },
     {
@@ -29,6 +29,11 @@
       "departmentSlug": "contratacion"
     },
     {
+      "department": "Servicios generales",
+      "count": 3,
+      "departmentSlug": "servicios-generales"
+    },
+    {
       "department": "Hacienda",
       "count": 2,
       "departmentSlug": "hacienda"
@@ -37,11 +42,6 @@
       "department": "Seguridad",
       "count": 2,
       "departmentSlug": "seguridad"
-    },
-    {
-      "department": "Servicios generales",
-      "count": 2,
-      "departmentSlug": "servicios-generales"
     },
     {
       "department": "Vivienda",
@@ -816,8 +816,25 @@
       "title": "Sesión de fecha 26 de diciembre de 2025",
       "kind": "urgente",
       "link": "https://regmeet.com/aytoribarroja/participaciones/cdd0500dc0ef6682fa6ec6d2e6b577c4?idioma=castellano",
-      "agenda": [],
-      "agendaCount": 0,
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar el caràcter urgent de la sessió",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 2,
       "departments": [],
       "hasRuegos": false
     },
@@ -827,8 +844,65 @@
       "title": "Sesión de fecha 23 de diciembre de 2025",
       "kind": "urgente",
       "link": "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano",
-      "agenda": [],
-      "agendaCount": 0,
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar el caràcter urgent de la sessió",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Expedient 2989/2021/GEN: Aprovació de Primera i Única pròrroga Ctto 17/2021. Servici de conservació, manteniment, neteja i millora dels Parcs, jardins, zones verdes, interfície, zones d'esplai caní, zona enjardinada de la CV-370, carril bici, solars de propietat municipal i totes aquelles que consten en el PPT del municipi de Riba-roja de Túria, adjudicat a favor d'AGRICULTORS DE LA VEGA DE VALÈNCIA",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "Expedient 615/2025/GEN: Proposta d'acord d'inici d'expedient d'imposició de penalitats al contractista per incompliment de l'adscripció de mitjans personals i materials compromesos des de l'inici del contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi (Expedient 136/2025)”",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "Expedient 5477/2025/GEN: Proposta d'acord amb el Ple Operació de Tresoreria 2025-2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Expedient 6478/2025/GEN: Aprovació llesta de factures 135 – Reconeixement Extrajudicial núm. 49/2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "Expedient 6787/2025/GEN: Aprovació llesta de factures 164 (ADO Prov 40725) –Reconeixement Extrajudicial núm. 53/2025.",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 7,
       "departments": [],
       "hasRuegos": false
     },
@@ -838,9 +912,157 @@
       "title": "Sesión de fecha 01 de diciembre de 2025",
       "kind": "ordinario",
       "link": "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano",
-      "agenda": [],
-      "agendaCount": 0,
-      "departments": [],
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Aprovació Acta anterior de data 03 de novembre de 2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Expedient: 5854/2025/GEN, Aprovació Reconeixement Extrajudicial núm. 44/2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 3,
+          "title": "Expedient: 5255/2025/GEN, Aprovació Reconeixement Extrajudicial núm. 39/2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 4,
+          "title": "Expedient: 4164/2025/GEN, Pla Econòmic Financer 2025-2026",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 5,
+          "title": "Expedient: 5056/2025/GEN, Aprovació definitiva Pla Territorial Municipal d'Emergències",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 6,
+          "title": "Expedient: 3855/2025/GEN, Aprovació Codi ètic per a un ús responsable de la IA en la gestió municipal",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 7,
+          "title": "Expedient: 6347/2025/GEN, Acord per a l'aprovació del protocol de declaració i gestió de projectes d'especial rellevància o estratègics",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 8,
+          "title": "Expedient: 5490/2025/GEN, Acord relatiu a la Resolució de la condició d'Agent Urbanitzador de la UE núm. 2 del Sector NPR-1 LA GAVINA",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 9,
+          "title": "Expedient: 4490/2022/GEN, Acord relatiu a la Ratificació en el Ple de l'acord de la junta de govern sobre Addenda Conveni Centre Cultural Polivalent per a la finalització",
+          "section": "resolutiva",
+          "department": "Cultura",
+          "departmentSlug": "cultura",
+          "expediente": null
+        },
+        {
+          "number": 10,
+          "title": "Expedient: 5472/2025/GEN, Esmena d'errors materials subvencions nominatives bases d'execució 2025 (Proposta remesa des d'Intervenció a la Comissió Informativa núm. 4 relativa, entre altres, a Festes)",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 11,
+          "title": "Expedient: 4755/2025/GEN, Acord Conveni entre la Mancomunitat Camp de Túria i l'Ajuntament de Riba-roja de Túria pel qual es delega en la Mancomunitat la competència per a la tramitació i l'execució d'una sèrie de projectes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 12,
+          "title": "Expedient: 5565/2025/GEN, Retirada d'honors i distincions a Francisco Franco",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 13,
+          "title": "Expedient: 307/2025/GEN, Donar compte de la Memòria de Secretaria de 2024 de l'Ajuntament de Riba-roja de Túria alineada amb els Objectius de Desenrotllament Sostenible (ODS)",
+          "section": "resolutiva",
+          "department": "Servicios generales",
+          "departmentSlug": "servicios-generales",
+          "expediente": null
+        },
+        {
+          "number": 14,
+          "title": "Moció del Grup Municipal Popular Riba-roja de Túria en defensa dels treballadors autònoms",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "31/2025/PGRU"
+        },
+        {
+          "number": 15,
+          "title": "Expedient: 5544/2025/GEN, Donar compte al Ple de la informació trimestral corresponent al Tercer Trimestre de 2025: Càlcul del Període Mitjà de pagament a proveïdors i Informe trimestral de seguiment de deute comercial",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 16,
+          "title": "Expedient: 2141/2025/GEN, Donar compte al Ple del Pla Anual de Control Financer 2025-2026 (sense dictaminar)",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 17,
+          "title": "Donar compte de les Resolucions de la número 3732/2025 a la 4194/2025",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 18,
+          "title": "Precs i preguntes",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        }
+      ],
+      "agendaCount": 18,
+      "departments": [
+        "Cultura",
+        "Servicios generales"
+      ],
       "hasRuegos": false
     },
     {

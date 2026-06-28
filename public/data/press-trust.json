@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T07:40:08.635Z",
+  "generatedAt": "2026-06-28T08:10:06.545Z",
   "windowDays": 30,
   "articles": [
     {
@@ -239,23 +239,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "glptm4",
-      "articleFingerprint": "a6dj1c",
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxPV1IzWEpWNVRQWjlwc0FrbEFDWDVSN0k4ZmJwLXM0Z3RYZjJwTGhMamVra2k1V1EzZVNlLVVEZUhkckNMV1RPQ2JabC1HaUNGaGctd1RaeUQyQVZrTlhPWmNvUU5LYTZuUFJ1NXZWclljYnhaNDBKXzNBQlQtUkNDR3h1dmdFc0dSUF9mZXhnMlRoZ0pJR0JsUVQyeWE4akJVMWEyZm1nejBTZVo4MEt4d3RENjJleGRLSHNfY0pvcWVvV19NTHdXdEJzN1ViUzd3V1huSlNVRjBCT2hv?oc=5",
-      "date": "2026-06-19T09:47:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     },
     {
       "articleId": "15a7v34",
@@ -989,23 +972,6 @@
       "score": 3
     },
     {
-      "articleId": "1p8409b",
-      "articleFingerprint": "s8y20c",
-      "outlet": "Teleprensa",
-      "outletHost": "teleprensa.com",
-      "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOWHl6TG0xcFVzSzNfVUVnamllWm1aQkRxbWlEajNjOUFkZXdoemdvVXpZcnVsbXdsc3YyaUdyS0VzT1JSRUNwcVNGMUxoTk5tUXB5M1c5d0xpelBCWXRkdmtYM081UzFJODdPTjRsX1IzYk1ZVG5HVDRfQnFjTjRMZEZZbFAySEtFNnlSaUY1WkhERFljTFpoNHpBN2JNc2duQ1picTJOdVZLb1JBSlktOTFYU0t2SDgydEN6TUNLTUlHNzdTUXNaSzdYQ3pnaE5TTHh3WkNHdmRqbU5WU0xTR2Z30gHnAUFVX3lxTE4tYVplLXpMbnNDeElEOWg3b0NFeEM3VHZndXJzaVpvM3dqa1llVW9DNHRCWXpmaGtManNGV19FTkNOVnl0X25vdWZzRWhfTkZXbDBwYkhaOU9BRXVjQXRyZlJwZW1ra082MHlnYWszYnZxUVNaTUM0SmE1ay1xcVVqem0yTUxlYVBMUkdScV9ua040Sy13T3ZJbllWZ09fSGxzWlY2anZQT3RuU2dMTW42b0hRUWdaUWZDUmszLURIb3JtblZZZWxTc2ZpR3MtV3l4dEZvdW1UQWhXdmFhVFBwTWhhYXFhZw?oc=5",
-      "date": "2026-06-05T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
       "articleId": "nt6ri3",
       "articleFingerprint": "w14jao",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -1174,47 +1140,13 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "11crgsj",
-      "articleFingerprint": "1arkc0g",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOYVluUVFsV2hUZFhVZ2c2M2ZpazE4eTRObWh0ZVFhcFZBTXJ6WS0wS01rLUNHcU5McWpZOFFHRElxaUhlb3lHTmc4dTNjeEVCTWdJU1AxbWkyZFN2OW51WTBZd1piZVhydDNKV3FVQXBYaWNJbGVZblFacTZ6WDlIdlNpUWgwVDhZdlN3SUczTk1aeUI2VWhPdThyNW9NbmRXc3JrSkFnYTk2dkhEanJIT1lvWF9tOUJkaUxiY0pKT2xnTm0zSlBB0gHMAUFVX3lxTE01MmR0SXdXZ3RPVWczanZyTVVha2tRVEo2eHRLUFVySE5vRWU1OXBmRFdKTTNXS25xaWd0X2pUSW5UY0t0ODVtekpaaG9NNmhBeWxVRWZpREhIYzdERmJVMlBXX2phNzgwb1dKb1hFcDJoMDNydmhQTmJBdzEzbllHTjRjODdXTk0wckJHOFpMU2xXeTAxWmk4bXhrRHNabDlhVmV4MFdNWmNobGVKai1meHRVOVRnYWFJNWQwUUpsUlRQWWlyRmVFNWJ3VA?oc=5",
-      "date": "2026-05-29T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "ccyceq",
-      "articleFingerprint": "18p2oeg",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-acoge-la-entrega-de-premios-del-ii-concurso-de-dibujo-y-pintura-del-parque-natural-del-t%C3%BAria",
-      "date": "2026-05-28T11:04:42.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 28,
+      "articleCount": 27,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1274,7 +1206,7 @@
     {
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
-      "articleCount": 4,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1289,7 +1221,7 @@
     {
       "outlet": "Las Provincias",
       "outletHost": "lasprovincias.es",
-      "articleCount": 4,
+      "articleCount": 3,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1349,21 +1281,6 @@
     {
       "outlet": "rfet.es",
       "outletHost": "rfet.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
-      "outlet": "Teleprensa",
-      "outletHost": "teleprensa.com",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-27T07:39:56.880Z",
+  "generatedAt": "2026-06-28T08:09:54.559Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -153,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -226,13 +226,31 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
+          "date": "2026-01-05",
+          "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
+          "kind": "press",
+          "publisher": "elDiario.es",
+          "matchedKeywords": [
+            "plan",
+            "crear",
+            "hogar",
+            "nuevo",
+            "lucha",
+            "contra",
+            "falta",
+            "suelo",
+            "ambicioso"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/la-generalitat-acuerda-con-riba-roja-de-t%C3%BAria-la-construcci%C3%B3n-de-36-viviendas-protegidas-industrializadas-en-el-marco-del-plan-vive-dana",
           "date": "2026-05-19",
@@ -257,13 +275,27 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPYWFGd1N1TTR4Si0wWWJ5bnJ1c3M0QTJSdTJwNlZCVjh6THZtMS1UYmJOTXM0Z2NCMWZhd2RDSjFmNVg5XzVyTmtrQTJxcnRHNTJyRnZLQ1pXYTlZZnZRdkpOaWhjNDItejNhR09Yang5NnlNek14VVVyWVpoa0tybE1XTnMxTTVfNzRBbWhUUGM4OEFCdWdBVXk3TldtQUJHZVlpRzlIU1BTeVY4YWtlQlpmdXBUXy05T20yWXVLWWZCVWQ4RVozQkN3QdIB0AFBVV95cUxQeFlQdVl0Y2QxRTNjNkUzM1g1eF9XX19fREkzQUhyOHE5QkhLaWRpX0h1S3dRRmNPQlhLNmwxalJjQ01xZjJ0dlNraUg2VGdHRVdZZGRyV3pEbVpaZUtOVlJDdE5XdVBaV2t0eUtxcFB6S3ZyS2J0MzBGZmtGcjRVdW9SNm9JUS1MOU1RZGo5N2h0WHBFdzNIZFBtRkRJRE4zSnQ5c0V1ZVhVNUotSjhLWEJma0FjQjl0UVBzc253Y2FoM0dIWFJvV0JVVklRSVdw?oc=5",
+          "date": "2026-01-02",
+          "quote": "Riba-roja de Túria impulsará la construcción de vivienda entre 2026 y 2029",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "construccion",
+            "vivienda",
+            "2026",
+            "2029",
+            "impulsara"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/la-generalitat-acuerda-con-riba-roja-de-t%C3%BAria-la-construcci%C3%B3n-de-36-viviendas-protegidas-industrializadas-en-el-marco-del-plan-vive-dana",
           "date": "2026-05-19",
@@ -319,7 +351,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -354,7 +386,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -392,7 +424,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -412,7 +444,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -420,7 +452,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -428,7 +460,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -483,19 +515,19 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPN09JeVI1QmFDcEdrak9DcVQ3QUxvcDd0WERya1BGVHg1eTdCU1djNl9HWDB0dWpHeWV2UjZaLWFheXp4cEtGM3BfR0RuQWVMTjE2NEFNRjJsZ3k1Y3ZNNjV6TkJNMk16OW5hMnA4RFJjSlN4bjNUWmxjXy1HVkFIUk9vNUpZOWRWdDVkY1Z6N3hFdVItSXpkcUhzcnJGQ1lQTVVMSTVobF92LVpzRVR4QzB4UmYyVXNMcG4yTkhzaUZMekY5YUZmdmVqTXdVbXFodmxBVnhKRzFiQXlyT1pHS1lMRUVLejdjUWRBRFMxVFpBUkpBNnF4U1d6NzByZGdKWW9N?oc=5",
-          "date": "2026-05-27",
-          "quote": "Una glorieta de 2 millones de euros pondrá fin a décadas de atascos en el polígono industrial de Riba-roja de Túria",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "Levante-EMV",
           "matchedKeywords": [
-            "millon",
-            "euro"
+            "dana",
+            "millon"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -515,24 +547,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "en-progreso",
-      "confidence": 0.35,
+      "confidence": 0.3,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
-          "date": "2026-04-13",
-          "quote": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "servicio",
-            "vecino"
-          ]
-        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
           "date": "2026-03-09",
@@ -566,7 +587,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -610,7 +631,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -654,7 +675,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -684,7 +705,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-27T07:39:56.802Z"
+      "generatedAt": "2026-06-28T08:09:54.478Z"
     }
   ],
   "llmEvidence": [],
