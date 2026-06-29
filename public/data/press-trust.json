@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-28T08:10:06.545Z",
+  "generatedAt": "2026-06-29T09:19:32.495Z",
   "windowDays": 30,
   "articles": [
     {
@@ -569,7 +569,7 @@
       "outlet": "Fotocasa",
       "outletHost": "fotocasa.es",
       "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPMjZWVzJrbEtKSUhla3Y3WEpHX2kzYVRjSTFPbF9RWEJuU0M5XzVIY0FSTGxkcUs1ZF94eFpPTXpYQzFNUE43UkJhdXpBU0JuN3k4YUhJZHJwUUhpcDRKdHFzY0RSNUZtREFyaWlVc29yZlBhNlRBMU9vcTBMczMyWno4SGpKNGVna01DcmJhMTZhQnp0TjhvRVJUQ2pDckg5THc?oc=5",
-      "date": "2026-06-12T11:27:55.000Z",
+      "date": "2026-06-12T12:45:34.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -613,23 +613,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "6pb02e",
-      "articleFingerprint": "89en1s",
-      "outlet": "Actualidad Valencia",
-      "outletHost": "actualidadvalencia.com",
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBMTlhKU2FNUkxqb2pwRkVka3BWOE9VeXVhaEVic0VkdmttUDFiNmRLLXJlaDZ2Qm51YTNKeVRjTjd2ZDdiWTloZkY4Q0hoWXBrWWR6dUNZRVVCZWZZZlZJS3NxQ0xTV3BDOWI5cTVR?oc=5",
-      "date": "2026-06-11T12:02:31.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     },
     {
       "articleId": "1iqks4s",
@@ -681,6 +664,23 @@
         "opinionFraction": 0
       },
       "score": 3
+    },
+    {
+      "articleId": "6pb02e",
+      "articleFingerprint": "89en1s",
+      "outlet": "Actualidad Valencia",
+      "outletHost": "actualidadvalencia.com",
+      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBMTlhKU2FNUkxqb2pwRkVka3BWOE9VeXVhaEVic0VkdmttUDFiNmRLLXJlaDZ2Qm51YTNKeVRjTjd2ZDdiWTloZkY4Q0hoWXBrWWR6dUNZRVVCZWZZZlZJS3NxQ0xTV3BDOWI5cTVR?oc=5",
+      "date": "2026-06-11T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
     },
     {
       "articleId": "182ujks",
@@ -740,23 +740,6 @@
       "outletHost": "fotocasa.es",
       "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPTU5OclItc2JOSjlHaTVRcU13cHZjS2ZuOHQ5YmEzUGFCaDlPcFBCalpaT3JSaHc3THhTdWtMcGdwbW40RnM4dW52M3pBc2F1M3VwU0lXV0lrLVJHREdNUkFnTC1HQWs3YndpaHVua21YRHRFVlhrZzlWZ18tcDFyUzVfVUhfMmE5UkhWa3I4bw?oc=5",
       "date": "2026-06-10T04:23:12.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "jysgwq",
-      "articleFingerprint": "753ip8",
-      "outlet": "Fotocasa",
-      "outletHost": "fotocasa.es",
-      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxNR2ZpWWdVLTRGVEhTblUtNW9kbkFkRWpvVUF2dmd3Rm0yQ01KN0lHWkVONjFabXhXM3BDZFd1MlltLUY0UDJ1ekdjbjJ0SEp6aUJwei1IVlNsZEZreDMtMG9lZGZ5N0E0TDhReVhTN2xsdW1mVkV5MmR1YlBXS013X2U4TE9lZjVBeHlzenRhY2cxQQ?oc=5",
-      "date": "2026-06-09T19:56:16.000Z",
       "indicators": {
         "localCoverage": false,
         "datedArticle": true,
@@ -885,23 +868,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "btxf98",
-      "articleFingerprint": "1b9yb98",
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
-      "date": "2026-06-08T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     },
     {
       "articleId": "13jifq0",
@@ -1191,22 +1157,7 @@
     {
       "outlet": "Fotocasa",
       "outletHost": "fotocasa.es",
-      "articleCount": 6,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
-      "articleCount": 3,
+      "articleCount": 5,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1230,6 +1181,21 @@
         "promesa-repetida": 0
       },
       "meanTrustScore": 3,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "articleCount": 2,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
