@@ -41,17 +41,48 @@ function candidateUrl(year: number, monthIdx: number): string {
   )
 }
 
+// SEPE's sepe.es host intermittently drops the TLS handshake — undici's
+// default 10s connectTimeout then fires as ConnectTimeoutError BEFORE the
+// per-download AbortSignal below ever applies. A single such hiccup on any one
+// of the 24 months used to throw straight up through main() → exit(1) and red
+// the whole nightly (and skip that night's deploy). Retry transient network
+// errors a few times with backoff so one slow handshake doesn't lose the
+// month. The parser's "0/24 months → exit 1, keep yesterday's snapshot" guard
+// in main() stays the real failure backstop, so a genuine SEPE outage still
+// reds the run — it is never silently masked.
+const FETCH_ATTEMPTS = 3
+async function fetchMonthXls(url: string): Promise<Response | null> {
+  for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt++) {
+    try {
+      return await fetch(url, {
+        headers: {
+          'User-Agent':
+            'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
+          Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
+        },
+        // Per-month budget — one stalled SEPE download must not hang the chain.
+        signal: AbortSignal.timeout(120_000),
+      })
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : String(err)
+      if (attempt === FETCH_ATTEMPTS) {
+        console.warn(`[paro] ${url} — network error after ${FETCH_ATTEMPTS} attempts: ${detail}`)
+        return null
+      }
+      const backoffMs = attempt * 2000
+      console.warn(
+        `[paro] transient fetch error (attempt ${attempt}/${FETCH_ATTEMPTS}), retrying in ${backoffMs}ms: ${detail}`,
+      )
+      await new Promise((r) => setTimeout(r, backoffMs))
+    }
+  }
+  return null
+}
+
 async function tryMonth(year: number, monthIdx: number): Promise<ParoSnapshot | null> {
   const url = candidateUrl(year, monthIdx)
-  const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
-      Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
-    },
-    // Per-month budget — one stalled SEPE download must not hang the chain.
-    signal: AbortSignal.timeout(120_000),
-  })
-  if (!res.ok) return null
+  const res = await fetchMonthXls(url)
+  if (!res || !res.ok) return null
   const ct = res.headers.get('content-type') || ''
   if (!/excel|octet|msword/.test(ct) && res.headers.get('content-length') === '0') return null
   const buf = Buffer.from(await res.arrayBuffer())
@@ -67,7 +98,16 @@ async function main() {
   // Walk back 24 months from now.
   for (let back = 0; back < 24; back++) {
     const d = new Date(now.getFullYear(), now.getMonth() - back, 1)
-    const snap = await tryMonth(d.getFullYear(), d.getMonth())
+    // One month failing (network or parse) must never abort the 24-month walk —
+    // the months that DID resolve still make a valid snapshot. Only a fully
+    // empty walk is a real failure, handled by the 0/24 guard below.
+    let snap: ParoSnapshot | null = null
+    try {
+      snap = await tryMonth(d.getFullYear(), d.getMonth())
+    } catch (err) {
+      const detail = err instanceof Error ? err.message : String(err)
+      console.warn(`[paro] ${d.getFullYear()}-${d.getMonth() + 1} skipped: ${detail}`)
+    }
     if (snap) {
       results.push(snap)
       console.log(`[paro] ${snap.period}: ${snap.total} total (${snap.men}H / ${snap.women}M)`)
