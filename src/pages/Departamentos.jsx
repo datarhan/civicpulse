@@ -65,6 +65,9 @@ function DepartmentCard({ bucket, frozen }) {
             label={t('departamentos.card.aprobados')}
             value={bucket.plenoVotes.aprobado}
             muted={bucket.plenoVotes.total === 0}
+            sub={
+              bucket.plenoVotes.total === 0 ? t('departamentos.card.sinVotoTranscrito') : undefined
+            }
           />
           <Stat
             label={t('departamentos.card.promesas')}

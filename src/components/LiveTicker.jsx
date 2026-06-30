@@ -686,42 +686,56 @@ export default function LiveTicker() {
             DIRECTO
           </span>
         </span>
+        {/* Clip the marquee to the area RIGHT of the DIRECTO pill. Without
+            this wrapper the scrolling chips translate left into the pill's
+            (semi-transparent) box and render over the "DIRECTO" label. */}
         <div
-          className="cp-ticker-track"
           style={{
-            display: 'inline-flex',
+            flex: 1,
+            minWidth: 0,
+            height: '100%',
+            overflow: 'hidden',
+            display: 'flex',
             alignItems: 'center',
-            animation: 'cp-ticker-scroll 90s linear infinite',
-            willChange: 'transform',
           }}
-          aria-live="off"
         >
-          {loop.map((it, idx) => {
-            const isPress = !!it.press
-            return (
-              <span
-                key={`${it.key}-${idx}`}
-                style={{ display: 'inline-flex', alignItems: 'center' }}
-              >
-                {idx > 0 && <Divider />}
-                {isPress ? (
-                  <PressChip p={it.press} onClick={() => setExpanded(it)} />
-                ) : (
-                  <Chip
-                    icon={it.icon}
-                    label={it.label}
-                    value={it.value}
-                    delta={it.delta}
-                    deltaTone={it.deltaTone}
-                    extra={it.extra}
-                    accent={it.accent}
-                    ariaLabel={it.ariaLabel}
-                    onClick={() => handleChipClick(it)}
-                  />
-                )}
-              </span>
-            )
-          })}
+          <div
+            className="cp-ticker-track"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              animation: 'cp-ticker-scroll 90s linear infinite',
+              willChange: 'transform',
+            }}
+            aria-live="off"
+          >
+            {loop.map((it, idx) => {
+              const isPress = !!it.press
+              return (
+                <span
+                  key={`${it.key}-${idx}`}
+                  style={{ display: 'inline-flex', alignItems: 'center' }}
+                >
+                  {idx > 0 && <Divider />}
+                  {isPress ? (
+                    <PressChip p={it.press} onClick={() => setExpanded(it)} />
+                  ) : (
+                    <Chip
+                      icon={it.icon}
+                      label={it.label}
+                      value={it.value}
+                      delta={it.delta}
+                      deltaTone={it.deltaTone}
+                      extra={it.extra}
+                      accent={it.accent}
+                      ariaLabel={it.ariaLabel}
+                      onClick={() => handleChipClick(it)}
+                    />
+                  )}
+                </span>
+              )
+            })}
+          </div>
         </div>
       </div>
       {expanded && <DetailPanel item={expanded} onClose={() => setExpanded(null)} />}

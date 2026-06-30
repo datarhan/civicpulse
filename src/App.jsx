@@ -25,8 +25,6 @@ const DepartamentoDetalle = lazy(() => import('./pages/DepartamentoDetalle'))
 const Hallazgos = lazy(() => import('./pages/Hallazgos'))
 const Declaraciones = lazy(() => import('./pages/Declaraciones'))
 const Laboratorio = lazy(() => import('./pages/Laboratorio'))
-const Agentes = lazy(() => import('./pages/Agentes'))
-const AgenteReporte = lazy(() => import('./pages/AgenteReporte'))
 const Metodologia = lazy(() => import('./pages/Metodologia'))
 const LabHealth = lazy(() => import('./pages/LabHealth'))
 const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
@@ -36,6 +34,17 @@ const Cambios = lazy(() => import('./pages/Cambios'))
 // builds never reference Curator.jsx so the chunk is tree-shaken out.
 const isDev = import.meta.env.MODE !== 'production'
 const Curator = isDev ? lazy(() => import('./pages/Curator')) : null
+
+// "Periodistas IA" (the journalist agent) generates AI-drafted biographies of
+// named living officials — the highest legal-sensitivity surface in the app.
+// It is HIDDEN from the public production build for the MVP launch and stays
+// available in dev for curators. Re-enable in production by setting
+// VITE_ENABLE_PERIODISTAS=true (e.g. a Vercel env var). When disabled, the
+// routes are absent so the chunks are tree-shaken out and any direct URL
+// falls through to the catch-all redirect.
+export const PERIODISTAS_ENABLED = isDev || import.meta.env.VITE_ENABLE_PERIODISTAS === 'true'
+const Agentes = PERIODISTAS_ENABLED ? lazy(() => import('./pages/Agentes')) : null
+const AgenteReporte = PERIODISTAS_ENABLED ? lazy(() => import('./pages/AgenteReporte')) : null
 
 const DEFAULT_TWEAKS = { dark: false, density: 'comfortable' }
 
@@ -108,8 +117,10 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/quejas/dashboard" element={<QuejasDashboard />} />
               <Route path="/quejas/:id" element={<QuejaDetail />} />
               <Route path="/laboratorio" element={<Laboratorio />} />
-              <Route path="/laboratorio/agentes" element={<Agentes />} />
-              <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />
+              {Agentes && <Route path="/laboratorio/agentes" element={<Agentes />} />}
+              {AgenteReporte && (
+                <Route path="/laboratorio/agentes/:assignmentId" element={<AgenteReporte />} />
+              )}
               <Route path="/lab-health" element={<LabHealth />} />
               <Route path="/cambios" element={<Cambios />} />
               {Curator && <Route path="/curator" element={<Curator />} />}

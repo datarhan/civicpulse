@@ -97,14 +97,23 @@ export const NAV = [
     icon: Ic.lab,
     shortcut: 'G B',
   },
-  {
-    to: '/laboratorio/agentes',
-    id: 'agentes',
-    labelKey: 'nav.agentes',
-    label: 'Periodistas',
-    icon: Ic.lab,
-    shortcut: 'G A',
-  },
+  // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
+  // surface — it drafts biographies of named living officials. It is hidden
+  // from the public production build for the MVP launch and stays available in
+  // dev. Re-enable in production via VITE_ENABLE_PERIODISTAS=true. Keep this
+  // gate in sync with PERIODISTAS_ENABLED in src/App.jsx.
+  ...(import.meta.env.MODE !== 'production' || import.meta.env.VITE_ENABLE_PERIODISTAS === 'true'
+    ? [
+        {
+          to: '/laboratorio/agentes',
+          id: 'agentes',
+          labelKey: 'nav.agentes',
+          label: 'Periodistas',
+          icon: Ic.lab,
+          shortcut: 'G A',
+        },
+      ]
+    : []),
   // /curator is dev-only — surfaces in the sidebar only when running
   // `npm run dev` on a curator's laptop. Production builds tree-shake
   // this entry out via the import.meta.env.MODE check below.
