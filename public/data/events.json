@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T07:59:06.127Z",
+  "generatedAt": "2026-06-30T08:06:17.960Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -159,46 +159,6 @@
       "publishedDate": "2026-05-21T16:03:05.000Z",
       "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Aida%20y%20vuelta.jpg?itok=9cAvxjOP"
-    },
-    {
-      "id": "jhapkw",
-      "title": "Cine 'He-man y los masters del Universo'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27he-man-y-los-masters-del-universo%27",
-      "eventDate": "2026-07-09T20:00:00.000Z",
-      "eventDateText": "09 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:22:12.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/he%20man%20y%20los%20masters%20del%20universo.jpg?itok=2ZExO_BP"
-    },
-    {
-      "id": "teypk",
-      "title": "Cine 'He-man y los masters del Universo'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27he-man-y-los-masters-del-universo%27-0",
-      "eventDate": "2026-07-11T20:00:00.000Z",
-      "eventDateText": "11 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:24:25.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/he%20man%20y%20los%20masters%20del%20universo_0.jpg?itok=_C8UQy7X"
-    },
-    {
-      "id": "9ma110",
-      "title": "Cine 'Mortal Kombat II'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27mortal-kombat-ii%27",
-      "eventDate": "2026-07-12T20:00:00.000Z",
-      "eventDateText": "12 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:26:56.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/mortal%20kombat%20II.jpg?itok=dM5BNkn9"
-    },
-    {
-      "id": "11vov5k",
-      "title": "Cine 'Toy Story 5'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27toy-story-5%27",
-      "eventDate": "2026-07-15T20:00:00.000Z",
-      "eventDateText": "15 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:29:13.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/TOYSTORY5.jpg?itok=xq37Ni_b"
     },
     {
       "id": "1syvl58",
@@ -481,6 +441,16 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/22%20disco%20we%20love.jpg?itok=_mKFwwl6"
     },
     {
+      "id": "z5khol",
+      "title": "Teatro 'Els sants inocents'",
+      "link": "https://www.ribarroja.es/es/evento/teatro-%27els-sants-inocents%27",
+      "eventDate": "2026-10-16T17:00:00.000Z",
+      "eventDateText": "16 de octubre de 2026 19:00",
+      "publishedDate": "2026-06-26T09:35:11.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/22%20A%20el%20sants%20inocents.jpg?itok=GU_k-2ML"
+    },
+    {
       "id": "v2hrac",
       "title": "Música 'Del Barroco al Jazz'",
       "link": "https://www.ribarroja.es/es/evento/m%C3%BAsica-%27del-barroco-al-jazz%27",
@@ -509,6 +479,36 @@
       "publishedDate": "2026-05-31T11:20:23.000Z",
       "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/25%20peter%20pan.jpg?itok=x4Gcr-Q-"
+    },
+    {
+      "id": "53mxwc",
+      "title": "Monólogos 'Navidades llenas de risas'",
+      "link": "https://www.ribarroja.es/es/evento/mon%C3%B3logos-%27navidades-llenas-de-risas%27",
+      "eventDate": "2026-12-12T17:00:00.000Z",
+      "eventDateText": "12 de diciembre de 2026 18:00",
+      "publishedDate": "2026-06-26T09:38:05.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/26%20humoristes.jpg?itok=VWdaK3q_"
+    },
+    {
+      "id": "1h5htqs",
+      "title": "Riba-roja ilusiona Gala de Navidad",
+      "link": "https://www.ribarroja.es/es/evento/riba-roja-ilusiona-gala-de-navidad",
+      "eventDate": "2026-12-13T17:00:00.000Z",
+      "eventDateText": "13 de diciembre de 2026 18:00",
+      "publishedDate": "2026-06-26T09:41:16.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/27%20gala%20de%20la%20magia.jpg?itok=yrsZ2nB_"
+    },
+    {
+      "id": "bny1t7",
+      "title": "Mickey y la biblioteca mágica",
+      "link": "https://www.ribarroja.es/es/evento/mickey-y-la-biblioteca-m%C3%A1gica",
+      "eventDate": "2026-12-20T11:00:00.000Z",
+      "eventDateText": "20 de diciembre de 2026 12:00",
+      "publishedDate": "2026-06-26T09:54:16.000Z",
+      "excerpt": "&nbsp;",
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/28%20mikey%20y%20la%20biblioteca.jpg?itok=gvSaVHK8"
     }
   ]
 }

@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-24T08:06:33.730Z",
+  "generatedAt": "2026-06-30T08:12:41.679Z",
   "source": {
-    "tenders": "2026-06-24T07:57:45.122Z",
-    "geo": "2026-06-24T07:59:17.698Z"
+    "tenders": "2026-06-30T08:05:06.000Z",
+    "geo": "2026-06-30T08:06:57.643Z"
   },
   "universe": {
-    "totalContracts": 375,
-    "totalAmount": 16303226.080000002,
-    "locatedContracts": 30,
-    "locatedAmount": 994815.21,
+    "totalContracts": 370,
+    "totalAmount": 16316806.05,
+    "locatedContracts": 29,
+    "locatedAmount": 808401.87,
     "danaContracts": 9,
     "danaAmount": 331847.61,
     "danaAwardedContracts": 73,
@@ -40,28 +40,6 @@
       "danaAmount": 164869.5
     },
     {
-      "slug": "urbanitzacio-valencia-la-vella",
-      "name": "Urbanització València la Vella",
-      "centroid": [
-        39.5344276,
-        -0.5307458
-      ],
-      "contractCount": 3,
-      "amount": 215159.55,
-      "danaAmount": 0
-    },
-    {
-      "slug": "monte-alcedo",
-      "name": "Monte Alcedo",
-      "centroid": [
-        39.5558464,
-        -0.5425281
-      ],
-      "contractCount": 1,
-      "amount": 186413.34,
-      "danaAmount": 0
-    },
-    {
       "slug": "el-pou-d-escoto",
       "name": "el Pou d'Escoto",
       "centroid": [
@@ -80,7 +58,7 @@
         -0.5191743
       ],
       "contractCount": 6,
-      "amount": 81621.11,
+      "amount": 81621.11000000002,
       "danaAmount": 41611.4
     },
     {
@@ -92,6 +70,17 @@
       ],
       "contractCount": 2,
       "amount": 44881.93,
+      "danaAmount": 0
+    },
+    {
+      "slug": "urbanitzacio-valencia-la-vella",
+      "name": "Urbanització València la Vella",
+      "centroid": [
+        39.5344276,
+        -0.5307458
+      ],
+      "contractCount": 2,
+      "amount": 28746.21,
       "danaAmount": 0
     },
     {
@@ -107,6 +96,38 @@
     }
   ],
   "assignments": [
+    {
+      "id": "4598648",
+      "zones": [
+        "urbanitzacio-els-pous",
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-els-pous": "els pous",
+        "l-oliveral": "oliveral"
+      },
+      "dana": true,
+      "amount": 6904.19,
+      "amountKind": "final",
+      "date": "2025-01-15",
+      "contractType": "services",
+      "categoryTitle": "environment"
+    },
+    {
+      "id": "4559761",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "urbanizacion reva"
+      },
+      "dana": false,
+      "amount": 71269,
+      "amountKind": "final",
+      "date": "2024-11-06",
+      "contractType": "construction",
+      "categoryTitle": "construction"
+    },
     {
       "id": "3821038",
       "zones": [
@@ -138,21 +159,6 @@
       "categoryTitle": "other"
     },
     {
-      "id": "4559761",
-      "zones": [
-        "urbanitzacio-la-reva"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-reva": "urbanizacion reva"
-      },
-      "dana": false,
-      "amount": 71269,
-      "amountKind": "final",
-      "date": "2024-11-06",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
       "id": "4579719",
       "zones": [
         "urbanitzacio-els-pous"
@@ -166,23 +172,6 @@
       "date": "2024-12-04",
       "contractType": "services",
       "categoryTitle": "maintenance"
-    },
-    {
-      "id": "4598693",
-      "zones": [
-        "urbanitzacio-els-pous",
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-els-pous": "els pous",
-        "l-oliveral": "oliveral"
-      },
-      "dana": true,
-      "amount": 6903.88,
-      "amountKind": "final",
-      "date": "2025-01-15",
-      "contractType": "services",
-      "categoryTitle": "environment"
     },
     {
       "id": "506691",
@@ -245,6 +234,21 @@
       "categoryTitle": "architecture"
     },
     {
+      "id": "2196998",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 12671.06,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical"
+    },
+    {
       "id": "29500",
       "zones": [
         "urbanitzacio-la-llobatera"
@@ -271,23 +275,6 @@
       "amount": 141562.93,
       "amountKind": "final",
       "date": "2025-01-16",
-      "contractType": "construction",
-      "categoryTitle": "construction"
-    },
-    {
-      "id": "66749",
-      "zones": [
-        "urbanitzacio-valencia-la-vella",
-        "monte-alcedo"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-valencia-la-vella": "valencia la vella",
-        "monte-alcedo": "monte alcedo"
-      },
-      "dana": false,
-      "amount": 186413.34,
-      "amountKind": "final",
-      "date": "2019-08-19",
       "contractType": "construction",
       "categoryTitle": "construction"
     },
@@ -457,21 +444,6 @@
       "categoryTitle": "construction"
     },
     {
-      "id": "2196998",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 12671.06,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical"
-    },
-    {
       "id": "8678128",
       "zones": [
         "el-pou-d-escoto"
@@ -485,23 +457,6 @@
       "date": "2025-08-21",
       "contractType": "construction",
       "categoryTitle": "construction"
-    },
-    {
-      "id": "4598648",
-      "zones": [
-        "urbanitzacio-els-pous",
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-els-pous": "els pous",
-        "l-oliveral": "oliveral"
-      },
-      "dana": true,
-      "amount": 6904.19,
-      "amountKind": "final",
-      "date": "2025-01-15",
-      "contractType": "services",
-      "categoryTitle": "environment"
     },
     {
       "id": "9012998",
@@ -562,6 +517,23 @@
       "date": "2024-11-20",
       "contractType": "supplies",
       "categoryTitle": "industry"
+    },
+    {
+      "id": "4598693",
+      "zones": [
+        "urbanitzacio-els-pous",
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-els-pous": "els pous",
+        "l-oliveral": "oliveral"
+      },
+      "dana": true,
+      "amount": 6903.88,
+      "amountKind": "final",
+      "date": "2025-01-15",
+      "contractType": "services",
+      "categoryTitle": "environment"
     }
   ]
 }
