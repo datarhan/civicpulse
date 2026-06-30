@@ -21,11 +21,11 @@ jobs:
       (github.event.label.name == 'derecho-replica' && contains(github.event.issue.labels.*.name, 'periodista')) ||
       (github.event.action == 'edited' && contains(github.event.issue.labels.*.name, 'derecho-replica') && contains(github.event.issue.labels.*.name, 'periodista'))
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '20'
           cache: 'npm'
