@@ -35,7 +35,7 @@ function isAdmin(ctx: MyContext, admins: Set<number>): boolean {
 }
 
 function publicBaseUrl(): string {
-  return process.env.PUBLIC_BASE_URL ?? 'https://civicpulse-virid.vercel.app'
+  return process.env.PUBLIC_BASE_URL ?? 'https://civicpulse.es'
 }
 
 function botBaseUrl(): string | null {

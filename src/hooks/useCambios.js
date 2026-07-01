@@ -6,6 +6,7 @@ import { usePress } from './usePress'
 import { useTenders, formatDate } from './useTenders'
 import { useBdns } from './useBdns'
 import { useParticipa, KIND_LABEL } from './useParticipa'
+import { contractAmount } from '../lib/tender-geo'
 
 /**
  * Hook that aggregates "what changed" across every real-data corpus into a
@@ -102,8 +103,8 @@ export function useCambios(days = DEFAULT_WINDOW_DAYS) {
     // Tenders — new adjudications (awardDate fresh).
     for (const c of tenders?.contracts || []) {
       if (!inWindow(c.awardDate, cut)) continue
-      const amount =
-        typeof c.finalAmount === 'number' ? `€${c.finalAmount.toLocaleString('es-ES')}` : ''
+      const amt = contractAmount(c) // sin IVA (PLACSP)
+      const amount = amt > 0 ? `€${amt.toLocaleString('es-ES')}` : ''
       out.push({
         kind: 'licitacion',
         date: c.awardDate,

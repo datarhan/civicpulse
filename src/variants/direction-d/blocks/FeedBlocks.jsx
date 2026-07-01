@@ -1,4 +1,5 @@
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
+import { contractAmount } from '../../../lib/tender-geo'
 import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
@@ -81,7 +82,7 @@ export function LiveContracts() {
               style={{ marginLeft: 'auto', fontWeight: 700, color: PALETTE.ink }}
               className="mono"
             >
-              {fmtEur(c.finalAmount)}
+              {fmtEur(contractAmount(c))}
             </span>
           </div>
         </div>

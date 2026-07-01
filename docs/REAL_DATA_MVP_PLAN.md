@@ -8,7 +8,7 @@
 > of what was originally scoped.
 
 > The plan below is kept for historical context. **All 8 sprints ship
-> end-to-end** on `civicpulse-virid.vercel.app` — plus six extra
+> end-to-end** on `civicpulse.es` — plus six extra
 > subsystems added after Sprint 7 (BDNS, SEPE, Plenos, Wikidata, pleno
 > agendas, promise tracker with legal-safe inference), a nightly
 > GitHub Actions refresh job, and 106 vitest checks green. See

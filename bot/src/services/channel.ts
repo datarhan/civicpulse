@@ -21,7 +21,7 @@ function formatNeighborhood(slug: string | null | undefined): string {
 }
 
 function publicBaseUrl(): string {
-  return process.env.PUBLIC_BASE_URL || 'https://civicpulse-virid.vercel.app'
+  return process.env.PUBLIC_BASE_URL || 'https://civicpulse.es'
 }
 
 export interface Channel {

@@ -15,7 +15,7 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   return (
     <div>
       <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
-        De <strong>{fmtEur(total)}</strong> adjudicados en contratos,{' '}
+        De <strong>{fmtEur(total)}</strong> adjudicados en contratos (sin IVA),{' '}
         <strong>{fmtEur(located)}</strong> ({pct.toFixed(0)}%) se pueden situar en el mapa.
       </div>
       <div

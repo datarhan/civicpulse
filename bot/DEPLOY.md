@@ -60,7 +60,7 @@ echo "EXPORT_TOKEN=$EXPORT_TOKEN"   # write this down
 flyctl secrets set --app munigraph-ribarroja \
   BOT_TOKEN=8448334642:AAHPfeh5u_XRTYYAOMiKynfjOOt9K8ikYvw \
   EXPORT_TOKEN=$EXPORT_TOKEN \
-  PUBLIC_BASE_URL=https://civicpulse-virid.vercel.app \
+  PUBLIC_BASE_URL=https://civicpulse.es \
   WEBHOOK_URL=https://munigraph-ribarroja.fly.dev \
   MODERATOR_NAME="Tu nombre real"
 ```

@@ -4,6 +4,25 @@
  * by the dashboard components and unit-tested in isolation.
  */
 
+/**
+ * Canonical euro figure to DISPLAY and AGGREGATE for a contract — SIN IVA, to
+ * match the authoritative PLACSP detail page (contrataciondelestado.es), whose
+ * "Importe de adjudicación" / "Presupuesto base de licitación" headline the
+ * tax-excluded amount, and Spanish public-procurement convention (valor
+ * estimado is always sin impuestos). Prefers the awarded tax-excluded figure;
+ * falls back to the tax-included one, then to the initial amounts, only when a
+ * source row lacks the sin-IVA value (none do today — defensive).
+ * @param {{finalAmountNoTaxes?:number, finalAmount?:number, initialAmountNoTaxes?:number, initialAmount?:number}} [c]
+ * @returns {number}
+ */
+export function contractAmount(c) {
+  if (!c) return 0
+  if (c.finalAmountNoTaxes > 0) return c.finalAmountNoTaxes
+  if (c.finalAmount > 0) return c.finalAmount
+  if (c.initialAmountNoTaxes > 0) return c.initialAmountNoTaxes
+  return c.initialAmount || 0
+}
+
 export const EMPTY_TENDER_GEO = {
   generatedAt: null,
   source: { tenders: null, geo: null },
@@ -53,12 +72,14 @@ export function zoneAmountsAt(assignments, { at = Infinity, danaOnly = false } =
 export function topContractors(contracts, n = 15) {
   const m = new Map()
   for (const c of contracts || []) {
-    // Awarded money only — "who received the awarded money".
-    if (c.status !== 'awarded' || !(c.finalAmount > 0)) continue
+    // Awarded money only — "who received the awarded money". Sin IVA (PLACSP).
+    if (c.status !== 'awarded') continue
+    const amount = contractAmount(c)
+    if (!(amount > 0)) continue
     const name = c.assignee
     if (!name) continue
     const cur = m.get(name) || { assignee: name, amount: 0, count: 0 }
-    cur.amount += c.finalAmount
+    cur.amount += amount
     cur.count += 1
     m.set(name, cur)
   }

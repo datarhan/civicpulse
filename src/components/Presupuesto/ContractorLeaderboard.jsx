@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { topContractors } from '../../lib/tender-geo'
+import { topContractors, contractAmount } from '../../lib/tender-geo'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -15,7 +15,7 @@ export default function ContractorLeaderboard({ contracts }) {
     const m = new Map()
     for (const c of contracts || []) {
       if (!c.assignee) continue
-      if (!(c.status === 'awarded' && c.finalAmount > 0)) continue
+      if (!(c.status === 'awarded' && contractAmount(c) > 0)) continue
       const arr = m.get(c.assignee) || []
       arr.push(c)
       m.set(c.assignee, arr)
@@ -63,9 +63,7 @@ export default function ContractorLeaderboard({ contracts }) {
               {(byAssignee.get(t.assignee) || []).slice(0, 20).map((c) => (
                 <div key={c.id} style={{ fontSize: 11.5, color: 'var(--ink60)', padding: '3px 0' }}>
                   {c.title.length > 90 ? c.title.slice(0, 90) + '…' : c.title} —{' '}
-                  <span className="mono">
-                    {fmtEur(c.finalAmount > 0 ? c.finalAmount : c.initialAmount)}
-                  </span>
+                  <span className="mono">{fmtEur(contractAmount(c))}</span>
                 </div>
               ))}
             </div>

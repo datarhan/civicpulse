@@ -25,13 +25,13 @@ Soy el canal directo entre vecinos y Ayuntamiento. Con este bot puedes:
 *Privacidad y datos*
 
 Al presentar una queja aceptas que el texto, categoría y barrio aproximado se ` +
-  `publiquen en nuestro [dashboard](https://civicpulse-virid.vercel.app/quejas) ` +
+  `publiquen en nuestro [dashboard](https://civicpulse.es/quejas) ` +
   `(nunca tu nombre, usuario de Telegram ni coordenadas exactas). Base jurídica: ` +
   `Art. 6.1.e RGPD (misión en interés público). Conservación: 5 años. Puedes ` +
   `ejercer tu derecho al olvido en cualquier momento con /olvidar.
 
-📊 Dashboard público: https://civicpulse-virid.vercel.app/quejas
-📜 [Aviso legal](https://civicpulse-virid.vercel.app/aviso-legal) · [Metodología](https://civicpulse-virid.vercel.app/metodologia)
+📊 Dashboard público: https://civicpulse.es/quejas
+📜 [Aviso legal](https://civicpulse.es/aviso-legal) · [Metodología](https://civicpulse.es/metodologia)
 `
 
 export function registerStart(bot: Bot<MyContext>) {

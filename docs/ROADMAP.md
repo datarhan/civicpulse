@@ -52,7 +52,7 @@ The roadmap below was authored when the dashboard was a green-field MVP. Since t
 The bot captures PII (names, direcciones, matrículas in queja descriptions). Before any real `/queja` from a citizen, we need a data-retention policy, a deletion endpoint, and a privacy notice. Then wire `CHANNEL_ID` + `ADMIN_USER_IDS` and kick the launchd agent.
 
 **Files:**
-- `bot/src/commands/start.ts` — append privacy notice to welcome copy ("Al presentar una queja, aceptas la política de privacidad en civicpulse-virid.vercel.app/aviso-legal")
+- `bot/src/commands/start.ts` — append privacy notice to welcome copy ("Al presentar una queja, aceptas la política de privacidad en civicpulse.es/aviso-legal")
 - `bot/src/commands/olvidar.ts` (new) — `/olvidar <ticket-id>` command that deletes the queja from SQLite + emits an `anonymised` event so the next export drops the record
 - `bot/src/db/schema.sql` — add `deleted_at` TIMESTAMP column; snapshot writer (`bot/src/services/snapshot.ts`) skips deleted rows
 - `src/pages/AvisoLegal.jsx` — new LOPD section: retention (5 years per Art. 55 LOPD-GDD for public-interest processing, but citizen-initiated deletion always honoured), base jurídica (Art. 6.1.e RGPD — misión en interés público), right-to-deletion procedure
@@ -229,7 +229,7 @@ jq '.llmEvidence[] | select(.corpus == "pleno_transcript")' public/data/promise-
 
 # P2
 curl -s localhost:5173/data/cambios.json | jq '.items | length'  # > 0
-curl -s civicpulse-virid.vercel.app/cambios                       # 200
+curl -s civicpulse.es/cambios                       # 200
 # Telegram: /subscribe concejalia Urbanismo → 'Suscripción registrada'
 
 # P3

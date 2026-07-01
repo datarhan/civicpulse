@@ -22,7 +22,7 @@
       "evidence": [
         {
           "date": "2026-03-17",
-          "url": "https://civicpulse-virid.vercel.app/data/budget.json",
+          "url": "https://civicpulse.es/data/budget.json",
           "quote": "CivicPulse: snapshot CONPREL MinHac confirma presupuesto 2026 de €46,047,149 ingresos / €41,578,252 gastos — superávit inicial €1.94M",
           "publisher": "CivicPulse / MinHac CONPREL",
           "kind": "budget",
@@ -140,7 +140,7 @@
       "title": "Contrato de alumbrado LED por 680.000 €",
       "quote": "El contrato de alumbrado LED (€680k) se adjudica a la misma empresa por sexta vez",
       "source": {
-        "url": "https://civicpulse-virid.vercel.app/data/tenders.json",
+        "url": "https://civicpulse.es/data/tenders.json",
         "publisher": "CivicPulse / Gobierto · Ribalicita"
       },
       "madeAt": "2026-02-15",

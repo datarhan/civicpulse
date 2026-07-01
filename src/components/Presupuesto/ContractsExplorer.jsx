@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { ExtLink, Pill } from '../Primitives'
 import { STATUS_LABEL, STATUS_TONE } from '../../hooks/useTenders'
 import { fmtDateShort } from '../../lib/formatters'
-import { filterContracts } from '../../lib/tender-geo'
+import { filterContracts, contractAmount } from '../../lib/tender-geo'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -96,7 +96,7 @@ export default function ContractsExplorer({ contracts, snapshot }) {
             </div>
           </div>
           <span className="mono" style={{ textAlign: 'right', fontWeight: 700 }}>
-            {fmtEur(c.finalAmount > 0 ? c.finalAmount : c.initialAmount)}
+            {fmtEur(contractAmount(c))}
           </span>
           <span style={{ textAlign: 'right' }}>
             <Pill tone={STATUS_TONE[c.status] || 'ghost'} size="xs">

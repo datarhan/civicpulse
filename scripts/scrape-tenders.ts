@@ -64,9 +64,12 @@ async function main() {
   const contracts = parseRibalicitaContracts(contractsCsv)
   const tenders = parseRibalicitaTenders(tendersCsv)
 
+  // Sin IVA — matches the PLACSP "Importe de adjudicación" headline (the
+  // tax-excluded figure) and Spanish valor-estimado convention. Falls back to
+  // the tax-included finalAmount only when a row lacks the sin-IVA value.
   const awardedTotal = contracts
     .filter((c) => c.status === 'awarded')
-    .reduce((s, c) => s + (c.finalAmount || 0), 0)
+    .reduce((s, c) => s + (c.finalAmountNoTaxes > 0 ? c.finalAmountNoTaxes : c.finalAmount || 0), 0)
 
   const payload = {
     generatedAt: new Date().toISOString(),

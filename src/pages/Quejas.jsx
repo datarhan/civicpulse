@@ -636,7 +636,7 @@ function DashboardView({ data }) {
               </span>
               <ShareWA
                 text={`Queja ${it.service_request_id} · ${CATEGORY_LABEL[it.service_code] || it.service_code}\n${it.description.slice(0, 140)}`}
-                url={`https://civicpulse-virid.vercel.app/quejas/${it.service_request_id.toLowerCase()}`}
+                url={`https://civicpulse.es/quejas/${it.service_request_id.toLowerCase()}`}
               />
               <Pill tone={STATE_TONE[it.status] || 'ghost'} size="xs">
                 {STATE_LABEL[it.status] || it.status}

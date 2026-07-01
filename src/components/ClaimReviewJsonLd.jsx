@@ -17,7 +17,7 @@
  */
 import React from 'react'
 
-const SITE_URL = 'https://civicpulse-virid.vercel.app'
+const SITE_URL = 'https://civicpulse.es'
 
 // schema.org best practice: ratingValue is an integer 1..5, alternateName
 // is the human-readable rating. We project our severity buckets onto
