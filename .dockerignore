@@ -1,0 +1,22 @@
+# Docker build context for the bot image is the MONOREPO ROOT
+# (bot/docker-compose.yml → build.context: ..). Docker only honors the
+# .dockerignore at the context ROOT, so THIS file — not bot/.dockerignore —
+# is what actually applies to the build. Without it, `COPY bot ./bot`
+# (Dockerfile) drags the host's macOS-arm64 bot/node_modules into the Linux
+# image, clobbering the linux-built better-sqlite3 → "invalid ELF header"
+# crash loop. Keep this in sync with bot/.dockerignore.
+node_modules
+bot/node_modules
+bot/data
+bot/*.db
+bot/*.db-wal
+bot/*.db-shm
+bot/.env
+bot/.env.local
+.git
+.github
+dist
+civicpulse-design-system
+docs
+tests
+.vercel
