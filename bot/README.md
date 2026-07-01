@@ -5,7 +5,7 @@ complaints. Full pipeline per [`docs/QUEJAS_DESIGN.md`](../docs/QUEJAS_DESIGN.md
 
 Live as **[@munigraph_bot](https://t.me/munigraph_bot)** (bot id
 `8448334642`). Dashboard at
-[civicpulse-virid.vercel.app/quejas](https://civicpulse-virid.vercel.app/quejas).
+[civicpulse.es/quejas](https://civicpulse.es/quejas).
 
 ## Commands
 

@@ -27,7 +27,7 @@ export default function AvisoLegal() {
           CivicPulse es un proyecto independiente de civic-tech. No es un medio de comunicación al
           amparo de la LO 2/1997, ni un partido político, ni está vinculado al Ayuntamiento de
           Riba-roja de Túria ni a ninguna administración. Se aloja en Vercel bajo el dominio
-          civicpulse-virid.vercel.app.
+          civicpulse.es.
         </p>
         <p>
           El mantenedor del proyecto asume responsabilidad editorial individual por el contenido

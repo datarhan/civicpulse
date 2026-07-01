@@ -108,7 +108,7 @@ function buildDigestText(
     `\n\n_Filtros activos:_ ` +
     allSubs.map((s) => `${s.filter_kind}=${s.filter_value}`).join(', ') +
     `\n_Cambiarlos: /subscribe, /unsubscribe, /subscriptions_\n` +
-    `_Ver todo en https://civicpulse-virid.vercel.app/cambios_`
+    `_Ver todo en https://civicpulse.es/cambios_`
   return header + body + footer
 }
 

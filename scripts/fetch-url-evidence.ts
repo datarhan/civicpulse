@@ -29,7 +29,7 @@ import { tmpdir } from 'node:os'
 import { resolve as resolvePath, join } from 'node:path'
 import * as cheerio from 'cheerio'
 
-const UA = 'CivicPulse curator dashboard / fetch-url-evidence (https://civicpulse-virid.vercel.app)'
+const UA = 'CivicPulse curator dashboard / fetch-url-evidence (https://civicpulse.es)'
 const FETCH_TIMEOUT_MS = 25_000
 const MAX_BYTES = 8 * 1024 * 1024 // 8 MB cap on remote payload
 const MAX_SNIPPET = 1500

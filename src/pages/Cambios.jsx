@@ -109,7 +109,7 @@ function KindCard({ kind, items, formatDate }) {
             </div>
             <ShareWA
               text={it.shareText}
-              url={it.external ? it.url : `https://civicpulse-virid.vercel.app${it.url}`}
+              url={it.external ? it.url : `https://civicpulse.es${it.url}`}
             />
           </div>
         ))}

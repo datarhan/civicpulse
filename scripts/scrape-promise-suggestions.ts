@@ -122,10 +122,7 @@ async function main() {
         const text = readFileSyncImpl(join(transcriptDir, f), 'utf8')
         if (text.length < 500) continue // empty or tiny → skip
         transcripts.push({
-          url:
-            video?.url ??
-            (pleno as { link?: string }).link ??
-            `https://civicpulse-virid.vercel.app/plenos`,
+          url: video?.url ?? (pleno as { link?: string }).link ?? `https://civicpulse.es/plenos`,
           title: pleno.title,
           date: pleno.date,
           publisher: 'Ayuntamiento Riba-roja de Túria · transcripción automática',

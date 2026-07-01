@@ -79,7 +79,7 @@ export function formatDigest(d: Digest): string {
     `*Categorías más reportadas:*`,
     cats,
     '',
-    `Dashboard completo: ${process.env.PUBLIC_BASE_URL ?? 'https://civicpulse-virid.vercel.app'}/quejas`,
+    `Dashboard completo: ${process.env.PUBLIC_BASE_URL ?? 'https://civicpulse.es'}/quejas`,
   ].join('\n')
 }
 
