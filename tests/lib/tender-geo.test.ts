@@ -18,28 +18,59 @@ describe('lib/tender-geo', () => {
     expect(m.get('z1')).toEqual({ amount: 200, count: 1 })
     expect(m.get('z2')).toEqual({ amount: 200, count: 1 })
   })
-  it('topContractors ranks awarded final amounts and ignores non-awarded', () => {
+  it('topContractors ranks awarded amounts sin IVA (finalAmountNoTaxes) and ignores non-awarded', () => {
+    // PLACSP headlines the tax-excluded figure; the tax-included finalAmount
+    // (~×1.21) must NOT be what we sum.
     const top = topContractors(
       [
-        { assignee: 'ACME', status: 'awarded', finalAmount: 100 },
-        { assignee: 'ACME', status: 'awarded', finalAmount: 40 },
+        { assignee: 'ACME', status: 'awarded', finalAmount: 121, finalAmountNoTaxes: 100 },
+        { assignee: 'ACME', status: 'awarded', finalAmount: 48.4, finalAmountNoTaxes: 40 },
         { assignee: 'ACME', status: 'open', finalAmount: 0, initialAmount: 999 },
-        { assignee: 'BETA', status: 'awarded', finalAmount: 90 },
+        { assignee: 'BETA', status: 'awarded', finalAmount: 108.9, finalAmountNoTaxes: 90 },
       ],
       10,
     )
-    expect(top[0]).toEqual({ assignee: 'ACME', amount: 140, count: 2 })
+    expect(top[0]).toEqual({ assignee: 'ACME', amount: 140, count: 2 }) // 100 + 40, sin IVA
     expect(top[1].assignee).toBe('BETA')
+  })
+  it('topContractors falls back to the tax-included amount when no sin-IVA figure exists', () => {
+    const top = topContractors([{ assignee: 'GAMMA', status: 'awarded', finalAmount: 200 }], 10)
+    expect(top[0]).toEqual({ assignee: 'GAMMA', amount: 200, count: 1 })
   })
   it('filterContracts narrows by text, zone, and dana', () => {
     const contracts = [
-      { id: 'a', title: 'Obra en Molinet', assignee: 'ACME', awardDate: '2024-01-01', categoryTitle: 'construction', contractType: 'construction' },
-      { id: 'b', title: 'Obra DANA La Reva', assignee: 'ACME', awardDate: '2025-06-01', categoryTitle: 'construction', contractType: 'construction' },
-      { id: 'c', title: 'Servicio limpieza', assignee: 'BETA', awardDate: '2024-01-01', categoryTitle: 'other', contractType: 'services' },
+      {
+        id: 'a',
+        title: 'Obra en Molinet',
+        assignee: 'ACME',
+        awardDate: '2024-01-01',
+        categoryTitle: 'construction',
+        contractType: 'construction',
+      },
+      {
+        id: 'b',
+        title: 'Obra DANA La Reva',
+        assignee: 'ACME',
+        awardDate: '2025-06-01',
+        categoryTitle: 'construction',
+        contractType: 'construction',
+      },
+      {
+        id: 'c',
+        title: 'Servicio limpieza',
+        assignee: 'BETA',
+        awardDate: '2024-01-01',
+        categoryTitle: 'other',
+        contractType: 'services',
+      },
     ]
     const byId = new Map(ASSIGN.map((x) => [x.id, x]))
     expect(filterContracts(contracts, { text: 'molinet' }, byId).map((c) => c.id)).toEqual(['a'])
-    expect(filterContracts(contracts, { zoneSlug: 'z2' }, byId).map((c) => c.id).sort()).toEqual(['b', 'c'])
+    expect(
+      filterContracts(contracts, { zoneSlug: 'z2' }, byId)
+        .map((c) => c.id)
+        .sort(),
+    ).toEqual(['b', 'c'])
     expect(filterContracts(contracts, { dana: true }, byId).map((c) => c.id)).toEqual(['b'])
   })
 })

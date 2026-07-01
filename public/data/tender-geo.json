@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-06-30T08:12:41.679Z",
+  "generatedAt": "2026-07-01T17:55:57.121Z",
   "source": {
     "tenders": "2026-06-30T08:05:06.000Z",
     "geo": "2026-06-30T08:06:57.643Z"
   },
   "universe": {
     "totalContracts": 370,
-    "totalAmount": 16316806.05,
+    "totalAmount": 13978822.119999994,
     "locatedContracts": 29,
-    "locatedAmount": 808401.87,
+    "locatedAmount": 668248.94,
     "danaContracts": 9,
-    "danaAmount": 331847.61,
+    "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
-    "danaAwardedAmount": 2705097.9400000004,
+    "danaAwardedAmount": 2241265.7499999995,
     "dateMin": "2018-01-24",
     "dateMax": "2025-10-30"
   },
@@ -25,8 +25,8 @@
         -0.572073
       ],
       "contractCount": 7,
-      "amount": 291586.52,
-      "danaAmount": 119352.53
+      "amount": 241148.79000000004,
+      "danaAmount": 98806.64
     },
     {
       "slug": "l-oliveral",
@@ -36,8 +36,8 @@
         -0.5366921
       ],
       "contractCount": 8,
-      "amount": 251627.11,
-      "danaAmount": 164869.5
+      "amount": 207956.29,
+      "danaAmount": 136255.79
     },
     {
       "slug": "el-pou-d-escoto",
@@ -47,8 +47,8 @@
         -0.5912189
       ],
       "contractCount": 5,
-      "amount": 108259.06,
-      "danaAmount": 19822.25
+      "amount": 89470.29999999999,
+      "danaAmount": 16382.03
     },
     {
       "slug": "urbanitzacio-els-pous",
@@ -58,8 +58,8 @@
         -0.5191743
       ],
       "contractCount": 6,
-      "amount": 81621.11000000002,
-      "danaAmount": 41611.4
+      "amount": 67435.48,
+      "danaAmount": 34389.59
     },
     {
       "slug": "el-molinet",
@@ -69,7 +69,7 @@
         -0.5510476
       ],
       "contractCount": 2,
-      "amount": 44881.93,
+      "amount": 37092.509999999995,
       "danaAmount": 0
     },
     {
@@ -80,7 +80,7 @@
         -0.5307458
       ],
       "contractCount": 2,
-      "amount": 28746.21,
+      "amount": 23757.2,
       "danaAmount": 0
     },
     {
@@ -91,7 +91,7 @@
         -0.5337693
       ],
       "contractCount": 1,
-      "amount": 15488,
+      "amount": 12800,
       "danaAmount": 0
     }
   ],
@@ -107,7 +107,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": true,
-      "amount": 6904.19,
+      "amount": 5705.94,
       "amountKind": "final",
       "date": "2025-01-15",
       "contractType": "services",
@@ -122,7 +122,7 @@
         "urbanitzacio-la-reva": "urbanizacion reva"
       },
       "dana": false,
-      "amount": 71269,
+      "amount": 58900,
       "amountKind": "final",
       "date": "2024-11-06",
       "contractType": "construction",
@@ -137,7 +137,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": false,
-      "amount": 17908,
+      "amount": 14800,
       "amountKind": "final",
       "date": "2022-10-14",
       "contractType": "services",
@@ -152,7 +152,7 @@
         "el-molinet": "molinet"
       },
       "dana": false,
-      "amount": 13076.66,
+      "amount": 10807.16,
       "amountKind": "final",
       "date": "2019-08-05",
       "contractType": "construction",
@@ -167,7 +167,7 @@
         "urbanitzacio-els-pous": "els pous"
       },
       "dana": true,
-      "amount": 27803.33,
+      "amount": 22977.96,
       "amountKind": "final",
       "date": "2024-12-04",
       "contractType": "services",
@@ -182,7 +182,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": false,
-      "amount": 47735.11,
+      "amount": 39450.5,
       "amountKind": "final",
       "date": "2019-01-17",
       "contractType": "construction",
@@ -197,7 +197,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": false,
-      "amount": 9619.5,
+      "amount": 7950,
       "amountKind": "final",
       "date": "2018-04-11",
       "contractType": "services",
@@ -212,7 +212,7 @@
         "urbanitzacio-els-pous": "els pous"
       },
       "dana": false,
-      "amount": 8545.66,
+      "amount": 7062.52,
       "amountKind": "final",
       "date": "2025-02-20",
       "contractType": "services",
@@ -227,7 +227,7 @@
         "urbanitzacio-valencia-la-vella": "valencia la vella"
       },
       "dana": false,
-      "amount": 17968.5,
+      "amount": 14850,
       "amountKind": "final",
       "date": "2023-06-09",
       "contractType": "services",
@@ -242,7 +242,7 @@
         "el-pou-d-escoto": "escoto"
       },
       "dana": false,
-      "amount": 12671.06,
+      "amount": 10471.95,
       "amountKind": "final",
       "date": "2023-04-26",
       "contractType": "supplies",
@@ -257,7 +257,7 @@
         "urbanitzacio-la-llobatera": "llobatera"
       },
       "dana": false,
-      "amount": 15488,
+      "amount": 12800,
       "amountKind": "final",
       "date": "2019-12-28",
       "contractType": "construction",
@@ -272,7 +272,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": true,
-      "amount": 141562.93,
+      "amount": 116994.16,
       "amountKind": "final",
       "date": "2025-01-16",
       "contractType": "construction",
@@ -287,7 +287,7 @@
         "el-pou-d-escoto": "escoto"
       },
       "dana": false,
-      "amount": 29282,
+      "amount": 24200,
       "amountKind": "final",
       "date": "2019-12-18",
       "contractType": "construction",
@@ -302,7 +302,7 @@
         "el-pou-d-escoto": "escoto"
       },
       "dana": false,
-      "amount": 16335,
+      "amount": 13500,
       "amountKind": "final",
       "date": "2019-12-28",
       "contractType": "supplies",
@@ -317,7 +317,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": false,
-      "amount": 11495,
+      "amount": 9500,
       "amountKind": "final",
       "date": "2022-08-30",
       "contractType": "services",
@@ -332,7 +332,7 @@
         "urbanitzacio-els-pous": "els pous"
       },
       "dana": false,
-      "amount": 548,
+      "amount": 432.92,
       "amountKind": "final",
       "date": "2025-02-20",
       "contractType": "services",
@@ -347,7 +347,7 @@
         "el-pou-d-escoto": "escoto"
       },
       "dana": false,
-      "amount": 30148.75,
+      "amount": 24916.32,
       "amountKind": "final",
       "date": "2018-01-24",
       "contractType": "construction",
@@ -362,7 +362,7 @@
         "urbanitzacio-la-reva": "residencial la reva"
       },
       "dana": true,
-      "amount": 44204.93,
+      "amount": 36533,
       "amountKind": "final",
       "date": "2024-12-04",
       "contractType": "construction",
@@ -377,7 +377,7 @@
         "urbanitzacio-valencia-la-vella": "valencia la vella"
       },
       "dana": false,
-      "amount": 10777.71,
+      "amount": 8907.2,
       "amountKind": "final",
       "date": "2021-12-28",
       "contractType": "supplies",
@@ -392,7 +392,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": true,
-      "amount": 9498.5,
+      "amount": 7850,
       "amountKind": "final",
       "date": "2024-12-20",
       "contractType": "construction",
@@ -407,7 +407,7 @@
         "urbanitzacio-la-reva": "la reva"
       },
       "dana": false,
-      "amount": 13651.87,
+      "amount": 11282.54,
       "amountKind": "final",
       "date": "2025-10-30",
       "contractType": "supplies",
@@ -422,7 +422,7 @@
         "urbanitzacio-la-reva": "la reva"
       },
       "dana": true,
-      "amount": 2035,
+      "amount": 1850,
       "amountKind": "final",
       "date": "2024-12-05",
       "contractType": "services",
@@ -437,7 +437,7 @@
         "urbanitzacio-la-reva": "reva con cv"
       },
       "dana": false,
-      "amount": 73661.25,
+      "amount": 60877.07,
       "amountKind": "final",
       "date": "2023-08-21",
       "contractType": "construction",
@@ -452,7 +452,7 @@
         "el-pou-d-escoto": "escoto"
       },
       "dana": true,
-      "amount": 19822.25,
+      "amount": 16382.03,
       "amountKind": "final",
       "date": "2025-08-21",
       "contractType": "construction",
@@ -467,7 +467,7 @@
         "urbanitzacio-la-reva": "la reva"
       },
       "dana": false,
-      "amount": 13651.87,
+      "amount": 11282.54,
       "amountKind": "final",
       "date": "2025-10-30",
       "contractType": "supplies",
@@ -482,7 +482,7 @@
         "urbanitzacio-els-pous": "els pous"
       },
       "dana": false,
-      "amount": 30916.05,
+      "amount": 25550.45,
       "amountKind": "final",
       "date": "2019-12-28",
       "contractType": "construction",
@@ -497,7 +497,7 @@
         "el-molinet": "molinet"
       },
       "dana": false,
-      "amount": 31805.27,
+      "amount": 26285.35,
       "amountKind": "final",
       "date": "2019-06-05",
       "contractType": "construction",
@@ -512,7 +512,7 @@
         "urbanitzacio-la-reva": "urbanizacion reva"
       },
       "dana": true,
-      "amount": 73112.6,
+      "amount": 60423.64,
       "amountKind": "final",
       "date": "2024-11-20",
       "contractType": "supplies",
@@ -529,7 +529,7 @@
         "l-oliveral": "oliveral"
       },
       "dana": true,
-      "amount": 6903.88,
+      "amount": 5705.69,
       "amountKind": "final",
       "date": "2025-01-15",
       "contractType": "services",

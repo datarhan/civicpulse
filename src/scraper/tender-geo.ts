@@ -5,7 +5,9 @@ export interface ContractInput {
   title: string
   status?: string
   finalAmount?: number
+  finalAmountNoTaxes?: number
   initialAmount?: number
+  initialAmountNoTaxes?: number
   awardDate?: string | null
   startDate?: string | null
   formalizedDate?: string | null
@@ -92,9 +94,16 @@ export function foldText(s: string): string {
 }
 
 function amountOf(c: ContractInput): { amount: number; kind: 'final' | 'initial' } | null {
-  // Awarded-only universe: matches the page's "€16.3M adjudicado" headline.
-  // Non-awarded contracts (open/in-tender/in-progress) are excluded entirely.
-  if (c.status === 'awarded' && typeof c.finalAmount === 'number' && c.finalAmount > 0)
+  // Awarded-only universe, SIN IVA — matches the authoritative PLACSP "Importe
+  // de adjudicación" headline (contrataciondelestado.es) and the Spanish
+  // valor-estimado convention. Non-awarded contracts (open/in-tender/
+  // in-progress) are excluded entirely. Prefers the tax-excluded figure; falls
+  // back to the tax-included finalAmount only when a row lacks the sin-IVA
+  // value (none do today — defensive).
+  if (c.status !== 'awarded') return null
+  if (typeof c.finalAmountNoTaxes === 'number' && c.finalAmountNoTaxes > 0)
+    return { amount: c.finalAmountNoTaxes, kind: 'final' }
+  if (typeof c.finalAmount === 'number' && c.finalAmount > 0)
     return { amount: c.finalAmount, kind: 'final' }
   return null
 }
