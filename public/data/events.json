@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T08:06:17.960Z",
+  "generatedAt": "2026-07-01T08:36:00.843Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -161,6 +161,36 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Aida%20y%20vuelta.jpg?itok=9cAvxjOP"
     },
     {
+      "id": "1rqi4as",
+      "title": "RibaJazz 2026: Vira León Swingtet (Jazz Swing)",
+      "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-vira-le%C3%B3n-swingtet-%28jazz-swing%29",
+      "eventDate": "2026-07-09T20:00:00.000Z",
+      "eventDateText": "09 de julio de 2026 22:00",
+      "publishedDate": "2026-07-01T06:26:38.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201.jpg?itok=4jUzHY6t"
+    },
+    {
+      "id": "1yghquc",
+      "title": "RibaJazz 2026: Marquina-Selfa Trío (Jazz Contemporáneo)",
+      "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-marquina-selfa-tr%C3%ADo-%28jazz-contempor%C3%A1neo%29",
+      "eventDate": "2026-07-10T20:00:00.000Z",
+      "eventDateText": "10 de julio de 2026 22:00",
+      "publishedDate": "2026-07-01T06:31:22.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201_0.jpg?itok=XsWodjbq"
+    },
+    {
+      "id": "1lgmwmz",
+      "title": "RibaJazz 2026: Keith Dunn Blues Dúo (Delta Blues)",
+      "link": "https://www.ribarroja.es/es/evento/ribajazz-2026%3A-keith-dunn-blues-d%C3%BAo-%28delta-blues%29",
+      "eventDate": "2026-07-11T20:00:00.000Z",
+      "eventDateText": "11 de julio de 2026 22:00",
+      "publishedDate": "2026-07-01T06:48:03.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Cartel%20A3%201%20of%201_1.jpg?itok=NH3XCHm3"
+    },
+    {
       "id": "1syvl58",
       "title": "Cine 'Drems'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27drems%27",
@@ -169,36 +199,6 @@
       "publishedDate": "2026-05-21T16:23:52.000Z",
       "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/dreams.jpg?itok=mnXehIdT"
-    },
-    {
-      "id": "1kbfaw0",
-      "title": "Cine 'Toy Story 5'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27toy-story-5%27-0",
-      "eventDate": "2026-07-17T20:00:00.000Z",
-      "eventDateText": "17 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:33:28.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/TOYSTORY5_0.jpg?itok=0BllX275"
-    },
-    {
-      "id": "11ozhow",
-      "title": "Cine 'Viaje al país de los blancos'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27viaje-al-pa%C3%ADs-de-los-blancos%27",
-      "eventDate": "2026-07-19T20:00:00.000Z",
-      "eventDateText": "19 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:40:11.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/viaje%20al%20pais%20de%20los%20blancos.jpg?itok=DFmClDUZ"
-    },
-    {
-      "id": "f2sjfw",
-      "title": "Cine 'Mi robot favorito'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27mi-robot-favorito%27",
-      "eventDate": "2026-07-22T20:00:00.000Z",
-      "eventDateText": "22 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:41:53.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/mi%20robot%20favorito.jpg?itok=MIlLZYNt"
     },
     {
       "id": "olcen0",

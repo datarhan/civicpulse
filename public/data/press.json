@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T08:06:13.344Z",
+  "generatedAt": "2026-07-01T08:35:56.724Z",
   "feeds": [
     {
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
@@ -21,9 +21,9 @@
     }
   ],
   "stats": {
-    "total": 153,
-    "sources": 22,
-    "latestDate": "2026-06-30T06:52:24.000Z"
+    "total": 154,
+    "sources": 21,
+    "latestDate": "2026-06-30T11:19:38.000Z"
   },
   "sources": [
     "Actualidad Valencia",
@@ -42,7 +42,6 @@
     "Valencia Plaza",
     "Valenciabonita",
     "diarivalencia.cat",
-    "elDiario.es",
     "elperiodic.com",
     "iberdrolaespana.com",
     "rfet.es",
@@ -50,6 +49,15 @@
     "www.diariodelpuerto.com"
   ],
   "items": [
+    {
+      "id": "1sfw2ms",
+      "title": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
+      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-06-30T11:19:38.000Z",
+      "fingerprint": "n4cwj6"
+    },
     {
       "id": "5jf5uo",
       "title": "El Ejército inicia el desmontaje del puente militar en Riba-roja",
@@ -67,6 +75,15 @@
       "sourceHost": "infoturia.com",
       "date": "2026-06-29T12:23:09.000Z",
       "fingerprint": "7v68y8"
+    },
+    {
+      "id": "1uce32o",
+      "title": "9 Casas y pisos a reformar en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMUc5WFB3cXJXcEpCazZCV2RWSWswWVNMb2tBTWJvMnBheXhGd1QyLXJSUWdXQnE3QmRXc1g5MTJfbS1Fd3Byb05fZEZGVWdPQmZXMHY0NG9CSXF6SWhrNk1QUFlpcXVabmxZNk1leU9EcDhCcC1oUVVWdTZTX21JQlRvQjFzaWE2Nkh3N2c5TmJSeFRUa0hB?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2026-06-29T12:12:35.000Z",
+      "fingerprint": "1cw5867"
     },
     {
       "id": "olul7k",
@@ -98,13 +115,13 @@
       "fingerprint": "1e8ii34"
     },
     {
-      "id": "1dopvz",
-      "title": "AVAV organiza una jornada sobre la conservación del patrimonio fílmico más allá de la digitalización",
-      "link": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPdE9BY2NzZVlva19nV2RPRWdBVVRQYUpUdFJrVHpUb2dxRld2RmJKVGxLeUZ0SWVWbVo0ZktiWnNIaENVMEhTbDBVWXBJQTRwMXpTd0pfUXRuUFBwajRRQlR5ZGpyMGJubWp4WE9fdzgtSXVRUTJOX1dYcUxBZ2l6ZnJNQ3JXVHNpOE9RNTE4ZExhamtIM1UxS1J1N2JCQWlzMV8yRXpEY1YzZUU3a3pUeTZsZnZTVTBlbEo3Zlp1VElucy1EcW9FX25scEVvdC13cWRNeDVCYV9hTTdlbjdmY0dlcUdJVlAyT3U3X0F2WUZiYVVWaVZJWml3dGpHQ2s0ak1n?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
-      "date": "2026-06-29T10:58:28.000Z",
-      "fingerprint": "hh0mb6"
+      "id": "1nxenj4",
+      "title": "1 Habitaciones de las últimas 48h en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxOWDVxMExrWC0xRXNIaUlFRzJ6bVZVZl95NnpQNDJkaEs4LUJHZXZyLWdDR3RJdHNtNl8xdUVORzA4eGhmcXNvR2VIQW9aVGNkZlR2UnJhbk44a09URlhqMWtpeVBQZUZYbWZ0dnRMSXNxM2RtckhiaVZ0ZklKUmNja2VkM2h3dmVxaDAzQUc3QWNqWUN2ZDNVQVZ5eGZyZXJid2FpU3BxbWtXMVd3bzVUdVdEOA?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2026-06-28T23:32:43.000Z",
+      "fingerprint": "39ev6o"
     },
     {
       "id": "115eif4",
@@ -423,6 +440,15 @@
       "fingerprint": "1hn4rrd"
     },
     {
+      "id": "xurjku",
+      "title": "Riba-roja ejecuta mejoras en el tratamiento de aguas residuales para 354 empresas",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNUGNTY3hQa05YcDR3a0EwUWkwRTJISHQxeDhHM2FyNFlSUmMtQ1JpVENBUVdGN2Q4OTVfbUFaLXFoa3R3NGRmR1FJcm1MYllYblpVTmlHSDdBeU5ncHNja1V6T2ppcWh3SGdZZmxTcGdfOEpTX24xcXVUT1h5OXNqWjB2SW1GdFR6bEM4OUtmWWVIaG5BcFJxa1ozckllTUtRZVQ4eTQ5OWMwelFwWDBlXzc0blFZVFNjRV9ydtIBwgFBVV95cUxOcVRsbkFGWWFaaVlwQWZUSldTU0NCRlp6Nl9PYVBMN3ExeC1ReXE1ZEpmazEzVW1VY3draEVPa2p2OW9JaXdEMGZUNnpweUdKZ3QzU0xwQ0NROXNkaXFXZl9kcW1COEhqVGNoSlVoM3ZOZTMtVjhFNThMSl9GTXlTcUZqYlNoM25aeF9jVktFM2ltd2cxeW1VOXRtTkJFRXkxclBaT2lrOXNTOVg2SmZCNkJwMmxyWmhzcVJYNnZ4eUpiZw?oc=5",
+      "source": "Las Provincias",
+      "sourceHost": "lasprovincias.es",
+      "date": "2026-06-15T07:00:00.000Z",
+      "fingerprint": "qrphcg"
+    },
+    {
       "id": "xouss8",
       "title": "1 Casas y pisos de alquiler en Calle Guadalhorce, Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQb2lzTGxhNUpOQ3p4WmtPVk1rUXIzclVvN2lLZmlWWmVMdVAtU05keXpHaWdIeGc2T1RFUWQ4Yl9tMFNiX1JOamZqUVgzZGtlekc0SnI4S1AtTXVqWW1fTUFUN2gtUXZ4UEh3bFRlU3ViZGc4MDNHTVNVcmU3SjNhV3lYaUs2WHMzVldiQ1Z0MG85dw?oc=5",
@@ -499,15 +525,6 @@
       "sourceHost": "actualidadvalencia.com",
       "date": "2026-06-11T07:00:00.000Z",
       "fingerprint": "89en1s"
-    },
-    {
-      "id": "182ujks",
-      "title": "Riba-roja ejecuta el 30% de las obras hídricas tras la DANA con una inversión de 4,4 millones",
-      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1wV091VTdUNUV1cHlMcF92YkZPMUw1X2Zld25GUFIzdGhqeXVSdXZTWFd6cHNTcVdzcVhVNHNRUDN4MWJiUUlfM3pVR1pzTEZpOW0zR1RfbEVsSFcwVWVMUWZkUVlMOURVVG51RWRaZzFROW9xMTBn?oc=5",
-      "source": "Actualidad Valencia",
-      "sourceHost": "actualidadvalencia.com",
-      "date": "2026-06-11T07:00:00.000Z",
-      "fingerprint": "2vgzqg"
     },
     {
       "id": "1j5bx9c",
@@ -604,6 +621,15 @@
       "sourceHost": "lasprovincias.es",
       "date": "2026-06-08T07:00:00.000Z",
       "fingerprint": "v39d3w"
+    },
+    {
+      "id": "btxf98",
+      "title": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
+      "source": "El Periódico de Aquí",
+      "sourceHost": "elperiodicodeaqui.com",
+      "date": "2026-06-08T07:00:00.000Z",
+      "fingerprint": "1b9yb98"
     },
     {
       "id": "17j0jc",
@@ -887,6 +913,15 @@
       "section": null
     },
     {
+      "id": "19vzn06",
+      "title": "Riba-roja abre la Casa del Abogado como espacio cultural",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNQ19SMkFfSy1CNjZFWXFKRzBZMnk4LUI5anlLaEllejNkZGI1WUZKMmZDanZmVS1mbmE5ck5wR2Q0QmliOVBnOXRjSjU1aG1RTUdpeFgyTjZobnNJeU5XbGFXRUtkX2pIbnkxeDlLaE5nYXQ5SU54NTBXeHNGTXI4UTJnX2Mtb3k1UDE1dEsxckZ2TEVzZTBST1pyVk5pODlYUXpKeVJYcG04d9IBrwFBVV95cUxOdTZRR0xEVU8zT0hkbUVfMkJfRUY3X21RMGxBaUZyRWxCU3NRV3lqRUgxbExWQV85YUR4TU5IbWMtSVlxUDNJUTA1OGJlQmJLRFZtcW5CS2tfWkMwYWVRSXJSbWVQaV9pUWNhbTRWNHpnYlFjWTZTcUtIOEpRY09FdnAwMmJ0YTVUTVY3aHZmWEgtMENhR3dRMXdTYlpvbzVwZ0xhM2MzaHRNSlVRdm9Z?oc=5",
+      "source": "Las Provincias",
+      "sourceHost": "lasprovincias.es",
+      "date": "2026-05-25T07:00:00.000Z",
+      "fingerprint": "1h4g3m0"
+    },
+    {
       "id": "92r680",
       "title": "IVL PlanRiba Plus",
       "link": "https://www.ribarroja.es/es/noticia/ivl-planriba-plus",
@@ -918,15 +953,6 @@
       "fingerprint": "1g18650",
       "official": true,
       "section": "Educacion"
-    },
-    {
-      "id": "1ms3sfu",
-      "title": "Riba-roja bonificará a los vecinos que usen contenedores de basura orgánica",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPcjcyT0Zsd0dmRUNMQ0lXQXNETDN5R1oyUGNvRlBTa2tDMk8zdVFIaUZxSFB2TVdFT243Y2FNajc3elRVNW9PSlFqUTZFVHRSaVVxTTVIZVRQcDF2RkJGeGY5VElTRVRvaHN1c2xERUFpMWhQZnlQNUhScmkwVHl0UGJzdi1GWVZ3eGRFZDNSZTlURktjN2tPSUVXZF80dm9hMk9JOWZDam9HTld2ZWMtcHF6TVlKR1d3eUJBdWRJbUwxUdIBxwFBVV95cUxQNndFT19fV09LYlRZOFdnMnpnQ2lCUENiUFBvM3ItVkxFN2JLYUtHaFZRRVIxc0VsM0d3amJoOE9vbTkzdTYzb2tyLVBMSC1iSkhPUzdUT28yVm1IYlVUZ3o3WFREWnl6NXVmVG1JbWNXQmtVbG1sNXdXdFFUVlpHTGZXbG5SbVVXRlA4eFk0SW1oZndsanBDTlZBYnQxRVUzT1M4d0tta3F1TE9aVUU1TE54NzI3UUxsUExBcTEwdXJPM0xrTHRV?oc=5",
-      "source": "Las Provincias",
-      "sourceHost": "lasprovincias.es",
-      "date": "2026-05-21T07:00:00.000Z",
-      "fingerprint": "npd73k"
     },
     {
       "id": "f5wuaw",
@@ -1128,15 +1154,6 @@
       "sourceHost": "comunica.gva.es",
       "date": "2026-04-30T07:00:00.000Z",
       "fingerprint": "1o5nrpl"
-    },
-    {
-      "id": "t8g61k",
-      "title": "Riba-roja se une al proyecto «Valencia comparte coche»",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNUTlvdkFVaUhwSVk1VWNrTlFqaE9FWUt6b1VCcjJqbXNkRE1lUUNQSlRYNktHR3lxbGd3UEhwRUFmSzVwM19XN0RCT2JUZ3Q0MFZKSVhGZmNsQmtBV1ctUmJWT1VzNzNCMXFRRko1S1FnemkyTXVud3JHT3RtenEwZjhUQzIzSkVKMm9WOW51M2VxVnJkTmd0b2FuVFhITnQtWGIzZzJCQWVBN0hl0gGyAUFVX3lxTFBaWVRIZFM3SEM0RTVFd3JSWV9nbkt2bUFUNloya3pobUpZSV85RElzUVlzRm02V05iN2ZKZWg2c21kUnVPSWtLblFYZURYdDAzeEZNWk1ZQzVnaTl0QTRRY1R0aDYyZmxPTVpoMWpnemtwaktHbVBBU1BQWVplYmJjRzIxQ3p0WERhVno5NVF3NTFXYVFQTlZRSTBwV3c4aDFPNGFfYXZvMG55U2JGejFoVHc?oc=5",
-      "source": "Las Provincias",
-      "sourceHost": "lasprovincias.es",
-      "date": "2026-04-30T07:00:00.000Z",
-      "fingerprint": "1079s0p"
     },
     {
       "id": "yyto2n",
@@ -1470,15 +1487,6 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-01-07T08:00:00.000Z",
       "fingerprint": "14l2x1k"
-    },
-    {
-      "id": "sjcvqo",
-      "title": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-      "source": "elDiario.es",
-      "sourceHost": "eldiario.es",
-      "date": "2026-01-05T08:00:00.000Z",
-      "fingerprint": "1ru2evg"
     },
     {
       "id": "lwaaso",

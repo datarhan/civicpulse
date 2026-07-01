@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-30T08:12:38.105Z",
+  "generatedAt": "2026-07-01T08:50:43.791Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -141,19 +141,19 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1wV091VTdUNUV1cHlMcF92YkZPMUw1X2Zld25GUFIzdGhqeXVSdXZTWFd6cHNTcVdzcVhVNHNRUDN4MWJiUUlfM3pVR1pzTEZpOW0zR1RfbEVsSFcwVWVMUWZkUVlMOURVVG51RWRaZzFROW9xMTBn?oc=5",
-          "date": "2026-06-11",
-          "quote": "Riba-roja ejecuta el 30% de las obras hídricas tras la DANA con una inversión de 4,4 millones",
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
           "kind": "press",
-          "publisher": "Actualidad Valencia",
+          "publisher": "iberdrolaespana.com",
           "matchedKeywords": [
-            "inversion",
-            "millon"
+            "millon",
+            "euro"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -201,18 +201,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1wV091VTdUNUV1cHlMcF92YkZPMUw1X2Zld25GUFIzdGhqeXVSdXZTWFd6cHNTcVdzcVhVNHNRUDN4MWJiUUlfM3pVR1pzTEZpOW0zR1RfbEVsSFcwVWVMUWZkUVlMOURVVG51RWRaZzFROW9xMTBn?oc=5",
-          "date": "2026-06-11",
-          "quote": "Riba-roja ejecuta el 30% de las obras hídricas tras la DANA con una inversión de 4,4 millones",
-          "kind": "press",
-          "publisher": "Actualidad Valencia",
-          "matchedKeywords": [
-            "dana",
-            "millon",
-            "tras"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
@@ -223,34 +211,28 @@
             "millon",
             "tras"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
+          "kind": "press",
+          "publisher": "Valencia News",
+          "matchedKeywords": [
+            "dana",
+            "millon",
+            "tras"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOa0o2SnBHakFEMUU2UTlpTEkxMThmLUJkUzlZQVV3SFVPRFc2aXlSTEpZX3JVUkJMQ3pCN0drelBxMVlBVjFlcVhqbmlDanEyU3RlZ08tOExZQno5ZmZ3enBTQXhxSG9odU9SSENVOWlIUGYtRWhyYVc2STJ6dmt6RmZKZW9fcnlSUWNiSVhEd2N5Qk1pQUxrb2xNM3M2dkRyUnU0T0NZRVc2cU9RdmN3U1c5TW1JckxHSk9IMUs2VWx5bFhOVDFmODJZOWNWVVV5N3ZJ0gHYAUFVX3lxTE11V2U3QTZPMlMwN1FyTDFNZ1ZOWnJxNTVjbHlOUjlJYkVTWkJfbDNQaEZpZ1IwVWR0QnVKTzFvb1VMWllhWi1sR2NyWVB0OTN4Ym5URnN3cVNla0ZPbllOWlF1WmtGVkZOUkZuT2xOazVScWIwc2FhamtUNldaa2JHTHJManN0YUh5c2RFTVlCR0lZRFNkYlhtUTNYYjI5aUZpWnhaR0Radl94OFFJS0NsQmVwLXlPbGZwVUhreWNZUjZuUlYyWDI5VTdSeVpkRlVDUm5EZ2xPRQ?oc=5",
-          "date": "2026-01-05",
-          "quote": "Riba-roja lucha contra la falta de suelo: así es el ambicioso plan para crear 900 hogares nuevos",
-          "kind": "press",
-          "publisher": "elDiario.es",
-          "matchedKeywords": [
-            "plan",
-            "crear",
-            "hogar",
-            "nuevo",
-            "lucha",
-            "contra",
-            "falta",
-            "suelo",
-            "ambicioso"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/la-generalitat-acuerda-con-riba-roja-de-t%C3%BAria-la-construcci%C3%B3n-de-36-viviendas-protegidas-industrializadas-en-el-marco-del-plan-vive-dana",
           "date": "2026-05-19",
@@ -275,7 +257,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -351,7 +333,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -386,7 +368,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -424,7 +406,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -444,7 +426,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -452,7 +434,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -460,7 +442,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -504,17 +486,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE1wV091VTdUNUV1cHlMcF92YkZPMUw1X2Zld25GUFIzdGhqeXVSdXZTWFd6cHNTcVdzcVhVNHNRUDN4MWJiUUlfM3pVR1pzTEZpOW0zR1RfbEVsSFcwVWVMUWZkUVlMOURVVG51RWRaZzFROW9xMTBn?oc=5",
-          "date": "2026-06-11",
-          "quote": "Riba-roja ejecuta el 30% de las obras hídricas tras la DANA con una inversión de 4,4 millones",
-          "kind": "press",
-          "publisher": "Actualidad Valencia",
-          "matchedKeywords": [
-            "dana",
-            "millon"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
@@ -524,10 +495,21 @@
             "dana",
             "millon"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
+          "kind": "press",
+          "publisher": "Valencia News",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -547,7 +529,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -587,7 +569,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -631,7 +613,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -675,7 +657,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -705,7 +687,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-06-30T08:12:38.009Z"
+      "generatedAt": "2026-07-01T08:50:43.710Z"
     }
   ],
   "llmEvidence": [],
