@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T10:47:46.268Z",
+  "generatedAt": "2026-07-01T20:28:11.600Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -1019,12 +1019,6 @@
         "verdict": "parcial",
         "summary": "Se encuentran licitaciones para planes de formación, incluyendo para personas con diversidad funcional, lo que coincide temáticamente. No obstante, no se halla referencia al monto específico de 62.000 € mencionado en la promesa.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje",
-            "similarity": 0.3
-          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i12iLtOw3qYQK2TEfXGy%2BA%3D%3D",
@@ -3351,12 +3345,6 @@
         "verdict": "parcial",
         "summary": "Existen licitaciones para el servicio de limpieza viaria, lo que relaciona los candidatos con el tema del anuncio. Sin embargo, ninguna de las licitaciones o contratos existentes confirma directamente la futura modificación e incremento del contrato de limpieza viaria.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio de limpieza viaria del municipio de Riba-roja",
-            "similarity": 1
-          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",

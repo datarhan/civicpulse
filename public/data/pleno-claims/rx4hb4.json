@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T10:47:46.268Z",
+  "generatedAt": "2026-07-01T20:28:11.600Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -1180,12 +1180,6 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
             "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
             "similarity": 0.22
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
           }
         ],
         "checkedAgainst": [
@@ -1452,12 +1446,6 @@
         "verdict": "parcial",
         "summary": "Los candidatos 1 y 2 muestran obras de reconstrucción post-DANA, que el concejal reconoce como parte de la agenda urbana, pero no verifican la afirmación sobre el alcance más amplio de dicha agenda.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA",
-            "similarity": 0.22
-          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",

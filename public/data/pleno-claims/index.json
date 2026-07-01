@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T10:47:46.268Z",
+  "generatedAt": "2026-07-01T20:28:11.600Z",
   "version": "1",
   "plenos": [
     {
@@ -34,7 +34,7 @@
         "empleo": 3,
         "movilidad": 1
       },
-      "bytes": 416658
+      "bytes": 416332
     },
     {
       "plenoId": "ma87e0",
@@ -66,7 +66,7 @@
         "other": 3,
         "salud": 1
       },
-      "bytes": 255013
+      "bytes": 254330
     },
     {
       "plenoId": "1sqj7is",
@@ -94,7 +94,7 @@
         "medio-ambiente": 3,
         "vivienda": 12
       },
-      "bytes": 150966
+      "bytes": 150614
     },
     {
       "plenoId": "rx4hb4",
@@ -119,7 +119,7 @@
         "social": 4,
         "medio-ambiente": 12
       },
-      "bytes": 72720
+      "bytes": 72012
     },
     {
       "plenoId": "19gax3o",
@@ -239,7 +239,7 @@
         "movilidad": 2,
         "seguridad": 1
       },
-      "bytes": 638915
+      "bytes": 637194
     },
     {
       "plenoId": "1du4rf5",
@@ -272,7 +272,7 @@
         "seguridad": 1,
         "cultura": 7
       },
-      "bytes": 357386
+      "bytes": 356736
     },
     {
       "plenoId": "otxq2c",
@@ -305,7 +305,7 @@
         "fiscal": 18,
         "cultura": 13
       },
-      "bytes": 419603
+      "bytes": 418879
     },
     {
       "plenoId": "1tgd1h4",
@@ -340,7 +340,7 @@
         "educacion": 1,
         "vivienda": 2
       },
-      "bytes": 1477280
+      "bytes": 1475449
     }
   ],
   "totals": {

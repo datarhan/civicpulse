@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-24T10:47:46.268Z",
+  "generatedAt": "2026-07-01T20:28:11.600Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -294,12 +294,6 @@
         "verdict": "verificado",
         "summary": "La promesa de proponer la asunción de gestión directa del Ayuntamiento para la finalización de las obras se verifica con la existencia de licitaciones para servicios técnicos preparatorios para el inicio de dicha gestión en la unidad de ejecución Santa Rosa II.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ppCWsw4C8jUQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de redacción trabajos  técnicos preparatorios para el inicio de la gestión directa de la unidad de ejecución Santa Rosa II",
-            "similarity": 0.27
-          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ppCWsw4C8jUQK2TEfXGy%2BA%3D%3D",
@@ -1680,12 +1674,6 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CxPUq8yjFygQK2TEfXGy%2BA%3D%3D",
             "snippet": "Obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música",
             "similarity": 0.29
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CxPUq8yjFygQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música",
-            "similarity": 0.29
           }
         ],
         "checkedAgainst": [
@@ -2420,12 +2408,6 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
             "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
             "similarity": 0.25
-          },
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
           }
         ],
         "checkedAgainst": [
@@ -2458,12 +2440,6 @@
         "verdict": "verificado",
         "summary": "Los contratos de 'Obras de habilitación edificio la Botaya Fases II y III' corroboran la recuperación del edificio mencionado en la afirmación, que estaba abandonado.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III",
-            "similarity": 0.25
-          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
@@ -2622,12 +2598,6 @@
         "verdict": "verificado",
         "summary": "Existen contratos de arrendamiento y habilitación de espacios para aulas adicionales destinadas al Conservatorio de Música y Danza, lo cual corrobora la promesa de incorporar el Conservatorio de Danza.",
         "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza",
-            "similarity": 0.27
-          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",

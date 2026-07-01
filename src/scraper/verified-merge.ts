@@ -11,7 +11,7 @@
  * docs/superpowers/specs/2026-06-23-factcheck-rebuild-p2-design.md.
  */
 import type { PlenoClaim } from './pleno-claim'
-import type { ClaimVerdict, ClaimVerification } from './claim-verifier'
+import type { ClaimVerdict, ClaimVerification, ClaimEvidence } from './claim-verifier'
 
 export interface VerifiedItem {
   claim: PlenoClaim
@@ -37,15 +37,50 @@ export interface Overlay {
 }
 
 /**
+ * Remove exact-duplicate evidence rows (same kind + ref + snippet) within one
+ * claim's evidence array, preserving first-seen order. The deterministic verifier
+ * can match a single contract via more than one path (amount + text similarity),
+ * pushing the same {kind,ref,snippet} row twice; the UI (/declaraciones,
+ * /hallazgos) renders the first rows verbatim, so the dup surfaces as the same
+ * citation shown twice. A shared snippet with a DIFFERENT ref is kept — those are
+ * two genuinely distinct contracts that happen to share a title.
+ */
+export function dedupeEvidence(evidence: ClaimEvidence[]): ClaimEvidence[] {
+  if (!Array.isArray(evidence) || evidence.length < 2) return evidence ?? []
+  const seen = new Set<string>()
+  const out: ClaimEvidence[] = []
+  for (const e of evidence) {
+    const key = JSON.stringify([e.kind, e.ref ?? '', (e.snippet ?? '').trim()])
+    if (seen.has(key)) continue
+    seen.add(key)
+    out.push(e)
+  }
+  return out
+}
+
+/** Same verification when nothing was duplicated (keeps a byte-identical
+ *  round-trip for un-affected claims); a fresh object with deduped evidence
+ *  otherwise. Preserves key order so JSON output is stable. */
+function withDedupedEvidence(v: ClaimVerification): ClaimVerification {
+  const ev = v.evidence
+  if (!Array.isArray(ev) || ev.length < 2) return v
+  const deduped = dedupeEvidence(ev)
+  return deduped.length === ev.length ? v : { ...v, evidence: deduped }
+}
+
+/**
  * base items in their original order; for each, the overlay entry (matched by
  * claimId) replaces the verification when present. Overlay entries whose claimId
- * is absent from base are dropped (the claim was removed upstream).
+ * is absent from base are dropped (the claim was removed upstream). Evidence is
+ * deduped on the way out (base- AND overlay-origin), so the published monolith +
+ * chunks never carry a citation twice.
  */
 export function mergeVerified(baseItems: VerifiedItem[], overlay: Overlay): VerifiedItem[] {
   const entries = overlay?.entries ?? {}
   return baseItems.map((it) => {
     const e = entries[it.claim.id]
-    return e ? { claim: it.claim, verification: e.verification } : it
+    const verification = withDedupedEvidence(e ? e.verification : it.verification)
+    return verification === it.verification ? it : { claim: it.claim, verification }
   })
 }
 
