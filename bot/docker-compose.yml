@@ -27,16 +27,29 @@ services:
     container_name: munigraph-bot
     restart: unless-stopped
     env_file: .env
+    environment:
+      # bot/.env sets DB_PATH=./data/bot.db — correct for HOST usage
+      # (npm run dev / npm run export from bot/), but inside the container
+      # (WORKDIR /app/bot) it resolves off the ./data:/data mount to an
+      # ephemeral path. Pin the persistent /data/bot.db so captured quejas
+      # survive `docker compose down`. `environment` wins over env_file.
+      - DB_PATH=/data/bot.db
     # Long-polling mode: WEBHOOK_URL must NOT be set in .env. If it is,
     # the bot will try to register a webhook and fail because Telegram
     # can't reach localhost. Leave the var unset for local testing.
     volumes:
       - ./data:/data
     healthcheck:
-      # Long-polling mode exposes /health on PORT (default 3000).
-      # We don't publish that port — there's nothing for the host to do
-      # with it — but the container can still curl itself.
-      test: ['CMD-SHELL', 'wget -q -O- http://127.0.0.1:3000/health || exit 1']
+      # Long-polling mode exposes /health on PORT (default 3000). We don't
+      # publish that port; the container probes itself. Use `node` — the
+      # node:20-bookworm-slim base image ships no wget/curl.
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          'require("http").get("http://127.0.0.1:3000/health",r=>process.exit(r.statusCode===200?0:1)).on("error",()=>process.exit(1))',
+        ]
       interval: 30s
       timeout: 5s
       start_period: 15s
