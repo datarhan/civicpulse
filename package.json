@@ -84,6 +84,7 @@
     "summarize:press": "npx tsx scripts/summarize-press.ts",
     "compute:press-analytics": "npx tsx scripts/compute-press-analytics.ts",
     "auto-curate-press": "npx tsx scripts/auto-curate-press.ts",
+    "auto-curate-promises": "npx tsx scripts/auto-curate-promises.ts",
     "extract-and-verify:press-claims": "npm run extract:press-claims && npm run verify:press-claims",
     "draft-finding": "npx tsx scripts/draft-finding.ts",
     "fetch-url-evidence": "npx tsx scripts/fetch-url-evidence.ts",
