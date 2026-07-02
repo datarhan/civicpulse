@@ -79,6 +79,10 @@ export async function groundDraft(
   } catch {
     return { ...fail, urlResolved: true, resolvedUrl: res.url }
   }
-  const quoteFound = quoteFoundInText(draft.proposed.quote, stripHtml(html))
-  return { grounded: quoteFound, urlResolved: true, quoteFound, resolvedUrl: res.url, checkedAt }
+  try {
+    const quoteFound = quoteFoundInText(draft.proposed.quote, stripHtml(html))
+    return { grounded: quoteFound, urlResolved: true, quoteFound, resolvedUrl: res.url, checkedAt }
+  } catch {
+    return { ...fail, urlResolved: true, resolvedUrl: res.url }
+  }
 }

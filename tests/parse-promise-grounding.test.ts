@@ -88,4 +88,25 @@ describe('promise-grounding', () => {
     expect(g.grounded).toBe(false)
     expect(g.urlResolved).toBe(false)
   })
+
+  it('groundDraft fails safe when body is unreadable', async () => {
+    const fetchImpl: FetchLike = async () => ({
+      ok: true,
+      url: 'https://x/n',
+      text: async () => {
+        throw new Error('decode error')
+      },
+    })
+    const g = await groundDraft(draft(), fetchImpl, NOW)
+    expect(g.grounded).toBe(false)
+    expect(g.urlResolved).toBe(true)
+  })
+
+  it('quoteFoundInText rejects a short quote', () => {
+    expect(quoteFoundInText('Sí', 'sí, claro que sí')).toBe(false)
+  })
+
+  it('partyDateOk rejects a non-ISO date', () => {
+    expect(partyDateOk('PSOE', '20/06/2026', NOW)).toBe(false)
+  })
 })
