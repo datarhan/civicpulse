@@ -1,0 +1,105 @@
+import { describe, it, expect } from 'vitest'
+import {
+  newPromiseFromDraft,
+  insertPromise,
+  ensureUniqueId,
+  removeAutoPublished,
+  setReviewState,
+} from '../src/scraper/promise-apply'
+import { validatePromisesSnapshot, type PromisesSnapshot } from '../src/scraper/promises'
+import type { DraftNewPromise } from '../src/scraper/promise-draft'
+
+const NOW = '2026-07-02T06:00:00.000Z'
+
+function baseSnap(): PromisesSnapshot {
+  return {
+    version: '1.0',
+    generatedAt: NOW,
+    frozenUntil: null,
+    legalNotice: 'x'.repeat(100),
+    contactUrl: 'https://x.test/issues',
+    methodologyUrl: '/metodologia',
+    items: [],
+  }
+}
+
+function draft(): DraftNewPromise {
+  return {
+    draftId: 'dnp-psoe-abc123',
+    kind: 'new-promise',
+    requiresHumanApproval: true,
+    confidence: 0.83,
+    grounding: { grounded: true, urlResolved: true, quoteFound: true, checkedAt: NOW },
+    decision: 'auto-publish',
+    proposed: {
+      party: 'PSOE',
+      title: 'Carril bici en la Avenida del Camp de Túria',
+      quote: 'Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027.',
+      source: { url: 'https://x.test/n', publisher: 'Levante-EMV' },
+      madeAt: '2026-06-20',
+      topic: 'movilidad',
+      kind: 'anuncio-gobierno',
+      status: 'documentada',
+    },
+    reasoning: [],
+    generatedAt: NOW,
+  }
+}
+
+describe('promise-apply', () => {
+  it('newPromiseFromDraft stamps autoPublished when auto', () => {
+    const p = newPromiseFromDraft(draft(), NOW, { confidence: 0.83, at: NOW })
+    expect(p.status).toBe('documentada')
+    expect(p.autoPublished?.by).toBe('auto-curation-v1')
+    expect(p.autoPublished?.reviewState).toBe('pending-review')
+    expect(p.id.startsWith('ac-')).toBe(true)
+  })
+
+  it('newPromiseFromDraft omits autoPublished when human-approved', () => {
+    const p = newPromiseFromDraft(draft(), NOW)
+    expect(p.autoPublished == null).toBe(true)
+  })
+
+  it('ensureUniqueId disambiguates collisions', () => {
+    const s = new Set(['ac-x', 'ac-x-2'])
+    expect(ensureUniqueId('ac-x', s)).toBe('ac-x-3')
+    expect(ensureUniqueId('ac-y', s)).toBe('ac-y')
+  })
+
+  it('insertPromise produces a snapshot that re-validates', () => {
+    const p = newPromiseFromDraft(draft(), NOW, { confidence: 0.83, at: NOW })
+    const next = insertPromise(baseSnap(), p)
+    expect(next.items).toHaveLength(1)
+    // whole-snapshot re-validation must pass
+    validatePromisesSnapshot(JSON.stringify(next))
+  })
+
+  it('setReviewState + removeAutoPublished operate by id', () => {
+    const p = newPromiseFromDraft(draft(), NOW, { confidence: 0.83, at: NOW })
+    const snap = insertPromise(baseSnap(), p)
+    const id = snap.items[0].id
+    const reviewed = setReviewState(snap, id, 'reviewed', NOW)
+    expect(reviewed.items[0].autoPublished?.reviewState).toBe('reviewed')
+    expect(reviewed.items[0].autoPublished?.reviewedAt).toBe(NOW)
+    const retracted = removeAutoPublished(snap, id)
+    expect(retracted.items).toHaveLength(0)
+  })
+
+  it('removeAutoPublished refuses to remove a non-auto-published promise', () => {
+    const snap = baseSnap()
+    snap.items.push({
+      id: 'human-1',
+      party: 'PP',
+      title: 'Promesa humana',
+      quote: 'Una cita verbatim con longitud suficiente para el validador.',
+      source: { url: 'https://x.test/h', publisher: 'X' },
+      madeAt: '2026-01-01',
+      topic: 'fiscal',
+      kind: 'programa-electoral',
+      status: 'documentada',
+      evidence: [],
+      createdAt: '2026-01-01',
+    })
+    expect(() => removeAutoPublished(snap, 'human-1')).toThrow(/not auto-published/)
+  })
+})
