@@ -67,11 +67,11 @@ async function callCurator(action, args = {}) {
   return { ok: true, ...json }
 }
 
-async function callCommit(message) {
+async function callCommit(message, files) {
   const res = await fetch('/api/curator/commit', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ message }),
+    body: JSON.stringify(files ? { message, files } : { message }),
   })
   const json = await res.json().catch(() => ({}))
   if (!res.ok)
