@@ -102,6 +102,14 @@ const FindingIdRe = /^f-[a-z0-9-]{3,80}$/
 const PartyEnum = z.enum(['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'])
 const SeverityEnum = z.enum(['informational', 'notable', 'critical'])
 
+// Files the commit endpoint is allowed to `git add`. Generalized from
+// the original hard-coded pleno-findings.json so the promise-review
+// dashboard can also commit promises.json — but strictly allowlisted so
+// a crafted request body can never stage an arbitrary path (defence in
+// depth alongside the argv-array `git add`, which already blocks shell
+// tricks).
+const COMMIT_FILE_ALLOWLIST = ['public/data/pleno-findings.json', 'public/data/promises.json']
+
 // Per-evidence ref the curator opts in to publishing as
 // `corroboration[]` on the finding. Kind is restricted to the three
 // curator-only values; the verifier-only kinds (tender / bdns / etc.)
@@ -261,6 +269,39 @@ const ActionSchemas = {
     .refine((d) => d.mode === 'assign' || !d.slug, {
       message: 'slug only allowed with mode=assign',
     }),
+  // ─── Promise auto-curator review queue (Plan B) ──────────────────────
+  // Apply one auto-curator draft → promises.json. The apply-promise-draft
+  // CLI does the read→validate→mutate→re-validate→write + LOREG freeze
+  // fail-closed; the dashboard only invokes it. `draftId` is the
+  // auto-curator's `dnp-<slug>` identifier.
+  'apply-promise-draft': z
+    .object({
+      draftId: z.string().regex(/^dnp-[a-z0-9-]{3,120}$/),
+    })
+    .strict(),
+  // Reject a draft → the CLI moves it to the local-only review archive.
+  // Optional curator reason (short, shell-metachar-guarded like every
+  // other free-text arg in this file).
+  'reject-promise-draft': z
+    .object({
+      draftId: z.string().regex(/^dnp-[a-z0-9-]{3,120}$/),
+      reason: SafeStringShort.optional(),
+    })
+    .strict(),
+  // Retract an already auto-published promise from promises.json (the CLI
+  // tombstones it in the archive). Keyed by the published promise id.
+  'retract-promise': z
+    .object({
+      promiseId: z.string().regex(/^[a-z0-9-]{3,80}$/),
+    })
+    .strict(),
+  // Mark an auto-published promise as human-reviewed (clears the
+  // pending-review badge). Keyed by the published promise id.
+  'mark-reviewed-promise': z
+    .object({
+      promiseId: z.string().regex(/^[a-z0-9-]{3,80}$/),
+    })
+    .strict(),
 }
 
 /** Schema for the `POST /api/curator/jobs` body — separate from
@@ -281,6 +322,30 @@ const TranscribeEvidenceJobSchema = z
         engine: z.enum(['mlx', 'local', 'openai']).optional(),
       })
       .strict(),
+  })
+  .strict()
+
+/**
+ * Schema for the `POST /api/curator/commit` body. `message` is the commit
+ * message; optional `files` selects which allowlisted snapshot(s) to stage
+ * (defaults to pleno-findings.json for back-compat). Every entry must be on
+ * COMMIT_FILE_ALLOWLIST — the refine rejects anything else with a 400, so a
+ * crafted body can never `git add` an arbitrary path.
+ */
+const CommitBodySchema = z
+  .object({
+    message: SafeStringLong.refine((s) => s.length >= 5, {
+      message: 'message must be ≥5 chars',
+    }),
+    files: z
+      .array(
+        z.string().refine((f) => COMMIT_FILE_ALLOWLIST.includes(f), {
+          message: 'file not on commit allowlist',
+        }),
+      )
+      .min(1)
+      .max(COMMIT_FILE_ALLOWLIST.length)
+      .optional(),
   })
   .strict()
 
@@ -358,6 +423,20 @@ function buildArgv(action, args) {
       if (args.reason) argv.push('--reason', args.reason)
       if (args.by) argv.push('--by', args.by)
       return argv
+    }
+    case 'apply-promise-draft': {
+      return ['run', 'apply-promise-draft', '--', args.draftId]
+    }
+    case 'reject-promise-draft': {
+      const argv = ['run', 'apply-promise-draft', '--', '--reject', args.draftId]
+      if (args.reason) argv.push(args.reason)
+      return argv
+    }
+    case 'retract-promise': {
+      return ['run', 'apply-promise-draft', '--', '--retract', args.promiseId]
+    }
+    case 'mark-reviewed-promise': {
+      return ['run', 'apply-promise-draft', '--', '--mark-reviewed', args.promiseId]
     }
     default:
       throw new Error(`unknown action ${action}`)
@@ -545,26 +624,30 @@ async function handleCommit(req, res, cwd) {
       return
     }
   }
-  const messageParse = z
-    .object({
-      message: SafeStringLong.refine((s) => s.length >= 5, {
-        message: 'message must be ≥5 chars',
-      }),
-    })
-    .strict()
-    .safeParse(parsed)
-  if (!messageParse.success) {
+  const bodyParse = CommitBodySchema.safeParse(parsed)
+  if (!bodyParse.success) {
     sendJson(res, 400, {
       error: 'invalid args',
-      issues: messageParse.error.issues.map((i) => ({ path: i.path, message: i.message })),
+      issues: bodyParse.error.issues.map((i) => ({ path: i.path, message: i.message })),
     })
     return
   }
-  const message = messageParse.data.message
+  const message = bodyParse.data.message
+  // Default to pleno-findings.json for back-compat with the original
+  // single-file commit endpoint. `files` is already allowlist-restricted
+  // by the schema; re-assert here (belt + suspenders) so a future schema
+  // change can never silently widen what `git add` touches.
+  const files = bodyParse.data.files ?? ['public/data/pleno-findings.json']
+  for (const f of files) {
+    if (!COMMIT_FILE_ALLOWLIST.includes(f)) {
+      sendJson(res, 400, { error: `file not on commit allowlist: ${f}` })
+      return
+    }
+  }
   const result = await enqueue(async () => {
     const startedAt = Date.now()
     const steps = [
-      ['add', ['add', 'public/data/pleno-findings.json']],
+      ['add', ['add', ...files]],
       ['commit', ['commit', '-m', message]],
       ['push', ['push']],
     ]
@@ -870,6 +953,68 @@ function handleVoiceprintsRead(req, res, cwd) {
     totalCouncillors: officials.length,
     enrolledCount: enrollmentBySlug.size,
     rows,
+  })
+}
+
+/**
+ * GET /api/curator/promise-queue — return the local-only promise
+ * auto-curator review queue for the dashboard.
+ *
+ * Reads editorial/promise-review-queue.json (the pending DraftNewPromise
+ * rows the auto-curator emitted) plus editorial/promise-review-archive.json
+ * (applied / rejected / tombstoned history) from the repo root. BOTH live
+ * under the gitignored editorial/ directory — they carry UNREVIEWED party
+ * attributions that must never leave the laptop, so (exactly like
+ * handleVoiceprintsRead) this endpoint is dev-mode-only + origin-checked and
+ * reads a purely local file. The curator dashboard is the only consumer.
+ *
+ * Either file may be absent (the auto-curator hasn't run yet) → returns an
+ * empty queue rather than an error. Corrupt JSON is logged + treated as
+ * empty so a single bad file never blanks the dashboard.
+ */
+function handlePromiseQueueRead(req, res, cwd) {
+  if (req.method !== 'GET') {
+    sendJson(res, 405, { error: 'method not allowed' })
+    return
+  }
+  {
+    const originErr = checkOrigin(req)
+    if (originErr) {
+      sendJson(res, 403, { error: originErr })
+      return
+    }
+  }
+  // Pending drafts + the queue's own generatedAt (when it was last built).
+  const queuePath = resolve(cwd, 'editorial/promise-review-queue.json')
+  let generatedAt = null
+  /** @type {Array<object>} */
+  let drafts = []
+  if (existsSync(queuePath)) {
+    try {
+      const q = JSON.parse(readFileSync(queuePath, 'utf8'))
+      generatedAt = typeof q.generatedAt === 'string' ? q.generatedAt : null
+      drafts = Array.isArray(q.drafts) ? q.drafts : []
+    } catch (err) {
+      // Corrupt queue → surface an empty list rather than crashing the
+      // dashboard. Mirrors the defensive reads in handleVoiceprintsRead.
+      process.stderr.write(`[promise-queue] queue unreadable: ${err.message}\n`)
+    }
+  }
+  // Archive → the dashboard only needs its count for a header stat.
+  const archivePath = resolve(cwd, 'editorial/promise-review-archive.json')
+  let archivedCount = 0
+  if (existsSync(archivePath)) {
+    try {
+      const a = JSON.parse(readFileSync(archivePath, 'utf8'))
+      if (Array.isArray(a.drafts)) archivedCount = a.drafts.length
+    } catch (err) {
+      process.stderr.write(`[promise-queue] archive unreadable: ${err.message}\n`)
+    }
+  }
+  sendJson(res, 200, {
+    generatedAt: generatedAt ?? new Date().toISOString(),
+    drafts,
+    archivedCount,
   })
 }
 
@@ -1181,6 +1326,17 @@ export function viteCuratorPlugin(opts = {}) {
           next()
         }
       })
+      server.middlewares.use('/api/curator/promise-queue', (req, res, next) => {
+        if (!req.url || req.url === '/' || req.url === '') {
+          try {
+            handlePromiseQueueRead(req, res, cwd)
+          } catch (err) {
+            sendJson(res, 500, { error: err.message })
+          }
+        } else {
+          next()
+        }
+      })
       // /api/curator/pleno-speakers
       //   /                                        list
       //   /<plenoId>                               detail JSON
@@ -1256,6 +1412,8 @@ export function viteCuratorPlugin(opts = {}) {
 export const __test = {
   ActionSchemas,
   TranscribeEvidenceJobSchema,
+  CommitBodySchema,
+  COMMIT_FILE_ALLOWLIST,
   buildArgv,
   ALLOWED_ORIGINS,
   MAX_BODY_BYTES,
