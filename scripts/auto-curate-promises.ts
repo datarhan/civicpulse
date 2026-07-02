@@ -102,6 +102,11 @@ function buildDiscoveryInput(
   press: { items?: Array<{ title: string; link: string; date: string; source?: string }> } | null,
   agendas: { items?: Array<{ title: string; url?: string; date?: string }> } | null,
 ): PromiseDiscoveryInput {
+  if (agendas && !('items' in agendas)) {
+    process.stderr.write(
+      '[auto-curate-promises] ⚠ plenos-agendas.json has no top-level "items" key — agenda discovery source is inert (Plan A discovery is press-only; agenda wiring is deferred to Plan B)\n',
+    )
+  }
   const existingTitles = snap.items.map((p) => p.title)
   const pressItems = (press?.items ?? []).slice(0, 60).map((n) => ({
     title: n.title,
@@ -122,7 +127,7 @@ function buildDiscoveryInput(
     existingTitles,
     sources: [
       { kind: 'press', items: pressItems },
-      { kind: 'pleno_agenda', items: agendaItems },
+      { kind: 'pleno_agenda', items: agendaItems }, // inert in Plan A — plenos-agendas.json uses key "plenos", not "items"; agenda wiring is Plan-B
     ],
   }
 }
