@@ -294,4 +294,43 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
     }
     expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/reviewState/)
   })
+
+  it('accepts an evidence entry with kind "tender"', () => {
+    const base = {
+      version: '1.0',
+      generatedAt: '2026-07-02',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+    }
+    const ok = {
+      ...base,
+      items: [
+        {
+          id: 'p-tender-ev',
+          party: 'PSOE',
+          title: 'Obra con adjudicación',
+          quote: 'Una promesa verbatim con longitud más que suficiente para el validador.',
+          source: { url: 'https://x.test/n', publisher: 'X' },
+          madeAt: '2026-01-01',
+          topic: 'urbanismo',
+          kind: 'anuncio-gobierno',
+          status: 'en-progreso',
+          evidence: [
+            {
+              date: '2026-05-01',
+              url: 'https://contrataciondelestado.es/deeplink',
+              quote: 'Contrato de obra adjudicado por 240.000 €',
+              publisher: 'PLACSP',
+              kind: 'tender',
+              addedBy: 'auto-curation-v1',
+            },
+          ],
+          createdAt: '2026-01-01',
+        },
+      ],
+    }
+    expect(() => validatePromisesSnapshot(JSON.stringify(ok))).not.toThrow()
+  })
 })
