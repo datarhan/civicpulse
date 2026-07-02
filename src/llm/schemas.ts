@@ -16,6 +16,14 @@ import {
   ALLOWED_CLAIM_TOPICS,
   ALLOWED_ACCUSATION_SUBTYPES,
 } from '../scraper/pleno-claim'
+import {
+  ALLOWED_PARTIES,
+  ALLOWED_TOPICS,
+  ALLOWED_KINDS,
+  type Party,
+  type Topic,
+  type Kind,
+} from '../scraper/promises'
 
 // Mirrors src/scraper/promises.ts V1_STATUSES set. Kept as an array because
 // zod.enum() needs a tuple of literals at build time, not a runtime Set.
@@ -592,3 +600,26 @@ function stripAndTighten(node: unknown): Record<string, unknown> {
   if (Array.isArray(obj.oneOf)) obj.oneOf = obj.oneOf.map((x) => stripAndTighten(x))
   return obj
 }
+
+// ─── Promise discovery (auto-curator Phase 1) ──────────────────────────────
+// The LLM proposes NEW public commitments not yet tracked. status is ALWAYS
+// 'documentada' downstream (this schema omits it); the deterministic grounder
+// + curator gate decide what publishes. Enums mirror src/scraper/promises.ts.
+export const PromiseDiscoveryItemSchema = z.object({
+  party: z.enum(ALLOWED_PARTIES as unknown as [Party, ...Party[]]),
+  title: z.string().min(4).max(200),
+  quote: z.string().min(20).max(1500),
+  sourceUrl: z.string().url(),
+  publisher: z.string().min(1).max(100),
+  madeAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  topic: z.enum(ALLOWED_TOPICS as unknown as [Topic, ...Topic[]]),
+  kind: z.enum(ALLOWED_KINDS as unknown as [Kind, ...Kind[]]),
+  confidence: z.number().min(0).max(1),
+  reasoning: z.string().min(10).max(500),
+})
+export type PromiseDiscoveryItem = z.infer<typeof PromiseDiscoveryItemSchema>
+
+export const PromiseDiscoveryBatchSchema = z.object({
+  promises: z.array(PromiseDiscoveryItemSchema).max(12),
+})
+export type PromiseDiscoveryBatch = z.infer<typeof PromiseDiscoveryBatchSchema>

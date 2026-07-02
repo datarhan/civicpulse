@@ -83,6 +83,14 @@ export interface SourceRef {
   quote?: string
 }
 
+export interface AutoPublishedMeta {
+  at: string // ISO
+  by: 'auto-curation-v1'
+  confidence: number // 0..1
+  reviewState: 'pending-review' | 'reviewed' | 'retracted'
+  reviewedAt?: string
+}
+
 export interface Promise {
   id: string
   party: Party
@@ -119,6 +127,7 @@ export interface Promise {
    * cumplida/parcial/no-ejecutada/inviable.
    */
   dueBy?: string
+  autoPublished?: AutoPublishedMeta | null
 }
 
 export interface PromisesSnapshot {
@@ -223,6 +232,21 @@ function validatePromise(p: unknown, idx: number): Promise {
       )
     }
   }
+  if (r.autoPublished !== undefined && r.autoPublished !== null) {
+    const ap = r.autoPublished as Record<string, unknown>
+    assertIsoDate(ap.at, `items[${idx}].autoPublished.at`)
+    if (ap.by !== 'auto-curation-v1')
+      throw new ValidationError(`items[${idx}].autoPublished.by must be 'auto-curation-v1'`)
+    if (typeof ap.confidence !== 'number' || ap.confidence < 0 || ap.confidence > 1)
+      throw new ValidationError(`items[${idx}].autoPublished.confidence must be 0..1`)
+    assertEnum(
+      ap.reviewState,
+      ['pending-review', 'reviewed', 'retracted'] as const,
+      `items[${idx}].autoPublished.reviewState`,
+    )
+    if (ap.reviewedAt !== undefined && ap.reviewedAt !== null)
+      assertIsoDate(ap.reviewedAt, `items[${idx}].autoPublished.reviewedAt`)
+  }
   return {
     id: r.id as string,
     party: r.party as Party,
@@ -245,6 +269,7 @@ function validatePromise(p: unknown, idx: number): Promise {
     response: (r.response as Promise['response']) ?? null,
     ...(typeof r.dueBy === 'string' ? { dueBy: r.dueBy } : {}),
     ...(typeof r.departmentSlug === 'string' ? { departmentSlug: r.departmentSlug } : {}),
+    autoPublished: (r.autoPublished as Promise['autoPublished']) ?? null,
   }
 }
 

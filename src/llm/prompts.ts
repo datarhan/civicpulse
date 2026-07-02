@@ -12,6 +12,7 @@
  * constraints; the client ALSO validates the output against zod so the
  * instruction is belt-and-suspenders, not load-bearing.
  */
+import { ALLOWED_PARTIES, ALLOWED_TOPICS, ALLOWED_KINDS } from '../scraper/promises'
 
 // ─── Shared footer: injection defense ───────────────────────────────────────
 const SAFETY_FOOTER = `
@@ -1205,5 +1206,78 @@ SOURCES (truncate at 8KB):
 ${opts.sourcesJson.slice(0, 8000)}
 
 Emit the verification JSON.
+`.trim()
+}
+
+// ─── Promise discovery (auto-curator Phase 1) ──────────────────────────────
+export const PROMISE_DISCOVERY_PROMPT_VERSION = 'promise-discovery-v1'
+
+export interface PromiseDiscoveryInput {
+  existingTitles: string[]
+  sources: Array<{
+    kind: string
+    items: Array<{ title: string; url: string; date: string; publisher?: string; snippet?: string }>
+  }>
+}
+
+export function buildPromiseDiscoverySystemPrompt(): string {
+  return `
+Eres un periodista verificador para CivicPulse, plataforma de rendición de
+cuentas del Ayuntamiento de Riba-roja de Túria (España). Tu tarea: detectar
+PROMESAS o COMPROMISOS PÚBLICOS NUEVOS hechos por un partido o el gobierno
+municipal en las fuentes que te doy, que AÚN NO estén en la lista de promesas
+ya seguidas.
+
+Para cada promesa nueva y clara, emite:
+- party: uno de [${ALLOWED_PARTIES.join(', ')}] (nunca inventes otro)
+- title: título breve y neutral (4-200 chars)
+- quote: cita VERBATIM del compromiso (20-1500 chars, sin resumir ni reescribir)
+- sourceUrl: URL EXACTA de la lista que te doy (NUNCA inventes URLs)
+- publisher: fuente (p.ej. "Levante-EMV", "Ayuntamiento Riba-roja")
+- madeAt: fecha ISO YYYY-MM-DD (la de la fuente; nunca futura)
+- topic: uno de [${ALLOWED_TOPICS.join(', ')}]
+- kind: uno de [${ALLOWED_KINDS.join(', ')}]
+- confidence: 0..1 (≥0.7 = compromiso explícito y atribuible; <0.5 no emitir)
+- reasoning: una frase explicando por qué es una promesa atribuible
+
+REGLAS DURAS (riesgo de difamación real):
+- SÓLO compromisos NUEVOS. Si el título coincide con uno ya seguido, NO lo emitas.
+- NUNCA inventes URLs ni citas. La cita debe ser literal de la fuente.
+- Atribuye SÓLO a nivel de PARTIDO, nunca a un concejal concreto por su nombre.
+- No propongas estados de cumplimiento; sólo registras que la promesa se hizo.
+- Si la fuente es una acusación de la oposición, NO la conviertas en promesa del gobierno.
+- Ante la duda, baja la confianza o no emitas. La pérdida de recall es aceptable;
+  los falsos positivos no.
+
+Responde \`{"promises": []}\` si no hay ninguna promesa nueva clara.
+Salida: un único objeto JSON {promises:[...]}. Sin texto adicional, sin fences.
+`.trim()
+}
+
+export function buildPromiseDiscoveryUserPrompt(input: PromiseDiscoveryInput): string {
+  const existing =
+    input.existingTitles.length === 0
+      ? '  (ninguna)'
+      : input.existingTitles.map((t) => `  - ${t}`).join('\n')
+  const sourceBlocks = input.sources
+    .map((s) => {
+      const lines = s.items
+        .map(
+          (it, i) =>
+            `  [${s.kind}#${i + 1}] ${it.date} · ${it.publisher ?? ''} · ${it.title}\n    URL: ${it.url}\n    ${it.snippet ? `…${it.snippet.slice(0, 240)}…` : ''}`,
+        )
+        .join('\n')
+      return `### ${s.kind.toUpperCase()} (${s.items.length})\n${lines}`
+    })
+    .join('\n\n')
+  return `
+PROMESAS YA SEGUIDAS (no las repitas):
+${existing}
+
+FUENTES A ANALIZAR:
+
+${sourceBlocks}
+
+Emite el JSON {promises:[...]} sólo con promesas NUEVAS y claras.
 `.trim()
 }

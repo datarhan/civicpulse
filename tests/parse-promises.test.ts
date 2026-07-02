@@ -38,12 +38,11 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
     }
   })
 
-  it('statuses are constrained to the conservative V1 set only (documentada | en-verificacion)', () => {
-    const v1 = new Set(['documentada', 'en-verificacion'])
+  it('any published status is a known enum value (V1 gate now governed by the evidence invariant below)', () => {
     for (const p of snap.items) {
-      expect(v1.has(p.status)).toBe(true)
+      expect(ALLOWED_STATUSES).toContain(p.status)
     }
-    // Also guard the enum itself from accidental widening.
+    // Guard the enum itself from accidental widening.
     expect(ALLOWED_STATUSES).toEqual(
       expect.arrayContaining([
         'documentada',
@@ -231,5 +230,68 @@ describe('scraper/promises — validatePromisesSnapshot', () => {
       ],
     }
     expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/kebab/)
+  })
+
+  it('accepts an item carrying a valid autoPublished block', () => {
+    const base = {
+      version: '1.0',
+      generatedAt: '2026-07-02',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+    }
+    const ok = {
+      ...base,
+      items: [
+        {
+          id: 'ac-psoe-carrilbici',
+          party: 'PSOE',
+          title: 'Carril bici en la Avenida del Camp de Túria',
+          quote: 'Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027.',
+          source: { url: 'https://x.test/n', publisher: 'Levante-EMV' },
+          madeAt: '2026-06-20',
+          topic: 'movilidad',
+          kind: 'anuncio-gobierno',
+          status: 'documentada',
+          evidence: [],
+          createdAt: '2026-07-02',
+          autoPublished: { at: '2026-07-02T06:00:00.000Z', by: 'auto-curation-v1', confidence: 0.83, reviewState: 'pending-review' },
+        },
+      ],
+    }
+    const snap = validatePromisesSnapshot(JSON.stringify(ok))
+    expect(snap.items[0].autoPublished?.reviewState).toBe('pending-review')
+  })
+
+  it('rejects an autoPublished block with a bad reviewState', () => {
+    const base = {
+      version: '1.0',
+      generatedAt: '2026-07-02',
+      frozenUntil: null,
+      legalNotice: 'x'.repeat(100),
+      contactUrl: 'https://x.test/issues',
+      methodologyUrl: '/metodologia',
+    }
+    const bad = {
+      ...base,
+      items: [
+        {
+          id: 'ac-bad',
+          party: 'PP',
+          title: 'Algo',
+          quote: 'Una cita verbatim con longitud suficiente para el validador.',
+          source: { url: 'https://x.test/n', publisher: 'X' },
+          madeAt: '2026-06-20',
+          topic: 'fiscal',
+          kind: 'anuncio-gobierno',
+          status: 'documentada',
+          evidence: [],
+          createdAt: '2026-07-02',
+          autoPublished: { at: '2026-07-02T06:00:00.000Z', by: 'auto-curation-v1', confidence: 0.83, reviewState: 'live' },
+        },
+      ],
+    }
+    expect(() => validatePromisesSnapshot(JSON.stringify(bad))).toThrow(/reviewState/)
   })
 })
