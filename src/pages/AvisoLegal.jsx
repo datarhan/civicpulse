@@ -80,7 +80,9 @@ export default function AvisoLegal() {
         </p>
         <ul>
           <li>
-            El motor de sugerencias sigue ejecutándose cada noche pero no aplica cambios de estado.
+            El proceso diario de auto-curación se detiene por completo: no propone ni auto-publica
+            ninguna promesa, y el publicador automático con umbral de confianza queda igualmente
+            suspendido.
           </li>
           <li>Los estados publicados quedan congelados a la fecha de inicio del periodo.</li>
           <li>
@@ -92,6 +94,18 @@ export default function AvisoLegal() {
             Las solicitudes de rectificación siguen atendiéndose en el mismo plazo de 24/72 h.
           </li>
         </ul>
+      </Card>
+
+      <Card style={{ marginTop: 14 }}>
+        <SectionHead eyebrow="Auto-curación" title="Publicación automática con revisión" />
+        <p>
+          Un proceso diario puede publicar automáticamente promesas no acusatorias extraídas de
+          fuentes públicas cuando superan un umbral de confianza y su cita textual queda anclada a
+          la fuente. Cada registro auto-publicado se marca como «publicada automáticamente ·
+          revisión pendiente» y es retractable. Los veredictos de incumplimiento y el estado
+          «inviable» siguen requiriendo intervención humana, y todo el proceso se detiene durante el
+          periodo electoral (LOREG art. 50).
+        </p>
       </Card>
 
       <Card style={{ marginTop: 14 }}>
@@ -220,7 +234,7 @@ export default function AvisoLegal() {
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Versión vigente: 20 de abril de 2026. Las modificaciones a este aviso legal quedan trazadas
+        Versión vigente: 2 de julio de 2026. Las modificaciones a este aviso legal quedan trazadas
         en el historial git del repositorio.
       </p>
     </div>

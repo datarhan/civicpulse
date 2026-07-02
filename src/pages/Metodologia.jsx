@@ -41,15 +41,26 @@ export default function Metodologia() {
           </li>
           <li>
             <strong>Conservadurismo en los estados.</strong> El estado por defecto es{' '}
-            <em>documentada</em>. Sólo un curador humano puede subir un estado a{' '}
-            <em>cumplida / parcial / no-ejecutada / inviable</em>, y únicamente con una cadena de
-            evidencia dateada y enlazada.
+            <em>documentada</em>. Los estados no acusatorios pueden auto-publicarse cuando una
+            propuesta supera el umbral de confianza (≥0,70) <em>y</em> queda anclada a su fuente
+            (URL que resuelve + cita textual presente); se marcan en su ficha con «publicada
+            automáticamente · revisión pendiente» hasta que un curador los revisa. El veredicto{' '}
+            <em>no-ejecutada</em> (incumplimiento) nunca se auto-publica: queda listo para publicar
+            con un solo clic humano. El estado <em>inviable</em> es siempre exclusivamente humano,
+            con justificación documental.
           </li>
           <li>
-            <strong>Transparencia del algoritmo.</strong> Un motor de inferencia nocturno escanea
-            prensa y plenos y emite <em>propuestas</em> con su cadena de razonamiento. Las
-            propuestas se muestran claramente etiquetadas como "propuesta automática · pendiente de
-            revisión humana" y nunca sustituyen al estado publicado.
+            <strong>Transparencia del algoritmo.</strong> Un proceso diario escanea prensa y plenos
+            con un modelo de lenguaje y emite <em>propuestas</em> con su cadena de razonamiento.
+            Cada propuesta pasa una verificación determinista de anclaje; las que superan el umbral
+            de confianza (≥0,70) y quedan ancladas a su fuente se auto-publican etiquetadas como
+            «publicada automáticamente · revisión pendiente», y las demás se muestran como
+            "propuesta automática · pendiente de revisión humana" y esperan en cola. Los veredictos
+            acusatorios (incumplimiento) y el estado <em>inviable</em> nunca se auto-publican (ver{' '}
+            <a href="#auto-curacion-promesas" style={{ color: 'var(--civic)' }}>
+              auto-curación
+            </a>
+            ).
           </li>
           <li>
             <strong>Derecho de rectificación.</strong> Cualquier persona, colectivo o partido puede
@@ -140,10 +151,15 @@ export default function Metodologia() {
           title="Límites del inferido algorítmico"
         />
         <ul style={{ margin: '8px 0 0', paddingLeft: 20 }}>
-          <li>No publica cambios de estado sin aprobación humana.</li>
           <li>
-            No propone nunca <em>cumplida</em>, <em>no-ejecutada</em> ni <em>inviable</em>. Máximo:{' '}
-            <em>en-progreso</em> cuando encuentra verbos de avance en una fuente periodística.
+            No auto-publica ninguna propuesta que no supere el umbral de confianza (≥0,70){' '}
+            <em>y</em> la verificación determinista de anclaje (URL que resuelve + cita textual
+            presente); lo que no lo supera espera revisión humana en cola.
+          </li>
+          <li>
+            No auto-publica veredictos acusatorios: <em>no-ejecutada</em> (incumplimiento) queda
+            como propuesta lista para publicar con un solo clic humano, e <em>inviable</em> es
+            siempre exclusivamente humano.
           </li>
           <li>
             No genera titulares ni resúmenes originales. Sólo cita la cabecera literal de las
@@ -151,8 +167,41 @@ export default function Metodologia() {
           </li>
           <li>No puntúa ni rankea partidos por tasa de cumplimiento.</li>
           <li>
-            Durante el periodo electoral oficial (LOREG art. 50) el motor sigue ejecutándose pero
-            sus propuestas no pueden aplicarse al estado publicado.
+            Durante el periodo electoral oficial (LOREG art. 50) el proceso se detiene por completo:
+            no propone ni auto-publica nada.
+          </li>
+        </ul>
+      </Card>
+
+      <Card style={{ marginTop: 14 }} id="auto-curacion-promesas">
+        <SectionHead
+          eyebrow="Auto-curación · /promesas"
+          title="Cómo se auto-publican promesas (y qué nunca se auto-publica)"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Un proceso diario propone promesas nuevas y cambios de estado a partir de fuentes públicas
+          (prensa, plenos) usando un modelo de lenguaje. Cada propuesta pasa por una verificación
+          determinista de anclaje: la URL de la fuente debe resolver y la cita textual debe aparecer
+          literalmente en ella. Sólo se publica automáticamente lo que supera un umbral de confianza
+          (≥0,70) <em>y</em> queda anclado; el resto espera revisión humana en cola.
+        </p>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
+          <li>
+            Lo auto-publicado se marca en su ficha con «publicada automáticamente · revisión
+            pendiente» hasta que un curador lo revisa.
+          </li>
+          <li>
+            Un veredicto de «no ejecutada» (incumplimiento) nunca se auto-publica: queda como
+            propuesta lista para publicar con un solo clic humano.
+          </li>
+          <li>El estado «inviable» es siempre exclusivamente humano.</li>
+          <li>
+            Durante el periodo electoral (LOREG art. 50) el proceso se detiene por completo: no
+            propone ni publica nada.
+          </li>
+          <li>
+            El anclaje demuestra que la <em>fuente</em> existe, no que una inferencia acusatoria sea
+            correcta; por eso los veredictos de incumplimiento mantienen a una persona en el bucle.
           </li>
         </ul>
       </Card>
@@ -184,9 +233,10 @@ export default function Metodologia() {
             <code>dueBySource</code>, ≥20 caracteres). Sin cita literal no hay plazo.
           </li>
           <li>
-            <strong>No cambiamos estados automáticamente.</strong> El aviso de plazo vencido es una
-            señalización editorial; el estado de la promesa o del voto no pasa a{' '}
-            <em>no-ejecutada</em> sin curación humana (mismo principio que la sección anterior).
+            <strong>El aviso de plazo vencido no cambia ningún estado.</strong> Es una señalización
+            editorial; por sí solo, el estado de la promesa o del voto no pasa a{' '}
+            <em>no-ejecutada</em>, que —como todo veredicto de incumplimiento— exige curación humana
+            (un solo clic, nunca automático; ver la sección de auto-curación).
           </li>
           <li>
             <strong>Derecho de réplica intacto.</strong> Cualquier persona o grupo afectado puede
@@ -554,9 +604,10 @@ export default function Metodologia() {
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 21 de mayo de 2026 (añadida la sección "Laboratorio de
-        prensa" con escala de veredictos, disciplina antilibellos, Wayback, ClaimReview, bitácora de
-        correcciones y mapeo IFCN). Cambios futuros sólo mediante PR público.
+        Última revisión de este documento: 2 de julio de 2026 (reconciliada la metodología con la
+        auto-curación de promesas: publicación automática de estados no acusatorios sobre umbral de
+        confianza + anclaje, con marca de revisión pendiente). Cambios futuros sólo mediante PR
+        público.
       </p>
     </div>
   )
