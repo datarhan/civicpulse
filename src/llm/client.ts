@@ -724,7 +724,12 @@ async function callGemini(req: RawCall): Promise<RawResult> {
     schemaJson
 
   return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
-    const args = ['-p', mergedPrompt, '-m', req.config.geminiModel, '-o', 'json', '--yolo']
+    // SECURITY: no `--yolo` (auto-approve all tool actions). The prompt carries
+    // untrusted scraped content and gemini is agentic, so auto-approving tools
+    // would be an injection→RCE path (same class as the agy backend). `-o json`
+    // is the output-envelope format, not a permission flag — keep it. Our use is
+    // pure text-gen; an unapproved tool request fails safe rather than auto-runs.
+    const args = ['-p', mergedPrompt, '-m', req.config.geminiModel, '-o', 'json']
     const child = spawn(req.config.geminiBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
     let stderr = ''
