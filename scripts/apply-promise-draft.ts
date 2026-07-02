@@ -64,7 +64,11 @@ async function readSnap() {
   const snap = validatePromisesSnapshot(raw) // never write on top of a broken snapshot
   if (isFrozen(snap)) {
     console.error('[apply-promise-draft] LOREG freeze active — refusing to mutate promises.json')
-    process.exit(0)
+    // Exit non-zero so the /curator dashboard's `exitCode !== 0` gate skips the
+    // commit and surfaces this message, instead of misreading a clean exit as a
+    // successful publish. The batch job (auto-curate-promises.ts) keeps exit 0
+    // on freeze deliberately — a frozen batch run is a clean no-op, not a failure.
+    process.exit(3)
   }
   return snap
 }
