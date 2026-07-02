@@ -153,6 +153,15 @@ async function main() {
     console.error(`[apply-promise-draft] draft "${draftId}" not in queue`)
     process.exit(1)
   }
+  if (draft.kind !== 'new-promise') {
+    // This path only publishes brand-new promises. status-change drafts advance
+    // an EXISTING promise's status and are applied via their own path (see the
+    // status-change apply CLI); refuse rather than misinterpret the draft here.
+    console.error(
+      `[apply-promise-draft] draft "${draftId}" is a ${draft.kind} draft — this path only publishes new-promise drafts`,
+    )
+    process.exit(1)
+  }
   const snap = await readSnap()
   const promise = newPromiseFromDraft(draft, now) // no autoPublish meta → human-approved
   await writeSnap(insertPromise(snap, promise))

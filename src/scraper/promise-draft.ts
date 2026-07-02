@@ -12,9 +12,12 @@ import {
   ALLOWED_PARTIES,
   ALLOWED_TOPICS,
   ALLOWED_KINDS,
+  ALLOWED_STATUSES,
   type Party,
   type Topic,
   type Kind,
+  type EvidenceEntry,
+  type Status,
 } from './promises'
 
 export const QUEUE_VERSION = '1.0'
@@ -59,10 +62,40 @@ export interface DraftNewPromise {
   generatedAt: string
 }
 
+/**
+ * The three "progress" statuses a status-change draft may propose. This is a
+ * deliberate subset of ALLOWED_STATUSES: the miner only ever advances a promise
+ * along the fulfilment axis (documentada → en-progreso → parcial → cumplida).
+ * It never proposes no-ejecutada / inviable — those are libel-heavy negative
+ * judgements reserved for a human curator.
+ */
+export const PROGRESS_STATUSES: readonly ['en-progreso', 'parcial', 'cumplida'] = [
+  'en-progreso',
+  'parcial',
+  'cumplida',
+]
+
+export interface DraftStatusChange {
+  draftId: string
+  kind: 'status-change'
+  requiresHumanApproval: true
+  confidence: number
+  grounding: Grounding
+  decision: DraftDecision
+  promiseId: string
+  currentStatus: Status
+  proposedStatus: 'en-progreso' | 'parcial' | 'cumplida'
+  evidence: EvidenceEntry
+  reasoning: DraftReasoning[]
+  generatedAt: string
+}
+
+export type QueueDraft = DraftNewPromise | DraftStatusChange
+
 export interface PromiseReviewQueue {
   version: string
   generatedAt: string
-  drafts: DraftNewPromise[]
+  drafts: QueueDraft[]
 }
 
 class QueueValidationError extends Error {
@@ -105,12 +138,24 @@ export function makeDraftId(party: string, title: string, sourceUrl: string): st
   return `dnp-${slugify(party)}-${fnv32(`${party}|${title}|${sourceUrl}`)}`
 }
 
-function validateDraft(d: unknown, i: number): DraftNewPromise {
+export function makeStatusDraftId(
+  promiseId: string,
+  proposedStatus: string,
+  evidenceUrl: string,
+): string {
+  return `dsc-${slugify(promiseId)}-${proposedStatus}-${fnv32(`${promiseId}|${proposedStatus}|${evidenceUrl}`)}`
+}
+
+function validateDraft(d: unknown, i: number): QueueDraft {
   if (!d || typeof d !== 'object') throw new QueueValidationError(`drafts[${i}] must be object`)
   const r = d as Record<string, unknown>
   str(r.draftId, `drafts[${i}].draftId`, 3, 120)
-  if (r.kind !== 'new-promise')
-    throw new QueueValidationError(`drafts[${i}].kind must be 'new-promise'`)
+  if (r.kind === 'new-promise') return validateNewPromiseDraft(r, i)
+  if (r.kind === 'status-change') return validateStatusChangeDraft(r, i)
+  throw new QueueValidationError(`drafts[${i}].kind must be 'new-promise' or 'status-change'`)
+}
+
+function validateNewPromiseDraft(r: Record<string, unknown>, i: number): DraftNewPromise {
   if (r.requiresHumanApproval !== true)
     throw new QueueValidationError(`drafts[${i}].requiresHumanApproval must be true`)
   if (typeof r.confidence !== 'number' || r.confidence < 0 || r.confidence > 1)
@@ -141,6 +186,33 @@ function validateDraft(d: unknown, i: number): DraftNewPromise {
     throw new QueueValidationError(`drafts[${i}].reasoning must be array`)
   str(r.generatedAt, `drafts[${i}].generatedAt`)
   return r as unknown as DraftNewPromise
+}
+
+function validateStatusChangeDraft(r: Record<string, unknown>, i: number): DraftStatusChange {
+  if (r.requiresHumanApproval !== true)
+    throw new QueueValidationError(`drafts[${i}].requiresHumanApproval must be true`)
+  if (typeof r.confidence !== 'number' || r.confidence < 0 || r.confidence > 1)
+    throw new QueueValidationError(`drafts[${i}].confidence must be 0..1`)
+  oneOf(r.decision, DECISIONS, `drafts[${i}].decision`)
+  const g = r.grounding as Record<string, unknown>
+  if (!g || typeof g !== 'object') throw new QueueValidationError(`drafts[${i}].grounding missing`)
+  if (typeof g.grounded !== 'boolean')
+    throw new QueueValidationError(`drafts[${i}].grounding.grounded must be bool`)
+  oneOf(r.currentStatus, ALLOWED_STATUSES, `drafts[${i}].currentStatus`)
+  oneOf(r.proposedStatus, PROGRESS_STATUSES, `drafts[${i}].proposedStatus`)
+  str(r.promiseId, `drafts[${i}].promiseId`, 3, 80)
+  const ev = r.evidence as Record<string, unknown>
+  if (!ev || typeof ev !== 'object') throw new QueueValidationError(`drafts[${i}].evidence missing`)
+  url(ev.url, `drafts[${i}].evidence.url`)
+  str(ev.quote, `drafts[${i}].evidence.quote`, 10, 800)
+  iso(ev.date, `drafts[${i}].evidence.date`)
+  str(ev.publisher, `drafts[${i}].evidence.publisher`, 1, 100)
+  str(ev.kind, `drafts[${i}].evidence.kind`)
+  str(ev.addedBy, `drafts[${i}].evidence.addedBy`, 1, 80)
+  if (!Array.isArray(r.reasoning))
+    throw new QueueValidationError(`drafts[${i}].reasoning must be array`)
+  str(r.generatedAt, `drafts[${i}].generatedAt`)
+  return r as unknown as DraftStatusChange
 }
 
 export function validateReviewQueue(json: string): PromiseReviewQueue {
