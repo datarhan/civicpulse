@@ -1,16 +1,26 @@
 {
-  "generatedAt": "2026-07-01T08:35:44.375Z",
+  "generatedAt": "2026-07-02T07:50:31.111Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 6,
+    "total": 7,
     "daysCovered": 21,
-    "latestDate": "2026-07-01"
+    "latestDate": "2026-07-02"
   },
   "anuncios": [
+    {
+      "id": "995585fa72f1",
+      "regNumber": "2026/08113",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación definitiva de la transferencia de crédito para cambio de destino PMS 2022 dentro del mismo proyecto con distinta área de gasto 15/2026 PMS expropiaciones",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-07-02",
+      "bulletinDate": "02/07/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08113",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=02%2F07%2F2026"
+    },
     {
       "id": "e45f321f58aa",
       "regNumber": "2026/08021",

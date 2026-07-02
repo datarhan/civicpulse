@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T08:50:43.791Z",
+  "generatedAt": "2026-07-02T07:56:24.050Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -153,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -226,24 +226,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-acuerda-con-riba-roja-de-t%C3%BAria-la-construcci%C3%B3n-de-36-viviendas-protegidas-industrializadas-en-el-marco-del-plan-vive-dana",
-          "date": "2026-05-19",
-          "quote": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "plan",
-            "vivienda"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
           "date": "2026-05-18",
@@ -257,7 +246,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -276,17 +265,6 @@
             "2026",
             "2029",
             "impulsara"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-acuerda-con-riba-roja-de-t%C3%BAria-la-construcci%C3%B3n-de-36-viviendas-protegidas-industrializadas-en-el-marco-del-plan-vive-dana",
-          "date": "2026-05-19",
-          "quote": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "construccion",
-            "vivienda"
           ]
         },
         {
@@ -333,7 +311,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -368,7 +346,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -406,7 +384,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -426,7 +404,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -434,7 +412,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -442,7 +420,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -509,7 +487,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -529,7 +507,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -569,7 +547,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -613,7 +591,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -657,7 +635,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -687,7 +665,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-01T08:50:43.710Z"
+      "generatedAt": "2026-07-02T07:56:23.967Z"
     }
   ],
   "llmEvidence": [],

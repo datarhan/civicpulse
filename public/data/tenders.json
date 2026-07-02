@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T08:34:46.274Z",
+  "generatedAt": "2026-07-02T07:49:35.830Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
