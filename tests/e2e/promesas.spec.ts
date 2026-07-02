@@ -1,4 +1,12 @@
 import { test, expect } from '@playwright/test'
+import { readFileSync } from 'node:fs'
+
+const PENDING_REVIEW_COUNT = JSON.parse(
+  readFileSync('public/data/promises.json', 'utf8'),
+).items.filter(
+  (p: { autoPublished?: { reviewState?: string } }) =>
+    p.autoPublished?.reviewState === 'pending-review',
+).length
 
 test.describe('Promesas (/promesas)', () => {
   test('renders tracker header + composition bar + filters + cards', async ({ page }) => {
@@ -36,5 +44,20 @@ test.describe('Promesas (/promesas)', () => {
     await filter.selectOption('PSOE')
     // At least one PSOE party chip remains visible after the narrow.
     await expect(page.getByText(/^PSOE$/).first()).toBeVisible({ timeout: 5000 })
+  })
+
+  test('auto-published badge renders iff a pending-review promise exists', async ({ page }) => {
+    await page.goto('/promesas', { waitUntil: 'domcontentloaded' })
+    // Wait for cards to render before asserting presence/absence.
+    await expect(
+      page.getByText(/compromisos en seguimiento · distribución por partido/i).first(),
+    ).toBeVisible({ timeout: 8000 })
+
+    const badge = page.getByText('publicada automáticamente · revisión pendiente')
+    if (PENDING_REVIEW_COUNT > 0) {
+      await expect(badge.first()).toBeVisible({ timeout: 5000 })
+    } else {
+      await expect(badge).toHaveCount(0)
+    }
   })
 })
