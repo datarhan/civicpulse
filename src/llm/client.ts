@@ -1,19 +1,21 @@
 /**
  * LLM client abstraction.
  *
- * Five backends, same call signature:
+ * Six backends, same call signature:
  *   - Ollama       (local, free)                 — POST /api/chat
  *   - OpenAI       (cloud, pay-per-token)        — /v1/chat/completions (json_schema)
  *   - Anthropic    (cloud, pay-per-token)        — /v1/messages (tool_use)
  *   - gemini       (Pro subscription, $0)        — spawns `gemini -p` CLI (prompt-engineered JSON)
+ *   - agy          (Google subscription, $0)     — spawns `agy -p` CLI (plain-text reply, prompt-engineered JSON)
  *   - claude-code  (Max plan, rate-limited, $0)  — spawns `claude -p` CLI with --json-schema
  *
  * Default auto-select + fallback chain (when LLM_BACKEND is unset or the
  * primary exhausts retries):
  *   openai → anthropic → gemini → ollama
- * Each step is skipped when its key/binary isn't available. claude-code is
- * opt-in only (higher-tier subscription concern) — must be set explicitly
- * via LLM_BACKEND=claude-code.
+ * Each step is skipped when its key/binary isn't available. claude-code and
+ * agy are opt-in only — they must be set explicitly via
+ * LLM_BACKEND=claude-code / LLM_BACKEND=agy (never auto-selected, never in
+ * the fallback chain).
  *
  * The public entrypoint `callLLM<T>` does:
  *   1. Compute a content-addressed cache key (model + promptVersion + schema + input)
@@ -108,7 +110,7 @@ export function getCircuitState(): CircuitBreakerState | null {
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
-export type Backend = 'ollama' | 'openai' | 'anthropic' | 'claude-code' | 'gemini'
+export type Backend = 'ollama' | 'openai' | 'anthropic' | 'claude-code' | 'gemini' | 'agy'
 
 export interface ClientConfig {
   backend: Backend
@@ -136,6 +138,17 @@ export interface ClientConfig {
    */
   geminiModel: string
   geminiBin: string
+  /**
+   * agy backend: Google's agentic CLI that replaces the legacy `gemini` CLI.
+   * `agyModel` is passed via `agy --model <name>` (NOT `-m`); `agyBin` is the
+   * executable (default `agy` on PATH). Like gemini it has no --json-schema
+   * flag so JSON output is prompt-engineered, but `agy -p` prints the reply as
+   * PLAIN TEXT with no `{session_id, response, stats}` envelope, and bills $0
+   * (Google subscription — no token stats reported). Opt-in only via
+   * LLM_BACKEND=agy; never auto-selected, never in the fallback chain.
+   */
+  agyModel: string
+  agyBin: string
   cacheDir: string
   maxTokensPerRun: number
 }
@@ -186,6 +199,12 @@ export function loadConfigFromEnv(): ClientConfig {
     geminiBin:
       process.env.GEMINI_BIN ||
       (process.env.HOME || '') + '/.local/civicpulse-gemini/node_modules/.bin/gemini',
+    // agy CLI (Google's agentic CLI · replaces the legacy gemini CLI). Binary
+    // defaults to `agy` on PATH. Model falls back to GEMINI_MODEL then
+    // gemini-2.5-pro so a single env var can steer both gemini and agy. Never
+    // affects auto-selection above — reached only via LLM_BACKEND=agy.
+    agyBin: process.env.AGY_BIN || 'agy',
+    agyModel: process.env.AGY_MODEL || process.env.GEMINI_MODEL || 'gemini-2.5-pro',
     cacheDir: resolve('.llm-cache'),
     maxTokensPerRun: Number(process.env.LLM_MAX_TOKENS_PER_RUN || 500_000),
   }
@@ -196,6 +215,7 @@ function backendModel(config: ClientConfig): string {
   if (config.backend === 'openai') return config.openaiModel
   if (config.backend === 'claude-code') return `claude-code:${config.claudeCodeModel}`
   if (config.backend === 'gemini') return `gemini:${config.geminiModel}`
+  if (config.backend === 'agy') return `agy:${config.agyModel}`
   return config.anthropicModel
 }
 
@@ -223,7 +243,7 @@ export function resetBudget(limit?: number) {
   const envLimit = Number(process.env.LLM_MAX_TOKENS_PER_RUN || 0)
   const backend = process.env.LLM_BACKEND
   const defaultLimit =
-    backend === 'claude-code' || backend === 'gemini'
+    backend === 'claude-code' || backend === 'gemini' || backend === 'agy'
       ? 4_000_000
       : backend === 'openai' || backend === 'anthropic'
         ? 2_000_000
@@ -656,6 +676,22 @@ function toOpenAIStrictSchema(schema: unknown): unknown {
 }
 
 /**
+ * Extract a JSON payload from a CLI backend's free-text reply. Both the
+ * `gemini` and `agy` CLIs surface the model's prose response — optionally
+ * wrapping the JSON in ```json … ``` fences, optionally after some preamble.
+ * Strip the fence if present, then slice from the first `{` or `[` so any
+ * leading commentary is tolerated. Deliberately lenient — the real Zod
+ * validation happens in the callLLM wrapper.
+ */
+export function extractJsonPayload(text: string): string {
+  const fenceMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/i)
+  const candidate = fenceMatch ? fenceMatch[1].trim() : text
+  const positions = [candidate.indexOf('{'), candidate.indexOf('[')].filter((i) => i >= 0)
+  const firstBrace = positions.length > 0 ? Math.min(...positions) : -1
+  return firstBrace >= 0 ? candidate.slice(firstBrace) : candidate
+}
+
+/**
  * Gemini CLI backend.
  *
  * Spawns `gemini -p <prompt> -m <model> -o json --yolo` and parses the
@@ -726,14 +762,10 @@ async function callGemini(req: RawCall): Promise<RawResult> {
         if (!text) {
           return rejectPromise(new Error('gemini CLI returned empty response'))
         }
-        // Extract the JSON payload. Gemini often wraps it in ```json … ```
-        // fences; strip those first. Then locate the first { or [ to
-        // tolerate any preamble before the JSON.
-        const fenceMatch = text.match(/```(?:json)?\s*([\s\S]*?)```/i)
-        const candidate = fenceMatch ? fenceMatch[1].trim() : text
-        const positions = [candidate.indexOf('{'), candidate.indexOf('[')].filter((i) => i >= 0)
-        const firstBrace = positions.length > 0 ? Math.min(...positions) : -1
-        const jsonSlice = firstBrace >= 0 ? candidate.slice(firstBrace) : candidate
+        // Extract the JSON payload from the model's reply text (shared with
+        // callAgy). Gemini often wraps it in ```json … ``` fences and may
+        // prepend preamble; extractJsonPayload strips both.
+        const jsonSlice = extractJsonPayload(text)
         // Token count: sum input + candidates (output) from the first model
         // entry. gemini CLI reports per-model; in single-shot mode there's
         // only one entry. Omit 'cached' and 'thoughts' — they duplicate
@@ -751,6 +783,80 @@ async function callGemini(req: RawCall): Promise<RawResult> {
       } catch (err) {
         rejectPromise(new Error(`gemini CLI output not JSON: ${String(err).slice(0, 200)}`))
       }
+    })
+  })
+}
+
+/**
+ * agy CLI backend — Google's agentic CLI that replaces the legacy `gemini` CLI
+ * and is the user's preferred way to reach Gemini.
+ *
+ * NOT flag-compatible with the old gemini CLI: spawns
+ *   `agy -p <prompt> --model <model> --dangerously-skip-permissions`
+ * where `-p`/`--print` runs a single non-interactive prompt and prints the
+ * model's reply as PLAIN TEXT (there is NO `{session_id, response, stats}`
+ * JSON envelope — the stdout IS the response), `--model` replaces `-m`, and
+ * `--dangerously-skip-permissions` replaces `--yolo`/`-o json`.
+ *
+ * Same prompt-engineered JSON strategy as callGemini (no --json-schema flag):
+ * merge system + user prompts, append the strict "reply only in JSON" block +
+ * schema, then extract the JSON payload from the plain-text stdout via the
+ * shared extractJsonPayload helper. `agy -p` reports no token stats and bills
+ * $0 (Google subscription). Opt-in only (LLM_BACKEND=agy) — never in the
+ * auto-fallback chain, so metered backends are never silently reached.
+ */
+async function callAgy(req: RawCall): Promise<RawResult> {
+  const { spawn } = await import('node:child_process')
+  const schemaJson = JSON.stringify(zodToJsonSchema(req.schema), null, 2)
+  // Merged single prompt — identical to callGemini (agy has no --system-prompt
+  // flag either); stitch system + user together and force JSON-only output.
+  const mergedPrompt =
+    req.systemPrompt +
+    '\n\n---\n\n' +
+    req.userPrompt +
+    '\n\n---\n\n' +
+    'REPLY WITH A SINGLE VALID JSON OBJECT that conforms to this schema. ' +
+    'No markdown fences. No commentary. No explanation. Just the JSON object.\n\n' +
+    'Schema:\n' +
+    schemaJson
+
+  return await new Promise<RawResult>((resolvePromise, rejectPromise) => {
+    const args = [
+      '-p',
+      mergedPrompt,
+      '--model',
+      req.config.agyModel,
+      '--dangerously-skip-permissions',
+    ]
+    const child = spawn(req.config.agyBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
+    let stdout = ''
+    let stderr = ''
+    child.stdout.on('data', (d) => {
+      stdout += d.toString()
+    })
+    child.stderr.on('data', (d) => {
+      stderr += d.toString()
+    })
+    child.on('error', (err) => rejectPromise(err))
+    child.on('close', (code) => {
+      if (code !== 0) {
+        return rejectPromise(
+          new Error(`agy exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
+        )
+      }
+      // agy -p prints the model's reply as plain text — there is NO JSON
+      // envelope to parse. The stdout IS the response; do NOT JSON.parse it.
+      const text = stdout.trim()
+      if (!text) {
+        return rejectPromise(new Error('agy CLI returned empty response'))
+      }
+      // Same fence/first-brace extraction as callGemini (shared helper).
+      const jsonSlice = extractJsonPayload(text)
+      resolvePromise({
+        raw: jsonSlice,
+        tokenCount: 0, // agy -p reports no token stats
+        costUSD: 0, // Google subscription: $0 billed
+      })
     })
   })
 }
@@ -931,7 +1037,9 @@ export async function callLLM<TSchema extends ZodTypeAny>(
                 ? callClaudeCode
                 : backend === 'gemini'
                   ? callGemini
-                  : callOpenAI
+                  : backend === 'agy'
+                    ? callAgy
+                    : callOpenAI
         const raw: RawResult = await call({ ...opts, config: backendConfig })
         tokenCount += raw.tokenCount
         costUSD += raw.costUSD

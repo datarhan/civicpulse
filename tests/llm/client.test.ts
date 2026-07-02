@@ -15,6 +15,7 @@ import {
   loadConfigFromEnv,
   resetBudget,
   isReasoningModel,
+  extractJsonPayload,
 } from '../../src/llm/client'
 
 const TestSchema = z.object({ reply: z.string() })
@@ -428,5 +429,79 @@ describe('isReasoningModel (gpt-5.x / o-series reject sampling params)', () => {
     for (const m of ['gpt-4o', 'gpt-4o-mini', 'gpt-4.1', 'gpt-4.1-mini', 'gpt-4-turbo']) {
       expect(isReasoningModel(m), m).toBe(false)
     }
+  })
+})
+
+describe('LLM client · agy backend config', () => {
+  // agy is opt-in (LLM_BACKEND=agy) and reads AGY_BIN / AGY_MODEL, with
+  // agyModel falling back to GEMINI_MODEL then gemini-2.5-pro. Save/restore the
+  // env keys we mutate so these tests never leak into the rest of the suite.
+  const ENV_KEYS = ['LLM_BACKEND', 'AGY_BIN', 'AGY_MODEL', 'GEMINI_MODEL'] as const
+  let savedEnv: Record<string, string | undefined>
+
+  beforeEach(() => {
+    savedEnv = {}
+    for (const k of ENV_KEYS) savedEnv[k] = process.env[k]
+  })
+  afterEach(() => {
+    for (const k of ENV_KEYS) {
+      if (savedEnv[k] === undefined) delete process.env[k]
+      else process.env[k] = savedEnv[k]
+    }
+  })
+
+  it('selects the agy backend when LLM_BACKEND=agy', () => {
+    process.env.LLM_BACKEND = 'agy'
+    expect(loadConfigFromEnv().backend).toBe('agy')
+  })
+
+  it('defaults agyBin to "agy" and agyModel to "gemini-2.5-pro"', () => {
+    delete process.env.AGY_BIN
+    delete process.env.AGY_MODEL
+    delete process.env.GEMINI_MODEL
+    const config = loadConfigFromEnv()
+    expect(config.agyBin).toBe('agy')
+    expect(config.agyModel).toBe('gemini-2.5-pro')
+  })
+
+  it('honors AGY_BIN and AGY_MODEL overrides', () => {
+    process.env.AGY_BIN = '/Users/x/.local/bin/agy'
+    process.env.AGY_MODEL = 'gemini-3.0-pro'
+    const config = loadConfigFromEnv()
+    expect(config.agyBin).toBe('/Users/x/.local/bin/agy')
+    expect(config.agyModel).toBe('gemini-3.0-pro')
+  })
+
+  it('falls back agyModel to GEMINI_MODEL when AGY_MODEL is unset', () => {
+    delete process.env.AGY_MODEL
+    process.env.GEMINI_MODEL = 'gemini-2.5-flash'
+    expect(loadConfigFromEnv().agyModel).toBe('gemini-2.5-flash')
+  })
+})
+
+describe('extractJsonPayload (shared gemini/agy JSON slicer)', () => {
+  it('returns plain JSON untouched', () => {
+    const json = '{"reply":"ok"}'
+    expect(extractJsonPayload(json)).toBe(json)
+    expect(JSON.parse(extractJsonPayload(json))).toEqual({ reply: 'ok' })
+  })
+
+  it('strips ```json fences', () => {
+    const fenced = '```json\n{"reply":"fenced"}\n```'
+    expect(JSON.parse(extractJsonPayload(fenced))).toEqual({ reply: 'fenced' })
+  })
+
+  it('strips bare ``` fences', () => {
+    const fenced = '```\n{"reply":"bare"}\n```'
+    expect(JSON.parse(extractJsonPayload(fenced))).toEqual({ reply: 'bare' })
+  })
+
+  it('slices past leading preamble text', () => {
+    const preamble = 'Here is your JSON:\n{"reply":"after preamble"}'
+    expect(JSON.parse(extractJsonPayload(preamble))).toEqual({ reply: 'after preamble' })
+  })
+
+  it('handles a JSON array payload after preamble', () => {
+    expect(JSON.parse(extractJsonPayload('sure: [1,2,3]'))).toEqual([1, 2, 3])
   })
 })

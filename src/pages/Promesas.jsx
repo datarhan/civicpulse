@@ -197,6 +197,11 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
         <Pill tone={STATUS_TONE[p.status] || 'ghost'} size="xs">
           {STATUS_LABEL[p.status] || p.status}
         </Pill>
+        {p.autoPublished?.reviewState === 'pending-review' && (
+          <Pill tone="intel" size="xs">
+            publicada automáticamente · revisión pendiente
+          </Pill>
+        )}
       </div>
 
       {p.evidence.length > 0 && (

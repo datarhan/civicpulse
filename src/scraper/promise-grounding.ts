@@ -58,9 +58,20 @@ export type FetchLike = (
   url: string,
 ) => Promise<{ ok: boolean; url: string; text: () => Promise<string> }>
 
+export const MOZILLA_UA =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36 CivicPulse/1.0 (+https://civicpulse.es)'
+
+/** Default fetch used by groundDraft: Mozilla-leading UA (clears the
+ *  ribarroja.es WAF) + follow redirects (resolves publisher URLs). */
+export const defaultGroundingFetch: FetchLike = (url) =>
+  fetch(url, {
+    headers: { 'User-Agent': MOZILLA_UA },
+    redirect: 'follow',
+  }) as unknown as ReturnType<FetchLike>
+
 export async function groundDraft(
   draft: DraftNewPromise,
-  fetchImpl: FetchLike = fetch as unknown as FetchLike,
+  fetchImpl: FetchLike = defaultGroundingFetch,
   now: Date = new Date(),
 ): Promise<Grounding> {
   const checkedAt = now.toISOString()

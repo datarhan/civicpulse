@@ -15,6 +15,8 @@ import { __test } from '../vite-curator-plugin.js'
 const {
   ActionSchemas,
   TranscribeEvidenceJobSchema,
+  CommitBodySchema,
+  COMMIT_FILE_ALLOWLIST,
   buildArgv,
   ALLOWED_ORIGINS,
   MAX_BODY_BYTES,
@@ -387,16 +389,20 @@ describe('ActionSchemas', () => {
 
   it('has no unexpected actions registered', () => {
     expect(Object.keys(ActionSchemas).sort()).toEqual([
+      'apply-promise-draft',
       'archive-bundle',
       'delete-voiceprint',
       'draft-finding',
       'enroll-voice',
       'fetch-url-evidence',
       'finding-reply',
+      'mark-reviewed-promise',
       'override-speaker-assignment',
       'promote-claim',
       'refresh-curate-queue',
       'refresh-gh-issues',
+      'reject-promise-draft',
+      'retract-promise',
       'unarchive-bundle',
     ])
   })
@@ -507,6 +513,80 @@ describe('ActionSchemas', () => {
         evil: 1,
       })
       expect(r.success).toBe(false)
+    })
+  })
+
+  describe('apply-promise-draft', () => {
+    const schema = ActionSchemas['apply-promise-draft']
+    it('accepts a valid dnp- draftId', () => {
+      expect(schema.safeParse({ draftId: 'dnp-psoe-alumbrado-eficiente' }).success).toBe(true)
+    })
+    it('rejects a draftId without the dnp- prefix', () => {
+      expect(schema.safeParse({ draftId: 'psoe-alumbrado' }).success).toBe(false)
+    })
+    it('rejects shell-metachar in the draftId', () => {
+      expect(schema.safeParse({ draftId: 'dnp-a$(rm -rf /)' }).success).toBe(false)
+    })
+    it('rejects uppercase in the draftId', () => {
+      expect(schema.safeParse({ draftId: 'dnp-PSOE' }).success).toBe(false)
+    })
+    it('rejects unknown extra fields (strict mode)', () => {
+      expect(schema.safeParse({ draftId: 'dnp-abc', sneaky: 1 }).success).toBe(false)
+    })
+  })
+
+  describe('reject-promise-draft', () => {
+    const schema = ActionSchemas['reject-promise-draft']
+    it('accepts a draftId alone', () => {
+      expect(schema.safeParse({ draftId: 'dnp-psoe-alumbrado' }).success).toBe(true)
+    })
+    it('accepts a draftId + an optional reason', () => {
+      const r = schema.safeParse({
+        draftId: 'dnp-psoe-alumbrado',
+        reason: 'Cita no textual — la fuente no ancla la promesa.',
+      })
+      expect(r.success).toBe(true)
+    })
+    it('rejects shell-metachar in the reason', () => {
+      expect(schema.safeParse({ draftId: 'dnp-abc', reason: 'evil; rm -rf /' }).success).toBe(false)
+    })
+    it('rejects a bad draftId', () => {
+      expect(schema.safeParse({ draftId: 'not-a-draft' }).success).toBe(false)
+    })
+    it('rejects unknown extra fields (strict mode)', () => {
+      expect(schema.safeParse({ draftId: 'dnp-abc', sneaky: 1 }).success).toBe(false)
+    })
+  })
+
+  describe('retract-promise', () => {
+    const schema = ActionSchemas['retract-promise']
+    it('accepts a valid promiseId', () => {
+      expect(schema.safeParse({ promiseId: 'psoe-presupuesto-2026' }).success).toBe(true)
+    })
+    it('rejects shell-metachar in the promiseId', () => {
+      expect(schema.safeParse({ promiseId: 'psoe$(rm)' }).success).toBe(false)
+    })
+    it('rejects uppercase in the promiseId', () => {
+      expect(schema.safeParse({ promiseId: 'PSOE-2026' }).success).toBe(false)
+    })
+    it('rejects unknown extra fields (strict mode)', () => {
+      expect(schema.safeParse({ promiseId: 'psoe-2026', sneaky: 1 }).success).toBe(false)
+    })
+  })
+
+  describe('mark-reviewed-promise', () => {
+    const schema = ActionSchemas['mark-reviewed-promise']
+    it('accepts a valid promiseId', () => {
+      expect(schema.safeParse({ promiseId: 'psoe-presupuesto-2026' }).success).toBe(true)
+    })
+    it('rejects shell-metachar in the promiseId', () => {
+      expect(schema.safeParse({ promiseId: 'a`whoami`' }).success).toBe(false)
+    })
+    it('rejects a too-short promiseId', () => {
+      expect(schema.safeParse({ promiseId: 'ab' }).success).toBe(false)
+    })
+    it('rejects unknown extra fields (strict mode)', () => {
+      expect(schema.safeParse({ promiseId: 'psoe-2026', sneaky: 1 }).success).toBe(false)
     })
   })
 })
@@ -684,7 +764,127 @@ describe('buildArgv', () => {
     ])
   })
 
+  it('composes apply-promise-draft argv', () => {
+    expect(buildArgv('apply-promise-draft', { draftId: 'dnp-psoe-alumbrado' })).toEqual([
+      'run',
+      'apply-promise-draft',
+      '--',
+      'dnp-psoe-alumbrado',
+    ])
+  })
+
+  it('composes reject-promise-draft argv without a reason', () => {
+    expect(buildArgv('reject-promise-draft', { draftId: 'dnp-psoe-alumbrado' })).toEqual([
+      'run',
+      'apply-promise-draft',
+      '--',
+      '--reject',
+      'dnp-psoe-alumbrado',
+    ])
+  })
+
+  it('composes reject-promise-draft argv WITH a reason', () => {
+    expect(
+      buildArgv('reject-promise-draft', {
+        draftId: 'dnp-psoe-alumbrado',
+        reason: 'source does not anchor the quote',
+      }),
+    ).toEqual([
+      'run',
+      'apply-promise-draft',
+      '--',
+      '--reject',
+      'dnp-psoe-alumbrado',
+      'source does not anchor the quote',
+    ])
+  })
+
+  it('composes retract-promise argv', () => {
+    expect(buildArgv('retract-promise', { promiseId: 'psoe-presupuesto-2026' })).toEqual([
+      'run',
+      'apply-promise-draft',
+      '--',
+      '--retract',
+      'psoe-presupuesto-2026',
+    ])
+  })
+
+  it('composes mark-reviewed-promise argv', () => {
+    expect(buildArgv('mark-reviewed-promise', { promiseId: 'psoe-presupuesto-2026' })).toEqual([
+      'run',
+      'apply-promise-draft',
+      '--',
+      '--mark-reviewed',
+      'psoe-presupuesto-2026',
+    ])
+  })
+
   it('throws on unknown action', () => {
     expect(() => buildArgv('rm-rf', {})).toThrow(/unknown action/)
+  })
+})
+
+describe('CommitBodySchema (commit file allowlist)', () => {
+  it('COMMIT_FILE_ALLOWLIST is exactly pleno-findings + promises', () => {
+    expect([...COMMIT_FILE_ALLOWLIST].sort()).toEqual([
+      'public/data/pleno-findings.json',
+      'public/data/promises.json',
+    ])
+  })
+
+  it('accepts a message with no files (back-compat default)', () => {
+    expect(CommitBodySchema.safeParse({ message: 'data: publish x' }).success).toBe(true)
+  })
+
+  it('accepts an explicit promises.json in files', () => {
+    const r = CommitBodySchema.safeParse({
+      message: 'data: publish promise dnp-psoe-alumbrado',
+      files: ['public/data/promises.json'],
+    })
+    expect(r.success).toBe(true)
+  })
+
+  it('accepts the original pleno-findings.json in files', () => {
+    const r = CommitBodySchema.safeParse({
+      message: 'data: publish finding',
+      files: ['public/data/pleno-findings.json'],
+    })
+    expect(r.success).toBe(true)
+  })
+
+  it('rejects a non-allowlisted path (officials.json)', () => {
+    const r = CommitBodySchema.safeParse({
+      message: 'data: sneaky commit',
+      files: ['public/data/officials.json'],
+    })
+    expect(r.success).toBe(false)
+  })
+
+  it('rejects a path-traversal file (../etc/passwd)', () => {
+    const r = CommitBodySchema.safeParse({
+      message: 'data: sneaky commit',
+      files: ['../etc/passwd'],
+    })
+    expect(r.success).toBe(false)
+  })
+
+  it('rejects a mix of allowlisted + non-allowlisted files', () => {
+    const r = CommitBodySchema.safeParse({
+      message: 'data: sneaky commit',
+      files: ['public/data/promises.json', 'package.json'],
+    })
+    expect(r.success).toBe(false)
+  })
+
+  it('rejects an empty files array (min 1)', () => {
+    expect(CommitBodySchema.safeParse({ message: 'data: x', files: [] }).success).toBe(false)
+  })
+
+  it('still enforces the ≥5-char message floor', () => {
+    expect(CommitBodySchema.safeParse({ message: 'x' }).success).toBe(false)
+  })
+
+  it('rejects unknown extra fields (strict mode)', () => {
+    expect(CommitBodySchema.safeParse({ message: 'data: x', sneaky: 1 }).success).toBe(false)
   })
 })

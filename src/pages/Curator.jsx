@@ -12,15 +12,18 @@ import {
   ISSUES_URL,
   useJsonResource,
   callCurator,
+  callCommit,
   shortDate,
 } from './curator/shared'
 import { PromoteForm } from './curator/PromoteForm'
 import { ContradichoBundleRow, IssueRow } from './curator/queues'
+import { PromiseDraftRow } from './curator/promise-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
 
 export default function Curator() {
   const queue = useJsonResource(QUEUE_URL)
   const issues = useJsonResource(ISSUES_URL)
+  const promiseQueue = useJsonResource('/api/curator/promise-queue')
   const [openBundle, setOpenBundle] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
   const [refreshResult, setRefreshResult] = useState(null)
@@ -69,6 +72,49 @@ export default function Curator() {
     await callCurator('refresh-curate-queue', {})
     queue.refresh()
     setUnarchiving(null)
+  }
+
+  // Promise auto-curator review queue. Fast-track drafts ("listo para
+  // publicar") float to the top so the curator sees the ready ones first.
+  const promiseDrafts = [...(promiseQueue.data?.drafts ?? [])].sort(
+    (a, b) => (b.decision === 'fast-track' ? 1 : 0) - (a.decision === 'fast-track' ? 1 : 0),
+  )
+  const [busyId, setBusyId] = useState(null)
+  const [promiseError, setPromiseError] = useState(null)
+
+  const onApprovePromise = async (draftId) => {
+    setBusyId(draftId)
+    setPromiseError(null)
+    const r = await callCurator('apply-promise-draft', { draftId })
+    if (!r.ok || r.exitCode !== 0) {
+      setPromiseError(r.error || r.stderr?.slice(0, 200) || `apply exited ${r.exitCode}`)
+      setBusyId(null)
+      return
+    }
+    const commit = await callCommit(`data: publish promise ${draftId}`, [
+      'public/data/promises.json',
+    ])
+    if (!commit.ok) {
+      setPromiseError(`published, but commit failed: ${commit.error}`)
+      setBusyId(null)
+      promiseQueue.refresh()
+      return
+    }
+    setBusyId(null)
+    promiseQueue.refresh()
+  }
+
+  const onRejectPromise = async (draftId) => {
+    setBusyId(draftId)
+    setPromiseError(null)
+    const r = await callCurator('reject-promise-draft', { draftId })
+    if (!r.ok || r.exitCode !== 0) {
+      setPromiseError(r.error || r.stderr?.slice(0, 200) || `reject exited ${r.exitCode}`)
+      setBusyId(null)
+      return
+    }
+    setBusyId(null)
+    promiseQueue.refresh()
   }
 
   return (
@@ -280,6 +326,68 @@ export default function Curator() {
         )}
         {ghIssues.map((i) => (
           <IssueRow key={i.number} issue={i} />
+        ))}
+      </Card>
+
+      <Card style={{ padding: 16, marginBottom: 18 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <SectionHead title="Promesas · cola de revisión" />
+          <span
+            className="mono"
+            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          >
+            {promiseQueue.data
+              ? `${promiseDrafts.length} en cola · ${promiseQueue.data.archivedCount ?? 0} archivadas · generada ${shortDate(promiseQueue.data.generatedAt)}`
+              : ''}
+          </span>
+          <button
+            onClick={() => promiseQueue.refresh()}
+            disabled={promiseQueue.loading}
+            style={{
+              padding: '5px 10px',
+              fontSize: 11,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: promiseQueue.loading ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {promiseQueue.loading ? 'Refreshing…' : 'Refresh'}
+          </button>
+        </div>
+        {promiseQueue.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {promiseQueue.error && (
+          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+            Cannot load the promise queue: {promiseQueue.error}. The endpoint is dev-only — run{' '}
+            <code>npm run auto-curate-promises</code> to populate it.
+          </p>
+        )}
+        {promiseError && (
+          <div
+            style={{
+              padding: '6px 10px',
+              margin: '8px 0',
+              border: '1px solid var(--crit-ink)',
+              borderRadius: 6,
+              fontSize: 11.5,
+              color: 'var(--crit-ink)',
+              background: 'var(--soft)',
+            }}
+          >
+            {promiseError}
+          </div>
+        )}
+        {!promiseQueue.loading && !promiseQueue.error && promiseDrafts.length === 0 && (
+          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>La cola está vacía.</p>
+        )}
+        {promiseDrafts.map((d) => (
+          <PromiseDraftRow
+            key={d.draftId}
+            draft={d}
+            busy={busyId === d.draftId}
+            onApprove={onApprovePromise}
+            onReject={onRejectPromise}
+          />
         ))}
       </Card>
 

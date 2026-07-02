@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.civicpulse.auto-curate-promises</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/auto-curate-promises-daily.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/sergeilutchenko/Documents/CivicPulse</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <!-- ~/.local/bin is on PATH so the launchd job can find `agy`
+         (the LLM backend lives at ~/.local/bin/agy). -->
+    <key>PATH</key>
+    <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin:/Users/sergeilutchenko/.local/bin</string>
+  </dict>
+
+  <!-- Daily at 08:30 local time. No Weekday key => every day. macOS
+       coalesces into the next wake if the Mac is asleep at that hour. -->
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key><integer>8</integer>
+    <key>Minute</key><integer>30</integer>
+  </dict>
+
+  <key>StandardOutPath</key>
+  <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/logs/auto-curate-promises.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/sergeilutchenko/Documents/CivicPulse/scripts/logs/auto-curate-promises.err.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>
