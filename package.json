@@ -54,6 +54,7 @@
     "freeze:clear": "npx tsx scripts/set-promises-freeze.ts clear",
     "freeze:status": "npx tsx scripts/set-promises-freeze.ts status",
     "reply": "npx tsx scripts/apply-promise-response.ts",
+    "apply-promise-draft": "npx tsx scripts/apply-promise-draft.ts",
     "route-queja": "npx tsx scripts/route-queja.ts",
     "queja-reply": "npx tsx scripts/apply-queja-response.ts",
     "sindic:add": "npx tsx scripts/add-sindic-resolucion.ts",
