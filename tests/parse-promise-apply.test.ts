@@ -5,9 +5,15 @@ import {
   ensureUniqueId,
   removeAutoPublished,
   setReviewState,
+  tombstoneDraftFromPromise,
 } from '../src/scraper/promise-apply'
 import { validatePromisesSnapshot, type PromisesSnapshot } from '../src/scraper/promises'
-import type { DraftNewPromise } from '../src/scraper/promise-draft'
+import {
+  makeDraftId,
+  validateReviewQueue,
+  type DraftNewPromise,
+  type PromiseReviewQueue,
+} from '../src/scraper/promise-draft'
 
 const NOW = '2026-07-02T06:00:00.000Z'
 
@@ -101,5 +107,21 @@ describe('promise-apply', () => {
       createdAt: '2026-01-01',
     })
     expect(() => removeAutoPublished(snap, 'human-1')).toThrow(/not auto-published/)
+  })
+
+  it('tombstoneDraftFromPromise reconstructs the draftId discovery would regenerate', () => {
+    const p = newPromiseFromDraft(draft(), NOW, { confidence: 0.83, at: NOW })
+    const tomb = tombstoneDraftFromPromise(p, NOW)
+    expect(tomb.draftId).toBe(makeDraftId(p.party, p.title, p.source.url))
+  })
+
+  it('tombstoneDraftFromPromise produces a draft that passes queue validation', () => {
+    const p = newPromiseFromDraft(draft(), NOW, { confidence: 0.83, at: NOW })
+    const queue: PromiseReviewQueue = {
+      version: '1.0',
+      generatedAt: NOW,
+      drafts: [tombstoneDraftFromPromise(p, NOW)],
+    }
+    expect(() => validateReviewQueue(JSON.stringify(queue))).not.toThrow()
   })
 })

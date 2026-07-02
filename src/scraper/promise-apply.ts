@@ -4,7 +4,7 @@
  * round-trip (including validatePromisesSnapshot) is unit-tested.
  */
 import type { PromisesSnapshot, Promise } from './promises'
-import type { DraftNewPromise } from './promise-draft'
+import { makeDraftId, type DraftNewPromise } from './promise-draft'
 
 export interface AutoPublishMeta {
   confidence: number
@@ -69,6 +69,35 @@ export function setReviewState(
         updatedAt: now.slice(0, 10),
       }
     }),
+  }
+}
+
+/**
+ * Reconstruct the queue-draft that discovery WOULD regenerate for an
+ * already-published promise. Used on retract to tombstone the promise in
+ * the review archive so the orchestrator's `seen` set skips it and it can
+ * never be re-discovered + re-auto-published.
+ */
+export function tombstoneDraftFromPromise(p: Promise, now: string): DraftNewPromise {
+  return {
+    draftId: makeDraftId(p.party, p.title, p.source.url),
+    kind: 'new-promise',
+    requiresHumanApproval: true,
+    confidence: p.autoPublished?.confidence ?? 0,
+    grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: now },
+    decision: 'queue',
+    proposed: {
+      party: p.party,
+      title: p.title,
+      quote: p.quote,
+      source: { url: p.source.url, publisher: p.source.publisher },
+      madeAt: p.madeAt,
+      topic: p.topic,
+      kind: p.kind,
+      status: 'documentada',
+    },
+    reasoning: [],
+    generatedAt: now,
   }
 }
 

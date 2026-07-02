@@ -28,6 +28,7 @@ import {
   insertPromise,
   removeAutoPublished,
   setReviewState,
+  tombstoneDraftFromPromise,
 } from '../src/scraper/promise-apply'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -102,8 +103,24 @@ async function main() {
     const promiseId = argv[1]
     if (!promiseId) usage()
     const snap = await readSnap()
+    // Find the target FIRST so we can reconstruct the draft discovery would
+    // regenerate. Mirror the --mark-reviewed guard: a clear error instead of a
+    // silent no-op if the promise is missing or human-curated.
+    const target = snap.items.find((p) => p.id === promiseId)
+    if (!target || !target.autoPublished) {
+      console.error(`[apply-promise-draft] promise "${promiseId}" not found or not auto-published`)
+      process.exit(1)
+    }
+    // Tombstone the promise in the review archive so the orchestrator's `seen`
+    // set skips it forever — otherwise discovery would re-propose, re-ground,
+    // and potentially re-auto-publish the very promise we just retracted.
+    const tombstone = tombstoneDraftFromPromise(target, now)
     await writeSnap(removeAutoPublished(snap, promiseId))
-    console.log(`[apply-promise-draft] retracted auto-published promise "${promiseId}"`)
+    const archive = await loadQueue(ARCHIVE)
+    await writeQueue(ARCHIVE, { ...archive, drafts: [...archive.drafts, tombstone] })
+    console.log(
+      `[apply-promise-draft] retracted auto-published promise "${promiseId}" → tombstoned in archive as "${tombstone.draftId}"`,
+    )
     return
   }
 
