@@ -792,11 +792,19 @@ async function callGemini(req: RawCall): Promise<RawResult> {
  * and is the user's preferred way to reach Gemini.
  *
  * NOT flag-compatible with the old gemini CLI: spawns
- *   `agy -p <prompt> --model <model> --dangerously-skip-permissions`
+ *   `agy -p <prompt> --model <model> --sandbox`
  * where `-p`/`--print` runs a single non-interactive prompt and prints the
  * model's reply as PLAIN TEXT (there is NO `{session_id, response, stats}`
- * JSON envelope — the stdout IS the response), `--model` replaces `-m`, and
- * `--dangerously-skip-permissions` replaces `--yolo`/`-o json`.
+ * JSON envelope — the stdout IS the response) and `--model` replaces `-m`.
+ *
+ * SECURITY: we deliberately do NOT pass `--dangerously-skip-permissions`.
+ * The prompt embeds untrusted scraped content (press headlines/snippets), and
+ * agy is an AGENTIC CLI — auto-approving tool use would turn a prompt-injection
+ * in a scraped headline into arbitrary command execution with the user's shell
+ * permissions. Our use is pure text generation (no tool is needed), so we run
+ * with `--sandbox` (terminal restrictions) and let any tool request go
+ * unapproved rather than auto-run. Verified `agy -p … --sandbox` returns the
+ * reply cleanly.
  *
  * Same prompt-engineered JSON strategy as callGemini (no --json-schema flag):
  * merge system + user prompts, append the strict "reply only in JSON" block +
@@ -826,7 +834,10 @@ async function callAgy(req: RawCall): Promise<RawResult> {
       mergedPrompt,
       '--model',
       req.config.agyModel,
-      '--dangerously-skip-permissions',
+      // See the SECURITY note in the function doc: never
+      // --dangerously-skip-permissions here (untrusted scraped content in the
+      // prompt + agentic CLI = injection→RCE). --sandbox = terminal restrictions.
+      '--sandbox',
     ]
     const child = spawn(req.config.agyBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
     let stdout = ''
