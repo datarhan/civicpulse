@@ -55,14 +55,25 @@ describe('promise-auto-curate — decideDraft', () => {
   it('inviable → always queue', () => {
     expect(decideDraft('inviable', 0.99, GROUNDED)).toBe('queue')
   })
-  it('positive escalations map to auto', () => {
-    for (const s of ['en-verificacion', 'en-progreso', 'parcial', 'cumplida'] as const) {
+  it('low-stakes escalations map to auto', () => {
+    for (const s of ['en-verificacion', 'en-progreso'] as const) {
       expect(STATUS_TIER[s]).toBe('auto')
       expect(decideDraft(s, 0.8, GROUNDED)).toBe('auto-publish')
     }
   })
   it('threshold constant is 0.70', () => {
     expect(AUTO_PUBLISH_MIN_CONFIDENCE).toBe(0.7)
+  })
+  it('STATUS_TIER: parcial + cumplida are fast-track; en-progreso is auto', () => {
+    expect(STATUS_TIER['en-progreso']).toBe('auto')
+    expect(STATUS_TIER['parcial']).toBe('fast-track')
+    expect(STATUS_TIER['cumplida']).toBe('fast-track')
+  })
+  it('decideDraft: en-progreso grounded+confident → auto-publish; cumplida → fast-track', () => {
+    const g = { grounded: true, urlResolved: true, quoteFound: true, checkedAt: 'x' }
+    expect(decideDraft('en-progreso', 0.8, g)).toBe('auto-publish')
+    expect(decideDraft('cumplida', 0.99, g)).toBe('fast-track')
+    expect(decideDraft('parcial', 0.99, g)).toBe('fast-track')
   })
 })
 
