@@ -115,4 +115,62 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
     expect(out.queue).toHaveLength(0)
     expect(out.skipped.map((s) => s.reason).sort()).toEqual(['already-tracked', 'duplicate'])
   })
+
+  it('routes a grounded, confident no-ejecutada candidate to queue as fast-track (never auto)', () => {
+    const ne = draft('ne', { confidence: 0.95, grounding: GROUNDED })
+    ;(ne.proposed as { status: string }).status = 'no-ejecutada'
+    const out = selectPromiseDrafts({
+      candidates: [ne],
+      existingPromises: [],
+      seenDraftIds: new Set(),
+      frozen: false,
+    })
+    expect(out.autoPublish).toHaveLength(0)
+    expect(out.queue).toHaveLength(1)
+    expect(out.queue[0].decision).toBe('fast-track')
+  })
+
+  it('stamps the decision field on auto-published drafts', () => {
+    const out = selectPromiseDrafts({
+      candidates: [draft('ap', { confidence: 0.9, grounding: GROUNDED })],
+      existingPromises: [],
+      seenDraftIds: new Set(),
+      frozen: false,
+    })
+    expect(out.autoPublish[0].decision).toBe('auto-publish')
+  })
+
+  it('skips a candidate whose party+title already exists (normKey dedup, case/diacritic-insensitive)', () => {
+    const dt = draft('dt', {
+      proposed: { ...draft('dt').proposed, party: 'PSOE', title: 'Título ÚNICO de Prueba' },
+    })
+    const out = selectPromiseDrafts({
+      candidates: [dt],
+      existingPromises: [
+        {
+          id: 'p1',
+          party: 'psoe',
+          title: 'titulo unico de prueba',
+          source: { url: 'https://other.test/x' },
+        },
+      ],
+      seenDraftIds: new Set(),
+      frozen: false,
+    })
+    expect(out.autoPublish).toHaveLength(0)
+    expect(out.queue).toHaveLength(0)
+    expect(out.skipped.map((s) => s.reason)).toContain('already-tracked')
+  })
+
+  it('caps accepted output at max and marks the rest max-reached', () => {
+    const out = selectPromiseDrafts({
+      candidates: [draft('m1'), draft('m2'), draft('m3')],
+      existingPromises: [],
+      seenDraftIds: new Set(),
+      frozen: false,
+      max: 2,
+    })
+    expect(out.autoPublish.length + out.queue.length).toBe(2)
+    expect(out.skipped.some((s) => s.reason === 'max-reached')).toBe(true)
+  })
 })

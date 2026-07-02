@@ -90,6 +90,7 @@ export function selectPromiseDrafts(inp: SelectInput): SelectOutput {
     }
     const decision = decideDraft(c.proposed.status, c.confidence, c.grounding, min)
     const draft = { ...c, decision }
+    // fast-track items also land in out.queue; callers distinguish by draft.decision
     if (decision === 'auto-publish') out.autoPublish.push(draft)
     else out.queue.push(draft)
     taken++
