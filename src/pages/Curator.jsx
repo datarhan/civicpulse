@@ -17,13 +17,14 @@ import {
 } from './curator/shared'
 import { PromoteForm } from './curator/PromoteForm'
 import { ContradichoBundleRow, IssueRow } from './curator/queues'
-import { PromiseDraftRow } from './curator/promise-queue'
+import { PromiseDraftRow, PromisePendingRow } from './curator/promise-queue'
 import { VoiceEnrollmentSection, VoiceIDAssignmentsSection } from './curator/voice'
 
 export default function Curator() {
   const queue = useJsonResource(QUEUE_URL)
   const issues = useJsonResource(ISSUES_URL)
   const promiseQueue = useJsonResource('/api/curator/promise-queue')
+  const pendingPromises = useJsonResource('/data/promises.json')
   const [openBundle, setOpenBundle] = useState(null)
   const [refreshing, setRefreshing] = useState(false)
   const [refreshResult, setRefreshResult] = useState(null)
@@ -114,6 +115,62 @@ export default function Curator() {
       return
     }
     setBusyId(null)
+    promiseQueue.refresh()
+  }
+
+  // Auto-published promises awaiting human review. Distinct from the
+  // draft queue above: these already live in promises.json with a public
+  // "revisión pendiente" badge until a curator marks them reviewed or
+  // retracts them.
+  const pending = (pendingPromises.data?.items ?? []).filter(
+    (p) => p.autoPublished?.reviewState === 'pending-review',
+  )
+
+  const onMarkReviewedPromise = async (id) => {
+    setBusyId(id)
+    setPromiseError(null)
+    const r = await callCurator('mark-reviewed-promise', { promiseId: id })
+    if (!r.ok || r.exitCode !== 0) {
+      setPromiseError(r.error || r.stderr?.slice(0, 200) || `mark-reviewed exited ${r.exitCode}`)
+      setBusyId(null)
+      return
+    }
+    const commit = await callCommit(`data: mark promise reviewed ${id}`, [
+      'public/data/promises.json',
+    ])
+    if (!commit.ok) {
+      setPromiseError(`reviewed, but commit failed: ${commit.error}`)
+      setBusyId(null)
+      pendingPromises.refresh()
+      return
+    }
+    setBusyId(null)
+    pendingPromises.refresh()
+  }
+
+  const onRetractPromise = async (id) => {
+    setBusyId(id)
+    setPromiseError(null)
+    const r = await callCurator('retract-promise', { promiseId: id })
+    if (!r.ok || r.exitCode !== 0) {
+      setPromiseError(r.error || r.stderr?.slice(0, 200) || `retract exited ${r.exitCode}`)
+      setBusyId(null)
+      return
+    }
+    const commit = await callCommit(`data: retract auto-published promise ${id}`, [
+      'public/data/promises.json',
+    ])
+    if (!commit.ok) {
+      setPromiseError(`retracted, but commit failed: ${commit.error}`)
+      setBusyId(null)
+      pendingPromises.refresh()
+      promiseQueue.refresh()
+      return
+    }
+    setBusyId(null)
+    // Retract tombstones the draft into the archive, so refresh both the
+    // published-promise list AND the draft queue.
+    pendingPromises.refresh()
     promiseQueue.refresh()
   }
 
@@ -387,6 +444,56 @@ export default function Curator() {
             busy={busyId === d.draftId}
             onApprove={onApprovePromise}
             onReject={onRejectPromise}
+          />
+        ))}
+      </Card>
+
+      <Card style={{ padding: 16, marginBottom: 18 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <SectionHead title="Promesas auto-publicadas · pendientes de revisión" />
+          <span
+            className="mono"
+            style={{ fontSize: 10.5, color: 'var(--ink50)', marginLeft: 'auto' }}
+          >
+            {pendingPromises.data
+              ? `${pending.length} pendiente${pending.length === 1 ? '' : 's'} · ${
+                  pendingPromises.data.items?.length ?? 0
+                } publicadas · generada ${shortDate(pendingPromises.data.generatedAt)}`
+              : ''}
+          </span>
+          <button
+            onClick={() => pendingPromises.refresh()}
+            disabled={pendingPromises.loading}
+            style={{
+              padding: '5px 10px',
+              fontSize: 11,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: pendingPromises.loading ? 'not-allowed' : 'pointer',
+            }}
+          >
+            {pendingPromises.loading ? 'Refreshing…' : 'Refresh'}
+          </button>
+        </div>
+        {pendingPromises.loading && <p style={{ fontSize: 12 }}>Loading…</p>}
+        {pendingPromises.error && (
+          <p style={{ fontSize: 12, color: 'var(--crit-ink)' }}>
+            Cannot load promises.json: {pendingPromises.error}.
+          </p>
+        )}
+        {!pendingPromises.loading && !pendingPromises.error && pending.length === 0 && (
+          <p style={{ fontSize: 12, color: 'var(--ink60)' }}>
+            No hay promesas auto-publicadas pendientes de revisión.
+          </p>
+        )}
+        {pending.map((p) => (
+          <PromisePendingRow
+            key={p.id}
+            promise={p}
+            busy={busyId === p.id}
+            onRetract={onRetractPromise}
+            onMarkReviewed={onMarkReviewedPromise}
           />
         ))}
       </Card>

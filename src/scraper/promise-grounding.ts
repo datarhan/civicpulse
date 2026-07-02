@@ -69,17 +69,129 @@ export const defaultGroundingFetch: FetchLike = (url) =>
     redirect: 'follow',
   }) as unknown as ReturnType<FetchLike>
 
+/**
+ * Google-News RSS wrapper resolution. Discovery frequently proposes a promise
+ * whose source is a `news.google.com/rss/articles/…` redirect. Those pages are
+ * a JS interstitial that never carries the verbatim quote, so grounding them
+ * always fails safe to the queue. Resolving the wrapper to the real publisher
+ * URL first lets legitimate drafts ground. The technique replays the browser's
+ * own DotsSplashUi batchexecute call: fetch the wrapper HTML, lift the three
+ * `data-n-a-*` attributes, POST them, and pull the publisher URL out of the
+ * response. Every step is fail-safe (any error/missing param → null), so the
+ * caller falls back to grounding the original URL.
+ */
+const GOOGLE_NEWS_RE = /^https?:\/\/news\.google\.com\/(rss\/)?(articles|read)\//i
+
+export function isGoogleNewsUrl(url: string): boolean {
+  return GOOGLE_NEWS_RE.test(url)
+}
+
+export function extractBatchParams(html: string): { id: string; ts: string; sg: string } | null {
+  const id = html.match(/data-n-a-id="([^"]+)"/)?.[1]
+  const ts = html.match(/data-n-a-ts="([^"]+)"/)?.[1]
+  const sg = html.match(/data-n-a-sg="([^"]+)"/)?.[1]
+  return id && ts && sg ? { id, ts, sg } : null
+}
+
+export function buildBatchRequestBody(p: { id: string; ts: string; sg: string }): string {
+  const inner = JSON.stringify([
+    'garturlreq',
+    [
+      [
+        'X',
+        'X',
+        ['X', 'X'],
+        null,
+        null,
+        1,
+        1,
+        'US:en',
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        1,
+      ],
+      'X',
+      'X',
+      1,
+      [1, 1, 1],
+      1,
+      1,
+      null,
+      0,
+      0,
+      null,
+      0,
+    ],
+    p.id,
+    Number(p.ts),
+    p.sg,
+  ])
+  const freq = JSON.stringify([[['Fbv4je', inner, null, 'generic']]])
+  return new URLSearchParams({ 'f.req': freq }).toString()
+}
+
+export function parseResolvedUrl(responseText: string): string | null {
+  const urls: string[] = responseText.match(/https?:\/\/[^\\"\s]+/g) ?? []
+  return urls.find((u) => !u.includes('google.com') && !u.includes('gstatic')) ?? null
+}
+
+const BATCH_URL = 'https://news.google.com/_/DotsSplashUi/data/batchexecute'
+
+/** Resolve a Google-News wrapper URL to its publisher URL, or null. Uses the
+ *  global fetch (needs POST); injectable for tests. Fail-safe: any error or
+ *  missing param → null (caller then grounds the original URL, which itself
+ *  fails safe to the queue). */
+export async function resolveGoogleNewsUrl(
+  url: string,
+  fetchFn: typeof fetch = fetch,
+): Promise<string | null> {
+  if (!isGoogleNewsUrl(url)) return null
+  try {
+    const page = await fetchFn(url, { headers: { 'User-Agent': MOZILLA_UA }, redirect: 'follow' })
+    if (!page.ok) return null
+    const params = extractBatchParams(await page.text())
+    if (!params) return null
+    const res = await fetchFn(BATCH_URL, {
+      method: 'POST',
+      headers: {
+        'User-Agent': MOZILLA_UA,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      },
+      body: buildBatchRequestBody(params),
+    })
+    if (!res.ok) return null
+    return parseResolvedUrl(await res.text())
+  } catch {
+    return null
+  }
+}
+
 export async function groundDraft(
   draft: DraftNewPromise,
   fetchImpl: FetchLike = defaultGroundingFetch,
   now: Date = new Date(),
+  resolveGn: (url: string) => Promise<string | null> = resolveGoogleNewsUrl,
 ): Promise<Grounding> {
   const checkedAt = now.toISOString()
   const fail: Grounding = { grounded: false, urlResolved: false, quoteFound: false, checkedAt }
   if (!partyDateOk(draft.proposed.party, draft.proposed.madeAt, now)) return fail
+  // Google-News RSS wrappers never carry the verbatim quote; resolve to the
+  // real publisher URL first so legitimate drafts can ground. Fail-safe: a
+  // null resolution grounds the original URL (which itself fails safe).
+  let targetUrl = draft.proposed.source.url
+  if (isGoogleNewsUrl(targetUrl)) {
+    const resolved = await resolveGn(targetUrl).catch(() => null)
+    if (resolved) targetUrl = resolved
+  }
   let res: Awaited<ReturnType<FetchLike>>
   try {
-    res = await fetchImpl(draft.proposed.source.url)
+    res = await fetchImpl(targetUrl)
   } catch {
     return fail
   }

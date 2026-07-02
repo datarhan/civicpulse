@@ -4,6 +4,10 @@ import {
   partyDateOk,
   stripHtml,
   groundDraft,
+  isGoogleNewsUrl,
+  extractBatchParams,
+  buildBatchRequestBody,
+  parseResolvedUrl,
   type FetchLike,
 } from '../src/scraper/promise-grounding'
 import type { DraftNewPromise } from '../src/scraper/promise-draft'
@@ -142,5 +146,91 @@ describe('promise-grounding — default fetch UA', () => {
     expect(MOZILLA_UA.startsWith('Mozilla/5.0')).toBe(true)
     expect((seenInit?.headers as Record<string, string>)['User-Agent']).toBe(MOZILLA_UA)
     expect(seenInit?.redirect).toBe('follow')
+  })
+})
+
+describe('promise-grounding — Google-News resolution', () => {
+  it('isGoogleNewsUrl detects the wrapper and rejects publisher URLs', () => {
+    expect(isGoogleNewsUrl('https://news.google.com/rss/articles/CBMisw?oc=5')).toBe(true)
+    expect(isGoogleNewsUrl('https://news.google.com/read/CBMisw')).toBe(true)
+    expect(isGoogleNewsUrl('https://www.lasprovincias.es/camp-turia/ejercito-ribaroja.html')).toBe(
+      false,
+    )
+  })
+
+  it('extractBatchParams lifts the three data-n-a-* attributes, null if any missing', () => {
+    const html =
+      '<c-wiz data-n-a-id="CBMisw123" data-n-a-ts="1718900000" data-n-a-sg="ABC_sig">x</c-wiz>'
+    expect(extractBatchParams(html)).toEqual({ id: 'CBMisw123', ts: '1718900000', sg: 'ABC_sig' })
+    expect(extractBatchParams('<c-wiz data-n-a-id="x" data-n-a-ts="1">no sg</c-wiz>')).toBeNull()
+  })
+
+  it('buildBatchRequestBody encodes the Fbv4je/garturlreq envelope with id/ts/sg', () => {
+    const body = buildBatchRequestBody({ id: 'CBMisw123', ts: '1718900000', sg: 'ABC_sig' })
+    const decoded = decodeURIComponent(body)
+    expect(decoded).toContain('Fbv4je')
+    expect(decoded).toContain('garturlreq')
+    expect(decoded).toContain('CBMisw123')
+    expect(decoded).toContain('1718900000')
+    expect(decoded).toContain('ABC_sig')
+  })
+
+  it('parseResolvedUrl returns the first non-Google https URL, null if none', () => {
+    const resp =
+      ')]}\'\n\n[["wrb.fr","Fbv4je","[\\"garturlres\\",\\"https://www.gstatic.com/x\\",\\"https://www.lasprovincias.es/camp-turia/ejercito-ribaroja.html\\"]"]]'
+    expect(parseResolvedUrl(resp)).toBe(
+      'https://www.lasprovincias.es/camp-turia/ejercito-ribaroja.html',
+    )
+    expect(
+      parseResolvedUrl('only https://news.google.com/x and https://www.gstatic.com/y'),
+    ).toBeNull()
+  })
+
+  it('groundDraft resolves a Google-News URL then grounds against the publisher', async () => {
+    const publisher = 'https://www.lasprovincias.es/camp-turia/ejercito-ribaroja.html'
+    let fetchedUrl = ''
+    const fetchImpl: FetchLike = async (url) => {
+      fetchedUrl = url
+      return {
+        ok: true,
+        url,
+        text: async () =>
+          '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027.</article>',
+      }
+    }
+    const resolveGn = async () => publisher
+    const g = await groundDraft(
+      draft({ source: { url: 'https://news.google.com/rss/articles/CBMisw', publisher: 'LP' } }),
+      fetchImpl,
+      NOW,
+      resolveGn,
+    )
+    expect(fetchedUrl).toBe(publisher)
+    expect(g.grounded).toBe(true)
+    expect(g.resolvedUrl).toBe(publisher)
+  })
+
+  it('groundDraft falls back to the original URL when resolution yields null', async () => {
+    let fetchedUrl = ''
+    const fetchImpl: FetchLike = async (url) => {
+      fetchedUrl = url
+      return {
+        ok: true,
+        url,
+        text: async () =>
+          '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027.</article>',
+      }
+    }
+    const resolveGn = async () => null
+    const original = 'https://news.google.com/rss/articles/CBMisw'
+    const g = await groundDraft(
+      draft({ source: { url: original, publisher: 'LP' } }),
+      fetchImpl,
+      NOW,
+      resolveGn,
+    )
+    expect(fetchedUrl).toBe(original)
+    expect(g.grounded).toBe(true)
+    expect(g.resolvedUrl).toBe(original)
   })
 })
