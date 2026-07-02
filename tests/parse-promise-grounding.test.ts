@@ -7,6 +7,7 @@ import {
   type FetchLike,
 } from '../src/scraper/promise-grounding'
 import type { DraftNewPromise } from '../src/scraper/promise-draft'
+import { defaultGroundingFetch, MOZILLA_UA } from '../src/scraper/promise-grounding'
 
 const NOW = new Date('2026-07-02T00:00:00.000Z')
 
@@ -40,11 +41,15 @@ describe('promise-grounding', () => {
   })
 
   it('quoteFoundInText matches ignoring case/diacritics', () => {
-    expect(quoteFoundInText('Construiremos un CARRIL bici', 'nota: construiremos un carril bici pronto')).toBe(true)
+    expect(
+      quoteFoundInText('Construiremos un CARRIL bici', 'nota: construiremos un carril bici pronto'),
+    ).toBe(true)
   })
 
   it('quoteFoundInText rejects an absent quote', () => {
-    expect(quoteFoundInText('Bajaremos el IBI un 10%', 'la noticia habla de otra cosa distinta')).toBe(false)
+    expect(
+      quoteFoundInText('Bajaremos el IBI un 10%', 'la noticia habla de otra cosa distinta'),
+    ).toBe(false)
   })
 
   it('partyDateOk rejects future dates and bad party', () => {
@@ -57,7 +62,8 @@ describe('promise-grounding', () => {
     const fetchImpl: FetchLike = async () => ({
       ok: true,
       url: 'https://real-publisher.example/n',
-      text: async () => '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027, dijo el alcalde.</article>',
+      text: async () =>
+        '<article>Construiremos un carril bici en la Avenida del Camp de Túria antes de 2027, dijo el alcalde.</article>',
     })
     const g = await groundDraft(draft(), fetchImpl, NOW)
     expect(g.grounded).toBe(true)
@@ -67,7 +73,11 @@ describe('promise-grounding', () => {
   })
 
   it('groundDraft fails safe when quote is absent', async () => {
-    const fetchImpl: FetchLike = async () => ({ ok: true, url: 'https://x/n', text: async () => '<p>texto sin la cita</p>' })
+    const fetchImpl: FetchLike = async () => ({
+      ok: true,
+      url: 'https://x/n',
+      text: async () => '<p>texto sin la cita</p>',
+    })
     const g = await groundDraft(draft(), fetchImpl, NOW)
     expect(g.grounded).toBe(false)
     expect(g.quoteFound).toBe(false)
@@ -83,7 +93,11 @@ describe('promise-grounding', () => {
   })
 
   it('groundDraft fails safe on non-200', async () => {
-    const fetchImpl: FetchLike = async () => ({ ok: false, url: 'https://x/404', text: async () => '' })
+    const fetchImpl: FetchLike = async () => ({
+      ok: false,
+      url: 'https://x/404',
+      text: async () => '',
+    })
     const g = await groundDraft(draft(), fetchImpl, NOW)
     expect(g.grounded).toBe(false)
     expect(g.urlResolved).toBe(false)
@@ -108,5 +122,25 @@ describe('promise-grounding', () => {
 
   it('partyDateOk rejects a non-ISO date', () => {
     expect(partyDateOk('PSOE', '20/06/2026', NOW)).toBe(false)
+  })
+})
+
+describe('promise-grounding — default fetch UA', () => {
+  it('defaultGroundingFetch sends a Mozilla-leading UA and follows redirects', async () => {
+    let seenInit: RequestInit | undefined
+    const realFetch = globalThis.fetch
+    // @ts-expect-error test stub
+    globalThis.fetch = async (url: string, init?: RequestInit) => {
+      seenInit = init
+      return { ok: true, url, text: async () => '<p>ok</p>' } as unknown as Response
+    }
+    try {
+      await defaultGroundingFetch('https://ribarroja.es/x')
+    } finally {
+      globalThis.fetch = realFetch
+    }
+    expect(MOZILLA_UA.startsWith('Mozilla/5.0')).toBe(true)
+    expect((seenInit?.headers as Record<string, string>)['User-Agent']).toBe(MOZILLA_UA)
+    expect(seenInit?.redirect).toBe('follow')
   })
 })
