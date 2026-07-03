@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-07-02T07:56:41.529Z",
+  "generatedAt": "2026-07-03T07:51:25.555Z",
   "windowDays": 30,
   "articles": [
     {
-      "articleId": "stdij8",
-      "articleFingerprint": "1ve9pl8",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/84539-galeria-demostracio-de-drons-industrials-a-riba-roja.html",
-      "date": "2026-07-01T17:16:07.000Z",
+      "articleId": "1w6ljcb",
+      "articleFingerprint": "1s96ay0",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
+      "date": "2026-07-02T11:16:28.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -20,12 +20,29 @@
       "score": 3
     },
     {
-      "articleId": "62t9nq",
-      "articleFingerprint": "1g57ty4",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOck9wMDB1QmVnbUhZZWV4VmdhaVNiU0J3S3VrQ3JmbkpROF85ZHhGNERsWEx5NFZvLW9qTENXRU9ZMW1adWg1ek52YXJZVWIxTGVOUjBjdkwxUFRjVWZseFBMWGsyRHlKYVowM1RaS1FoNG5KQnhSRlR0Wm55UTdKTmJ1NzZsQWZxQ0RSOTlZZGhKRGxkZWxGeTFseEVEZG9hT1ZId19RVnhzRWNUUzBTaWhvN21iME5lV0pUanRzMllWdmhBRWp1MFBQUDVaSmdqb0c0OdIB2gFBVV95cUxNdWNVTjdPVGs5Z0lYYjNDUi1KNEZjWVhpSWlnUndwSy1Pcm1Wa0NQeEFpS3pNT20yLUtPS2l4b09fTk14eDZFODA0OFlXQ2RLYXg1Y0FKV1l2Nmd1bUFkdW5uYmM0eDhiVE9YUnlUd2dxRzBBOGhScFFEQjd2TDh5d09JR0kwbnF3ODJ6RXVSTmg1ZngzdFdZZ19ENmVSdUoyNENsbF9Wb3g0QkU2UGVyaGVpNXpZLXFCbUdvaC1kYWYxNW9Bb2sxXzloS0NrNmtkWTFBUnF0cVdjQQ?oc=5",
-      "date": "2026-07-01T15:27:40.000Z",
+      "articleId": "1j5axb6",
+      "articleFingerprint": "nu7ye8",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/ribajazz-2026",
+      "date": "2026-07-02T10:39:08.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "stdij8",
+      "articleFingerprint": "1ve9pl8",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/84539-galeria-demostracio-de-drons-industrials-a-riba-roja.html",
+      "date": "2026-07-01T17:16:07.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -275,23 +292,6 @@
       "score": 3
     },
     {
-      "articleId": "1icahjc",
-      "articleFingerprint": "1e8ii34",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNWXlLeGRMdW9aTW80cV9qTEV4THB4bjhCdkhqcW9tOUY0RUg3RUJnOUNhMWF3aG5uMHNDbk1mSUE5UkVkc3lFbm1jTF81bW5VWVlpTUdubURxS0FMbE1mYkhub0l2a2pBT3VwM2N4R1lKaVhDOGhOQkVnMFFDWnJEQkl4VFpsY2dDb0VKek9ZZ2xudklBSlRuVW40WnZhbDFMQXNkLTVpYzFCOG9qb1RVVWNvVmVRTjF3Rzl0ODlsWWdjZXNpb2lLT3MtMloxcEtnb0NncUp6WW8?oc=5",
-      "date": "2026-06-29T11:09:53.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
       "articleId": "1nxenj4",
       "articleFingerprint": "39ev6o",
       "outlet": "Fotocasa",
@@ -479,23 +479,6 @@
       "score": 3
     },
     {
-      "articleId": "11bfg2o",
-      "articleFingerprint": "wy4bq0",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPeFJXS0ZtV0M0cTlOX2tlNDhOckdnMXFQUVQwTENuWGh3OEd5SkxqU2ZVOU9tMkVnTDRzalVvZkZTem1OTVZtdl9Dc0J1SXhQZkNhX29wWF8zcFpyQ2ZCMVNLMFZwVXhRTHNCUkpVWFRtNkJxaFp6NmhVcVJmdlNkYXlnNWtrdm55OEo2M3pBWllKRnBpdVl3VFZYNmZqT2M4MjVQV0JjM2VkOUxybjYyY1g1M0cySEQzbXZpb2ppb19QbXBrM0gtNtIBzgFBVV95cUxOdGNDQTE3ZndlaEN6ZmhwS1BDWklZNzhSTnNhQlk0QjZqS05XaDUxMHgzOWRMN2R5eTE3YWNhMDdnbzlQeEhEWTN0VnhiMGZZN0JNMDRNRE5PSk1rbklvMlk3ajNEUmw3OFVqaWJXeUVZdUZOU1RpZExfTmJKQ3JHa1k2R2pxTUc2ZkRkN3F3c0toNm9nRGNta1BwZFFsRUFrX01iYU9qZ2ZrWVM4RnpPU1l2WVhPeG41YmItV3ZyRVdsQnBpQW1LTnhOb1pyZw?oc=5",
-      "date": "2026-06-22T16:10:43.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
       "articleId": "17fhlbs",
       "articleFingerprint": "haooeg",
       "outlet": "Periòdic del Camp de Túria",
@@ -530,12 +513,12 @@
       "score": 3
     },
     {
-      "articleId": "om0z0o",
-      "articleFingerprint": "ynduy0",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxON1RzemhxSUJmUmtwOW5LTlhxN3NMZjhjSVJvYVIwZnZDLW9rcDJPUjlsNzlpdURGMWdab0ZfeVpmdHJtSXltbGl1eGJPOWNHdW1ZcEVQMnlEcUJxal9jaHE0VUhHLWZZZDN0QkU3MmdLeXRxM0gwWkxuOVZmM3BKWTVuN1JTSzBzbFRkQ2JRWG12dm40Wkh1MXlwa3lkeGd0RVlDVFBFQ19EdlotS2I3dEwtYWttQzBxMDEw0gHAAUFVX3lxTFA0Zktha2xHTVBwRnlMc0pyelMxaEpWWWRBT1VUY1hjM3BMVjJkWW1jS1pQTTdqaWVtS25zMkQyNkNlQWdhajZJZDZJQ0RIX1pXVEg0MzF5UExwdGd6bDY2bnNLMmlpQU1zQnhfRVM2WGFZYlZJWnlqYzJnanktc2gxQzg1bnZQZEF1WjVuankzQmxJTFBqU05pWEN4dW5ISm9TQmVyMVVtNS11clpUTVhRZzZoQnpDX1Z0bTV3OEN5dw?oc=5",
-      "date": "2026-06-21T22:12:58.000Z",
+      "articleId": "11bfg2o",
+      "articleFingerprint": "wy4bq0",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxPeFJXS0ZtV0M0cTlOX2tlNDhOckdnMXFQUVQwTENuWGh3OEd5SkxqU2ZVOU9tMkVnTDRzalVvZkZTem1OTVZtdl9Dc0J1SXhQZkNhX29wWF8zcFpyQ2ZCMVNLMFZwVXhRTHNCUkpVWFRtNkJxaFp6NmhVcVJmdlNkYXlnNWtrdm55OEo2M3pBWllKRnBpdVl3VFZYNmZqT2M4MjVQV0JjM2VkOUxybjYyY1g1M0cySEQzbXZpb2ppb19QbXBrM0gtNtIBzgFBVV95cUxOdGNDQTE3ZndlaEN6ZmhwS1BDWklZNzhSTnNhQlk0QjZqS05XaDUxMHgzOWRMN2R5eTE3YWNhMDdnbzlQeEhEWTN0VnhiMGZZN0JNMDRNRE5PSk1rbklvMlk3ajNEUmw3OFVqaWJXeUVZdUZOU1RpZExfTmJKQ3JHa1k2R2pxTUc2ZkRkN3F3c0toNm9nRGNta1BwZFFsRUFrX01iYU9qZ2ZrWVM4RnpPU1l2WVhPeG41YmItV3ZyRVdsQnBpQW1LTnhOb1pyZw?oc=5",
+      "date": "2026-06-22T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -1023,23 +1006,6 @@
       "score": 3
     },
     {
-      "articleId": "1mfnarj",
-      "articleFingerprint": "s3afrc",
-      "outlet": "Fotocasa",
-      "outletHost": "fotocasa.es",
-      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQZDZrcExCamxsWHdtOEFqT09fVUY4MEZTN2Y0S2lxZXlCdXdhQ1dVMHk2c3VTcjhORTFZa0hmaXdLemxLdEoxWXhsUnJtNTFHUTlsY0tWZFIzWlByRHhfNzJ5SVp4cDhJQTZ4czVXUE9lUnZkYmI5TUk5NzRlZEpfV0N3c1NTWG9Z?oc=5",
-      "date": "2026-06-09T17:42:49.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
       "articleId": "1ipta7w",
       "articleFingerprint": "1j7u7hc",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -1125,6 +1091,23 @@
       "score": 2
     },
     {
+      "articleId": "1tegyjo",
+      "articleFingerprint": "1q1bzw",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQVTJiWkNKeW5xRUNZbGJ1dmZZd21WV3E3LUVpRFp4VXBZaEFMYkxiZWJOVEZtQlZaQklTOGhXOXdyNEpBRVYxQWJ4aEFqQTcycmZzSjlYVU9OZnZLN1lvTzZDSWE2TjY4cjVIQkpyb2JxOGdMRFpqdHBraDJNaENLY25nV1Y5Sk1mOF9mQjhFWG9IVnE1Ull6a2Y0UnIxTVQwMUNNQjBnN0tINFlfb1FyMHBEQVlBd04tRmhhd2lpU2NpNkt3eDlBWHJrQ3FVZ0FKRG1TOEZSbkxuakRZOEJNQw?oc=5",
+      "date": "2026-06-08T07:00:00.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
       "articleId": "17j0jc",
       "articleFingerprint": "ghhn8c",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -1147,23 +1130,6 @@
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQd3h3YjQyRFAzWjY2ODN4VGtFUjBaWlhXRTZVRkt1UFdDNUMtd3ZSWEpYTTRVS3hNRERPX000bmR4R2RMMjFyeDFGM0FkM2VlMnN0SUIzZlh0Z1RsVTFCcWgzTG9nNHRNWl9TaDl5eExXYUNocmlTNjVDN1NrNG9MSTlieUlVLVd1bUJmSVY4RVNFOXB6dFJBZ3NtYVdmV1lycmo1THJtQTdSa2Z0dDRaMnBnVHVUTTJfell1X0NNVlRHV19JbDZLc21uSW01dXl2c1ItNmdmVWVuYng4UFkzaXRNVzfSAeoBQVVfeXFMT0ktWnNLeHA1d1dFU0pBR1lYMWtWQW1xcVBoMzR0dElXSllkTThla3hNWnhDNjhZT2pJdkotRkFiNUYzcVNIX1Y1OEg5SWowWTEtODVfY1JZWC05Y3AyUi1lQUllZVR4T0drMnJPNEo2T1VxLTRBWWtiMlVjS0p0UGo0a0tfTVNTZ0dDSDNiVkJHQ2ZMTTRBYWp5VTh0ekJKTDVjRE5NUENsbXRtMlBJMF9WQkNITTRrQ0g4OVRXalpmRG03d01sc1Z3WWtfTFhXNTR3NTFzR0pvR1BBb1RqYngyRGFaU013UEp3?oc=5",
-      "date": "2026-06-05T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
-    },
-    {
-      "articleId": "pz5in3",
-      "articleFingerprint": "1sabn38",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxNUTJnbmJFWHdfTU0tUTBLM2dSOG1ILVpiYU5rRlptdV9KX0E1eDh6WWRocXpteFM1UVJPUmVnZEdjc3RHUkxmWjlPTWFGWktVU0RfUC1ZWVBqUjJ6RHpST3NWWmRsTDAyNzhzUUZsM0xxVkNsUS1TdWR4NklaR0hNMXV1aklvX3hrVll6U3NKS01KSDNjbHA1dlBRNUFzdWR5aWhEaENaVExJdUZJVG1hRzRNV3M2azdPdFgxQmpmOWjSAcYBQVVfeXFMTVJ0TVpIRXFrWmxYU3NJM2NaZHBpbnFIbzVxM2hkZVk1dUhNOWpGX09yaUZiOGZGN2dVWHk3cWIzcWhWQ0o1cHVzRGxBTEd4WUJRVHczcVFaaFd3Rl9uV0JxTXlzUlprQThEMUt0Y2dzMjdNS0RQeDV6Z0xWdUgzSVFRY3B0WEQ0QkNBamt3MFJwZnE3eE5CX2JBcjQ4ejRkNHVjRkg3YXFQeEVMNzBoalZQZFY4eGhuSjBzY2xRQ0oxeU5scEh3?oc=5",
       "date": "2026-06-05T07:00:00.000Z",
       "indicators": {
         "localCoverage": true,
@@ -1225,23 +1191,6 @@
         "opinionFraction": 0
       },
       "score": 3
-    },
-    {
-      "articleId": "ok7uw0",
-      "articleFingerprint": "1xg5g",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-inyecta-un-25%25-m%C3%A1s-de-ayudas-econ%C3%B3micas-directas-al-comercio-local-previstas-para-el-a%C3%B1o-2026-y-sit%C3%BAa-la-partida-en-550.000-euros-encaminada-a-la-reactivaci%C3%B3n-del-sector",
-      "date": "2026-06-02T15:47:23.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 3
     }
   ],
   "outlets": [
@@ -1263,7 +1212,7 @@
     {
       "outlet": "Levante-EMV",
       "outletHost": "levante-emv.com",
-      "articleCount": 13,
+      "articleCount": 12,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1291,9 +1240,24 @@
       "contradictedRatio": 0
     },
     {
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "articleCount": 5,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
+      "verifiedRatio": 0,
+      "contradictedRatio": 0
+    },
+    {
       "outlet": "Fotocasa",
       "outletHost": "fotocasa.es",
-      "articleCount": 6,
+      "articleCount": 5,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1308,37 +1272,7 @@
     {
       "outlet": "Las Provincias",
       "outletHost": "lasprovincias.es",
-      "articleCount": 5,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 3,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
-      "outlet": "El Periódico de Aquí",
-      "outletHost": "elperiodicodeaqui.com",
       "articleCount": 4,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2,
-      "verifiedRatio": 0,
-      "contradictedRatio": 0
-    },
-    {
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,

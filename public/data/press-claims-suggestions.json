@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-02T07:56:37.663Z",
+  "generatedAt": "2026-07-03T07:51:21.677Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
