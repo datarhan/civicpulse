@@ -121,6 +121,21 @@ export function statusTransitionKey(promiseId: string, proposedStatus: string): 
   return `${promiseId}::${proposedStatus}`
 }
 
+/** Fulfilment ordinal for the forward-only guard: an auto status change may only
+ *  ADVANCE a promise, never regress it. documentada/en-verificacion are the
+ *  baseline (0); en-progreso(1) < parcial(2) < cumplida(3). The accusatory /
+ *  terminal statuses map to 0 so a machine change can never step "down" onto or
+ *  off them (they are curator-only anyway). */
+const PROGRESS_ORDER: Record<Status, number> = {
+  documentada: 0,
+  'en-verificacion': 0,
+  'en-progreso': 1,
+  parcial: 2,
+  cumplida: 3,
+  'no-ejecutada': 0,
+  inviable: 0,
+}
+
 /** Mirror of selectPromiseDrafts for status-change drafts. */
 export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
   const out: SelectStatusOutput = { autoPublish: [], queue: [], skipped: [] }
@@ -129,6 +144,11 @@ export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
     return out
   }
   const min = inp.minConfidence ?? AUTO_PUBLISH_MIN_CONFIDENCE
+  // Intra-batch transition dedup: mineStatusChanges runs per promise and can
+  // emit several drafts for the SAME (promiseId, proposedStatus) citing
+  // different candidates. Without this, both land — duplicate queue rows, or (on
+  // the auto path) a second apply that trips the stale guard and aborts the run.
+  const takenTransitions = new Set<string>()
   let taken = 0
   for (const c of inp.candidates) {
     if (inp.max !== undefined && taken >= inp.max) {
@@ -139,8 +159,15 @@ export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
       out.skipped.push({ draftId: c.draftId, reason: 'duplicate' })
       continue
     }
-    if (inp.seenTransitions.has(statusTransitionKey(c.promiseId, c.proposedStatus))) {
+    const key = statusTransitionKey(c.promiseId, c.proposedStatus)
+    if (inp.seenTransitions.has(key) || takenTransitions.has(key)) {
       out.skipped.push({ draftId: c.draftId, reason: 'already-tracked' })
+      continue
+    }
+    // Forward-only: never auto-regress a promise (e.g. cumplida → en-progreso).
+    // Curator corrections go through the apply CLI directly, not this selector.
+    if (PROGRESS_ORDER[c.proposedStatus] <= PROGRESS_ORDER[c.currentStatus]) {
+      out.skipped.push({ draftId: c.draftId, reason: 'not-forward' })
       continue
     }
     const decision = decideDraft(c.proposedStatus, c.confidence, c.grounding, min)
@@ -148,6 +175,7 @@ export function selectStatusDrafts(inp: SelectStatusInput): SelectStatusOutput {
     // fast-track items also land in out.queue; callers distinguish by draft.decision
     if (decision === 'auto-publish') out.autoPublish.push(draft)
     else out.queue.push(draft)
+    takenTransitions.add(key)
     taken++
   }
   return out
