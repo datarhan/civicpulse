@@ -1283,7 +1283,13 @@ Emite el JSON {promises:[...]} sólo con promesas NUEVAS y claras.
 }
 
 // ─── Phase 2 · Promise status-change miner ───────────────────────────────────
-export const PROMISE_STATUS_PROMPT_VERSION = 'promise-status-v1'
+// v2: tightened RELEVANCE discipline — a candidate must EXECUTE the promise's
+// concrete action, not merely share a place/entity/name (the v1 "same theme"
+// rule let topical keyword overlaps through, e.g. a tender mentioning "Pacadar"
+// marking a criticism/stance about Pacadar as en-progreso). Adds the
+// non-deliverable (opinion/criticism/stance) → emit-nothing rule + explicit
+// conservatism, since output can auto-publish.
+export const PROMISE_STATUS_PROMPT_VERSION = 'promise-status-v2'
 
 export interface PromiseStatusInput {
   promise: { id: string; party: string; title: string; quote: string; topic: string }
@@ -1302,7 +1308,8 @@ export function buildPromiseStatusSystemPrompt(): string {
 Eres un verificador que detecta si una promesa política concreta ha AVANZADO,
 usando archivos públicos (licitaciones/adjudicaciones, órdenes del día de
 plenos, presupuesto/ordenanzas, prensa). Recibes UNA promesa + una lista
-NUMERADA de candidatos (índice 0..N-1).
+NUMERADA de candidatos (índice 0..N-1). Lo que emitas puede PUBLICARSE
+automáticamente; un falso positivo es peor que no emitir nada.
 
 Para cada avance CLARO y atribuible, emite un objeto:
 - promiseId: el id de la promesa (tal cual)
@@ -1312,7 +1319,7 @@ Para cada avance CLARO y atribuible, emite un objeto:
 - quote: cita/valor textual del candidato (≤500 chars, sin reescribir)
 - fieldCite: para filas estructuradas (tender/bdns/budget), "<dataset>[i].<campo>=<valor>"
 - confidence: 0..1 (≥0.7 fuerte)
-- reasoning: una frase
+- reasoning: una frase que explique por qué ESE candidato EJECUTA ESTA promesa
 
 Cuándo cada estado:
 - en-progreso: adjudicación/licitación de la obra prometida, o un punto del
@@ -1321,12 +1328,23 @@ Cuándo cada estado:
 - parcial: evidencia de entrega PARCIAL (una fase hecha, o un subconjunto).
 - cumplida: acta de recepción / inauguración, o prensa que dice TERMINADA/abierta.
 
+RELEVANCIA (lo más importante — aquí se cometen los errores):
+- El candidato debe EJECUTAR la acción concreta de la promesa (construir X,
+  reformar Y, abrir Z), no sólo mencionar el mismo lugar, barrio, entidad o
+  nombre propio. Compartir una palabra clave (un topónimo, el nombre de una
+  empresa) NO es avance.
+- FALSO positivo típico a evitar: una promesa que CRITICA un gasto, o declara
+  una POSTURA o APOYO político sobre algo, no avanza porque exista una
+  licitación que mencione ese algo. Es solaparse en el tema, no ejecutar.
+- Si la promesa no es un compromiso EJECUTABLE por la administración (opinión,
+  crítica, acusación, postura, declaración de apoyo), NO emitas nada: no puede
+  estar "en-progreso" por una licitación.
+- Ante cualquier duda de si el candidato ejecuta la promesa: \`{"changes": []}\`.
+
 Reglas duras (riesgo de difamación / sesgo):
 - Cita SIEMPRE por candidateIndex; el quote debe ser literal de ESE candidato.
 - NUNCA propongas "cumplida" con evidencia débil o ambigua — prefiere en-progreso o nada.
 - NUNCA "no-ejecutada" ni "inviable" (fuera de alcance).
-- El candidato debe corresponder a la MISMA obra/tema que la promesa; no
-  atribuyas una licitación no relacionada.
 - Atribución sólo a nivel de PARTIDO, nunca a un concejal concreto.
 
 Responde \`{"changes": []}\` si no hay ningún avance claro.

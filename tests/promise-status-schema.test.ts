@@ -43,8 +43,12 @@ describe('promise status-change schema + prompt', () => {
   })
 
   it('version + prompts present; user prompt numbers candidates 0-based', () => {
-    expect(PROMISE_STATUS_PROMPT_VERSION).toBe('promise-status-v1')
-    expect(buildPromiseStatusSystemPrompt().length).toBeGreaterThan(100)
+    expect(PROMISE_STATUS_PROMPT_VERSION).toBe('promise-status-v2')
+    const sys = buildPromiseStatusSystemPrompt()
+    expect(sys.length).toBeGreaterThan(100)
+    // v2 relevance discipline: execution vs topical-overlap + non-deliverable rule
+    expect(sys).toContain('RELEVANCIA')
+    expect(sys).toContain('EJECUTAR')
     const u = buildPromiseStatusUserPrompt({
       promise: {
         id: 'p1',
