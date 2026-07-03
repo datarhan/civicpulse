@@ -185,6 +185,14 @@ export default function Metodologia() {
           literalmente en ella. Sólo se publica automáticamente lo que supera un umbral de confianza
           (≥0,70) <em>y</em> queda anclado; el resto espera revisión humana en cola.
         </p>
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          Los <em>cambios de estado</em> sobre promesas ya publicadas se infieren de licitaciones y
+          adjudicaciones (PLACSP), subvenciones (BDNS), el presupuesto municipal y la prensa. Un
+          avance a «en progreso» se auto-publica cuando supera el umbral (≥0,70) y queda anclado a
+          una fila real de esas fuentes; «parcial» y «cumplida» nunca se auto-publican — quedan a un
+          solo clic humano. Cada cambio sólo puede <em>avanzar</em> una promesa, nunca revertirla, y
+          adjunta la evidencia citada en la propia ficha.
+        </p>
         <ul style={{ margin: '10px 0 0', paddingLeft: 20, color: 'var(--ink70)' }}>
           <li>
             Lo auto-publicado se marca en su ficha con «publicada automáticamente · revisión
@@ -193,6 +201,11 @@ export default function Metodologia() {
           <li>
             Un veredicto de «no ejecutada» (incumplimiento) nunca se auto-publica: queda como
             propuesta lista para publicar con un solo clic humano.
+          </li>
+          <li>
+            El anclaje de un cambio de estado demuestra que la licitación o la noticia existe, no
+            que corresponda exactamente a la promesa; por eso un avance a «cumplida» siempre lo
+            confirma una persona.
           </li>
           <li>El estado «inviable» es siempre exclusivamente humano.</li>
           <li>
