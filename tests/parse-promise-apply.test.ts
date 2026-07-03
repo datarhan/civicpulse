@@ -7,10 +7,13 @@ import {
   setReviewState,
   tombstoneDraftFromPromise,
   applyStatusChange,
+  revertStatusChange,
+  tombstoneStatusChange,
 } from '../src/scraper/promise-apply'
 import { validatePromisesSnapshot, type PromisesSnapshot } from '../src/scraper/promises'
 import {
   makeDraftId,
+  makeStatusDraftId,
   validateReviewQueue,
   type DraftNewPromise,
   type DraftStatusChange,
@@ -195,5 +198,69 @@ describe('applyStatusChange', () => {
   it('removeAutoPublished refuses to delete a pre-existing (non-ac-) promise carrying a status-change auto-publish', () => {
     const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
     expect(() => removeAutoPublished(next, 'psoe-obra')).toThrow(/pre-existed|curated data/)
+  })
+
+  it('records priorStatus + appendedEvidenceUrl when auto-publishing (schema accepts them)', () => {
+    const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
+    const p = next.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.autoPublished?.priorStatus).toBe('documentada')
+    expect(p.autoPublished?.appendedEvidenceUrl).toBe('https://placsp/t1')
+    validatePromisesSnapshot(JSON.stringify(next)) // en-progreso + evidence + prior-state stamp → valid
+  })
+
+  it('revertStatusChange restores prior status, drops the appended evidence, clears autoPublished', () => {
+    const published = applyStatusChange(seededSnap(), statusDraft(), NOW, {
+      confidence: 0.85,
+      at: NOW,
+    })
+    const reverted = revertStatusChange(published, 'psoe-obra', NOW)
+    const p = reverted.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.status).toBe('documentada')
+    expect(p.evidence).toHaveLength(0) // the one appended tender evidence dropped
+    expect(p.autoPublished).toBeNull()
+    validatePromisesSnapshot(JSON.stringify(reverted)) // back to a V1 status → passes
+  })
+
+  it('revertStatusChange throws when the promise has no revertible status change', () => {
+    expect(() => revertStatusChange(seededSnap(), 'psoe-obra', NOW)).toThrow(
+      /no auto-published status change/,
+    )
+  })
+
+  it('tombstoneStatusChange reconstructs the miner draftId (keyed by evidence url) + validates', () => {
+    const published = applyStatusChange(seededSnap(), statusDraft(), NOW, {
+      confidence: 0.85,
+      at: NOW,
+    })
+    const p = published.items.find((x) => x.id === 'psoe-obra')!
+    const tomb = tombstoneStatusChange(p, NOW)
+    expect(tomb).not.toBeNull()
+    expect(tomb!.draftId).toBe(makeStatusDraftId('psoe-obra', 'en-progreso', 'https://placsp/t1'))
+    expect(tomb!.currentStatus).toBe('documentada')
+    expect(tomb!.proposedStatus).toBe('en-progreso')
+    const q = { version: '1.0', generatedAt: NOW, drafts: [tomb!] }
+    expect(() => validateReviewQueue(JSON.stringify(q))).not.toThrow()
+  })
+
+  it('human-approved status change (no autoPublish arg) sheds any stale autoPublished stamp', () => {
+    // promise was previously machine-auto-published to en-progreso (pending-review)
+    const withStamp = applyStatusChange(seededSnap(), statusDraft(), NOW, {
+      confidence: 0.85,
+      at: NOW,
+    })
+    expect(withStamp.items.find((x) => x.id === 'psoe-obra')!.autoPublished).not.toBeNull()
+    // curator then human-approves a further advancement to parcial (no autoPublish arg)
+    const parcial: DraftStatusChange = {
+      ...statusDraft(),
+      draftId: 'dsc-psoe-obra-parcial-x',
+      currentStatus: 'en-progreso',
+      proposedStatus: 'parcial',
+      evidence: { ...statusDraft().evidence, url: 'https://placsp/t2' },
+    }
+    const human = applyStatusChange(withStamp, parcial, NOW)
+    const p = human.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.status).toBe('parcial')
+    expect(p.autoPublished).toBeNull() // stale machine stamp shed; human owns it
+    validatePromisesSnapshot(JSON.stringify(human))
   })
 })

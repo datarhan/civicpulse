@@ -30,6 +30,8 @@ import {
   setReviewState,
   tombstoneDraftFromPromise,
   applyStatusChange,
+  revertStatusChange,
+  tombstoneStatusChange,
 } from '../src/scraper/promise-apply'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -116,12 +118,24 @@ async function main() {
       console.error(`[apply-promise-draft] promise "${promiseId}" not found or not auto-published`)
       process.exit(1)
     }
-    // Tombstone the promise in the review archive so the orchestrator's `seen`
-    // set skips it forever — otherwise discovery would re-propose, re-ground,
-    // and potentially re-auto-publish the very promise we just retracted.
+    // Tombstone in the review archive so the orchestrator's `seen` set skips
+    // this draft forever — otherwise mining would re-propose the very change we
+    // just retracted (a different/stronger evidence later still can, new id).
+    const archive = await loadQueue(ARCHIVE)
+    if (target.autoPublished.priorStatus !== undefined) {
+      // Auto-published STATUS CHANGE on a pre-existing promise → REVERT (restore
+      // priorStatus + drop the appended evidence); never delete curated data.
+      const tomb = tombstoneStatusChange(target, now)
+      await writeSnap(revertStatusChange(snap, promiseId, now))
+      if (tomb) await writeQueue(ARCHIVE, { ...archive, drafts: [...archive.drafts, tomb] })
+      console.log(
+        `[apply-promise-draft] reverted status change on "${promiseId}" → ${target.autoPublished.priorStatus}${tomb ? ` (tombstoned "${tomb.draftId}")` : ''}`,
+      )
+      return
+    }
+    // Auto-CREATED new promise → delete it (tombstone the new-promise draft).
     const tombstone = tombstoneDraftFromPromise(target, now)
     await writeSnap(removeAutoPublished(snap, promiseId))
-    const archive = await loadQueue(ARCHIVE)
     await writeQueue(ARCHIVE, { ...archive, drafts: [...archive.drafts, tombstone] })
     console.log(
       `[apply-promise-draft] retracted auto-published promise "${promiseId}" → tombstoned in archive as "${tombstone.draftId}"`,

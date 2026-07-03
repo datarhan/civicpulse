@@ -89,6 +89,14 @@ export interface AutoPublishedMeta {
   confidence: number // 0..1
   reviewState: 'pending-review' | 'reviewed' | 'retracted'
   reviewedAt?: string
+  /**
+   * Set only when this stamp records an auto-published STATUS CHANGE on a
+   * pre-existing promise (not a brand-new auto-created promise). Enables a
+   * clean revert on retract — status → priorStatus, drop the evidence entry at
+   * appendedEvidenceUrl — instead of deleting the whole curated promise.
+   */
+  priorStatus?: Status
+  appendedEvidenceUrl?: string
 }
 
 export interface Promise {
@@ -246,6 +254,10 @@ function validatePromise(p: unknown, idx: number): Promise {
     )
     if (ap.reviewedAt !== undefined && ap.reviewedAt !== null)
       assertIsoDate(ap.reviewedAt, `items[${idx}].autoPublished.reviewedAt`)
+    if (ap.priorStatus !== undefined && ap.priorStatus !== null)
+      assertEnum(ap.priorStatus, ALLOWED_STATUSES, `items[${idx}].autoPublished.priorStatus`)
+    if (ap.appendedEvidenceUrl !== undefined && ap.appendedEvidenceUrl !== null)
+      assertUrl(ap.appendedEvidenceUrl, `items[${idx}].autoPublished.appendedEvidenceUrl`)
   }
   return {
     id: r.id as string,

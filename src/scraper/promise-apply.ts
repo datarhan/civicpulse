@@ -3,8 +3,13 @@
  * promises.json, call these, then re-validate + write. No I/O here so the
  * round-trip (including validatePromisesSnapshot) is unit-tested.
  */
-import type { PromisesSnapshot, Promise } from './promises'
-import { makeDraftId, type DraftNewPromise, type DraftStatusChange } from './promise-draft'
+import type { PromisesSnapshot, Promise, Status } from './promises'
+import {
+  makeDraftId,
+  makeStatusDraftId,
+  type DraftNewPromise,
+  type DraftStatusChange,
+} from './promise-draft'
 
 export interface AutoPublishMeta {
   confidence: number
@@ -159,9 +164,93 @@ export function applyStatusChange(
               by: 'auto-curation-v1',
               confidence: autoPublish.confidence,
               reviewState: 'pending-review',
+              // Record the pre-change state so a retract can cleanly REVERT this
+              // pre-existing promise (status → priorStatus, drop the appended
+              // evidence) instead of deleting it.
+              priorStatus: p.status,
+              appendedEvidenceUrl: draft.evidence.url,
             }
-          : (p.autoPublished ?? null),
+          : // Human-approved status change takes OWNERSHIP: shed any stale
+            // machine "pending-review" stamp (from an earlier auto-publish) so a
+            // later --retract can't revert to a state the human already
+            // superseded — and can't drop this human advancement's evidence.
+            null,
       }
     }),
+  }
+}
+
+/**
+ * Revert an auto-published STATUS CHANGE on a pre-existing promise: restore the
+ * status to `autoPublished.priorStatus`, drop the single evidence entry the
+ * change appended (matched by url + auto-curation authorship), and clear the
+ * autoPublished stamp — the promise returns to its pre-change curated state.
+ * Throws if the promise is missing or carries no revertible status change.
+ */
+export function revertStatusChange(
+  snap: PromisesSnapshot,
+  promiseId: string,
+  now: string,
+): PromisesSnapshot {
+  const target = snap.items.find((p) => p.id === promiseId)
+  if (!target) throw new Error(`promise "${promiseId}" not found`)
+  const meta = target.autoPublished
+  if (!meta || meta.priorStatus === undefined)
+    throw new Error(`promise "${promiseId}" has no auto-published status change to revert`)
+  const evUrl = meta.appendedEvidenceUrl
+  return {
+    ...snap,
+    items: snap.items.map((p) => {
+      if (p.id !== promiseId) return p
+      // Drop the LAST auto-curation evidence entry at the appended url (the one
+      // this status change added), leaving any pre-existing evidence intact.
+      const evidence = [...p.evidence]
+      for (let i = evidence.length - 1; i >= 0; i--) {
+        if (evidence[i].url === evUrl && evidence[i].addedBy === 'auto-curation-v1') {
+          evidence.splice(i, 1)
+          break
+        }
+      }
+      return {
+        ...p,
+        status: meta.priorStatus as Status,
+        evidence,
+        updatedAt: now.slice(0, 10),
+        autoPublished: null,
+      }
+    }),
+  }
+}
+
+/**
+ * Reconstruct the status-change draft that mining WOULD regenerate for an
+ * auto-published status change, so retract can tombstone it in the review
+ * archive — the orchestrator's `seen` set then skips THIS evidence url. A
+ * different/stronger evidence later still re-proposes (different draftId).
+ * Returns null if the promise carries no reconstructable status change.
+ */
+export function tombstoneStatusChange(p: Promise, now: string): DraftStatusChange | null {
+  const meta = p.autoPublished
+  if (!meta || meta.priorStatus === undefined || !meta.appendedEvidenceUrl) return null
+  const evUrl = meta.appendedEvidenceUrl
+  const ev = [...p.evidence]
+    .reverse()
+    .find((e) => e.url === evUrl && e.addedBy === 'auto-curation-v1')
+  if (!ev) return null
+  const proposed = p.status
+  if (proposed !== 'en-progreso' && proposed !== 'parcial' && proposed !== 'cumplida') return null
+  return {
+    draftId: makeStatusDraftId(p.id, proposed, evUrl),
+    kind: 'status-change',
+    requiresHumanApproval: true,
+    confidence: meta.confidence,
+    grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: now },
+    decision: 'queue',
+    promiseId: p.id,
+    currentStatus: meta.priorStatus,
+    proposedStatus: proposed,
+    evidence: ev,
+    reasoning: [],
+    generatedAt: now,
   }
 }
