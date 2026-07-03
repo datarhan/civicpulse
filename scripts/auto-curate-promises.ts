@@ -1,46 +1,66 @@
 #!/usr/bin/env tsx
 /**
- * Promise auto-curator — daily orchestrator (Plan A / Phase 1: discovery).
+ * Promise auto-curator — daily orchestrator.
  *
- * LLM discovery over fresh press + pleno agendas → deterministic grounding →
- * decision tiering → writes new-promise drafts to editorial/promise-review-
- * queue.json (local-only) and auto-publishes the grounded, high-confidence
- * documentada drafts into promises.json.
+ * --phase discovery : LLM discovery over fresh press → new-promise drafts.
+ * --phase status    : LLM status-change miner over tenders/bdns/budget/press →
+ *                     progress-transition drafts on EXISTING promises.
+ * --phase both      : run both (default for the daily wrapper).
+ *
+ * Both phases feed the same pipeline: grounding → decision tiering → writes
+ * drafts to editorial/promise-review-queue.json (local-only) and auto-publishes
+ * the grounded, high-confidence ones into promises.json (en-progreso is auto;
+ * parcial/cumplida are one-click fast-track).
  *
  * LOREG freeze fail-closed: missing promises.json → exit 1; frozen → exit 0.
  *
  * Usage:
  *   npm run auto-curate-promises -- [--max 10] [--min-confidence 0.7] \
- *       [--phase discovery] [--dry-run] [--no-auto-publish]
+ *       [--phase discovery|status|both] [--dry-run] [--no-auto-publish]
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { validatePromisesSnapshot, isFrozen, type PromisesSnapshot } from '../src/scraper/promises'
 import {
   makeDraftId,
+  makeStatusDraftId,
   validateReviewQueue,
   emptyQueue,
   type DraftNewPromise,
+  type DraftStatusChange,
   type PromiseReviewQueue,
+  type QueueDraft,
 } from '../src/scraper/promise-draft'
-import { groundDraft } from '../src/scraper/promise-grounding'
-import { selectPromiseDrafts } from '../src/scraper/promise-auto-curate'
-import { newPromiseFromDraft, insertPromise } from '../src/scraper/promise-apply'
+import { groundDraft, groundStatusDraft } from '../src/scraper/promise-grounding'
+import {
+  selectPromiseDrafts,
+  selectStatusDrafts,
+  statusTransitionKey,
+} from '../src/scraper/promise-auto-curate'
+import { newPromiseFromDraft, insertPromise, applyStatusChange } from '../src/scraper/promise-apply'
 import { discoverPromises } from '../src/llm/promise-discovery'
 import type { PromiseDiscoveryInput } from '../src/llm/prompts'
+import { mineStatusChanges } from '../src/scraper/promise-status-miner'
+import type { RetrievalInput } from '../src/llm/retriever'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
 
 const PROMISES = resolve('public/data/promises.json')
 const PRESS = resolve('public/data/press.json')
 const AGENDAS = resolve('public/data/plenos-agendas.json')
+const TENDERS = resolve('public/data/tenders.json')
+const BDNS = resolve('public/data/bdns.json')
+const BUDGET = resolve('public/data/budget.json')
 const QUEUE = resolve('editorial/promise-review-queue.json')
 const ARCHIVE = resolve('editorial/promise-review-archive.json')
 const LOGDIR = resolve('scripts/logs')
 
+type Row = Record<string, unknown>
+const s = (v: unknown) => (typeof v === 'string' ? v : '')
+
 interface CliArgs {
   max: number
   minConfidence: number
-  phase: 'discovery'
+  phase: 'discovery' | 'status' | 'both'
   dryRun: boolean
   noAutoPublish: boolean
 }
@@ -59,12 +79,13 @@ function parseArgs(argv: string[]): CliArgs {
     else if (a === '--min-confidence') out.minConfidence = Number(argv[++i])
     else if (a === '--phase') {
       const p = argv[++i]
-      if (p !== 'discovery') {
+      if (p !== 'discovery' && p !== 'status' && p !== 'both') {
         process.stderr.write(
-          `[auto-curate-promises] --phase ${p} not supported in Plan A (discovery only)\n`,
+          `[auto-curate-promises] --phase must be discovery|status|both (got ${p})\n`,
         )
         process.exit(2)
       }
+      out.phase = p
     } else if (a === '--dry-run') out.dryRun = true
     else if (a === '--no-auto-publish') out.noAutoPublish = true
     else {
@@ -132,12 +153,70 @@ function buildDiscoveryInput(
   }
 }
 
+/** Shared corpora (same docs for every promise; the retriever filters per-promise
+ *  by keyword). Structured rows carry their permalink/sourceUrl as `url`. */
+function buildStatusCorpora(
+  tenders: { contracts?: Row[]; tenders?: Row[] } | null,
+  bdns: { items?: Row[] } | null,
+  budget: { snapshot?: Record<string, unknown> } | null,
+  press: { items?: Array<{ title: string; link: string; date: string; source?: string }> } | null,
+): RetrievalInput['corpora'] {
+  const tenderDocs = [...(tenders?.contracts ?? []), ...(tenders?.tenders ?? [])]
+    .slice(0, 500)
+    .map((t) => ({
+      url: s(t.permalink) || 'https://contrataciondelestado.es',
+      title: s(t.title),
+      date: (s(t.awardDate) || s(t.startDate) || s(t.submissionDate) || '2026-01-01').slice(0, 10),
+      publisher: 'PLACSP',
+      text: `${s(t.title)} ${s(t.categoryTitle)} ${s(t.status)} ${s(t.contractor)}`,
+    }))
+  const bdnsDocs = (bdns?.items ?? []).slice(0, 200).map((b) => ({
+    url: s(b.sourceUrl) || 'https://www.pap.hacienda.gob.es/bdnstrans',
+    title: s(b.description),
+    date: (s(b.date) || '2026-01-01').slice(0, 10),
+    publisher: 'BDNS',
+    text: `${s(b.description)} ${s(b.organ)}`,
+  }))
+  const snap = budget?.snapshot ?? {}
+  const budgetRows = [
+    ...((snap.expenseByProgram as Row[]) ?? []),
+    ...((snap.expenseByEconomicChapter as Row[]) ?? []),
+  ]
+  const budgetUrl = s(snap.source) || 'https://civicpulse.es/data/budget.json'
+  const budgetDocs = budgetRows.map((r) => ({
+    url: budgetUrl,
+    title: s(r.label),
+    date: `${(snap.year as number) ?? 2026}-01-01`,
+    publisher: 'MinHac CONPREL',
+    text: `${s(r.label)} ${String(r.amount ?? '')}`,
+  }))
+  const pressDocs = (press?.items ?? []).slice(0, 120).map((n) => ({
+    url: s(n.link),
+    title: s(n.title),
+    date: (s(n.date) || '2026-01-01').slice(0, 10),
+    publisher: s(n.source) || 'prensa',
+    text: s(n.title),
+  }))
+  return [
+    { corpus: 'tender', documents: tenderDocs },
+    { corpus: 'bdns', documents: bdnsDocs },
+    { corpus: 'budget', documents: budgetDocs },
+    { corpus: 'press', documents: pressDocs },
+  ]
+}
+
+function draftLabel(d: QueueDraft): string {
+  return d.kind === 'new-promise'
+    ? `${d.proposed.party} · ${d.proposed.title}`
+    : `${d.promiseId} → ${d.proposedStatus}`
+}
+
 async function main() {
   const opts = parseArgs(process.argv.slice(2))
   resetBudget()
   const config = loadConfigFromEnv()
   process.stdout.write(
-    `[auto-curate-promises] backend=${config.backend} · max=${opts.max} · min-conf=${opts.minConfidence} · dry-run=${opts.dryRun} · no-auto-publish=${opts.noAutoPublish}\n`,
+    `[auto-curate-promises] backend=${config.backend} · phase=${opts.phase} · max=${opts.max} · min-conf=${opts.minConfidence} · dry-run=${opts.dryRun} · no-auto-publish=${opts.noAutoPublish}\n`,
   )
 
   // Fail CLOSED: unknowable freeze state must not publish.
@@ -156,6 +235,8 @@ async function main() {
     process.exit(0)
   }
 
+  const now = new Date()
+  const nowIso = now.toISOString()
   const press = loadJson<{
     items?: Array<{ title: string; link: string; date: string; source?: string }>
   }>(PRESS)
@@ -163,84 +244,167 @@ async function main() {
     AGENDAS,
   )
 
-  const input = buildDiscoveryInput(snap, press, agendas)
-  const batch = await discoverPromises(input)
-  if (!batch) {
-    process.stderr.write(
-      '[auto-curate-promises] LLM returned null (backend/budget) — nothing to do\n',
-    )
-    return
-  }
-  process.stdout.write(
-    `[auto-curate-promises] LLM proposed ${batch.promises.length} candidate(s)\n`,
-  )
-
-  // Project LLM items → drafts, then ground each.
-  const now = new Date()
-  const nowIso = now.toISOString()
-  const candidates: DraftNewPromise[] = []
-  for (const it of batch.promises) {
-    const draftId = makeDraftId(it.party, it.title, it.sourceUrl)
-    const draft: DraftNewPromise = {
-      draftId,
-      kind: 'new-promise',
-      requiresHumanApproval: true,
-      confidence: it.confidence,
-      grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: nowIso },
-      decision: 'queue',
-      proposed: {
-        party: it.party,
-        title: it.title,
-        quote: it.quote,
-        source: { url: it.sourceUrl, publisher: it.publisher },
-        madeAt: it.madeAt,
-        topic: it.topic,
-        kind: it.kind,
-        status: 'documentada',
-      },
-      reasoning: [
-        {
-          url: it.sourceUrl,
-          date: it.madeAt,
-          quote: it.reasoning,
-          publisher: it.publisher,
-          matchedKeywords: [],
-        },
-      ],
-      generatedAt: nowIso,
-    }
-    draft.grounding = await groundDraft(draft, undefined, now)
-    candidates.push(draft)
-  }
-
   const existingQueue = loadQueue(QUEUE)
   const archive = loadQueue(ARCHIVE)
   const seen = new Set<string>([...existingQueue.drafts, ...archive.drafts].map((d) => d.draftId))
 
-  const sel = selectPromiseDrafts({
-    candidates,
-    existingPromises: snap.items,
-    seenDraftIds: seen,
-    frozen: false,
-    minConfidence: opts.minConfidence,
-    max: opts.max,
-  })
+  const doDiscovery = opts.phase === 'discovery' || opts.phase === 'both'
+  const doStatus = opts.phase === 'status' || opts.phase === 'both'
 
-  // With --no-auto-publish, force everything to the queue for review.
-  const autoPublish = opts.noAutoPublish ? [] : sel.autoPublish
-  const toQueue = opts.noAutoPublish
-    ? [...sel.queue, ...sel.autoPublish.map((d) => ({ ...d, decision: 'queue' as const }))]
-    : sel.queue
+  // ── Discovery phase (new promises) ──────────────────────────────────────────
+  let newAuto: DraftNewPromise[] = []
+  let newQueue: DraftNewPromise[] = []
+  const newSkipped: Array<{ draftId: string; reason: string }> = []
+  if (doDiscovery) {
+    const batch = await discoverPromises(buildDiscoveryInput(snap, press, agendas))
+    if (!batch) {
+      process.stderr.write('[auto-curate-promises] discovery: LLM returned null (backend/budget)\n')
+    } else {
+      process.stdout.write(
+        `[auto-curate-promises] discovery: LLM proposed ${batch.promises.length} candidate(s)\n`,
+      )
+      const candidates: DraftNewPromise[] = []
+      for (const it of batch.promises) {
+        const draft: DraftNewPromise = {
+          draftId: makeDraftId(it.party, it.title, it.sourceUrl),
+          kind: 'new-promise',
+          requiresHumanApproval: true,
+          confidence: it.confidence,
+          grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: nowIso },
+          decision: 'queue',
+          proposed: {
+            party: it.party,
+            title: it.title,
+            quote: it.quote,
+            source: { url: it.sourceUrl, publisher: it.publisher },
+            madeAt: it.madeAt,
+            topic: it.topic,
+            kind: it.kind,
+            status: 'documentada',
+          },
+          reasoning: [
+            {
+              url: it.sourceUrl,
+              date: it.madeAt,
+              quote: it.reasoning,
+              publisher: it.publisher,
+              matchedKeywords: [],
+            },
+          ],
+          generatedAt: nowIso,
+        }
+        draft.grounding = await groundDraft(draft, undefined, now)
+        candidates.push(draft)
+      }
+      const sel = selectPromiseDrafts({
+        candidates,
+        existingPromises: snap.items,
+        seenDraftIds: seen,
+        frozen: false,
+        minConfidence: opts.minConfidence,
+        max: opts.max,
+      })
+      newAuto = opts.noAutoPublish ? [] : sel.autoPublish
+      newQueue = opts.noAutoPublish
+        ? [...sel.queue, ...sel.autoPublish.map((d) => ({ ...d, decision: 'queue' as const }))]
+        : sel.queue
+      newSkipped.push(...sel.skipped)
+    }
+  }
 
+  // ── Status phase (progress transitions on existing promises) ────────────────
+  let statusAuto: DraftStatusChange[] = []
+  let statusQueue: DraftStatusChange[] = []
+  const statusSkipped: Array<{ draftId: string; reason: string }> = []
+  if (doStatus) {
+    const tenders = loadJson<{ contracts?: Row[]; tenders?: Row[] }>(TENDERS)
+    const bdns = loadJson<{ items?: Row[] }>(BDNS)
+    const budget = loadJson<{ snapshot?: Record<string, unknown> }>(BUDGET)
+    const corpora = buildStatusCorpora(tenders, bdns, budget, press)
+    const budgetSourceUrl =
+      s((budget?.snapshot as Record<string, unknown>)?.source) ||
+      'https://civicpulse.es/data/budget.json'
+
+    const statusCandidates: DraftStatusChange[] = []
+    for (const p of snap.items) {
+      const input: RetrievalInput = {
+        promise: {
+          id: p.id,
+          title: p.title,
+          quote: p.quote,
+          topic: p.topic,
+          party: p.party,
+          madeAt: p.madeAt,
+        } as unknown as RetrievalInput['promise'],
+        corpora,
+      }
+      const mined = await mineStatusChanges(input, {
+        snapshot: snap,
+        minConfidence: opts.minConfidence,
+        budgetSourceUrl,
+      })
+      for (const c of mined.candidates) {
+        const draft: DraftStatusChange = {
+          draftId: makeStatusDraftId(c.promiseId, c.proposedStatus, c.evidence.url),
+          kind: 'status-change',
+          requiresHumanApproval: true,
+          confidence: c.confidence,
+          grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: nowIso },
+          decision: 'queue',
+          promiseId: c.promiseId,
+          currentStatus: p.status,
+          proposedStatus: c.proposedStatus,
+          evidence: c.evidence,
+          reasoning: [
+            {
+              url: c.evidence.url,
+              date: c.evidence.date,
+              quote: c.reasoning,
+              publisher: c.evidence.publisher,
+              matchedKeywords: [],
+            },
+          ],
+          generatedAt: nowIso,
+        }
+        draft.grounding = await groundStatusDraft(draft, undefined, now)
+        statusCandidates.push(draft)
+      }
+    }
+    process.stdout.write(`[auto-curate-promises] status: ${statusCandidates.length} candidate(s)\n`)
+
+    const seenTransitions = new Set<string>([
+      ...snap.items.map((p) => statusTransitionKey(p.id, p.status)),
+      ...existingQueue.drafts
+        .filter((d): d is DraftStatusChange => d.kind === 'status-change')
+        .map((d) => statusTransitionKey(d.promiseId, d.proposedStatus)),
+    ])
+    const selS = selectStatusDrafts({
+      candidates: statusCandidates,
+      seenDraftIds: seen,
+      seenTransitions,
+      frozen: false,
+      minConfidence: opts.minConfidence,
+      max: opts.max,
+    })
+    statusAuto = opts.noAutoPublish ? [] : selS.autoPublish
+    statusQueue = opts.noAutoPublish
+      ? [...selS.queue, ...selS.autoPublish.map((d) => ({ ...d, decision: 'queue' as const }))]
+      : selS.queue
+    statusSkipped.push(...selS.skipped)
+  }
+
+  const autoCount = newAuto.length + statusAuto.length
+  const toQueue: QueueDraft[] = [...newQueue, ...statusQueue]
+  const skipped = [...newSkipped, ...statusSkipped]
   process.stdout.write(
-    `[auto-curate-promises] auto-publish=${autoPublish.length} · queue=${toQueue.length} · skipped=${sel.skipped.length}\n`,
+    `[auto-curate-promises] auto-publish=${autoCount} · queue=${toQueue.length} · skipped=${skipped.length}\n`,
   )
 
   if (opts.dryRun) {
     const preview = `/tmp/auto-curate-promises-preview-${now.getTime()}.json`
     writeFileSync(
       preview,
-      JSON.stringify({ autoPublish, toQueue, skipped: sel.skipped }, null, 2) + '\n',
+      JSON.stringify({ newAuto, statusAuto, toQueue, skipped }, null, 2) + '\n',
     )
     process.stdout.write(
       `[auto-curate-promises] DRY RUN — wrote preview to ${preview} (no persistence)\n`,
@@ -258,38 +422,40 @@ async function main() {
   writeFileSync(QUEUE, JSON.stringify(mergedQueue, null, 2) + '\n')
 
   // Apply auto-publish drafts to promises.json (single validated write).
-  if (autoPublish.length > 0) {
+  if (autoCount > 0) {
     let next: PromisesSnapshot = snap
-    for (const d of autoPublish) {
+    for (const d of newAuto) {
       next = insertPromise(
         next,
         newPromiseFromDraft(d, nowIso, { confidence: d.confidence, at: nowIso }),
       )
     }
+    for (const d of statusAuto) {
+      next = applyStatusChange(next, d, nowIso, { confidence: d.confidence, at: nowIso })
+    }
     const serialized = JSON.stringify({ ...next, generatedAt: nowIso }, null, 2) + '\n'
     validatePromisesSnapshot(serialized) // defence-in-depth
     writeFileSync(PROMISES, serialized)
     process.stdout.write(
-      `[auto-curate-promises] auto-published ${autoPublish.length} promise(s) to promises.json\n`,
+      `[auto-curate-promises] auto-published ${autoCount} change(s) to promises.json\n`,
     )
   }
 
   // Digest.
   mkdirSync(LOGDIR, { recursive: true })
+  const allAuto: QueueDraft[] = [...newAuto, ...statusAuto]
   const digest = [
-    `# Promise auto-curator digest — ${nowIso}`,
+    `# Promise auto-curator digest — ${nowIso} (phase=${opts.phase})`,
     ``,
-    `- auto-published: ${autoPublish.length}`,
-    ...autoPublish.map(
-      (d) => `  - ${d.proposed.party} · ${d.proposed.title} (conf ${d.confidence.toFixed(2)})`,
-    ),
+    `- auto-published: ${autoCount}`,
+    ...allAuto.map((d) => `  - ${draftLabel(d)} (conf ${d.confidence.toFixed(2)})`),
     `- queued for review: ${toQueue.length}`,
     ...toQueue.map(
       (d) =>
-        `  - [${d.decision}] ${d.proposed.party} · ${d.proposed.title} (conf ${d.confidence.toFixed(2)}, grounded=${d.grounding.grounded})`,
+        `  - [${d.kind}·${d.decision}] ${draftLabel(d)} (conf ${d.confidence.toFixed(2)}, grounded=${d.grounding.grounded})`,
     ),
-    `- skipped: ${sel.skipped.length}`,
-    ...sel.skipped.map((s) => `  - ${s.draftId}: ${s.reason}`),
+    `- skipped: ${skipped.length}`,
+    ...skipped.map((sk) => `  - ${sk.draftId}: ${sk.reason}`),
     ``,
   ].join('\n')
   writeFileSync(resolve(LOGDIR, `auto-curate-promises-${nowIso.slice(0, 10)}.md`), digest)
