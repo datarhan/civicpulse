@@ -14,6 +14,9 @@ import { useParticipa } from '../hooks/useParticipa'
 import { useParo } from '../hooks/useParo'
 import { useGeo } from '../hooks/useGeo'
 import { usePromises } from '../hooks/usePromises'
+import { usePlenoFindings } from '../hooks/usePlenoFindings'
+import { usePlenoVotes } from '../hooks/usePlenoVotes'
+import { useQuejas } from '../hooks/useQuejas'
 import { useTransparencyDocs, groupTransparencyDocs } from '../hooks/useTransparencyDocs'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 
@@ -35,6 +38,9 @@ function DatasetsCatalog() {
   const geo = useGeo().data
   const wiki = useWikidata().data
   const promises = usePromises().data
+  const findings = usePlenoFindings().data
+  const votes = usePlenoVotes().data
+  const quejas = useQuejas().data
 
   const items = [
     {
@@ -145,6 +151,30 @@ function DatasetsCatalog() {
       updated: formatDate(promises?.generatedAt),
       source: 'curación editorial · fuente primaria',
       path: '/data/promises.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Hallazgos editoriales',
+      rows: findings?.items ? `${findings.items.length} hallazgos` : '—',
+      updated: formatDate(findings?.generatedAt),
+      source: 'curación editorial · claim-verifier',
+      path: '/data/pleno-findings.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Votaciones de pleno',
+      rows: votes?.items ? `${votes.items.length} votaciones` : '—',
+      updated: formatDate(votes?.generatedAt),
+      source: 'curación · actas (regmeet.com)',
+      path: '/data/pleno-votes.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Quejas ciudadanas',
+      rows: quejas?.items ? `${quejas.items.length} quejas` : '—',
+      updated: formatDate(quejas?.generatedAt),
+      source: 'Telegram bot · Open311',
+      path: '/data/quejas.json',
       fmt: ['json'],
     },
   ]
