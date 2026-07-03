@@ -1,19 +1,92 @@
 {
-  "generatedAt": "2026-07-03T16:29:28.014Z",
+  "generatedAt": "2026-07-03T17:23:10.526Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 1,
+    "total": 3,
     "byEngine": {
+      "llm": 2,
       "regex": 1
     },
     "byPleno": {
+      "10yl550": 2,
       "rx4hb4": 1
     }
   },
   "items": [
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "itemNumber": 6,
+      "excerpt": "Vamos a votar este punto de mejora de las emergencias. ¿Votáis en contra? ¿Votáis en contra? ¿Votáis en contra? Vale, pues 14 Vox a favor, 7 en contra. ¿Ruso Socialista? ¿Partido Popular? ¿Vox? Pues ha votado mal. No. Bueno, aquí yo tengo 14 en favor y 7 en contra. ¿Lo tenéis igual vosotros? . . ! No pasa nada, tranquilos. Ahora diremos lo que es, para que se acredite el voto. Entonces diríamos, no hay 14 en favor, pero no hay 14, es una entrada de Juan, no pasa nada. Y 7 en contra. ¿Partido Popular en contra? No, en contra. ¿Vox en contra? Es que Rúñiga Podemos y Compromís a favor.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.85,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "11/2026/PGRU, Moción del Grupo Municipal Socialista de Riba-roja de medidas para fomentar en la ciudadanía la cultura de la prevención y de la autoprotección frente las emergencias.",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "itemNumber": 7,
+      "excerpt": "pasemos a la votación a favor ni en 8\n[6540.0 → 6570.0] Rafa, ¿tienes votado? vale pues doce en contra 8 a favor y una extensión Grupo Socialista Partido Popular Vox Escargüen y Podem compromiso",
+      "outcome": "rechazado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "en_contra",
+          "seats": 11
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor",
+          "seats": 7
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor",
+          "seats": 1
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "en_contra",
+          "seats": 1
+        },
+        {
+          "bloc": "Otro",
+          "direction": "abstencion",
+          "seats": 1
+        }
+      ],
+      "confidence": 0.95,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "14/2026/PGRU Moción conjunta de los Grupos Municipales Popular Riba-roja de Túria y Vox Riba-roja de Túria sobre el ROF (Reglamento de Organización y Funcionamiento del Gobierno y la Administración del Ayuntamiento de Riba-roja de Túria)",
+        "status": "outcome-mismatch"
+      }
+    },
     {
       "plenoId": "rx4hb4",
       "plenoDate": "2026-02-09",
