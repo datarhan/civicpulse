@@ -326,6 +326,7 @@ async function main() {
       'https://civicpulse.es/data/budget.json'
 
     const statusCandidates: DraftStatusChange[] = []
+    const minerStats = { retrieved: 0, emitted: 0, hallucinatedCite: 0, belowConfidence: 0 }
     for (const p of snap.items) {
       const input: RetrievalInput = {
         promise: {
@@ -343,6 +344,10 @@ async function main() {
         minConfidence: opts.minConfidence,
         budgetSourceUrl,
       })
+      minerStats.retrieved += mined.stats.candidatesRetrieved
+      minerStats.emitted += mined.stats.emitted
+      minerStats.hallucinatedCite += mined.stats.rejected.hallucinatedCite
+      minerStats.belowConfidence += mined.stats.rejected.belowConfidence
       for (const c of mined.candidates) {
         const draft: DraftStatusChange = {
           draftId: makeStatusDraftId(c.promiseId, c.proposedStatus, c.evidence.url),
@@ -370,7 +375,9 @@ async function main() {
         statusCandidates.push(draft)
       }
     }
-    process.stdout.write(`[auto-curate-promises] status: ${statusCandidates.length} candidate(s)\n`)
+    process.stdout.write(
+      `[auto-curate-promises] status: ${statusCandidates.length} candidate(s) · retrieved=${minerStats.retrieved} emitted=${minerStats.emitted} rejected(cite=${minerStats.hallucinatedCite}, conf=${minerStats.belowConfidence})\n`,
+    )
 
     const seenTransitions = new Set<string>([
       ...snap.items.map((p) => statusTransitionKey(p.id, p.status)),
@@ -419,7 +426,12 @@ async function main() {
     generatedAt: nowIso,
     drafts: [...existingQueue.drafts, ...toQueue],
   }
-  writeFileSync(QUEUE, JSON.stringify(mergedQueue, null, 2) + '\n')
+  // Validate the merged queue BEFORE writing: a malformed draft (e.g. a
+  // non-ISO scraped date) fails in THIS run instead of bricking the next
+  // loadQueue (which validates on read). Fail-safe: throws → main().catch.
+  const mergedQueueJson = JSON.stringify(mergedQueue, null, 2) + '\n'
+  validateReviewQueue(mergedQueueJson)
+  writeFileSync(QUEUE, mergedQueueJson)
 
   // Apply auto-publish drafts to promises.json (single validated write).
   if (autoCount > 0) {
