@@ -185,4 +185,15 @@ describe('applyStatusChange', () => {
     d.promiseId = 'nope'
     expect(() => applyStatusChange(seededSnap(), d, NOW)).toThrow(/not found/)
   })
+
+  it('refuses a stale transition when the promise status already moved', () => {
+    const d = statusDraft()
+    d.currentStatus = 'en-progreso' // seeded promise is still 'documentada'
+    expect(() => applyStatusChange(seededSnap(), d, NOW)).toThrow(/stale/)
+  })
+
+  it('removeAutoPublished refuses to delete a pre-existing (non-ac-) promise carrying a status-change auto-publish', () => {
+    const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
+    expect(() => removeAutoPublished(next, 'psoe-obra')).toThrow(/pre-existed|curated data/)
+  })
 })

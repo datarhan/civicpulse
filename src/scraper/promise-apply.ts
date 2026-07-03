@@ -108,6 +108,16 @@ export function removeAutoPublished(snap: PromisesSnapshot, promiseId: string): 
     throw new Error(
       `promise "${promiseId}" is not auto-published — refusing to retract a human-curated promise`,
     )
+  // Only auto-CREATED promises (id "ac-…", from newPromiseFromDraft) may be
+  // deleted on retract. A pre-existing promise carries `autoPublished` only
+  // because an auto-published STATUS CHANGE landed on it — deleting the whole
+  // promise would lose curated data. Reverting the status (not deleting) is the
+  // correct retract for those, and lands with the dashboard control (Plan 2B).
+  if (!promiseId.startsWith('ac-')) {
+    throw new Error(
+      `promise "${promiseId}" pre-existed and was advanced by an auto-published status change — deleting it would lose curated data. Revert its status manually (status-change retract is a curator dashboard action).`,
+    )
+  }
   return { ...snap, items: snap.items.filter((p) => p.id !== promiseId) }
 }
 
@@ -125,6 +135,15 @@ export function applyStatusChange(
 ): PromisesSnapshot {
   const target = snap.items.find((p) => p.id === draft.promiseId)
   if (!target) throw new Error(`promise "${draft.promiseId}" not found`)
+  // Optimistic concurrency: a status-change draft can sit in the queue for days
+  // before a curator applies it. If the promise's status has moved since the
+  // draft was built, the draft is STALE — applying it could downgrade or
+  // clobber a newer status. Refuse rather than apply a stale transition.
+  if (target.status !== draft.currentStatus) {
+    throw new Error(
+      `promise "${draft.promiseId}" is now "${target.status}", not the draft's expected "${draft.currentStatus}" — refusing to apply a stale status transition`,
+    )
+  }
   return {
     ...snap,
     items: snap.items.map((p) => {
