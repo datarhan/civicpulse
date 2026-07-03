@@ -4,7 +4,7 @@
  * round-trip (including validatePromisesSnapshot) is unit-tested.
  */
 import type { PromisesSnapshot, Promise } from './promises'
-import { makeDraftId, type DraftNewPromise } from './promise-draft'
+import { makeDraftId, type DraftNewPromise, type DraftStatusChange } from './promise-draft'
 
 export interface AutoPublishMeta {
   confidence: number
@@ -109,4 +109,40 @@ export function removeAutoPublished(snap: PromisesSnapshot, promiseId: string): 
       `promise "${promiseId}" is not auto-published — refusing to retract a human-curated promise`,
     )
   return { ...snap, items: snap.items.filter((p) => p.id !== promiseId) }
+}
+
+/**
+ * Apply a status-change draft to an EXISTING promise: set the new status AND
+ * append the grounded evidence in the SAME object, so the V1 gate (non-V1
+ * status requires ≥1 evidence entry) passes on the single validated write.
+ * Throws if the promiseId is missing.
+ */
+export function applyStatusChange(
+  snap: PromisesSnapshot,
+  draft: DraftStatusChange,
+  now: string,
+  autoPublish?: AutoPublishMeta,
+): PromisesSnapshot {
+  const target = snap.items.find((p) => p.id === draft.promiseId)
+  if (!target) throw new Error(`promise "${draft.promiseId}" not found`)
+  return {
+    ...snap,
+    items: snap.items.map((p) => {
+      if (p.id !== draft.promiseId) return p
+      return {
+        ...p,
+        status: draft.proposedStatus,
+        evidence: [...p.evidence, draft.evidence],
+        updatedAt: now.slice(0, 10),
+        autoPublished: autoPublish
+          ? {
+              at: autoPublish.at,
+              by: 'auto-curation-v1',
+              confidence: autoPublish.confidence,
+              reviewState: 'pending-review',
+            }
+          : (p.autoPublished ?? null),
+      }
+    }),
+  }
 }
