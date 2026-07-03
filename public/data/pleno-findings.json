@@ -1,10 +1,189 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-03T14:54:11.924Z",
+  "generatedAt": "2026-07-03T17:15:44.671Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "f-2026-05-11-acu-a870a4",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Pleno del 11 de mayo de 2026: Debate sobre movilidad",
+      "summary": "Durante la sesión del pleno del 11 de mayo de 2026, el grupo PP afirmó que en mayo de 2024 habían exigido a la consellería información sobre la pasarela prometida a la ciudadanía de Riba Roja, señalando que nadie había solicitado nada. Por su parte, el grupo Otro destacó que 'la barrera está funcionando muy bien'. Esta discusión se relaciona con el contrato de obras de la Pasarela en Barranco Mandor, según el registro del tender correspondiente.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-045-acu-a870a4",
+        "10yl550-054-acu-a487ce",
+        "10yl550-346-cit-6ee502",
+        "10yl550-046-acu-5c6faa"
+      ],
+      "quotes": [
+        {
+          "text": "En mayo del 2024. El partido popular. Estuvo en consellería. Exigiendo. Que nos dijeran. Que según ustedes. Habían prometido. A la ciudadanía. De Riva Roja. Que se había solicitado. La pasarela. Ahí nos dijeron. Que nadie había solicitado nada.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-045-acu-a870a4"
+        },
+        {
+          "text": "¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-054-acu-a487ce"
+        },
+        {
+          "text": "la barrera está funcionando muy bien",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-346-cit-6ee502"
+        },
+        {
+          "text": "El partido popular. Estuvo en consellería. Exigiendo. Que nos dijeran. Que según ustedes. Habían prometido. A la ciudadanía. De Riva Roja. Que se había solicitado. La pasarela. Ahí nos dijeron. Que nadie había solicitado nada.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-046-acu-5c6faa"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
+          "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del ODS 9 rel…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=o2e44yfhgzU7u6%2B%2FR7DUoA%3D%3D",
+          "snippet": "Contrato de obras para la ejecución del proyecto de instalación de un revestimiento de trencadis sobre la barrera new jersey del puente de la carretera CV-336 en el término municipal de Riba-roja de Turia. · Ayuntamiento de Riba-roja de…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-acu-1adbf3",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Pleno del Ayuntamiento de Riba-roja de Túria del 2026-05-11 sobre vivienda",
+      "summary": "En la sesión del pleno del 11 de mayo de 2026, el grupo PSOE afirmó que se han perdido subvenciones importantes debido a la falta de compromiso con la agenda europea. Además, el PSOE señaló que Riba Roja es un mercado de vivienda tensionado y defendió la constitucionalidad de la ley estatal de vivienda. Esta discusión se enmarca en el contexto de varios contratos relacionados con la vivienda, como el contrato privado de adquisición de un inmueble para la implantación de vivienda tutelada.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-062-acu-1adbf3",
+        "10yl550-170-acu-0a31a6",
+        "10yl550-191-cit-9aa672",
+        "10yl550-220-acu-0101aa"
+      ],
+      "quotes": [
+        {
+          "text": "Que. Se quedaron en el cajón de los olvidos. Porque no creéis. Ni en la agenda treinta. Ni en Europa. Y habéis perdido un montón. De subvenciones. Por eso.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-062-acu-1adbf3"
+        },
+        {
+          "text": "esta iniciativa que se pretende aplicar en el municipio como había comentado la ley 2012-2023 es una norma que además ha sido ampliamente contestada por numerosas comunidades autónomas",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-170-acu-0a31a6"
+        },
+        {
+          "text": "técnicamente está justificado que Riva Roja sea un mercado tensionado.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-191-cit-9aa672"
+        },
+        {
+          "text": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-220-acu-0101aa"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
+          "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G65cfHQLe%2FVJ8Trn0ZPzLw%3D%3D",
+          "snippet": "Contrato derivado del sistema dinámico de adquisición (SDA) de obras, para la instalación e cuatro elementos exentos de juegos infantiles en la Urbanización Gallipont de Riba-roja de Túria. (Ctto. 216/2023). · Ayuntamiento de Riba-roja d…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
+          "snippet": "Contratación servicio técnico redacción del Proyecto de Licencia Ambiental y del Plan de Actuación ante Emergencias para las siguientes actividades de carácter temporal correspondientes al ejercicio 2026: Feria del Comercio; Campaña de d…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RzXc%2FudzhPMBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · Vicente Chisv…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-cit-bb5f00",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Pleno del 11 de mayo de 2026: Debate sobre la Feria de Comercio",
+      "summary": "Durante la sesión del pleno, el grupo Otro afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que Otro menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo. Esta información se corrobora con el registro titulado 'Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas'.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-270-cit-bb5f00",
+        "10yl550-268-cit-7f1b26",
+        "10yl550-299-cit-ca1541",
+        "10yl550-298-cit-400cf0"
+      ],
+      "quotes": [
+        {
+          "text": "hemos decidido reinventar la feria. Renovarla.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-270-cit-bb5f00"
+        },
+        {
+          "text": "la feria no se realizó en 2025 por mandato expreso de los comercios.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-268-cit-7f1b26"
+        },
+        {
+          "text": "la Feria de Comercio los días 8, 9 y 10 de mayo.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-299-cit-ca1541"
+        },
+        {
+          "text": "aquí la encuesta realizada a los comercios participantes en la Feria del 2024.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-298-cit-400cf0"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+          "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento de Riba…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
     {
       "id": "f-2026-04-20-cit-b9b013",
       "plenoId": "k4olcs",
@@ -609,6 +788,69 @@
       "response": null
     },
     {
+      "id": "f-2026-01-19-cit-cc8758",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Pleno del 2026-01-19: Debate sobre urbanismo",
+      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, el grupo Otro señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-016-cit-cc8758",
+        "19gax3o-067-cit-0c2099",
+        "19gax3o-114-cit-b7641b",
+        "19gax3o-050-acu-8d210f"
+      ],
+      "quotes": [
+        {
+          "text": "la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-016-cit-cc8758"
+        },
+        {
+          "text": "Nos basamos en unos fondos europeos, fondos FEDER, y que la reconstrucción se ha dado porque justo cuando se hizo la convocatoria general pasó la DANA.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-067-cit-0c2099"
+        },
+        {
+          "text": "para subsanar los problemas que tiene el pabellón y el complejo esportivo",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-114-cit-b7641b"
+        },
+        {
+          "text": "Aquí en Riva Roja, en el pleno, no hay una agenda de reconstrucción, no hay una agenda de reconstrucción,",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "19gax3o-050-acu-8d210f"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+          "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
+          "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayu…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
       "id": "f-2025-12-23-acu-a1ba00",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -1168,6 +1410,74 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nmlFJLo3lIkeC9GJQOEBkQ%3D%3D",
           "snippet": "DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZACIÓN (DDD ) de la red pública de saneamiento municipal del término de Ribarroja del Túria y de los centros, dependencias e instalaciones especificadas en el Pliego , así como el tratamiento de simú…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=x85-nqbxcnY",
+          "snippet": "Vídeo del pleno 2025-10-06 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2025-10-06-acu-bba0e9",
+      "plenoId": "otxq2c",
+      "plenoDate": "2025-10-06",
+      "title": "Pleno del 2025-10-06: Debate sobre seguridad",
+      "summary": "Durante la sesión del pleno del 6 de octubre de 2025, el grupo PSOE afirmó que «no ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas». Por su parte, VOX mencionó a Itziar Moreno en un contexto de condena, mientras que el PP señaló errores en la migración de datos y el control de localización en el sistema, destacando que «falla el sistema cometa del Gobierno de España». Estos puntos fueron corroborados por el registro del tender sobre el mantenimiento del sistema inteligente de gestión de esperas y colas.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "otxq2c-042-acu-bba0e9",
+        "otxq2c-116-acu-ee87cb",
+        "otxq2c-033-acu-f6e1d4",
+        "otxq2c-065-acu-231d81"
+      ],
+      "quotes": [
+        {
+          "text": "No ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "otxq2c-042-acu-bba0e9"
+        },
+        {
+          "text": "Itziar Moreno, condenada por pertenecer a ETA tras intentar asesinar a varios gendarmes.",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "otxq2c-116-acu-ee87cb"
+        },
+        {
+          "text": "Recientemente se ha tenido constancia de errores que ha tenido la migración de datos y el control de la localización en el sistema",
+          "speakerGroup": "PP",
+          "sourceClaimId": "otxq2c-033-acu-f6e1d4"
+        },
+        {
+          "text": "Porque estamos hablando de que falla el sistema cometa del Gobierno de España.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "otxq2c-065-acu-231d81"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Mantenimiento sistema inteligente de gestión de esperas y colas. · Ayuntamiento de Riba-roja de Túria · IDM Sistemas de Comunicación, S.L. · it · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
+          "snippet": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecu…"
         },
         {
           "kind": "pleno-video",

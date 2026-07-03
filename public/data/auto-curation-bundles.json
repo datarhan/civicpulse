@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-03T14:53:33.336Z",
-  "bundleCount": 12,
+  "generatedAt": "2026-07-03T17:14:08.925Z",
+  "bundleCount": 18,
   "archivedCount": 0,
   "contract": "Eligible bundles (no contradicho, all gates passed) that have not yet been promoted. The weekly auto-curate cron promotes the top 5 by score; the rest are listed here for the curator dashboard.",
   "bundles": [
@@ -15,248 +15,156 @@
         "VOX",
         "Otro"
       ],
-      "score": 40.82,
+      "score": 31.04,
       "quotes": [
         {
-          "claimId": "19gax3o-149-cit-3fd230",
+          "claimId": "19gax3o-016-cit-cc8758",
           "speakerGroup": "PSOE",
           "verdict": "verificado",
-          "confidence": 0.92,
-          "verbatim": "una piscina que comenzó en el año 2005 que se inauguró en el 2012, 13 perdón, en diciembre de 2012 concretamente",
+          "confidence": 0.74,
+          "verbatim": "la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-              "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM SL · environment · estado: unknown"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+              "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tra"
             }
           ]
         },
         {
-          "claimId": "19gax3o-132-acu-a3b10d",
-          "speakerGroup": "Otro",
-          "verdict": "verificado",
-          "confidence": 0.78,
-          "verbatim": "una cosa es un pabellón con 30 años que votaron en contra ese pabellón",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-              "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals"
-            }
-          ]
-        },
-        {
-          "claimId": "19gax3o-146-cit-288e9a",
-          "speakerGroup": "PSOE",
-          "verdict": "verificado",
-          "confidence": 0.78,
-          "verbatim": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande, como decían, en los años 89-90 ha estado 20 años sin mantenimiento del PSOE 20 años",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-              "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals"
-            }
-          ]
-        },
-        {
-          "claimId": "19gax3o-147-acu-01da0f",
-          "speakerGroup": "Otro",
-          "verdict": "verificado",
-          "confidence": 0.78,
-          "verbatim": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-              "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals"
-            }
-          ]
-        }
-      ],
-      "itemCount": 22
-    },
-    {
-      "plenoId": "otxq2c",
-      "plenoDate": "2025-10-06",
-      "plenoTitle": "Sesión de fecha 06 de octubre de 2025",
-      "topic": "seguridad",
-      "blocs": [
-        "PP",
-        "PSOE",
-        "VOX",
-        "Otro"
-      ],
-      "score": 22.02,
-      "quotes": [
-        {
-          "claimId": "otxq2c-072-cit-591d40",
-          "speakerGroup": "PSOE",
-          "verdict": "verificado",
-          "confidence": 0.86,
-          "verbatim": "a una unidad de policía local que acompaña a todas las mujeres que lo necesitan.",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
-              "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded"
-            }
-          ]
-        },
-        {
-          "claimId": "otxq2c-075-cit-c869c8",
-          "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.91,
-          "verbatim": "Aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales, de servicios sociales, a la técnica",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-              "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · unknown · sim=0.50"
-            },
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
-              "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · awarded · sim=0.22"
-            }
-          ]
-        },
-        {
-          "claimId": "otxq2c-071-acu-affcbc",
+          "claimId": "19gax3o-067-cit-0c2099",
           "speakerGroup": "Otro",
           "verdict": "parcial",
-          "confidence": 0.88,
-          "verbatim": "esta persona, como bien ha dicho el portavoz de Compromís, es Carlos Flores, todavía lo tienen sentado en el Congreso.",
+          "confidence": 0.9,
+          "verbatim": "Nos basamos en unos fondos europeos, fondos FEDER, y que la reconstrucción se ha dado porque justo cuando se hizo la convocatoria general pasó la DANA.",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
-              "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+              "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA"
             }
           ]
         },
         {
-          "claimId": "otxq2c-033-cit-bfa19f",
-          "speakerGroup": "PP",
-          "verdict": "parcial",
-          "confidence": 0.86,
-          "verbatim": "el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nmlFJLo3lIkeC9GJQOEBkQ%3D%3D",
-              "snippet": "DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZACIÓN (DDD ) de la red pública de saneamiento municipal del término de Ribarroja del Túria y de los centros, dependencias e instalaciones especificadas en el Pliego , así como el tratamiento "
-            }
-          ]
-        }
-      ],
-      "itemCount": 12
-    },
-    {
-      "plenoId": "k4olcs",
-      "plenoDate": "2026-04-20",
-      "plenoTitle": "Sesión de fecha 20 de abril de 2026",
-      "topic": "educacion",
-      "blocs": [
-        "PP",
-        "VOX",
-        "PSOE",
-        "Otro"
-      ],
-      "score": 14.06,
-      "quotes": [
-        {
-          "claimId": "k4olcs-064-acu-93c1e8",
-          "speakerGroup": "PSOE",
-          "verdict": "verificado",
-          "confidence": 0.84,
-          "verbatim": "la denominada libertad educativa impulsada por el PP y Vox a través de la Ley 1-2024 que ha sustituido el modelo plurilingüe del botánico por un sistema de consultas de lengua base",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-              "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octu"
-            }
-          ]
-        },
-        {
-          "claimId": "k4olcs-049-acu-d8609a",
+          "claimId": "19gax3o-114-cit-b7641b",
           "speakerGroup": "PP",
           "verdict": "parcial",
           "confidence": 0.9,
-          "verbatim": "En la Comunidad Valenciana bajo gobiernos del PSOE en el 2015-2023 estos resultados de PISA indican que son consistentemente peores",
+          "verbatim": "para subsanar los problemas que tiene el pabellón y el complejo esportivo",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
-              "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y m"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
+              "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals"
             }
           ]
         },
         {
-          "claimId": "k4olcs-060-acu-897268",
-          "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.86,
-          "verbatim": "Estamos hablando de centros sin el personal necesario, de sustituciones que no llegan tarde o no llegan, de sobrecarga laboral y de falta de recursos para atender adecuadamente al alumnado.",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nmlFJLo3lIkeC9GJQOEBkQ%3D%3D",
-              "snippet": "DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZACIÓN (DDD ) de la red pública de saneamiento municipal del término de Ribarroja del Túria y de los centros, dependencias e instalaciones especificadas en el Pliego , así como el tratamiento "
-            }
-          ]
-        },
-        {
-          "claimId": "k4olcs-048-acu-3746d4",
+          "claimId": "19gax3o-050-acu-8d210f",
           "speakerGroup": "VOX",
           "verdict": "parcial",
-          "confidence": 0.78,
-          "verbatim": "prácticamente los barracones era algo normal y no han hecho nada,",
+          "confidence": 0.88,
+          "verbatim": "Aquí en Riva Roja, en el pleno, no hay una agenda de reconstrucción, no hay una agenda de reconstrucción,",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Gv7EBVfBZwcQK2TEfXGy%2BA%3D%3D",
-              "snippet": "Servicio de comedor social para familias y atención específica durante los periodos de vacaciones escolares para menores, en el centro municipal de Bienestar Social del Ayuntamiento · Ayuntamiento de Riba-roja de Túria · Gil Folga"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+              "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tra"
             }
           ]
         }
       ],
-      "itemCount": 7
+      "itemCount": 18
     },
     {
-      "plenoId": "19gax3o",
-      "plenoDate": "2026-01-19",
-      "plenoTitle": "Sesión de fecha 19 de enero de 2026",
-      "topic": "transparencia",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "movilidad",
       "blocs": [
+        "PP",
         "Otro",
-        "PSOE",
-        "PP"
+        "PSOE"
       ],
-      "score": 13.7,
+      "score": 20.4,
       "quotes": [
         {
-          "claimId": "19gax3o-008-acu-2c074a",
-          "speakerGroup": "Otro",
+          "claimId": "10yl550-045-acu-a870a4",
+          "speakerGroup": "PP",
           "verdict": "verificado",
-          "confidence": 0.88,
-          "verbatim": "no fixa ningún objetivo mínimo, no hay un porcentaje mínimo de ejecución",
+          "confidence": 0.9,
+          "verbatim": "En mayo del 2024. El partido popular. Estuvo en consellería. Exigiendo. Que nos dijeran. Que según ustedes. Habían prometido. A la ciudadanía. De Riva Roja. Que se había solicitado. La pasarela. Ahí nos dijeron. Que nadie había solicitado nada.",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
-              "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia)"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
+              "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del OD"
             }
           ]
         },
         {
-          "claimId": "19gax3o-090-acu-73f537",
+          "claimId": "10yl550-054-acu-a487ce",
+          "speakerGroup": "PP",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "¿Dónde está? Bueno. Él ya sabemos dónde está. Bueno. No se sabe muy bien dónde está. La pasarela sí que sabemos que no está.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
+              "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del OD"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-346-cit-6ee502",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "la barrera está funcionando muy bien",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=o2e44yfhgzU7u6%2B%2FR7DUoA%3D%3D",
+              "snippet": "Contrato de obras para la ejecución del proyecto de instalación de un revestimiento de trencadis sobre la barrera new jersey del puente de la carretera CV-336 en el término municipal de Riba-roja de Turia. · Ayuntamiento de Riba-r"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-046-acu-5c6faa",
+          "speakerGroup": "PP",
+          "verdict": "verificado",
+          "confidence": 0.8,
+          "verbatim": "El partido popular. Estuvo en consellería. Exigiendo. Que nos dijeran. Que según ustedes. Habían prometido. A la ciudadanía. De Riva Roja. Que se había solicitado. La pasarela. Ahí nos dijeron. Que nadie había solicitado nada.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
+              "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del OD"
+            }
+          ]
+        }
+      ],
+      "itemCount": 9
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "vivienda",
+      "blocs": [
+        "PSOE",
+        "Otro",
+        "PP"
+      ],
+      "score": 20.2,
+      "quotes": [
+        {
+          "claimId": "10yl550-062-acu-1adbf3",
           "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.86,
-          "verbatim": "¿El socialista? A favor. ¿El Partido Popular? A extensión. ¿Vox? En contra. Escargón y Podem. A favor. ¿Qué compromiso? A favor.",
+          "verdict": "verificado",
+          "confidence": 0.8,
+          "verbatim": "Que. Se quedaron en el cajón de los olvidos. Porque no creéis. Ni en la agenda treinta. Ni en Europa. Y habéis perdido un montón. De subvenciones. Por eso.",
           "evidence": [
             {
               "kind": "tender",
@@ -266,25 +174,237 @@
           ]
         },
         {
-          "claimId": "19gax3o-176-acu-e24507",
-          "speakerGroup": "Otro",
+          "claimId": "10yl550-170-acu-0a31a6",
+          "speakerGroup": "PP",
           "verdict": "parcial",
-          "confidence": 0.84,
-          "verbatim": "nosotros efectivamente contratamos de manera verbal y por emergencia",
+          "confidence": 0.85,
+          "verbatim": "esta iniciativa que se pretende aplicar en el municipio como había comentado la ley 2012-2023 es una norma que además ha sido ampliamente contestada por numerosas comunidades autónomas",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-              "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octu"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G65cfHQLe%2FVJ8Trn0ZPzLw%3D%3D",
+              "snippet": "Contrato derivado del sistema dinámico de adquisición (SDA) de obras, para la instalación e cuatro elementos exentos de juegos infantiles en la Urbanización Gallipont de Riba-roja de Túria. (Ctto. 216/2023). · Ayuntamiento de Riba"
             }
           ]
         },
         {
-          "claimId": "19gax3o-021-acu-20b3ec",
+          "claimId": "10yl550-191-cit-9aa672",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "técnicamente está justificado que Riva Roja sea un mercado tensionado.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2iTqILStUoT%2Fa9DgO%2BoYKQ%3D%3D",
+              "snippet": "Contratación servicio técnico redacción del Proyecto de Licencia Ambiental y del Plan de Actuación ante Emergencias para las siguientes actividades de carácter temporal correspondientes al ejercicio 2026: Feria del Comercio; Campa"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-220-acu-0101aa",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RzXc%2FudzhPMBPRBxZ4nJ%2Fg%3D%3D",
+              "snippet": "contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · Vicent"
+            }
+          ]
+        }
+      ],
+      "itemCount": 11
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "cultura",
+      "blocs": [
+        "Otro",
+        "PSOE",
+        "PP"
+      ],
+      "score": 19.55,
+      "quotes": [
+        {
+          "claimId": "10yl550-270-cit-bb5f00",
           "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "hemos decidido reinventar la feria. Renovarla.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+              "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento "
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-268-cit-7f1b26",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.85,
+          "verbatim": "la feria no se realizó en 2025 por mandato expreso de los comercios.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+              "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento "
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-299-cit-ca1541",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.8,
+          "verbatim": "la Feria de Comercio los días 8, 9 y 10 de mayo.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+              "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento "
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-298-cit-400cf0",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.8,
+          "verbatim": "aquí la encuesta realizada a los comercios participantes en la Feria del 2024.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+              "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento "
+            }
+          ]
+        }
+      ],
+      "itemCount": 9
+    },
+    {
+      "plenoId": "otxq2c",
+      "plenoDate": "2025-10-06",
+      "plenoTitle": "Sesión de fecha 06 de octubre de 2025",
+      "topic": "seguridad",
+      "blocs": [
+        "PP",
+        "PSOE",
+        "VOX"
+      ],
+      "score": 13.64,
+      "quotes": [
+        {
+          "claimId": "otxq2c-042-acu-bba0e9",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.84,
+          "verbatim": "No ha habido recortes ni ocultaciones que quieren decir, ni mujeres desprotegidas.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+              "snippet": "Mantenimiento sistema inteligente de gestión de esperas y colas. · Ayuntamiento de Riba-roja de Túria · IDM Sistemas de Comunicación, S.L. · it · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "otxq2c-116-acu-ee87cb",
+          "speakerGroup": "VOX",
+          "verdict": "parcial",
+          "confidence": 0.84,
+          "verbatim": "Itziar Moreno, condenada por pertenecer a ETA tras intentar asesinar a varios gendarmes.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8p%2Fwsq%2B3XH9eKgd8LfVV9g%3D%3D",
+              "snippet": "71000000-Servicios de arquitectura, construcción, ingeniería e inspección. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded"
+            }
+          ]
+        },
+        {
+          "claimId": "otxq2c-033-acu-f6e1d4",
+          "speakerGroup": "PP",
           "verdict": "parcial",
           "confidence": 0.78,
-          "verbatim": "hay contratos que se repiten en el 24, en el 25 y en el 26. Entonces, habría que plantearse si es necesario esa contratación si no se ha hecho en el 24, no se ha hecho en el 25.",
+          "verbatim": "Recientemente se ha tenido constancia de errores que ha tenido la migración de datos y el control de la localización en el sistema",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+              "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abi"
+            }
+          ]
+        },
+        {
+          "claimId": "otxq2c-065-acu-231d81",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.74,
+          "verbatim": "Porque estamos hablando de que falla el sistema cometa del Gobierno de España.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
+              "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial d"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "educacion",
+      "blocs": [
+        "PSOE",
+        "Otro"
+      ],
+      "score": 11.2,
+      "quotes": [
+        {
+          "claimId": "10yl550-325-cit-0907e6",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.7,
+          "verbatim": "el conservatorio no lo van a entregar desde la Lleida Valenciana",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
+              "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, S.L. · real_estate · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-076-cit-1f4723",
+          "speakerGroup": "Otro",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "se ha establecido la protección civil en el ámbito universitario, integrando la formación de riesgos y emergencias en la educación superior",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+              "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-028-cit-21892b",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "el centro era para 600 alumnos",
           "evidence": [
             {
               "kind": "tender",
@@ -292,74 +412,18 @@
               "snippet": "El objeto contratación es la adquisición de vestuario laboral y EPIs para el personal del Taller de Empleo Riba-roja Bonica VI FOTAE/2024/25/46, proyecto de formación y empleo que se desarrollará en el Ayuntamiento de Riba-roja de"
             }
           ]
-        }
-      ],
-      "itemCount": 7
-    },
-    {
-      "plenoId": "qz6weg",
-      "plenoDate": "2025-12-01",
-      "plenoTitle": "Sesión de fecha 01 de diciembre de 2025",
-      "topic": "transparencia",
-      "blocs": [
-        "Otro",
-        "PSOE"
-      ],
-      "score": 10.38,
-      "quotes": [
-        {
-          "claimId": "qz6weg-058-cit-66709b",
-          "speakerGroup": "Otro",
-          "verdict": "parcial",
-          "confidence": 0.98,
-          "verbatim": "publicar el convenio en el portal de transparencia municipal",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-              "snippet": "Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecuc"
-            }
-          ]
         },
         {
-          "claimId": "qz6weg-183-acu-b1025e",
+          "claimId": "10yl550-026-acu-7f904c",
           "speakerGroup": "PSOE",
           "verdict": "parcial",
-          "confidence": 0.84,
-          "verbatim": "nosotros hemos dicho que no. O sea, ustedes.",
+          "confidence": 0.8,
+          "verbatim": "se denega al pueblo de Río Barrocha tener ese centro de formación.",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-              "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA AU"
-            }
-          ]
-        },
-        {
-          "claimId": "qz6weg-185-acu-cb9c22",
-          "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.77,
-          "verbatim": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes.",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tlQQxKywqlerz3GQd5r6SQ%3D%3D",
-              "snippet": "Contrato de obras de escollera de piedra en la zona de Paretotes en Riba-roja de Túria, por procedimiento abierto súper simplificado de tramitación anticipada, un solo criterio de adjudicación, con condición especial de ejecución "
-            }
-          ]
-        },
-        {
-          "claimId": "qz6weg-061-cit-2a0511",
-          "speakerGroup": "PSOE",
-          "verdict": "parcial",
-          "confidence": 0.72,
-          "verbatim": "Hoy tenemos a pleno una propuesta de acuerdo que parte de una demanda ciudadana",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CoV0my168pwuf4aBO%2BvQlQ%3D%3D",
-              "snippet": "Aprobación del expediente administrativo y adjudicación del contrato privado de seguro flota vehículos basado en el Acuerdo Marco para la contratación de determinados seguros por la Central de Contratación de la FEMP. Lote nº 6 Fl"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
+              "snippet": "Servicio Dirección Facultativa de las obras de finalización del Centro Polivalente Cultural en Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown"
             }
           ]
         }
@@ -519,6 +583,77 @@
       "itemCount": 5
     },
     {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "seguridad",
+      "blocs": [
+        "PSOE",
+        "Otro",
+        "PP"
+      ],
+      "score": 9.1,
+      "quotes": [
+        {
+          "claimId": "10yl550-092-acu-ea9d47",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "Votar en contra de la protección civil del Ayuntamiento de Rivarrocha.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+              "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-101-acu-701882",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "en cuanto a una moción que ha nombrado. En esta moción lo que hacen es, por lo que entiendo, jugar en una semana en la que al parecer llevaban 8.000 euros de trabajos técnicos a la policía local que realmente estaban destellados a proyectos de emergencia.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
+              "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-320-cit-a652c5",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "en el espacio abierto que se está haciendo desde el ayuntamiento, en las diferentes zonas del municipio, se va a hablar de una unidad de policía de urbanización.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
+              "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-099-cit-423e57",
+          "speakerGroup": "Otro",
+          "verdict": "parcial",
+          "confidence": 0.7,
+          "verbatim": "esos dos vallones inundables que nos van a permitir sobre todo a los bomberos ahora que se acosta el verano",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R3%2FYzx59uutq1DdmE7eaXg%3D%3D",
+              "snippet": "El estudio de criterios a  adoptar  en  la concesión de  licencias en suelos inundables conforme a la cartografía sectorial · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado:"
+            }
+          ]
+        }
+      ],
+      "itemCount": 5
+    },
+    {
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "plenoTitle": "Sesión de fecha 20 de abril de 2026",
@@ -653,6 +788,76 @@
               "kind": "tender",
               "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g2tcyB7NsGk%2B1TMyIiZmzw%3D%3D",
               "snippet": "Contrato Menor del Servicio de Redacción  Memoria  y  Dirección  de  Obra trabajos Interfaz Els Pous · Ayuntamiento de Riba-roja de Túria · EVEN AMBIENTAL SOCIEDAD LIMITADA SL · architecture · estado: awarded"
+            }
+          ]
+        }
+      ],
+      "itemCount": 4
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "fiscal",
+      "blocs": [
+        "PP",
+        "PSOE"
+      ],
+      "score": 8.8,
+      "quotes": [
+        {
+          "claimId": "10yl550-330-acu-7c65c5",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.8,
+          "verbatim": "no recogen tampoco al votar, en contra de los presupuestos",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+              "snippet": "Suministro módulos elaboración de presupuestos y RPT. · Ayuntamiento de Riba-roja de Túria · it · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-106-acu-dd1a86",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D",
+              "snippet": "Contrato Menor 01m/2022 de Servicio de Elaboración de  un  Plan  de  Acción  Local  para  incorporación  del  municipio  a  la  Red  de  Ciudades Amigables con las personas mayores. · Ayuntamiento de Riba-roja de Túria · EQUALITY "
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-254-cit-cb6e5f",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tlQQxKywqlerz3GQd5r6SQ%3D%3D",
+              "snippet": "Contrato de obras de escollera de piedra en la zona de Paretotes en Riba-roja de Túria, por procedimiento abierto súper simplificado de tramitación anticipada, un solo criterio de adjudicación, con condición especial de ejecución "
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-300-acu-ae5a28",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D",
+              "snippet": "Contrato Menor 01m/2022 de Servicio de Elaboración de  un  Plan  de  Acción  Local  para  incorporación  del  municipio  a  la  Red  de  Ciudades Amigables con las personas mayores. · Ayuntamiento de Riba-roja de Túria · EQUALITY "
             }
           ]
         }
@@ -835,6 +1040,175 @@
               "kind": "tender",
               "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
               "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio. · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: unknown"
+            }
+          ]
+        }
+      ],
+      "itemCount": 3
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "other",
+      "blocs": [
+        "PSOE",
+        "PP"
+      ],
+      "score": 6.1,
+      "quotes": [
+        {
+          "claimId": "10yl550-274-acu-da7902",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "en ningún momento el Partido Popular se ha puesto en contacto con ellos",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wCzvqvQUutaXQV0WE7lYPw%3D%3D",
+              "snippet": "contrato de servicios Biblioteca Aprenem Compartit en el municipio de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterios socio-laborales como c"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-274-acu-4cb575",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "rectifique y pida disculpas a la Asociación Abrupa, primero por utilizar su logotipo y su nombre de forma partidista sin su consentimiento",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wCzvqvQUutaXQV0WE7lYPw%3D%3D",
+              "snippet": "contrato de servicios Biblioteca Aprenem Compartit en el municipio de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterios socio-laborales como c"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-294-acu-c8a5f4",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
+              "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8"
+            }
+          ]
+        }
+      ],
+      "itemCount": 3
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "plenoTitle": "Sesión de fecha 19 de enero de 2026",
+      "topic": "transparencia",
+      "blocs": [
+        "PSOE",
+        "PP",
+        "Otro"
+      ],
+      "score": 6.1,
+      "quotes": [
+        {
+          "claimId": "19gax3o-157-acu-d2b7bb",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.78,
+          "verbatim": "no tengo ningún correo tuyo pero bueno, puede ser que los que he enviado cuando tenga el correo contestaré la verdad no lo he hecho",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uEUWNLmxprh9Zh%2FyRJgM8w%3D%3D",
+              "snippet": "Inicio expediente y adjudicación directa del contrato menor del servicio de \"Migración e implantación del correo corporativo en la plataforma Microsoft 365 mediante la modalidad de licenciamiento por precio unitario, favor de FORM"
+            }
+          ]
+        },
+        {
+          "claimId": "19gax3o-173-acu-e3d549",
+          "speakerGroup": "Otro",
+          "verdict": "parcial",
+          "confidence": 0.78,
+          "verbatim": "como consecuencia de un incumplimiento de la empresa muy grave en enero",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
+              "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "19gax3o-154-acu-3fbc54",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.74,
+          "verbatim": "Esquerrón ya ha votado a favor habías dicho abstención, no?",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+              "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abi"
+            }
+          ]
+        }
+      ],
+      "itemCount": 3
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "transparencia",
+      "blocs": [
+        "VOX",
+        "Otro"
+      ],
+      "score": 6,
+      "quotes": [
+        {
+          "claimId": "10yl550-096-acu-1e1bfa",
+          "speakerGroup": "VOX",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "Su ministro de Transportes, que es algo también fundamental para las emergencias, está ahora mismo sentado en el banquillo por todas las tropelías que no le voy a recordar para que no se les caiga la cara de vergüenza.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8nJHtO7mD29LAIVZdUs8KA%3D%3D",
+              "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de RAVI OBRAS, TRANSPORTES Y EXCAVACIONES S.L.  con CI"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-253-acu-39e059",
+          "speakerGroup": "Otro",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "es verdad que eso sí que se habla en comisiones informativas, pero creo que es importante decir públicamente que este informe habla de las necesidades del Departamento de Tesorería, que el año pasado hablaba de las mismas necesidades y que lo que se encuentra es que desde el equipo de gobierno no se están dando respuesta.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=00nKUKuSmc97h85%2Fpmmsfw%3D%3D",
+              "snippet": "Contrato de suministro por renting de vehículo tractor destinado al departamento de obras y servicios, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterio medi"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-257-acu-666f3a",
+          "speakerGroup": "Otro",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "el informe técnico y la valoración que hace de este Plan no es positivo",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
+              "snippet": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia"
             }
           ]
         }
