@@ -29,6 +29,7 @@ import {
   removeAutoPublished,
   setReviewState,
   tombstoneDraftFromPromise,
+  applyStatusChange,
 } from '../src/scraper/promise-apply'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -153,16 +154,19 @@ async function main() {
     console.error(`[apply-promise-draft] draft "${draftId}" not in queue`)
     process.exit(1)
   }
-  if (draft.kind !== 'new-promise') {
-    // This path only publishes brand-new promises. status-change drafts advance
-    // an EXISTING promise's status and are applied via their own path (see the
-    // status-change apply CLI); refuse rather than misinterpret the draft here.
-    console.error(
-      `[apply-promise-draft] draft "${draftId}" is a ${draft.kind} draft — this path only publishes new-promise drafts`,
-    )
-    process.exit(1)
-  }
   const snap = await readSnap()
+  if (draft.kind === 'status-change') {
+    // Human-approved: set the status + append the grounded evidence atomically
+    // (V1 gate). No autoPublished stamp — that field marks MACHINE publications
+    // only. applyStatusChange's stale-transition guard throws (non-zero exit) if
+    // the promise moved since the draft was queued; the dashboard surfaces it.
+    await writeSnap(applyStatusChange(snap, draft, now))
+    await writeQueue(QUEUE, removeDraftFromQueue(queue, draftId))
+    console.log(
+      `[apply-promise-draft] applied status change "${draftId}" (${draft.promiseId} → ${draft.proposedStatus}, human-approved)`,
+    )
+    return
+  }
   const promise = newPromiseFromDraft(draft, now) // no autoPublish meta → human-approved
   await writeSnap(insertPromise(snap, promise))
   await writeQueue(QUEUE, removeDraftFromQueue(queue, draftId))
