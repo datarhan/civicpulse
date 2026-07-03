@@ -7,6 +7,107 @@ const DECISION_TONE = {
   queue: 'neutral',
 }
 
+const STATUS_TONE = {
+  documentada: 'neutral',
+  'en-verificacion': 'neutral',
+  'en-progreso': 'intel',
+  parcial: 'warn',
+  cumplida: 'ok',
+}
+
+/**
+ * A status-change draft advances an EXISTING promise (documentada →
+ * en-progreso/parcial/cumplida). It carries no `proposed.*` — instead a
+ * promiseId, current→proposed statuses, and a single grounded evidence row.
+ * Same card chrome + the same two actions as PromiseDraftRow.
+ */
+function StatusChangeDraftRow({ draft, onApprove, onReject, busy }) {
+  const ev = draft.evidence ?? {}
+  const grounded = Boolean(draft.grounding?.grounded)
+  return (
+    <div
+      style={{
+        padding: '12px 14px',
+        border: '1px solid var(--border2)',
+        borderRadius: 8,
+        marginBottom: 10,
+        background: 'var(--paper)',
+      }}
+    >
+      <div
+        style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 6, flexWrap: 'wrap' }}
+      >
+        <Pill tone="intel">cambio de estado</Pill>
+        <Pill tone={STATUS_TONE[draft.currentStatus] ?? 'neutral'}>{draft.currentStatus}</Pill>
+        <span style={{ color: 'var(--ink50)' }}>→</span>
+        <Pill tone={STATUS_TONE[draft.proposedStatus] ?? 'intel'}>{draft.proposedStatus}</Pill>
+        <Pill tone={grounded ? 'ok' : 'warn'}>{grounded ? 'anclada' : 'sin anclar'}</Pill>
+        {draft.decision && (
+          <Pill tone={DECISION_TONE[draft.decision] ?? 'neutral'}>{draft.decision}</Pill>
+        )}
+        <span className="mono" style={{ marginLeft: 'auto', fontSize: 11 }}>
+          conf {Number(draft.confidence ?? 0).toFixed(2)}
+        </span>
+      </div>
+      <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginBottom: 4 }}>
+        {draft.draftId}
+      </div>
+      <div style={{ fontSize: 13.5, marginBottom: 4 }}>
+        Promesa: <span className="mono">{draft.promiseId}</span>
+      </div>
+      {ev.quote && (
+        <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.4, marginBottom: 6 }}>
+          «{String(ev.quote).slice(0, 180)}…»
+        </div>
+      )}
+      <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+        {ev.url && (
+          <ExtLink
+            href={ev.url}
+            style={{ fontSize: 11.5, color: 'var(--civic)', textDecoration: 'none' }}
+          >
+            Evidencia: {ev.publisher || ev.kind || 'fuente'} →
+          </ExtLink>
+        )}
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
+          <button
+            onClick={() => onApprove(draft.draftId)}
+            disabled={busy}
+            style={{
+              padding: '5px 12px',
+              fontSize: 11.5,
+              fontWeight: 600,
+              border: '1px solid var(--border)',
+              background: 'var(--ink)',
+              color: 'var(--paper)',
+              borderRadius: 6,
+              cursor: busy ? 'not-allowed' : 'pointer',
+              opacity: busy ? 0.6 : 1,
+            }}
+          >
+            {busy ? 'Aplicando…' : 'Aprobar y aplicar'}
+          </button>
+          <button
+            onClick={() => onReject(draft.draftId)}
+            disabled={busy}
+            style={{
+              padding: '5px 12px',
+              fontSize: 11.5,
+              border: '1px solid var(--border2)',
+              background: 'var(--paper)',
+              borderRadius: 6,
+              cursor: busy ? 'not-allowed' : 'pointer',
+              opacity: busy ? 0.6 : 1,
+            }}
+          >
+            Rechazar
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 /**
  * One row in the promise auto-curator review queue. Mirrors
  * ContradichoBundleRow's bordered-card style: a mono meta line
@@ -15,6 +116,11 @@ const DECISION_TONE = {
  * actions. Not a click-through — the buttons drive the apply CLI.
  */
 function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
+  if (draft.kind === 'status-change') {
+    return (
+      <StatusChangeDraftRow draft={draft} onApprove={onApprove} onReject={onReject} busy={busy} />
+    )
+  }
   const p = draft.proposed ?? {}
   const grounded = Boolean(draft.grounding?.grounded)
   const decision = draft.decision
