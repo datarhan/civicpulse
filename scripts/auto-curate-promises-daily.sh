@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 # Daily promise auto-curator wrapper: runs
-#   npm run auto-curate-promises -- --max 10 --no-auto-publish
-# which refreshes the LOCAL-ONLY review queue (editorial/promise-review-
-# queue.json, gitignored) and writes a digest to scripts/logs/. Because
-# --no-auto-publish is the rollout-safe default, NOTHING is committed:
-# publication happens only when a curator approves a draft in the
-# dev-only /curator dashboard.
+#   npm run auto-curate-promises -- --max 10 --phase both
+# AUTO-PUBLISH IS ENABLED — grounded, high-confidence (≥0.70) en-progreso
+# status changes + documentada new promises publish to promises.json (stamped
+# autoPublished.reviewState='pending-review' + a public "revisión pendiente"
+# badge) and are committed + pushed below. Everything else (parcial/cumplida/
+# no-ejecutada, plus anything ungrounded or below threshold) stays in the
+# LOCAL-ONLY review queue (editorial/promise-review-queue.json, gitignored)
+# for one-click curator approval in the dev-only /curator dashboard. An
+# auto-published row is reversible: `npm run apply-promise-draft -- --retract
+# <id>` deletes an auto-created promise or REVERTS an auto-published status
+# change (status → priorStatus, appended evidence dropped).
 #
 # Run manually:        bash scripts/auto-curate-promises-daily.sh
 # Install via launchd: bash scripts/launchd-install-auto-curate-promises.sh
@@ -43,28 +48,24 @@ git pull --rebase --autostash origin main
 export LLM_BACKEND="${LLM_BACKEND:-agy}"
 export AGY_MODEL="${AGY_MODEL:-gemini-2.5-pro}"
 
-# Rollout-safe default: --no-auto-publish forces every candidate into the
-# local review queue; nothing is published to promises.json.
-echo "[$(date '+%F %T')] invoking npm run auto-curate-promises -- --max 10 --no-auto-publish --phase both"
-npm run auto-curate-promises -- --max 10 --no-auto-publish --phase both
+# AUTO-PUBLISH ENABLED: grounded, high-confidence en-progreso status changes +
+# documentada new promises publish to promises.json; parcial/cumplida/
+# no-ejecutada stay one-click in the review queue; inviable is human-only.
+echo "[$(date '+%F %T')] invoking npm run auto-curate-promises -- --max 10 --phase both"
+npm run auto-curate-promises -- --max 10 --phase both
 
-echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed (nothing committed)"
+echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed"
 
 # ─────────────────────────────────────────────────────────────────────
-# TO ENABLE AUTO-PUBLISH (only after watching the queue for a few days
-# and spot-checking grounding, and once the /metodologia + /aviso-legal
-# disclosure + the public "revisión pendiente" badge are live):
-#   1. remove `--no-auto-publish` from the npm invocation above, then
-#   2. uncomment this block to commit + push the auto-published rows.
-# Auto-published promises carry autoPublished.reviewState='pending-review'
-# and render the public badge until a curator reviews them.
-#
-# if git diff --quiet -- public/data/promises.json; then
-#   echo "[$(date '+%F %T')] no auto-published promises — nothing to commit"
-#   exit 0
-# fi
-# git add public/data/promises.json
-# git commit -m "data: daily promise auto-curate (auto-published · pending review)"
-# git push origin main
-# echo "[$(date '+%F %T')] pushed auto-published promises"
+# Commit + push any auto-published rows. They carry
+# autoPublished.reviewState='pending-review' + the public badge until a
+# curator reviews (or retracts) them. No-op when nothing was auto-published.
 # ─────────────────────────────────────────────────────────────────────
+if git diff --quiet -- public/data/promises.json; then
+  echo "[$(date '+%F %T')] no auto-published promises — nothing to commit"
+  exit 0
+fi
+git add public/data/promises.json
+git commit -m "data: daily promise auto-curate (auto-published · pending review)"
+git push origin main
+echo "[$(date '+%F %T')] pushed auto-published promises"
