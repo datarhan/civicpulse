@@ -6,12 +6,14 @@ import {
   removeAutoPublished,
   setReviewState,
   tombstoneDraftFromPromise,
+  applyStatusChange,
 } from '../src/scraper/promise-apply'
 import { validatePromisesSnapshot, type PromisesSnapshot } from '../src/scraper/promises'
 import {
   makeDraftId,
   validateReviewQueue,
   type DraftNewPromise,
+  type DraftStatusChange,
   type PromiseReviewQueue,
 } from '../src/scraper/promise-draft'
 
@@ -123,5 +125,75 @@ describe('promise-apply', () => {
       drafts: [tombstoneDraftFromPromise(p, NOW)],
     }
     expect(() => validateReviewQueue(JSON.stringify(queue))).not.toThrow()
+  })
+})
+
+describe('applyStatusChange', () => {
+  function seededSnap(): PromisesSnapshot {
+    const s = baseSnap()
+    s.items.push({
+      id: 'psoe-obra',
+      party: 'PSOE',
+      title: 'Reforma del pabellón',
+      quote: 'Reformaremos el pabellón municipal antes de fin de año.',
+      source: { url: 'https://x.test/p', publisher: 'X' },
+      madeAt: '2026-01-01',
+      topic: 'urbanismo',
+      kind: 'anuncio-gobierno',
+      status: 'documentada',
+      evidence: [],
+      createdAt: '2026-01-01',
+    })
+    return s
+  }
+  function statusDraft(): DraftStatusChange {
+    return {
+      draftId: 'dsc-psoe-obra-en-progreso-abc',
+      kind: 'status-change',
+      requiresHumanApproval: true,
+      confidence: 0.85,
+      grounding: { grounded: true, urlResolved: true, quoteFound: true, checkedAt: NOW },
+      decision: 'auto-publish',
+      promiseId: 'psoe-obra',
+      currentStatus: 'documentada',
+      proposedStatus: 'en-progreso',
+      evidence: {
+        date: '2026-05-01',
+        url: 'https://placsp/t1',
+        quote: 'obra adjudicada por 240000 euros',
+        publisher: 'PLACSP',
+        kind: 'tender',
+        addedBy: 'auto-curation-v1',
+      },
+      reasoning: [],
+      generatedAt: NOW,
+    }
+  }
+
+  it('sets the status + appends evidence + re-validates (V1 gate passes)', () => {
+    const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
+    const p = next.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.status).toBe('en-progreso')
+    expect(p.evidence).toHaveLength(1)
+    expect(p.evidence[0].kind).toBe('tender')
+    expect(p.autoPublished?.reviewState).toBe('pending-review')
+    validatePromisesSnapshot(JSON.stringify(next)) // non-V1 + evidence → passes
+  })
+
+  it('throws when the promiseId is missing', () => {
+    const d = statusDraft()
+    d.promiseId = 'nope'
+    expect(() => applyStatusChange(seededSnap(), d, NOW)).toThrow(/not found/)
+  })
+
+  it('refuses a stale transition when the promise status already moved', () => {
+    const d = statusDraft()
+    d.currentStatus = 'en-progreso' // seeded promise is still 'documentada'
+    expect(() => applyStatusChange(seededSnap(), d, NOW)).toThrow(/stale/)
+  })
+
+  it('removeAutoPublished refuses to delete a pre-existing (non-ac-) promise carrying a status-change auto-publish', () => {
+    const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
+    expect(() => removeAutoPublished(next, 'psoe-obra')).toThrow(/pre-existed|curated data/)
   })
 })

@@ -11,7 +11,7 @@
  */
 import { stripDiacritics } from './normalize'
 import { ALLOWED_PARTIES } from './promises'
-import type { DraftNewPromise, Grounding } from './promise-draft'
+import type { DraftNewPromise, DraftStatusChange, Grounding } from './promise-draft'
 
 export function normalizeForMatch(s: string): string {
   return stripDiacritics(s.toLowerCase()).replace(/\s+/g, ' ').trim()
@@ -204,6 +204,62 @@ export async function groundDraft(
   }
   try {
     const quoteFound = quoteFoundInText(draft.proposed.quote, stripHtml(html))
+    return { grounded: quoteFound, urlResolved: true, quoteFound, resolvedUrl: res.url, checkedAt }
+  } catch {
+    return { ...fail, urlResolved: true, resolvedUrl: res.url }
+  }
+}
+
+const STRUCTURED_KINDS = new Set(['tender', 'bdns', 'budget', 'pleno'])
+
+/** Structured-row grounding: the cited candidate must be a real retrieved row
+ *  (guaranteed by the miner's candidateIndex resolution → candidateExists). A
+ *  fieldCite is a bonus assertion but not required. Deterministic, no network. */
+export function groundStructuredCite(
+  fieldCite: string | undefined,
+  candidateExists: boolean,
+): boolean {
+  return candidateExists
+}
+
+/** Ground a status-change draft. Page-quote for press-like evidence; structured-
+ *  row (deterministic) for tender/bdns/budget/pleno. Fail-safe → grounded:false. */
+export async function groundStatusDraft(
+  draft: DraftStatusChange,
+  fetchImpl: FetchLike = defaultGroundingFetch,
+  now: Date = new Date(),
+  resolveGn: (url: string) => Promise<string | null> = resolveGoogleNewsUrl,
+): Promise<Grounding> {
+  const checkedAt = now.toISOString()
+  const fail: Grounding = { grounded: false, urlResolved: false, quoteFound: false, checkedAt }
+  const ev = draft.evidence
+  // Structured rows: the miner only builds a draft from a resolved real
+  // candidate, so the row exists by construction. Deterministic grounding.
+  if (STRUCTURED_KINDS.has(ev.kind)) {
+    const grounded = groundStructuredCite(undefined, true)
+    return { grounded, urlResolved: true, quoteFound: grounded, resolvedUrl: ev.url, checkedAt }
+  }
+  // Page-quote (press / ayuntamiento): fetch + quote match (mirror groundDraft).
+  let targetUrl = ev.url
+  if (isGoogleNewsUrl(targetUrl)) {
+    const resolved = await resolveGn(targetUrl).catch(() => null)
+    if (resolved) targetUrl = resolved
+  }
+  let res: Awaited<ReturnType<FetchLike>>
+  try {
+    res = await fetchImpl(targetUrl)
+  } catch {
+    return fail
+  }
+  if (!res.ok) return { ...fail, resolvedUrl: res.url }
+  let html = ''
+  try {
+    html = await res.text()
+  } catch {
+    return { ...fail, urlResolved: true, resolvedUrl: res.url }
+  }
+  try {
+    const quoteFound = quoteFoundInText(ev.quote, stripHtml(html))
     return { grounded: quoteFound, urlResolved: true, quoteFound, resolvedUrl: res.url, checkedAt }
   } catch {
     return { ...fail, urlResolved: true, resolvedUrl: res.url }

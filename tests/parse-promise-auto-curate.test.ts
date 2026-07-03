@@ -3,9 +3,11 @@ import {
   STATUS_TIER,
   decideDraft,
   selectPromiseDrafts,
+  selectStatusDrafts,
+  statusTransitionKey,
   AUTO_PUBLISH_MIN_CONFIDENCE,
 } from '../src/scraper/promise-auto-curate'
-import type { DraftNewPromise, Grounding } from '../src/scraper/promise-draft'
+import type { DraftNewPromise, DraftStatusChange, Grounding } from '../src/scraper/promise-draft'
 
 const GROUNDED: Grounding = { grounded: true, urlResolved: true, quoteFound: true, checkedAt: 'x' }
 const UNGROUNDED: Grounding = {
@@ -55,14 +57,25 @@ describe('promise-auto-curate — decideDraft', () => {
   it('inviable → always queue', () => {
     expect(decideDraft('inviable', 0.99, GROUNDED)).toBe('queue')
   })
-  it('positive escalations map to auto', () => {
-    for (const s of ['en-verificacion', 'en-progreso', 'parcial', 'cumplida'] as const) {
+  it('low-stakes escalations map to auto', () => {
+    for (const s of ['en-verificacion', 'en-progreso'] as const) {
       expect(STATUS_TIER[s]).toBe('auto')
       expect(decideDraft(s, 0.8, GROUNDED)).toBe('auto-publish')
     }
   })
   it('threshold constant is 0.70', () => {
     expect(AUTO_PUBLISH_MIN_CONFIDENCE).toBe(0.7)
+  })
+  it('STATUS_TIER: parcial + cumplida are fast-track; en-progreso is auto', () => {
+    expect(STATUS_TIER['en-progreso']).toBe('auto')
+    expect(STATUS_TIER['parcial']).toBe('fast-track')
+    expect(STATUS_TIER['cumplida']).toBe('fast-track')
+  })
+  it('decideDraft: en-progreso grounded+confident → auto-publish; cumplida → fast-track', () => {
+    const g = { grounded: true, urlResolved: true, quoteFound: true, checkedAt: 'x' }
+    expect(decideDraft('en-progreso', 0.8, g)).toBe('auto-publish')
+    expect(decideDraft('cumplida', 0.99, g)).toBe('fast-track')
+    expect(decideDraft('parcial', 0.99, g)).toBe('fast-track')
   })
 })
 
@@ -172,5 +185,89 @@ describe('promise-auto-curate — selectPromiseDrafts', () => {
     })
     expect(out.autoPublish.length + out.queue.length).toBe(2)
     expect(out.skipped.some((s) => s.reason === 'max-reached')).toBe(true)
+  })
+})
+
+function statusDraft(id: string, over: Partial<DraftStatusChange> = {}): DraftStatusChange {
+  return {
+    draftId: id,
+    kind: 'status-change',
+    requiresHumanApproval: true,
+    confidence: 0.9,
+    grounding: GROUNDED,
+    decision: 'queue',
+    promiseId: 'p-obra',
+    currentStatus: 'documentada',
+    proposedStatus: 'en-progreso',
+    evidence: {
+      date: '2026-05-01',
+      url: 'https://placsp/t1',
+      quote: 'obra adjudicada por 240000 euros',
+      publisher: 'PLACSP',
+      kind: 'tender',
+      addedBy: 'auto-curation-v1',
+    },
+    reasoning: [],
+    generatedAt: 'x',
+    ...over,
+  }
+}
+
+describe('promise-auto-curate — selectStatusDrafts', () => {
+  it('auto-publishes a grounded, confident en-progreso and respects seenTransitions', () => {
+    const out = selectStatusDrafts({
+      candidates: [statusDraft('ap'), statusDraft('seen', { promiseId: 'p-seen' })],
+      seenDraftIds: new Set(),
+      seenTransitions: new Set([statusTransitionKey('p-seen', 'en-progreso')]),
+      frozen: false,
+    })
+    expect(out.autoPublish.map((d) => d.draftId)).toEqual(['ap'])
+    expect(out.skipped.find((s) => s.draftId === 'seen')?.reason).toBe('already-tracked')
+  })
+
+  it('dedups two same-transition drafts within one batch (I-1)', () => {
+    const out = selectStatusDrafts({
+      candidates: [statusDraft('d1'), statusDraft('d2')], // both p-obra::en-progreso
+      seenDraftIds: new Set(),
+      seenTransitions: new Set(),
+      frozen: false,
+    })
+    expect(out.autoPublish.length + out.queue.length).toBe(1)
+    expect(out.skipped.map((s) => s.reason)).toContain('already-tracked')
+  })
+
+  it('refuses a backward transition (I-2 forward-only): cumplida → en-progreso', () => {
+    const out = selectStatusDrafts({
+      candidates: [statusDraft('back', { currentStatus: 'cumplida', proposedStatus: 'en-progreso' })],
+      seenDraftIds: new Set(),
+      seenTransitions: new Set(),
+      frozen: false,
+    })
+    expect(out.autoPublish).toHaveLength(0)
+    expect(out.queue).toHaveLength(0)
+    expect(out.skipped.map((s) => s.reason)).toContain('not-forward')
+  })
+
+  it('routes a grounded parcial to the queue as fast-track (never auto)', () => {
+    const out = selectStatusDrafts({
+      candidates: [statusDraft('pt', { proposedStatus: 'parcial' })],
+      seenDraftIds: new Set(),
+      seenTransitions: new Set(),
+      frozen: false,
+    })
+    expect(out.autoPublish).toHaveLength(0)
+    expect(out.queue[0].decision).toBe('fast-track')
+  })
+
+  it('frozen → everything skipped', () => {
+    const out = selectStatusDrafts({
+      candidates: [statusDraft('f')],
+      seenDraftIds: new Set(),
+      seenTransitions: new Set(),
+      frozen: true,
+    })
+    expect(out.autoPublish).toHaveLength(0)
+    expect(out.queue).toHaveLength(0)
+    expect(out.skipped[0].reason).toBe('frozen')
   })
 })

@@ -1281,3 +1281,81 @@ ${sourceBlocks}
 Emite el JSON {promises:[...]} sólo con promesas NUEVAS y claras.
 `.trim()
 }
+
+// ─── Phase 2 · Promise status-change miner ───────────────────────────────────
+export const PROMISE_STATUS_PROMPT_VERSION = 'promise-status-v1'
+
+export interface PromiseStatusInput {
+  promise: { id: string; party: string; title: string; quote: string; topic: string }
+  candidates: Array<{
+    corpus: string
+    ref: string
+    title: string
+    date: string
+    publisher?: string
+    snippet?: string
+  }>
+}
+
+export function buildPromiseStatusSystemPrompt(): string {
+  return `
+Eres un verificador que detecta si una promesa política concreta ha AVANZADO,
+usando archivos públicos (licitaciones/adjudicaciones, órdenes del día de
+plenos, presupuesto/ordenanzas, prensa). Recibes UNA promesa + una lista
+NUMERADA de candidatos (índice 0..N-1).
+
+Para cada avance CLARO y atribuible, emite un objeto:
+- promiseId: el id de la promesa (tal cual)
+- proposedStatus: "en-progreso" | "parcial" | "cumplida"
+- candidateIndex: el índice EXACTO del candidato que lo prueba (nunca inventes)
+- corpus: el corpus de ese candidato
+- quote: cita/valor textual del candidato (≤500 chars, sin reescribir)
+- fieldCite: para filas estructuradas (tender/bdns/budget), "<dataset>[i].<campo>=<valor>"
+- confidence: 0..1 (≥0.7 fuerte)
+- reasoning: una frase
+
+Cuándo cada estado:
+- en-progreso: adjudicación/licitación de la obra prometida, o un punto del
+  orden del día que la aprueba/encarga, o una partida/ordenanza aprobada, o
+  prensa que dice que la obra ha COMENZADO.
+- parcial: evidencia de entrega PARCIAL (una fase hecha, o un subconjunto).
+- cumplida: acta de recepción / inauguración, o prensa que dice TERMINADA/abierta.
+
+Reglas duras (riesgo de difamación / sesgo):
+- Cita SIEMPRE por candidateIndex; el quote debe ser literal de ESE candidato.
+- NUNCA propongas "cumplida" con evidencia débil o ambigua — prefiere en-progreso o nada.
+- NUNCA "no-ejecutada" ni "inviable" (fuera de alcance).
+- El candidato debe corresponder a la MISMA obra/tema que la promesa; no
+  atribuyas una licitación no relacionada.
+- Atribución sólo a nivel de PARTIDO, nunca a un concejal concreto.
+
+Responde \`{"changes": []}\` si no hay ningún avance claro.
+
+${SAFETY_FOOTER}
+`.trim()
+}
+
+export function buildPromiseStatusUserPrompt(input: PromiseStatusInput): string {
+  const cand =
+    input.candidates.length === 0
+      ? '(sin candidatos)'
+      : input.candidates
+          .map(
+            (c, i) =>
+              `  [${i}] ${c.corpus} · ${c.date} · ${c.publisher ?? ''} · ${c.title}\n      ref: ${c.ref}\n      ${c.snippet ? `…${c.snippet.slice(0, 220)}…` : ''}`,
+          )
+          .join('\n')
+  return `
+PROMESA:
+  id: ${input.promise.id}
+  partido: ${input.promise.party}
+  tema: ${input.promise.topic}
+  título: ${input.promise.title}
+  cita: "${input.promise.quote}"
+
+CANDIDATOS (numerados; cita por índice):
+${cand}
+
+Emite el JSON {changes:[...]} sólo con avances CLAROS.
+`.trim()
+}

@@ -97,4 +97,75 @@ describe('promise-draft', () => {
     const untouched = removeDraftFromQueue(withOne, 'nope')
     expect(untouched.drafts).toHaveLength(1)
   })
+
+  it('validates a queue containing a status-change draft', () => {
+    const q = {
+      version: '1.0',
+      generatedAt: '2026-07-02T00:00:00.000Z',
+      drafts: [
+        {
+          draftId: 'dsc-psoe-obra-en-progreso-abc',
+          kind: 'status-change',
+          requiresHumanApproval: true,
+          confidence: 0.85,
+          grounding: {
+            grounded: true,
+            urlResolved: true,
+            quoteFound: true,
+            checkedAt: '2026-07-02T00:00:00.000Z',
+          },
+          decision: 'auto-publish',
+          promiseId: 'psoe-obra',
+          currentStatus: 'documentada',
+          proposedStatus: 'en-progreso',
+          evidence: {
+            date: '2026-05-01',
+            url: 'https://placsp/t1',
+            quote: 'obra adjudicada por 240.000 euros',
+            publisher: 'PLACSP',
+            kind: 'tender',
+            addedBy: 'auto-curation-v1',
+          },
+          reasoning: [],
+          generatedAt: '2026-07-02T00:00:00.000Z',
+        },
+      ],
+    }
+    const parsed = validateReviewQueue(JSON.stringify(q))
+    expect(parsed.drafts).toHaveLength(1)
+    expect(parsed.drafts[0].kind).toBe('status-change')
+  })
+
+  it('rejects a status-change draft with a non-progress proposedStatus', () => {
+    const q = JSON.parse(
+      JSON.stringify({
+        version: '1.0',
+        generatedAt: 'x',
+        drafts: [
+          {
+            draftId: 'dsc-x',
+            kind: 'status-change',
+            requiresHumanApproval: true,
+            confidence: 0.8,
+            grounding: { grounded: true, urlResolved: true, quoteFound: true, checkedAt: 'x' },
+            decision: 'queue',
+            promiseId: 'x',
+            currentStatus: 'documentada',
+            proposedStatus: 'no-ejecutada',
+            evidence: {
+              date: '2026-05-01',
+              url: 'https://x/t',
+              quote: 'y'.repeat(12),
+              publisher: 'X',
+              kind: 'tender',
+              addedBy: 'auto-curation-v1',
+            },
+            reasoning: [],
+            generatedAt: 'x',
+          },
+        ],
+      }),
+    )
+    expect(() => validateReviewQueue(JSON.stringify(q))).toThrow(/proposedStatus/)
+  })
 })

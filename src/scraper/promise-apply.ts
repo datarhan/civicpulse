@@ -4,7 +4,7 @@
  * round-trip (including validatePromisesSnapshot) is unit-tested.
  */
 import type { PromisesSnapshot, Promise } from './promises'
-import { makeDraftId, type DraftNewPromise } from './promise-draft'
+import { makeDraftId, type DraftNewPromise, type DraftStatusChange } from './promise-draft'
 
 export interface AutoPublishMeta {
   confidence: number
@@ -108,5 +108,60 @@ export function removeAutoPublished(snap: PromisesSnapshot, promiseId: string): 
     throw new Error(
       `promise "${promiseId}" is not auto-published — refusing to retract a human-curated promise`,
     )
+  // Only auto-CREATED promises (id "ac-…", from newPromiseFromDraft) may be
+  // deleted on retract. A pre-existing promise carries `autoPublished` only
+  // because an auto-published STATUS CHANGE landed on it — deleting the whole
+  // promise would lose curated data. Reverting the status (not deleting) is the
+  // correct retract for those, and lands with the dashboard control (Plan 2B).
+  if (!promiseId.startsWith('ac-')) {
+    throw new Error(
+      `promise "${promiseId}" pre-existed and was advanced by an auto-published status change — deleting it would lose curated data. Revert its status manually (status-change retract is a curator dashboard action).`,
+    )
+  }
   return { ...snap, items: snap.items.filter((p) => p.id !== promiseId) }
+}
+
+/**
+ * Apply a status-change draft to an EXISTING promise: set the new status AND
+ * append the grounded evidence in the SAME object, so the V1 gate (non-V1
+ * status requires ≥1 evidence entry) passes on the single validated write.
+ * Throws if the promiseId is missing.
+ */
+export function applyStatusChange(
+  snap: PromisesSnapshot,
+  draft: DraftStatusChange,
+  now: string,
+  autoPublish?: AutoPublishMeta,
+): PromisesSnapshot {
+  const target = snap.items.find((p) => p.id === draft.promiseId)
+  if (!target) throw new Error(`promise "${draft.promiseId}" not found`)
+  // Optimistic concurrency: a status-change draft can sit in the queue for days
+  // before a curator applies it. If the promise's status has moved since the
+  // draft was built, the draft is STALE — applying it could downgrade or
+  // clobber a newer status. Refuse rather than apply a stale transition.
+  if (target.status !== draft.currentStatus) {
+    throw new Error(
+      `promise "${draft.promiseId}" is now "${target.status}", not the draft's expected "${draft.currentStatus}" — refusing to apply a stale status transition`,
+    )
+  }
+  return {
+    ...snap,
+    items: snap.items.map((p) => {
+      if (p.id !== draft.promiseId) return p
+      return {
+        ...p,
+        status: draft.proposedStatus,
+        evidence: [...p.evidence, draft.evidence],
+        updatedAt: now.slice(0, 10),
+        autoPublished: autoPublish
+          ? {
+              at: autoPublish.at,
+              by: 'auto-curation-v1',
+              confidence: autoPublish.confidence,
+              reviewState: 'pending-review',
+            }
+          : (p.autoPublished ?? null),
+      }
+    }),
+  }
 }

@@ -72,7 +72,7 @@ export interface EvidenceEntry {
   url: string
   quote: string
   publisher: string
-  kind: 'press' | 'pleno' | 'budget' | 'bdns' | 'ayuntamiento' | 'otro'
+  kind: 'press' | 'pleno' | 'tender' | 'budget' | 'bdns' | 'ayuntamiento' | 'otro'
   addedBy: string // who curated this evidence ("civicpulse-bot" for auto)
 }
 
@@ -185,7 +185,7 @@ function validateEvidence(e: unknown, idx: number): EvidenceEntry {
   assertString(r.publisher, `evidence[${idx}].publisher`, 1, 100)
   assertEnum(
     r.kind,
-    ['press', 'pleno', 'budget', 'bdns', 'ayuntamiento', 'otro'],
+    ['press', 'pleno', 'tender', 'budget', 'bdns', 'ayuntamiento', 'otro'],
     `evidence[${idx}].kind`,
   )
   assertString(r.addedBy, `evidence[${idx}].addedBy`, 1, 80)

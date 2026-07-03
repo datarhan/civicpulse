@@ -45,8 +45,8 @@ export AGY_MODEL="${AGY_MODEL:-gemini-2.5-pro}"
 
 # Rollout-safe default: --no-auto-publish forces every candidate into the
 # local review queue; nothing is published to promises.json.
-echo "[$(date '+%F %T')] invoking npm run auto-curate-promises -- --max 10 --no-auto-publish"
-npm run auto-curate-promises -- --max 10 --no-auto-publish
+echo "[$(date '+%F %T')] invoking npm run auto-curate-promises -- --max 10 --no-auto-publish --phase both"
+npm run auto-curate-promises -- --max 10 --no-auto-publish --phase both
 
 echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed (nothing committed)"
 

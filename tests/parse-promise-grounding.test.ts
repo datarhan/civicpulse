@@ -4,13 +4,15 @@ import {
   partyDateOk,
   stripHtml,
   groundDraft,
+  groundStatusDraft,
+  groundStructuredCite,
   isGoogleNewsUrl,
   extractBatchParams,
   buildBatchRequestBody,
   parseResolvedUrl,
   type FetchLike,
 } from '../src/scraper/promise-grounding'
-import type { DraftNewPromise } from '../src/scraper/promise-draft'
+import type { DraftNewPromise, DraftStatusChange } from '../src/scraper/promise-draft'
 import { defaultGroundingFetch, MOZILLA_UA } from '../src/scraper/promise-grounding'
 
 const NOW = new Date('2026-07-02T00:00:00.000Z')
@@ -232,5 +234,72 @@ describe('promise-grounding — Google-News resolution', () => {
     expect(fetchedUrl).toBe(original)
     expect(g.grounded).toBe(true)
     expect(g.resolvedUrl).toBe(original)
+  })
+})
+
+const NOW2 = new Date('2026-07-02T00:00:00.000Z')
+function statusDraft(over: Partial<DraftStatusChange> = {}): DraftStatusChange {
+  return {
+    draftId: 'dsc-x',
+    kind: 'status-change',
+    requiresHumanApproval: true,
+    confidence: 0.85,
+    grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: '' },
+    decision: 'queue',
+    promiseId: 'psoe-obra',
+    currentStatus: 'documentada',
+    proposedStatus: 'en-progreso',
+    evidence: {
+      date: '2026-05-01',
+      url: 'https://placsp/t1',
+      quote: 'obra adjudicada por 240000',
+      publisher: 'PLACSP',
+      kind: 'tender',
+      addedBy: 'auto-curation-v1',
+    },
+    reasoning: [],
+    generatedAt: 'x',
+    ...over,
+  }
+}
+
+describe('status grounding', () => {
+  it('groundStructuredCite: cite present + candidate exists → true', () => {
+    expect(groundStructuredCite('tender[0].status=awarded', true)).toBe(true)
+    expect(groundStructuredCite(undefined, true)).toBe(true) // real candidate, no explicit cite → still grounded
+    expect(groundStructuredCite('tender[0].status=awarded', false)).toBe(false)
+  })
+
+  it('groundStatusDraft: structured corpus (tender) grounds without network', async () => {
+    const g = await groundStatusDraft(statusDraft(), undefined, NOW2)
+    expect(g.grounded).toBe(true)
+  })
+
+  it('groundStatusDraft: page-quote corpus (press) grounds when the quote is on the page', async () => {
+    const fetchImpl = async () => ({
+      ok: true,
+      url: 'https://pub/a',
+      text: async () => '<p>obra adjudicada por 240000 euros</p>',
+    })
+    const g = await groundStatusDraft(
+      statusDraft({ evidence: { ...statusDraft().evidence, kind: 'press', url: 'https://pub/a' } }),
+      fetchImpl as never,
+      NOW2,
+    )
+    expect(g.grounded).toBe(true)
+  })
+
+  it('groundStatusDraft: press quote absent → fails safe', async () => {
+    const fetchImpl = async () => ({
+      ok: true,
+      url: 'https://pub/a',
+      text: async () => '<p>texto sin la cita</p>',
+    })
+    const g = await groundStatusDraft(
+      statusDraft({ evidence: { ...statusDraft().evidence, kind: 'press', url: 'https://pub/a' } }),
+      fetchImpl as never,
+      NOW2,
+    )
+    expect(g.grounded).toBe(false)
   })
 })

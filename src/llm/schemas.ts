@@ -164,6 +164,30 @@ export const PromiseEvidenceBatchSchema = z.object({
   evidence: z.array(PromiseEvidenceItemSchema).max(12),
 })
 
+// ─── Phase 2 · Promise STATUS-CHANGE miner (progress transitions) ────────────
+// Distinct from PromiseEvidence* (V1-only). Cite-by-candidateIndex: the LLM
+// references a retrieved candidate by its index in the flat list; the miner
+// rejects any index out of range (the libel boundary — no fabricated source).
+export const PROGRESS_STATUSES = ['en-progreso', 'parcial', 'cumplida'] as const
+export const PromiseStatusChangeItemSchema = z.object({
+  promiseId: z.string().min(3),
+  proposedStatus: z.enum([...PROGRESS_STATUSES] as [
+    (typeof PROGRESS_STATUSES)[number],
+    ...(typeof PROGRESS_STATUSES)[number][],
+  ]),
+  candidateIndex: z.number().int().nonnegative(),
+  corpus: PromiseEvidenceKind,
+  quote: z.string().min(10).max(500),
+  fieldCite: z.string().max(200).optional(),
+  confidence: z.number().min(0).max(1),
+  reasoning: z.string().min(10).max(500),
+})
+export type PromiseStatusChangeItem = z.infer<typeof PromiseStatusChangeItemSchema>
+export const PromiseStatusChangeBatchSchema = z.object({
+  changes: z.array(PromiseStatusChangeItemSchema).max(8),
+})
+export type PromiseStatusChangeBatch = z.infer<typeof PromiseStatusChangeBatchSchema>
+
 // ─── Phase 3 · Tender ↔ queja correlation ───────────────────────────────────
 // Given one queja and N candidate tenders, pick at most one tender that
 // plausibly addresses the queja. LLM may return `null` (no plausible match).
