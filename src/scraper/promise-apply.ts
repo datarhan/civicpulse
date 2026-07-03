@@ -3,7 +3,7 @@
  * promises.json, call these, then re-validate + write. No I/O here so the
  * round-trip (including validatePromisesSnapshot) is unit-tested.
  */
-import type { PromisesSnapshot, Promise } from './promises'
+import type { PromisesSnapshot, Promise, Status } from './promises'
 import { makeDraftId, type DraftNewPromise, type DraftStatusChange } from './promise-draft'
 
 export interface AutoPublishMeta {
@@ -159,8 +159,55 @@ export function applyStatusChange(
               by: 'auto-curation-v1',
               confidence: autoPublish.confidence,
               reviewState: 'pending-review',
+              // Record the pre-change state so a retract can cleanly REVERT this
+              // pre-existing promise (status → priorStatus, drop the appended
+              // evidence) instead of deleting it.
+              priorStatus: p.status,
+              appendedEvidenceUrl: draft.evidence.url,
             }
           : (p.autoPublished ?? null),
+      }
+    }),
+  }
+}
+
+/**
+ * Revert an auto-published STATUS CHANGE on a pre-existing promise: restore the
+ * status to `autoPublished.priorStatus`, drop the single evidence entry the
+ * change appended (matched by url + auto-curation authorship), and clear the
+ * autoPublished stamp — the promise returns to its pre-change curated state.
+ * Throws if the promise is missing or carries no revertible status change.
+ */
+export function revertStatusChange(
+  snap: PromisesSnapshot,
+  promiseId: string,
+  now: string,
+): PromisesSnapshot {
+  const target = snap.items.find((p) => p.id === promiseId)
+  if (!target) throw new Error(`promise "${promiseId}" not found`)
+  const meta = target.autoPublished
+  if (!meta || meta.priorStatus === undefined)
+    throw new Error(`promise "${promiseId}" has no auto-published status change to revert`)
+  const evUrl = meta.appendedEvidenceUrl
+  return {
+    ...snap,
+    items: snap.items.map((p) => {
+      if (p.id !== promiseId) return p
+      // Drop the LAST auto-curation evidence entry at the appended url (the one
+      // this status change added), leaving any pre-existing evidence intact.
+      const evidence = [...p.evidence]
+      for (let i = evidence.length - 1; i >= 0; i--) {
+        if (evidence[i].url === evUrl && evidence[i].addedBy === 'auto-curation-v1') {
+          evidence.splice(i, 1)
+          break
+        }
+      }
+      return {
+        ...p,
+        status: meta.priorStatus as Status,
+        evidence,
+        updatedAt: now.slice(0, 10),
+        autoPublished: null,
       }
     }),
   }

@@ -7,6 +7,7 @@ import {
   setReviewState,
   tombstoneDraftFromPromise,
   applyStatusChange,
+  revertStatusChange,
 } from '../src/scraper/promise-apply'
 import { validatePromisesSnapshot, type PromisesSnapshot } from '../src/scraper/promises'
 import {
@@ -195,5 +196,32 @@ describe('applyStatusChange', () => {
   it('removeAutoPublished refuses to delete a pre-existing (non-ac-) promise carrying a status-change auto-publish', () => {
     const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
     expect(() => removeAutoPublished(next, 'psoe-obra')).toThrow(/pre-existed|curated data/)
+  })
+
+  it('records priorStatus + appendedEvidenceUrl when auto-publishing (schema accepts them)', () => {
+    const next = applyStatusChange(seededSnap(), statusDraft(), NOW, { confidence: 0.85, at: NOW })
+    const p = next.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.autoPublished?.priorStatus).toBe('documentada')
+    expect(p.autoPublished?.appendedEvidenceUrl).toBe('https://placsp/t1')
+    validatePromisesSnapshot(JSON.stringify(next)) // en-progreso + evidence + prior-state stamp → valid
+  })
+
+  it('revertStatusChange restores prior status, drops the appended evidence, clears autoPublished', () => {
+    const published = applyStatusChange(seededSnap(), statusDraft(), NOW, {
+      confidence: 0.85,
+      at: NOW,
+    })
+    const reverted = revertStatusChange(published, 'psoe-obra', NOW)
+    const p = reverted.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.status).toBe('documentada')
+    expect(p.evidence).toHaveLength(0) // the one appended tender evidence dropped
+    expect(p.autoPublished).toBeNull()
+    validatePromisesSnapshot(JSON.stringify(reverted)) // back to a V1 status → passes
+  })
+
+  it('revertStatusChange throws when the promise has no revertible status change', () => {
+    expect(() => revertStatusChange(seededSnap(), 'psoe-obra', NOW)).toThrow(
+      /no auto-published status change/,
+    )
   })
 })
