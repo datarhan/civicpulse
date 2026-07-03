@@ -170,7 +170,11 @@ export function applyStatusChange(
               priorStatus: p.status,
               appendedEvidenceUrl: draft.evidence.url,
             }
-          : (p.autoPublished ?? null),
+          : // Human-approved status change takes OWNERSHIP: shed any stale
+            // machine "pending-review" stamp (from an earlier auto-publish) so a
+            // later --retract can't revert to a state the human already
+            // superseded — and can't drop this human advancement's evidence.
+            null,
       }
     }),
   }

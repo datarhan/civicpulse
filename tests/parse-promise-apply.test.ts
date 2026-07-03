@@ -241,4 +241,26 @@ describe('applyStatusChange', () => {
     const q = { version: '1.0', generatedAt: NOW, drafts: [tomb!] }
     expect(() => validateReviewQueue(JSON.stringify(q))).not.toThrow()
   })
+
+  it('human-approved status change (no autoPublish arg) sheds any stale autoPublished stamp', () => {
+    // promise was previously machine-auto-published to en-progreso (pending-review)
+    const withStamp = applyStatusChange(seededSnap(), statusDraft(), NOW, {
+      confidence: 0.85,
+      at: NOW,
+    })
+    expect(withStamp.items.find((x) => x.id === 'psoe-obra')!.autoPublished).not.toBeNull()
+    // curator then human-approves a further advancement to parcial (no autoPublish arg)
+    const parcial: DraftStatusChange = {
+      ...statusDraft(),
+      draftId: 'dsc-psoe-obra-parcial-x',
+      currentStatus: 'en-progreso',
+      proposedStatus: 'parcial',
+      evidence: { ...statusDraft().evidence, url: 'https://placsp/t2' },
+    }
+    const human = applyStatusChange(withStamp, parcial, NOW)
+    const p = human.items.find((x) => x.id === 'psoe-obra')!
+    expect(p.status).toBe('parcial')
+    expect(p.autoPublished).toBeNull() // stale machine stamp shed; human owns it
+    validatePromisesSnapshot(JSON.stringify(human))
+  })
 })

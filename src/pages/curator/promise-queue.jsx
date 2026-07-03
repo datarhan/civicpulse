@@ -212,8 +212,10 @@ function PromiseDraftRow({ draft, onApprove, onReject, busy }) {
  * renders a promise ALREADY published to promises.json whose
  * `autoPublished.reviewState` is still 'pending-review'. The two actions
  * drive the apply-promise-draft CLI — "Marcar revisada" clears the public
- * "revisión pendiente" badge; "Retractar" tombstones the promise into the
- * archive (destructive, styled with the crit tone).
+ * "revisión pendiente" badge; "Retractar" dispatches by kind: an
+ * auto-created promise is deleted, while an auto-published STATUS CHANGE on a
+ * pre-existing promise is REVERTED (status → priorStatus, appended evidence
+ * dropped, curated promise preserved). Styled with the crit tone.
  */
 function PromisePendingRow({ promise, onRetract, onMarkReviewed, busy }) {
   const auto = promise.autoPublished ?? {}
