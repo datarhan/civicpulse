@@ -5,7 +5,7 @@ dist/
 .DS_Store
 *.log
 .vercel
-.claude/scheduled_tasks.lock
+.claude/
 playwright-report/
 test-results/
 .llm-cache/
