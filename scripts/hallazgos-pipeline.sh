@@ -92,7 +92,18 @@ if [ -n "$TARGETS" ]; then
     fi
     COUNT=$((COUNT+1))
     log "[$COUNT/$MAX_PLENOS] transcribing $id (whisper=$WHISPER_ENGINE)…"
+    # mlx can abort on a Metal GPU command-buffer timeout on very long
+    # sessions (5h+, ~140MB+ audio) — a C++ abort we can't catch in-process.
+    # Retry once at batch_size=1 (shortest Metal command buffers, safest
+    # against the driver watchdog) before giving up on the pleno.
+    ok=0
     if bash scripts/transcribe-pleno.sh "$id"; then
+      ok=1
+    elif [ "$WHISPER_ENGINE" = mlx ]; then
+      log "transcription failed for $id — retry at batch_size=1 (Metal GPU timeout guard)…"
+      if WHISPER_BATCH_SIZE=1 bash scripts/transcribe-pleno.sh "$id"; then ok=1; fi
+    fi
+    if [ "$ok" = 1 ]; then
       log "extracting claims from $id (agy/$AGY_MODEL)…"
       if npm run extract:pleno-claims -- "$id"; then
         NEW=$((NEW+1)); log "✓ $id transcribed + extracted"
@@ -100,7 +111,7 @@ if [ -n "$TARGETS" ]; then
         log "warn: extract failed for $id — transcript kept, claims incomplete"
       fi
     else
-      log "warn: transcription failed for $id — skipping"
+      log "warn: transcription failed for $id (even at batch_size=1) — skipping"
     fi
   done <<< "$TARGETS"
 else
