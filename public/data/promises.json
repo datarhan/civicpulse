@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-04-20T06:02:41.968Z",
+  "generatedAt": "2026-07-03T09:05:36.700Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -30,7 +30,8 @@
         }
       ],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-refugios-climaticos-2026",
@@ -44,10 +45,28 @@
       "madeAt": "2026-03-27",
       "topic": "medio-ambiente",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-04-20",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+          "quote": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia)",
+          "publisher": "PLACSP",
+          "kind": "tender",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-04-20",
-      "response": null
+      "updatedAt": "2026-07-03",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-07-03T09:05:36.700Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.95,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D"
+      }
     },
     {
       "id": "psoe-reconstruccion-dana-9-5m",
@@ -64,7 +83,8 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-vivienda-900-hogares",
@@ -81,7 +101,8 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-construccion-vivienda-2026-2029",
@@ -95,10 +116,28 @@
       "madeAt": "2026-01-02",
       "topic": "vivienda",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-05-18",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+          "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+          "publisher": "Valencia Plaza",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-04-20",
-      "response": null
+      "updatedAt": "2026-07-03",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-07-03T09:05:36.700Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.85,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5"
+      }
     },
     {
       "id": "psoe-pasarelas-parc-natural-turia",
@@ -112,10 +151,28 @@
       "madeAt": "2026-03-25",
       "topic": "medio-ambiente",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-04-16",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYmdlakk3SUVoazNqeVlJYVhqSURTbHdFSTFmdVl2X3dGSm8yS1lJZXVtOTJIN1pRQ0tmVk80R0tLdmRERlR2NXhDa0Vodlh1V2E4ZWFzd2lGTl9ZY2Jka0FLdHpVU0c2dmhqY050OU44dG0xM3JKc1BsX3Q3Ymx2bUxTLXZ3elF1cGxjQ1o3SHFxUlZIdmxwbHN6RGFfdkozOWo1aHpVcXNlSWNBbUJHNFN3WjhDMWNLT19nNTd0c3Q1Q1hEUVdWQnNCSVA1akNSUXoyS0NkOFV6eVhvNmZySlpRaHLSAeoBQVVfeXFMUEhTVWM3WkFEYkdZYkVOMVI2YjFNd3pwQ1pjWWFQdW1JWURYMlFFU1YwQTJlLXJYajVVNHRGUDYxLWc4U1pIWmt4TGl3b0pXMXBEdEJuRjRpU3MtVFJtMU5wa1RKZEtmSnZpZENKbThvR3ZQNTRBN0hlT3JUSUFtNjlIdjlHcGRmVHdWUy12Q2tVcmd6Wklsb3dVbWVxX3BibnpKM3lMeko3UG5kcnA5QTN4LXV0Sm52VXhPdnVMNl9YVnZ0aXNLcHBzZmo1eS1EUzBOT3ZFa2FmTE9iT2FMVUU1N1M1Tk96RkNB?oc=5",
+          "quote": "Riba-roja de Túria finalizará en julio cinco pasarelas en el Parc Natural del Túria",
+          "publisher": "Levante-EMV",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-04-20",
-      "response": null
+      "updatedAt": "2026-07-03",
+      "response": null,
+      "autoPublished": {
+        "at": "2026-07-03T09:05:36.700Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.95,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOYmdlakk3SUVoazNqeVlJYVhqSURTbHdFSTFmdVl2X3dGSm8yS1lJZXVtOTJIN1pRQ0tmVk80R0tLdmRERlR2NXhDa0Vodlh1V2E4ZWFzd2lGTl9ZY2Jka0FLdHpVU0c2dmhqY050OU44dG0xM3JKc1BsX3Q3Ymx2bUxTLXZ3elF1cGxjQ1o3SHFxUlZIdmxwbHN6RGFfdkozOWo1aHpVcXNlSWNBbUJHNFN3WjhDMWNLT19nNTd0c3Q1Q1hEUVdWQnNCSVA1akNSUXoyS0NkOFV6eVhvNmZySlpRaHLSAeoBQVVfeXFMUEhTVWM3WkFEYkdZYkVOMVI2YjFNd3pwQ1pjWWFQdW1JWURYMlFFU1YwQTJlLXJYajVVNHRGUDYxLWc4U1pIWmt4TGl3b0pXMXBEdEJuRjRpU3MtVFJtMU5wa1RKZEtmSnZpZENKbThvR3ZQNTRBN0hlT3JUSUFtNjlIdjlHcGRmVHdWUy12Q2tVcmd6Wklsb3dVbWVxX3BibnpKM3lMeko3UG5kcnA5QTN4LXV0Sm52VXhPdnVMNl9YVnZ0aXNLcHBzZmo1eS1EUzBOT3ZFa2FmTE9iT2FMVUU1N1M1Tk96RkNB?oc=5"
+      }
     },
     {
       "id": "psoe-espai-obert-presupuesto",
@@ -132,7 +189,8 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-alumbrado-led-680k",
@@ -158,7 +216,8 @@
         }
       ],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-metro-l9-agosto",
@@ -175,7 +234,8 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-respuesta-quejas-sector-14-48h",
@@ -193,7 +253,8 @@
       "evidence": [],
       "notes": "Compromiso anunciado públicamente en la primera convocatoria de Espai Obert; actualmente en verificación porque las métricas municipales sugieren incumplimiento pero aún no existe resolución del pleno ni auditoría externa publicada.",
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "pp-voto-contra-fondos-dana",
@@ -211,7 +272,8 @@
       "evidence": [],
       "notes": "Posición pública del grupo municipal del PP ante la aceptación de fondos europeos de reconstrucción post-DANA. Se cita como posición política atribuida, no como promesa electoral del programa 2023.",
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "pp-gasto-innecesario-pacadar",
@@ -229,7 +291,8 @@
       "evidence": [],
       "notes": "Cita directa del portavoz del grupo municipal del PP en el pleno extraordinario. Posición política sostenida, no promesa del programa electoral 2023.",
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "pp-critica-gestion-socialista",
@@ -247,7 +310,8 @@
       "evidence": [],
       "notes": "Cita del portavoz del PP Alberto Gimeno en declaraciones públicas a medios. Marca la línea política del grupo municipal, útil como referencia para verificar coherencia futura.",
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "vox-abstencion-pacadar",
@@ -265,7 +329,8 @@
       "evidence": [],
       "notes": "VOX mantiene un único concejal en la corporación (José Luis Fernández Santamaría). Posición documentada como abstención en el pleno del Plan de Actuación Integrado 'Pacadar Avanza'. No se dispone aún de programa electoral 2023 de VOX Riba-roja extraído de forma verbatim.",
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "compromis-apoyo-pacadar-coalicion",
@@ -283,7 +348,8 @@
       "evidence": [],
       "notes": "Rafael Folgado (Compromís) forma parte de la Junta de Gobierno Local como socio de coalición con el PSPV-PSOE. Voto a favor del Plan Pacadar Avanza refleja el alineamiento del grupo municipal con el ejecutivo.",
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
     },
     {
       "id": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -300,7 +366,52 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-04-20",
-      "response": null
+      "response": null,
+      "autoPublished": null
+    },
+    {
+      "id": "ac-psoe-1cbkzxt",
+      "party": "PSOE",
+      "title": "Subvenciones de 17.200 euros para asociaciones vecinales y comisiones de fiestas de las urbanizaciones",
+      "quote": "El Ayuntamiento de Riba-roja de Túria destinará un total de 17.200 euros en subvenciones económicas para las asociaciones de vecinos y las comisiones de fiestas de las urbanizaciones existentes en el término municipal correspondiente al presente año.",
+      "source": {
+        "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-destina-17.200-euros-para-las-asociaciones-de-vecinos-y-las-comisiones-de-fiestas-de-las-urbanizaciones-para-promocionar-las-actividades-y-los-actos-festivos-de-este-a%C3%B1o",
+        "publisher": "Ayuntamiento de Riba-roja de Túria"
+      },
+      "madeAt": "2026-06-23",
+      "topic": "participacion",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-07-03",
+      "autoPublished": {
+        "at": "2026-07-03T09:05:36.700Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.95,
+        "reviewState": "pending-review"
+      }
+    },
+    {
+      "id": "ac-psoe-1v0679f",
+      "party": "PSOE",
+      "title": "Plan de limpieza integral en la zona natural del río Turia tras retirar el puente militar",
+      "quote": "Una vez quede completamente liberado el espacio ocupado por la base del puente, se procederá a ejecutar un plan de limpieza integral para dejar la zona natural del río Turia en su estado original.",
+      "source": {
+        "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPa3hra0tUWGlfMmY5VFdaRXJ2cWpEMVpza3d0d2VaZVpDeHRBbGdGN2t2LXlvaHJMU0JmVEE2MW02U1pRN2R0QXd6N2hKM21faUlpT0xubEI3M094aEJkT05ORV9GdjBIVzdLdENWREx0ODhmRFR2MGFxdk42NkFFYlNUSUxtNUpTOHk1VGszSGdWVDlJMmZPRmdHNlp2WlpwUV9nLWFVc1B5aG9hbnROY0JQd9IBuAFBVV95cUxOMDFtSk13c3lPY2cyMV9iSUJ4Rnd6WnJZR2VWRjNua1VWWUE3NUt3VE4yTHp6dm96SzhGUUNqalZwSklOMHFwdk1rVlNwbWNSNHhPek44X2RMTjB5cmZPSWFFZWQ1aDJGa1J2SWlTSE1rWE8xekhtb1pXT2RuRExocnV5UFFJMVM5emVsNkRnQ1Nsd0VsU2xySXhUYlVmQkx4MFlQbmw3WHU0ZnJGSDJxRklQM3NYLUps?oc=5",
+        "publisher": "Las Provincias"
+      },
+      "madeAt": "2026-06-30",
+      "topic": "medio-ambiente",
+      "kind": "anuncio-gobierno",
+      "status": "documentada",
+      "evidence": [],
+      "createdAt": "2026-07-03",
+      "autoPublished": {
+        "at": "2026-07-03T09:05:36.700Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.85,
+        "reviewState": "pending-review"
+      }
     }
   ]
 }
