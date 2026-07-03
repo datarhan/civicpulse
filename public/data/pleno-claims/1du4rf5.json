@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T20:28:11.600Z",
+  "generatedAt": "2026-07-03T14:53:32.639Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -29,9 +29,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -61,12 +63,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-009-acu-34da60",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 9,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "estar no estaba el día de las comisiones informativas, de hecho aquí está la resolución de alcaldía informando de hecho",
+        "context": "pudiera ser que estuviera en marcha pero estar no estaba el día de las comisiones informativas, de hecho aquí está la resolución de alcaldía informando de hecho, luego en el punto 7 pone que habla sobre las condiciones",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "resolución de alcaldía"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "El contenido de la resolución de alcaldía puede ser verificado para confirmar si indica que el expediente de disciplina urbanístico no estaba disponible el día de las comisiones informativas (28 de octubre de 2025).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-009-acu-34da60",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+            "snippet": "1 vehículo híbrido todoterreno uso gabinete alcaldía · Ayuntamiento de Riba-roja de Túria · AUTO-OCASION CORTES SL · transportation · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -94,9 +140,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -126,9 +174,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -159,9 +209,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -197,6 +249,48 @@
     },
     {
       "claim": {
+        "id": "1du4rf5-011-acu-52af49",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 11,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "se han realizado obras de reforma en la edificación existente, a día de hoy no pueden ser legalizadas, son ilegales",
+        "context": "Luego hay otras obras que dice se han realizado obras de reforma en la [1299.5 → 1305.1] edificación existente, siendo que éstas se permiten con la [1305.1 → 1310.3] minimización tramitada, es decir, que no se permiten hasta que no esté la [1310.3 → 1316.5] minimización tramitada, deberán ser objeto de legalización, deberán, a día de hoy [1316.5 → 1323.8] no pueden ser legalizadas, son ilegales",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "obras de reforma"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "La legalidad de las obras de reforma y la posibilidad de su legalización pueden ser verificadas consultando los expedientes urbanísticos y normativas aplicables.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-011-acu-52af49",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jWidbGlyMpRvYnTkQN0%2FZA%3D%3D",
+            "snippet": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento. · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "1du4rf5-011-cit-77a14e",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -220,9 +314,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -305,6 +401,50 @@
     },
     {
       "claim": {
+        "id": "1du4rf5-013-acu-96e056",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 13,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "traes por urgencia un expediente que no ataña a una pluralidad de vecinos, sino a un único vecino",
+        "context": "pensamos que la minimización es viable, es válida, pero si traes por urgencia un expediente que no ataña a una pluralidad de vecinos, sino a un único vecino y encima no traes los expedientes de disciplina urbanística anteriores a este expediente urbanístico",
+        "topic": "transparencia",
+        "entities": {
+          "count": 1,
+          "countUnit": "vecino",
+          "referencedEntity": "expediente por urgencia"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "Se acusa de usar un procedimiento de urgencia para un expediente que afecta solo a un vecino. Esto es verificable revisando el expediente para confirmar su carácter de urgencia y el número de partes afectadas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-013-acu-96e056",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "1du4rf5-014-afi-5274a4",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -326,9 +466,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -356,9 +498,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -386,9 +530,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -416,9 +562,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -450,9 +598,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -482,9 +632,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -514,9 +666,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -546,9 +700,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -578,12 +734,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-018-acu-9107f2",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 18,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Urgencia ninguna en el expediente, el expediente está totalmente correcto.",
+        "context": "salta más el interés. Urgencia ninguna en el expediente, el expediente está totalmente correcto. Desde el martes que fue a la comisión informativa, conmigo no habéis venido a hablar de este punto, con las arquitectas creo que tampoco.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "el expediente"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "The administrative status and correctness of the expediente can be verified through municipal records and official documentation.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-018-acu-9107f2",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -610,9 +810,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -644,9 +846,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -677,9 +881,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -710,15 +916,17 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -748,9 +956,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -778,9 +988,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -810,9 +1022,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -840,12 +1054,98 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-024-acu-3b8b4b",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 24,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "yo te pedí en comisiones el expediente urbanístico que hubiera en referencia a esta declaración de minimización",
+        "context": "¿Que yo te pedí en comisiones el expediente urbanístico que hubiera en referencia a esta declaración de minimización? ¿Hay que volver a reunirse para volver a pedírtela? Es que no lo entiendo, si ya la pe",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "expediente urbanístico"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "Verifiable by checking the official minutes or records of the commissions to confirm if the speaker requested the urbanistic file.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-024-acu-3b8b4b",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-025-acu-9dde8b",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 25,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "tú en teoría me envías una información referente a esta edificación porque si me has enviado otra vuelvo a realizar el escrito y me envía referente a esta edificación",
+        "context": "la solicité por escrito para que quedara constancia que la necesitaba y tú en teoría me envías una información referente a esta edificación porque si me has enviado otra vuelvo a realizar el escrito y me envía referente a esta edificación, yo otra edificación ni me consta ni estamos",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "esta edificación"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Se puede verificar la información enviada al interviniente y determinar si corresponde al expediente de la edificación específica a la que se refiere.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-025-acu-9dde8b",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8lHYqd7aXqmrz3GQd5r6SQ%3D%3D",
+            "snippet": "Contrato de obras de bloque de nichos en el Cementerio Municipal de Riba-roja de Túria por procedimiento abierto simplificado, un criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 desarrollar infraestructuras fiables, sostenibles, resilientes y de calidad y del ODS 11 asegurar acceso de todas las personas a servicios básicos adecuados. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -874,9 +1174,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -907,15 +1209,143 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-027-acu-f041d6",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 27,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "todo el expediente completo de todo lo de esta minimización lo tienes ya desde antes de las comisiones informativas",
+        "context": "minimización de lo que traemos que son 125 páginas lo tenéis desde las comisiones informativas todo el mundo. O sea, todo el expediente completo de todo lo de esta minimización lo tienes ya desde antes de las comisiones informativas",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "expediente de la minimización"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "This claim asserts the availability of a document before a specific procedural stage, which can be verified against distribution records.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-027-acu-f041d6",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-027-acu-afb912",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 27,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "el jueves antes de la convocatoria se entregó el expediente",
+        "context": "comisiones informativas, el jueves antes de la convocatoria se entregó el expediente y este estaba, vosotros lo tuvisteis el día lunes cuando lo incorporamos, cuando se envió un correo electrónico a todos en el que iba por urgencia la minimización antes de la comisión informativa tenías el expediente que era desde el lunes pasado",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "expediente"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "This statement specifies the day of delivery for the expediente relative to the plenary, verifiable via official dispatch logs.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-027-acu-afb912",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-027-acu-205ff3",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 27,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "vosotros lo tuvisteis el día lunes cuando lo incorporamos, cuando se envió un correo electrónico a todos en el que iba por urgencia la minimización antes de la comisión informativa",
+        "context": "el jueves antes de la convocatoria se entregó el expediente y este estaba, vosotros lo tuvisteis el día lunes cuando lo incorporamos, cuando se envió un correo electrónico a todos en el que iba por urgencia la minimización antes de la comisión informativa tenías el expediente que era desde el lunes pasado",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "expediente de la minimización"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "This claim states the expediente was sent via email on a specific day relative to the commission, verifiable by reviewing email distribution records.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-027-acu-205ff3",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -947,9 +1377,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -979,9 +1411,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1011,9 +1445,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1043,9 +1479,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1077,9 +1515,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1111,9 +1551,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1144,15 +1586,17 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -1177,17 +1621,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-031-cit-187b75",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hw2gcujM7WkSugstABGr5A%3D%3D",
+            "snippet": "Contrato Menor de  Servicio de Trabajos de Redacción de Proyecto de Expropiación de terrenos para la Ejecución de camino de conexión de emergencia entre las áreas industriales de El Oliveral y Casanova, fase I y las Obras de saneamiento y depuración de El Oliveral (ampliación de la EDAR de SETRECE). · Ayuntamiento de Riba-roja de Túria · LUIS ESTELLES NOGUERAS · architecture · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1214,9 +1667,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1246,12 +1701,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-033-acu-b825f6",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 33,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "está en tu expediente que no lo habías visto",
+        "context": "lo escribí ya, que no lo habías visto, pero a mi parte me dijeron que no iba a votar, está en tu expediente que no lo habías visto, pasemos a la votación y cada uno que vota",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "expediente"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "The statement claims the existence of a specific document ('expediente') and asserts that another party ('tu') had not reviewed it, which can be verified by checking document access logs or through direct confirmation from the addressed individual.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-033-acu-b825f6",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1279,9 +1778,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1312,9 +1813,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1346,9 +1849,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1378,9 +1883,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1411,9 +1918,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1443,9 +1952,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1476,9 +1987,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1508,9 +2021,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1541,9 +2056,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1573,9 +2090,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1606,9 +2125,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1638,9 +2159,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1671,9 +2194,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1768,9 +2293,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1800,9 +2327,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1832,9 +2361,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1862,9 +2393,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1892,9 +2425,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1924,9 +2459,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1957,9 +2494,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1990,9 +2529,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2023,9 +2564,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2056,9 +2599,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2089,9 +2634,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2121,9 +2668,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2153,9 +2702,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2185,9 +2736,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2218,9 +2771,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2250,9 +2805,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2282,9 +2839,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2315,9 +2874,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2376,9 +2937,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2408,9 +2971,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2438,9 +3003,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2468,9 +3035,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2502,9 +3071,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2534,9 +3105,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2564,9 +3137,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2596,9 +3171,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2656,9 +3233,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2689,9 +3268,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2722,9 +3303,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2754,9 +3337,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2788,9 +3373,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2820,9 +3407,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2853,9 +3442,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2886,9 +3477,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2920,9 +3513,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2954,9 +3549,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2986,9 +3583,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3020,9 +3619,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3054,9 +3655,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3088,9 +3691,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3120,9 +3725,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3152,9 +3759,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3184,9 +3793,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3216,9 +3827,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3248,9 +3861,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3280,9 +3895,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3314,9 +3931,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3346,9 +3965,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3378,9 +3999,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3410,9 +4033,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3442,9 +4067,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3472,9 +4099,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3504,9 +4133,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3536,9 +4167,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3568,9 +4201,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3600,9 +4235,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3632,9 +4269,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3665,9 +4304,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3692,17 +4333,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-080-cit-655539",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
+            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · INICIATIVA SOCIAL INTEGRAL P.B. SL. · health · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3730,9 +4380,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3763,9 +4415,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3795,9 +4449,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3828,9 +4484,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3860,9 +4518,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3892,9 +4552,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3924,9 +4586,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3956,9 +4620,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3988,9 +4654,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4049,9 +4717,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4081,9 +4751,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4149,9 +4821,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4181,9 +4855,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4214,9 +4890,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4246,9 +4924,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4289,9 +4969,11 @@
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -4321,9 +5003,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4348,17 +5032,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-090-cit-6083f0",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4383,9 +5076,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4410,17 +5105,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-091-cit-8f1071",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4447,9 +5151,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4480,9 +5186,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4513,12 +5221,58 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-094-acu-a47a3a",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 94,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "el Gobierno nacional deja que el peso de la gestión, que no se ha realizado durante un año entero, ahora caiga sobre una comunidad autónoma",
+        "context": "Y digo que llega mal porque, una vez más, el Gobierno nacional deja que el peso de la gestión, que no se ha realizado durante un año entero, ahora caiga sobre una comunidad autónoma, bueno, todas las comunidades autónomas,",
+        "topic": "salud",
+        "entities": {
+          "count": 1,
+          "countUnit": "año",
+          "referencedEntity": "gobierno nacional"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This claims that the national government failed to manage something for a year and shifted responsibility to autonomous communities. This could be verified by examining the division of responsibilities, budget allocations, and actual implementation of ELA-related policies at both national and regional levels.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-094-acu-a47a3a",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos. · Ayuntamiento de Riba-roja de Túria · TELEFÓNICA SOLUCIONES DE INFORMÁTICA Y COMUNICACIONES DE  ESPAÑA, SOCIEDAD ANÓNI · it · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4545,9 +5299,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4577,9 +5333,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4609,9 +5367,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4641,9 +5401,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4673,9 +5435,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4705,9 +5469,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4737,12 +5503,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-098-acu-34f383",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 98,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "No vaya a pasar como otras ayudas, como puede ser los de la DANA.",
+        "context": "pues nosotros nos alegramos y nos esperamos que [4199.4 → 4203.1] lleguen en tiempo y forma. No vaya a pasar como otras ayudas, como puede ser los de la DANA. [4203.1 → 4208.6] Sobre tus enmiendas, David, las acepto, las cinco, las aceptamos y las añadiremos y se",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "ayudas de la dana"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "The speaker implies a failure in the delivery or timeliness of DANA aids in the past. This could be verified by investigating the public records regarding the distribution and effectiveness of aid after the DANA event.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-098-acu-34f383",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4770,12 +5580,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-099-acu-b94478",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 99,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "las comunidades autónomas, en este caso la ciudad valenciana, son las competentes en la gestión y tramitación de la resolución de las leyes de dependencia.",
+        "context": "pero sí que me gustaría matizar que las comunidades autónomas, en este caso la ciudad valenciana, son las competentes en la gestión y tramitación de la resolución de las leyes de dependencia.",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "leyes de dependencia"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "This statement asserts a legal fact about the competence of autonomous communities (specifically the Valencian Community) in managing dependency laws, which can be verified against relevant national and regional legislation. It is presented in a way that suggests a political point about responsibility.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-099-acu-b94478",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IpOZheEgOJ97h85%2Fpmmsfw%3D%3D",
+            "snippet": "Contrato administrativo de servicio “Programa de ocio para las personas mayores”, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social; contribuyendo al ODS 8 “Trabajo decente y crecimiento económico” y 11 “Ciudades y comunidades sostenibles”; siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE ATENCIÓN Y AYUDA A LA DEPENDENCIA, S.L. · health · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4804,9 +5658,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4837,9 +5693,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4869,9 +5727,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4901,9 +5761,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4928,17 +5790,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-103-cit-6189d5",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ntYxT%2FeMPG8QK2TEfXGy%2BA%3D%3D",
+            "snippet": "Redacción proyecto de expropiación por tasación conjunta de los terrenos afectados por las obras de enlace del P.I. Masía de Baló con la A-3 · Ayuntamiento de Riba-roja de Túria · DESUELO, GESTIÓN Y REPRESENTACIÓN DEL SUELO, S.L. · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4965,9 +5836,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4997,9 +5870,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5029,9 +5904,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5063,9 +5940,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5093,9 +5972,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5126,9 +6007,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5158,9 +6041,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5190,9 +6075,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5252,9 +6139,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5334,9 +6223,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5367,9 +6258,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5434,12 +6327,98 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-115-acu-5cb985",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 115,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "el señor Carlos Mazón, siguiente diputado, va a reclamar responsabilidades políticas",
+        "context": "Vosotros fan mención en la moción a que el señor Carlos Mazón, siguiente diputado, va a reclamar responsabilidades políticas, no las va a obtener, porque va",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "carlos mazón"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "This is a statement about a public figure's intended political action of claiming responsibilities, which can be verified through public statements or actions.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-115-acu-5cb985",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-115-acu-f87add",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 115,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "el señor Mazón, que yo creo que hoy sí que ha dimitido",
+        "context": "En base a aquel oriche actual, señor Mazón, que yo creo que hoy sí que ha dimitido, pero bueno, probablemente lo has que yo mal interpretado.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "carlos mazón"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.7,
+        "reasoning": "This is a factual claim about a public figure's resignation that can be verified through official announcements or news reports.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-115-acu-f87add",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5509,12 +6488,140 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-116-acu-852f04",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 116,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "la falta de ayudas que han tenido en la DAN a los valencianos",
+        "context": "en base a presentar una semana y afechar un nuevo punto en el que solicitar se reclamen elecciones nacionales ya por la falta de ayudas que han tenido en la DAN a los valencianos y por dejarnos de lado a los valencianos por parte del gobierno español.",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "ayudas dana valencianos"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Verificar si ha habido una falta de ayudas específicas para los valencianos tras la DANA, contrastando con registros de ayudas estatales o autonómicas destinadas a la recuperación post-desastre.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-116-acu-852f04",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY, SL · architecture · estado: unknown",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-119-acu-22e9fe",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 119,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "la palabra del señor Sánchez de si necesita ayuda, que la pidan.",
+        "context": "Acuérdese de la palabra del señor Sánchez de si necesita ayuda, que la pidan. No sé, tienen una fijación permanente",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "señor sánchez"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This is a direct quote attributed to a public figure, which can be factually verified by checking public records or speeches of Mr. Sánchez.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-119-acu-22e9fe",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=M3B12MCygtyiEJrVRqloyA%3D%3D",
+            "snippet": "Contrato para el suministro, adquisición de jardineras para separar el carril para paso de vehículos en calle Vilamarxant, del carril peatonal, derivado del sistema dinámico de adquisición (SDA) de suministro de material de jardinería (Ctto 59/2022 – SDA 1/2020). · Ayuntamiento de Riba-roja de Túria · SANCHEZ SORIANO REQUENARIO S.L. · industry · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-121-acu-e360b5",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 121,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "cción del gobierno de España también, que cometió errores, lo ha dicho hoy, uno de los errores no fue declarar el estado de emergencia.",
+        "context": "cción del gobierno de España también, que cometió errores, lo ha dicho hoy, uno de los errores no fue declarar el estado de emergencia. Pero bueno, evidentemente no vamos a poder dar a este soporte.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "gobierno de españa"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This claim asserts a specific omission by the Spanish government (not declaring a state of emergency), which can be factually verified against official government records or public announcements related to the DANA event.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-121-acu-e360b5",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
+            "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · F INICIATIVAS ESPAÑA I MAS D MAS I SLU · legal · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5542,12 +6649,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-126-acu-1e1565",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 126,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "la instrucción justicia es muy clara, es decir, habla de la responsabilidad y de las competencias autonómicas",
+        "context": "y también hablar de la norma y de la instrucción, porque la instrucción justicia es muy clara, es decir, habla de la responsabilidad y de las competencias autonómicas, por tanto",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "instrucción justicia"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "La afirmación sostiene que una 'instrucción justicia' específica define claramente las responsabilidades autonómicas. El contenido de dicho documento legal es directamente verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-126-acu-1e1565",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3oQipIc0pfMSugstABGr5A%3D%3D",
+            "snippet": "Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de medio ambiental, contribuyendo al cumplimiento del ODS 16 Paz, justicia e instituciones sólidas en su meta 16.1 Reducir significativamente todas las formas de violencia. · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA · security · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5572,9 +6723,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5604,9 +6757,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5636,9 +6791,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5668,9 +6825,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5700,9 +6859,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5730,9 +6891,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5763,16 +6926,102 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
-            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-130-acu-15fb0b",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 130,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Carlos Mazón y Shia Diguén, que la responsabilidad es autonómica de las emergencias",
+        "context": "está claro que cuanto a lo del accidente del tren que estaba el Gobierno del Botánico, Carlos Mazón y Shia Diguén, que la responsabilidad es autonómica de las emergencias, pero ahora no, ahora es del Estado.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "carlos mazón"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.6,
+        "reasoning": "Se atribuye una declaración específica sobre la responsabilidad autonómica en emergencias a Carlos Mazón y a una persona con nombre probablemente distorsionado por Whisper ('Shia Diguén'). Esto es verificable buscando declaraciones públicas de Carlos Mazón.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-130-acu-15fb0b",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-130-acu-6f895f",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 130,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "la responsabilidad es autonómica de las emergencias, pero ahora no, ahora es del Estado.",
+        "context": "Carlos Mazón y Shia Diguén, que la responsabilidad es autonómica de las emergencias, pero ahora no, ahora es del Estado. Yo",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "responsabilidad de las emergencias"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "Se afirma un cambio en la atribución de la responsabilidad de las emergencias, de autonómica a estatal. Esto puede verificarse contrastando declaraciones oficiales o marcos legislativos sobre competencias en emergencias a lo largo del tiempo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-130-acu-6f895f",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -5797,17 +7046,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-132-cit-4df091",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA, S.L. · culture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5835,12 +7093,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-136-acu-bcf8b2",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 136,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "lo de Jopeta es, según ustedes, información interna que ustedes conocen y que son sabedores.",
+        "context": "Eso no nos molesta ni aparece en la mención. Y lo de Jopeta es, según ustedes, información interna que ustedes conocen y que son sabedores.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "información interna"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.7,
+        "reasoning": "Verifiable by investigating the existence of such internal information and the awareness of the party being accused, although 'Jopeta' might be a Whisper distortion.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-136-acu-bcf8b2",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vx2T0YUQfTISugstABGr5A%3D%3D",
+            "snippet": "Contrato administrativo para las obras de “ADECUACIÓN DEL CENTRO DE INFORMACIÓN JUVENIL PARA GAME CENTER REMODELACIÓN DE OFICINAS” DE RIBA-ROJA DE TURIA por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5867,12 +7169,309 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-138-acu-83a3d6",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 138,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Carlos Mazón era el presidente de todos los valencianos",
+        "context": "Chimo Puig era el presidente de todos los valencianos, y Carlos Mazón era el presidente de todos los valencianos.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "carlos mazón"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This statement asserts a factual current or recent role. It can be verified by checking official records of the presidency of the Generalitat Valenciana.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-138-acu-83a3d6",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-138-acu-311478",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 138,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "en la primera intervención no tenía ningún plan si había dimitid",
+        "context": "Y, a pesar de que en la primera intervención no tenía ningún plan si había dimitid",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "primera intervención"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.7,
+        "reasoning": "This claim alleges a lack of a plan during a specific 'first intervention' and hints at a 'dimisión' (resignation). This can be verified by reviewing the content of the referenced 'primera intervención' and public records regarding any associated resignation.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-138-acu-311478",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=i1Kx2n2ILwRvYnTkQN0%2FZA%3D%3D",
+            "snippet": "Obras de intervención arqueológica en la Plaza la Torre · Ayuntamiento de Riba-roja de Túria · SIURANA OBRAS Y SERVICIOS, S.L.U. · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-141-acu-8effe0",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 141,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "el mayor responsable, Carlos Mazón, no va a ganar a esa Comisión de Investigación",
+        "context": "El problema es que al final no va a ganar porque se va a agafar a una baixa médica. Es decir, el mayor responsable, Carlos Mazón, no va a ganar a esa Comisión de Investigación porque va a estar en una baixa médica.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "comisión de investigación"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "Se afirma que Carlos Mazón no se enfrentará a la Comisión de Investigación, lo cual es una afirmación sobre su participación en un evento público.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-141-acu-8effe0",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-141-acu-16d757",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 141,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "eximirle de que vaya a esa Comisión de Investigación.",
+        "context": "porque va a estar en una baixa médica. Que eso lo que hace es eximirle de que vaya a esa Comisión de Investigación. Aleshores, creo que eso es cuestionable y el Partido Popular lo que habría de hacer es criticarlo.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "comisión de investigación"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "Se afirma que una baja médica eximirá a Carlos Mazón de una Comisión de Investigación, lo cual es una regla procesal verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-141-acu-16d757",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-142-acu-7d21e5",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 142,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Es decir, el mayor responsable, Carlos Mazón, no va a ganar a esa Comisión de Investigación porque va a estar en una baixa médica.",
+        "context": "El problema es que al final no va a ganar porque se va a agafar a una baixa médica. Es decir, el mayor responsable, Carlos Mazón, no va a ganar a esa Comisión de Investigación porque va a estar en una baixa médica. Que eso lo que hace es eximirle de que vaya a esa Comisión de Investigación.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "comisión de investigación"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This is a factual accusation that can be verified by checking if Carlos Mazón takes medical leave to avoid a specific 'Comisión de Investigación'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-142-acu-7d21e5",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-142-acu-b2f486",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 142,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Porque primero va a hablar de cuándo va a llegar al Palo de la Generalitat, que supuestamente va a ser a las 5. Después ese discurso va a cambiar a dos horas más tarde.",
+        "context": "Además, en este sentido, las mentiras, las manipulaciones y los cambios de versión de Carlos Mazón han sido muy notorios durante este año. Porque primero va a hablar de cuándo va a llegar al Palo de la Generalitat, que supuestamente va a ser a las 5. Después ese discurso va a cambiar a dos horas más tarde. Después va a decir que estaba en un mensaje a nivel tema político.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "palo de la generalitat"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This accusation details a specific timeline of statements and changes from Carlos Mazón regarding his arrival time, which can be verified against public records or news reports.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-142-acu-b2f486",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-143-acu-cfa5d7",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 143,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Y es esa persona la que el 10 de noviembre no va a estar en esa Comisión de Investigación",
+        "context": "Es decir, en esa Comisión de Investigación es donde supuestamente se le anaba a preguntar sobre estas cuestiones. Y es esa persona la que el 10 de noviembre no va a estar en esa Comisión de Investigación porque el responsable directo, en este sentido el presidente, a nivel autonómico,",
+        "topic": "transparencia",
+        "entities": {
+          "date": "2025-11-10",
+          "referencedEntity": "comisión de investigación"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Esta es una afirmación factual y verificable sobre la no asistencia de una persona (implícitamente el Presidente) a un evento específico ('Comisión de Investigación') en una fecha concreta (10 de noviembre). Se puede verificar consultando las actas o registros de asistencia de dicha comisión.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-143-acu-cfa5d7",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5894,17 +7493,68 @@
       },
       "verification": {
         "claimId": "1du4rf5-143-cit-92abec",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-144-acu-3d3cf4",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 144,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "en esa Comisión de Investigación es donde supuestamente se le anaba a preguntar sobre estas cuestiones.",
+        "context": "oras en los que el presidente de la Generalitat Valenciana no se sabe dónde está. Es decir, en esa Comisión de Investigación es donde supuestamente se le anaba a preguntar sobre estas cuestiones. Y es esa persona la que el 10 de noviembre no va a estar en esa Comisión de Investigación",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "comisión de investigación"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Verificable al comprobar la existencia de la Comisión de Investigación mencionada y si el presidente de la Generalitat Valenciana estaba programado para ser interrogado en ella.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-144-acu-3d3cf4",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5932,9 +7582,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5965,9 +7617,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5999,12 +7653,57 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-153-acu-a8119b",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 153,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Vox es el que controla, va a aprobar concretamente 2.364 millones para la dana, desde faunales.",
+        "context": "porque Vox es el que controla, va a aprobar concretamente 2.364 millones para la dana, desde faunales. El 75% no ni se ha ejecutado.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 2364000000,
+          "referencedEntity": "fondos para la dana"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "Se puede verificar si el gobierno de la Generalitat Valenciana, con influencia de Vox, ha aprobado 2.364 millones de euros para la DANA.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-153-acu-a8119b",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6031,16 +7730,18 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
-            "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+            "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA en el T.M. de Riba-roja de Túria (Valencia)” - Ctto92/2026. · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · estado: awarded",
             "similarity": 0.67
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -6071,9 +7772,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6104,9 +7807,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6137,9 +7842,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6169,9 +7876,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6202,9 +7911,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6234,9 +7945,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6264,9 +7977,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6298,9 +8013,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6328,9 +8045,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6360,9 +8079,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6394,12 +8115,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-172-acu-8274ce",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 172,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "mientras se mantienen por subvenciones públicas que las sostienen artificialmente.",
+        "context": "el público de la tauromaquia ha caído en picar mientras se mantienen por subvenciones públicas que las sostienen artificialmente. Y sobre todo, la mayoría social quiere una cultura que eduque,",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "subvenciones públicas"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This accusation of public subsidies supporting tauromaquia can be verified by reviewing public expenditure reports and grant databases for cultural or sporting events.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-172-acu-8274ce",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
+            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6426,12 +8191,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-173-acu-bdad74",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 173,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "se mantienen por subvenciones públicas que las sostienen artificialmente.",
+        "context": "Además, el público de la tauromaquia ha caído en picar mientras se mantienen por subvenciones públicas que las sostienen artificialmente. Y sobre todo, la mayoría social quiere una cultura que eduque,",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "subvenciones públicas"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This claim asserts that bullfighting is supported by public subsidies, which can be fact-checked by examining public financial records for grants or funding to bullfighting events or entities.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-173-acu-bdad74",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
+            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6459,9 +8268,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6491,9 +8302,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6523,9 +8336,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6553,9 +8368,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6580,17 +8397,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-184-cit-eaf42f",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cMYE1ymfKpN7h85%2Fpmmsfw%3D%3D",
+            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y  ASESORES,  SLP · legal · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6619,9 +8445,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6712,17 +8540,110 @@
       },
       "verification": {
         "claimId": "1du4rf5-197-cit-a77022",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1h50qXdqGOuKeVWTb9Scog%3D%3D",
+            "snippet": "Servicio de Gamificación aplicada a la puesta en valor de la cultura y su relación con el Rio Túria, dentro del Plan de Sostenibilidad Turística en Destino (PSTD/22) de Riba-roja de Túria EJE 3 Actuación 06, financiado con fondos Next Generation · Ayuntamiento de Riba-roja de Túria · CM PLASTIK · culture · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-213-acu-ead690",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 213,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "lo que no va a hacer el Partido Socialista a nivel estatal que habría de haber defensado esta ILP para democratizar la cultura",
+        "context": "realmente cuando hay que hacer políticas valientes que es lo que no va a hacer el Partido Socialista a nivel estatal que habría de haber defensado esta ILP para democratizar la cultura y para tornar a las autonomías y a los ayuntamientos esta realidad lo que no ha hecho el Partido Socialista es donar suporte a esta propuesta",
+        "topic": "cultura",
+        "entities": {
+          "referencedEntity": "ilp para democratizar la cultura"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "The claim alleges that the Partido Socialista has not defended a specific ILP for democratizing culture at the state level. This can be verified by checking their legislative actions or public statements regarding this ILP.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-213-acu-ead690",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-214-acu-59379a",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 214,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "lo que no ha hecho el Partido Socialista es donar suporte a esta propuesta",
+        "context": "a nivel estatal que habría de haber defensado esta ILP para democratizar la cultura y para tornar a las autonomías y a los ayuntamientos esta realidad lo que no ha hecho el Partido Socialista es donar suporte a esta propuesta y lo que nosotros queremos es en base a vuestro argumentario poder defensar esta propuesta por lo tanto no es una propuesta nueva pero que es una propuesta de la ILP",
+        "topic": "cultura",
+        "entities": {
+          "referencedEntity": "ilp para democratizar la cultura"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This is a factual accusation about the Socialist Party's lack of support for a specific ILP, which can be verified through legislative records, voting results, or official statements regarding the ILP 'No es és la meua cultura'.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-214-acu-59379a",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6749,9 +8670,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6781,9 +8704,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6815,9 +8740,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6848,9 +8775,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6881,9 +8810,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6914,9 +8845,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6948,9 +8881,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -6980,9 +8915,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7012,9 +8949,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7042,12 +8981,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-229-acu-656f55",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 229,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "es una ley estatal que es democrática votar por el Congreso de los Diputados por una mayoría aplastante",
+        "context": "esta ILP pero es que es una ley estatal que es democrática votar por el Congreso de los Diputados por una mayoría aplastante en el momento en el que va a determinar todo el pueblo español",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "ilp “no es és la meua cultura”"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "This claim asserts that a specific ILP is a state law that was democratically approved by an overwhelming majority in the Congress of Deputies. This can be verified by examining the legislative process and voting records of the Spanish Congress for the mentioned ILP.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-229-acu-656f55",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1h50qXdqGOuKeVWTb9Scog%3D%3D",
+            "snippet": "Servicio de Gamificación aplicada a la puesta en valor de la cultura y su relación con el Rio Túria, dentro del Plan de Sostenibilidad Turística en Destino (PSTD/22) de Riba-roja de Túria EJE 3 Actuación 06, financiado con fondos Next Generation · Ayuntamiento de Riba-roja de Túria · CM PLASTIK · culture · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7074,9 +9057,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7106,16 +9091,18 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lcLSDg%2F0aswSugstABGr5A%3D%3D",
-            "snippet": "Contrato menor de renovación del actual sistema de gestión de copias de seguridad y recuperación junto con sus infraestructuras. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
+            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · estado: unknown",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -7145,12 +9132,98 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-251-acu-9c2f45",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 251,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "en base a medios de verdad de un programa electoral que no es como usted dice exactamente.",
+        "context": "Y como usted no ha venido de cara a la opinión del PSOE, pero usted ha hecho un argumento donde realmente ha venido a acorralar en base a medios de verdad de un programa electoral que no es como usted dice exactamente. Y ha retirado un trozo por aquí y un trozo por allá.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "programa electoral"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "Accuses the other speaker of misrepresenting content from an electoral program. This can be verified by comparing the electoral program's official text with the statements made.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-251-acu-9c2f45",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
+            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-252-acu-1ea08d",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 252,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "un programa electoral que no es como usted dice exactamente.",
+        "context": "en base a medios de verdad de un programa electoral que no es como usted dice exactamente. Y ha retirado un trozo por aquí y un trozo por allá. Y eso, en términos políticos, es demagogia absoluta.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "programa electoral"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "This claims that the opponent's interpretation of an electoral program is inaccurate, which can be fact-checked against the official electoral program document.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-252-acu-1ea08d",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
+            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7178,9 +9251,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7210,9 +9285,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7242,9 +9319,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7280,6 +9359,48 @@
     },
     {
       "claim": {
+        "id": "1du4rf5-256-acu-d724d5",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 256,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Es la pérdida de calidad. En la lectura de las mamografías. En algunos hospitales.",
+        "context": "Pero tan preocupante. Como la caída de la participación. Es la pérdida de calidad. En la lectura de las mamografías. En algunos hospitales. Y en otros. Parcialmente.",
+        "topic": "salud",
+        "entities": {
+          "referencedEntity": "calidad en la lectura de mamografías"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Se acusa una pérdida de calidad en la lectura de mamografías en ciertos hospitales. Esto podría verificarse a través de auditorías de calidad o informes de evaluación de centros hospitalarios en la Comunidad Valenciana.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-256-acu-d724d5",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4P2hVfTdex%2BXQV0WE7lYPw%3D%3D",
+            "snippet": "Contrato de servicio de control de acceso y atención a los usuarios en la sala de lectura del edificio municipal BOTAIA, durante determinados periodos extraordinarios debidos a periodos de exámenes, fuera del horario normal del servicio realizado por el personal municipal, por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación de carácter socio-laboral, con condición de ejecución de carácter social reservado a Centros Especiales de Empleo de iniciativa social, contribuyendo al cumplimiento del ODS 8 relativo a lograr trabajo decente. · Ayuntamiento de Riba-roja de Túria · COMPAÑÍA ESPECIAL EMPLEO E INTEGRACIÓN, S.L. · culture · estado: awarded",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "1du4rf5-257-afi-78bbd8",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -7304,12 +9425,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-258-acu-72f7a0",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 258,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Apelando a una baja productividad del personal. Para justificar el desvío al sector privado.",
+        "context": "Que la generalidad deja que engorden sutilmente. Apelando a una baja productividad del personal. Para justificar el desvío al sector privado. Lo cual representa no solo un daño.",
+        "topic": "salud",
+        "entities": {
+          "referencedEntity": "sector privado"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This is a factual accusation that a specific argument ('baja productividad del personal') is being used to justify a policy decision ('desvío al sector privado'). This can be verified by reviewing official statements, press releases, or policy documents from the 'Generalitat' (implied as the actor from the preceding sentence).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-258-acu-72f7a0",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
+            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7337,9 +9502,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7370,9 +9537,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7402,9 +9571,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7435,15 +9606,17 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · UTE TICSMART - TECHHEROX · it · estado: unknown",
             "similarity": 0.67
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -7510,9 +9683,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7540,9 +9715,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7574,9 +9751,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7606,9 +9785,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7638,9 +9819,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7672,9 +9855,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7704,9 +9889,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7738,9 +9925,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7770,9 +9959,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7833,9 +10024,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7867,12 +10060,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-274-acu-c6ef1a",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 274,
+        "type": "acusacion_publica",
+        "speakerGroup": "VOX",
+        "verbatim": "De hecho hemos solicitado una auditoría exhaustiva.",
+        "context": "Para la salud pública. De hecho hemos solicitado una auditoría exhaustiva. Tanto en la Consejería de S",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "auditoría exhaustiva"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "La solicitud de una auditoría puede ser verificada mediante la consulta de los registros oficiales de la Consejería de Sanidad o del grupo parlamentario de Vox.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-274-acu-c6ef1a",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RUFKyK5kMoYuf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Servicio de asesoramiento de la auditoría ex ante del proyecto europeo Guardian · Ayuntamiento de Riba-roja de Túria · F. INICIATIVAS I+D+I, S.L. · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7894,17 +10131,26 @@
       },
       "verification": {
         "claimId": "1du4rf5-275-cit-e81dd6",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RUFKyK5kMoYuf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Servicio de asesoramiento de la auditoría ex ante del proyecto europeo Guardian · Ayuntamiento de Riba-roja de Túria · F. INICIATIVAS I+D+I, S.L. · other · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7929,9 +10175,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -7959,12 +10207,56 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-277-acu-468b42",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 277,
+        "type": "acusacion_publica",
+        "speakerGroup": "Otro",
+        "verbatim": "Desde el mes de junio. La consejera no ha vuelto a entregar las dades.",
+        "context": "Y mensprea el derecho de las dones. [9473.0 → 9475.0] Desde el mes de junio. [9475.0 → 9477.0] La consejera no ha vuelto a entregar las dades. [9477.0 → 9479.0] Sob",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "datos de la consejera"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Specific accusation that a councilor has not provided data since June. This can be factually verified by checking records of data submissions from the councilor's office.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-277-acu-468b42",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · AMARA MEGAFONIA CCTV VOZ-DATOS, SL · it · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7992,9 +10284,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -8025,9 +10319,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"

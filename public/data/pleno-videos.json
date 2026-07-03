@@ -1,20 +1,41 @@
 {
-  "generatedAt": "2026-04-20T16:32:03.675Z",
+  "generatedAt": "2026-07-03T13:34:57.495Z",
   "source": {
     "channelUrl": "https://www.youtube.com/@ajuntam_riba_roja_de_turia",
     "description": "Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json`."
   },
   "stats": {
     "totalVideosScanned": 121,
-    "plenoVideosMatched": 23,
+    "plenoVideosMatched": 24,
     "byKind": {
-      "ordinario": 17,
+      "ordinario": 18,
       "extraordinario": 3,
       "urgente": 3,
       "otro": 0
     }
   },
   "items": [
+    {
+      "ytId": "L6Cy1hTrpIc",
+      "title": "Ple Extraordinari 3 de juliol de 2026.",
+      "plenoDate": "2026-07-03",
+      "kind": "extraordinario",
+      "url": "https://www.youtube.com/watch?v=L6Cy1hTrpIc"
+    },
+    {
+      "ytId": "0eTSguBbRsc",
+      "title": "Ple Ordinari  1 de juny de 2026.",
+      "plenoDate": "2026-06-01",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=0eTSguBbRsc"
+    },
+    {
+      "ytId": "5yWcojyo4Lc",
+      "title": "Ple Ordinari  11 de maig  de 2026.",
+      "plenoDate": "2026-05-11",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=5yWcojyo4Lc"
+    },
     {
       "ytId": "M1ywm72VHdo",
       "title": "Ple Ordinari  20 d´abril  de 2026.",
@@ -107,13 +128,6 @@
       "url": "https://www.youtube.com/watch?v=eTAGc-4hlws"
     },
     {
-      "ytId": "6UfU4IsO9pU",
-      "title": "Ple ordinari 7 de juliol de 2025",
-      "plenoDate": "2025-07-07",
-      "kind": "ordinario",
-      "url": "https://www.youtube.com/watch?v=6UfU4IsO9pU"
-    },
-    {
       "ytId": "as17tOqHIN0",
       "title": "Ple ordinari 9 de setembre de 2024",
       "plenoDate": "2024-09-09",
@@ -168,13 +182,6 @@
       "plenoDate": "2022-11-14",
       "kind": "ordinario",
       "url": "https://www.youtube.com/watch?v=s5ZWATwM3nw"
-    },
-    {
-      "ytId": "G9Bk9ORVZbE",
-      "title": "Ple extraordinari 27 de setembre de 2022",
-      "plenoDate": "2022-09-27",
-      "kind": "extraordinario",
-      "url": "https://www.youtube.com/watch?v=G9Bk9ORVZbE"
     }
   ]
 }

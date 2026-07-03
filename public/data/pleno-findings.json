@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-04-27T12:00:20.949Z",
+  "generatedAt": "2026-07-03T14:54:11.924Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -123,6 +123,74 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2026-04-20-acu-93c1e8",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "title": "Debate sobre educación y gestión de centros escolares en el pleno de Riba-roja de Túria del 2026-04-20",
+      "summary": "Durante la sesión, el PSOE señala la falta de personal y recursos en los centros educativos, mientras que VOX y el PP denuncian deficiencias históricas y peores resultados en el periodo anterior. En relación con el ámbito escolar, el registro municipal incluye la licitación del \"Servicio de comedor social para familias y atención específica durante los periodos de vacaciones escolares para menores, en el centro municipal de Bienestar Social del Ayuntamient\".",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "k4olcs-064-acu-93c1e8",
+        "k4olcs-049-acu-d8609a",
+        "k4olcs-060-acu-897268",
+        "k4olcs-048-acu-3746d4"
+      ],
+      "quotes": [
+        {
+          "text": "la denominada libertad educativa impulsada por el PP y Vox a través de la Ley 1-2024 que ha sustituido el modelo plurilingüe del botánico por un sistema de consultas de lengua base",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "k4olcs-064-acu-93c1e8"
+        },
+        {
+          "text": "En la Comunidad Valenciana bajo gobiernos del PSOE en el 2015-2023 estos resultados de PISA indican que son consistentemente peores",
+          "speakerGroup": "PP",
+          "sourceClaimId": "k4olcs-049-acu-d8609a"
+        },
+        {
+          "text": "Estamos hablando de centros sin el personal necesario, de sustituciones que no llegan tarde o no llegan, de sobrecarga laboral y de falta de recursos para atender adecuadamente al alumnado.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "k4olcs-060-acu-897268"
+        },
+        {
+          "text": "prácticamente los barracones era algo normal y no han hecho nada,",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "k4olcs-048-acu-3746d4"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
+          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
+          "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nmlFJLo3lIkeC9GJQOEBkQ%3D%3D",
+          "snippet": "DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZACIÓN (DDD ) de la red pública de saneamiento municipal del término de Ribarroja del Túria y de los centros, dependencias e instalaciones especificadas en el Pliego , así como el tratamiento de simú…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Gv7EBVfBZwcQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Servicio de comedor social para familias y atención específica durante los periodos de vacaciones escolares para menores, en el centro municipal de Bienestar Social del Ayuntamiento · Ayuntamiento de Riba-roja de Túria · Gil Folgado Cate…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=M1ywm72VHdo",
+          "snippet": "Vídeo del pleno 2026-04-20 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
       "response": null
     },
     {
@@ -415,6 +483,132 @@
       "response": null
     },
     {
+      "id": "f-2026-01-19-cit-3fd230",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Debate sobre infraestructuras deportivas en el pleno de Riba-roja de Túria del 2026-01-19",
+      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, el grupo Otro manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-149-cit-3fd230",
+        "19gax3o-132-acu-a3b10d",
+        "19gax3o-146-cit-288e9a",
+        "19gax3o-147-acu-01da0f"
+      ],
+      "quotes": [
+        {
+          "text": "una piscina que comenzó en el año 2005 que se inauguró en el 2012, 13 perdón, en diciembre de 2012 concretamente",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-149-cit-3fd230"
+        },
+        {
+          "text": "una cosa es un pabellón con 30 años que votaron en contra ese pabellón",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-132-acu-a3b10d"
+        },
+        {
+          "text": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande, como decían, en los años 89-90 ha estado 20 años sin mantenimiento del PSOE 20 años",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-146-cit-288e9a"
+        },
+        {
+          "text": "el pabellón que es una instalación de primer orden que ustedes votaron en contra porque era demasiado grande",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-147-acu-01da0f"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM SL · environment · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
+          "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayu…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2026-01-19-acu-2c074a",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Debate sobre transparencia y contratación en el pleno de Riba-roja de Túria del 2026-01-19",
+      "summary": "Durante la sesión, el grupo municipal Otro señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-008-acu-2c074a",
+        "19gax3o-090-acu-73f537",
+        "19gax3o-176-acu-e24507",
+        "19gax3o-021-acu-20b3ec"
+      ],
+      "quotes": [
+        {
+          "text": "no fixa ningún objetivo mínimo, no hay un porcentaje mínimo de ejecución",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-008-acu-2c074a"
+        },
+        {
+          "text": "¿El socialista? A favor. ¿El Partido Popular? A extensión. ¿Vox? En contra. Escargón y Podem. A favor. ¿Qué compromiso? A favor.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-090-acu-73f537"
+        },
+        {
+          "text": "nosotros efectivamente contratamos de manera verbal y por emergencia",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-176-acu-e24507"
+        },
+        {
+          "text": "hay contratos que se repiten en el 24, en el 25 y en el 26. Entonces, habría que plantearse si es necesario esa contratación si no se ha hecho en el 24, no se ha hecho en el 25.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-021-acu-20b3ec"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+          "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), deriv…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
+          "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
+          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=031ONMu5JSn%2B3JAijKO%2Bkg%3D%3D",
+          "snippet": "El objeto contratación es la adquisición de vestuario laboral y EPIs para el personal del Taller de Empleo Riba-roja Bonica VI FOTAE/2024/25/46, proyecto de formación y empleo que se desarrollará en el Ayuntamiento de Riba-roja de Túria…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
       "id": "f-2025-12-23-acu-a1ba00",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -687,6 +881,74 @@
       "response": null
     },
     {
+      "id": "f-2025-12-01-cit-66709b",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "title": "Debate sobre transparencia en el pleno de Riba-roja de Túria del 2025-12-01",
+      "summary": "Durante la sesión, el grupo Otro señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "qz6weg-058-cit-66709b",
+        "qz6weg-183-acu-b1025e",
+        "qz6weg-185-acu-cb9c22",
+        "qz6weg-061-cit-2a0511"
+      ],
+      "quotes": [
+        {
+          "text": "publicar el convenio en el portal de transparencia municipal",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "qz6weg-058-cit-66709b"
+        },
+        {
+          "text": "nosotros hemos dicho que no. O sea, ustedes.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-183-acu-b1025e"
+        },
+        {
+          "text": "Me sorprende porque ya existe el Consejo Económico, y es donde están las asociaciones tanto de empresarios como de comerciantes.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-185-acu-cb9c22"
+        },
+        {
+          "text": "Hoy tenemos a pleno una propuesta de acuerdo que parte de una demanda ciudadana",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-061-cit-2a0511"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
+          "snippet": "Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecuci"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+          "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA AUDITORES…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tlQQxKywqlerz3GQd5r6SQ%3D%3D",
+          "snippet": "Contrato de obras de escollera de piedra en la zona de Paretotes en Riba-roja de Túria, por procedimiento abierto súper simplificado de tramitación anticipada, un solo criterio de adjudicación, con condición especial de ejecución de cará…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CoV0my168pwuf4aBO%2BvQlQ%3D%3D",
+          "snippet": "Aprobación del expediente administrativo y adjudicación del contrato privado de seguro flota vehículos basado en el Acuerdo Marco para la contratación de determinados seguros por la Central de Contratación de la FEMP. Lote nº 6 Flota veh…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
+          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
       "id": "f-2025-11-03-acu-431140",
       "plenoId": "1du4rf5",
       "plenoDate": "2025-11-03",
@@ -849,6 +1111,74 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2025-10-06-cit-591d40",
+      "plenoId": "otxq2c",
+      "plenoDate": "2025-10-06",
+      "title": "Debate sobre seguridad y policía local en el pleno del 2025-10-06",
+      "summary": "El grupo PSOE señala la existencia de una unidad de policía local que asiste a mujeres vulnerables junto a psicólogas y trabajadoras sociales. Asimismo, el grupo PP hace referencia al funcionamiento del sistema de pulseras telemáticas de control de agresores. El debate coincide con la tramitación de expedientes como el «Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria.».",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "otxq2c-072-cit-591d40",
+        "otxq2c-075-cit-c869c8",
+        "otxq2c-071-acu-affcbc",
+        "otxq2c-033-cit-bfa19f"
+      ],
+      "quotes": [
+        {
+          "text": "a una unidad de policía local que acompaña a todas las mujeres que lo necesitan.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "otxq2c-072-cit-591d40"
+        },
+        {
+          "text": "Aquí tenéis a la policía local, aquí tenéis a nuestras psicólogas, a nuestras jurídicas, a nuestras trabajadoras sociales, de servicios sociales, a la técnica",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "otxq2c-075-cit-c869c8"
+        },
+        {
+          "text": "esta persona, como bien ha dicho el portavoz de Compromís, es Carlos Flores, todavía lo tienen sentado en el Congreso.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "otxq2c-071-acu-affcbc"
+        },
+        {
+          "text": "el sistema de pulseras telemáticas de control de todos los agresores, el sistema COMETA, sistema del Centro de Control de Medidas Telemáticas de Añuñamiento.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "otxq2c-033-cit-bfa19f"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
+          "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Aplicativo área de policía local · Ayuntamiento de Riba-roja de Túria · unknown · sim=0.50"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2BpaFZVzsbWYQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Redacción del proyecto de habilitación de parte del edificio Antiguo Hogar del Jubilado para la EPA · Ayuntamiento de Riba-roja de Túria · CARLOS CANET MAHIQUES · architecture · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nmlFJLo3lIkeC9GJQOEBkQ%3D%3D",
+          "snippet": "DESINFECCIÓN, DESINSECTACIÓN Y DESRATIZACIÓN (DDD ) de la red pública de saneamiento municipal del término de Ribarroja del Túria y de los centros, dependencias e instalaciones especificadas en el Pliego , así como el tratamiento de simú…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=x85-nqbxcnY",
+          "snippet": "Vídeo del pleno 2025-10-06 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-03",
       "response": null
     }
   ]

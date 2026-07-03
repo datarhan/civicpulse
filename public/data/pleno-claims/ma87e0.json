@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T20:28:11.600Z",
+  "generatedAt": "2026-07-03T14:53:32.639Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -31,9 +31,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -65,9 +67,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -97,9 +101,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -129,9 +135,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -161,9 +169,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -193,9 +203,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -225,9 +237,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -257,9 +271,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -290,9 +306,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -323,9 +341,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -355,9 +375,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -388,9 +410,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -420,9 +444,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -452,9 +478,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -484,9 +512,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -518,9 +548,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -552,9 +584,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -584,9 +618,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -617,9 +653,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -650,9 +688,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -683,9 +723,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -715,9 +757,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -783,9 +827,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -815,9 +861,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -883,9 +931,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -952,15 +1002,17 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ngqf58oaRxQQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · estado: unknown",
+            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · Compañía de Tratamientos Levante, s.l. · environment · estado: unknown",
             "similarity": 0.67
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -1087,9 +1139,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1119,9 +1173,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1151,9 +1207,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1183,9 +1241,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1217,9 +1277,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1250,9 +1312,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1284,9 +1348,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1318,9 +1384,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1352,9 +1420,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1384,9 +1454,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1416,9 +1488,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1448,9 +1522,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1510,9 +1586,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1544,9 +1622,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1577,9 +1657,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1611,9 +1693,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1645,9 +1729,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1679,9 +1765,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1713,9 +1801,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1746,9 +1836,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1779,9 +1871,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1812,9 +1906,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1847,9 +1943,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -1973,9 +2071,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2112,9 +2212,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2173,9 +2275,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2235,9 +2339,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2297,9 +2403,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2329,9 +2437,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2362,9 +2472,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2394,9 +2506,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2426,9 +2540,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2530,9 +2646,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2562,9 +2680,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2594,9 +2714,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2626,9 +2748,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2660,9 +2784,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2693,9 +2819,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2725,9 +2853,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2757,9 +2887,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2786,17 +2918,26 @@
       },
       "verification": {
         "claimId": "ma87e0-143-cit-adb382",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
+            "snippet": "Contrato administrativo de servicios para llevar a cabo el Programa Municipal y Escuela de Verano para personas con diversidad funcional intelectual por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición de ejecución de carácter social, dividido en 2 lotes, sujeto a regulación armonizada (Ctto69/2025) · Ayuntamiento de Riba-roja de Túria · health · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2824,9 +2965,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2856,9 +2999,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2888,9 +3033,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2920,9 +3067,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2952,9 +3101,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -2985,15 +3136,17 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EcwQUWMyQ4mmq21uxhbaVQ%3D%3D",
-            "snippet": "Obras instalación pista deportiva en barrio Ciudad Jardín · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "snippet": "Obras instalación pista deportiva en barrio Ciudad Jardín · Ayuntamiento de Riba-roja de Túria · JUEGOS KOMPAN, S.A. · other · estado: awarded",
             "similarity": 0.67
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -3052,9 +3205,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3084,9 +3239,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3116,9 +3273,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3148,9 +3307,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3180,9 +3341,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3212,9 +3375,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3244,9 +3409,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3383,9 +3550,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3415,9 +3584,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3476,9 +3647,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3566,9 +3739,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3598,9 +3773,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3630,9 +3807,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3662,9 +3841,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3689,17 +3870,26 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-4e23e7",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · VICTOR TORMO SOCIEDAD LIMITADA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3726,9 +3916,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3759,15 +3951,17 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YlgG3XJA7Vh7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Obras de impermeabilización cubierta Edificio Polivalente así como el fomento de la estabilidad en el empleo y la protección del medio ambiente, debido a  que “El contrato consta de una única obra y por tanto no cabe la división en lotes de la misma”, por procedimiento abierto supersimplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · estado: awarded",
+            "snippet": "Obras de impermeabilización cubierta Edificio Polivalente así como el fomento de la estabilidad en el empleo y la protección del medio ambiente, debido a  que “El contrato consta de una única obra y por tanto no cabe la división en lotes de la misma”, por procedimiento abierto supersimplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · MARSAN PEDRALBA, S.L. · construction · estado: awarded",
             "similarity": 0.67
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -3792,17 +3986,26 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-3acc3b",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · VICTOR TORMO SOCIEDAD LIMITADA · construction · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3829,9 +4032,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3862,9 +4067,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3894,9 +4101,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3926,9 +4135,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3958,9 +4169,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -3991,9 +4204,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4025,9 +4240,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4059,9 +4276,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4092,9 +4311,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4125,9 +4346,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4158,9 +4381,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4192,9 +4417,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4226,9 +4453,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4259,9 +4488,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4291,9 +4522,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4323,9 +4556,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4355,9 +4590,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4387,9 +4624,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4419,9 +4658,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4453,9 +4694,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4485,9 +4728,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4517,9 +4762,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4550,9 +4797,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4582,9 +4831,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4615,9 +4866,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4650,9 +4903,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4682,9 +4937,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4715,9 +4972,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4749,9 +5008,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4783,9 +5044,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4810,17 +5073,26 @@
       },
       "verification": {
         "claimId": "ma87e0-184-cit-3b5ad9",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
+            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4848,9 +5120,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4881,9 +5155,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4913,9 +5189,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4945,9 +5223,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -4977,9 +5257,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5038,9 +5320,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5099,9 +5383,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5126,21 +5412,23 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-56214f",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DDuU2CuSCh0BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato menor, suministro para la adquisición de una carpa de 10x15 (150m2) zona exterior Centro de Salud para habilitar zona de triaje para usuarios que accedan al Centro de Salud, para el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · estado: awarded",
-            "similarity": 1
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
+            "snippet": "Servicio Dirección Facultativa de las obras de finalización del Centro Polivalente Cultural en Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
+            "similarity": 0.5
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -5194,21 +5482,23 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-436a7e",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
-            "snippet": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · estado: unknown",
-            "similarity": 1
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
+            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "similarity": 0.5
           }
         ],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "shown"
@@ -5239,9 +5529,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -5271,9 +5563,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"

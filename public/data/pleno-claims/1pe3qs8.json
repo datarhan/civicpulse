@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-01T20:28:11.600Z",
+  "generatedAt": "2026-07-03T14:53:32.639Z",
   "version": "1",
   "plenoId": "1pe3qs8",
   "plenoDate": "2026-01-07",
@@ -30,9 +30,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -93,9 +95,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -125,9 +129,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -188,9 +194,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -286,9 +294,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -318,9 +328,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -350,9 +362,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
@@ -382,9 +396,11 @@
         "evidence": [],
         "checkedAgainst": [
           "tenders",
+          "tenders-ted",
           "bdns",
           "promises",
-          "budget"
+          "budget",
+          "priorClaims"
         ]
       },
       "visibility": "toggle"
