@@ -4,7 +4,12 @@
  * round-trip (including validatePromisesSnapshot) is unit-tested.
  */
 import type { PromisesSnapshot, Promise, Status } from './promises'
-import { makeDraftId, type DraftNewPromise, type DraftStatusChange } from './promise-draft'
+import {
+  makeDraftId,
+  makeStatusDraftId,
+  type DraftNewPromise,
+  type DraftStatusChange,
+} from './promise-draft'
 
 export interface AutoPublishMeta {
   confidence: number
@@ -210,5 +215,38 @@ export function revertStatusChange(
         autoPublished: null,
       }
     }),
+  }
+}
+
+/**
+ * Reconstruct the status-change draft that mining WOULD regenerate for an
+ * auto-published status change, so retract can tombstone it in the review
+ * archive — the orchestrator's `seen` set then skips THIS evidence url. A
+ * different/stronger evidence later still re-proposes (different draftId).
+ * Returns null if the promise carries no reconstructable status change.
+ */
+export function tombstoneStatusChange(p: Promise, now: string): DraftStatusChange | null {
+  const meta = p.autoPublished
+  if (!meta || meta.priorStatus === undefined || !meta.appendedEvidenceUrl) return null
+  const evUrl = meta.appendedEvidenceUrl
+  const ev = [...p.evidence]
+    .reverse()
+    .find((e) => e.url === evUrl && e.addedBy === 'auto-curation-v1')
+  if (!ev) return null
+  const proposed = p.status
+  if (proposed !== 'en-progreso' && proposed !== 'parcial' && proposed !== 'cumplida') return null
+  return {
+    draftId: makeStatusDraftId(p.id, proposed, evUrl),
+    kind: 'status-change',
+    requiresHumanApproval: true,
+    confidence: meta.confidence,
+    grounding: { grounded: false, urlResolved: false, quoteFound: false, checkedAt: now },
+    decision: 'queue',
+    promiseId: p.id,
+    currentStatus: meta.priorStatus,
+    proposedStatus: proposed,
+    evidence: ev,
+    reasoning: [],
+    generatedAt: now,
   }
 }

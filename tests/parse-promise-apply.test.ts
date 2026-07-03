@@ -8,10 +8,12 @@ import {
   tombstoneDraftFromPromise,
   applyStatusChange,
   revertStatusChange,
+  tombstoneStatusChange,
 } from '../src/scraper/promise-apply'
 import { validatePromisesSnapshot, type PromisesSnapshot } from '../src/scraper/promises'
 import {
   makeDraftId,
+  makeStatusDraftId,
   validateReviewQueue,
   type DraftNewPromise,
   type DraftStatusChange,
@@ -223,5 +225,20 @@ describe('applyStatusChange', () => {
     expect(() => revertStatusChange(seededSnap(), 'psoe-obra', NOW)).toThrow(
       /no auto-published status change/,
     )
+  })
+
+  it('tombstoneStatusChange reconstructs the miner draftId (keyed by evidence url) + validates', () => {
+    const published = applyStatusChange(seededSnap(), statusDraft(), NOW, {
+      confidence: 0.85,
+      at: NOW,
+    })
+    const p = published.items.find((x) => x.id === 'psoe-obra')!
+    const tomb = tombstoneStatusChange(p, NOW)
+    expect(tomb).not.toBeNull()
+    expect(tomb!.draftId).toBe(makeStatusDraftId('psoe-obra', 'en-progreso', 'https://placsp/t1'))
+    expect(tomb!.currentStatus).toBe('documentada')
+    expect(tomb!.proposedStatus).toBe('en-progreso')
+    const q = { version: '1.0', generatedAt: NOW, drafts: [tomb!] }
+    expect(() => validateReviewQueue(JSON.stringify(q))).not.toThrow()
   })
 })
