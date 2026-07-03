@@ -106,9 +106,20 @@ if [ -n "$TARGETS" ]; then
     if [ "$ok" = 1 ]; then
       log "extracting claims from $id (agy/$AGY_MODEL)…"
       if npm run extract:pleno-claims -- "$id"; then
-        NEW=$((NEW+1)); log "✓ $id transcribed + extracted"
+        NEW=$((NEW+1)); log "✓ $id claims extracted"
       else
-        log "warn: extract failed for $id — transcript kept, claims incomplete"
+        log "warn: claim extract failed for $id — transcript kept, claims incomplete"
+      fi
+      # Refresh the curator's VOTE-suggestion queue for this pleno. Libel-safe:
+      # writes ONLY pleno-votes-suggestions.json (every row requiresHumanApproval),
+      # stamps each with the authoritative regmeet.com orden-del-día outcome
+      # cross-check, and NEVER writes the published pleno-votes.json — a curator
+      # promotes by hand via `npm run promote-vote`. Non-fatal on failure.
+      log "extracting vote suggestions for $id (regmeet cross-check)…"
+      if npm run extract:pleno-votes -- "$id" --engine llm --min-confidence 0.5 --cross-check; then
+        log "✓ $id vote suggestions refreshed"
+      else
+        log "warn: vote-suggestion extraction failed for $id (non-fatal)"
       fi
     else
       log "warn: transcription failed for $id (even at batch_size=1) — skipping"
@@ -127,8 +138,16 @@ else
 fi
 
 # ---- promote (libel-safe gates; no-op under LOREG freeze) -------------
-log "auto-curating findings (max 5)…"
-npm run auto-curate -- --max 5
+# The CURATOR stage must never silently go metered (project policy: never
+# openai/anthropic for auto-curate). Strip the metered keys + disable the
+# gemini CLI for THIS call so the fallback chain is agy → ollama ($0) only.
+# If agy is throttled and no $0 backend answers, findings are deferred to the
+# next run — a skipped promotion beats a metered one. (Claim extraction above
+# keeps its openai fallback: that's the batch stage, where metered is allowed.)
+log "auto-curating findings (max 5 · agy→ollama only, metered fallback off)…"
+env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
+  npm run auto-curate -- --max 5 \
+  || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"
 
 # ---- commit + push the regenerated data -------------------------------
 # Stage everything the pipeline touches under public/data, but never race
