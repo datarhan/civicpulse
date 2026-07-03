@@ -1,15 +1,46 @@
 {
-  "generatedAt": "2026-04-20T11:12:41.125Z",
+  "generatedAt": "2026-07-03T09:57:13.315Z",
   "source": {
     "platform": "CivicPulse bot · Telegram capture",
     "spec": "Open311 GeoReport v2 (extended)"
   },
   "stats": {
-    "total": 0,
-    "byState": {},
-    "byNeighborhood": {},
-    "byCategory": {},
-    "byConcejal": {}
+    "total": 1,
+    "byState": {
+      "capturada": 1
+    },
+    "byNeighborhood": {
+      "urbanitzacio-valencia-la-vella": 1
+    },
+    "byCategory": {
+      "urbanismo": 1
+    },
+    "byConcejal": {
+      "teresa-pozuelo-martin": {
+        "total": 1,
+        "resueltas": 0,
+        "silencios": 0,
+        "pendientes": 1
+      }
+    }
   },
-  "items": []
+  "items": [
+    {
+      "service_request_id": "Q-KJY6XSVG",
+      "status": "capturada",
+      "service_code": "urbanismo",
+      "service_name": "urbanismo",
+      "description": "Se ha instalado una estructura metálica ilegal para la venta de bebidas en el campo deportivo. Esto también es inseguro.",
+      "requested_datetime": "2026-07-02 10:48:16",
+      "updated_datetime": "2026-07-02 10:48:16",
+      "lat": null,
+      "long": null,
+      "address_string": "urbanitzacio-valencia-la-vella",
+      "apoyos": 0,
+      "concejalia_area": "Urbanismo",
+      "concejal_slug": "teresa-pozuelo-martin",
+      "registro_entry_number": null,
+      "registered_at": null
+    }
+  ]
 }
