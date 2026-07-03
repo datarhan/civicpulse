@@ -273,10 +273,10 @@ const ActionSchemas = {
   // Apply one auto-curator draft → promises.json. The apply-promise-draft
   // CLI does the read→validate→mutate→re-validate→write + LOREG freeze
   // fail-closed; the dashboard only invokes it. `draftId` is the
-  // auto-curator's `dnp-<slug>` identifier.
+  // auto-curator's `dnp-<slug>` (new-promise) or `dsc-<slug>` (status-change) identifier.
   'apply-promise-draft': z
     .object({
-      draftId: z.string().regex(/^dnp-[a-z0-9-]{3,120}$/),
+      draftId: z.string().regex(/^(?:dnp|dsc)-[a-z0-9-]{3,120}$/),
     })
     .strict(),
   // Reject a draft → the CLI moves it to the local-only review archive.
@@ -284,7 +284,7 @@ const ActionSchemas = {
   // other free-text arg in this file).
   'reject-promise-draft': z
     .object({
-      draftId: z.string().regex(/^dnp-[a-z0-9-]{3,120}$/),
+      draftId: z.string().regex(/^(?:dnp|dsc)-[a-z0-9-]{3,120}$/),
       reason: SafeStringShort.optional(),
     })
     .strict(),
