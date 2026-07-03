@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, Pill, SectionHead } from '../components/Primitives'
+import DataAsOf from '../components/DataAsOf'
 import {
   usePlenoClaims,
   CLAIM_TYPE_LABEL,
@@ -281,11 +282,14 @@ export default function Declaraciones() {
           lineHeight: 1.55,
           maxWidth: 780,
           marginTop: 4,
-          marginBottom: 18,
+          marginBottom: 10,
         }}
       >
         {t('declaraciones.subtitle')}
       </p>
+      <div style={{ marginBottom: 18 }}>
+        <DataAsOf iso={claims.data?.generatedAt} label="Declaraciones" />
+      </div>
 
       {/* Stats strip */}
       <div
