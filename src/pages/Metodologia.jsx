@@ -602,25 +602,40 @@ export default function Metodologia() {
 
       <Card style={{ marginTop: 14 }}>
         <SectionHead
-          eyebrow="Transparencia · /presupuesto"
+          eyebrow="Transparencia · mapa del gasto"
           title="Mapa del gasto: qué situamos y qué no"
         />
         <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
-          Situamos en el mapa únicamente los contratos cuyo título nombra una zona concreta
-          (urbanización, polígono o paraje). No existe un campo de «lugar de ejecución» en la fuente
-          (Gobierto/PLACSP), así que el título es la única señal disponible. El medidor de cobertura
-          muestra qué parte del importe adjudicado se puede situar y qué parte no: el gasto sin
-          ubicación (servicios, suministros y obras sin lugar citado) nunca se reparte por zonas. Un
-          contrato que cita dos zonas aparece en ambas, pero cuenta una sola vez en el total
-          situado.
+          No existe un campo de «lugar de ejecución» en la fuente (Gobierto/PLACSP): el título del
+          contrato es la única señal de ubicación. Por eso situamos un contrato en el mapa solo
+          cuando su título <strong>nombra</strong> un lugar concreto —una calle o camino, un
+          equipamiento público (colegio, polideportivo, parque), una urbanización o un barrio— y lo
+          cotejamos contra un callejero de OpenStreetMap y el índice de equipamientos. Cada punto
+          declara su procedencia («situado por «…»»).
+        </p>
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          El emparejamiento es deliberadamente <strong>conservador</strong> —preferimos no situar un
+          contrato antes que situarlo mal—: descartamos el nombre del municipio y de la provincia
+          («Riba-roja de Túria», «València», que aparecen en casi todas las direcciones), las
+          palabras genéricas de expediente («social», «municipal», «pública», «mayor»), y solo
+          fiamos una calle cuando el título lleva un indicador de vía (C/, Camino, Ctra.). Un
+          equipamiento solo se sitúa para contratos de <strong>obra</strong>: un «suministro para la
+          Policía Local» es <em>para</em> el servicio, no una obra <em>en</em> el edificio. El gasto
+          sin lugar citado (servicios, suministros y obras sin ubicación) nunca se reparte por el
+          mapa.
+        </p>
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          Cada punto abre la ficha del contrato con el dato que ya publica el expediente:
+          adjudicatario, importe de licitación → adjudicación (la baja), objeto (código CPV
+          traducido), procedimiento, número de licitadores y plazo. La etiqueta CPV usa el
+          vocabulario oficial CPV-2008 de la UE.
         </p>
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 2 de julio de 2026 (reconciliada la metodología con la
-        auto-curación de promesas: publicación automática de estados no acusatorios sobre umbral de
-        confianza + anclaje, con marca de revisión pendiente). Cambios futuros sólo mediante PR
-        público.
+        Última revisión de este documento: 4 de julio de 2026 (geolocalización del gasto por nombre
+        de calle/equipamiento/zona con vallas de honestidad conservadoras, y ficha de contrato con
+        adjudicatario + baja + CPV). Cambios futuros sólo mediante PR público.
       </p>
     </div>
   )

@@ -30,6 +30,7 @@ npm run scrape:press                # Google News + infoturia + Ayuntamiento RSS
 npm run scrape:events               # Ayuntamiento events/agenda RSS feed
 npm run scrape:geo                  # OSM Overpass boundary + 21 neighborhoods
 npm run scrape:civic-poi            # OSM Overpass civic POIs (schools/health/parks/sport/culture/civic)
+npm run scrape:streets              # OSM Overpass street/camino gazetteer (feeds the tender place-resolver)
 npm run scrape:metro-network        # OSM Metrovalencia L1–L10 full network + stations
 npm run scrape:fgv-gtfs             # FGV GTFS static schedule (4 local L9/L2 stops)
 npm run scrape:bdns                 # MinHac BDNS subsidies
@@ -92,7 +93,15 @@ npm run lookup-catastro -- --refcat 4720001YJ2742S0001JF
 
 # Cross-source department accountability scalar (runs inside scrape:all)
 npm run compute:dept-stats          # writes plazosVencidosCount into plenos-agendas.json.stats
-npm run compute:tender-geo          # match contract titles → OSM zones · writes tender-geo.json · runs in scrape:all
+npm run compute:tender-geo          # place contract titles at streets/POIs/zones (place-resolver) ·
+                                    # writes tender-geo.json (zones[] + places[] + situated) · runs in scrape:all
+
+# CPV-2008 → Spanish label dictionary (occasional/curator build — vocabulary is
+# static, so NOT in scrape:all). Downloads the official EU/TED CPV vocabulary,
+# trims to the codes present in tenders.json → public/data/cpv-labels.json.
+# Runtime (src/lib/cpv.js) degrades to embedded 2-digit division labels for any
+# missing code, so a stale/absent file never shows a naked CPV number.
+npm run build:cpv-labels
 
 # Claim extraction pipeline (LLM-extracted verbatim claims → deterministic
 # verifier → human-curated editorial findings). Requires transcripts on disk
@@ -454,12 +463,14 @@ Components use **inline styles driven by CSS variables**, not per-component `.cs
 `src/components/Charts.jsx` holds SVG primitives (`Sparkline`, `DualLine`, `Donut`, `BudgetBars`, `Heatmap`).
 
 Leaflet + react-leaflet map surfaces:
-- `src/components/LiveCity/StylizedMap.jsx` — the `/` landing map, decomposed into a thin orchestrator + `network/` (boundary, Railways, FullNetwork, NetworkLegend), `popups/` (StationSchedulePopup, GtfsSchedulePopup, ZonePopup, NeighborhoodPopup), `layers/` (MoneyLayer, NeighborhoodsLayer, CivicPoiLayer, FloodRiskLayer, MetroTrainsLayer), and `controls/` (LayerControl, MoneyTimeSlider, PoiLegend, FloodLegend). A custom top-left `LayerControl` toggles data layers over the CartoDB Voyager base; each layer is conditionally mounted so a hidden layer's rAF/WMS never runs. **Layers:** money-by-zone (tender-geo, `€` bubbles + a 2018→2025 time-slider + DANA toggle + click-to-drill ZonePopup, on by default/static); interactive neighborhoods (the 21 OSM barrios open an aggregated civic card — population + located spend + quejas, always on); civic services (OSM POI, off); schematic L9 train (representative glide, off); PATRICOVA flood-risk WMS (off). **No synthetic buildings, no fake scores** — every layer traces to real data, with honest empty-states and a "representativo · horario 2025" disclosure on the train. Pure logic is unit-tested in `src/lib/{tender-geo,neighborhood-aggregate,civic-poi,metro-train}.js`.
+- `src/components/LiveCity/StylizedMap.jsx` — the `/` landing map, decomposed into a thin orchestrator + `network/` (boundary, Railways, FullNetwork, NetworkLegend), `popups/` (StationSchedulePopup, GtfsSchedulePopup, PlacePopup, NeighborhoodPopup), `layers/` (MoneyLayer, NeighborhoodsLayer, CivicPoiLayer, FloodRiskLayer, MetroTrainsLayer), and `controls/` (LayerControl, MoneyTimeSlider, PoiLegend, FloodLegend). A custom bottom-left `LayerControl` toggles data layers over the CartoDB Voyager base; each layer is conditionally mounted so a hidden layer's rAF/WMS never runs. **Layers:** civic services (OSM POI, **on by default** — the landing flagship); "Gasto municipal" precise obras-situadas pins (tender-geo `places[]`, one `€`-scaled `CircleMarker` per resolved street/POI/urbanización/barrio + a 2018→2025 time-slider + DANA toggle + click-to-drill `PlacePopup` → shared `ContractCard`, off/static); interactive neighborhoods (the 21 OSM barrios open an aggregated civic card — population + located spend + quejas, always on); schematic L9 train (representative glide, off); PATRICOVA flood-risk WMS (off). **No synthetic buildings, no fake scores** — every pin traces to a contract whose title named that place (see the place-resolver's honesty gates below); honest empty-states + a "representativo · horario 2025" disclosure on the train. Pure logic is unit-tested in `src/lib/{tender-geo,tender-points,neighborhood-aggregate,civic-poi,metro-train,cpv,tenders}.js`.
 - `src/components/QuejasHeatmap.jsx` — `/quejas` heatmap. One `Circle` per OSM neighborhood with ≥1 queja; radius ∝ √count, color encodes health signal (silencio-rate → red/amber/green/civic-blue). Hidden when there's nothing to show.
+
+**Tender geolocation — the place-resolver's honesty gates (`src/scraper/place-resolver.ts`).** Contract titles carry no address field, so a pin is placed only when the title *names* a place. Gates (deliberately under-match — an honest miss beats a wrong pin): (1) match the distinctive **core** of a name (street-type + connectors stripped → `sagunt`, `vilamarxant`), token-bounded, most-specific-and-longest wins (poi > street > urbanización > barrio); (2) drop needles made only of the **municipality/province** name (`riba roja de turia`, `valència` — the postal-address tail) or generic boilerplate (`social`, `municipal`, `públic`, `major`); (3) a **street** match requires a street-type word in the title (C/, Camino, Ctra…) so toponym collisions (València, Generalitat, Canal) don't fire; (4) a **POI** is trusted only for `construction` contracts — "suministro para la Policía Local" is *for* the dept, not located *at* it. Result at last snapshot: 43 contracts / €1.12M situated across 23 places (up from 29 / €668k). Every gate is unit-tested in `tests/parse-place-resolver.test.ts`.
 
 ## Real data pipeline
 
-**25 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**26 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -474,7 +485,7 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (25):
+# Autonomous scrapers (26):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-transparency.ts        →  src/scraper/transparency.ts      →  public/data/transparency-docs.json
 scripts/scrape-ispa.ts                →  src/scraper/ispa.ts              →  public/data/ispa.json
@@ -486,6 +497,7 @@ scripts/scrape-press.ts               →  src/scraper/press.ts             → 
 scripts/scrape-events.ts              →  src/scraper/events.ts            →  public/data/events.json
 scripts/scrape-geo.ts                 →  src/scraper/geo.ts               →  public/data/geo.json
 scripts/scrape-civic-poi.ts           →  src/scraper/civic-poi.ts         →  public/data/civic-poi.json
+scripts/scrape-streets.ts             →  src/scraper/streets.ts           →  public/data/streets.json
 scripts/scrape-metro-network.ts       →  (inline parser)                  →  public/data/metro-network.json
 scripts/scrape-fgv-gtfs.ts            →  (inline parser)                  →  public/data/metro-schedule.json
 scripts/scrape-bdns.ts                →  src/scraper/bdns.ts              →  public/data/bdns.json
@@ -501,6 +513,8 @@ scripts/scrape-tenders-ted.ts         →  src/scraper/tenders-ted.ts       → 
 scripts/scrape-boe.ts                 →  src/scraper/boe.ts               →  public/data/boe.json
 scripts/scrape-bop.ts                 →  src/scraper/bop.ts               →  public/data/bop.json
 scripts/compute-tender-geo.ts         →  src/scraper/tender-geo.ts        →  public/data/tender-geo.json
+                                         (+ src/scraper/place-resolver.ts — streets+POIs+zones gazetteer)
+scripts/build-cpv-labels.ts           →  (EU CPV-2008 vocab, occasional)  →  public/data/cpv-labels.json
 
 # Curated (human-edited) — NEVER touched by automated scrapers:
 public/data/promises.json            (schema: src/scraper/promises.ts)
@@ -519,7 +533,9 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 |---|---|---|---|
 | Mayor + 20 councillors + party + portfolios + photos + CV links | `corporacion.ts` → `officials.json` | Scraped HTML from `ribarroja.es/ayuntamiento/corporacion_municipal`; photos mirrored into `public/data/photos/<slug>.jpg` | `/cargos` "Corporación Municipal" section; Direction D editorial column (`AlcaldeBox` + `CoalitionRing`) |
 | Municipal budget (9 income + 9 expense chapters + 6 program groups) | `budget.ts` → `budget.json` | MinHac **CONPREL** XLS, sheet "Comunitat Valenciana". Parser tries 2025→2024→2023 | `/presupuesto` (KPIs + 3 chapter charts); Direction D KPI strip |
-| Contracts + tenders (730 + 449 at last snapshot, €16.5M awarded) | `tenders.ts` → `tenders.json` | **Gobierto** SQL-over-HTTP API at `ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select * from {contratos,licitaciones}` — public mirror of PLACSP | `/presupuesto` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`) |
+| Contracts + tenders (730 + 449 at last snapshot, €16.5M awarded) | `tenders.ts` → `tenders.json` | **Gobierto** SQL-over-HTTP API at `ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select * from {contratos,licitaciones}` — public mirror of PLACSP. Parser keeps the full row incl. `duration`/`estimatedValue`/`contractorType` and the winner (`assignee`, NOT `contractor` = the buyer). | `/presupuesto` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`); the shared `ContractCard` (winner + baja% + CPV label + procedimiento + nº licitadores) on the landing `PlacePopup` + `/presupuesto` `ZoneDrilldown` |
+| Street/camino gazetteer (539: 465 calle · 37 avenida · 20 camino · 12 carretera · 5 plaza) | `streets.ts` → `streets.json` | **OSM Overpass API** — every named `highway` way inside `wikidata=Q23701`, segments merged per accent/case-folded name, point = the longest segment's middle vertex (on-street) | Input to the tender **place-resolver** (`compute-tender-geo.ts`) — never fetched at runtime |
+| CPV-2008 → Spanish labels (414 codes present, trimmed) | `build-cpv-labels.ts` → `cpv-labels.json` | Official **EU/TED CPV-2008** vocabulary (`ted.europa.eu/…/cpv_2008_xml`, EU open data). Occasional curator build; `src/lib/cpv.js` degrades to embedded 2-digit division labels for misses | `ContractCard` CPV chips on the money popups + `/presupuesto` drilldown |
 | Subsidies (171 BDNS convocatorias, 153 granted by the Ayto) | `bdns.ts` → `bdns.json` | MinHac **BDNS** REST endpoint `/bdnstrans/api/convocatorias/busqueda?vpd=GE&descripcion=riba-roja`, paginated | `/presupuesto` (`Subvenciones · BDNS` card) |
 | Population (1996–2025, Total / Hombres / Mujeres) | `padron.ts` → `padron.json` | **INE Tempus3** CSV table 2903 (Valencia province) | `/datos` full-width SVG chart; Direction D KPI strip (Población panel) |
 | Registered unemployment (18 months 2024-09 → 2026-03) | `paro.ts` → `paro.json` | **SEPE** Muniacteco XLS feeds (3-sheet: AMBOS / HOMBRES / MUJERES); CLI walks back up to 24 months | Direction D KPI strip (Paro panel with MoM delta + 12-month sparkline) |
@@ -584,7 +600,8 @@ loop.
 - `usePlenoVotes` + `OUTCOME_LABEL` / `OUTCOME_TONE` / `DIRECTION_LABEL` / `DIRECTION_TONE` + `tallyByBloc()`
 - `useCtbg`
 - `useBop` + `formatBopDate`
-- `useTenderGeo` + `src/lib/tender-geo.js` (`zoneAmountsAt` / `moneyRadiusMeters` / `topContractors` / `filterContracts`)
+- `useTenderGeo` + `src/lib/tender-geo.js` (`zoneAmountsAt` / `moneyRadiusMeters` / `topContractors` / `filterContracts`) + `src/lib/tender-points.js` (`placeAmountsAt` — landing money pins)
+- `useCpvLabels` + `src/lib/cpv.js` (`cpvLabel` / `uniqueCpvLabels` / embedded `CPV_DIVISIONS`) + `src/lib/tenders.js` (`PROCESS_TYPE_LABEL` / `CONTRACT_TYPE_LABEL` / `bajaPct`) — feed the shared `ContractCard`
 - `useCivicPoi` + `src/lib/civic-poi.js` (`groupPoiByCategory` / `POI_CATEGORIES`) — landing map "Servicios" layer
 - `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
 
