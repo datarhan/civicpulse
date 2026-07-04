@@ -34,6 +34,7 @@ import {
   mergeNewsItems,
   type NewsItem,
 } from '../src/scraper/press'
+import { withRetry, isTransientFetchError } from '../src/scraper/retry'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -70,11 +71,21 @@ async function fetchXml(url: string, ua: string = UA): Promise<string> {
 async function safeFetch(label: string, url: string, ua: string = UA): Promise<string | null> {
   try {
     console.log(`[press] fetching ${label}: ${url}`)
-    return await fetchXml(url, ua)
+    // Retry transient blips (timeout / 429 / 5xx) before giving up — one Google
+    // News timeout used to drop ~96 items for a whole day. Permanent 4xx aren't
+    // retried (isTransientFetchError).
+    return await withRetry(() => fetchXml(url, ua), {
+      retries: 2,
+      shouldRetry: isTransientFetchError,
+      onRetry: (err, attempt) =>
+        console.warn(
+          `[press] ${label} attempt ${attempt + 1} failed (${(err as Error).message}) — retrying…`,
+        ),
+    })
   } catch (err) {
-    // Local feeds occasionally 5xx — log and continue with the rest so we
-    // never freeze press.json on a transient outage of one source.
-    console.warn(`[press] WARN ${label} fetch failed:`, (err as Error).message)
+    // Still failing after retries — log and continue with the rest so we never
+    // freeze press.json on a sustained outage of one source.
+    console.warn(`[press] WARN ${label} fetch failed after retries:`, (err as Error).message)
     return null
   }
 }
