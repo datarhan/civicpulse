@@ -1,0 +1,298 @@
+// @ts-check
+import { useEffect, useState } from 'react'
+import { computeOtherStationSchedule, computeStationSchedule } from '../../../hooks/useNextMetro'
+import { useMetroSchedule } from '../../../hooks/useMetroSchedule'
+import { ExtLink } from '../../Primitives'
+import { GTFS_SLUG_BY_NAME, METRO_COLOR } from '../shared'
+import { GtfsSchedulePopup } from './GtfsSchedulePopup'
+
+export function StationSchedulePopup({ name, match, rawStation }) {
+  // Tick every 30s so the popup stays fresh while open. Cheap — no network.
+  const [tick, setTick] = useState(() => Date.now())
+  useEffect(() => {
+    const id = setInterval(() => setTick(Date.now()), 30_000)
+    return () => clearInterval(id)
+  }, [])
+
+  // Real GTFS-derived schedule (fallback to hardcoded tables via the
+  // existing match.kind === 'l9' / 'other' branches below).
+  const { findNext } = useMetroSchedule()
+  const gtfsSlug = GTFS_SLUG_BY_NAME[name]
+  const gtfs = gtfsSlug ? findNext(gtfsSlug, new Date(tick)) : null
+
+  if (gtfs && gtfs.departures.length > 0 && match) {
+    return <GtfsSchedulePopup gtfs={gtfs} match={match} name={name} />
+  }
+
+  if (match?.kind === 'other') {
+    // Metrovalencia station on a different line (currently L2). Schedule
+    // is approximate — computed from published headway + our transcribed
+    // station offset; labelled clearly so users verify on fgv.es.
+    const { station } = match
+    const now = new Date(tick)
+    const sched = station.schedule ? computeOtherStationSchedule(station, now) : null
+    return (
+      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 260 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+          <span
+            style={{
+              width: 18,
+              height: 18,
+              borderRadius: '50%',
+              background: station.lineBadgeBg,
+              color: station.lineBadgeColor,
+              display: 'grid',
+              placeItems: 'center',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: 9,
+              fontWeight: 800,
+            }}
+          >
+            {station.line}
+          </span>
+          <span style={{ fontWeight: 700, fontSize: 14 }}>{station.label}</span>
+        </div>
+        {sched ? (
+          <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 4 }}>
+            {sched.directions.map((d) => (
+              <div
+                key={d.heading}
+                style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}
+              >
+                <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 120 }}>
+                  → {d.heading}
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: 13,
+                    fontWeight: 700,
+                    color: '#0B0F19',
+                  }}
+                >
+                  {d.label}
+                  {d.afterMidnight ? ' (mañana)' : ''}
+                </span>
+                <span
+                  style={{
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: 11,
+                    color: '#B45309',
+                  }}
+                >
+                  {d.minutesAway === 0 ? 'ahora' : `${d.minutesAway} min`}
+                </span>
+                <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6 }}>
+            {station.headings.map((h) => (
+              <div
+                key={h}
+                style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '3px 0' }}
+              >
+                <span style={{ fontSize: 11.5, color: 'rgba(11,15,25,.55)', minWidth: 110 }}>
+                  → {h}
+                </span>
+                <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', fontStyle: 'italic' }}>
+                  ver horario en metrovalencia.es
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+        <div
+          style={{
+            marginTop: 8,
+            fontSize: 11,
+            color: 'rgba(11,15,25,.65)',
+          }}
+        >
+          {sched
+            ? `Línea ${station.line} — horario aproximado (headway ${station.schedule.weekday.intervalMin} min).`
+            : `Línea ${station.line} — Metrovalencia (FGV).`}
+        </div>
+        {sched && (
+          <div
+            style={{
+              marginTop: 4,
+              fontSize: 10,
+              color: 'rgba(11,15,25,.55)',
+              fontFamily: 'DM Mono, monospace',
+              letterSpacing: '.04em',
+            }}
+          >
+            Válido hasta {sched.scheduleValidUntil} · confirma en fgv.es
+          </div>
+        )}
+        <ExtLink
+          href={station.scheduleUrl}
+          style={{
+            marginTop: 6,
+            display: 'inline-block',
+            fontSize: 12,
+            color: '#2463EB',
+            textDecoration: 'none',
+          }}
+        >
+          Horario oficial {station.line} →
+        </ExtLink>
+      </div>
+    )
+  }
+
+  if (!match || match.kind !== 'l9') {
+    // Not an L9 station — likely Adif heavy-rail (RENFE Cercanías C3
+    // Valencia-Utiel passes through the municipality). We don't have a
+    // schedule for it; honest fallback directs the user to Renfe.
+    return (
+      <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 220 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+          <span
+            style={{
+              width: 16,
+              height: 16,
+              borderRadius: '50%',
+              background: '#6B7280',
+              color: 'white',
+              display: 'grid',
+              placeItems: 'center',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: 8,
+              fontWeight: 800,
+            }}
+          >
+            RE
+          </span>
+          <span style={{ fontWeight: 700, fontSize: 14 }}>{name}</span>
+        </div>
+        <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 6, fontSize: 12 }}>
+          <div style={{ color: 'rgba(11,15,25,.75)', marginBottom: 4 }}>
+            Estación sobre la línea de Adif (ferrocarril convencional). No forma parte de L9
+            Metrovalencia.
+          </div>
+          <div style={{ color: 'rgba(11,15,25,.55)', fontSize: 11.5 }}>
+            {rawStation?.operator || 'Adif · Red convencional'}
+          </div>
+        </div>
+        <a
+          href="https://www.renfe.com/es/es/cercanias/cercanias-valencia"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            marginTop: 8,
+            display: 'inline-block',
+            fontSize: 12,
+            color: '#2463EB',
+            textDecoration: 'none',
+          }}
+        >
+          Horarios Renfe Cercanías València →
+        </a>
+      </div>
+    )
+  }
+
+  const meta = match.station
+  const now = new Date(tick)
+  const sched = computeStationSchedule(meta, now)
+  const row = (dirLabel, dep, isApprox) => (
+    <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, padding: '4px 0' }}>
+      <span style={{ fontSize: 11, color: 'rgba(11,15,25,.55)', minWidth: 96 }}>→ {dirLabel}</span>
+      <span
+        style={{
+          fontFamily: 'DM Mono, monospace',
+          fontSize: 13,
+          fontWeight: 700,
+          color: '#0B0F19',
+        }}
+      >
+        {dep.label}
+        {dep.afterMidnight ? ' (mañana)' : ''}
+      </span>
+      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: 11, color: '#B45309' }}>
+        {dep.minutesAway === 0 ? 'ahora' : `${dep.minutesAway} min`}
+      </span>
+      {isApprox && <span style={{ fontSize: 10, color: 'rgba(11,15,25,.45)' }}>aprox</span>}
+    </div>
+  )
+
+  return (
+    <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 240 }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          marginBottom: 4,
+        }}
+      >
+        <span
+          style={{
+            width: 16,
+            height: 16,
+            borderRadius: '50%',
+            background: METRO_COLOR,
+            color: '#FFFFFF',
+            display: 'grid',
+            placeItems: 'center',
+            fontFamily: 'DM Mono, monospace',
+            fontSize: 8,
+            fontWeight: 800,
+          }}
+        >
+          L9
+        </span>
+        <span style={{ fontWeight: 700, fontSize: 14 }}>{meta.label}</span>
+        {meta.terminus && (
+          <span
+            style={{
+              fontSize: 9,
+              fontFamily: 'DM Mono, monospace',
+              background: '#EEF4FF',
+              color: '#2463EB',
+              padding: '2px 5px',
+              borderRadius: 3,
+              letterSpacing: '.06em',
+              textTransform: 'uppercase',
+              marginLeft: 'auto',
+            }}
+          >
+            Terminus
+          </span>
+        )}
+      </div>
+      <div style={{ borderTop: '1px solid #DCD7C8', paddingTop: 4 }}>
+        {row(sched.outbound.heading, sched.outbound, false)}
+        {!meta.terminus && row(sched.inbound.heading, sched.inbound, sched.approximateInbound)}
+      </div>
+      <div
+        style={{
+          marginTop: 6,
+          fontSize: 10,
+          color: 'rgba(11,15,25,.55)',
+          fontFamily: 'DM Mono, monospace',
+          letterSpacing: '.04em',
+        }}
+      >
+        Horario transcrito de fgv.es · válido hasta {sched.scheduleValidUntil}
+      </div>
+      <a
+        href="https://www.metrovalencia.es"
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          marginTop: 4,
+          display: 'inline-block',
+          fontSize: 12,
+          color: '#2463EB',
+          textDecoration: 'none',
+        }}
+      >
+        Ver horario oficial →
+      </a>
+    </div>
+  )
+}
