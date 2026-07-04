@@ -278,7 +278,11 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
     })
   }
 
-  return out.filter((c) => c.needles.length > 0)
+  // Keep candidates even when they have no title-needle (e.g. "Carrer Major",
+  // whose only core is a common word): resolvePlace simply never matches them
+  // via a title, but matchNameToGazetteer (the LLM name path) needs them — that
+  // cross-language case is exactly what the LLM boost exists to catch.
+  return out
 }
 
 // A street match is only trusted when the TITLE actually carries a street-type
@@ -319,6 +323,82 @@ function hasStreetIndicator(foldedTitle: string): boolean {
 /** Token-bounded: needle must be a run of whole space-separated tokens. */
 function matches(paddedTitle: string, needle: string): boolean {
   return needle.length > 0 && paddedTitle.includes(` ${needle} `)
+}
+
+// ─── LLM name → gazetteer point ──────────────────────────────────────────────
+// The LLM extracts a place NAME from a title (it has already judged that a place
+// is referenced), so this matcher is more permissive than the conservative
+// title→needle path: it compares the LLM name against candidate NAMES, keeping
+// common words ("Mayor"), and allows a 1-char edit so cross-language spellings
+// (Spanish "Mayor" ↔ Valencian "Major", "Sagunto" ↔ "Sagunt") still resolve.
+// Crucially the returned POINT is always the gazetteer's — never the LLM's.
+
+/** Locating tokens of a name: drop connectors, street-types, muni/province, and
+ *  bare numbers (house numbers are not locators). */
+function nameTokens(name: string): string[] {
+  return foldTitle(name)
+    .split(' ')
+    .filter(
+      (t) =>
+        t && !/^\d+$/.test(t) && !CONNECTORS.has(t) && !STREET_TYPES.has(t) && !MUNI_TOKENS.has(t),
+    )
+}
+
+/** Levenshtein distance, capped at 2 (we only care about ≤1). */
+function editDistance(a: string, b: string): number {
+  if (Math.abs(a.length - b.length) > 1) return 2
+  const dp = Array.from({ length: a.length + 1 }, (_, i) => i)
+  for (let j = 1; j <= b.length; j++) {
+    let prev = dp[0]
+    dp[0] = j
+    for (let i = 1; i <= a.length; i++) {
+      const tmp = dp[i]
+      dp[i] = Math.min(dp[i] + 1, dp[i - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1))
+      prev = tmp
+    }
+  }
+  return dp[a.length]
+}
+
+/** Does token `t` appear in `ctoks` (exact, or ≤1 edit for tokens ≥4 chars)? */
+function tokenIn(t: string, ctoks: string[]): boolean {
+  return ctoks.some(
+    (ct) => ct === t || (t.length >= 4 && ct.length >= 4 && editDistance(t, ct) <= 1),
+  )
+}
+
+/**
+ * Resolve an LLM-extracted place name to a gazetteer entry (its real point), or
+ * null. Requires every locating token of the LLM name to appear in a candidate's
+ * name; ties break on specificity. Returns the gazetteer point — never a
+ * fabricated coordinate.
+ * @param {string|null|undefined} llmName
+ * @param {Candidate[]} candidates
+ */
+export function matchNameToGazetteer(
+  llmName: string | null | undefined,
+  candidates: Candidate[],
+): PlaceMatch | null {
+  const toks = nameTokens(String(llmName || ''))
+  if (toks.length === 0) return null
+  let best: PlaceMatch | null = null
+  let bestSpec = -1
+  for (const c of candidates) {
+    const ctoks = nameTokens(c.name)
+    if (ctoks.length === 0) continue
+    if (!toks.every((t) => tokenIn(t, ctoks))) continue
+    if (c.specificity > bestSpec) {
+      bestSpec = c.specificity
+      best = {
+        point: c.point,
+        kind: c.kind,
+        name: c.name,
+        matchedText: c.name,
+        sourceId: c.sourceId,
+      }
+    }
+  }
+  return best
 }
 
 /**

@@ -630,6 +630,14 @@ export default function Metodologia() {
           traducido), procedimiento, número de licitadores y plazo. La etiqueta CPV usa el
           vocabulario oficial CPV-2008 de la UE.
         </p>
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          Para los títulos que el emparejamiento automático no consigue situar (abreviaturas,
+          castellano/valenciano), un modelo de lenguaje propone el nombre del lugar citado. Ese
+          nombre se resuelve <strong>siempre</strong> contra el mismo callejero —el modelo nunca
+          inventa coordenadas— y la propuesta <strong>no aparece en el mapa</strong> hasta que una
+          persona la revisa y la aprueba. Es una ayuda de cobertura, no una fuente: el listado
+          automático nunca sustituye a la revisión humana.
+        </p>
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>

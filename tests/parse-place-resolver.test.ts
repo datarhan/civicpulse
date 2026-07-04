@@ -4,8 +4,88 @@ import {
   streetCore,
   buildGazetteer,
   resolvePlace,
+  matchNameToGazetteer,
   type Candidate,
 } from '../src/scraper/place-resolver'
+
+// Gazetteer for the fuzzy LLM-name matcher (needles unused — it matches on the
+// candidate NAME, since the LLM already vetted that a place is referenced).
+const NAME_CANDS: Candidate[] = [
+  {
+    kind: 'poi',
+    name: 'CEIP Camp de Túria',
+    point: [39.54, -0.57],
+    sourceId: 'poi-ceip',
+    needles: [],
+    specificity: 4,
+  },
+  {
+    kind: 'street',
+    name: 'Carrer Major',
+    point: [39.53, -0.58],
+    sourceId: 'carrer-major',
+    needles: [],
+    specificity: 3,
+  },
+  {
+    kind: 'street',
+    name: 'Carrer de Sagunt',
+    point: [39.55, -0.56],
+    sourceId: 'carrer-de-sagunt',
+    needles: [],
+    specificity: 3,
+  },
+  {
+    kind: 'urbanizacion',
+    name: 'Urbanització La Reva',
+    point: [39.5, -0.6],
+    sourceId: 'la-reva',
+    needles: [],
+    specificity: 2,
+  },
+]
+
+describe('place-resolver — matchNameToGazetteer (LLM name → real point)', () => {
+  it('matches a cross-language name (Calle Mayor → Carrer Major) via edit distance', () => {
+    const m = matchNameToGazetteer('Calle Mayor', NAME_CANDS)
+    expect(m?.sourceId).toBe('carrer-major')
+    expect(m?.point).toEqual([39.53, -0.58])
+  })
+
+  it('matches an inflected toponym (Sagunto → Carrer de Sagunt)', () => {
+    expect(matchNameToGazetteer('Sagunto', NAME_CANDS)?.sourceId).toBe('carrer-de-sagunt')
+  })
+
+  it('matches a POI by its distinctive core', () => {
+    expect(matchNameToGazetteer('Camp de Túria', NAME_CANDS)?.kind).toBe('poi')
+    expect(matchNameToGazetteer('CEIP Camp de Túria', NAME_CANDS)?.sourceId).toBe('poi-ceip')
+  })
+
+  it('matches an urbanización name', () => {
+    expect(matchNameToGazetteer('La Reva', NAME_CANDS)?.sourceId).toBe('la-reva')
+  })
+
+  it('returns null for a place not in the gazetteer', () => {
+    expect(matchNameToGazetteer('Calle Inexistente', NAME_CANDS)).toBeNull()
+  })
+
+  it('returns null for a municipality/province-only name (not a locator)', () => {
+    expect(matchNameToGazetteer('Riba-roja de Túria', NAME_CANDS)).toBeNull()
+    expect(matchNameToGazetteer('València', NAME_CANDS)).toBeNull()
+  })
+
+  it('is empty/null safe', () => {
+    expect(matchNameToGazetteer('', NAME_CANDS)).toBeNull()
+    expect(matchNameToGazetteer(null, NAME_CANDS)).toBeNull()
+    expect(matchNameToGazetteer('Carrer Major', [])).toBeNull()
+  })
+
+  it('the coordinate always comes from the gazetteer, never fabricated', () => {
+    const m = matchNameToGazetteer('calle mayor 37', NAME_CANDS)
+    // Even with a house number in the LLM name, the point is the OSM street point.
+    expect(m?.point).toEqual([39.53, -0.58])
+  })
+})
 
 describe('place-resolver — foldTitle', () => {
   it('folds accents, case and punctuation to space-separated tokens', () => {

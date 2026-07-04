@@ -8,6 +8,7 @@ import { existsSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { matchContractsToZones, ZONE_ALIASES, type ZoneInput } from '../src/scraper/tender-geo'
 import { buildGazetteer } from '../src/scraper/place-resolver'
+import { validatePlaceOverrides, type PlaceKind } from '../src/scraper/place-suggestion'
 
 const DATA = resolve('public/data')
 const OUT = resolve(DATA, 'tender-geo.json')
@@ -51,6 +52,32 @@ async function main() {
     zoneAliases: ZONE_ALIASES,
   })
 
+  // Curator-approved LLM geocode overrides (place-overrides.json). Absent file →
+  // empty map. Validated before use so a malformed override can't reach the map.
+  const overridesSnap = await readJsonIfExists(resolve(DATA, 'place-overrides.json'))
+  const overrides: Record<
+    string,
+    {
+      sourceId: string
+      name: string
+      kind: PlaceKind
+      point: [number, number]
+      matchedText: string
+    }
+  > = {}
+  if (overridesSnap) {
+    validatePlaceOverrides(overridesSnap)
+    for (const o of overridesSnap.overrides || []) {
+      overrides[o.contractId] = {
+        sourceId: o.sourceId,
+        name: o.name,
+        kind: o.kind,
+        point: o.point,
+        matchedText: o.matchedText,
+      }
+    }
+  }
+
   const snap = matchContractsToZones(
     tenders.contracts || [],
     zones,
@@ -58,6 +85,7 @@ async function main() {
       generatedAt: new Date().toISOString(),
       tendersGeneratedAt: tenders.generatedAt ?? null,
       geoGeneratedAt: geo.generatedAt ?? null,
+      overrides,
     },
     candidates,
   )

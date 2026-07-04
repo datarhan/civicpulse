@@ -142,7 +142,23 @@ function dateOf(c: ContractInput): string | null {
 export function matchContractsToZones(
   contracts: ContractInput[],
   zones: ZoneInput[],
-  opts: { generatedAt: string; tendersGeneratedAt?: string | null; geoGeneratedAt?: string | null },
+  opts: {
+    generatedAt: string
+    tendersGeneratedAt?: string | null
+    geoGeneratedAt?: string | null
+    /** Curator-approved placements (place-overrides.json) keyed by contract id —
+     *  win over the deterministic resolver for that contract. */
+    overrides?: Record<
+      string,
+      {
+        sourceId: string
+        name: string
+        kind: PlaceKind
+        point: [number, number]
+        matchedText: string
+      }
+    >
+  },
   candidates: Candidate[] = [],
 ): TenderGeoSnapshot {
   const zoneBySlug = new Map(zones.map((z) => [z.slug, z]))
@@ -186,10 +202,19 @@ export function matchContractsToZones(
     }
     const zoneSlugs = Object.keys(matched)
 
-    // Precise point via the multi-source resolver (street/POI/urb/barrio).
-    // POIs are only trusted for works contracts (see resolvePlace).
+    // Precise point via a curator override (LLM-suggested, human-approved) if
+    // present, else the deterministic resolver (POIs only for works contracts).
     const isWorks = (c.contractType ?? '') === 'construction'
-    const place = resolvePlace(foldTitle(title), candidates, { allowPoi: isWorks })
+    const override = opts.overrides?.[c.id]
+    const place = override
+      ? {
+          point: override.point,
+          kind: override.kind,
+          name: override.name,
+          matchedText: override.matchedText,
+          sourceId: override.sourceId,
+        }
+      : resolvePlace(foldTitle(title), candidates, { allowPoi: isWorks })
 
     // A contract reaches the map if it named a barrio (aggregate) OR resolved to
     // a precise point. Contracts that are genuinely non-spatial fall through.

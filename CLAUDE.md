@@ -103,6 +103,19 @@ npm run compute:tender-geo          # place contract titles at streets/POIs/zone
 # missing code, so a stale/absent file never shows a naked CPV number.
 npm run build:cpv-labels
 
+# LLM place-geocode (map recall boost · curator-run · metered). For every
+# awarded contract the deterministic resolver couldn't situate, the LLM reads
+# the place NAME from the title; that name is resolved to a REAL gazetteer point
+# (matchNameToGazetteer — the LLM never emits a coordinate). Writes human-gated
+# suggestions; nothing reaches the map until a curator promotes.
+npm run suggest:place-geocode -- [--min-confidence 0.5] [--limit N]
+                                    # → public/data/place-suggestions.json (every
+                                    #   row requiresHumanApproval:true · NOT public)
+npm run promote-place -- <contractId> --curator "<name>" [--note "…"] [--edit]
+                                    # promote a suggestion → place-overrides.json
+                                    #   (curated · applied by compute:tender-geo)
+npm run promote-place -- <contractId> --reject   # drop an existing override
+
 # Claim extraction pipeline (LLM-extracted verbatim claims → deterministic
 # verifier → human-curated editorial findings). Requires transcripts on disk
 # (public/data/pleno-transcripts/*.txt) produced by the transcribe:batch
@@ -468,6 +481,8 @@ Leaflet + react-leaflet map surfaces:
 
 **Tender geolocation — the place-resolver's honesty gates (`src/scraper/place-resolver.ts`).** Contract titles carry no address field, so a pin is placed only when the title *names* a place. Gates (deliberately under-match — an honest miss beats a wrong pin): (1) match the distinctive **core** of a name (street-type + connectors stripped → `sagunt`, `vilamarxant`), token-bounded, most-specific-and-longest wins (poi > street > urbanización > barrio); (2) drop needles made only of the **municipality/province** name (`riba roja de turia`, `valència` — the postal-address tail) or generic boilerplate (`social`, `municipal`, `públic`, `major`); (3) a **street** match requires a street-type word in the title (C/, Camino, Ctra…) so toponym collisions (València, Generalitat, Canal) don't fire; (4) a **POI** is trusted only for `construction` contracts — "suministro para la Policía Local" is *for* the dept, not located *at* it. Result at last snapshot: 43 contracts / €1.12M situated across 23 places (up from 29 / €668k). Every gate is unit-tested in `tests/parse-place-resolver.test.ts`.
 
+**LLM geocode recall boost (curator-gated, sensitive subsystem).** The deterministic resolver deliberately misses cross-language / abbreviated references (Spanish "C/ Mayor" ↔ OSM Valencian "Carrer Major"). An **opt-in LLM pass** (`src/scraper/place-geocode-llm.ts` + `npm run suggest:place-geocode`) closes that gap under the repo's standard 3-layer suggestion→override contract: the LLM reads only the place *name* from a title (`src/llm/prompts.ts` `PLACE_GEOCODE_PROMPT_VERSION`), and that name is resolved to a **real gazetteer point** by `matchNameToGazetteer` (folded token overlap + ≤1 edit for Mayor/Major; **the LLM never emits a coordinate**). Output `public/data/place-suggestions.json` is machine-written, every row `requiresHumanApproval:true`, and is **never rendered** — a curator promotes rows via `npm run promote-place` into `public/data/place-overrides.json` (schema forbids `requiresHumanApproval`, defence in depth), which `compute-tender-geo` applies over the resolver. Schemas + validators in `src/scraper/place-suggestion.ts`; a name that resolves to no known place is dropped, never guessed. Update `/metodologia` when this pipeline's behavior changes.
+
 ## Real data pipeline
 
 **26 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
@@ -522,6 +537,10 @@ public/data/quejas-responses.json    (schema: scripts/apply-queja-response.ts)
 public/data/sindic.json              (schema: src/scraper/sindic.ts)
 public/data/plantilla.json           (curated · cited · municipal-workforce headcount on /cargos)
 public/data/dedicaciones.json        (schema: src/scraper/dedicaciones.ts · per-councillor salary by role, from the pleno acuerdo)
+public/data/place-overrides.json     (schema: src/scraper/place-suggestion.ts · curator-promoted LLM geocodes · applied by compute:tender-geo)
+
+# Machine-written LLM suggestions — NEVER rendered publicly (curator-only input):
+public/data/place-suggestions.json   (schema: src/scraper/place-suggestion.ts · every row requiresHumanApproval:true · from suggest:place-geocode)
 
 # Bot-owned, exported daily by launchd agent:
 public/data/quejas.json              (schema: bot/src/services/snapshot.ts)

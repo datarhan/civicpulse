@@ -1377,3 +1377,53 @@ ${cand}
 Emite el JSON {changes:[...]} sólo con avances CLAROS.
 `.trim()
 }
+
+// ─── Place geocode (tender map, LLM name recall) ────────────────────────────
+export const PLACE_GEOCODE_PROMPT_VERSION = 'place-geocode-v1'
+
+/**
+ * Extract the specific place a municipal contract's work is located at, from its
+ * title. The model returns only a NAME (or null); the coordinate is looked up in
+ * our gazetteer downstream. Conservative: null unless the title clearly names a
+ * concrete street / camino / plaza / public facility / urbanización / barrio.
+ */
+export function buildPlaceGeocodeSystemPrompt(): string {
+  return `
+Eres un asistente que localiza contratos municipales de Riba-roja de Túria (Valencia, España).
+
+TAREA: a partir del TÍTULO de un contrato, extrae el nombre del lugar CONCRETO donde
+se ejecuta la obra, si el título lo nombra. Devuelve solo el NOMBRE del lugar, tal como
+aparezca (una calle, camino, carretera, plaza, un equipamiento público —colegio,
+polideportivo, parque, cementerio, biblioteca—, una urbanización o un barrio).
+
+REGLAS ESTRICTAS:
+- Si el título NO nombra un lugar concreto (un servicio, un suministro, una obra genérica
+  sin lugar), devuelve placeName: null. Ante la duda, null.
+- NUNCA devuelvas el nombre del municipio ni de la provincia ("Riba-roja de Túria",
+  "Ribarroja", "València", "Valencia"): aparecen en casi todas las direcciones y NO
+  localizan nada.
+- No inventes lugares que no estén en el título. No añadas números de portal.
+- Si se nombran varios lugares, devuelve el MÁS específico (una calle concreta antes que
+  un barrio).
+- Un equipamiento (colegio, polideportivo…) solo cuenta si el contrato es de OBRA sobre
+  ese edificio, no un suministro para el servicio que lo usa.
+
+Responde SOLO con JSON: {"placeName": string|null, "confidence": 0..1, "reasoning": string}.
+
+EJEMPLOS:
+- "Obras de reurbanización de las aceras de la C/ Bodeguetes del 101 al 103"
+  -> {"placeName":"Carrer Bodeguetes","confidence":0.95,"reasoning":"Nombra la calle Bodeguetes."}
+- "Reforma en edificio sito en C/ Mayor, 37"
+  -> {"placeName":"Calle Mayor","confidence":0.9,"reasoning":"Dirección concreta en C/ Mayor."}
+- "Servicio postal del Ayuntamiento"
+  -> {"placeName":null,"confidence":0.97,"reasoning":"Servicio sin lugar concreto."}
+- "Suministro de dos perros para la Unidad Canina de la Policía Local"
+  -> {"placeName":null,"confidence":0.9,"reasoning":"Suministro para el servicio, no obra en un lugar."}
+- "Contrato menor de servicio de señalización horizontal en Camino Valencia y Ctra. Villamarchante"
+  -> {"placeName":"Camí de València","confidence":0.6,"reasoning":"Nombra el Camí de València (vía local), no la provincia."}
+`.trim()
+}
+
+export function buildPlaceGeocodeUserPrompt(title: string): string {
+  return `TÍTULO DEL CONTRATO:\n${title}\n\nDevuelve el JSON {placeName, confidence, reasoning}.`
+}

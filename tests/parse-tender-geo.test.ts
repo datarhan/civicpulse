@@ -265,6 +265,40 @@ describe('scraper/tender-geo — precise placement via gazetteer', () => {
     expect(a.point).toEqual([39.54, -0.57])
   })
 
+  it('applies a curator override (LLM-suggested, human-approved) over the resolver', () => {
+    const snap = matchContractsToZones(
+      // A title the deterministic resolver can't situate (Mayor/Major is skipped).
+      [
+        {
+          id: 'ov1',
+          title: 'Reforma en edificio sito en C/ Mayor, 37',
+          status: 'awarded',
+          finalAmount: 60000,
+        },
+      ],
+      ZONES,
+      {
+        ...OPTS,
+        overrides: {
+          ov1: {
+            sourceId: 'carrer-major',
+            name: 'Carrer Major',
+            kind: 'street',
+            point: [39.53, -0.58],
+            matchedText: 'Carrer Major',
+          },
+        },
+      },
+      CANDIDATES,
+    )
+    const a = snap.assignments.find((x) => x.id === 'ov1')!
+    expect(a.point).toEqual([39.53, -0.58])
+    expect(a.place?.name).toBe('Carrer Major')
+    expect(a.place?.sourceId).toBe('carrer-major')
+    expect(snap.universe.situatedContracts).toBe(1)
+    expect(snap.places.find((p) => p.slug === 'carrer-major')?.amount).toBe(60000)
+  })
+
   it('leaves genuinely non-spatial contracts unplaced (no point, no zone)', () => {
     const snap = matchContractsToZones(
       [
