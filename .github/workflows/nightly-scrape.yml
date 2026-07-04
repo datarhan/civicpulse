@@ -51,42 +51,20 @@ jobs:
           case "$ADAPTERS" in
             all)
               npm run scrape:all || rc=$?
-              # Press fact-check laboratory chain (Phase 1-8 of the
-              # /laboratorio plan). Each step is RESILIENT (a transient
-              # LLM-API outage or missing key must not kill the whole
-              # nightly) but never SILENT: run_lab records each exit
-              # code into the step summary, so a failing stage can't
-              # hide behind a green tick — the pattern that froze
-              # press.json for 8 days. auto-curate-press has its own
-              # LOREG hard-stop built in.
-              # scrape:factcheck runs FIRST so verify:press-claims can
-              # cross-reference Newtral / Maldita / EFE Verifica.
-              # Gracefully no-ops when GOOGLE_FACT_CHECK_API_KEY is absent.
-              LAB_RESULTS=""
-              run_lab() {
-                local label="$1"; shift
-                if "$@"; then
-                  LAB_RESULTS="${LAB_RESULTS}- ✅ ${label}\n"
-                else
-                  LAB_RESULTS="${LAB_RESULTS}- ❌ ${label} (exit $?)\n"
-                fi
-              }
-              run_lab "scrape:factcheck"        npm run scrape:factcheck
-              run_lab "extract:press-claims"    npm run extract:press-claims -- --max 60
-              run_lab "verify:press-claims"     npm run verify:press-claims
-              run_lab "summarize:press"         npm run summarize:press -- --max 40
-              run_lab "compute:press-analytics" npm run compute:press-analytics
-              run_lab "auto-curate-press"       npm run auto-curate-press
-              # Daily link-rot audit + Wayback availability lookup.
-              # Surfaces dead source URLs on /laboratorio so curators
-              # can cite the frozen snapshot instead of the 404. Runs
-              # LAST so it sees every claim the night's extract added.
-              run_lab "audit-press-links"       npm run audit-press-links
-              {
-                echo "### Press-lab chain"
-                printf '%b' "$LAB_RESULTS"
-                echo ""
-              } >> "$GITHUB_STEP_SUMMARY"
+              # NOTE: the press fact-check laboratory chain (extract →
+              # verify → summarize → analytics → auto-curate-press →
+              # audit-press-links + scrape:factcheck) used to run HERE, but
+              # GitHub-hosted CI has no LLM backend and no
+              # GOOGLE_FACT_CHECK_API_KEY, so every stage silently wrote an
+              # empty snapshot (extract → items:[] → exit 0 → green ✅) and
+              # then COMMITTED those empties — clobbering any real claims the
+              # local pipeline produced. It has been migrated to a local cron
+              # (scripts/press-lab-pipeline.sh · installed via
+              # scripts/cron-install-press-lab.sh), mirroring the /hallazgos
+              # pipeline, where `agy` (Google-subscription CLI, $0) + the .env
+              # keys actually exist. The nightly still scrapes press.json above
+              # (scrape:all → scrape:press, no LLM needed); the local cron
+              # git-pulls that and owns the derived press-* snapshots.
               ;;
             officials)             npm run scrape:officials || rc=$? ;;
             budget)                npm run scrape:budget || rc=$? ;;
