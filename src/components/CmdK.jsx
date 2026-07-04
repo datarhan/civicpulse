@@ -142,6 +142,7 @@ export function CmdK({ open, onClose, onOpen }) {
         role="dialog"
         aria-modal="true"
         aria-label="Buscador rápido"
+        className="cp-spring-in"
         onClick={(e) => e.stopPropagation()}
         onKeyDown={onTrapKeyDown}
         style={{
@@ -149,7 +150,7 @@ export function CmdK({ open, onClose, onOpen }) {
           maxWidth: 'calc(100vw - 32px)',
           background: 'var(--paper)',
           border: '1px solid var(--border)',
-          borderRadius: 12,
+          borderRadius: 'var(--r-card)',
           boxShadow: '0 24px 64px rgba(0,0,0,.25)',
           overflow: 'hidden',
         }}

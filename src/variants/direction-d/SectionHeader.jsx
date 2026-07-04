@@ -54,6 +54,7 @@ export function SectionHeader({ tone = 'neutral', title, meta, badge, style }) {
         padding: '6px 10px',
         marginBottom: 10,
         background: t.wash,
+        borderRadius: 'var(--r-input)',
         borderLeft: `3px solid ${t.bar}`,
         ...style,
       }}

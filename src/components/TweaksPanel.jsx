@@ -76,6 +76,7 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
   if (!open) return null
   return (
     <div
+      className="cp-spring-in"
       style={{
         position: 'fixed',
         bottom: 20,
@@ -84,7 +85,7 @@ export function TweaksPanel({ open, onClose, state, onChange }) {
         zIndex: 40,
         background: 'var(--paper)',
         border: '1px solid var(--border)',
-        borderRadius: 12,
+        borderRadius: 'var(--r-card)',
         boxShadow: '0 16px 40px rgba(0,0,0,.15)',
         overflow: 'hidden',
       }}
