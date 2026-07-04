@@ -17,6 +17,7 @@ test.describe('Laboratorio (/laboratorio)', () => {
       page.getByRole('heading', { name: 'Laboratorio de verificación de prensa' }),
     ).toBeVisible()
 
+    await expect(page.getByText('Titulares monitorizados').first()).toBeVisible()
     await expect(page.getByText('Artículos auditados').first()).toBeVisible()
     await expect(page.getByText('Tasa de verificación').first()).toBeVisible()
     await expect(page.getByText('Tasa de discrepancia').first()).toBeVisible()
@@ -26,10 +27,38 @@ test.describe('Laboratorio (/laboratorio)', () => {
     await expect(page.getByLabel('Filtrar por medio')).toBeVisible()
     await expect(page.getByLabel('Filtrar por veredicto')).toBeVisible()
 
-    await expect(page.getByText(/Medios auditados/i).first()).toBeVisible()
+    await expect(page.getByText(/Medios monitorizados/i).first()).toBeVisible()
     await expect(page.getByText(/Lo que la prensa local no está siguiendo/i).first()).toBeVisible()
 
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+  })
+
+  // Honesty invariant (data-independent): the "Tasa de verificación" KPI shows
+  // "—" exactly when no claims have been audited, and in that state the page
+  // MUST surface the extraction-pending banner rather than a wall of empty
+  // cards. Whichever state the loaded snapshots are in, the two must agree.
+  test('shows the extraction-pending banner iff the verification rate is unavailable', async ({
+    page,
+  }) => {
+    await page.goto('/laboratorio', { waitUntil: 'domcontentloaded' })
+    await expect(
+      page.getByRole('heading', { name: 'Laboratorio de verificación de prensa' }),
+    ).toBeVisible({ timeout: 8000 })
+
+    const rate = (
+      await page
+        .getByText('Tasa de verificación', { exact: true })
+        .first()
+        .locator('xpath=following-sibling::div[1]')
+        .innerText()
+    ).trim()
+    const bannerVisible = await page.getByText(/Extracción pendiente/i).isVisible()
+
+    if (rate === '—') {
+      expect(bannerVisible).toBe(true)
+    } else {
+      expect(bannerVisible).toBe(false)
+    }
   })
 
   test('sidebar has a Laboratorio link that lands on /laboratorio', async ({ page }) => {

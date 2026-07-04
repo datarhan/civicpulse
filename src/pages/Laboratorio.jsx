@@ -22,6 +22,7 @@ import { usePressLab } from '../hooks/usePressLab'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 import { fmtDateShort } from '../lib/formatters'
+import { pressLabSummary } from '../lib/press-lab'
 
 const VERDICT_LABEL = {
   verificado: 'Verificado',
@@ -357,7 +358,6 @@ function OutletScoreboard({ outlets }) {
   return (
     <table
       style={{ width: '100%', borderCollapse: 'collapse', fontSize: 12 }}
-      role="table"
       aria-label="Tabla de fiabilidad por medio"
     >
       <thead>
@@ -508,9 +508,13 @@ export default function Laboratorio() {
     return m
   }, [lab.trust])
 
-  const byFingerprintTriangulation = useMemo(() => {
+  // A triangulation cluster spans several articles (the same story across
+  // outlets), each with its OWN fingerprint — so map every member articleId to
+  // the cluster and look it up by the article's id, not its fingerprint.
+  const byArticleTriangulation = useMemo(() => {
     const m = new Map()
-    for (const c of lab.triangulation?.clusters ?? []) m.set(c.fingerprint, c)
+    for (const c of lab.triangulation?.clusters ?? [])
+      for (const id of c.articleIds ?? []) m.set(id, c)
     return m
   }, [lab.triangulation])
 
@@ -533,6 +537,11 @@ export default function Laboratorio() {
       .sort((a, b) => b.date.localeCompare(a.date))
   }, [lab.press, outletFilter, verdictFilter, byArticleClaims])
 
+  const summary = useMemo(
+    () => pressLabSummary({ press: lab.press, verified: lab.verified }),
+    [lab.press, lab.verified],
+  )
+
   if (lab.loading) {
     return (
       <div className="cp-page" style={{ padding: 24, color: 'var(--ink60)' }}>
@@ -541,17 +550,7 @@ export default function Laboratorio() {
     )
   }
 
-  const totalAudited = lab.trust?.articles?.length ?? 0
-  const totalClaims = lab.verified.length
-  const verificadoClaims = lab.verified.filter(
-    (r) => r.verification.verdict === 'verificado',
-  ).length
-  const contradichoClaims = lab.verified.filter(
-    (r) => r.verification.verdict === 'contradicho',
-  ).length
   const triangulated3Plus = lab.triangulation?.stats?.triangulated3Plus ?? 0
-  const verificadoRatio = totalClaims === 0 ? 0 : verificadoClaims / totalClaims
-  const contradichoRatio = totalClaims === 0 ? 0 : contradichoClaims / totalClaims
 
   return (
     <div
@@ -617,24 +616,56 @@ export default function Laboratorio() {
       </div>
 
       <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 18 }}>
-        <KPI label="Artículos auditados" value={fmtNumber(totalAudited)} hint="últimos 30 días" />
+        <KPI
+          label="Titulares monitorizados"
+          value={fmtNumber(summary.monitoredCount)}
+          hint="últimos 30 días"
+        />
+        <KPI
+          label="Artículos auditados"
+          value={fmtNumber(summary.auditedCount)}
+          hint="con ≥1 afirmación verificada"
+        />
         <KPI
           label="Tasa de verificación"
-          value={fmtPct(verificadoRatio)}
-          hint={`${verificadoClaims} claims verificados`}
+          value={fmtPct(summary.verificadoRatio)}
+          hint={`${summary.verificadoClaims} de ${summary.totalClaims} claims`}
         />
         <KPI
           label="Tasa de discrepancia"
-          value={fmtPct(contradichoRatio)}
-          hint={`${contradichoClaims} claims contradichos`}
+          value={fmtPct(summary.contradichoRatio)}
+          hint={`${summary.contradichoClaims} de ${summary.totalClaims} claims`}
         />
         <KPI
           label="Triangulación"
           value={fmtNumber(triangulated3Plus)}
-          hint="historias cubiertas por ≥3 medios"
+          hint="historias en ≥3 medios"
         />
         <KPI label="Hallazgos editoriales" value={fmtNumber(lab.findings.length)} hint="curados" />
       </div>
+
+      {!summary.hasEditorialContent && lab.press.length > 0 && (
+        <div
+          role="status"
+          style={{
+            marginBottom: 18,
+            padding: '12px 14px',
+            border: '1px solid var(--border2)',
+            background: 'var(--warn-soft)',
+            borderRadius: 8,
+            fontSize: 13,
+            color: 'var(--ink80)',
+            lineHeight: 1.55,
+          }}
+        >
+          <strong style={{ color: 'var(--warn-ink)' }}>Extracción pendiente.</strong> Se están
+          monitorizando {fmtNumber(summary.monitoredCount)} titulares, pero el motor de extracción y
+          verificación aún no ha corrido sobre ellos: las tarjetas se muestran sin afirmaciones
+          auditadas y las tasas aparecen como «—». La cadena{' '}
+          <code>extract → verify → summarize → analytics</code> puebla estos veredictos (nocturna o
+          ejecución manual).
+        </div>
+      )}
 
       <div
         style={{
@@ -690,7 +721,7 @@ export default function Laboratorio() {
           </select>
         </label>
         <span className="mono" style={{ fontSize: 11, color: 'var(--ink60)', marginLeft: 'auto' }}>
-          {visible.length} de {lab.press.length} artículos
+          {visible.length} de {summary.monitoredCount} · ventana 30 días
         </span>
       </div>
 
@@ -725,7 +756,7 @@ export default function Laboratorio() {
               summary={byArticleSummary.get(article.id)}
               claims={byArticleClaims.get(article.id)}
               trust={byArticleTrust.get(article.id)}
-              triangulation={byFingerprintTriangulation.get(article.fingerprint)}
+              triangulation={byArticleTriangulation.get(article.id)}
               linkRot={lab.linkRot?.get(article.link) ?? null}
             />
           ))}
@@ -733,7 +764,10 @@ export default function Laboratorio() {
 
         <aside style={{ display: 'grid', gap: 14, position: 'sticky', top: 24 }}>
           <Card>
-            <SectionHead eyebrow="Tabla de fiabilidad" title="Medios auditados (últimos 30 días)" />
+            <SectionHead
+              eyebrow="Tabla de fiabilidad"
+              title="Medios monitorizados (últimos 30 días)"
+            />
             <div style={{ marginTop: 8 }}>
               <OutletScoreboard outlets={lab.trust?.outlets ?? []} />
             </div>
