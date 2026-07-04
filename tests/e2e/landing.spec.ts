@@ -48,8 +48,20 @@ test.describe('Landing (/)', () => {
         .first(),
     ).toBeVisible({ timeout: 6000 })
 
-    // Toggling "Gasto municipal" mounts the money timeline (its play button).
+    // Toggling "Gasto municipal" mounts the money timeline (its play button)
+    // and paints the precise "obras situadas" pins.
     await page.getByRole('button', { name: /^Gasto municipal$/i }).click()
     await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeVisible()
+    const pin = page.locator('path.cp-money-pin').first()
+    await expect(pin).toBeVisible({ timeout: 6000 })
+
+    // Clicking a money pin opens the contract card with the winner + € detail.
+    await pin.click({ force: true })
+    await expect(
+      page
+        .locator('.leaflet-popup-content')
+        .getByText(/Adjudicatario/i)
+        .first(),
+    ).toBeVisible({ timeout: 6000 })
   })
 })

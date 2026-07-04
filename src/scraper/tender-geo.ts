@@ -25,6 +25,8 @@ export interface PlaceRef {
   kind: PlaceKind
   name: string
   matchedText: string
+  /** Stable id of the matched place — the grouping key for the map pins. */
+  sourceId: string
 }
 export interface TenderGeoAssignment {
   id: string
@@ -205,7 +207,14 @@ export function matchContractsToZones(
       contractType: c.contractType ?? null,
       categoryTitle: c.categoryTitle ?? null,
       point: place ? place.point : null,
-      place: place ? { kind: place.kind, name: place.name, matchedText: place.matchedText } : null,
+      place: place
+        ? {
+            kind: place.kind,
+            name: place.name,
+            matchedText: place.matchedText,
+            sourceId: place.sourceId,
+          }
+        : null,
     })
     if (date) {
       if (!dateMin || date < dateMin) dateMin = date

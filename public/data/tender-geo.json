@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T17:10:34.468Z",
+  "generatedAt": "2026-07-04T17:12:39.981Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-04T07:21:59.314Z"
@@ -399,7 +399,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer de les Ànimes",
-        "matchedText": "Carrer de les Ànimes"
+        "matchedText": "Carrer de les Ànimes",
+        "sourceId": "carrer-de-les-animes"
       }
     },
     {
@@ -423,7 +424,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -447,7 +449,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "l'Oliveral",
-        "matchedText": "l'Oliveral"
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -467,7 +470,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer Mariano Benlliure",
-        "matchedText": "Carrer Mariano Benlliure"
+        "matchedText": "Carrer Mariano Benlliure",
+        "sourceId": "carrer-mariano-benlliure"
       }
     },
     {
@@ -491,7 +495,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "el Molinet",
-        "matchedText": "el Molinet"
+        "matchedText": "el Molinet",
+        "sourceId": "el-molinet"
       }
     },
     {
@@ -511,7 +516,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer Arrosals",
-        "matchedText": "Carrer Arrosals"
+        "matchedText": "Carrer Arrosals",
+        "sourceId": "carrer-arrosals"
       }
     },
     {
@@ -531,7 +537,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer Arrosals",
-        "matchedText": "Carrer Arrosals"
+        "matchedText": "Carrer Arrosals",
+        "sourceId": "carrer-arrosals"
       }
     },
     {
@@ -555,7 +562,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització Els Pous",
-        "matchedText": "Urbanització Els Pous"
+        "matchedText": "Urbanització Els Pous",
+        "sourceId": "urbanitzacio-els-pous"
       }
     },
     {
@@ -575,7 +583,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer Pobla de Vallbona",
-        "matchedText": "Carrer Pobla de Vallbona"
+        "matchedText": "Carrer Pobla de Vallbona",
+        "sourceId": "carrer-pobla-de-vallbona"
       }
     },
     {
@@ -595,7 +604,8 @@
       "place": {
         "kind": "street",
         "name": "Carretera de Vilamarxant",
-        "matchedText": "Carretera de Vilamarxant"
+        "matchedText": "Carretera de Vilamarxant",
+        "sourceId": "carretera-de-vilamarxant"
       }
     },
     {
@@ -619,7 +629,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "l'Oliveral",
-        "matchedText": "l'Oliveral"
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -643,7 +654,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "l'Oliveral",
-        "matchedText": "l'Oliveral"
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -663,7 +675,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer de les Bodeguetes",
-        "matchedText": "Carrer de les Bodeguetes"
+        "matchedText": "Carrer de les Bodeguetes",
+        "sourceId": "carrer-de-les-bodeguetes"
       }
     },
     {
@@ -687,7 +700,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització Els Pous",
-        "matchedText": "Urbanització Els Pous"
+        "matchedText": "Urbanització Els Pous",
+        "sourceId": "urbanitzacio-els-pous"
       }
     },
     {
@@ -728,7 +742,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto"
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -748,7 +763,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer del Mas de Montes",
-        "matchedText": "Carrer del Mas de Montes"
+        "matchedText": "Carrer del Mas de Montes",
+        "sourceId": "carrer-del-mas-de-montes"
       }
     },
     {
@@ -772,7 +788,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Llobatera",
-        "matchedText": "Urbanització La Llobatera"
+        "matchedText": "Urbanització La Llobatera",
+        "sourceId": "urbanitzacio-la-llobatera"
       }
     },
     {
@@ -796,7 +813,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "l'Oliveral",
-        "matchedText": "l'Oliveral"
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -816,7 +834,8 @@
       "place": {
         "kind": "street",
         "name": "Plaça de la Torre",
-        "matchedText": "Plaça de la Torre"
+        "matchedText": "Plaça de la Torre",
+        "sourceId": "placa-de-la-torre"
       }
     },
     {
@@ -840,7 +859,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto"
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -860,7 +880,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer de Luis Santàngel",
-        "matchedText": "Carrer de Luis Santàngel"
+        "matchedText": "Carrer de Luis Santàngel",
+        "sourceId": "carrer-de-luis-santangel"
       }
     },
     {
@@ -884,7 +905,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto"
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -904,7 +926,8 @@
       "place": {
         "kind": "street",
         "name": "Carreró de l'Església",
-        "matchedText": "Carreró de l'Església"
+        "matchedText": "Carreró de l'Església",
+        "sourceId": "carrero-de-l-esglesia"
       }
     },
     {
@@ -928,7 +951,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "l'Oliveral",
-        "matchedText": "l'Oliveral"
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -952,7 +976,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització Els Pous",
-        "matchedText": "Urbanització Els Pous"
+        "matchedText": "Urbanització Els Pous",
+        "sourceId": "urbanitzacio-els-pous"
       }
     },
     {
@@ -976,7 +1001,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto"
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -996,7 +1022,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer del Cronista Cerveró",
-        "matchedText": "Carrer del Cronista Cerveró"
+        "matchedText": "Carrer del Cronista Cerveró",
+        "sourceId": "carrer-del-cronista-cervero"
       }
     },
     {
@@ -1020,7 +1047,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -1057,7 +1085,8 @@
       "place": {
         "kind": "poi",
         "name": "Parc Municipal Maldonado",
-        "matchedText": "Parc Municipal Maldonado"
+        "matchedText": "Parc Municipal Maldonado",
+        "sourceId": "way-39589891"
       }
     },
     {
@@ -1081,7 +1110,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "l'Oliveral",
-        "matchedText": "l'Oliveral"
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -1105,7 +1135,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -1129,7 +1160,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -1153,7 +1185,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -1173,7 +1206,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer del Cronista Cerveró",
-        "matchedText": "Carrer del Cronista Cerveró"
+        "matchedText": "Carrer del Cronista Cerveró",
+        "sourceId": "carrer-del-cronista-cervero"
       }
     },
     {
@@ -1197,7 +1231,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto"
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -1217,7 +1252,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer de Miguel de Cervantes",
-        "matchedText": "Carrer de Miguel de Cervantes"
+        "matchedText": "Carrer de Miguel de Cervantes",
+        "sourceId": "carrer-de-miguel-de-cervantes"
       }
     },
     {
@@ -1241,7 +1277,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -1265,7 +1302,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer de Toledo",
-        "matchedText": "Carrer de Toledo"
+        "matchedText": "Carrer de Toledo",
+        "sourceId": "carrer-de-toledo"
       }
     },
     {
@@ -1289,7 +1327,8 @@
       "place": {
         "kind": "street",
         "name": "Passeig del Molinet",
-        "matchedText": "Passeig del Molinet"
+        "matchedText": "Passeig del Molinet",
+        "sourceId": "passeig-del-molinet"
       }
     },
     {
@@ -1309,7 +1348,8 @@
       "place": {
         "kind": "street",
         "name": "Camí de Xest",
-        "matchedText": "Camí de Xest"
+        "matchedText": "Camí de Xest",
+        "sourceId": "cami-de-xest"
       }
     },
     {
@@ -1329,7 +1369,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer La Canal",
-        "matchedText": "Carrer La Canal"
+        "matchedText": "Carrer La Canal",
+        "sourceId": "carrer-la-canal"
       }
     },
     {
@@ -1353,7 +1394,8 @@
       "place": {
         "kind": "urbanizacion",
         "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva"
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -1379,7 +1421,8 @@
       "place": {
         "kind": "street",
         "name": "Carrer de les Ànimes",
-        "matchedText": "Carrer de les Ànimes"
+        "matchedText": "Carrer de les Ànimes",
+        "sourceId": "carrer-de-les-animes"
       }
     }
   ]
