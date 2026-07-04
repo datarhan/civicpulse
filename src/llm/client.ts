@@ -543,9 +543,9 @@ async function callAnthropic(req: RawCall): Promise<RawResult> {
  * Claude Code CLI backend.
  *
  * Spawns `claude -p <user_prompt>` with `--json-schema`, `--output-format json`,
- * `--system-prompt`, and the minimal tool surface (`--disable-slash-commands
- * --disallowedTools "*"`) so the structured-extraction cost floor is as low
- * as possible.
+ * `--system-prompt`, `--strict-mcp-config` (headless MCP isolation), and a
+ * one-tool surface (`--allowedTools StructuredOutput`) so structured extraction
+ * runs at the lowest cost floor without hanging.
  *
  * Works with Anthropic Max plan out of the box (uses the OAuth login from the
  * `claude` CLI session, no ANTHROPIC_API_KEY required). Each call costs $0 in
@@ -585,8 +585,18 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
       '--model',
       req.config.claudeCodeModel,
       '--disable-slash-commands',
-      '--disallowedTools',
-      '*',
+      // Headless isolation (probed 2026-07-04). Without --strict-mcp-config,
+      // each `claude -p` tries to init the user's GLOBAL MCP servers
+      // (Figma/Gmail/…) and HANGS indefinitely — the root cause of the
+      // "claude-code stalls headlessly" folklore. --bare fixes the hang but
+      // also skips keychain reads → "Not logged in"; --strict-mcp-config drops
+      // MCP while keeping Max OAuth. Structured output is delivered via the
+      // internal StructuredOutput tool, so allow ONLY that: a blanket
+      // --disallowedTools '*' denies it and the model loops on permission
+      // denials until it gives up.
+      '--strict-mcp-config',
+      '--allowedTools',
+      'StructuredOutput',
     ]
     const child = spawn(req.config.claudeCodeBin, args, {
       stdio: ['ignore', 'pipe', 'pipe'],
