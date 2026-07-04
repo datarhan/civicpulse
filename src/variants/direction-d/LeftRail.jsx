@@ -1,19 +1,23 @@
 import { NavLink } from 'react-router-dom'
-import { Ic } from '../../components/Icons'
+import { SectionGlyph } from '../../components/SectionGlyph'
 import { PALETTE, SANS } from './tokens'
 
+// One glyph per section — Detalles Gráficos v2 §03. The glyph itself comes from
+// SECTION_GLYPHS keyed by `to`; this list only owns order + hover label.
 const RAIL_ITEMS = [
-  { to: '/', label: 'Mirador', icon: Ic.home },
-  { to: '/cambios', label: 'Novedades', icon: Ic.bell },
-  { to: '/cargos', label: 'Cargos', icon: Ic.people },
-  { to: '/presupuesto', label: 'Presupuesto', icon: Ic.coin },
-  { to: '/plenos', label: 'Plenos', icon: Ic.scale },
-  { to: '/promesas', label: 'Promesas', icon: Ic.scale },
-  { to: '/departamentos', label: 'Departamentos', icon: Ic.building },
-  { to: '/hallazgos', label: 'Hallazgos', icon: Ic.warn },
-  { to: '/datos', label: 'Datos', icon: Ic.chart },
-  { to: '/quejas', label: 'Quejas', icon: Ic.warn },
-  { to: '/metodologia', label: 'Metodología', icon: Ic.cmd },
+  { to: '/', label: 'Mirador' },
+  { to: '/cambios', label: 'Novedades' },
+  { to: '/cargos', label: 'Cargos' },
+  { to: '/presupuesto', label: 'Presupuesto' },
+  { to: '/plenos', label: 'Plenos' },
+  { to: '/promesas', label: 'Promesas' },
+  { to: '/departamentos', label: 'Departamentos' },
+  { to: '/hallazgos', label: 'Hallazgos' },
+  { to: '/declaraciones', label: 'Declaraciones' },
+  { to: '/datos', label: 'Datos' },
+  { to: '/quejas', label: 'Quejas' },
+  { to: '/laboratorio', label: 'Laboratorio' },
+  { to: '/metodologia', label: 'Metodología' },
 ]
 
 function LeftRail() {
@@ -63,7 +67,7 @@ function LeftRail() {
         >
           {({ isActive }) => (
             <>
-              <n.icon width={18} height={18} />
+              <SectionGlyph to={n.to} size={18} />
               {isActive && (
                 <span
                   style={{

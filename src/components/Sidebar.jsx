@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Ic } from './Icons'
+import { SectionGlyph } from './SectionGlyph'
 import { useWikidata } from '../hooks/useWikidata'
 import { useT } from '../i18n'
 
@@ -202,17 +203,31 @@ export function Sidebar({ open = false, onClose }) {
           borderBottom: '1px solid var(--border2)',
         }}
       >
-        <svg width="22" height="22" viewBox="0 0 24 24">
-          <rect x="1" y="1" width="22" height="22" rx="5" fill="var(--civic)" />
+        {/* Canonical pulse monogram (Brandbook v2 §01). Traces itself once on
+            shell mount — the only moment the logo animates (Motion.dc.html). */}
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 64 64"
+          fill="none"
+          className="cp-pulse-draw"
+          style={{ '--cp-dash': 80 }}
+          aria-hidden="true"
+        >
+          <rect width="64" height="64" rx="14" fill="var(--civic)" />
           <path
-            d="M5 13 Q 7 13, 8 11 T 11 8 Q 12 7, 13 10 T 16 14 Q 17 15, 19 13"
-            fill="none"
+            d="M10 34 L20 34 L24 26 L32 44 L38 30 L42 34 L54 34"
             stroke="white"
-            strokeWidth="1.7"
+            strokeWidth="3.5"
             strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
           />
+          <circle cx="54" cy="34" r="2.6" fill="white" />
         </svg>
-        <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 15 }}>CivicPulse</div>
+        <div style={{ fontWeight: 700, letterSpacing: '-.01em', fontSize: 15 }}>
+          Civic<span style={{ color: 'var(--civic)' }}>Pulse</span>
+        </div>
       </div>
 
       <CityChip />
@@ -261,7 +276,7 @@ export function Sidebar({ open = false, onClose }) {
               if (!active) e.currentTarget.style.background = 'transparent'
             }}
           >
-            <n.icon width={18} height={18} style={{ flexShrink: 0, opacity: 0.9 }} />
+            <SectionGlyph to={n.to} size={18} style={{ opacity: 0.9 }} />
             <span style={{ flex: 1 }}>{t(n.labelKey)}</span>
             {n.liveBadge && (
               <span
