@@ -161,7 +161,10 @@ function SlaPanel({ byConcejal, officials }) {
                 {e.name}
               </div>
             </div>
-            <div className="mono" style={{ fontSize: 12, color: 'var(--ok)', textAlign: 'right' }}>
+            <div
+              className="mono"
+              style={{ fontSize: 12, color: 'var(--ok-ink)', textAlign: 'right' }}
+            >
               ✓ {e.resueltas}
             </div>
             <div
@@ -353,7 +356,7 @@ function ReadyToEscalate({ items }) {
                 className="mono"
                 style={{
                   fontSize: 12,
-                  color: overBy > 0 ? 'var(--crit)' : 'var(--warn)',
+                  color: overBy > 0 ? 'var(--crit-ink)' : 'var(--warn-ink)',
                   fontWeight: 700,
                   textAlign: 'right',
                 }}
@@ -459,7 +462,7 @@ export default function QuejasDashboard() {
         style={{ padding: '24px 24px 48px', maxWidth: 1100, margin: '0 auto' }}
       >
         <Card>
-          <div style={{ color: 'var(--warn)', fontSize: 13 }}>
+          <div style={{ color: 'var(--warn-ink)', fontSize: 13 }}>
             No se pudo cargar /data/quejas.json.
           </div>
         </Card>

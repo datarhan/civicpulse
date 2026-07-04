@@ -43,7 +43,9 @@ test.describe('Departamentos (/departamentos)', () => {
     await expect(page.getByText(/Puntos debatidos sin voto transcrito/i).first()).toBeVisible()
     await expect(page.getByText('Quejas ciudadanas activas').first()).toBeVisible()
 
-    // Methodology link anchors to /metodologia
+    // The methodology note sits inside a collapsed <details> — its link is
+    // hidden from the a11y tree until expanded, so open it like a user first.
+    await page.locator('summary', { hasText: /Metodolog/i }).click()
     await expect(page.getByRole('link', { name: /Leer metodolog.a/i })).toHaveAttribute(
       'href',
       '/metodologia',
