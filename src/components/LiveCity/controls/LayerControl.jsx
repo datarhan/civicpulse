@@ -6,7 +6,10 @@
  * appears once its layer actually renders, so the control never lies about what
  * a toggle does. `glyph` is a decorative Unicode marker (aria-hidden).
  */
-export const MAP_LAYERS = [{ key: 'money', label: 'Gasto municipal', glyph: '€' }]
+export const MAP_LAYERS = [
+  { key: 'money', label: 'Gasto municipal', glyph: '€' },
+  { key: 'flood', label: 'Riesgo inundación', glyph: '≈' },
+]
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
