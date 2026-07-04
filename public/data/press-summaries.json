@@ -1,12 +1,31 @@
 {
-  "generatedAt": "2026-07-04T07:27:40.397Z",
+  "generatedAt": "2026-07-03T18:40:08.836Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
   },
   "stats": {
-    "total": 0,
-    "requested": 0
+    "total": 3,
+    "requested": 3
   },
-  "items": []
+  "items": [
+    {
+      "articleId": "1w6ljcb",
+      "fingerprint": "1s96ay0",
+      "summary": "El Ayuntamiento de Riba-roja de Túria planea licitar en 2027 los servicios de limpieza y gestión de residuos, a pesar del aumento de las protestas ciudadanas.",
+      "generatedAt": "2026-07-03T18:39:56.448Z"
+    },
+    {
+      "articleId": "f3wulw",
+      "fingerprint": "wzti7k",
+      "summary": "La Escuela Municipal de Verano Inclusiva ha comenzado sus actividades en Riba-roja de Túria, acogiendo a aproximadamente 700 niños y niñas durante las vacaciones.",
+      "generatedAt": "2026-07-03T18:40:02.311Z"
+    },
+    {
+      "articleId": "1sfw2ms",
+      "fingerprint": "n4cwj6",
+      "summary": "El Ayuntamiento de Riba-roja de Túria ha desmontado un puente militar que conectaba a más de 3.500 vecinos, afectando su acceso tras los eventos provocados por la dana.",
+      "generatedAt": "2026-07-03T18:40:08.835Z"
+    }
+  ]
 }

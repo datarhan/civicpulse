@@ -1,18 +1,130 @@
 {
-  "generatedAt": "2026-07-04T07:27:39.027Z",
+  "generatedAt": "2026-07-03T18:39:46.638Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 0,
+    "total": 3,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 0,
+      "sin-datos": 3,
       "promesa-repetida": 0
     }
   },
-  "items": []
+  "items": [
+    {
+      "claim": {
+        "id": "1w6ljcb-0-dat",
+        "articleId": "1w6ljcb",
+        "articleFingerprint": "1s96ay0",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
+        "articleDate": "2026-07-02T11:16:28.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "unspecified",
+        "verbatim": "Riba-roja prevé en 2027 la contrata de limpieza y residuos",
+        "context": "El artículo menciona que Riba-roja planea lanzar una contratación para servicios de limpieza y gestión de residuos el próximo año.",
+        "topic": "urbanismo",
+        "entities": {
+          "date": "2027",
+          "referencedEntity": "contrata de limpieza y residuos"
+        },
+        "confidence": 0.85,
+        "reasoning": "La frase indica una acción planeada por el municipio para un año específico.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1w6ljcb-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
+        "articleSource": "Las Provincias",
+        "articleSourceHost": "lasprovincias.es",
+        "articleFingerprint": "1s96ay0"
+      }
+    },
+    {
+      "claim": {
+        "id": "f3wulw-0-dat",
+        "articleId": "f3wulw",
+        "articleFingerprint": "wzti7k",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/arranca-la-escuela-municipal-de-verano-inclusiva-con-cerca-de-700-ni%C3%B1os-y-ni%C3%B1as-en-riba-roja-de-t%C3%BAria",
+        "articleDate": "2026-07-01T12:44:04.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "Arranca la Escuela Municipal de Verano Inclusiva con cerca de 700 niños y niñas en Riba-roja de Túria",
+        "context": "El artículo informa sobre el inicio del programa educativo estival municipal.",
+        "topic": "educacion",
+        "entities": {
+          "count": 700,
+          "countUnit": "niños y niñas",
+          "date": "2026-07-01T12:44:04.000Z",
+          "referencedEntity": "Escuela Municipal de Verano Inclusiva"
+        },
+        "confidence": 0.95,
+        "reasoning": "El artículo proporciona un dato específico sobre el número de participantes en la escuela municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "f3wulw-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/arranca-la-escuela-municipal-de-verano-inclusiva-con-cerca-de-700-ni%C3%B1os-y-ni%C3%B1as-en-riba-roja-de-t%C3%BAria",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "wzti7k"
+      }
+    },
+    {
+      "claim": {
+        "id": "1sfw2ms-0-dat",
+        "articleId": "1sfw2ms",
+        "articleFingerprint": "n4cwj6",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
+        "articleDate": "2026-06-30T11:19:38.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "unspecified",
+        "verbatim": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
+        "context": "El artículo menciona que Riba-roja ha procedido al desmantelamiento del puente militar que unía dos zonas afectadas por una catástrofe natural.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 3500,
+          "countUnit": "vecinos",
+          "referencedEntity": "puente militar"
+        },
+        "confidence": 0.8,
+        "reasoning": "El artículo proporciona un dato numérico específico sobre el número de vecinos afectados por la demolición del puente.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1sfw2ms-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
+        "articleSource": "Levante-EMV",
+        "articleSourceHost": "levante-emv.com",
+        "articleFingerprint": "n4cwj6"
+      }
+    }
+  ]
 }
