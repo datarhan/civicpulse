@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-04T13:51:51.302Z",
+  "generatedAt": "2026-07-04T13:51:58.058Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -573,12 +573,14 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "updatedAt": "2026-07-04",
       "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
         "confidence": 0.9,
-        "reviewState": "pending-review"
+        "reviewState": "reviewed",
+        "reviewedAt": "2026-07-04T13:51:58.057Z"
       }
     }
   ]
