@@ -13,6 +13,7 @@ import { MoneyLayer } from './layers/MoneyLayer'
 import { NeighborhoodsLayer } from './layers/NeighborhoodsLayer'
 import { FloodRiskLayer } from './layers/FloodRiskLayer'
 import { CivicPoiLayer } from './layers/CivicPoiLayer'
+import { MetroTrainsLayer } from './layers/MetroTrainsLayer'
 import { LayerControl } from './controls/LayerControl'
 import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
 import { FloodLegend } from './controls/FloodLegend'
@@ -44,7 +45,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // always on; toggleable data layers default off except the money flagship,
   // which shows a static snapshot (slider paused at the latest date) so the
   // landing reads richer on load without auto-animating.
-  const [layers, setLayers] = useState({ money: true, poi: false, flood: false })
+  const [layers, setLayers] = useState({ money: true, poi: false, metro: false, flood: false })
   const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
 
   const { data: tgeo } = useTenderGeo()
@@ -102,6 +103,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           />
         )}
         {layers.poi && <CivicPoiLayer />}
+        {layers.metro && <MetroTrainsLayer />}
       </MapContainer>
 
       <NetworkLegend />

@@ -9,6 +9,7 @@
 export const MAP_LAYERS = [
   { key: 'money', label: 'Gasto municipal', glyph: '€' },
   { key: 'poi', label: 'Servicios', glyph: '◉' },
+  { key: 'metro', label: 'Tren L9', glyph: '◆' },
   { key: 'flood', label: 'Riesgo inundación', glyph: '≈' },
 ]
 

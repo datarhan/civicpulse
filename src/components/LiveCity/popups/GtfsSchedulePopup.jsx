@@ -12,6 +12,11 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
     : gtfs.departures
   // Group by line for the badge.
   const lines = [...new Set(departures.map((d) => d.line))]
+  // Honesty: metro-schedule.json's validThrough can lie in the past (FGV hasn't
+  // republished). Don't claim "válido hasta" a date that has already passed —
+  // present it as a reference year instead.
+  const validDate = gtfs.validThrough ? new Date(gtfs.validThrough) : null
+  const expired = !!validDate && validDate.getTime() < Date.now()
   return (
     <div style={{ fontFamily: 'Outfit, system-ui, sans-serif', minWidth: 260 }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
@@ -107,7 +112,9 @@ export function GtfsSchedulePopup({ gtfs, match, name }) {
           letterSpacing: '.04em',
         }}
       >
-        FGV GTFS · válido hasta {gtfs.validThrough}
+        {expired
+          ? `FGV GTFS · horario ${validDate.getFullYear()} (referencia)`
+          : `FGV GTFS · válido hasta ${gtfs.validThrough}`}
       </div>
       <a
         href="https://www.metrovalencia.es/es/consulta-de-horarios-y-planificador/"
