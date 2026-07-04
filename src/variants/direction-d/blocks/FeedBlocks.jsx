@@ -4,6 +4,7 @@ import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
 import { PALETTE } from '../tokens'
+import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
 
 export function LiveContracts() {
@@ -21,31 +22,12 @@ export function LiveContracts() {
     }).format(n)
 
   return (
-    <div style={{ marginBottom: 18, borderTop: '1px solid ' + PALETTE.hair, paddingTop: 14 }}>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          marginBottom: 8,
-        }}
-      >
-        <div
-          className="mono"
-          style={{
-            fontSize: 10,
-            color: PALETTE.ink60,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-          }}
-        >
-          Contratos adjudicados
-        </div>
-        <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
-          {data.stats.totalContracts} · {fmtEur(data.stats.awardedTotalEuros)}
-        </div>
-      </div>
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader
+        tone="contratos"
+        title="Contratos adjudicados"
+        meta={`${data.stats.totalContracts} · ${fmtEur(data.stats.awardedTotalEuros)}`}
+      />
       {recent.map((c, i) => (
         <div
           key={c.id}
@@ -98,26 +80,8 @@ export function ParticipaBlockD() {
   if (items.length === 0) return null
   const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
   return (
-    <div
-      style={{
-        marginBottom: 18,
-        borderTop: '1px solid ' + PALETTE.hair,
-        paddingTop: 14,
-      }}
-    >
-      <div
-        className="mono"
-        style={{
-          fontSize: 10,
-          color: PALETTE.ink60,
-          letterSpacing: '.12em',
-          textTransform: 'uppercase',
-          fontWeight: 700,
-          marginBottom: 8,
-        }}
-      >
-        Participación ciudadana · {data.stats.total}
-      </div>
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader tone="participa" title="Participación ciudadana" meta={data.stats.total} />
       {items.map((it, i) => (
         <div
           key={it.id}
@@ -165,37 +129,12 @@ export function PressBlockD() {
   const items = (data.items || []).slice(0, 5)
   if (items.length === 0) return null
   return (
-    <div
-      style={{
-        marginBottom: 18,
-        borderTop: '1px solid ' + PALETTE.hair,
-        paddingTop: 14,
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'baseline',
-          justifyContent: 'space-between',
-          marginBottom: 8,
-        }}
-      >
-        <div
-          className="mono"
-          style={{
-            fontSize: 10,
-            color: PALETTE.ink60,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-          }}
-        >
-          Prensa · {data.stats.total} titulares
-        </div>
-        <div className="mono" style={{ fontSize: 10, color: PALETTE.ink50 }}>
-          {data.stats.sources} medios
-        </div>
-      </div>
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader
+        tone="prensa"
+        title={`Prensa · ${data.stats.total} titulares`}
+        meta={`${data.stats.sources} medios`}
+      />
       {items.map((p, i) => (
         <div
           key={p.id}
@@ -256,20 +195,12 @@ export function EventsBlockD() {
   const items = upcomingEvents(data).slice(0, 4)
   if (items.length === 0) return null
   return (
-    <div style={{ marginBottom: 18, borderTop: '1px solid ' + PALETTE.hair, paddingTop: 14 }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 10,
-          color: PALETTE.ink60,
-          letterSpacing: '.12em',
-          textTransform: 'uppercase',
-          fontWeight: 700,
-          marginBottom: 8,
-        }}
-      >
-        Próximos eventos · {data.stats?.upcoming ?? items.length}
-      </div>
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader
+        tone="eventos"
+        title="Próximos eventos"
+        meta={data.stats?.upcoming ?? items.length}
+      />
       {items.map((e, i) => (
         <div
           key={e.id}

@@ -2,6 +2,7 @@ import { useOfficials, partyColor } from '../../../hooks/useOfficials'
 import { usePromises, isPromiseFrozen } from '../../../hooks/usePromises'
 import { usePlenoAgendas } from '../../../hooks/usePlenoAgendas'
 import { PALETTE, MONO } from '../tokens'
+import { SectionHeader } from '../SectionHeader'
 
 export function CoalitionRing() {
   const { loading, error, data } = useOfficials()
@@ -10,18 +11,7 @@ export function CoalitionRing() {
   const items = order.filter((p) => data.composition[p]).map((p) => ({ p, n: data.composition[p] }))
   return (
     <div style={{ marginBottom: 16 }}>
-      <div
-        className="mono"
-        style={{
-          fontSize: 9.5,
-          color: PALETTE.ink60,
-          letterSpacing: '.12em',
-          textTransform: 'uppercase',
-          marginBottom: 6,
-        }}
-      >
-        Pleno · {data.count} escaños
-      </div>
+      <SectionHeader tone="pleno" title="Pleno municipal" meta={`${data.count} escaños`} />
       <div
         style={{
           display: 'flex',
@@ -86,47 +76,31 @@ export function PromesasBlockD() {
   }, {})
   const parties = Object.entries(byParty).sort((a, b) => b[1] - a[1])
   return (
-    <div
-      style={{
-        marginBottom: 18,
-        borderTop: '1px solid ' + PALETTE.hair,
-        paddingTop: 14,
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
-        <div
-          className="mono"
-          style={{
-            fontSize: 10,
-            color: PALETTE.ink60,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-          }}
-        >
-          Seguimiento de promesas
-        </div>
-        {frozen && (
-          <span
-            className="mono"
-            style={{
-              fontSize: 9,
-              color: PALETTE.crit,
-              background: 'rgba(220,38,38,.08)',
-              padding: '1px 6px',
-              borderRadius: 3,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-            }}
-          >
-            LOREG · congelado
-          </span>
-        )}
-        <span className="mono" style={{ fontSize: 10, color: PALETTE.ink50, marginLeft: 'auto' }}>
-          {total}
-        </span>
-      </div>
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader
+        tone="promesas"
+        title="Seguimiento de promesas"
+        meta={total}
+        badge={
+          frozen && (
+            <span
+              className="mono"
+              style={{
+                fontSize: 9,
+                color: PALETTE.crit,
+                background: 'rgba(220,38,38,.08)',
+                padding: '1px 6px',
+                borderRadius: 3,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}
+            >
+              LOREG · congelado
+            </span>
+          )
+        }
+      />
       <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', fontSize: 11, marginBottom: 8 }}>
         {parties.map(([party, n]) => (
           <span
@@ -170,44 +144,31 @@ export function DepartamentosBlockD() {
   const totalDepts = 28
   const totalOfficials = officialsSnap.data?.officials?.length ?? null
   return (
-    <div
-      style={{
-        marginBottom: 18,
-        borderTop: '1px solid ' + PALETTE.hair,
-        paddingTop: 14,
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 6 }}>
-        <div
-          className="mono"
-          style={{
-            fontSize: 10,
-            color: PALETTE.ink60,
-            letterSpacing: '.12em',
-            textTransform: 'uppercase',
-            fontWeight: 700,
-          }}
-        >
-          Rendición de cuentas por concejalía
-        </div>
-        {!frozen && vencidos > 0 && (
-          <span
-            className="mono"
-            style={{
-              fontSize: 9.5,
-              color: PALETTE.warn,
-              background: 'rgba(217,119,6,.10)',
-              padding: '1px 6px',
-              borderRadius: 3,
-              letterSpacing: '.08em',
-              textTransform: 'uppercase',
-              fontWeight: 700,
-            }}
-          >
-            ⚠ {vencidos} plazos vencidos
-          </span>
-        )}
-      </div>
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader
+        tone="rendicion"
+        title="Rendición de cuentas por concejalía"
+        badge={
+          !frozen &&
+          vencidos > 0 && (
+            <span
+              className="mono"
+              style={{
+                fontSize: 9.5,
+                color: PALETTE.warn,
+                background: 'rgba(217,119,6,.10)',
+                padding: '1px 6px',
+                borderRadius: 3,
+                letterSpacing: '.08em',
+                textTransform: 'uppercase',
+                fontWeight: 700,
+              }}
+            >
+              ⚠ {vencidos} plazos vencidos
+            </span>
+          )
+        }
+      />
       <div
         style={{
           display: 'grid',
