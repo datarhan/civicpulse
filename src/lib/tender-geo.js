@@ -31,12 +31,15 @@ export const EMPTY_TENDER_GEO = {
     totalAmount: 0,
     locatedContracts: 0,
     locatedAmount: 0,
+    situatedContracts: 0,
+    situatedAmount: 0,
     danaContracts: 0,
     danaAmount: 0,
     dateMin: null,
     dateMax: null,
   },
   zones: [],
+  places: [],
   assignments: [],
 }
 

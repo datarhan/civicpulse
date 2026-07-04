@@ -1,4 +1,5 @@
 import { stripDiacritics } from './normalize'
+import { resolvePlace, foldTitle, type Candidate, type PlaceKind } from './place-resolver'
 
 export interface ContractInput {
   id: string
@@ -19,6 +20,12 @@ export interface ZoneInput {
   name: string
   centroid: [number, number]
 }
+/** Precise place a contract was situated at (via the multi-source resolver). */
+export interface PlaceRef {
+  kind: PlaceKind
+  name: string
+  matchedText: string
+}
 export interface TenderGeoAssignment {
   id: string
   zones: string[]
@@ -29,11 +36,25 @@ export interface TenderGeoAssignment {
   date: string | null
   contractType: string | null
   categoryTitle: string | null
+  /** Precise point where the contract was situated (street/POI/urb/barrio), or null. */
+  point: [number, number] | null
+  /** Provenance of the point — the named place the title matched, or null. */
+  place: PlaceRef | null
 }
 export interface TenderGeoZone {
   slug: string
   name: string
   centroid: [number, number]
+  contractCount: number
+  amount: number
+  danaAmount: number
+}
+/** One precise place with money situated at it — the pin source for the map. */
+export interface TenderGeoPlace {
+  slug: string
+  name: string
+  kind: PlaceKind
+  point: [number, number]
   contractCount: number
   amount: number
   danaAmount: number
@@ -46,6 +67,9 @@ export interface TenderGeoSnapshot {
     totalAmount: number
     locatedContracts: number
     locatedAmount: number
+    /** Contracts situated at a precise point (street/POI/urb/barrio). */
+    situatedContracts: number
+    situatedAmount: number
     danaContracts: number
     danaAmount: number
     danaAwardedContracts: number
@@ -54,6 +78,7 @@ export interface TenderGeoSnapshot {
     dateMax: string | null
   }
   zones: TenderGeoZone[]
+  places: TenderGeoPlace[]
   assignments: TenderGeoAssignment[]
 }
 
@@ -116,13 +141,18 @@ export function matchContractsToZones(
   contracts: ContractInput[],
   zones: ZoneInput[],
   opts: { generatedAt: string; tendersGeneratedAt?: string | null; geoGeneratedAt?: string | null },
+  candidates: Candidate[] = [],
 ): TenderGeoSnapshot {
   const zoneBySlug = new Map(zones.map((z) => [z.slug, z]))
   const agg = new Map<string, TenderGeoZone>()
+  const placeAgg = new Map<string, TenderGeoPlace>()
   const assignments: TenderGeoAssignment[] = []
   let totalContracts = 0
   let totalAmount = 0
+  let locatedContracts = 0
   let locatedAmount = 0
+  let situatedContracts = 0
+  let situatedAmount = 0
   let danaContracts = 0
   let danaAmount = 0
   let danaAwardedContracts = 0
@@ -136,12 +166,15 @@ export function matchContractsToZones(
     totalContracts++
     totalAmount += amt.amount
 
-    const folded = foldText(c.title || '')
+    const title = c.title || ''
+    const folded = foldText(title)
     const dana = DANA_RE.test(folded)
     if (dana) {
       danaAwardedContracts++
       danaAwardedAmount += amt.amount
     }
+    // Barrio-alias membership (backward-compatible aggregate for /departamentos
+    // + the NeighborhoodsLayer). Kept title-named-only, on the foldText forms.
     const matched: Record<string, string> = {}
     for (const [slug, aliases] of Object.entries(ZONE_ALIASES)) {
       if (!zoneBySlug.has(slug) || aliases.length === 0) continue
@@ -150,7 +183,15 @@ export function matchContractsToZones(
       if (best) matched[slug] = best
     }
     const zoneSlugs = Object.keys(matched)
-    if (zoneSlugs.length === 0) continue
+
+    // Precise point via the multi-source resolver (street/POI/urb/barrio).
+    // POIs are only trusted for works contracts (see resolvePlace).
+    const isWorks = (c.contractType ?? '') === 'construction'
+    const place = resolvePlace(foldTitle(title), candidates, { allowPoi: isWorks })
+
+    // A contract reaches the map if it named a barrio (aggregate) OR resolved to
+    // a precise point. Contracts that are genuinely non-spatial fall through.
+    if (zoneSlugs.length === 0 && !place) continue
 
     const date = dateOf(c)
     assignments.push({
@@ -163,22 +204,48 @@ export function matchContractsToZones(
       date,
       contractType: c.contractType ?? null,
       categoryTitle: c.categoryTitle ?? null,
+      point: place ? place.point : null,
+      place: place ? { kind: place.kind, name: place.name, matchedText: place.matchedText } : null,
     })
-    locatedAmount += amt.amount
-    if (dana) {
-      danaContracts++
-      danaAmount += amt.amount
-    }
     if (date) {
       if (!dateMin || date < dateMin) dateMin = date
       if (!dateMax || date > dateMax) dateMax = date
     }
-    for (const slug of zoneSlugs) {
-      const z = zoneBySlug.get(slug)!
-      const cur = agg.get(slug) ?? {
-        slug,
-        name: z.name,
-        centroid: z.centroid,
+
+    // Zone-based located universe (unchanged semantics — CoverageMeter story).
+    if (zoneSlugs.length > 0) {
+      locatedContracts++
+      locatedAmount += amt.amount
+      if (dana) {
+        danaContracts++
+        danaAmount += amt.amount
+      }
+      for (const slug of zoneSlugs) {
+        const z = zoneBySlug.get(slug)!
+        const cur = agg.get(slug) ?? {
+          slug,
+          name: z.name,
+          centroid: z.centroid,
+          contractCount: 0,
+          amount: 0,
+          danaAmount: 0,
+        }
+        cur.contractCount++
+        cur.amount += amt.amount
+        if (dana) cur.danaAmount += amt.amount
+        agg.set(slug, cur)
+      }
+    }
+
+    // Point-based situated universe (the pin source for the landing map).
+    if (place) {
+      situatedContracts++
+      situatedAmount += amt.amount
+      const cur = placeAgg.get(place.sourceId) ?? {
+        slug: place.sourceId,
+        name: place.name,
+        kind: place.kind,
+        point: place.point,
         contractCount: 0,
         amount: 0,
         danaAmount: 0,
@@ -186,7 +253,7 @@ export function matchContractsToZones(
       cur.contractCount++
       cur.amount += amt.amount
       if (dana) cur.danaAmount += amt.amount
-      agg.set(slug, cur)
+      placeAgg.set(place.sourceId, cur)
     }
   }
 
@@ -196,8 +263,10 @@ export function matchContractsToZones(
     universe: {
       totalContracts,
       totalAmount,
-      locatedContracts: assignments.length,
+      locatedContracts,
       locatedAmount,
+      situatedContracts,
+      situatedAmount,
       danaContracts,
       danaAmount,
       danaAwardedContracts,
@@ -206,6 +275,7 @@ export function matchContractsToZones(
       dateMax,
     },
     zones: [...agg.values()].sort((a, b) => b.amount - a.amount),
+    places: [...placeAgg.values()].sort((a, b) => b.amount - a.amount),
     assignments,
   }
 }
