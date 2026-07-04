@@ -1,4 +1,5 @@
 // @ts-check
+import { useT } from '../../../i18n'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -25,9 +26,10 @@ const titleStyle = {
  * risk colouring. Shown only while the flood layer is toggled on.
  */
 export function FloodLegend() {
+  const t = useT()
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}>Riesgo de inundación</div>
+      <div style={titleStyle}>{t('map.flood.title')}</div>
       <div style={{ fontSize: 11, color: 'rgba(11,15,25,.7)', lineHeight: 1.35 }}>
         Zonas oficiales de peligrosidad · <strong>PATRICOVA</strong> (Generalitat Valenciana / ICV).
         Tonos más intensos = mayor riesgo.

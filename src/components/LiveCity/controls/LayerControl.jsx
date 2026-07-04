@@ -1,16 +1,18 @@
 // @ts-check
+import { useT } from '../../../i18n'
 
 /**
  * Ordered list of toggleable map layers. Add an entry here (and a matching
  * default in the StylizedMap `layers` state) as each layer ships — a chip only
  * appears once its layer actually renders, so the control never lies about what
- * a toggle does. `glyph` is a decorative Unicode marker (aria-hidden).
+ * a toggle does. `glyph` is a decorative Unicode marker (aria-hidden);
+ * `labelKey` is an i18n chrome string.
  */
 export const MAP_LAYERS = [
-  { key: 'money', label: 'Gasto municipal', glyph: '€' },
-  { key: 'poi', label: 'Servicios', glyph: '◉' },
-  { key: 'metro', label: 'Tren L9', glyph: '◆' },
-  { key: 'flood', label: 'Riesgo inundación', glyph: '≈' },
+  { key: 'money', labelKey: 'map.layer.money', glyph: '€' },
+  { key: 'poi', labelKey: 'map.layer.poi', glyph: '◉' },
+  { key: 'metro', labelKey: 'map.layer.metro', glyph: '◆' },
+  { key: 'flood', labelKey: 'map.layer.flood', glyph: '≈' },
 ]
 
 const cardStyle = {
@@ -50,11 +52,12 @@ function chipStyle(on) {
 }
 
 export function LayerControl({ layers, onToggle }) {
+  const t = useT()
   return (
-    <div style={cardStyle} role="group" aria-label="Capas del mapa">
-      <div style={titleStyle}>Capas del mapa</div>
+    <div style={cardStyle} role="group" aria-label={t('map.layers.title')}>
+      <div style={titleStyle}>{t('map.layers.title')}</div>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-        {MAP_LAYERS.map(({ key, label, glyph }) => {
+        {MAP_LAYERS.map(({ key, labelKey, glyph }) => {
           const on = !!layers[key]
           return (
             <button
@@ -67,7 +70,7 @@ export function LayerControl({ layers, onToggle }) {
               <span aria-hidden="true" style={{ fontFamily: "'DM Mono', monospace" }}>
                 {glyph}
               </span>
-              {label}
+              {t(labelKey)}
             </button>
           )
         })}

@@ -29,6 +29,7 @@ npm run scrape:participa            # Votiveu (WordPress) citizen-participation 
 npm run scrape:press                # Google News + infoturia + Ayuntamiento RSS
 npm run scrape:events               # Ayuntamiento events/agenda RSS feed
 npm run scrape:geo                  # OSM Overpass boundary + 21 neighborhoods
+npm run scrape:civic-poi            # OSM Overpass civic POIs (schools/health/parks/sport/culture/civic)
 npm run scrape:metro-network        # OSM Metrovalencia L1–L10 full network + stations
 npm run scrape:fgv-gtfs             # FGV GTFS static schedule (4 local L9/L2 stops)
 npm run scrape:bdns                 # MinHac BDNS subsidies
@@ -453,12 +454,12 @@ Components use **inline styles driven by CSS variables**, not per-component `.cs
 `src/components/Charts.jsx` holds SVG primitives (`Sparkline`, `DualLine`, `Donut`, `BudgetBars`, `Heatmap`).
 
 Leaflet + react-leaflet map surfaces:
-- `src/components/LiveCity/StylizedMap.jsx` — the `/` landing map. CartoDB Voyager tiles + real OSM geometry. Kept deliberately minimal: municipal boundary + OSM neighborhood dots + L9 metro geometry. No synthetic buildings, no fake scores.
+- `src/components/LiveCity/StylizedMap.jsx` — the `/` landing map, decomposed into a thin orchestrator + `network/` (boundary, Railways, FullNetwork, NetworkLegend), `popups/` (StationSchedulePopup, GtfsSchedulePopup, ZonePopup, NeighborhoodPopup), `layers/` (MoneyLayer, NeighborhoodsLayer, CivicPoiLayer, FloodRiskLayer, MetroTrainsLayer), and `controls/` (LayerControl, MoneyTimeSlider, PoiLegend, FloodLegend). A custom top-left `LayerControl` toggles data layers over the CartoDB Voyager base; each layer is conditionally mounted so a hidden layer's rAF/WMS never runs. **Layers:** money-by-zone (tender-geo, `€` bubbles + a 2018→2025 time-slider + DANA toggle + click-to-drill ZonePopup, on by default/static); interactive neighborhoods (the 21 OSM barrios open an aggregated civic card — population + located spend + quejas, always on); civic services (OSM POI, off); schematic L9 train (representative glide, off); PATRICOVA flood-risk WMS (off). **No synthetic buildings, no fake scores** — every layer traces to real data, with honest empty-states and a "representativo · horario 2025" disclosure on the train. Pure logic is unit-tested in `src/lib/{tender-geo,neighborhood-aggregate,civic-poi,metro-train}.js`.
 - `src/components/QuejasHeatmap.jsx` — `/quejas` heatmap. One `Circle` per OSM neighborhood with ≥1 queja; radius ∝ √count, color encodes health signal (silencio-rate → red/amber/green/civic-blue). Hidden when there's nothing to show.
 
 ## Real data pipeline
 
-**24 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**25 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -473,7 +474,7 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (24):
+# Autonomous scrapers (25):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-transparency.ts        →  src/scraper/transparency.ts      →  public/data/transparency-docs.json
 scripts/scrape-ispa.ts                →  src/scraper/ispa.ts              →  public/data/ispa.json
@@ -484,6 +485,7 @@ scripts/scrape-participa.ts           →  src/scraper/participa.ts         → 
 scripts/scrape-press.ts               →  src/scraper/press.ts             →  public/data/press.json
 scripts/scrape-events.ts              →  src/scraper/events.ts            →  public/data/events.json
 scripts/scrape-geo.ts                 →  src/scraper/geo.ts               →  public/data/geo.json
+scripts/scrape-civic-poi.ts           →  src/scraper/civic-poi.ts         →  public/data/civic-poi.json
 scripts/scrape-metro-network.ts       →  (inline parser)                  →  public/data/metro-network.json
 scripts/scrape-fgv-gtfs.ts            →  (inline parser)                  →  public/data/metro-schedule.json
 scripts/scrape-bdns.ts                →  src/scraper/bdns.ts              →  public/data/bdns.json
@@ -525,6 +527,8 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Citizen participation (6 posts: 4 actividades + 2 encuestas) | `participa.ts` → `participa.json` | WordPress REST API at `participa.ribarroja.es/wp-json/wp/v2/posts` + `/categories` | `/plenos` "Participación ciudadana" grid; Direction D editorial column (`ParticipaBlockD`) |
 | Press (multi-source · ~150 headlines from ~18 outlets + the Ayuntamiento) | `press.ts` → `press.json` | Three feeds merged with FNV fingerprint dedup: (1) Google News RSS `news.google.com/rss/search?q="Riba-roja de Túria"` covering national + regional Spanish outlets (Levante-EMV, Las Provincias, Valencia Plaza, elDiario.es, Cadena SER, Comunica GVA, …); (2) `infoturia.com/riba-roja-de-turia/feed/` — direct WordPress feed of the local comarcal paper *Periòdic del Camp de Túria*, catches stories the Google News indexer misses; (3) `ribarroja.es/es/noticias/rss.xml` — the **Ayuntamiento's OWN** Drupal news feed (primary source), stamped `official:true` + a `Sección` taxonomy by `parseOfficialNewsRss`, merged FIRST so its attribution wins on a fingerprint collision (needs a Mozilla-leading UA for the ribarroja.es WAF). Each feed has its own parser (`parseGoogleNewsRss` for the " - Pub" suffix quirk; `parseStandardRss` for plain WordPress RSS; `parseOfficialNewsRss` for the official Drupal feed + section lift); one feed failing does not block the others. | `/laboratorio` + Direction D editorial column (`PressBlockD`, with an "Oficial" badge on town-hall rows) |
 | Geo (municipal boundary 484 pts + 21 neighborhoods) | `geo.ts` → `geo.json` | **OSM Overpass API** — relation 342356 stitched from outer ways + `place=neighbourhood/suburb/quarter/hamlet/village` inside the muni area | Direction D StylizedMap: dashed boundary polyline + OSM neighborhood dots/labels |
+| Civic POIs (32 named: schools/health/parks/sport/culture/civic) | `civic-poi.ts` → `civic-poi.json` | **OSM Overpass API** — `amenity`/`leisure`/`healthcare`/`tourism` civic tags inside the `wikidata=Q23701` area. Requires a `name` on the noisy `leisure` bucket so the ~1.5k private backyard pools never reach the map; parser drops unnamed + dedups node/area | Direction D StylizedMap "Servicios" layer (category-coloured markers + legend) |
+| Flood-risk zones (no snapshot — live WMS) | *(none — WMS overlay)* | **PATRICOVA** WMS · Generalitat Valenciana / ICV `carto.icv.gva.es/…/WMSServer` layer 59 "Riesgo de Inundación" (EPSG:3857) | Direction D StylizedMap "Riesgo inundación" layer (`WMSTileLayer`, off by default) |
 | Full Metrovalencia network (10 lines L1–L10, ~1k tracks, 215 stations) | `scrape-metro-network.ts` → `metro-network.json` | **OSM Overpass API** — every `route=subway\|tram\|light_rail` relation tagged `network=Metrovalencia`/`operator=FGV`; platform polygons filtered out. Brand colours sourced from metrovalencia.es icon SVGs | Direction D StylizedMap `FullNetwork` layer: thin coloured polylines + small station dots across the whole region, plus a line-legend pill row |
 | Metrovalencia GTFS static schedule (L9 + L2 at 4 local stations) | `scrape-fgv-gtfs.ts` → `metro-schedule.json` | **MobilityDatabase mdb-1054** mirror of FGV's Google-Transit feed (FGV's own URL is inside-CDN only). Parses `calendar_dates.txt` + `stop_times.txt` + `trips.txt`; services classified by dominant day-of-week | Direction D topbar L9 chip (real next departure) + StylizedMap `GtfsSchedulePopup` (both directions per line on click) |
 | Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
@@ -580,7 +584,8 @@ loop.
 - `usePlenoVotes` + `OUTCOME_LABEL` / `OUTCOME_TONE` / `DIRECTION_LABEL` / `DIRECTION_TONE` + `tallyByBloc()`
 - `useCtbg`
 - `useBop` + `formatBopDate`
-- `useTenderGeo` + `src/lib/tender-geo.js` (`zoneAmountsAt` / `topContractors` / `filterContracts`)
+- `useTenderGeo` + `src/lib/tender-geo.js` (`zoneAmountsAt` / `moneyRadiusMeters` / `topContractors` / `filterContracts`)
+- `useCivicPoi` + `src/lib/civic-poi.js` (`groupPoiByCategory` / `POI_CATEGORIES`) — landing map "Servicios" layer
 - `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
 
 ### Nightly refresh

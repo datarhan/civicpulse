@@ -1,6 +1,7 @@
 // @ts-check
 import { useCivicPoi } from '../../../hooks/useCivicPoi'
 import { groupPoiByCategory } from '../../../lib/civic-poi'
+import { useT } from '../../../i18n'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -24,12 +25,13 @@ const titleStyle = {
 /** Legend for the civic-POI layer: one row per present category with a colour
  *  swatch + count. Omits empty categories. Shown only while the layer is on. */
 export function PoiLegend() {
+  const t = useT()
   const { data } = useCivicPoi()
   const grouped = groupPoiByCategory(data?.pois)
   if (grouped.size === 0) return null
   return (
     <div style={cardStyle}>
-      <div style={titleStyle}>Servicios públicos</div>
+      <div style={titleStyle}>{t('map.poi.title')}</div>
       <div style={{ display: 'grid', gap: 3 }}>
         {[...grouped.entries()].map(([key, { label, color, items }]) => (
           <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11 }}>
@@ -58,7 +60,7 @@ export function PoiLegend() {
           fontFamily: "'DM Mono', monospace",
         }}
       >
-        OpenStreetMap · datos abiertos
+        {t('map.poi.source')}
       </div>
     </div>
   )

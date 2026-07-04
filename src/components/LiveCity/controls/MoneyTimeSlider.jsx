@@ -1,6 +1,7 @@
 // @ts-check
 import { useEffect, useRef, useState } from 'react'
 import { fmtDateShort } from '../../../lib/formatters'
+import { useT } from '../../../i18n'
 
 const cardStyle = {
   background: 'rgba(255,255,255,.94)',
@@ -20,6 +21,7 @@ const cardStyle = {
  * unmount / toggle-off. Mirrors Presupuesto/TimeSlider, re-themed for the map.
  */
 export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleDana }) {
+  const t = useT()
   const [playing, setPlaying] = useState(false)
   const raf = useRef(0)
   const acc = useRef(value)
@@ -73,7 +75,7 @@ export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleD
             textTransform: 'uppercase',
           }}
         >
-          Gasto situado
+          {t('map.money.title')}
         </span>
         <button
           type="button"
@@ -91,7 +93,7 @@ export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleD
             color: danaOnly ? '#A85F00' : 'rgba(11,15,25,.6)',
           }}
         >
-          Solo DANA
+          {t('map.money.dana')}
         </button>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -101,9 +103,7 @@ export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleD
             if (value >= max) onChange(min)
             setPlaying((p) => !p)
           }}
-          aria-label={
-            playing ? 'Pausar línea de tiempo del gasto' : 'Reproducir línea de tiempo del gasto'
-          }
+          aria-label={playing ? t('map.money.pause') : t('map.money.play')}
           style={{ all: 'unset', cursor: 'pointer', fontSize: 15, lineHeight: 1 }}
         >
           {playing ? '⏸' : '▶'}
@@ -134,7 +134,7 @@ export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleD
         <span className="mono" style={{ fontSize: 11, fontWeight: 700, color: '#0B0F19' }}>
           {label}
         </span>
-        <span style={{ fontSize: 9.5, color: 'rgba(11,15,25,.5)' }}>obra acumulada</span>
+        <span style={{ fontSize: 9.5, color: 'rgba(11,15,25,.5)' }}>{t('map.money.accum')}</span>
       </div>
     </div>
   )
