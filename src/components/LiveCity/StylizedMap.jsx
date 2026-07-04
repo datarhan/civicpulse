@@ -42,10 +42,11 @@ function MapAttribution() {
 
 export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // Which data layers are visible. Base layers (boundary/network/barrios) are
-  // always on; toggleable data layers default off except the money flagship,
-  // which shows a static snapshot (slider paused at the latest date) so the
-  // landing reads richer on load without auto-animating.
-  const [layers, setLayers] = useState({ money: true, poi: false, metro: false, flood: false })
+  // always on; toggleable data layers default off except the Servicios
+  // (civic-POI) flagship, so the landing reads richer on load with the public
+  // facilities in view. Money (static snapshot at the latest date) / metro /
+  // flood are opt-in via their chips.
+  const [layers, setLayers] = useState({ money: false, poi: true, metro: false, flood: false })
   const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
 
   const { data: tgeo } = useTenderGeo()
