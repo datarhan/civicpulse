@@ -63,6 +63,7 @@
     "promote-vote": "npx tsx scripts/promote-pleno-vote-suggestion.ts",
     "compute:dept-stats": "npx tsx scripts/compute-dept-stats.ts",
     "compute:tender-geo": "npx tsx scripts/compute-tender-geo.ts",
+    "build:cpv-labels": "npx tsx scripts/build-cpv-labels.ts",
     "extract:pleno-votes": "npx tsx scripts/extract-pleno-votes.ts",
     "extract:all-pleno-votes": "npx tsx scripts/extract-pleno-votes.ts --all --engine llm --min-confidence 0.5",
     "extract:pleno-claims": "npx tsx scripts/extract-pleno-claims.ts",

@@ -2,6 +2,7 @@
 import { useMemo } from 'react'
 import { Circle, Popup, Tooltip } from 'react-leaflet'
 import { moneyRadiusMeters, zoneAmountsAt } from '../../../lib/tender-geo'
+import { useCpvLabels } from '../../../hooks/useCpvLabels'
 import { ZonePopup } from '../popups/ZonePopup'
 
 const fmtEur = (n) =>
@@ -20,6 +21,7 @@ const fmtEur = (n) =>
  * Real data only: zones carry money solely when a contract title named them.
  */
 export function MoneyLayer({ snapshot, at, danaOnly, contractsById }) {
+  const { data: cpv } = useCpvLabels()
   const amounts = useMemo(
     () => zoneAmountsAt(snapshot?.assignments, { at, danaOnly }),
     [snapshot, at, danaOnly],
@@ -59,6 +61,7 @@ export function MoneyLayer({ snapshot, at, danaOnly, contractsById }) {
                 snapshot={snapshot}
                 contractsById={contractsById}
                 danaOnly={danaOnly}
+                cpvDict={cpv?.codes}
               />
             </Popup>
           </Circle>
