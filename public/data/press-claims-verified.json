@@ -1,59 +1,145 @@
 {
-  "generatedAt": "2026-07-03T18:39:46.638Z",
+  "generatedAt": "2026-07-04T08:43:23.258Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 3,
+    "total": 4,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 3,
+      "sin-datos": 4,
       "promesa-repetida": 0
     }
   },
   "items": [
     {
       "claim": {
-        "id": "1w6ljcb-0-dat",
-        "articleId": "1w6ljcb",
-        "articleFingerprint": "1s96ay0",
-        "articleSource": "Las Provincias",
-        "articleSourceHost": "lasprovincias.es",
-        "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
-        "articleDate": "2026-07-02T11:16:28.000Z",
+        "id": "i93nqo-0-acu",
+        "articleId": "i93nqo",
+        "articleFingerprint": "pihqa0",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
+        "articleDate": "2026-07-03T15:20:11.000Z",
         "segmentIndex": 0,
         "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "unspecified",
-        "verbatim": "Riba-roja prevé en 2027 la contrata de limpieza y residuos",
-        "context": "El artículo menciona que Riba-roja planea lanzar una contratación para servicios de limpieza y gestión de residuos el próximo año.",
-        "topic": "urbanismo",
+        "type": "acusacion_publica",
+        "attributedSource": "opposition",
+        "verbatim": "El PSOE de Riba-roja critica al PP per convocar un ple extraordinari 72 hores abans de l'ordinari",
+        "context": "El PSOE de Riba-roja critica al PP per convocar un ple extraordinari 72 hores abans de l'ordinari que costarà 4.000 euros",
+        "topic": "transparencia",
         "entities": {
-          "date": "2027",
-          "referencedEntity": "contrata de limpieza y residuos"
+          "count": 72,
+          "countUnit": "hores",
+          "referencedEntity": "PP"
         },
-        "confidence": 0.85,
-        "reasoning": "La frase indica una acción planeada por el municipio para un año específico.",
+        "accusationSubtype": "factual",
+        "confidence": 0.6,
+        "reasoning": "Es una crítica de l'oposició sobre un fet temporal verificable (diferència d'hores entre convocatòries de plens) que es pot contrastar amb les actes municipals.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "1w6ljcb-0-dat",
+        "claimId": "i93nqo-0-acu",
         "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQUW9pVEFMc1NpRjhydG5DUjBSLVJOc05TLU4tM1ZYYmRNOGNIMXpKek50R09oNE8tYlNkVC1zLWV0czAtc3FLTXg0bk5lbW1qLXlCNFlOMjNpdUh5Zm5wQ2tQVm1CbmFFdGVDVGcwWmwzRnRkQS15ejlRRFZrZWhldXR6Q1FSVTZadDFOdW96YW02bTdtNkQ0WlZHSVpwQ3p3bDlQeGxYUHU5bTNTM3VvRmJKMnQ3aVBrd2fSAb8BQVVfeXFMTzNWR0RVSWhhUGgxUUVwSm03NnI0cUNjT0VHSHJpeV9GTXZNWmEyR3V1REV4UXBjcmxnaC12emtfX2NJV0w2OUt0ODZGWVZlVHFZSDZoX1hHTG5hQ2NZSjl3MTR5MnAxQm9Jd2lSaXhkZk5QVVJuT2x2eUZ5NE5USjNUYmp3elZ5SUdBZTM5TFI5a0dSc0RSMlFkajdMdjcxUGFEYmg0NlNvVTJWMDY1TEFsN3VUUHVnUGd4dzU4alk?oc=5",
-        "articleSource": "Las Provincias",
-        "articleSourceHost": "lasprovincias.es",
-        "articleFingerprint": "1s96ay0"
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "pihqa0"
       }
     },
     {
       "claim": {
-        "id": "f3wulw-0-dat",
+        "id": "i93nqo-1-num",
+        "articleId": "i93nqo",
+        "articleFingerprint": "pihqa0",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
+        "articleDate": "2026-07-03T15:20:11.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "unspecified",
+        "verbatim": "que costarà 4.000 euros",
+        "context": "critica al PP per convocar un ple extraordinari 72 hores abans de l'ordinari que costarà 4.000 euros",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 4000,
+          "referencedEntity": "ple extraordinari"
+        },
+        "confidence": 0.55,
+        "reasoning": "S'atribueix un cost concret (4.000 euros) a la convocatòria del ple extraordinari, xifra verificable contra el pressupost municipal, però no queda clar qui l'afirma.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "i93nqo-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "pihqa0"
+      }
+    },
+    {
+      "claim": {
+        "id": "1ilpvg1-0-dat",
+        "articleId": "1ilpvg1",
+        "articleFingerprint": "e4vfjg",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
+        "articleDate": "2026-07-03T10:21:41.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "dato_municipal",
+        "attributedSource": "municipal",
+        "verbatim": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
+        "context": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
+        "topic": "seguridad",
+        "entities": {
+          "date": "2026-07-03",
+          "referencedEntity": "Plan Territorial Municipal de Emergencias"
+        },
+        "confidence": 0.75,
+        "reasoning": "Es un dato municipal verificable: la aprobación oficial de un plan de emergencias puede contrastarse con actas o boletines oficiales del ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1ilpvg1-0-dat",
+        "verdict": "sin-datos",
+        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "evidence": [],
+        "checkedAgainst": [],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "e4vfjg"
+      }
+    },
+    {
+      "claim": {
+        "id": "f3wulw-0-num",
         "articleId": "f3wulw",
         "articleFingerprint": "wzti7k",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
@@ -62,68 +148,36 @@
         "articleDate": "2026-07-01T12:44:04.000Z",
         "segmentIndex": 0,
         "segmentKind": "title",
-        "type": "dato_municipal",
+        "type": "afirmacion_numerica",
         "attributedSource": "municipal",
         "verbatim": "Arranca la Escuela Municipal de Verano Inclusiva con cerca de 700 niños y niñas en Riba-roja de Túria",
-        "context": "El artículo informa sobre el inicio del programa educativo estival municipal.",
+        "context": "Titular publicado por el Ayuntamiento de Riba-roja de Túria (01/07/2026): Arranca la Escuela Municipal de Verano Inclusiva con cerca de 700 niños y niñas en Riba-roja de Túria.",
         "topic": "educacion",
         "entities": {
           "count": 700,
           "countUnit": "niños y niñas",
-          "date": "2026-07-01T12:44:04.000Z",
           "referencedEntity": "Escuela Municipal de Verano Inclusiva"
         },
-        "confidence": 0.95,
-        "reasoning": "El artículo proporciona un dato específico sobre el número de participantes en la escuela municipal.",
+        "confidence": 0.6,
+        "reasoning": "Es una cifra de participantes en un programa municipal, contrastable con los registros de inscripción del Ayuntamiento.",
         "requiresHumanApproval": true
       },
       "verification": {
-        "claimId": "f3wulw-0-dat",
+        "claimId": "f3wulw-0-num",
         "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
         "articleUrl": "https://www.ribarroja.es/es/noticia/arranca-la-escuela-municipal-de-verano-inclusiva-con-cerca-de-700-ni%C3%B1os-y-ni%C3%B1as-en-riba-roja-de-t%C3%BAria",
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "wzti7k"
-      }
-    },
-    {
-      "claim": {
-        "id": "1sfw2ms-0-dat",
-        "articleId": "1sfw2ms",
-        "articleFingerprint": "n4cwj6",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
-        "articleDate": "2026-06-30T11:19:38.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "unspecified",
-        "verbatim": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana",
-        "context": "El artículo menciona que Riba-roja ha procedido al desmantelamiento del puente militar que unía dos zonas afectadas por una catástrofe natural.",
-        "topic": "movilidad",
-        "entities": {
-          "count": 3500,
-          "countUnit": "vecinos",
-          "referencedEntity": "puente militar"
-        },
-        "confidence": 0.8,
-        "reasoning": "El artículo proporciona un dato numérico específico sobre el número de vecinos afectados por la demolición del puente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sfw2ms-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNdkwxcWJZOXRjajlDelVISGFiVVZxS0VDckdqNk4zLVhKcTh6X1BSZzc4UGpUTy10UmtpdDRyUVdyMjJNS01WSmF6NS1BbFJSVU42WVhGVTdMS3E3NVFQbVg4ODRTMnFqOERPVk13eGlycng0UGwzSzc5cDdzZl82SVE2U1EwVXR6RUNVVFdyLURCZXNmdFp0OTBLUWd0ckk4dDFibGhnaTJVWDJZeGdtcGtSeDMxOTNrN1Y0WHBXcU85VkYyZkHSAcsBQVVfeXFMUEJDNE1fTnAxTURibnlfS2llY1lZU011TGg4eDNzTDByeWM0RlBYVjN5RXRnYzl1aW5TN2RYM0ViU0V3NzhOMnFIZUJmZlE5ZjRQby12THl4UTR3Q0U1cncydVpETjlhYVEzMmdLS3hQWmZwM0tUbVVwV1RKYi1KV0tiVnpxM0YwVGFTeEFPcklmWHhtQVZGR0ZWdi1IWmtSVHRBSUt1UlliaWNxYjV1N29KcHVGYUNxd2JIeEdvaUpTdWp5TC1jN3d5dE0?oc=5",
-        "articleSource": "Levante-EMV",
-        "articleSourceHost": "levante-emv.com",
-        "articleFingerprint": "n4cwj6"
       }
     }
   ]

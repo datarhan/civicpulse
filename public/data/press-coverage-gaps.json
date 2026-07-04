@@ -1,9 +1,31 @@
 {
-  "generatedAt": "2026-07-03T18:40:10.310Z",
+  "generatedAt": "2026-07-04T08:43:52.170Z",
   "windowDays": 14,
-  "items": [],
+  "items": [
+    {
+      "kind": "promise",
+      "refId": "ac-psoe-1ah9zqk",
+      "label": "Descuento en la tasa de residuos por anomalías en el servicio",
+      "date": "2026-07-02",
+      "keyword": ""
+    },
+    {
+      "kind": "promise",
+      "refId": "ac-psoe-pl3lsq",
+      "label": "Renovación de 350 contenedores de basura",
+      "date": "2026-07-02",
+      "keyword": ""
+    },
+    {
+      "kind": "promise",
+      "refId": "ac-psoe-1v0679f",
+      "label": "Plan de limpieza integral en la zona natural del río Turia tras retirar el puente militar",
+      "date": "2026-06-30",
+      "keyword": ""
+    }
+  ],
   "stats": {
     "plenoItemsUncovered": 0,
-    "promisesUncovered": 0
+    "promisesUncovered": 3
   }
 }

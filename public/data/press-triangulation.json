@@ -1,83 +1,18 @@
 {
-  "generatedAt": "2026-07-03T18:40:10.304Z",
+  "generatedAt": "2026-07-04T08:43:52.168Z",
   "clusters": [
     {
       "clusterId": "1pb4pmk",
       "articleIds": [
         "1gdzlug",
-        "1gvtbet",
-        "lfzdj"
+        "1gvtbet"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV",
         "Periòdic del Camp de Túria"
       ],
-      "earliestDate": "2026-06-17T07:00:00.000Z",
+      "earliestDate": "2026-06-17T16:32:06.000Z",
       "latestDate": "2026-06-18T11:28:05.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "13sc0xb",
-      "articleIds": [
-        "1ipta7w",
-        "qogbo0"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-06-08T07:00:00.000Z",
-      "latestDate": "2026-06-08T12:51:52.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "16u4794",
-      "articleIds": [
-        "42py3v",
-        "l7u54j"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-06-16T07:00:00.000Z",
-      "latestDate": "2026-06-16T11:19:13.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1v8db01",
-      "articleIds": [
-        "1iqks4s",
-        "rd3l4s"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-06-11T07:00:00.000Z",
-      "latestDate": "2026-06-11T11:28:21.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -89,7 +24,7 @@
     }
   ],
   "stats": {
-    "totalClusters": 4,
-    "triangulated3Plus": 1
+    "totalClusters": 1,
+    "triangulated3Plus": 0
   }
 }
