@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T09:57:13.315Z",
+  "generatedAt": "2026-07-04T13:46:01.633Z",
   "source": {
     "platform": "CivicPulse bot · Telegram capture",
     "spec": "Open311 GeoReport v2 (extended)"
@@ -40,7 +40,8 @@
       "concejalia_area": "Urbanismo",
       "concejal_slug": "teresa-pozuelo-martin",
       "registro_entry_number": null,
-      "registered_at": null
+      "registered_at": null,
+      "photo": "/data/quejas-photos/q-kjy6xsvg.jpg"
     }
   ]
 }
