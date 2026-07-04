@@ -114,6 +114,15 @@ describe('press-analytics — computeTrustIndicators', () => {
     expect(x?.verifiedRatio).toBe(1)
   })
 
+  it('leaves outlet ratios null (→ "—") when the outlet has no audited claims', () => {
+    const press = [makePress({ id: 'a-1', source: 'Unaudited Outlet', sourceHost: 'u.test' })]
+    const report = computeTrustIndicators({ press, verified: [], now: NOW })
+    const o = report.outlets.find((x) => x.outlet === 'Unaudited Outlet')
+    expect(o?.articleCount).toBe(1)
+    expect(o?.verifiedRatio).toBeNull()
+    expect(o?.contradictedRatio).toBeNull()
+  })
+
   it('opinionFraction reflects opinativa accusation share', () => {
     const press = [makePress({ id: 'a-1' })]
     const v1 = makeVerifiedRow({
@@ -126,10 +135,27 @@ describe('press-analytics — computeTrustIndicators', () => {
     const report = computeTrustIndicators({ press, verified: [v1, v2], now: NOW })
     expect(report.articles[0].indicators.opinionFraction).toBeCloseTo(0.5, 2)
   })
+
+  it('does NOT award the "not opinion" point to an article with zero claims', () => {
+    // Non-local outlet, dated, no claims. The opinion axis must contribute 0
+    // (nothing was assessed) — not a free +1. So score = datedArticle only.
+    const press = [makePress({ id: 'a-1', source: 'El País', sourceHost: 'elpais.com' })]
+    const report = computeTrustIndicators({ press, verified: [], now: NOW })
+    expect(report.articles[0].indicators.opinionFraction).toBe(0)
+    expect(report.articles[0].score).toBe(1)
+  })
+
+  it('awards the "not opinion" point when claims exist and none are opinativa', () => {
+    // dated(1) + municipalSourceMatch(1, evidence) + factualClaimsPresent(1) + notOpinion(1) = 4
+    const press = [makePress({ id: 'a-1', source: 'El País', sourceHost: 'elpais.com' })]
+    const verified = [makeVerifiedRow({ id: 'a-1-0-num', articleId: 'a-1' })]
+    const report = computeTrustIndicators({ press, verified, now: NOW })
+    expect(report.articles[0].score).toBe(4)
+  })
 })
 
 describe('press-analytics — computeTriangulation', () => {
-  it('emits a cluster when ≥2 outlets share a fingerprint', () => {
+  it('emits a cluster when ≥2 outlets carry the same story', () => {
     const press = [
       makePress({ id: 'a-1', source: 'Outlet A' }),
       makePress({ id: 'a-2', source: 'Outlet B' }),
@@ -169,9 +195,102 @@ describe('press-analytics — computeTriangulation', () => {
     )
   })
 
-  it('skips fingerprints covered by only one outlet', () => {
+  it('skips a story covered by only one outlet', () => {
     const press = [makePress({ id: 'a-1', source: 'Solo' })]
     const r = computeTriangulation({ press, verified: [], now: NOW })
+    expect(r.clusters.length).toBe(0)
+  })
+})
+
+describe('press-analytics — computeTriangulation (cross-outlet story clustering)', () => {
+  // The feed is deduped by exact-title fingerprint upstream (press.ts), so two
+  // outlets covering the same story ALWAYS arrive with different fingerprints.
+  // Clustering must therefore key on title *similarity*, not the fingerprint.
+  it('clusters two outlets on the same story despite different headlines + fingerprints', () => {
+    const press = [
+      makePress({
+        id: 'a-1',
+        source: 'Levante-EMV',
+        sourceHost: 'levante-emv.com',
+        title: 'Riba-roja adjudica la obra del nuevo polideportivo por 2,3 millones',
+        fingerprint: 'fp-a',
+      }),
+      makePress({
+        id: 'a-2',
+        source: 'Las Provincias',
+        sourceHost: 'lasprovincias.es',
+        title: 'El nuevo polideportivo de Riba-roja se adjudica por 2,3 millones de euros',
+        fingerprint: 'fp-b',
+      }),
+    ]
+    const r = computeTriangulation({ press, verified: [], now: NOW })
+    expect(r.clusters.length).toBe(1)
+    expect(r.clusters[0].outlets).toEqual(expect.arrayContaining(['Las Provincias', 'Levante-EMV']))
+    expect(r.clusters[0].articleIds).toEqual(expect.arrayContaining(['a-1', 'a-2']))
+  })
+
+  it('does not cluster unrelated stories from different outlets', () => {
+    const press = [
+      makePress({
+        id: 'a-1',
+        source: 'A',
+        sourceHost: 'a.test',
+        title: 'Riba-roja aprueba el presupuesto municipal para 2026',
+        fingerprint: 'fp-a',
+      }),
+      makePress({
+        id: 'a-2',
+        source: 'B',
+        sourceHost: 'b.test',
+        title: 'El club de balonmano local asciende a primera división',
+        fingerprint: 'fp-b',
+      }),
+    ]
+    const r = computeTriangulation({ press, verified: [], now: NOW })
+    expect(r.clusters.length).toBe(0)
+  })
+
+  it('does not triangulate two similar articles from the same outlet', () => {
+    const press = [
+      makePress({
+        id: 'a-1',
+        source: 'Levante-EMV',
+        sourceHost: 'levante-emv.com',
+        title: 'Riba-roja adjudica el nuevo polideportivo por 2,3 millones',
+        fingerprint: 'fp-a',
+      }),
+      makePress({
+        id: 'a-2',
+        source: 'Levante-EMV',
+        sourceHost: 'levante-emv.com',
+        title: 'El nuevo polideportivo de Riba-roja se adjudica por 2,3 millones',
+        fingerprint: 'fp-b',
+      }),
+    ]
+    const r = computeTriangulation({ press, verified: [], now: NOW })
+    expect(r.clusters.length).toBe(0)
+  })
+
+  it('excludes articles older than the rolling window', () => {
+    const press = [
+      makePress({
+        id: 'a-1',
+        source: 'A',
+        sourceHost: 'a.test',
+        title: 'Riba-roja adjudica el nuevo polideportivo por 2,3 millones',
+        fingerprint: 'fp-a',
+        date: '2026-05-19T10:00:00Z',
+      }),
+      makePress({
+        id: 'a-2',
+        source: 'B',
+        sourceHost: 'b.test',
+        title: 'El nuevo polideportivo de Riba-roja se adjudica por 2,3 millones',
+        fingerprint: 'fp-b',
+        date: '2026-01-01T10:00:00Z', // >30 days before NOW
+      }),
+    ]
+    const r = computeTriangulation({ press, verified: [], now: NOW, windowDays: 30 })
     expect(r.clusters.length).toBe(0)
   })
 })

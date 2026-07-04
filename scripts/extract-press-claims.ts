@@ -144,6 +144,21 @@ async function main() {
       `triage=${result.stats.triageHits}/${result.stats.total} hits, ` +
       `body=${result.stats.bodyFetches} fetches`,
   )
+
+  // Don't let a backend-less run masquerade as a clean empty extract. If the
+  // LLM was unreachable for any item, the snapshot is incomplete/untrustworthy
+  // — flag it loudly + exit non-zero so a nightly/cron surfaces it (❌ in the
+  // step log) instead of silently committing an all-empty file behind a green
+  // tick. The partial snapshot is still written above, so progress is kept.
+  if (result.stats.llmUnavailable > 0) {
+    console.error(
+      `[extract:press-claims] WARNING: LLM backend unavailable for ` +
+        `${result.stats.llmUnavailable}/${result.stats.total} items ` +
+        `(backend=${process.env.LLM_BACKEND ?? 'auto'}). The suggestions ` +
+        `snapshot is incomplete — fix the backend and re-run.`,
+    )
+    process.exitCode = 1
+  }
 }
 
 main().catch((err) => {

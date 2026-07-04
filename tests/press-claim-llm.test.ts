@@ -251,4 +251,18 @@ describe('press-claim-llm — extractPressClaimsBatch', () => {
     expect(result.stats.triageHits).toBe(1)
     expect(result.stats.bodyFetches).toBe(0)
   })
+
+  it('counts llm-unavailable items so a backend-less run is not silently empty', async () => {
+    // Every call returns null → the circuit trips → every item's triage is
+    // stamped 'llm-unavailable'. The batch must surface that count so the CLI
+    // can distinguish "no checkable claims" from "no working LLM".
+    const caller = vi.fn().mockResolvedValue(null)
+    const items = [
+      makeItem({ id: 'a-001', fingerprint: 'fp-001' }),
+      makeItem({ id: 'a-002', fingerprint: 'fp-002' }),
+    ]
+    const result = await extractPressClaimsBatch(items, { caller: caller as any })
+    expect(result.stats.claimsEmitted).toBe(0)
+    expect(result.stats.llmUnavailable).toBe(2)
+  })
 })

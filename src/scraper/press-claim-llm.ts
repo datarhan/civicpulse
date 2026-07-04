@@ -261,17 +261,28 @@ export async function extractPressClaimsBatch(
 ): Promise<{
   claims: PressClaim[]
   triages: Array<{ articleId: string; triage: PressTriageResponse; bodyUsed: boolean }>
-  stats: { total: number; triageHits: number; bodyFetches: number; claimsEmitted: number }
+  stats: {
+    total: number
+    triageHits: number
+    bodyFetches: number
+    claimsEmitted: number
+    // Items whose triage failed because the LLM backend was unreachable
+    // (circuit tripped). Lets the CLI tell "no checkable claims" (legit empty)
+    // apart from "no working LLM" (a run that must NOT masquerade as green).
+    llmUnavailable: number
+  }
 }> {
   const all: PressClaim[] = []
   const triages: Array<{ articleId: string; triage: PressTriageResponse; bodyUsed: boolean }> = []
   let triageHits = 0
   let bodyFetches = 0
+  let llmUnavailable = 0
 
   for (const item of items) {
     const result = await extractPressClaimsForItem(item, options)
     triages.push({ articleId: item.id, triage: result.triage, bodyUsed: result.bodyUsed })
     if (result.triage.hasCheckableClaim) triageHits += 1
+    if (result.triage.reasoning === 'llm-unavailable') llmUnavailable += 1
     if (result.bodyUsed) bodyFetches += 1
     all.push(...result.claims)
   }
@@ -284,6 +295,7 @@ export async function extractPressClaimsBatch(
       triageHits,
       bodyFetches,
       claimsEmitted: all.length,
+      llmUnavailable,
     },
   }
 }
