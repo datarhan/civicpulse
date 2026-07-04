@@ -109,14 +109,18 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
       <NetworkLegend />
       <MapAttribution />
 
+      {/* Anchored to the bottom-left: the toggle chips sit at the very bottom
+          (above the attribution line); the money slider + POI/flood legends
+          stack UPWARD above them via column-reverse, so the chip row stays put
+          as contextual panels appear. */}
       <div
         style={{
           position: 'absolute',
-          top: 12,
+          bottom: 28,
           left: 12,
           zIndex: 400,
           display: 'flex',
-          flexDirection: 'column',
+          flexDirection: 'column-reverse',
           gap: 8,
           maxWidth: 'calc(100% - 24px)',
         }}
