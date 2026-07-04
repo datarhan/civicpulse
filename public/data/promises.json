@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-04T07:00:03.633Z",
+  "generatedAt": "2026-07-04T13:51:22.171Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -402,9 +402,10 @@
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
         "confidence": 0.95,
-        "reviewState": "pending-review",
+        "reviewState": "reviewed",
         "priorStatus": "documentada",
-        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-destina-17.200-euros-para-las-asociaciones-de-vecinos-y-las-comisiones-de-fiestas-de-las-urbanizaciones-para-promocionar-las-actividades-y-los-actos-festivos-de-este-a%C3%B1o"
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-destina-17.200-euros-para-las-asociaciones-de-vecinos-y-las-comisiones-de-fiestas-de-las-urbanizaciones-para-promocionar-las-actividades-y-los-actos-festivos-de-este-a%C3%B1o",
+        "reviewedAt": "2026-07-04T13:51:22.170Z"
       }
     },
     {
@@ -447,6 +448,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
@@ -469,6 +471,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
@@ -491,6 +494,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
@@ -513,6 +517,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
@@ -535,6 +540,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
@@ -557,6 +563,7 @@
       "status": "documentada",
       "evidence": [],
       "createdAt": "2026-07-04",
+      "response": null,
       "autoPublished": {
         "at": "2026-07-04T07:00:03.633Z",
         "by": "auto-curation-v1",
