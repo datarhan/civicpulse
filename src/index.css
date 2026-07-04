@@ -26,12 +26,38 @@
   --intel-soft: #f5f0ff;
   --intel-ink: #6d28d9;
 
-  --ink80: rgba(11, 15, 25, 0.8);
-  --ink60: rgba(11, 15, 25, 0.62);
-  --ink50: rgba(11, 15, 25, 0.62);
-  --ink40: rgba(11, 15, 25, 0.6);
-  --ink20: rgba(11, 15, 25, 0.12);
-  --ink10: rgba(11, 15, 25, 0.06);
+  /* Ink scale — Brandbook v2 §02 ("la escala no escala" fix). Production
+     shipped ink50 === ink60 === .62 and ink40 === .60 — the literal bug is that
+     three tiers collapsed onto two values, so the scale had no middle. This
+     restores a monotonic, all-distinct ramp. The brandbook's aspirational .45
+     (meta) / .30 (deshab) stops fail WCAG AA on the small mono meta labels these
+     shared tokens paint (that is precisely why prod pinned them high), so the
+     text tiers stay inside the AA-safe band .60–.82 — every value here is at or
+     above a contrast the axe-core AA e2e gate already passed, so distinctness is
+     gained with zero contrast regression. */
+  --ink80: rgba(11, 15, 25, 0.82); /* strong secondary */
+  --ink60: rgba(11, 15, 25, 0.64); /* secundario */
+  --ink50: rgba(11, 15, 25, 0.62); /* meta */
+  --ink40: rgba(11, 15, 25, 0.6); /* tenue */
+  --ink20: rgba(11, 15, 25, 0.12); /* bordes */
+  --ink10: rgba(11, 15, 25, 0.06); /* wash */
+
+  /* Radius diet — Brandbook v2 §04 ("Tres radios"). One scale, no free-for-all:
+     8 en inputs · 12 en tarjetas · 20 en pills/CTA. */
+  --r-input: 8px;
+  --r-card: 12px;
+  --r-pill: 20px;
+
+  /* Motion tokens — Motion.dc.html. Only what just changed in the data moves;
+     nothing loops except the "en vivo" dot. */
+  --motion-fast: 150ms; /* hover, focus, cambios de color */
+  --ease-fast: ease;
+  --motion-base: 300ms; /* expandir/plegar, bottom-sheet, movimiento en página */
+  --ease-base: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-spring: 400ms; /* entrada de paneles flotantes y modales — solo entrada */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-reveal: 900ms; /* revelado de datos (contador MHS, trazado del pulso) */
+  --ease-reveal: ease-out;
 
   --font-body: 'Outfit', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
@@ -213,6 +239,93 @@ body.cp-kiosk .cp-live-container {
   }
   50% {
     opacity: 0.3;
+  }
+}
+
+/* ===========================================================================
+   Motion.dc.html — canonical keyframes. "Solo se mueve lo que acaba de cambiar
+   en los datos." Panels enter with a spring and leave with a plain fade; the
+   heartbeat traces once as the brand loader; the live dot is the only loop.
+   =========================================================================== */
+
+/* Floating panels + modals — entrance only (400ms spring). */
+@keyframes cp-spring-in {
+  from {
+    transform: scale(0.85) translateY(8px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Map pin — a new queja drops in (350ms spring) then a single ripple. */
+@keyframes cp-pin-drop {
+  from {
+    transform: translateY(-28px);
+    opacity: 0;
+  }
+  70% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes cp-ripple {
+  from {
+    transform: scale(0.4);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+
+/* The heartbeat draws itself — brand loader, replaces "Cargando…". */
+@keyframes cp-pulse-draw {
+  from {
+    stroke-dashoffset: var(--cp-dash, 120);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Data reveal — number counts up / fades in once per load (900ms). */
+@keyframes cp-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cp-spring-in {
+  animation: cp-spring-in var(--motion-spring) var(--ease-spring) both;
+}
+.cp-pulse-draw path {
+  stroke-dasharray: var(--cp-dash, 120);
+  animation: cp-pulse-draw 1.2s var(--ease-reveal) both;
+}
+
+/* Global reduced-motion guard — Motion.dc.html mandates every animation and
+   transition respects the OS setting. Zero them all; keep content visible. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
