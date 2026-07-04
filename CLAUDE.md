@@ -343,12 +343,30 @@ npm run llm:cost -- --json           # raw JSON
 npm run llm:cost -- --since 7        # last 7 days only
 
 # Telegram bot (sibling package under /bot — Sprints A→E)
-cd bot && npm install && npm test   # 54 tests (db + batch + escalation + digest)
+cd bot && npm install && npm test   # 89 tests (db + batch + escalation + digest + photo pipeline)
 cd bot && npm run dev               # long-polling (set BOT_TOKEN in bot/.env)
+cd bot && npm run process-photos    # anonymize + publish queja photos (see below); runs
+                                    #   before export inside local-export.sh
 cd bot && npm run export            # SQLite → ../public/data/quejas.json
 # Admin-only bot commands (ADMIN_USER_IDS env):
 #   /batch  /batch_register  /escalar  — weekly batch to sede + Síndic escalation
 ```
+
+**Queja photo anonymization (`process-photos` · sensitive subsystem).** A queja
+photo is captured by the bot as a Telegram `file_id` (`schema.sql photo_file_id`)
+but NEVER published raw. `npm run process-photos` (chained before `export` in
+`bot/scripts/local-export.sh`) walks `listQuejasWithPhoto(db)`, downloads each
+raw image *in memory* (never to disk), runs a **vision model** (gemini-first via
+`GEMINI_API_KEY`, else `OPENAI_API_KEY`) to box faces/plates/id-text, hard-mosaics
+those regions with `sharp` + a global safety degrade, strips all EXIF/GPS, and
+writes `public/data/quejas-photos/<id>.jpg`. **Fail-closed**: if the vision call
+can't run (no key) or errors, the photo is HELD (retried next run), never
+published un-anonymized. `snapshot.ts` attaches `PublicQuejaRow.photo` only when
+the anonymized file exists on disk. `pruneOrphanPhotos` deletes the image of any
+soft-deleted (`/olvidar`) queja — the right-to-be-forgotten enforcement point.
+Pure logic (geometry, vision-parse fail-closed contract, selection, prune) is
+TDD'd in `bot/tests/photo-*.ts`; the anonymization is automatic with no human
+gate (explicit product decision) so `/aviso-legal` + `/quejas` disclose it.
 
 ESLint + Prettier are configured (`eslint.config.mjs` owns correctness,
 Prettier owns formatting): `npm run lint`, `npm run lint:fix`, `npm run format`,

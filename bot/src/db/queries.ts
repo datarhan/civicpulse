@@ -169,6 +169,21 @@ export function listRecentQuejas(db: Db, limit = 20): QuejaRow[] {
     .all(limit) as QuejaRow[]
 }
 
+/**
+ * Non-deleted quejas that carry a Telegram photo_file_id — the input set for
+ * the anonymize-and-publish job. Soft-deleted rows (right-to-be-forgotten) are
+ * excluded so a withdrawn queja's photo is never processed or published.
+ */
+export function listQuejasWithPhoto(db: Db, limit = 1000): QuejaRow[] {
+  return db
+    .prepare(
+      `SELECT * FROM quejas
+       WHERE deleted_at IS NULL AND photo_file_id IS NOT NULL AND photo_file_id != ''
+       ORDER BY created_at DESC, id DESC LIMIT ?`,
+    )
+    .all(limit) as QuejaRow[]
+}
+
 export function listByNeighborhood(db: Db, neighborhood: string, limit = 50): QuejaRow[] {
   return db
     .prepare(

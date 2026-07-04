@@ -387,11 +387,13 @@ function EmptyState() {
           <ul style={{ paddingLeft: 20 }}>
             <li>
               Publicamos: categoría, barrio (agregado), estado, apoyos, área municipal responsable,
-              concejal político.
+              concejal político y, si la adjuntas, la foto{' '}
+              <strong>anonimizada automáticamente</strong> (caras y matrículas difuminadas,
+              metadatos EXIF eliminados).
             </li>
             <li>
-              No publicamos: identidad del denunciante, foto sin anonimizar, lat/lng exactas,
-              personal técnico municipal.
+              No publicamos: identidad del denunciante, la foto original sin anonimizar, lat/lng
+              exactas, personal técnico municipal.
             </li>
             <li>
               Los plazos y bases legales provienen del BOE. El escalado externo es al Síndic CV /

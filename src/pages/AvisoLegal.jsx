@@ -165,12 +165,23 @@ export default function AvisoLegal() {
           indefinidamente.
         </p>
         <p>
+          <strong>Fotografías adjuntas</strong>: si adjuntas una foto a tu queja, antes de
+          publicarla se procesa automáticamente para difuminar caras y matrículas y se le eliminan
+          todos los metadatos (incluida la geolocalización EXIF). Sólo esa versión anonimizada llega
+          al repositorio público; la imagen original nunca se publica ni se sube a git — permanece
+          en el almacén local del bot bajo el mismo plazo de conservación y derecho al olvido que el
+          resto de la queja. La anonimización es automática y sin revisión humana previa: si
+          detectas que ha quedado algún dato personal visible, ejerce el derecho al olvido y la
+          imagen se retira de inmediato. La detección automática puede fallar; por eso mantenemos el
+          difuminado global de refuerzo y la vía de retirada inmediata.
+        </p>
+        <p>
           <strong>Derecho al olvido (RGPD art. 17)</strong>: en cualquier momento puedes enviar{' '}
           <code>/olvidar Q-XXXXXXXX</code> al bot para eliminar tu queja del dashboard, del heatmap,
-          del feed público y del snapshot abierto. La queja desaparece inmediatamente de todas las
-          superficies públicas; queda un registro anónimo interno durante el plazo legal de
-          conservación, y después se destruye. Sólo el autor original puede ejercer este derecho
-          sobre su propia queja.
+          del feed público, del snapshot abierto y de la foto anonimizada publicada. La queja
+          desaparece inmediatamente de todas las superficies públicas; queda un registro anónimo
+          interno durante el plazo legal de conservación, y después se destruye. Sólo el autor
+          original puede ejercer este derecho sobre su propia queja.
         </p>
         <p>
           <strong>Historial git e inmutabilidad de la cadena de custodia</strong>: el snapshot

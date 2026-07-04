@@ -11,7 +11,7 @@ function mountAt(path, data) {
       <Routes>
         <Route path="/quejas/:id" element={<QuejaDetail />} />
       </Routes>
-    </MemoryRouter>
+    </MemoryRouter>,
   )
 }
 
@@ -99,6 +99,34 @@ describe('/quejas/:id', () => {
     })
     expect(screen.getByText(/Reparación programada para la semana/i)).toBeInTheDocument()
     expect(screen.getByText(/Fuente primaria →/i)).toBeInTheDocument()
+  })
+
+  it('renders the anonymized photo figure when the queja has a published photo', async () => {
+    const withPhoto = {
+      ...BASE_QUEJAS,
+      items: [{ ...BASE_QUEJAS.items[0], photo: '/data/quejas-photos/q-abc12301.jpg' }],
+    }
+    mountAt('/quejas/q-abc12301', {
+      '/data/quejas.json': withPhoto,
+      '/data/quejas-responses.json': { generatedAt: '2026-04-20T00:00:00Z', items: [] },
+      '/data/officials.json': BASE_OFFICIALS,
+    })
+    const img = await screen.findByAltText(/anonimizada autom/i)
+    expect(img).toHaveAttribute('src', '/data/quejas-photos/q-abc12301.jpg')
+    // The caption must disclose the anonymization is automatic (editorial contract).
+    expect(screen.getByText(/anonimizada autom/i)).toBeInTheDocument()
+  })
+
+  it('shows no queja photo when none has been published', async () => {
+    mountAt('/quejas/q-abc12301', {
+      '/data/quejas.json': BASE_QUEJAS, // no `photo` field
+      '/data/quejas-responses.json': { generatedAt: '2026-04-20T00:00:00Z', items: [] },
+      '/data/officials.json': BASE_OFFICIALS,
+    })
+    await waitFor(() => {
+      expect(screen.getAllByText(/Q-ABC12301/).length).toBeGreaterThan(0)
+    })
+    expect(screen.queryByAltText(/anonimizada autom/i)).toBeNull()
   })
 
   it('renders a "no encontrada" fallback when the id does not exist', async () => {

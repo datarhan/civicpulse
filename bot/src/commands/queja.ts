@@ -96,7 +96,7 @@ export function quejaConversationBuilder(db: Db, channel: Channel) {
     }
 
     await ctx.reply(
-      '📸 *Foto* (opcional) — adjunta una foto, o escribe `saltar`. Las fotos se publican tras moderación; se anonimizan caras y matrículas.',
+      '📸 *Foto* (opcional) — adjunta una foto, o escribe `saltar`. Antes de publicarla se anonimiza automáticamente (se difuminan caras y matrículas) y se eliminan los metadatos de ubicación. Podrás retirarla en cualquier momento con `/olvidar`.',
       { parse_mode: 'Markdown' },
     )
     const photoMsg = await conv.waitFor(['message:photo', 'message:text'])

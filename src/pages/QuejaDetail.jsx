@@ -435,6 +435,39 @@ export default function QuejaDetail() {
         </div>
       </Card>
 
+      {queja.photo && (
+        <Card style={{ marginTop: 14 }}>
+          <SectionHead eyebrow="Imagen adjunta" title="Foto ciudadana (anonimizada)" />
+          <figure style={{ margin: '10px 0 0' }}>
+            <img
+              src={queja.photo}
+              alt="Imagen de la queja anonimizada automáticamente"
+              loading="lazy"
+              style={{
+                width: '100%',
+                maxHeight: 460,
+                objectFit: 'contain',
+                borderRadius: 'var(--r-card)',
+                border: '1px solid var(--border)',
+                background: 'var(--soft)',
+              }}
+            />
+            <figcaption
+              style={{
+                fontSize: 12,
+                color: 'var(--ink50)',
+                marginTop: 6,
+                lineHeight: 1.5,
+              }}
+            >
+              🔒 Imagen anonimizada automáticamente · caras y matrículas difuminadas antes de
+              publicar. Si detectas datos personales visibles, escribe{' '}
+              <code>/olvidar {queja.service_request_id}</code> al bot para retirarla.
+            </figcaption>
+          </figure>
+        </Card>
+      )}
+
       <CorrelationsCard quejaId={id} />
 
       {queja.registered_at && queja.status !== 'resuelta' && (
