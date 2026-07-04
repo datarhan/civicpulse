@@ -1,0 +1,614 @@
+{
+ "elements": [
+  {
+   "type": "node",
+   "id": 473144158,
+   "lat": 39.5459333,
+   "lon": -0.5767488,
+   "tags": {
+    "amenity": "police",
+    "name": "Policía Local",
+    "operator": "Policía Local",
+    "operator:wikidata": "Q1507792"
+   }
+  },
+  {
+   "type": "node",
+   "id": 474556218,
+   "lat": 39.5444021,
+   "lon": -0.5672742,
+   "tags": {
+    "amenity": "clinic",
+    "name": "Centre de Salut de Riba-roja de Túria",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public"
+   }
+  },
+  {
+   "type": "node",
+   "id": 747760717,
+   "lat": 39.5420469,
+   "lon": -0.5729685,
+   "tags": {
+    "addr:city": "Riba-roja de Túria",
+    "addr:housenumber": "18",
+    "addr:postcode": "46190",
+    "addr:street": "Avinguda de Pacadar Valenciana",
+    "amenity": "police",
+    "name": "Puesto de Riba-roja (Cuartel de la Guardia Civil)",
+    "name:ca": "Cuartel de Riba-roja (Guàrdia Civil)",
+    "operator": "Guardia Civil",
+    "operator:wikidata": "Q932821",
+    "phone": "+34 962 77 00 56",
+    "website": "https://www.guardiacivil.es/es/institucional/directorio/valencia/puesto_de_ribaroja.html"
+   }
+  },
+  {
+   "type": "node",
+   "id": 844322564,
+   "lat": 39.5564698,
+   "lon": -0.5532023,
+   "tags": {
+    "amenity": "kindergarten",
+    "education": "kindergarten",
+    "fax": "+34962750263",
+    "name": "Colegio Infantil Campanilla",
+    "phone": "+34962750971",
+    "website": "http://rvl.byethost2.com/index.php?option=com_content&view=article&id=9&Itemid=9"
+   }
+  },
+  {
+   "type": "node",
+   "id": 859558015,
+   "lat": 39.5448822,
+   "lon": -0.5626679,
+   "tags": {
+    "addr:housenumber": "84",
+    "addr:postcode": "46190",
+    "addr:street": "Carretera de València",
+    "amenity": "pharmacy",
+    "dispensing": "yes",
+    "name": "Inmaculada Górriz",
+    "opening_hours": "Mo-Fr 09:00-14:00,16:00-21:00; Sa 09:00-14:00",
+    "phone": "+34 961652311"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5659405999,
+   "lat": 39.5449918,
+   "lon": -0.5734207,
+   "tags": {
+    "addr:city": "Riba-roja de Túria",
+    "addr:housenumber": "1",
+    "addr:postcode": "46190",
+    "addr:street": "Carrer del Cronista Cerveró",
+    "amenity": "post_office",
+    "brand": "Correos",
+    "brand:website": "https://www.correos.es",
+    "brand:wikidata": "Q776605",
+    "brand:wikipedia": "es:Correos (España)",
+    "fax": "+34 961 65 20 27",
+    "name": "Oficina de Correos",
+    "name:es": "Oficina de Correos",
+    "opening_hours": "Mo-Sa 08:30-14:30",
+    "operator": "Correos",
+    "operator:wikidata": "Q776605",
+    "operator:wikipedia": "es:Correos (España)",
+    "phone": "+34 962 77 17 91",
+    "website": "https://www.correos.es"
+   }
+  },
+  {
+   "type": "node",
+   "id": 5809597354,
+   "lat": 39.5469545,
+   "lon": -0.5666236,
+   "tags": {
+    "amenity": "townhall",
+    "building": "public",
+    "name": "Ajuntament de Riba-roja de Túria",
+    "name:ca": "Ajuntament de Riba-roja de Túria",
+    "name:es": "Ayuntamiento de Ribarroja de Turia",
+    "townhall:type": "town"
+   }
+  },
+  {
+   "type": "node",
+   "id": 12759063543,
+   "lat": 39.5441095,
+   "lon": -0.5696178,
+   "tags": {
+    "amenity": "community_centre",
+    "community_centre": "youth_centre",
+    "name": "Centre d'Informació Juvenil"
+   }
+  },
+  {
+   "type": "way",
+   "id": 39586076,
+   "center": {
+    "lat": 39.5460249,
+    "lon": -0.5806981
+   },
+   "tags": {
+    "leisure": "sports_centre",
+    "name": "Poliesportiu Municipal de Riba-Roja de Túria",
+    "name:ca": "Poliesportiu Municipal de Riba-Roja de Túria",
+    "name:es": "Polideportivo Municipal de Riba-Roja de Túria",
+    "sport": "multi"
+   }
+  },
+  {
+   "type": "way",
+   "id": 39586077,
+   "center": {
+    "lat": 39.5439777,
+    "lon": -0.5812609
+   },
+   "tags": {
+    "leisure": "stadium",
+    "name": "Campo de Fútbol Municipal Roberto Gil",
+    "sport": "soccer"
+   }
+  },
+  {
+   "type": "way",
+   "id": 39589891,
+   "center": {
+    "lat": 39.5477533,
+    "lon": -0.5797717
+   },
+   "tags": {
+    "leisure": "park",
+    "name": "Parc Municipal Maldonado",
+    "name:ca": "Parc Municipal Maldonado",
+    "name:es": "Parque Municipal Maldonado"
+   }
+  },
+  {
+   "type": "way",
+   "id": 60438513,
+   "center": {
+    "lat": 39.517973,
+    "lon": -0.5209567
+   },
+   "tags": {
+    "access": "private",
+    "addr:postcode": "46190",
+    "check_date": "2025-10-18",
+    "fee": "yes",
+    "leisure": "sports_centre",
+    "name": "Club de Tenis El Collao",
+    "operator:type": "private",
+    "source": "survey",
+    "sport": "tennis",
+    "website": "https://teniselcollao.es/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 152520274,
+   "center": {
+    "lat": 39.5452787,
+    "lon": -0.5807577
+   },
+   "tags": {
+    "leisure": "pitch",
+    "name": "Camp de futbol Municipal Francisco Soriano",
+    "name:ca": "Camp de futbol Municipal Francisco Soriano",
+    "name:es": "Campo de fútbol municipal Francisco Soriano",
+    "sport": "soccer",
+    "surface": "artificial_turf"
+   }
+  },
+  {
+   "type": "way",
+   "id": 152520279,
+   "center": {
+    "lat": 39.5459609,
+    "lon": -0.5793252
+   },
+   "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Institut d'Educació Secundària Pla de Nadal",
+    "name:ca": "Institut d'Educació Secundària Pla de Nadal",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public",
+    "operator:wikidata": "Q2477285",
+    "short_name": "IES Pla de Nadal",
+    "wikidata": "Q108136226"
+   }
+  },
+  {
+   "type": "way",
+   "id": 152522312,
+   "center": {
+    "lat": 39.5476548,
+    "lon": -0.5621832
+   },
+   "tags": {
+    "amenity": "kindergarten",
+    "education": "kindergarten",
+    "name": "Escola Infantil de 1r Cicle Municipal Riu Túria",
+    "name:ca": "Escola Infantil de 1r Cicle Municipal Riu Túria",
+    "name:es": "Escuela Infantil de 1º Ciclo Municipal Riu Túria",
+    "operator": "Ajuntament de Riba-Roja de Túria",
+    "operator:type": "public",
+    "short_name": "EI Riu Túria"
+   }
+  },
+  {
+   "type": "way",
+   "id": 152522318,
+   "center": {
+    "lat": 39.5480338,
+    "lon": -0.5616616
+   },
+   "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Institut d'Educació Secundària el Quint",
+    "name:ca": "Institut d'Educació Secundària el Quint",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public",
+    "operator:wikidata": "Q2477285",
+    "short_name": "IES el Quint",
+    "wikidata": "Q108136546"
+   }
+  },
+  {
+   "type": "way",
+   "id": 542763138,
+   "center": {
+    "lat": 39.5480009,
+    "lon": -0.5645672
+   },
+   "tags": {
+    "addr:housenumber": "30",
+    "addr:street": "Carrer de la Cisterna",
+    "amenity": "community_centre",
+    "name": "Centre de Dia",
+    "name:ca": "Centre de Dia",
+    "name:es": "Centro de Día"
+   }
+  },
+  {
+   "type": "way",
+   "id": 551533189,
+   "center": {
+    "lat": 39.5487764,
+    "lon": -0.5759542
+   },
+   "tags": {
+    "description": "parque donde pueden jugar niños y descansar las personas mayores",
+    "leisure": "park",
+    "name": "Plaça de Miguel Hernández",
+    "name:ca": "Plaça de Miguel Hernández"
+   }
+  },
+  {
+   "type": "way",
+   "id": 551533914,
+   "center": {
+    "lat": 39.5413489,
+    "lon": -0.5701346
+   },
+   "tags": {
+    "description": "pequeña zona de juegos, donde los niños pueden descansar, y las personas mayores pueden descansar",
+    "leisure": "park",
+    "name": "Plaça de Vicent Andrés Estellés",
+    "name:ca": "Plaça de Vicent Andrés Estellés",
+    "name:es": "Plaza Vicent Andrés Estellés"
+   }
+  },
+  {
+   "type": "way",
+   "id": 566219300,
+   "center": {
+    "lat": 39.5466795,
+    "lon": -0.5660252
+   },
+   "tags": {
+    "amenity": "library",
+    "building": "yes",
+    "name": "Biblioteca Pública",
+    "name:ca": "Biblioteca Pública",
+    "website": "https://www.bibliotecaspublicas.es/ribarrojac/index.jsp"
+   }
+  },
+  {
+   "type": "way",
+   "id": 572095263,
+   "center": {
+    "lat": 39.5438783,
+    "lon": -0.5767846
+   },
+   "tags": {
+    "leisure": "park",
+    "name": "Parc de Rosalía de Castro",
+    "name:ca": "Parc de Rosalía de Castro",
+    "name:eo": "Rosalía de Castro Parko",
+    "name:es": "Parque Rosalía de Castro"
+   }
+  },
+  {
+   "type": "way",
+   "id": 649240847,
+   "center": {
+    "lat": 39.5225667,
+    "lon": -0.5286103
+   },
+   "tags": {
+    "access": "permissive",
+    "addr:city": "El Terreno",
+    "addr:street": "Polígono Diseminados",
+    "leisure": "swimming_pool",
+    "name": "Piscina Municipal de El Terreno"
+   }
+  },
+  {
+   "type": "way",
+   "id": 649240856,
+   "center": {
+    "lat": 39.5235007,
+    "lon": -0.5273968
+   },
+   "tags": {
+    "access": "permissive",
+    "leisure": "pitch",
+    "name": "Canchas de tenis El Terreno",
+    "sport": "tennis",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "type": "way",
+   "id": 662835745,
+   "center": {
+    "lat": 39.5458994,
+    "lon": -0.5714322
+   },
+   "tags": {
+    "addr:city": "Ribarroja de Túria",
+    "addr:housenumber": "1A",
+    "addr:postcode": "46190",
+    "addr:street": "Carrer de Miguel de Cervantes",
+    "amenity": "community_centre",
+    "building": "public",
+    "name": "Centre Social",
+    "name:ca": "Centre Social"
+   }
+  },
+  {
+   "type": "way",
+   "id": 903588096,
+   "center": {
+    "lat": 39.5504954,
+    "lon": -0.5811206
+   },
+   "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+    "name:ca": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public",
+    "operator:wikidata": "Q2477285",
+    "ref": "46016804",
+    "short_name": "CEIP Mas de Escoto",
+    "wikidata": "Q108136049"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1095351062,
+   "center": {
+    "lat": 39.5433045,
+    "lon": -0.5757486
+   },
+   "tags": {
+    "addr:city": "Riba-roja de Túria",
+    "addr:housenumber": "142",
+    "addr:postcode": "46190",
+    "addr:street": "Avinguda de Pacadar Valenciana",
+    "building": "yes",
+    "fee": "yes",
+    "leisure": "sports_centre",
+    "name": "Complex Esportiu La Mallà",
+    "name:ca": "Complex Esportiu La Mallà",
+    "name:en": "Sports Complex La Mallà",
+    "name:eo": "Sporta Komplekso La Mallà",
+    "name:es": "Complejo Deportivo La Mallà",
+    "phone": "+34 962 77 22 11",
+    "sport": "swimming;fitness",
+    "start_date": "2012-12-20",
+    "website": "http://www.ribarroja.es/deportes/instalaciones/complejo_deportivo_la_malla/contenidos/3237866/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1097452806,
+   "center": {
+    "lat": 39.5433427,
+    "lon": -0.5731124
+   },
+   "tags": {
+    "addr:city": "Riba-roja de Túria",
+    "addr:housenumber": "2",
+    "addr:postcode": "46190",
+    "addr:street": "Carrer del Doctor Fleming",
+    "amenity": "school",
+    "capacity": "500",
+    "education": "school",
+    "email": "46007281@edu.gva.es",
+    "fax": "+34 962 71 81 31",
+    "fee": "no",
+    "grades": "3-11",
+    "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+    "name:ca": "Col·legi d'Educació Infantil i Primària Cervantes",
+    "name:eo": "Cervantes Frua Infanaĝo kaj Bazlernejo",
+    "name:es": "Colegio de Educación Infantil y Primaria Cervantes",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public",
+    "operator:wikidata": "Q2477285",
+    "phone": "+34 962 71 81 30",
+    "ref": "46007281",
+    "religion": "none",
+    "short_name": "CEIP Cervantes",
+    "website": "https://ceice.gva.es/es/web/centros-docentes/consulta-general?viewUrl162652993=/abc/i_guiadecentros/es/centro.asp&codi=46007281#",
+    "wheelchair": "yes",
+    "wikidata": "Q105992453"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1097455245,
+   "center": {
+    "lat": 39.5449638,
+    "lon": -0.5732618
+   },
+   "tags": {
+    "addr:city": "Riba-roja de Túria",
+    "addr:housenumber": "85",
+    "addr:postcode": "46190",
+    "addr:street": "Carretera de Vilamarxant",
+    "amenity": "pharmacy",
+    "building": "yes",
+    "contact:facebook": "https://www.facebook.com/farmaciasanchisribarroja",
+    "contact:instagram": "https://www.instagram.com/farmaciasanchisribarroja/",
+    "contact:whatsapp": "+34688343394",
+    "dispensing": "yes",
+    "drive_through": "no",
+    "email": "info@farmaciasanchisribarroja.com",
+    "healthcare": "pharmacy",
+    "name": "Farmacia Sanchis Ribarroja",
+    "name:ca": "Farmàcia Sanchis Ribarroja",
+    "name:eo": "Apoteko Sanchis Ribarroja",
+    "name:es": "Farmacia Sanchis Ribarroja",
+    "opening_hours": "Mo-Sa 09:00-21:00",
+    "operator": "Farmacia Sanchis Ribarroja",
+    "phone": "+34 961 65 22 33",
+    "website": "https://www.farmaciasanchisribarroja.com/"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1178031442,
+   "center": {
+    "lat": 39.5473561,
+    "lon": -0.5639968
+   },
+   "tags": {
+    "addr:housenumber": "37",
+    "addr:street": "Carrer del Comte",
+    "amenity": "school",
+    "education": "school",
+    "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+    "name:ca": "Col·legi d'Educació Infantil i Primària Eres Altes",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public",
+    "operator:wikidata": "Q2477285",
+    "short_name": "CEIP Eres Altes",
+    "wikidata": "Q108135832"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1238786193,
+   "center": {
+    "lat": 39.5304857,
+    "lon": -0.5393174
+   },
+   "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Colegio María de Iciar",
+    "operator": "Tradición Educativa Valenciana",
+    "operator:type": "private",
+    "website": "https://mariadeiciar.webcindario.com/Inicio.html"
+   }
+  },
+  {
+   "type": "way",
+   "id": 1242095512,
+   "center": {
+    "lat": 39.5493045,
+    "lon": -0.5717854
+   },
+   "tags": {
+    "amenity": "school",
+    "education": "school",
+    "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+    "operator": "Generalitat Valenciana",
+    "operator:type": "public",
+    "short_name": "CEIP Camp de Túria",
+    "wikidata": "Q108136475"
+   }
+  },
+  {
+   "type": "relation",
+   "id": 11303640,
+   "center": {
+    "lat": 39.5504619,
+    "lon": -0.5367426
+   },
+   "tags": {
+    "addr:city": "Riba-roja de Túria",
+    "addr:housenumber": "32",
+    "addr:postcode": "46190",
+    "addr:street": "Calle 105",
+    "amenity": "school",
+    "education": "school",
+    "email": "contacto@entrenaranjosinternationalschool.com",
+    "name": "Entrenaranjos International School",
+    "operator:type": "private",
+    "phone": "+34 607 26 32 59",
+    "type": "multipolygon",
+    "website": "https://entrenaranjosinternationalschool.com/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 6817213062,
+   "lat": 39.5428151,
+   "lon": -0.5428437,
+   "tags": {
+    "leisure": "swimming_pool"
+   }
+  },
+  {
+   "type": "way",
+   "id": 152520284,
+   "center": {
+    "lat": 39.5460941,
+    "lon": -0.5806577
+   },
+   "tags": {
+    "leisure": "swimming_pool"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1966986723,
+   "lat": 39.5485884,
+   "lon": -0.5445947,
+   "tags": {
+    "leisure": "pitch"
+   }
+  },
+  {
+   "type": "way",
+   "id": 33191357,
+   "center": {
+    "lat": 39.5541522,
+    "lon": -0.5481852
+   },
+   "tags": {
+    "leisure": "pitch",
+    "sport": "soccer"
+   }
+  }
+ ]
+}
