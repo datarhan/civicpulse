@@ -27,6 +27,7 @@
     "scrape:events": "npx tsx scripts/scrape-events.ts",
     "scrape:geo": "npx tsx scripts/scrape-geo.ts",
     "scrape:civic-poi": "npx tsx scripts/scrape-civic-poi.ts",
+    "scrape:streets": "npx tsx scripts/scrape-streets.ts",
     "scrape:metro-network": "npx tsx scripts/scrape-metro-network.ts",
     "scrape:fgv-gtfs": "npx tsx scripts/scrape-fgv-gtfs.ts",
     "scrape:bdns": "npx tsx scripts/scrape-bdns.ts",

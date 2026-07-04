@@ -28,6 +28,7 @@ SCRAPERS=(
   scrape:events
   scrape:geo
   scrape:civic-poi
+  scrape:streets
   scrape:metro-network
   scrape:fgv-gtfs
   scrape:bdns
@@ -60,6 +61,7 @@ BEST_EFFORT=(
   scrape:metro-network
   scrape:geo
   scrape:civic-poi
+  scrape:streets
   scrape:participa
   scrape:bop
   scrape:transparency

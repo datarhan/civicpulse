@@ -1,0 +1,5410 @@
+{
+  "generatedAt": "2026-07-04T16:54:12.042Z",
+  "source": {
+    "platform": "OSM Overpass API",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "area": "wikidata Q23701"
+  },
+  "streets": [
+    {
+      "id": "way-21887468",
+      "name": "Avinguda Alemanya",
+      "slug": "avinguda-alemanya",
+      "kind": "avenida",
+      "point": [
+        39.5505371,
+        -0.5323098
+      ]
+    },
+    {
+      "id": "way-20022124",
+      "name": "Avinguda d'Azorín",
+      "slug": "avinguda-d-azorin",
+      "kind": "avenida",
+      "point": [
+        39.5424108,
+        -0.5678884
+      ]
+    },
+    {
+      "id": "way-49840607",
+      "name": "Avinguda d'Europa",
+      "slug": "avinguda-d-europa",
+      "kind": "avenida",
+      "point": [
+        39.558454,
+        -0.5513659
+      ]
+    },
+    {
+      "id": "way-61636686",
+      "name": "Avinguda de la Indústria",
+      "slug": "avinguda-de-la-industria",
+      "kind": "avenida",
+      "point": [
+        39.4843186,
+        -0.5531345
+      ]
+    },
+    {
+      "id": "way-40550386",
+      "name": "Avinguda de la Masia de Traver",
+      "slug": "avinguda-de-la-masia-de-traver",
+      "kind": "avenida",
+      "point": [
+        39.5420868,
+        -0.5438471
+      ]
+    },
+    {
+      "id": "way-39499094",
+      "name": "Avinguda de la Pau",
+      "slug": "avinguda-de-la-pau",
+      "kind": "avenida",
+      "point": [
+        39.5475704,
+        -0.5757486
+      ]
+    },
+    {
+      "id": "way-1335206949",
+      "name": "Avinguda de les Canyes",
+      "slug": "avinguda-de-les-canyes",
+      "kind": "avenida",
+      "point": [
+        39.5349405,
+        -0.5369087
+      ]
+    },
+    {
+      "id": "way-148239709",
+      "name": "Avinguda de les Magarides",
+      "slug": "avinguda-de-les-magarides",
+      "kind": "avenida",
+      "point": [
+        39.5342664,
+        -0.5362363
+      ]
+    },
+    {
+      "id": "way-400033753",
+      "name": "Avinguda de Masia de Traver",
+      "slug": "avinguda-de-masia-de-traver",
+      "kind": "avenida",
+      "point": [
+        39.5397083,
+        -0.5459977
+      ]
+    },
+    {
+      "id": "way-39586250",
+      "name": "Avinguda de Pacadar Valenciana",
+      "slug": "avinguda-de-pacadar-valenciana",
+      "kind": "avenida",
+      "point": [
+        39.5440378,
+        -0.5786551
+      ]
+    },
+    {
+      "id": "way-661752657",
+      "name": "Avinguda de Riba-roja de Túria",
+      "slug": "avinguda-de-riba-roja-de-turia",
+      "kind": "avenida",
+      "point": [
+        39.5611595,
+        -0.5499386
+      ]
+    },
+    {
+      "id": "way-44676952",
+      "name": "Avinguda de Sant Jaume Apòstol",
+      "slug": "avinguda-de-sant-jaume-apostol",
+      "kind": "avenida",
+      "point": [
+        39.5216117,
+        -0.5158331
+      ]
+    },
+    {
+      "id": "way-904368626",
+      "name": "Avinguda de Túria",
+      "slug": "avinguda-de-turia",
+      "kind": "avenida",
+      "point": [
+        39.5529338,
+        -0.5819481
+      ]
+    },
+    {
+      "id": "way-9281128",
+      "name": "Avinguda del Camp de Túria",
+      "slug": "avinguda-del-camp-de-turia",
+      "kind": "avenida",
+      "point": [
+        39.5517161,
+        -0.5422703
+      ]
+    },
+    {
+      "id": "way-61053993",
+      "name": "Avinguda del Castanyer",
+      "slug": "avinguda-del-castanyer",
+      "kind": "avenida",
+      "point": [
+        39.5354222,
+        -0.5360689
+      ]
+    },
+    {
+      "id": "way-49840602",
+      "name": "Avinguda del Mediterrani",
+      "slug": "avinguda-del-mediterrani",
+      "kind": "avenida",
+      "point": [
+        39.5587074,
+        -0.553789
+      ]
+    },
+    {
+      "id": "way-61053631",
+      "name": "Avinguda del Noguer",
+      "slug": "avinguda-del-noguer",
+      "kind": "avenida",
+      "point": [
+        39.5363059,
+        -0.5324301
+      ]
+    },
+    {
+      "id": "way-61053705",
+      "name": "Avinguda del Palmerar",
+      "slug": "avinguda-del-palmerar",
+      "kind": "avenida",
+      "point": [
+        39.5373094,
+        -0.5342984
+      ]
+    },
+    {
+      "id": "way-39499096",
+      "name": "Avinguda del Parc Maldonado",
+      "slug": "avinguda-del-parc-maldonado",
+      "kind": "avenida",
+      "point": [
+        39.5486347,
+        -0.580698
+      ]
+    },
+    {
+      "id": "way-61053752",
+      "name": "Avinguda del Pinar",
+      "slug": "avinguda-del-pinar",
+      "kind": "avenida",
+      "point": [
+        39.5288149,
+        -0.5306712
+      ]
+    },
+    {
+      "id": "way-39585775",
+      "name": "Avinguda del Poliesportiu",
+      "slug": "avinguda-del-poliesportiu",
+      "kind": "avenida",
+      "point": [
+        39.5482137,
+        -0.5820194
+      ]
+    },
+    {
+      "id": "way-44952812",
+      "name": "Avinguda del Port d'Alacant",
+      "slug": "avinguda-del-port-d-alacant",
+      "kind": "avenida",
+      "point": [
+        39.4850051,
+        -0.5306533
+      ]
+    },
+    {
+      "id": "way-44952809",
+      "name": "Avinguda del Port de Castelló",
+      "slug": "avinguda-del-port-de-castello",
+      "kind": "avenida",
+      "point": [
+        39.4892941,
+        -0.534982
+      ]
+    },
+    {
+      "id": "way-44952815",
+      "name": "Avinguda del Port de Sagunt",
+      "slug": "avinguda-del-port-de-sagunt",
+      "kind": "avenida",
+      "point": [
+        39.4878858,
+        -0.5337535
+      ]
+    },
+    {
+      "id": "way-61053667",
+      "name": "Avinguda del Roble",
+      "slug": "avinguda-del-roble",
+      "kind": "avenida",
+      "point": [
+        39.5328849,
+        -0.5325282
+      ]
+    },
+    {
+      "id": "way-61053897",
+      "name": "Avinguda del Roure",
+      "slug": "avinguda-del-roure",
+      "kind": "avenida",
+      "point": [
+        39.5351575,
+        -0.5282761
+      ]
+    },
+    {
+      "id": "way-61427839",
+      "name": "Avinguda del Transport",
+      "slug": "avinguda-del-transport",
+      "kind": "avenida",
+      "point": [
+        39.4820642,
+        -0.5593993
+      ]
+    },
+    {
+      "id": "way-100968237",
+      "name": "Avinguda del Túria",
+      "slug": "avinguda-del-turia",
+      "kind": "avenida",
+      "point": [
+        39.5495319,
+        -0.536782
+      ]
+    },
+    {
+      "id": "way-61636692",
+      "name": "Avinguda dels Ceramistes",
+      "slug": "avinguda-dels-ceramistes",
+      "kind": "avenida",
+      "point": [
+        39.4828064,
+        -0.5589511
+      ]
+    },
+    {
+      "id": "way-61636687",
+      "name": "Avinguda dels Corregers",
+      "slug": "avinguda-dels-corregers",
+      "kind": "avenida",
+      "point": [
+        39.4823185,
+        -0.5553166
+      ]
+    },
+    {
+      "id": "way-61427847",
+      "name": "Avinguda dels Fusters",
+      "slug": "avinguda-dels-fusters",
+      "kind": "avenida",
+      "point": [
+        39.4804452,
+        -0.5625967
+      ]
+    },
+    {
+      "id": "way-61427857",
+      "name": "Avinguda dels Gremis",
+      "slug": "avinguda-dels-gremis",
+      "kind": "avenida",
+      "point": [
+        39.4741529,
+        -0.5663999
+      ]
+    },
+    {
+      "id": "way-544893734",
+      "name": "Avinguda dels Hostalers",
+      "slug": "avinguda-dels-hostalers",
+      "kind": "avenida",
+      "point": [
+        39.4772186,
+        -0.5628743
+      ]
+    },
+    {
+      "id": "way-61053695",
+      "name": "Avinguda dels Plataners",
+      "slug": "avinguda-dels-plataners",
+      "kind": "avenida",
+      "point": [
+        39.5354063,
+        -0.5326327
+      ]
+    },
+    {
+      "id": "way-61096908",
+      "name": "Avinguda dels Tarongers",
+      "slug": "avinguda-dels-tarongers",
+      "kind": "avenida",
+      "point": [
+        39.4837782,
+        -0.5724244
+      ]
+    },
+    {
+      "id": "way-49840603",
+      "name": "Avinguda Itàlia",
+      "slug": "avinguda-italia",
+      "kind": "avenida",
+      "point": [
+        39.5567574,
+        -0.5542332
+      ]
+    },
+    {
+      "id": "way-1112746541",
+      "name": "Avinguda Pacadar",
+      "slug": "avinguda-pacadar",
+      "kind": "avenida",
+      "point": [
+        39.5414467,
+        -0.571304
+      ]
+    },
+    {
+      "id": "way-61427845",
+      "name": "Calle dels Pedrapiquers",
+      "slug": "calle-dels-pedrapiquers",
+      "kind": "calle",
+      "point": [
+        39.476614,
+        -0.5494946
+      ]
+    },
+    {
+      "id": "way-44677288",
+      "name": "Calle dels Pous",
+      "slug": "calle-dels-pous",
+      "kind": "calle",
+      "point": [
+        39.5211009,
+        -0.5236753
+      ]
+    },
+    {
+      "id": "way-21884016",
+      "name": "Calle Logroño",
+      "slug": "calle-logrono",
+      "kind": "camino",
+      "point": [
+        39.5511113,
+        -0.5312882
+      ]
+    },
+    {
+      "id": "way-1242086158",
+      "name": "Camí de Benaguasil",
+      "slug": "cami-de-benaguasil",
+      "kind": "camino",
+      "point": [
+        39.5569106,
+        -0.5697844
+      ]
+    },
+    {
+      "id": "way-61096924",
+      "name": "Camí de la Basseta Blanca",
+      "slug": "cami-de-la-basseta-blanca",
+      "kind": "camino",
+      "point": [
+        39.5062732,
+        -0.5706751
+      ]
+    },
+    {
+      "id": "way-61046312",
+      "name": "Camí de la Cova del Moreno",
+      "slug": "cami-de-la-cova-del-moreno",
+      "kind": "camino",
+      "point": [
+        39.5217353,
+        -0.5610226
+      ]
+    },
+    {
+      "id": "way-1335142275",
+      "name": "Camí de la Mallada dels Bous",
+      "slug": "cami-de-la-mallada-dels-bous",
+      "kind": "camino",
+      "point": [
+        39.5019711,
+        -0.5340386
+      ]
+    },
+    {
+      "id": "way-61045827",
+      "name": "Camí de Possa",
+      "slug": "cami-de-possa",
+      "kind": "camino",
+      "point": [
+        39.5308751,
+        -0.5554259
+      ]
+    },
+    {
+      "id": "way-72929254",
+      "name": "Camí de Sant Roca",
+      "slug": "cami-de-sant-roca",
+      "kind": "camino",
+      "point": [
+        39.551861,
+        -0.5716965
+      ]
+    },
+    {
+      "id": "way-44644171",
+      "name": "Camí de Xest",
+      "slug": "cami-de-xest",
+      "kind": "camino",
+      "point": [
+        39.5300347,
+        -0.5922932
+      ]
+    },
+    {
+      "id": "way-1257974324",
+      "name": "Camí del Corral del Marito",
+      "slug": "cami-del-corral-del-marito",
+      "kind": "camino",
+      "point": [
+        39.5009308,
+        -0.5604307
+      ]
+    },
+    {
+      "id": "way-578561068",
+      "name": "Camí del Mas de Roseldo",
+      "slug": "cami-del-mas-de-roseldo",
+      "kind": "camino",
+      "point": [
+        39.5563051,
+        -0.5803845
+      ]
+    },
+    {
+      "id": "way-1242086157",
+      "name": "Camí del Mas del Sastre",
+      "slug": "cami-del-mas-del-sastre",
+      "kind": "camino",
+      "point": [
+        39.5600721,
+        -0.5794786
+      ]
+    },
+    {
+      "id": "way-1220109078",
+      "name": "Camí del Pou d'Escoto",
+      "slug": "cami-del-pou-d-escoto",
+      "kind": "camino",
+      "point": [
+        39.546977,
+        -0.5912427
+      ]
+    },
+    {
+      "id": "way-109585248",
+      "name": "Camí del Riu",
+      "slug": "cami-del-riu",
+      "kind": "camino",
+      "point": [
+        39.549292,
+        -0.5360611
+      ]
+    },
+    {
+      "id": "way-60171306",
+      "name": "Camí dels Cara-sols",
+      "slug": "cami-dels-cara-sols",
+      "kind": "camino",
+      "point": [
+        39.5045824,
+        -0.5578975
+      ]
+    },
+    {
+      "id": "way-61045825",
+      "name": "Camino de la Cova de Mirapeix",
+      "slug": "camino-de-la-cova-de-mirapeix",
+      "kind": "camino",
+      "point": [
+        39.5170248,
+        -0.5453787
+      ]
+    },
+    {
+      "id": "way-61722757",
+      "name": "Camino del Pouet Tapat",
+      "slug": "camino-del-pouet-tapat",
+      "kind": "camino",
+      "point": [
+        39.5140641,
+        -0.5953446
+      ]
+    },
+    {
+      "id": "way-733750156",
+      "name": "Cantera Carasoles Paso Abierto",
+      "slug": "cantera-carasoles-paso-abierto",
+      "kind": "camino",
+      "point": [
+        39.5104755,
+        -0.5407957
+      ]
+    },
+    {
+      "id": "way-21277006",
+      "name": "Carrer 1",
+      "slug": "carrer-1",
+      "kind": "calle",
+      "point": [
+        39.5500548,
+        -0.5470224
+      ]
+    },
+    {
+      "id": "way-10075058",
+      "name": "Carrer 10",
+      "slug": "carrer-10",
+      "kind": "calle",
+      "point": [
+        39.5572997,
+        -0.5493572
+      ]
+    },
+    {
+      "id": "way-21028879",
+      "name": "Carrer 100",
+      "slug": "carrer-100",
+      "kind": "calle",
+      "point": [
+        39.5533432,
+        -0.5395719
+      ]
+    },
+    {
+      "id": "way-12295530",
+      "name": "Carrer 101",
+      "slug": "carrer-101",
+      "kind": "calle",
+      "point": [
+        39.5531235,
+        -0.5389183
+      ]
+    },
+    {
+      "id": "way-12295278",
+      "name": "Carrer 102",
+      "slug": "carrer-102",
+      "kind": "calle",
+      "point": [
+        39.5518201,
+        -0.5388016
+      ]
+    },
+    {
+      "id": "way-33239359",
+      "name": "Carrer 103",
+      "slug": "carrer-103",
+      "kind": "calle",
+      "point": [
+        39.5545532,
+        -0.5365227
+      ]
+    },
+    {
+      "id": "way-821902627",
+      "name": "Carrer 104",
+      "slug": "carrer-104",
+      "kind": "calle",
+      "point": [
+        39.5533793,
+        -0.5362648
+      ]
+    },
+    {
+      "id": "way-15088658",
+      "name": "Carrer 105",
+      "slug": "carrer-105",
+      "kind": "calle",
+      "point": [
+        39.5519951,
+        -0.5357801
+      ]
+    },
+    {
+      "id": "way-12296008",
+      "name": "Carrer 106",
+      "slug": "carrer-106",
+      "kind": "calle",
+      "point": [
+        39.552949,
+        -0.5341499
+      ]
+    },
+    {
+      "id": "way-9281417",
+      "name": "Carrer 2",
+      "slug": "carrer-2",
+      "kind": "calle",
+      "point": [
+        39.5537274,
+        -0.5449904
+      ]
+    },
+    {
+      "id": "way-12373458",
+      "name": "Carrer 200",
+      "slug": "carrer-200",
+      "kind": "calle",
+      "point": [
+        39.5526445,
+        -0.5374994
+      ]
+    },
+    {
+      "id": "way-12297099",
+      "name": "Carrer 201",
+      "slug": "carrer-201",
+      "kind": "calle",
+      "point": [
+        39.5547796,
+        -0.5372735
+      ]
+    },
+    {
+      "id": "way-21275101",
+      "name": "Carrer 4",
+      "slug": "carrer-4",
+      "kind": "calle",
+      "point": [
+        39.551359,
+        -0.5463177
+      ]
+    },
+    {
+      "id": "way-21274302",
+      "name": "Carrer 5",
+      "slug": "carrer-5",
+      "kind": "calle",
+      "point": [
+        39.5505648,
+        -0.5406479
+      ]
+    },
+    {
+      "id": "way-21274978",
+      "name": "Carrer 6",
+      "slug": "carrer-6",
+      "kind": "calle",
+      "point": [
+        39.5514736,
+        -0.5433108
+      ]
+    },
+    {
+      "id": "way-1330436700",
+      "name": "Carrer 7",
+      "slug": "carrer-7",
+      "kind": "calle",
+      "point": [
+        39.5526663,
+        -0.5450671
+      ]
+    },
+    {
+      "id": "way-21275157",
+      "name": "Carrer 9",
+      "slug": "carrer-9",
+      "kind": "calle",
+      "point": [
+        39.5506738,
+        -0.5468988
+      ]
+    },
+    {
+      "id": "way-38153847",
+      "name": "Carrer A",
+      "slug": "carrer-a",
+      "kind": "calle",
+      "point": [
+        39.475261,
+        -0.537954
+      ]
+    },
+    {
+      "id": "way-422659201",
+      "name": "Carrer a la Vora del Riu",
+      "slug": "carrer-a-la-vora-del-riu",
+      "kind": "calle",
+      "point": [
+        39.524188,
+        -0.5164564
+      ]
+    },
+    {
+      "id": "way-61096890",
+      "name": "Carrer Alt Palància",
+      "slug": "carrer-alt-palancia",
+      "kind": "calle",
+      "point": [
+        39.4844339,
+        -0.5707062
+      ]
+    },
+    {
+      "id": "way-61096895",
+      "name": "Carrer Àngel Blanco",
+      "slug": "carrer-angel-blanco",
+      "kind": "calle",
+      "point": [
+        39.4847691,
+        -0.5702142
+      ]
+    },
+    {
+      "id": "way-186806198",
+      "name": "Carrer Antonio Marqués Puig",
+      "slug": "carrer-antonio-marques-puig",
+      "kind": "calle",
+      "point": [
+        39.4839367,
+        -0.5734418
+      ]
+    },
+    {
+      "id": "way-61096889",
+      "name": "Carrer Antonio Soler",
+      "slug": "carrer-antonio-soler",
+      "kind": "calle",
+      "point": [
+        39.4845171,
+        -0.5720922
+      ]
+    },
+    {
+      "id": "way-44032174",
+      "name": "Carrer Arlanza",
+      "slug": "carrer-arlanza",
+      "kind": "calle",
+      "point": [
+        39.5412642,
+        -0.5478826
+      ]
+    },
+    {
+      "id": "way-144107244",
+      "name": "Carrer Arrosals",
+      "slug": "carrer-arrosals",
+      "kind": "calle",
+      "point": [
+        39.5451001,
+        -0.5757313
+      ]
+    },
+    {
+      "id": "way-61096871",
+      "name": "Carrer Arxipèlag de les Filipines",
+      "slug": "carrer-arxipelag-de-les-filipines",
+      "kind": "calle",
+      "point": [
+        39.4835033,
+        -0.5698634
+      ]
+    },
+    {
+      "id": "way-44032191",
+      "name": "Carrer Ason",
+      "slug": "carrer-ason",
+      "kind": "calle",
+      "point": [
+        39.5395721,
+        -0.5394204
+      ]
+    },
+    {
+      "id": "way-186806224",
+      "name": "Carrer Ataulfo Argenta",
+      "slug": "carrer-ataulfo-argenta",
+      "kind": "calle",
+      "point": [
+        39.4828226,
+        -0.5727855
+      ]
+    },
+    {
+      "id": "way-39584012",
+      "name": "Carrer Autors Facundo i Mullor",
+      "slug": "carrer-autors-facundo-i-mullor",
+      "kind": "calle",
+      "point": [
+        39.5439616,
+        -0.5682877
+      ]
+    },
+    {
+      "id": "way-38154088",
+      "name": "Carrer B",
+      "slug": "carrer-b",
+      "kind": "calle",
+      "point": [
+        39.4795124,
+        -0.5374467
+      ]
+    },
+    {
+      "id": "way-61427197",
+      "name": "Carrer Balears",
+      "slug": "carrer-balears",
+      "kind": "calle",
+      "point": [
+        39.4761272,
+        -0.5709004
+      ]
+    },
+    {
+      "id": "way-148059825",
+      "name": "Carrer Bellavista",
+      "slug": "carrer-bellavista",
+      "kind": "calle",
+      "point": [
+        39.5500063,
+        -0.5723001
+      ]
+    },
+    {
+      "id": "way-39525567",
+      "name": "Carrer Benaguasil",
+      "slug": "carrer-benaguasil",
+      "kind": "calle",
+      "point": [
+        39.5431274,
+        -0.5652752
+      ]
+    },
+    {
+      "id": "way-44032182",
+      "name": "Carrer Bidasoa",
+      "slug": "carrer-bidasoa",
+      "kind": "calle",
+      "point": [
+        39.5412489,
+        -0.5461396
+      ]
+    },
+    {
+      "id": "way-38154086",
+      "name": "Carrer C",
+      "slug": "carrer-c",
+      "kind": "calle",
+      "point": [
+        39.4773318,
+        -0.5306202
+      ]
+    },
+    {
+      "id": "way-21274901",
+      "name": "Carrer Cabanilles",
+      "slug": "carrer-cabanilles",
+      "kind": "calle",
+      "point": [
+        39.551133,
+        -0.5421476
+      ]
+    },
+    {
+      "id": "way-12373684",
+      "name": "Carrer Càceres",
+      "slug": "carrer-caceres",
+      "kind": "calle",
+      "point": [
+        39.5517161,
+        -0.5422703
+      ]
+    },
+    {
+      "id": "way-60026369",
+      "name": "Carrer Camí dels Carasols",
+      "slug": "carrer-cami-dels-carasols",
+      "kind": "calle",
+      "point": [
+        39.5108533,
+        -0.5382067
+      ]
+    },
+    {
+      "id": "way-39528683",
+      "name": "Carrer Capellà Teresí",
+      "slug": "carrer-capella-teresi",
+      "kind": "calle",
+      "point": [
+        39.5473895,
+        -0.5671344
+      ]
+    },
+    {
+      "id": "way-745733660",
+      "name": "Carrer Carlos V",
+      "slug": "carrer-carlos-v",
+      "kind": "calle",
+      "point": [
+        39.5257656,
+        -0.5217974
+      ]
+    },
+    {
+      "id": "way-148316516",
+      "name": "Carrer Casinos",
+      "slug": "carrer-casinos",
+      "kind": "calle",
+      "point": [
+        39.5431483,
+        -0.5643582
+      ]
+    },
+    {
+      "id": "way-20021825",
+      "name": "Carrer Ceràmiques Riba-Roja",
+      "slug": "carrer-ceramiques-riba-roja",
+      "kind": "calle",
+      "point": [
+        39.5427685,
+        -0.5655481
+      ]
+    },
+    {
+      "id": "way-615779818",
+      "name": "Carrer Cinca",
+      "slug": "carrer-cinca",
+      "kind": "calle",
+      "point": [
+        39.541813,
+        -0.5449843
+      ]
+    },
+    {
+      "id": "way-44032185",
+      "name": "Carrer Circular",
+      "slug": "carrer-circular",
+      "kind": "calle",
+      "point": [
+        39.540222,
+        -0.5449014
+      ]
+    },
+    {
+      "id": "way-148316520",
+      "name": "Carrer Ciutat Reial",
+      "slug": "carrer-ciutat-reial",
+      "kind": "calle",
+      "point": [
+        39.5394957,
+        -0.5704766
+      ]
+    },
+    {
+      "id": "way-39525576",
+      "name": "Carrer Clara Campoamor",
+      "slug": "carrer-clara-campoamor",
+      "kind": "calle",
+      "point": [
+        39.5458077,
+        -0.5635437
+      ]
+    },
+    {
+      "id": "way-745733662",
+      "name": "Carrer Club Social",
+      "slug": "carrer-club-social",
+      "kind": "calle",
+      "point": [
+        39.524944,
+        -0.5203754
+      ]
+    },
+    {
+      "id": "way-148316514",
+      "name": "Carrer Conca",
+      "slug": "carrer-conca",
+      "kind": "calle",
+      "point": [
+        39.5391931,
+        -0.5709911
+      ]
+    },
+    {
+      "id": "way-129701636",
+      "name": "Carrer Cor de Jesús",
+      "slug": "carrer-cor-de-jesus",
+      "kind": "calle",
+      "point": [
+        39.546246,
+        -0.5684624
+      ]
+    },
+    {
+      "id": "way-21887535",
+      "name": "Carrer Còrdova",
+      "slug": "carrer-cordova",
+      "kind": "calle",
+      "point": [
+        39.550299,
+        -0.5330672
+      ]
+    },
+    {
+      "id": "way-789334651",
+      "name": "Carrer D",
+      "slug": "carrer-d",
+      "kind": "calle",
+      "point": [
+        39.4795124,
+        -0.5374467
+      ]
+    },
+    {
+      "id": "way-39585763",
+      "name": "Carrer d'Alacant",
+      "slug": "carrer-d-alacant",
+      "kind": "calle",
+      "point": [
+        39.5510654,
+        -0.5809272
+      ]
+    },
+    {
+      "id": "way-49840605",
+      "name": "Carrer d'Albània",
+      "slug": "carrer-d-albania",
+      "kind": "calle",
+      "point": [
+        39.5559071,
+        -0.5534828
+      ]
+    },
+    {
+      "id": "way-10075084",
+      "name": "Carrer d'Aldaia",
+      "slug": "carrer-d-aldaia",
+      "kind": "calle",
+      "point": [
+        39.5602099,
+        -0.541278
+      ]
+    },
+    {
+      "id": "way-21887425",
+      "name": "Carrer d'Almeria",
+      "slug": "carrer-d-almeria",
+      "kind": "calle",
+      "point": [
+        39.5505675,
+        -0.5322337
+      ]
+    },
+    {
+      "id": "way-49840400",
+      "name": "Carrer d'Amèrica",
+      "slug": "carrer-d-america",
+      "kind": "calle",
+      "point": [
+        39.561733,
+        -0.5572706
+      ]
+    },
+    {
+      "id": "way-10075057",
+      "name": "Carrer d'Antonio Machado",
+      "slug": "carrer-d-antonio-machado",
+      "kind": "calle",
+      "point": [
+        39.5578968,
+        -0.5490687
+      ]
+    },
+    {
+      "id": "way-12169387",
+      "name": "Carrer d'Antonio Machado / Carrer del Poeta Querol",
+      "slug": "carrer-d-antonio-machado-carrer-del-poeta-querol",
+      "kind": "calle",
+      "point": [
+        39.5565966,
+        -0.5396952
+      ]
+    },
+    {
+      "id": "way-49840609",
+      "name": "Carrer d'Argentina",
+      "slug": "carrer-d-argentina",
+      "kind": "calle",
+      "point": [
+        39.5574041,
+        -0.5532143
+      ]
+    },
+    {
+      "id": "way-39585229",
+      "name": "Carrer d'Ausiàs March",
+      "slug": "carrer-d-ausias-march",
+      "kind": "calle",
+      "point": [
+        39.5483025,
+        -0.5781625
+      ]
+    },
+    {
+      "id": "way-49840604",
+      "name": "Carrer d'Àustria",
+      "slug": "carrer-d-austria",
+      "kind": "calle",
+      "point": [
+        39.5574433,
+        -0.553582
+      ]
+    },
+    {
+      "id": "way-148059845",
+      "name": "Carrer d'Emilia Pardo Bazán",
+      "slug": "carrer-d-emilia-pardo-bazan",
+      "kind": "calle",
+      "point": [
+        39.5507513,
+        -0.5837851
+      ]
+    },
+    {
+      "id": "way-33242549",
+      "name": "Carrer d'Enrique Alamar",
+      "slug": "carrer-d-enrique-alamar",
+      "kind": "calle",
+      "point": [
+        39.5518954,
+        -0.5303057
+      ]
+    },
+    {
+      "id": "way-21886953",
+      "name": "Carrer d'Enrique Daries Coll",
+      "slug": "carrer-d-enrique-daries-coll",
+      "kind": "calle",
+      "point": [
+        39.5515006,
+        -0.5341531
+      ]
+    },
+    {
+      "id": "way-1257948042",
+      "name": "Carrer d'Eresma",
+      "slug": "carrer-d-eresma",
+      "kind": "calle",
+      "point": [
+        39.5419169,
+        -0.5417204
+      ]
+    },
+    {
+      "id": "way-39525572",
+      "name": "Carrer d'Eusebio Benedito",
+      "slug": "carrer-d-eusebio-benedito",
+      "kind": "calle",
+      "point": [
+        39.547687,
+        -0.5653084
+      ]
+    },
+    {
+      "id": "way-39585772",
+      "name": "Carrer d'Hernan Cortés",
+      "slug": "carrer-d-hernan-cortes",
+      "kind": "calle",
+      "point": [
+        39.5491512,
+        -0.5749661
+      ]
+    },
+    {
+      "id": "way-745733658",
+      "name": "Carrer d'Irlanda",
+      "slug": "carrer-d-irlanda",
+      "kind": "calle",
+      "point": [
+        39.5609233,
+        -0.5580391
+      ]
+    },
+    {
+      "id": "way-1257153124",
+      "name": "Carrer d'Isabel de Villena",
+      "slug": "carrer-d-isabel-de-villena",
+      "kind": "calle",
+      "point": [
+        39.5517474,
+        -0.58322
+      ]
+    },
+    {
+      "id": "way-39585778",
+      "name": "Carrer d'Isabel la Catòlica",
+      "slug": "carrer-d-isabel-la-catolica",
+      "kind": "calle",
+      "point": [
+        39.5476452,
+        -0.5744608
+      ]
+    },
+    {
+      "id": "way-379894515",
+      "name": "Carrer d'Olocau",
+      "slug": "carrer-d-olocau",
+      "kind": "calle",
+      "point": [
+        39.5418197,
+        -0.5679548
+      ]
+    },
+    {
+      "id": "way-44032184",
+      "name": "Carrer Darro",
+      "slug": "carrer-darro",
+      "kind": "calle",
+      "point": [
+        39.5423904,
+        -0.5447312
+      ]
+    },
+    {
+      "id": "way-10075067",
+      "name": "Carrer de Badajoz",
+      "slug": "carrer-de-badajoz",
+      "kind": "calle",
+      "point": [
+        39.5547879,
+        -0.5466878
+      ]
+    },
+    {
+      "id": "way-39586248",
+      "name": "Carrer de Baltasar Gracián",
+      "slug": "carrer-de-baltasar-gracian",
+      "kind": "calle",
+      "point": [
+        39.5456777,
+        -0.5778597
+      ]
+    },
+    {
+      "id": "way-33654509",
+      "name": "Carrer de Barcelona",
+      "slug": "carrer-de-barcelona",
+      "kind": "calle",
+      "point": [
+        39.5512044,
+        -0.5248768
+      ]
+    },
+    {
+      "id": "way-1335166861",
+      "name": "Carrer de Bèlgica",
+      "slug": "carrer-de-belgica",
+      "kind": "calle",
+      "point": [
+        39.5575849,
+        -0.5544904
+      ]
+    },
+    {
+      "id": "way-21887388",
+      "name": "Carrer de Benicalap",
+      "slug": "carrer-de-benicalap",
+      "kind": "calle",
+      "point": [
+        39.5501029,
+        -0.5310895
+      ]
+    },
+    {
+      "id": "way-20021764",
+      "name": "Carrer de Benissanó",
+      "slug": "carrer-de-benissano",
+      "kind": "calle",
+      "point": [
+        39.5435488,
+        -0.5649555
+      ]
+    },
+    {
+      "id": "way-1335166858",
+      "name": "Carrer de Bulgària",
+      "slug": "carrer-de-bulgaria",
+      "kind": "calle",
+      "point": [
+        39.5579023,
+        -0.5535784
+      ]
+    },
+    {
+      "id": "way-12373581",
+      "name": "Carrer de Càceres",
+      "slug": "carrer-de-caceres",
+      "kind": "calle",
+      "point": [
+        39.5566075,
+        -0.5397531
+      ]
+    },
+    {
+      "id": "way-1257153121",
+      "name": "Carrer de Castelló",
+      "slug": "carrer-de-castello",
+      "kind": "calle",
+      "point": [
+        39.5508885,
+        -0.5826811
+      ]
+    },
+    {
+      "id": "way-1329985743",
+      "name": "Carrer de Concepción Arenal Ponte",
+      "slug": "carrer-de-concepcion-arenal-ponte",
+      "kind": "calle",
+      "point": [
+        39.5519238,
+        -0.5831008
+      ]
+    },
+    {
+      "id": "way-101967736",
+      "name": "Carrer de Cristòfol Colom",
+      "slug": "carrer-de-cristofol-colom",
+      "kind": "calle",
+      "point": [
+        39.5448121,
+        -0.5670968
+      ]
+    },
+    {
+      "id": "way-148059836",
+      "name": "Carrer de Federica Montseny",
+      "slug": "carrer-de-federica-montseny",
+      "kind": "calle",
+      "point": [
+        39.5511644,
+        -0.5825896
+      ]
+    },
+    {
+      "id": "way-39584013",
+      "name": "Carrer de Federico García Lorca",
+      "slug": "carrer-de-federico-garcia-lorca",
+      "kind": "calle",
+      "point": [
+        39.5418787,
+        -0.5690672
+      ]
+    },
+    {
+      "id": "way-39585233",
+      "name": "Carrer de Fernando el Catòlic",
+      "slug": "carrer-de-fernando-el-catolic",
+      "kind": "calle",
+      "point": [
+        39.547197,
+        -0.5759369
+      ]
+    },
+    {
+      "id": "way-1335166857",
+      "name": "Carrer de Finlàndia",
+      "slug": "carrer-de-finlandia",
+      "kind": "calle",
+      "point": [
+        39.5583155,
+        -0.5542912
+      ]
+    },
+    {
+      "id": "way-61427164",
+      "name": "Carrer de Formentera",
+      "slug": "carrer-de-formentera",
+      "kind": "calle",
+      "point": [
+        39.4779375,
+        -0.5763391
+      ]
+    },
+    {
+      "id": "way-72370513",
+      "name": "Carrer de França",
+      "slug": "carrer-de-franca",
+      "kind": "calle",
+      "point": [
+        39.5578881,
+        -0.5554874
+      ]
+    },
+    {
+      "id": "way-39586245",
+      "name": "Carrer de Francisco de Quevedo",
+      "slug": "carrer-de-francisco-de-quevedo",
+      "kind": "calle",
+      "point": [
+        39.545136,
+        -0.579112
+      ]
+    },
+    {
+      "id": "way-1331320611",
+      "name": "Carrer de Galícia",
+      "slug": "carrer-de-galicia",
+      "kind": "calle",
+      "point": [
+        39.4826328,
+        -0.5769561
+      ]
+    },
+    {
+      "id": "way-39528693",
+      "name": "Carrer de Garelli i Pastor",
+      "slug": "carrer-de-garelli-i-pastor",
+      "kind": "calle",
+      "point": [
+        39.5475725,
+        -0.5676768
+      ]
+    },
+    {
+      "id": "way-33654510",
+      "name": "Carrer de Girona",
+      "slug": "carrer-de-girona",
+      "kind": "calle",
+      "point": [
+        39.5505214,
+        -0.5239145
+      ]
+    },
+    {
+      "id": "way-33191291",
+      "name": "Carrer de Gloria Fuertes",
+      "slug": "carrer-de-gloria-fuertes",
+      "kind": "calle",
+      "point": [
+        39.555615,
+        -0.5322889
+      ]
+    },
+    {
+      "id": "way-21887351",
+      "name": "Carrer de Granada",
+      "slug": "carrer-de-granada",
+      "kind": "calle",
+      "point": [
+        39.5507001,
+        -0.5340452
+      ]
+    },
+    {
+      "id": "way-39586240",
+      "name": "Carrer de Guillem de Castro",
+      "slug": "carrer-de-guillem-de-castro",
+      "kind": "calle",
+      "point": [
+        39.5452954,
+        -0.5780138
+      ]
+    },
+    {
+      "id": "way-33191304",
+      "name": "Carrer de Huelva",
+      "slug": "carrer-de-huelva",
+      "kind": "calle",
+      "point": [
+        39.5533472,
+        -0.5330776
+      ]
+    },
+    {
+      "id": "way-39525579",
+      "name": "Carrer de Joan Fuster",
+      "slug": "carrer-de-joan-fuster",
+      "kind": "calle",
+      "point": [
+        39.5442739,
+        -0.5635141
+      ]
+    },
+    {
+      "id": "way-39585232",
+      "name": "Carrer de Joan Gil Albert",
+      "slug": "carrer-de-joan-gil-albert",
+      "kind": "calle",
+      "point": [
+        39.5493639,
+        -0.5801173
+      ]
+    },
+    {
+      "id": "way-31278653",
+      "name": "Carrer de Joanot Martorell",
+      "slug": "carrer-de-joanot-martorell",
+      "kind": "calle",
+      "point": [
+        39.5433408,
+        -0.5708415
+      ]
+    },
+    {
+      "id": "way-9281561",
+      "name": "Carrer de Joaquín Sorolla",
+      "slug": "carrer-de-joaquin-sorolla",
+      "kind": "calle",
+      "point": [
+        39.5551905,
+        -0.544689
+      ]
+    },
+    {
+      "id": "way-33654525",
+      "name": "Carrer de l'Actor Mauri",
+      "slug": "carrer-de-l-actor-mauri",
+      "kind": "calle",
+      "point": [
+        39.5537804,
+        -0.5281331
+      ]
+    },
+    {
+      "id": "way-39525587",
+      "name": "Carrer de l'Albufera",
+      "slug": "carrer-de-l-albufera",
+      "kind": "calle",
+      "point": [
+        39.5441968,
+        -0.5621937
+      ]
+    },
+    {
+      "id": "way-9281505",
+      "name": "Carrer de l'Alcoià",
+      "slug": "carrer-de-l-alcoia",
+      "kind": "calle",
+      "point": [
+        39.5553403,
+        -0.5524443
+      ]
+    },
+    {
+      "id": "way-744847121",
+      "name": "Carrer de l'Ametler",
+      "slug": "carrer-de-l-ametler",
+      "kind": "calle",
+      "point": [
+        39.5313683,
+        -0.5277082
+      ]
+    },
+    {
+      "id": "way-1330462789",
+      "name": "Carrer de l'Aqüeducte",
+      "slug": "carrer-de-l-aqueducte",
+      "kind": "calle",
+      "point": [
+        39.5237285,
+        -0.5232389
+      ]
+    },
+    {
+      "id": "way-60171050",
+      "name": "Carrer de l'Arpa",
+      "slug": "carrer-de-l-arpa",
+      "kind": "calle",
+      "point": [
+        39.5129102,
+        -0.5362111
+      ]
+    },
+    {
+      "id": "way-61053670",
+      "name": "Carrer de l'Auró",
+      "slug": "carrer-de-l-auro",
+      "kind": "calle",
+      "point": [
+        39.5343283,
+        -0.5327704
+      ]
+    },
+    {
+      "id": "way-61053742",
+      "name": "Carrer de l'Avena",
+      "slug": "carrer-de-l-avena",
+      "kind": "calle",
+      "point": [
+        39.5288554,
+        -0.5305947
+      ]
+    },
+    {
+      "id": "way-138293954",
+      "name": "Carrer de l'Avet",
+      "slug": "carrer-de-l-avet",
+      "kind": "calle",
+      "point": [
+        39.5368542,
+        -0.5394131
+      ]
+    },
+    {
+      "id": "way-39528695",
+      "name": "Carrer de l'Eliana",
+      "slug": "carrer-de-l-eliana",
+      "kind": "calle",
+      "point": [
+        39.5474356,
+        -0.5664068
+      ]
+    },
+    {
+      "id": "way-60170847",
+      "name": "Carrer de l'Encreuat",
+      "slug": "carrer-de-l-encreuat",
+      "kind": "calle",
+      "point": [
+        39.5107415,
+        -0.5332232
+      ]
+    },
+    {
+      "id": "way-9281468",
+      "name": "Carrer de L'Habana",
+      "slug": "carrer-de-l-habana",
+      "kind": "calle",
+      "point": [
+        39.5557803,
+        -0.5470427
+      ]
+    },
+    {
+      "id": "way-638497702",
+      "name": "Carrer de l'Herba-sana",
+      "slug": "carrer-de-l-herba-sana",
+      "kind": "calle",
+      "point": [
+        39.53318,
+        -0.5273661
+      ]
+    },
+    {
+      "id": "way-566219303",
+      "name": "Carrer de l'Hort",
+      "slug": "carrer-de-l-hort",
+      "kind": "calle",
+      "point": [
+        39.5467552,
+        -0.5658664
+      ]
+    },
+    {
+      "id": "way-9281542",
+      "name": "Carrer de L'Horta",
+      "slug": "carrer-de-l-horta",
+      "kind": "calle",
+      "point": [
+        39.5560694,
+        -0.5504942
+      ]
+    },
+    {
+      "id": "way-61427219",
+      "name": "Carrer de l'Illa de Cabrera",
+      "slug": "carrer-de-l-illa-de-cabrera",
+      "kind": "calle",
+      "point": [
+        39.4809782,
+        -0.5720474
+      ]
+    },
+    {
+      "id": "way-60171052",
+      "name": "Carrer de l'Oboé",
+      "slug": "carrer-de-l-oboe",
+      "kind": "calle",
+      "point": [
+        39.5120369,
+        -0.5361468
+      ]
+    },
+    {
+      "id": "way-61053909",
+      "name": "Carrer de l'Olivera",
+      "slug": "carrer-de-l-olivera",
+      "kind": "calle",
+      "point": [
+        39.5310712,
+        -0.5303413
+      ]
+    },
+    {
+      "id": "way-61053871",
+      "name": "Carrer de l'Ordi",
+      "slug": "carrer-de-l-ordi",
+      "kind": "calle",
+      "point": [
+        39.5339666,
+        -0.5302831
+      ]
+    },
+    {
+      "id": "way-148239669",
+      "name": "Carrer de la Azucena",
+      "slug": "carrer-de-la-azucena",
+      "kind": "calle",
+      "point": [
+        39.537249,
+        -0.5387702
+      ]
+    },
+    {
+      "id": "way-61427194",
+      "name": "Carrer de la Balsa",
+      "slug": "carrer-de-la-balsa",
+      "kind": "calle",
+      "point": [
+        39.4769276,
+        -0.5748621
+      ]
+    },
+    {
+      "id": "way-21279136",
+      "name": "Carrer de la Barraca",
+      "slug": "carrer-de-la-barraca",
+      "kind": "calle",
+      "point": [
+        39.5445914,
+        -0.5610426
+      ]
+    },
+    {
+      "id": "way-186806216",
+      "name": "Carrer de la Bàscula",
+      "slug": "carrer-de-la-bascula",
+      "kind": "calle",
+      "point": [
+        39.4748865,
+        -0.5707705
+      ]
+    },
+    {
+      "id": "way-61053647",
+      "name": "Carrer de la Buganvilla",
+      "slug": "carrer-de-la-buganvilla",
+      "kind": "calle",
+      "point": [
+        39.5372122,
+        -0.5343037
+      ]
+    },
+    {
+      "id": "way-39528702",
+      "name": "Carrer de la Carnisseria",
+      "slug": "carrer-de-la-carnisseria",
+      "kind": "calle",
+      "point": [
+        39.5481392,
+        -0.5666843
+      ]
+    },
+    {
+      "id": "way-61053904",
+      "name": "Carrer de la Carrasca",
+      "slug": "carrer-de-la-carrasca",
+      "kind": "calle",
+      "point": [
+        39.5310712,
+        -0.5303413
+      ]
+    },
+    {
+      "id": "way-20146077",
+      "name": "Carrer de la Cisterna",
+      "slug": "carrer-de-la-cisterna",
+      "kind": "calle",
+      "point": [
+        39.5482879,
+        -0.5641918
+      ]
+    },
+    {
+      "id": "way-148239645",
+      "name": "Carrer de la Cúpula",
+      "slug": "carrer-de-la-cupula",
+      "kind": "calle",
+      "point": [
+        39.5252936,
+        -0.5295498
+      ]
+    },
+    {
+      "id": "way-148239610",
+      "name": "Carrer de la Dama d'Elx",
+      "slug": "carrer-de-la-dama-d-elx",
+      "kind": "calle",
+      "point": [
+        39.5236052,
+        -0.5293961
+      ]
+    },
+    {
+      "id": "way-148239579",
+      "name": "Carrer de la Figuera",
+      "slug": "carrer-de-la-figuera",
+      "kind": "calle",
+      "point": [
+        39.5382088,
+        -0.5311795
+      ]
+    },
+    {
+      "id": "way-39585237",
+      "name": "Carrer de la Generalitat",
+      "slug": "carrer-de-la-generalitat",
+      "kind": "calle",
+      "point": [
+        39.5476452,
+        -0.5744608
+      ]
+    },
+    {
+      "id": "way-33654524",
+      "name": "Carrer de la Magnòlia",
+      "slug": "carrer-de-la-magnolia",
+      "kind": "calle",
+      "point": [
+        39.5507848,
+        -0.5280086
+      ]
+    },
+    {
+      "id": "way-39586075",
+      "name": "Carrer de la Mallà",
+      "slug": "carrer-de-la-malla",
+      "kind": "calle",
+      "point": [
+        39.5468976,
+        -0.5820025
+      ]
+    },
+    {
+      "id": "way-39525569",
+      "name": "Carrer de la Masia de Plater",
+      "slug": "carrer-de-la-masia-de-plater",
+      "kind": "calle",
+      "point": [
+        39.5476587,
+        -0.5635098
+      ]
+    },
+    {
+      "id": "way-148239603",
+      "name": "Carrer de la Melissa",
+      "slug": "carrer-de-la-melissa",
+      "kind": "calle",
+      "point": [
+        39.5295497,
+        -0.5330517
+      ]
+    },
+    {
+      "id": "way-1330452028",
+      "name": "Carrer de la Milotxa",
+      "slug": "carrer-de-la-milotxa",
+      "kind": "calle",
+      "point": [
+        39.5132299,
+        -0.5300793
+      ]
+    },
+    {
+      "id": "way-1335206946",
+      "name": "Carrer de la Parra",
+      "slug": "carrer-de-la-parra",
+      "kind": "calle",
+      "point": [
+        39.5383743,
+        -0.5300745
+      ]
+    },
+    {
+      "id": "way-61053652",
+      "name": "Carrer de la Perera",
+      "slug": "carrer-de-la-perera",
+      "kind": "calle",
+      "point": [
+        39.5379713,
+        -0.5319139
+      ]
+    },
+    {
+      "id": "way-33191311",
+      "name": "Carrer de la Pinadeta del Cel",
+      "slug": "carrer-de-la-pinadeta-del-cel",
+      "kind": "calle",
+      "point": [
+        39.5561976,
+        -0.5342657
+      ]
+    },
+    {
+      "id": "way-33654522",
+      "name": "Carrer de la Piscina",
+      "slug": "carrer-de-la-piscina",
+      "kind": "calle",
+      "point": [
+        39.5518584,
+        -0.5277984
+      ]
+    },
+    {
+      "id": "way-148239596",
+      "name": "Carrer de la Pitera",
+      "slug": "carrer-de-la-pitera",
+      "kind": "calle",
+      "point": [
+        39.5342918,
+        -0.5342617
+      ]
+    },
+    {
+      "id": "way-33654531",
+      "name": "Carrer de la Rosa",
+      "slug": "carrer-de-la-rosa",
+      "kind": "calle",
+      "point": [
+        39.5513821,
+        -0.5264511
+      ]
+    },
+    {
+      "id": "way-9273915",
+      "name": "Carrer de La Safor",
+      "slug": "carrer-de-la-safor",
+      "kind": "calle",
+      "point": [
+        39.5557455,
+        -0.5513436
+      ]
+    },
+    {
+      "id": "way-20021656",
+      "name": "Carrer de la Senyera",
+      "slug": "carrer-de-la-senyera",
+      "kind": "calle",
+      "point": [
+        39.5439984,
+        -0.5617921
+      ]
+    },
+    {
+      "id": "way-39527973",
+      "name": "Carrer de la Sèquia de Mestalla",
+      "slug": "carrer-de-la-sequia-de-mestalla",
+      "kind": "calle",
+      "point": [
+        39.5401406,
+        -0.5488257
+      ]
+    },
+    {
+      "id": "way-39527976",
+      "name": "Carrer de la Séquia del Faitanar",
+      "slug": "carrer-de-la-sequia-del-faitanar",
+      "kind": "calle",
+      "point": [
+        39.5402896,
+        -0.5509281
+      ]
+    },
+    {
+      "id": "way-39527978",
+      "name": "Carrer de la Sèquia del Quint",
+      "slug": "carrer-de-la-sequia-del-quint",
+      "kind": "calle",
+      "point": [
+        39.5416466,
+        -0.5503633
+      ]
+    },
+    {
+      "id": "way-39527981",
+      "name": "Carrer de la Sèquia Escorredor",
+      "slug": "carrer-de-la-sequia-escorredor",
+      "kind": "calle",
+      "point": [
+        39.5410128,
+        -0.5517545
+      ]
+    },
+    {
+      "id": "way-39527970",
+      "name": "Carrer de la Sèquia Favara",
+      "slug": "carrer-de-la-sequia-favara",
+      "kind": "calle",
+      "point": [
+        39.5403111,
+        -0.5506924
+      ]
+    },
+    {
+      "id": "way-39527980",
+      "name": "Carrer de la Sèquia Marxitana",
+      "slug": "carrer-de-la-sequia-marxitana",
+      "kind": "calle",
+      "point": [
+        39.5410523,
+        -0.5532204
+      ]
+    },
+    {
+      "id": "way-39527979",
+      "name": "Carrer de la Sèquia Mitjana",
+      "slug": "carrer-de-la-sequia-mitjana",
+      "kind": "calle",
+      "point": [
+        39.5426034,
+        -0.5539021
+      ]
+    },
+    {
+      "id": "way-138293952",
+      "name": "Carrer de la Séquia na Rosella",
+      "slug": "carrer-de-la-sequia-na-rosella",
+      "kind": "calle",
+      "point": [
+        39.5390501,
+        -0.5462058
+      ]
+    },
+    {
+      "id": "way-39527969",
+      "name": "Carrer de la Sèquia Vol",
+      "slug": "carrer-de-la-sequia-vol",
+      "kind": "calle",
+      "point": [
+        39.5407591,
+        -0.551234
+      ]
+    },
+    {
+      "id": "way-148239577",
+      "name": "Carrer de la Sequoia",
+      "slug": "carrer-de-la-sequoia",
+      "kind": "calle",
+      "point": [
+        39.5342664,
+        -0.5362363
+      ]
+    },
+    {
+      "id": "way-1335779816",
+      "name": "Carrer de la Serra Aitana",
+      "slug": "carrer-de-la-serra-aitana",
+      "kind": "calle",
+      "point": [
+        39.5489279,
+        -0.5274846
+      ]
+    },
+    {
+      "id": "way-1335779815",
+      "name": "Carrer de la Serra Mariola",
+      "slug": "carrer-de-la-serra-mariola",
+      "kind": "calle",
+      "point": [
+        39.5482764,
+        -0.5283187
+      ]
+    },
+    {
+      "id": "way-1330438967",
+      "name": "Carrer de la Serra Perenxisa",
+      "slug": "carrer-de-la-serra-perenxisa",
+      "kind": "calle",
+      "point": [
+        39.5483546,
+        -0.5276963
+      ]
+    },
+    {
+      "id": "way-60170843",
+      "name": "Carrer de la Tarara",
+      "slug": "carrer-de-la-tarara",
+      "kind": "calle",
+      "point": [
+        39.5119831,
+        -0.5306509
+      ]
+    },
+    {
+      "id": "way-33654517",
+      "name": "Carrer de la Tarongina",
+      "slug": "carrer-de-la-tarongina",
+      "kind": "calle",
+      "point": [
+        39.5510499,
+        -0.5272929
+      ]
+    },
+    {
+      "id": "way-60171058",
+      "name": "Carrer de la Trompeta",
+      "slug": "carrer-de-la-trompeta",
+      "kind": "calle",
+      "point": [
+        39.5124591,
+        -0.535739
+      ]
+    },
+    {
+      "id": "way-790393808",
+      "name": "Carrer de la Verge de l'Olivar",
+      "slug": "carrer-de-la-verge-de-l-olivar",
+      "kind": "calle",
+      "point": [
+        39.4714577,
+        -0.5368171
+      ]
+    },
+    {
+      "id": "way-1257218395",
+      "name": "Carrer de la Verònica",
+      "slug": "carrer-de-la-veronica",
+      "kind": "calle",
+      "point": [
+        39.5480262,
+        -0.5700995
+      ]
+    },
+    {
+      "id": "way-1335759302",
+      "name": "Carrer de la Via",
+      "slug": "carrer-de-la-via",
+      "kind": "calle",
+      "point": [
+        39.5221356,
+        -0.5235461
+      ]
+    },
+    {
+      "id": "way-31278658",
+      "name": "Carrer de Lepant",
+      "slug": "carrer-de-lepant",
+      "kind": "calle",
+      "point": [
+        39.5418776,
+        -0.5710506
+      ]
+    },
+    {
+      "id": "way-118423177",
+      "name": "Carrer de les Acàcies",
+      "slug": "carrer-de-les-acacies",
+      "kind": "calle",
+      "point": [
+        39.5395209,
+        -0.5331322
+      ]
+    },
+    {
+      "id": "way-39525563",
+      "name": "Carrer de les Ànimes",
+      "slug": "carrer-de-les-animes",
+      "kind": "calle",
+      "point": [
+        39.5487019,
+        -0.5619531
+      ]
+    },
+    {
+      "id": "way-696236870",
+      "name": "Carrer de les Bodeguetes",
+      "slug": "carrer-de-les-bodeguetes",
+      "kind": "calle",
+      "point": [
+        39.5419901,
+        -0.5694022
+      ]
+    },
+    {
+      "id": "way-60171049",
+      "name": "Carrer de les Cabrioles",
+      "slug": "carrer-de-les-cabrioles",
+      "kind": "calle",
+      "point": [
+        39.5115382,
+        -0.5315763
+      ]
+    },
+    {
+      "id": "way-60171056",
+      "name": "Carrer de les Castanyoles",
+      "slug": "carrer-de-les-castanyoles",
+      "kind": "calle",
+      "point": [
+        39.5141683,
+        -0.5387968
+      ]
+    },
+    {
+      "id": "way-1330397492",
+      "name": "Carrer de les Endevinalles",
+      "slug": "carrer-de-les-endevinalles",
+      "kind": "calle",
+      "point": [
+        39.5115196,
+        -0.5326277
+      ]
+    },
+    {
+      "id": "way-61053947",
+      "name": "Carrer de les Mimoses",
+      "slug": "carrer-de-les-mimoses",
+      "kind": "calle",
+      "point": [
+        39.5323602,
+        -0.5305844
+      ]
+    },
+    {
+      "id": "way-1330447686",
+      "name": "Carrer de les Roselles",
+      "slug": "carrer-de-les-roselles",
+      "kind": "calle",
+      "point": [
+        39.5359545,
+        -0.5378169
+      ]
+    },
+    {
+      "id": "way-1257153122",
+      "name": "Carrer de les Sense Capell",
+      "slug": "carrer-de-les-sense-capell",
+      "kind": "calle",
+      "point": [
+        39.5514844,
+        -0.5845872
+      ]
+    },
+    {
+      "id": "way-33191287",
+      "name": "Carrer de Logroño",
+      "slug": "carrer-de-logrono",
+      "kind": "calle",
+      "point": [
+        39.5534364,
+        -0.5322226
+      ]
+    },
+    {
+      "id": "way-39586246",
+      "name": "Carrer de Lope de Vega",
+      "slug": "carrer-de-lope-de-vega",
+      "kind": "calle",
+      "point": [
+        39.5447066,
+        -0.5793213
+      ]
+    },
+    {
+      "id": "way-1257948027",
+      "name": "Carrer de Lozoya",
+      "slug": "carrer-de-lozoya",
+      "kind": "calle",
+      "point": [
+        39.5393975,
+        -0.5382529
+      ]
+    },
+    {
+      "id": "way-39586241",
+      "name": "Carrer de Luis de Góngora",
+      "slug": "carrer-de-luis-de-gongora",
+      "kind": "calle",
+      "point": [
+        39.5444415,
+        -0.5784469
+      ]
+    },
+    {
+      "id": "way-39585245",
+      "name": "Carrer de Luis Santàngel",
+      "slug": "carrer-de-luis-santangel",
+      "kind": "calle",
+      "point": [
+        39.5465507,
+        -0.5737996
+      ]
+    },
+    {
+      "id": "way-39584002",
+      "name": "Carrer de Luis Vives",
+      "slug": "carrer-de-luis-vives",
+      "kind": "calle",
+      "point": [
+        39.5429684,
+        -0.5726062
+      ]
+    },
+    {
+      "id": "way-75375411",
+      "name": "Carrer de Luxemburg",
+      "slug": "carrer-de-luxemburg",
+      "kind": "calle",
+      "point": [
+        39.558598,
+        -0.5571822
+      ]
+    },
+    {
+      "id": "way-39585773",
+      "name": "Carrer de Magallanes",
+      "slug": "carrer-de-magallanes",
+      "kind": "calle",
+      "point": [
+        39.5495276,
+        -0.574765
+      ]
+    },
+    {
+      "id": "way-61427207",
+      "name": "Carrer de Mallorca",
+      "slug": "carrer-de-mallorca",
+      "kind": "calle",
+      "point": [
+        39.4778375,
+        -0.5704932
+      ]
+    },
+    {
+      "id": "way-39525588",
+      "name": "Carrer de Manises",
+      "slug": "carrer-de-manises",
+      "kind": "calle",
+      "point": [
+        39.544966,
+        -0.5627337
+      ]
+    },
+    {
+      "id": "way-148059831",
+      "name": "Carrer de Margarida Borrás",
+      "slug": "carrer-de-margarida-borras",
+      "kind": "calle",
+      "point": [
+        39.5520818,
+        -0.5835886
+      ]
+    },
+    {
+      "id": "way-180240375",
+      "name": "Carrer de Menorca",
+      "slug": "carrer-de-menorca",
+      "kind": "calle",
+      "point": [
+        39.4751411,
+        -0.5789662
+      ]
+    },
+    {
+      "id": "way-1257153131",
+      "name": "Carrer de Miguel de Cervantes",
+      "slug": "carrer-de-miguel-de-cervantes",
+      "kind": "calle",
+      "point": [
+        39.5473585,
+        -0.5711286
+      ]
+    },
+    {
+      "id": "way-44676958",
+      "name": "Carrer de Millars",
+      "slug": "carrer-de-millars",
+      "kind": "calle",
+      "point": [
+        39.5231375,
+        -0.5132124
+      ]
+    },
+    {
+      "id": "way-61427216",
+      "name": "Carrer de Mistral",
+      "slug": "carrer-de-mistral",
+      "kind": "calle",
+      "point": [
+        39.4807635,
+        -0.5683592
+      ]
+    },
+    {
+      "id": "way-12169851",
+      "name": "Carrer de Múrcia",
+      "slug": "carrer-de-murcia",
+      "kind": "calle",
+      "point": [
+        39.5543348,
+        -0.5351187
+      ]
+    },
+    {
+      "id": "way-144107248",
+      "name": "Carrer de Numància",
+      "slug": "carrer-de-numancia",
+      "kind": "calle",
+      "point": [
+        39.5442585,
+        -0.5708942
+      ]
+    },
+    {
+      "id": "way-379894517",
+      "name": "Carrer de Olocau",
+      "slug": "carrer-de-olocau",
+      "kind": "calle",
+      "point": [
+        39.5413602,
+        -0.5675557
+      ]
+    },
+    {
+      "id": "way-20021807",
+      "name": "Carrer de Pedralba",
+      "slug": "carrer-de-pedralba",
+      "kind": "calle",
+      "point": [
+        39.542819,
+        -0.5655099
+      ]
+    },
+    {
+      "id": "way-1330438968",
+      "name": "Carrer de Penyagolosa",
+      "slug": "carrer-de-penyagolosa",
+      "kind": "calle",
+      "point": [
+        39.548741,
+        -0.5279909
+      ]
+    },
+    {
+      "id": "way-39585761",
+      "name": "Carrer de Perpinyanet",
+      "slug": "carrer-de-perpinyanet",
+      "kind": "calle",
+      "point": [
+        39.550535,
+        -0.5820432
+      ]
+    },
+    {
+      "id": "way-39585783",
+      "name": "Carrer de Pizarro",
+      "slug": "carrer-de-pizarro",
+      "kind": "calle",
+      "point": [
+        39.5461699,
+        -0.5752387
+      ]
+    },
+    {
+      "id": "way-61427203",
+      "name": "Carrer de Poniente",
+      "slug": "carrer-de-poniente",
+      "kind": "calle",
+      "point": [
+        39.4784524,
+        -0.5762798
+      ]
+    },
+    {
+      "id": "way-39525735",
+      "name": "Carrer de Ramon i Cajal",
+      "slug": "carrer-de-ramon-i-cajal",
+      "kind": "calle",
+      "point": [
+        39.5444722,
+        -0.5664016
+      ]
+    },
+    {
+      "id": "way-33242546",
+      "name": "Carrer de Ramón Lahuerta",
+      "slug": "carrer-de-ramon-lahuerta",
+      "kind": "calle",
+      "point": [
+        39.5512949,
+        -0.5292867
+      ]
+    },
+    {
+      "id": "way-33654500",
+      "name": "Carrer de Ramon Navarrete",
+      "slug": "carrer-de-ramon-navarrete",
+      "kind": "calle",
+      "point": [
+        39.5509717,
+        -0.5254067
+      ]
+    },
+    {
+      "id": "way-39584009",
+      "name": "Carrer de Sagunt",
+      "slug": "carrer-de-sagunt",
+      "kind": "calle",
+      "point": [
+        39.544098,
+        -0.570952
+      ]
+    },
+    {
+      "id": "way-144107240",
+      "name": "Carrer de Salvador Bigorra",
+      "slug": "carrer-de-salvador-bigorra",
+      "kind": "calle",
+      "point": [
+        39.5442585,
+        -0.5686388
+      ]
+    },
+    {
+      "id": "way-44677293",
+      "name": "Carrer de San Julián - Els Pous",
+      "slug": "carrer-de-san-julian-els-pous",
+      "kind": "calle",
+      "point": [
+        39.522681,
+        -0.5178791
+      ]
+    },
+    {
+      "id": "way-44677289",
+      "name": "Carrer de San Pancracio",
+      "slug": "carrer-de-san-pancracio",
+      "kind": "calle",
+      "point": [
+        39.5220995,
+        -0.5209187
+      ]
+    },
+    {
+      "id": "way-39499095",
+      "name": "Carrer de Sanchis Guarner",
+      "slug": "carrer-de-sanchis-guarner",
+      "kind": "calle",
+      "point": [
+        39.5459965,
+        -0.5705975
+      ]
+    },
+    {
+      "id": "way-44677291",
+      "name": "Carrer de Sant Agustí",
+      "slug": "carrer-de-sant-agusti",
+      "kind": "calle",
+      "point": [
+        39.5213345,
+        -0.5209025
+      ]
+    },
+    {
+      "id": "way-39528688",
+      "name": "Carrer de Sant Antoni",
+      "slug": "carrer-de-sant-antoni",
+      "kind": "calle",
+      "point": [
+        39.546246,
+        -0.5684624
+      ]
+    },
+    {
+      "id": "way-44677292",
+      "name": "Carrer de Sant Gabriel",
+      "slug": "carrer-de-sant-gabriel",
+      "kind": "calle",
+      "point": [
+        39.521707,
+        -0.5191559
+      ]
+    },
+    {
+      "id": "way-15021691",
+      "name": "Carrer de Sant Joan de la Ribera",
+      "slug": "carrer-de-sant-joan-de-la-ribera",
+      "kind": "calle",
+      "point": [
+        39.5545414,
+        -0.542861
+      ]
+    },
+    {
+      "id": "way-129562933",
+      "name": "Carrer de Sant Julià",
+      "slug": "carrer-de-sant-julia",
+      "kind": "calle",
+      "point": [
+        39.5479766,
+        -0.5674576
+      ]
+    },
+    {
+      "id": "way-39525580",
+      "name": "Carrer de Sant Ricard",
+      "slug": "carrer-de-sant-ricard",
+      "kind": "calle",
+      "point": [
+        39.5443915,
+        -0.5638584
+      ]
+    },
+    {
+      "id": "way-39525574",
+      "name": "Carrer de Sant Vicent",
+      "slug": "carrer-de-sant-vicent",
+      "kind": "calle",
+      "point": [
+        39.5456675,
+        -0.56518
+      ]
+    },
+    {
+      "id": "way-1080736247",
+      "name": "Carrer de Santa Anna",
+      "slug": "carrer-de-santa-anna",
+      "kind": "calle",
+      "point": [
+        39.5417264,
+        -0.5723372
+      ]
+    },
+    {
+      "id": "way-1354862028",
+      "name": "Carrer de Santa Maria",
+      "slug": "carrer-de-santa-maria",
+      "kind": "calle",
+      "point": [
+        39.5445514,
+        -0.5642919
+      ]
+    },
+    {
+      "id": "way-33191302",
+      "name": "Carrer de Santa Teresa",
+      "slug": "carrer-de-santa-teresa",
+      "kind": "calle",
+      "point": [
+        39.5499506,
+        -0.5332824
+      ]
+    },
+    {
+      "id": "way-10075062",
+      "name": "Carrer de Santiago Apóstol",
+      "slug": "carrer-de-santiago-apostol",
+      "kind": "calle",
+      "point": [
+        39.5585059,
+        -0.5474665
+      ]
+    },
+    {
+      "id": "way-33654501",
+      "name": "Carrer de Segorbe",
+      "slug": "carrer-de-segorbe",
+      "kind": "calle",
+      "point": [
+        39.5523713,
+        -0.5290455
+      ]
+    },
+    {
+      "id": "way-21279150",
+      "name": "Carrer de Sèquia de Lorca",
+      "slug": "carrer-de-sequia-de-lorca",
+      "kind": "calle",
+      "point": [
+        39.54221,
+        -0.5556562
+      ]
+    },
+    {
+      "id": "way-33191285",
+      "name": "Carrer de Sevilla",
+      "slug": "carrer-de-sevilla",
+      "kind": "calle",
+      "point": [
+        39.5527645,
+        -0.532713
+      ]
+    },
+    {
+      "id": "way-1335166865",
+      "name": "Carrer de Suïssa",
+      "slug": "carrer-de-suissa",
+      "kind": "calle",
+      "point": [
+        39.5560468,
+        -0.5538554
+      ]
+    },
+    {
+      "id": "way-39586239",
+      "name": "Carrer de Tirso de Molina",
+      "slug": "carrer-de-tirso-de-molina",
+      "kind": "calle",
+      "point": [
+        39.5448691,
+        -0.5782308
+      ]
+    },
+    {
+      "id": "way-39584005",
+      "name": "Carrer de Toledo",
+      "slug": "carrer-de-toledo",
+      "kind": "calle",
+      "point": [
+        39.5409819,
+        -0.5722426
+      ]
+    },
+    {
+      "id": "way-745733663",
+      "name": "Carrer de València la Vella",
+      "slug": "carrer-de-valencia-la-vella",
+      "kind": "calle",
+      "point": [
+        39.5245465,
+        -0.5201598
+      ]
+    },
+    {
+      "id": "way-144113985",
+      "name": "Carrer de Velázquez",
+      "slug": "carrer-de-velazquez",
+      "kind": "calle",
+      "point": [
+        39.5450334,
+        -0.5654298
+      ]
+    },
+    {
+      "id": "way-39585230",
+      "name": "Carrer de Vicent Aleixandre",
+      "slug": "carrer-de-vicent-aleixandre",
+      "kind": "calle",
+      "point": [
+        39.5502045,
+        -0.578463
+      ]
+    },
+    {
+      "id": "way-39585239",
+      "name": "Carrer de Vicent Blasco Ibáñez",
+      "slug": "carrer-de-vicent-blasco-ibanez",
+      "kind": "calle",
+      "point": [
+        39.5483833,
+        -0.5753401
+      ]
+    },
+    {
+      "id": "way-33242552",
+      "name": "Carrer de Vicente Lluch",
+      "slug": "carrer-de-vicente-lluch",
+      "kind": "calle",
+      "point": [
+        39.5527516,
+        -0.5308002
+      ]
+    },
+    {
+      "id": "way-100968202",
+      "name": "Carrer de Vicente Rafael Ruano",
+      "slug": "carrer-de-vicente-rafael-ruano",
+      "kind": "calle",
+      "point": [
+        39.5518954,
+        -0.5303057
+      ]
+    },
+    {
+      "id": "way-39533080",
+      "name": "Carrer de Vinatea",
+      "slug": "carrer-de-vinatea",
+      "kind": "calle",
+      "point": [
+        39.5454336,
+        -0.567526
+      ]
+    },
+    {
+      "id": "way-33191295",
+      "name": "Carrer del Baladrar",
+      "slug": "carrer-del-baladrar",
+      "kind": "calle",
+      "point": [
+        39.5556552,
+        -0.5349306
+      ]
+    },
+    {
+      "id": "way-39584007",
+      "name": "Carrer del Barranc",
+      "slug": "carrer-del-barranc",
+      "kind": "calle",
+      "point": [
+        39.5432203,
+        -0.5678218
+      ]
+    },
+    {
+      "id": "way-39533074",
+      "name": "Carrer del Barranc de les Monges",
+      "slug": "carrer-del-barranc-de-les-monges",
+      "kind": "calle",
+      "point": [
+        39.5459011,
+        -0.5710381
+      ]
+    },
+    {
+      "id": "way-61053642",
+      "name": "Carrer del Cactus",
+      "slug": "carrer-del-cactus",
+      "kind": "calle",
+      "point": [
+        39.535638,
+        -0.532504
+      ]
+    },
+    {
+      "id": "way-39528685",
+      "name": "Carrer del Calvari",
+      "slug": "carrer-del-calvari",
+      "kind": "calle",
+      "point": [
+        39.5468194,
+        -0.5693059
+      ]
+    },
+    {
+      "id": "way-148239589",
+      "name": "Carrer del Centeno",
+      "slug": "carrer-del-centeno",
+      "kind": "calle",
+      "point": [
+        39.5321667,
+        -0.5343119
+      ]
+    },
+    {
+      "id": "way-39525577",
+      "name": "Carrer del Cid",
+      "slug": "carrer-del-cid",
+      "kind": "calle",
+      "point": [
+        39.5465682,
+        -0.5637041
+      ]
+    },
+    {
+      "id": "way-39525585",
+      "name": "Carrer del Comte",
+      "slug": "carrer-del-comte",
+      "kind": "calle",
+      "point": [
+        39.5473044,
+        -0.5637363
+      ]
+    },
+    {
+      "id": "way-1335142272",
+      "name": "Carrer del Contacontes",
+      "slug": "carrer-del-contacontes",
+      "kind": "calle",
+      "point": [
+        39.5114906,
+        -0.5304444
+      ]
+    },
+    {
+      "id": "way-1257218396",
+      "name": "Carrer del Corralot",
+      "slug": "carrer-del-corralot",
+      "kind": "calle",
+      "point": [
+        39.5476849,
+        -0.5701434
+      ]
+    },
+    {
+      "id": "way-31278656",
+      "name": "Carrer del Crist dels Afligits",
+      "slug": "carrer-del-crist-dels-afligits",
+      "kind": "calle",
+      "point": [
+        39.540318,
+        -0.5719683
+      ]
+    },
+    {
+      "id": "way-39585236",
+      "name": "Carrer del Cronista Cerveró",
+      "slug": "carrer-del-cronista-cervero",
+      "kind": "calle",
+      "point": [
+        39.5465928,
+        -0.572529
+      ]
+    },
+    {
+      "id": "way-1242095514",
+      "name": "Carrer del Doctor Cerveró",
+      "slug": "carrer-del-doctor-cervero",
+      "kind": "calle",
+      "point": [
+        39.5484578,
+        -0.5716534
+      ]
+    },
+    {
+      "id": "way-39585242",
+      "name": "Carrer del Doctor Fleming",
+      "slug": "carrer-del-doctor-fleming",
+      "kind": "calle",
+      "point": [
+        39.5427436,
+        -0.5724641
+      ]
+    },
+    {
+      "id": "way-39525564",
+      "name": "Carrer del Doctor Marañón",
+      "slug": "carrer-del-doctor-maranon",
+      "kind": "calle",
+      "point": [
+        39.5443915,
+        -0.5638584
+      ]
+    },
+    {
+      "id": "way-31278654",
+      "name": "Carrer del Dos de Maig",
+      "slug": "carrer-del-dos-de-maig",
+      "kind": "calle",
+      "point": [
+        39.5420327,
+        -0.5715951
+      ]
+    },
+    {
+      "id": "way-39528699",
+      "name": "Carrer del Forn Vell",
+      "slug": "carrer-del-forn-vell",
+      "kind": "calle",
+      "point": [
+        39.5466934,
+        -0.5662912
+      ]
+    },
+    {
+      "id": "way-33654518",
+      "name": "Carrer del Gessamí",
+      "slug": "carrer-del-gessami",
+      "kind": "calle",
+      "point": [
+        39.5510499,
+        -0.5272929
+      ]
+    },
+    {
+      "id": "way-148239595",
+      "name": "Carrer del Ginebre",
+      "slug": "carrer-del-ginebre",
+      "kind": "calle",
+      "point": [
+        39.5328261,
+        -0.5363871
+      ]
+    },
+    {
+      "id": "way-33654530",
+      "name": "Carrer del Greco",
+      "slug": "carrer-del-greco",
+      "kind": "calle",
+      "point": [
+        39.5498563,
+        -0.5262627
+      ]
+    },
+    {
+      "id": "way-39525581",
+      "name": "Carrer del Llaurador",
+      "slug": "carrer-del-llaurador",
+      "kind": "calle",
+      "point": [
+        39.5458077,
+        -0.5635437
+      ]
+    },
+    {
+      "id": "way-1257218398",
+      "name": "Carrer del Llavador",
+      "slug": "carrer-del-llavador",
+      "kind": "calle",
+      "point": [
+        39.5479011,
+        -0.5688845
+      ]
+    },
+    {
+      "id": "way-578636150",
+      "name": "Carrer del Lliri Groc",
+      "slug": "carrer-del-lliri-groc",
+      "kind": "calle",
+      "point": [
+        39.5239906,
+        -0.5171613
+      ]
+    },
+    {
+      "id": "way-9281402",
+      "name": "Carrer del Maestrat",
+      "slug": "carrer-del-maestrat",
+      "kind": "calle",
+      "point": [
+        39.5541395,
+        -0.5518394
+      ]
+    },
+    {
+      "id": "way-61053913",
+      "name": "Carrer del Mangraner",
+      "slug": "carrer-del-mangraner",
+      "kind": "calle",
+      "point": [
+        39.5307973,
+        -0.529178
+      ]
+    },
+    {
+      "id": "way-186806223",
+      "name": "Carrer del Mas de Baló",
+      "slug": "carrer-del-mas-de-balo",
+      "kind": "calle",
+      "point": [
+        39.4805108,
+        -0.590225
+      ]
+    },
+    {
+      "id": "way-186806210",
+      "name": "Carrer del Mas de l'Oliveral",
+      "slug": "carrer-del-mas-de-l-oliveral",
+      "kind": "calle",
+      "point": [
+        39.4830556,
+        -0.5833196
+      ]
+    },
+    {
+      "id": "way-61427853",
+      "name": "Carrer del Mas de Montealcedo",
+      "slug": "carrer-del-mas-de-montealcedo",
+      "kind": "calle",
+      "point": [
+        39.4832185,
+        -0.5857799
+      ]
+    },
+    {
+      "id": "way-186806195",
+      "name": "Carrer del Mas de Montes",
+      "slug": "carrer-del-mas-de-montes",
+      "kind": "calle",
+      "point": [
+        39.4805062,
+        -0.5875882
+      ]
+    },
+    {
+      "id": "way-186806194",
+      "name": "Carrer del Mas de Porchinos",
+      "slug": "carrer-del-mas-de-porchinos",
+      "kind": "calle",
+      "point": [
+        39.4824589,
+        -0.58901
+      ]
+    },
+    {
+      "id": "way-1331322631",
+      "name": "Carrer del Mas del Conde",
+      "slug": "carrer-del-mas-del-conde",
+      "kind": "calle",
+      "point": [
+        39.4781462,
+        -0.5811841
+      ]
+    },
+    {
+      "id": "way-186806207",
+      "name": "Carrer del Mas del Penyot",
+      "slug": "carrer-del-mas-del-penyot",
+      "kind": "calle",
+      "point": [
+        39.4839454,
+        -0.5807671
+      ]
+    },
+    {
+      "id": "way-180240368",
+      "name": "Carrer del Mas Vallesa de Mandor",
+      "slug": "carrer-del-mas-vallesa-de-mandor",
+      "kind": "calle",
+      "point": [
+        39.4752211,
+        -0.5839297
+      ]
+    },
+    {
+      "id": "way-39528691",
+      "name": "Carrer del Mercat",
+      "slug": "carrer-del-mercat",
+      "kind": "calle",
+      "point": [
+        39.5464172,
+        -0.5676831
+      ]
+    },
+    {
+      "id": "way-39528692",
+      "name": "Carrer del Mestre Salvador Ferrandis",
+      "slug": "carrer-del-mestre-salvador-ferrandis",
+      "kind": "calle",
+      "point": [
+        39.5459034,
+        -0.5667619
+      ]
+    },
+    {
+      "id": "way-21363314",
+      "name": "Carrer del Mestre Serrano",
+      "slug": "carrer-del-mestre-serrano",
+      "kind": "calle",
+      "point": [
+        39.5542509,
+        -0.5419958
+      ]
+    },
+    {
+      "id": "way-44677294",
+      "name": "Carrer del Migdia",
+      "slug": "carrer-del-migdia",
+      "kind": "calle",
+      "point": [
+        39.5232807,
+        -0.5164918
+      ]
+    },
+    {
+      "id": "way-148239658",
+      "name": "Carrer del Mirador",
+      "slug": "carrer-del-mirador",
+      "kind": "calle",
+      "point": [
+        39.5246504,
+        -0.5195656
+      ]
+    },
+    {
+      "id": "way-39533069",
+      "name": "Carrer del Moll",
+      "slug": "carrer-del-moll",
+      "kind": "calle",
+      "point": [
+        39.5445284,
+        -0.5710185
+      ]
+    },
+    {
+      "id": "way-39533078",
+      "name": "Carrer del Mont",
+      "slug": "carrer-del-mont",
+      "kind": "calle",
+      "point": [
+        39.545263,
+        -0.5671464
+      ]
+    },
+    {
+      "id": "way-1257218386",
+      "name": "Carrer del Mur",
+      "slug": "carrer-del-mur",
+      "kind": "calle",
+      "point": [
+        39.5479817,
+        -0.5679806
+      ]
+    },
+    {
+      "id": "way-39528686",
+      "name": "Carrer del Nord",
+      "slug": "carrer-del-nord",
+      "kind": "calle",
+      "point": [
+        39.5469408,
+        -0.569994
+      ]
+    },
+    {
+      "id": "way-696236867",
+      "name": "Carrer del Nou d'OCtubre",
+      "slug": "carrer-del-nou-d-octubre",
+      "kind": "calle",
+      "point": [
+        39.5456425,
+        -0.5694483
+      ]
+    },
+    {
+      "id": "way-9272753",
+      "name": "Carrer del Palleter",
+      "slug": "carrer-del-palleter",
+      "kind": "calle",
+      "point": [
+        39.5555341,
+        -0.5456729
+      ]
+    },
+    {
+      "id": "way-1330397488",
+      "name": "Carrer del Patinet",
+      "slug": "carrer-del-patinet",
+      "kind": "calle",
+      "point": [
+        39.5119273,
+        -0.5287533
+      ]
+    },
+    {
+      "id": "way-1335779810",
+      "name": "Carrer del Pintor Domingo",
+      "slug": "carrer-del-pintor-domingo",
+      "kind": "calle",
+      "point": [
+        39.5526574,
+        -0.5282951
+      ]
+    },
+    {
+      "id": "way-44677277",
+      "name": "Carrer del Pintor Velázquez",
+      "slug": "carrer-del-pintor-velazquez",
+      "kind": "calle",
+      "point": [
+        39.5236832,
+        -0.5200937
+      ]
+    },
+    {
+      "id": "way-33654528",
+      "name": "Carrer del Pla de la Paella",
+      "slug": "carrer-del-pla-de-la-paella",
+      "kind": "calle",
+      "point": [
+        39.5502426,
+        -0.5268237
+      ]
+    },
+    {
+      "id": "way-1335166862",
+      "name": "Carrer del Poeta Querol",
+      "slug": "carrer-del-poeta-querol",
+      "kind": "calle",
+      "point": [
+        39.5566969,
+        -0.5481748
+      ]
+    },
+    {
+      "id": "way-152448442",
+      "name": "Carrer del Port de Borriana",
+      "slug": "carrer-del-port-de-borriana",
+      "kind": "calle",
+      "point": [
+        39.4864217,
+        -0.529523
+      ]
+    },
+    {
+      "id": "way-152448427",
+      "name": "Carrer del Port de Calp",
+      "slug": "carrer-del-port-de-calp",
+      "kind": "calle",
+      "point": [
+        39.4833473,
+        -0.5273114
+      ]
+    },
+    {
+      "id": "way-152448440",
+      "name": "Carrer del Port de Dénia",
+      "slug": "carrer-del-port-de-denia",
+      "kind": "calle",
+      "point": [
+        39.4875411,
+        -0.5303048
+      ]
+    },
+    {
+      "id": "way-152448441",
+      "name": "Carrer del Port de Gandia",
+      "slug": "carrer-del-port-de-gandia",
+      "kind": "calle",
+      "point": [
+        39.4862384,
+        -0.5295466
+      ]
+    },
+    {
+      "id": "way-152448431",
+      "name": "Carrer del Port de l'Illa de Tabarca",
+      "slug": "carrer-del-port-de-l-illa-de-tabarca",
+      "kind": "calle",
+      "point": [
+        39.4847247,
+        -0.5292691
+      ]
+    },
+    {
+      "id": "way-745690101",
+      "name": "Carrer del Port de la Vila Joiosa",
+      "slug": "carrer-del-port-de-la-vila-joiosa",
+      "kind": "calle",
+      "point": [
+        39.4837976,
+        -0.5281269
+      ]
+    },
+    {
+      "id": "way-152448422",
+      "name": "Carrer del Port de Vinaròs",
+      "slug": "carrer-del-port-de-vinaros",
+      "kind": "calle",
+      "point": [
+        39.4874691,
+        -0.5293882
+      ]
+    },
+    {
+      "id": "way-152448426",
+      "name": "Carrer del Port del Perelló",
+      "slug": "carrer-del-port-del-perello",
+      "kind": "calle",
+      "point": [
+        39.486681,
+        -0.5322909
+      ]
+    },
+    {
+      "id": "way-379896103",
+      "name": "Carrer del Primer de Maig",
+      "slug": "carrer-del-primer-de-maig",
+      "kind": "calle",
+      "point": [
+        39.5428037,
+        -0.5664634
+      ]
+    },
+    {
+      "id": "way-39528694",
+      "name": "Carrer del Rellotge Vell",
+      "slug": "carrer-del-rellotge-vell",
+      "kind": "calle",
+      "point": [
+        39.5474588,
+        -0.5665558
+      ]
+    },
+    {
+      "id": "way-1335142274",
+      "name": "Carrer del Rotgle",
+      "slug": "carrer-del-rotgle",
+      "kind": "calle",
+      "point": [
+        39.5119169,
+        -0.5335075
+      ]
+    },
+    {
+      "id": "way-60170842",
+      "name": "Carrer del Sambori",
+      "slug": "carrer-del-sambori",
+      "kind": "calle",
+      "point": [
+        39.510249,
+        -0.5326223
+      ]
+    },
+    {
+      "id": "way-1330452040",
+      "name": "Carrer del Saxòfon",
+      "slug": "carrer-del-saxofon",
+      "kind": "calle",
+      "point": [
+        39.5141038,
+        -0.5358824
+      ]
+    },
+    {
+      "id": "way-1335206947",
+      "name": "Carrer del Timó",
+      "slug": "carrer-del-timo",
+      "kind": "calle",
+      "point": [
+        39.5357183,
+        -0.5296668
+      ]
+    },
+    {
+      "id": "way-20145699",
+      "name": "Carrer del Trinquet",
+      "slug": "carrer-del-trinquet",
+      "kind": "calle",
+      "point": [
+        39.546625,
+        -0.5661784
+      ]
+    },
+    {
+      "id": "way-60088188",
+      "name": "Carrer del Vaixell",
+      "slug": "carrer-del-vaixell",
+      "kind": "calle",
+      "point": [
+        39.516134,
+        -0.5271345
+      ]
+    },
+    {
+      "id": "way-39525573",
+      "name": "Carrer del Vent",
+      "slug": "carrer-del-vent",
+      "kind": "calle",
+      "point": [
+        39.5462695,
+        -0.564786
+      ]
+    },
+    {
+      "id": "way-40550375",
+      "name": "Carrer del Vinalopó",
+      "slug": "carrer-del-vinalopo",
+      "kind": "calle",
+      "point": [
+        39.541588,
+        -0.5398682
+      ]
+    },
+    {
+      "id": "way-60171053",
+      "name": "Carrer del Violí",
+      "slug": "carrer-del-violi",
+      "kind": "calle",
+      "point": [
+        39.5142924,
+        -0.5351704
+      ]
+    },
+    {
+      "id": "way-61053926",
+      "name": "Carrer del Xiprer",
+      "slug": "carrer-del-xiprer",
+      "kind": "calle",
+      "point": [
+        39.5300756,
+        -0.530605
+      ]
+    },
+    {
+      "id": "way-148239591",
+      "name": "Carrer del Xop",
+      "slug": "carrer-del-xop",
+      "kind": "calle",
+      "point": [
+        39.5347091,
+        -0.5300686
+      ]
+    },
+    {
+      "id": "way-1335759300",
+      "name": "Carrer dels Àlbers",
+      "slug": "carrer-dels-albers",
+      "kind": "calle",
+      "point": [
+        39.5235359,
+        -0.5160485
+      ]
+    },
+    {
+      "id": "way-1257948045",
+      "name": "Carrer dels Àngels",
+      "slug": "carrer-dels-angels",
+      "kind": "calle",
+      "point": [
+        39.5456782,
+        -0.5724096
+      ]
+    },
+    {
+      "id": "way-148239623",
+      "name": "Carrer dels Arboços",
+      "slug": "carrer-dels-arbocos",
+      "kind": "calle",
+      "point": [
+        39.5238761,
+        -0.5179407
+      ]
+    },
+    {
+      "id": "way-61427846",
+      "name": "Carrer dels Argenters",
+      "slug": "carrer-dels-argenters",
+      "kind": "calle",
+      "point": [
+        39.4769048,
+        -0.5514359
+      ]
+    },
+    {
+      "id": "way-711939237",
+      "name": "Carrer dels Coeters",
+      "slug": "carrer-dels-coeters",
+      "kind": "calle",
+      "point": [
+        39.4771077,
+        -0.5600756
+      ]
+    },
+    {
+      "id": "way-60171051",
+      "name": "Carrer dels Colorins",
+      "slug": "carrer-dels-colorins",
+      "kind": "calle",
+      "point": [
+        39.5121694,
+        -0.5315817
+      ]
+    },
+    {
+      "id": "way-61427850",
+      "name": "Carrer dels Ferrers",
+      "slug": "carrer-dels-ferrers",
+      "kind": "calle",
+      "point": [
+        39.476941,
+        -0.5558631
+      ]
+    },
+    {
+      "id": "way-61427842",
+      "name": "Carrer dels Fogainers",
+      "slug": "carrer-dels-fogainers",
+      "kind": "calle",
+      "point": [
+        39.4806242,
+        -0.5625798
+      ]
+    },
+    {
+      "id": "way-39585240",
+      "name": "Carrer dels Furs del Regne",
+      "slug": "carrer-dels-furs-del-regne",
+      "kind": "calle",
+      "point": [
+        39.548387,
+        -0.5768771
+      ]
+    },
+    {
+      "id": "way-359856591",
+      "name": "Carrer dels Germans Pinzón",
+      "slug": "carrer-dels-germans-pinzon",
+      "kind": "calle",
+      "point": [
+        39.5468469,
+        -0.5761115
+      ]
+    },
+    {
+      "id": "way-61636693",
+      "name": "Carrer dels Jogueters",
+      "slug": "carrer-dels-jogueters",
+      "kind": "calle",
+      "point": [
+        39.4850818,
+        -0.5603908
+      ]
+    },
+    {
+      "id": "way-148239615",
+      "name": "Carrer dels Joncs",
+      "slug": "carrer-dels-joncs",
+      "kind": "calle",
+      "point": [
+        39.5368992,
+        -0.5289385
+      ]
+    },
+    {
+      "id": "way-61427848",
+      "name": "Carrer dels Llanteners",
+      "slug": "carrer-dels-llanteners",
+      "kind": "calle",
+      "point": [
+        39.4789565,
+        -0.5627176
+      ]
+    },
+    {
+      "id": "way-148239726",
+      "name": "Carrer dels Lliris",
+      "slug": "carrer-dels-lliris",
+      "kind": "calle",
+      "point": [
+        39.53734,
+        -0.5372038
+      ]
+    },
+    {
+      "id": "way-520993768",
+      "name": "Carrer dels Matalafers",
+      "slug": "carrer-dels-matalafers",
+      "kind": "calle",
+      "point": [
+        39.4798527,
+        -0.5627674
+      ]
+    },
+    {
+      "id": "way-61636691",
+      "name": "Carrer dels Mercaders",
+      "slug": "carrer-dels-mercaders",
+      "kind": "calle",
+      "point": [
+        39.4818207,
+        -0.5531711
+      ]
+    },
+    {
+      "id": "way-61427852",
+      "name": "Carrer dels Pedrapiquers",
+      "slug": "carrer-dels-pedrapiquers",
+      "kind": "calle",
+      "point": [
+        39.4753384,
+        -0.5514692
+      ]
+    },
+    {
+      "id": "way-61427851",
+      "name": "Carrer dels Pelleters",
+      "slug": "carrer-dels-pelleters",
+      "kind": "calle",
+      "point": [
+        39.4762681,
+        -0.5582288
+      ]
+    },
+    {
+      "id": "way-1330462792",
+      "name": "Carrer dels Pomelos",
+      "slug": "carrer-dels-pomelos",
+      "kind": "calle",
+      "point": [
+        39.523027,
+        -0.5229225
+      ]
+    },
+    {
+      "id": "way-9273904",
+      "name": "Carrer dels Ports",
+      "slug": "carrer-dels-ports",
+      "kind": "calle",
+      "point": [
+        39.556778,
+        -0.5505619
+      ]
+    },
+    {
+      "id": "way-148239630",
+      "name": "Carrer dels Pous",
+      "slug": "carrer-dels-pous",
+      "kind": "calle",
+      "point": [
+        39.522583,
+        -0.521744
+      ]
+    },
+    {
+      "id": "way-520993772",
+      "name": "Carrer dels Sabaters",
+      "slug": "carrer-dels-sabaters",
+      "kind": "calle",
+      "point": [
+        39.4794969,
+        -0.5654057
+      ]
+    },
+    {
+      "id": "way-118423174",
+      "name": "Carrer dels Salzes",
+      "slug": "carrer-dels-salzes",
+      "kind": "calle",
+      "point": [
+        39.538822,
+        -0.531536
+      ]
+    },
+    {
+      "id": "way-9281582",
+      "name": "Carrer dels Serrans",
+      "slug": "carrer-dels-serrans",
+      "kind": "calle",
+      "point": [
+        39.5527387,
+        -0.5513223
+      ]
+    },
+    {
+      "id": "way-60171057",
+      "name": "Carrer dels Tabals",
+      "slug": "carrer-dels-tabals",
+      "kind": "calle",
+      "point": [
+        39.5132702,
+        -0.536651
+      ]
+    },
+    {
+      "id": "way-181471487",
+      "name": "Carrer dels Tapissers",
+      "slug": "carrer-dels-tapissers",
+      "kind": "calle",
+      "point": [
+        39.4793447,
+        -0.5655218
+      ]
+    },
+    {
+      "id": "way-148239614",
+      "name": "Carrer dels Tulipans",
+      "slug": "carrer-dels-tulipans",
+      "kind": "calle",
+      "point": [
+        39.5314415,
+        -0.5328083
+      ]
+    },
+    {
+      "id": "way-61636689",
+      "name": "Carrer dels Velluters",
+      "slug": "carrer-dels-velluters",
+      "kind": "calle",
+      "point": [
+        39.4805316,
+        -0.5571605
+      ]
+    },
+    {
+      "id": "way-520993775",
+      "name": "Carrer dels Xocolaters",
+      "slug": "carrer-dels-xocolaters",
+      "kind": "calle",
+      "point": [
+        39.4790128,
+        -0.5654394
+      ]
+    },
+    {
+      "id": "way-615780390",
+      "name": "Carrer Deva",
+      "slug": "carrer-deva",
+      "kind": "calle",
+      "point": [
+        39.5419572,
+        -0.5431464
+      ]
+    },
+    {
+      "id": "way-1334680189",
+      "name": "Carrer Dolçaina",
+      "slug": "carrer-dolcaina",
+      "kind": "calle",
+      "point": [
+        39.5609297,
+        -0.5598736
+      ]
+    },
+    {
+      "id": "way-789698594",
+      "name": "Carrer E",
+      "slug": "carrer-e",
+      "kind": "calle",
+      "point": [
+        39.4801873,
+        -0.5333215
+      ]
+    },
+    {
+      "id": "way-21279477",
+      "name": "Carrer Edeta",
+      "slug": "carrer-edeta",
+      "kind": "calle",
+      "point": [
+        39.5421819,
+        -0.5659926
+      ]
+    },
+    {
+      "id": "way-61096901",
+      "name": "Carrer El Pinar",
+      "slug": "carrer-el-pinar",
+      "kind": "calle",
+      "point": [
+        39.4848876,
+        -0.5694459
+      ]
+    },
+    {
+      "id": "way-61096869",
+      "name": "Carrer El Salvador",
+      "slug": "carrer-el-salvador",
+      "kind": "calle",
+      "point": [
+        39.4837309,
+        -0.5688102
+      ]
+    },
+    {
+      "id": "way-49840382",
+      "name": "Carrer Enrique Granados",
+      "slug": "carrer-enrique-granados",
+      "kind": "calle",
+      "point": [
+        39.564306,
+        -0.5635362
+      ]
+    },
+    {
+      "id": "way-39525583",
+      "name": "Carrer Eres Altes",
+      "slug": "carrer-eres-altes",
+      "kind": "calle",
+      "point": [
+        39.5465682,
+        -0.5637041
+      ]
+    },
+    {
+      "id": "way-615780389",
+      "name": "Carrer Eresma",
+      "slug": "carrer-eresma",
+      "kind": "calle",
+      "point": [
+        39.5416583,
+        -0.5433379
+      ]
+    },
+    {
+      "id": "way-61096888",
+      "name": "Carrer Ernesto Halffter",
+      "slug": "carrer-ernesto-halffter",
+      "kind": "calle",
+      "point": [
+        39.4828283,
+        -0.5720604
+      ]
+    },
+    {
+      "id": "way-44032176",
+      "name": "Carrer Esla",
+      "slug": "carrer-esla",
+      "kind": "calle",
+      "point": [
+        39.5432138,
+        -0.5477892
+      ]
+    },
+    {
+      "id": "way-281402272",
+      "name": "Carrer Extremadura",
+      "slug": "carrer-extremadura",
+      "kind": "calle",
+      "point": [
+        39.4707488,
+        -0.5362406
+      ]
+    },
+    {
+      "id": "way-38154095",
+      "name": "Carrer F",
+      "slug": "carrer-f",
+      "kind": "calle",
+      "point": [
+        39.4742756,
+        -0.5396215
+      ]
+    },
+    {
+      "id": "way-186806225",
+      "name": "Carrer Federico Chueca",
+      "slug": "carrer-federico-chueca",
+      "kind": "calle",
+      "point": [
+        39.4842745,
+        -0.5728104
+      ]
+    },
+    {
+      "id": "way-144110484",
+      "name": "Carrer Forques",
+      "slug": "carrer-forques",
+      "kind": "calle",
+      "point": [
+        39.5495569,
+        -0.5735202
+      ]
+    },
+    {
+      "id": "way-186806189",
+      "name": "Carrer Francisco Barbieri",
+      "slug": "carrer-francisco-barbieri",
+      "kind": "calle",
+      "point": [
+        39.4842657,
+        -0.5734643
+      ]
+    },
+    {
+      "id": "way-1257948032",
+      "name": "Carrer Fresneda",
+      "slug": "carrer-fresneda",
+      "kind": "calle",
+      "point": [
+        39.5412016,
+        -0.5469928
+      ]
+    },
+    {
+      "id": "way-38154092",
+      "name": "Carrer G",
+      "slug": "carrer-g",
+      "kind": "calle",
+      "point": [
+        39.4803653,
+        -0.534577
+      ]
+    },
+    {
+      "id": "way-61096874",
+      "name": "Carrer Generalife",
+      "slug": "carrer-generalife",
+      "kind": "calle",
+      "point": [
+        39.4829902,
+        -0.5692626
+      ]
+    },
+    {
+      "id": "way-745733657",
+      "name": "Carrer Grecia",
+      "slug": "carrer-grecia",
+      "kind": "calle",
+      "point": [
+        39.558106,
+        -0.559479
+      ]
+    },
+    {
+      "id": "way-677953152",
+      "name": "Carrer Guadalajara",
+      "slug": "carrer-guadalajara",
+      "kind": "calle",
+      "point": [
+        39.5401789,
+        -0.5719804
+      ]
+    },
+    {
+      "id": "way-44032178",
+      "name": "Carrer Guadalhorce",
+      "slug": "carrer-guadalhorce",
+      "kind": "calle",
+      "point": [
+        39.542626,
+        -0.5470731
+      ]
+    },
+    {
+      "id": "way-148239642",
+      "name": "Carrer Guardalaviar",
+      "slug": "carrer-guardalaviar",
+      "kind": "calle",
+      "point": [
+        39.5413636,
+        -0.5408128
+      ]
+    },
+    {
+      "id": "way-38154091",
+      "name": "Carrer H",
+      "slug": "carrer-h",
+      "kind": "calle",
+      "point": [
+        39.4808558,
+        -0.5305567
+      ]
+    },
+    {
+      "id": "way-44677279",
+      "name": "Carrer Hamburgo",
+      "slug": "carrer-hamburgo",
+      "kind": "calle",
+      "point": [
+        39.5268097,
+        -0.5229796
+      ]
+    },
+    {
+      "id": "way-1334643648",
+      "name": "Carrer Harmònic",
+      "slug": "carrer-harmonic",
+      "kind": "calle",
+      "point": [
+        39.5133716,
+        -0.5378875
+      ]
+    },
+    {
+      "id": "way-44032177",
+      "name": "Carrer Henares",
+      "slug": "carrer-henares",
+      "kind": "calle",
+      "point": [
+        39.5425784,
+        -0.5478388
+      ]
+    },
+    {
+      "id": "way-75375402",
+      "name": "Carrer Holanda",
+      "slug": "carrer-holanda",
+      "kind": "calle",
+      "point": [
+        39.5590779,
+        -0.5582945
+      ]
+    },
+    {
+      "id": "way-148239644",
+      "name": "Carrer Huerta Valenciana",
+      "slug": "carrer-huerta-valenciana",
+      "kind": "calle",
+      "point": [
+        39.5252783,
+        -0.5250239
+      ]
+    },
+    {
+      "id": "way-38154089",
+      "name": "Carrer I",
+      "slug": "carrer-i",
+      "kind": "calle",
+      "point": [
+        39.4737915,
+        -0.5289531
+      ]
+    },
+    {
+      "id": "way-186806218",
+      "name": "Carrer Ibiza",
+      "slug": "carrer-ibiza",
+      "kind": "calle",
+      "point": [
+        39.4840788,
+        -0.5768101
+      ]
+    },
+    {
+      "id": "way-61096870",
+      "name": "Carrer Illa La Gomera",
+      "slug": "carrer-illa-la-gomera",
+      "kind": "calle",
+      "point": [
+        39.4833198,
+        -0.5700122
+      ]
+    },
+    {
+      "id": "way-242585034",
+      "name": "Carrer Iregua",
+      "slug": "carrer-iregua",
+      "kind": "calle",
+      "point": [
+        39.5430875,
+        -0.5484359
+      ]
+    },
+    {
+      "id": "way-186806188",
+      "name": "Carrer Isaac Manuel Albéniz",
+      "slug": "carrer-isaac-manuel-albeniz",
+      "kind": "calle",
+      "point": [
+        39.4833894,
+        -0.5713502
+      ]
+    },
+    {
+      "id": "way-61427198",
+      "name": "Carrer Jacarandas",
+      "slug": "carrer-jacarandas",
+      "kind": "calle",
+      "point": [
+        39.4764495,
+        -0.5694095
+      ]
+    },
+    {
+      "id": "way-21887137",
+      "name": "Carrer Jaén",
+      "slug": "carrer-jaen",
+      "kind": "calle",
+      "point": [
+        39.5518035,
+        -0.5327999
+      ]
+    },
+    {
+      "id": "way-44032190",
+      "name": "Carrer Jerte",
+      "slug": "carrer-jerte",
+      "kind": "calle",
+      "point": [
+        39.5393381,
+        -0.5402689
+      ]
+    },
+    {
+      "id": "way-21886857",
+      "name": "Carrer Jesús Domingo Grande",
+      "slug": "carrer-jesus-domingo-grande",
+      "kind": "calle",
+      "point": [
+        39.5523477,
+        -0.5337166
+      ]
+    },
+    {
+      "id": "way-39533071",
+      "name": "Carrer Joan de Joanes",
+      "slug": "carrer-joan-de-joanes",
+      "kind": "calle",
+      "point": [
+        39.5462423,
+        -0.5696348
+      ]
+    },
+    {
+      "id": "way-186806187",
+      "name": "Carrer Joaquín Turina",
+      "slug": "carrer-joaquin-turina",
+      "kind": "calle",
+      "point": [
+        39.4842575,
+        -0.5741339
+      ]
+    },
+    {
+      "id": "way-186806197",
+      "name": "Carrer Joaquín Valverde San Juan",
+      "slug": "carrer-joaquin-valverde-san-juan",
+      "kind": "calle",
+      "point": [
+        39.4834473,
+        -0.5740713
+      ]
+    },
+    {
+      "id": "way-186806205",
+      "name": "Carrer Joquín Rodrigo",
+      "slug": "carrer-joquin-rodrigo",
+      "kind": "calle",
+      "point": [
+        39.4833894,
+        -0.5713502
+      ]
+    },
+    {
+      "id": "way-10075065",
+      "name": "Carrer Jorge Juan",
+      "slug": "carrer-jorge-juan",
+      "kind": "calle",
+      "point": [
+        39.5548706,
+        -0.5438117
+      ]
+    },
+    {
+      "id": "way-12170311",
+      "name": "Carrer José Iturbi",
+      "slug": "carrer-jose-iturbi",
+      "kind": "calle",
+      "point": [
+        39.5535769,
+        -0.5404596
+      ]
+    },
+    {
+      "id": "way-38154111",
+      "name": "Carrer K",
+      "slug": "carrer-k",
+      "kind": "calle",
+      "point": [
+        39.4816768,
+        -0.5303349
+      ]
+    },
+    {
+      "id": "way-40550376",
+      "name": "Carrer Kert",
+      "slug": "carrer-kert",
+      "kind": "calle",
+      "point": [
+        39.5436359,
+        -0.5493004
+      ]
+    },
+    {
+      "id": "way-38154084",
+      "name": "Carrer L",
+      "slug": "carrer-l",
+      "kind": "calle",
+      "point": [
+        39.4752066,
+        -0.53137
+      ]
+    },
+    {
+      "id": "way-615780391",
+      "name": "Carrer l'Ermita",
+      "slug": "carrer-l-ermita",
+      "kind": "calle",
+      "point": [
+        39.5419663,
+        -0.5422723
+      ]
+    },
+    {
+      "id": "way-566219301",
+      "name": "Carrer La Canal",
+      "slug": "carrer-la-canal",
+      "kind": "calle",
+      "point": [
+        39.5461376,
+        -0.5660289
+      ]
+    },
+    {
+      "id": "way-9281453",
+      "name": "Carrer La Marina",
+      "slug": "carrer-la-marina",
+      "kind": "calle",
+      "point": [
+        39.5542164,
+        -0.5507726
+      ]
+    },
+    {
+      "id": "way-9272746",
+      "name": "Carrer La Ribera",
+      "slug": "carrer-la-ribera",
+      "kind": "calle",
+      "point": [
+        39.5549595,
+        -0.5504068
+      ]
+    },
+    {
+      "id": "way-61427218",
+      "name": "Carrer Levante",
+      "slug": "carrer-levante",
+      "kind": "calle",
+      "point": [
+        39.4799597,
+        -0.5686142
+      ]
+    },
+    {
+      "id": "way-1332501225",
+      "name": "Carrer LL",
+      "slug": "carrer-ll",
+      "kind": "calle",
+      "point": [
+        39.480681,
+        -0.5369761
+      ]
+    },
+    {
+      "id": "way-40550378",
+      "name": "Carrer Llobregat",
+      "slug": "carrer-llobregat",
+      "kind": "calle",
+      "point": [
+        39.5405509,
+        -0.541636
+      ]
+    },
+    {
+      "id": "way-665553257",
+      "name": "Carrer lo Cant del Valencià",
+      "slug": "carrer-lo-cant-del-valencia",
+      "kind": "calle",
+      "point": [
+        39.5471018,
+        -0.5633089
+      ]
+    },
+    {
+      "id": "way-33191286",
+      "name": "Carrer Logronyo",
+      "slug": "carrer-logronyo",
+      "kind": "calle",
+      "point": [
+        39.5515797,
+        -0.5315821
+      ]
+    },
+    {
+      "id": "way-40550377",
+      "name": "Carrer Lozoya",
+      "slug": "carrer-lozoya",
+      "kind": "calle",
+      "point": [
+        39.5382122,
+        -0.5405755
+      ]
+    },
+    {
+      "id": "way-38154094",
+      "name": "Carrer M",
+      "slug": "carrer-m",
+      "kind": "calle",
+      "point": [
+        39.4779073,
+        -0.5419229
+      ]
+    },
+    {
+      "id": "way-696236869",
+      "name": "Carrer Major",
+      "slug": "carrer-major",
+      "kind": "calle",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ]
+    },
+    {
+      "id": "way-826223424",
+      "name": "Carrer Màlaga",
+      "slug": "carrer-malaga",
+      "kind": "carretera",
+      "point": [
+        39.5490247,
+        -0.5314342
+      ]
+    },
+    {
+      "id": "way-49840384",
+      "name": "Carrer Manuel de Falla",
+      "slug": "carrer-manuel-de-falla",
+      "kind": "calle",
+      "point": [
+        39.5656552,
+        -0.5634879
+      ]
+    },
+    {
+      "id": "way-1320441960",
+      "name": "Carrer Mar Mediterrània",
+      "slug": "carrer-mar-mediterrania",
+      "kind": "calle",
+      "point": [
+        39.4831099,
+        -0.5697673
+      ]
+    },
+    {
+      "id": "way-10075064",
+      "name": "Carrer Mariano Benlliure",
+      "slug": "carrer-mariano-benlliure",
+      "kind": "calle",
+      "point": [
+        39.5548706,
+        -0.5438117
+      ]
+    },
+    {
+      "id": "way-186806212",
+      "name": "Carrer Mas de Alagón",
+      "slug": "carrer-mas-de-alagon",
+      "kind": "calle",
+      "point": [
+        39.4830556,
+        -0.5833196
+      ]
+    },
+    {
+      "id": "way-39528689",
+      "name": "Carrer Metge Cerveró",
+      "slug": "carrer-metge-cervero",
+      "kind": "calle",
+      "point": [
+        39.5468772,
+        -0.5668521
+      ]
+    },
+    {
+      "id": "way-49840432",
+      "name": "Carrer Miquelet",
+      "slug": "carrer-miquelet",
+      "kind": "calle",
+      "point": [
+        39.5597758,
+        -0.5539352
+      ]
+    },
+    {
+      "id": "way-745733656",
+      "name": "Carrer Monte Alcedo",
+      "slug": "carrer-monte-alcedo",
+      "kind": "calle",
+      "point": [
+        39.5519575,
+        -0.5467264
+      ]
+    },
+    {
+      "id": "way-44677280",
+      "name": "Carrer Monterrey",
+      "slug": "carrer-monterrey",
+      "kind": "calle",
+      "point": [
+        39.527648,
+        -0.5231749
+      ]
+    },
+    {
+      "id": "way-21279222",
+      "name": "Carrer Muntanya del Colom",
+      "slug": "carrer-muntanya-del-colom",
+      "kind": "calle",
+      "point": [
+        39.5451337,
+        -0.560414
+      ]
+    },
+    {
+      "id": "way-20018315",
+      "name": "Carrer Muntanya del Flare",
+      "slug": "carrer-muntanya-del-flare",
+      "kind": "calle",
+      "point": [
+        39.5440663,
+        -0.5570291
+      ]
+    },
+    {
+      "id": "way-383744676",
+      "name": "Carrer Muntanya Potrós",
+      "slug": "carrer-muntanya-potros",
+      "kind": "calle",
+      "point": [
+        39.5455815,
+        -0.562482
+      ]
+    },
+    {
+      "id": "way-20018375",
+      "name": "Carrer Muntanya Serretilla",
+      "slug": "carrer-muntanya-serretilla",
+      "kind": "calle",
+      "point": [
+        39.5439838,
+        -0.5585839
+      ]
+    },
+    {
+      "id": "way-281402271",
+      "name": "Carrer N",
+      "slug": "carrer-n",
+      "kind": "calle",
+      "point": [
+        39.4771477,
+        -0.5380241
+      ]
+    },
+    {
+      "id": "way-61427843",
+      "name": "Carrer N-III",
+      "slug": "carrer-n-iii",
+      "kind": "calle",
+      "point": [
+        39.4740385,
+        -0.5470278
+      ]
+    },
+    {
+      "id": "way-1257948043",
+      "name": "Carrer Nalón",
+      "slug": "carrer-nalon",
+      "kind": "calle",
+      "point": [
+        39.5402244,
+        -0.5431151
+      ]
+    },
+    {
+      "id": "way-186806196",
+      "name": "Carrer Nemesio Otaño",
+      "slug": "carrer-nemesio-otano",
+      "kind": "calle",
+      "point": [
+        39.483422,
+        -0.5747599
+      ]
+    },
+    {
+      "id": "way-1335135578",
+      "name": "Carrer O",
+      "slug": "carrer-o",
+      "kind": "calle",
+      "point": [
+        39.480496,
+        -0.5355701
+      ]
+    },
+    {
+      "id": "way-44032188",
+      "name": "Carrer Oria",
+      "slug": "carrer-oria",
+      "kind": "calle",
+      "point": [
+        39.5395703,
+        -0.5441285
+      ]
+    },
+    {
+      "id": "way-44677278",
+      "name": "Carrer Ourense",
+      "slug": "carrer-ourense",
+      "kind": "calle",
+      "point": [
+        39.527271,
+        -0.5227377
+      ]
+    },
+    {
+      "id": "way-368777969",
+      "name": "Carrer P",
+      "slug": "carrer-p",
+      "kind": "calle",
+      "point": [
+        39.4768376,
+        -0.541292
+      ]
+    },
+    {
+      "id": "way-749143478",
+      "name": "Carrer Pablo Sarasat",
+      "slug": "carrer-pablo-sarasat",
+      "kind": "calle",
+      "point": [
+        39.5649356,
+        -0.5631661
+      ]
+    },
+    {
+      "id": "way-20021076",
+      "name": "Carrer Pic de l'Aguila",
+      "slug": "carrer-pic-de-l-aguila",
+      "kind": "calle",
+      "point": [
+        39.5453184,
+        -0.5616969
+      ]
+    },
+    {
+      "id": "way-1354577254",
+      "name": "Carrer Pintor Goya",
+      "slug": "carrer-pintor-goya",
+      "kind": "calle",
+      "point": [
+        39.5432203,
+        -0.5678218
+      ]
+    },
+    {
+      "id": "way-44032189",
+      "name": "Carrer Pisuerga",
+      "slug": "carrer-pisuerga",
+      "kind": "calle",
+      "point": [
+        39.5392607,
+        -0.5434207
+      ]
+    },
+    {
+      "id": "way-20021701",
+      "name": "Carrer Pobla de Vallbona",
+      "slug": "carrer-pobla-de-vallbona",
+      "kind": "calle",
+      "point": [
+        39.5430193,
+        -0.5669714
+      ]
+    },
+    {
+      "id": "way-1320441963",
+      "name": "Carrer Poeta Alberola",
+      "slug": "carrer-poeta-alberola",
+      "kind": "calle",
+      "point": [
+        39.4849578,
+        -0.5681661
+      ]
+    },
+    {
+      "id": "way-281402256",
+      "name": "Carrer Pouet de Camilo",
+      "slug": "carrer-pouet-de-camilo",
+      "kind": "calle",
+      "point": [
+        39.4705136,
+        -0.54278
+      ]
+    },
+    {
+      "id": "way-281402265",
+      "name": "Carrer Pouet de Consedo",
+      "slug": "carrer-pouet-de-consedo",
+      "kind": "calle",
+      "point": [
+        39.4720386,
+        -0.5448424
+      ]
+    },
+    {
+      "id": "way-281402259",
+      "name": "Carrer Pouet de Nasio",
+      "slug": "carrer-pouet-de-nasio",
+      "kind": "calle",
+      "point": [
+        39.4717997,
+        -0.5391259
+      ]
+    },
+    {
+      "id": "way-45034551",
+      "name": "Carrer Pouet de Valenciano",
+      "slug": "carrer-pouet-de-valenciano",
+      "kind": "calle",
+      "point": [
+        39.4704944,
+        -0.5395476
+      ]
+    },
+    {
+      "id": "way-61096900",
+      "name": "Carrer Prolongació Estació",
+      "slug": "carrer-prolongacio-estacio",
+      "kind": "calle",
+      "point": [
+        39.4853966,
+        -0.572115
+      ]
+    },
+    {
+      "id": "way-368777968",
+      "name": "Carrer Q",
+      "slug": "carrer-q",
+      "kind": "calle",
+      "point": [
+        39.4780603,
+        -0.5459668
+      ]
+    },
+    {
+      "id": "way-465291053",
+      "name": "Carrer R",
+      "slug": "carrer-r",
+      "kind": "calle",
+      "point": [
+        39.4745042,
+        -0.5459648
+      ]
+    },
+    {
+      "id": "way-39585247",
+      "name": "Carrer Ratxolar",
+      "slug": "carrer-ratxolar",
+      "kind": "calle",
+      "point": [
+        39.5452567,
+        -0.5722209
+      ]
+    },
+    {
+      "id": "way-31278657",
+      "name": "Carrer Rei en Jaume",
+      "slug": "carrer-rei-en-jaume",
+      "kind": "calle",
+      "point": [
+        39.5421963,
+        -0.5700301
+      ]
+    },
+    {
+      "id": "way-615780388",
+      "name": "Carrer Riansares",
+      "slug": "carrer-riansares",
+      "kind": "calle",
+      "point": [
+        39.5415142,
+        -0.5439403
+      ]
+    },
+    {
+      "id": "way-1330627654",
+      "name": "Carrer Rio Mijares",
+      "slug": "carrer-rio-mijares",
+      "kind": "calle",
+      "point": [
+        39.5639175,
+        -0.5604039
+      ]
+    },
+    {
+      "id": "way-61096886",
+      "name": "Carrer Riu Miño",
+      "slug": "carrer-riu-mino",
+      "kind": "calle",
+      "point": [
+        39.4851633,
+        -0.5702683
+      ]
+    },
+    {
+      "id": "way-39498766",
+      "name": "Carrer Rosalía de Castro",
+      "slug": "carrer-rosalia-de-castro",
+      "kind": "calle",
+      "point": [
+        39.5447156,
+        -0.5771852
+      ]
+    },
+    {
+      "id": "way-186806203",
+      "name": "Carrer Ruperto Chapí",
+      "slug": "carrer-ruperto-chapi",
+      "kind": "calle",
+      "point": [
+        39.4843038,
+        -0.5713677
+      ]
+    },
+    {
+      "id": "way-1151080546",
+      "name": "Carrer S",
+      "slug": "carrer-s",
+      "kind": "calle",
+      "point": [
+        39.4757852,
+        -0.5414403
+      ]
+    },
+    {
+      "id": "way-10075077",
+      "name": "Carrer Salvador Giner",
+      "slug": "carrer-salvador-giner",
+      "kind": "calle",
+      "point": [
+        39.5574842,
+        -0.5452992
+      ]
+    },
+    {
+      "id": "way-61096891",
+      "name": "Carrer Sant Blai",
+      "slug": "carrer-sant-blai",
+      "kind": "calle",
+      "point": [
+        39.4846336,
+        -0.5688899
+      ]
+    },
+    {
+      "id": "way-61096878",
+      "name": "Carrer Santa Clara",
+      "slug": "carrer-santa-clara",
+      "kind": "calle",
+      "point": [
+        39.484049,
+        -0.5679316
+      ]
+    },
+    {
+      "id": "way-144110488",
+      "name": "Carrer Santander",
+      "slug": "carrer-santander",
+      "kind": "calle",
+      "point": [
+        39.5469604,
+        -0.572165
+      ]
+    },
+    {
+      "id": "way-61096880",
+      "name": "Carrer Sants Pere i Pau",
+      "slug": "carrer-sants-pere-i-pau",
+      "kind": "calle",
+      "point": [
+        39.4828968,
+        -0.568866
+      ]
+    },
+    {
+      "id": "way-44032186",
+      "name": "Carrer Segura",
+      "slug": "carrer-segura",
+      "kind": "calle",
+      "point": [
+        39.5408753,
+        -0.5431664
+      ]
+    },
+    {
+      "id": "way-44032187",
+      "name": "Carrer Sella",
+      "slug": "carrer-sella",
+      "kind": "calle",
+      "point": [
+        39.5397417,
+        -0.5386708
+      ]
+    },
+    {
+      "id": "way-148316528",
+      "name": "Carrer Semianar",
+      "slug": "carrer-semianar",
+      "kind": "calle",
+      "point": [
+        39.5439816,
+        -0.5635391
+      ]
+    },
+    {
+      "id": "way-148316508",
+      "name": "Carrer Serra",
+      "slug": "carrer-serra",
+      "kind": "calle",
+      "point": [
+        39.5428903,
+        -0.5647167
+      ]
+    },
+    {
+      "id": "way-1335135577",
+      "name": "Carrer T",
+      "slug": "carrer-t",
+      "kind": "calle",
+      "point": [
+        39.4756208,
+        -0.5293391
+      ]
+    },
+    {
+      "id": "way-1357625941",
+      "name": "Carrer Tabalet",
+      "slug": "carrer-tabalet",
+      "kind": "camino",
+      "point": [
+        39.5637115,
+        -0.5651402
+      ]
+    },
+    {
+      "id": "way-61096877",
+      "name": "Carrer Teodoro Valcárcel",
+      "slug": "carrer-teodoro-valcarcel",
+      "kind": "calle",
+      "point": [
+        39.4828102,
+        -0.5734216
+      ]
+    },
+    {
+      "id": "way-61096885",
+      "name": "Carrer Til·lers",
+      "slug": "carrer-til-lers",
+      "kind": "calle",
+      "point": [
+        39.4845438,
+        -0.5699374
+      ]
+    },
+    {
+      "id": "way-299080572",
+      "name": "Carrer Tirant lo Blanch",
+      "slug": "carrer-tirant-lo-blanch",
+      "kind": "calle",
+      "point": [
+        39.5415684,
+        -0.5732239
+      ]
+    },
+    {
+      "id": "way-186806215",
+      "name": "Carrer Tomás Bretón",
+      "slug": "carrer-tomas-breton",
+      "kind": "calle",
+      "point": [
+        39.483422,
+        -0.5747599
+      ]
+    },
+    {
+      "id": "way-1320441958",
+      "name": "Carrer Tomás Luis de Victoria",
+      "slug": "carrer-tomas-luis-de-victoria",
+      "kind": "calle",
+      "point": [
+        39.4828398,
+        -0.5713353
+      ]
+    },
+    {
+      "id": "way-44032192",
+      "name": "Carrer Tormes",
+      "slug": "carrer-tormes",
+      "kind": "calle",
+      "point": [
+        39.5403029,
+        -0.5388177
+      ]
+    },
+    {
+      "id": "way-61096892",
+      "name": "Carrer Torreblanca",
+      "slug": "carrer-torreblanca",
+      "kind": "calle",
+      "point": [
+        39.4844087,
+        -0.5686316
+      ]
+    },
+    {
+      "id": "way-615780534",
+      "name": "Carrer Urumea",
+      "slug": "carrer-urumea",
+      "kind": "calle",
+      "point": [
+        39.5405563,
+        -0.5434074
+      ]
+    },
+    {
+      "id": "way-1190829894",
+      "name": "Carrer V",
+      "slug": "carrer-v",
+      "kind": "calle",
+      "point": [
+        39.4823783,
+        -0.5280655
+      ]
+    },
+    {
+      "id": "way-33242554",
+      "name": "Carrer València Club de Fútbol",
+      "slug": "carrer-valencia-club-de-futbol",
+      "kind": "calle",
+      "point": [
+        39.5514538,
+        -0.5325219
+      ]
+    },
+    {
+      "id": "way-129414205",
+      "name": "Carrer Verge de Begonya",
+      "slug": "carrer-verge-de-begonya",
+      "kind": "calle",
+      "point": [
+        39.5491634,
+        -0.576484
+      ]
+    },
+    {
+      "id": "way-61096894",
+      "name": "Carrer Verge de Gràcia",
+      "slug": "carrer-verge-de-gracia",
+      "kind": "calle",
+      "point": [
+        39.4850119,
+        -0.568948
+      ]
+    },
+    {
+      "id": "way-39585780",
+      "name": "Carrer Verge dels Desemparats",
+      "slug": "carrer-verge-dels-desemparats",
+      "kind": "calle",
+      "point": [
+        39.5480538,
+        -0.5742499
+      ]
+    },
+    {
+      "id": "way-144107247",
+      "name": "Carrer Vivers",
+      "slug": "carrer-vivers",
+      "kind": "calle",
+      "point": [
+        39.5450531,
+        -0.5744895
+      ]
+    },
+    {
+      "id": "way-38154093",
+      "name": "Carrer W",
+      "slug": "carrer-w",
+      "kind": "calle",
+      "point": [
+        39.4801515,
+        -0.5369979
+      ]
+    },
+    {
+      "id": "way-762612189",
+      "name": "Carrer X",
+      "slug": "carrer-x",
+      "kind": "calle",
+      "point": [
+        39.4821906,
+        -0.5344146
+      ]
+    },
+    {
+      "id": "way-1257948035",
+      "name": "Carrer Xúquer",
+      "slug": "carrer-xuquer",
+      "kind": "calle",
+      "point": [
+        39.5436518,
+        -0.5450879
+      ]
+    },
+    {
+      "id": "way-152448429",
+      "name": "Carrer Y",
+      "slug": "carrer-y",
+      "kind": "calle",
+      "point": [
+        39.4784418,
+        -0.5277851
+      ]
+    },
+    {
+      "id": "way-1257218387",
+      "name": "Carreró de l'Església",
+      "slug": "carrero-de-l-esglesia",
+      "kind": "calle",
+      "point": [
+        39.5471385,
+        -0.5672751
+      ]
+    },
+    {
+      "id": "way-39533070",
+      "name": "Carreró de Micalet",
+      "slug": "carrero-de-micalet",
+      "kind": "calle",
+      "point": [
+        39.5459206,
+        -0.5706599
+      ]
+    },
+    {
+      "id": "way-186005513",
+      "name": "Carretera Bétera - Riba-roja",
+      "slug": "carretera-betera-riba-roja",
+      "kind": "carretera",
+      "point": [
+        39.5515733,
+        -0.5512291
+      ]
+    },
+    {
+      "id": "way-29109664",
+      "name": "Carretera de Cheste a Loriguilla",
+      "slug": "carretera-de-cheste-a-loriguilla",
+      "kind": "carretera",
+      "point": [
+        39.4892611,
+        -0.6156402
+      ]
+    },
+    {
+      "id": "way-35599247",
+      "name": "Carretera de L'Eliana",
+      "slug": "carretera-de-l-eliana",
+      "kind": "carretera",
+      "point": [
+        39.5480537,
+        -0.560422
+      ]
+    },
+    {
+      "id": "way-584293854",
+      "name": "Carretera de Riba-roja a Loriguilla",
+      "slug": "carretera-de-riba-roja-a-loriguilla",
+      "kind": "carretera",
+      "point": [
+        39.5228339,
+        -0.5698393
+      ]
+    },
+    {
+      "id": "way-152528580",
+      "name": "Carretera de València",
+      "slug": "carretera-de-valencia",
+      "kind": "carretera",
+      "point": [
+        39.5454206,
+        -0.5666698
+      ]
+    },
+    {
+      "id": "way-39495898",
+      "name": "Carretera de Vilamarxant",
+      "slug": "carretera-de-vilamarxant",
+      "kind": "carretera",
+      "point": [
+        39.5492186,
+        -0.5827079
+      ]
+    },
+    {
+      "id": "way-15071833",
+      "name": "Carretera Manises",
+      "slug": "carretera-manises",
+      "kind": "carretera",
+      "point": [
+        39.5434501,
+        -0.5555251
+      ]
+    },
+    {
+      "id": "way-410054463",
+      "name": "Carretera Manises - Riba-roja",
+      "slug": "carretera-manises-riba-roja",
+      "kind": "carretera",
+      "point": [
+        39.5177073,
+        -0.5232968
+      ]
+    },
+    {
+      "id": "way-1415489977",
+      "name": "Carretera Riba-roja - La Pobla de Vallbona",
+      "slug": "carretera-riba-roja-la-pobla-de-vallbona",
+      "kind": "carretera",
+      "point": [
+        39.5508198,
+        -0.5628751
+      ]
+    },
+    {
+      "id": "way-30824595",
+      "name": "Carretera Ribarroja - Villamarchante",
+      "slug": "carretera-ribarroja-villamarchante",
+      "kind": "carretera",
+      "point": [
+        39.5629132,
+        -0.5987138
+      ]
+    },
+    {
+      "id": "way-155002546",
+      "name": "Parc Fluvial del Túria",
+      "slug": "parc-fluvial-del-turia",
+      "kind": "camino",
+      "point": [
+        39.5245557,
+        -0.5140222
+      ]
+    },
+    {
+      "id": "way-1320441962",
+      "name": "Passeig de l'Estació",
+      "slug": "passeig-de-l-estacio",
+      "kind": "calle",
+      "point": [
+        39.4852606,
+        -0.569456
+      ]
+    },
+    {
+      "id": "way-33191362",
+      "name": "Passeig del Molinet",
+      "slug": "passeig-del-molinet",
+      "kind": "calle",
+      "point": [
+        39.5557928,
+        -0.5531642
+      ]
+    },
+    {
+      "id": "way-72929307",
+      "name": "Passeig el Molinet",
+      "slug": "passeig-el-molinet",
+      "kind": "calle",
+      "point": [
+        39.5540442,
+        -0.5495984
+      ]
+    },
+    {
+      "id": "way-12168844",
+      "name": "Peatonal",
+      "slug": "peatonal",
+      "kind": "calle",
+      "point": [
+        39.5530651,
+        -0.535206
+      ]
+    },
+    {
+      "id": "way-1252122830",
+      "name": "Pista del Massis",
+      "slug": "pista-del-massis",
+      "kind": "camino",
+      "point": [
+        39.5307755,
+        -0.604038
+      ]
+    },
+    {
+      "id": "way-542763125",
+      "name": "Plaça de l'Ajuntament",
+      "slug": "placa-de-l-ajuntament",
+      "kind": "plaza",
+      "point": [
+        39.5468803,
+        -0.5668088
+      ]
+    },
+    {
+      "id": "way-39533081",
+      "name": "Plaça de l'Estació",
+      "slug": "placa-de-l-estacio",
+      "kind": "plaza",
+      "point": [
+        39.5445157,
+        -0.5701205
+      ]
+    },
+    {
+      "id": "way-1095351066",
+      "name": "Plaça de la Constitució",
+      "slug": "placa-de-la-constitucio",
+      "kind": "plaza",
+      "point": [
+        39.5428237,
+        -0.5718097
+      ]
+    },
+    {
+      "id": "way-1257218388",
+      "name": "Plaça de la Torre",
+      "slug": "placa-de-la-torre",
+      "kind": "plaza",
+      "point": [
+        39.5472019,
+        -0.568434
+      ]
+    },
+    {
+      "id": "way-1080736246",
+      "name": "Plaça Germanies",
+      "slug": "placa-germanies",
+      "kind": "plaza",
+      "point": [
+        39.5418594,
+        -0.5726142
+      ]
+    },
+    {
+      "id": "way-441641737",
+      "name": "Ronda de Riba-roja",
+      "slug": "ronda-de-riba-roja",
+      "kind": "carretera",
+      "point": [
+        39.5386541,
+        -0.5715603
+      ]
+    },
+    {
+      "id": "way-44952829",
+      "name": "Ronda del Port de València",
+      "slug": "ronda-del-port-de-valencia",
+      "kind": "calle",
+      "point": [
+        39.4911007,
+        -0.5368012
+      ]
+    }
+  ],
+  "stats": {
+    "total": 539,
+    "byKind": {
+      "avenida": 37,
+      "calle": 465,
+      "camino": 20,
+      "carretera": 12,
+      "plaza": 5
+    }
+  }
+}
