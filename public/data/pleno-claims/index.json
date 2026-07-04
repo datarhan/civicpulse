@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-03T17:14:08.074Z",
+  "generatedAt": "2026-07-04T08:05:36.628Z",
   "version": "1",
   "plenos": [
     {
@@ -244,6 +244,27 @@
       "bytes": 19758
     },
     {
+      "plenoId": "toa3rc",
+      "plenoDate": "2025-12-26",
+      "chunkPath": "pleno-claims/toa3rc.json",
+      "itemCount": 10,
+      "toggleCount": 8,
+      "byVerdict": {
+        "sin-datos": 8,
+        "parcial": 2
+      },
+      "byType": {
+        "afirmacion_numerica": 8,
+        "acusacion_publica": 2
+      },
+      "byTopic": {
+        "fiscal": 4,
+        "transparencia": 3,
+        "other": 3
+      },
+      "bytes": 15849
+    },
+    {
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "chunkPath": "pleno-claims/1qi8axv.json",
@@ -412,11 +433,11 @@
     }
   ],
   "totals": {
-    "items": 3686,
-    "plenos": 13,
+    "items": 3696,
+    "plenos": 14,
     "byVerdict": {
-      "sin-datos": 2908,
-      "parcial": 605,
+      "sin-datos": 2916,
+      "parcial": 607,
       "verificado": 173
     }
   }

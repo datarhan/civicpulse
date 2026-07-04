@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-03T17:15:44.671Z",
+  "generatedAt": "2026-07-04T08:06:19.303Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -182,6 +182,205 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-cit-73d3cf",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y Otro",
+      "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, el grupo Otro afirma que la vivienda construida en los últimos años en el municipio es para uso particular. El consistorio cuenta con el \"contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicac\".",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-158-cit-73d3cf",
+        "10yl550-165-cit-3bf9ea",
+        "10yl550-174-acu-bc807e",
+        "10yl550-176-acu-e7dc83"
+      ],
+      "quotes": [
+        {
+          "text": "figura de las zonas de mercado residencial tensionado",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-158-cit-73d3cf"
+        },
+        {
+          "text": "la vivienda que se construye hoy en día o desde hace unos cuantos muchos años en Rivarrocha es vivienda para uso particular",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-165-cit-3bf9ea"
+        },
+        {
+          "text": "también quiero hacer referencia al gobierno de España que también tiene competencias en vivienda en su Ministerio de Vivienda que es un ministerio que tiene el Partido Socialista",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-174-acu-bc807e"
+        },
+        {
+          "text": "si vosotros votáis en contra de esta prórroga de alquiler estáis haciendo que muchísimas familias puedan pujar el alquiler de una manera desorbitada porque es lo que actualmente pasa",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-176-acu-e7dc83"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N78uxf6aX2MSugstABGr5A%3D%3D",
+          "snippet": "Contrato Menor de Obras de Sustitución del pavimento de Zonas comunes del Mercado Municipal · Ayuntamiento de Riba-roja de Túria · Jesús  Torrijos  Fernández · construction · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RzXc%2FudzhPMBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · Vicente Chisv…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2gB%2B3A9KcJqKeVWTb9Scog%3D%3D",
+          "snippet": "Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y dinamización del comercio local, con motivo de la celebr…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-04",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-cit-0907e6",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Debate de educación en el pleno del 2026-05-11 e infraestructuras de formación en Riba-roja de Túria",
+      "summary": "Durante la sesión, el grupo Otro señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-325-cit-0907e6",
+        "10yl550-076-cit-1f4723",
+        "10yl550-028-cit-21892b",
+        "10yl550-026-acu-7f904c"
+      ],
+      "quotes": [
+        {
+          "text": "el conservatorio no lo van a entregar desde la Lleida Valenciana",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-325-cit-0907e6"
+        },
+        {
+          "text": "se ha establecido la protección civil en el ámbito universitario, integrando la formación de riesgos y emergencias en la educación superior",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-076-cit-1f4723"
+        },
+        {
+          "text": "el centro era para 600 alumnos",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-028-cit-21892b"
+        },
+        {
+          "text": "se denega al pueblo de Río Barrocha tener ese centro de formación.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-026-acu-7f904c"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, S.L. · real_estate · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+          "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=031ONMu5JSn%2B3JAijKO%2Bkg%3D%3D",
+          "snippet": "El objeto contratación es la adquisición de vestuario laboral y EPIs para el personal del Taller de Empleo Riba-roja Bonica VI FOTAE/2024/25/46, proyecto de formación y empleo que se desarrollará en el Ayuntamiento de Riba-roja de Túria…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
+          "snippet": "Servicio Dirección Facultativa de las obras de finalización del Centro Polivalente Cultural en Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-04",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-cit-7f7619",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Debate sobre movilidad y accesos peatonales en el pleno del 2026-05-11",
+      "summary": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto, mientras que el grupo Otro manifiesta la necesidad de ampliar la pasarela del puente principal. Por su parte, el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana. Estos asuntos coinciden con el registro del Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-032-cit-7f7619",
+        "10yl550-035-cit-d99202",
+        "10yl550-037-cit-b6051b",
+        "10yl550-038-acu-10a7a2"
+      ],
+      "quotes": [
+        {
+          "text": "No hay acceso peatonal. No hay acera.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-032-cit-7f7619"
+        },
+        {
+          "text": "Construyendo aceras. En tramos actualmente. Inexistentes. Como es. En la calle de la Beto.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-035-cit-d99202"
+        },
+        {
+          "text": "Es la ampliación de la pasarela. Del puente principal. Que llevamos exigiendo. Desde hace años.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-037-cit-b6051b"
+        },
+        {
+          "text": "Que compete a la Generalitat Valenciana. Donde gobierna el Partido Popular.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-038-acu-10a7a2"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de c…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1xEZUcxb4%2BQ7u6%2B%2FR7DUoA%3D%3D",
+          "snippet": "Contrato Menor:Realización de pruebas de carga en cada uno de los forjados y análisis estructural de la madera (determinación de resistencia, presencia de agentes xilófagos…) en la Casa del Abogado sita en calle Garelli y Pastor, 10. 461…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h0Wq%2FwLPQPVPpzdqOdhuWg%3D%3D",
+          "snippet": "Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término municipal de Riba-roja, en la zona afectada como consecu…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+          "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · estado: awarded"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-04",
       "response": null
     },
     {
@@ -851,6 +1050,69 @@
       "response": null
     },
     {
+      "id": "f-2026-01-19-cit-c80e68",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Debate sobre urbanismo y mantenimiento de infraestructuras en el pleno del 2026-01-19",
+      "summary": "Durante la sesión, el grupo Otro señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-051-cit-c80e68",
+        "19gax3o-055-cit-a80e52",
+        "19gax3o-132-cit-35c4f5",
+        "19gax3o-143-cit-a3a7a1"
+      ],
+      "quotes": [
+        {
+          "text": "Aquí en Riva Roja, en el pleno, no hay una agenda de reconstrucción, no hay una agenda de reconstrucción, y en cualquier otro municipio de España.",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "19gax3o-051-cit-c80e68"
+        },
+        {
+          "text": "un plan de reconstrucción nacional centrado en infraestructuras hidráulicas, protección civil eficaz, ayudas directas",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "19gax3o-055-cit-a80e52"
+        },
+        {
+          "text": "el complejo la malla se presupuesto en el año 2006 y tuvieron que hacer varias reparaciones dentro de la propia ejecución de la obra",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-132-cit-35c4f5"
+        },
+        {
+          "text": "esa piscina, ese complexo esportivo de la Mallá que ha dicho todas las deficiencias que tenían",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-143-cit-a3a7a1"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+          "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM SL · environment · estado: unknown"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-04",
+      "response": null
+    },
+    {
       "id": "f-2025-12-23-acu-a1ba00",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -1015,6 +1277,74 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-23-acu-cd77e9",
+      "plenoId": "1qi8axv",
+      "plenoDate": "2025-12-23",
+      "title": "Debate sobre transparencia y adjudicaciones en el pleno municipal del 2025-12-23",
+      "summary": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que el grupo Otro explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1qi8axv-060-acu-cd77e9",
+        "1qi8axv-113-acu-192a53",
+        "1qi8axv-071-acu-8906e2",
+        "1qi8axv-045-acu-e5dbbb"
+      ],
+      "quotes": [
+        {
+          "text": "la empresa no ha cumplido.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "1qi8axv-060-acu-cd77e9"
+        },
+        {
+          "text": "Yo, no el resto del PP. Yo, no. Por unanimidad, la mía es no.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "1qi8axv-113-acu-192a53"
+        },
+        {
+          "text": "en nuestra intención de voto de hoy ha sido abstención",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-071-acu-8906e2"
+        },
+        {
+          "text": "ninguna otra de las grandísimas empresas que concurrieron y concurrieron muchas, impugnó esta adjudicación.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1qi8axv-045-acu-e5dbbb"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
+          "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
+          "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
+          "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=OGM7-9SLePc",
+          "snippet": "Vídeo del pleno 2025-12-23 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-04",
       "response": null
     },
     {

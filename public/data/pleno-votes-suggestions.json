@@ -1,16 +1,18 @@
 {
-  "generatedAt": "2026-07-04T07:27:31.478Z",
+  "generatedAt": "2026-07-04T08:00:48.661Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 1,
+    "total": 4,
     "byEngine": {
-      "regex": 1
+      "regex": 1,
+      "llm": 3
     },
     "byPleno": {
-      "rx4hb4": 1
+      "rx4hb4": 1,
+      "toa3rc": 3
     }
   },
   "items": [
@@ -44,6 +46,81 @@
       "regmeetCheck": {
         "regmeetOutcome": null,
         "status": "item-not-found"
+      }
+    },
+    {
+      "plenoId": "toa3rc",
+      "plenoDate": "2025-12-26",
+      "itemNumber": 2,
+      "excerpt": "vamos a votar este punto, por favor votemos, yo creo que es mejor avanzar es que vamos a votar avanzar y así va voto a favor abstención voto en contra pues que ha aprobado voto a favor del Partido Socialista Partido Popular Partido Popular en contra en contra en contra en contra y después, es que ahora mismo podemos y como he dicho, por tanto tenemos 12 votos a favor, dos abstenciones y 7 en contra vale",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        }
+      ],
+      "confidence": 0.9,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit.",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "toa3rc",
+      "plenoDate": "2025-12-26",
+      "itemNumber": 2,
+      "excerpt": "vamos a votar este punto, por favor votemos, yo creo que es mejor avanzar es que vamos a votar avanzar y así va voto a favor abstención voto en contra pues que ha aprobado voto a favor del Partido Socialista Partido Popular Partido Popular en contra en contra en contra en contra y después, es que ahora mismo podemos y como he dicho, por tanto tenemos 12 votos a favor, dos abstenciones y 7 en contra vale",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        }
+      ],
+      "confidence": 0.95,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit.",
+        "status": "match"
+      }
+    },
+    {
+      "plenoId": "toa3rc",
+      "plenoDate": "2025-12-26",
+      "itemNumber": 2,
+      "excerpt": "vamos a votar este punto, por favor votemos, yo creo que es mejor avanzar es que vamos a votar avanzar y así va voto a favor abstención voto en contra pues que ha aprobado voto a favor del Partido Socialista Partido Popular Partido Popular en contra en contra en contra en contra y después, es que ahora mismo podemos y como he dicho, por tanto tenemos 12 votos a favor, dos abstenciones y 7 en contra vale",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "en_contra"
+        }
+      ],
+      "confidence": 0.9,
+      "requiresHumanApproval": true,
+      "engine": "llm",
+      "regmeetCheck": {
+        "regmeetOutcome": "aprobada",
+        "regmeetTitle": "Expedient 5267/2025/GEN: Proposta d'acord amb el Ple Concertació Operació de Crèdit.",
+        "status": "match"
       }
     }
   ]

@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-03T17:14:07.964Z",
+  "generatedAt": "2026-07-04T08:05:36.358Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
   },
   "stats": {
-    "total": 5256,
+    "total": 5271,
     "byVerdict": {
       "verificado": 173,
-      "parcial": 605,
+      "parcial": 607,
       "contradicho": 0,
-      "sin-datos": 4478,
+      "sin-datos": 4491,
       "promesa-repetida": 0
     }
   },
@@ -69161,6 +69161,533 @@
         "claimId": "1pe3qs8-012-acu-1df2d5",
         "verdict": "sin-datos",
         "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-001-afi-84d727",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "es un préstamo de 1.783.000 euros de legislatura,",
+        "context": "Y solo eso, es un préstamo de 1.783.000 euros de legislatura, en dos únicas cuotas de amortización, en el 5 de mayo del 2026 y el 5 de mayo del 2027.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 1783000,
+          "referencedEntity": "préstamo"
+        },
+        "confidence": 1,
+        "reasoning": "Se menciona la cantidad específica de un préstamo de legislatura (1.783.000 euros) verificable en los expedientes de crédito municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-001-afi-84d727",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-001-afi-e0f3ba",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "en dos únicas cuotas de amortización, en el 5 de mayo del 2026 y el 5 de mayo del 2027.",
+        "context": "Y solo eso, es un préstamo de 1.783.000 euros de legislatura, en dos únicas cuotas de amortización, en el 5 de mayo del 2026 y el 5 de mayo del 2027.",
+        "topic": "fiscal",
+        "entities": {
+          "count": 2,
+          "countUnit": "cuotas",
+          "referencedEntity": "préstamo"
+        },
+        "confidence": 1,
+        "reasoning": "Indica el número de cuotas y fechas de amortización de la operación de crédito, contrastables con las condiciones del pliego del préstamo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-001-afi-e0f3ba",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-001-afi-dcc95f",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 1,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "El tipo de interés es el 2,27% fijo y exento de comisiones, comisión cero.",
+        "context": "en el 5 de mayo del 2026 y el 5 de mayo del 2027. El tipo de interés es el 2,27% fijo y exento de comisiones, comisión cero. Y esa es la cuestión. Gracias.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "tipo de interés"
+        },
+        "confidence": 1,
+        "reasoning": "Establece el tipo de interés específico y la exención de comisiones del préstamo, verificable en el contrato bancario de la operación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-001-afi-dcc95f",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-000-afi-9ccc91",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 0,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "se da la liquidación del 2024 y para financiar el remanente negativo hay que traer ese préstamo antes de que finalice el 2025",
+        "context": "es por imperativo legal, se da la liquidación del 2024 y para financiar el remanente negativo hay que traer ese préstamo antes de que finalice el 2025, tanto como hemos indicado en varias sesiones",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "liquidación del 2024"
+        },
+        "confidence": 1,
+        "reasoning": "Afirma la existencia de un remanente negativo en la liquidación de 2024 y la exigencia legal de formalizar el préstamo antes del cierre de 2025, contrastable en la contabilidad municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-000-afi-9ccc91",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-002-acu-ed0a9e",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 2,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "estas dos mujeres han tenido que abandonar el puesto de trabajo para acudir a una convocatoria que se ha hecho en menos de cuatro horas de antelación.",
+        "context": "ustedes son las que van a favor de la mujer, del mundo laboral, de la conciliación familiar y laboral y estas dos mujeres han tenido que abandonar el puesto de trabajo para acudir a una convocatoria que se ha hecho en menos de cuatro horas de antelación.",
+        "topic": "transparencia",
+        "entities": {
+          "count": 4,
+          "countUnit": "horas",
+          "referencedEntity": "convocatoria de pleno"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "La antelación con la que se convocó la sesión urgente es un dato objetivo verificable mediante el registro de salida de la convocatoria oficial.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-002-acu-ed0a9e",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GzZ8vbrGk5o7%2B9FIQYNjeQ%3D%3D",
+            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-005-acu-c0d27e",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 5,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "el señor alcalde abandonó el salón plenario, el pleno del dimanche pasado",
+        "context": "porque el señor alcalde abandonó el salón plenario, el pleno del dimanche pasado, por motivos que probablemente lo merezcan o no, los desconeguemos.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "alcalde"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "Es verificable mediante el acta de asistencia o la grabación de la sesión plenaria del domingo anterior.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-005-acu-c0d27e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-003-afi-061f07",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 3,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "En realidad, estamos hablando de 26.000 habitantes",
+        "context": "En realidad, estamos hablando de 26.000 habitantes y creo que vamos, en mi opinión, que lo de que estoy en un puesto y he tenido que dejármelo para venir así, es que eso es muy importante.",
+        "topic": "other",
+        "entities": {
+          "count": 26000,
+          "countUnit": "habitantes"
+        },
+        "confidence": 0.95,
+        "reasoning": "Mención a la cifra de habitantes del municipio, contrastable con el censo de población oficial (INE / padrón).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-003-afi-061f07",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-004-acu-33b072",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 4,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "el señor alcalde abandonó el salón plenario, el pleno del dimanche pasado",
+        "context": "porque el señor alcalde abandonó el salón plenario, el pleno del dimanche pasado, por motivos que probablemente lo merezcan o no, los desconeguemos. Pero estamos así porque la responsabilidad, según donde venga, se mira de una forma u otra.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "abandono de sesión plenaria"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "Se denuncia que el alcalde abandonó el pleno anterior, un hecho objetivo contrastable en las actas oficiales de asistencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-004-acu-33b072",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-006-acu-64d3fa",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 6,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "yo creo que es demagógico torticero y poco creíble la intención del Partido Popular diciendo que es un tema casi sexista",
+        "context": "yo creo que es demagógico torticero y poco creíble la intención del Partido Popular diciendo que es un tema casi sexista porque hay dos mujeres de su equipo de gobierno de su grupo que trabajaban eso ya es el sumo de lo que ustedes siguen siendo",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "partido popular"
+        },
+        "accusationSubtype": "opinativa",
+        "confidence": 1,
+        "reasoning": "El orador califica de demagógica la postura de la oposición (Partido Popular) respecto a la convocatoria del pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-006-acu-64d3fa",
+        "verdict": "sin-datos",
+        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-006-afi-2e9eda",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 6,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "hay dos mujeres de su equipo de gobierno de su grupo que trabajaban",
+        "context": "yo creo que es demagógico torticero y poco creíble la intención del Partido Popular diciendo que es un tema casi sexista porque hay dos mujeres de su equipo de gobierno de su grupo que trabajaban",
+        "topic": "other",
+        "entities": {
+          "count": 2,
+          "countUnit": "mujeres",
+          "referencedEntity": "partido popular"
+        },
+        "confidence": 0.9,
+        "reasoning": "Afirmación numérica sobre la cantidad de mujeres del grupo que estaban trabajando, verificable mediante registros de personal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-006-afi-2e9eda",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-010-afi-158fa4",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 10,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "durante 10 años que uno de rechidor o de alcalde y 8 en la oposición",
+        "context": "si había visto cosas durante 10 años que uno de rechidor o de alcalde y 8 en la oposición esta ya es superar lo máximo que había escuchado saben que no tienen nada que ver",
+        "topic": "other",
+        "entities": {
+          "count": 10,
+          "countUnit": "años"
+        },
+        "confidence": 0.9,
+        "reasoning": "El orador afirma haber desempeñado el cargo de concejal o alcalde durante 10 años y haber estado en la oposición durante 8 años, lo cual es verificable en el registro de cargos electos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-010-afi-158fa4",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-010-acu-97ab6f",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 10,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "convocar un ple porque dos rechidores no vienen es atentar contra la igualdad en este ple",
+        "context": "que convocar un ple porque dos rechidores no vienen es atentar contra la igualdad en este ple y eso ya es, vamos, si había visto cosas durante 10 años",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "grupo popular"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.95,
+        "reasoning": "Atribuye al portavoz del Grupo Popular haber afirmado que convocar un pleno por la ausencia de dos concejales atenta contra la igualdad, lo cual es contrastable con las actas de la sesión.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-010-acu-97ab6f",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MlfeSI2PCg2rz3GQd5r6SQ%3D%3D",
+            "snippet": "Contrato para la ejecución del contrato de servicios de actividades de ocio sociocultural y educativo (RIBAJOVE), derivado del sistema dinámico de adquisición (SDA) para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. (Ctto 61/2022 – SDA 2/2022). · Ayuntamiento de Riba-roja de Túria · GRUPO A RIURE S.L · health · estado: awarded",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-009-acu-accae2",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 9,
+        "type": "acusacion_publica",
+        "speakerGroup": "PSOE",
+        "verbatim": "viene un otro ple para cobrarlo porque si no, no se ríe, yo no me río si no hacen el donativo que no pasa nada",
+        "context": "y luego el otro imperio en sentido económico que viene un otro ple para cobrarlo porque si no, no se ríe, yo no me río si no hacen el donativo que no pasa nada, hay causas solidarias que el Grupo Popular lo que cobre hoy puede darlo por causas solidarias",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "grupo popular"
+        },
+        "accusationSubtype": "opinativa",
+        "confidence": 0.7,
+        "reasoning": "El orador acusa al Grupo Popular de forzar la celebración de otro pleno con motivación económica (cobrar dietas).",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-009-acu-accae2",
+        "verdict": "sin-datos",
+        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-009-acu-8d7748",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 9,
+        "type": "acusacion_publica",
+        "speakerGroup": "PSOE",
+        "verbatim": "dos puntos que son dos errores más de los que habitualmente ya nos está habituando el Grupo Popular en su conjunto a pesar de que hay discrepancias internas",
+        "context": "y lo que estamos haciendo, efectivamente, que lo importante de todo es votar efectivamente para tener un placer y para seguir haciendo los trabajos que tiene que hacer este ayuntamiento que resuelve los problemas del día a día de nuestros vecinos y esa es la máxima responsabilidad por tanto, dos puntos que son dos errores más de los que habitualmente ya nos está habituando el Grupo Popular en su conjunto a pesar de que hay discrepancias internas",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "grupo popular"
+        },
+        "accusationSubtype": "opinativa",
+        "confidence": 0.8,
+        "reasoning": "El orador acusa al Grupo Popular de cometer errores habitualmente y de tener divisiones internas, siendo una valoración política.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-009-acu-8d7748",
+        "verdict": "sin-datos",
+        "summary": "Acusación sobre carácter o estilo de gobierno — no se verifica automáticamente. Revisión editorial manual.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "toa3rc-013-afi-ec23ab",
+        "plenoId": "toa3rc",
+        "plenoDate": "2025-12-26",
+        "segmentIndex": 13,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "tenemos 12 votos a favor, dos abstenciones y 7 en contra vale",
+        "context": "y después, es que ahora mismo podemos y como he dicho, por tanto tenemos 12 votos a favor, dos abstenciones y 7 en contra vale, y le damos la palabra al pleno que tenga un buen año",
+        "topic": "transparencia",
+        "entities": {
+          "count": 12,
+          "countUnit": "votos a favor",
+          "referencedEntity": "votación del pleno"
+        },
+        "confidence": 0.95,
+        "reasoning": "La afirmación cita un resultado de votación numérico específico que se puede contrastar con el acta oficial del pleno municipal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "toa3rc-013-afi-ec23ab",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
           "tenders",
