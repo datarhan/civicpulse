@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react'
 import { Circle, MapContainer, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import { useGeo } from '../hooks/useGeo'
 import { useQuejas, prettyNeighborhood } from '../hooks/useQuejas'
+import { computePerNeighborhood, healthFromCounts } from '../lib/neighborhood-aggregate'
 
 const RIBA_CENTER = [39.5439, -0.5711]
 
@@ -31,45 +32,9 @@ function Boundary() {
   )
 }
 
-// Radius scales by sqrt(count) so 1 queja ≠ tiny invisible dot and 100
-// doesn't swamp the map. Opacity encodes "health": high silencio rate → red.
-function bubbleStyle(count, resolvedPct, silencioPct) {
-  const radius = 100 + Math.sqrt(count) * 90 // meters
-  let color = '#60A5FA' // civic-blue default
-  if (silencioPct >= 30) color = '#DC2626'
-  else if (silencioPct >= 10) color = '#D97706'
-  else if (resolvedPct >= 50) color = '#16A34A'
-  return { radius, color }
-}
-
-function computePerNeighborhood(items, neighborhoods) {
-  const bySlug = new Map()
-  for (const n of neighborhoods ?? []) {
-    bySlug.set(n.slug, {
-      slug: n.slug,
-      name: n.name,
-      centroid: n.centroid,
-      total: 0,
-      resueltas: 0,
-      silencios: 0,
-      pendientes: 0,
-    })
-  }
-  // Also pick up any barrio slugs in quejas that don't have a geo entry
-  // (could happen for ad-hoc labels). They won't render on the map but
-  // we avoid crashes.
-  for (const q of items ?? []) {
-    const slug = q.address_string
-    if (!slug) continue
-    if (!bySlug.has(slug)) continue
-    const agg = bySlug.get(slug)
-    agg.total += 1
-    if (q.status === 'resuelta') agg.resueltas += 1
-    else if (q.status === 'silencio_negativo' || q.status === 'escalada_sindic') agg.silencios += 1
-    else agg.pendientes += 1
-  }
-  return [...bySlug.values()].filter((v) => v.total > 0)
-}
+// Radius scales by sqrt(count) so 1 queja ≠ tiny invisible dot and 100 doesn't
+// swamp the map. Colour encodes "health" via the shared healthFromCounts scale.
+const bubbleRadius = (count) => 100 + Math.sqrt(count) * 90 // meters
 
 export default function QuejasHeatmap() {
   const { data: geo } = useGeo()
@@ -110,9 +75,8 @@ export default function QuejasHeatmap() {
         />
         <Boundary />
         {perNeighborhood.map((n) => {
-          const resolvedPct = n.total > 0 ? (n.resueltas / n.total) * 100 : 0
-          const silencioPct = n.total > 0 ? (n.silencios / n.total) * 100 : 0
-          const { radius, color } = bubbleStyle(n.total, resolvedPct, silencioPct)
+          const { color } = healthFromCounts(n.total, n.resueltas, n.silencios)
+          const radius = bubbleRadius(n.total)
           return (
             <Circle
               key={n.slug}

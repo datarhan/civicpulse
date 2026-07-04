@@ -1,38 +1,18 @@
 // @ts-check
 import { useMemo, useState } from 'react'
-import { MapContainer, Marker, TileLayer } from 'react-leaflet'
-import L from 'leaflet'
-import { useGeo } from '../../hooks/useGeo'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
 import { EMPTY_TENDER_GEO } from '../../lib/tender-geo'
-import { DEFAULT_CENTER, escapeHtml, ResizeOnMount } from './shared'
+import { DEFAULT_CENTER, ResizeOnMount } from './shared'
 import { MunicipalBoundary } from './network/MunicipalBoundary'
 import { Railways } from './network/Railways'
 import { FullNetwork } from './network/FullNetwork'
 import { NetworkLegend } from './network/NetworkLegend'
 import { MoneyLayer } from './layers/MoneyLayer'
+import { NeighborhoodsLayer } from './layers/NeighborhoodsLayer'
 import { LayerControl } from './controls/LayerControl'
 import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
-
-function OsmNeighborhoods() {
-  const { loading, error, data } = useGeo()
-  if (loading || error || !data?.neighborhoods) return null
-  return (
-    <>
-      {data.neighborhoods.map((n) => {
-        const icon = L.divIcon({
-          className: 'cp-osm-neigh',
-          html: `<div class="cp-osm-neigh-dot"></div>
-                 <div class="cp-osm-neigh-label">${escapeHtml(n.name)}</div>`,
-          iconSize: [140, 20],
-          iconAnchor: [6, 6],
-        })
-        return <Marker key={n.id} position={n.centroid} icon={icon} interactive={false} />
-      })}
-    </>
-  )
-}
 
 function MapAttribution() {
   return (
@@ -104,7 +84,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
 
         <FullNetwork />
         <MunicipalBoundary />
-        <OsmNeighborhoods />
+        <NeighborhoodsLayer />
         <Railways />
 
         {layers.money && (
