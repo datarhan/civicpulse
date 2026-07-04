@@ -65,6 +65,21 @@ export function zoneAmountsAt(assignments, { at = Infinity, danaOnly = false } =
 }
 
 /**
+ * Meter radius for a money bubble on the map, sized by the euro amount located
+ * in a zone. Single source of truth for the scale so the map circles and any
+ * legend agree: `150 + √amount / 6` (√ compresses the wide contract range so a
+ * €2M zone doesn't dwarf a €50k one). Non-positive amounts get radius 0 — no
+ * money located means no bubble, never a phantom minimum-size dot.
+ * @param {number} [amount]
+ * @returns {number}
+ */
+export function moneyRadiusMeters(amount) {
+  const a = Number(amount) || 0
+  if (a <= 0) return 0
+  return 150 + Math.sqrt(a) / 6
+}
+
+/**
  * @param {any[]} contracts
  * @param {number} [n]
  * @returns {{assignee:string,amount:number,count:number}[]}

@@ -1,12 +1,19 @@
 // @ts-check
+import { useMemo, useState } from 'react'
 import { MapContainer, Marker, TileLayer } from 'react-leaflet'
 import L from 'leaflet'
 import { useGeo } from '../../hooks/useGeo'
+import { useTenderGeo } from '../../hooks/useTenderGeo'
+import { useTenders } from '../../hooks/useTenders'
+import { EMPTY_TENDER_GEO } from '../../lib/tender-geo'
 import { DEFAULT_CENTER, escapeHtml, ResizeOnMount } from './shared'
 import { MunicipalBoundary } from './network/MunicipalBoundary'
 import { Railways } from './network/Railways'
 import { FullNetwork } from './network/FullNetwork'
 import { NetworkLegend } from './network/NetworkLegend'
+import { MoneyLayer } from './layers/MoneyLayer'
+import { LayerControl } from './controls/LayerControl'
+import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
 
 function OsmNeighborhoods() {
   const { loading, error, data } = useGeo()
@@ -49,6 +56,30 @@ function MapAttribution() {
 }
 
 export default function StylizedMap({ center = DEFAULT_CENTER }) {
+  // Which data layers are visible. Base layers (boundary/network/barrios) are
+  // always on; toggleable data layers default off except the money flagship,
+  // which shows a static snapshot (slider paused at the latest date) so the
+  // landing reads richer on load without auto-animating.
+  const [layers, setLayers] = useState({ money: true })
+  const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
+
+  const { data: tgeo } = useTenderGeo()
+  const { data: tenders } = useTenders()
+  const snapshot = tgeo || EMPTY_TENDER_GEO
+  const dateMin = snapshot.universe?.dateMin ? new Date(snapshot.universe.dateMin).getTime() : null
+  const dateMax = snapshot.universe?.dateMax ? new Date(snapshot.universe.dateMax).getTime() : null
+
+  // Money-timeline cursor. `null` = "not yet touched" → resolves to dateMax so
+  // the layer opens on the full cumulative picture; scrubbing/playing sets it.
+  const [at, setAt] = useState(null)
+  const [danaOnly, setDanaOnly] = useState(false)
+  const effectiveAt = at ?? dateMax ?? Infinity
+
+  const contractsById = useMemo(
+    () => new Map((tenders?.contracts || []).map((c) => [c.id, c])),
+    [tenders],
+  )
+
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', background: '#EFE9D9' }}>
       <MapContainer
@@ -75,10 +106,44 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         <MunicipalBoundary />
         <OsmNeighborhoods />
         <Railways />
+
+        {layers.money && (
+          <MoneyLayer
+            snapshot={snapshot}
+            at={effectiveAt}
+            danaOnly={danaOnly}
+            contractsById={contractsById}
+          />
+        )}
       </MapContainer>
 
       <NetworkLegend />
       <MapAttribution />
+
+      <div
+        style={{
+          position: 'absolute',
+          top: 12,
+          left: 12,
+          zIndex: 400,
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 8,
+          maxWidth: 'calc(100% - 24px)',
+        }}
+      >
+        <LayerControl layers={layers} onToggle={toggleLayer} />
+        {layers.money && (
+          <MoneyTimeSlider
+            min={dateMin}
+            max={dateMax}
+            value={effectiveAt}
+            onChange={setAt}
+            danaOnly={danaOnly}
+            onToggleDana={setDanaOnly}
+          />
+        )}
+      </div>
     </div>
   )
 }

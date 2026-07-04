@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { zoneAmountsAt, topContractors, filterContracts } from '../../src/lib/tender-geo'
+import {
+  zoneAmountsAt,
+  topContractors,
+  filterContracts,
+  moneyRadiusMeters,
+} from '../../src/lib/tender-geo'
 
 const ASSIGN = [
   { id: 'a', zones: ['z1'], dana: false, amount: 100, date: '2024-01-01' },
@@ -36,6 +41,16 @@ describe('lib/tender-geo', () => {
   it('topContractors falls back to the tax-included amount when no sin-IVA figure exists', () => {
     const top = topContractors([{ assignee: 'GAMMA', status: 'awarded', finalAmount: 200 }], 10)
     expect(top[0]).toEqual({ assignee: 'GAMMA', amount: 200, count: 1 })
+  })
+  it('moneyRadiusMeters reproduces the GastoMap scale and floors non-positive to 0', () => {
+    // The single source of truth for the money-bubble radius: 150 + √amount/6
+    // (identical to the legacy GastoMap inline formula). sqrt(90000)=300 → 200.
+    expect(moneyRadiusMeters(90000)).toBeCloseTo(200, 6)
+    expect(moneyRadiusMeters(0)).toBe(0)
+    expect(moneyRadiusMeters(-500)).toBe(0)
+    expect(moneyRadiusMeters(undefined)).toBe(0)
+    // Monotonic: more money → a bigger bubble.
+    expect(moneyRadiusMeters(1_000_000)).toBeGreaterThan(moneyRadiusMeters(90000))
   })
   it('filterContracts narrows by text, zone, and dana', () => {
     const contracts = [
