@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('Empleo (/empleo)', () => {
-  test('lists open vacancies, filters, and drills into a detail ficha', async ({ page }) => {
+  test('renders stats + charts and paginates the list', async ({ page }) => {
     const errors: string[] = []
     page.on('pageerror', (e) => errors.push(String(e)))
     page.on('console', (m) => {
@@ -10,25 +10,41 @@ test.describe('Empleo (/empleo)', () => {
 
     await page.goto('/empleo', { waitUntil: 'domcontentloaded' })
 
-    // i18n page title (src/i18n.jsx empleo.title).
+    // i18n page title (empleo.title).
     await expect(page.getByText('Ofertas de empleo').first()).toBeVisible({ timeout: 8000 })
 
-    // At least one offer row links to a detail route.
+    // Stats block: KPI + a chart panel title.
+    await expect(page.getByText('Puestos ofertados').first()).toBeVisible()
+    await expect(page.getByText('Tipo de contrato').first()).toBeVisible()
+
+    // Paginated list: at most a page of offers, and a working pager.
     const offerRows = page.locator('a[href^="/empleo/"]')
     await expect(offerRows.first()).toBeVisible()
-    const initialCount = await offerRows.count()
-    expect(initialCount).toBeGreaterThan(0)
+    expect(await offerRows.count()).toBeLessThanOrEqual(12)
+    await expect(page.getByText(/Página 1 \/ \d+/)).toBeVisible()
+    await page.getByRole('button', { name: /Siguiente/ }).click()
+    await expect(page.getByText(/Página 2 \/ \d+/)).toBeVisible()
 
-    // "Solo Riba-roja" toggle narrows the list (agency feed is comarca-wide).
+    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+  })
+
+  test('filters narrow the list and drill into a detail ficha', async ({ page }) => {
+    await page.goto('/empleo', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Ofertas de empleo').first()).toBeVisible({ timeout: 8000 })
+
+    const offerRows = page.locator('a[href^="/empleo/"]')
+    await expect(offerRows.first()).toBeVisible()
+
+    // "Solo Riba-roja" toggle activates the clear-filters affordance.
     await page.getByRole('checkbox').check()
-    await expect(async () => {
-      const filtered = await offerRows.count()
-      expect(filtered).toBeGreaterThan(0)
-      expect(filtered).toBeLessThanOrEqual(initialCount)
-    }).toPass()
-    await page.getByRole('checkbox').uncheck()
+    await expect(page.getByRole('button', { name: /Limpiar filtros/ })).toBeVisible()
 
-    // Search narrows by title/código.
+    // A dimension dropdown (Municipio) is applied, then cleared.
+    await page.getByLabel('Municipio').selectOption({ index: 1 })
+    await page.getByRole('button', { name: /Limpiar filtros/ }).click()
+    await expect(page.getByRole('button', { name: /Limpiar filtros/ })).toHaveCount(0)
+
+    // Text search shows the honest empty state, then is cleared.
     await page.getByRole('searchbox').fill('zzz-no-match-xyz')
     await expect(page.getByText(/No hay ofertas que coincidan/i)).toBeVisible()
     await page.getByRole('searchbox').fill('')
@@ -42,7 +58,5 @@ test.describe('Empleo (/empleo)', () => {
     // Back link returns to the list.
     await page.getByRole('link', { name: /Volver a ofertas/i }).click()
     await expect(page).toHaveURL(/\/empleo$/)
-
-    expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 })
