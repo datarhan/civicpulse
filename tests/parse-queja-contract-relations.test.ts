@@ -4,6 +4,7 @@ import {
   departmentSignal,
   temporalModifier,
   expedienteSignal,
+  scoreRelation,
 } from '../src/scraper/queja-contract-relations'
 import type { RelQueja, RelContract } from '../src/scraper/queja-contract-relations'
 
@@ -99,5 +100,54 @@ describe('expedienteSignal', () => {
   })
   it('is null when the contract has no expediente', () => {
     expect(expedienteSignal(q(), c({ expediente: null }))).toBeNull()
+  })
+})
+
+describe('scoreRelation — tiering + honesty gates', () => {
+  it('Tier A: shared expediente → publishable, neutral label', () => {
+    const r = scoreRelation(
+      q({ department: 'urbanismo' }),
+      c({ department: 'urbanismo', expediente: '251/2023' }),
+    )!
+    expect(r.tier).toBe('A')
+    expect(r.requiresHumanApproval).toBe(false)
+    expect(r.relationLabel).toBe('mismo expediente')
+  })
+  it('Tier A: place + department → publishable "misma zona y materia"', () => {
+    const r = scoreRelation(
+      q({ placeSlug: 'valencia-la-vella', department: 'movilidad' }),
+      c({ places: ['valencia-la-vella'], department: 'movilidad' }),
+    )!
+    expect(r.tier).toBe('A')
+    expect(r.relationLabel).toBe('misma zona y materia')
+  })
+  it('Tier B: department/theme only → requiresHumanApproval', () => {
+    const r = scoreRelation(
+      q({ placeSlug: null, department: 'urbanismo' }),
+      c({ department: 'urbanismo' }),
+    )!
+    expect(r.tier).toBe('B')
+    expect(r.requiresHumanApproval).toBe(true)
+    expect(r.relationLabel).toBe('misma materia')
+  })
+  it('GATE: department/theme alone never becomes Tier A', () => {
+    const r = scoreRelation(q({ placeSlug: null }), c({ department: q().department }))
+    expect(r?.tier).not.toBe('A')
+  })
+  it('GATE: temporal alone → no link', () => {
+    expect(
+      scoreRelation(
+        q({ placeSlug: null, department: null, serviceCode: 'x' }),
+        c({ department: 'z', cpvs: [], places: [], zones: [], awardDate: '2025-02-01' }),
+      ),
+    ).toBeNull()
+  })
+  it('place only (no dept) → Tier B "misma zona"', () => {
+    const r = scoreRelation(
+      q({ placeSlug: 'valencia-la-vella', department: null, serviceCode: 'x' }),
+      c({ places: ['valencia-la-vella'], department: 'z', cpvs: [] }),
+    )!
+    expect(r.tier).toBe('B')
+    expect(r.relationLabel).toBe('misma zona')
   })
 })

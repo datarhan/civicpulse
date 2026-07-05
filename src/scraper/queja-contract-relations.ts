@@ -110,6 +110,83 @@ export function expedienteSignal(q: RelQueja, c: RelContract): { value: string }
   return { value: normExp(c.expediente) }
 }
 
+export interface RelationLink {
+  quejaId: string
+  tenderPermalink: string
+  tenderId: string
+  tier: 'A' | 'B'
+  score: number
+  via: 'deterministic'
+  relationLabel: RelationLabel
+  signals: {
+    expediente?: { value: string }
+    place?: PlaceSignal
+    department?: { slug: string }
+    temporal?: { monthsAfter: number }
+  }
+  requiresHumanApproval: boolean
+}
+
+/**
+ * Combine the four signals into a tiered, neutral-labelled link — or null.
+ *
+ * Tier A (publishable fact, requiresHumanApproval:false): shared expediente, OR
+ * same place AND same department. Tier B (curator-gated): a lone place or a lone
+ * department/theme. Honesty gates: department/theme alone is never Tier A, and a
+ * temporal-only coincidence never links at all.
+ */
+export function scoreRelation(q: RelQueja, c: RelContract): RelationLink | null {
+  const exp = expedienteSignal(q, c)
+  const place = placeSignal(q, c)
+  const dept = departmentSignal(q, c)
+  const temporal = temporalModifier(q, c) ?? undefined
+  const base = {
+    quejaId: q.id,
+    tenderPermalink: c.permalink,
+    tenderId: c.id,
+    via: 'deterministic' as const,
+    signals: {
+      ...(exp ? { expediente: exp } : {}),
+      ...(place ? { place } : {}),
+      ...(dept ? { department: dept } : {}),
+      ...(temporal ? { temporal } : {}),
+    },
+  }
+  if (exp)
+    return {
+      ...base,
+      tier: 'A',
+      score: 0.95,
+      relationLabel: 'mismo expediente',
+      requiresHumanApproval: false,
+    }
+  if (place && dept)
+    return {
+      ...base,
+      tier: 'A',
+      score: 0.85,
+      relationLabel: 'misma zona y materia',
+      requiresHumanApproval: false,
+    }
+  if (place)
+    return {
+      ...base,
+      tier: 'B',
+      score: 0.6,
+      relationLabel: 'misma zona',
+      requiresHumanApproval: true,
+    }
+  if (dept)
+    return {
+      ...base,
+      tier: 'B',
+      score: 0.55,
+      relationLabel: 'misma materia',
+      requiresHumanApproval: true,
+    }
+  return null // temporal alone (or nothing) never links
+}
+
 // Re-exported so the CLI shares the exact category enum used by the CPV theme
 // check without a second import path.
 export type { QuejaCategory }
