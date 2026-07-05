@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T12:38:16.887Z",
+  "generatedAt": "2026-07-05T12:48:27.411Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-05T07:43:54.896Z"
@@ -9,8 +9,8 @@
     "totalAmount": 13978822.119999994,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
-    "situatedContracts": 70,
-    "situatedAmount": 1804761.8000000003,
+    "situatedContracts": 73,
+    "situatedAmount": 2036385.44,
     "danaContracts": 9,
     "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
@@ -109,6 +109,18 @@
       "contractCount": 7,
       "amount": 241148.79000000004,
       "danaAmount": 98806.64
+    },
+    {
+      "slug": "avinguda-de-la-pau",
+      "name": "Avinguda de la Pau",
+      "kind": "street",
+      "point": [
+        39.5475704,
+        -0.5757486
+      ],
+      "contractCount": 2,
+      "amount": 221151.69,
+      "danaAmount": 0
     },
     {
       "slug": "l-oliveral",
@@ -519,6 +531,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "avinguda-del-castanyer",
+      "name": "Avinguda del Castanyer",
+      "kind": "street",
+      "point": [
+        39.5354222,
+        -0.5360689
+      ],
+      "contractCount": 1,
+      "amount": 10471.95,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrer-de-cristofol-colom",
       "name": "Carrer de Cristòfol Colom",
       "kind": "street",
@@ -627,6 +651,27 @@
         "name": "Ajuntament de Riba-roja de Túria",
         "matchedText": "Ajuntament de Riba-roja de Túria",
         "sourceId": "node-5809597354"
+      }
+    },
+    {
+      "id": "3725734",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 37705.69,
+      "amountKind": "final",
+      "date": "2022-08-23",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5475704,
+        -0.5757486
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Avinguda de la Pau",
+        "matchedText": "Avinguda de la Pau",
+        "sourceId": "avinguda-de-la-pau"
       }
     },
     {
@@ -782,6 +827,27 @@
         "name": "el Molinet",
         "matchedText": "el Molinet",
         "sourceId": "el-molinet"
+      }
+    },
+    {
+      "id": "4486293",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 183446,
+      "amountKind": "final",
+      "date": "2024-09-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5475704,
+        -0.5757486
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Avinguda de la Pau",
+        "matchedText": "Avinguda de la Pau",
+        "sourceId": "avinguda-de-la-pau"
       }
     },
     {
@@ -1159,6 +1225,27 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
+      }
+    },
+    {
+      "id": "2197024",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 10471.95,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
+      "point": [
+        39.5354222,
+        -0.5360689
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Avinguda del Castanyer",
+        "matchedText": "Avinguda del Castanyer",
+        "sourceId": "avinguda-del-castanyer"
       }
     },
     {

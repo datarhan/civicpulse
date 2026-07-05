@@ -198,6 +198,31 @@ describe('place-resolver — matchNameToGazetteer (LLM name → real point)', ()
     expect(matchNameToGazetteer('Cementerio municipal', two)).toBeNull()
   })
 
+  it('bridges Spanish↔Valencian synonyms too far for an edit (Paz→Pau, Castaño→Castanyer)', () => {
+    const cands: Candidate[] = [
+      {
+        kind: 'street',
+        name: 'Avinguda de la Pau',
+        point: [39.54, -0.57],
+        sourceId: 'pau',
+        needles: [],
+        specificity: 3,
+      },
+      {
+        kind: 'street',
+        name: 'Avinguda del Castanyer',
+        point: [39.55, -0.58],
+        sourceId: 'castanyer',
+        needles: [],
+        specificity: 3,
+      },
+    ]
+    expect(matchNameToGazetteer('Avenida de la Paz', cands)?.sourceId).toBe('pau')
+    expect(matchNameToGazetteer('Avenida Castaño', cands)?.sourceId).toBe('castanyer')
+    // A non-synonym distinct word still misses.
+    expect(matchNameToGazetteer('Avenida de la Guerra', cands)).toBeNull()
+  })
+
   it('a distinctive proper-noun name still wins over the facility fallback', () => {
     // "Biblioteca Cervantes" has a proper noun → proper-noun path (no such
     // candidate here) rather than blindly hitting the singleton library.

@@ -435,10 +435,42 @@ function editDistance(a: string, b: string): number {
   return dp[a.length]
 }
 
-/** Does token `t` appear in `ctoks` (exact, or ≤1 edit for tokens ≥4 chars)? */
+// Curated Spanish↔Valencian equivalents that appear in Riba-roja place names but
+// are too far apart for a 1-char edit ("Paz"↔"Pau", "Castaño"↔"Castanyer"). Only
+// used by the LLM name-matcher. Conservative + folded (ñ→n, accents removed);
+// two tokens in the same group are treated as the same word.
+const SYNONYM_GROUPS: string[][] = [
+  ['paz', 'pau'],
+  ['castano', 'castanyer', 'castanya'],
+  ['puente', 'pont'],
+  ['fuente', 'font'],
+  ['iglesia', 'esglesia'],
+  ['huerta', 'horta'],
+  ['molino', 'moli'],
+  ['horno', 'forn'],
+  ['rio', 'riu'],
+  ['colon', 'colom'],
+  ['cruz', 'creu'],
+  ['calvario', 'calvari'],
+  ['virgen', 'verge'],
+  ['pino', 'pi'],
+  ['olmo', 'om'],
+]
+const SYNONYM_GROUP = new Map<string, number>()
+SYNONYM_GROUPS.forEach((g, i) => g.forEach((w) => SYNONYM_GROUP.set(w, i)))
+function areSynonyms(a: string, b: string): boolean {
+  const ga = SYNONYM_GROUP.get(a)
+  return ga !== undefined && ga === SYNONYM_GROUP.get(b)
+}
+
+/** Does token `t` appear in `ctoks` (exact, ≤1 edit for tokens ≥4 chars, or a
+ *  curated Spanish↔Valencian synonym)? */
 function tokenIn(t: string, ctoks: string[]): boolean {
   return ctoks.some(
-    (ct) => ct === t || (t.length >= 4 && ct.length >= 4 && editDistance(t, ct) <= 1),
+    (ct) =>
+      ct === t ||
+      (t.length >= 4 && ct.length >= 4 && editDistance(t, ct) <= 1) ||
+      areSynonyms(t, ct),
   )
 }
 

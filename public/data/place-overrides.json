@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T12:38:16.537Z",
+  "generatedAt": "2026-07-05T12:48:27.053Z",
   "overrides": [
     {
       "contractId": "1564500",
@@ -378,6 +378,48 @@
       "curator": "datarhan",
       "approvedAt": "2026-07-05T12:38:16.536Z",
       "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "3725734",
+      "sourceId": "avinguda-de-la-pau",
+      "name": "Avinguda de la Pau",
+      "kind": "street",
+      "point": [
+        39.5475704,
+        -0.5757486
+      ],
+      "matchedText": "Avinguda de la Pau",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:48:26.356Z",
+      "note": "LLM geocode, es/val synonym, curator-reviewed"
+    },
+    {
+      "contractId": "4486293",
+      "sourceId": "avinguda-de-la-pau",
+      "name": "Avinguda de la Pau",
+      "kind": "street",
+      "point": [
+        39.5475704,
+        -0.5757486
+      ],
+      "matchedText": "Avinguda de la Pau",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:48:26.709Z",
+      "note": "LLM geocode, es/val synonym, curator-reviewed"
+    },
+    {
+      "contractId": "2197024",
+      "sourceId": "avinguda-del-castanyer",
+      "name": "Avinguda del Castanyer",
+      "kind": "street",
+      "point": [
+        39.5354222,
+        -0.5360689
+      ],
+      "matchedText": "Avinguda del Castanyer",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:48:27.052Z",
+      "note": "LLM geocode, es/val synonym, curator-reviewed"
     }
   ]
 }

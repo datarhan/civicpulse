@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-07-05T12:37:43.478Z",
+  "generatedAt": "2026-07-05T12:48:03.124Z",
   "promptVersion": "place-geocode-v1",
   "backend": "claude-code",
   "stats": {
-    "candidatesScanned": 308,
-    "suggested": 12,
-    "unmatched": 51,
+    "candidatesScanned": 300,
+    "suggested": 7,
+    "unmatched": 48,
     "noPlace": 243,
     "lowConfidence": 2
   },
   "suggestions": [
     {
-      "contractId": "1652393",
-      "title": "Obras de mejora en la accesibilidad de la Casa Consistorial",
-      "amount": 31041.03,
-      "date": "2020-03-06",
-      "llmPlaceName": "Casa Consistorial",
-      "confidence": 0.92,
-      "reasoning": "El contrato es una obra de mejora de accesibilidad realizada directamente sobre el edificio de la Casa Consistorial, que es el lugar/equipamiento concreto nombrado en el título.",
+      "contractId": "3725734",
+      "title": "Contrato de obras de MEJORA DE ACCESIBILIDAD AVENIDA DE LA PAZ derivado del SDA 2 de Obras de sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria (Ctto 44/2022 – SDA 2/2020).",
+      "amount": 37705.69,
+      "date": "2022-08-23",
+      "llmPlaceName": "Avenida de la Paz",
+      "confidence": 0.95,
+      "reasoning": "El título nombra explícitamente la Avenida de la Paz como lugar concreto donde se ejecuta la obra de mejora de accesibilidad, siendo más específico que la referencia genérica a viales y parques del municipio.",
       "match": {
-        "sourceId": "node-5809597354",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "kind": "poi",
+        "sourceId": "avinguda-de-la-pau",
+        "name": "Avinguda de la Pau",
+        "kind": "street",
         "point": [
-          39.5469545,
-          -0.5666236
+          39.5475704,
+          -0.5757486
         ]
       },
       "requiresHumanApproval": true
@@ -49,20 +49,20 @@
       "requiresHumanApproval": true
     },
     {
-      "contractId": "440383",
-      "title": "Obras de mejora accesibilidad Casa Consistorial mediante la eliminación de barreras arquitectónicas",
-      "amount": 24908.52,
-      "date": "2018-11-05",
-      "llmPlaceName": "Casa Consistorial",
+      "contractId": "4486293",
+      "title": "Contrato administrativo de obras para la ejecución del proyecto para la Reforma de edificio para la vivienda tutelada municipal con demolición parcial en Av de la Paz 44 (Ctto252/2024)",
+      "amount": 183446,
+      "date": "2024-09-05",
+      "llmPlaceName": "Avenida de la Paz",
       "confidence": 0.9,
-      "reasoning": "El título nombra explícitamente la Casa Consistorial como el edificio concreto donde se ejecutan las obras de accesibilidad y eliminación de barreras arquitectónicas.",
+      "reasoning": "El título indica la dirección concreta 'Av de la Paz 44' donde se ejecuta la obra de reforma del edificio.",
       "match": {
-        "sourceId": "node-5809597354",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "kind": "poi",
+        "sourceId": "avinguda-de-la-pau",
+        "name": "Avinguda de la Pau",
+        "kind": "street",
         "point": [
-          39.5469545,
-          -0.5666236
+          39.5475704,
+          -0.5757486
         ]
       },
       "requiresHumanApproval": true
@@ -87,25 +87,6 @@
       "requiresHumanApproval": true
     },
     {
-      "contractId": "7483049",
-      "title": "Contrato, de carácter menor, para la ejecución de las obras del proyecto de “Reconstrucción de muros y reparación de nichos en el cementerio municipal de Riba-roja de Túria” (Ctto.23M/2024)",
-      "amount": 20366.85,
-      "date": "2025-02-20",
-      "llmPlaceName": "Cementerio municipal",
-      "confidence": 0.9,
-      "reasoning": "El contrato es de obras (reconstrucción de muros y reparación de nichos) ejecutadas directamente sobre el cementerio municipal, un equipamiento público concreto nombrado en el título.",
-      "match": {
-        "sourceId": "way-740051593",
-        "name": "Cementerio de San Jaime",
-        "kind": "poi",
-        "point": [
-          39.4767673,
-          -0.585373
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
       "contractId": "599169",
       "title": "Amplicación parque Generalitat",
       "amount": 32591.16,
@@ -125,20 +106,20 @@
       "requiresHumanApproval": true
     },
     {
-      "contractId": "2460010",
-      "title": "Contrato menor de obras de “Reparación de cubierta y mejora de accesibilidad en cementerio municipal\" del Ayuntamiento de Riba-Roja de Túria.",
-      "amount": 36990,
-      "date": "2021-10-06",
-      "llmPlaceName": "Cementerio municipal",
+      "contractId": "2197024",
+      "title": "Contrato para suministro de material para alumbrado público en Avda. Castaño Fase I, mediante alimentación solar fotovoltaica con equipos LED, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad (Ctto 48/2022 – SDA 2/2021).",
+      "amount": 10471.95,
+      "date": "2023-04-26",
+      "llmPlaceName": "Avenida Castaño",
       "confidence": 0.85,
-      "reasoning": "El contrato es de obras (reparación de cubierta y accesibilidad) ejecutadas directamente sobre el cementerio municipal, equipamiento concreto nombrado en el título.",
+      "reasoning": "El título nombra la Avda. Castaño (Fase I) como ubicación concreta del alumbrado público a suministrar/instalar.",
       "match": {
-        "sourceId": "way-740051593",
-        "name": "Cementerio de San Jaime",
-        "kind": "poi",
+        "sourceId": "avinguda-del-castanyer",
+        "name": "Avinguda del Castanyer",
+        "kind": "street",
         "point": [
-          39.4767673,
-          -0.585373
+          39.5354222,
+          -0.5360689
         ]
       },
       "requiresHumanApproval": true
@@ -158,82 +139,6 @@
         "point": [
           39.4892941,
           -0.534982
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "543940",
-      "title": "Obras desvío linea aérea de media tensión cementerio municipal",
-      "amount": 13726.68,
-      "date": "2019-07-13",
-      "llmPlaceName": "Cementerio municipal",
-      "confidence": 0.75,
-      "reasoning": "El título indica que la obra (desvío de línea eléctrica) se ejecuta en el cementerio municipal, un equipamiento concreto, no un suministro para un servicio.",
-      "match": {
-        "sourceId": "way-740051593",
-        "name": "Cementerio de San Jaime",
-        "kind": "poi",
-        "point": [
-          39.4767673,
-          -0.585373
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "1532928",
-      "title": "obras de acondicionamiento de Sala y Cubierta de televisión del Ayuntamiento de Riba- Roja de Túria.",
-      "amount": 14311,
-      "date": "2021-02-19",
-      "llmPlaceName": "Ayuntamiento",
-      "confidence": 0.7,
-      "reasoning": "La obra se ejecuta en el propio edificio del Ayuntamiento (sala y cubierta de televisión), un equipamiento concreto; se omite el nombre del municipio.",
-      "match": {
-        "sourceId": "node-5809597354",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "kind": "poi",
-        "point": [
-          39.5469545,
-          -0.5666236
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "555312",
-      "title": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja",
-      "amount": 37890,
-      "date": "2018-04-11",
-      "llmPlaceName": "Edificio principal del Ayuntamiento",
-      "confidence": 0.55,
-      "reasoning": "El título indica una obra sobre el edificio consistorial (equipamiento concreto), no un servicio genérico; se omite el nombre del municipio conforme a la regla.",
-      "match": {
-        "sourceId": "node-5809597354",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "kind": "poi",
-        "point": [
-          39.5469545,
-          -0.5666236
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "2870786",
-      "title": "Contrato Menor de Suministro, Instalación y puesta en marcha de autoconsumo en edificios Ayuntamiento A y B.",
-      "amount": 6995,
-      "date": "2022-04-01",
-      "llmPlaceName": "Edificio del Ayuntamiento",
-      "confidence": 0.55,
-      "reasoning": "El título indica obra de instalación de autoconsumo en los edificios A y B del Ayuntamiento (edificio consistorial), que es un equipamiento público concreto sobre el que se ejecuta la instalación, no el nombre del municipio.",
-      "match": {
-        "sourceId": "node-5809597354",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "kind": "poi",
-        "point": [
-          39.5469545,
-          -0.5666236
         ]
       },
       "requiresHumanApproval": true
