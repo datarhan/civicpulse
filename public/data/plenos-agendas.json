@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-04T07:27:09.653Z",
+  "generatedAt": "2026-07-05T07:48:52.581Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
   },
   "stats": {
     "plenosFetched": 30,
-    "agendaItemsTotal": 316,
+    "agendaItemsTotal": 301,
     "plenosWithRuegos": 6,
     "uniqueDepartments": 10,
     "plazosVencidosCount": 0,
@@ -15,7 +15,7 @@
   "topDepartments": [
     {
       "department": "Cultura",
-      "count": 5,
+      "count": 4,
       "departmentSlug": "cultura"
     },
     {
@@ -29,11 +29,6 @@
       "departmentSlug": "contratacion"
     },
     {
-      "department": "Servicios generales",
-      "count": 3,
-      "departmentSlug": "servicios-generales"
-    },
-    {
       "department": "Hacienda",
       "count": 2,
       "departmentSlug": "hacienda"
@@ -42,6 +37,11 @@
       "department": "Seguridad",
       "count": 2,
       "departmentSlug": "seguridad"
+    },
+    {
+      "department": "Servicios generales",
+      "count": 2,
+      "departmentSlug": "servicios-generales"
     },
     {
       "department": "Vivienda",
@@ -65,6 +65,34 @@
     }
   ],
   "plenos": [
+    {
+      "id": "1237hbp",
+      "date": "2026-07-03",
+      "title": "Sesión de fecha 03 de julio de 2026",
+      "kind": "extraordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+      "agenda": [
+        {
+          "number": 1,
+          "title": "Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": null
+        },
+        {
+          "number": 2,
+          "title": "Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura",
+          "section": "resolutiva",
+          "department": null,
+          "departmentSlug": null,
+          "expediente": "3058/2026/GEN"
+        }
+      ],
+      "agendaCount": 2,
+      "departments": [],
+      "hasRuegos": false
+    },
     {
       "id": "11025xk",
       "date": "2026-06-01",
@@ -2833,157 +2861,6 @@
       ],
       "agendaCount": 11,
       "departments": [],
-      "hasRuegos": false
-    },
-    {
-      "id": "1tgd1h4",
-      "date": "2024-07-29",
-      "title": "Sesión de fecha 29 de julio de 2024",
-      "kind": "ordinario",
-      "link": "https://regmeet.com/aytoribarroja/participaciones/52b738b303d90a884137546353e09ebb?idioma=castellano",
-      "agenda": [
-        {
-          "number": 1,
-          "title": "Aprovació Actes anteriors de data 01 i 22 de juliol de 2024",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 2,
-          "title": "Activitats, Expedient 1798/2024/GEN – Aprovació inicial de la modificació de l'Ordenança municipal reguladora de la instal·lació de taules i terrasses",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 3,
-          "title": "Foment Econòmic, Expedient 3830/2024/GEN – Aprovació del Reglament de Funcionament de règim intern dels programes mixtos d'ocupació-formació",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 4,
-          "title": "Foment Econòmic , Expedient 4147/2024/GEN – Acord relatiu a les Festes Locals, Calendari Laboral 2025",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 5,
-          "title": "Secretaria, Expedient 4305/2024/GEN – Aprovació de la política del Sistema Intern d'Informació de l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
-          "department": "Servicios generales",
-          "departmentSlug": "servicios-generales",
-          "expediente": null
-        },
-        {
-          "number": 6,
-          "title": "Medi Ambient, Expedient 4297/2024/GEN – Aprovació i remissió per a homologació del Pla Territorial d'emergències i plans associats",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 7,
-          "title": "Cultura, Expedient 3051/2024/GEN – Aprovació de la denominació de la Plaça Banda Unió Musical de Riba-roja",
-          "section": "resolutiva",
-          "department": "Cultura",
-          "departmentSlug": "cultura",
-          "expediente": null
-        },
-        {
-          "number": 8,
-          "title": "Benestar Animal, Expedient 3543/2024/GEN, Aprovació del Pla de Gestió Ètica de Colònies Felines de l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 9,
-          "title": "Moció conjunta del Grup Municipal Socialista, del Grup Municipal Compromís y del Grup Municipal Esquerra Unida – Podem per a rebutjar la paràlisi de la Generalitat Valenciana enfront del masclisme",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": "21/2024/PGRU"
-        },
-        {
-          "number": 10,
-          "title": "Urbanisme, Expedient 4307/2024/GEN, Donar compte de la Calendarització de les prioritats en matèria de Gestió Urbanística del Departament d'Urbanisme",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 11,
-          "title": "Servicis Jurídics, Expedient 4343/2024/GEN, Donar compte dels antecedents i pronunciaments judicials respecte al PAI en el Sector Més de Porxinos",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 12,
-          "title": "Servicis Jurídics, Expedient 4358/2024/GEN, Donar compte del sobreseïment del PA 1045/2017 instruït pel Jutjat de Primera Instància i Instrucció nº4 de Llíria contra Roberto Raga i altres",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 13,
-          "title": "Contractació, Expedient 4264/2024/GEN, Donar compte al Ple dels contractes administratius adjudicats en el primer semestre de 2024 per l'Ajuntament de Riba-roja de Túria",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 14,
-          "title": "Comerç, Expedient 4150/2024/GEN, Valoració de la campanya XXII Fira del Comerç i GastroFira 2024",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 15,
-          "title": "Innovació. Expedient 4799/2023/GEN, Donar compte de la bitàcola de la BOOTCAMP del Hub d'Innovació RIBA_LAB a l'Ajuntament de Riba-roja de Túria per a potenciar les competències en matèria de col·laboració, creativitat i innovació",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 16,
-          "title": "Donar compte de les Resolucions de la número 2378/2024 a la 2668/2024",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        },
-        {
-          "number": 17,
-          "title": "Precs i Preguntes",
-          "section": "resolutiva",
-          "department": null,
-          "departmentSlug": null,
-          "expediente": null
-        }
-      ],
-      "agendaCount": 17,
-      "departments": [
-        "Servicios generales",
-        "Cultura"
-      ],
       "hasRuegos": false
     }
   ]

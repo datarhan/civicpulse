@@ -1,20 +1,27 @@
 {
-  "generatedAt": "2026-07-04T07:23:46.092Z",
+  "generatedAt": "2026-07-05T07:45:58.037Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "platform": "Regmeet — aytoribarroja/sesiones_categorias/3b56be67439045acfbc7c1552d87a166/<year>"
   },
   "stats": {
-    "total": 58,
+    "total": 59,
     "byYear": {
       "2023": 17,
       "2024": 18,
       "2025": 15,
-      "2026": 8
+      "2026": 9
     },
-    "latestDate": "2026-06-01"
+    "latestDate": "2026-07-03"
   },
   "items": [
+    {
+      "id": "1237hbp",
+      "title": "Sesión de fecha 03 de julio de 2026",
+      "date": "2026-07-03",
+      "kind": "extraordinario",
+      "link": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano"
+    },
     {
       "id": "11025xk",
       "title": "Sesión de fecha 01 de junio de 2026",

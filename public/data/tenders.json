@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T07:20:36.004Z",
+  "generatedAt": "2026-07-05T07:42:44.744Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -19849,9 +19849,9 @@
       "categoryTitle": "it",
       "cpvs": [
         "72200000",
-        "72212000",
         "72210000",
-        "72211000"
+        "72211000",
+        "72212000"
       ],
       "numberOfBatches": 20
     },
