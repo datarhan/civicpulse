@@ -52,7 +52,7 @@
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
     "transcribe:batch": "bash scripts/transcribe-pleno-batch.sh",
     "llm:doctor": "npx tsx scripts/llm-doctor.ts",
-    "scrape:tender-queja-correlations": "npx tsx scripts/scrape-tender-queja-correlations.ts",
+    "scrape:queja-contract-relations": "npx tsx scripts/scrape-queja-contract-relations.ts",
     "freeze:set": "npx tsx scripts/set-promises-freeze.ts set",
     "freeze:clear": "npx tsx scripts/set-promises-freeze.ts clear",
     "freeze:status": "npx tsx scripts/set-promises-freeze.ts status",

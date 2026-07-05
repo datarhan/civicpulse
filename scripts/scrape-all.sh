@@ -122,6 +122,17 @@ fi
 
 echo ""
 echo "================================================================"
+echo "[scrape-all] running: scrape:queja-contract-relations (best-effort)"
+echo "================================================================"
+# Depends on tender-geo.json (situated places) + the bot's quejas.json. Pure +
+# deterministic (no LLM/network); soft-fail so a flake never blocks the commit.
+if ! npm run scrape:queja-contract-relations; then
+  echo "[scrape-all] SOFT-FAILED: scrape:queja-contract-relations — best-effort, not counted"
+  soft_failures+=("scrape:queja-contract-relations")
+fi
+
+echo ""
+echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
 if [ ${#soft_failures[@]} -gt 0 ]; then

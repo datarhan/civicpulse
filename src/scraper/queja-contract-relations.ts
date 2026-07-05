@@ -20,11 +20,11 @@ import { canonicalizeDepartment } from './departments'
 import { tenderMatchesQuejaCpv } from '../llm/queja-to-cpv'
 import type { QuejaCategory } from './queja-router'
 
-export type RelationLabel =
-  | 'mismo expediente'
-  | 'misma zona y materia'
-  | 'misma zona'
-  | 'misma materia'
+// NOTE: a 'mismo expediente' tier is deferred to the deliverable that adds the
+// pleno-agenda bridge (queja dept ↔ agenda item expediente ↔ contract). A queja
+// carries no expediente of its own, so a direct field match is not possible in
+// D1 — Tier A here is strictly place + department.
+export type RelationLabel = 'misma zona y materia' | 'misma zona' | 'misma materia'
 
 export interface RelQueja {
   id: string
@@ -96,20 +96,6 @@ export function temporalModifier(q: RelQueja, c: RelContract): { monthsAfter: nu
   return months >= -3 && months <= 18 ? { monthsAfter: months } : null
 }
 
-function normExp(s: string): string {
-  return s.replace(/\s+/g, '').toUpperCase()
-}
-
-/**
- * Shared expediente (ironclad when present). Department alignment guards against
- * coincidental expediente-number collisions across unrelated files.
- */
-export function expedienteSignal(q: RelQueja, c: RelContract): { value: string } | null {
-  if (!c.expediente) return null
-  if (q.department && c.department && q.department !== c.department) return null
-  return { value: normExp(c.expediente) }
-}
-
 export interface RelationLink {
   quejaId: string
   tenderPermalink: string
@@ -119,7 +105,6 @@ export interface RelationLink {
   via: 'deterministic'
   relationLabel: RelationLabel
   signals: {
-    expediente?: { value: string }
     place?: PlaceSignal
     department?: { slug: string }
     temporal?: { monthsAfter: number }
@@ -130,13 +115,12 @@ export interface RelationLink {
 /**
  * Combine the four signals into a tiered, neutral-labelled link — or null.
  *
- * Tier A (publishable fact, requiresHumanApproval:false): shared expediente, OR
- * same place AND same department. Tier B (curator-gated): a lone place or a lone
- * department/theme. Honesty gates: department/theme alone is never Tier A, and a
- * temporal-only coincidence never links at all.
+ * Tier A (publishable fact, requiresHumanApproval:false): same place AND same
+ * department. Tier B (curator-gated): a lone place or a lone department/theme.
+ * Honesty gates: department/theme alone is never Tier A, and a temporal-only
+ * coincidence never links at all.
  */
 export function scoreRelation(q: RelQueja, c: RelContract): RelationLink | null {
-  const exp = expedienteSignal(q, c)
   const place = placeSignal(q, c)
   const dept = departmentSignal(q, c)
   const temporal = temporalModifier(q, c) ?? undefined
@@ -146,20 +130,11 @@ export function scoreRelation(q: RelQueja, c: RelContract): RelationLink | null 
     tenderId: c.id,
     via: 'deterministic' as const,
     signals: {
-      ...(exp ? { expediente: exp } : {}),
       ...(place ? { place } : {}),
       ...(dept ? { department: dept } : {}),
       ...(temporal ? { temporal } : {}),
     },
   }
-  if (exp)
-    return {
-      ...base,
-      tier: 'A',
-      score: 0.95,
-      relationLabel: 'mismo expediente',
-      requiresHumanApproval: false,
-    }
   if (place && dept)
     return {
       ...base,

@@ -3,11 +3,11 @@ import {
   placeSignal,
   departmentSignal,
   temporalModifier,
-  expedienteSignal,
   scoreRelation,
   buildRelations,
 } from '../src/scraper/queja-contract-relations'
 import type { RelQueja, RelContract } from '../src/scraper/queja-contract-relations'
+import { normalizeQueja, buildRelContracts } from '../scripts/scrape-queja-contract-relations'
 
 const q = (o: Partial<RelQueja> = {}): RelQueja => ({
   id: 'Q-1',
@@ -54,9 +54,9 @@ describe('placeSignal', () => {
 
 describe('departmentSignal', () => {
   it('matches on canonical department equality', () => {
-    expect(departmentSignal(q({ department: 'urbanismo' }), c({ department: 'urbanismo' }))).toEqual(
-      { slug: 'urbanismo' },
-    )
+    expect(
+      departmentSignal(q({ department: 'urbanismo' }), c({ department: 'urbanismo' })),
+    ).toEqual({ slug: 'urbanismo' })
   })
   it('matches on CPV theme even when departments differ/null', () => {
     // via_publica → construction div 45; contract carries a paving CPV
@@ -90,30 +90,7 @@ describe('temporalModifier', () => {
   })
 })
 
-describe('expedienteSignal', () => {
-  it('matches normalized expediente when department aligns', () => {
-    expect(
-      expedienteSignal(
-        q({ department: 'urbanismo' }),
-        c({ department: 'urbanismo', expediente: '251/2023 BSDA' }),
-      ),
-    ).toEqual({ value: '251/2023BSDA' })
-  })
-  it('is null when the contract has no expediente', () => {
-    expect(expedienteSignal(q(), c({ expediente: null }))).toBeNull()
-  })
-})
-
 describe('scoreRelation — tiering + honesty gates', () => {
-  it('Tier A: shared expediente → publishable, neutral label', () => {
-    const r = scoreRelation(
-      q({ department: 'urbanismo' }),
-      c({ department: 'urbanismo', expediente: '251/2023' }),
-    )!
-    expect(r.tier).toBe('A')
-    expect(r.requiresHumanApproval).toBe(false)
-    expect(r.relationLabel).toBe('mismo expediente')
-  })
   it('Tier A: place + department → publishable "misma zona y materia"', () => {
     const r = scoreRelation(
       q({ placeSlug: 'valencia-la-vella', department: 'movilidad' }),
@@ -170,5 +147,62 @@ describe('buildRelations', () => {
     expect(res.links).toEqual([])
     expect(res.stats.frozen).toBe(true)
     expect(res.stats.reason).toBe('frozen')
+  })
+})
+
+describe('normalizeQueja (current bot snapshot schema)', () => {
+  it('maps service_code/address_string/requested_datetime/concejalia_area', () => {
+    const r = normalizeQueja({
+      service_request_id: 'Q-KJY6XSVG',
+      service_code: 'urbanismo',
+      concejalia_area: 'Urbanismo',
+      address_string: 'urbanitzacio-valencia-la-vella',
+      description: 'x',
+      requested_datetime: '2026-07-02 10:48:16',
+    })!
+    expect(r).toMatchObject({
+      id: 'Q-KJY6XSVG',
+      serviceCode: 'urbanismo',
+      department: 'urbanismo',
+      placeSlug: 'urbanitzacio-valencia-la-vella',
+    })
+    expect(r.createdAt).toMatch(/^2026-07-02/)
+  })
+  it('drops rows without an id or timestamp', () => {
+    expect(normalizeQueja({ service_code: 'x' })).toBeNull()
+  })
+})
+
+describe('buildRelContracts (tender-geo place.sourceId + expediente join, awarded only)', () => {
+  it('extracts situated place slugs + zones and joins expediente by id', () => {
+    const contracts = [
+      {
+        id: '4379456',
+        permalink: 'p',
+        title: 't',
+        status: 'awarded',
+        categoryTitle: 'construction',
+        cpvs: ['45233222'],
+        awardDate: '2023-12-27',
+        finalAmount: 100,
+        assignee: 'X',
+      },
+      { id: 'draft1', status: 'open' },
+    ]
+    const geo = {
+      assignments: [
+        {
+          id: '4379456',
+          place: { name: 'Urbanització La Reva', sourceId: 'urbanitzacio-la-reva' },
+          zones: ['urbanitzacio-la-reva', 'l-oliveral'],
+        },
+      ],
+    }
+    const tenders = [{ id: '4379456', documentNumber: '251/2023 BSDA' }]
+    const out = buildRelContracts(contracts, geo, tenders)
+    expect(out).toHaveLength(1) // non-awarded dropped
+    expect(out[0]).toMatchObject({ id: '4379456', expediente: '251/2023 BSDA' })
+    expect(out[0].zones).toContain('l-oliveral')
+    expect(out[0].places).toEqual(expect.arrayContaining(['urbanitzacio-la-reva']))
   })
 })
