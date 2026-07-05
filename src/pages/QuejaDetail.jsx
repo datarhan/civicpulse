@@ -8,10 +8,7 @@ import {
   CATEGORY_LABEL,
   prettyNeighborhood,
 } from '../hooks/useQuejas'
-import {
-  useTenderQuejaCorrelations,
-  correlationsForQueja,
-} from '../hooks/useTenderQuejaCorrelations'
+import { useQuejaContractRelations, relationsForQueja } from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { fmtDateLong } from '../lib/formatters'
@@ -108,13 +105,13 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
 }
 
 function CorrelationsCard({ quejaId }) {
-  const { data } = useTenderQuejaCorrelations()
-  const items = correlationsForQueja(data, quejaId)
+  const { data } = useQuejaContractRelations()
+  const items = relationsForQueja(data, quejaId)
   if (items.length === 0) return null
   return (
     <Card style={{ marginTop: 14, borderLeft: '3px solid var(--intel)' }}>
       <SectionHead
-        eyebrow="Sugerencia automática · pendiente de revisión"
+        eyebrow="Relación por zona y materia · no causal"
         title="Posibles actuaciones municipales relacionadas"
       />
       <div
@@ -126,80 +123,74 @@ function CorrelationsCard({ quejaId }) {
           lineHeight: 1.5,
         }}
       >
-        Estos contratos <strong>podrían</strong> abordar esta queja, pero la relación NO es causal.
-        Un curador debe verificar antes de afirmar que resuelven el problema.
+        Contratos municipales que coinciden con esta queja en <strong>zona</strong> y/o{' '}
+        <strong>materia</strong>. La coincidencia <strong>no</strong> implica que el contrato
+        resuelva el problema — es una relación de contexto, no causal.
       </div>
-      {items.map((c, i) => (
-        <div
-          key={i}
-          style={{
-            padding: '10px 0',
-            borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
-          }}
-        >
+      {items.map((l, i) => {
+        const place = l.signals?.place?.slug
+        const dept = l.signals?.department?.slug
+        return (
           <div
+            key={i}
             style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: 8,
-              marginBottom: 4,
-              flexWrap: 'wrap',
+              padding: '10px 0',
+              borderTop: i === 0 ? 'none' : '1px dashed var(--border2)',
             }}
           >
-            <span
-              className="mono"
+            <div
               style={{
-                fontSize: 9.5,
-                padding: '1px 6px',
-                borderRadius: 3,
-                textTransform: 'uppercase',
-                letterSpacing: '.08em',
-                fontWeight: 700,
-                background: c.via === 'expediente' ? 'var(--ok-soft)' : 'var(--intel-soft)',
-                color: c.via === 'expediente' ? 'var(--ok-ink)' : 'var(--intel-ink)',
-              }}
-              title={
-                c.via === 'expediente'
-                  ? 'Coincidencia estructural: mismo expediente en agenda y adjudicación'
-                  : 'Coincidencia difusa: CPV + ventana temporal + reranking LLM'
-              }
-            >
-              {c.via}
-            </span>
-            <span
-              className="mono"
-              style={{
-                fontSize: 10,
-                color: c.confidence >= 0.8 ? 'var(--ok-ink)' : 'var(--warn-ink)',
+                display: 'flex',
+                alignItems: 'baseline',
+                gap: 8,
+                marginBottom: 4,
+                flexWrap: 'wrap',
               }}
             >
-              conf. {(c.confidence * 100).toFixed(0)}%
-            </span>
+              <span
+                className="mono"
+                style={{
+                  fontSize: 9.5,
+                  padding: '1px 6px',
+                  borderRadius: 3,
+                  textTransform: 'uppercase',
+                  letterSpacing: '.08em',
+                  fontWeight: 700,
+                  background: 'var(--ok-soft)',
+                  color: 'var(--ok-ink)',
+                }}
+                title="Relación determinista y verificable — coincidencia de zona y/o materia"
+              >
+                {l.relationLabel}
+              </span>
+            </div>
+            <div style={{ fontSize: 12, color: 'var(--ink70)', marginBottom: 4, lineHeight: 1.4 }}>
+              {place && (
+                <>
+                  zona: <strong>{place}</strong>
+                </>
+              )}
+              {place && dept && ' · '}
+              {dept && (
+                <>
+                  materia: <strong>{dept}</strong>
+                </>
+              )}
+            </div>
+            <ExtLink
+              href={l.tenderPermalink}
+              style={{
+                fontSize: 11,
+                color: 'var(--civic)',
+                textDecoration: 'underline',
+                textUnderlineOffset: 2,
+              }}
+            >
+              Ver contrato en contrataciondelestado.es →
+            </ExtLink>
           </div>
-          <div
-            style={{
-              fontSize: 13,
-              color: 'var(--ink80)',
-              marginBottom: 4,
-              lineHeight: 1.4,
-              fontStyle: 'italic',
-            }}
-          >
-            {c.reasoning}
-          </div>
-          <ExtLink
-            href={c.tenderPermalink}
-            style={{
-              fontSize: 11,
-              color: 'var(--civic)',
-              textDecoration: 'underline',
-              textUnderlineOffset: 2,
-            }}
-          >
-            Ver contrato en contrataciondelestado.es →
-          </ExtLink>
-        </div>
-      ))}
+        )
+      })}
     </Card>
   )
 }

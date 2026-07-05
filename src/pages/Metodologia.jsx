@@ -272,6 +272,55 @@ export default function Metodologia() {
         </ul>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="relacion-quejas-contratos">
+        <SectionHead
+          eyebrow="Cruce de datos"
+          title="Relación entre quejas ciudadanas y contratos"
+        />
+        <p style={{ margin: '8px 0 0', color: 'var(--ink70)' }}>
+          En la ficha de cada queja (
+          <a href="/quejas" style={{ color: 'var(--civic)' }}>
+            /quejas
+          </a>
+          ) mostramos los contratos municipales que <strong>coinciden en zona y/o materia</strong>{' '}
+          con la queja. Es un motor <strong>determinista</strong> —sin IA, reproducible— que combina
+          cuatro señales, y su marco es deliberadamente <strong>no causal</strong>: una coincidencia
+          nunca afirma que el contrato resuelva la queja.
+        </p>
+        <ul style={{ margin: '10px 0 0', paddingLeft: 20 }}>
+          <li>
+            <strong>Zona.</strong> El lugar de la queja se compara con el lugar donde el
+            place-resolver situó el contrato (mismo callejero OSM), a nivel de calle/urbanización o
+            de barrio. Sólo se usa la granularidad ya publicada; nunca coordenadas exactas del
+            ciudadano.
+          </li>
+          <li>
+            <strong>Materia.</strong> La concejalía de la queja frente al departamento/CPV del
+            contrato, con la misma taxonomía que <code>/departamentos</code>.
+          </li>
+          <li>
+            <strong>Ventana temporal.</strong> Sólo matiza una relación existente; por sí sola nunca
+            crea un vínculo.
+          </li>
+          <li>
+            <strong>Dos niveles.</strong> <em>Nivel A</em> (misma zona <u>y</u> materia) es un hecho
+            de coocurrencia verificable y se publica directamente con etiqueta neutra («misma zona y
+            materia»). <em>Nivel B</em> (sólo zona, o sólo materia) queda como sugerencia{' '}
+            <code>requiresHumanApproval</code> y <strong>no se muestra</strong> hasta que un curador
+            la promueve.
+          </li>
+          <li>
+            <strong>Sin lenguaje causal.</strong> Las etiquetas son un enum fijo («misma zona»,
+            «misma materia», «misma zona y materia»). No usamos palabras como «ignorada» o
+            «abandonada»: el lector saca sus propias conclusiones a partir de las cifras.
+          </li>
+          <li>
+            <strong>Suspensión electoral (LOREG).</strong> Bajo <code>frozenUntil</code> el motor no
+            emite ningún vínculo, igual que el resto de superficies legalmente sensibles.
+          </li>
+        </ul>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="verificacion-declaraciones">
         <SectionHead
           eyebrow="Verificación de declaraciones de pleno"
