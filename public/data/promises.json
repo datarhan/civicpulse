@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-04T13:51:58.058Z",
+  "generatedAt": "2026-07-05T07:00:03.956Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -520,17 +520,27 @@
       "madeAt": "2026-06-16",
       "topic": "cultura",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-06-16",
+          "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
+          "quote": "Riba-roja repartirá de forma gratuita más de 2.000 helados a las personas asistentes al Cinema d'Estiu",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-04",
+      "updatedAt": "2026-07-05",
       "response": null,
       "autoPublished": {
-        "at": "2026-07-04T07:00:03.633Z",
+        "at": "2026-07-05T07:00:03.956Z",
         "by": "auto-curation-v1",
-        "confidence": 0.95,
-        "reviewState": "reviewed",
-        "reviewedAt": "2026-07-04T13:51:50.960Z"
+        "confidence": 0.9,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu"
       }
     },
     {
@@ -545,17 +555,27 @@
       "madeAt": "2026-06-16",
       "topic": "cultura",
       "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2026-06-16",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
+          "quote": "Cine de verano en Riba-roja: 2.000 helados gratis y una semana de acceso gratuito",
+          "publisher": "El Periódico de Aquí",
+          "kind": "press",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "createdAt": "2026-07-04",
-      "updatedAt": "2026-07-04",
+      "updatedAt": "2026-07-05",
       "response": null,
       "autoPublished": {
-        "at": "2026-07-04T07:00:03.633Z",
+        "at": "2026-07-05T07:00:03.956Z",
         "by": "auto-curation-v1",
-        "confidence": 0.95,
-        "reviewState": "reviewed",
-        "reviewedAt": "2026-07-04T13:51:51.301Z"
+        "confidence": 0.9,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5"
       }
     },
     {
