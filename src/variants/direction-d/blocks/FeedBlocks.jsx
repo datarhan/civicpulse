@@ -1,11 +1,68 @@
+import { Link } from 'react-router-dom'
 import { useTenders, formatDate as formatTenderDate } from '../../../hooks/useTenders'
 import { contractAmount } from '../../../lib/tender-geo'
 import { useParticipa, KIND_ICON } from '../../../hooks/useParticipa'
 import { usePress, timeAgo as pressTimeAgo } from '../../../hooks/usePress'
 import { useEvents, upcomingEvents, formatEventWhen } from '../../../hooks/useEvents'
+import { useEmpleo } from '../../../hooks/useEmpleo'
 import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
+
+export function EmpleoBlockD() {
+  const { loading, error, data } = useEmpleo()
+  if (loading || error || !data) return null
+  const items = data.items || []
+  if (items.length === 0) return null
+  // Closing-soon first (offers with a deadline), else newest.
+  const withDeadline = items.filter((o) => o.deadline)
+  const picks = (withDeadline.length ? withDeadline : items)
+    .slice()
+    .sort((a, b) => (a.deadline && b.deadline ? a.deadline.localeCompare(b.deadline) : 0))
+    .slice(0, 3)
+  const fmt = (iso) => new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })
+  return (
+    <div style={{ marginBottom: 18 }}>
+      <SectionHeader
+        tone="empleo"
+        title="Empleo · Agència de Col·locació"
+        meta={`${data.stats.openTotal} ofertas`}
+      />
+      {picks.map((o, i) => {
+        const muni = (o.detail && o.detail.municipio) || o.location || ''
+        return (
+          <div
+            key={o.id}
+            style={{ padding: '10px 0', borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair }}
+          >
+            <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35, marginBottom: 2 }}>
+              <Link to={`/empleo/${o.id}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                {o.titulo}
+              </Link>
+            </div>
+            <div className="mono" style={{ fontSize: 10, color: PALETTE.ink60 }}>
+              {muni.length > 30 ? muni.slice(0, 30) + '…' : muni}
+              {o.deadline ? ` · cierra ${fmt(o.deadline)}` : ''}
+            </div>
+          </div>
+        )
+      })}
+      <Link
+        to="/empleo"
+        style={{
+          display: 'inline-block',
+          marginTop: 6,
+          fontSize: 11.5,
+          color: PALETTE.civic,
+          textDecoration: 'none',
+          fontWeight: 600,
+        }}
+      >
+        Ver todas las ofertas →
+      </Link>
+    </div>
+  )
+}
 
 export function LiveContracts() {
   const { loading, error, data } = useTenders()

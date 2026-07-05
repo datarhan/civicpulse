@@ -27,6 +27,7 @@ export const SECTION_TONES = {
   contratos: { bar: '#16A34A', wash: 'rgba(22,163,74,.09)', ink: '#15803D' },
   participa: { bar: '#0D9488', wash: 'rgba(13,148,136,.10)', ink: '#0F766E' },
   eventos: { bar: '#0D9488', wash: 'rgba(13,148,136,.10)', ink: '#0F766E' },
+  empleo: { bar: '#4F46E5', wash: 'rgba(79,70,229,.08)', ink: '#4338CA' },
   neutral: { bar: 'rgba(11,15,25,.35)', wash: 'rgba(11,15,25,.05)', ink: 'rgba(11,15,25,.68)' },
 }
 

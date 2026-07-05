@@ -18,7 +18,13 @@ import { EditorialMasthead, QuejaCTA } from './blocks/Masthead'
 import { LeadStory } from './blocks/LeadStory'
 import { AlcaldeBox } from './blocks/AlcaldeBox'
 import { CoalitionRing, PromesasBlockD, DepartamentosBlockD } from './blocks/GovernmentBlocks'
-import { PressBlockD, LiveContracts, ParticipaBlockD, EventsBlockD } from './blocks/FeedBlocks'
+import {
+  PressBlockD,
+  LiveContracts,
+  ParticipaBlockD,
+  EventsBlockD,
+  EmpleoBlockD,
+} from './blocks/FeedBlocks'
 
 function EditorialColumn({ now }) {
   return (
@@ -43,6 +49,7 @@ function EditorialColumn({ now }) {
       <DepartamentosBlockD />
       <PressBlockD />
       <LiveContracts />
+      <EmpleoBlockD />
       <EventsBlockD />
       <ParticipaBlockD />
     </aside>
