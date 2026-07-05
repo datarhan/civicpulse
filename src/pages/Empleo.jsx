@@ -13,6 +13,8 @@ import {
   distinctMunicipios,
   distinctContracts,
   paginate,
+  shortContract,
+  normalizeJornada,
 } from '../lib/empleo'
 import { fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
@@ -34,12 +36,18 @@ function DeadlinePill({ deadline, t }) {
 }
 
 function OfferRow({ o, t }) {
+  const d = o.detail
+  const contrato = d && d.tipoContrato ? shortContract(d.tipoContrato) : null
+  const jornada = d ? normalizeJornada(d.jornada) : null
+  const puestos = d ? parseInt(d.numPuestos, 10) : NaN
+  const showJornada = jornada === 'Completa' || jornada === 'Parcial'
+  const hasChips = o.inRibaRoja || contrato || showJornada || puestos > 1
   return (
     <Link
       to={`/empleo/${o.id}`}
       style={{
         display: 'block',
-        padding: '12px 6px',
+        padding: '13px 6px',
         borderBottom: '1px solid var(--border2)',
         textDecoration: 'none',
         color: 'inherit',
@@ -52,6 +60,7 @@ function OfferRow({ o, t }) {
         </Pill>
         <DeadlinePill deadline={o.deadline} t={t} />
       </div>
+
       <div
         style={{
           display: 'flex',
@@ -72,16 +81,53 @@ function OfferRow({ o, t }) {
             <span>{o.location}</span>
           </>
         )}
-        {o.inRibaRoja && (
-          <Pill tone="civic" size="xs">
-            Riba-roja
-          </Pill>
-        )}
         <span style={{ color: 'var(--ink30)' }}>·</span>
         <span className="mono" style={{ color: 'var(--ink50)' }}>
           {fmtDateShort(o.publishedAt)}
         </span>
       </div>
+
+      {hasChips && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 7 }}>
+          {o.inRibaRoja && (
+            <Pill tone="civic" size="xs">
+              Riba-roja
+            </Pill>
+          )}
+          {contrato && (
+            <Pill tone="neutral" size="xs">
+              {contrato}
+            </Pill>
+          )}
+          {showJornada && (
+            <Pill tone="ghost" size="xs">
+              {jornada}
+            </Pill>
+          )}
+          {puestos > 1 && (
+            <Pill tone="neutral" size="xs">
+              {puestos} {t('empleo.card.positions')}
+            </Pill>
+          )}
+        </div>
+      )}
+
+      {d && d.funciones && (
+        <div
+          style={{
+            marginTop: 7,
+            fontSize: 12.5,
+            color: 'var(--ink70)',
+            lineHeight: 1.45,
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
+        >
+          {d.funciones}
+        </div>
+      )}
     </Link>
   )
 }
