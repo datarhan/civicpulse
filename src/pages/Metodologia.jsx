@@ -315,6 +315,14 @@ export default function Metodologia() {
             «abandonada»: el lector saca sus propias conclusiones a partir de las cifras.
           </li>
           <li>
+            <strong>Triaje opcional con IA (interno).</strong> Cuando una queja acumula muchas
+            candidatas de Nivel B, un pase con modelo de lenguaje puede ordenar cuál es la más
+            plausible, con una confianza y una frase neutra. Es una herramienta de curación privada:
+            su salida sigue siendo <code>requiresHumanApproval</code> y{' '}
+            <strong>no se publica</strong> hasta que un curador la promueve — la IA nunca decide qué
+            se muestra.
+          </li>
+          <li>
             <strong>Suspensión electoral (LOREG).</strong> Bajo <code>frozenUntil</code> el motor no
             emite ningún vínculo, igual que el resto de superficies legalmente sensibles.
           </li>

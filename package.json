@@ -54,6 +54,7 @@
     "llm:doctor": "npx tsx scripts/llm-doctor.ts",
     "scrape:queja-contract-relations": "npx tsx scripts/scrape-queja-contract-relations.ts",
     "promote-relation": "npx tsx scripts/promote-relation.ts",
+    "rerank-relations": "npx tsx scripts/rerank-relations.ts",
     "freeze:set": "npx tsx scripts/set-promises-freeze.ts set",
     "freeze:clear": "npx tsx scripts/set-promises-freeze.ts clear",
     "freeze:status": "npx tsx scripts/set-promises-freeze.ts status",
