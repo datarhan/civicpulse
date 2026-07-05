@@ -19,6 +19,7 @@ import {
   SINDIC_SENTIDO_TONE,
 } from '../hooks/useSindic'
 import QuejasHeatmap from '../components/QuejasHeatmap'
+import QuejasSpendOverlap from '../components/Quejas/QuejasSpendOverlap'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
@@ -724,6 +725,8 @@ function DashboardView({ data }) {
         />
         <StatCard label="Silencios + escaladas" value={silencios} tone="warn" sub=">plazo LPACAP" />
       </div>
+
+      <QuejasSpendOverlap />
 
       <div
         style={{

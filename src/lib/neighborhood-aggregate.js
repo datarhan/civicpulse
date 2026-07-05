@@ -104,3 +104,28 @@ export function computePerNeighborhood(items, neighborhoods) {
   }
   return [...bySlug.values()].filter((v) => v.total > 0)
 }
+
+/**
+ * Town-wide overlap rows for the D4 gap view: one row per barrio that has EITHER
+ * quejas OR situated spend, sorted quejas-desc then amount-desc. `gap` flags a
+ * barrio with citizen complaints but zero located spend — surfaced as a NEUTRAL
+ * figure, never as an accusation. Reuses aggregateNeighborhood so the numbers
+ * match the map + heatmap exactly.
+ * @param {{neighborhoods?:any[], zones?:any[], quejaItems?:any[]}} input
+ */
+export function computeOverlapRows({ neighborhoods = [], zones = [], quejaItems = [] }) {
+  return neighborhoods
+    .map((n) => {
+      const agg = aggregateNeighborhood({ neighborhood: n, zones, quejaItems })
+      return {
+        slug: agg.slug,
+        name: agg.name,
+        quejas: agg.quejas.total,
+        amount: agg.amount,
+        contractCount: agg.contractCount,
+        gap: agg.quejas.total > 0 && agg.amount === 0,
+      }
+    })
+    .filter((r) => r.quejas > 0 || r.amount > 0)
+    .sort((x, y) => y.quejas - x.quejas || y.amount - x.amount)
+}
