@@ -59,6 +59,21 @@ const CATALOGUE = {
     'tweaks.lang.ca': 'Valencià',
     'tweaks.open.aria': 'Ajustes',
 
+    // Map (landing interactive layers)
+    'map.layers.title': 'Capas del mapa',
+    'map.layer.money': 'Gasto municipal',
+    'map.layer.poi': 'Servicios',
+    'map.layer.metro': 'Tren L9',
+    'map.layer.flood': 'Riesgo inundación',
+    'map.money.title': 'Gasto situado',
+    'map.money.dana': 'Solo DANA',
+    'map.money.play': 'Reproducir línea de tiempo del gasto',
+    'map.money.pause': 'Pausar línea de tiempo del gasto',
+    'map.money.accum': 'obra acumulada',
+    'map.poi.title': 'Servicios públicos',
+    'map.poi.source': 'OpenStreetMap · datos abiertos',
+    'map.flood.title': 'Riesgo de inundación',
+
     // Common
     'common.loading': 'Cargando…',
     'common.noData': 'Sin datos',
@@ -227,6 +242,21 @@ const CATALOGUE = {
     'tweaks.lang.es': 'Castellà',
     'tweaks.lang.ca': 'Valencià',
     'tweaks.open.aria': 'Ajustos',
+
+    // Map (landing interactive layers)
+    'map.layers.title': 'Capes del mapa',
+    'map.layer.money': 'Despesa municipal',
+    'map.layer.poi': 'Serveis',
+    'map.layer.metro': 'Tren L9',
+    'map.layer.flood': 'Risc d’inundació',
+    'map.money.title': 'Despesa situada',
+    'map.money.dana': 'Només DANA',
+    'map.money.play': 'Reproduir la línia de temps de la despesa',
+    'map.money.pause': 'Pausar la línia de temps de la despesa',
+    'map.money.accum': 'obra acumulada',
+    'map.poi.title': 'Serveis públics',
+    'map.poi.source': 'OpenStreetMap · dades obertes',
+    'map.flood.title': 'Risc d’inundació',
 
     'common.loading': 'Carregant…',
     'common.noData': 'Sense dades',

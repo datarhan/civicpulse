@@ -1,0 +1,117 @@
+{
+  "generatedAt": "2026-07-05T11:13:30.782Z",
+  "overrides": [
+    {
+      "contractId": "1564500",
+      "sourceId": "carrer-major",
+      "name": "Carrer Major",
+      "kind": "street",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ],
+      "matchedText": "Carrer Major",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:12:51.192Z",
+      "note": "test"
+    },
+    {
+      "contractId": "5388060",
+      "sourceId": "carrer-de-perpinyanet",
+      "name": "Carrer de Perpinyanet",
+      "kind": "street",
+      "point": [
+        39.550535,
+        -0.5820432
+      ],
+      "matchedText": "Carrer de Perpinyanet",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:28.707Z",
+      "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "685889",
+      "sourceId": "carrer-de-cristofol-colom",
+      "name": "Carrer de Cristòfol Colom",
+      "kind": "street",
+      "point": [
+        39.5448121,
+        -0.5670968
+      ],
+      "matchedText": "Carrer de Cristòfol Colom",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:29.038Z",
+      "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "2520342",
+      "sourceId": "way-662835745",
+      "name": "Centre Social",
+      "kind": "poi",
+      "point": [
+        39.5458994,
+        -0.5714322
+      ],
+      "matchedText": "Centre Social",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:29.398Z",
+      "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "3733423",
+      "sourceId": "avinguda-de-la-masia-de-traver",
+      "name": "Avinguda de la Masia de Traver",
+      "kind": "street",
+      "point": [
+        39.5420868,
+        -0.5438471
+      ],
+      "matchedText": "Avinguda de la Masia de Traver",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:29.742Z",
+      "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "1619842",
+      "sourceId": "carrer-del-lliri-groc",
+      "name": "Carrer del Lliri Groc",
+      "kind": "street",
+      "point": [
+        39.5239906,
+        -0.5171613
+      ],
+      "matchedText": "Carrer del Lliri Groc",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:30.107Z",
+      "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "4579942",
+      "sourceId": "carrer-major",
+      "name": "Carrer Major",
+      "kind": "street",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ],
+      "matchedText": "Carrer Major",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:30.437Z",
+      "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "1524361",
+      "sourceId": "way-152520274",
+      "name": "Camp de futbol Municipal Francisco Soriano",
+      "kind": "poi",
+      "point": [
+        39.5452787,
+        -0.5807577
+      ],
+      "matchedText": "Camp de futbol Municipal Francisco Soriano",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:13:30.781Z",
+      "note": "LLM geocode curator-reviewed"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-04T08:06:19.303Z",
+  "generatedAt": "2026-07-05T07:38:11.921Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -384,6 +384,132 @@
       "response": null
     },
     {
+      "id": "f-2026-05-11-cit-a0a379",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Debate sobre la Fira de Comercio en el pleno del 2026-05-11",
+      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, el grupo Otro defendió el impacto positivo de la campaña de 2024. El registro municipal incluye el «Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y».",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-263-cit-a0a379",
+        "10yl550-278-acu-ac00a4",
+        "10yl550-280-cit-ab3a68",
+        "10yl550-293-acu-8785eb"
+      ],
+      "quotes": [
+        {
+          "text": "la Fira de Comercio nació en el año 2001, hace ya 25 años",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-263-cit-a0a379"
+        },
+        {
+          "text": "ustedes se lo han cargado",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-278-acu-ac00a4"
+        },
+        {
+          "text": "la campaña 22 Fira de Comercio 2024 fue recibida muy positivamente, tanto por la ciudadanía como por los comercios y establecimientos de hostelería y restauración",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-280-cit-ab3a68"
+        },
+        {
+          "text": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-293-acu-8785eb"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+          "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento de Riba…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2gB%2B3A9KcJqKeVWTb9Scog%3D%3D",
+          "snippet": "Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y dinamización del comercio local, con motivo de la celebr…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
+          "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-05",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-acu-ea9d47",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Debate sobre seguridad en Riba-roja de Túria en el pleno del 2026-05-11",
+      "summary": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y señala el desvío de partidas para trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y el grupo Otro menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-092-acu-ea9d47",
+        "10yl550-101-acu-701882",
+        "10yl550-320-cit-a652c5",
+        "10yl550-099-cit-423e57"
+      ],
+      "quotes": [
+        {
+          "text": "Votar en contra de la protección civil del Ayuntamiento de Rivarrocha.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-092-acu-ea9d47"
+        },
+        {
+          "text": "en cuanto a una moción que ha nombrado. En esta moción lo que hacen es, por lo que entiendo, jugar en una semana en la que al parecer llevaban 8.000 euros de trabajos técnicos a la policía local que realmente estaban destellados a proyectos de emergencia.",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-101-acu-701882"
+        },
+        {
+          "text": "en el espacio abierto que se está haciendo desde el ayuntamiento, en las diferentes zonas del municipio, se va a hablar de una unidad de policía de urbanización.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-320-cit-a652c5"
+        },
+        {
+          "text": "esos dos vallones inundables que nos van a permitir sobre todo a los bomberos ahora que se acosta el verano",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-099-cit-423e57"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
+          "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
+          "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=R3%2FYzx59uutq1DdmE7eaXg%3D%3D",
+          "snippet": "El estudio de criterios a  adoptar  en  la concesión de  licencias en suelos inundables conforme a la cartografía sectorial · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: awarde…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-05",
+      "response": null
+    },
+    {
       "id": "f-2026-04-20-cit-b9b013",
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
@@ -569,6 +695,74 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2026-04-20-cit-947479",
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "title": "Debate sobre transparencia y el sistema del salón de plenos en Riba-roja de Túria (2026-04-20)",
+      "summary": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, la formación Otro manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "k4olcs-019-cit-947479",
+        "k4olcs-019-acu-940acd",
+        "k4olcs-133-acu-e1bac8",
+        "k4olcs-146-acu-8c6db4"
+      ],
+      "quotes": [
+        {
+          "text": "cartelería digital por importe de 35.252,87 y la actuación 2, sistema de debate, captura y grabación de vídeo y control del salón de plenos municipales.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "k4olcs-019-cit-947479"
+        },
+        {
+          "text": "Se ha aprobado por este hecho, a vuestro favor, y 8 abstenciones Grupo Socialista, Partido Popular Vox Escalona y Podem",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "k4olcs-019-acu-940acd"
+        },
+        {
+          "text": "los informes técnicos de la intervención son desfavorables, son negativos",
+          "speakerGroup": "PP",
+          "sourceClaimId": "k4olcs-133-acu-e1bac8"
+        },
+        {
+          "text": "nosotros podríamos no haber dado cuenta de este informe, el alcalde no está obligado a este informe",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "k4olcs-146-acu-8c6db4"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
+          "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5kwAn1Bav2rz3GQd5r6SQ%3D%3D",
+          "snippet": "Aprobación expediente contrato administrativo para prestación del servicio en la gestión del PROGRAMA DE INTERVENCIÓN FAMILIAR CON MENORES del Ayuntamiento de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación cal…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Mantenimiento control de acceso corporativo. · Ayuntamiento de Riba-roja de Túria · INFORMÁTICA DEL ESTE S.L · it · estado: unknown"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=M1ywm72VHdo",
+          "snippet": "Vídeo del pleno 2026-04-20 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-05",
       "response": null
     },
     {
@@ -1110,6 +1304,147 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
+      "response": null
+    },
+    {
+      "id": "f-2026-01-19-cit-8b29a9",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Debate de urbanismo y deportes en el pleno de Riba-roja de Túria del 2026-01-19",
+      "summary": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. Según el registro municipal, estas obras constan en el expediente \"Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón de\". Por su parte, el grupo VOX manifiesta valoraciones sobre la reconstrucción.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-146-cit-8b29a9",
+        "19gax3o-053-cit-3fa2de",
+        "19gax3o-067-cit-dcdcf6",
+        "19gax3o-139-cit-989b94"
+      ],
+      "quotes": [
+        {
+          "text": "y del parquet que efectivamente estaba cambiando y lo vamos a cambiar",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-146-cit-8b29a9"
+        },
+        {
+          "text": "la agenda de reconstrucción es la que más se ha hecho en el país",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "19gax3o-053-cit-3fa2de"
+        },
+        {
+          "text": "los pueblos que estábamos en la DANA no teníamos tiempo material para plasmar en un documento la convocatoria.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-067-cit-dcdcf6"
+        },
+        {
+          "text": "era pedir ese complejo de esportes por la malla",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-139-cit-989b94"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
+          "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayu…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=56xTbbVhVpxxseVhcqrkhw%3D%3D",
+          "snippet": "Contratación servicio dirección de obra y dirección de ejecución material, coordinación en seguridad \ny salud para proyecto de obras “Reconstrucción de vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DA…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3dTzivflSF2sNfRW6APEDw%3D%3D",
+          "snippet": "Contrato verbal de suministro compra hornillo gas y desechables para familia afectada como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 · Ayuntamiento de Riba-roja de Túria · BRICOLAGE MORENO SL ·…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-05",
+      "response": null
+    },
+    {
+      "id": "f-2026-01-19-afi-5238db",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Debate de los grupos PP, Compromís y Otro en el pleno de Riba-roja de Túria del 2026-01-19",
+      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, el grupo Otro manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-114-afi-5238db",
+        "19gax3o-010-cit-c48425",
+        "19gax3o-186-acu-71dffe",
+        "19gax3o-138-acu-9f3da3"
+      ],
+      "quotes": [
+        {
+          "text": "vamos a votar a favor de esta modificación de crédito",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-114-afi-5238db"
+        },
+        {
+          "text": "vamos a recolzar este plan de contratación 2026",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "19gax3o-010-cit-c48425"
+        },
+        {
+          "text": "se había hecho una crítica política referente a la modificación de crédito",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-186-acu-71dffe"
+        },
+        {
+          "text": "la auditoría que pagó el Partido Popular bueno, pagamos los vecinos de dos millones y medio a seis de empezar en 2006-2007 al 2012",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-138-acu-9f3da3"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=lWTuvLzS6jH10HRJw8TEnQ%3D%3D",
+          "snippet": "Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TxQvZ6saR0ScCF8sV%2BqtYA%3D%3D",
+          "snippet": "Contrato menor de obras referentes a la modificación de instalación de ACS con mezcladores para duchas en complejo deportivo municipal La Malla"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WUIrTpS4RqweC9GJQOEBkQ%3D%3D",
+          "snippet": "Contrato administrativo de obras para la ejecución del proyecto “Mantenimiento y refuerzo estructural del pabellón polideportivo municipal”"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
+          "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ZDLv1lEzZyjnSoTX3z%2F7wA%3D%3D",
+          "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de c…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-05",
       "response": null
     },
     {

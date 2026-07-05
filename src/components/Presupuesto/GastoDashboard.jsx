@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Card, SectionHead, Pill } from '../Primitives'
 import { useTenders } from '../../hooks/useTenders'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
+import { useCpvLabels } from '../../hooks/useCpvLabels'
 import GastoMap from './GastoMap'
 import CoverageMeter from './CoverageMeter'
 import ZoneDrilldown from './ZoneDrilldown'
@@ -19,6 +20,7 @@ const TABS = [
 export default function GastoDashboard() {
   const { data: tg } = useTenderGeo()
   const { data: tenders } = useTenders()
+  const { data: cpv } = useCpvLabels()
   const contracts = useMemo(() => tenders?.contracts || [], [tenders])
   const contractsById = useMemo(() => new Map(contracts.map((c) => [c.id, c])), [contracts])
 
@@ -86,6 +88,7 @@ export default function GastoDashboard() {
               contractsById={contractsById}
               danaOnly={danaOnly}
               onClear={() => setSelectedZone(null)}
+              cpvDict={cpv?.codes}
             />
           ) : (
             <CoverageMeter universe={tg.universe} zones={tg.zones} onSelectZone={setSelectedZone} />

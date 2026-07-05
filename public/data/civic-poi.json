@@ -1,0 +1,277 @@
+{
+  "generatedAt": "2026-07-04T15:07:32.558Z",
+  "source": {
+    "platform": "OSM Overpass API",
+    "endpoint": "https://overpass-api.de/api/interpreter",
+    "area": "wikidata Q23701"
+  },
+  "pois": [
+    {
+      "id": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "category": "civico",
+      "kind": "townhall",
+      "lat": 39.5469545,
+      "lng": -0.5666236
+    },
+    {
+      "id": "node-5659405999",
+      "name": "Oficina de Correos",
+      "category": "civico",
+      "kind": "post_office",
+      "lat": 39.5449918,
+      "lng": -0.5734207
+    },
+    {
+      "id": "node-473144158",
+      "name": "Policía Local",
+      "category": "civico",
+      "kind": "police",
+      "lat": 39.5459333,
+      "lng": -0.5767488
+    },
+    {
+      "id": "node-747760717",
+      "name": "Puesto de Riba-roja (Cuartel de la Guardia Civil)",
+      "category": "civico",
+      "kind": "police",
+      "lat": 39.5420469,
+      "lng": -0.5729685
+    },
+    {
+      "id": "way-566219300",
+      "name": "Biblioteca Pública",
+      "category": "cultura",
+      "kind": "library",
+      "lat": 39.5466795,
+      "lng": -0.5660252
+    },
+    {
+      "id": "node-12759063543",
+      "name": "Centre d'Informació Juvenil",
+      "category": "cultura",
+      "kind": "community_centre",
+      "lat": 39.5441095,
+      "lng": -0.5696178
+    },
+    {
+      "id": "way-542763138",
+      "name": "Centre de Dia",
+      "category": "cultura",
+      "kind": "community_centre",
+      "lat": 39.5480009,
+      "lng": -0.5645672
+    },
+    {
+      "id": "way-662835745",
+      "name": "Centre Social",
+      "category": "cultura",
+      "kind": "community_centre",
+      "lat": 39.5458994,
+      "lng": -0.5714322
+    },
+    {
+      "id": "way-152520274",
+      "name": "Camp de futbol Municipal Francisco Soriano",
+      "category": "deporte",
+      "kind": "pitch",
+      "lat": 39.5452787,
+      "lng": -0.5807577
+    },
+    {
+      "id": "way-39586077",
+      "name": "Campo de Fútbol Municipal Roberto Gil",
+      "category": "deporte",
+      "kind": "stadium",
+      "lat": 39.5439777,
+      "lng": -0.5812609
+    },
+    {
+      "id": "way-649240856",
+      "name": "Canchas de tenis El Terreno",
+      "category": "deporte",
+      "kind": "pitch",
+      "lat": 39.5235007,
+      "lng": -0.5273968
+    },
+    {
+      "id": "way-60438513",
+      "name": "Club de Tenis El Collao",
+      "category": "deporte",
+      "kind": "sports_centre",
+      "lat": 39.517973,
+      "lng": -0.5209567
+    },
+    {
+      "id": "way-1095351062",
+      "name": "Complex Esportiu La Mallà",
+      "category": "deporte",
+      "kind": "sports_centre",
+      "lat": 39.5433045,
+      "lng": -0.5757486
+    },
+    {
+      "id": "way-649240847",
+      "name": "Piscina Municipal de El Terreno",
+      "category": "deporte",
+      "kind": "swimming_pool",
+      "lat": 39.5225667,
+      "lng": -0.5286103
+    },
+    {
+      "id": "way-39586076",
+      "name": "Poliesportiu Municipal de Riba-Roja de Túria",
+      "category": "deporte",
+      "kind": "sports_centre",
+      "lat": 39.5460249,
+      "lng": -0.5806981
+    },
+    {
+      "id": "node-844322564",
+      "name": "Colegio Infantil Campanilla",
+      "category": "educacion",
+      "kind": "kindergarten",
+      "lat": 39.5564698,
+      "lng": -0.5532023
+    },
+    {
+      "id": "way-1238786193",
+      "name": "Colegio María de Iciar",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5304857,
+      "lng": -0.5393174
+    },
+    {
+      "id": "way-1242095512",
+      "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5493045,
+      "lng": -0.5717854
+    },
+    {
+      "id": "way-1097452806",
+      "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5433427,
+      "lng": -0.5731124
+    },
+    {
+      "id": "way-1178031442",
+      "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5473561,
+      "lng": -0.5639968
+    },
+    {
+      "id": "way-903588096",
+      "name": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5504954,
+      "lng": -0.5811206
+    },
+    {
+      "id": "relation-11303640",
+      "name": "Entrenaranjos International School",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5504619,
+      "lng": -0.5367426
+    },
+    {
+      "id": "way-152522312",
+      "name": "Escola Infantil de 1r Cicle Municipal Riu Túria",
+      "category": "educacion",
+      "kind": "kindergarten",
+      "lat": 39.5476548,
+      "lng": -0.5621832
+    },
+    {
+      "id": "way-152522318",
+      "name": "Institut d'Educació Secundària el Quint",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5480338,
+      "lng": -0.5616616
+    },
+    {
+      "id": "way-152520279",
+      "name": "Institut d'Educació Secundària Pla de Nadal",
+      "category": "educacion",
+      "kind": "school",
+      "lat": 39.5459609,
+      "lng": -0.5793252
+    },
+    {
+      "id": "node-474556218",
+      "name": "Centre de Salut de Riba-roja de Túria",
+      "category": "salud",
+      "kind": "clinic",
+      "lat": 39.5444021,
+      "lng": -0.5672742
+    },
+    {
+      "id": "way-1097455245",
+      "name": "Farmacia Sanchis Ribarroja",
+      "category": "salud",
+      "kind": "pharmacy",
+      "lat": 39.5449638,
+      "lng": -0.5732618
+    },
+    {
+      "id": "node-859558015",
+      "name": "Inmaculada Górriz",
+      "category": "salud",
+      "kind": "pharmacy",
+      "lat": 39.5448822,
+      "lng": -0.5626679
+    },
+    {
+      "id": "way-572095263",
+      "name": "Parc de Rosalía de Castro",
+      "category": "verde",
+      "kind": "park",
+      "lat": 39.5438783,
+      "lng": -0.5767846
+    },
+    {
+      "id": "way-39589891",
+      "name": "Parc Municipal Maldonado",
+      "category": "verde",
+      "kind": "park",
+      "lat": 39.5477533,
+      "lng": -0.5797717
+    },
+    {
+      "id": "way-551533189",
+      "name": "Plaça de Miguel Hernández",
+      "category": "verde",
+      "kind": "park",
+      "lat": 39.5487764,
+      "lng": -0.5759542
+    },
+    {
+      "id": "way-551533914",
+      "name": "Plaça de Vicent Andrés Estellés",
+      "category": "verde",
+      "kind": "park",
+      "lat": 39.5413489,
+      "lng": -0.5701346
+    }
+  ],
+  "stats": {
+    "total": 32,
+    "byCategory": {
+      "civico": 4,
+      "cultura": 4,
+      "deporte": 7,
+      "educacion": 10,
+      "salud": 3,
+      "verde": 4
+    }
+  }
+}

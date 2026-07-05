@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react'
 import { Circle, MapContainer, Polyline, TileLayer, Tooltip, useMap } from 'react-leaflet'
 import { useGeo } from '../../hooks/useGeo'
-import { zoneAmountsAt } from '../../lib/tender-geo'
+import { moneyRadiusMeters, zoneAmountsAt } from '../../lib/tender-geo'
 
 const RIBA_CENTER = [39.52, -0.55]
 const fmtEur = (n) =>
@@ -90,7 +90,7 @@ export default function GastoMap({ snapshot, sliderTime, danaOnly, selectedZone,
         {zones.map((z) => {
           const danaHeavy = danaOnly || (z.danaAmount > 0 && z.danaAmount >= z.amount * 0.5)
           const color = danaHeavy ? '#E08600' : '#2463EB'
-          const radius = 150 + Math.sqrt(z.live.amount) / 6
+          const radius = moneyRadiusMeters(z.live.amount)
           const sel = selectedZone === z.slug
           return (
             <Circle

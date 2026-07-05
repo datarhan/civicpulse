@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { matchContractsToZones, foldText } from '../src/scraper/tender-geo'
+import { buildGazetteer } from '../src/scraper/place-resolver'
 
 const ZONES = [
   { slug: 'monte-alcedo', name: 'Monte Alcedo', centroid: [39.5558, -0.5425] as [number, number] },
@@ -196,5 +197,124 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
   it('foldText lowercases, strips accents, and turns apostrophes into spaces', () => {
     expect(foldText("Mas d'Escoto")).toBe('mas d escoto')
     expect(foldText('València la Vella')).toBe('valencia la vella')
+  })
+})
+
+describe('scraper/tender-geo — precise placement via gazetteer', () => {
+  const CANDIDATES = buildGazetteer({
+    streets: [
+      { slug: 'carrer-de-sagunt', name: 'Carrer de Sagunt', kind: 'calle', point: [39.55, -0.56] },
+    ],
+    pois: [
+      {
+        id: 'poi-poli',
+        name: 'Polideportivo Municipal',
+        category: 'deporte',
+        lat: 39.54,
+        lng: -0.57,
+      },
+    ],
+    zones: ZONES.map((z) => ({ slug: z.slug, name: z.name, centroid: z.centroid })),
+    zoneAliases: { 'urbanitzacio-la-reva': ['la reva'] },
+  })
+
+  it('situates a street-named contract at the street point (no barrio alias needed)', () => {
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 's1',
+          title: 'Obras de reurbanización en C/ Sagunt',
+          status: 'awarded',
+          finalAmount: 80000,
+        },
+      ],
+      ZONES,
+      OPTS,
+      CANDIDATES,
+    )
+    const a = snap.assignments.find((x) => x.id === 's1')!
+    expect(a.zones).toEqual([]) // no barrio alias
+    expect(a.point).toEqual([39.55, -0.56])
+    expect(a.place?.kind).toBe('street')
+    expect(a.place?.name).toBe('Carrer de Sagunt')
+    expect(snap.universe.situatedContracts).toBe(1)
+    expect(snap.universe.situatedAmount).toBe(80000)
+    expect(snap.places.find((p) => p.slug === 'carrer-de-sagunt')?.amount).toBe(80000)
+  })
+
+  it('prefers the more specific POI point over a barrio centroid', () => {
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'p1',
+          title: 'Reforma pista del Polideportivo Municipal en La Reva',
+          status: 'awarded',
+          finalAmount: 120000,
+          contractType: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+      CANDIDATES,
+    )
+    const a = snap.assignments.find((x) => x.id === 'p1')!
+    // Still counts toward the barrio aggregate (alias "la reva")…
+    expect(a.zones).toEqual(['urbanitzacio-la-reva'])
+    // …but the precise pin sits on the POI, not the barrio centroid.
+    expect(a.place?.kind).toBe('poi')
+    expect(a.point).toEqual([39.54, -0.57])
+  })
+
+  it('applies a curator override (LLM-suggested, human-approved) over the resolver', () => {
+    const snap = matchContractsToZones(
+      // A title the deterministic resolver can't situate (Mayor/Major is skipped).
+      [
+        {
+          id: 'ov1',
+          title: 'Reforma en edificio sito en C/ Mayor, 37',
+          status: 'awarded',
+          finalAmount: 60000,
+        },
+      ],
+      ZONES,
+      {
+        ...OPTS,
+        overrides: {
+          ov1: {
+            sourceId: 'carrer-major',
+            name: 'Carrer Major',
+            kind: 'street',
+            point: [39.53, -0.58],
+            matchedText: 'Carrer Major',
+          },
+        },
+      },
+      CANDIDATES,
+    )
+    const a = snap.assignments.find((x) => x.id === 'ov1')!
+    expect(a.point).toEqual([39.53, -0.58])
+    expect(a.place?.name).toBe('Carrer Major')
+    expect(a.place?.sourceId).toBe('carrer-major')
+    expect(snap.universe.situatedContracts).toBe(1)
+    expect(snap.places.find((p) => p.slug === 'carrer-major')?.amount).toBe(60000)
+  })
+
+  it('leaves genuinely non-spatial contracts unplaced (no point, no zone)', () => {
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'x1',
+          title: 'Servicio postal del Ayuntamiento',
+          status: 'awarded',
+          finalAmount: 20000,
+        },
+      ],
+      ZONES,
+      OPTS,
+      CANDIDATES,
+    )
+    expect(snap.assignments.length).toBe(0)
+    expect(snap.universe.situatedContracts).toBe(0)
+    expect(snap.places.length).toBe(0)
   })
 })

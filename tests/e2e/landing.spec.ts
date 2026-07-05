@@ -4,7 +4,9 @@ test.describe('Landing (/)', () => {
   test('renders editorial column + KPI strip with real data', async ({ page }) => {
     const errors: string[] = []
     page.on('pageerror', (e) => errors.push(String(e)))
-    page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()) })
+    page.on('console', (m) => {
+      if (m.type() === 'error') errors.push(m.text())
+    })
 
     await page.goto('/', { waitUntil: 'domcontentloaded' })
 
@@ -22,5 +24,44 @@ test.describe('Landing (/)', () => {
     await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
 
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
+  })
+
+  test('interactive map layers: control, Servicios default, money toggle, neighborhood popup', async ({
+    page,
+  }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' })
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
+
+    // Layer control is present. Servicios (civic-POI) is the default flagship,
+    // so its legend shows on load and the money timeline does NOT (money is
+    // opt-in via its chip).
+    await expect(page.getByRole('group', { name: /Capas del mapa/i })).toBeVisible()
+    await expect(page.getByText(/Servicios públicos/i).first()).toBeVisible()
+    await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeHidden()
+
+    // A neighborhood marker opens the aggregated civic card.
+    await page.locator('.cp-osm-neigh').first().click({ force: true })
+    await expect(
+      page
+        .locator('.leaflet-popup-content')
+        .getByText(/Población/i)
+        .first(),
+    ).toBeVisible({ timeout: 6000 })
+
+    // Toggling "Gasto municipal" mounts the money timeline (its play button)
+    // and paints the precise "obras situadas" pins.
+    await page.getByRole('button', { name: /^Gasto municipal$/i }).click()
+    await expect(page.getByRole('button', { name: /línea de tiempo del gasto/i })).toBeVisible()
+    const pin = page.locator('path.cp-money-pin').first()
+    await expect(pin).toBeVisible({ timeout: 6000 })
+
+    // Clicking a money pin opens the contract card with the winner + € detail.
+    await pin.click({ force: true })
+    await expect(
+      page
+        .locator('.leaflet-popup-content')
+        .getByText(/Adjudicatario/i)
+        .first(),
+    ).toBeVisible({ timeout: 6000 })
   })
 })

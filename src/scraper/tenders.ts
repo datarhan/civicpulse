@@ -96,14 +96,23 @@ export interface Contract {
   endDate: string | null
   awardDate: string | null
   formalizedDate: string | null
+  /** Contracted execution period, in days (Gobierto `duration`). */
+  duration: number
+  /** Winning firm (Gobierto `assignee`) — the adjudicatario. */
   assignee: string | null
+  /** Contracting body (Gobierto `contractor`) — usually the Ayuntamiento. */
   contractor: string | null
+  contractorId: string | null
+  contractorType: string | null
+  categoryId: string | null
   categoryTitle: string | null
   cpvs: string[]
   initialAmount: number
   initialAmountNoTaxes: number
   finalAmount: number
   finalAmountNoTaxes: number
+  /** Valor estimado del contrato (Gobierto `estimated_value`). */
+  estimatedValue: number
   numberOfProposals: number
 }
 
@@ -178,8 +187,12 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
       endDate: nullable(row.end_date),
       awardDate: nullable(row.award_date),
       formalizedDate: nullable(row.formalized_date),
+      duration: num(row.duration),
       assignee: nullable(row.assignee),
       contractor: nullable(row.contractor),
+      contractorId: nullable(row.contractor_id),
+      contractorType: nullable(row.contractor_type),
+      categoryId: nullable(row.category_id),
       categoryTitle: nullable(row.category_title),
       cpvs: str(row.cpvs)
         .split(',')
@@ -189,6 +202,7 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
       initialAmountNoTaxes: num(row.initial_amount_no_taxes),
       finalAmount: num(row.final_amount),
       finalAmountNoTaxes: num(row.final_amount_no_taxes),
+      estimatedValue: num(row.estimated_value),
       numberOfProposals: num(row.number_of_proposals),
     })
   }

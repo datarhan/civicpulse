@@ -647,3 +647,16 @@ export const PromiseDiscoveryBatchSchema = z.object({
   promises: z.array(PromiseDiscoveryItemSchema).max(12),
 })
 export type PromiseDiscoveryBatch = z.infer<typeof PromiseDiscoveryBatchSchema>
+
+// ─── Place geocode (tender map, LLM name recall) ────────────────────────────
+// One contract title → the specific place its work sits at, or null. The LLM
+// extracts only the NAME (fuzzy / cross-language); the coordinate is looked up
+// in our OSM gazetteer downstream (matchNameToGazetteer), so the model never
+// emits a coordinate and can never invent one. `placeName` is null when the
+// title names no specific location (a service, a supply, generic works).
+export const PlaceGeocodeResponseSchema = z.object({
+  placeName: z.string().min(2).max(120).nullable(),
+  confidence: z.number().min(0).max(1),
+  reasoning: z.string().min(5).max(400),
+})
+export type PlaceGeocodeResponse = z.infer<typeof PlaceGeocodeResponseSchema>

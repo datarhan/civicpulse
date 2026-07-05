@@ -66,6 +66,34 @@ describe('scraper/tenders — parseRibalicitaContracts', () => {
     const total = awarded.reduce((s, c) => s + (c.finalAmount || 0), 0)
     expect(total).toBeGreaterThan(1_000_000)
   })
+
+  it('captures duration, estimatedValue and contractor metadata (Gobierto columns)', () => {
+    for (const c of contracts) {
+      expect(Number.isFinite(c.duration)).toBe(true)
+      expect(c.duration).toBeGreaterThanOrEqual(0)
+      expect(Number.isFinite(c.estimatedValue)).toBe(true)
+      expect(c.estimatedValue).toBeGreaterThanOrEqual(0)
+      // contractorType/contractorId/categoryId are nullable strings
+      expect(c.contractorType === null || typeof c.contractorType === 'string').toBe(true)
+      expect(c.contractorId === null || typeof c.contractorId === 'string').toBe(true)
+    }
+    // The fixture populates these broadly.
+    expect(contracts.filter((c) => c.duration > 0).length).toBeGreaterThan(100)
+    expect(contracts.filter((c) => c.estimatedValue > 0).length).toBeGreaterThan(100)
+    expect(contracts.filter((c) => c.contractorType).length).toBeGreaterThan(100)
+  })
+
+  it('assignee is the awardee (a company), distinct from the buyer/contractor', () => {
+    // Gobierto schema: `assignee` = winning firm; `contractor` = contracting
+    // body (usually the Ayuntamiento). The card reads adjudicatario from
+    // assignee, so pin the semantics here.
+    const withBoth = contracts.filter((c) => c.assignee && c.contractor)
+    expect(withBoth.length).toBeGreaterThan(100)
+    const ayuntamientoBuyers = withBoth.filter((c) =>
+      /ayuntamiento|riba-?roja/i.test(c.contractor!),
+    )
+    expect(ayuntamientoBuyers.length / withBoth.length).toBeGreaterThan(0.5)
+  })
 })
 
 describe('scraper/tenders — parseRibalicitaTenders', () => {
