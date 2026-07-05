@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T17:12:39.981Z",
+  "generatedAt": "2026-07-05T11:13:31.169Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-04T07:21:59.314Z"
@@ -9,8 +9,8 @@
     "totalAmount": 13978822.119999994,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
-    "situatedContracts": 43,
-    "situatedAmount": 1118920.8399999996,
+    "situatedContracts": 51,
+    "situatedAmount": 1431928.5799999998,
     "danaContracts": 9,
     "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
@@ -123,6 +123,18 @@
       "danaAmount": 124844.16
     },
     {
+      "slug": "way-152520274",
+      "name": "Camp de futbol Municipal Francisco Soriano",
+      "kind": "poi",
+      "point": [
+        39.5452787,
+        -0.5807577
+      ],
+      "contractCount": 1,
+      "amount": 195035.04,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrer-arrosals",
       "name": "Carrer Arrosals",
       "kind": "street",
@@ -207,6 +219,18 @@
       "danaAmount": 22977.96
     },
     {
+      "slug": "carrer-de-perpinyanet",
+      "name": "Carrer de Perpinyanet",
+      "kind": "street",
+      "point": [
+        39.550535,
+        -0.5820432
+      ],
+      "contractCount": 1,
+      "amount": 27783.17,
+      "danaAmount": 0
+    },
+    {
       "slug": "passeig-del-molinet",
       "name": "Passeig del Molinet",
       "kind": "street",
@@ -216,6 +240,18 @@
       ],
       "contractCount": 1,
       "amount": 26285.35,
+      "danaAmount": 0
+    },
+    {
+      "slug": "carrer-del-lliri-groc",
+      "name": "Carrer del Lliri Groc",
+      "kind": "street",
+      "point": [
+        39.5239906,
+        -0.5171613
+      ],
+      "contractCount": 1,
+      "amount": 25920,
       "danaAmount": 0
     },
     {
@@ -252,6 +288,30 @@
       ],
       "contractCount": 1,
       "amount": 22850,
+      "danaAmount": 0
+    },
+    {
+      "slug": "carrer-major",
+      "name": "Carrer Major",
+      "kind": "street",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ],
+      "contractCount": 2,
+      "amount": 22240.98,
+      "danaAmount": 4059.16
+    },
+    {
+      "slug": "way-662835745",
+      "name": "Centre Social",
+      "kind": "poi",
+      "point": [
+        39.5458994,
+        -0.5714322
+      ],
+      "contractCount": 1,
+      "amount": 20980,
       "danaAmount": 0
     },
     {
@@ -327,6 +387,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "avinguda-de-la-masia-de-traver",
+      "name": "Avinguda de la Masia de Traver",
+      "kind": "street",
+      "point": [
+        39.5420868,
+        -0.5438471
+      ],
+      "contractCount": 1,
+      "amount": 12000,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrer-de-les-animes",
       "name": "Carrer de les Ànimes",
       "kind": "street",
@@ -348,6 +420,18 @@
       ],
       "contractCount": 1,
       "amount": 10807.16,
+      "danaAmount": 0
+    },
+    {
+      "slug": "carrer-de-cristofol-colom",
+      "name": "Carrer de Cristòfol Colom",
+      "kind": "street",
+      "point": [
+        39.5448121,
+        -0.5670968
+      ],
+      "contractCount": 1,
+      "amount": 9048.55,
       "danaAmount": 0
     },
     {
@@ -426,6 +510,48 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "3733423",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 12000,
+      "amountKind": "final",
+      "date": "2022-08-30",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5420868,
+        -0.5438471
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Avinguda de la Masia de Traver",
+        "matchedText": "Avinguda de la Masia de Traver",
+        "sourceId": "avinguda-de-la-masia-de-traver"
+      }
+    },
+    {
+      "id": "2520342",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 20980,
+      "amountKind": "final",
+      "date": "2021-07-07",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5458994,
+        -0.5714322
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Centre Social",
+        "matchedText": "Centre Social",
+        "sourceId": "way-662835745"
       }
     },
     {
@@ -539,6 +665,27 @@
         "name": "Carrer Arrosals",
         "matchedText": "Carrer Arrosals",
         "sourceId": "carrer-arrosals"
+      }
+    },
+    {
+      "id": "1564500",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 18181.82,
+      "amountKind": "final",
+      "date": "2019-01-09",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Major",
+        "matchedText": "Carrer Major",
+        "sourceId": "carrer-major"
       }
     },
     {
@@ -705,6 +852,27 @@
       }
     },
     {
+      "id": "1619842",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 25920,
+      "amountKind": "final",
+      "date": "2022-01-07",
+      "contractType": "supplies",
+      "categoryTitle": "culture",
+      "point": [
+        39.5239906,
+        -0.5171613
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer del Lliri Groc",
+        "matchedText": "Carrer del Lliri Groc",
+        "sourceId": "carrer-del-lliri-groc"
+      }
+    },
+    {
       "id": "4718569",
       "zones": [
         "urbanitzacio-valencia-la-vella"
@@ -744,6 +912,48 @@
         "name": "el Pou d'Escoto",
         "matchedText": "el Pou d'Escoto",
         "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
+      "id": "5388060",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 27783.17,
+      "amountKind": "final",
+      "date": "2023-12-13",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.550535,
+        -0.5820432
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de Perpinyanet",
+        "matchedText": "Carrer de Perpinyanet",
+        "sourceId": "carrer-de-perpinyanet"
+      }
+    },
+    {
+      "id": "4579942",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": true,
+      "amount": 4059.16,
+      "amountKind": "final",
+      "date": "2024-12-05",
+      "contractType": "supplies",
+      "categoryTitle": "transportation",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Major",
+        "matchedText": "Carrer Major",
+        "sourceId": "carrer-major"
       }
     },
     {
@@ -882,6 +1092,27 @@
         "name": "Carrer de Luis Santàngel",
         "matchedText": "Carrer de Luis Santàngel",
         "sourceId": "carrer-de-luis-santangel"
+      }
+    },
+    {
+      "id": "685889",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 9048.55,
+      "amountKind": "final",
+      "date": "2018-11-28",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5448121,
+        -0.5670968
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer de Cristòfol Colom",
+        "matchedText": "Carrer de Cristòfol Colom",
+        "sourceId": "carrer-de-cristofol-colom"
       }
     },
     {
@@ -1162,6 +1393,27 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "1524361",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 195035.04,
+      "amountKind": "final",
+      "date": "2021-11-15",
+      "contractType": "supplies",
+      "categoryTitle": "furniture",
+      "point": [
+        39.5452787,
+        -0.5807577
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Camp de futbol Municipal Francisco Soriano",
+        "matchedText": "Camp de futbol Municipal Francisco Soriano",
+        "sourceId": "way-152520274"
       }
     },
     {

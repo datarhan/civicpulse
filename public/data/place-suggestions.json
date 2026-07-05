@@ -1,0 +1,242 @@
+{
+  "generatedAt": "2026-07-05T11:07:47.228Z",
+  "promptVersion": "place-geocode-v1",
+  "backend": "claude-code",
+  "stats": {
+    "candidatesScanned": 327,
+    "suggested": 12,
+    "unmatched": 70,
+    "noPlace": 243,
+    "lowConfidence": 2
+  },
+  "suggestions": [
+    {
+      "contractId": "5388060",
+      "title": "Contrato menor de obras, para la ejecución del proyecto “Adecuación urgente del tramo en Cmo. Perpinyanet en término municipal de Riba-roja de Turia (Valencia) -Ctto. 262M/2023.",
+      "amount": 27783.17,
+      "date": "2023-12-13",
+      "llmPlaceName": "Camí Perpinyanet",
+      "confidence": 0.92,
+      "reasoning": "El título especifica la obra en el tramo del \"Cmo. Perpinyanet\" (Camino Perpinyanet), que es el lugar concreto de ejecución, excluyendo el municipio Riba-roja de Túria mencionado aparte.",
+      "match": {
+        "sourceId": "carrer-de-perpinyanet",
+        "name": "Carrer de Perpinyanet",
+        "kind": "street",
+        "point": [
+          39.550535,
+          -0.5820432
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "737827",
+      "title": "Obra de pavimentación del Camí del conde, reparación de aceras, calzada y zanja polígonos",
+      "amount": 31458,
+      "date": "2018-11-23",
+      "llmPlaceName": "Camí del Conde",
+      "confidence": 0.92,
+      "reasoning": "El título nombra explícitamente el Camí del Conde como lugar donde se ejecuta la obra de pavimentación y reparación de aceras y calzada.",
+      "match": {
+        "sourceId": "carrer-del-mas-del-conde",
+        "name": "Carrer del Mas del Conde",
+        "kind": "street",
+        "point": [
+          39.4781462,
+          -0.5811841
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "1564500",
+      "title": "Reforma en edificio sito en C/ Mayor, 37",
+      "amount": 18181.82,
+      "date": "2019-01-09",
+      "llmPlaceName": "Calle Mayor",
+      "confidence": 0.9,
+      "reasoning": "El título nombra una dirección concreta en la Calle Mayor, y el contrato es de reforma sobre el edificio situado allí.",
+      "match": {
+        "sourceId": "carrer-major",
+        "name": "Carrer Major",
+        "kind": "street",
+        "point": [
+          39.5441796,
+          -0.5689306
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "685889",
+      "title": "Obras de reurbanización escalera sito en C/ Colón",
+      "amount": 9048.55,
+      "date": "2018-11-28",
+      "llmPlaceName": "Calle Colón",
+      "confidence": 0.9,
+      "reasoning": "El título nombra explícitamente la C/ Colón como lugar de ejecución de la obra de reurbanización de la escalera.",
+      "match": {
+        "sourceId": "carrer-de-cristofol-colom",
+        "name": "Carrer de Cristòfol Colom",
+        "kind": "street",
+        "point": [
+          39.5448121,
+          -0.5670968
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "4210348",
+      "title": "Contrato emergencia  acondicionamiento de caminos con realización de muro en camino el Quint con motivo \ndel episodio de lluvias torrenciales acontecido en noviembre de 2022.",
+      "amount": 6524.03,
+      "date": "2023-02-07",
+      "llmPlaceName": "Camino el Quint",
+      "confidence": 0.9,
+      "reasoning": "El título indica que el muro se realiza en el camino \"el Quint\", un lugar concreto (vía local), distinto del municipio.",
+      "match": {
+        "sourceId": "way-152522318",
+        "name": "Institut d'Educació Secundària el Quint",
+        "kind": "poi",
+        "point": [
+          39.5480338,
+          -0.5616616
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "2520342",
+      "title": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento.",
+      "amount": 20980,
+      "date": "2021-07-07",
+      "llmPlaceName": "Centro Social",
+      "confidence": 0.85,
+      "reasoning": "El contrato es de obras de reforma sobre el edificio Centro Social, un equipamiento público concreto, no un suministro o servicio genérico.",
+      "match": {
+        "sourceId": "way-662835745",
+        "name": "Centre Social",
+        "kind": "poi",
+        "point": [
+          39.5458994,
+          -0.5714322
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "4718569",
+      "title": "Contrato, de carácter menor, para la prestación del servicio realización del Plan especial de protección para la zona arqueológica de Valencia la Vella de Riba-roja de Túria (Ctto 180M/2023).",
+      "amount": 14850,
+      "date": "2023-06-09",
+      "llmPlaceName": "Valencia la Vella",
+      "confidence": 0.85,
+      "reasoning": "El título nombra la zona arqueológica concreta \"Valencia la Vella\" (yacimiento arqueológico visigodo), que es un topónimo específico distinto del municipio de Riba-roja de Túria o de la ciudad/provincia de Valencia.",
+      "match": {
+        "sourceId": "carrer-de-valencia-la-vella",
+        "name": "Carrer de València la Vella",
+        "kind": "street",
+        "point": [
+          39.5245465,
+          -0.5201598
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "5456102",
+      "title": "Contrato de carácter menor de obras para la ejecución del proyecto “Reparación de cubierta del edificio de caballerizas en el castillo de Riba-roja de Turia”. Ctto 263M/2023.",
+      "amount": 38387.18,
+      "date": "2023-12-29",
+      "llmPlaceName": "Castillo de Riba-roja de Túria",
+      "confidence": 0.85,
+      "reasoning": "El título especifica obra de reparación de cubierta del edificio de caballerizas dentro del castillo, un equipamiento/monumento concreto sobre el que se ejecuta la obra, no solo el municipio genérico.",
+      "match": {
+        "sourceId": "avinguda-del-port-de-castello",
+        "name": "Avinguda del Port de Castelló",
+        "kind": "street",
+        "point": [
+          39.4892941,
+          -0.534982
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "3733423",
+      "title": "Contrato de carácter menor, relativo al servicio de trabajos selvícolas interfaz Masia de Traver.",
+      "amount": 12000,
+      "date": "2022-08-30",
+      "llmPlaceName": "Masía de Traver",
+      "confidence": 0.75,
+      "reasoning": "El título especifica que los trabajos selvícolas se realizan en la interfaz urbano-forestal de la Masía de Traver, un lugar concreto del término municipal.",
+      "match": {
+        "sourceId": "avinguda-de-la-masia-de-traver",
+        "name": "Avinguda de la Masia de Traver",
+        "kind": "street",
+        "point": [
+          39.5420868,
+          -0.5438471
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "1619842",
+      "title": "Contrato mixto de suministro e instalación de juegos infantiles en Lliri Groc, Urb. Pous de Martí, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de medio ambiental y social contribuyendo al ODS 3 BIENESTAR Y SALUD.",
+      "amount": 25920,
+      "date": "2022-01-07",
+      "llmPlaceName": "Lliri Groc",
+      "confidence": 0.75,
+      "reasoning": "El título nombra \"Lliri Groc\" dentro de la Urb. Pous de Martí como lugar concreto (probablemente calle o zona ajardinada) donde se instalan los juegos infantiles; es más específico que el nombre de la urbanización.",
+      "match": {
+        "sourceId": "carrer-del-lliri-groc",
+        "name": "Carrer del Lliri Groc",
+        "kind": "street",
+        "point": [
+          39.5239906,
+          -0.5171613
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "4579942",
+      "title": "Contrato  de  suministro  sustitución  de  regulador  del  semáforo  de  la  calle  mayor  cruce  con  la  carretera  de  Villamarchante  como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
+      "amount": 4059.16,
+      "date": "2024-12-05",
+      "llmPlaceName": "Calle Mayor",
+      "confidence": 0.75,
+      "reasoning": "El semáforo está en el cruce de la calle Mayor con la carretera de Villamarchante; se elige la calle Mayor por ser la vía más específica del cruce.",
+      "match": {
+        "sourceId": "carrer-major",
+        "name": "Carrer Major",
+        "kind": "street",
+        "point": [
+          39.5441796,
+          -0.5689306
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "1524361",
+      "title": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles.",
+      "amount": 195035.04,
+      "date": "2021-11-15",
+      "llmPlaceName": "Campo de fútbol \"Francisco Soriano\"",
+      "confidence": 0.75,
+      "reasoning": "El contrato es para el suministro e instalación del césped de un campo de fútbol concreto, nombrado como \"Francisco Soriano\"; aunque es un suministro, el objeto se instala físicamente en esa instalación deportiva concreta, no es un suministro genérico para un servicio.",
+      "match": {
+        "sourceId": "way-152520274",
+        "name": "Camp de futbol Municipal Francisco Soriano",
+        "kind": "poi",
+        "point": [
+          39.5452787,
+          -0.5807577
+        ]
+      },
+      "requiresHumanApproval": true
+    }
+  ]
+}
