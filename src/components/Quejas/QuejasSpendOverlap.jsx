@@ -57,7 +57,10 @@ export default function QuejasSpendOverlap() {
         Por barrio: número de quejas ciudadanas frente al gasto municipal ya situado en obras allí.
         Son cifras de contexto — la ausencia de gasto situado <strong>no</strong> implica
         desatención: muchas actuaciones no nombran el lugar en el título y por eso no se sitúan (ver{' '}
-        <a href="/metodologia#relacion-quejas-contratos" style={{ color: 'var(--civic)' }}>
+        <a
+          href="/metodologia#relacion-quejas-contratos"
+          style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+        >
           metodología
         </a>
         ).
