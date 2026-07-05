@@ -166,11 +166,85 @@ function Findings({ f, year }) {
   )
 }
 
+function Art218({ a }) {
+  const Flag = ({ ok, notable, children }) => (
+    <span
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 6,
+        fontSize: 11.5,
+        color: 'var(--ink70)',
+      }}
+    >
+      <span
+        style={{
+          width: 8,
+          height: 8,
+          borderRadius: '50%',
+          flexShrink: 0,
+          background: ok ? 'var(--ok)' : notable ? 'var(--warn)' : 'var(--ink40)',
+        }}
+      />
+      {children}
+    </span>
+  )
+  return (
+    <div
+      style={{
+        margin: '4px 0 8px',
+        padding: '9px 11px',
+        background: 'var(--soft)',
+        border: '1px solid var(--border2)',
+        borderRadius: 8,
+      }}
+    >
+      <div
+        style={{
+          fontSize: 10.5,
+          fontWeight: 700,
+          textTransform: 'uppercase',
+          letterSpacing: '.04em',
+          color: 'var(--ink60)',
+          marginBottom: 6,
+        }}
+      >
+        Rendición del control interno · ejercicio {a.ejercicio}{' '}
+        <span style={{ fontWeight: 400, textTransform: 'none' }}>(art. 218 · lo más reciente)</span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+        <Flag ok={a.enPlazo} notable={!a.enPlazo}>
+          {a.enPlazo ? 'Rindió la información en plazo' : 'No rindió la información en plazo'}
+        </Flag>
+        <Flag ok={!a.acr} notable={a.acr}>
+          {a.acr
+            ? 'Comunicó acuerdos contrarios a reparos (la Intervención objetó y fue superada)'
+            : 'Sin acuerdos contrarios a reparos'}
+        </Flag>
+        <Flag ok={!a.ofp} notable={a.ofp}>
+          {a.ofp
+            ? 'Comunicó omisiones de fiscalización previa'
+            : 'Sin omisiones de fiscalización previa'}
+        </Flag>
+        <Flag ok={!a.ai} notable={a.ai}>
+          {a.ai ? 'Comunicó anomalías de ingresos' : 'Sin anomalías de ingresos'}
+        </Flag>
+      </div>
+      <div style={{ marginTop: 6, fontSize: 10.5 }}>
+        <ExtLink href={a.sourceUrl} style={{ color: 'var(--civic)' }}>
+          Informe de control interno EELL {a.ejercicio} →
+        </ExtLink>
+      </div>
+    </div>
+  )
+}
+
 function SindicaturaCard() {
   const { data } = useSindicatura()
   if (!data) return null
   const dedicated = data.dedicated || []
   const sectoral = data.sectoral || []
+  const a218 = data.art218
   const st = data.stats || {}
   const Report = ({ r, dedicatedRow }) => (
     <div key={r.id} style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
@@ -218,6 +292,7 @@ function SindicaturaCard() {
             La Sindicatura audita <em>a posteriori</em> si el dinero público se gestionó
             correctamente — el complemento fiscalizador al Síndic de Greuges y el CTBG.
           </div>
+          {a218 && <Art218 a={a218} />}
           {dedicated.map((r) => (
             <Report key={r.id} r={r} dedicatedRow />
           ))}

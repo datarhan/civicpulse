@@ -20,7 +20,11 @@ import {
   isLocalEntityReport,
   type SindicaturaReport,
 } from '../src/scraper/sindicatura'
-import { parseAuditFindings } from '../src/scraper/sindicatura-findings'
+import {
+  parseAuditFindings,
+  parseControlInternoArt218,
+  type Art218Row,
+} from '../src/scraper/sindicatura-findings'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, '..')
@@ -56,6 +60,21 @@ async function fetchFindings(url: string): Promise<SindicaturaReport['findings']
   }
 }
 
+/** Riba-roja's art. 218 rendition row from the annual control-interno EELL report. */
+async function fetchArt218(url: string): Promise<Art218Row | null> {
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': UA },
+      signal: AbortSignal.timeout(120_000),
+    })
+    if (!res.ok) return null
+    const data = await pdf(Buffer.from(await res.arrayBuffer()))
+    return parseControlInternoArt218(data.text)
+  } catch {
+    return null
+  }
+}
+
 async function main() {
   const res = await fetch(SEARCH_URL, {
     headers: { 'User-Agent': UA, Accept: 'text/html' },
@@ -74,6 +93,29 @@ async function main() {
   const sectoralAll = all.filter((r) => r.scope === 'sectoral')
   const sectoral = sectoralAll.filter((r) => isLocalEntityReport(r.title)).sort(byYearDesc)
 
+  // Fresher than the dedicated audit: the annual "control interno EELL" report
+  // carries a per-municipality art. 218 rendition row (En plazo / ACR / OFP / AI).
+  let art218:
+    | (Art218Row & { ejercicio: number | null; sourceUrl: string; sourceTitle: string })
+    | null = null
+  const ciEell = all.find((r) =>
+    /control interno (en|de) las entidades|ejercicio del control interno/i.test(r.title),
+  )
+  if (ciEell) {
+    const row = await fetchArt218(ciEell.url)
+    if (row) {
+      const ej =
+        ciEell.url.match(/(?:EELL|entidades[_ ]locales)[_ ]?(\d{4})/i) ||
+        ciEell.url.match(/_(\d{4})_cas/)
+      art218 = {
+        ...row,
+        ejercicio: ej ? parseInt(ej[1], 10) : null,
+        sourceUrl: ciEell.url,
+        sourceTitle: ciEell.title,
+      }
+    }
+  }
+
   const payload = {
     generatedAt: new Date().toISOString(),
     note: 'Informes de fiscalización de la Sindicatura de Comptes de la Comunitat Valenciana que nombran a Riba-roja de Túria. «dedicated» = auditoría específica del ayuntamiento; «sectoral» = barridos de entidades locales donde el municipio es sujeto auditado.',
@@ -83,6 +125,7 @@ async function main() {
       search: SEARCH_URL,
     },
     query: QUERY,
+    art218,
     dedicated,
     sectoral: sectoral.slice(0, SECTORAL_CAP),
     stats: {

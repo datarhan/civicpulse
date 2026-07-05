@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T13:41:50.424Z",
+  "generatedAt": "2026-07-05T13:53:49.761Z",
   "note": "Informes de fiscalización de la Sindicatura de Comptes de la Comunitat Valenciana que nombran a Riba-roja de Túria. «dedicated» = auditoría específica del ayuntamiento; «sectoral» = barridos de entidades locales donde el municipio es sujeto auditado.",
   "source": {
     "platform": "Sindicatura de Comptes de la Comunitat Valenciana",
@@ -7,6 +7,16 @@
     "search": "https://www.sindicom.gva.es/informes?text=Riba-roja%20de%20T%C3%BAria&type=full"
   },
   "query": "Riba-roja de Túria",
+  "art218": {
+    "fechaRegistro": "2023-04-26",
+    "enPlazo": true,
+    "acr": true,
+    "ofp": false,
+    "ai": false,
+    "ejercicio": 2022,
+    "sourceUrl": "https://www.sindicom.gva.es/public/Attachment/2024/2/Informe_fiscalizacion_control_interno_EELL_2022_cas_firmado.pdf",
+    "sourceTitle": "Informe de fiscalización del ejercicio del control interno en las entidades locales. Ejercicio 2022"
+  },
   "dedicated": [
     {
       "id": "sindicatura-15960950488980750",

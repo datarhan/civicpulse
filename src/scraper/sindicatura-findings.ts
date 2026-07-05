@@ -139,3 +139,38 @@ export function parseAuditFindings(text: string): AuditFindings {
     recommendations: parseRecommendations(text),
   }
 }
+
+/**
+ * Riba-roja's row in the annual "control interno de las entidades locales"
+ * report — the art. 218 TRLRHL rendition status (fresher than the dedicated
+ * audit; one row per municipality). Columns: fecha de registro, En plazo (met
+ * the rendition deadline), ACR (communicated having *acuerdos contrarios a
+ * reparos* — the leadership overrode the Intervención), OFP (omisiones de
+ * fiscalización previa), AI (anomalías de ingresos).
+ */
+export interface Art218Row {
+  fechaRegistro: string // ISO
+  enPlazo: boolean
+  acr: boolean
+  ofp: boolean
+  ai: boolean
+}
+
+const ART218_RIBA_ROJA =
+  /Riba-?roja de Túria\s+\w+\s+(\d{2})\/(\d{2})\/(\d{4})\s+(Sí|No)\s+(Sí|No)\s+(Sí|No)\s+(Sí|No)/i
+
+export function parseControlInternoArt218(
+  text: string,
+  rowRe: RegExp = ART218_RIBA_ROJA,
+): Art218Row | null {
+  const m = text.match(rowRe)
+  if (!m) return null
+  const [, dd, mm, yyyy, enPlazo, acr, ofp, ai] = m
+  return {
+    fechaRegistro: `${yyyy}-${mm}-${dd}`,
+    enPlazo: enPlazo === 'Sí',
+    acr: acr === 'Sí',
+    ofp: ofp === 'Sí',
+    ai: ai === 'Sí',
+  }
+}

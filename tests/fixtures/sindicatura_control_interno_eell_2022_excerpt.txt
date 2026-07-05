@@ -1,0 +1,31 @@
+Tipo de entidad Denominación Provincia 
+Fecha de 
+registro 
+En 
+plazo ACR OFP AI 
+Ayuntamiento Puçol Valencia 25/04/2023 Sí Sí No Sí 
+Ayuntamiento Puebla de Arenoso Castellón 27/04/2023 Sí No No No 
+Ayuntamiento Quart de Poblet Valencia 26/04/2023 Sí Sí No No 
+Ayuntamiento Quartell Valencia 25/07/2023 No No No No 
+Ayuntamiento Quatretonda Valencia 28/04/2023 Sí No No No 
+Ayuntamiento Quesa Valencia 29/03/2023 Sí No No No 
+Ayuntamiento Rafal Alicante 28/04/2023 Sí Sí No No 
+Ayuntamiento Rafelbunyol Valencia 20/04/2023 Sí Sí No No 
+Ayuntamiento Rafelcofer Valencia 13/04/2023 Sí Sí No No 
+Ayuntamiento Rafelguaraf Valencia 28/07/2023 No No No No 
+Ayuntamiento Ráfol de Salem Valencia 24/07/2023 No No No No 
+Ayuntamiento Real Valencia 18/04/2023 Sí No No No 
+Ayuntamiento Real de Gandía Valencia 28/04/2023 Sí No Sí No 
+Ayuntamiento Relleu Alicante 27/07/2023 No No No No 
+Ayuntamiento Requena Valencia 02/05/2023 Sí No Sí No 
+Ayuntamiento Riba-roja de Túria Valencia 26/04/2023 Sí Sí No No 
+Ayuntamiento Riola Valencia 26/04/2023 Sí Sí No No 
+Ayuntamiento Rocafort Valencia 26/04/2023 Sí Sí Sí No 
+Ayuntamiento Rojales Alicante 27/02/2023 Sí Sí Sí No 
+Ayuntamiento Rossell Castellón 28/04/2023 Sí No No No 
+Ayuntamiento Rotglà i Corberà Valencia 11/04/2023 Sí No No No 
+Ayuntamiento Ròtova Valencia 26/07/2023 No No No No 
+Ayuntamiento Rugat Valencia 15/03/2023 Sí No No No 
+Ayuntamiento Sacañet Castellón 11/04/2023 Sí No No No 
+Ayuntamiento Sagra Alicante 27/04/2023 Sí No No No 
+Ayuntamiento Sagunto/Sagunt Valencia 10/03/2
