@@ -34,7 +34,7 @@ const INK45 = 'rgba(11,15,25,.45)'
  * @param {any} props
  */
 export function ContractCard(props) {
-  const { contract: c, amount, amountKind, date, dana, provenance, cpvDict } = props
+  const { contract: c, amount, amountKind, date, dana, provenance, cpvDict, relatedQuejas } = props
   if (!c) return null
   const shown = typeof amount === 'number' ? amount : c.finalAmountNoTaxes || c.finalAmount || 0
   const baja = bajaPct(c)
@@ -152,6 +152,57 @@ export function ContractCard(props) {
         {amountKind === 'initial' && <span>· importe de licitación</span>}
         {provenance && <span>· situado por «{provenance}»</span>}
       </div>
+
+      {/* Contract-side reverse view: citizen complaints related by zone/materia
+          (Tier A / curator-approved only). Neutral — never asserts the contract
+          resolves the complaint. */}
+      {relatedQuejas && relatedQuejas.length > 0 && (
+        <div style={{ marginTop: 6, paddingTop: 6, borderTop: '1px solid #E6E1D4' }}>
+          <div
+            style={{
+              fontSize: 9.5,
+              fontWeight: 700,
+              textTransform: 'uppercase',
+              letterSpacing: '.06em',
+              color: INK45,
+              marginBottom: 3,
+            }}
+          >
+            Quejas ciudadanas relacionadas
+          </div>
+          {relatedQuejas.map((r) => (
+            <a
+              key={r.quejaId}
+              href={`/quejas/${r.quejaId}`}
+              style={{
+                display: 'block',
+                fontSize: 11,
+                color: INK70,
+                textDecoration: 'none',
+                marginBottom: 2,
+                lineHeight: 1.35,
+              }}
+            >
+              <span
+                className="mono"
+                style={{
+                  fontSize: 9,
+                  fontWeight: 700,
+                  padding: '0 4px',
+                  borderRadius: 3,
+                  background: 'rgba(22,163,74,.12)',
+                  color: '#0F7B3E',
+                  marginRight: 5,
+                }}
+              >
+                {r.relationLabel}
+              </span>
+              {r.description ? r.description.slice(0, 60) : r.quejaId}
+              {r.description && r.description.length > 60 ? '…' : ''}
+            </a>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

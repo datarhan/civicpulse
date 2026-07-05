@@ -28,3 +28,22 @@ export function relationsForTender(data, permalink) {
     (l) => l.tenderPermalink === permalink && !l.requiresHumanApproval,
   )
 }
+
+/**
+ * Contract-side reverse view rows: the renderable links for a contract joined to
+ * each queja's public description + category. `quejaItems` is the array from
+ * useQuejas().data.items. Neutral by construction — the caller only ever gets
+ * Tier-A / curator-approved links.
+ */
+export function relatedQuejasForContract(data, quejaItems, permalink) {
+  const byId = new Map((quejaItems || []).map((q) => [q.service_request_id, q]))
+  return relationsForTender(data, permalink).map((l) => {
+    const qj = byId.get(l.quejaId)
+    return {
+      quejaId: l.quejaId,
+      relationLabel: l.relationLabel,
+      description: qj?.description || '',
+      category: qj?.service_code || null,
+    }
+  })
+}

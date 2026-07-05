@@ -1,4 +1,9 @@
 import { ContractCard } from '../tenders/ContractCard'
+import {
+  useQuejaContractRelations,
+  relatedQuejasForContract,
+} from '../../hooks/useQuejaContractRelations'
+import { useQuejas } from '../../hooks/useQuejas'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -15,6 +20,8 @@ export default function ZoneDrilldown({
   onClear,
   cpvDict,
 }) {
+  const { data: relations } = useQuejaContractRelations()
+  const { data: quejas } = useQuejas()
   const zone = (snapshot?.zones || []).find((z) => z.slug === zoneSlug)
   if (!zone) return null
   const works = (snapshot?.assignments || [])
@@ -46,6 +53,7 @@ export default function ZoneDrilldown({
             dana={a.dana}
             provenance={a.matchedAlias?.[zoneSlug]}
             cpvDict={cpvDict}
+            relatedQuejas={relatedQuejasForContract(relations, quejas?.items, c.permalink)}
           />
         ))}
       </div>
