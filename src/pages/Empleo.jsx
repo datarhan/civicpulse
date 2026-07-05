@@ -36,99 +36,152 @@ function DeadlinePill({ deadline, t }) {
 }
 
 function OfferRow({ o, t }) {
+  const [expanded, setExpanded] = useState(false)
   const d = o.detail
   const contrato = d && d.tipoContrato ? shortContract(d.tipoContrato) : null
   const jornada = d ? normalizeJornada(d.jornada) : null
-  const puestos = d ? parseInt(d.numPuestos, 10) : NaN
   const showJornada = jornada === 'Completa' || jornada === 'Parcial'
-  const hasChips = o.inRibaRoja || contrato || showJornada || puestos > 1
+  const puestos = d ? parseInt(d.numPuestos, 10) : NaN
+  const salario =
+    d && d.salario && !/seg[uú]n convenio|a convenir|no especificad/i.test(d.salario)
+      ? d.salario
+      : null
+  const occ = d && Array.isArray(d.ocupaciones) && d.ocupaciones.length ? d.ocupaciones[0] : null
+  const extraOcc = occ ? d.ocupaciones.length - 1 : 0
+  const funciones = d && d.funciones ? d.funciones : null
+  const funcLong = !!funciones && funciones.length > 110
+  const hasChips = o.inRibaRoja || contrato || showJornada || puestos > 1 || salario
+
+  // The card body is one big Link; the "ver más" toggle is a SIBLING (not
+  // nested inside the <a>, which would be a nested-interactive a11y violation).
   return (
-    <Link
-      to={`/empleo/${o.id}`}
-      style={{
-        display: 'block',
-        padding: '13px 6px',
-        borderBottom: '1px solid var(--border2)',
-        textDecoration: 'none',
-        color: 'inherit',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em' }}>{o.titulo}</span>
-        <Pill tone={OFERTA_STATUS_TONE[o.status] || o.statusTone || 'neutral'} size="xs">
-          {o.status}
-        </Pill>
-        <DeadlinePill deadline={o.deadline} t={t} />
-      </div>
-
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          flexWrap: 'wrap',
-          marginTop: 4,
-          fontSize: 12,
-          color: 'var(--ink60)',
-        }}
+    <div style={{ padding: '13px 6px', borderBottom: '1px solid var(--border2)' }}>
+      <Link
+        to={`/empleo/${o.id}`}
+        style={{ display: 'block', textDecoration: 'none', color: 'inherit' }}
       >
-        <span className="mono" style={{ color: 'var(--ink50)' }}>
-          {o.codigo}
-        </span>
-        {o.location && (
-          <>
-            <span style={{ color: 'var(--ink30)' }}>·</span>
-            <span>{o.location}</span>
-          </>
-        )}
-        <span style={{ color: 'var(--ink30)' }}>·</span>
-        <span className="mono" style={{ color: 'var(--ink50)' }}>
-          {fmtDateShort(o.publishedAt)}
-        </span>
-      </div>
-
-      {hasChips && (
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 7 }}>
-          {o.inRibaRoja && (
-            <Pill tone="civic" size="xs">
-              Riba-roja
-            </Pill>
-          )}
-          {contrato && (
-            <Pill tone="neutral" size="xs">
-              {contrato}
-            </Pill>
-          )}
-          {showJornada && (
-            <Pill tone="ghost" size="xs">
-              {jornada}
-            </Pill>
-          )}
-          {puestos > 1 && (
-            <Pill tone="neutral" size="xs">
-              {puestos} {t('empleo.card.positions')}
-            </Pill>
-          )}
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em' }}>{o.titulo}</span>
+          <Pill tone={OFERTA_STATUS_TONE[o.status] || o.statusTone || 'neutral'} size="xs">
+            {o.status}
+          </Pill>
+          <DeadlinePill deadline={o.deadline} t={t} />
         </div>
-      )}
 
-      {d && d.funciones && (
         <div
           style={{
-            marginTop: 7,
-            fontSize: 12.5,
-            color: 'var(--ink70)',
-            lineHeight: 1.45,
-            display: '-webkit-box',
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            flexWrap: 'wrap',
+            marginTop: 4,
+            fontSize: 12,
+            color: 'var(--ink60)',
           }}
         >
-          {d.funciones}
+          <span className="mono" style={{ color: 'var(--ink50)' }}>
+            {o.codigo}
+          </span>
+          {o.location && (
+            <>
+              <span style={{ color: 'var(--ink30)' }}>·</span>
+              <span>{o.location}</span>
+            </>
+          )}
+          <span style={{ color: 'var(--ink30)' }}>·</span>
+          <span className="mono" style={{ color: 'var(--ink50)' }}>
+            {fmtDateShort(o.publishedAt)}
+          </span>
         </div>
+
+        {hasChips && (
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 7 }}>
+            {o.inRibaRoja && (
+              <Pill tone="civic" size="xs">
+                Riba-roja
+              </Pill>
+            )}
+            {contrato && (
+              <Pill tone="neutral" size="xs">
+                {contrato}
+              </Pill>
+            )}
+            {showJornada && (
+              <Pill tone="ghost" size="xs">
+                {jornada}
+              </Pill>
+            )}
+            {puestos > 1 && (
+              <Pill tone="neutral" size="xs">
+                {puestos} {t('empleo.card.positions')}
+              </Pill>
+            )}
+            {salario && (
+              <Pill tone="ok" size="xs">
+                {salario}
+              </Pill>
+            )}
+          </div>
+        )}
+
+        {occ && (
+          <div
+            style={{
+              marginTop: 6,
+              fontSize: 11.5,
+              color: 'var(--ink60)',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+            }}
+          >
+            <span style={{ color: 'var(--ink40)' }}>{t('empleo.card.occ')}</span> {occ.nombre}
+            {occ.experiencia ? ` · ${t('empleo.card.exp')} ${occ.experiencia}` : ''}
+            {extraOcc > 0 ? ` · +${extraOcc}` : ''}
+          </div>
+        )}
+
+        {funciones && (
+          <div
+            style={{
+              marginTop: 7,
+              fontSize: 12.5,
+              color: 'var(--ink70)',
+              lineHeight: 1.45,
+              ...(expanded
+                ? {}
+                : {
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }),
+            }}
+          >
+            {funciones}
+          </div>
+        )}
+      </Link>
+
+      {funcLong && (
+        <button
+          type="button"
+          onClick={() => setExpanded((v) => !v)}
+          style={{
+            marginTop: 4,
+            fontSize: 11.5,
+            color: 'var(--civic)',
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            textDecoration: 'underline',
+          }}
+        >
+          {expanded ? t('empleo.card.less') : t('empleo.card.more')}
+        </button>
       )}
-    </Link>
+    </div>
   )
 }
 
