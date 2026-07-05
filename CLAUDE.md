@@ -37,6 +37,7 @@ npm run scrape:bdns                 # MinHac BDNS subsidies
 npm run scrape:paro                 # SEPE monthly unemployment XLS
 npm run scrape:plenos               # Council-session index on ribarroja.es/plenos
 npm run scrape:pleno-agendas        # Agenda items per pleno (orden del día)
+npm run scrape:empleo               # Open job vacancies · Agència de Col·locació (ADL) · portalemp CSRF handshake + per-offer ficha
 npm run scrape:wikidata             # Wikidata Q23701 facts + cross-references
 npm run scrape:spain-ticker         # Spain-wide live feeds (REE PVPC, Minetur carburantes, ECB Euribor+MRO, INE IPC, AEMET avisos, DGT DATEX-II)
 npm run scrape:promise-suggestions  # Inference engine (never mutates promises)
@@ -457,6 +458,8 @@ every production surface reads real JSON.
 - `/cargos/:slug` — per-councillor detail (portfolio chips + party promises + agenda items in their portfolios + assigned quejas)
 - `/hallazgos` — editorial findings dashboard · severity/speaker/pleno filters · per-finding permalinks · right-of-reply button on each card
 - `/datos` — catálogo of every JSON snapshot w/ Wikidata + padrón charts
+- `/empleo` — open job vacancies (Agència de Col·locació · ADL) · search + "Solo Riba-roja" toggle + closing-soon sort
+- `/empleo/:id` — per-offer detail (ficha: contrato/jornada/salario/funciones + ocupaciones solicitadas + inscribirse-en-el-portal CTA)
 - `/quejas` — public feed + heatmap + Síndic/CTBG resolution cards
 - `/quejas/dashboard` — analytics surface (KPIs, LPACAP lifecycle, per-concejalía SLA)
 - `/quejas/:id` — detail view (timeline, legal clock, right-of-reply)
@@ -485,7 +488,7 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**27 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**28 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -519,6 +522,7 @@ scripts/scrape-bdns.ts                →  src/scraper/bdns.ts              → 
 scripts/scrape-paro.ts                →  src/scraper/paro.ts              →  public/data/paro.json
 scripts/scrape-plenos.ts              →  src/scraper/plenos.ts            →  public/data/plenos.json
 scripts/scrape-pleno-agendas.ts       →  src/scraper/pleno-agenda.ts      →  public/data/plenos-agendas.json
+scripts/scrape-empleo.ts              →  src/scraper/empleo.ts            →  public/data/empleo.json
 scripts/scrape-wikidata.ts            →  src/scraper/wikidata.ts          →  public/data/wikidata.json
 scripts/scrape-spain-ticker.ts        →  src/scraper/spain-ticker.ts      →  public/data/spain-ticker.json
 scripts/scrape-ctbg.ts                →  src/scraper/ctbg.ts              →  public/data/ctbg.json
@@ -570,6 +574,7 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Municipal facts (area 57.5 km², 125 m alt., coords, INE/OSM/GeoNames/Commons cross-refs + images) | `wikidata.ts` → `wikidata.json` | Wikidata `Special:EntityData/Q23701.json` | `/datos` `WikidataCard` above the population chart |
 | Spain-wide live ticker (Luz PVPC · Gasolina 95 · Diésel · Euribor 12m · BCE MRO · IPC interanual · AEMET avisos · DGT tráfico) | `spain-ticker.ts` → `spain-ticker.json` | **REE apidatos** (`apidatos.ree.es/precios-mercados-tiempo-real`) · **Minetur Carburantes** REST (municipio `7177`) · **ECB SDMX** (`FM/M.U2.EUR.RT.MM.EURIBOR1YD_.HSTA` + `FM/D.U2.EUR.4F.KR.MRR_FR.LEV`) · **INE Tempus3** (serie `IPC251856`) · **AEMET** avisos HTML (`p=46`) · **DGT DATEX II v3.6** XML filtered to Valencia-area roads `A-3 / A-7 / CV-35 / V-30 / V-31 / V-11` | Direction D `LiveTicker` — Bloomberg-style auto-scrolling marquee overlaying the top-center of the map. Press headlines interleaved every 3 chips. Each chip opens a details popover with source + citation. |
 | Pleno agendas (246 items, 27 departments, 30 sessions) | `pleno-agenda.ts` → `plenos-agendas.json` | Scrapes each individual session's convocatoria HTML on `ribarroja.es`, extracts the ORDEN DEL DÍA, splits into {resolutiva / informativa / ruegos}, resolves department + expediente tuples | `/plenos` — `TopDepartmentsCard` + inline "Ver orden del día" expander per session |
+| Open job vacancies (73 open offers at last snapshot) | `empleo.ts` → `empleo.json` | **portalemp** SaaS at `ribaocupacio.portalemp.com` — the Riba-roja municipal employment agency (Agència de Col·locació · ADL). The offer list loads via an AJAX POST guarded by OWASP CSRFProtector: GET for the `CSRFPTOKEN` cookie → POST `ofertas.html?acc=tableData` echoing that token in a same-named field → HTML `<table>` fragment; then a plain GET per `?fo=<id>` for the server-rendered detail "ficha". Comarca-wide (agency brokers jobs beyond the town), so NOT municipality-filtered — each row carries an `inRibaRoja` flag (RIBA_ROJA_ALIASES) for the client toggle. Best-effort in `scrape-all.sh` | `/empleo` (search + "Solo Riba-roja" toggle + closing-soon sort) · `/empleo/:id` (ficha + ocupaciones + inscribirse CTA) · `/datos` catalog |
 | Promises (16 curated) — PSOE / PP / VOX / Compromís | **human-curated** · `promises.ts` validates the schema | Hand-seeded from press citations (`press.json`) + real pleno votes + budget/tender snapshots. Every record has verbatim quote + source URL + publisher + ISO date | `/promesas`, `/` landing editorial column (`PromesasBlockD`), `/metodologia`, `/aviso-legal` |
 | Promise suggestions (inference layer) | `promise-inference.ts` → `promise-suggestions.json` | Scans `press.json` + `plenos-agendas.json` for keyword matches; light Spanish stemmer; conservative enum (never `inviable`, never publishes `cumplida`/`no-ejecutada` automatically) | `/promesas` — "propuesta automática · pendiente de revisión humana" block under each card |
 | Third-party fact-checks (Newtral, Maldita, EFE Verifica, AFP Factual, …) | `factcheck.ts` → `factcheck.json` | Two sources merged via `mergeFactCheckRows`: (1) Google Fact Check Tools API `factchecktools.googleapis.com/v1alpha1/claims:search` queried with `"Riba-roja de Túria"` (`languageCode=es`) — requires `GOOGLE_FACT_CHECK_API_KEY` (free tier; skipped gracefully when absent); (2) Maldita.es + Newtral RSS feeds (`parseFactcheckRss`) filtered to items mentioning Riba-roja, category-mapped onto our `ClaimVerdict` enum. The press verifier cross-references every press claim against the merged index and emits `kind:'factcheck'` evidence rows when a published fact-check matches by token overlap; sin-datos verdicts are upgraded to the fact-checker consensus. | `/laboratorio` — "Verificaciones externas" widget in the dashboard rail · per-claim corroboration row when an external fact-check matches |
@@ -614,6 +619,7 @@ loop.
 - `useAirQuality` + `describeAqi`
 - `useNextMetro` + `computeStationSchedule` / `computeOtherStationSchedule` / `findMetroStation` + `L9_STATIONS` / `OTHER_METRO_STATIONS`
 - `useTodayEvents` · `useTodayPleno`
+- `useEmpleo` + `deadlineInfo` + `OFERTA_STATUS_TONE` / `OFERTA_STATUS_LABEL` (open job vacancies · ADL)
 - `useBdns`
 - `useWikidata`
 - `usePromises` + `usePromiseSuggestions` + `isPromiseFrozen()` + `PARTY_TONE` / `STATUS_LABEL` / `STATUS_TONE` / `TOPIC_LABEL`

@@ -26,6 +26,7 @@ export const SECTION_GLYPHS = {
   '/declaraciones': { glyph: '❝', tone: 'civic' }, // la cita
   '/datos': { glyph: '▥', tone: 'civic' }, // la tabla
   '/quejas': { glyph: '◍', tone: 'civic' }, // el pin sobre el mapa
+  '/empleo': { glyph: '⚑', tone: 'civic' }, // la vacante · sección añadida tras §03
   '/laboratorio': { glyph: '◈', tone: 'intel' }, // comparte glifo con IA — a propósito
   // Sections outside the §03 grid — kept unique so the whole rail stays 1:1.
   '/metodologia': { glyph: '§', tone: 'civic' }, // el contrato editorial

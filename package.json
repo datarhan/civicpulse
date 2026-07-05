@@ -33,6 +33,7 @@
     "scrape:bdns": "npx tsx scripts/scrape-bdns.ts",
     "scrape:paro": "npx tsx scripts/scrape-paro.ts",
     "scrape:plenos": "npx tsx scripts/scrape-plenos.ts",
+    "scrape:empleo": "npx tsx scripts/scrape-empleo.ts",
     "scrape:wikidata": "npx tsx scripts/scrape-wikidata.ts",
     "scrape:promise-suggestions": "npx tsx scripts/scrape-promise-suggestions.ts",
     "scrape:factcheck": "npx tsx scripts/scrape-factcheck.ts",

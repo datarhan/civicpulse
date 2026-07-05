@@ -7,6 +7,11 @@ const FIRST_PLENO_ID = JSON.parse(
   readFileSync('public/data/pleno-claims/index.json', 'utf8'),
 ).plenos?.[0]?.plenoId
 
+// A real job-offer id, read from the committed snapshot (for /empleo/:id).
+const FIRST_OFERTA_ID = JSON.parse(
+  readFileSync('public/data/empleo.json', 'utf8'),
+).items?.[0]?.id
+
 // Routes the suite enforces — must stay free of critical/serious violations.
 const STRICT_ROUTES = [
   '/',
@@ -21,6 +26,8 @@ const STRICT_ROUTES = [
   '/hallazgos',
   '/declaraciones',
   '/datos',
+  '/empleo',
+  `/empleo/${FIRST_OFERTA_ID}`,
   '/quejas',
   '/quejas/dashboard',
   '/quejas/q-no-existe',

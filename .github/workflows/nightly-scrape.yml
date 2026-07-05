@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       adapters:
-        description: 'Adapter set (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | pleno-agendas | wikidata | ctbg | consell-cv | spain-ticker | promise-suggestions)'
+        description: 'Adapter set (all | officials | budget | tenders | padron | participa | press | geo | bdns | paro | plenos | pleno-agendas | empleo | wikidata | ctbg | consell-cv | spain-ticker | promise-suggestions)'
         default: 'all'
 
 concurrency:
@@ -77,6 +77,7 @@ jobs:
             paro)                  npm run scrape:paro || rc=$? ;;
             plenos)                npm run scrape:plenos || rc=$? ;;
             pleno-agendas)         npm run scrape:pleno-agendas || rc=$? ;;
+            empleo)                npm run scrape:empleo || rc=$? ;;
             wikidata)              npm run scrape:wikidata || rc=$? ;;
             ctbg)                  npm run scrape:ctbg || rc=$? ;;
             consell-cv)            npm run scrape:consell-cv || rc=$? ;;

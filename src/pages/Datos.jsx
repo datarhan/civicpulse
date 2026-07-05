@@ -8,6 +8,7 @@ import { useTenders } from '../hooks/useTenders'
 import { useBdns } from '../hooks/useBdns'
 import { useT } from '../i18n'
 import { usePlenos } from '../hooks/usePlenos'
+import { useEmpleo } from '../hooks/useEmpleo'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { usePress } from '../hooks/usePress'
 import { useParticipa } from '../hooks/useParticipa'
@@ -41,6 +42,7 @@ function DatasetsCatalog() {
   const findings = usePlenoFindings().data
   const votes = usePlenoVotes().data
   const quejas = useQuejas().data
+  const empleo = useEmpleo().data
 
   const items = [
     {
@@ -91,6 +93,14 @@ function DatasetsCatalog() {
       updated: formatDate(agendas?.generatedAt),
       source: 'ribarroja.es · convocatorias',
       path: '/data/plenos-agendas.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Ofertas de empleo',
+      rows: empleo?.stats?.openTotal ? `${empleo.stats.openTotal} ofertas abiertas` : '—',
+      updated: formatDate(empleo?.generatedAt),
+      source: 'ribaocupacio.portalemp.com · ADL',
+      path: '/data/empleo.json',
       fmt: ['json'],
     },
     {

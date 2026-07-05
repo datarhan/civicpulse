@@ -35,6 +35,7 @@ SCRAPERS=(
   scrape:paro
   scrape:plenos
   scrape:pleno-agendas
+  scrape:empleo
   scrape:wikidata
   scrape:ctbg
   scrape:sindicatura
@@ -58,8 +59,13 @@ SCRAPERS=(
 #     now serves the main portal's 404 behind a wrong-host TLS cert). Upstream
 #     problem, not ours; we keep hitting it so it self-heals if the council
 #     ever restores the Votiveu WordPress API.
+#   - scrape:empleo — external portalemp SaaS behind an OWASP-CSRFProtector
+#     handshake + ~73 sequential detail fetches. Brittle by construction (token
+#     rotation, session cookies), and an employment-portal outage must never
+#     block the whole site's deploy; the prior snapshot stays live meanwhile.
 BEST_EFFORT=(
   scrape:metro-network
+  scrape:empleo
   scrape:geo
   scrape:civic-poi
   scrape:streets

@@ -18,6 +18,7 @@ const ROUTES = [
   '/hallazgos',
   '/declaraciones',
   '/datos',
+  '/empleo',
   '/quejas',
   '/quejas/dashboard',
   '/quejas/q-no-existe',
