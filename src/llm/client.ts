@@ -635,10 +635,11 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
             new Error(`claude CLI reported error: ${envelope.result || '(no detail)'}`),
           )
         }
-        if (envelope.structured_output === undefined) {
+        const raw = claudeEnvelopeToRaw(envelope)
+        if (raw === null) {
           return rejectPromise(
             new Error(
-              `claude CLI returned no structured_output (result: ${String(envelope.result).slice(0, 200)})`,
+              `claude CLI returned no usable JSON (result: ${String(envelope.result).slice(0, 200)})`,
             ),
           )
         }
@@ -650,7 +651,7 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
         // contributes ~130K cached tokens per invocation.
         const tokenCount = (u.input_tokens ?? 0) + (u.output_tokens ?? 0)
         resolvePromise({
-          raw: JSON.stringify(envelope.structured_output),
+          raw,
           tokenCount,
           // On Max plan the actual bill is $0. We keep the API-equivalent
           // number from the envelope for cost-awareness reporting.
@@ -699,6 +700,34 @@ export function extractJsonPayload(text: string): string {
   const positions = [candidate.indexOf('{'), candidate.indexOf('[')].filter((i) => i >= 0)
   const firstBrace = positions.length > 0 ? Math.min(...positions) : -1
   return firstBrace >= 0 ? candidate.slice(firstBrace) : candidate
+}
+
+/**
+ * Normalise a `claude -p --json-schema` envelope to a raw JSON string, or null.
+ *
+ * Prefers the `structured_output` field. When it's absent, the claude CLI
+ * sometimes still emits schema-conforming JSON in `result` (observed with
+ * nullable schemas — the model answers directly, e.g. `{"correlation": null}`,
+ * instead of via the emit tool). We salvage that through the same lenient
+ * extractor the gemini/agy backends use; the callLLM wrapper still validates the
+ * result against the Zod schema, so this only rescues VALID answers that would
+ * otherwise be hard-rejected — it never lets a non-conforming payload through.
+ */
+export function claudeEnvelopeToRaw(envelope: {
+  structured_output?: unknown
+  result?: unknown
+}): string | null {
+  if (envelope.structured_output !== undefined) return JSON.stringify(envelope.structured_output)
+  if (typeof envelope.result === 'string' && envelope.result.trim()) {
+    try {
+      const slice = extractJsonPayload(envelope.result)
+      JSON.parse(slice)
+      return slice
+    } catch {
+      return null
+    }
+  }
+  return null
 }
 
 /**

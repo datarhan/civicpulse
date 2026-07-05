@@ -16,6 +16,7 @@ import {
   resetBudget,
   isReasoningModel,
   extractJsonPayload,
+  claudeEnvelopeToRaw,
 } from '../../src/llm/client'
 
 const TestSchema = z.object({ reply: z.string() })
@@ -503,5 +504,32 @@ describe('extractJsonPayload (shared gemini/agy JSON slicer)', () => {
 
   it('handles a JSON array payload after preamble', () => {
     expect(JSON.parse(extractJsonPayload('sure: [1,2,3]'))).toEqual([1, 2, 3])
+  })
+})
+
+describe('claudeEnvelopeToRaw (salvage result when structured_output is absent)', () => {
+  it('uses structured_output when present', () => {
+    expect(claudeEnvelopeToRaw({ structured_output: { correlation: null } })).toBe(
+      '{"correlation":null}',
+    )
+  })
+  it('salvages schema-conforming JSON from result (the nullable-answer case)', () => {
+    // Observed: claude -p --json-schema puts the answer in `result` not
+    // `structured_output` when the model returns e.g. {"correlation": null}.
+    expect(JSON.parse(claudeEnvelopeToRaw({ result: '{"correlation": null}' })!)).toEqual({
+      correlation: null,
+    })
+  })
+  it('salvages fenced JSON from result', () => {
+    expect(JSON.parse(claudeEnvelopeToRaw({ result: '```json\n{"reply":"ok"}\n```' })!)).toEqual({
+      reply: 'ok',
+    })
+  })
+  it('returns null when result is not JSON', () => {
+    expect(claudeEnvelopeToRaw({ result: 'sorry, no match found' })).toBeNull()
+  })
+  it('returns null when neither field is usable', () => {
+    expect(claudeEnvelopeToRaw({})).toBeNull()
+    expect(claudeEnvelopeToRaw({ result: '' })).toBeNull()
   })
 })
