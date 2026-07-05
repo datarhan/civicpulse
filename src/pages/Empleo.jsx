@@ -294,6 +294,25 @@ export default function Empleo() {
             {t('empleo.title')}
           </div>
           {data?.generatedAt && <DataAsOf iso={data.generatedAt} label="Empleo" />}
+          <a
+            href="/data/empleo-rss.xml"
+            target="_blank"
+            rel="noreferrer"
+            title={t('empleo.rss')}
+            className="mono"
+            style={{
+              fontSize: 10.5,
+              fontWeight: 700,
+              color: 'var(--civic)',
+              textDecoration: 'none',
+              border: '1px solid var(--border)',
+              borderRadius: 999,
+              padding: '2px 8px',
+              letterSpacing: '.06em',
+            }}
+          >
+            RSS
+          </a>
         </div>
         <div style={{ fontSize: 13, color: 'var(--ink60)', marginTop: 6, lineHeight: 1.5 }}>
           {t('empleo.intro')}

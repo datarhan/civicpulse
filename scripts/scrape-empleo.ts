@@ -28,11 +28,16 @@ import {
   type OfertaItem,
   type OfertaDetail,
 } from '../src/scraper/empleo'
+import { buildEmpleoRss } from '../src/scraper/empleo-rss'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const OUT = join(PROJECT_ROOT, 'public/data/empleo.json')
+const OUT_RSS = join(PROJECT_ROOT, 'public/data/empleo-rss.xml')
+// Canonical site origin for the RSS channel <link>; overridable via env. Item
+// links always point at the source portal, so this is cosmetic.
+const SITE_URL = process.env.SITE_URL || 'https://civicpulse.vercel.app'
 
 const ORIGIN = 'https://ribaocupacio.portalemp.com'
 const LIST_URL = `${ORIGIN}/ofertas.html`
@@ -183,6 +188,16 @@ async function main() {
   console.log(
     `[empleo] wrote ${OUT} — ${items.length} offers (detail: ${fetched} fetched, ${reused} reused, ${missing} missing)`,
   )
+
+  // Companion RSS 2.0 feed (newest-published first, capped) for job-seekers
+  // who want new vacancies pushed to a reader.
+  const rss = buildEmpleoRss(items, {
+    siteUrl: SITE_URL,
+    generatedAt: payload.generatedAt,
+    limit: 60,
+  })
+  await writeFile(OUT_RSS, rss)
+  console.log(`[empleo] wrote ${OUT_RSS} — RSS feed (${Math.min(items.length, 60)} items)`)
 }
 
 main().catch((err) => {
