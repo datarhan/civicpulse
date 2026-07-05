@@ -16,6 +16,7 @@
  */
 
 import { slugify } from './normalize'
+import { canonicalizeDepartment } from './departments'
 import { tenderMatchesQuejaCpv } from '../llm/queja-to-cpv'
 import type { QuejaCategory } from './queja-router'
 
@@ -64,6 +65,49 @@ export function placeSignal(q: RelQueja, c: RelContract): PlaceSignal | null {
   if (c.places.some((p) => slugify(p) === qs)) return { granularity: 'exact', slug: qs }
   if (c.zones.some((z) => slugify(z) === qs)) return { granularity: 'barrio', slug: qs }
   return null
+}
+
+/**
+ * Department / theme alignment. Strong when both canonical department slugs are
+ * equal; otherwise a lighter CPV-division theme match. The returned slug prefers
+ * the queja's own department, then the canonical fold of its service code, then
+ * the contract's — so the label always names a real department.
+ */
+export function departmentSignal(q: RelQueja, c: RelContract): { slug: string } | null {
+  if (q.department && c.department && q.department === c.department) return { slug: q.department }
+  if (tenderMatchesQuejaCpv(q.serviceCode as QuejaCategory, c.cpvs)) {
+    const slug =
+      q.department ?? canonicalizeDepartment(q.serviceCode) ?? c.department ?? q.serviceCode
+    return { slug }
+  }
+  return null
+}
+
+/**
+ * Temporal modifier — award within [queja − 3mo, queja + 18mo]. NEVER a link on
+ * its own (see scoreRelation): it only boosts/annotates an existing signal.
+ */
+export function temporalModifier(q: RelQueja, c: RelContract): { monthsAfter: number } | null {
+  if (!c.awardDate) return null
+  const t0 = new Date(q.createdAt).getTime()
+  const t1 = new Date(c.awardDate).getTime()
+  if (Number.isNaN(t0) || Number.isNaN(t1)) return null
+  const months = (t1 - t0) / (1000 * 60 * 60 * 24 * 30)
+  return months >= -3 && months <= 18 ? { monthsAfter: months } : null
+}
+
+function normExp(s: string): string {
+  return s.replace(/\s+/g, '').toUpperCase()
+}
+
+/**
+ * Shared expediente (ironclad when present). Department alignment guards against
+ * coincidental expediente-number collisions across unrelated files.
+ */
+export function expedienteSignal(q: RelQueja, c: RelContract): { value: string } | null {
+  if (!c.expediente) return null
+  if (q.department && c.department && q.department !== c.department) return null
+  return { value: normExp(c.expediente) }
 }
 
 // Re-exported so the CLI shares the exact category enum used by the CPV theme
