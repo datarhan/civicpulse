@@ -1,30 +1,49 @@
 {
-  "generatedAt": "2026-07-05T11:07:47.228Z",
+  "generatedAt": "2026-07-05T12:25:19.619Z",
   "promptVersion": "place-geocode-v1",
   "backend": "claude-code",
   "stats": {
-    "candidatesScanned": 327,
-    "suggested": 12,
-    "unmatched": 70,
+    "candidatesScanned": 318,
+    "suggested": 14,
+    "unmatched": 59,
     "noPlace": 243,
     "lowConfidence": 2
   },
   "suggestions": [
     {
-      "contractId": "5388060",
-      "title": "Contrato menor de obras, para la ejecución del proyecto “Adecuación urgente del tramo en Cmo. Perpinyanet en término municipal de Riba-roja de Turia (Valencia) -Ctto. 262M/2023.",
-      "amount": 27783.17,
-      "date": "2023-12-13",
-      "llmPlaceName": "Camí Perpinyanet",
-      "confidence": 0.92,
-      "reasoning": "El título especifica la obra en el tramo del \"Cmo. Perpinyanet\" (Camino Perpinyanet), que es el lugar concreto de ejecución, excluyendo el municipio Riba-roja de Túria mencionado aparte.",
+      "contractId": "3925762",
+      "title": "Contrato Menor de obras de Adecuación y Mejora de la Pista de Atletismo en Estadio Roberto Gil.",
+      "amount": 39655.97,
+      "date": "2022-11-10",
+      "llmPlaceName": "Estadio Roberto Gil",
+      "confidence": 0.95,
+      "reasoning": "El contrato es de obras de adecuación de la pista de atletismo en el Estadio Roberto Gil, un equipamiento deportivo concreto sobre el que se realiza la obra.",
       "match": {
-        "sourceId": "carrer-de-perpinyanet",
-        "name": "Carrer de Perpinyanet",
-        "kind": "street",
+        "sourceId": "way-39586077",
+        "name": "Campo de Fútbol Municipal Roberto Gil",
+        "kind": "poi",
         "point": [
-          39.550535,
-          -0.5820432
+          39.5439777,
+          -0.5812609
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "543949",
+      "title": "Obras de instalación de un ascensor en el CEIP Cervantes.",
+      "amount": 37850,
+      "date": "2019-07-13",
+      "llmPlaceName": "CEIP Cervantes",
+      "confidence": 0.93,
+      "reasoning": "La obra es la instalación de un ascensor en el edificio del CEIP Cervantes, un equipamiento público concreto sobre el que se ejecuta la obra.",
+      "match": {
+        "sourceId": "way-1097452806",
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "kind": "poi",
+        "point": [
+          39.5433427,
+          -0.5731124
         ]
       },
       "requiresHumanApproval": true
@@ -49,39 +68,96 @@
       "requiresHumanApproval": true
     },
     {
-      "contractId": "1564500",
-      "title": "Reforma en edificio sito en C/ Mayor, 37",
-      "amount": 18181.82,
-      "date": "2019-01-09",
-      "llmPlaceName": "Calle Mayor",
-      "confidence": 0.9,
-      "reasoning": "El título nombra una dirección concreta en la Calle Mayor, y el contrato es de reforma sobre el edificio situado allí.",
+      "contractId": "1566052",
+      "title": "dirección facultativa de las obras correspondientes a varias actuaciones en CEIP Eres Altes",
+      "amount": 14000,
+      "date": "2019-12-08",
+      "llmPlaceName": "CEIP Eres Altes",
+      "confidence": 0.92,
+      "reasoning": "El contrato es la dirección facultativa de obras que se ejecutan en el propio edificio del CEIP Eres Altes, por lo que el equipamiento es el lugar concreto de la actuación.",
       "match": {
-        "sourceId": "carrer-major",
-        "name": "Carrer Major",
-        "kind": "street",
+        "sourceId": "way-1178031442",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "kind": "poi",
         "point": [
-          39.5441796,
-          -0.5689306
+          39.5473561,
+          -0.5639968
         ]
       },
       "requiresHumanApproval": true
     },
     {
-      "contractId": "685889",
-      "title": "Obras de reurbanización escalera sito en C/ Colón",
-      "amount": 9048.55,
-      "date": "2018-11-28",
-      "llmPlaceName": "Calle Colón",
+      "contractId": "306141",
+      "title": "Pavimentación pista deportiva CEIP Camp de Túria",
+      "amount": 11106,
+      "date": "2018-05-25",
+      "llmPlaceName": "CEIP Camp de Túria",
       "confidence": 0.9,
-      "reasoning": "El título nombra explícitamente la C/ Colón como lugar de ejecución de la obra de reurbanización de la escalera.",
+      "reasoning": "El título indica una obra (pavimentación de pista deportiva) en el equipamiento concreto CEIP Camp de Túria, un colegio.",
       "match": {
-        "sourceId": "carrer-de-cristofol-colom",
-        "name": "Carrer de Cristòfol Colom",
-        "kind": "street",
+        "sourceId": "way-152520274",
+        "name": "Camp de futbol Municipal Francisco Soriano",
+        "kind": "poi",
         "point": [
-          39.5448121,
-          -0.5670968
+          39.5452787,
+          -0.5807577
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "9975923",
+      "title": "Contrato menor de obras referentes a la modificación de instalación de ACS con mezcladores para duchas en complejo deportivo municipal La Malla de Riba-roja de Túria. Ctto101-2026.",
+      "amount": 24020.82,
+      "date": "2026-04-20",
+      "llmPlaceName": "Complejo deportivo La Malla",
+      "confidence": 0.9,
+      "reasoning": "El título especifica que la obra se ejecuta en el complejo deportivo municipal La Malla, un equipamiento público concreto, y se trata de una obra sobre las instalaciones del propio complejo (modificación de ACS/duchas), no de un suministro genérico.",
+      "match": {
+        "sourceId": "way-1095351062",
+        "name": "Complex Esportiu La Mallà",
+        "kind": "poi",
+        "point": [
+          39.5433045,
+          -0.5757486
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "9297858",
+      "title": "OBRAS Asfaltado acceso estadio municipal Robert Gil por fugas en riego campo de fútbol.",
+      "amount": 9593,
+      "date": "2025-12-26",
+      "llmPlaceName": "Estadio Municipal Robert Gil",
+      "confidence": 0.9,
+      "reasoning": "El título especifica obras de asfaltado en el acceso al Estadio Municipal Robert Gil, un equipamiento público concreto sobre el que se ejecuta la obra.",
+      "match": {
+        "sourceId": "way-39586077",
+        "name": "Campo de Fútbol Municipal Roberto Gil",
+        "kind": "poi",
+        "point": [
+          39.5439777,
+          -0.5812609
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "1881768",
+      "title": "servicio de dirección de obras y coordinación de seguridad y salud de las obras de mejora de confort térmico en el CEIP Camp de Túria. (Plan Edificant)",
+      "amount": 6590,
+      "date": "2021-01-23",
+      "llmPlaceName": "CEIP Camp de Túria",
+      "confidence": 0.9,
+      "reasoning": "El servicio de dirección de obra y coordinación de seguridad se refiere a obras de mejora térmica ejecutadas en el edificio concreto CEIP Camp de Túria, un equipamiento educativo nombrado explícitamente.",
+      "match": {
+        "sourceId": "way-152520274",
+        "name": "Camp de futbol Municipal Francisco Soriano",
+        "kind": "poi",
+        "point": [
+          39.5452787,
+          -0.5807577
         ]
       },
       "requiresHumanApproval": true
@@ -106,39 +182,58 @@
       "requiresHumanApproval": true
     },
     {
-      "contractId": "2520342",
-      "title": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento.",
-      "amount": 20980,
-      "date": "2021-07-07",
-      "llmPlaceName": "Centro Social",
+      "contractId": "599169",
+      "title": "Amplicación parque Generalitat",
+      "amount": 32591.16,
+      "date": "2018-11-04",
+      "llmPlaceName": "Parque Generalitat",
       "confidence": 0.85,
-      "reasoning": "El contrato es de obras de reforma sobre el edificio Centro Social, un equipamiento público concreto, no un suministro o servicio genérico.",
+      "reasoning": "El título indica obra de ampliación sobre un equipamiento público concreto: el parque denominado \"Generalitat\".",
       "match": {
-        "sourceId": "way-662835745",
-        "name": "Centre Social",
-        "kind": "poi",
+        "sourceId": "carrer-de-la-generalitat",
+        "name": "Carrer de la Generalitat",
+        "kind": "street",
         "point": [
-          39.5458994,
-          -0.5714322
+          39.5476452,
+          -0.5744608
         ]
       },
       "requiresHumanApproval": true
     },
     {
-      "contractId": "4718569",
-      "title": "Contrato, de carácter menor, para la prestación del servicio realización del Plan especial de protección para la zona arqueológica de Valencia la Vella de Riba-roja de Túria (Ctto 180M/2023).",
-      "amount": 14850,
-      "date": "2023-06-09",
-      "llmPlaceName": "Valencia la Vella",
+      "contractId": "668071",
+      "title": "Servicio  de redacción proyecto mejora del confort térmico CEIP Camp de Túria",
+      "amount": 5600,
+      "date": "2019-06-10",
+      "llmPlaceName": "CEIP Camp de Túria",
       "confidence": 0.85,
-      "reasoning": "El título nombra la zona arqueológica concreta \"Valencia la Vella\" (yacimiento arqueológico visigodo), que es un topónimo específico distinto del municipio de Riba-roja de Túria o de la ciudad/provincia de Valencia.",
+      "reasoning": "El título nombra el equipamiento concreto (colegio CEIP Camp de Túria) y el proyecto de redacción se refiere específicamente a la mejora del confort térmico de ese edificio, no a un servicio genérico.",
       "match": {
-        "sourceId": "carrer-de-valencia-la-vella",
-        "name": "Carrer de València la Vella",
-        "kind": "street",
+        "sourceId": "way-152520274",
+        "name": "Camp de futbol Municipal Francisco Soriano",
+        "kind": "poi",
         "point": [
-          39.5245465,
-          -0.5201598
+          39.5452787,
+          -0.5807577
+        ]
+      },
+      "requiresHumanApproval": true
+    },
+    {
+      "contractId": "745132",
+      "title": "Servicio de redacción proyecto ejecución varias actuaciones en CEIP Eras Altas",
+      "amount": 14400,
+      "date": "2019-07-25",
+      "llmPlaceName": "CEIP Eras Altas",
+      "confidence": 0.85,
+      "reasoning": "El título nombra un equipamiento concreto, el colegio CEIP Eras Altas, y el servicio de redacción de proyecto es para actuaciones de ejecución de obra en ese edificio específico.",
+      "match": {
+        "sourceId": "way-1178031442",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "kind": "poi",
+        "point": [
+          39.5473561,
+          -0.5639968
         ]
       },
       "requiresHumanApproval": true
@@ -163,77 +258,20 @@
       "requiresHumanApproval": true
     },
     {
-      "contractId": "3733423",
-      "title": "Contrato de carácter menor, relativo al servicio de trabajos selvícolas interfaz Masia de Traver.",
-      "amount": 12000,
-      "date": "2022-08-30",
-      "llmPlaceName": "Masía de Traver",
-      "confidence": 0.75,
-      "reasoning": "El título especifica que los trabajos selvícolas se realizan en la interfaz urbano-forestal de la Masía de Traver, un lugar concreto del término municipal.",
+      "contractId": "9454411",
+      "title": "Inicio expediente y adjudicación directa del contrato menor de suministro e instalación de caldera de gas para sistema de calefacción en la escoleta infantil CEIP Cervantes de Riba-roja de Turia, a favor de entidad ECOSIONA FACILITY SERVICES, S.L. CIF B-10971968.",
+      "amount": 8938.35,
+      "date": "2026-01-28",
+      "llmPlaceName": "CEIP Cervantes",
+      "confidence": 0.85,
+      "reasoning": "El contrato es de instalación de una caldera de gas en el edificio de la escoleta infantil CEIP Cervantes, una intervención física concreta sobre ese equipamiento público, no un suministro genérico para un servicio.",
       "match": {
-        "sourceId": "avinguda-de-la-masia-de-traver",
-        "name": "Avinguda de la Masia de Traver",
-        "kind": "street",
-        "point": [
-          39.5420868,
-          -0.5438471
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "1619842",
-      "title": "Contrato mixto de suministro e instalación de juegos infantiles en Lliri Groc, Urb. Pous de Martí, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de medio ambiental y social contribuyendo al ODS 3 BIENESTAR Y SALUD.",
-      "amount": 25920,
-      "date": "2022-01-07",
-      "llmPlaceName": "Lliri Groc",
-      "confidence": 0.75,
-      "reasoning": "El título nombra \"Lliri Groc\" dentro de la Urb. Pous de Martí como lugar concreto (probablemente calle o zona ajardinada) donde se instalan los juegos infantiles; es más específico que el nombre de la urbanización.",
-      "match": {
-        "sourceId": "carrer-del-lliri-groc",
-        "name": "Carrer del Lliri Groc",
-        "kind": "street",
-        "point": [
-          39.5239906,
-          -0.5171613
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "4579942",
-      "title": "Contrato  de  suministro  sustitución  de  regulador  del  semáforo  de  la  calle  mayor  cruce  con  la  carretera  de  Villamarchante  como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024",
-      "amount": 4059.16,
-      "date": "2024-12-05",
-      "llmPlaceName": "Calle Mayor",
-      "confidence": 0.75,
-      "reasoning": "El semáforo está en el cruce de la calle Mayor con la carretera de Villamarchante; se elige la calle Mayor por ser la vía más específica del cruce.",
-      "match": {
-        "sourceId": "carrer-major",
-        "name": "Carrer Major",
-        "kind": "street",
-        "point": [
-          39.5441796,
-          -0.5689306
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "1524361",
-      "title": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles.",
-      "amount": 195035.04,
-      "date": "2021-11-15",
-      "llmPlaceName": "Campo de fútbol \"Francisco Soriano\"",
-      "confidence": 0.75,
-      "reasoning": "El contrato es para el suministro e instalación del césped de un campo de fútbol concreto, nombrado como \"Francisco Soriano\"; aunque es un suministro, el objeto se instala físicamente en esa instalación deportiva concreta, no es un suministro genérico para un servicio.",
-      "match": {
-        "sourceId": "way-152520274",
-        "name": "Camp de futbol Municipal Francisco Soriano",
+        "sourceId": "way-1097452806",
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
         "kind": "poi",
         "point": [
-          39.5452787,
-          -0.5807577
+          39.5433427,
+          -0.5731124
         ]
       },
       "requiresHumanApproval": true

@@ -333,14 +333,79 @@ function matches(paddedTitle: string, needle: string): boolean {
 // (Spanish "Mayor" ↔ Valencian "Major", "Sagunto" ↔ "Sagunt") still resolve.
 // Crucially the returned POINT is always the gazetteer's — never the LLM's.
 
-/** Locating tokens of a name: drop connectors, street-types, muni/province, and
- *  bare numbers (house numbers are not locators). */
+// Facility-TYPE words dropped from a name so the matcher keys on the distinctive
+// proper noun. This is what lets the LLM's "CEIP Cervantes" reach OSM's "Col·legi
+// d'Educació Infantil i Primària Cervantes", or "Complejo deportivo La Mallà"
+// reach "Complex Esportiu La Mallà" — the type word differs by language, the
+// name (Cervantes / La Mallà) doesn't. Used ONLY by the LLM name-matcher, so it
+// never touches the deterministic resolver. Deliberately excludes ambiguous
+// words that can BE the distinctive name (camp → Camp de Túria, mas, torre).
+const FACILITY_GENERICS = new Set([
+  'ceip',
+  'colegio',
+  'collegi',
+  'escola',
+  'escuela',
+  'ies',
+  'institut',
+  'educacio',
+  'infantil',
+  'primaria',
+  'cicle',
+  'poliesportiu',
+  'polideportivo',
+  'pavello',
+  'pabellon',
+  'estadi',
+  'estadio',
+  'esportiu',
+  'deportivo',
+  'deportiva',
+  'complex',
+  'complejo',
+  'piscina',
+  'biblioteca',
+  'mercat',
+  'mercado',
+  'cementeri',
+  'cementerio',
+  'auditori',
+  'auditorio',
+  'conservatori',
+  'conservatorio',
+  'museu',
+  'museo',
+  'tanatori',
+  'ajuntament',
+  'ayuntamiento',
+  'consistorial',
+  'casa',
+  'polivalente',
+  // Generic qualifier: a bare "X Municipal" must not match a different
+  // "Y Municipal" on the shared word — strip it so only a proper noun matches.
+  'municipal',
+  'municipals',
+  'centre',
+  'centro',
+  'parc',
+  'parque',
+  'jardi',
+  'jardin',
+])
+
+/** Locating tokens of a name: drop connectors, street-types, muni/province,
+ *  facility-type words, and bare numbers (house numbers are not locators). */
 function nameTokens(name: string): string[] {
   return foldTitle(name)
     .split(' ')
     .filter(
       (t) =>
-        t && !/^\d+$/.test(t) && !CONNECTORS.has(t) && !STREET_TYPES.has(t) && !MUNI_TOKENS.has(t),
+        t &&
+        !/^\d+$/.test(t) &&
+        !CONNECTORS.has(t) &&
+        !STREET_TYPES.has(t) &&
+        !MUNI_TOKENS.has(t) &&
+        !FACILITY_GENERICS.has(t),
     )
 }
 

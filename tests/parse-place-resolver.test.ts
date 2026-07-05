@@ -85,6 +85,62 @@ describe('place-resolver — matchNameToGazetteer (LLM name → real point)', ()
     // Even with a house number in the LLM name, the point is the OSM street point.
     expect(m?.point).toEqual([39.53, -0.58])
   })
+
+  it('matches a facility across its type word (CEIP → Col·legi …, distinctive name)', () => {
+    const cands: Candidate[] = [
+      {
+        kind: 'poi',
+        name: "Col·legi d'Educació Infantil i Primària Cervantes",
+        point: [39.54, -0.57],
+        sourceId: 'ceip-cervantes',
+        needles: [],
+        specificity: 4,
+      },
+      {
+        kind: 'poi',
+        name: 'Complex Esportiu La Mallà',
+        point: [39.55, -0.58],
+        sourceId: 'complex-malla',
+        needles: [],
+        specificity: 4,
+      },
+    ]
+    // "CEIP Cervantes" (Spanish acronym) → OSM "Col·legi … Cervantes" (Valencian).
+    expect(matchNameToGazetteer('CEIP Cervantes', cands)?.sourceId).toBe('ceip-cervantes')
+    // "Complejo deportivo La Malla" → "Complex Esportiu La Mallà" (type word differs).
+    expect(matchNameToGazetteer('Complejo deportivo La Malla', cands)?.sourceId).toBe(
+      'complex-malla',
+    )
+  })
+
+  it('matches a cross-language school name (CEIP Eras Altas → Eres Altes)', () => {
+    const cands: Candidate[] = [
+      {
+        kind: 'poi',
+        name: "Col·legi d'Educació Infantil i Primària Eres Altes",
+        point: [39.54, -0.57],
+        sourceId: 'ceip-eres-altes',
+        needles: [],
+        specificity: 4,
+      },
+    ]
+    expect(matchNameToGazetteer('CEIP Eras Altas', cands)?.sourceId).toBe('ceip-eres-altes')
+  })
+
+  it('still returns null for a bare facility type with no distinctive name', () => {
+    const cands: Candidate[] = [
+      {
+        kind: 'poi',
+        name: 'Poliesportiu Municipal de Riba-Roja de Túria',
+        point: [39.54, -0.57],
+        sourceId: 'poli',
+        needles: [],
+        specificity: 4,
+      },
+    ]
+    // "Polideportivo Municipal" strips to nothing distinctive → no confident match.
+    expect(matchNameToGazetteer('Polideportivo Municipal', cands)).toBeNull()
+  })
 })
 
 describe('place-resolver — foldTitle', () => {

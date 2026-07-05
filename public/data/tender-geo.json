@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T11:47:25.709Z",
+  "generatedAt": "2026-07-05T12:25:52.451Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-05T07:43:54.896Z"
@@ -9,14 +9,14 @@
     "totalAmount": 13978822.119999994,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
-    "situatedContracts": 52,
-    "situatedAmount": 1446778.5799999998,
+    "situatedContracts": 62,
+    "situatedAmount": 1618532.7200000002,
     "danaContracts": 9,
     "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
     "danaAwardedAmount": 2241265.7499999995,
     "dateMin": "2018-01-24",
-    "dateMax": "2025-10-30"
+    "dateMax": "2026-04-20"
   },
   "zones": [
     {
@@ -183,6 +183,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "way-39586077",
+      "name": "Campo de Fútbol Municipal Roberto Gil",
+      "kind": "poi",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "contractCount": 2,
+      "amount": 49248.97,
+      "danaAmount": 0
+    },
+    {
       "slug": "cami-de-xest",
       "name": "Camí de Xest",
       "kind": "street",
@@ -192,6 +204,18 @@
       ],
       "contractCount": 1,
       "amount": 48858.84,
+      "danaAmount": 0
+    },
+    {
+      "slug": "way-1097452806",
+      "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "kind": "poi",
+      "point": [
+        39.5433427,
+        -0.5731124
+      ],
+      "contractCount": 2,
+      "amount": 46788.35,
       "danaAmount": 0
     },
     {
@@ -217,6 +241,18 @@
       "contractCount": 3,
       "amount": 30473.399999999998,
       "danaAmount": 22977.96
+    },
+    {
+      "slug": "way-1178031442",
+      "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "kind": "poi",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "contractCount": 2,
+      "amount": 28400,
+      "danaAmount": 0
     },
     {
       "slug": "carrer-de-perpinyanet",
@@ -276,6 +312,30 @@
       ],
       "contractCount": 1,
       "amount": 24257.23,
+      "danaAmount": 0
+    },
+    {
+      "slug": "way-1095351062",
+      "name": "Complex Esportiu La Mallà",
+      "kind": "poi",
+      "point": [
+        39.5433045,
+        -0.5757486
+      ],
+      "contractCount": 1,
+      "amount": 24020.82,
+      "danaAmount": 0
+    },
+    {
+      "slug": "way-1242095512",
+      "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "kind": "poi",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "contractCount": 3,
+      "amount": 23296,
       "danaAmount": 0
     },
     {
@@ -592,6 +652,27 @@
       }
     },
     {
+      "id": "306141",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11106,
+      "amountKind": "final",
+      "date": "2018-05-25",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+        "matchedText": "CEIP Camp de Túria",
+        "sourceId": "way-1242095512"
+      }
+    },
+    {
       "id": "4379456",
       "zones": [],
       "matchedAlias": {},
@@ -768,6 +849,27 @@
       }
     },
     {
+      "id": "3925762",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 39655.97,
+      "amountKind": "final",
+      "date": "2022-11-10",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Campo de Fútbol Municipal Roberto Gil",
+        "matchedText": "Campo de Fútbol Municipal Roberto Gil",
+        "sourceId": "way-39586077"
+      }
+    },
+    {
       "id": "506691",
       "zones": [
         "l-oliveral"
@@ -818,6 +920,27 @@
       }
     },
     {
+      "id": "668071",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 5600,
+      "amountKind": "final",
+      "date": "2019-06-10",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+        "matchedText": "CEIP Camp de Túria",
+        "sourceId": "way-1242095512"
+      }
+    },
+    {
       "id": "689510",
       "zones": [],
       "matchedAlias": {},
@@ -836,6 +959,27 @@
         "name": "Carrer de les Bodeguetes",
         "matchedText": "Carrer de les Bodeguetes",
         "sourceId": "carrer-de-les-bodeguetes"
+      }
+    },
+    {
+      "id": "745132",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14400,
+      "amountKind": "final",
+      "date": "2019-07-25",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
       }
     },
     {
@@ -935,6 +1079,27 @@
       }
     },
     {
+      "id": "9975923",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24020.82,
+      "amountKind": "final",
+      "date": "2026-04-20",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5433045,
+        -0.5757486
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Complex Esportiu La Mallà",
+        "matchedText": "Complex Esportiu La Mallà",
+        "sourceId": "way-1095351062"
+      }
+    },
+    {
       "id": "5388060",
       "zones": [],
       "matchedAlias": {},
@@ -1023,6 +1188,27 @@
       }
     },
     {
+      "id": "9297858",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 9593,
+      "amountKind": "final",
+      "date": "2025-12-26",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Campo de Fútbol Municipal Roberto Gil",
+        "matchedText": "Campo de Fútbol Municipal Roberto Gil",
+        "sourceId": "way-39586077"
+      }
+    },
+    {
       "id": "4599362",
       "zones": [
         "l-oliveral"
@@ -1066,6 +1252,27 @@
         "name": "Plaça de la Torre",
         "matchedText": "Plaça de la Torre",
         "sourceId": "placa-de-la-torre"
+      }
+    },
+    {
+      "id": "543949",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 37850,
+      "amountKind": "final",
+      "date": "2019-07-13",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5433427,
+        -0.5731124
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "sourceId": "way-1097452806"
       }
     },
     {
@@ -1179,6 +1386,48 @@
         "name": "Carreró de l'Església",
         "matchedText": "Carreró de l'Església",
         "sourceId": "carrero-de-l-esglesia"
+      }
+    },
+    {
+      "id": "1566052",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14000,
+      "amountKind": "final",
+      "date": "2019-12-08",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
+      }
+    },
+    {
+      "id": "1881768",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 6590,
+      "amountKind": "final",
+      "date": "2021-01-23",
+      "contractType": "services",
+      "categoryTitle": "architecture",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+        "matchedText": "CEIP Camp de Túria",
+        "sourceId": "way-1242095512"
       }
     },
     {
@@ -1622,6 +1871,27 @@
         "name": "Camí de Xest",
         "matchedText": "Camí de Xest",
         "sourceId": "cami-de-xest"
+      }
+    },
+    {
+      "id": "9454411",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8938.35,
+      "amountKind": "final",
+      "date": "2026-01-28",
+      "contractType": "supplies",
+      "categoryTitle": "industry",
+      "point": [
+        39.5433427,
+        -0.5731124
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "sourceId": "way-1097452806"
       }
     },
     {

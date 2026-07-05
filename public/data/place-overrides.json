@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T11:47:25.339Z",
+  "generatedAt": "2026-07-05T12:25:51.910Z",
   "overrides": [
     {
       "contractId": "1564500",
@@ -126,6 +126,146 @@
       "curator": "datarhan",
       "approvedAt": "2026-07-05T11:47:25.338Z",
       "note": "LLM correctly identified the archaeological zone; placed at the zone centroid, not the same-named street 1.4km away."
+    },
+    {
+      "contractId": "3925762",
+      "sourceId": "way-39586077",
+      "name": "Campo de Fútbol Municipal Roberto Gil",
+      "kind": "poi",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "matchedText": "Campo de Fútbol Municipal Roberto Gil",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:48.974Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "543949",
+      "sourceId": "way-1097452806",
+      "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "kind": "poi",
+      "point": [
+        39.5433427,
+        -0.5731124
+      ],
+      "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:49.360Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "1566052",
+      "sourceId": "way-1178031442",
+      "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "kind": "poi",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:49.802Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "9975923",
+      "sourceId": "way-1095351062",
+      "name": "Complex Esportiu La Mallà",
+      "kind": "poi",
+      "point": [
+        39.5433045,
+        -0.5757486
+      ],
+      "matchedText": "Complex Esportiu La Mallà",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:50.184Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "9297858",
+      "sourceId": "way-39586077",
+      "name": "Campo de Fútbol Municipal Roberto Gil",
+      "kind": "poi",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "matchedText": "Campo de Fútbol Municipal Roberto Gil",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:50.575Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "745132",
+      "sourceId": "way-1178031442",
+      "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "kind": "poi",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:51.190Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "9454411",
+      "sourceId": "way-1097452806",
+      "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "kind": "poi",
+      "point": [
+        39.5433427,
+        -0.5731124
+      ],
+      "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:51.602Z",
+      "note": "LLM geocode, facility, curator-reviewed"
+    },
+    {
+      "contractId": "306141",
+      "sourceId": "way-1242095512",
+      "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "kind": "poi",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "matchedText": "CEIP Camp de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:51.909Z",
+      "note": "LLM identified CEIP Camp de Túria; matcher hit the same-named football field, corrected to the school POI."
+    },
+    {
+      "contractId": "1881768",
+      "sourceId": "way-1242095512",
+      "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "kind": "poi",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "matchedText": "CEIP Camp de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:51.910Z",
+      "note": "LLM identified CEIP Camp de Túria; matcher hit the same-named football field, corrected to the school POI."
+    },
+    {
+      "contractId": "668071",
+      "sourceId": "way-1242095512",
+      "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "kind": "poi",
+      "point": [
+        39.5493045,
+        -0.5717854
+      ],
+      "matchedText": "CEIP Camp de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:25:51.910Z",
+      "note": "LLM identified CEIP Camp de Túria; matcher hit the same-named football field, corrected to the school POI."
     }
   ]
 }
