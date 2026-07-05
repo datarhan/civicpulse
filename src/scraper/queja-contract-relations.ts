@@ -187,6 +187,56 @@ export function scoreRelation(q: RelQueja, c: RelContract): RelationLink | null 
   return null // temporal alone (or nothing) never links
 }
 
+export interface RelContext {
+  now?: Date
+  frozen?: boolean
+}
+
+export interface RelationsResult {
+  links: RelationLink[]
+  stats: {
+    frozen: boolean
+    quejasScanned: number
+    contractsScanned: number
+    tierA: number
+    tierB: number
+    reason: string | null
+  }
+}
+
+/**
+ * Score every queja × contract pair, keeping only the pairs that link. Under a
+ * LOREG electoral freeze the engine emits nothing (same gate as the promise and
+ * journalist subsystems).
+ */
+export function buildRelations(
+  quejas: RelQueja[],
+  contracts: RelContract[],
+  ctx: RelContext = {},
+): RelationsResult {
+  const stats = {
+    frozen: false,
+    quejasScanned: 0,
+    contractsScanned: contracts.length,
+    tierA: 0,
+    tierB: 0,
+    reason: null as string | null,
+  }
+  if (ctx.frozen) return { links: [], stats: { ...stats, frozen: true, reason: 'frozen' } }
+  const links: RelationLink[] = []
+  for (const q of quejas) {
+    stats.quejasScanned += 1
+    for (const c of contracts) {
+      const link = scoreRelation(q, c)
+      if (!link) continue
+      links.push(link)
+      if (link.tier === 'A') stats.tierA += 1
+      else stats.tierB += 1
+    }
+  }
+  return { links, stats }
+}
+
 // Re-exported so the CLI shares the exact category enum used by the CPV theme
 // check without a second import path.
 export type { QuejaCategory }

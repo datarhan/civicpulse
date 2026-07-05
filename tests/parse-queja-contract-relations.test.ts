@@ -5,6 +5,7 @@ import {
   temporalModifier,
   expedienteSignal,
   scoreRelation,
+  buildRelations,
 } from '../src/scraper/queja-contract-relations'
 import type { RelQueja, RelContract } from '../src/scraper/queja-contract-relations'
 
@@ -149,5 +150,25 @@ describe('scoreRelation — tiering + honesty gates', () => {
     )!
     expect(r.tier).toBe('B')
     expect(r.relationLabel).toBe('misma zona')
+  })
+})
+
+describe('buildRelations', () => {
+  it('emits one link per matching pair and counts tiers', () => {
+    const res = buildRelations(
+      [q({ id: 'Q-1', placeSlug: 'valencia-la-vella', department: 'movilidad' })],
+      [
+        c({ id: 'c1', places: ['valencia-la-vella'], department: 'movilidad' }),
+        c({ id: 'c2', places: ['elsewhere'], department: 'cultura', cpvs: ['92000000'] }),
+      ],
+    )
+    expect(res.links).toHaveLength(1)
+    expect(res.stats).toMatchObject({ quejasScanned: 1, contractsScanned: 2, tierA: 1, tierB: 0 })
+  })
+  it('returns empty under LOREG freeze', () => {
+    const res = buildRelations([q()], [c({ places: ['valencia-la-vella'] })], { frozen: true })
+    expect(res.links).toEqual([])
+    expect(res.stats.frozen).toBe(true)
+    expect(res.stats.reason).toBe('frozen')
   })
 })
