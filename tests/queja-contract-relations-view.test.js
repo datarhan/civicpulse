@@ -2,6 +2,8 @@ import { describe, it, expect } from 'vitest'
 import {
   relatedQuejasForContract,
   relationsForTender,
+  relationsForQueja,
+  isApproved,
 } from '../src/hooks/useQuejaContractRelations'
 
 const data = {
@@ -55,5 +57,34 @@ describe('relatedQuejasForContract', () => {
   })
   it('returns [] for a contract with no renderable links', () => {
     expect(relatedQuejasForContract(data, quejas, 'NONE')).toEqual([])
+  })
+})
+
+describe('curator approvals merge', () => {
+  const gated = {
+    links: [
+      {
+        quejaId: 'Q-9',
+        tenderPermalink: 'P9',
+        tenderId: 'T9',
+        relationLabel: 'misma materia',
+        requiresHumanApproval: true,
+        signals: {},
+      },
+    ],
+  }
+  it('isApproved matches on (quejaId, tenderId)', () => {
+    const approvals = [{ quejaId: 'Q-9', tenderId: 'T9' }]
+    expect(isApproved(approvals, 'Q-9', 'T9')).toBe(true)
+    expect(isApproved(approvals, 'Q-9', 'OTHER')).toBe(false)
+    expect(isApproved([], 'Q-9', 'T9')).toBe(false)
+  })
+  it('a gated link stays hidden without approval', () => {
+    expect(relationsForQueja(gated, 'Q-9')).toEqual([])
+  })
+  it('a gated link renders once a curator approves the exact pair', () => {
+    const approvals = [{ quejaId: 'Q-9', tenderId: 'T9' }]
+    expect(relationsForQueja(gated, 'Q-9', approvals)).toHaveLength(1)
+    expect(relationsForTender(gated, 'P9', approvals)).toHaveLength(1)
   })
 })

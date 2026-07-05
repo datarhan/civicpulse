@@ -8,7 +8,11 @@ import {
   CATEGORY_LABEL,
   prettyNeighborhood,
 } from '../hooks/useQuejas'
-import { useQuejaContractRelations, relationsForQueja } from '../hooks/useQuejaContractRelations'
+import {
+  useQuejaContractRelations,
+  useQuejaRelationApprovals,
+  relationsForQueja,
+} from '../hooks/useQuejaContractRelations'
 import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { fmtDateLong } from '../lib/formatters'
@@ -106,7 +110,8 @@ function TimelineItem({ date, label, tone = 'neutral', detail }) {
 
 function CorrelationsCard({ quejaId }) {
   const { data } = useQuejaContractRelations()
-  const items = relationsForQueja(data, quejaId)
+  const { data: approvals } = useQuejaRelationApprovals()
+  const items = relationsForQueja(data, quejaId, approvals?.approvals)
   if (items.length === 0) return null
   return (
     <Card style={{ marginTop: 14, borderLeft: '3px solid var(--intel)' }}>

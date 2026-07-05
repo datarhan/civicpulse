@@ -1,6 +1,7 @@
 import { ContractCard } from '../tenders/ContractCard'
 import {
   useQuejaContractRelations,
+  useQuejaRelationApprovals,
   relatedQuejasForContract,
 } from '../../hooks/useQuejaContractRelations'
 import { useQuejas } from '../../hooks/useQuejas'
@@ -21,6 +22,7 @@ export default function ZoneDrilldown({
   cpvDict,
 }) {
   const { data: relations } = useQuejaContractRelations()
+  const { data: approvals } = useQuejaRelationApprovals()
   const { data: quejas } = useQuejas()
   const zone = (snapshot?.zones || []).find((z) => z.slug === zoneSlug)
   if (!zone) return null
@@ -53,7 +55,12 @@ export default function ZoneDrilldown({
             dana={a.dana}
             provenance={a.matchedAlias?.[zoneSlug]}
             cpvDict={cpvDict}
-            relatedQuejas={relatedQuejasForContract(relations, quejas?.items, c.permalink)}
+            relatedQuejas={relatedQuejasForContract(
+              relations,
+              quejas?.items,
+              c.permalink,
+              approvals?.approvals,
+            )}
           />
         ))}
       </div>
