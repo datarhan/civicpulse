@@ -1,0 +1,3497 @@
+
+
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+INFORME DE FISCALIZACIÓN SOBRE EL CONTROL INTERNO 
+DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA  
+ 
+EJERCICIOS 2017-2019 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+RESUMEN. Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-Roja de 
+Túria. Ejercicios 2017-2019 
+RESUMEN 
+La Sindicatura de Comptes ha realizado un informe de fiscalización del 
+Ayuntamiento  de  Riba-roja  de  Túria  consistente  en  una  revisión  de  su 
+control interno durante los ejercicios 2017 a 2019 (primer trimestre). 
+El resultado del trabajo efectuado ha puesto de manifiesto 27 deficiencias 
+significativas, de las cuales siete se refieren a su entorno tecnológico. Del 
+total  de  las  deficiencias  destacan:  la  ausencia  de actualización  del 
+inventario  y  de  su  comprobación  cuando  se  renueva  la  corporación;  la 
+falta de acreditación mediante certificado del área correspondiente de que 
+la  documentación  de  los  expedientes  de  contratos  y modificados  es 
+completa;  y  la  ausencia  de  fiscalización  de  la  justificación  de  las 
+subvenciones. 
+De acuerdo con la valoración efectuada por la Sindicatura de Comptes, el 
+Ayuntamiento ha obtenido 40.129 puntos, que suponen un 80,3% de la 
+puntuación  máxima  posible.  En  el  gráfico  siguiente se  muestra  el 
+porcentaje obtenido en las distintas áreas en las que se ha efectuado la 
+revisión del control interno. 
+Gráfico.   Porcentaje de la puntuación por áreas sobre el total posible 
+ 
+ 
+La  Sindicatura  de  Comptes  ha  efectuado  cinco  recomendaciones  al 
+consistorio de Riba-roja de Túria: elaborar un organigrama actualizado de 
+la  entidad;  realizar  arqueos  y  conciliaciones  al  menos  con  una 
+periodicidad  trimestral;  estimar  el  coste  y  la  financiación  del 
+mantenimiento de las inversiones; efectuar una segregación de funciones 
+entre intervención y gestión; y llevar a la práctica una serie de medidas 
+para mejorar la seguridad y la eficacia del entorno tecnológico. 
+En este sentido, la crisis sanitaria y socioeconómica mundial causada por 
+la pandemia de COVID-19 que marca nuestra realidad en el momento de 
+76,3%
+81,8%
+89,3%
+60,5%
+80,3%
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+80%
+90%
+100%
+Gestión
+Admin.
+Gestión
+Econ.-Financ.
+Intervención    Entorno
+Tecnológico
+Total
+puntuaciones
+
+RESUMEN. Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-Roja de 
+Túria. Ejercicios 2017-2019 
+publicar este informe ha puesto de manifiesto la total dependencia que 
+tiene  la  gestión  pública  de  los  sistemas  de  información  y  las 
+comunicaciones  (SIC).  Esto  hace  que  administraciones  públicas  y 
+ayuntamientos sean más vulnerables frente a los ciberataques y que, por 
+tanto,  mantener  un  sólido  sistema  de  protección  frente  a  ellos  y  una 
+adecuada ciberhigiene sea más necesario que nunca. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+NOTA 
+Este resumen pretende ayudar a la comprensión de los resultados de nuestro Informe y facilitar la 
+labor  a  los  lectores  y  a  los  medios  de  comunicación.  Recomendamos  su  lectura  para  conocer  el 
+verdadero alcance del trabajo realizado. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+2 
+ÍNDICE Página 
+1. Introducción  3 
+2. Responsabilidades de los órganos municipales en relación  
+con el control interno 3 
+3. Responsabilidad de la Sindicatura de Comptes  3 
+4. Fundamento de la opinión con salvedades 3 
+5. Opinión con salvedades sobre el control interno 8 
+6. Valoración global 8 
+7. Recomendaciones 10 
+APÉNDICE 1.    Marco normativo 11 
+APÉNDICE 2.    Objetivos, alcance y metodología 14 
+APÉNDICE 3.    Información general 18 
+APÉNDICE 4.    Observaciones sobre el Área de Gestión  
+Administrativa 22 
+APÉNDICE 5.    Observaciones sobre el Área de  
+Gestión Económico-Financiera 29 
+APÉNDICE 6.    Observaciones sobre el Área de Intervención 36 
+APÉNDICE 7.    Observaciones sobre el Área del Entorno Tecnológico 39 
+TRÁMITE DE ALEGACIONES 42 
+APROBACIÓN DEL INFORME 43 
+ANEXO I    Alegaciones presentadas 
+ANEXO II    Informe sobre las alegaciones presentadas 
+ 
+ 
+NOTA SOBRE LA UNIDAD MONETARIA 
+Todos los datos económicos de este informe vienen expresados en euros. Se ha efectuado un 
+redondeo para no mostrar los céntimos. Los datos representan siempre el redondeo de cada valor 
+exacto y no la suma de datos redondeados.
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+3 
+1. INTRODUCCIÓN 
+En  virtud  de  lo  dispuesto  en  el  artículo  8.3  de  la Ley  de  la  Generalitat 
+Valenciana 6/1985, de 11 de mayo, de Sindicatura de Comptes, modificada por 
+la Ley 16/2017, de 10 de noviembre, de la Generalitat, y según lo previsto en 
+los  programas  anuales  de  actuación  de  2018  a  2020  (PAA2018,  PAA2019  y 
+PAA2020), se ha efectuado una fiscalización consistente en una revisión del 
+control interno de los ayuntamientos de nuestra Comunitat con una población 
+comprendida entre 20.000 y 25.000 habitantes, entre los que se encuentra el 
+Ayuntamiento de Riba-roja de Túria, que ha comprendido los ejercicios 2017 
+y 2018 y, en determinados aspectos, el primer trimestre de 2019. 
+2. RESPONSABILIDADES  DE LOS  ÓRGANOS MUNICIPALES EN RELACIÓN  CON 
+EL CONTROL INTERNO 
+Los  órganos  municipales  (el  alcalde,  la  Junta  de  Gobierno,  el  Pleno  de  la 
+entidad,  la  Secretaría  General,  la  Intervención  y  la  Tesorería)  son  los 
+responsables de que exista un adecuado control interno. De acuerdo con sus 
+competencias deben garantizar que el funcionamiento de la entidad resulte 
+conforme  con  las  normas  aplicables,  la  fiabilidad  de  la  información  y  una 
+adecuada protección de los activos.  
+3. RESPONSABILIDAD DE LA SINDICATURA DE COMPTES 
+La  responsabilidad  de  la  Sindicatura  de  Comptes  es expresar  una  opinión 
+sobre el control interno de la entidad en la fiscalización realizada y, en su caso, 
+formular conclusiones sobre las operaciones y procedimientos revisados. Para 
+ello,  hemos  llevado  a  cabo  el  trabajo  de  conformidad  con  los Principios 
+fundamentales de fiscalización de las instituciones públicas de control externo y con 
+las normas técnicas de fiscalización aprobadas por el Consell de la Sindicatura 
+recogidas en el Manual de fiscalización de la Sindicatura de Comptes. Dichos 
+principios exigen que cumplamos los requerimientos de ética, así como que 
+planifiquemos y ejecutemos la auditoría con el fin de obtener una seguridad 
+razonable sobre el control interno.  
+Una auditoría requiere la aplicación de procedimientos para obtener evidencia 
+de  auditoría.  Los  procedimientos  seleccionados  dependen  del  juicio  del 
+auditor, incluida la valoración de los riesgos de incorrección material en las 
+cuentas anuales, debida a fraude o error.  
+4. FUNDAMENTO DE LA OPINIÓN CON SALVEDADES  
+Como  resultado  de  la  revisión  efectuada  se  ha  observado  una  serie  de 
+deficiencias significativas de control interno, que representan un riesgo para 
+la  fiabilidad  de  la  información  económico-financiera,  la  protección  de  los 
+activos,  el  cumplimiento  de  la  normativa  aplicable y  el  adecuado 
+funcionamiento de la entidad. Estas incidencias se refieren a: 
+ 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+4 
+Información económico-financiera y su fiabilidad 
+1) En general se ajusta a los principios contables que le son de aplicación, 
+excepto  que  no  se  contabilizan  las  amortizaciones  del  inmovilizado. 
+También hay que destacar que las cuentas restringidas de recaudación 
+no se controlan.  
+2) Cuando  se  planifican  las  inversiones,  no  se  estima el  coste  de  su 
+mantenimiento ni su financiación posterior.  
+3) No existe un plan de inversiones
+1
+.  
+4) En  los  años  2016  y  2017  el  Pleno  aprobó  doce  expedientes  de 
+reconocimiento  extrajudicial  de  créditos,  por  un  importe  de  1.592.188 
+euros.  
+5) No se concilia el inventario con la contabilidad, como viene señalando la 
+Intervención en la Cuenta General.  
+Cumplimiento de la normativa aplicable 
+Personal 
+6) Los puestos de trabajo no se han clasificado de acuerdo con criterios de 
+valoración objetivos y cuantificables
+2
+.  
+Estabilidad presupuestaria, control del gasto y ciclo presupuestario  
+7) La entidad incumplió el objetivo de la regla del gasto en la liquidación del 
+presupuesto de 2017 y
+ en la aprobación del presupuesto de 2018
+3
+.  
+8) La entidad ha presentado a la Sindicatura en el plazo preceptivo la cuenta 
+general  correspondiente  a  los  ejercicios  2015  a  2017
+4
+,  debidamente 
+aprobada por el Pleno del Ayuntamiento, si bien no cumple con el plazo 
+de aprobación definitiva de los presupuestos de dichos ejercicios. En los 
+trámites previos, se excede el plazo para la elaboración de la liquidación 
+del ejercicio 2015 y de la formación de la cuenta general de dicho período, 
+siendo la demora inferior a siete días.  
+ 
+                                                           
+1
+    Artículo 166.1 del texto refundido de la Ley Reguladora de las Haciendas Locales (en adelante TRLRHL). 
+2
+    Artículo 35 de la Ley 10/2010, de 9 de julio, de la Generalitat, de Ordenación y Gestión de la Función 
+Pública Valenciana (en adelante LFPV). 
+3
+    Capítulo III de la Ley Orgánica 2/2012, de 27 de abril, de Estabilidad Presupuestaria y Sostenibilidad 
+Financiera (en adelante LOEPSF). 
+4
+    Artículo 8 de la Ley 16/2017, de 10 de noviembre, de la Generalitat Valenciana. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+5 
+Subvenciones 
+9) La  entidad  incumple  la  obligación  de  suministrar  la  información  de 
+concesión de ayudas a la Base de Datos Nacional de Subvenciones
+5
+. 
+Contratación 
+10) No ha quedado acreditado por la Secretaría que todos los expedientes de 
+contratación  contengan  el  informe  de  propuesta  de  necesidades,  el 
+pliego  de  prescripciones  técnicas  y  de  cláusulas  administrativas, 
+certificado de existencia de crédito, fiscalización del gasto, publicidad de 
+la convocatoria, si procede, y acto formal de recepción
+6
+.  
+11) No ha podido ser certificado por la Secretaría que los contratos de obras 
+no  menores  contengan  siempre  la  justificación  de  la  elaboración  del 
+proyecto  y  su  supervisión  cuando  sea  preceptivo
+7
+,  la  aprobación  del 
+proyecto, el acta de replanteo y de comprobación de este, el acto formal 
+de recepción, el certificado final y el informe del director de obras del 
+estado de las obras según el artículo 235 del TRLCSP. 
+12) No consta acreditación por parte de la Secretaría de que los expedientes 
+de contratación de los modificados incluyan su justificación
+8
+, certificado 
+de  existencia  de  crédito
+9
+,  acuerdo  de  aprobación  y  formalización
+10
+  y 
+contabilización del reajuste de garantía
+11
+. 
+13) En  algún  expediente  se  ha  efectuado  fraccionamiento  del  objeto  del 
+contrato (con la excepción de los lotes)
+12
+. Se trata de contratos menores 
+concatenados y algunos gastos sin contrato señalados en los informes de 
+fiscalización a posteriori de la Intervención. 
+Protección de los bienes de la entidad 
+14) La entidad dispone de un inventario aprobado el 4 de junio de 2015
+13
+ que 
+no se encuentra actualizado, dado que el Pleno no ha verificado ni las 
+rectificaciones anuales ni la comprobación en la última renovación de la 
+                                                           
+5
+    Artículo 20 de la Ley 38/2003, de 17 de noviembre, General de Subvenciones (en adelante LGS). 
+6
+    Artículos 22 y 109 del texto refundido de la Ley de Contratos del Sector Público, aprobado por el Real 
+Decreto Legislativo 3/2011, de 14 de noviembre (en adelante TRLCSP). 
+7
+    Artículo 121 del TRLCSP. 
+8
+    Artículo 107.1 del TRLCSP.  
+9
+    Artículo 109 del TRLCSP. 
+10
+    Artículo 156 del TRLCSP. 
+11
+    Artículo 99.3 del TRLCSP. 
+12
+    Artículo 86 del TRLCSP. 
+13
+    Artículo 17 del Reglamento de Bienes (en adelante RB). 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+6 
+corporación
+14
+.  Solamente  consta  un  informe  de  rectificación  parcial 
+elaborado por el departamento de urbanismo, con las altas y bajas de 
+parcelas e inmuebles entre los ejercicios 2016 y 2019, que no se aprueba 
+por la corporación. A fecha de nuestra revisión, en diciembre de 2019, no 
+ha  sido  localizado  para  su  revisión  física  el  cuadro  nº  1  del  epígrafe 
+“Muebles  de  carácter  artístico”,  valorado  en  1.000 euros.  Estos 
+incumplimientos suponen, además, una debilidad muy importante del 
+control interno por la falta de protección de bienes. 
+15) La información facilitada indica que existen subvenciones concedidas en 
+2018 pendientes de justificar, habiendo vencido el plazo para ello, por 
+importe de 3.960 euros del área de servicios sociales, habiéndose exigido 
+su reintegro
+15
+. 
+16) Existen  cuatro  cuentas  bancarias  restringidas  de  recaudación  no 
+controladas, tres de ellas con saldo cero y otra con un saldo de 2.000 
+euros.  
+17) Aunque  la  entidad  indica  que  no  existen  valores  prescritos,  en  la 
+liquidación  del  presupuesto  figuran  7.232.182  euros  de  derechos 
+reconocidos  pendientes  de  cobro  de  2012  y  anteriores  que  dada  su 
+antigüedad  podrían  estar  afectados  por  prescripción,  que  exigiría  la 
+tramitación de expedientes para determinar posibles responsabilidades.  
+Intervención 
+Organización y regulación 
+18) El control financiero que se ejerce a través del control permanente y/o la 
+auditoría pública no incluye el control de eficacia según el artículo 29.1 
+del RCI. 
+Control financiero 
+19) En  2018  no  se  realizó  la  fiscalización  de  la  justificación  de  las 
+subvenciones otorgadas por concurrencia competitiva. El plan de control 
+financiero de 2019 prevé su fiscalización en los próximos ejercicios. Por 
+tanto, no siempre se ha comprobado: 
+- La presentación en plazo de la cuenta justificativa. 
+- La acreditación de los gastos mediante facturas o documentos de 
+valor probatorio. 
+- Que el importe de la subvención no supere el coste de la actividad 
+subvencionada. 
+                                                           
+14
+    Artículo 33 del RB. 
+15
+    Artículo 37 de la LGS. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+7 
+- Que  no  se  han  financiado  gastos  que  no  puedan  ser 
+subvencionados. 
+- Si existen importes pendientes de justificar en los que ha finalizado 
+el plazo. 
+- La realización de la actividad subvencionada. 
+Otros aspectos 
+20) Durante el transcurso del ejercicio de la función de control, el órgano 
+interventor no ha tenido la total colaboración por parte del personal de 
+la  entidad  para  poder  efectuar  el  ejercicio  de  sus funciones 
+correctamente
+16
+.  No  han  sido  facilitados  los  expedientes  de  personal 
+necesarios para efectuar el control financiero. 
+Entorno tecnológico 
+Marco organizativo 
+21) La  entidad  no  dispone  de  documentación  que  acredite  el  nivel  de 
+adecuación al Esquema Nacional de Seguridad, Real Decreto 3/2010, de 8 
+de enero. 
+22) La entidad no se ajusta a los criterios y recomendaciones establecidos en 
+el Real Decreto 4/2010, de 8 de enero, que regula el Esquema Nacional de 
+Interoperabilidad,  y/o  no  dispone  del  documento  sobre  adecuación  al 
+que se refiere su disposición transitoria primera. 
+Operaciones de los sistemas de información 
+23) No se dispone de un procedimiento y/o herramienta que asegure que las 
+vulnerabilidades de los sistemas son detectadas en tiempo oportuno y 
+son gestionadas activamente para su priorización y resolución. 
+24) No  existe  un  procedimiento  y/o  herramienta  que  asegure  que  el 
+despliegue de parches de seguridad liberados por el fabricante se realiza 
+adecuadamente y en un tiempo razonable. 
+25) No  se  dispone  de  un  procedimiento  de  fortificación o  bastionado 
+(configuración segura) de los sistemas, previo a su entrada en operación, 
+que considere los distintos tipos de dispositivos existentes (servidores, 
+equipos de sobremesa, portátiles, móviles y tabletas) y que establezca el 
+uso de imágenes o plantillas para aplicar la configuración de seguridad 
+de  todos  los  sistemas,  de  acuerdo  con  estándares  aprobados  por  la 
+organización. 
+                                                           
+16
+    Artículo 6 del RCI. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+8 
+26) No  se  cuenta  con  una  herramienta  o  procedimiento  para  realizar 
+comprobaciones periódicas que permitan verificar que la configuración 
+actual  de  dispositivos  existentes  (servidores,  equipos  de  sobremesa, 
+portátiles, móviles, tabletas, equipos de seguridad y equipos de red) no 
+ha sido modificada de forma no autorizada respecto de la configuración 
+de seguridad original. 
+27) No  se  ha  acreditado  el  procedimiento  o  herramienta que  permita  la 
+consulta  de logs  de  auditoría  para  identificar  eventos  o  patrones 
+anormales y que permita la monitorización e identificación en tiempo 
+real de sucesos. 
+5. OPINIÓN CON SALVEDADES SOBRE EL CONTROL INTERNO 
+En nuestra opinión, excepto por los incumplimientos descritos en el apartado 
+“Fundamento de la opinión con salvedades”, el control interno de la entidad 
+resulta adecuado para proporcionar un grado de confianza razonable en la 
+integridad de la información y su nivel de transparencia, el cumplimiento de 
+la normativa aplicable y la protección de los activos.  
+6. VALORACIÓN GLOBAL 
+El  Ayuntamiento  ha  obtenido  40.129  puntos,  que  suponen  un  80,3%  de  la 
+puntuación  máxima  posible,  según  se  muestra  en  el  cuadro  siguiente  por 
+áreas y subáreas: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+9 
+Cuadro 1. Detalle  de  la  distribución  de  la  puntuación  por  tipo  de 
+incidencia y por áreas y subáreas 
+ 
+En los apéndices 4, 5, 6 y 7 se recogen, respectivamente, las observaciones 
+sobre  las  áreas  de  Gestión  Administrativa,  Gestión Económico-Financiera, 
+Intervención y Entorno Tecnológico, que no han sido incluidas en el apartado 
+4. En el gráfico siguiente se resumen los porcentajes de logro en cada área: 
+ 
+ 
+ 
+ÁREAS  
+Puntos obtenidos 
+Total 
+(c) = (a) + (b) 
+Puntuación 
+máxima  
+(d) 
+% (c/d) 
+Básicas 
+(a) 
+No básicas 
+(b) 
+1.  ÁREA DE GESTIÓN ADMINISTRATIVA   
+  
+ 
+    
+Aspectos organizativos de la entidad local 525 445 970 1.050 92,4% 
+Entes dependientes o en los que participe la entidad local 1.050 450 1.500 1.500 100,0% 
+Personal al servicio de la corporación local 1.375 1.200 2.575 3.300 78,0% 
+Secretaría, registro y actas 525 420 945 1.050 90,0% 
+Inventario de bienes y patrimonio 615 980 1.595 2.550 62,5% 
+Subvenciones 840 1.055 1.895 2.250 84,2% 
+Contratación y compras 1.060 910 1.970 3.300 59,7% 
+  
+TOTAL ÁREA 1 5.990 5.460 11.450 15.000 76,3% 
+2.  ÁREA DE GESTIÓN ECONÓMICO-FINANCIERA  
+     
+Presupuestos 1.540 1.130 2.670 3.750 71,2% 
+Gastos de inversión 45 120 165 450 36,7% 
+Ingresos tributarios, precios públicos y multas 525 435 960 1.050 91,4% 
+Ingresos por transferencias 150 150 300 300 100,0% 
+Recaudación 565 405 970 1.350 71,9% 
+Tesorería 1.900 770 2.670 3.000 89,0% 
+Contabilidad 1.000 1.430 2.430 3.000 81,0% 
+Endeudamiento 1.050 1.050 2.100 2.100 100,0% 
+ 
+TOTAL ÁREA 2 6.775 5.490 12.265 15.000 81,8% 
+3.  ÁREA DE INTERVENCIÓN       
+Organización y regulación 750 430 1.180 1.280 92,2% 
+Función interventora 1.040 840 1.880 1.880 100,0% 
+Control financiero 5.780 4.070 9.850 11.210 87,9% 
+Otros aspectos 300 180 480 630 76,2% 
+ 
+TOTAL ÁREA 3 7.870 5.520 13.390 15.000 89,3% 
+4.  ÁREA DEL ENTORNO TECNOLÓGICO           
+Marco organizativo 158 52 210 782 26,9% 
+Gestión de cambios en aplicaciones y sistemas 0 203 203 434 46,8% 
+Operaciones de los sistemas de información 660 369 1.029 2.056 50,0% 
+Controles de acceso a datos y programas 237 726 963 963 100,0% 
+Continuidad del servicio 471 148 619 765 80,9% 
+  TOTAL ÁREA 4 1.526 1.498 3.024 5.000 60,5% 
+  TOTAL ÁREAS 22.161 17.968 40.129 50.000 80,3% 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+10 
+Gráfico 1.   Porcentaje de la puntuación por áreas sobre el total posible 
+ 
+7. RECOMENDACIONES 
+Como  resultado  del  trabajo  de  fiscalización  realizado  procede  efectuar  las 
+recomendaciones que se señalan a continuación: 
+1. Resulta de utilidad elaborar un organigrama actualizado de la entidad y 
+manuales de funciones de las distintas áreas.  
+2. Deben realizarse arqueos soportados con conciliaciones bancarias con 
+una periodicidad mínima de un trimestre. 
+3. El plan de inversiones debe ser realista, de acuerdo con la capacidad de 
+ejecución del Ayuntamiento. Además, es necesario estimar el coste y la 
+financiación del mantenimiento de las inversiones.  
+4. La Intervención no debe participar en la gestión económica de la entidad, 
+para que así exista una adecuada segregación de funciones. 
+5. El Ayuntamiento debe llevar a la práctica las medidas que se recogen en 
+el apéndice 7 de este informe, para mejorar la seguridad y la eficacia del 
+entorno tecnológico. 
+  
+76,3%
+81,8%
+89,3%
+60,5%
+80,3%
+0%
+10%
+20%
+30%
+40%
+50%
+60%
+70%
+80%
+90%
+100%
+Gestión
+Admin.
+Gestión Econ.-
+Financ.
+IntervenciónEntorno
+Tecnológico
+Total
+puntuaciones
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+11 
+APÉNDICE 1.    MARCO NORMATIVO 
+Para evaluar el control interno se ha tenido en cuenta, fundamentalmente, la 
+siguiente legislación: 
+Disposiciones generales 
+- Ley  7/1985,  de  2  de  abril,  Reguladora  de  las  Bases de  Régimen  Local 
+(LRBRL).  
+- Ley de la Generalitat Valenciana 6/1985, de 11 de mayo, de Sindicatura 
+de Comptes, modificada por la Ley 16/2017, de 10 de noviembre, de la 
+Generalitat. 
+- Real Decreto Legislativo 781/1986, de 18 de abril, por el que se aprueba el 
+texto  refundido  de  las  disposiciones  legales  vigentes  en  materia  de 
+régimen local.  
+- Ley  8/2010,  de  23  de  junio,  de  la  Generalitat,  de  Régimen  Local  de  la 
+Comunitat Valenciana (LRLCV). 
+- Ley 27/2013, de 27 de diciembre, de Racionalización y Sostenibilidad de 
+la Administración Local. 
+- Ley 2/2015, de 2 de abril, de Transparencia, Buen Gobierno y Participación 
+Ciudadana de la Comunitat Valenciana (Ley de Transparencia). 
+- Real Decreto 2568/1986, de 28 de noviembre, por el que se aprueba el 
+Reglamento de Organización, Funcionamiento y Régimen Jurídico de las 
+Entidades Locales (ROF). 
+Bienes de las entidades locales 
+- Real  Decreto  1372/1986,  de  13  de  junio,  por  el  que se  aprueba  el 
+Reglamento de Bienes de las Entidades Locales (RB). 
+Personal al servicio de las entidades locales 
+- Ley 53/1984, de 26 de diciembre, de Incompatibilidades del Personal al 
+Servicio de las Administraciones Públicas.  
+- Ley  7/2007,  de  12  de  abril,  del  Estatuto  Básico  del  Empleado  Público. 
+Actualmente texto refundido, aprobado por el Real Decreto Legislativo 
+5/2015, de 30 de octubre. 
+- Ley 10/2010, de 9 de julio, de la Generalitat, de Ordenación y Gestión de 
+la Función Pública Valenciana. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+12 
+- Real Decreto 1174/1987, de 18 de septiembre, sobre régimen jurídico de 
+los funcionarios de la Administración local con habilitación de carácter 
+nacional. 
+- Real Decreto  1732/1994,  de  29  de  julio,  sobre  provisión  de puestos  de 
+trabajo  reservados  a  funcionarios  de  la  Administración  local  con 
+habilitación de carácter nacional. 
+- Real Decreto 861/1986, de 25 de abril, por el que se establece el régimen 
+de las retribuciones de los funcionarios de la Administración local. 
+- Real Decreto 128/2018, de 16 de marzo, por el que se regula el régimen 
+jurídico de los funcionarios de la Administración local con habilitación 
+de carácter nacional. 
+Haciendas locales 
+- Real Decreto Legislativo 2/2004, de 5 de marzo, por el que se aprueba el 
+texto refundido de la Ley Reguladora de las Haciendas Locales (TRLRHL). 
+- Ley  Orgánica  2/2012,  de  27  de  abril,  de  Estabilidad  Presupuestaria  y 
+Sostenibilidad Financiera (LOEPSF). 
+- Real Decreto 500/1990, de 20 de abril, por el que se desarrolla el capítulo 
+primero del título sexto de la Ley 39/1988, de 28 de diciembre, Reguladora 
+de las Haciendas Locales, en materia de presupuestos. 
+- Real  Decreto  1463/2007,  de  2  de  noviembre,  por  el  que  se  aprueba  el 
+reglamento  de  desarrollo  de  la  Ley  18/2001,  de  12  de  diciembre,  de 
+Estabilidad Presupuestaria, en su aplicación a las entidades locales (REP). 
+- Real Decreto 424/2017, de 28 de abril, por el que se regula el régimen 
+jurídico del control interno en las entidades del sector público local (RCI). 
+- Orden  HAP/2105/2012,  de  1  de  octubre,  por  la  que  se  desarrollan  las 
+obligaciones de suministro de información previstas en la Ley Orgánica 
+2/2012,  de  27  de  abril,  de  Estabilidad  Presupuestaria  y  Sostenibilidad 
+Financiera.  
+- Orden  HAP/1781/2013,  de  20  de  septiembre,  por  la  que  se  aprueba  la 
+Instrucción del modelo normal de contabilidad local (ICAL). 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+13 
+Subvenciones 
+- Ley 38/2003, de 17 de noviembre, General de Subvenciones (LGS). 
+- Real Decreto 887/2006, de 21 de julio, por el que se aprueba el Reglamento 
+de la Ley 38/2003, de 17 de noviembre, General de Subvenciones.  
+Legislación tributaria y de recaudación 
+- Ley 58/2003, de 17 de diciembre, General Tributaria (LGT). 
+- Real Decreto 939/2005, de 29 de julio, por el que se aprueba el Reglamento 
+General de Recaudación. 
+Contratos del sector público 
+- Real  Decreto  Legislativo  3/2011,  de  14  de  noviembre,  por  el  que  se 
+aprueba  el  texto  refundido  de  la  Ley  de  Contratos  del  Sector  Público 
+(TRLCSP). 
+- Real  Decreto  1098/2001,  de  12  de  octubre,  por  el  que  se  aprueba  el 
+Reglamento  General  de  la  Ley  de  Contratos  de  las  Administraciones 
+Públicas (RGLCAP). 
+- Ley 3/2004, de 29 de diciembre, por la que se establecen medidas de lucha 
+contra la morosidad en las operaciones comerciales. 
+- Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+14 
+APÉNDICE 2.    OBJETIVOS, ALCANCE Y METODOLOGÍA 
+Objetivos  
+La  fiscalización  realizada  sobre  el  control  interno  ha  tenido  los  siguientes 
+objetivos generales de los contemplados en los artículos 9 y 10 de la Ley de la 
+Sindicatura de Comptes:  
+“-   Determinar si la información financiera se presenta adecuadamente de 
+acuerdo con los principios contables que le son de aplicación. 
+-    Determinar si se ha cumplido con la legalidad en la gestión de los fondos 
+públicos.” 
+Además, esta fiscalización ha tenido los siguientes objetivos específicos: 
+-    Comprobar la protección de los bienes de la entidad. 
+-    Verificar la fiabilidad e integridad de la información. 
+-    Comprobar el cumplimiento de la normativa aplicable. 
+-    Conocer  y  valorar  la  organización  administrativa y  su  grado  de 
+transparencia. 
+Alcance y procedimientos de la fiscalización 
+Este  trabajo  se  ha  realizado  a  partir  de  la  información  obtenida  de  unos 
+cuestionarios,  respondidos  y  firmados  por  los  distintos  responsables  del 
+Ayuntamiento.  
+Las áreas en las que se ha estructurado el trabajo son las siguientes: 
+1.   Área de Gestión Administrativa:  
+- Aspectos organizativos de la entidad local 
+- Entes dependientes o participados por la entidad local 
+- Personal al servicio de la corporación local 
+- Secretaría, registro y actas 
+- Inventario de bienes y patrimonio  
+- Subvenciones  
+- Contratación y compras 
+2.   Área de Gestión Económico-Financiera: 
+-    Presupuestos 
+-    Gastos de inversión  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+15 
+-    Ingresos tributarios, precios públicos y multas 
+-    Ingresos por transferencias 
+-    Recaudación 
+-    Tesorería 
+-    Contabilidad  
+-    Endeudamiento 
+3.   Área de Intervención:  
+-    Organización y regulación 
+-    Función interventora  
+-    Control financiero 
+-    Otros aspectos 
+4.   Área del Entorno Tecnológico:  
+- Marco organizativo 
+- Gestión de cambios en aplicaciones y sistemas 
+- Operaciones de los sistemas de información 
+- Controles de acceso a datos y programas 
+- Continuidad del servicio 
+Cada uno de los cuestionarios ha sido valorado en función de las respuestas 
+dadas por los responsables de las entidades locales y con unos criterios que 
+posibilitan la homogeneidad en la puntuación de las distintas áreas. En este 
+sentido, se debe interpretar que cuanto mayor sea la puntuación, mejor es el 
+control interno efectuado por el Ayuntamiento. Asimismo, debe tenerse en 
+cuenta que determinadas respuestas ponen de manifiesto incidencias que se 
+han considerado básicas porque afectan significativamente al control interno 
+o ponen de manifiesto áreas de riesgo. Por tanto, estas incidencias básicas se 
+han valorado de acuerdo con su relevancia y se recogen en el apartado 4 de 
+este informe, dedicado al fundamento de la opinión. 
+En general, los datos que figuran en este informe han sido facilitados por el 
+Ayuntamiento y no han sido objeto de verificación, salvo que se indique lo 
+contrario. 
+Todas  las  cuestiones  que  podrían  suponer  una  incidencia  básica  han  sido 
+comprobadas,  así  como  también  una  muestra  de  las  demás,  mediante  las 
+pruebas de auditoría consideradas pertinentes, de acuerdo con las normas 
+técnicas de fiscalización aprobadas por el Consell de la Sindicatura, recogidas 
+en el Manual de fiscalización de la Sindicatura de Comptes. 
+La evaluación se ha realizado sobre una puntuación máxima total de 50.000 
+puntos, distribuidos según se recoge en el cuadro siguiente, que refleja los 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+16 
+puntos asignados a cada área por tipo de incidencia y los porcentajes que 
+representan sobre el total de cada área. 
+Cuadro 2.   Detalle de la distribución de la puntuación por tipo de incidencia 
+y por áreas y subáreas 
+  
+ÁREAS Básicas 
+No 
+básicas  
+Puntuación 
+total 
+% sobre la 
+puntuación 
+del área 
+1. ÁREA DE GESTIÓN ADMINISTRATIVA   
+      
+Aspectos organizativos de la entidad local 525 525 1.050 7,0% 
+Entes dependientes o en los que participe la entidad 
+local 
+1.050 450 1.500 10,0% 
+Personal al servicio de la corporación local 1.650 1.650 3.300 22,0% 
+Secretaría, registro y actas 525 525 1.050 7,0% 
+Inventario de bienes y patrimonio 1.530 1.020 2.550 17,0% 
+Subvenciones 1.125 1.125 2.250 15,0% 
+Contratación y compras 2.310 990 3.300 22,0% 
+  TOTAL ÁREA 1 8.715  6.285  15.000  100,0% 
+2. ÁREA DE GESTIÓN ECONÓMICO-FINANCIERA   
+  
+  
+  
+Presupuestos 2.250 1.500 3.750 25,0% 
+Gastos de inversión 315 135 450 3,0% 
+Ingresos tributarios, precios públicos y multas 525 525 1.050 7,0% 
+Ingresos por transferencias 150 150 300 2,0% 
+Recaudación 945 405 1.350 9,0% 
+Tesorería 2.100 900 3.000 20,0% 
+Contabilidad 1.500 1.500 3.000 20,0% 
+Endeudamiento 1.050 1.050 2.100 14,0% 
+  
+TOTAL ÁREA 2 8.835 6.165 15.000 100,0% 
+3. ÁREA DE INTERVENCIÓN         
+Organización y regulación 850 430 1.280 8,5% 
+Función interventora 1.040 840 1.880 12,5% 
+Control financiero 6.660 4.550 11.210 74,8% 
+Otros aspectos 450 180 630 4,2% 
+  
+TOTAL ÁREA 3 9.000 6.000 15.000 100,0% 
+4. ÁREA DEL ENTORNO TECNOLÓGICO         
+Marco organizativo 404 378 782 15,6% 
+Gestión de cambios en aplicaciones y sistemas 0 434 434 8,7% 
+Operaciones en los sistemas de información 1.388 668 2.056 41,1% 
+Controles de acceso a datos y programas 237 726 963 19,3% 
+Continuidad del servicio 471 294 765 15,3% 
+TOTAL ÁREA 4 2.500 2.500 5.000 100,0% 
+TOTAL ÁREAS 29.050 20.950 50.000   
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+17 
+Gráfico 2. Distribución de la puntuación por áreas 
+ 
+Ámbito temporal 
+El  ámbito  temporal  de  la  fiscalización  se  ha  centrado  básicamente  en  los 
+ejercicios 2017 y 2018, si bien se ha extendido a otros ejercicios cuando así se 
+ha considerado conveniente. 
+En  particular,  el  Área  de  Intervención  incluye  básicamente  aspectos  del 
+ejercicio 2018 y del primer trimestre de 2019 para verificar la aplicación del 
+régimen jurídico del control interno regulado en el RCI. 
+  
+15.000
+15.000
+15.000
+5.000
+Área de Gestión Administrativa  30%
+Área de Gestión Económico-Financiera  30%
+Área de Intervención  30%
+Área del Entorno Tecnológico  10%
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+18 
+APÉNDICE 3.    INFORMACIÓN GENERAL 
+Descripción del Ayuntamiento 
+El municipio de Riba-roja de Túria está situado en la comarca del Camp de 
+Túria, en la provincia de Valencia. Su población es de 21.626 habitantes, según 
+la actualización del censo a 1 de enero de 2017.  
+El Pleno del Ayuntamiento está integrado por 21 concejales. 
+El número de miembros de la Junta de Gobierno y de tenientes de alcalde, así 
+como el de comisiones informativas, sin considerar la Comisión Especial de 
+Cuentas, en el ejercicio 2019, se muestra en el cuadro siguiente: 
+Cuadro 3. Datos sobre determinados órganos municipales 
+ 
+ 
+Miembros Junta de 
+Gobierno (*) 
+Tenientes de 
+alcalde 
+Comisiones 
+informativas 
+Número 5 4 4 
+(*) Incluyendo al presidente. 
+En el gráfico siguiente se muestra la evolución del total de funcionarios de 
+carrera e interinos al servicio de la corporación que figuraba en la nómina a 31 
+de diciembre de 2016, 2017 y 2018:  
+Gráfico 3. Evolución del número de funcionarios 
+ 
+ 
+8585
+102
+28
+24
+25
+0
+20
+40
+60
+80
+100
+120
+201620172018
+Funcionario de carreraFuncionario interino
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+19 
+En los datos que se reflejan en el gráfico anterior se aprecia como el total de 
+funcionarios de carrera ha experimentado entre 2016 y 2018 un incremento 
+del 20,0%, al pasar de 85 a 102. El número de funcionarios interinos en 2018 
+ascendió a 25, tres menos que en 2016. 
+Las personas en comisión de servicios a 31 de diciembre de 2016, 2017 y 2018 
+eran dos, cuatro y ocho, respectivamente. En el ejercicio 2018 se han realizado 
+11  provisiones  de  puestos  de  trabajo,  de  los  cuales  nueve  han  sido  por 
+comisión de servicios y dos por adscripción provisional. 
+No hay coordinadores generales ni directores generales o asimilados.  
+En el gráfico siguiente se muestra la evolución entre 2016 y 2018 del personal 
+laboral fijo y temporal. El personal laboral fijo se ha mantenido estable en 140 
+empleados y es destacable el aumento del 19,6% en el número de laborales 
+temporales entre 2016 y 2018.  
+Gráfico 4. Evolución del personal laboral 
+ 
+ 
+A continuación se muestra la evolución del personal eventual entre 2016 y 
+2018, que ha disminuido un 66,7%, al pasar de tres a una persona.  
+  
+140140140
+148
+194
+177
+0
+50
+100
+150
+200
+250
+201620172018
+Personal laboral fijoPersonal laboral temporal
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+20 
+Gráfico 5. Evolución del personal eventual  
+ 
+Información económica 
+El  cuadro  siguiente  muestra,  en  euros,  los  importes  más  significativos 
+correspondientes a la actividad económico-financiera de 2015, 2016 y 2017, 
+facilitados por el Ayuntamiento y cuya verificación no ha sido objeto de este 
+trabajo. 
+Cuadro 4. Datos sobre la ejecución presupuestaria 
+ 
+Concepto 2015 2016 2017 
+Presupuesto inicial ingresos 21.484.000 23.867.326 23.565.029 
+Presupuesto inicial gastos 21.484.000 23.593.745 23.561.076 
+Previsiones ingresos definitivas 33.964.466 34.137.948 38.813.887 
+Previsiones gastos definitivas 33.964.466 33.864.367 38.809.934 
+Derechos reconocidos netos 27.133.933 26.751.787 29.281.190 
+Obligaciones reconocidas netas 25.067.964 24.395.652 27.591.753 
+Resultado presupuestario ajustado 4.928.455 2.173.687 1.555.394 
+Remanente de tesorería para gastos generales 7.466.691 7.010.206 7.690.675 
+Remanente de tesorería total  19.899.356 21.674.790 23.122.376 
+A continuación se detalla, en euros, el estado de la deuda a 31 de diciembre de 
+2015, 2016 y 2017:  
+  
+3
+2
+1
+0
+1
+2
+3
+4
+201620172018
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+21 
+Cuadro 5. Estado de la deuda 
+Estado de la deuda 31/12/2015 31/12/2016 31/12/2017 
+A corto plazo con 
+entidades de crédito 
+0 0 0 
+A largo plazo con 
+entidades de crédito 
+0 0 0 
+Otras deudas 193.832 0 0 
+Total deuda 193.832 0 0 
+En el cuadro siguiente se muestra, en euros, el ahorro neto y la capacidad o 
+necesidad de financiación de 2015, 2016 y 2017:  
+Cuadro 6. Ahorro neto y capacidad o necesidad de financiación  
+ 
+Concepto 31/12/2015 31/12/2016 31/12/2017 
+Ahorro neto 6.067.844 5.103.196 3.858.960 
+Capacidad (+) o necesidad (-) de financiación 4.639.655 2.573.470 2.234.528 
+En los datos que se reflejan en los cuadros anteriores se observa que entre 
+2015  y  2017  se  ha  reducido  completamente  la  deuda  existente  de  193.832 
+euros,  el  ahorro  neto  ha  disminuido  en  2.208.884  euros  (un  36,4%)  y  la 
+capacidad de financiación, en 2.405.127 euros (un 51,8%). 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+22 
+APÉNDICE 4.    OBSERVACIONES SOBRE EL ÁREA DE GESTIÓN ADMINISTRATIVA 
+Aspectos organizativos de la entidad local 
+La valoración de esta subárea ha sido de 970 puntos, lo que representa un 
+92,4% de la puntuación máxima posible. 
+El Ayuntamiento cuenta con un reglamento orgánico aprobado en 2011. No 
+dispone de un organigrama actualizado y aprobado.  
+Tras las últimas elecciones municipales de 2019, las asignaciones a los grupos 
+municipales aprobadas figuran en el siguiente cuadro: 
+Cuadro 7. Asignaciones mensuales a los grupos municipales (en euros) 
+Grupo 
+municipal 
+Componente 
+fijo mensual 
+Componente 
+variable nº 
+concejales 
+Total 
+mensual 
+PSOE 
+47 96 1.106 
+PP 
+47 96 432 
+Ciudadanos 
+47 96 239 
+EU 
+47 96 143 
+Compromís 
+47 96 143 
+Riba-roja Pot 
+47 96 143 
+Vox 
+47 96 143 
+El número de concejales y el importe total de sus retribuciones por asistencias 
+del ejercicio 2017 se muestra en el siguiente cuadro: 
+Cuadro 8. Retribuciones por asistencias (en euros) 
+ 
+Pleno 
+Junta de 
+Gobierno 
+Otros 
+Nº de concejales 14 2 13 
+Importe total 40.664 8.798 43.306 
+En la página web de la entidad no figuran los datos sobre:  
+-    Funciones de los órganos de gobierno  
+-    Unidades administrativas 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+23 
+Entes dependientes o participados por la entidad local 
+La valoración de esta subárea ha sido de 1.500 puntos, lo que representa el 
+100,0% de la puntuación máxima posible. 
+Según la información obtenida del Ayuntamiento, los entes dependientes de 
+la entidad y participados por esta son los que se indican en el cuadro siguiente:  
+Cuadro 9. Número de entes dependientes y participados 
+Tipo de ente 
+Nº según porcentaje de participación 
+100% 100% > X > 50% X ≤ 50% 
+Sin 
+determinar 
+Organismos autónomos     
+Sociedades mercantiles     
+Entidades públicas empresariales      
+Fundaciones     
+Consorcios adscritos     
+Consorcios no adscritos     
+Mancomunidades   1  
+Otros   (*)  
+(*)  Desde mayo de 2019 es asumida la presidencia de la Comunidad de Usuarios de Vertidos Camp de Túria II, 
+participada  en  un  42,5%  por  el  Ayuntamiento.  Dicha comunidad  ha  sido  considerada  como  administración 
+pública adscrita al Ayuntamiento de Riba-roja en junio de 2019. 
+Personal al servicio de la corporación local 
+La valoración de esta subárea ha sido de 2.575 puntos, que equivale al 78,0% 
+de la puntuación máxima posible. 
+De la información facilitada por el Ayuntamiento destaca lo siguiente: 
+-    En  la  clasificación  de  los  puestos  de  trabajo  y  en  la  RPT  no  consta 
+información obligatoria sobre la adscripción orgánica y los méritos
+17
+.  
+-    Las provisiones de puestos de trabajo y los cambios de departamento no 
+se realizan mediante convocatoria pública, por lo que no se cumplen los 
+artículos 78 y siguientes del EBEP. El proceso de mejora de empleo del 
+personal y la forma de acceso de los interinos no están regulados por el 
+Ayuntamiento. 
+Con el fin de mejorar la organización del Ayuntamiento se recomienda: 
+-    Fijar unas horas mínimas anuales de formación.  
+                                                           
+17
+    Artículo 35.3 de la LFPV. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+24 
+-    Incorporar  en  los  expedientes  de  personal  el  reconocimiento  de 
+compatibilidades.  
+-    Incluir  en  la  web  de  la  entidad  las  resoluciones de  autorización  o 
+reconocimiento  de  compatibilidad  que  afecten  a  sus empleados.  Tras 
+nuestra revisión, la entidad ha publicado esta información en su portal 
+de transparencia. 
+Secretaría, registro y actas 
+La valoración de esta subárea ha sido de 945 puntos, lo que representa un 
+90,0% de la puntuación máxima posible. 
+Según  la  información  facilitada  en  el  cuestionario,  el  departamento  no 
+dispone  de  un  organigrama  actualizado  y  las  funciones  de  secretaría  las 
+desempeñan  dos  funcionarios  con  habilitación  nacional  que  ocuparon  sus 
+puestos por concurso y comisión de servicios en 2016 y 2019, respectivamente.  
+No existen registros auxiliares dependientes del registro general.  
+El registro electrónico general no cuenta con un sistema que asegure que la 
+documentación  llegue  a  su  destinatario,  ya  que  en  el  Ayuntamiento  es  el 
+funcionario  del  registro  quien  determina  el  destino  de  los  escritos  y  de  la 
+documentación presentada, sin que conste su supervisión. 
+Por otra parte, se recomienda llevar un registro sobre los poderes otorgados.  
+No existe delegación del alcalde para dictar resoluciones a favor de tenientes 
+de alcalde y/o para órganos directivos. 
+La  documentación  de  los  asuntos  incluidos  en  el  orden  del  día  está  a 
+disposición de los miembros de la corporación en la plataforma integrada de 
+gestión. En 2017 se realizaron un total de 46 peticiones al presidente de la 
+entidad, todas ellas atendidas y resueltas. 
+El siguiente cuadro recoge en euros los gastos en defensa y asesoría jurídica, 
+aunque solo sea en alguna área: 
+Cuadro 10.   Gastos en defensa y asesoría jurídica 
+ 
+ 
+Defensa Asesoría 
+Importe anual 
+en euros 
+Abogados internos 1 
+ 
+35.960 
+Abogados externos 1 1 10.150 
+En la web de la entidad no figura la siguiente información: 
+-    Reglamentos 
+-    Información de las comisiones informativas 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+25 
+-    Desglose de las subvenciones concedidas en el último ejercicio 
+Inventario de bienes y patrimonio 
+La valoración de esta subárea ha sido de 1.595 puntos, lo que representa un  
+62,5% de la puntuación máxima posible. 
+La  unidad  de  patrimonio  no  dispone  de  personal  propio,  trabajan  tres 
+personas asignadas a tres negociados distintos.  
+A continuación se recoge un cuadro con la información que el Ayuntamiento 
+ha  aportado  en  relación  con  el  número  y  valor  en  euros  de  determinados 
+bienes incluidos en su inventario: 
+Cuadro 11.   Bienes inmuebles, muebles históricos y vehículos 
+ 
+ 
+Número Importe 
+Bienes inmuebles 515 232.986.934 
+Muebles de carácter histórico, artístico o de 
+considerable valor económico 
+11 14.000 
+Vehículos 31 134.400 
+Por último, se recomienda elaborar unas instrucciones escritas para el uso de 
+los vehículos. 
+Subvenciones 
+La valoración de esta subárea ha sido de 1.895 puntos, lo que representa un 
+84,2% de la puntuación máxima posible. 
+La gestión de las subvenciones la realizan varias unidades administrativas.  
+Según  la  información  facilitada,  el  importe  total  de  las  subvenciones 
+concedidas en 2018 asciende a 1.620.160 euros, de las que 129.200 euros se han 
+concedido directamente y el resto en régimen de concurrencia competitiva.  
+En el cuadro siguiente se muestra el importe en euros de las subvenciones 
+concedidas directamente en los distintos tipos establecidos en la LGS: 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+26 
+Cuadro 12.   Subvenciones de concesión directa 
+ 
+Tipo de concesión directa Importe 
+Subvenciones previstas nominativamente en los 
+presupuestos 
+127.700 
+Subvenciones impuestas por una norma de rango legal  
+Subvenciones en las que concurran razones de interés 
+público, social o económico que dificulten la 
+convocatoria 
+1.500 
+Total 129.200 
+La Intervención ha elaborado un plan estratégico de subvenciones que, sin 
+embargo, no se ha completado por las unidades gestoras y no se ha aprobado 
+por la entidad
+18
+. 
+Contratación y compras 
+La valoración de esta subárea ha sido de 1.970 puntos, que equivale al 59,7% 
+de la puntuación máxima posible. 
+Según la información facilitada, dos funcionarios trabajan en la unidad de 
+contratación, asignados a un negociado. 
+En  el  cuadro  siguiente  se  muestra,  en  euros,  el  importe  formalizado  del 
+modificado, en su caso, y el número de expedientes de los distintos tipos de 
+contratos formalizados en 2017, con la excepción de los contratos menores y 
+de los que comporten ingresos para la entidad: 
+  
+                                                           
+18
+    Artículo 8 de la LGS. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+27 
+Cuadro 13.   Contratos según tipología 
+ 
+Tipo de 
+contratos 
+Procedimientos de 
+adjudicación 
+Importe 
+formalizado 
+Importe 
+modificado 
+Nº de 
+contratos 
+Obras 
+Abierto       
+Restringido       
+Negociado con publicidad       
+Negociado sin publicidad 390.602   5 
+Otros       
+  Subtotal 390.602   5 
+Conc. obras 
+públicas 
+Abierto       
+Restringido       
+Negociado con publicidad       
+Negociado sin publicidad       
+Otros       
+  Subtotal       
+Suministros 
+Abierto 107.437   2 
+Restringido       
+Negociado con publicidad       
+Negociado sin publicidad       
+Otros       
+  Subtotal 107.437   2 
+Servicios 
+Abierto 1.394.567   9 
+Restringido       
+Negociado con publicidad       
+Negociado sin publicidad 209.878   8 
+Otros       
+  Subtotal 1.604.445   17 
+Otros   5.242.853   4 
+Total 7.345.339  28 
+ 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+28 
+Según  la  entidad,  se  formalizó  un  contrato  que  supone  ingresos  por  un 
+importe de 31.200 euros (15.600 anuales, durante dos años, prorrogables dos 
+años más). 
+En 2017 se formalizaron dos contratos sujetos a regulación armonizada, por 
+un importe total de 1.047.010 euros.  
+Los expedientes de contratación se llevan en soporte papel y digitalmente, y 
+contienen  un  índice  y  la  correcta  ordenación  cronológica  de  los 
+correspondientes trámites. 
+El perfil de contratante que figura en la web de la entidad, está integrado en la 
+Plataforma  de  Contratación  del  Sector  Público.  Cabe  matizar  que  el 
+Ayuntamiento tiene contratada con una empresa privada la tramitación de los 
+contratos y la presentación de ofertas.  
+De  acuerdo  con  la  información  obtenida  se  recomienda  realizar  recuentos 
+físicos del material del almacén, al menos una vez al año, por personal distinto 
+al  del  almacén,  y  establecer  una  segregación  de  funciones  respecto  a  la 
+recepción y custodia de materiales.
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+29 
+APÉNDICE 5.    OBSERVACIONES  SOBRE  EL  ÁREA  DE  GESTIÓN ECONÓMICO-
+FINANCIERA 
+Presupuestos 
+La valoración de esta subárea ha sido de 2.670 puntos, el 71,2% del total de 
+puntos posibles. 
+En la unidad de presupuestos, que depende de la Intervención, trabajan siete 
+funcionarios, asignados a una unidad administrativa. 
+El  cuadro  siguiente  muestra  las  fechas  en  que  se  realizaron  los  diferentes 
+trámites  de  elaboración  del  presupuesto  del  ejercicio  2017,  poniéndose  de 
+manifiesto el cumplimiento o no de los plazos establecidos en la legislación 
+vigente: 
+Cuadro 14.   Cumplimiento del plazo de los trámites del presupuesto 
+ 
+Trámite Fecha 
+Cumplimiento 
+del plazo 
+Remisión del presupuesto general a la Intervención 
+ 
+ 
+Informe de la Intervención sobre el presupuesto general 
+22/03/2017 
+ 
+Remisión del presupuesto general al Pleno 
+ 
+ 
+Aprobación inicial  
+31/03/2017 
+ 
+Aprobación definitiva 22/05/2017 
+ 
+Entrada en vigor: inserción en el BOP  01/06/2017 
+ 
+Remisión a la Administración del Estado  27/07/2017 
+ 
+Remisión a la Administración de la Generalitat  
+ 
+De la información obtenida destaca: 
+-    Se presentaron dos reclamaciones sobre los presupuestos y se estimó 
+una. No se han interpuesto recursos contencioso-administrativos.  
+-    El  remanente  positivo  de  tesorería para gastos  generales  del  ejercicio 
+2016 y 2017 se ha destinado a financiar inversiones. 
+El importe de las obligaciones pendientes de aplicar a presupuesto a 31 de 
+diciembre de 2017 asciende a 794.119 euros. 
+En el cuadro siguiente se muestra el cumplimiento o no de los plazos del ciclo 
+presupuestario durante los ejercicios 2015, 2016 y 2017: 
+ 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+30 
+Cuadro 15.   Ciclo presupuestario 
+  
+Ejercicios 
+ 
+2015 2016 2017 
+Aprobación definitiva del presupuesto por el Pleno 
+   
+Elaboración de la liquidación del presupuesto 
+   
+Formación de la Cuenta General 
+   
+Presentación al Pleno de la Cuenta General 
+   
+Presentación a la Sindicatura de la Cuenta General 
+   
+A  continuación  se  recoge  la  información  sobre  los  expedientes  de  las 
+modificaciones de crédito aprobadas: 
+Cuadro 16.   Modificaciones de crédito 
+ 
+Tipo de modificación Importe Nº expedientes 
+Créditos extraordinarios / suplementos de crédito 2.573.000 1 
+Ampliación de créditos 47.250 34 
+Transferencias de créditos 5.223.554 51 
+Generación de créditos 6.902.167 27 
+Incorporación de remanentes 5.726.441 3 
+Bajas por anulación 0 0 
+De la información facilitada en relación con los expedientes de modificaciones 
+de crédito no se han puesto de manifiesto consideraciones adicionales. 
+Con  el  fin  de  mejorar  la  gestión  en  esta  área  se  recomienda  confeccionar 
+circulares normalizadas para recoger la información necesaria de las unidades 
+gestoras para elaborar el presupuesto.  
+Gastos de inversión  
+La valoración de esta subárea ha sido de 165 puntos, lo que representa tan solo 
+el 36,7% de la puntuación máxima posible, debido a las incidencias básicas 
+que se comentan en el apartado 4 de este informe.  
+En la gestión de las inversiones participan 21 unidades administrativas y 41 
+funcionarios.  
+De la información facilitada destaca que no se adoptan medidas si se producen 
+desviaciones en la ejecución de las inversiones. 
+ 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+31 
+Ingresos tributarios, precios públicos y multas 
+La valoración de esta subárea ha sido de 960 puntos, que supone el 91,4% de 
+la puntuación máxima posible. 
+En la unidad de ingresos tributarios, precios públicos y multas trabajan tres 
+funcionarios asignados a un negociado y depende directamente de tesorería.  
+De la información facilitada destaca lo siguiente: 
+- El  número  de  ordenanzas  fiscales  vigentes  asciende a  29,  todas 
+actualizadas  en  plazo  y  publicadas  antes  de  la  entrada  en  vigor  del 
+ejercicio al que se refieren.  
+- La entidad no cuenta con una unidad de inspección de tributos; debe 
+tenerse en cuenta que esta función, que implica ejercicio de autoridad, 
+debe ser realizada por funcionarios. Si bien existe un plan de actuación 
+de  la  inspección  de  tributos,  no  se  elabora  un  informe  en  el  que  se 
+valoren las actuaciones realizadas por la empresa que tiene contratada.  
+Con  el  fin  de  mejorar  la  organización  del  Área  de  Gestión  Tributaria  se 
+recomienda  que  en  el  proceso  de  gestión  de  tributos  se  deje  constancia 
+documental de la comprobación realizada de las verificaciones entre padrones 
+del ejercicio corriente y el anterior. 
+Ingresos por transferencias 
+La valoración de esta subárea ha sido de 300 puntos, lo que representa un 
+100,0% de la puntuación máxima posible. 
+En la gestión de ingresos por transferencias y subvenciones participan dos 
+funcionarios asignados al área de Intervención. 
+Recaudación 
+La valoración de esta subárea ha sido de 970 puntos, que representa el 71,9% 
+del máximo posible del área. 
+En  la  unidad  de  recaudación  trabajan  dos  funcionarios  asignados  a  un 
+negociado y depende directamente de Tesorería. 
+Los  sistemas  que  utiliza  la  entidad  para  la  recaudación  de  los  ingresos 
+tributarios se muestran a continuación: 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+32 
+Cuadro 17.   Sistemas de recaudación 
+Sistema de recaudación 
+Periodo 
+voluntario 
+Periodo 
+ejecutivo 
+Por funcionarios 
+  
+En colaboración con entidades bancarias 
+  
+En colaboración con empresas privadas (que no 
+sean entidades bancarias) 
+ 
+ 
+Delegación en entidades públicas 
+  
+El  número  de  contratos  de  colaboración  con  entidades  bancarias  para  la 
+recaudación asciende a nueve y existe un contrato de colaboración para la 
+recaudación  con  una  empresa  privada,  cuyo  importe  devengado  en  2017 
+asciende a 284.127 euros, si bien cabe reseñar que no se encuentra vigente, ya 
+que se formalizó en 2007 y la última prórroga prevista se produjo en 2011. No 
+obstante, desde 2012 se han tramitado diversas licitaciones que no han llegado 
+a término. La empresa que colabora en la recaudación e inspección no elabora 
+los padrones, ni tampoco practica las liquidaciones tributarias ni recauda. 
+La entidad privada colaboradora en la recaudación presenta cada 30 días las 
+cuentas  de  su  gestión  cobratoria,  si  bien  no  ingresa  la  recaudación  en  las 
+cuentas de la entidad por cuanto no participa en esta, ya que el ingreso se 
+efectúa en las entidades bancarias colaboradoras. 
+Los  ingresos  procedentes  de  la  recaudación  se  aplican  al  presupuesto 
+diariamente, al estar integrada en el sistema contable, y en 2017 se aplicaban 
+cada 30 días.  
+La entidad tiene contratada la retirada de vehículos en la vía pública con una 
+empresa privada. Este servicio supuso un coste para el Ayuntamiento en 2017 
+de 23.560 euros y los derechos reconocidos por este concepto se elevaron a 
+39.207 euros.  
+El  programa  de  recaudación  registra  en  contabilidad  los  cobros  de  forma 
+directa, si bien en 2017 se realizaba manualmente en la aplicación contable.  
+EL periodo de cobro en vía voluntaria de los siguientes tributos es: 
+-    IBI: del 1 de junio al 29 de septiembre. 
+-    IAE: del 1 de octubre al 30 de noviembre. 
+-    IVTM: del 1 de febrero al 31 de marzo. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+33 
+Tesorería 
+La valoración de esta subárea ha sido de 2.670 puntos, lo que representa un 
+89,0% de la puntuación máxima posible. 
+En la unidad de tesorería trabajan tres funcionarios asignados a un negociado. 
+La  tesorera  es  funcionaria  con  habilitación  nacional  que  ocupa  una  plaza 
+cubierta por concurso desde el 27 de febrero de 2002. 
+Por otra parte, existen cuatro personas autorizadas para acceder a las cuentas 
+de la entidad a través de internet, con acceso para la consulta de saldos. 
+El número de cuentas bancarias abiertas por la entidad local es el siguiente en 
+función del concepto: 
+Cuadro 18.   Relación de cuentas bancarias 
+Concepto 
+Número de 
+cuentas 
+Cuentas operativas 10 
+Cuentas restringidas de recaudación (*) 8 
+Cuentas restringidas de pagos de anticipos de caja fija 1 
+Cuentas restringidas de pagos a justificar  
+Cuentas restringidas de pagos  
+Cuentas financieras  
+(*)  Además de las cuatro cuentas restringidas de recaudación incluidas en contabilidad, existen otras 
+cuatro, según nos confirman entidades bancarias. Por tanto, son ocho en total.  
+El  orden  de  prelación  de  pagos  es  el  siguiente:  deuda  bancaria,  personal, 
+Seguridad Social y Hacienda Pública, proveedores u otros. 
+Se confeccionan planes de tesorería debidamente aprobados y se efectúa su 
+seguimiento. 
+De  la  información  facilitada  destaca  también  que  se  manejan  fondos  en 
+efectivo con un saldo medio de 800 euros, y no existen normas por escrito 
+sobre el importe máximo que debe haber en caja, ni existe un límite máximo 
+para pagar en efectivo. Tampoco se realizan arqueos sorpresa de estos fondos.  
+Existen  tres  habilitados  en  la  única  caja  fija  existente,  aunque  no  se  han 
+efectuado anticipos de caja fija en 2017 y, por tanto, no hay saldo pendiente 
+de justificar a 31 de diciembre de este ejercicio. Sí que existen normas por 
+escrito sobre el funcionamiento de los anticipos de caja fija. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+34 
+La cuantía de los pagos a justificar efectuados durante 2017 es de 14.164 euros, 
+sin que haya saldo pendiente de justificar a 31 de diciembre de 2017. Sí que 
+existen normas por escrito sobre el funcionamiento de los pagos a justificar.  
+Contabilidad 
+La valoración de esta subárea ha sido de 2.430 puntos, lo que representa un 
+81,0% de la puntuación máxima posible. 
+En  la  unidad  de  contabilidad  trabajan  cinco  funcionarios  adscritos  a  un 
+negociado que depende de la Intervención. 
+De la información facilitada destaca lo siguiente: 
+- La  aplicación  informática  que  utiliza  la  entidad  para  su  contabilidad 
+garantiza  un  acceso  exclusivo  a  las  personas  que  se  encargan  de 
+contabilizar.  Cinco  personas  acceden  a  la  aplicación  informática  de 
+contabilidad.  
+-    El departamento contable tiene conocimiento de las facturas recibidas 
+en un máximo de un día y emplea tres días para contabilizarlas. 
+-    Previamente  a  la  realización  de  un  gasto  no  siempre  se  efectúa  la 
+propuesta de gasto y se realiza la retención de crédito
+19
+. No obstante, se 
+muestra en el cuadro siguiente el número e importe de los expedientes 
+de reconocimiento extrajudicial de créditos aprobados por el Pleno de la 
+entidad en 2016 y 2017.  
+Cuadro 19.   Expedientes de reconocimiento extrajudicial de créditos 
+ 
+Ejercicio de 
+aprobación 
+Nº de 
+expedientes 
+Importe en 
+euros 
+Gastos anteriores 
+al ejercicio de 
+aprobación 
+Gastos del 
+ejercicio de 
+aprobación 
+2016 
+5 1.240.393
+ 1.240.393 0 
+2017 
+7 351.795
+ 351.795 0 
+Total 
+12 1.592.188 1.592.188 0 
+ 
+  
+                                                           
+19
+    Artículo 173.5 del TRLRHL. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+35 
+Endeudamiento 
+La valoración de esta subárea ha sido de 2.100 puntos, que representa alcanzar 
+el 100,0% de la puntuación máxima posible. 
+La  Tesorería  realiza  la  gestión  de  las  operaciones de  crédito.  No  obstante, 
+como se muestra en el cuadro 5, no existe deuda con entidades de crédito al 
+cierre de los ejercicios 2015 a 2017.  
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+36 
+APÉNDICE 6.    OBSERVACIONES SOBRE EL ÁREA DE INTERVENCIÓN 
+Organización y regulación 
+La valoración de esta subárea ha sido de 1.180 puntos, lo que representa un 
+92,2% de la puntuación máxima posible. 
+Al  área  de  Intervención  se  han  asignado  siete  funcionarios.  Entre  2016  y 
+noviembre  de  2019,  una  funcionaria  con  habilitación  nacional  ocupaba  el 
+puesto de interventora y otra el puesto de viceinterventora, ambos cubiertos 
+por concurso.  
+La  regulación  interna  de  las  funciones  asignadas  al  órgano  de  control  se 
+realiza a través de las bases de ejecución del presupuesto.  
+El control interno de la actividad económico-financiera de la entidad local lo 
+ejerce  el  órgano  interventor  mediante  la  función  interventora  y  el  control 
+financiero
+20
+. 
+La entidad local tiene establecida la fiscalización previa limitada debidamente 
+aprobada por el Pleno de la entidad, previo informe del órgano interventor y a 
+propuesta  del  presidente
+21
+  sobre  gastos  de  contratación,  personal, 
+subvenciones y otros. 
+Función interventora 
+La valoración de esta subárea ha sido de 1.880 puntos, lo que representa un 
+100,0% de la puntuación máxima posible. 
+En el cuadro siguiente se muestra la situación de los informes de fiscalización 
+previa emitidos por el órgano interventor en 2018 y a 31 de marzo de 2019: 
+  
+                                                           
+20
+    Artículo 3 del RCI. 
+21
+    Artículo 13.1 del RCI. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+37 
+Cuadro 20.   Informes emitidos por el órgano interventor  
+Estado de los informes 2018 31-03-2019 
+Informes de fiscalización previa 998 204 
+Informes emitidos con reparos 62 16 
+Informes emitidos con discrepancia 0 0 
+Informes emitidos con discrepancias resueltas por 
+el  presidente  no  confirmando  la  adecuación  del 
+criterio del órgano interventor 
+62 16 
+Informes emitidos con discrepancias resueltas por 
+el Pleno no confirmando la adecuación del criterio 
+del órgano interventor 
+0 0 
+Informes con discrepancias no resueltas 0 0 
+No se han producido discrepancias que corresponde resolver por el Pleno. 
+En 2017 y 2018 se efectuaron reparos como consecuencia del fraccionamiento 
+del objeto del contrato. 
+Control financiero 
+La valoración de esta subárea ha sido de 9.850 puntos, lo que representa un 
+87,9% de la puntuación máxima posible. 
+Control permanente y auditoría pública 
+La modalidad de control financiero que se ejerce sobre esa entidad local es el 
+control permanente. Dichas actuaciones a realizar en el ejercicio 2019 están 
+recogidas en el Plan de Control Financiero, elaborado por el órgano interventor 
+y remitido al Pleno a efectos informativos
+22
+.  
+El plan de control financiero del ejercicio 2019 incluye, según el artículo 31.2 
+del RCI: 
+- Todas aquellas actuaciones que realizará el órgano interventor que deriven 
+de una obligación legal. 
+- Las actuaciones a realizar sobre la base de un análisis de riesgos con los 
+objetivos que se pretendan conseguir, teniendo en cuenta las prioridades 
+establecidas para cada ejercicio y los medios disponibles. 
+  
+                                                           
+22
+    Artículo 31.3 del RCI. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+38 
+Informes específicos 
+Cuando se omite la fase de fiscalización y la intervención emite un informe, 
+este no contempla la existencia de responsabilidades
+23
+. 
+El informe de la Intervención sobre la liquidación del presupuesto de 2017 no 
+se  pronuncia  sobre  la  evolución  de  los  datos  en  relación  con  el  ejercicio 
+anterior. 
+La nómina del personal se fiscaliza por muestreo.  
+No en todos los casos se realizan informes de fiscalización sobre los proyectos 
+de reparcelación. 
+Otros aspectos 
+La valoración de esta subárea ha sido de 480 puntos, lo que representa un 
+76,2% de la puntuación máxima posible. 
+Las  incidencias  detectadas  se  indican  en  el  párrafo  24  del  apartado  4, 
+“Fundamentos de la opinión con salvedades”. 
+  
+                                                           
+23
+    Artículo 28.2 del RCI. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+39 
+APÉNDICE 7.    OBSERVACIONES SOBRE EL ÁREA DEL ENTORNO TECNOLÓGICO 
+Marco organizativo 
+La valoración de esta subárea ha sido de 210 puntos, lo que representa tan solo 
+un 26,9% de la puntuación máxima posible. 
+Organización y personal de TI 
+El departamento de tecnologías de la información (TI) no es independiente del 
+resto  de  departamentos  funcionales.  Dicho  departamento  cuenta  con  tres 
+funcionarios y está estructurado en un negociado. No colaboran trabajadores 
+externos con este departamento.  
+Estrategia de seguridad 
+De acuerdo con la información facilitada se recomienda lo siguiente: 
+- Elaborar un plan estratégico y un plan anual de proyectos de los sistemas 
+de información. 
+- Una adecuada segregación de funciones y tareas de modo que el personal 
+no  ejecute  simultáneamente  tareas  de  operación,  administración 
+(configuración, mantenimiento) y supervisión (auditoría, gobierno).  
+- Realizar  los  nombramientos  y  constituir  los  órganos  requeridos  para 
+asegurar el cumplimiento normativo y organización de la seguridad.  
+Marco normativo y procedimiento de seguridad 
+La entidad no dispone de los documentos que constituyen la normativa de 
+seguridad escrita, incluyendo la política de seguridad, ni de los relativos a los 
+procedimientos. Y si dispone, no se encuentran formalmente aprobados por 
+el órgano competente según lo establecido en la política de seguridad. 
+Gestión de cambios en aplicaciones y sistemas 
+La valoración de esta subárea ha sido de 203 puntos, lo que representa un 
+46,8% de la puntuación máxima posible. 
+Adquisición de aplicaciones y sistemas 
+El procedimiento de adquisiciones no incluye criterios de seguridad para las 
+adquisiciones, tales como el uso de equipos o productos evaluados conforme 
+a  normas europeas  o  internacionales de  seguridad,  por  ejemplo  la ISO/IEC 
+15408 "Common Criteria". 
+ 
+ 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+40 
+Gestión de cambios 
+La gestión de cambios de configuraciones y componentes de los sistemas no 
+se ha realizado de forma continuada sobre la base de un procedimiento que 
+contenga  de  manera  genérica  el  registro  de  solicitudes,  su  evaluación, 
+autorización,  pruebas,  planificación  de  puesta  en  operación  y  registro  de 
+cambios  y,  por  tanto,  no  se  realizan  pruebas  de  testeo  de  los  cambios  en 
+entornos  separados  de  la  producción,  ni  la  separación  de  funciones  en  el 
+proceso de cambio, incluyendo como mínimo la aprobación y la ejecución.  
+Operaciones de los sistemas de información 
+La valoración de esta subárea ha sido de 1.029 puntos, lo que representa un 
+50,0% de la puntuación máxima posible. 
+Servicios externos 
+Existen  servicios  contratados  con  terceros  cuyas  funciones  contratadas 
+corresponden con el servicio de mantenimiento y/o reparación de hardware, y 
+de desarrollo o modificación de programas.  
+La  entidad  no  dispone  de  un  procedimiento  de  contratación  de  servicios 
+externos que documente, para el proceso de contratación, la incorporación, en 
+los  contratos  firmados  con  el  proveedor,  de  cláusulas  de  confidencialidad, 
+protección  de  datos  y  acuerdos  de  nivel  de  servicio,  incluyendo  las 
+características del servicio a prestar, los requisitos de seguridad, con objeto de 
+dar cumplimiento a lo dispuesto en el Real Decreto 3/2010, de 8 de enero, que 
+regula  el  Esquema  Nacional  de  Seguridad,  y  las  obligaciones  respecto  a  la 
+protección de los datos, con objeto de dar cumplimiento a la Ley Orgánica 
+3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los 
+derechos digitales, y al Reglamento (UE) 2016/679, del Parlamento Europeo y 
+del Consejo, de 27 de abril de 2016.  
+No existe un procedimiento que establezca un sistema rutinario para medir el 
+cumplimiento de las obligaciones en relación con los acuerdos de nivel de 
+servicio  establecidos  para  el  cumplimiento  de  las  obligaciones  de  servicio 
+mediante  indicadores,  obligaciones  sobre  la  seguridad  de  los  sistemas, 
+incluidos  servicios cloud  y  las  obligaciones  respecto  a  la  protección  de  los 
+datos.  
+Monitorización 
+No se dispone de herramientas que permitan la monitorización del estado de 
+redes  y  sistemas  y  tampoco  existe  personal  responsable  de  dicha 
+monitorización.  
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+41 
+Controles de accesos a datos y programas 
+La valoración de esta subárea ha sido de 963 puntos, lo que representa un 
+100,0% de la puntuación máxima posible. 
+Continuidad del servicio 
+La valoración de esta subárea ha sido de 619 puntos, lo que representa un 
+80,9% de la puntuación máxima posible. 
+De acuerdo con la información facilitada se recomienda: 
+- Elaborar  un  plan  de  continuidad  que  prevea  los  procedimientos  de 
+recuperación  de  los  procesos  importantes  de  la  entidad  con  plazos  y 
+objetivos de tiempo de recuperación.  
+- Realizar pruebas periódicas y planificadas (aunque sean parciales) del 
+plan de recuperación.  
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+42 
+TRÁMITE DE ALEGACIONES 
+Previamente al trámite de alegaciones y conforme a lo previsto en la sección 
+1220  del Manual  de  fiscalización  de  esta  Sindicatura,  el  borrador  previo  del 
+informe  de  fiscalización  se  discutió  con  los  técnicos  del  Ayuntamiento  de 
+Riba-roja de Túria para su conocimiento y para que, en su caso, efectuaran las 
+observaciones que estimaran pertinentes. 
+Posteriormente, en cumplimiento del artículo 16 de la Ley de la Generalitat 
+Valenciana 6/1985, de 11 de mayo, de Sindicatura de Comptes, de acuerdo con 
+la redacción dada por la Ley de la Generalitat Valenciana 16/2017, de 10 de 
+noviembre, y  del  artículo  55.1.c) del  Reglamento  de Régimen  Interior  de  la 
+Sindicatura de Comptes, así como del acuerdo del Consell de esta Institución 
+por  el  que  tuvo  conocimiento  del  borrador  del  informe  de  fiscalización 
+correspondiente a los ejercicios 2017-2019, el mismo se remitió al cuentadante 
+para que, en el plazo concedido, formulara alegaciones. 
+Dentro del plazo concedido, el Ayuntamiento ha formulado las alegaciones 
+que ha considerado pertinentes. 
+En relación con el contenido de las alegaciones y su tratamiento, es preciso 
+señalar lo siguiente: 
+1) Todas las alegaciones han sido analizadas detenidamente. 
+2) Las alegaciones admitidas se han incorporado al contenido del informe. 
+El texto de las alegaciones formuladas, así como el informe motivado que se 
+ha  emitido  sobre  las  mismas,  que  han  servido  de  antecedente  para  su 
+estimación o desestimación por esta Sindicatura se incorporan en los anexos 
+I y II. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019 
+43 
+APROBACIÓN DEL INFORME 
+En  cumplimiento  del  artículo  19.j)  de  la  Ley  de  la Generalitat  Valenciana 
+6/1985, de 11 de mayo, de Sindicatura de Comptes de acuerdo con la redacción 
+dada por la Ley de la Generalitat Valenciana 16/2017, de 10 de noviembre, y 
+del artículo 55.1.h) de su Reglamento de Régimen Interior y de los programas 
+anuales de actuación de 2018, 2019 y 2020 de esta institución, el Consell de la 
+Sindicatura de Comptes, en reunión del día 9 de julio de 2020, aprobó este 
+informe de fiscalización. 
+ 
+
+ANEXO I 
+Alegaciones presentadas 
+
+ 
+ 
+SINDICATURA DE CUENTAS DE LA COMUNIDAD VALENCIANA 
+ 
+ASUNTO: Alegaciones al borrador del Informe de fiscalización de control interno del 
+Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019. 
+ A través de la Oficina de Registro Virtual de Entidades Locales (ORVE), en fecha 15 
+de abril de 2020 y número de registro REGAGE20e00001524655, fue puesto de manifiesto 
+ante  esta  Entidad  Local,  el  Borrador  del  Informe  de  fiscalización de  control  interno  del 
+Ayuntamiento de Riba-roja de Túria (Ejercicios 2017-2019), llevado a término por ustedes. 
+ Dicho  informe  es  objeto  de  alegaciones,  si  las  mismas  se  consideran  oportunas, 
+finalizando el plazo para formularlas el día 12 de junio de 2020.  
+ Por  parte  de  esta  Alcaldía,  fue  solicitado  informe  a  las  siguientes  áreas  del 
+ayuntamiento,  en  el  expediente  electrónico  SIGA  4149/2019/GEN,  para  que  realizaran  las 
+observaciones/alegaciones que consideran oportunas en sus respectivos ámbitos: 
+ AREA DE TESORERÍA 
+ AREA DE INTERVENCION 
+ AREA DE SECRETARIA 
+ AREA DE RRHH 
+ AREA DE ENTORNO TECNOLOGICO  
+ A  la  vista  del  pronunciamiento  realizado  por  las  diferentes  áreas,  esta  Alcaldía, 
+dentro del plazo habilitado, formula las siguientes  
+Alegaciones al borrador del Informe de fiscalización de control interno del 
+Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019. 
+1.- AREA DE TESORERIA 
+ 1º.- En relación a la observación contenida en el Apartado 4; en concreto relativas a 
+la  Información  económico-financiera  y  su  fiabilidad  punto  1)  ;  al  señalar “  las  cuentas 
+restringidas de recaudación no se controlan”, manifestación que asimismo se reitera en 
+la  Protección  de  bienes  de  la  Entidad,  punto  18),  al  señalar: “Existen  cuatro  cuentas 
+bancarias restringidas de recaudación no controladas, tres de ellas con saldo cero 
+y otra con saldo de 2.000.-euros”.  
+ Este  hecho  ya  fue  clarificado  en  el  Informe  de  10-10-2016,  por  la  que  esta 
+Funcionaria,  junto  con  la  Sra.  Interventora  Municipal;  dieron  respuesta  al  Informe  de  
+Fiscalización  que  la  Sindicatura  de  Comptes  de  la  Comunitat  Valenciana  realizó  relativa  al 
+ejercicio 2014. 
+ 
+202000323111 de junio de 2020 13:36
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+ En  la  fiscalización  del  citado  ejercicio  la  Sindicatura  de  Comptes de  la  Comunitat 
+Valenciana, ya concluyó que existían saldos Infravalorados, refiriéndose a saldos de cuentas 
+restringidas de recaudación que no constaban en la contabilidad municipal. Al objeto de dar 
+repuesta a dicha manifestación, se trascribe de forma literal, lo que se manifestó al respecto 
+por las funcionarias municipales: 
+ “Que  los  saldos  infravalorados,  según  informe  de  la  Sindicatura,  como  este 
+Ayuntamiento   ya   puso   en   conocimiento   de   la   misma,   en   el   periodo de   auditoria, 
+correspondían a siete entidades financieras, de las cuales: 
+- Cuentas aperturadas en tres entidades financieras, corresponden a cuentas que, 
+si  bien  estaban  aperturadas  a  nombre  del  Ayuntamiento  de  Riba-roja,  tenían 
+como única finalidad cumplir con la normativa del cuaderno 60, relativo a serie 
+de normas y procedimientos bancarios, en concreto, a su apartado séptimo que 
+regula  el  funcionamiento  de  las  cuentas  restringidas  de  recaudación.  En  dicho 
+apartado, obliga a que se asienten en una cuenta abierta en la oficina a nombre 
+del  Ayuntamiento,  al  que  presta  el  servicio  de  recaudación,  los ingresos  que  a 
+través  de  dicho  cuaderno  se  vayan  produciendo.  Como  asimismo  informó  el 
+ayuntamiento,  en  dichas  cuentas  restringidas  de  recaudación  no  existe ni  un 
+control,  ni  una  disposición  mancomunada  por  parte  de  los  tres  claveros 
+municipales,   sino   que   son   cuentas   en   las   que   únicamente   se   permiten 
+movimientos  de  abono  por  el  importe  de  los  cobros  realizados  cada  día,  y 
+movimientos  de  adeudo  por  el  traspaso  quincenal  de  recaudación  a  la  cuenta 
+indicada por el Ayuntamientos, siendo ambos movimientos producidos de forma 
+automática  (mecánica)  y  sin  disposición  mancomunado  ni  control  por  parte  de 
+los claveros municipales.  
+Cuando dichos saldos (cada quincena), se trasfieren a la cuenta de recaudación 
+de la entidad colaboradora principal es cuando dichos saldos aparecen reflejados 
+en la contabilidad municipal al ser desde este momento disponibles y reales para 
+el Ayuntamiento y no antes. 
+ Documentación   justificativa:   certificados   de   las   entidades   bancarias   sobre   la 
+consideración de las cuentas restringidas de la recaudación. (DOC 1,2 y 3).” 
+ A  la  vista  de  estos  hechos,  cabe  manifestar  que  a  lo  largo  de la  atención  realizada 
+desde  esta  Área  a  los  Auditores  que  han  realizado  los  trabajos  de  campo  en  este 
+Ayuntamiento, no solo se ha vuelto a reiterar estas alegaciones, sino que asimismo se les ha 
+informado  que  este  criterio  se  va  a  seguir  manteniendo  en  la  Contabilidad  Municipal  del 
+Ayuntamiento de Riba-roja de Túria, y ello en cuanto estima la que suscribe el presente; que 
+el  criterio  seguido  por  el  Ayuntamiento  de  Riba-roja  de  Túria  de no  hacer  constar  en 
+contabilidad las denominadas cuentas restringidas de recaudación (CUENTAS PUENTES); no 
+solo  está  amparado  en  la  normativa  vigente,  sino  que  asimismo  es  el  criterio  que  sigue  la 
+INTERVENCION GENERAL DE LA ADMINISTRACION DEL ESTADO, en concreto a través de la 
+Consulta 13 de febrero de 2017, que literalmente trascribo en el presente informe: 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+ “INFORME SOBRE LA CONSULTA FORMULADA POR LA ALCALDESA DE ALMASSORA, 
+EN  RELACION  CON  EL  REGISTRO  EN  CONTABILIDAD  DE  LAS  CUENTAS  BANCARIAS 
+ABIERTAS  POR  LAS  ENTIDADES  COLABORADORAS  EN  LA  RECAUDACION  DE  TRIBUTOS 
+MUNICIPALES.  
+En  relación  con  su  consulta  relativa  así  las  cuentas  restringidas  que  abren las 
+Entidades  financieras  Colaboradoras  para  hacer  efectiva  la  prestación  del  servicio  de 
+colaboración en la recaudación de tributos y otros ingresos municipales deben figurar o  no 
+en la contabilidad municipal, le hacemos las siguientes consideraciones: 
+ Tal  y  como  se  hace  constar  en  el  texto  de  su  consulta,  el  Reglamento  General  de 
+Recaudaci6n, aprobado por Real Decreto 939/2005,de 29 de julio, resulta de aplicación a las 
+entidades locales, en virtud de 10 dispuesto en el articulo 12.1 del Texto Refundido de la Ley 
+Reguladora  de  las  Haciendas  Locales  (en  adelante  TRLRHL),  aprobado  por  Real  Decreto 
+Legislativo 2/2004, de 5 de marzo: «La gesti6n, liquidaci6n, inspección y recaudación de los 
+tributos locales se realzara de acuerdo con 10 prevenido en la Ley General Tributaria y en 
+las demás leyes del Estado reguladoras de la materia, así como en las disposiciones dictadas 
+para su desarrollo», y, entre estas disposiciones, cabe citar la Orden Ehal2017/2007,de 28 
+de  junio,  por  la  que  se  desarrolla  parcialmente  el  Reglamento  General  de Recaudación,  en 
+relación  con  las  entidades  de  crédito  que  prestan  el  servicio  de  colaboraci6n  en  la  gestión 
+recaudatoria de la Agencia Estatal de Administraci6n Tributaria. 
+ El  articulo  29  del  Reglamento  General  de  Recaudación,  en  su  apartado  3,  dispone 
+que  (Las  entidades  colaboradoras  de  los  órganos  del  Estado,  comunidades  autónomas o 
+entidades  locales  se  regirán,  en  esta  materia,  por  las  disposiciones  especificas  aplicables 
+dictadas por dichos órganos y, en ausencia de estas, por 10 dispuesto en este articulo.»  
+ Con  carácter  general,  las  entidades  financieras  pueden  colaborar  con  las  Entidades 
+locales  en  la  recaudación  de  sus  tributos  de  dos  maneras:  actuando  como  «Entidades 
+Colaboradoras»  de  las  previstas  en  el  artículo  9.1  del  Reglamento  General  de  Recaudación 
+cuando  hayan  sido  autorizadas  para  ello,  o  actuando  sin  dicha  condición de  «Entidades 
+colaboradoras». Estos dos modos de actuación de las entidades financieras en relación con 
+la gestión recaudatoria se deducen de los lugares de realización de los ingresos previstos en 
+el articulo 12 del Reglamento General de Recaudación, en sus apartados "c) En las entidades 
+colaboradoras a las que se refiere el articulo 9.1" y "e) En las cuentas restringidas abiertas 
+en  entidades  de  crédito".  A  estas  ultimas  cuentas  restringidas  de  recaudación  se  refiere  el 
+articulo 197.1 b) del TRLRHL. 
+ Trasladando  el  articulo  5  de  la  citada  Orden  EHAJ2017/2007  al  ámbito  local,  las 
+entidades de crédito autorizadas para actuar como colaboradoras en la gestión recaudatoria 
+de  una  entidad  local  recogerán  en  cuentas  restringidas  los  ingresos  que  resulten  de  los 
+documentos presentados a tal fin por los obligados al pago, entendiendo a estos efectos por 
+cuenta restringida la cuenta corriente sin retribución y sin devengo de comisión alguna en la 
+que 5610 se pueden efectuar anotaciones en concepto de abonos y una (mica anotación por 
+adeudo  cada  quincena  para  proceder  a  ingresar  el  saldo  de  la  misma  en  una  cuenta  de  la 
+Tesorería de la entidad local (no obstante, podrán efectuarse anotaciones por rectificación de 
+errores debidamente justificados). En términos similares describe las cuentas restringidas de 
+recaudación  en  Entidades  Colaboradoras  el  Cuaderno  60  "Recaudación  de  tributos  y  otros 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+ingresos  municipales",  de  la  serie  de  Normas  y  procedimientos  bancarios,  que establece  el 
+procedimiento normalizado único para el cobro de tributos y otros ingresos de las entidades 
+locales en cualquier entidad de crédito operante en España. 
+Si  bien,  de  acuerdo  con  los  citados  articulo  5  de  la  Orden  EHAJ2017/2007  y 
+Cuaderno  60,  la  codificaci6n  de  dichas  cuentas  restringidas  en  Entidades  Colaboradoras  se 
+ajusta a la establecida en el sistema financiero de Código Cuenta Cliente (adaptado al c6digo 
+IBAN) y se abren a nombre de la entidad local a la que se presta el servicio (se les asigna su 
+Numero  de  Identificaci6n  Fiscal),  estas  cuentas  deben  ser  calificadas  de  instrumentales  ya 
+que  son  de  uso  exclusivo  por  las  entidades  financieras  para  la  gestión  recaudatoria,  no 
+pudiendo  intervenir  en  su  gestión  la  entidad  local,  y  par  ello  los  fondos  recaudados  no 
+forman  parte  de  su  Tesorería  hasta  que  no  son  traspasados  a  una  cuenta  ordinaria  de  la 
+entidad local. 
+ Esta  indisponibilidad  de  los  fondos  existentes  en  las  cuentas restringidas  en 
+Entidades Colaboradoras impide que la entidad local pueda hacer frente con ellos al pago de 
+sus obligaciones o pueda rentabilizarlos, en tanto no sean traspasados a una cuenta que si 
+forme parte de su Tesorería (La ordinaria designada par la entidad local). 
+La cuenta ordinaria de la entidad local que reciba los traspasos de fondos desde las 
+Entidades  Colaboradoras  podrá  ser  operativa  o  restringida  de  recaudación,  según  la 
+naturaleza que le haya atribuido la propia entidad local. Cualquiera que sea  su  naturaleza, 
+operativa o restringida de recaudaci6n, dicha cuenta se integrara en su Tesorería y el saldo 
+que presente a 31 de diciembre de cada ano figurara en el Activo del Balance, epígrafe B.VII 
+"Efectivo y otros activos Líquidos equivalentes". 
+ A  modo  de  conclusión,  podemos  decir  que  las  cuentas  restringidas  que 
+deben  abrir  las  Entidades  Colaboradoras  a  que  se  refiere  el  articulo  9.1 del 
+Reglamento General de Recaudación no forman parte de la Tesorería de la entidad 
+local y, en consecuencia, su saldo no deberá figurar en el epígrafe 8.VII "Efectivo y 
+otros activos Líquidos equivalentes" del Activo del balance.  
+ Por último, si bien se trata de una cuestión no planteada en su consulta, estimamos 
+conveniente recordar el tratamiento contable a seguir en las entidades locales para reflejar 
+las  operaciones  derivadas  de  la  recaudación  a  través  de  las  Entidades  Colaboradoras  del 
+artículo 9.1 del Reglamento General de Recaudación. 
+ Dicho tratamiento contable responderá al siguiente esquema general: 
+- Cuando se produzca el traspaso de fondos correspondiente a cada quincena de 
+las cuentas restringidas en  Entidades Colaboradoras a la cuenta ordinaria de la 
+entidad local, por la aplicación provisional de los cobros: 
+ 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+----.:x ------ 
+(571) Bancos e instituciones de crédito, Cuentas operativas, 0  
+(573) Bancos e instituciones de crédito. Cuentas restringidas de recaudaci6n  
+   a (554) Cobros pendientes de aplicación  
+-  ---- - - x:- - - --- -  
+Cuando se reciba la informaci6n de detalle de los tributos y gravámenes recaudados 
+durante cada quincena, por la aplicaci6n definitiva de los cobros: ./ Por las Liquidaciones 
+de contraído previa: 
+-  --- - - ---'x:  ---- - - -- 
+(554) Cobros pendientes de aplicaci6n a (433X) OD.R. Presupuesto de ingresos corriente 
+{431 X) OD.R. Presupuestos de ingresos cerrados 
+------.-; x--- -   -- 
+   Por las Liquidaciones "sin" contraído previa:  
+(554) Cobros pendientes de aplicaci6n a  (430X) D.D.R. Presupuesto de ingresos 
+corriente ---. 
+,-----x:------ 
+ (430X) DD.R. Presupuesto de ingresos corriente a (XXX) Cuentas representativas de los 
+ingresos  
+----------,xc--.--------  
+ Ahora bien, cada año, el 31 de diciembre divide a la quincena comprendida entre el 
+21  de  diciembre  y  el  5  de  enero  en  dos  partes  y  este  hecho  provoca,  siempre  que  la 
+informaci6nsea relevante, una excepci6n en el esquema general de contabilización que se ha 
+expuesto. Así, la entidad local deberá practicar con fecha 31 de diciembre y con base en la 
+informaci6n  de  detalle  suministrada  par  las  Entidades  Colaboradoras  sobre  los  tributos  y 
+gravámenes recaudados durante la quincena comprendida entre el 21 de diciembre y el 5 de 
+enero, la siguiente anotación contable por el importe que, de la recaudación  efectuada por 
+las  Entidades  Colaboradoras  entre  el  21  y  el  31  de  diciembre,  corresponda  a  liquidaciones 
+"sin" contraído previo (autoliquidaciones): 
+ 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+-------:x------ 
+ (441) Deudores por ingresos devengados  
+    a (XXX) Cuentas representativas de los ingresos  
+En la contabilidad del ejercicio siguiente, la aplicaci6n definitiva de dichas autoliquidaciones 
+recaudadas en el ejercicio anterior se efectuara mediante la siguiente anotaci6n: 
+--------,x---- -- 
+ (554) Cobras pendientes de aplicación a (430X) DD.R. Presupuesto de ingresos corriente  
+-------x,------ 
+ (430X)  DD.R.  Presupuesto  de  ingresos  corriente  a  a  (441)  Deudores por  ingresos 
+devengados 
+-------x,------ 
+ En virtud de la claridad del informe de la IGAE, que confirma la posición no solo del 
+Ayuntamiento  de  Riba-roja  de  Túria,  sino  de  muchos  Ayuntamientos  (que  en  base  a  la 
+normativa  expuesta  han  venido  defendiendo  la  imposibilidad  legal  de  dar  de  alta  en 
+contabilidad  municipal,  cuentas  cuyo  control  no  es  municipal,  pues  son  meras  cuentas 
+puentes para el cumplimiento de la normativa interbancaria de colaboración ce las Entidades 
+Bancarias  en  la  recaudación);  la  Funcionaria  que  suscribe  el  presente,  estima  totalmente 
+infundado  en  derecho  la  alegación  formulada  al  respecto  por  parte  de  la  Sindicatura  de 
+Cuentas. 
+ 2º.- En relación a la observación contenida en el Apartado 4; punto 19); al señalar 
+“Aunque  la  entidad  indica  que  no  existen  valores  prescritos,  en  la  liquidación  del 
+presupuesto figuran 7.232.182 euros de derechos reconocidos pendientes de cobro 
+de  2012  y  anteriores,  que  dada  su  antigüedad  podrían  estar  afectados  por 
+prescripción,  que  exigiría  la  tramitación  de  expedientes  para  determinar  posibles 
+responsabilidades” 
+ Respecto de esta manifestación y a juicio de que suscribe;  la Sindicatura de Cuentas 
+plantea la posibilidad de que determinados valores pendientes de cobro correspondientes al 
+ejercicio  2012  y  anteriores  pudieran  estar  prescritos;  y  ello  sin  haber   efectuado,  
+fiscalización alguna de dichos valores y obviando, a juicio de la que suscribe el presente, lo 
+siguiente: 
+El plazo general de prescripción señalado para la deuda tributaria efectivamente es 
+de  cuatro  años,  como  indica  el  artículo  66  de  la  Ley  58/2003  General Tributaria;  en  este 
+plazo prescribe tanto el derecho de la Administración para determinar y exigir el pago de las 
+deudas  tributarias  e  imponer  sanciones,  como  el  derecho  del  contribuyente  a  solicitar  y 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+obtener  las  devoluciones  derivadas  de  la  normativa  de  cada  tributo,  las  devoluciones  de 
+ingresos indebidos y el reembolso del coste de las garantías. 
+No obstante, dicho plazo de prescripción requiere para ser efectivo como presupone 
+la  Sindicatura;  que  dentro  del  mismo  el  Ayuntamiento  de  Riba-roja  de  Túria,  no  haya 
+efectuado  actuación  administrativa  alguna,  encaminada  a  exigir  el  pago  de la  deuda 
+tributaria, siendo fundamental en este trámite la notificación que se practica al deudor de la 
+misma  de  dichos  actos  administrativos.  Partiendo  de  ello;  y  por  lo  que  respecta  a  las 
+actuaciones que se realiza en todos y cada uno de los derechos liquidados; la UAR (Unidad 
+administrativa de Recaudación de la que ésta Funcionaria ostenta la Jefatura y por tanto la 
+máxima  responsabilidad), una  vez  finalizado  el  plazo  de  ingreso  en  voluntaria  y  por 
+tanto incursa la deuda en periodo ejecutivo, de forma inmediata dicta Providencia 
+de  Apremio,  notificando  la  misma  a  los  deudores,  concediéndoles  el  plazo  de 
+ingreso  del  artículo  62.5  de  la  Ley  General  Tributaria;  trascurrido  el  cual  sin 
+haberse hecho efectiva la deuda, por parte del Ayuntamiento se inicia el protocolo 
+de actuaciones para intentar el cobro de la misma, a través de todos y cada uno de 
+los mecanismos que el Reglamento General de Recaudación pone a disposición de 
+la Administración, sin que ello en modo alguno implica que una vez transcurrido el 
+plazo  que  regula  el  artículo    66  de  la  LGT,  la  deuda  caiga  inexorablemente  en  el 
+saco  de  la  prescripción;  cabe  señalar  que  en  esta  fase  se  intentan  embargos  de 
+saldos  en  cuentas  corrientes,  sueldos  y  salarios,  anotación  de  embargos en 
+registros de bienes... etc... 
+Asimismo, la UAR con una periodicidad mensual; procede a revisar la deuda 
+más  antigua,  mediante  filtros  en  la  base  de  datos  de  toda  la  deuda  que  obra 
+pendiente, y también mediante avisos de alerta en consultas propias, y todo ello a 
+efectos  de  detectar  aquellos  valores  de  los  que  no  se  ha  podido  proceder  a  su 
+cobro  (por  no  disponer  de  cuentas,  salarios,  pensiones,  mediante  embargo  de 
+devoluciones AEAT mensuales, etc.) y  cuya fecha de prescripción se cumpla en un 
+plazo de 4 ó 5 meses vista; filtros que tienen por finalidad el iniciar las actuaciones 
+con  la  suficiente  antelación  que  permita  interrumpir  una  posible  prescripción  
+antes de que ésta ocurra; interrupción que se consigue mediante los envíos de las 
+notificaciones pertinentes a sus titulares (requerimientos de bienes, diligencias de 
+embargo,  etc);  mediante  su  puesta  a  disposición  en  la  Sede  Electrónica  para  las 
+personas  jurídicas;  mediante  el  envío  de  notificaciones  por  correo  certificado o 
+servicio de notificadotes; mediante la publicación en BOE de aquellos titulares que 
+sean personas físicas, y cuya notificación no se haya podido llevar a cabo.  
+De esta forma queda constancia clara que TODA LA DEUDA que consta pendiente en 
+vía  ejecutiva,  es  objeto  de  sucesivas  actuaciones  y  notificaciones,  con  el  fin  de  evitar  la 
+prescripción  de  la  deuda.  Del  resultado  de  dichas  actuaciones  anualmente  se  tramitan 
+expedientes  de  declaración  de  fallidos  de  personas  físicas   y  jurídicas,   debidamente 
+justificados y donde se relacionan todos los trámites iniciados tendentes al cobro, pero que 
+evidencian una falta de ingresos del deudor y la imposibilidad de cobro, teniendo en cuenta 
+el  límite  territorial  del  ámbito  municipal,  todo  ello  siguiendo  las  prescripciones  de  lo 
+dispuesto en los artículos 61 y siguientes del Reglamento General de Recaudación.  
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+ En base a todo lo expuesto; claramente se puede concluir que la deuda pendiente en 
+la  UAR,  es  objeto  de  sucesivas  actuaciones  que  siempre  y  en  todo  momento EVITAN  LA 
+PRESCRICION   DEL   DERECHO   DE   LA   ADMINISTRACIÓN   A   LA   RECAUDACION 
+EFECTIVA   DE   LOS   MISMOS,  con  independencia  de  la  antigüedad  de  los  créditos 
+pendientes de cobro, y ello porque claramente la antigüedad no es relevante a efectos de la 
+prescripción  DE  UN  DERECHO,  sino  que  a  sensu  contrario  lo  que  evidenciaría  una 
+prescripción,  seria  la  inactividad  de  la  Administración  ante  derechos  pendientes  de  cobro, 
+inactividad  que  claramente  la  UAR  del  Excmo.  Ayto  de  Riba-roja  de  Turia  no  incurre  en 
+ningún momento, quedando constatado que desde la UAR municipal se realiza en definitiva 
+un  control  mensual  sobre  todos  los  valores,  con  el  fin  de  evitar su  prescripción,  siendo  a 
+juicio de la que suscribe el presente, gratuitas y carentes de fundamento jurídico y material, 
+las manifestaciones, expuestas sobre la posible prescripción de los derechos, por cuanto de 
+forma   continuada   en   el   tiempo,   este   hecho   es   objeto   de   sucesivas   actuaciones 
+administrativas tendentes a su realización. 
+  
+2.- AREA DE INTERVENCION 
+Información económico-financiera y su fiabilidad: 
+Primera alegación. 
+Apartado 2 del borrador del Informe, página 4, párrafo 2. 
+Contenido de la alegación: 
+El apartado 2) dice: “Cuando se planifican las inversiones, no se estima el coste de 
+mantenimiento ni su financiación posterior. (M.2)”.  
+No es función de la intervención municipal estimar el coste de mantenimiento de 
+las  inversiones  y  su  financiación  posterior.  El  órgano  interventor  es  órgano  de 
+control, no actúa como órgano de gestión.  
+Por  parte  de  la  intervención  municipal  se  ha  procedido  a  dar  traslado  al 
+departamento de vías y obras de la presente deficiencia advertida en el borrador 
+del informe para su conocimiento y efectos oportunos. 
+Documentación justificativa de la alegación: 
+Se  adjunta  como DOC.  1  la  comunicación  realizada  a  los  responsables  del 
+departamento de vías y obras. 
+ 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Segunda alegación. 
+Apartado 3 del borrador del Informe, página 4, párrafo 3. 
+Contenido de la alegación: 
+El apartado 3) dice: “No existe un plan de inversiones (M.3)”.  
+De acuerdo con lo dispuesto en el art. 166.1 del TRLRHL:  
+“1. Al presupuesto general se unirán como anexos: a) Los planes y programas de 
+inversión  y  financiación  que,  para  un  plazo  de  cuatro  años,  podrán  formular  los 
+municipios y demás entidades locales de ámbito supramunicipal. b) Los programas 
+anuales de actuación, inversiones y financiación de las sociedades mercantiles de 
+cuyo capital social sea titular único o partícipe mayoritario la entidad local.(...). 2. 
+El  plan  de  inversiones  que  deberá  coordinarse,  en  su  caso,  con  el  programa  de 
+actuación  y  planes  de  etapas  de  planeamiento  urbanístico,  se  completará  con el 
+programa  financiero,  que  contendrá:  a)  La  inversión  prevista  a  realizar  en  cada 
+uno  de  los  cuatro  ejercicios.  b)  Los  ingresos  por  subvenciones,  contribuciones 
+especiales,  cargas  de  urbanización,  recursos  patrimoniales  y  otros  ingresos  de 
+capital que se prevean obtener en dichos ejercicios, así como una proyección del 
+resto de los ingresos previstos en el citado período. c) Las operaciones de crédito 
+que resulten necesarias para completar la financiación, con indicación de los costes 
+que vayan a generar. 3. De los planes y programas de inversión y financiación se 
+dará cuenta, en su caso, al Pleno de la Corporación coincidiendo con la aprobación 
+del  presupuesto,  debiendo  ser  objeto  de  revisión  anual,  añadiendo  un  nuevo 
+ejercicio a sus previsiones.” 
+Los  presupuestos  municipales,  una  vez  elaborados  bajo  la  coordinación del  Sr. 
+Concejal de Hacienda, son aprobados por el órgano plenario de la Corporación. El 
+órgano interventor es órgano de control, no actúa como órgano de gestión.  
+Por  parte  de  la  intervención  municipal  se  ha  procedido  a  dar  traslado  al  Sr. 
+Concejal  de  Hacienda  de  la  presente  deficiencia  advertida  en  el  borrador del 
+informe para su conocimiento y efectos oportunos. 
+Documentación justificativa de la alegación: 
+Se adjunta como DOC. 2 la comunicación realizada al Sr. Concejal de Hacienda. 
+ 
+ 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Control Financiero: 
+Tercera alegación. 
+Apartado 21 del borrador del Informe, página 7, párrafo 21. 
+Contenido de la alegación: 
+El  apartado  9)  dice:  “No  se  tiene  constancia  de  la  fiscalización  previa  de  las 
+anulaciones  de  derechos  en  2017  y  2018,  al  no  estar  prevista  en  las  bases  de 
+ejecución  de  los  presupuestos.  En  2019  sí  se  efectúa  dicha  fiscalización  previa, 
+conforme establecen las bases (52)”. 
+El  art.  9.3  del  RD  424/2017,  de  28  de  abril,  por  el  que  se  regula  el  Régimen 
+Jurídico del Control Interno en las Entidades del Sector Público Local, establece:  
+ “(...) la sustitución de la fiscalización previa de los derechos e ingresos de la 
+tesorería  de  la  Entidad  Local  por  el  control  inherente  a  la  toma  de  razón  en 
+contabilidad  y  el  control  posterior  no  alcanzará  a  la  fiscalización  de  los  actos  de 
+ordenación y pago material derivados de devoluciones de ingresos indebidos”. 
+En  este  Ayuntamiento  de  Riba-roja  de  Túria,  la  fiscalización  previa limitada  en 
+materia  de  ingresos está  sustituida  por  la  toma  de  razón  en  contabilidad, 
+excepto las ÓRDENES DE PAGO DE DEVOLUCIONES DE INGRESOS. En el ejercicio 
+2019 se incluyó también en materia de ingresos la fiscalización previa limitada de 
+las anulaciones de ingresos. 
+Durante el ejercicio 2018, la Intervención municipal, en el informe anual de control 
+financiero sobre el ejercicio 2017 (informe nº 340/2018), incluyó el análisis de las 
+anulaciones  de  ingresos  realizadas  en  dicho  ejercicio,  mediante  una  muestra 
+aleatoria  representativa  del  total  de  la  muestra  de  171  expedientes  que  fueron 
+tramitados por el Departamento de Tesorería del Ayuntamiento.  
+Asimismo, durante el ejercicio 2019, la Intervención municipal, en el informe anual 
+de  control  financiero  sobre  el  ejercicio  2018  (informe  nº  584/2019),  incluyó  el 
+análisis de los expedientes de anulaciones de ingresos realizadas en dicho ejercicio 
+en el Impuesto sobre Bienes Inmuebles.  
+Documentación justificativa de la alegación: 
+Sin contenido. Los informes de control financiero (dado el volumen de los mismos) 
+no  se  adjuntan  a  las  presentes  alegaciones;  encontrándose  a  su  disposición 
+cuando los requiera. 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Cuarta alegación. 
+Apartado 22 del borrador del Informe, página 7, párrafo 22. 
+Contenido de la alegación: 
+El apartado 22) dice: “En  2018 no se realizó la fiscalización de la justificación de 
+las  subvenciones  otorgadas  por  concurrencia  competitiva.  El  Plan  de  control 
+financiero de 2019 prevé su fiscalización en los próximos ejercicios. (...)”. 
+Esta  Intervención  municipal,  una  vez  tomado  conocimiento  de  la  advertencia 
+realizada ha procedido a introducir el citado informe, con carácter anual, dentro de 
+las  actuaciones  de  control  permanente  planificables  que  se  derivan  de  una 
+obligación legal. 
+Documentación justificativa de la alegación: Sin contenido.  
+ 
+APENDICE 6. Observaciones sobre el área de Intervención: 
+Quinta alegación. 
+Apartado Organización y regulación del borrador del Informe, página 37, párrafo 2. 
+Contenido de la alegación: 
+El  informe  dice: “(2)  Entre  2016  y  noviembre  de  2019,  una  funcionaria  con 
+habilitación  nacional  ocupaba  el  puesto  de  interventora  y  otra  el puesto  de 
+viceinterventora,  ambos  cubiertos  por  concurso  (3)(4).  Asimismo,  al  área  de 
+Intervención está asignada otra funcionaria con habilitación nacional, cubierta por 
+concurso desde 2008. (3)”. 
+El Ayuntamiento de Riba-roja ha cubierto la plaza de interventor desde el ejercicio 
+2008   hasta   el   ejercicio   2016   mediante   nombramiento   PROVISIONAL   por 
+Funcionaria  con  habilitación  de  carácter  estatal,  no  existiendo  la  plaza  de 
+viceinterventor en dicho periodo. Desde 2016 hasta noviembre de 2019, han sido 
+cubiertas  las  plazas  de  interventor  y  de  viceinterventor  mediante  concurso  por 
+funcionarias con hablitación de carácter estatal. Desde diciembre de 2019, la plaza 
+de  interventor  se  ocupa  mediante  COMISIÓN  DE  SERVICIOS  de  funcionaria  con 
+habilitación estatal.  
+Documentación justificativa de la alegación: Sin contenido.  
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Sexta alegación. 
+Apartado Informes específicos del borrador del Informe, página 39, párrafo 1 a 4. 
+Contenido de la alegación: 
+El informe dice: “Cuando  se omite la fase de fiscalización y la intervención emite 
+un informe este no contempla la existencia de responsabilidades (33).  
+El  informe  de  la  Intervención  sobre  la liquidación  del  presupuesto  de  2017  no  se 
+pronuncia  sobre  la  evolución  de  los  datos  en  relación  con  el ejercicio  anterior. 
+(47). 
+La nómina del personal se fiscaliza por muestreo. (57). 
+No en todos los casos se realizan informes de fiscalización sobre los proyectos de 
+reparcelación. (65).”  
+Esta   intervención   municipal   ha   tomado   conocimiento   de   las   observaciones 
+realizadas  por  la  Sindicatura  de  Cuentas  de  la  Comunidad  Valenciana,  y  ha 
+procedido a añadir en el informe de omisión por fiscalización, no solo la existencia 
+de responsabilidades sino  también todos los extremos que el Tribuna de  Cuentas 
+requiere en el formulario de remisión anual de informes.  
+Así mismo, si bien la normativa no se pronuncia al respecto, por recomendación de 
+Sindicatura de Cuentas de la Comunidad Valenciana, en los informes de liquidación 
+de  presupuestos  que  se  realicen  se  emitirá  pronunciamiento  expreso  sobre  la 
+evolución de los datos en relación con el ejercicio anterior. 
+Respecto  a  la  nómina  del  personal,  la  misma  es  objeto  de  fiscalización  previa 
+limitada con carácter mensual, realizándose actualmente la comprobación de todos 
+los extremos que suponen una variación en la nómina con respecto de la del mes 
+que le precede. 
+Todos los expedientes que han sido remitidos a la Intervención municipal para su 
+fiscalización previa limitada han sido objeto de la misma, incluidos si  se hubieren 
+remitido los expedientes de proyectos de reparcelación. Debe hacerse constar, que 
+por  la  Arquitecta  municipal  se  puso  de  manifiesto  que  no  se  habían  tramitado 
+expedientes de dicha naturaleza en los años de referencia del borrador de informe 
+de fiscalización de control interno de Sindicatura (ejercicios 2017-2019). 
+Documentación justificativa de la alegación: Sin contenido.  
+ 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+3.- AREA DE SECRETARIA 
+Primera al·legació 
+Apartat 4 de l’esborrany de l’Informe, pàgina 4, paràgraf 6 
+Contingut de l’al·legació: 
+ En  cuanto  a  la  observación  relativa  al  punto  A.16  del  formulario  de  Secretaría  y 
+Organización municipal, respecto a si  existe una declaración individualizada que acredite el 
+cumplimiento de la Ley 53/1984 de 26 de diciembre, de Incompatibilidades  del Personal al 
+Servicio  de  las  Administraciones  Públicas  para  aquellos  concejales  con  dedicación,  en  la 
+legislatura  2015-2019,  cabe  decir  que  esta  Secretaria  no  prestaba  servicios en  este 
+Ayuntamiento en 2015 no obstante, por parte del personal del Departamento se le informa 
+que  obra  en  el  correspondiente  expediente  la  previa  declaración de  bienes  y  actividades 
+formulada por los Concejales conforme al modelo normalizado existente en dicho momento 
+que  era  el  utilizado  por  muchos  Ayuntamientos  (modelo  de  Papelería Vila)  asimismo  se 
+traslada  a  esta  Secretaria  que  no  hay  constancia  de  que  hubiera  ningún  miembro  de  la 
+corporación  con  dedicación  exclusiva  que  compatibilizara  su  cargo  electo  con  dedicación  al 
+servicio de las administraciones públicas. 
+ Al  respecto  cabe  decir  que  por  parte  de  esta  Secretaria  que  suscribe  se  elevó 
+propuesta  al  Pleno  para  la  aprobación  de  un  modelo  propio  de  declaración  de  bienes  y 
+actividades que fue aprobado al finalizar la legislatura 2015-2019 y que fue utilizado para la 
+toma  de  posesión  y  cese  2019-2023.  Dicho  modelo  era  utorellenable  y  por  primera  vez 
+permitió  su  presentación  telemática.  De  todo  ello  queda  constancia  en  el  expediente 
+electrónico.  
+ Segona al·legació 
+Apartat 4 de l’esborrany de l’Informe, pàgina 5, paràgraf 12 
+Contingut de l’al·legació: 
+ Respecto de la observación relativa al punto G9 del formulario relativo a contratación 
+y compras, por cuanto no ha quedado acreditado por Secretaría que todos los expedientes 
+de  contratación  contengan  informe  propuesta  de  necesidades,  el  pliego  de  prescripciones 
+técnicas y de cláusulas administrativas, certificado de existencia de crédito, fiscalización del 
+gasto,  publicidad  de  la  convocatoria  y  acto  formal  de  recepción;  decir que  como  se  ha 
+afirmado en el cuestionario los expedientes de contratación tramitados en el Ayuntamiento 
+de  Riba-roja  de  Túria  reúnen  dichos  requisitos.  Dichos  expedientes  se  encuentran  a 
+disposición  de  Sindicatura  para  su  comprobación.  No  obstante,  dado  que por  parte  de 
+Sindicatura  se  ha  solicitado  que  tal  comprobación  sea  realizada  por  la  Secretaría  de  este 
+Ayuntamiento  se  ha  encomendado  al  departamento  de  contratación    que  se seleccione  al 
+respecto  una  muestra  representativa  de  expedientes  tramitados  en  2017  a  los  efectos  de 
+constatar  si  se  cumplen  o  no  dichos  requisitos  y  en  este  sentido  se  ha  recabado  la 
+documentación que a continuación se detalla respecto: 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+En materia de contratos de suministros, observamos lo siguiente:  
+A) Ctto 50/2017 Lotes 1 y 2 
+Objeto: Contrato  de  suministro  de  carburante  para  los  vehículos  y  maquinaria  del 
+ayuntamiento de Riba-roja de Túria por procedimiento abierto, oferta más ventajosa, varios 
+criterios de adjudicación con criterios sociales, y condición de adjudicación en lote 1 y lote 2 
+- Doc 27  Informe de propuesta de necesidades.  
+Se  inicia  el  expediente  por  informe  de  propuesta  de  necesidades  suscrito  por  el  Ingeniero 
+Municipal en fecha 23 de mayo de 2017. 
+-Doc 28 Pliego de prescripciones técnicas 
+Se   ha   incorporado   el   pliego   de   prescripciones   técnicas   firmado   por   la   técnico   del 
+departamento de juventud en fecha 15 de mayo de 2017.  
+-Doc 29 Pliego de cláusulas administrativas particulares 
+Obra  en  el  expediente  el  pliego  de  cláusulas  administrativas  particulares  emitido  por  el 
+departamento de contratación.  
+- Doc 30 Certificado de existencia de crédito 
+Se  ha  emitido  el  correspondiente  certificado  de  existencia  de  crédito  relativo  al  ejercicio 
+corriente y futuro en fecha 7 de enero de 2017.  
+- Doc 31 Fiscalización del gasto 
+Obra en el expediente informe favorable de fiscalización previa del gasto (informe previo a la 
+aprobación  del  expediente)  de  fecha  22  de  junio  de  2017,  suscrito  por  la  interventora 
+municipal.  
+- Doc 32 Publicidad de la convocatoria 
+Se publicó anuncio de licitación en el BOP de Valencia y en el Perfil de Contratante el pasado 
+25 de julio de 2017. El perfil de contratante en 2017 era un enlace en la web municipal que 
+no cumplía los estandares legales. Si bien con la incorporación de la Secretaria General se 
+subsanó y se adhirió el Ayuntamiento a PLACE. 
+- Doc 33 Acto formal de recepción 
+En el expediente consta la formalización sendos lotes del contrato de fecha 30 de septiembre 
+de  2017,  donde  manifiesta  que  los  efectos  del  contrato  empiezan  a  contar  desde  el  1  de 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+octubre  de  2017.  No  consta  acta  de  recepción  por  tratarse  de  un  suministro recurrente 
+durante toda la duración del contrato.  
+ En  cuanto  a  los  contratos  de  servicios  se  ha  procedido  a  examinar  los  siguientes 
+expedientes:  
+A) Ctto 12/2017  
+Objeto: Contrato de servicio para la ejecución del plan de formación, ocio y tiempo libre para 
+personas  con  diversidad  funcional  y/o  dificultades  en  el  aprendizaje  por  procedimiento 
+abierto, oferta económica más ventajosa, varios criterios de adjudicación. 
+- Doc 34 Informe de propuesta de necesidades.  
+Se inicia el expediente por informe de propuesta de necesidades suscrito por la responsable 
+del departamento de Servicios Sociales de fecha 16 de febrero de 2017.  
+- Doc 35 Pliego de prescripciones técnicas 
+Se   ha   incorporado   el   pliego   de   prescripciones   técnicas   firmado   por   la   técnico   del 
+departamento de Servicios Sociales en fecha 2 de marzo de 2017.  
+- Doc 36 Pliego de cláusulas administrativas particulares 
+Obra  en  el  expediente  el  pliego  de  cláusulas  administrativas  particulares  emitido  por  el 
+departamento de contratación.  
+- Doc 37 Certificado de existencia de crédito 
+Se  ha  emitido  el  correspondiente  certificado  de  existencia  de  crédito  relativo  al  ejercicio 
+corriente y futuro en fecha 23 de marzo de 2017.  
+- Doc 38  Fiscalización del gasto 
+Obra en el expediente informe favorable de fiscalización previa del gasto (informe previo a la 
+aprobación  del  expediente)  de  fecha  31  de  marzo  de  2017,  suscrito por  la  interventora 
+municipal.  
+- Doc 39 Publicidad de la convocatoria 
+Este contrato se tramitó a través de un procedimiento abierto, por lo que en el expediente 
+figura el anuncio de licitación publicado en el BOP en fecha 6 de abril de 2017.  
+- Doc 40  Acto formal de recepción 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+En  el  expediente  consta  la  formalización  del  contrato  de  fecha 29  de  septiembre  de  2017, 
+donde manifiesta que los efectos del contrato empiezan a contar desde el día 1 de octubre 
+de  2017.  Se  trata  de  un  contrato  de  mera  actividad  y  por  tanto  la  duración  se  extenderá 
+hasta que se expire el plazo fijado en los pliegos. 
+B) Ctto 102/2017 
+Objeto: contrato de servicio de desratización, desinsectación y desinfección de la red pública 
+de  saneamiento  municipal  y  dependencias  municipales  y  el  tratamiento de  simúlidos  en  el 
+término municipal de Riba-roja de Túria procedimiento negociado sin publicidad 
+- Doc 41 Informe de propuesta de necesidades.  
+Se  inicia  el expediente por  informe  de  propuesta  de  necesidades suscrito  por el  técnico  de 
+medio  ambiente  y  ratificado  por  el  concejal  de  medio  ambiente de  fecha  10 de  octubre  de 
+2017.  
+- Doc 42 Pliego de prescripciones técnicas 
+Se   ha   incorporado   el   pliego   de   prescripciones   técnicas   firmado   por   el   técnico   del 
+departamento de medio ambiente en fecha 10 de octubre de 2017. 
+- Doc 43 Pliego de cláusulas administrativas particulares 
+Obra  en  el  expediente  el  pliego  de  cláusulas  administrativas  particulares  emitido  por  el 
+departamento de contratación.  
+-Doc 44 Certificado de existencia de crédito 
+Se  ha  emitido  el  correspondiente  certificado  de  existencia  de  crédito  relativo  al  ejercicio 
+corriente y futuro en fecha 27 de octubre de 2017.  
+-Doc 45  Fiscalización del gasto 
+Obra en el expediente informe favorable de fiscalización previa del gasto (informe previo a la 
+aprobación del expediente) de fecha 16 de noviembre de 2017, suscrito por la interventora 
+municipal.  
+- Doc 46 Publicidad de la convocatoria 
+Al ser un negociado sin publicidad, en el expediente figura el anuncio de adjudicación y de 
+formalización. Ambos de fecha 11 de abril de 2018.   
+- Doc 47 Acto formal de recepción 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+En el expediente consta la formalización del contrato de fecha 29 de marzo de 2018, donde 
+manifiesta que los efectos del contrato empiezan a contar desde la fecha de formalización. 
+Se trata de un contrato de mera actividad y por tanto  la duración se extenderá hasta que se 
+expire el plazo fijado en los pliegos. 
+C) Ctto 114/2017 
+Objeto:  contrato  de  servicios  para  la  realización  de  actividades  acuáticas  adaptada  a 
+menores con diversidad funcional por procedimiento negociado sin publicidad. 
+-Doc 48 Informe de propuesta de necesidades.  
+Se  inicia  el expediente por  informe  de  propuesta de  necesidades suscrito  por la  técnico de 
+servicios sociales y ratificado por el concejal de bienestar social de fecha 30 de noviembre de 
+2017.  
+- Doc 49 Pliego de prescripciones técnicas 
+Se   ha   incorporado   el   pliego   de   prescripciones   técnicas   firmado   por   la   técnico   del 
+departamento de servicios sociales.  
+- Doc 50 Pliego de cláusulas administrativas particulares 
+Obra  en  el  expediente  el  pliego  de  cláusulas  administrativas  particulares  emitido  por  el 
+departamento de contratación.  
+- Doc 51 Certificado de existencia de crédito 
+Se  ha  emitido  el  correspondiente  certificado  de  existencia  de  crédito  relativo  al  ejercicio 
+corriente y futuro en fecha 19 de enero de 2018.  
+- Doc 52 Fiscalización del gasto 
+Obra en el expediente informe favorable de fiscalización previa del gasto (informe previo a la 
+aprobación  del  expediente)  de  fecha  27  de  febrero  de  2018,  suscrito  por  la  interventora 
+municipal.  
+- Doc 53 Publicidad de la convocatoria 
+Al ser un negociado sin publicidad, en el expediente figura el anuncio de adjudicación y de 
+formalización. Ambos de fecha 8 de mayo de 2018.   
+- Doc 54 Acto formal de recepción 
+En  el  expediente  consta  la  formalización  del  contrato  de  fecha  3 de  mayo  de  2018,  donde 
+manifiesta que los efectos del contrato empiezan a contar desde la fecha de formalización.  
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+D) Ctto 103/2017 
+Objeto:  Contrato  del  servicio  de  impartición  de  clases  de  ingles  en  el  CIJ  para  los  cursos 
+escolares 2017-18 y 2018-19 por procedimiento negociado sin publicidad 
+- Doc 55 Informe de propuesta de necesidades.  
+Se  inicia  el expediente por  informe  de  propuesta de  necesidades suscrito  por la  técnico de 
+juventud y ratificado por la concejala de juventud de fecha 11 de octubre de 2017.  
+- Doc 56  Pliego de prescripciones técnicas 
+Se   ha   incorporado   el   pliego   de   prescripciones   técnicas   firmado   por   la técnico   del 
+departamento de juventud en fecha 17 de enero de 2018.  
+- Doc 57 Pliego de cláusulas administrativas particulares 
+Obra  en  el  expediente  el  pliego  de  cláusulas  administrativas  particulares  emitido  por  el 
+departamento de contratación.  
+- Doc 58  Certificado de existencia de crédito 
+Se  ha  emitido  el  correspondiente  certificado  de  existencia  de  crédito  relativo  al  ejercicio 
+corriente y futuro en fecha 25 de enero de 2018.  
+- Doc 59 Fiscalización del gasto 
+Obra en el expediente informe favorable de fiscalización previa del gasto (informe previo a la 
+aprobación  del  expediente)  de  fecha  29  de  enero  de  2018,  suscrito  por  la  interventora 
+municipal.  
+- Doc 60 Publicidad de la convocatoria 
+Al ser un negociado sin publicidad, en el expediente figura el anuncio de adjudicación y de 
+formalización. Ambos de fecha 11 de abril de 2018.   
+- Doc 61 Acto formal de recepción 
+En el expediente consta la formalización del contrato de fecha 29 de marzo de 2018, donde 
+manifiesta que los efectos del contrato empiezan a contar desde la fecha de formalización. 
+Se trata de un contrato de mera actividad y por tanto  la duración se extenderá hasta que se 
+expire el plazo fijado en los pliegos.  
+Por lo tanto, de esta muestra aleatoria de contratos respecto a los que se ha establecido la 
+verificación se comprueba que SÍ que se cumplen todos los requisitos pudiendo afirmar que 
+los  contratos  tramitados  por  el  Ayuntamiento  de  Riba-roja  de  Túria  se  ajustan  a  los 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+requisitos  legalmente  exigibles.  Y  no  obstante  reiterar  la  disposición  del  Ayuntamiento  de 
+Riba-roja  en  el  acceso  por  parte  de  Sindicatura  a  cualquier  expediente  o  documento  que 
+desee consultar para verificar dicha afirmación.  
+ Todos  los  expedientes  de  contratación  tramitados  cuentan  con  Informe  jurídico 
+favorable  de  la  Secretaria  General  e  Informe  de  Fiscalización  favorable  de  la  Interventora 
+Municipal.  
+Al  respecto  cabe  destacar  que  precisamente  a  partir  de  2017  se  ha  producido una  ingente 
+labor  en  materia  de  contratación  pública,  lo  cual  incluso  nos  ha  hecho  referentes  en  la 
+materia a nivel municipal.  
+Así, podemos citar como principales medidas las siguientes: 
+Primero.- En  fecha  20  de  febrero  de  2017  la  Junta  de  Gobierno  Local  aprobó  el  Plan  de 
+Perfeccionamiento  en  materia  de  contratación  administrativa  mediante  el  cual  se  fijaron 
+cuatro grandes objetivos a conseguir: 
+1. Regularizar  todos  los  contratos  pendientes  a  los  que  hace  referencia  la  Resolución 
+nº228/2017  de 3 de febrero  
+2. Tramitar  todos  los  contratos  que  requiera  la  actividad  del  Ayuntamiento  tanto  para 
+cubrir  nuevas  necesidades  de  contratación  como  para  renovar  aquellos  contratos  que 
+finalizan en el ejercicio 2017; (concretamente 32 contratos). 
+3. Seguir  con  la  implantación  de  la  Administración  Electrónica  y  concretamente  con  la 
+licitación electrónica, la cual se pretende implantar en breve.  
+4. Regular unas instrucciones de aplicación de  cláusulas sociales así como la aplicación de 
+las Directivas Europeas en materia de contratación. 
+Segundo.- El  Ayuntamiento  Pleno    el  3  de  abril  de  2017  aprobó  la  implantación  de  la 
+licitación electrónica para todos los contratos administrativos . 
+Tercero.- El 2 de octubre de 2017 se aprobó por el Pleno del Ayuntamiento el “Decálogo de 
+medidas  por  una  contratación  transparente,  abierta  y  eficiente”  en  donde  se  incluían 
+medidas  tales  como  el  que  las  mesas  de  contratación  estuvieran  integradas  solo  por 
+empleados  públicos  así  como  diversas  medidas  para  incrementar  la  transparencia  en la 
+contratación. 
+Cuarto.- El  5  de  febrero  de  2018  se  creó  por  acuerdo  de  Pleno  la  Oficina  de Atención  al 
+Licitador. 
+Quinto.-  El  Pleno  del  Ayuntamiento  en  sesión  celebrada  el  5  de  marzo  de  2018  aprobó  la 
+Instrucción  1/2018  de  impulso  de  la  contratación  socialmente  responsable,  sostenible  y  de 
+promoción de las PYMES. 
+Sexto.- Desde mayo de 2018 está en funcionamiento el Twitter @Riba_licita desde el que se 
+informa de todas las licitaciones, mesas de contratación que se retransmiten por streaming 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+así  como  se  facilita  información  y  novedades  legislativas  en  materia  de  contratación 
+administrativa. 
+Séptimo.- El  30  de  julio  de  2018  el  Pleno  aprobó  un  nuevo  trámite  en  materia  de 
+contratación  pública  consistente  en  la  Elaboración  y  Publicación  de  una  Memoria  anual  de 
+gestión y resultados de la contratación. 
+En  el  pleno  ordinario  de  mayo  de  2019  se  diócuenta  de  la  Memoria  anual  de  gestión  y 
+resultados de la contratación en 2018. 
+Octavo.-  Se  ha  aprobado  la  Instrucción  de  contratos  menores  y  la  Instrucción  2/2019  de 
+Contratos  mayores  donde  de  modo  minucioso  se  establece  cómo  se  ha  de  proceder  a  la 
+tramitación de los contratos en virtud de los diferentes tipos de procedimientos...etc. 
+Noveno.- Se  ha  hecho  un  especial  esfuerzo  en  materia  de  planificación  habiéndose 
+aprobado por el Pleno del Ayuntamiento : 
+- Plan de Contratación de 2019 
+- Plan de Contratación 2020. 
+Ambos se han publicado en la página web. 
+Décimo.- Se  ha  creado  una  Comisión  Especial  de  seguimiento  e  Impulso  del  Plan  de 
+Contratación donde se da cuenta de todos los contratos y que está integrada por todos los 
+grupos políticos. 
+Undécimo.-  El  6  de  marzo  de  2020  se  ha  aprobado  el  Catálogo  de  cinco  medidas  para 
+fomentar la igualdad de mujeres y hombres en la contratación pública: por una contratación 
+feminista. 
+Duodécimo.- Para la ejecución del Plan de Contratación se ha procedido a la aprobación de 
+un cronograma por trimestres. 
+Décimotercero.- Mediante acuerdo de Pleno de fecha 7 de octubre de 2019 se aprobó por 
+unanimidad  el  CÓGIDO  ÉTICO  PARA  LA  PLIACIÓN  DE  MEDIDAS  DE  COMPLIANCE  EN  LA 
+CONTRATACIÓN PÚBLICA DEL AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA. 
+Décimocuarto.- En   septiembre   de   2019   el   Departamento   de   Contratación   se   ha 
+incorporado a Instagram a traves de @riba-licita para conseguir una mayor cercanía con la 
+ciudadanía. Desde allí se retransmiten en directo mesas de contratación, se anuncian nuevas 
+licitaciones, noticias de interés... y tiene gran aceptación. 
+Decimoquinto.- Recientemente  se  ha  aprobado  el  Plan  de  Contratación  Participativo  y 
+Estratégico  de  Medidas  Urgentes  para  la  Reactivación  Económica  y  Social  de  Riba-roja  de 
+Túria.  Donde  se  prevén  medidas  para  la  adaptación  del  Plan  de  Contratación  2020  a  la 
+nueva  situación  generada  por  la  COVID-19;  se  contemplen  medidas  para  facilitar  la 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+participación de las pymes en la contratación pública y se crea el servicio “Ribalicita amb tú” 
+que proporciona asesoramiento, formación, información...a los licitadores de forma gratuita y 
+a través de los propios empleados públicos municipales.  
+Decimosexto.- El 8 de junio de 2020 la Junta de Gobierno Local aprobó por unanimidad el 
+“Protocolo de tramitación de contratos públicos para la mejora continua y el incremento de 
+la eficacia y la transparencia”. Donde se establecen una serie de criterios para incrementar 
+la eficacia en la tramitación de los contratos públicos de manera que se prevén unos plazos 
+estimativos  de  tramitación  y  en  la  adjudicación  de  cada  contrato  se  analizará  si  se  ha 
+ajustado a dicho plazo y en caso contrario se justificaran los  otivos y se señalarán medidas 
+a  adoptar  al  respecto.  Así  como  del  incremento  de  la  transparencia  dando  cuenta 
+semanalmente  del  estado  de  tramitación  de  todos  los  contratos  públicos  en  la  Junta  de 
+Gobierno y trimestralmente en el Pleno. 
+Decimoséptimo.-    Profesionalización.    El    Ayuntamiento    considera    fundamental    la 
+profesionalización  en  materia  de  contratación  pública  y  así  lo  ha  demostrado  mediante  la 
+organización de: 
+- Jornada formativa de contratación para Concejales. 
+- Jornada formativa de contratación para Unidades Proponentes. 
+- Jornada a nivel provincial en materia de contratación pública para profesionales de la 
+contratación  organizada  con  la  colaboración  de  COSITAL,  la  FVMP  y  la  Dirección 
+General de Administración Local.  
+Por lo tanto a la vista de  dichos antecedentes consideramos que el Ayuntamiento de Riba-
+roja de Túria ha hecho un esfuerzo importante en materia de contratación pública en pro de 
+la profesionalización, la transparencia, la integridad y la eficacia en la materia. 
+Tercera al·legació 
+Apartat 4 de l’esborrany de l’Informe, pàgina 5, paràgraf 13 
+Contingut de l’al·legació: 
+Para acreditar por la Secretaría que los contratos de obras, no menores, contengan siempre 
+la  justificación  de  la  elaboración  del  proyecto  y  su  supervisión  cuando  sea  preceptivo,  la 
+aprobación del proyecto, el acta de replanteo y de comprobación de este, el acto formal de 
+recepción, el certificado final y el informe del director de obras del estado de las obras según 
+el  artículo  235  del  TRLCSP.  (G.10)    se  ha  solicitado  al  Departamento  de  contratación  que 
+efectúe al igual que en el supuesto anterior un muestreo a los efectos de verificar o efectuar 
+dicha comprobación  en varios contratos de obras elegidos al azar y así se ha recopilado por 
+el departamento de contratación la siguiente documentación de los contratos que se indican: 
+A) Expte: 1/2017 (PPOS 2016)  SIGA: 108/2017/GEN 
+Objeto:  Obras  de  habilitación  de  locales  de  Ctra.  Villamarchante  119  para  asociaciones 
+municipales  
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Certificaciones solicitadas por la Sindicatura de Cuentas: 
+1. Justificación elaboración proyecto redactado por la arquitecta externa Ana Lujan Bodí:  
+- Doc. 1 Certificado resolución de Alcaldía nº  2524/2016 de 26 de octubre de 2016 
+2.  Informe  supervisión  proyecto:  No  es  preceptivo  conforme  el  art.  125  del  TRLCSP  (RDL 
+3/2011) dado que su valor estimado es inferior a 350.000,00.-€ 
+3. Aprobación proyecto: Aprobado en fecha 29 de noviembre de 2016 la Junta de Gobierno 
+Local acordó aprobar el proyecto para la ejecución de la obra de "habilitación de locales de 
+Ctra. Villamarchante 119 para asociaciones municipales". 
+- Doc. 2 Informe favorable de la Diputación de fecha 18 de noviembre de 2016 
+- Doc. 3 Acdo JGL de fecha 29 de noviembre de 2016 
+4. Acta replanteo previo:  
+- Doc. 4 Acta de replanteo previo de fecha 2 de marzo de 2017 
+5. Acta de comprobación de replanteo:  
+- Doc 5. Acta de comprobación de replanteo de fecha 12 de junio de 2017 
+6. Acta recepción obras:  
+- Doc 6. Acta recepción obras de fecha 12 de diciembre de 2017 
+7. Certificación aprobación obras y factura  
+- Doc 7. Certificación aprobación obras y factura de fecha 15 de diciembre de 2017 
+ 8. Certificación liquidación de las obras 
+ - Doc 8.  Certificación liquidación de las obras de 12 de marzo de 2018 
+9.  Informe  del  director  de  las  obras  del  estado  de  las  obras  previo  a la  devolución  de  la 
+garantía definitiva conforme el art. 235 del TRLCSP (RDL 3/2011):  
+-  Doc  9.  Informe  del  director  de  las  obras  del estado  de las  obras  de  fecha  7  de  enero de 
+2020 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+B) Expte: 38/2017  SIGA: 706/2017/GEN 
+Objeto:  Obras  restauración  y  conservación  del  edificio  Escuela  municipal  de música  y 
+conservatorio profesional municipal de música 
+Certificaciones solicitadas por la Sindicatura de Cuentas: 
+1. Justificación elaboración proyecto:  
+ Las obras son realizadas con fondos de ayudas  económicas  con  destino  a  la   realización  
+de   obras  de   acondicionamiento   o   mejora   y   conservación  de  inmuebles  destinados  a 
+actividades musicales de 2014-2015 de la Diputación  de Valencia. 
+- Doc. 10 Informe propuesta inicio ctto 38/2017 de fecha 29 de marzo de 2017 
+2.  Informe  supervisión  proyecto:  No  es  preceptivo  conforme  el  art.  125  del  TRLCSP  (RDL 
+3/2011) dado que su valor estimado es inferior a 350.000,00.-€ 
+3.  Aprobación  proyecto:  Redactado  por los  técnicos del  Ayuntamiento  Dª  Ana  Teresí  Brisa, 
+Arquitecta municipal,  y D. Vicente Adobes Golfe, Ingeniero municipal,  aprobado por Junta 
+de  Gobierno  Local  de  fecha  14  de  noviembre  de  2016,  y  atendido  que  el  proyecto  ha  sido 
+presentado telemáticamente en la Diputación de Valencia, e informado favorablemente por 
+los  técnicos  de  la  Diputación,  con  fecha  25  de  enero  de  2017.  Aprobación  del  pliego  de 
+prescripciones técnicas aprobado a través de Resolución de Alcaldía nº  1517/2017 de 12 de 
+junio de 2017. 
+- Doc. 11 Acuerdo de la Junta de Gobierno Local de fecha 14 de noviembre de 2016 
+- Doc. 12 .Informe favorable de la Diputación de fecha 25 de enero de 2017  
+- Doc. 13.  Certificado de Resolución de Alcaldía nº  1517/2017 de 12 de junio de 2017. 
+4. Acta replanteo previo:  
+- Doc. 14 Acta de replanteo previo de fecha 10 de abril de 2017 
+5. Acta de comprobación de replanteo:  
+- Doc 15. Acta de comprobación de replanteo de fecha 1 de agosto de 2017 
+6. Acta recepción obras:  
+- Doc 16. Acta recepción obras de fecha 25 de diciembre de 2017 
+7. Certificación final:  
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+- Doc 17. Certificación final de fecha 25 de septiembre de 2017 
+- Doc 18 Certificación mejoras 26 de octubre de 2017 
+8.  Informe  del  director  de  las  obras  del  estado  de  las  obras  previo  a la  devolución  de  la 
+garantía definitiva conforme el art. 235 del TRLCSP (RDL 3/2011):  
+- Doc 19. Informe modificaciones de fecha 4 de diciembre de 2017 
+- Doc 20. Informe del director de las obras del estado de las obras de fecha 21 de diciembre 
+de 2018. 
+C) Expte: 95/2017  SIGA: 2658/2017/GEN 
+Objeto: Obras construcción cubierta en pista deportiva CEIP Camp de Túria  
+Certificaciones solicitadas por la Sindicatura de Cuentas: 
+1. Justificación elaboración proyecto:  
+- Doc.21 Informe propuesta inicio ctto 95/2017 de fecha 29/08/2017 o 1 de septiembre de 
+2017 
+2.  Informe  supervisión  proyecto:  No  es  preceptivo  conforme  el  art.  125  del  TRLCSP  (RDL 
+3/2011) dado que su valor estimado es inferior a 350.000,00.-€ 
+3. Aprobación proyecto: Redactado por Dª Ana Teresí Brisa, Arquitecta municipal en fecha  
+30  agosto  de  2017  y  aprobado  junto  con  el  PPT  a  través  de  Resolución de  Alcaldía  nº  
+2157/2017 de fecha 5 de septiembre de 2017. 
+- Doc. 22.  Certificado de Resolución de Alcaldía nº 2157/2017 de fecha 5 de septiembre de 
+2017. 
+4. Acta replanteo previo:  
+- Doc. 23 Acta de replanteo previo de fecha 5 de septiembre de 2017 
+5. Acta de comprobación de replanteo:  
+- Doc 24. Acta de comprobación de replanteo de fecha 28 de diciembre de 2017 
+6. Certificación final:  
+- Doc 25. Certificación final de fecha 15 de febrero de 2018 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+7. Acta recepción obras:  
+- Doc 26. Acta recepción obras de fecha 16 de febrero de 2018 
+8.  Informe  del  director  de  las  obras  del  estado  de  las  obras  previo  a la  devolución  de  la 
+garantía definitiva conforme el art. 235 del TRLCSP (RDL 3/2011):  
+No han solicitado devolución de aval y por lo tanto no se ha procedido a su devolución. 
+Cuarta al·legació 
+Apartat 4 de l’esborrany de l’Informe, pàgina 5, paràgraf 14 
+Contingut de l’al·legació: 
+En  este  sentido  cabe  indicar  que  durante  el  ejercicio  2017  no  se  ha  tramitado  ninguna 
+modificación  contractual.  Si  bien  en  años  posteriores  las  modificaciones  tramitadas  sí 
+cumplen dichos requisitos. 
+Quinta al·legació 
+Apartat 4 de l’esborrany de l’Informe, pàgina 6, paràgraf 16 
+Contingut de l’al·legació: 
+Cuanto  a  la  observación  relativa  a  los  apartados  E3,  E13,  E15  a  E17 y  E7,  referentes  al 
+formulario de “Inventario de Bienes y Patrimonio”, la Corporación ha aprobado un Inventario 
+el 15 de diciembre de 2015 y está actualizado a dicha fecha. No obstante se plantea como 
+objetivo para este año la elaboración de un Inventario actualizado mediante su contratación 
+externa  ante  la  ausencia  de  medios  municipales  siguiendo  las  indicaciones  tanto  de 
+Intervención como de Secretaría que se han manifestado sobre esta necesidad. 
+Con relación a la comprobación con ocasión de la renovación de la Corporación, la Secretaría 
+General en su Informe de finalización del mandato ha expuesto lo siguiente:  
+ “Asimismo, se remite igualmente el presente Informe al Departamento de Urbanismo a los 
+efectos  de  que  remita  la documentación  relativa  al  inventario  de  la  Corporación  a  los 
+efectos de que pueda estar a disposición de todos los concejales electos desde la fecha de 
+convocatoria de la sesión del Pleno de constitución de la Corporación en Secretaría General. 
+Se  advierte  por  esta  Secretaría  de  la  necesidad  de  que  a  la  mayor  brevedad  posible  se 
+proceda a efectuar una actualización y rectificación del Inventario municipal que reúna todos 
+los  requisitos  establecidos  por  la  normativa  de  aplicación  y  que  esté  conectado  con  la 
+contabilidad  municipal  a  los  efectos  de  que  no  se  produzcan  discrepancias  y  se  pueda 
+determinar  el  patrimonio  económico  como  establece  el  artículo  35  del  Reglamento  de 
+Bienes.  
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+No obstante, como se es consciente de que dicho trabajo es extenso y puede prolongarse en 
+el tiempo a los efectos de cumplir el trámite requerido en el momento de constitución de la 
+Corporación ruego se incorpore Informe de Urbanismo y/o Patrimonio donde consten altas y 
+bajas  producidas  desde  la  última  actualización  para  conocimiento  de  los  Concejales 
+supeditado a su posterior aprobación por el Pleno.” 
+Es decir, que a falta de una actualización y rectificación del Inventario por falta de medios se 
+ha elaborado un Informe por parte de Urbanismo donde constan las altas y bajas desde la 
+última  actualización  y  del  que  se  ha  dado  copia  a  todos  los  Concejales  para  que  fueran 
+conocedores. 
+ 
+4.- AREA DE RRHH 
+7)  Los  puestos  no  se  han  clasificado  de  acuerdo  con  criterios  de  valoración 
+objetivos y cuantificables (D.4) 
+Sí   que   existe   una   RPT   aprobada   que   contiene   criterios   de   valoración   objetivos   y 
+cuantificables   conforme   a   los   cuales   se   determina   los   complementos   de   destino   y 
+específicos,  pero  no  se  pudo  dar  el  documento  diligenciado  resultante  de  dicha  aprobación 
+dado que se produjo en 2003, mucho antes de la implantación de la tramitación electrónica 
+de expedientes. 
+Sin embargo, sí que se han venido aprobando sucesivas modificaciones de la RPT, que han 
+sido  publicadas  en  el  Boletín  Oficial  de  la  Provincia.  Así  puede comprobarse  en  el  edicto 
+publicado  en  el  nº  104  del  mismo,  de  fecha  1  de  junio  de  2017,  en  el  cual  se  publica  la 
+aprobación definitiva de la relación de puestos de trabajo correspondiente al ejercicio 2017 
+(última  modificación  publicada  dentro  del  periodo  objeto  de  la  presente  fiscalización),  en 
+donde se da cuenta de la misma en su totalidad. 
+En  ella  figuran  los  complementos  de  destino  y  específicos  asignados  a cada  puesto, 
+resultantes de las correspondientes fichas que se hicieron en su momento para la valoración 
+de los citados puestos. Asimismo, con posterioridad, se han aprobado en los ejercicios 2018 
+y 2020 nuevas valoraciones de puestos con ocasión de la incorporación  a la RPT de puestos 
+de nueva creación. 
+Se adjunta documento acreditativo de tales circunstancias. 
+Por tanto, sí existen criterios objetivos y cuantificables para determinar esos complementos 
+en cada caso. 
+8)  El  complemento  de  productividad,  que  lo  cobra  una  parte  del  personal  del 
+ayuntamiento,  no está vinculado a una valoración objetiva 
+Existe un manual de productividad aprobado por el Pleno del ayuntamiento de Riba-roja de 
+Túria  en  sesión  de  fecha  6  de  febrero  de  2017,  en  e  cual  se  establecen  cuatro  tipos  de 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+programas para la asignación de la cantidad global aprobada por el Pleno para su destino a 
+productividad conforme a procedimientos y criterios objetivos, por lo que la productividad sí 
+está  vinculada  a  una  valoración  objetiva,  con  carácter  general,  sin  perjuicio  de  que  se 
+reserve  un  porcentaje  a  la  decisión  de  la  alcaldía,  pero  siempre  dentro  de los  criterios  y 
+normas señalados en dicho manual. 
+Se adjunta también este documento. 
+- Otras observaciones (página 24) 
+Provisiones  de  puestos  de  trabajo  y  cambios  de  departamentos  no  se  realizan 
+mediante convocatoria pública, por lo que no se cumplen 78 y ss TREBEP. 
+Estos artículos se refieren al concurso y la libre designación para la provisión de puestos de 
+trabajo pero están pensados para grandes Administraciones y no para la estructura habitual 
+de  las  corporaciones  locales.  En  este  ayuntamiento,  como  en  la  mayoría,  la  selección  se 
+hace  para  una  plaza  genérica  (Administrativo,  TAG,  etc,  pero  no  se  selecciona para  un 
+destino  concreto  (Administrativo  de  la  Unidad  de  Urbanismo,  por  ejemplo). Cuando  se 
+aprueba  un  proceso  selectivo  se  le  adscribe  directamente  a  su  plaza  (equivalente  al 
+concurso).  
+Además, debe tenerse en cuenta que en esta Administración no existen centros de trabajo 
+administrativos  ubicados  en  diferentes  localidades,  como  ocurre,  por  ejemplo,  en  la 
+Generalitat, en donde para los empleados públicos es trascendente desempeñar su trabajo 
+en  Alicante  o  en  Castellón,  por  lo  que  en  ayuntamientos  como  Riba-roja  de  túria  no  tiene 
+sentido el  concurso.  En  primer  lugar,  porque  el  centro  de  trabajo es  único  y  ubicado  en  la 
+misma localidad. En segundo lugar, porque estar en  una unidad o departamento o en otro 
+no afecta retributivamente. Por último cabe insistir en que no hay especificad de las plazas 
+sino que se selecciona para una determinada escala o categoría laboral de forma genérica. 
+Por todo ello, los sistemas de concurso o libre designación a los que se refieren los artículos 
+78  y  siguientes  del  TREBEP  no  resultan  aplicables  de  facto  a  entidades  locales  de  estas 
+características, ya que están pensados para Administraciones de grandes dimensiones. 
+De  hecho  el  concurso  se  utiliza  como  sistema  de  provisión  de  puestos que  no  tiene  titular 
+(ver  artículo  38  del  Decreto  3/2017  del  Consell)  y,  dadas  las  circunstancias  anteriormente 
+explicadas en cuanto a que las plazas que se convocan por este ayuntamiento, el concurso 
+deviene prácticamente inaplicable.   
+- Recomendaciones 
+Fijar horas mínimas anuales de formación (D 19).  
+Se acepta la recomendación. 
+Incluir   en   el   expediente   de   los   empleados   las   compatibilidades   que   se   les 
+reconozcan (D 15). 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Se acepta la recomendación. 
+Publicar  en  la  web  las  resoluciones  de  autorización  de  compatibilidades  a  sus 
+empleados (D 41). 
+Ya  se  publican  en  el  portal  de  transparencia.  Ver  apartado  1  Transparencia  activa  e 
+información sobre la corporación municipal, epígrafe 1.1 (publicidad activa sobre los órganos 
+de gobierno municipales), Item 21. 
+ 
+5.- AREA DE ENTORNO TECNOLOGICO 
+Entorno tecnológico 
+24) La entidad no dispone de documentación que acredita el nivel de adecuación al 
+Esquema Nacional de Seguridad, Real Decreto 3/2010, de 8 de enero (E.T.1) 
+Cuando  se  establecieron  las  entrevistas  con  la  auditora  de  la  Sindicatura  de  Cuentas  se 
+señaló  que  nuestra  organización  está  adecuada  en  materia  de  protección  de  datos, 
+concretamente  al  Reglamento  de  Protección  de  Datos  2016/679  del  Parlamento  Europeo  y 
+del  Consejo  de  27  de  abril  de  2016,  a  la  Ley  Orgánica  3/2018,  de  5  de  diciembre,  de 
+Protección  de  Datos  Personales  y  garantía  de  los  derechos  digitales,  y  que  a  lo  largo  del 
+ejercicio 2020, se pretendía licitar el proyecto de adecuación al ENS y al ENI. 
+Es por ello que cualquier documentación relativa al ENS no la disponemos en este momento, 
+o  mejor  dicho,  no  la  disponemos  de  manera  normalizada,  aunque  mucha  de ellas  las 
+tengamos recogidas en documentación de carácter interno. 
+25) La entidad no se ajusta a los criterios y recomendaciones establecidos en el RD 
+4/2010,  de  8  de  enero,  que  regula  el  ENI,  y/o  no  dispone  del  documentoa  sobre 
+adecuación al que se refiere su disposición transitoria primera (E.T.5) 
+Sirva la argumentación del punto 24. 
+Operaciones de los sistemas de información 
+26) La entidad no cuenta con mecanismos para controlar (detectar o restringir) el 
+acceso de dispositivos físicos no autorizados. (E.T.25) 
+Esta  contestación  es  modificable  de  No  a  SI.  Nosotros  tenemos  la  mayoría de  entornos  de 
+trabajo  (servidores,  equipos  de  sobremesa)  restringidos  para  que  no  puedan  usar  ningún 
+dispositivo    externo    y    que    puedan    propagar    cualquier    distribución de    software 
+malintencionado.  
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+27)  No  se  dispone  de  un  procedimiento  o  herramienta  que  asegura  que  las 
+vulnerabilidades   de   los  sistemas  son   detectados   en   tiempo   oportuno   y   son 
+gestionadas activamente para su priorización y resolución (E.T.28) 
+Como tal no existe el procedimiento donde relacione nuestro sistema de seguridad, pero por 
+supuesto  que  tenemos  sistema  de  seguridad  perimetral  antes  de  nuestra  red corporativa 
+interna,   y   cada   uno   de   los   puestos   de   trabajo   tienen   su   software   de seguridad 
+correspondiente. 
+28) No existe un procedimiento y/o herramienta que asegure que el despliegue de 
+parches  de  seguridad  liberados  por  el  fabricante  se  realiza  adecuadamente  en  un 
+tiempo razonable. (E.T.29) 
+Como tal no existe procedimiento donde describa el despliegue de parches se seguridad de 
+los sistemas, pero por supuesto que distribuimos los parches de seguridad en cada uno de 
+ellos. 
+29) No se dispone de un procedimiento de fortificación o bastionado (configuración 
+segura)  de  los  sistemas,  previo  a  su  entrada  en  operación,  que  considere  los 
+distintos  tipos  de  dispositivos  existentes  (servidores,  equipos  de  sobremesa, 
+portátiles,  móviles  y  tabletas)  y  que  establezca  el  uso  de  imágenes  o  plantillas 
+para  aplicar  la  configuración  de  seguridad  de  todos  los  sistemas,  de  acuerdo  con 
+estándares aprobados por la organización. (E.T.30) 
+Como  tal  no  existe  procedimiento  que  describa  dicha  fortificación  o  bastionado,  pero  por 
+supuesto que antes de incorporar cualquier dispositivo a nuestra red corporativa se le aplica 
+la  seguridad  correspondiente  incorporando  dicho  dispositivo  dentro  de nuestro  dominio 
+corporativo de red. 
+30)    No   se    cuenta    con    una    herramienta    o    procedimiento    para    realizar 
+comprobaciones  periódicas  que  permitan  verificar  que  la  configuración  actual  de 
+dispositivos  existentes  (servidores,  equipos  de  sobremesa,  portátiles,  móviles, 
+tabletas,  equipos  de  seguridad  y  equipos  de  red)  no  ha  sido  modificada  de  forma 
+no autorizada respecto de la configuración original (E.T.31) 
+Como tal no existe procedimiento que realice estas comprobaciones, pero por supuesto que 
+cuando un dispositivo se incorpora a nuestro dominio corporativo de red, se le restringen los 
+permisos al usuario que dispone de dicho dispositivo. 
+31) No se ha acreditado el procedimiento o herramienta que permita la consulta de 
+logs  de  auditoría  para  identificar  eventos  o  patrones  anormales  y  que  permita  la 
+monitorización e identificación en tiempo real de sucesos (E.T.33) 
+Como  tal  no  existe  procedimiento  que  permita  la  consulta  de  logs de  auditoría,  pero  por 
+supuesto que cada una de nuestras máquinas corporativas tienen habilitado los logs de todo 
+tipo para ser consultados cuando sean necesarios. 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Continuidad del servicio 
+32)  No  se  realizan  pruebas  de  recuperación  a  partir  de  las  copias  de  respaldo 
+realizadas (E.T.62) 
+Esta cuestión es modificable de NO a SI, el argumento es sencillo. Nosotros tenemos copias 
+de  seguridad  de  absolutamente  todos  los  objetos  que  componen  nuestro  sistema  de 
+información con un software de copias de seguridad robusto y completo. Dicho software nos 
+envía  notificaciones  diarias  donde  recoge  si  las  copias  han  sido  o no  satisfactorias.  Si  la 
+notificación es correcta, nuestra posibilidad de recuperación de información está asegurada. 
+Si no es correcta, revisamos el incidente para darle una pronta solución. 
+33) No se externalizan física o lógicamente las copias de seguridad o un backup de 
+estas (E.T.63) 
+Esta cuestión es modificable de NO a SI. Además de disponer de un plan adecuado de copias 
+de  seguridad  de  todos  los  objetos  de  nuestro  sistema  de  información,  donde  lo  tenemos 
+absolutamente  redundado  en  2  CPD ́s  diferentes,  ubicados  en  2  edificios  municipales 
+diferentes, y conectados por fibra óptica de propiedad municipal, sacamos dichas copias a un 
+dispositivo externo aislado de nuestra red corporativa. 
+Del apéndice 7 sobre “Observaciones sobre el área del entorno tecnológico” el funcionario 
+que suscribe tiene a bien comentar lo siguiente: 
+Marco organizativo 
+Comentar que nos parece la valoración recibida en esta área sobre “Marco organizativo” baja 
+en general, considerando que esta baja puntuación se debe a la no adecuación al Esquema 
+Nacional de Seguridad ni al Esquema Nacional de Interoperabilidad. Tal y como se comentó 
+en  párrafos  anteriores  es  un  proyecto  que  se  iba  a  poner  funcionamiento  en  breve,  pero 
+dadas las circunstancias actuales es posible su demora. 
+Volver a comentar, que aunque no existan procedimientos específicos que desarrollen ciertos 
+temas,  no  significa  para  nada  que  no  estén  llevando  a  cabo  y  se  tengan  por  supuesto 
+contemplados. 
+Estrategia de seguridad 
+Continuando  con  la  misma  argumentación,  el  no  tener  procedimientos  específicos,  o 
+documentación específica sobre los temas, no significa que no se lleven a cabo. 
+El apartado (E.T.7) se debe de modificar de NO a SI.  Nuestro plan anual de proyectos del 
+área  se  corresponde  con  el  plan  anual  de  contratación  que  nos  solicita  el área  de  la 
+contratación municipal.  
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+El apartado (E.T.10) se debe de modificar de NO a SI. Dada nuestra estructura pequeña de 
+recursos humanos que componemos el área, tiene todo el sentido que cualquier componente 
+del  área  pueda  realizar  cualquier  función.  Evidentemente  que  no  todos  podemos  hacer 
+cualquier  tarea,  pienso  que  la  auditoría  no  entendió  mi  perspectiva  cuando  se  le  intentaba 
+explicar este punto. 
+El  apartado  (E.T.12)  se  argumenta  de  la  misma  manera  que  todos  los  relacionados  con  la 
+adecuación al Esquema Nacional de Seguridad. 
+Marco normativo y procedimientos de seguridad 
+Sobre  los  apartados  (E.T.13)  y  (E.T.14)  argumentar  lo  mismo  que  con  los  puntos 
+relacionados con la adecuación al Esquema Nacional de Seguridad. 
+Gestión de cambios en aplicaciones y sistemas 
+Comentar  que  la  valoración  recibida  en  esta  área  nos  parece  ciertamente  dolorosa.  Sigo 
+opinando  que  el  hecho  de  no  disponer  de  procedimientos  específicos  para  el  desarrollo  de 
+tareas o proyectos no significa que no se lleven a cabo con criterio organizativo. 
+Adquisición de aplicaciones y sistemas 
+El  apartado  (E.T.15)  se  debe  de  modificar  de  NO  a  SI.  Aunque  no  exista procedimiento 
+específico  para  ello,  nuestra  área   pos  supuesto  que  tiene  en  cuenta  los  objetivos 
+estratégicos  de  la  organización,  los  objetivos  de  seguridad  y  claro  que  dimensionamos  los 
+sistemas en base a las necesidades de cada una de las áreas municipales, como no podía ser 
+de otra manera. 
+Desarrollo de aplicaciones 
+Sobre  los  puntos  (E.T.17)  al  (E.T.20)  comentar  que  nuestra  organización  no  tiene 
+desarrollos principales propios. Comentándolo con la auditora se sorprendió e incluso llego a 
+decir que muchos municipios los tenían. Afirmación que rebatí sin contemplaciones porque la 
+experiencia del funcionario que suscribe en el entorno de la administración local es dilatada 
+y  con  muchos  años  de  experiencia,  y  no  conoce  ayuntamientos,  exceptuando  aquellos  que 
+sean de gran población, que dispongan de áreas de desarrollo propio. 
+El  hecho  de  no  disponer  de  estas  áreas  de  desarrollo  propio,  el  funcionario  que  suscribe 
+opina que no debería de penalizar en ningún caso la valoración global del área. 
+Gestión de cambios 
+Sobre los puntos (E.T.21) al (E.T23) comentar que aunque no se disponga de procedimiento 
+por supuesto que los cambios que se realizan en las configuraciones y componentes de los 
+sistemas  se  evalúan,  se  autorizan  por  el  responsable  del  área,  se  prueban  y  se  planifican 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+para  llevarlos  a  cabo  cuando  no  afecta  al  normal  funcionamiento  de  los  sistemas  de 
+información que usan los funcionarios municipales. 
+Operaciones de los sistemas de información 
+Comentar que la valoración recibida en esta área nos parece baja con respecto al total que 
+se podía haber recibido. 
+Servicios externos 
+Sobre  los  puntos  (E.T.34)  al  (E.T.37)  comentar  que  el  punto  (E.T.36)  se  debería  de 
+modificar de NO a SI. Por supuesto que para la adjudicación de estos servicios se elaboró un 
+procedimiento de contratación específico para cada uno de ellos donde se incluyen todas las 
+cláusulas que se relacionan es esta observación. 
+Sobre  el  punto  (E.T.37)  aunque  no  exista  procedimiento  específico  como  tal,  por  supuesto 
+que  se  exigen  los  cumplimientos  de  las  obligaciones  de  las  empresas que  se  les  ha 
+adjudicado los servicios. 
+Protección frente a malware 
+Sobre  el  punto  (E.T.39)  comentar  que  el  punto  se  debería  modificar  de  NO  a  SI,  por 
+supuesto que nuestra organización, mediante nuestro sistema de seguridad perimetral, está 
+protegida  frente  a  cualquier  incidencia  que  provenga  del  correo  electrónico,  mediante 
+herramientas antivuris, antispam, Web Filter, antimalware, etc. 
+Monitorización 
+Sobre  el  punto  (E.T.44)  comentar  que  efectivamente  no  disponemos  de  herramientas  de 
+monitorización del estado de nuestra red corporativa. 
+Controles de accesos a datos y programas 
+Simplemente agradecer la valoración recibida en esta área. 
+Continuidad del servicio 
+Comentar que la valoración recibida en esta área nos parece baja con respecto al total que 
+se podía haber recibido. 
+Plan de continuidad 
+Sobre los puntos (E.T.64) al (E.T.65) comentar que ambos puntos se deberían de modificar 
+de NO a SI, ya que por supuesto disponemos de un plan de recuperación de desastres. 
+ 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+
+ 
+ 
+Como conclusión final, reiterarme en que el hecho de no disponer de ciertos procedimientos 
+no  significa  que  no  se  lleven  a  cabo  las  tareas  correspondientes.  Pensamos  que  aunque  la 
+estructura  de  nuestra  área  no  dispone  de  un  número  elevado  de  recursos  humanos, 
+tenemos  implantada  en  nuestra  organización  un  nivel  tecnológico  importante  para  el 
+desarrollo  de  las  funciones  de  los  trabajadores  municipales.  Otras  entidades  locales  de 
+mayor tamaño quisieran tener el nivel tecnológicos del que cuenta el Ayuntamiento de Riba-
+roja  de  Túria.  Esto  ha  supuesto  un  importante  esfuerzo  por  parte  de todos  los  integrantes 
+del área de Organización, Sistemas de Información y Comunicaciones. 
+Podríamos  poner  el  siguiente  ejemplo.  Nuestra  organización  disponía  del  servicio  de  red 
+privada  virtual  que  usaban  unos  15  usuarios  diariamente.  Pues  bien,  consecuencia  de  la 
+crisis  sanitaria  del  COVID19  donde  se  ha  tenido  que  implantar  con  rapidez  el  teletrabajo, 
+nosotros hemos sido capaces de configurar del teletrabajo a 95 usuarios municipales en un 
+periodo  de  tiempo  súper  reducido,  disponiendo  todos  los  trabajadores municipales  de  las 
+mismas herramientas que en los puestos de trabajo de las oficinas. 
+Nuestra organización ha podido ofrecer este servicio de manera tan satisfactoria porque en 
+nuestra área estamos familiarizados con las buenas prácticas de la gestión de la tecnología, 
+gestionando  el  conocimiento,  la  capacidad,  la  continuidad  del  negocio  y  aplicando  la 
+pertinente seguridad. 
+Vistas  las  anteriores  alegaciones  que  se  formulan  en  tiempo  y  forma, ruego  las 
+admita  a  trámite,  solicitando  la  estimación  de  las  mismas,  a  la  vista de  los 
+argumentos puestos de manifiesto. 
+En Riba-roja de Túria a la fecha de la firma electrónica. 
+EL ACALDE. 
+Identificador cBA7 Ojtb rRk6 I1mp ZnUZ iUGs Cmc=URL Comprobar autenticidad en: http://oficinavirtual.ribarroja.es/PortalCiudadania
+Firmado por: ROBERTO PASCUAL RAGA GADEA
+Departamento: CERTIFICADO ELECTRONICO DE EMPLEADO PUBLICO
+Fecha firma: 11/06/2020 12:20:18 CEST
+
+ 
+ 
+ 
+ 
+ANEXO II 
+Informe sobre las alegaciones presentadas 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+2 
+ANÁLISIS DE LAS ALEGACIONES EFECTUADAS AL BORRADOR DEL INFORME 
+DE FISCALIZACIÓN SOBRE EL CONTROL INTERNO DEL AYUNTAMIENTO DE 
+RIBA-ROJA DE TÚRIA. EJERCICIOS 2017-2019 
+Mediante  escrito  de  esta  Sindicatura  de  15  abril  de  2020  se  remitió  al 
+Ayuntamiento el borrador del Informe de fiscalización, para que efectuase 
+las alegaciones que considerase oportunas. Dentro del plazo concedido se 
+recibieron por el registro electrónico las alegaciones formuladas, respecto 
+a las cuales se señala lo siguiente: 
+Primera alegación 
+Apartado 4, punto 1, del borrador del Informe  
+Comentarios: 
+Sobre la ausencia de control de cuatro cuentas restringidas de recaudación 
+(cuentas  puente),  la  Tesorería  reproduce  la  alegación  que  se  formuló 
+respecto  a  nuestro  informe  de  fiscalización  del  Ayuntamiento  realizado 
+por la Sindicatura del ejercicio 2014. Se reafirma en su postura, que indica 
+que dichas cuentas permiten abonos y solo permiten cargos automáticos 
+(quincenales) para el traspaso a cuentas del Ayuntamiento. Por tanto, los 
+claveros  del  Ayuntamiento  no  pueden  disponer  del  saldo  hasta  que  se 
+efectúa  el  traspaso  y  por  ello  no  se  controlan  sus  saldos.  Añade  que  se 
+sigue el criterio de la Intervención General de la Administración del Estado 
+(IGAE), expuesto el 13 de febrero de 2017 en la consulta formulada por el 
+Ayuntamiento  de  Almassora  sobre  este  tema,  que  concluye  que  dichas 
+cuentas no deben figurar en la contabilidad local.  
+Al respecto, en nuestras conclusiones no indicamos la obligación de que 
+figuren   esas   cuentas   en   contabilidad   a   pesar   de   que   es   titular   el 
+Ayuntamiento, criterio que sería contrario al que mantiene la IGAE, sino 
+de  llevar  un  control  sobre  estas.  Dicho  control  es  recomendable  para 
+realizar un seguimiento de los saldos pendientes de traspaso. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Segunda alegación 
+Apartado 4, punto 19, del borrador del Informe 
+Comentarios: 
+En  relación  a  la  observación  sobre  el  saldo  de  derechos  reconocidos 
+pendientes de cobro de 2012 y anteriores, que dada su antigüedad podrían 
+estar afectados por prescripción, el Ayuntamiento alega que la Sindicatura 
+no ha fiscalizado estos derechos. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+3 
+El   departamento   de   recaudación   detalla   las   distintas   actuaciones 
+realizadas  para  interrumpir  los  plazos  de  prescripción, que  incluyen  las 
+medidas  legales  previstas,  como  la  notificación  de  la  vía  ejecutiva, 
+embargos  de  saldos  en  cuentas  corrientes,  sueldos  y  salarios,  anotación 
+de embargos en registros de bienes, etc. 
+Además de  ello,  este departamento  manifiesta  que  efectúa una  revisión 
+mensual de la deuda más antigua, mediante avisos de alertas en consulta 
+propia,  cuando  la  fecha  de  prescripción  es  de  4  o  5 meses  vista,  con 
+suficiente  antelación  para  poder  efectuar  actuaciones  que  interrumpan 
+dicho plazo. 
+Al respecto, el tenor literal del borrador se limita a señalar la posibilidad 
+de  que  existan  supuestos  de  prescripción,  no  afirma  su  existencia. 
+Constituye un indicio de ello el elevado porcentaje de derechos pendientes 
+de cobro respecto al total de los derechos reconocidos. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Tercera alegación 
+Apartado 4, punto 2, del borrador del Informe 
+Comentarios: 
+La Intervención alega que no corresponde a su departamento calcular el 
+coste de mantenimiento de las inversiones planificadas ni su financiación 
+posterior y aporta escrito de traslado al departamento de vías y obras de 
+la deficiencia advertida en nuestro borrador, lo que corrobora la necesidad 
+de dicha actuación. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Cuarta alegación 
+Apartado 4, punto 3, del borrador del Informe 
+Comentarios: 
+La Intervención alega que no corresponde a su departamento elaborar el 
+plan  de  inversiones  previsto  en  el  artículo  166.1  del TRLRHL  y  aporta 
+escrito de traslado al concejal de Hacienda de la deficiencia advertida en 
+nuestro borrador, lo que corrobora la necesidad de dicha actuación. 
+ 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+4 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Quinta alegación  
+Apartado 4, punto 21, del borrador del Informe 
+Comentarios: 
+Respecto a la fiscalización de las anulaciones de derechos, alegan que en 
+2017  y  2018  no  se  produjo  fiscalización  previa,  sino  toma  de  razón  en 
+contabilidad,  a  excepción  de  las  devoluciones  de  ingresos,  como  estaba 
+previsto  en  las  bases,  si  bien  en  los  informes  de  control  financiero 
+posterior de dichos ejercicios se revisó una muestra de anulaciones.  
+Hemos  verificado  el  informe  de  control  financiero  del  ejercicio  2017  (nº 
+340/2018) y consta la revisión de una muestra aleatoria de 16 anulaciones 
+de ingresos de un total de 171 expedientes tramitados en el ejercicio. En el 
+ejercicio  2018  (nº  584/2019)  consta  una  muestra  de  4 expedientes  de 
+anulación  de  recibo  de  impuesto  de  bienes  inmuebles. Las  conclusiones 
+de  este  último  informe  señalan  que  no  ha  habido  ningún  derecho 
+cancelado por prescripción, tratándose de un error del programa que debe 
+corregirse, ya que las bajas son por insolvencias.  
+Consecuencias en el Informe: 
+Modificar el Informe y eliminar el párrafo, variando también la puntuación 
+del área de intervención. 
+Sexta alegación  
+Apartado 4, punto 22, del borrador del Informe 
+Comentarios: 
+Sobre  la  obligación  de  fiscalizar  la  justificación  de  las  subvenciones,  la 
+Intervención   asume  lo   expuesto   en   nuestro   borrador, previendo  su 
+revisión con carácter anual, en el plan financiero correspondiente.  
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+5 
+Séptima alegación  
+Apéndice 6, “Organización y regulación” 
+Comentarios: 
+El Ayuntamiento detalla los plazos y formas de cobertura de las plazas de 
+Intervención  y  Viceintervención  por  habilitadas  nacionales  entre  2008  y 
+2019 para matizar la redacción del borrador del Informe. 
+Consecuencias en el Informe: 
+Modificar el borrador del Informe, sin efecto en la puntuación total. 
+Octava alegación  
+Apéndice 6, “Informes específicos” 
+Comentarios: 
+La  Intervención  asume  lo  expuesto  en  el  borrador  del  Informe  en  los 
+aspectos señalados en este apartado, a excepción de la fiscalización de los 
+proyectos  de  reparcelación,  en  la  que  se  justifica  la ausencia  de  este 
+trámite  porque,  según  la  arquitecta  municipal,  no  existen  en  el  periodo 
+analizado.  No  obstante,  dicha  consulta  se  ha  efectuado  tras  nuestra 
+fiscalización, no teniendo la Intervención conocimiento previo de dichos 
+proyectos que requieren fiscalización. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Novena alegación  
+Apartado 4, punto 6, del borrador del Informe 
+Comentarios: 
+Sobre la inexistencia de declaración individualizada de 
+incompatibilidades de los cargos electos, la Secretaría manifiesta que en 
+el mandato 2015-2019 se encuentra integrada en el modelo de declaración 
+de  bienes  y  actividades  y  que  ningún  concejal  desarrolla  actividad  en 
+administraciones públicas. Para el período 2019-2023, ha sido aprobado un 
+modelo  propio.  Hemos  comprobado  que  las  declaraciones  del  período 
+2019-2023,  publicadas  en  el  portal  de  transparencia  del  Ayuntamiento, 
+incluyen el detalle de las actividades desarrolladas. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+6 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe, modificando la puntuación 
+del área de aspectos organizativos de la entidad local. 
+Décima alegación  
+Apartado 4, punto 12, del borrador del Informe 
+Comentarios: 
+La   Secretaría   indica   que   contestó   afirmativamente   al   cuestionario 
+remitido   por   la   Sindicatura   sobre   la   existencia   de   determinada 
+documentación  de  los  expedientes  de  contratación  y  se  encontraba  a 
+disposición de la Sindicatura para su comprobación. Añade el resultado de 
+la revisión realizada por el departamento de contratación de una muestra 
+de   expedientes   (cinco   contratos),   donde   se   observa   que consta   la 
+documentación  de  informe  de  necesidades,  informe  de  fiscalización  y 
+jurídico, etc.  
+En  diversas  ocasiones  se  solicitó  un  certificado  firmado  de  la  Secretaría 
+confirmando    la    existencia    de    determinados    documentos    en    los 
+expedientes  de  contratación,  muchos  de  los  cuales  son  informados  o 
+emitidos  por  la  propia  Secretaría  (pliegos,  informes jurídicos,  etc.).  La 
+Secretaría declinó realizar un certificado relativo a todos los expedientes. 
+Dicho  certificado  sigue  sin  ser  facilitado  en  alegaciones,  no  siendo 
+suficiente  el  detalle  de  una  muestra  de  expedientes  seleccionada  por  el 
+propio Ayuntamiento. 
+Adicionalmente,     se     describen     detalladamente     los    avances del 
+departamento   de   contratación,   si   bien   dichos   aspectos no   aportan 
+evidencia adicional en relación a la cuestión alegada. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Décima primera alegación  
+Apartado 4, punto 13, del borrador del Informe 
+Comentarios: 
+Para  acreditar  por  la  Secretaría  que  los  contratos  de  obras,  no  menores, 
+contengan  siempre  la  justificación  relativa  al  proyecto  y  las  actas  de 
+replanteo y de comprobación, el acta de recepción y el certificado final de 
+las  obras,  detalla  los  resultados  de  la  revisión  de  un  muestreo  de  tres 
+expedientes, realizada por el departamento de contratación. 
+Cabe reiterar lo expuesto en la alegación anterior. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+7 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Décima segunda alegación  
+Apartado 4, punto 14, del borrador del Informe 
+Comentarios: 
+En   relación   con   la   ausencia   de   determinada   documentación   de 
+modificaciones   contractuales,   la   Secretaría   nos   indica   que   no   hay 
+modificaciones tramitadas en 2017 y que sí que consta la documentación 
+del  ejercicio  2018.  Cabe  reiterar  lo  manifestado  en la  alegación  anterior, 
+respecto  a  la  ausencia  de certificado  de la Secretaría  que  sustente  dicha 
+afirmación. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Décima tercera alegación  
+Apartado 4, punto 16, del borrador del Informe  
+Comentarios: 
+La  alegación  asume  lo  expuesto  en  el  borrador  del  Informe  sobre  la 
+necesidad de proceder a la actualización del inventario de bienes. Señala 
+que puede extenderse en el tiempo y, por este motivo, se ha solicitado un 
+informe de altas y bajas al departamento de urbanismo, facilitado a todos 
+los concejales en la renovación de la última corporación. Dicho informe se 
+menciona en nuestro borrador. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Décima cuarta alegación  
+Apartado 4, punto 7, del borrador del Informe  
+Comentarios: 
+Sobre la clasificación de los puestos de trabajo de acuerdo con criterios de 
+valoración objetivos y cuantificables, se afirma que los complementos de 
+destino   y    específicos   asignados   a    cada   puesto    resultan de    las 
+correspondientes fichas de la RPT elaboradas a partir de una valoración de 
+esos puestos. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+8 
+A  estos  efectos  aporta  diferentes  fichas  de  la  relación de  puestos  de 
+trabajo,  pero  no  el  correspondiente  estudio  de  valoración  previo  a  esas 
+fichas, requerido en el trabajo de campo.  
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe.  
+Décima quinta alegación  
+Apartado 4, punto 8, del borrador del Informe  
+Comentarios: 
+Sobre el complemento de productividad asignado a parte del personal del 
+Ayuntamiento, afirma que sí está vinculado a una valoración objetiva. A 
+tal  efecto  aporta  un  certificado  de  Secretaría  acreditativo  del  acuerdo 
+plenario  de  6  de  febrero  de  2017  en  el  que  se  aprobó  un  “manual  de 
+productividad municipal”. 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área de personal.  
+Décima sexta alegación  
+Apéndice 4, “Personal al servicio de la corporación local”, párrafo 4º 
+Comentarios: 
+Sobre la necesidad de realizar mediante convocatoria pública la provisión 
+de  puestos  de  trabajo  y  cambios  de  departamento,  el  Ayuntamiento 
+afirma  que  no  le  resultan  de  aplicación  los  artículos 78  y  siguientes  del 
+TREBEP,  por  cuanto  considera  que  dichos  preceptos  están  enfocados  a 
+administraciones  de  grandes  dimensiones,  pero  no  para  la  estructura 
+habitual de las entidades locales. 
+Esta Sindicatura no comparte el criterio de la entidad, dado que, conforme 
+al  artículo  3  del  TREBEP,  este  texto  legal  le  resulta  de  aplicación,  sin 
+perjuicio de las correspondientes normas específicas.  
+Cabe recordar que el propio artículo 78.1 del TREBEB regula los principios 
+que rigen en la provisión de puestos de trabajo del personal funcionario 
+de carrera, entre los que se encuentra el principio de publicidad. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe.  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+9 
+Décima séptima alegación  
+Apéndice  4,  “Personal  al  servicio  de  la  corporación local”,  tres  últimos 
+párrafos  
+Comentarios: 
+Se  acepta  nuestra  recomendación  de  establecer  un  número  de  horas 
+mínimas de formación e incluir en los expedientes el reconocimiento de 
+compatibilidad a los empleados. Indican que se ha subsanado la falta de 
+publicidad  de  dichos  reconocimientos  en  el  portal  de  transparencia. 
+Comprobada  dicha  publicación,  cabe  incorporar  dicha subsanación,  tras 
+nueva revisión. 
+Consecuencias en el Informe: 
+Modificar   la   redacción   del   borrador   del   Informe,   sin efectos   en   la 
+puntuación total. 
+Décima octava alegación  
+Apartado 4, puntos 24 y 25, del borrador del Informe  
+Comentarios: 
+Sobre  el  Esquema  Nacional  de Seguridad y de Interoperabilidad, indican 
+que se pretendía licitar el proyecto de adecuación al ENS y al ENI durante 
+el  ejercicio  2020,  lo  que  corrobora  la  necesidad  de su  implantación, 
+señalada en el borrador del Informe. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe.  
+Décima novena alegación  
+Apartado 4, punto 26, del borrador del Informe  
+Comentarios: 
+En relación con los mecanismos para controlar el acceso de dispositivos 
+físicos  no  autorizados,  la  entidad  modifica  en  fase  de alegaciones  la 
+respuesta  dada  en  el cuestionario  de  control interno, detallando que  los 
+equipos  informáticos  tienen  restringido  el  uso  de  dispositivos  externos, 
+así  como  la  posibilidad  de  propagar  cualquier  distribución  de software 
+malintencionado. En nuestro  trabajo  de campo  pudimos comprobar que 
+la mayoría de ordenadores tenía restringidos los puertos USB, por lo que 
+cabe considerar dicha alegación. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+10 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área de entorno tecnológico.  
+Vigésima alegación  
+Apartado 4, punto 27, del borrador del Informe 
+Comentarios: 
+Sobre la necesidad de disponer de un procedimiento o herramienta a fin 
+de  asegurar  que  las  vulnerabilidades  de  los  sistemas  son detectadas  y 
+gestionadas a tiempo, la entidad confirma en fase de alegaciones que no 
+existe un protocolo por escrito. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Vigésima primera alegación  
+Apartado 4, punto 28, del borrador del Informe 
+Comentarios: 
+La  entidad  corrobora  que  no  dispone  de  un  procedimiento  escrito  en  el 
+que  se  describa  cómo  se  asegura  el  adecuado  despliegue  de  parches  de 
+seguridad liberados por el fabricante. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Vigésima segunda alegación  
+Apartado 4, punto 29, del borrador del Informe 
+Comentarios: 
+Los responsables del área mencionan los procedimientos de seguridad que 
+aplican, si bien confirman que no se dispone de un procedimiento escrito 
+de  fortificación  o  bastionado  (configuración  segura)  de  los  sistemas,  de 
+acuerdo con estándares aprobados por la organización. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+11 
+Vigésima tercera alegación  
+Apartado 4, punto 30, del borrador del Informe 
+Comentarios: 
+De  las  alegaciones  se  desprende  que  la  entidad  sigue  sin contar  con  un 
+procedimiento   escrito   para   realizar   comprobaciones   periódicas   que 
+permitan verificar  que  la configuración actual  de dispositivos  existentes 
+no ha sido modificada de forma no autorizada respecto de la configuración 
+original. 
+Tampoco  acredita  la  existencia  de  un  protocolo  en  el que  se  describa  la 
+alegación  efectuada  de  que  se  restringen  los  permisos  al  usuario  de  los 
+dispositivos que se incorporan al dominio corporativo de red. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Vigésima cuarta alegación  
+Apartado 4, punto 31, del borrador del Informe 
+Comentarios: 
+La  entidad  afirma  que  sus  máquinas  corporativas  tienen habilitados  los 
+logs  de  todo  tipo  para  ser  consultados  cuando  sean  necesarios.  No 
+obstante,  no  dispone  de  un  protocolo  escrito  en  el  que  se  establezca  el 
+procedimiento en el que se fijen criterios a seguir para identificar eventos 
+o patrones anormales en tiempo real de sucesos, así como hacer pruebas 
+para su identificación y actuaciones a seguir. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Vigésima quinta alegación  
+Apartado 4, punto 32, del borrador del Informe 
+Comentarios: 
+Sobre la realización de pruebas de recuperación a partir de las copias de 
+respaldo   realizadas,   la   entidad   modifica   en   fase   de   alegaciones   su 
+respuesta al cuestionario, señalando que se realizan copias de seguridad 
+diarias,   mediante   un software   que   notifica   si   estas   han   sido   o   no 
+satisfactorias y que para el caso de que ocurra alguna incidencia se le da 
+una  pronta  solución.  Hemos  verificado  que  la  entidad  dispone  de  un 
+protocolo de recuperación de datos. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+12 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área de entorno tecnológico.  
+Vigésima sexta alegación  
+Apartado 4, punto 33, del borrador del Informe 
+Comentarios: 
+En relación con la externalización de las copias de seguridad o un backup 
+de  estas,  la  entidad  modifica  en  fase  de  alegaciones  su respuesta  al 
+cuestionario, indicando que las copias de seguridad se almacenan en dos 
+CPD ubicados en edificios municipales diferentes pero conectados entre sí 
+y  almacena  las  copias  en  un  dispositivo  externo  aislado  de  la  red 
+corporativa. 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área de entorno tecnológico. 
+Vigésima séptima alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Estrategia de seguridad”, párrafo 2º 
+Comentarios: 
+En relación con la ausencia de un plan anual de proyectos de los sistemas 
+de información, la entidad alega que se corresponde con el plan anual de 
+contratación  que  les  solicita  el  área  de  la  contratación  municipal.  En 
+cualquier caso no aporta justificación alguna que acredite la existencia de 
+dicho plan.  
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Vigésima octava alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Estrategia de seguridad”, párrafo 3º 
+Comentarios: 
+Respecto a la falta de una adecuada segregación de funciones y tareas, la 
+entidad justifica esta situación porque dispone de una estructura pequeña 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+13 
+de recursos humanos, circunstancia que conlleva que todo el personal del 
+área realice cualquier función. Ello confirma la ausencia de segregación. 
+Consecuencias en el Informe:  
+Mantener la redacción del borrador del Informe. 
+Vigésima novena alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Estrategia de seguridad”, párrafo 4º 
+Comentarios: 
+Sobre  la  realización  de  nombramientos  y  constitución de  órganos  para 
+asegurar  el  cumplimiento  normativo  y  organización  de  la  seguridad,  la 
+entidad expone una serie de actuaciones sin aportar justificación de estas. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Trigésima alegación  
+Apéndice 7, “Observaciones sobre el área del entorno tecnológico”, “Marco 
+normativo y procedimiento de seguridad”, párrafo 1º 
+Comentarios: 
+En cuanto a la inexistencia de documentos debidamente aprobados por el 
+órgano competente, referidos a la normativa de seguridad, incluyendo la 
+política de seguridad, la entidad no aporta ningún documento que acredite 
+su existencia. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Trigésima primera alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Adquisición de aplicaciones y sistemas”, párrafo 1º 
+Comentarios: 
+Sobre la existencia de un procedimiento que garantice el cumplimiento de 
+los objetivos fijados en materia de TI, la entidad modifica su respuesta al 
+cuestionario,  afirmando  tener  en  cuenta  los  objetivos estratégicos  de  la 
+organización y de seguridad, así como el dimensionamiento en base a las 
+necesidades de cada área municipal. 
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+14 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área del entorno tecnológico.  
+Trigésima segunda alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Desarrollo de aplicaciones”, párrafo 1º 
+Comentarios: 
+En relación con el desarrollo de aplicaciones, en esta fase de alegaciones 
+modifica  su  respuesta  al  cuestionario,  señalando  que  no se  realizan 
+desarrollos internos de aplicaciones.  
+Consecuencias en el Informe:  
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área de entorno tecnológico.  
+Trigésima tercera alegación  
+Apéndice 7, “Observaciones sobre el área del entorno tecnológico”, “Gestión 
+de cambios”, párrafo 1º 
+Comentarios: 
+Sobre   la   ausencia   de   un   procedimiento   de   gestión   de   cambios   de 
+configuraciones  y  componentes  de  los  sistemas,  la  entidad  confirma  en 
+fase de alegaciones que no dispone de este, por lo que no se garantiza que 
+la   gestión   de   cambios   se   realice,   entre   otros   aspectos,   de   forma 
+continuada, ni pruebas de testeo y separación de funciones en el proceso 
+de cambio. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+15 
+Trigésima cuarta alegación  
+Apéndice 7, “Observaciones sobre el área del entorno tecnológico”, “Servicios 
+externos”, párrafo 2º 
+Comentarios: 
+Sobre  la  inclusión  de  cláusulas  en  los  contratos  de  servicios  externos, 
+relativas a la confidencialidad, protección de datos y acuerdos de nivel de 
+servicio, la entidad mantiene que se incluye en cada uno de los contratos, 
+sin aportar documentación que evidencie dicha afirmación. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Trigésima quinta alegación  
+Apéndice 7, “Observaciones sobre el área del entorno tecnológico”, “Servicios 
+externos”, párrafo 3º 
+Comentarios: 
+En  cuanto  al  procedimiento  que  establezca  un  sistema  rutinario  para 
+medir el cumplimiento de las obligaciones en relación con los acuerdos de 
+nivel  de  servicio  establecidos,  la  alegación  confirma  que  no  existe  tal 
+procedimiento. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Trigésima sexta alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Protección frente al malware”, párrafo 1º 
+Comentarios: 
+Sobre   la   protección   a   la   organización   frente   a   problemas   que   se 
+materializan  por  correo  electrónico,  la  entidad  alega  que  su  sistema  de 
+seguridad perimetral protege a la corporación de cualquier incidencia que 
+provenga   del   correo   electrónico,   mediante   herramientas   antivirus, 
+antispam, Web Filter, antimalware, etc. 
+Consecuencias en el Informe: 
+Eliminar el párrafo del borrador del Informe y modificar la puntuación del 
+área del entorno tecnológico.  
+  
+
+Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 
+2017-2019 
+16 
+Trigésima séptima alegación  
+Apéndice  7,  “Observaciones  sobre  el  área  del  entorno  tecnológico”, 
+“Monitorización”, párrafo 1º 
+Comentarios: 
+En cuanto a la ausencia de herramientas que permitan la monitorización 
+del estado de redes y sistemas, la entidad confirma este extremo en fase 
+de alegaciones. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+Trigésima octava alegación  
+Apéndice 7, “Observaciones sobre el área del entorno tecnológico”, “Plan de 
+continuidad”, párrafos 2º y 3º 
+Comentarios: 
+Sobre   la   existencia   de   un   plan   de   continuidad   que   prevea   los 
+procedimientos   de   recuperación   de   los   procesos   importantes   de   la 
+entidad, así como la realización de pruebas periódicas y planificadas del 
+citado plan de continuidad, la entidad argumenta que sí que existe dicho 
+plan sin aportar documentación que soporte dicha afirmación. 
+Consecuencias en el Informe: 
+Mantener la redacción del borrador del Informe. 
+ 
+ 

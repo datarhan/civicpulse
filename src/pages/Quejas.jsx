@@ -107,6 +107,65 @@ function SindicCard() {
   )
 }
 
+function Findings({ f, year }) {
+  const groups = []
+  const idx = new Map()
+  for (const d of f.deficiencies || []) {
+    if (!idx.has(d.category)) {
+      idx.set(d.category, groups.length)
+      groups.push([d.category, []])
+    }
+    groups[idx.get(d.category)][1].push(d)
+  }
+  const liStyle = { fontSize: 12, color: 'var(--ink70)', lineHeight: 1.45, marginBottom: 3 }
+  const headStyle = {
+    fontSize: 10.5,
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '.04em',
+  }
+  return (
+    <details style={{ marginTop: 6 }}>
+      <summary style={{ cursor: 'pointer', fontSize: 12, color: 'var(--civic)', fontWeight: 600 }}>
+        {f.deficienciesCount} deficiencias · {f.recommendationsCount} recomendaciones (ejercicios{' '}
+        {year === 2020 ? '2017-2019' : year})
+      </summary>
+      <div style={{ marginTop: 6, borderLeft: '2px solid var(--border2)', paddingLeft: 10 }}>
+        {groups.map(([cat, items]) => (
+          <div key={cat} style={{ marginBottom: 8 }}>
+            <div style={{ ...headStyle, color: 'var(--ink60)' }}>{cat}</div>
+            <ul style={{ margin: '3px 0 0', paddingLeft: 18 }}>
+              {items.map((d) => (
+                <li key={d.n} style={liStyle}>
+                  {d.text}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+        {(f.recommendations || []).length > 0 && (
+          <div style={{ marginTop: 6 }}>
+            <div style={{ ...headStyle, color: 'var(--civic)' }}>
+              Recomendaciones de la Sindicatura
+            </div>
+            <ol style={{ margin: '3px 0 0', paddingLeft: 18 }}>
+              {f.recommendations.map((rec) => (
+                <li key={rec.n} style={liStyle}>
+                  {rec.text}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+        <div className="mono" style={{ fontSize: 10, color: 'var(--ink50)', marginTop: 6 }}>
+          Extraído del informe firmado de la Sindicatura · última auditoría específica del
+          municipio.
+        </div>
+      </div>
+    </details>
+  )
+}
+
 function SindicaturaCard() {
   const { data } = useSindicatura()
   if (!data) return null
@@ -131,6 +190,7 @@ function SindicaturaCard() {
           PDF de la Sindicatura →
         </ExtLink>
       </div>
+      {r.findings && <Findings f={r.findings} year={r.year} />}
     </div>
   )
   return (

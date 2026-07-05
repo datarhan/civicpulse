@@ -14,11 +14,13 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import pdf from 'pdf-parse'
 import {
   parseSindicaturaSearch,
   isLocalEntityReport,
   type SindicaturaReport,
 } from '../src/scraper/sindicatura'
+import { parseAuditFindings } from '../src/scraper/sindicatura-findings'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const PROJECT_ROOT = join(__dirname, '..')
@@ -32,6 +34,28 @@ const SECTORAL_CAP = 15
 
 const byYearDesc = (a: SindicaturaReport, b: SindicaturaReport) => b.year - a.year
 
+/** Download a control-interno report PDF and parse its structured findings.
+ *  Best-effort: any failure (fetch / pdf-parse / no findings) yields null. */
+async function fetchFindings(url: string): Promise<SindicaturaReport['findings']> {
+  try {
+    const res = await fetch(url, {
+      headers: { 'User-Agent': UA },
+      signal: AbortSignal.timeout(90_000),
+    })
+    if (!res.ok) return null
+    const data = await pdf(Buffer.from(await res.arrayBuffer()))
+    const f = parseAuditFindings(data.text)
+    if (!f.deficiencies.length && !f.recommendations.length) return null
+    return {
+      ...f,
+      deficienciesCount: f.deficiencies.length,
+      recommendationsCount: f.recommendations.length,
+    }
+  } catch {
+    return null
+  }
+}
+
 async function main() {
   const res = await fetch(SEARCH_URL, {
     headers: { 'User-Agent': UA, Accept: 'text/html' },
@@ -42,6 +66,11 @@ async function main() {
 
   const all = parseSindicaturaSearch(html)
   const dedicated = all.filter((r) => r.scope === 'dedicated').sort(byYearDesc)
+  // Enrich the town-specific "control interno" audits with structured findings
+  // parsed from their PDFs (27 deficiencies + recommendations).
+  for (const r of dedicated) {
+    if (/control interno/i.test(r.title)) r.findings = await fetchFindings(r.url)
+  }
   const sectoralAll = all.filter((r) => r.scope === 'sectoral')
   const sectoral = sectoralAll.filter((r) => isLocalEntityReport(r.title)).sort(byYearDesc)
 

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T13:25:33.757Z",
+  "generatedAt": "2026-07-05T13:41:50.424Z",
   "note": "Informes de fiscalización de la Sindicatura de Comptes de la Comunitat Valenciana que nombran a Riba-roja de Túria. «dedicated» = auditoría específica del ayuntamiento; «sectoral» = barridos de entidades locales donde el municipio es sujeto auditado.",
   "source": {
     "platform": "Sindicatura de Comptes de la Comunitat Valenciana",
@@ -13,7 +13,170 @@
       "title": "Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019",
       "year": 2020,
       "url": "https://www.sindicom.gva.es/public/Attachment/2020/7/InformefiscalzacioncontrolinternoRiba-rojadelTuria2017-2019_cast_def_signed.pdf",
-      "scope": "dedicated"
+      "scope": "dedicated",
+      "findings": {
+        "deficiencies": [
+          {
+            "n": 1,
+            "category": "Información económico-financiera y su fiabilidad",
+            "text": "En general se ajusta a los principios contables que le son de aplicación, excepto que no se contabilizan las amortizaciones del inmovilizado. También hay que destacar que las cuentas restringidas de recaudación no se controlan."
+          },
+          {
+            "n": 2,
+            "category": "Información económico-financiera y su fiabilidad",
+            "text": "Cuando se planifican las inversiones, no se estima el coste de su mantenimiento ni su financiación posterior."
+          },
+          {
+            "n": 3,
+            "category": "Información económico-financiera y su fiabilidad",
+            "text": "No existe un plan de inversiones."
+          },
+          {
+            "n": 4,
+            "category": "Información económico-financiera y su fiabilidad",
+            "text": "En los años 2016 y 2017 el Pleno aprobó doce expedientes de reconocimiento extrajudicial de créditos, por un importe de 1.592.188 euros."
+          },
+          {
+            "n": 5,
+            "category": "Información económico-financiera y su fiabilidad",
+            "text": "No se concilia el inventario con la contabilidad, como viene señalando la Intervención en la Cuenta General."
+          },
+          {
+            "n": 6,
+            "category": "Personal",
+            "text": "Los puestos de trabajo no se han clasificado de acuerdo con criterios de valoración objetivos y cuantificables."
+          },
+          {
+            "n": 7,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "La entidad incumplió el objetivo de la regla del gasto en la liquidación del presupuesto de 2017 y en la aprobación del presupuesto de 2018."
+          },
+          {
+            "n": 8,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "La entidad ha presentado a la Sindicatura en el plazo preceptivo la cuenta general correspondiente a los ejercicios 2015 a 2017, debidamente aprobada por el Pleno del Ayuntamiento, si bien no cumple con el plazo de aprobación definitiva de los presupuestos de dichos ejercicios. En los trámites previos, se excede el plazo para la elaboración de la liquidación del ejercicio 2015 y de la formación de la cuenta general de dicho período, siendo la demora inferior a siete días. Artículo 166.1 del texto refundido de la Ley Reguladora de las Haciendas Locales (en adelante TRLRHL). Artículo 35 de la Ley 10/2010, de 9 de julio, de la Generalitat, de Ordenación y Gestión de la Función Pública Valenciana (en adelante LFPV). Capítulo III de la Ley Orgánica 2/2012, de 27 de abril, de Estabilidad Presupuestaria y Sostenibilidad Financiera (en adelante LOEPSF). Artículo 8 de la Ley 16/2017, de 10 de noviembre, de la Generalitat Valenciana. Subvenciones"
+          },
+          {
+            "n": 9,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "La entidad incumple la obligación de suministrar la información de concesión de ayudas a la Base de Datos Nacional de Subvenciones. Contratación"
+          },
+          {
+            "n": 10,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "No ha quedado acreditado por la Secretaría que todos los expedientes de contratación contengan el informe de propuesta de necesidades, el pliego de prescripciones técnicas y de cláusulas administrativas, certificado de existencia de crédito, fiscalización del gasto, publicidad de la convocatoria, si procede, y acto formal de recepción."
+          },
+          {
+            "n": 11,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "No ha podido ser certificado por la Secretaría que los contratos de obras no menores contengan siempre la justificación de la elaboración del proyecto y su supervisión cuando sea preceptivo, la aprobación del proyecto, el acta de replanteo y de comprobación de este, el acto formal de recepción, el certificado final y el informe del director de obras del estado de las obras según el artículo 235 del TRLCSP."
+          },
+          {
+            "n": 12,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "No consta acreditación por parte de la Secretaría de que los expedientes de contratación de los modificados incluyan su justificación, certificado de existencia de crédito, acuerdo de aprobación y formalización y contabilización del reajuste de garantía."
+          },
+          {
+            "n": 13,
+            "category": "Estabilidad presupuestaria, control del gasto y ciclo presupuestario",
+            "text": "En algún expediente se ha efectuado fraccionamiento del objeto del contrato (con la excepción de los lotes). Se trata de contratos menores concatenados y algunos gastos sin contrato señalados en los informes de fiscalización a posteriori de la Intervención."
+          },
+          {
+            "n": 14,
+            "category": "Protección de los bienes de la entidad",
+            "text": "La entidad dispone de un inventario aprobado el 4 de junio de 2015 que no se encuentra actualizado, dado que el Pleno no ha verificado ni las rectificaciones anuales ni la comprobación en la última renovación de la Artículo 20 de la Ley 38/2003, de 17 de noviembre, General de Subvenciones (en adelante LGS). Artículos 22 y 109 del texto refundido de la Ley de Contratos del Sector Público, aprobado por el Real Decreto Legislativo 3/2011, de 14 de noviembre (en adelante TRLCSP). Artículo 121 del TRLCSP. Artículo 107.1 del TRLCSP. Artículo 109 del TRLCSP. Artículo 156 del TRLCSP. Artículo 99.3 del TRLCSP. Artículo 86 del TRLCSP. Artículo 17 del Reglamento de Bienes (en adelante RB). corporación. Solamente consta un informe de rectificación parcial elaborado por el departamento de urbanismo, con las altas y bajas de parcelas e inmuebles entre los ejercicios 2016 y 2019, que no se aprueba por la corporación. A fecha de nuestra revisión, en diciembre de 2019, no ha sido localizado para su revisión física el cuadro nº 1 del epígrafe “Muebles de carácter artístico”, valorado en 1.000 euros. Estos incumplimientos suponen, además, una debilidad muy importante del control interno por la falta de protección de bienes."
+          },
+          {
+            "n": 15,
+            "category": "Protección de los bienes de la entidad",
+            "text": "La información facilitada indica que existen subvenciones concedidas en 2018 pendientes de justificar, habiendo vencido el plazo para ello, por importe de 3.960 euros del área de servicios sociales, habiéndose exigido su reintegro."
+          },
+          {
+            "n": 16,
+            "category": "Protección de los bienes de la entidad",
+            "text": "Existen cuatro cuentas bancarias restringidas de recaudación no controladas, tres de ellas con saldo cero y otra con un saldo de 2.000 euros."
+          },
+          {
+            "n": 17,
+            "category": "Protección de los bienes de la entidad",
+            "text": "Aunque la entidad indica que no existen valores prescritos, en la liquidación del presupuesto figuran 7.232.182 euros de derechos reconocidos pendientes de cobro de 2012 y anteriores que dada su antigüedad podrían estar afectados por prescripción, que exigiría la tramitación de expedientes para determinar posibles responsabilidades. Intervención"
+          },
+          {
+            "n": 18,
+            "category": "Organización y regulación",
+            "text": "El control financiero que se ejerce a través del control permanente y/o la auditoría pública no incluye el control de eficacia según el artículo 29.1 del RCI."
+          },
+          {
+            "n": 19,
+            "category": "Control financiero",
+            "text": "En 2018 no se realizó la fiscalización de la justificación de las subvenciones otorgadas por concurrencia competitiva. El plan de control financiero de 2019 prevé su fiscalización en los próximos ejercicios. Por tanto, no siempre se ha comprobado: - La presentación en plazo de la cuenta justificativa. - La acreditación de los gastos mediante facturas o documentos de valor probatorio. - Que el importe de la subvención no supere el coste de la actividad subvencionada. Artículo 33 del RB. Artículo 37 de la LGS. - Que no se han financiado gastos que no puedan ser subvencionados. - Si existen importes pendientes de justificar en los que ha finalizado el plazo. - La realización de la actividad subvencionada."
+          },
+          {
+            "n": 20,
+            "category": "Otros aspectos",
+            "text": "Durante el transcurso del ejercicio de la función de control, el órgano interventor no ha tenido la total colaboración por parte del personal de la entidad para poder efectuar el ejercicio de sus funciones correctamente. No han sido facilitados los expedientes de personal necesarios para efectuar el control financiero."
+          },
+          {
+            "n": 21,
+            "category": "Marco organizativo",
+            "text": "La entidad no dispone de documentación que acredite el nivel de adecuación al Esquema Nacional de Seguridad, Real Decreto 3/2010, de 8 de enero."
+          },
+          {
+            "n": 22,
+            "category": "Marco organizativo",
+            "text": "La entidad no se ajusta a los criterios y recomendaciones establecidos en el Real Decreto 4/2010, de 8 de enero, que regula el Esquema Nacional de Interoperabilidad, y/o no dispone del documento sobre adecuación al que se refiere su disposición transitoria primera."
+          },
+          {
+            "n": 23,
+            "category": "Operaciones de los sistemas de información",
+            "text": "No se dispone de un procedimiento y/o herramienta que asegure que las vulnerabilidades de los sistemas son detectadas en tiempo oportuno y son gestionadas activamente para su priorización y resolución."
+          },
+          {
+            "n": 24,
+            "category": "Operaciones de los sistemas de información",
+            "text": "No existe un procedimiento y/o herramienta que asegure que el despliegue de parches de seguridad liberados por el fabricante se realiza adecuadamente y en un tiempo razonable."
+          },
+          {
+            "n": 25,
+            "category": "Operaciones de los sistemas de información",
+            "text": "No se dispone de un procedimiento de fortificación o bastionado (configuración segura) de los sistemas, previo a su entrada en operación, que considere los distintos tipos de dispositivos existentes (servidores, equipos de sobremesa, portátiles, móviles y tabletas) y que establezca el uso de imágenes o plantillas para aplicar la configuración de seguridad de todos los sistemas, de acuerdo con estándares aprobados por la organización. Artículo 6 del RCI."
+          },
+          {
+            "n": 26,
+            "category": "Operaciones de los sistemas de información",
+            "text": "No se cuenta con una herramienta o procedimiento para realizar comprobaciones periódicas que permitan verificar que la configuración actual de dispositivos existentes (servidores, equipos de sobremesa, portátiles, móviles, tabletas, equipos de seguridad y equipos de red) no ha sido modificada de forma no autorizada respecto de la configuración de seguridad original."
+          },
+          {
+            "n": 27,
+            "category": "Operaciones de los sistemas de información",
+            "text": "No se ha acreditado el procedimiento o herramienta que permita la consulta de logs de auditoría para identificar eventos o patrones anormales y que permita la monitorización e identificación en tiempo real de sucesos. 5."
+          }
+        ],
+        "recommendations": [
+          {
+            "n": 1,
+            "text": "Resulta de utilidad elaborar un organigrama actualizado de la entidad y manuales de funciones de las distintas áreas."
+          },
+          {
+            "n": 2,
+            "text": "Deben realizarse arqueos soportados con conciliaciones bancarias con una periodicidad mínima de un trimestre."
+          },
+          {
+            "n": 3,
+            "text": "El plan de inversiones debe ser realista, de acuerdo con la capacidad de ejecución del Ayuntamiento. Además, es necesario estimar el coste y la financiación del mantenimiento de las inversiones."
+          },
+          {
+            "n": 4,
+            "text": "La Intervención no debe participar en la gestión económica de la entidad, para que así exista una adecuada segregación de funciones."
+          },
+          {
+            "n": 5,
+            "text": "El Ayuntamiento debe llevar a la práctica las medidas que se recogen en el apéndice 7 de este informe, para mejorar la seguridad y la eficacia del entorno tecnológico."
+          }
+        ],
+        "deficienciesCount": 27,
+        "recommendationsCount": 5
+      }
     },
     {
       "id": "sindicatura-15680970580601200",

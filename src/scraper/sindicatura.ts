@@ -17,6 +17,8 @@
  * No network, no fs — the CLI (scripts/scrape-sindicatura.ts) owns fetch + write.
  */
 
+import type { AuditFindings } from './sindicatura-findings'
+
 const BASE = 'https://www.sindicom.gva.es'
 const RIBA_ROJA = /riba-?roja/i
 
@@ -28,6 +30,8 @@ export interface SindicaturaReport {
   year: number
   url: string
   scope: SindicaturaScope
+  /** Structured findings parsed from the PDF (control-interno reports only). */
+  findings?: (AuditFindings & { deficienciesCount: number; recommendationsCount: number }) | null
 }
 
 function stripTags(s: string): string {
