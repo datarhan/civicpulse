@@ -1,5 +1,12 @@
+import { lazy, Suspense, useState } from 'react'
 import { Card } from '../Primitives'
 import { Sparkline } from '../Charts'
+import { offersByMunicipioGeo } from '../../lib/empleo'
+import { COMARCA_COORDS } from '../../lib/comarca-coords'
+
+// Lazy so Leaflet only loads when the reader opens the map — keeps it out of
+// the base /empleo chunk.
+const EmpleoMap = lazy(() => import('./EmpleoMap'))
 
 const eyebrow = {
   fontSize: 9.5,
@@ -87,8 +94,10 @@ function Panel({ title, children }) {
  * passes `stats` computed from the *filtered* offers so the numbers and charts
  * track what the user is looking at. `t` is the i18n function.
  */
-export default function EmpleoStats({ stats, t, totalAll }) {
+export default function EmpleoStats({ stats, t, totalAll, offers }) {
+  const [showMap, setShowMap] = useState(false)
   if (!stats || stats.total === 0) return null
+  const mapPoints = showMap ? offersByMunicipioGeo(offers || [], COMARCA_COORDS) : []
 
   const byContract = stats.byContract.slice(0, 5).map((c) => ({ label: c.label, count: c.count }))
   const byMunicipio = stats.byMunicipio.slice(0, 5).map((m) => ({ label: m.name, count: m.count }))
@@ -180,6 +189,32 @@ export default function EmpleoStats({ stats, t, totalAll }) {
         <Panel title={t('empleo.chart.byMunicipio')}>
           <BarList rows={byMunicipio} empty={t('empleo.stats.thin')} />
         </Panel>
+      </div>
+
+      {/* opt-in map — Leaflet lazy-loads only when opened */}
+      <div style={{ marginTop: 14 }}>
+        <button
+          type="button"
+          onClick={() => setShowMap((v) => !v)}
+          style={{
+            fontSize: 12,
+            color: 'var(--civic)',
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer',
+            textDecoration: 'underline',
+          }}
+        >
+          {showMap ? t('empleo.hideMap') : t('empleo.showMap')}
+        </button>
+        {showMap && (
+          <div style={{ marginTop: 10 }}>
+            <Suspense fallback={<div style={{ fontSize: 11.5, color: 'var(--ink40)' }}>…</div>}>
+              <EmpleoMap points={mapPoints} t={t} />
+            </Suspense>
+          </div>
+        )}
       </div>
     </Card>
   )

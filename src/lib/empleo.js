@@ -172,3 +172,20 @@ export function distinctContracts(offers) {
     .map(([raw, count]) => ({ raw, label: shortContract(raw), count }))
     .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
 }
+
+/**
+ * Aggregate offers into located municipalities for the map. `coords` maps a
+ * municipality name → [lat, lng]; municipalities with no coord are dropped
+ * (honest miss — never a fabricated point). Sorted by count desc.
+ * @returns {{ name: string, count: number, coord: [number, number] }[]}
+ */
+export function offersByMunicipioGeo(offers, coords) {
+  const counts = new Map()
+  for (const o of offers || []) {
+    const m = o.detail && o.detail.municipio
+    if (m && coords[m]) counts.set(m, (counts.get(m) || 0) + 1)
+  }
+  return [...counts.entries()]
+    .map(([name, count]) => ({ name, count, coord: coords[name] }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+}

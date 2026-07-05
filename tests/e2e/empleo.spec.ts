@@ -28,6 +28,17 @@ test.describe('Empleo (/empleo)', () => {
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 
+  test('opens the lazy municipality map on demand', async ({ page }) => {
+    await page.goto('/empleo', { waitUntil: 'domcontentloaded' })
+    await expect(page.getByText('Ofertas de empleo').first()).toBeVisible({ timeout: 8000 })
+    // The map (and Leaflet) is not mounted until the reader opts in.
+    await expect(page.locator('.leaflet-container')).toHaveCount(0)
+    await page.getByRole('button', { name: /Ver mapa de ofertas/ }).click()
+    await expect(page.locator('.leaflet-container')).toBeVisible({ timeout: 8000 })
+    // Each located municipality renders as a CircleMarker (an SVG path).
+    await expect(page.locator('.leaflet-container path').first()).toBeVisible()
+  })
+
   test('filters narrow the list and drill into a detail ficha', async ({ page }) => {
     await page.goto('/empleo', { waitUntil: 'domcontentloaded' })
     await expect(page.getByText('Ofertas de empleo').first()).toBeVisible({ timeout: 8000 })

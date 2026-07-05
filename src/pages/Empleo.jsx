@@ -333,7 +333,7 @@ export default function Empleo() {
         />
       )}
 
-      {hasData && <EmpleoStats stats={stats} totalAll={items.length} t={t} />}
+      {hasData && <EmpleoStats stats={stats} totalAll={items.length} offers={filtered} t={t} />}
 
       <Card pad={false} style={{ padding: '4px 14px' }}>
         {loading && <div style={{ padding: 12, fontSize: 12, color: 'var(--ink50)' }}>…</div>}

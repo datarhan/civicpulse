@@ -6,6 +6,7 @@ import {
   paginate,
   distinctMunicipios,
   distinctContracts,
+  offersByMunicipioGeo,
   EMPTY_FILTERS,
 } from '../src/lib/empleo'
 
@@ -195,6 +196,20 @@ describe('empleo/paginate', () => {
   it('handles an empty list', () => {
     expect(paginate([], 1, 10)).toMatchObject({ page: 1, totalPages: 1, total: 0 })
     expect(paginate([], 1, 10).items).toEqual([])
+  })
+})
+
+describe('empleo/offersByMunicipioGeo', () => {
+  const COORDS = {
+    'Riba-roja de Túria': [39.54, -0.57] as [number, number],
+    Paterna: [39.5, -0.44] as [number, number],
+  }
+  it('aggregates offers to located municipalities, dropping the unmapped ones', () => {
+    const pts = offersByMunicipioGeo(OFFERS, COORDS)
+    // fo1 + fo3 → Riba-roja (2), fo2 → Paterna (1); fo5 (Cheste, no coord) + fo4 (no detail) dropped
+    expect(pts.map((p) => p.name)).toEqual(['Riba-roja de Túria', 'Paterna'])
+    expect(pts[0]).toMatchObject({ name: 'Riba-roja de Túria', count: 2, coord: [39.54, -0.57] })
+    expect(pts.find((p) => p.name === 'Cheste')).toBeUndefined()
   })
 })
 
