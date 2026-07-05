@@ -1,4 +1,5 @@
 import { parse } from 'csv-parse/sync'
+import { isScoreArtifactAmount } from '../lib/tenders'
 
 // ---------------------------------------------------------------------------
 // Status normalisation
@@ -175,7 +176,7 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
     id = candidate
     seen.add(id)
     if (!id) continue
-    out.push({
+    const contract: Contract = {
       id,
       title: str(row.title),
       permalink: nullable(row.permalink),
@@ -204,7 +205,17 @@ export function parseRibalicitaContracts(csv: string): Contract[] {
       finalAmountNoTaxes: num(row.final_amount_no_taxes),
       estimatedValue: num(row.estimated_value),
       numberOfProposals: num(row.number_of_proposals),
-    })
+    }
+    // PLACSP publishes framework / SDA call-offs with the 0–100 award-criterion
+    // SCORE in the importe field instead of the euro amount (e.g. a "€100" award
+    // on a €14.983 budget → a spurious −99% baja). Drop that bogus figure so the
+    // award price reads as unknown rather than a €100 win; the real budget
+    // (initialAmount) is kept. See src/lib/tenders.js:isScoreArtifactAmount.
+    if (isScoreArtifactAmount(contract)) {
+      contract.finalAmount = 0
+      contract.finalAmountNoTaxes = 0
+    }
+    out.push(contract)
   }
   return out
 }

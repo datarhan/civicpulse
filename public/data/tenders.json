@@ -1618,8 +1618,8 @@
       ],
       "initialAmount": 17968.5,
       "initialAmountNoTaxes": 14850,
-      "finalAmount": 100,
-      "finalAmountNoTaxes": 100,
+      "finalAmount": 0,
+      "finalAmountNoTaxes": 0,
       "estimatedValue": 0,
       "numberOfProposals": 3
     },
@@ -2995,8 +2995,8 @@
       ],
       "initialAmount": 14983.83,
       "initialAmountNoTaxes": 12383.33,
-      "finalAmount": 100,
-      "finalAmountNoTaxes": 100,
+      "finalAmount": 0,
+      "finalAmountNoTaxes": 0,
       "estimatedValue": 12383.33,
       "numberOfProposals": 5
     },
@@ -13679,8 +13679,8 @@
       ],
       "initialAmount": 126612.09,
       "initialAmountNoTaxes": 104638.09,
-      "finalAmount": 2,
-      "finalAmountNoTaxes": 2,
+      "finalAmount": 0,
+      "finalAmountNoTaxes": 0,
       "estimatedValue": 209276.18,
       "numberOfProposals": 3
     },

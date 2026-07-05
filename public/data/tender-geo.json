@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-05T12:48:27.411Z",
+  "generatedAt": "2026-07-05T15:02:17.214Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-05T07:43:54.896Z"
   },
   "universe": {
-    "totalContracts": 370,
-    "totalAmount": 13978822.119999994,
+    "totalContracts": 368,
+    "totalAmount": 13978622.119999994,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
-    "situatedContracts": 73,
-    "situatedAmount": 2036385.44,
+    "situatedContracts": 72,
+    "situatedAmount": 2036285.44,
     "danaContracts": 9,
     "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
@@ -565,18 +565,6 @@
       "contractCount": 1,
       "amount": 7336,
       "danaAmount": 0
-    },
-    {
-      "slug": "carrer-mariano-benlliure",
-      "name": "Carrer Mariano Benlliure",
-      "kind": "street",
-      "point": [
-        39.5548706,
-        -0.5438117
-      ],
-      "contractCount": 1,
-      "amount": 100,
-      "danaAmount": 0
     }
   ],
   "assignments": [
@@ -781,27 +769,6 @@
         "name": "Col·legi d'Educació Infantil i Primària Camp de Túria",
         "matchedText": "CEIP Camp de Túria",
         "sourceId": "way-1242095512"
-      }
-    },
-    {
-      "id": "4379456",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 100,
-      "amountKind": "final",
-      "date": "2023-12-27",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5548706,
-        -0.5438117
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Mariano Benlliure",
-        "matchedText": "Carrer Mariano Benlliure",
-        "sourceId": "carrer-mariano-benlliure"
       }
     },
     {

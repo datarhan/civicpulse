@@ -2,6 +2,7 @@ import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseRibalicitaContracts, parseRibalicitaTenders } from '../src/scraper/tenders'
+import { isScoreArtifactAmount } from '../src/lib/tenders'
 
 const CONTRACTS_CSV = join(__dirname, 'fixtures', 'ribalicita_contratos_2026-04-19.csv')
 const TENDERS_CSV = join(__dirname, 'fixtures', 'ribalicita_licitaciones_2026-04-19.csv')
@@ -93,6 +94,37 @@ describe('scraper/tenders — parseRibalicitaContracts', () => {
       /ayuntamiento|riba-?roja/i.test(c.contractor!),
     )
     expect(ayuntamientoBuyers.length / withBoth.length).toBeGreaterThan(0.5)
+  })
+
+  it('neutralises PLACSP score-as-amount rows (SDA/framework 0–100 scores)', () => {
+    // exp. 251/2023 BSDA (Montealcedo), a fuel framework, and an urbanism
+    // framework are all published with the 0–100 award SCORE dumped into the
+    // importe field (€100, €2, €100). Storing that as the awarded € would show a
+    // spurious −99% baja and undercount spend, so the parser drops it to 0
+    // (award price unknown) while KEEPING the real budget. Montealcedo's true
+    // award (from the acta, not the Gobierto CSV) was €14.534,31.
+    for (const id of ['4379456', '1741944', '6221473']) {
+      const c = contracts.find((x) => x.id === id)
+      expect(c, `fixture row ${id} present`).toBeTruthy()
+      expect(c!.finalAmount, `row ${id} finalAmount neutralised`).toBe(0)
+      expect(c!.finalAmountNoTaxes, `row ${id} finalAmountNoTaxes neutralised`).toBe(0)
+      expect(c!.initialAmountNoTaxes, `row ${id} budget preserved`).toBeGreaterThan(0)
+    }
+  })
+
+  it('leaves real awards (properly taxed finals) untouched', () => {
+    const menor = contracts.find((c) => c.id === '5388060')!
+    expect(menor.finalAmount).toBeCloseTo(33617.64, 2)
+    expect(menor.finalAmountNoTaxes).toBeCloseTo(27783.17, 2)
+    const limpieza = contracts.find((c) => c.id === '4571300')!
+    expect(limpieza.finalAmount).toBeCloseTo(105302.49, 2)
+    expect(limpieza.finalAmountNoTaxes).toBeCloseTo(87026.85, 2)
+  })
+
+  it('no parsed contract retains a score-as-amount signature', () => {
+    // Post-condition: ingestion caught every artifact — the canonical guard
+    // (shared with bajaPct) finds nothing left in the snapshot.
+    expect(contracts.filter(isScoreArtifactAmount)).toEqual([])
   })
 })
 
