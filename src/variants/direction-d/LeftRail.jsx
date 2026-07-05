@@ -16,6 +16,7 @@ const RAIL_ITEMS = [
   { to: '/declaraciones', label: 'Declaraciones' },
   { to: '/datos', label: 'Datos' },
   { to: '/quejas', label: 'Quejas' },
+  { to: '/empleo', label: 'Empleo' },
   { to: '/laboratorio', label: 'Laboratorio' },
   { to: '/metodologia', label: 'Metodología' },
 ]
