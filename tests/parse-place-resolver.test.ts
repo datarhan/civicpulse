@@ -136,10 +136,73 @@ describe('place-resolver — matchNameToGazetteer (LLM name → real point)', ()
         sourceId: 'poli',
         needles: [],
         specificity: 4,
+        // No osmKind → not eligible for the singleton facility fallback.
       },
     ]
     // "Polideportivo Municipal" strips to nothing distinctive → no confident match.
     expect(matchNameToGazetteer('Polideportivo Municipal', cands)).toBeNull()
+  })
+
+  const FACILITY_CANDS: Candidate[] = [
+    {
+      kind: 'poi',
+      name: 'Ajuntament de Riba-roja de Túria',
+      point: [39.54, -0.56],
+      sourceId: 'townhall',
+      needles: [],
+      specificity: 4,
+      osmKind: 'townhall',
+    },
+    {
+      kind: 'poi',
+      name: 'Cementerio de San Jaime',
+      point: [39.47, -0.58],
+      sourceId: 'cem',
+      needles: [],
+      specificity: 4,
+      osmKind: 'cemetery',
+    },
+    {
+      kind: 'poi',
+      name: 'Biblioteca Pública',
+      point: [39.54, -0.56],
+      sourceId: 'lib',
+      needles: [],
+      specificity: 4,
+      osmKind: 'library',
+    },
+  ]
+
+  it('matches a generic facility to the town singleton (Cementerio municipal → the one cemetery)', () => {
+    expect(matchNameToGazetteer('Cementerio municipal', FACILITY_CANDS)?.sourceId).toBe('cem')
+  })
+
+  it('maps Ayuntamiento / Casa Consistorial to the single townhall', () => {
+    expect(matchNameToGazetteer('Ayuntamiento', FACILITY_CANDS)?.sourceId).toBe('townhall')
+    expect(matchNameToGazetteer('Casa Consistorial', FACILITY_CANDS)?.sourceId).toBe('townhall')
+  })
+
+  it('does NOT singleton-match when a facility type has several instances (ambiguous)', () => {
+    const two = [
+      ...FACILITY_CANDS,
+      {
+        kind: 'poi' as const,
+        name: 'Cementerio Viejo',
+        point: [39.48, -0.59] as [number, number],
+        sourceId: 'cem2',
+        needles: [],
+        specificity: 4,
+        osmKind: 'cemetery',
+      },
+    ]
+    expect(matchNameToGazetteer('Cementerio municipal', two)).toBeNull()
+  })
+
+  it('a distinctive proper-noun name still wins over the facility fallback', () => {
+    // "Biblioteca Cervantes" has a proper noun → proper-noun path (no such
+    // candidate here) rather than blindly hitting the singleton library.
+    const m = matchNameToGazetteer('Cervantes', FACILITY_CANDS)
+    expect(m).toBeNull() // no "Cervantes" facility → not force-mapped to the library
   })
 })
 

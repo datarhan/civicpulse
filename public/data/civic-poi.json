@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-04T15:07:32.558Z",
+  "generatedAt": "2026-07-05T12:34:25.882Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -13,6 +13,14 @@
       "kind": "townhall",
       "lat": 39.5469545,
       "lng": -0.5666236
+    },
+    {
+      "id": "way-740051593",
+      "name": "Cementerio de San Jaime",
+      "category": "civico",
+      "kind": "cemetery",
+      "lat": 39.4767673,
+      "lng": -0.585373
     },
     {
       "id": "node-5659405999",
@@ -175,6 +183,14 @@
       "lng": -0.5811206
     },
     {
+      "id": "node-12504460377",
+      "name": "Conservatorio Profesional de Música de Riba-roja de Túria",
+      "category": "educacion",
+      "kind": "music_school",
+      "lat": 39.5409656,
+      "lng": -0.5703257
+    },
+    {
       "id": "relation-11303640",
       "name": "Entrenaranjos International School",
       "category": "educacion",
@@ -264,12 +280,12 @@
     }
   ],
   "stats": {
-    "total": 32,
+    "total": 34,
     "byCategory": {
-      "civico": 4,
+      "civico": 5,
       "cultura": 4,
       "deporte": 7,
-      "educacion": 10,
+      "educacion": 11,
       "salud": 3,
       "verde": 4
     }

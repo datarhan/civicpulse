@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T12:25:51.910Z",
+  "generatedAt": "2026-07-05T12:38:16.537Z",
   "overrides": [
     {
       "contractId": "1564500",
@@ -266,6 +266,118 @@
       "curator": "datarhan",
       "approvedAt": "2026-07-05T12:25:51.910Z",
       "note": "LLM identified CEIP Camp de Túria; matcher hit the same-named football field, corrected to the school POI."
+    },
+    {
+      "contractId": "1652393",
+      "sourceId": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "matchedText": "Ajuntament de Riba-roja de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:13.950Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "440383",
+      "sourceId": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "matchedText": "Ajuntament de Riba-roja de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:14.317Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "7483049",
+      "sourceId": "way-740051593",
+      "name": "Cementerio de San Jaime",
+      "kind": "poi",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "matchedText": "Cementerio de San Jaime",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:14.742Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "2460010",
+      "sourceId": "way-740051593",
+      "name": "Cementerio de San Jaime",
+      "kind": "poi",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "matchedText": "Cementerio de San Jaime",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:15.100Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "543940",
+      "sourceId": "way-740051593",
+      "name": "Cementerio de San Jaime",
+      "kind": "poi",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "matchedText": "Cementerio de San Jaime",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:15.474Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "1532928",
+      "sourceId": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "matchedText": "Ajuntament de Riba-roja de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:15.813Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "555312",
+      "sourceId": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "matchedText": "Ajuntament de Riba-roja de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:16.163Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
+    },
+    {
+      "contractId": "2870786",
+      "sourceId": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "matchedText": "Ajuntament de Riba-roja de Túria",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T12:38:16.536Z",
+      "note": "LLM geocode, singleton facility, curator-reviewed"
     }
   ]
 }

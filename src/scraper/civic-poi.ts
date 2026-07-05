@@ -35,6 +35,7 @@ const AMENITY_CATEGORY: Record<string, PoiCategory> = {
   kindergarten: 'educacion',
   college: 'educacion',
   university: 'educacion',
+  music_school: 'educacion',
   pharmacy: 'salud',
   clinic: 'salud',
   hospital: 'salud',
@@ -49,6 +50,8 @@ const AMENITY_CATEGORY: Record<string, PoiCategory> = {
   fire_station: 'civico',
   post_office: 'civico',
   courthouse: 'civico',
+  marketplace: 'civico',
+  grave_yard: 'civico',
 }
 
 const LEISURE_CATEGORY: Record<string, PoiCategory> = {
@@ -66,6 +69,7 @@ const LEISURE_CATEGORY: Record<string, PoiCategory> = {
 export function categorizePoi(tags: Record<string, string>): PoiCategory | null {
   if (tags.amenity && AMENITY_CATEGORY[tags.amenity]) return AMENITY_CATEGORY[tags.amenity]
   if (tags.leisure && LEISURE_CATEGORY[tags.leisure]) return LEISURE_CATEGORY[tags.leisure]
+  if (tags.landuse === 'cemetery') return 'civico'
   if (tags.healthcare) return 'salud'
   if (tags.tourism === 'museum') return 'cultura'
   return null
@@ -91,6 +95,7 @@ export function parseOsmPoi(json: string): CivicPoi[] {
     const kind =
       tags.amenity ||
       tags.leisure ||
+      (tags.landuse === 'cemetery' ? 'cemetery' : undefined) ||
       tags.healthcare ||
       (tags.tourism === 'museum' ? 'museum' : 'poi')
     out.push({ id: `${el.type}-${el.id}`, name, category, kind, lat, lng })

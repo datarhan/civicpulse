@@ -21,8 +21,9 @@ const OVERPASS = OVERPASS_ENDPOINTS[0]
 const POI_QL = `[out:json][timeout:60];
 area["wikidata"="Q23701"]->.a;
 (
-  nwr["amenity"~"^(school|kindergarten|college|university|hospital|clinic|doctors|dentist|pharmacy|library|theatre|arts_centre|community_centre|townhall|police|fire_station|post_office|courthouse)$"](area.a);
+  nwr["amenity"~"^(school|kindergarten|college|university|music_school|hospital|clinic|doctors|dentist|pharmacy|library|theatre|arts_centre|community_centre|townhall|police|fire_station|post_office|courthouse|marketplace|grave_yard)$"](area.a);
   nwr["leisure"~"^(park|garden|sports_centre|pitch|stadium|swimming_pool|track|fitness_centre)$"]["name"](area.a);
+  nwr["landuse"="cemetery"](area.a);
   nwr["healthcare"](area.a);
   nwr["tourism"="museum"](area.a);
 );

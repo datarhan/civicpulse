@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T12:25:52.451Z",
+  "generatedAt": "2026-07-05T12:38:16.887Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-05T07:43:54.896Z"
@@ -9,8 +9,8 @@
     "totalAmount": 13978822.119999994,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
-    "situatedContracts": 62,
-    "situatedAmount": 1618532.7200000002,
+    "situatedContracts": 70,
+    "situatedAmount": 1804761.8000000003,
     "danaContracts": 9,
     "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
@@ -147,6 +147,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "node-5809597354",
+      "name": "Ajuntament de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "contractCount": 5,
+      "amount": 115145.55,
+      "danaAmount": 0
+    },
+    {
       "slug": "el-pou-d-escoto",
       "name": "el Pou d'Escoto",
       "kind": "urbanizacion",
@@ -168,6 +180,18 @@
       ],
       "contractCount": 1,
       "amount": 85000,
+      "danaAmount": 0
+    },
+    {
+      "slug": "way-740051593",
+      "name": "Cementerio de San Jaime",
+      "kind": "poi",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "contractCount": 3,
+      "amount": 71083.53,
       "danaAmount": 0
     },
     {
@@ -585,6 +609,27 @@
       }
     },
     {
+      "id": "555312",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 37890,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "3733423",
       "zones": [],
       "matchedAlias": {},
@@ -649,6 +694,27 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "1652393",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 31041.03,
+      "amountKind": "final",
+      "date": "2020-03-06",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
       }
     },
     {
@@ -758,6 +824,27 @@
         "name": "Carrer Arrosals",
         "matchedText": "Carrer Arrosals",
         "sourceId": "carrer-arrosals"
+      }
+    },
+    {
+      "id": "543940",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 13726.68,
+      "amountKind": "final",
+      "date": "2019-07-13",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
       }
     },
     {
@@ -1054,6 +1141,27 @@
       }
     },
     {
+      "id": "2460010",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 36990,
+      "amountKind": "final",
+      "date": "2021-10-06",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
+      }
+    },
+    {
       "id": "2196998",
       "zones": [
         "el-pou-d-escoto"
@@ -1234,6 +1342,27 @@
       }
     },
     {
+      "id": "440383",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24908.52,
+      "amountKind": "final",
+      "date": "2018-11-05",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "440687",
       "zones": [],
       "matchedAlias": {},
@@ -1368,6 +1497,27 @@
       }
     },
     {
+      "id": "1532928",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14311,
+      "amountKind": "final",
+      "date": "2021-02-19",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "1550970",
       "zones": [],
       "matchedAlias": {},
@@ -1431,6 +1581,27 @@
       }
     },
     {
+      "id": "2870786",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 6995,
+      "amountKind": "final",
+      "date": "2022-04-01",
+      "contractType": "supplies",
+      "categoryTitle": "energy",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
+      }
+    },
+    {
       "id": "3733354",
       "zones": [
         "l-oliveral"
@@ -1453,6 +1624,27 @@
         "name": "l'Oliveral",
         "matchedText": "l'Oliveral",
         "sourceId": "l-oliveral"
+      }
+    },
+    {
+      "id": "7483049",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 20366.85,
+      "amountKind": "final",
+      "date": "2025-02-20",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4767673,
+        -0.585373
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Cementerio de San Jaime",
+        "matchedText": "Cementerio de San Jaime",
+        "sourceId": "way-740051593"
       }
     },
     {

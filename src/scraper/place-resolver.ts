@@ -25,6 +25,8 @@ export interface Candidate {
   needles: string[]
   /** Higher = more specific/precise (poi 4 > street 3 > urbanizacion 2 > barrio 1). */
   specificity: number
+  /** Raw OSM tag for POIs (townhall/cemetery/library…) — the singleton facility matcher. */
+  osmKind?: string
 }
 
 export interface PlaceMatch {
@@ -213,7 +215,14 @@ function dedupe(list: string[]): string[] {
 
 interface GazetteerInput {
   streets?: Array<{ slug: string; name: string; kind?: string; point: [number, number] }>
-  pois?: Array<{ id: string; name: string; category?: string; lat: number; lng: number }>
+  pois?: Array<{
+    id: string
+    name: string
+    category?: string
+    kind?: string
+    lat: number
+    lng: number
+  }>
   zones?: Array<{ slug: string; name: string; centroid: [number, number] }>
   zoneAliases?: Record<string, string[]>
 }
@@ -232,6 +241,7 @@ export function buildGazetteer(input: GazetteerInput): Candidate[] {
       sourceId: p.id,
       needles,
       specificity: 4,
+      osmKind: p.kind,
     })
   }
 
@@ -432,29 +442,37 @@ function tokenIn(t: string, ctoks: string[]): boolean {
   )
 }
 
+// Generic facility TYPE terms (folded) → the OSM `kind`(s) they denote. Used
+// only when a name has no distinctive proper noun ("Cementerio municipal",
+// "Casa Consistorial") and there is EXACTLY ONE facility of that type in town —
+// an unambiguous singleton. Deliberately excludes types the town has several of
+// (sports_centre) or that are ambiguous (conservatori música vs danza).
+const FACILITY_TYPE_TERMS: Array<[string, string[]]> = [
+  ['ayuntamiento', ['townhall']],
+  ['ajuntament', ['townhall']],
+  ['consistorial', ['townhall']],
+  ['cementerio', ['cemetery', 'grave_yard']],
+  ['cementeri', ['cemetery', 'grave_yard']],
+  ['biblioteca', ['library']],
+  ['mercado', ['marketplace']],
+  ['mercat', ['marketplace']],
+]
+
 /**
- * Resolve an LLM-extracted place name to a gazetteer entry (its real point), or
- * null. Requires every locating token of the LLM name to appear in a candidate's
- * name; ties break on specificity. Returns the gazetteer point — never a
- * fabricated coordinate.
- * @param {string|null|undefined} llmName
- * @param {Candidate[]} candidates
+ * Match a generic facility name to the town's single facility of that type
+ * (e.g. "Cementerio municipal" → the one cemetery). Only fires for an
+ * unambiguous singleton — zero or several of a type yields no match.
  */
-export function matchNameToGazetteer(
-  llmName: string | null | undefined,
-  candidates: Candidate[],
-): PlaceMatch | null {
-  const toks = nameTokens(String(llmName || ''))
-  if (toks.length === 0) return null
-  let best: PlaceMatch | null = null
-  let bestSpec = -1
-  for (const c of candidates) {
-    const ctoks = nameTokens(c.name)
-    if (ctoks.length === 0) continue
-    if (!toks.every((t) => tokenIn(t, ctoks))) continue
-    if (c.specificity > bestSpec) {
-      bestSpec = c.specificity
-      best = {
+function matchFacilityType(llmName: string, candidates: Candidate[]): PlaceMatch | null {
+  const toks = new Set(foldTitle(llmName).split(' '))
+  for (const [term, kinds] of FACILITY_TYPE_TERMS) {
+    if (!toks.has(term)) continue
+    const matching = candidates.filter(
+      (c) => c.kind === 'poi' && c.osmKind && kinds.includes(c.osmKind),
+    )
+    if (matching.length === 1) {
+      const c = matching[0]
+      return {
         point: c.point,
         kind: c.kind,
         name: c.name,
@@ -463,7 +481,45 @@ export function matchNameToGazetteer(
       }
     }
   }
-  return best
+  return null
+}
+
+/**
+ * Resolve an LLM-extracted place name to a gazetteer entry (its real point), or
+ * null. First a proper-noun match (every locating token of the LLM name appears
+ * in a candidate's name; ties break on specificity); then, for generic names, a
+ * singleton facility-type fallback. Returns the gazetteer point — never a
+ * fabricated coordinate.
+ * @param {string|null|undefined} llmName
+ * @param {Candidate[]} candidates
+ */
+export function matchNameToGazetteer(
+  llmName: string | null | undefined,
+  candidates: Candidate[],
+): PlaceMatch | null {
+  const raw = String(llmName || '')
+  const toks = nameTokens(raw)
+  let best: PlaceMatch | null = null
+  let bestSpec = -1
+  if (toks.length > 0) {
+    for (const c of candidates) {
+      const ctoks = nameTokens(c.name)
+      if (ctoks.length === 0) continue
+      if (!toks.every((t) => tokenIn(t, ctoks))) continue
+      if (c.specificity > bestSpec) {
+        bestSpec = c.specificity
+        best = {
+          point: c.point,
+          kind: c.kind,
+          name: c.name,
+          matchedText: c.name,
+          sourceId: c.sourceId,
+        }
+      }
+    }
+  }
+  // Fallback for generic facility names with no distinctive token.
+  return best ?? matchFacilityType(raw, candidates)
 }
 
 /**
