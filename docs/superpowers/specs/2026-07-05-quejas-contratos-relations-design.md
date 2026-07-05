@@ -2,6 +2,12 @@
 
 **Date:** 2026-07-05
 **Status:** approved (architecture + gating) · engine spec for review
+**D1 amendment (during build):** the `expediente` signal was **deferred**. A queja
+carries no expediente of its own, so a correct "mismo expediente" tier needs the
+pleno-agenda bridge (queja dept ↔ agenda item expediente ↔ contract), which D1
+does not include — a naive "contract has an expediente" check produced 139 false
+Tier-A links on real data. D1 Tier A is therefore strictly **place + department**;
+the expediente/structural tier returns with the agenda bridge in a later deliverable.
 **Author:** Claude Code session
 
 ## 1. Problem & context
