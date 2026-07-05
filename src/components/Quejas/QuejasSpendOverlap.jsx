@@ -43,6 +43,7 @@ export default function QuejasSpendOverlap() {
       <SectionHead
         eyebrow="Cruce de datos · sin causalidad"
         title="Quejas y gasto situado por barrio"
+        right={null}
       />
       <div
         style={{
