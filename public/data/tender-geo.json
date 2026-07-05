@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T11:31:56.457Z",
+  "generatedAt": "2026-07-05T11:47:25.709Z",
   "source": {
     "tenders": "2026-07-04T16:36:54.422Z",
     "geo": "2026-07-05T07:43:54.896Z"
@@ -9,8 +9,8 @@
     "totalAmount": 13978822.119999994,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
-    "situatedContracts": 51,
-    "situatedAmount": 1431928.5799999998,
+    "situatedContracts": 52,
+    "situatedAmount": 1446778.5799999998,
     "danaContracts": 9,
     "danaAmount": 274422.42,
     "danaAwardedContracts": 73,
@@ -348,6 +348,18 @@
       ],
       "contractCount": 1,
       "amount": 17770.71,
+      "danaAmount": 0
+    },
+    {
+      "slug": "urbanitzacio-valencia-la-vella",
+      "name": "Urbanització València la Vella",
+      "kind": "urbanizacion",
+      "point": [
+        39.5344276,
+        -0.5307458
+      ],
+      "contractCount": 1,
+      "amount": 14850,
       "danaAmount": 0
     },
     {
@@ -886,8 +898,16 @@
       "date": "2023-06-09",
       "contractType": "services",
       "categoryTitle": "architecture",
-      "point": null,
-      "place": null
+      "point": [
+        39.5344276,
+        -0.5307458
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització València la Vella",
+        "matchedText": "València la Vella (zona arqueológica)",
+        "sourceId": "urbanitzacio-valencia-la-vella"
+      }
     },
     {
       "id": "2196998",

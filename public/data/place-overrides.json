@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T11:13:30.782Z",
+  "generatedAt": "2026-07-05T11:47:25.339Z",
   "overrides": [
     {
       "contractId": "1564500",
@@ -112,6 +112,20 @@
       "curator": "datarhan",
       "approvedAt": "2026-07-05T11:13:30.781Z",
       "note": "LLM geocode curator-reviewed"
+    },
+    {
+      "contractId": "4718569",
+      "sourceId": "urbanitzacio-valencia-la-vella",
+      "name": "Urbanització València la Vella",
+      "kind": "urbanizacion",
+      "point": [
+        39.5344276,
+        -0.5307458
+      ],
+      "matchedText": "València la Vella (zona arqueológica)",
+      "curator": "datarhan",
+      "approvedAt": "2026-07-05T11:47:25.338Z",
+      "note": "LLM correctly identified the archaeological zone; placed at the zone centroid, not the same-named street 1.4km away."
     }
   ]
 }
