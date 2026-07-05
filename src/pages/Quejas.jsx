@@ -9,6 +9,7 @@ import {
   prettyNeighborhood,
 } from '../hooks/useQuejas'
 import { useCtbg } from '../hooks/useCtbg'
+import { useSindicatura } from '../hooks/useSindicatura'
 import { useBop, formatBopDate } from '../hooks/useBop'
 import { useConsellCv } from '../hooks/useConsellCv'
 import {
@@ -97,6 +98,94 @@ function SindicCard() {
               style={{ color: 'var(--civic)' }}
             >
               elsindic.com
+            </a>
+            .
+          </div>
+        </div>
+      )}
+    </Card>
+  )
+}
+
+function SindicaturaCard() {
+  const { data } = useSindicatura()
+  if (!data) return null
+  const dedicated = data.dedicated || []
+  const sectoral = data.sectoral || []
+  const st = data.stats || {}
+  const Report = ({ r, dedicatedRow }) => (
+    <div key={r.id} style={{ padding: '9px 0', borderTop: '1px dotted var(--border2)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 3 }}>
+        <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink60)', fontWeight: 700 }}>
+          {r.year}
+        </span>
+        <Pill tone={dedicatedRow ? 'intel' : 'ghost'} size="xs">
+          {dedicatedRow ? 'Auditoría específica' : 'Entidades locales'}
+        </Pill>
+      </div>
+      <div style={{ fontSize: 13, fontWeight: dedicatedRow ? 600 : 500, lineHeight: 1.4 }}>
+        {r.title}
+      </div>
+      <div style={{ marginTop: 5, fontSize: 11 }}>
+        <ExtLink href={r.url} style={{ color: 'var(--civic)' }}>
+          PDF de la Sindicatura →
+        </ExtLink>
+      </div>
+    </div>
+  )
+  return (
+    <Card style={{ marginTop: 14 }}>
+      <SectionHead
+        eyebrow="Fiscalización externa · Sindicatura de Comptes CV"
+        title="Auditorías del órgano de control externo sobre Riba-roja"
+      />
+      {dedicated.length === 0 && sectoral.length === 0 ? (
+        <div style={{ fontSize: 13, color: 'var(--ink70)', lineHeight: 1.55, marginTop: 8 }}>
+          Aún no consta ninguna fiscalización de la{' '}
+          <a
+            href="https://www.sindicom.gva.es/informes"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: 'var(--civic)' }}
+          >
+            Sindicatura de Comptes
+          </a>{' '}
+          que nombre a Riba-roja de Túria.
+        </div>
+      ) : (
+        <div style={{ marginTop: 8 }}>
+          <div style={{ fontSize: 12, color: 'var(--ink60)', lineHeight: 1.5, marginBottom: 4 }}>
+            La Sindicatura audita <em>a posteriori</em> si el dinero público se gestionó
+            correctamente — el complemento fiscalizador al Síndic de Greuges y el CTBG.
+          </div>
+          {dedicated.map((r) => (
+            <Report key={r.id} r={r} dedicatedRow />
+          ))}
+          {sectoral.length > 0 && (
+            <details style={{ marginTop: 8 }}>
+              <summary
+                style={{ cursor: 'pointer', fontSize: 12, color: 'var(--civic)', fontWeight: 600 }}
+              >
+                Riba-roja como entidad auditada en {st.sectoralRelevant ?? sectoral.length} barridos
+                sectoriales de entidades locales
+              </summary>
+              <div style={{ marginTop: 4 }}>
+                {sectoral.map((r) => (
+                  <Report key={r.id} r={r} dedicatedRow={false} />
+                ))}
+              </div>
+            </details>
+          )}
+          <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+            {st.dedicated ?? dedicated.length} auditoría(s) específica(s) · {st.sectoralTotal ?? 0}{' '}
+            menciones en total · actualizado {fmtDateShort(data.generatedAt)}. Fuente:{' '}
+            <a
+              href="https://www.sindicom.gva.es"
+              target="_blank"
+              rel="noreferrer"
+              style={{ color: 'var(--civic)' }}
+            >
+              sindicom.gva.es
             </a>
             .
           </div>
@@ -762,6 +851,7 @@ export default function Quejas() {
       {!loading && !error && data && (data.stats?.total ?? 0) === 0 && <EmptyState />}
       {!loading && !error && data && (data.stats?.total ?? 0) > 0 && <DashboardView data={data} />}
       <SindicCard />
+      <SindicaturaCard />
       <ConsellCvCard />
       <CtbgCard />
       <BopCard />

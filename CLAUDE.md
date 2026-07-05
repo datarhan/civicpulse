@@ -485,7 +485,7 @@ Leaflet + react-leaflet map surfaces:
 
 ## Real data pipeline
 
-**26 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
+**27 autonomous scrapers** feed Riba-roja de Túria (INE **46214** · Wikidata
 **Q23701** · OSM relation **342356**) and refresh nightly via GitHub Actions
 at 04:30 UTC — the set walked by `npm run scrape:all`. Alongside them, a
 handful of curated files only move via the `npm run reply` / `npm run
@@ -500,7 +500,7 @@ the app. Re-running any `npm run scrape:*` is idempotent;
 `npm run scrape:all` walks the autonomous adapters in ~3 min.
 
 ```
-# Autonomous scrapers (26):
+# Autonomous scrapers (27):
 scripts/scrape-officials.ts           →  src/scraper/corporacion.ts       →  public/data/officials.json
 scripts/scrape-transparency.ts        →  src/scraper/transparency.ts      →  public/data/transparency-docs.json
 scripts/scrape-ispa.ts                →  src/scraper/ispa.ts              →  public/data/ispa.json
@@ -522,6 +522,7 @@ scripts/scrape-pleno-agendas.ts       →  src/scraper/pleno-agenda.ts      → 
 scripts/scrape-wikidata.ts            →  src/scraper/wikidata.ts          →  public/data/wikidata.json
 scripts/scrape-spain-ticker.ts        →  src/scraper/spain-ticker.ts      →  public/data/spain-ticker.json
 scripts/scrape-ctbg.ts                →  src/scraper/ctbg.ts              →  public/data/ctbg.json
+scripts/scrape-sindicatura.ts         →  src/scraper/sindicatura.ts       →  public/data/sindicatura.json
 scripts/scrape-promise-suggestions.ts →  src/scraper/promise-inference.ts →  public/data/promise-suggestions.json
 scripts/scrape-consell-cv.ts          →  src/scraper/consell-cv.ts        →  public/data/consell-cv.json
 scripts/scrape-tenders-ted.ts         →  src/scraper/tenders-ted.ts       →  public/data/tenders-ted.json
@@ -580,6 +581,7 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Pleno finding corrections log | **human-curated** · `correct-pleno-finding.ts` CLI · embedded inside `pleno-findings.json` | Same shape as press corrections. Same IFCN-compliant trail for the editorial findings auto-curated from pleno transcripts. | `/hallazgos` — collapsible "Bitácora de correcciones" expander on each `FindingDetailCard`. |
 | Editorial findings as ClaimReview JSON-LD | **published** · `src/components/ClaimReviewJsonLd.jsx` | Every press + pleno finding card embeds a `<script type="application/ld+json">` payload conforming to schema.org/ClaimReview. Two builders: `_buildPayload` (press — itemReviewed.appearance points at outlets) and `_buildPlenoPayload` (pleno — itemReviewed.appearance points at the council session). Severity maps to a 1-5 reviewRating. | `/laboratorio` + `/hallazgos`. Lets Google's Rich Results Test recognise us as a fact-check publisher — same standard the Fact Check Tools API indexes (we both consume + publish). |
 | CTBG resoluciones (state-level, 10,551 rows, 12 yearly sheets) | `ctbg.ts` → `ctbg.json` | MinHac **CTBG** official XLSX; parser flattens sheets + filters by orthographic variants of Riba-roja/Ribarroja de Túria with Ebro-dam disambiguation | `/quejas` `CtbgCard` — honest "0 matches" surface when nothing hits |
+| Sindicatura de Comptes CV fiscalización reports (ex-post audit court) | `sindicatura.ts` → `sindicatura.json` | **Sindicatura de Comptes CV** `/informes` search (`text=Riba-roja de Túria&type=full`, indexes PDF content). Parser classifies each result row: `dedicated` (TITLE names the town — e.g. the 2017-2019 internal-control audit, 27 deficiencies) vs `sectoral` (Riba-roja inside a local-entities sweep). CLI keeps dedicated + local-entity sectoral (`isLocalEntityReport`), reports the rest as a count. curl-reachable (unlike PLACSP) | `/quejas` `SindicaturaCard` — the ex-post audit pillar next to Síndic + CTBG; dedicated audits highlighted, sectoral in a collapsible |
 | Síndic de Greuges CV resoluciones (curated) | **human-curated** · `sindic.ts` schema validator | Added via `npm run sindic:add` after the Síndic publishes a resolución naming Riba-roja; JS-POST portal makes automation brittle at this scale | `/quejas` `SindicCard` with expediente/fecha/materia/sentido/resumen + PDF link |
 | Quejas ciudadanas (Telegram-captured, SQLite-backed) | **bot-owned** · `bot/src/services/snapshot.ts` | Exported by `npm run export` (host-side; runs against the same SQLite the bot writes to). The bot itself runs in a long-polling Docker container locally (`bot/docker-compose.yml`) or as a launchd user agent for setups outside `~/Documents/`; payload is Open311 GeoReport v2-flavoured; only non-PII fields are published | `/quejas` feed + heatmap · `/quejas/dashboard` analytics · `/quejas/:id` detail view · `/cargos` QuejaBadge |
 | Queja responses (curated, right-of-reply) | **human-curated** · `apply-queja-response.ts` validator | Added via `npm run queja-reply` after receiving an official reply via the `.github/ISSUE_TEMPLATE/queja-response.yml` form | `/quejas/:id` verbatim response card under the timeline |
@@ -623,6 +625,7 @@ loop.
 - `useCpvLabels` + `src/lib/cpv.js` (`cpvLabel` / `uniqueCpvLabels` / embedded `CPV_DIVISIONS`) + `src/lib/tenders.js` (`PROCESS_TYPE_LABEL` / `CONTRACT_TYPE_LABEL` / `bajaPct`) — feed the shared `ContractCard`
 - `useCivicPoi` + `src/lib/civic-poi.js` (`groupPoiByCategory` / `POI_CATEGORIES`) — landing map "Servicios" layer
 - `useSindic` + `SINDIC_MATERIA_LABEL` / `SINDIC_SENTIDO_LABEL` / `SINDIC_SENTIDO_TONE`
+- `useSindicatura` — Sindicatura de Comptes CV audit reports (`/quejas` `SindicaturaCard`)
 
 ### Nightly refresh
 

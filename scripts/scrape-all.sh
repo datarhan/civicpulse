@@ -37,6 +37,7 @@ SCRAPERS=(
   scrape:pleno-agendas
   scrape:wikidata
   scrape:ctbg
+  scrape:sindicatura
   scrape:consell-cv
   scrape:spain-ticker
   scrape:promise-suggestions
@@ -66,6 +67,7 @@ BEST_EFFORT=(
   scrape:bop
   scrape:transparency
   scrape:ispa
+  scrape:sindicatura
 )
 
 is_best_effort() {

@@ -45,6 +45,7 @@
     "correct-pleno-finding": "npx tsx scripts/correct-pleno-finding.ts",
     "scrape:pleno-agendas": "npx tsx scripts/scrape-pleno-agendas.ts",
     "scrape:ctbg": "npx tsx scripts/scrape-ctbg.ts",
+    "scrape:sindicatura": "npx tsx scripts/scrape-sindicatura.ts",
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
     "scrape:pleno-videos": "npx tsx scripts/scrape-pleno-videos.ts",
     "scrape:spain-ticker": "npx tsx scripts/scrape-spain-ticker.ts",

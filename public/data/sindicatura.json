@@ -1,0 +1,139 @@
+{
+  "generatedAt": "2026-07-05T13:25:33.757Z",
+  "note": "Informes de fiscalización de la Sindicatura de Comptes de la Comunitat Valenciana que nombran a Riba-roja de Túria. «dedicated» = auditoría específica del ayuntamiento; «sectoral» = barridos de entidades locales donde el municipio es sujeto auditado.",
+  "source": {
+    "platform": "Sindicatura de Comptes de la Comunitat Valenciana",
+    "portal": "https://www.sindicom.gva.es",
+    "search": "https://www.sindicom.gva.es/informes?text=Riba-roja%20de%20T%C3%BAria&type=full"
+  },
+  "query": "Riba-roja de Túria",
+  "dedicated": [
+    {
+      "id": "sindicatura-15960950488980750",
+      "title": "Informe de fiscalización sobre el control interno del Ayuntamiento de Riba-roja de Túria. Ejercicios 2017-2019",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/7/InformefiscalzacioncontrolinternoRiba-rojadelTuria2017-2019_cast_def_signed.pdf",
+      "scope": "dedicated"
+    },
+    {
+      "id": "sindicatura-15680970580601200",
+      "title": "Informe de fiscalización de diversos aspectos de la gestión del Ayuntamiento de Riba-roja de Túria. Ejercicio 2014",
+      "year": 2017,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2019/9/fileRIBAROJA_C.pdf",
+      "scope": "dedicated"
+    }
+  ],
+  "sectoral": [
+    {
+      "id": "sindicatura-17212856043626470",
+      "title": "Informe de fiscalización de la cuenta general de las entidades locales. Ejercicio 2022",
+      "year": 2024,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2024/7/informe_de_fiscalizacion_de_la_cuenta_general_de_las_entidades_locales_2022_cas_firmado.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-17115272798341280",
+      "title": "Informe de fiscalización del control que ejercen los ayuntamientos sobre las aportaciones a sus grupos políticos en poblaciones entre 20.000 y 50.000 habitantes. Ejercicio 2022",
+      "year": 2024,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2024/3/Informe_control_ayuntamientos_aportaciones_grupos_politicos_20-50K_2022_cas_firmado.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-17097135713118270",
+      "title": "Informe de fiscalización sobre el entorno de control de los ayuntamientos de menos de 5.000 habitantes: encuesta",
+      "year": 2024,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2024/3/Informe_fiscalizacion_entorno_control_ayuntamientos_menos_5000_habitantes_cas_firmado.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-17079879321335980",
+      "title": "Informe de fiscalización del ejercicio del control interno en las entidades locales. Ejercicio 2022",
+      "year": 2024,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2024/2/Informe_fiscalizacion_control_interno_EELL_2022_cas_firmado.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-17016758682797230",
+      "title": "Informe de fiscalización de diversos aspectos de la gestión del Ayuntamiento de Dénia. Ejercicios 2021-2022",
+      "year": 2023,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2023/12/Informe_fiscalizacion_diversos_aspectos_gestion_Ayuntamiento_Denia_Ejercicios_2021-2022_firmado_cas.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-16878460058920570",
+      "title": "Informe de fiscalización de la contratación en las entidades locales. Ejercicio 2020",
+      "year": 2023,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2023/6/Informe_fiscalizacion_contractacion_Entidades_Locales_2020_cas_firmado.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-16130337220175120",
+      "title": "Informe global sobre el control interno de los ayuntamientos con población entre 20.000 y 25.000 habitantes. Ejercicios 2017-2019",
+      "year": 2021,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2021/2/Informe_global_control_interno_ayuntamientos_poblacion_20M-25M_2017-2019_cas_signed.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15960081266193290",
+      "title": "Informe de fiscalización sobre el control interno del Ayuntamiento de Llíria. Ejercicios 2017-2019",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/7/InformefiscalizacincontrolinternoaytoLlria2017-2019_defsigned.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15954861180002200",
+      "title": "Informe de fiscalización de la Cuenta General de las entidades locales. Ejercicio 2018",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/7/informe_cgeell_2018_castellano_definitivo_signed.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15863335231295430",
+      "title": "Informe de auditoría operativa sobre las actuaciones en materia medioambiental llevadas a cabo en los ayuntamientos de más de 10.000 habitantes",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/4/informe_ao_medioambiental-09-final_castellano_signed.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15856395621341050",
+      "title": "Informe de fiscalización sobre los acuerdos y resoluciones contrarios a reparos formulados por los interventores locales, omisión del trámite de fiscalización previa y anomalías detectadas en materia de ingresos. Ejercicios 2017-2018",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/3/definitivo_informe-2018_acuerdos_y_resoluciones_contrarios_a_reparos_2017-2018-2_signed.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15838408855040410",
+      "title": "Informe de fiscalización de diversos aspectos de la gestión del Ayuntamiento de Aldaia. Ejercicios 2017 a 2019",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/3/ayuntamiento_de_aldaia_castellano_signed.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15795957755022160",
+      "title": "Informe de fiscalización sobre el control interno del Ayuntamiento de Bétera. Ejercicios 2017-2019*",
+      "year": 2020,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2020/1/InformedefiscalizaciondelAyuntamientodeBetera2017.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15680966875056580",
+      "title": "Informe de fiscalización sobre el control interno del Ayuntamiento de La Pobla de Vallbona. Ejercicios 2017-2019",
+      "year": 2019,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2019/9/fileInf-2017-2019-AytoLaPoblaVallbona-Final-2019-07-12_cas-signat.pdf",
+      "scope": "sectoral"
+    },
+    {
+      "id": "sindicatura-15680984309670160",
+      "title": "Cuenta General de las entidades locales. Ejercicio 2017",
+      "year": 2019,
+      "url": "https://www.sindicom.gva.es/public/Attachment/2019/9/fileInforme_CGEELL_2017_castellano-signat.pdf",
+      "scope": "sectoral"
+    }
+  ],
+  "stats": {
+    "dedicated": 2,
+    "sectoral": 15,
+    "sectoralRelevant": 28,
+    "sectoralTotal": 132
+  }
+}
