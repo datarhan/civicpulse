@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-04T08:43:23.258Z",
+  "generatedAt": "2026-07-06T08:18:05.447Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 4,
+    "total": 6,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 4,
+      "sin-datos": 6,
       "promesa-repetida": 0
     }
   },
@@ -103,6 +103,49 @@
     },
     {
       "claim": {
+        "id": "1d0qbik-0-num",
+        "articleId": "1d0qbik",
+        "articleFingerprint": "kwatf8",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOREd5TVRYRVl4M3p2WmxtQnRRcUQ2YlpkcFFfWjBKUVBoWDg0MllHcnMyUTNEa2k3THVSNU91NXNUNjZtTzNyODVWV0dNWm5jN19IdGZmSFd1MGJZOGktenlVa1Y5S2NmT1JSSk1CdW5kYm5RckFYeFU1dHRRT2JZcllXRkNYd05fZHpwVG5xR25MeXlJaFZhX095ckdRVW1SSDlqaDBidVlXQmVUWnE3ZFQwckx5UThJUkRZVDZLWWhEOWZKbUljaVdmSlhlNlNRS2VsWXQyRHVpbEZxdk1nZExncGtmbFRZMVBYZ1hQNUItQnlMSXN5Y0p0TW9IN0l3eFBKNVNWWU5RU1dYaXc?oc=5",
+        "articleDate": "2026-07-03T11:43:38.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "un aparcamiento para unos 400 vehículos pesados",
+        "context": "El Consell autoriza la creación y explotación de un aparcamiento para unos 400 vehículos pesados en el Parque Logístico de Riba-roja de Túria.",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 400,
+          "countUnit": "vehículos pesados",
+          "referencedEntity": "aparcamientos"
+        },
+        "confidence": 0.9,
+        "reasoning": "El claim menciona un número específico de vehículos pesados que se podrán aparcar, lo cual es verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1d0qbik-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOREd5TVRYRVl4M3p2WmxtQnRRcUQ2YlpkcFFfWjBKUVBoWDg0MllHcnMyUTNEa2k3THVSNU91NXNUNjZtTzNyODVWV0dNWm5jN19IdGZmSFd1MGJZOGktenlVa1Y5S2NmT1JSSk1CdW5kYm5RckFYeFU1dHRRT2JZcllXRkNYd05fZHpwVG5xR25MeXlJaFZhX095ckdRVW1SSDlqaDBidVlXQmVUWnE3ZFQwckx5UThJUkRZVDZLWWhEOWZKbUljaVdmSlhlNlNRS2VsWXQyRHVpbEZxdk1nZExncGtmbFRZMVBYZ1hQNUItQnlMSXN5Y0p0TW9IN0l3eFBKNVNWWU5RU1dYaXc?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "kwatf8"
+      }
+    },
+    {
+      "claim": {
         "id": "1ilpvg1-0-dat",
         "articleId": "1ilpvg1",
         "articleFingerprint": "e4vfjg",
@@ -135,6 +178,49 @@
         "articleSource": "Ayuntamiento de Riba-roja de Túria",
         "articleSourceHost": "ribarroja.es",
         "articleFingerprint": "e4vfjg"
+      }
+    },
+    {
+      "claim": {
+        "id": "jrb2xk-0-num",
+        "articleId": "jrb2xk",
+        "articleFingerprint": "s55xq8",
+        "articleSource": "Actualidad Valencia",
+        "articleSourceHost": "actualidadvalencia.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVHVJUnBiRVRrUUdMSmhIZjhlb1JNQUNVM0E5Z2ktRDU0STRrQjRqdWdOUk5PUVdrV2Y2Nkl5M1dWNWJwZEtteGRtU0RmYm9takh6OElpMk1kWXdFWTJMTTBMZlZxN09GTU5KakdLWDhVZXRnakhRYnU4Y2QwTHY5Yy1HdEZHRUdDa2d1ejJSa0lGS2c?oc=5",
+        "articleDate": "2026-07-03T10:15:40.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "un aparcamiento para cerca de 400 camiones en Riba-roja",
+        "context": "El Parque Logístico de Valencia tendrá un aparcamiento para cerca de 400 camiones en Riba-roja.",
+        "topic": "movilidad",
+        "entities": {
+          "count": 400,
+          "countUnit": "camiones",
+          "referencedEntity": "Parque Logístico de Valencia"
+        },
+        "confidence": 0.9,
+        "reasoning": "El número de camiones que se mencionan es un dato cuantificable y verificable.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "jrb2xk-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVHVJUnBiRVRrUUdMSmhIZjhlb1JNQUNVM0E5Z2ktRDU0STRrQjRqdWdOUk5PUVdrV2Y2Nkl5M1dWNWJwZEtteGRtU0RmYm9takh6OElpMk1kWXdFWTJMTTBMZlZxN09GTU5KakdLWDhVZXRnakhRYnU4Y2QwTHY5Yy1HdEZHRUdDa2d1ejJSa0lGS2c?oc=5",
+        "articleSource": "Actualidad Valencia",
+        "articleSourceHost": "actualidadvalencia.com",
+        "articleFingerprint": "s55xq8"
       }
     },
     {
