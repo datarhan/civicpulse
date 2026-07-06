@@ -114,6 +114,7 @@
     "refresh:gh-issues": "npx tsx scripts/refresh-finding-issues.ts",
     "finding-reply": "npx tsx scripts/apply-finding-response.ts",
     "llm:cost": "npx tsx scripts/llm-cost-report.ts",
+    "ifcn:cadence": "npx tsx scripts/ifcn-cadence.ts",
     "journalist:assign": "npx tsx scripts/journalist-assign.ts",
     "journalist:run": "npx tsx scripts/journalist-run.ts",
     "promote-report": "npx tsx scripts/promote-report.ts",

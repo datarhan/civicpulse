@@ -162,6 +162,11 @@ env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
   npm run auto-curate -- --max 5 \
   || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"
 
+# ---- IFCN weekly-cadence check (informational, never fatal) -----------
+# The IFCN signatory track requires ≥1 published finding per ISO week.
+npm run ifcn:cadence --silent -- --strict \
+  || log "warn: IFCN cadence gap — no finding published this ISO week yet; promote one manually"
+
 # ---- commit + push the regenerated data -------------------------------
 # Stage everything the pipeline touches under public/data, but never race
 # the two files owned by the OTHER crons (quejas per-minute · promises daily).
