@@ -1,7 +1,33 @@
 {
-  "generatedAt": "2026-07-04T08:05:36.628Z",
+  "generatedAt": "2026-07-06T08:53:20.287Z",
   "version": "1",
   "plenos": [
+    {
+      "plenoId": "1237hbp",
+      "plenoDate": "2026-07-03",
+      "chunkPath": "pleno-claims/1237hbp.json",
+      "itemCount": 74,
+      "toggleCount": 63,
+      "byVerdict": {
+        "sin-datos": 63,
+        "parcial": 8,
+        "verificado": 3
+      },
+      "byType": {
+        "afirmacion_numerica": 37,
+        "cita_obra": 9,
+        "cita_convenio": 6,
+        "promesa": 19,
+        "acusacion_publica": 3
+      },
+      "byTopic": {
+        "medio-ambiente": 49,
+        "transparencia": 7,
+        "fiscal": 9,
+        "other": 9
+      },
+      "bytes": 112525
+    },
     {
       "plenoId": "11025xk",
       "plenoDate": "2026-06-01",
@@ -433,12 +459,12 @@
     }
   ],
   "totals": {
-    "items": 3696,
-    "plenos": 14,
+    "items": 3770,
+    "plenos": 15,
     "byVerdict": {
-      "sin-datos": 2916,
-      "parcial": 607,
-      "verificado": 173
+      "sin-datos": 2979,
+      "parcial": 615,
+      "verificado": 176
     }
   }
 }

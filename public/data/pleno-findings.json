@@ -1,10 +1,73 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-05T07:38:11.921Z",
+  "generatedAt": "2026-07-06T08:57:27.474Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "f-2026-07-03-cit-1e90e0",
+      "plenoId": "1237hbp",
+      "plenoDate": "2026-07-03",
+      "title": "03-07-2026: Otro grupo señala uso de contrato emergencia con FCC tras lluvias",
+      "summary": "El grupo Otro afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "1237hbp-006-cit-1e90e0",
+        "1237hbp-046-cit-df61b1",
+        "1237hbp-029-cit-0d2047",
+        "1237hbp-103-cit-4bf2c1"
+      ],
+      "quotes": [
+        {
+          "text": "tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1237hbp-006-cit-1e90e0"
+        },
+        {
+          "text": "se realizó un contrato con la empresa FCC, un contrato de emergencia que suplantaba a la empresa Garbialdi.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1237hbp-046-cit-df61b1"
+        },
+        {
+          "text": "este nuevo contrato de basura ha pasado por esa comisión antes que por los plenos.",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "1237hbp-029-cit-0d2047"
+        },
+        {
+          "text": "estamos trabajando en la ampliación de la emergencia",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "1237hbp-103-cit-4bf2c1"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
+          "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
+          "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TyXr4k8N77%2BXQV0WE7lYPw%3D%3D",
+          "snippet": "Contrato de servicios para la realización del PROYECTO DE CONSTRUCCIÓN “ACTUALIZACIÓN DEL PROYECTO DE CONSTRUCCIÓN DE “NUEVO ACCESO A LA A-3 (ENLACE GODELLETA)”, por procedimiento abierto simplificado, mejor relación calidad-precio, vari…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=L6Cy1hTrpIc",
+          "snippet": "Vídeo del pleno 2026-07-03 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-06",
+      "response": null
+    },
     {
       "id": "f-2026-05-11-acu-a870a4",
       "plenoId": "10yl550",
@@ -507,6 +570,69 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-acu-7c65c5",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
+      "summary": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. El registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-330-acu-7c65c5",
+        "10yl550-106-acu-dd1a86",
+        "10yl550-254-cit-cb6e5f",
+        "10yl550-300-acu-ae5a28"
+      ],
+      "quotes": [
+        {
+          "text": "no recogen tampoco al votar, en contra de los presupuestos",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-330-acu-7c65c5"
+        },
+        {
+          "text": "porque volvía a llevar 8.000 euros del Partido Popular, José Luis, del Partido Popular. 8.000 euros de la Policía Local para que modificáramos partida.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-106-acu-dd1a86"
+        },
+        {
+          "text": "seguimiento del Plan Económico y Financiero que aprobaremos en el 2025.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-254-cit-cb6e5f"
+        },
+        {
+          "text": "el día 16 de marzo ustedes votaron en contra un presupuesto donde llevaba 550.000 euros para el comercio local.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-300-acu-ae5a28"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+          "snippet": "Suministro módulos elaboración de presupuestos y RPT. · Ayuntamiento de Riba-roja de Túria · it · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CDpke0nkPcaXQV0WE7lYPw%3D%3D",
+          "snippet": "Contrato Menor 01m/2022 de Servicio de Elaboración de  un  Plan  de  Acción  Local  para  incorporación  del  municipio  a  la  Red  de  Ciudades Amigables con las personas mayores. · Ayuntamiento de Riba-roja de Túria · EQUALITY RESEARC…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tlQQxKywqlerz3GQd5r6SQ%3D%3D",
+          "snippet": "Contrato de obras de escollera de piedra en la zona de Paretotes en Riba-roja de Túria, por procedimiento abierto súper simplificado de tramitación anticipada, un solo criterio de adjudicación, con condición especial de ejecución de cará…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-06",
       "response": null
     },
     {
@@ -1448,6 +1574,69 @@
       "response": null
     },
     {
+      "id": "f-2026-01-19-cit-543cc1",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Pleno de Riba-roja de Túria: 2026-01-19 - Urbanismo y Mantenimiento",
+      "summary": "El grupo Otro afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-119-cit-543cc1",
+        "19gax3o-114-acu-961675",
+        "19gax3o-139-cit-be1832",
+        "19gax3o-126-acu-d49e67"
+      ],
+      "quotes": [
+        {
+          "text": "El tema de la instalación de térmicas",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-119-cit-543cc1"
+        },
+        {
+          "text": "¿por qué no estaban previstas estas actuaciones?",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-114-acu-961675"
+        },
+        {
+          "text": "un complejo que en la piscina no se puede hacer competiciones",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-139-cit-be1832"
+        },
+        {
+          "text": "hay que ver toda la parte externa de la malla, está cayendo.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-126-acu-d49e67"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+          "snippet": "Servicio mantenimiento instalaciones térmicas deportes."
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
+          "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construc…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
+          "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayu…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-06",
+      "response": null
+    },
+    {
       "id": "f-2025-12-23-acu-a1ba00",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
@@ -1853,6 +2042,142 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-01-cit-bef239",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "title": "01-12-2025: Pleno debate sobre cultura y conservatorios",
+      "summary": "El PP afirma que han trabajado para dos conservatorios. El PSOE señala la creación de los conservatorios y el auditorio, añadiendo que el PP votó en contra del auditorio y del conservatorio. Los registros municipales incluyen contratos relacionados con obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "qz6weg-039-cit-bef239",
+        "qz6weg-041-cit-29853c",
+        "qz6weg-041-acu-8fa62c",
+        "qz6weg-080-cit-008981"
+      ],
+      "quotes": [
+        {
+          "text": "trabajamos no para un conservatorio para dos conservatorios y lo hicimos",
+          "speakerGroup": "PP",
+          "sourceClaimId": "qz6weg-039-cit-bef239"
+        },
+        {
+          "text": "se crearon los conservatorios y el auditorio",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-041-cit-29853c"
+        },
+        {
+          "text": "ustedes votaron en contra del auditorio y del conservatorio",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "qz6weg-041-acu-8fa62c"
+        },
+        {
+          "text": "Memoria Democrática de Riva Rocha de Turía",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "qz6weg-080-cit-008981"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CxPUq8yjFygQK2TEfXGy%2BA%3D%3D",
+          "snippet": "Obras de restauración y conservación del edificio Escuela Municipal de Música y Conservatorio Profesional Municipal de Música · Ayuntamiento de Riba-roja de Túria · awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
+          "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
+          "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, S.L. · real_estate · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g2tcyB7NsGk%2B1TMyIiZmzw%3D%3D",
+          "snippet": "Contrato Menor del Servicio de Redacción  Memoria  y  Dirección  de  Obra trabajos Interfaz Els Pous · Ayuntamiento de Riba-roja de Túria · EVEN AMBIENTAL SOCIEDAD LIMITADA SL · architecture · estado: awarded"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
+          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-06",
+      "response": null
+    },
+    {
+      "id": "f-2025-12-01-acu-34560f",
+      "plenoId": "qz6weg",
+      "plenoDate": "2025-12-01",
+      "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
+      "summary": "El grupo Otro afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "qz6weg-220-acu-34560f",
+        "qz6weg-276-cit-5b837f",
+        "qz6weg-216-acu-c41b8d",
+        "qz6weg-163-acu-3a8bb0"
+      ],
+      "quotes": [
+        {
+          "text": "El PP de la Generalitat no paga.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "qz6weg-220-acu-34560f"
+        },
+        {
+          "text": "el tema del bono de comercio",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "qz6weg-276-cit-5b837f"
+        },
+        {
+          "text": "no apliquen la ley de contratación, el artículo 198, en el que dice que si ustedes pagan mal, tienen que pagar intereses, pero no están pagándolos.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "qz6weg-216-acu-c41b8d"
+        },
+        {
+          "text": "Incrementos de las cuotas de la Seguridad Social. Eso no lo perdonaron tampoco.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "qz6weg-163-acu-3a8bb0"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+          "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · estado: awarded"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
+          "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento de Riba…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
+          "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), deriv…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2VffqwkcucQkJPJS%2BPS9vg%3D%3D",
+          "snippet": "Contrato de servicio de vigilancia y seguridad privada con motivo de la celebración de la Feria del Comercio de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=fmbfOgTHGYs",
+          "snippet": "Vídeo del pleno 2025-12-01 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-06",
       "response": null
     },
     {
