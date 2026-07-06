@@ -138,6 +138,14 @@ export const NAV = [
         },
       ]
     : []),
+  {
+    to: '/nosotros',
+    id: 'nosotros',
+    labelKey: 'nav.nosotros',
+    label: 'Quiénes somos',
+    icon: Ic.people,
+    shortcut: 'G S',
+  },
 ]
 
 function CityChip() {

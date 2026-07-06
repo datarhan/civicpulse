@@ -34,6 +34,7 @@ const CATALOGUE = {
     'nav.quejas': 'Quejas',
     'nav.empleo': 'Empleo',
     'nav.laboratorio': 'Laboratorio',
+    'nav.nosotros': 'Quiénes somos',
     'nav.agentes': 'Periodistas',
     'nav.section': 'Navegación',
 
@@ -300,6 +301,7 @@ const CATALOGUE = {
     'nav.quejas': 'Queixes',
     'nav.empleo': 'Ocupació',
     'nav.laboratorio': 'Laboratori',
+    'nav.nosotros': 'Qui som',
     'nav.agentes': 'Periodistes',
     'nav.section': 'Navegació',
 
