@@ -267,7 +267,7 @@ classes:
 
 ## 5 · Verdict
 
-**SAFE TO FLIP — no history rewrite needed. Remaining items are the §4 checklist.**
+SAFE TO FLIP — no history rewrite needed. Remaining items are the §4 checklist.
 
 Basis: §1 found 0 blocking secrets (one real but low-risk localhost-only SearXNG
 session-signing key, plus false-positive public website-widget keys; no external
