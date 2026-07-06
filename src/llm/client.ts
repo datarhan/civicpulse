@@ -1054,14 +1054,28 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   //   openai (metered) → anthropic (metered) → gemini (Pro subscription)
   //   → ollama (local)
   // gemini is auto-used as a fallback when its CLI binary exists on disk —
-  // assumed to mean the user has opted in by installing it. claude-code is
-  // STILL never auto-chained: Max-plan quota is higher-tier and an errant
-  // extract could lock out interactive Claude sessions; opt-in via
-  // LLM_BACKEND=claude-code only.
+  // assumed to mean the user has opted in by installing it.
+  //
+  // claude-code is auto-chained ONLY as agy's FIRST fallback ("if agy hits its
+  // Google quota, use the claude CLI" — user directive 2026-07-06): agy is $0
+  // (Google subscription) but daily-capped, and when it's exhausted `agy -p`
+  // returns empty, so we prefer claude-code (also $0, on a SEPARATE Max quota)
+  // over the metered openai/anthropic path. It is NOT chained off any other
+  // primary — an errant heavy extract on e.g. openai must not silently drain
+  // the Max quota that interactive Claude sessions share. Gated on the binary
+  // being resolvable (default `claude` on PATH; override via CLAUDE_CODE_BIN).
+  const commandExists = (bin: string): boolean =>
+    bin.includes('/')
+      ? existsSync(bin)
+      : (process.env.PATH || '').split(':').some((d) => d && existsSync(`${d}/${bin}`))
   const attemptedBackends: Backend[] = [config.backend]
-  const fallbackOrder: Backend[] = ['openai', 'anthropic', 'gemini', 'ollama']
+  const fallbackOrder: Backend[] =
+    config.backend === 'agy'
+      ? ['claude-code', 'openai', 'anthropic', 'gemini', 'ollama']
+      : ['openai', 'anthropic', 'gemini', 'ollama']
   for (const b of fallbackOrder) {
     if (b === config.backend) continue
+    if (b === 'claude-code' && !commandExists(config.claudeCodeBin)) continue
     if (b === 'openai' && !config.openaiApiKey) continue
     if (b === 'anthropic' && !config.anthropicApiKey) continue
     if (b === 'gemini' && !existsSync(config.geminiBin)) continue
@@ -1100,7 +1114,22 @@ export async function callLLM<TSchema extends ZodTypeAny>(
         costUSD += raw.costUSD
         chargeBudget(Math.max(0, raw.tokenCount - (attempt === 0 ? approxTokens : 0)))
 
-        const parsed = opts.schema.safeParse(JSON.parse(raw.raw))
+        // Parse + validate. Malformed JSON or a schema miss is an OUTPUT-level
+        // failure — the backend answered, the answer was just bad — so retry the
+        // SAME backend (LLM nondeterminism often yields valid output next try).
+        // Handle the parse error HERE so it never reaches the catch below, whose
+        // fail-fast breaks to the next backend (that path is reserved for
+        // backend-level hard failures: agy's quota-empty stdout, ENOENT, a 4xx).
+        let parsedJson: unknown
+        try {
+          parsedJson = JSON.parse(raw.raw)
+        } catch {
+          lastErr = `invalid JSON from ${backend}`
+          attempt += 1
+          perBackendAttempt += 1
+          continue
+        }
+        const parsed = opts.schema.safeParse(parsedJson)
         if (parsed.success) {
           result = parsed.data as z.infer<TSchema>
           break outer
@@ -1123,6 +1152,16 @@ export async function callLLM<TSchema extends ZodTypeAny>(
           // Retryable but no Retry-After — exponential backoff capped at 30s.
           const backoffMs = Math.min(1000 * 2 ** perBackendAttempt, 30_000)
           await new Promise((r) => setTimeout(r, backoffMs))
+        } else {
+          // Non-retryable, or retries exhausted: a deterministic backend failure
+          // (agy's quota-exhausted empty stdout, ENOENT, a 4xx) won't change on a
+          // repeat — don't burn the remaining same-backend attempts. Fall to the
+          // next backend now. This is what keeps agy → claude-code cheap when agy
+          // is fully capped: one empty agy call, then straight to the claude CLI
+          // instead of 3 × (empty agy call) per LLM request across a batch.
+          attempt += 1
+          perBackendAttempt += 1
+          break
         }
       }
       attempt += 1
