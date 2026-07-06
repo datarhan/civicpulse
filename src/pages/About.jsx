@@ -27,6 +27,7 @@ export default function About() {
   return (
     <div
       className="cp-page"
+      lang="en"
       style={{ padding: '24px', maxWidth: 860, margin: '0 auto', fontSize: 14, lineHeight: 1.6 }}
     >
       <div
@@ -79,6 +80,7 @@ export default function About() {
                 {['Tier', 'Scope', 'Content'].map((h) => (
                   <th
                     key={h}
+                    scope="col"
                     style={{
                       textAlign: 'left',
                       padding: '6px 10px 6px 0',

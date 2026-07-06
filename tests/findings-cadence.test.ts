@@ -50,4 +50,8 @@ describe('weeklyCadence', () => {
     expect(r!.currentWeekCount).toBe(0)
     expect(r!.gapWeeks).toEqual(['2026-W24'])
   })
+
+  it('returns null when every publication is in the future of now', () => {
+    expect(weeklyCadence([{ publishedAt: '2026-08-03' }], { now: '2026-07-06' })).toBe(null)
+  })
 })

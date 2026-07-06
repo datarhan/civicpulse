@@ -24,6 +24,8 @@ const ROUTES = [
   '/quejas/q-no-existe',
   '/cambios',
   '/laboratorio',
+  '/nosotros',
+  '/about',
   '/metodologia',
   '/aviso-legal',
 ]

@@ -267,6 +267,8 @@ Bot subpackage (`bot/package.json`) intentionally inherits via the repo root.
 - [ ] README.md written (repo has none — GitHub landing would be empty)
 - [ ] `redaccion@civicpulse.es` domain mailbox configured; replace `slutchenko@gmail.com` on `/nosotros` + `/about`
 - [ ] GitHub repo settings: disable wiki/projects, enable issue templates only
+- [ ] Re-run gitleaks over ALL refs (`gitleaks detect --log-opts=--all`) or prune stale pushed branches first — §1's scan covered branch history only (639 commits vs 672 all-refs); the pickaxe key sweep DID cover all refs
+- [ ] Supply a real `public/data/photos/operator.jpg` (operator portrait) — /nosotros currently renders the initials fallback; the img slot is drop-in ready
 
 ## 5 · Verdict
 

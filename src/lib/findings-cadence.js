@@ -53,6 +53,8 @@ export function weeklyCadence(items, { now }) {
     cursor.setUTCDate(cursor.getUTCDate() + 7)
   }
 
+  if (!perWeek.length) return null // e.g. every publishedAt is in the future of `now`
+
   const coveredWeeks = perWeek.filter((w) => w.count > 0).length
   return {
     firstWeek: perWeek[0].week,

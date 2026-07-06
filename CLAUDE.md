@@ -402,7 +402,7 @@ the journalist subsystem too; only the test tree and the dead
 `scripts/draft-finding-suggestions.ts` stay outside its `include`). The
 unit/integration suite is Vitest +
 happy-dom; fixtures live in `tests/fixtures/`. The end-to-end suite is
-Playwright (`tests/e2e/*.spec.ts`) and covers **78 tests, zero failures**:
+Playwright (`tests/e2e/*.spec.ts`) and covers **82 tests, zero failures**:
 
 - per-route specs: landing, cargos (+ /:slug), presupuesto, plenos,
   promesas, departamentos (+ /:slug), hallazgos, declaraciones, datos,
@@ -410,8 +410,8 @@ Playwright (`tests/e2e/*.spec.ts`) and covers **78 tests, zero failures**:
   the catch-all redirect
 - cross-cutting (`chrome.spec.ts`): Cmd+K spotlight, dark-mode toggle,
   i18n switch (es ↔ ca), and every sidebar nav link
-- mobile shell at 375px across 17 routes + hamburger drawer
-- axe-core WCAG 2.1 AA strict-pass across 17 routes
+- mobile shell at 375px across 19 routes + hamburger drawer
+- axe-core WCAG 2.1 AA strict-pass across 19 routes
   (`a11y.spec.ts`'s `STRICT_ROUTES`). The file also exposes a
   `KNOWN_DEBT_ROUTES` scaffold for quarantining future regressions
   without losing visibility — currently empty.
