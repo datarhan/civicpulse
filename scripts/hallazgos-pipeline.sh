@@ -39,6 +39,18 @@ set -euo pipefail
 
 MAX_PLENOS="${MAX_PLENOS:-2}"
 
+# Plenos that repeatedly abort transcription (e.g. a 5h+ session that trips the
+# Metal GPU command-buffer watchdog even at batch_size=1) are blocklisted so
+# they stop burning a MAX_PLENOS slot on every run without ever succeeding.
+# Space/comma-separated; override or clear via env. To transcribe one on demand
+# (OpenAI Whisper has no Metal watchdog), bypass the loop:
+#   WHISPER_ENGINE=openai bash scripts/transcribe-pleno.sh <id>
+#   c8kr44 · MLX Metal GPU timeout even at batch_size=1 on 2026-07-04/05/06 (3×).
+#   rmtyr  · same Metal-timeout signature at batch_size=1 on 2026-07-05 (1× so
+#            far — drop from the list if you suspect that was a transient fetch
+#            hiccup rather than a too-long session).
+TRANSCRIBE_BLOCKLIST="${TRANSCRIBE_BLOCKLIST:-c8kr44 rmtyr}"
+
 cd "$(dirname "$0")/.."
 REPO_DIR="$(pwd -P)"
 export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
@@ -63,7 +75,7 @@ export LLM_BACKEND=agy
 export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash}"
 export WHISPER_ENGINE="${WHISPER_ENGINE:-mlx}"
 
-log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/$AGY_MODEL · whisper=$WHISPER_ENGINE"
+log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/$AGY_MODEL · whisper=$WHISPER_ENGINE · blocklist=[${TRANSCRIBE_BLOCKLIST:-none}]"
 
 # ---- always start from origin -----------------------------------------
 git pull --rebase --autostash origin main || { log "git pull failed — aborting before LLM work"; exit 1; }
@@ -72,13 +84,14 @@ git pull --rebase --autostash origin main || { log "git pull failed — aborting
 npm run scrape:pleno-videos || log "warn: scrape:pleno-videos failed — continuing with existing index"
 
 # ---- transcribable backlog: missing transcript AND has a video, newest first
-TARGETS=$(node -e '
+TARGETS=$(TRANSCRIBE_BLOCKLIST="$TRANSCRIBE_BLOCKLIST" node -e '
   const fs=require("fs");
+  const block=new Set((process.env.TRANSCRIBE_BLOCKLIST||"").split(/[\s,]+/).filter(Boolean));
   const plenos=(require("./public/data/plenos.json").items)||[];
   const videos=(require("./public/data/pleno-videos.json").items)||[];
   const vdates=new Set(videos.map(v=>v.plenoDate));
   const have=new Set(fs.readdirSync("public/data/pleno-transcripts").filter(f=>f.endsWith(".txt")).map(f=>f.replace(/\.txt$/,"")));
-  const t=plenos.filter(p=>!have.has(p.id)&&vdates.has(p.date)).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+  const t=plenos.filter(p=>!have.has(p.id)&&vdates.has(p.date)&&!block.has(p.id)).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
   process.stdout.write(t.map(x=>x.id).join("\n"));
 ')
 

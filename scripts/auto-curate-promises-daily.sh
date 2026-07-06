@@ -19,11 +19,17 @@
 # StartCalendarInterval coalesces into the next wake if asleep, so a
 # missed run catches up automatically.
 #
-# LLM backend: agy (Google's agy CLI — the current replacement for the
-# gemini CLI). The old `gemini` CLI stalls when invoked headlessly on
-# this machine; agy runs cleanly and is verified working. It is opt-in
-# (LLM_BACKEND=agy) and never in the auto-fallback chain, so a metered
-# API is never silently reached. Override with LLM_BACKEND=… if needed.
+# LLM backend: claude-code (Anthropic Max · $0), with a HARD metered guard on
+# the run below. Rationale: agy (Google's CLI) has a daily quota that, once
+# hit, makes `agy -p` exit 0 with EMPTY stdout — the client reads that as a
+# dead backend and, for an UNGUARDED run, silently falls through to METERED
+# openai (observed 2026-07-06), violating the $0-only auto-curator policy.
+# claude-code is a SEPARATE quota, healthy, sanctioned for the auto-curator,
+# and the promise workload is ~10 calls/day so it won't dent the shared Max
+# window. The `env -u …` guard strips the openai/anthropic keys + disables the
+# gemini CLI, so the fallback chain can only reach a $0 backend (claude-code →
+# ollama); if every $0 backend is down the run DEFERS rather than auto-
+# publishing on a metered API. Override with LLM_BACKEND=… if needed.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -45,14 +51,21 @@ echo "[$(date '+%F %T')] auto-curate-promises-daily starting"
 # before the LLM run so we don't waste a call.
 git pull --rebase --autostash origin main
 
-export LLM_BACKEND="${LLM_BACKEND:-agy}"
-export AGY_MODEL="${AGY_MODEL:-gemini-2.5-pro}"
+export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
+export AGY_MODEL="${AGY_MODEL:-gemini-2.5-pro}"  # only read when LLM_BACKEND=agy
 
 # AUTO-PUBLISH ENABLED: grounded, high-confidence en-progreso status changes +
 # documentada new promises publish to promises.json; parcial/cumplida/
 # no-ejecutada stay one-click in the review queue; inviable is human-only.
-echo "[$(date '+%F %T')] invoking npm run auto-curate-promises -- --max 10 --phase both"
-npm run auto-curate-promises -- --max 10 --phase both
+echo "[$(date '+%F %T')] invoking auto-curate-promises (--max 10 --phase both · $LLM_BACKEND · \$0-guarded)"
+# HARD $0 guard: strip metered keys + disable the gemini CLI so the client's
+# fallback chain can only reach claude-code → ollama. A non-zero exit (every
+# $0 backend down) is non-fatal — we defer to the next run rather than commit
+# a metered auto-publish. A skipped promotion beats a metered one.
+if ! env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
+     npm run auto-curate-promises -- --max 10 --phase both; then
+  echo "[$(date '+%F %T')] warn: auto-curate-promises non-zero (no \$0 backend reachable) — deferred to next run"
+fi
 
 echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed"
 

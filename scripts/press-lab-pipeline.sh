@@ -128,8 +128,13 @@ step "compute:press-analytics" npx tsx scripts/compute-press-analytics.ts
 # Strip the metered keys + disable the gemini CLI so it can only reach the
 # local $0 backend. A skipped promotion beats a metered one — deferred.
 log "auto-curating press findings ($LLM_BACKEND only, metered fallback off)…"
-if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
-    bounded npx tsx scripts/auto-curate-press.ts; then
+# Strip the metered keys + disable the gemini CLI in a SUBSHELL, not via `env`:
+# `bounded` is a shell function (invisible to `env`, which can only exec real
+# binaries — `env … bounded …` fails "env: bounded: No such file or directory"
+# and the step was silently deferred every run). A `( … )` subshell inherits
+# the function AND scopes the unset/export so they don't leak to the parent.
+if ( unset OPENAI_API_KEY ANTHROPIC_API_KEY; export GEMINI_BIN=/nonexistent-disabled; \
+     bounded npx tsx scripts/auto-curate-press.ts ); then
   RESULTS="${RESULTS}  ✅ auto-curate-press\n"; log "✓ auto-curate-press"
 else
   RESULTS="${RESULTS}  ❌ auto-curate-press (deferred)\n"
