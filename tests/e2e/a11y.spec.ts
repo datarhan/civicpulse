@@ -34,6 +34,8 @@ const STRICT_ROUTES = [
   '/cambios',
   '/laboratorio',
   '/laboratorio/agentes',
+  '/nosotros',
+  '/about',
   '/laboratorio/agentes/a-robert-raga-bio',
   '/lab-health',
   '/metodologia',
