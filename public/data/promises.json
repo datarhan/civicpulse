@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-05T07:00:03.956Z",
+  "generatedAt": "2026-07-06T07:00:10.767Z",
   "frozenUntil": null,
   "legalNotice": "CivicPulse es un proyecto de civic-tech independiente, sin vinculación con el Ayuntamiento de Riba-roja de Túria ni con ningún partido político. Las promesas listadas son compromisos públicos atribuidos a partidos y cargos mediante fuentes primarias enlazadas. Para correcciones, derecho de rectificación o propuesta de nuevas fuentes: abrir una issue en github.com/datarhan/civicpulse con la etiqueta correccion-promesa. Plazo de revisión: 24 h. Plazo de resolución: 72 h. Durante el periodo electoral oficial (LOREG art. 50), el tracker entra en modo solo-lectura y los estados quedan congelados a la fecha publicada en cada ficha.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new?labels=correccion-promesa",
@@ -347,12 +347,29 @@
       "madeAt": "2026-02-12",
       "topic": "medio-ambiente",
       "kind": "pacto-coalicion",
-      "status": "documentada",
-      "evidence": [],
+      "status": "en-progreso",
+      "evidence": [
+        {
+          "date": "2023-12-04",
+          "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
+          "quote": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023).",
+          "publisher": "PLACSP",
+          "kind": "tender",
+          "addedBy": "auto-curation-v1"
+        }
+      ],
       "notes": "Rafael Folgado (Compromís) forma parte de la Junta de Gobierno Local como socio de coalición con el PSPV-PSOE. Voto a favor del Plan Pacadar Avanza refleja el alineamiento del grupo municipal con el ejecutivo.",
       "createdAt": "2026-04-20",
+      "updatedAt": "2026-07-06",
       "response": null,
-      "autoPublished": null
+      "autoPublished": {
+        "at": "2026-07-06T07:00:10.767Z",
+        "by": "auto-curation-v1",
+        "confidence": 0.9,
+        "reviewState": "pending-review",
+        "priorStatus": "documentada",
+        "appendedEvidenceUrl": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D"
+      }
     },
     {
       "id": "psoe-reduce-concejales-dedicacion-exclusiva",
