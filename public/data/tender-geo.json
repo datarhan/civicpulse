@@ -1,18 +1,18 @@
 {
-  "generatedAt": "2026-07-05T15:02:17.214Z",
+  "generatedAt": "2026-07-06T08:53:29.487Z",
   "source": {
-    "tenders": "2026-07-04T16:36:54.422Z",
-    "geo": "2026-07-05T07:43:54.896Z"
+    "tenders": "2026-07-06T08:45:10.277Z",
+    "geo": "2026-07-06T08:46:23.680Z"
   },
   "universe": {
-    "totalContracts": 368,
-    "totalAmount": 13978622.119999994,
+    "totalContracts": 373,
+    "totalAmount": 14048926.899999997,
     "locatedContracts": 29,
     "locatedAmount": 668248.94,
     "situatedContracts": 72,
     "situatedAmount": 2036285.44,
     "danaContracts": 9,
-    "danaAmount": 274422.42,
+    "danaAmount": 274422.42000000004,
     "danaAwardedContracts": 73,
     "danaAwardedAmount": 2241265.7499999995,
     "dateMin": "2018-01-24",
@@ -1283,24 +1283,28 @@
       }
     },
     {
-      "id": "4579942",
-      "zones": [],
-      "matchedAlias": {},
+      "id": "4599362",
+      "zones": [
+        "l-oliveral"
+      ],
+      "matchedAlias": {
+        "l-oliveral": "oliveral"
+      },
       "dana": true,
-      "amount": 4059.16,
+      "amount": 116994.16,
       "amountKind": "final",
-      "date": "2024-12-05",
-      "contractType": "supplies",
-      "categoryTitle": "transportation",
+      "date": "2025-01-16",
+      "contractType": "construction",
+      "categoryTitle": "construction",
       "point": [
-        39.5441796,
-        -0.5689306
+        39.4710524,
+        -0.5366921
       ],
       "place": {
-        "kind": "street",
-        "name": "Carrer Major",
-        "matchedText": "Carrer Major",
-        "sourceId": "carrer-major"
+        "kind": "urbanizacion",
+        "name": "l'Oliveral",
+        "matchedText": "l'Oliveral",
+        "sourceId": "l-oliveral"
       }
     },
     {
@@ -1368,31 +1372,6 @@
         "name": "Campo de Fútbol Municipal Roberto Gil",
         "matchedText": "Campo de Fútbol Municipal Roberto Gil",
         "sourceId": "way-39586077"
-      }
-    },
-    {
-      "id": "4599362",
-      "zones": [
-        "l-oliveral"
-      ],
-      "matchedAlias": {
-        "l-oliveral": "oliveral"
-      },
-      "dana": true,
-      "amount": 116994.16,
-      "amountKind": "final",
-      "date": "2025-01-16",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.4710524,
-        -0.5366921
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "l'Oliveral",
-        "matchedText": "l'Oliveral",
-        "sourceId": "l-oliveral"
       }
     },
     {
@@ -1681,6 +1660,31 @@
       }
     },
     {
+      "id": "4569293",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "urbanizacion reva"
+      },
+      "dana": true,
+      "amount": 60423.64,
+      "amountKind": "final",
+      "date": "2024-11-20",
+      "contractType": "supplies",
+      "categoryTitle": "industry",
+      "point": [
+        39.4840972,
+        -0.572073
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Reva",
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
       "id": "7483049",
       "zones": [],
       "matchedAlias": {},
@@ -1957,6 +1961,27 @@
       }
     },
     {
+      "id": "4579942",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": true,
+      "amount": 4059.16,
+      "amountKind": "final",
+      "date": "2024-12-05",
+      "contractType": "supplies",
+      "categoryTitle": "transportation",
+      "point": [
+        39.5441796,
+        -0.5689306
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Major",
+        "matchedText": "Carrer Major",
+        "sourceId": "carrer-major"
+      }
+    },
+    {
       "id": "1999",
       "zones": [],
       "matchedAlias": {},
@@ -2120,27 +2145,6 @@
       }
     },
     {
-      "id": "9454411",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 8938.35,
-      "amountKind": "final",
-      "date": "2026-01-28",
-      "contractType": "supplies",
-      "categoryTitle": "industry",
-      "point": [
-        39.5433427,
-        -0.5731124
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
-        "sourceId": "way-1097452806"
-      }
-    },
-    {
       "id": "4335999",
       "zones": [],
       "matchedAlias": {},
@@ -2162,28 +2166,24 @@
       }
     },
     {
-      "id": "4569293",
-      "zones": [
-        "urbanitzacio-la-reva"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-reva": "urbanizacion reva"
-      },
-      "dana": true,
-      "amount": 60423.64,
+      "id": "9454411",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8938.35,
       "amountKind": "final",
-      "date": "2024-11-20",
+      "date": "2026-01-28",
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.4840972,
-        -0.572073
+        39.5433427,
+        -0.5731124
       ],
       "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva",
-        "sourceId": "urbanitzacio-la-reva"
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Cervantes",
+        "sourceId": "way-1097452806"
       }
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-05T07:43:48.606Z",
+  "generatedAt": "2026-07-06T08:46:13.654Z",
   "feeds": [
     {
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
@@ -21,9 +21,9 @@
     }
   ],
   "stats": {
-    "total": 153,
-    "sources": 21,
-    "latestDate": "2026-07-05T04:01:12.000Z"
+    "total": 154,
+    "sources": 19,
+    "latestDate": "2026-07-05T21:25:20.000Z"
   },
   "sources": [
     "Actualidad Valencia",
@@ -31,41 +31,30 @@
     "Cadena SER",
     "Comunica GVA",
     "El Periódico de Aquí",
+    "Expansión",
     "Fotocasa",
     "Las Provincias",
     "Levante-EMV",
     "MSN",
-    "Noticias Ciudadanas",
     "Periòdic del Camp de Túria",
     "RETEMA",
     "Umivale Activa",
     "Valencia News",
     "Valencia Plaza",
     "Valenciabonita",
-    "cameraandlightmag.com",
-    "diarivalencia.cat",
     "elperiodic.com",
     "iberdrolaespana.com",
     "rfet.es"
   ],
   "items": [
     {
-      "id": "1psxsn7",
-      "title": "Entre obras tras la dana, cierres y reaperturas: así llegan las zonas de baño del interior valenciano al verano",
-      "link": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxQWjFOZGxOdTJvSHRQWkFFZXdDbTAwZ3RNanJiaVNNTnF5RDEwa2RkazlpdFpjREVvN3N0clR1ZG42ZnlITHNYR3VCazNhZnpiUFVTZXRPUXhiWUdSWFRvVEtiZ1VuN1NOdURBSTBBZW1GVTkwQXB0cHhHQWNaNDQyNHVnNVg1SmlRYm0zeDUtZlppRWhDSENtNHlJaHVNdTlzNW1zTVNROWpteXVMWURveVFlNkZxTXJOM0hod0dlVVBvRWpuX3FGMDIyTXRJQ2d1Q1RidzJkN0JTQVFVcElyYkh30gHnAUFVX3lxTE4ySkp0Q19MRUduaWkyRU44OWctYzdhN3lLemtsaFhqZ2ZxUFpXdl9oNTZFUEFUeV9Db1FDTFotV29lNHJJOVlOU3JVX0ZVV0h5alhlbEpyZktBNTV0MGdrd3BkMlUzZi1iNkpRZWRBd21IVXkxekNVUFNzU1Axd2Z6SERRUHVURXRuMTM0RHBYNTJ4anBvTlB6MXducVFJMjloNjhXNTJIZmM0Y0l4VmNmel82em9wLXo4VEt3UG1nSXZYeUhpRDQ3cFV0aGhFUExlY24tRXFWZXk2WExVSjVYNjVJYVJlaw?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-07-05T04:01:12.000Z",
-      "fingerprint": "153nqk1"
-    },
-    {
-      "id": "lgcqns",
-      "title": "El audiovisual valenciano traza su hoja de ruta para reconstruirse tras la dana",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOMHhENjB5dE1KYl9EQjV0VUM5eVJYYXRHZnNZUk9FSy04UXcxTVJ1VXo2M2tiMHhsTHZ0cm1HTEVKRUNYZ2pPQmN1Slh6YXZiWHFxVE04aDFqUmcyampfZ3lTZXU4WHVSWmQ2alVyOFhjZm1uenN5ODlDMVZUYjJ3R3N5bG9ac1BSZWJLa0JrQ21ZckdMeVBkNG9rRVUydjkxalJpYWNqOWYzOEZjY0FicQ?oc=5",
-      "source": "Noticias Ciudadanas",
-      "sourceHost": "noticiasciudadanas.com",
-      "date": "2026-07-03T18:44:40.000Z",
-      "fingerprint": "bkaqhr"
+      "id": "pynaos",
+      "title": "Arranca la Escuela Municipal de Verano Inclusiva 2026",
+      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQMVJvMnZmczNhZk54SnJCSnhmMFFqak41aHZJVWdkNkpWM0VoamhWcnFaQk9iZVhLSmVZSTFxUUxmX1FLWkduNHZzWlJuT0dmN01jZ3k0bkptNWtYRlc2Y3hUOHhsY1NsbzVFZGVpaGRRVUNjalBneVd3dlZDY3FBcDdDS1dOa25vc29oMTc0TlJ1aXp6eWNWTVlUVHhSUlVjSmpGclZRMkxQNWRZdDkxZEt2T1JhdEhUcHZzZdIBwgFBVV95cUxNZEhfM3QzWVR6Y3VtdTk1cWRiUFQ5bnNEV2h0MmFzQ2dhQXM2VHkxTnhoLUFwX2lHeXpxNGZjal81Nno3aTdKRTNmSEhJX3psb1Nnd0JMSzVnei1iemhYLURQMV9kY1VnaHhQa0Rpc3RwX2lWc3lheE85UXBma3IyR0M0UTRmTURQbmlWNnRnV01HaHEtdC1Ib2dTR0hrLUFDOVhKNnFOb0JZZmtIM1JOa244R1o4THN4dG5fcVF4YUIzZw?oc=5",
+      "source": "Las Provincias",
+      "sourceHost": "lasprovincias.es",
+      "date": "2026-07-05T21:25:20.000Z",
+      "fingerprint": "1wdv8mw"
     },
     {
       "id": "1e1we30",
@@ -77,9 +66,9 @@
       "fingerprint": "676zn4"
     },
     {
-      "id": "1ixmisn",
+      "id": "2crdrk",
       "title": "El PSPV de Riba-roja acusa al PP de convocar un pleno extraordinario \"tres días antes del ordinario\"",
-      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQbnhlWm50RTVnQm5MQmw1TWstUFY3TDF1LXY0eVlrZVZVR2pMQ0ZOSnlHenJoYmU2Mk1pMkk1bnJVdGtfYnZsYjlCZkVNdHB6M0w2RWR2RTRlX3I4RkxwTnpSZlMtcS1ST1g4Z1hkVU14TXQzQlpHeS1mOEN3SWdjcDR2Z2ZVSGl1Zkl1SFpCU0FFdXBEZmo4Y3pKOFhqRTFZOGwxdUE3SHl6eXhaSkYtR1VLS0FjQ0hoWks0WkhvVWV0Z1FleWFjX0gzcEFLcmdNem5lT0FJcGnSAdgBQVVfeXFMUG54ZVpudEU1Z0JuTEJsNU1rLVBWN0wxdS12NHlZa2VWVUdqTENGTkp5R3pyaGJlNjJNaTJJNW5yVXRrX2J2bGI5QmZFTXRwejNMNkVkdkU0ZV9yOEZMcE56UmZTLXEtUk9YOGdYZFVNeE10M0JaR3ktZjhDd0lnY3A0dmdmVUhpdWZJdUhaQlNBRXVwRGZqOGN6SjhYakUxWThsMXVBN0h5enl4WkpGLUdVS0tBY0NIaFpLNFpIb1VldGdRZXlhY19IM3BBS3JnTXpuZU9BSXBp?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOSC01MWI5UE1hMlRpMG5lTDVZTU1JbGtHU1pxRlJNYUNVTHEwaGZ5U0x6VE9LMVBfbFFpZHYwTHo1MG9xaGxydVBPWlNPSXBTMmRwTldnVUFmYm02VXAtcEhJZmRlVnZIWnNlRUFXdHpEMHN6QnpXaWZEalJ0bUNnNDlleXdmLUkxWVNtaWxReXZMeXdfMEdtRjZjR0FVZ0ZjQ0E3MmVYaTNqZnFmZWFGNHlVN0ZlekdFZGE4ckt1OFI0dGV0RGd0X1RuTTA5cEQ4WnhB0gHYAUFVX3lxTFBueGVabnRFNWdCbkxCbDVNay1QVjdMMXUtdjR5WWtlVlVHakxDRk5KeUd6cmhiZTYyTWkySTVuclV0a19idmxiOUJmRU10cHozTDZFZHZFNGVfcjhGTHBOelJmUy1xLVJPWDhnWGRVTXhNdDNCWkd5LWY4Q3dJZ2NwNHZnZlVIaXVmSXVIWkJTQUV1cERmajhjeko4WGpFMVk4bDF1QTdIeXp5eFpKRi1HVUtLQWNDSGhaSzRaSG9VZXRnUWV5YWNfSDNwQUtyZ016bmVPQUlwaQ?oc=5",
       "source": "Levante-EMV",
       "sourceHost": "levante-emv.com",
       "date": "2026-07-03T15:48:28.000Z",
@@ -129,6 +118,15 @@
       "sourceHost": "valenciaplaza.com",
       "date": "2026-07-03T12:22:52.000Z",
       "fingerprint": "s8264k"
+    },
+    {
+      "id": "i774c4",
+      "title": "Fotos | El Ejército desmonta el puente MABEY de Ribarroja",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNOVluQlNYcVZtVURSNzFiejFmTG1FUkhpVGNmdGQ1OGlnNlNCT3hiXy1ZNHQ4em5ZUnFpZUZNdGpHX2lpQUd4SFZ3Y3lfY0xuNnYyWTdHUG9yUGNONFpDc0lZa1c5MDNwOFp3NkRQOW9Ma0ZHZ1pqZE9tVG1DbUpoYl9KbHBnWFduRndHdzd2NVBzUGFr?oc=5",
+      "source": "Las Provincias",
+      "sourceHost": "lasprovincias.es",
+      "date": "2026-07-03T11:50:37.000Z",
+      "fingerprint": "1fgzdy4"
     },
     {
       "id": "1or4twn",
@@ -207,6 +205,15 @@
       "fingerprint": "1ve9pl8"
     },
     {
+      "id": "62t9nq",
+      "title": "Riba-roja de Túria muestra el uso de drones en áreas industriales para logística y seguridad",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOck9wMDB1QmVnbUhZZWV4VmdhaVNiU0J3S3VrQ3JmbkpROF85ZHhGNERsWEx5NFZvLW9qTENXRU9ZMW1adWg1ek52YXJZVWIxTGVOUjBjdkwxUFRjVWZseFBMWGsyRHlKYVowM1RaS1FoNG5KQnhSRlR0Wm55UTdKTmJ1NzZsQWZxQ0RSOTlZZGhKRGxkZWxGeTFseEVEZG9hT1ZId19RVnhzRWNUUzBTaWhvN21iME5lV0pUanRzMllWdmhBRWp1MFBQUDVaSmdqb0c0OdIB2gFBVV95cUxNdWNVTjdPVGs5Z0lYYjNDUi1KNEZjWVhpSWlnUndwSy1Pcm1Wa0NQeEFpS3pNT20yLUtPS2l4b09fTk14eDZFODA0OFlXQ2RLYXg1Y0FKV1l2Nmd1bUFkdW5uYmM0eDhiVE9YUnlUd2dxRzBBOGhScFFEQjd2TDh5d09JR0kwbnF3ODJ6RXVSTmg1ZngzdFdZZ19ENmVSdUoyNENsbF9Wb3g0QkU2UGVyaGVpNXpZLXFCbUdvaC1kYWYxNW9Bb2sxXzloS0NrNmtkWTFBUnF0cVdjQQ?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-07-01T15:27:40.000Z",
+      "fingerprint": "1g57ty4"
+    },
+    {
       "id": "f3wulw",
       "title": "Arranca la Escuela Municipal de Verano Inclusiva con cerca de 700 niños y niñas en Riba-roja de Túria",
       "link": "https://www.ribarroja.es/es/noticia/arranca-la-escuela-municipal-de-verano-inclusiva-con-cerca-de-700-ni%C3%B1os-y-ni%C3%B1as-en-riba-roja-de-t%C3%BAria",
@@ -251,15 +258,6 @@
       "section": null
     },
     {
-      "id": "nvjzp4",
-      "title": "El polígono La Reva de Riba-roja, laboratorio de pruebas para los drones del futuro",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPa2w5YnVNMW9nbFNtcFY2VERrS0ZaY1hvR0RMdmFGRXlfU29aTXY0UE1KUzRoQjNxTGtTVDJFaWY0anVlY09OcDM3b3cwcmJKLU4waFRiTENyVUxEanlMMVVaZkRaLXBFdFlzTk8zMVRkcnIzdHhqWFBjeS11eEY2NENLRnN1ZjJMMEpFVnFNRXo4YjV1Y1FhOU01Qmh5N09IYzNycGhpb0FhTnk2aGU5d2RPTExWVjVBdktpR1Z4NTlEeWZsMHE0UE1B?oc=5",
-      "source": "El Periódico de Aquí",
-      "sourceHost": "elperiodicodeaqui.com",
-      "date": "2026-07-01T10:42:13.000Z",
-      "fingerprint": "zhrnxg"
-    },
-    {
       "id": "1x8a628",
       "title": "Revista SOM resiliència - Todo lo que necesitas saber sobre Riba-roja de Túria",
       "link": "https://www.ribarroja.es/es/noticia/revista-som-resili%C3%A8ncia-todo-lo-que-necesitas-saber-sobre-riba-roja-de-t%C3%BAria",
@@ -300,13 +298,13 @@
       "fingerprint": "n4cwj6"
     },
     {
-      "id": "zokkow",
-      "title": "AVAV y la ECAM analizan los riesgos del ‘agujero digital’ para la memoria audiovisual",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQWkFwWnZvampnaldxYXJyM1c5S0VnZGFoSVNXajhoaW9KekJMcjlJdlNaS1d4UVA1ckVPeG5rZXN4OFNqc2Q1TjFiMUQ1R3lQZlYyb3ltUDF0eEhlNllOTmxBUEVTaTNrRmI3RDhvbkpUVU1uUnhJY0pzVVIyT1kwRkd5ZTJTc18zcjR1RGRIdzQtV29FNXV1TVNmQmsyUHFnSGlYS2JFQXY3cHRwMWtJNkc3OGFKSWd2SlhoeDh6TFhNU3Fhb1E?oc=5",
-      "source": "cameraandlightmag.com",
-      "sourceHost": "cameraandlightmag.com",
-      "date": "2026-06-29T15:12:17.000Z",
-      "fingerprint": "c36img"
+      "id": "1uce32o",
+      "title": "9 Casas y pisos a reformar en Riba-roja de Túria",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMUc5WFB3cXJXcEpCazZCV2RWSWswWVNMb2tBTWJvMnBheXhGd1QyLXJSUWdXQnE3QmRXc1g5MTJfbS1Fd3Byb05fZEZGVWdPQmZXMHY0NG9CSXF6SWhrNk1QUFlpcXVabmxZNk1leU9EcDhCcC1oUVVWdTZTX21JQlRvQjFzaWE2Nkh3N2c5TmJSeFRUa0hB?oc=5",
+      "source": "Fotocasa",
+      "sourceHost": "fotocasa.es",
+      "date": "2026-06-29T14:40:07.000Z",
+      "fingerprint": "1cw5867"
     },
     {
       "id": "mc2sl4",
@@ -316,15 +314,6 @@
       "sourceHost": "infoturia.com",
       "date": "2026-06-29T12:23:09.000Z",
       "fingerprint": "7v68y8"
-    },
-    {
-      "id": "1uce32o",
-      "title": "9 Casas y pisos a reformar en Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQMUc5WFB3cXJXcEpCazZCV2RWSWswWVNMb2tBTWJvMnBheXhGd1QyLXJSUWdXQnE3QmRXc1g5MTJfbS1Fd3Byb05fZEZGVWdPQmZXMHY0NG9CSXF6SWhrNk1QUFlpcXVabmxZNk1leU9EcDhCcC1oUVVWdTZTX21JQlRvQjFzaWE2Nkh3N2c5TmJSeFRUa0hB?oc=5",
-      "source": "Fotocasa",
-      "sourceHost": "fotocasa.es",
-      "date": "2026-06-29T12:12:35.000Z",
-      "fingerprint": "1cw5867"
     },
     {
       "id": "olul7k",
@@ -345,6 +334,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-06-29T11:31:03.000Z",
       "fingerprint": "k5haz4"
+    },
+    {
+      "id": "1icahjc",
+      "title": "Riba-roja lanza una campaña digital segmentada para atraer al turista de proximidad",
+      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNWXlLeGRMdW9aTW80cV9qTEV4THB4bjhCdkhqcW9tOUY0RUg3RUJnOUNhMWF3aG5uMHNDbk1mSUE5UkVkc3lFbm1jTF81bW5VWVlpTUdubURxS0FMbE1mYkhub0l2a2pBT3VwM2N4R1lKaVhDOGhOQkVnMFFDWnJEQkl4VFpsY2dDb0VKek9ZZ2xudklBSlRuVW40WnZhbDFMQXNkLTVpYzFCOG9qb1RVVWNvVmVRTjF3Rzl0ODlsWWdjZXNpb2lLT3MtMloxcEtnb0NncUp6WW8?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-06-29T11:09:53.000Z",
+      "fingerprint": "1e8ii34"
     },
     {
       "id": "1nxenj4",
@@ -381,15 +379,6 @@
       "sourceHost": "elperiodicodeaqui.com",
       "date": "2026-06-26T10:54:16.000Z",
       "fingerprint": "1pz5dio"
-    },
-    {
-      "id": "gu74ve",
-      "title": "Riba-roja de Túria: el paro cae un 58% en una década",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOd3hOOG9lR25kVm1RYWt3bzlpMmNZdmNJNk54TVBtZTRTbks5OUpyX1NlRHJHRkVQaXQtQzczX3NaMkNKcG5RTmc0WUlVZjRFOXEySmJrWnNnRGtxaXJHNWZQOGpnYzY5SkFXamRLMFg1Rm5HRFNmQVU5WUxGV0t4Um4xX1l5cVdvREMtSWRSTDlMVlIyZ1ZkaHVvTGQ3UExHZDJnVFBxOA?oc=5",
-      "source": "diarivalencia.cat",
-      "sourceHost": "diarivalencia.cat",
-      "date": "2026-06-26T08:34:04.000Z",
-      "fingerprint": "b61b94"
     },
     {
       "id": "1jwimww",
@@ -705,6 +694,15 @@
       "section": "Educacion"
     },
     {
+      "id": "rd3l4s",
+      "title": "Veolia ejecuta en Riba-roja un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTC1XUXd4VkU3SHlmVFAtV0Z6UTU0TzAzRlIycy11MS1sR01MOWhpYWRsT2hQb0QxSmdhVHdmTTVYT2VuVFVieUJSdUVVWU1yaXlJLTlUOGJ3MW1ObVpaaG83YjJUVWFOTmkyZFkwMHVkNmYyRXBQTzlwUGp5OExSR2I4NGY3V2R3U05fZEM4bFoxbVVkdDR4MHFJb2JyMXc3ZmRLUXl5T1Z6cnVUVzBQNWx2UUpwZXc1NDZz0gHAAUFVX3lxTFBXSTdSdFZmcDhVd2kwYlBUY29mM0dfZS1xeVRXSVZVMGZBRDRvSGlmZ3F2S3RSdFRnZ2xNWlI2S3dtVHRfZGNKVTRGYXJGdEpTWWR5dXRNU0hsZWNURU9aS2puYlZjdzhOTzJwV1BNRWhtbnZ6bHdiNE5GRWp0cjMtb1NZMEhZVzJaYWVsV2RiVjhoM0hMSXpuVVFDd1ZINzVVQjcxbTRlSlNPZUFwU19qQUJZdUJoYi00YUhtME44MA?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-06-11T07:00:00.000Z",
+      "fingerprint": "7nljfx"
+    },
+    {
       "id": "93w85v",
       "title": "9 Casas y pisos en Avenida Naranjos, Riba-roja de Túria",
       "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPc1hoT1NrMi1lVUc2N3ZQSTJ0ZWtqaThnSy04OGQ3RFp0TmQyUlRjRkZhNVBGTmZhQ2t5MXJndlRUV05HVU95MWVpcE9OS2xFRXROa3RmNjhCQmZIMWZ3X0JOTmJhd1ZMZlozcm1Jb2dZSTljLVJ3VHdtUTA1SElnYjktYTRvRGQzLU9YY0Vpbw?oc=5",
@@ -852,15 +850,6 @@
       "fingerprint": "1xg5g",
       "official": true,
       "section": "Fomento economico y Comercio"
-    },
-    {
-      "id": "cj9s5k",
-      "title": "Riba-roja inyecta un 25% más de ayudas económicas directas al comercio local y sitúa la partida en 550.000 euros",
-      "link": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPTW1FTzVrLXlXM21GUC0zb0lZT19jOVM5aWpHdl9wRnZnbzgyeW5HWTJXb1dXdEJLbUVKV2V3d2U5MldKbTJVcEUxM3dfdTV5eXFydUtEd0hyVlkyaGZsSlByMl93SnJuZ3ptVDVVb0hFd1FvVlNYR3FxRkU4ZEx0MTNEaWdZUEFnNXFzN3U2cDJINk5rWWFzalZ0VURudlhlY0tDdTZBZ19oSkI4VnJiNlh5SFdxOFE2Q2t4RDI2OVo4VmIyUW5fazJtMG9KTi1XRkxabnVmODNSbXp0RGVjVDZCMGVaaWozMmZQVXFiYklzOFc5TVRLcHQ2ZjI?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
-      "date": "2026-06-02T07:00:00.000Z",
-      "fingerprint": "vzmbw0"
     },
     {
       "id": "1y7byb",
@@ -1093,15 +1082,6 @@
       "fingerprint": "npd73k"
     },
     {
-      "id": "lqzi8k",
-      "title": "Viviendas protegidas: 36 nuevas casas en Riba-roja de Turia",
-      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNaEJsUTdyRUV5NThIUjRwRDltZlFoNERLaGZ6ekIxRkJFTDBMaXk3Q1VHN2FnTi1DZmZmcVUwRHRmb0k1R2dsT0gwWWFxRmhxMjQybkh3UFJwR2tqaFVZMmNrV0VmbUw1TDZTQ1drSnVmWDBJTnVYUGlNS2xYZHhfZnE5NUtZUVY1Y2xhYw?oc=5",
-      "source": "Valencia News",
-      "sourceHost": "valencianews.es",
-      "date": "2026-05-18T15:44:54.000Z",
-      "fingerprint": "1ku9m34"
-    },
-    {
       "id": "z0fd7w",
       "title": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
       "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
@@ -1165,11 +1145,11 @@
       "fingerprint": "1t5n86k"
     },
     {
-      "id": "1f84wbo",
-      "title": "Iberdrola invierte 10 millones en Riba-roja para reforzar la red eléctrica tras la dana",
-      "link": "https://news.google.com/rss/articles/CBMiigFBVV95cUxObjdKRWFscUNmRFN3LV9VRnhMNzJzTzNUZUhfNzZXcS1SR0g2WVJRN0ptWUZtS1hYdlVyM3pDcU1IOVZJWFdtUzlaZEE1bE9wdzlEU0tBd2toU3laTGhFTzMzcmU4TkhzZGZlWktocW42eWs0UFBwMmJHMVFyc2plaGxlRmRkYlEyUVE?oc=5",
-      "source": "Valencia News",
-      "sourceHost": "valencianews.es",
+      "id": "w7bch7",
+      "title": "Iberdrola invierte 10 millones en Riba-roja para la renovación de instalaciones afectadas por la dana",
+      "link": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMnlfdjAxdlpGZ2hOejB5OS0xQVVUOGdONkswYS1hLWtjNjVETy1wQ1VUUkhBdDUyUjRFejhwQUNKWmRLSzFzeG52cGIzWTNDQWxsOWk1ZzBteEdvZHAyMHQ3XzQzZTFCdWEwN2pWX0liWVZndXd0Q01Cc2pOUzZDaNIBgAFBVV95cUxPZ0lnNkRITFBueE1wcUl2SC1RVWsybnNpaXlZVmZld3MyUzBDZ1JNYWpIcGpCWjliTUc1NFVod0htOTVfNTk5d2JQbmM5NDB5LU55T1lLNFg4QlVsRUxBTjlJbmRDZlg2NzBRRE1vME1JQ2hrN2wyZHR0dl9hd0huRw?oc=5",
+      "source": "Expansión",
+      "sourceHost": "expansion.com",
       "date": "2026-05-11T07:00:00.000Z",
       "fingerprint": "r3bsr7"
     },
@@ -1190,6 +1170,15 @@
       "sourceHost": "valenciaplaza.com",
       "date": "2026-05-04T07:00:00.000Z",
       "fingerprint": "aj458o"
+    },
+    {
+      "id": "1wen9d4",
+      "title": "Riba-roja ya supera las 2.000 empresas instaladas en el municipio",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPRE4yLTJmREd4RDN1QWdSOS1VMVlFazVuRTlUa0ptNmU5ek1qVTdKTXBpWGh3X1NtNS1jZWFzbVNNbmVTZm5KVHdwaEc5NE1TbjBOSThPX3pzeTVJU3lRelBkU1ZNTlNHTzNDcERNWkk4dGhCdU1Qd1ViMWdDY1FJT1V6TU1aSmZiR0ZPcmhMQ2tiZ1lmQ3JxWkRqYTdKRTZZZXJnbVMtR1M2blVuM2tlb19kUdIBuAFBVV95cUxNR2Q2ZzZIZVpLVWJ5RFFwbml4OXNCT1JqSTZleG5yNXdVNHRrQjZ6WG12Vnhyb0x2R2RVQkU3Z2dWUU9EaTB4WUxQQzc4c3p1bTlaSnJFNkFGbzR2V2J2QkJFeVpyYzA1Vng1bGs3QkY0M3UzVkhVVm95dURKMW9QUlUyY0hBbmJJVkJTMjFVVG5FZGdEQldzMHJNLV9jZUc1WmZha0V5angzY1JhYy1xUVpTM3JIdDZE?oc=5",
+      "source": "Las Provincias",
+      "sourceHost": "lasprovincias.es",
+      "date": "2026-05-04T07:00:00.000Z",
+      "fingerprint": "1xkkb8g"
     },
     {
       "id": "c2lr90",
@@ -1336,13 +1325,13 @@
       "fingerprint": "39phcg"
     },
     {
-      "id": "1g0d4b4",
-      "title": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
-      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
+      "id": "1fxn6y0",
+      "title": "Riba-roja vive con gran emoción y devoción la Ofrenda en las fallas 2026",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQaHg3MUgxRGdVM3lYaktCSWNUU19XWEVLRUpONFZNel9mdHlwU2ZPSk5LTDFpaHh5T19Icm1CUDJIYlhwbU9BSktIRXVzaUdzZ1NmSWJJSUJsLTBYZWNvbUo1TXpsLVIzQWw1MzBFMFRmaHBOVG5naF9EbzJNV2pCU0l5SFRuU05GdWlib2lRNG5EVjhINmtMSVZ0VmlHMkNpYjc0cXNGMV9NZVRPUDdGX3hPZw?oc=5",
       "source": "Levante-EMV",
       "sourceHost": "levante-emv.com",
-      "date": "2026-03-17T07:00:00.000Z",
-      "fingerprint": "kvzgcl"
+      "date": "2026-03-19T07:00:00.000Z",
+      "fingerprint": "1na2zdk"
     },
     {
       "id": "18rigf2",
@@ -1381,6 +1370,15 @@
       "fingerprint": "1tgf7l4"
     },
     {
+      "id": "1uslagr",
+      "title": "Riba-roja evitará el lanzamiento de pirotecnia no autorizada mediante la vigilancia con drones",
+      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNYzVJZzNIbnR3Z2Z1cEg4TWRMZ2RwZl8zMzBYZVl3NF9ZMTlpcEF3VFYwQkw2ajZGMHNIMGRsemFjVHloTFQxaXdDaDFyUHNUNWdFS3hzOTBEdTM1cGktOVNEYmZFS0pxVndCVWpBZUN0X2xpa2k4VjlscjdVSVVfeklRYjZVN3FJeTJPcHFEMXlHWWpVaG10MWtuU2hFNTcxMjF4YkhGMTNkOXZmcXJBbmtjUVZXV0Fsb1hIZlhKMk1yQU40RkV2MW10enM3R0lJSjJ2cUlJTHNNNGpZY1d4WXljZ2dCLWs?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-03-13T07:00:00.000Z",
+      "fingerprint": "1ma1pvv"
+    },
+    {
       "id": "13w0ydy",
       "title": "Riba-roja de Túria recupera la normalidad en la recogida de residuos tras rescindir el contrato con la anterior empresa",
       "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPdFVCU1BLS2ZrQnZRbFhvYXEtVDRnS0o2XzJpT1ZKcnNWWGx6a21Cd2dIdzBkanB6R1RzcXBwcTlMVTI3ek9CZnlUREdUUXBSMU82WGl3Sko0LWY5SnVVVnB2QnhjcXgtZ0tkR0hJdXdEUjc3STJoUUZtOHBna1JkdXNLVHBmcWNETkpnNHlxcXhNX2ZUTjRnajBNUWIzV01FYTY1SmdBUmdiLWx3UmI0MVhER29xTjV6eXNMX2ZTQ0RtMkZ5X2s4UWd6Rm9VQUHSAdQBQVVfeXFMUHNsWjVTeldZUDFrLXhYcjZ1alNjdUxmRGFsZ00zRWRvcVAzSjhieHBYTElRUzVXdFFJYk9mRWdTU0I2N3NmcDlDZ20wbFk5ZDZ2cmpITlZ2V2ZXQ3dad05tRmZVZGU4eE00aFNIbS1Nd1BIX3BYRGhtbjdXaUxYUXpYX3ZBZnIwVThyeUFGU0xsOG9KRmh4VzZsUndZc1JvYjRmYUZfYVhMRTZwei1WWGVFTzVzSjVOTlhGQTRLTjZWdnM1X0pBSThHcFpfX2laUXozZ1k?oc=5",
@@ -1408,13 +1406,13 @@
       "fingerprint": "5h5aic"
     },
     {
-      "id": "dk9x1c",
-      "title": "Riba-roja conmemora el 8 de marzo con un acto en la Plaza del Ayuntamiento y bajo el lema ‘Úniques'",
-      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxNSUcxdGd2SXlhQmhXUXNwV285cm9rSFp2Y25zQXNNdWRINkdoRE5JbGhOV04weXViajNNRFBlNlF2amNuc2NWZDFwdWhHS0ZrcDVjN0l4X0x3Y1RjcTg1UFBpeE9zM3hPTnVhaGdseE5iTHBIUTdNdVhXaWtpcVpDdmRsTmVtUW1tbXdwM0M1Y3lmNVllNlgzTExNN0ZHWTVSSWw3MmVkWHpwTC1sY2dsT01reUJERE3SAbwBQVVfeXFMTVFVN21xUWRZem9xNU5UcHZCOHZXXzNmNV9sNmoyWW1kRmhLSnI3aEtIb0hOalIwaEtNUl9qLWplNHd5azlKbGFCNXp3ektNZWdzU1E2a1pZQUNyWHMxcWdzTEIwX2FJQ0hqYTlrOTBOcFJaSVdtWWhGZUlkWkRWUTJoZmNiT0pQanV2UkFGcjBLNFlOaUlQUmxWRDA1cnpyOFdxMGl0U0FBMXpzQ29ubjFDOURjYzVCdU9BSEw?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-03-05T08:00:00.000Z",
-      "fingerprint": "1hu2q38"
+      "id": "1pz6huw",
+      "title": "Pistoletazo de salida en Riba-roja para vivir las Fallas",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxPR3h3SnhCSTQzTGRkYzNhT2V1XzhjNEU0MW4tMGU0Z3FsSWdDdTFJZ19zV1diRkpwdDFQZHVsc2hoTjNITlhyMS1DM2Q2M3lFT2VYWmpnQnVlSmE2aE8zNHpMOFA1T0FaRmtMV2dCSlJKZlBUWkF4XzZId2NGSHdpaVdPb05zOU9GbVpVZy00UWpjQ0tRM3A3MEhDVWFpOGxVVms4NktR0gGrAUFVX3lxTFBTanl5R2dpTm9yU1BWSVY2S01zWEQtOU1GcjZadlVLb3BMTWNCaXhBcHMySDJFQjdsWF8tSUs5aTBTTlNPa2Iyb25MOTZpbnZRamFlTWVLWUVUZ2lnVnA0T1N1cUJsTkNJZDNJaVRmckFmYUpHQ2t1aGNzYU1YMXE5N0pZX2FHRjYybm5IU3JNaHM5NEVMMnBBYnlQRXYwbXNEclFpRjFTODE2aw?oc=5",
+      "source": "Las Provincias",
+      "sourceHost": "lasprovincias.es",
+      "date": "2026-02-27T08:00:00.000Z",
+      "fingerprint": "19k65b4"
     },
     {
       "id": "ulvyfa",
@@ -1435,13 +1433,13 @@
       "fingerprint": "1tkfto0"
     },
     {
-      "id": "1yzirqw",
-      "title": "Riba-roja se prepara para una nueva edición simultánea de la Media Maratón y la 5K",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQUWF4WmRva0E1a0dXV18xTWlXS1BWU2dINU5pcW5raXhLakxSNkZ4dWFEb2lzUHltb3NscVB4MnRzZ3VZZlVrdGswck55VEFUclRVSXlPQTR6ejlFY2J5SE9RM0Y0dWpYT2hDUkk0bmo0QWJRZ0ZRZmM1Z2gtczRUWDgxc0UzX19ya1VIOFBFMnJNNF90RUpfUlZVOHpabzlwblRuMGkwUFo2UkdxTFlTY3pYYkQzQdIBuwFBVV95cUxOYkc2VzhXZlpuTGdYU3BpN0FZVkZzRFhpcnFzRGhMd2JkRUF5MU5wMGFwMTZUVmU2RC04WlNNMTVYWVZsMDF4THJjN0RHS3ZDdkFybEJRODBBNHJpdnM3eEhTeFc1V2FlckRmS2czc2h6UF9aSUtRTWhidlVNaHF0Z0lEaW15TUVadm9JdEdNMUxQMnBHcXcza2k3YWRhWXQ5bVF0ZzAtdXlRRW5qQThCb0lTSS0yUkFPZXRF?oc=5",
+      "id": "1t4mpw0",
+      "title": "La CHJ levanta una mota de 1,3 kilómetros en Riba-roja para frenar las riadas del Poyo y proteger polígonos y viviendas",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxQX3RibjF0WTJGU3JtQ3FlUmg0cUxUc0VvQ1FwZnlmTnBRMjh2ME5GSERKZ2poR001VF9ZbFRJZG1Rb2dmRTJ0YUJvQTZGbXZscnlSOWJnRGxiQmhoRnJuLWpOU0NrV09ZcFhwVVVxOWZfa1EyT2hkRVVqa3ZaalNCTTNvWUtLOXNBT1A1REY1X0ZINzI0OVZBdTFSbEJycjdIOFQ0bjRMSXhIMEh1VEHSAbMBQVVfeXFMTmt3WkJDdm1MLVZZalhUcm1DUFRwNlAyQV9WOUNBc3ZoTzB1eGt6ZHVELUgzUUdHUGg3YnNXYU1GUmxtTTdIVnhycm9SYTN1YlJTSkZYZGtzOUFJWGp6WlU4UkhJbGVCUk1RcHdMM2FLb3NtRDZxTExuYU1WQ2JVU1VXVm1CVFNZSGIxUE9sZTc2UGNsaklEOHdBSEo0YlVTZWVoZVk4OFU0VGE0ZVY0aGQ1Uk0?oc=5",
       "source": "Levante-EMV",
       "sourceHost": "levante-emv.com",
-      "date": "2026-02-20T08:00:00.000Z",
-      "fingerprint": "s1w13w"
+      "date": "2026-02-11T08:00:00.000Z",
+      "fingerprint": "q57atx"
     },
     {
       "id": "1cblp0z",
@@ -1460,6 +1458,15 @@
       "sourceHost": "msn.com",
       "date": "2026-02-09T13:12:31.000Z",
       "fingerprint": "19it3ho"
+    },
+    {
+      "id": "1o6xq9k",
+      "title": "El Pont Vell de Riba-roja recuperará su valor histórico y conectará con el camí de les Ànimes",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOVVpob0g5RzNPZG16VjRHWE92bHBJcTF4WDktUHEwWjBNcDBBYkttbExrUUNYNFNKeGZVVlltdUNaSzhFcS1CUV9GOVg0OTBSVS1LMFAtbUZBQkpFV1kwZWRlMENKQ1M4SHpuZ1J4LV9DY01xT1dVVHVqU2FOanE4bkFDYl9XalJiejQ2U0ViV1c2emRieUpvaHhJMldnY1o1UTRhMllQRVBybUpoQzM3emxQV3lSc0UzUWpmdXVKMjPSAcYBQVVfeXFMTlI0d2U2YVVIbkphS2dQWS1zTTFFNkJjTGVFY2J4Ujd6dXNQdzcxbzJrMy1qVzd0X01nT055TUs4Z0dnWUpmeHl3alJGSEVyNTIyZlpHZkx5ZE9GeWRPNlpSMUdqWndJTGVWeDdUdWZFaWJteGFMMDhORmNmcFVuT0hLSHFLWFpkVk9oeExyaVpOSkd5WlZqV0Z6SmVOUmRLNXpYcnBRZ0QxMGYySlY5XzJYVFhwVTlfa1FvclBFUlZqdGd1RGVn?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-01-30T08:00:00.000Z",
+      "fingerprint": "171gs60"
     },
     {
       "id": "1gxph4j",
