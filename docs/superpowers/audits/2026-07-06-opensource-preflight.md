@@ -254,7 +254,10 @@ classes:
 
 ## 3 · License
 
-(filled by Task 3)
+AGPL-3.0-only adopted (LICENSE + package.json), per spec §6: network-service
+copyleft — a hosted fork of the accountability stack must publish its source.
+NLnet-compatible. Rationale documented in the strategy spec.
+Bot subpackage (`bot/package.json`) intentionally inherits via the repo root.
 
 ## 4 · Flip checklist (September, before NLnet submission)
 
