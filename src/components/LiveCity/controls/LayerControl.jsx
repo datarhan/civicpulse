@@ -11,7 +11,7 @@ import { useT } from '../../../i18n'
 export const MAP_LAYERS = [
   { key: 'money', labelKey: 'map.layer.money', glyph: '€' },
   { key: 'poi', labelKey: 'map.layer.poi', glyph: '◉' },
-  { key: 'metro', labelKey: 'map.layer.metro', glyph: '◆' },
+  { key: 'quejas', labelKey: 'map.layer.quejas', glyph: '⚑' },
   { key: 'flood', labelKey: 'map.layer.flood', glyph: '≈' },
 ]
 

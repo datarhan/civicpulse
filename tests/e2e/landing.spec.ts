@@ -63,5 +63,14 @@ test.describe('Landing (/)', () => {
         .getByText(/Adjudicatario/i)
         .first(),
     ).toBeVisible({ timeout: 6000 })
+
+    // The retired "Tren L9" schematic-train chip is gone; toggling its
+    // replacement "Quejas" mounts the citizen-complaint heat layer and shows
+    // its per-barrio legend. Scoped to the layer control so unrelated "Quejas"
+    // text elsewhere on the landing can't satisfy the assertion.
+    const layerControl = page.getByRole('group', { name: /Capas del mapa/i })
+    await expect(layerControl.getByRole('button', { name: /Tren L9/i })).toHaveCount(0)
+    await layerControl.getByRole('button', { name: /^Quejas$/i }).click()
+    await expect(page.getByText(/Quejas por barrio/i).first()).toBeVisible({ timeout: 6000 })
   })
 })

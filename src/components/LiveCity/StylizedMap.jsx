@@ -13,11 +13,12 @@ import { MoneyLayer } from './layers/MoneyLayer'
 import { NeighborhoodsLayer } from './layers/NeighborhoodsLayer'
 import { FloodRiskLayer } from './layers/FloodRiskLayer'
 import { CivicPoiLayer } from './layers/CivicPoiLayer'
-import { MetroTrainsLayer } from './layers/MetroTrainsLayer'
+import { QuejasLayer } from './layers/QuejasLayer'
 import { LayerControl } from './controls/LayerControl'
 import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
 import { FloodLegend } from './controls/FloodLegend'
 import { PoiLegend } from './controls/PoiLegend'
+import { QuejasLegend } from './controls/QuejasLegend'
 
 function MapAttribution() {
   return (
@@ -44,9 +45,9 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // Which data layers are visible. Base layers (boundary/network/barrios) are
   // always on; toggleable data layers default off except the Servicios
   // (civic-POI) flagship, so the landing reads richer on load with the public
-  // facilities in view. Money (static snapshot at the latest date) / metro /
-  // flood are opt-in via their chips.
-  const [layers, setLayers] = useState({ money: false, poi: true, metro: false, flood: false })
+  // facilities in view. Money (static snapshot at the latest date) / quejas
+  // (citizen-complaint heat) / flood are opt-in via their chips.
+  const [layers, setLayers] = useState({ money: false, poi: true, quejas: false, flood: false })
   const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
 
   const { data: tgeo } = useTenderGeo()
@@ -104,7 +105,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           />
         )}
         {layers.poi && <CivicPoiLayer />}
-        {layers.metro && <MetroTrainsLayer />}
+        {layers.quejas && <QuejasLayer />}
       </MapContainer>
 
       <NetworkLegend />
@@ -138,6 +139,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
           />
         )}
         {layers.poi && <PoiLegend />}
+        {layers.quejas && <QuejasLegend />}
         {layers.flood && <FloodLegend />}
       </div>
     </div>
