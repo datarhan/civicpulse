@@ -253,7 +253,7 @@ export default function ReconstruccionDana() {
           }}
         >
           <strong>Borrador editorial · pendiente de derecho de réplica.</strong> Esta pieza aún no
-          es una publicación definitiva: se ha ofrecido su versión al Ayuntamiento de Riba-roja y se
+          es una publicación definitiva: se recabará la versión del Ayuntamiento de Riba-roja y se
           incorporará antes de darla por publicada.
         </div>
       )}
