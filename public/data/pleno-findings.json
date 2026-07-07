@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-07T08:58:06.764Z",
+  "generatedAt": "2026-07-07T09:05:54.437Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -66,14 +66,15 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-07-03-cit-df8455",
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
-      "title": "Debate sobre contenedores y contrato de recogida de RSU — Pleno 2026-07-03",
-      "summary": "En el pleno de medio ambiente del 2026-07-03, Otro afirma satisfacción con la adjudicación a la empresa de recogida; Compromís señala que el Ayuntamiento ya cuenta con herramientas para rescindir el contrato con la licitadora que no cumplía y anuncia la compra de contenedores con recursos propios. El PP denuncia que el alcalde ya advertía en diciembre del deterioro de los contenedores. Corrobora el expediente \"Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos\".",
+      "title": "Pleno 2026-07-03: debate sobre contenedores y contrato de recogida de RSU",
+      "summary": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. El grupo Otro expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-004-cit-df8455",
@@ -187,7 +188,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-acu-1adbf3",
@@ -255,7 +257,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-cit-bb5f00",
@@ -308,7 +311,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-cit-73d3cf",
@@ -371,7 +375,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-cit-0907e6",
@@ -439,7 +444,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-cit-7f7619",
@@ -507,7 +513,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-cit-a0a379",
@@ -570,7 +577,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-acu-ea9d47",
@@ -633,7 +641,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-acu-7c65c5",
@@ -696,59 +705,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
-      "response": null
-    },
-    {
-      "id": "f-2026-05-11-acu-da7902",
-      "plenoId": "10yl550",
-      "plenoDate": "2026-05-11",
-      "title": "11 de mayo de 2026: PSOE y PP en desacuerdo sobre contacto e imagen partidista",
-      "summary": "El grupo PSOE afirma que el Partido Popular no ha contactado con la Asociación Abrupa y pide una rectificación. Además, señala al PP por utilizar sin consentimiento el logotipo de la asociación de manera partidista.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "10yl550-274-acu-da7902",
-        "10yl550-274-acu-4cb575",
-        "10yl550-294-acu-c8a5f4"
-      ],
-      "quotes": [
-        {
-          "text": "en ningún momento el Partido Popular se ha puesto en contacto con ellos",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "10yl550-274-acu-da7902"
-        },
-        {
-          "text": "rectifique y pida disculpas a la Asociación Abrupa, primero por utilizar su logotipo y su nombre de forma partidista sin su consentimiento",
-          "speakerGroup": "PSOE",
-          "sourceClaimId": "10yl550-274-acu-4cb575"
-        },
-        {
-          "text": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
-          "speakerGroup": "PP",
-          "sourceClaimId": "10yl550-294-acu-c8a5f4"
-        }
-      ],
-      "corroboration": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wCzvqvQUutaXQV0WE7lYPw%3D%3D",
-          "snippet": "contrato de servicios Biblioteca Aprenem Compartit en el municipio de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterios socio-laborales como criterio…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-          "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
-          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-acu-1e1bfa",
@@ -794,6 +752,59 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
           "snippet": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnic…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-07",
+      "response": null,
+      "corrections": []
+    },
+    {
+      "id": "f-2026-05-11-acu-da7902",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Pleno 2026-05-11: PSOE y PP debaten sobre la Asociación Abrupa y la fira 2025",
+      "summary": "El grupo PSOE denuncia que el PP no se ha puesto en contacto con la Asociación Abrupa y le solicita rectificar y pedir disculpas por utilizar su logotipo y nombre sin su consentimiento. El grupo PP, por su parte, señala su intervención previa sobre la fira de 2025. El registro municipal incluye el «Contrato de servicio alumbrado ornamental navideño año 2025-2026».",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-274-acu-da7902",
+        "10yl550-274-acu-4cb575",
+        "10yl550-294-acu-c8a5f4"
+      ],
+      "quotes": [
+        {
+          "text": "en ningún momento el Partido Popular se ha puesto en contacto con ellos",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-274-acu-da7902"
+        },
+        {
+          "text": "rectifique y pida disculpas a la Asociación Abrupa, primero por utilizar su logotipo y su nombre de forma partidista sin su consentimiento",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "10yl550-274-acu-4cb575"
+        },
+        {
+          "text": "el Partido Popular el otro día trajo una noticia diciendo que el gobierno no hizo la fira del 2025 porque estaba dos velas, canino.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "10yl550-294-acu-c8a5f4"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=wCzvqvQUutaXQV0WE7lYPw%3D%3D",
+          "snippet": "contrato de servicios Biblioteca Aprenem Compartit en el municipio de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterios socio-laborales como criterio…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
+          "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
         },
         {
           "kind": "pleno-video",
@@ -868,7 +879,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-04-20-cit-25e6ea",
@@ -925,7 +937,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-04-20-acu-93c1e8",
@@ -993,7 +1006,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-04-20-cit-947479",
@@ -1061,7 +1075,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-16-cit-377216",
@@ -1097,7 +1112,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-16-cit-56214f",
@@ -1127,7 +1143,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-16-cit-436a7e",
@@ -1157,7 +1174,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-16-cit-75b31f",
@@ -1187,7 +1205,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-16-cit-528973",
@@ -1217,7 +1236,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-auto",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-09-afi-a9546e",
@@ -1241,7 +1261,8 @@
       "relatedPromiseIds": [],
       "curatorName": "ejemplo-curador",
       "publishedAt": "2026-04-23",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-03-09-acu-d94904",
@@ -1283,7 +1304,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-curator",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-afi-5b06c8",
@@ -1350,7 +1372,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-cit-3fd230",
@@ -1408,7 +1431,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-acu-2c074a",
@@ -1476,7 +1500,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-cit-cc8758",
@@ -1539,7 +1564,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-cit-c80e68",
@@ -1602,7 +1628,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-cit-8b29a9",
@@ -1665,7 +1692,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-afi-5238db",
@@ -1743,7 +1771,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-cit-543cc1",
@@ -1806,59 +1835,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
-      "response": null
-    },
-    {
-      "id": "f-2026-01-19-acu-b1a13f",
-      "plenoId": "19gax3o",
-      "plenoDate": "2026-01-19",
-      "title": "Pleno de Riba-roja de Túria 2026-01-19: Debate sobre contratación medioambiental",
-      "summary": "El grupo Otro afirma que en un vídeo se muestra a FCC trabajando bajo contrato de emergencia, mientras que el PP señala que actualmente solo Garbialdi estaba realizando la recogida de residuos. Ambos grupos discuten sobre la ejecución de contratos relacionados con la limpieza y mantenimiento del municipio.",
-      "severity": "informational",
-      "sourceClaimIds": [
-        "19gax3o-161-acu-b1a13f",
-        "19gax3o-160-acu-95ec4f",
-        "19gax3o-161-acu-74a547"
-      ],
-      "quotes": [
-        {
-          "text": "ustedes posteriormente y si en un vídeo diciendo que está trabajando FCC contrato de emergencia",
-          "speakerGroup": "Otro",
-          "sourceClaimId": "19gax3o-161-acu-b1a13f"
-        },
-        {
-          "text": "actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA la técnica nos dice que actualmente solo estaba trabajando Garbialdi la empresa contratada",
-          "speakerGroup": "PP",
-          "sourceClaimId": "19gax3o-160-acu-95ec4f"
-        },
-        {
-          "text": "si actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA",
-          "speakerGroup": "Otro",
-          "sourceClaimId": "19gax3o-161-acu-74a547"
-        }
-      ],
-      "corroboration": [
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-          "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de…"
-        },
-        {
-          "kind": "tender",
-          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-          "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio."
-        },
-        {
-          "kind": "pleno-video",
-          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
-          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
-        }
-      ],
-      "contradiction": [],
-      "relatedPromiseIds": [],
-      "curatorName": "auto-curation-v1",
-      "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-01-19-acu-d2b7bb",
@@ -1915,6 +1893,59 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
+      "response": null,
+      "corrections": []
+    },
+    {
+      "id": "f-2026-01-19-acu-b1a13f",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Debate sobre la recogida de residuos y el contrato de emergencia (pleno 2026-01-19)",
+      "summary": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras el grupo Otro pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-161-acu-b1a13f",
+        "19gax3o-160-acu-95ec4f",
+        "19gax3o-161-acu-74a547"
+      ],
+      "quotes": [
+        {
+          "text": "ustedes posteriormente y si en un vídeo diciendo que está trabajando FCC contrato de emergencia",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-161-acu-b1a13f"
+        },
+        {
+          "text": "actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA la técnica nos dice que actualmente solo estaba trabajando Garbialdi la empresa contratada",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-160-acu-95ec4f"
+        },
+        {
+          "text": "si actualmente FCC estaba trabajando o solo era Garbialdi la que estaba trabajando en el tema de la recogida de FEMA",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-161-acu-74a547"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
+          "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+          "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio."
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-07",
       "response": null
     },
     {
@@ -1957,7 +1988,8 @@
       "relatedPromiseIds": [],
       "curatorName": "civicpulse-curator",
       "publishedAt": "2026-04-24",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-23-cit-c905c3",
@@ -2020,7 +2052,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-23-afi-3eebaf",
@@ -2082,7 +2115,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-23-acu-cd77e9",
@@ -2150,7 +2184,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-01-cit-d89862",
@@ -2203,7 +2238,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-01-cit-66cd62",
@@ -2255,7 +2291,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-01-cit-66709b",
@@ -2323,7 +2360,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-01-cit-bef239",
@@ -2391,7 +2429,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-01-acu-34560f",
@@ -2459,14 +2498,15 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-01-acu-51aaa3",
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
-      "title": "01-12-2025: Pleno debate sobre seguridad y DANA",
-      "summary": "El grupo Otro afirma que la gestión durante la alerta roja incluyó salvoconductos para trabajadores. El PSOE señala que esto ocurrió después de la catástrofe de la DANA. Ambas declaraciones se refieren a contratos relacionados con servicios de limpieza y seguridad post-DANA.",
+      "title": "Salvoconductos a trabajadores tras la DANA a debate en el pleno 2025-12-01",
+      "summary": "Según el registro del pleno, los grupos PSOE y Otro manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-179-acu-51aaa3",
@@ -2583,7 +2623,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-10-06-cit-6c4d24",
@@ -2676,7 +2717,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-10-06-cit-591d40",
@@ -2744,7 +2786,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-10-06-acu-bba0e9",
@@ -2812,14 +2855,15 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-10-06-acu-b00839",
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
-      "title": "06-10-2025: Pleno debate sobre seguridad en Riba-roja",
-      "summary": "El PSOE denuncia públicamente a la Consejería por ampliaciones no autorizadas y celebra un premio obtenido en Madrid. El PP critica que los responsables no pudieron confirmar si se incumplieron órdenes municipales. VOX destaca la importancia del sistema COMETA para la seguridad ciudadana.",
+      "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
+      "summary": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. Según el registro municipal, consta el «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que documenta la actividad municipal en este ámbito.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
