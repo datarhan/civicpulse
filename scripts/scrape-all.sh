@@ -18,6 +18,7 @@ SCRAPERS=(
   scrape:transparency
   scrape:ispa
   scrape:budget
+  scrape:budget-execution
   scrape:tenders
   scrape:tenders-ted
   scrape:boe
@@ -63,9 +64,13 @@ SCRAPERS=(
 #     handshake + ~73 sequential detail fetches. Brittle by construction (token
 #     rotation, session cookies), and an employment-portal outage must never
 #     block the whole site's deploy; the prior snapshot stays live meanwhile.
+#   - scrape:budget-execution — single-source SICALWIN PDFs on ribarroja.es;
+#     a PDF-layout change (or the WAF) breaking the parser must not red the
+#     whole run, and the prior quarter's snapshot stays valid meanwhile.
 BEST_EFFORT=(
   scrape:metro-network
   scrape:empleo
+  scrape:budget-execution
   scrape:geo
   scrape:civic-poi
   scrape:streets
