@@ -170,7 +170,12 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
   echo "[transcribe] uploading ${N_CHUNKS} chunk(s) to OpenAI…"
 
   # Post each chunk and collect verbose_json responses. Chunk index → file.
-  : > "$OUT_PATH"
+  # Accumulate in the WORKDIR (auto-cleaned by the EXIT trap) and mv into
+  # place only after EVERY chunk succeeded — writing $OUT_PATH directly left
+  # a 0-byte transcript behind on upload failure, which the pipeline's
+  # backlog detector counted as "transcribed" and silently skipped forever.
+  TMP_TXT="$WORKDIR/transcript-openai.txt"
+  : > "$TMP_TXT"
   IDX=0
   for CHUNK in "$CHUNK_DIR"/chunk-*.ogg; do
     OFFSET=$(( IDX * CHUNK_SECS ))
@@ -185,13 +190,18 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
         echo "[transcribe]   chunk ${IDX} retry ${TRY}/3 after ${BACKOFF}s (prev HTTP $HTTP_CODE)" >&2
         sleep "$BACKOFF"
       fi
+      # --max-time caps a wedged connection (server-side transcription of a
+      # 3h pleno takes ~5-15 min; 30 min is generous). `|| true` keeps the
+      # -w %{http_code} output (curl prints 000 itself on connect failure —
+      # the old `|| echo 000` double-appended it as "000000").
       HTTP_CODE=$(curl -sS -o "$RESP_JSON" -w "%{http_code}" \
+        --connect-timeout 30 --max-time 1800 \
         https://api.openai.com/v1/audio/transcriptions \
         -H "Authorization: Bearer $OPENAI_API_KEY" \
         -F file="@$CHUNK" \
         -F model="whisper-1" \
         -F language="es" \
-        -F response_format="verbose_json" 2>/dev/null || echo "000")
+        -F response_format="verbose_json" 2>/dev/null || true)
       if [ "$HTTP_CODE" = "200" ]; then
         break
       fi
@@ -203,7 +213,7 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     fi
     # Append segments with cumulative time offset. Node invocation runs
     # under env vars so bash doesn't try to expand JS template literals.
-    OFFSET_S="$OFFSET" CHUNK_IDX="$IDX" N_CHUNKS="$N_CHUNKS" RESP_JSON="$RESP_JSON" OUT_PATH="$OUT_PATH" node -e '
+    OFFSET_S="$OFFSET" CHUNK_IDX="$IDX" N_CHUNKS="$N_CHUNKS" RESP_JSON="$RESP_JSON" OUT_PATH="$TMP_TXT" node -e '
       const fs = require("fs")
       const data = JSON.parse(fs.readFileSync(process.env.RESP_JSON, "utf8"))
       const segs = data.segments || []
@@ -215,6 +225,9 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     '
     IDX=$(( IDX + 1 ))
   done
+  # Every chunk succeeded — only now does the transcript become visible to
+  # the pipeline's backlog detector.
+  mv "$TMP_TXT" "$OUT_PATH"
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
   # ── Apple Neural Engine (lightning-whisper-mlx) branch ───────────────────
   # 5-10× realtime, \$0, local. Better WER on technical/legal terms than
