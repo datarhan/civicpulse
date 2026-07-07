@@ -75,8 +75,16 @@ export function parseBudgetExecutionPdf(text: string): ExecDoc {
   // next partida row can't bleed in).
   const markerRe = /Total Cap[ií]tulo\s+(\d+)([\s\S]{0,80}?)(?=-?\d{1,3}(?:\.\d{3})*,\d{2})/g
   let m: RegExpExecArray | null
+  // Some SICALWIN "detalle" PDFs emit each chapter's total line twice; dedup by
+  // capítulo, KEEP-FIRST, so `chapters` never carries duplicate capítulos (which
+  // would be wrong public data AND game selectBestDoc's "most chapters"
+  // tie-break). `total` is read separately from the grand-total line and is
+  // already correct on the unique set.
+  const seen = new Set<number>()
   while ((m = markerRe.exec(text))) {
     const capitulo = Number(m[1])
+    if (seen.has(capitulo)) continue
+    seen.add(capitulo)
     const label = m[2]
       .replace(/[.\s]+$/, '')
       .replace(/\s+/g, ' ')

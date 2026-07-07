@@ -81,10 +81,12 @@ async function selectBestDoc(urls: string[], kind: ExecKind): Promise<ExecDoc> {
 }
 
 // A period only ships if the figures are internally plausible: real year,
-// positive gastos+ingresos totals, and both execution ratios in (0, 110].
-// This drops the OLD PDF layouts the parser can't fully read (empty/implausible
-// figures) so we never publish untrustworthy execution numbers on a public
-// accountability page.
+// positive gastos+ingresos totals, both execution ratios in (0, 110], AND both
+// sides parsed a per-capítulo breakdown. The chapter-count guard drops periods
+// where one side's totals parsed but its breakdown didn't (the old 2023/2024/
+// 2026 layouts, where ingresos ships 0.1% with empty chapters) — honesty over
+// coverage; those layouts are a tracked Wave-1.1 follow-up. This keeps us from
+// publishing untrustworthy execution numbers on a public accountability page.
 function isPlausiblePeriod(p: BudgetExecutionPeriod): boolean {
   return (
     p.year > 0 &&
@@ -93,7 +95,9 @@ function isPlausiblePeriod(p: BudgetExecutionPeriod): boolean {
     p.ejecucionPct.gastos > 0 &&
     p.ejecucionPct.gastos <= 110 &&
     p.ejecucionPct.ingresos > 0 &&
-    p.ejecucionPct.ingresos <= 110
+    p.ejecucionPct.ingresos <= 110 &&
+    p.gastos.chapters.length > 0 &&
+    p.ingresos.chapters.length > 0
   )
 }
 

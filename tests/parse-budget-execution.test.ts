@@ -72,6 +72,12 @@ describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
     expect(c1.actual).toBe(17963497.13)
     expect(c1.ejecutado).toBe(12730686.61)
   })
+
+  it('dedups repeated Total Capítulo lines (unique capítulos)', () => {
+    const d = parseBudgetExecutionPdf(fx('budget-execution-ingresos_2t2025.txt'))
+    const caps = d.chapters.map((c) => c.capitulo)
+    expect(new Set(caps).size).toBe(caps.length) // no duplicates
+  })
 })
 
 describe('mergeExecutionPeriod', () => {
