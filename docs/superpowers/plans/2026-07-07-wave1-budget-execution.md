@@ -109,11 +109,11 @@ describe('parseBudgetExecutionPdf — gastos 2T2025', () => {
     expect(doc.year).toBe(2025)
   })
 
-  it('extracts the grand total (inicial · modificaciones · actual · ejecutado)', () => {
+  it('extracts the grand total (ejecutado = Obligaciones Reconocidas Netas, col 5)', () => {
     expect(doc.total.inicial).toBe(37599838.15)
     expect(doc.total.modificaciones).toBe(24523314.93)
     expect(doc.total.actual).toBe(62123153.08)
-    expect(doc.total.ejecutado).toBe(31560210.99) // Obligaciones Reconocidas Netas
+    expect(doc.total.ejecutado).toBe(18909465.12) // ORN — matches the listing's 30,44% (18.9M/62.1M)
   })
 
   it('extracts every chapter total incl. the wrapped Capítulo 2', () => {
@@ -123,11 +123,11 @@ describe('parseBudgetExecutionPdf — gastos 2T2025', () => {
     expect(c1.label).toBe('GASTOS DE PERSONAL')
     expect(c1.inicial).toBe(19516194.19)
     expect(c1.actual).toBe(20882613.97)
-    expect(c1.ejecutado).toBe(18272857.56)
-    // Capítulo 6 = inversiones reales: budgeted €22.06M, executed €1.40M (the accountability signal)
+    expect(c1.ejecutado).toBe(9050222.8) // ORN — matches cap.1's 43,34%
+    // Capítulo 6 = inversiones reales: budgeted €22.06M, executed €1.03M = 4.7% (the accountability signal)
     const c6 = doc.chapters.find((c) => c.capitulo === 6)!
     expect(c6.actual).toBe(22063735.33)
-    expect(c6.ejecutado).toBe(1400328.92)
+    expect(c6.ejecutado).toBe(1034230.67)
     // wrapped chapter still captured with a non-empty label + real amounts
     const c2 = doc.chapters.find((c) => c.capitulo === 2)!
     expect(c2.label.length).toBeGreaterThan(5)
@@ -151,10 +151,10 @@ Create `src/scraper/budget-execution.ts`:
  * "Estado de ejecución de Gastos/Ingresos" PDFs, pdf-parsed to text upstream).
  * No I/O. The listing ends each chapter with a `Total Capítulo N <LABEL>.<run>`
  * summary line and a `Total Gastos|Ingresos <run>` grand total; each `<run>` is
- * a concatenation of ES-formatted amounts (inicial · modificaciones · actual ·
- * ADO · O(bligaciones reconocidas) · … · %s). We keep inicial/modificaciones/
- * actual and `ejecutado` = Obligaciones Reconocidas Netas (the standard
- * "executed" metric = amount run index 4).
+ * a concatenation of ES-formatted amounts whose COLUMN ORDER DIFFERS between
+ * the two listings (see COLS below). We keep inicial/modificaciones/actual and
+ * `ejecutado` = the executed metric (gastos: Obligaciones Reconocidas Netas;
+ * ingresos: Derechos Reconocidos) — validated against each listing's trailing %.
  */
 export type ExecKind = 'gastos' | 'ingresos'
 
@@ -179,6 +179,8 @@ export function parseSpanishAmount(s: string): number {
   return Number(s.replace(/\./g, '').replace(',', '.'))
 }
 
+const round2 = (n: number) => Math.round(n * 100) / 100
+
 // ES amounts, EXCLUDING trailing-% figures (percentages share the `,DD` shape).
 const AMT = /-?\d{1,3}(?:\.\d{3})*,\d{2}(?!%)/g
 
@@ -186,43 +188,53 @@ function firstAmounts(run: string, n: number): number[] {
   return (run.match(AMT) || []).slice(0, n).map(parseSpanishAmount)
 }
 
+// Column index of each metric within a summary line's amount run — the two
+// listings have DIFFERENT layouts (confirmed against the fixtures + verified by
+// the trailing execution %):
+//   gastos   header: Inicial · Modificación · Actual · A · D · O(blig. recon.) · P · …
+//            → ejecutado = Obligaciones Reconocidas Netas = index 5
+//   ingresos header: Inicial · Actual · Compromisos · DR(derechos recon.) · … (no Modificación col)
+//            → ejecutado = Derechos Reconocidos = index 3; actual = index 1
+const COLS: Record<ExecKind, { modificaciones: number | null; actual: number; ejecutado: number }> = {
+  gastos: { modificaciones: 1, actual: 2, ejecutado: 5 },
+  ingresos: { modificaciones: null, actual: 1, ejecutado: 3 },
+}
+
+function amountsToLine(a: number[], kind: ExecKind): Omit<ExecLine, 'capitulo' | 'label'> {
+  const c = COLS[kind]
+  const inicial = a[0] ?? 0
+  const actual = a[c.actual] ?? 0
+  const ejecutado = a[c.ejecutado] ?? 0
+  const modificaciones = c.modificaciones != null ? (a[c.modificaciones] ?? 0) : round2(actual - inicial)
+  return { inicial, modificaciones, actual, ejecutado }
+}
+
 export function parseBudgetExecutionPdf(text: string): ExecDoc {
-  const kind: ExecKind = /ejecuci[oó]n de Ingresos/i.test(text) ? 'ingresos' : 'gastos'
+  const kind: ExecKind = /Estado de ejecuci[oó]n de Ingresos/i.test(text) ? 'ingresos' : 'gastos'
   const year = Number((text.match(/Periodo:\s*(\d{4})/) || [])[1]) || 0
   const fechaListado = (text.match(/Fecha de listado[^:]*:\s*([\d/]+)/) || [])[1] || null
 
   const chapters: ExecLine[] = []
-  // Marker → label = chars up to the first amount digit (handles the wrapped
-  // Capítulo 2 whose label spills across a newline). Then read the amount run
-  // that immediately follows (bounded window; firstAmounts caps at 9 so the
+  // Marker → label = chars up to the first amount digit (handles both the
+  // wrapped gastos Capítulo 2 AND ingresos, whose amounts sit on the NEXT line).
+  // Then read the amount run in a bounded window (firstAmounts caps at 9 so the
   // next partida row can't bleed in).
   const markerRe = /Total Cap[ií]tulo\s+(\d+)([\s\S]{0,80}?)(?=-?\d{1,3}(?:\.\d{3})*,\d{2})/g
   let m: RegExpExecArray | null
   while ((m = markerRe.exec(text))) {
     const capitulo = Number(m[1])
     const label = m[2].replace(/[.\s]+$/, '').replace(/\s+/g, ' ').trim()
-    const run = text.slice(markerRe.lastIndex, markerRe.lastIndex + 160)
-    const a = firstAmounts(run, 9)
-    chapters.push({
-      capitulo,
-      label,
-      inicial: a[0],
-      modificaciones: a[1],
-      actual: a[2],
-      ejecutado: a[4],
-    })
+    const a = firstAmounts(text.slice(markerRe.lastIndex, markerRe.lastIndex + 200), 9)
+    chapters.push({ capitulo, label, ...amountsToLine(a, kind) })
   }
 
-  const totLine = (text.match(new RegExp(`Total ${kind === 'gastos' ? 'Gastos' : 'Ingresos'}([^\\n]+)`)) || [])[1] || ''
-  const t = firstAmounts(totLine, 9)
+  // Grand total: amounts may share the "Total Gastos" line OR fall on the next
+  // line ("Total Ingresos"). Window from the LAST marker occurrence handles both.
+  const totMarker = kind === 'gastos' ? 'Total Gastos' : 'Total Ingresos'
+  const ti = text.lastIndexOf(totMarker)
+  const totAmounts = ti >= 0 ? firstAmounts(text.slice(ti + totMarker.length, ti + totMarker.length + 220), 9) : []
 
-  return {
-    kind,
-    year,
-    fechaListado,
-    chapters,
-    total: { inicial: t[0], modificaciones: t[1], actual: t[2], ejecutado: t[4] },
-  }
+  return { kind, year, fechaListado, chapters, total: amountsToLine(totAmounts, kind) }
 }
 ```
 
@@ -262,15 +274,21 @@ describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
     expect(doc.year).toBe(2025)
   })
 
-  it('extracts a positive grand total with plausible execution', () => {
-    expect(doc.total.actual).toBeGreaterThan(0)
-    expect(doc.total.ejecutado).toBeGreaterThan(0)
-    expect(doc.total.ejecutado).toBeLessThanOrEqual(doc.total.actual * 1.2)
+  it('uses the ingresos column layout: actual = col 1, ejecutado (DR) = col 3', () => {
+    // Ingresos has no Modificación column; actual is the previsión definitiva.
+    expect(doc.total.inicial).toBe(39034883.74)
+    expect(doc.total.actual).toBe(59611751.19)
+    expect(doc.total.ejecutado).toBe(36814321.64) // Derechos Reconocidos ≈ 61.8% ejecución
+    expect(doc.total.modificaciones).toBe(20576867.45) // derived: actual − inicial
   })
 
-  it('extracts revenue chapters', () => {
+  it('extracts revenue chapters incl. Cap 1 Impuestos directos', () => {
     expect(doc.chapters.length).toBeGreaterThan(2)
-    for (const c of doc.chapters) expect(c.actual).toBeGreaterThanOrEqual(0)
+    const c1 = doc.chapters.find((c) => c.capitulo === 1)!
+    expect(c1.label).toBe('Impuestos directos')
+    expect(c1.inicial).toBe(17963497.13)
+    expect(c1.actual).toBe(17963497.13)
+    expect(c1.ejecutado).toBe(12730686.61)
   })
 })
 ```
@@ -310,7 +328,7 @@ import { mergeExecutionPeriod, pct } from '../src/scraper/budget-execution'
 
 describe('mergeExecutionPeriod', () => {
   it('pct is executed/actual as a 0–100 percentage, safe on zero', () => {
-    expect(pct(31560210.99, 62123153.08)).toBe(50.8)
+    expect(pct(18909465.12, 62123153.08)).toBe(30.4)
     expect(pct(5, 0)).toBe(0)
   })
 
@@ -321,7 +339,8 @@ describe('mergeExecutionPeriod', () => {
     expect(p.year).toBe(2025)
     expect(p.trimestre).toBe(2)
     expect(p.gastos.total.actual).toBe(62123153.08)
-    expect(p.ejecucionPct.gastos).toBe(50.8)
+    expect(p.ejecucionPct.gastos).toBe(30.4)
+    expect(p.ejecucionPct.ingresos).toBe(61.8)
     expect(p.ingresos.chapters.length).toBeGreaterThan(0)
   })
 })
@@ -800,4 +819,4 @@ git commit -m "chore(budget-execution): add to scrape-all + document"
 
 - **Spec coverage:** the spec's Wave-1 components — pure parser (T2-4), fetcher (T5), CLI+JSON (T6), hook (T7), `/presupuesto` section + e2e/a11y (T8), `scrape-all.sh` (T9), feasibility spike (T1). The one spec item deliberately **not** here — wiring `budget-execution.json` into `claim-verifier.ts` + the $0 verify re-run + the metered `sin-datos` second-pass — is called out in Global Constraints as **Wave 1b** (separate plan) because it modifies a libel-material pipeline. Flag this scoping to the user.
 - **Placeholder scan:** none — every euro value in the tests is real (read from the downloaded PDF); the two "adjust the regex/filter if the fixture/markup differs" notes are TDD fix-instructions with a concrete target, not deferred work.
-- **Type consistency:** `ExecDoc`/`ExecLine`/`BudgetExecutionPeriod`/`parseBudgetExecutionPdf`/`mergeExecutionPeriod`/`pct`/`fetchPdfText`/`fetchExecutionIndex`/`EXEC_INDEX_URL` are used identically across tasks; `ejecutado` = amount-run index 4 throughout; `ejecucionPct` carried on the period consumed unchanged by the hook + UI.
+- **Type consistency:** `ExecDoc`/`ExecLine`/`BudgetExecutionPeriod`/`parseBudgetExecutionPdf`/`mergeExecutionPeriod`/`pct`/`fetchPdfText`/`fetchExecutionIndex`/`EXEC_INDEX_URL` are used identically across tasks; `ejecutado` = executed metric via the kind-aware `COLS` map (gastos col 5 ORN / ingresos col 3 DR); `ejecucionPct` carried on the period consumed unchanged by the hook + UI.
