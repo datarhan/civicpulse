@@ -133,6 +133,25 @@ narrow the schema — decide at the spike, don't assume.
 | `/datos` | FOI stats, financial indicators | data only |
 | DANA reportaje | NOT the actas (moot); possibly obras/urbanismo context | curator refresh only if a cited number changes |
 
+## Wave 2 feasibility (probed 2026-07-07 — SPIKE NEEDED before speccing)
+
+The **Tablón de edictos** is NOT a static server-rendered table. It is the
+authenticated Sedipualba **PortalCiudadania** portal shell
+(`oficinavirtual.ribarroja.es/PortalCiudadania/tablonEdictos.do` → 200 / 161 KB,
+but the body is login/auth/wizard/localizador forms; the edicts render in a JS
+grid with no data endpoint exposed in the page HTML, no edict PDF links). A
+dedicated feasibility spike is required first, trying in order:
+  1. **Republished PDFs on the main CMS** — the section-audit noted edicts also
+     publish via `ribarroja.es/contenidos.downloadatt.action?id=<id>`; look for a
+     public HTML listing there (cleanest if it exists).
+  2. **Reverse-engineer the grid AJAX endpoint** — mirror the empleo scraper
+     pattern (`scrape-empleo.ts`: GET for CSRF token → POST `…?acc=tableData`).
+  3. **Headless render** (Playwright) as a last resort — heavier, but the repo
+     has `fetchUrlHeadless` in journalist-tools with a hostname allowlist.
+Only after the spike identifies a stable source should Wave 2 be specced. If
+none pans out cleanly, reorder: do **Wave 3** (procesos selectivos + registro
+de asociaciones — plain HTML+PDF, low feasibility risk) before edictos.
+
 ## Wave 1b — deferred (2026-07-07 decision)
 
 Wiring `budget-execution.json` into `claim-verifier.ts` is **deferred until
