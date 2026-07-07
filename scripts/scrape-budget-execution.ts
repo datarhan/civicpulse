@@ -32,13 +32,46 @@ async function pdfUrlsFor(pageUrl: string): Promise<{ gastos?: string; ingresos?
     href: m[1].startsWith('http') ? m[1] : `https://www.ribarroja.es${m[1]}`,
     text: m[2],
   }))
-  const pick = (rx: RegExp) => links.find((l) => rx.test(l.text) || rx.test(l.href))?.href
+  const isResumen = (l: { text: string; href: string }) =>
+    /resumen/i.test(l.text) || /resumen/i.test(l.href)
+  const isDetalle = (l: { text: string; href: string }) =>
+    /detalle|corriente/i.test(l.text) || /detalle|corriente/i.test(l.href)
+  // When a page carries several gastos/ingresos PDFs, prefer a "resumen" sheet
+  // OVER a "detalle"/"corriente" one: the detalle variants lack the Total
+  // Capítulo/Total Gastos summary markers the parser keys on. But only escape
+  // to resumen when the default (first-match) pick is itself a detalle/corriente
+  // sheet — a plain summary first-match (e.g. 2025's "GASTOS 1T") already parses
+  // cleanly, and a page may list several trimestres' PDFs at once, so blindly
+  // grabbing an unrelated later-trimestre "resumen" would only lose good data.
+  const pick = (rx: RegExp) => {
+    const matches = links.filter((l) => rx.test(l.text) || rx.test(l.href))
+    if (matches.length === 0) return undefined
+    if (isDetalle(matches[0])) return (matches.find(isResumen) ?? matches[0]).href
+    return matches[0].href
+  }
   return { gastos: pick(/gasto/i), ingresos: pick(/ingreso/i) }
 }
 
 function trimestreOf(label: string): number | null {
   const m = label.match(/(\d)\s*[ºo]?\s*trimestre|trimestre\s*(\d)/i)
   return m ? Number(m[1] || m[2]) : null
+}
+
+// A period only ships if the figures are internally plausible: real year,
+// positive gastos+ingresos totals, and both execution ratios in (0, 110].
+// This drops the OLD PDF layouts the parser can't fully read (empty/implausible
+// figures) so we never publish untrustworthy execution numbers on a public
+// accountability page.
+function isPlausiblePeriod(p: BudgetExecutionPeriod): boolean {
+  return (
+    p.year > 0 &&
+    p.gastos.total.actual > 0 &&
+    p.ingresos.total.actual > 0 &&
+    p.ejecucionPct.gastos > 0 &&
+    p.ejecucionPct.gastos <= 110 &&
+    p.ejecucionPct.ingresos > 0 &&
+    p.ejecucionPct.ingresos <= 110
+  )
 }
 
 async function main() {
@@ -87,19 +120,32 @@ async function main() {
       await sleep(400)
     }
   }
-  periods.sort((a, b) => a.year - b.year || (a.trimestre ?? 0) - (b.trimestre ?? 0))
-  const latest = periods[periods.length - 1] ?? null
+  // Validation gate: keep only plausible periods; log + drop the rest.
+  const survivors = periods.filter((p) => {
+    if (isPlausiblePeriod(p)) return true
+    console.warn(
+      `drop (implausible): year ${p.year} T${p.trimestre ?? '-'} · gastos ${p.ejecucionPct.gastos}% (actual ${p.gastos.total.actual}) · ingresos ${p.ejecucionPct.ingresos}% (actual ${p.ingresos.total.actual})`,
+    )
+    return false
+  })
+  survivors.sort((a, b) => a.year - b.year || (a.trimestre ?? 0) - (b.trimestre ?? 0))
+  const latest = survivors[survivors.length - 1] ?? null
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(
     OUT,
     JSON.stringify(
-      { generatedAt: new Date().toISOString(), source: EXEC_INDEX_URL, periods, latest },
+      {
+        generatedAt: new Date().toISOString(),
+        source: EXEC_INDEX_URL,
+        periods: survivors,
+        latest,
+      },
       null,
       2,
     ),
   )
   console.log(
-    `wrote ${periods.length} periods · latest ${latest?.year} T${latest?.trimestre ?? '-'} · ejecución gastos ${latest?.ejecucionPct.gastos}%`,
+    `wrote ${survivors.length}/${periods.length} periods · latest ${latest?.year} T${latest?.trimestre ?? '-'} · ejecución gastos ${latest?.ejecucionPct.gastos ?? '-'}%`,
   )
 }
 
