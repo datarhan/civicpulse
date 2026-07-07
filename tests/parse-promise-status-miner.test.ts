@@ -101,4 +101,28 @@ describe('mineStatusChanges', () => {
     expect(out.candidates).toHaveLength(0)
     expect(out.stats.rejected.belowConfidence).toBe(1)
   })
+
+  it('forces the mined promise id even when the LLM echoes a wrong one', async () => {
+    // Reproducer for the 2026-07-07 FATAL: the LLM echoed the promise's topic
+    // ("infraestructura_transporte") instead of its id, and the trusted echo
+    // crashed applyStatusChange downstream. The miner runs in a single-promise
+    // context — the id is never the LLM's to choose.
+    const stub = async () => ({
+      changes: [
+        {
+          promiseId: 'infraestructura_transporte',
+          proposedStatus: 'en-progreso',
+          candidateIndex: 0,
+          corpus: 'tender',
+          quote: 'reforma pabellón adjudicado',
+          fieldCite: 'tender[0].status=awarded',
+          confidence: 0.85,
+          reasoning: 'adjudicada la obra prometida',
+        },
+      ],
+    })
+    const out = await mineStatusChanges(input, notFrozen, stub as never)
+    expect(out.candidates).toHaveLength(1)
+    expect(out.candidates[0].promiseId).toBe('psoe-obra')
+  })
 })

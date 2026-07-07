@@ -434,22 +434,42 @@ async function main() {
   writeFileSync(QUEUE, mergedQueueJson)
 
   // Apply auto-publish drafts to promises.json (single validated write).
+  // Per-draft try/catch: one bad draft (e.g. a stale transition, or the
+  // 2026-07-07 hallucinated-promiseId crash) must skip THAT draft, not abort
+  // the run and lose the valid publishes alongside it.
+  let applied = 0
   if (autoCount > 0) {
     let next: PromisesSnapshot = snap
     for (const d of newAuto) {
-      next = insertPromise(
-        next,
-        newPromiseFromDraft(d, nowIso, { confidence: d.confidence, at: nowIso }),
-      )
+      try {
+        next = insertPromise(
+          next,
+          newPromiseFromDraft(d, nowIso, { confidence: d.confidence, at: nowIso }),
+        )
+        applied += 1
+      } catch (err) {
+        process.stderr.write(
+          `[auto-curate-promises] warn: skipping new-promise draft ${d.draftId}: ${err instanceof Error ? err.message : String(err)}\n`,
+        )
+      }
     }
     for (const d of statusAuto) {
-      next = applyStatusChange(next, d, nowIso, { confidence: d.confidence, at: nowIso })
+      try {
+        next = applyStatusChange(next, d, nowIso, { confidence: d.confidence, at: nowIso })
+        applied += 1
+      } catch (err) {
+        process.stderr.write(
+          `[auto-curate-promises] warn: skipping status-change draft ${d.draftId}: ${err instanceof Error ? err.message : String(err)}\n`,
+        )
+      }
     }
-    const serialized = JSON.stringify({ ...next, generatedAt: nowIso }, null, 2) + '\n'
-    validatePromisesSnapshot(serialized) // defence-in-depth
-    writeFileSync(PROMISES, serialized)
+    if (applied > 0) {
+      const serialized = JSON.stringify({ ...next, generatedAt: nowIso }, null, 2) + '\n'
+      validatePromisesSnapshot(serialized) // defence-in-depth
+      writeFileSync(PROMISES, serialized)
+    }
     process.stdout.write(
-      `[auto-curate-promises] auto-published ${autoCount} change(s) to promises.json\n`,
+      `[auto-curate-promises] auto-published ${applied}/${autoCount} change(s) to promises.json\n`,
     )
   }
 
@@ -459,7 +479,7 @@ async function main() {
   const digest = [
     `# Promise auto-curator digest — ${nowIso} (phase=${opts.phase})`,
     ``,
-    `- auto-published: ${autoCount}`,
+    `- auto-published: ${applied}${applied < autoCount ? ` (of ${autoCount} attempted — see warns)` : ''}`,
     ...allAuto.map((d) => `  - ${draftLabel(d)} (conf ${d.confidence.toFixed(2)})`),
     `- queued for review: ${toQueue.length}`,
     ...toQueue.map(

@@ -27,8 +27,9 @@
 #   · One pleno failing (yt-dlp hiccup, quota) is logged + skipped; the
 #     batch continues. The extract checkpoint preserves completed plenos.
 #
-# Host-only: agy is an arm64 macOS CLI (can't containerize) and Whisper mlx
-# uses the Apple Neural Engine. macOS TCC: cron needs Full Disk Access on
+# Host-only: agy is an arm64 macOS CLI (can't containerize). (Whisper now
+# defaults to the OpenAI API; the mlx/ANE path remains as an env override.)
+# macOS TCC: cron needs Full Disk Access on
 # /usr/sbin/cron + node + git, and origin must be SSH — same gauntlet as the
 # quejas + promises crons (see project memory).
 #
@@ -39,17 +40,13 @@ set -euo pipefail
 
 MAX_PLENOS="${MAX_PLENOS:-2}"
 
-# Plenos that repeatedly abort transcription (e.g. a 5h+ session that trips the
-# Metal GPU command-buffer watchdog even at batch_size=1) are blocklisted so
-# they stop burning a MAX_PLENOS slot on every run without ever succeeding.
-# Space/comma-separated; override or clear via env. To transcribe one on demand
-# (OpenAI Whisper has no Metal watchdog), bypass the loop:
-#   WHISPER_ENGINE=openai bash scripts/transcribe-pleno.sh <id>
-#   c8kr44 · MLX Metal GPU timeout even at batch_size=1 on 2026-07-04/05/06 (3×).
-#   rmtyr  · same Metal-timeout signature at batch_size=1 on 2026-07-05 (1× so
-#            far — drop from the list if you suspect that was a transient fetch
-#            hiccup rather than a too-long session).
-TRANSCRIBE_BLOCKLIST="${TRANSCRIBE_BLOCKLIST:-c8kr44 rmtyr}"
+# Plenos that repeatedly abort transcription are blocklisted so they stop
+# burning a MAX_PLENOS slot on every run without ever succeeding.
+# Space/comma-separated; override via env. Default EMPTY since the engine
+# switch to OpenAI Whisper (2026-07-07): the old entries (c8kr44, rmtyr) were
+# MLX Metal-GPU-watchdog poison pills, and the OpenAI path has no Metal
+# watchdog (long audio is chunked under the 25 MB upload cap instead).
+TRANSCRIBE_BLOCKLIST="${TRANSCRIBE_BLOCKLIST:-}"
 
 cd "$(dirname "$0")/.."
 REPO_DIR="$(pwd -P)"
@@ -73,7 +70,11 @@ trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT
 if [ -f "$REPO_DIR/.env" ]; then set -a; . "$REPO_DIR/.env"; set +a; fi
 export LLM_BACKEND=agy
 export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash}"
-export WHISPER_ENGINE="${WHISPER_ENGINE:-mlx}"
+# openai (API, metered ~$0.006/min ≈ $0.72 per 2h pleno) replaced mlx as the
+# default on 2026-07-07: MLX large-v3 pinned the local GPU for ~30 min/run and
+# tripped the Metal watchdog on long sessions. Requires OPENAI_API_KEY (from
+# .env above). Override via env for a local run: WHISPER_ENGINE=mlx.
+export WHISPER_ENGINE="${WHISPER_ENGINE:-openai}"
 
 log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/$AGY_MODEL · whisper=$WHISPER_ENGINE · blocklist=[${TRANSCRIBE_BLOCKLIST:-none}]"
 
@@ -153,11 +154,12 @@ fi
 # ---- promote (libel-safe gates; no-op under LOREG freeze) -------------
 # The CURATOR stage must never silently go metered (project policy: never
 # openai/anthropic for auto-curate). Strip the metered keys + disable the
-# gemini CLI for THIS call so the fallback chain is agy → ollama ($0) only.
+# gemini CLI for THIS call so the fallback chain is agy → claude-code ($0)
+# only (ollama is no longer auto-chained anywhere — user directive 2026-07-07).
 # If agy is throttled and no $0 backend answers, findings are deferred to the
 # next run — a skipped promotion beats a metered one. (Claim extraction above
 # keeps its openai fallback: that's the batch stage, where metered is allowed.)
-log "auto-curating findings (max 5 · agy→ollama only, metered fallback off)…"
+log "auto-curating findings (max 5 · agy→claude-code only, metered fallback off)…"
 env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
   npm run auto-curate -- --max 5 \
   || log "warn: auto-curate non-zero (agy throttled + no \$0 fallback) — findings deferred"

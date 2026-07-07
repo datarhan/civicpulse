@@ -27,9 +27,10 @@
 # claude-code is a SEPARATE quota, healthy, sanctioned for the auto-curator,
 # and the promise workload is ~10 calls/day so it won't dent the shared Max
 # window. The `env -u …` guard strips the openai/anthropic keys + disables the
-# gemini CLI, so the fallback chain can only reach a $0 backend (claude-code →
-# ollama); if every $0 backend is down the run DEFERS rather than auto-
-# publishing on a metered API. Override with LLM_BACKEND=… if needed.
+# gemini CLI, so the run can only reach claude-code (ollama is no longer
+# auto-chained anywhere — user directive 2026-07-07); if it's down the run
+# DEFERS rather than auto-publishing on a metered API. Override with
+# LLM_BACKEND=… if needed.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -58,9 +59,9 @@ export AGY_MODEL="${AGY_MODEL:-gemini-2.5-pro}"  # only read when LLM_BACKEND=ag
 # documentada new promises publish to promises.json; parcial/cumplida/
 # no-ejecutada stay one-click in the review queue; inviable is human-only.
 echo "[$(date '+%F %T')] invoking auto-curate-promises (--max 10 --phase both · $LLM_BACKEND · \$0-guarded)"
-# HARD $0 guard: strip metered keys + disable the gemini CLI so the client's
-# fallback chain can only reach claude-code → ollama. A non-zero exit (every
-# $0 backend down) is non-fatal — we defer to the next run rather than commit
+# HARD $0 guard: strip metered keys + disable the gemini CLI so the client
+# can only reach claude-code (no ollama auto-chain). A non-zero exit (the $0
+# backend down) is non-fatal — we defer to the next run rather than commit
 # a metered auto-publish. A skipped promotion beats a metered one.
 if ! env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
      npm run auto-curate-promises -- --max 10 --phase both; then

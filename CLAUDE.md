@@ -123,7 +123,10 @@ npm run promote-place -- <contractId> --reject   # drop an existing override
 # (public/data/pleno-transcripts/*.txt) produced by the transcribe:batch
 # workflow, plus an LLM backend. Auto-selected in this order when
 # LLM_BACKEND is unset: OPENAI_API_KEY → openai (metered, recommended for
-# batch), ANTHROPIC_API_KEY → anthropic (metered), else ollama (local).
+# batch), ANTHROPIC_API_KEY → anthropic (metered), gemini CLI → gemini,
+# agy CLI → agy, claude CLI → claude-code, else ollama (local). ollama is
+# NEVER auto-chained as a runtime fallback (2026-07-07 — local inference
+# pins the machine); reach it only via explicit LLM_BACKEND=ollama.
 # LLM_BACKEND=claude-code is opt-in only — it burns the Anthropic Max
 # subscription quota shared with interactive Claude Code sessions, and one
 # full-pleno extract (~200 calls) can exhaust a 5-hour window.
@@ -141,9 +144,13 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           ~5-10× realtime, $0, local. Better WER on technical
 #                           terms than OpenAI whisper-1 in our benchmark
 #                           (correctly transcribes "UNE 93200:2008" where
-#                           OpenAI mangles it to "norma 1 en 93.200"). Default
-#                           choice for nightly batches.
+#                           OpenAI mangles it to "norma 1 en 93.200"). Was the
+#                           nightly default until 2026-07-07 — retired from
+#                           cron because it pins the local GPU (~30 min/run)
+#                           and trips the Metal watchdog on 5h+ sessions.
 #   WHISPER_ENGINE=openai · OpenAI API, ~$0.006/min (~$0.72 per 2h pleno),
+#                           the hallazgos-pipeline cron default since
+#                           2026-07-07 (zero local GPU/CPU),
 #                           done in 30-60s. Requires OPENAI_API_KEY in .env
 #                           or shell env. Audio re-encoded to 16kbps opus so a
 #                           3h pleno fits under the 25 MB upload cap.

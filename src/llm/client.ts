@@ -11,11 +11,13 @@
  *
  * Default auto-select + fallback chain (when LLM_BACKEND is unset or the
  * primary exhausts retries):
- *   openai → anthropic → gemini → ollama
- * Each step is skipped when its key/binary isn't available. claude-code and
- * agy are opt-in only — they must be set explicitly via
- * LLM_BACKEND=claude-code / LLM_BACKEND=agy (never auto-selected, never in
- * the fallback chain).
+ *   openai → anthropic → gemini   (auto-select also tries agy → claude-code
+ *                                  before conceding to ollama)
+ * Each step is skipped when its key/binary isn't available. ollama is NEVER
+ * part of the runtime fallback chain (user directive 2026-07-07 — local
+ * inference pins the machine); it runs only as an explicit primary
+ * (LLM_BACKEND=ollama) or when no other backend is installed at all.
+ * claude-code is auto-chained only as agy's first fallback.
  *
  * The public entrypoint `callLLM<T>` does:
  *   1. Compute a content-addressed cache key (model + promptVersion + schema + input)
@@ -159,10 +161,15 @@ export function loadConfigFromEnv(): ClientConfig {
   //   1. openai       — if OPENAI_API_KEY is set (metered, fastest)
   //   2. anthropic    — if ANTHROPIC_API_KEY is set (metered)
   //   3. gemini       — if gemini CLI is installed (Pro subscription, $0)
-  //   4. ollama       — local fallback, always
-  // Explicitly NOT auto-selecting `claude-code`. Max-plan quota is higher-
-  // tier and a runaway extract could lock out interactive Claude sessions;
-  // opt-in via LLM_BACKEND=claude-code only.
+  //   4. agy          — if the agy CLI is installed ($0, Google subscription)
+  //   5. claude-code  — if the claude CLI is installed ($0, Max plan)
+  //   6. ollama       — local, last resort only (user directive 2026-07-07:
+  //                     local qwen inference must never run unless nothing
+  //                     else is even installed, or LLM_BACKEND=ollama is set)
+  const binOnPath = (bin: string): boolean =>
+    bin.includes('/')
+      ? existsSync(bin)
+      : (process.env.PATH || '').split(':').some((d) => d && existsSync(`${d}/${bin}`))
   const envBackend = process.env.LLM_BACKEND as Backend | undefined
   const geminiBinPath =
     process.env.GEMINI_BIN ||
@@ -176,6 +183,10 @@ export function loadConfigFromEnv(): ClientConfig {
     backend = 'anthropic'
   } else if (existsSync(geminiBinPath)) {
     backend = 'gemini'
+  } else if (binOnPath(process.env.AGY_BIN || 'agy')) {
+    backend = 'agy'
+  } else if (binOnPath(process.env.CLAUDE_CODE_BIN || 'claude')) {
+    backend = 'claude-code'
   } else {
     backend = 'ollama'
   }
@@ -1052,9 +1063,12 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   // config says; fallbacks are the other configured backends in priority
   // order:
   //   openai (metered) → anthropic (metered) → gemini (Pro subscription)
-  //   → ollama (local)
   // gemini is auto-used as a fallback when its CLI binary exists on disk —
   // assumed to mean the user has opted in by installing it.
+  //
+  // ollama is NEVER auto-chained (user directive 2026-07-07): local qwen
+  // inference pinned the machine for an hour when both $0 CLIs failed. It
+  // remains reachable only as an explicit primary (LLM_BACKEND=ollama).
   //
   // claude-code is auto-chained ONLY as agy's FIRST fallback ("if agy hits its
   // Google quota, use the claude CLI" — user directive 2026-07-06): agy is $0
@@ -1071,8 +1085,8 @@ export async function callLLM<TSchema extends ZodTypeAny>(
   const attemptedBackends: Backend[] = [config.backend]
   const fallbackOrder: Backend[] =
     config.backend === 'agy'
-      ? ['claude-code', 'openai', 'anthropic', 'gemini', 'ollama']
-      : ['openai', 'anthropic', 'gemini', 'ollama']
+      ? ['claude-code', 'openai', 'anthropic', 'gemini']
+      : ['openai', 'anthropic', 'gemini']
   for (const b of fallbackOrder) {
     if (b === config.backend) continue
     if (b === 'claude-code' && !commandExists(config.claudeCodeBin)) continue

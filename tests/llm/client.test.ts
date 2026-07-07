@@ -364,11 +364,13 @@ describe('LLM client · resilience', () => {
 
     expect(result).toBeNull()
     // Permanent errors should NOT trigger retry backoff. Stays well under 1s
-    // even with openai→ollama fallback × 3 attempts each.
+    // across the attempted backends × 3 attempts each.
     expect(elapsed).toBeLessThan(1000)
     const urls = fetchSpy.mock.calls.map((c) => String(c[0]))
     expect(urls.some((u) => u.includes('openai.com'))).toBe(true)
-    expect(urls.some((u) => u.includes('localhost:11434'))).toBe(true)
+    // ollama is no longer auto-chained (2026-07-07): a permanent openai
+    // failure must NOT leak to local inference.
+    expect(urls.some((u) => u.includes('localhost:11434'))).toBe(false)
   })
 
   it('circuit breaker trips after sustained failures and short-circuits subsequent calls', async () => {

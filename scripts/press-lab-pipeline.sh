@@ -19,9 +19,9 @@
 #   single-tool surface (see src/llm/client.ts::callClaudeCode) — without it
 #   every call hangs on the user's global MCP servers. Sequential
 #   (LLM_CONCURRENCY=1) to stay under the Max burst-rate limit; ~1 min/item.
-#   Override e.g. CLAUDE_CODE_MODEL=haiku for lighter quota, or
-#   LLM_BACKEND=ollama OLLAMA_MODEL=qwen2.5:14b-instruct for a fully-local $0
-#   fallback.
+#   Override e.g. CLAUDE_CODE_MODEL=haiku for lighter quota. (Local ollama is
+#   deliberately not wired here — user directive 2026-07-07: no local models
+#   in the cron pipelines.)
 #
 #   Division of labour (so no two writers fight over one file):
 #     · press.json .................. GitHub nightly (scrape:press, no LLM)
@@ -73,10 +73,8 @@ trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT
 if [ -f "$REPO_DIR/.env" ]; then set -a; . "$REPO_DIR/.env"; set +a; fi
 # claude-code = the `claude` CLI on the Max plan ($0, no API key). LLM_CONCURRENCY=1
 # is deliberate: parallel `claude -p` invocations trip the Max burst-rate limit.
-# OLLAMA_MODEL is only consulted if you override LLM_BACKEND=ollama.
 export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
 export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
-export OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:14b-instruct}"
 export LLM_CONCURRENCY="${LLM_CONCURRENCY:-1}"
 
 # Fail fast + loud if the Max login lapsed — else every extract call returns

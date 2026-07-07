@@ -137,8 +137,16 @@ export async function mineStatusChanges(
     const cand = flat[ch.candidateIndex]
     const kind = CORPUS_TO_KIND[cand.corpus] ?? 'otro'
     const url = kind === 'budget' ? (opts.budgetSourceUrl ?? cand.url) : cand.url
+    // The mining context is single-promise: the id is ours, never the LLM's.
+    // Trusting the echo let a mangled id ("infraestructura_transporte", the
+    // topic) reach applyStatusChange and abort the whole 2026-07-07 run.
+    if (ch.promiseId !== input.promise.id) {
+      process.stderr.write(
+        `[status-miner] LLM echoed promiseId "${ch.promiseId}" for promise "${input.promise.id}" — forcing the real id\n`,
+      )
+    }
     out.push({
-      promiseId: ch.promiseId,
+      promiseId: input.promise.id,
       proposedStatus: ch.proposedStatus,
       corpus: cand.corpus,
       confidence: ch.confidence,
