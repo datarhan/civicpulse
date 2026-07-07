@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-07T08:00:48.419Z",
+  "generatedAt": "2026-07-07T08:58:06.764Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -737,6 +737,63 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
           "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=5yWcojyo4Lc",
+          "snippet": "Vídeo del pleno 2026-05-11 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-07",
+      "response": null
+    },
+    {
+      "id": "f-2026-05-11-acu-1e1bfa",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "title": "Pleno 2026-05-11: Otro señala informes técnicos sin respuesta del equipo de gobierno",
+      "summary": "En el pleno del 11 de mayo de 2026, el grupo Otro denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "10yl550-096-acu-1e1bfa",
+        "10yl550-253-acu-39e059",
+        "10yl550-257-acu-666f3a"
+      ],
+      "quotes": [
+        {
+          "text": "Su ministro de Transportes, que es algo también fundamental para las emergencias, está ahora mismo sentado en el banquillo por todas las tropelías que no le voy a recordar para que no se les caiga la cara de vergüenza.",
+          "speakerGroup": "VOX",
+          "sourceClaimId": "10yl550-096-acu-1e1bfa"
+        },
+        {
+          "text": "es verdad que eso sí que se habla en comisiones informativas, pero creo que es importante decir públicamente que este informe habla de las necesidades del Departamento de Tesorería, que el año pasado hablaba de las mismas necesidades y que lo que se encuentra es que desde el equipo de gobierno no se están dando respuesta.",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-253-acu-39e059"
+        },
+        {
+          "text": "el informe técnico y la valoración que hace de este Plan no es positivo",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "10yl550-257-acu-666f3a"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8nJHtO7mD29LAIVZdUs8KA%3D%3D",
+          "snippet": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de RAVI OBRAS, TRANSPORTES Y EXCAVACIONES S.L.  con CIF B1250…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=00nKUKuSmc97h85%2Fpmmsfw%3D%3D",
+          "snippet": "Contrato de suministro por renting de vehículo tractor destinado al departamento de obras y servicios, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterio medioambien…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
+          "snippet": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnic…"
         },
         {
           "kind": "pleno-video",
@@ -1790,6 +1847,63 @@
           "kind": "tender",
           "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
           "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio."
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=2RV4hvVGmlA",
+          "snippet": "Vídeo del pleno 2026-01-19 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-07",
+      "response": null
+    },
+    {
+      "id": "f-2026-01-19-acu-d2b7bb",
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "title": "Pleno de 2026-01-19: PP niega correos, Otro cita un incumplimiento empresarial en enero",
+      "summary": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. El grupo Otro señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "19gax3o-157-acu-d2b7bb",
+        "19gax3o-173-acu-e3d549",
+        "19gax3o-154-acu-3fbc54"
+      ],
+      "quotes": [
+        {
+          "text": "no tengo ningún correo tuyo pero bueno, puede ser que los que he enviado cuando tenga el correo contestaré la verdad no lo he hecho",
+          "speakerGroup": "PP",
+          "sourceClaimId": "19gax3o-157-acu-d2b7bb"
+        },
+        {
+          "text": "como consecuencia de un incumplimiento de la empresa muy grave en enero",
+          "speakerGroup": "Otro",
+          "sourceClaimId": "19gax3o-173-acu-e3d549"
+        },
+        {
+          "text": "Esquerrón ya ha votado a favor habías dicho abstención, no?",
+          "speakerGroup": "PSOE",
+          "sourceClaimId": "19gax3o-154-acu-3fbc54"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=uEUWNLmxprh9Zh%2FyRJgM8w%3D%3D",
+          "snippet": "Inicio expediente y adjudicación directa del contrato menor del servicio de \"Migración e implantación del correo corporativo en la plataforma Microsoft 365 mediante la modalidad de licenciamiento por precio unitario, favor de FORMACIÓN I…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+          "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
+          "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto si…"
         },
         {
           "kind": "pleno-video",

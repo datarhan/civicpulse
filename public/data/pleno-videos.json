@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-07-07T07:30:23.002Z",
+  "generatedAt": "2026-07-07T08:34:09.491Z",
   "source": {
     "channelUrl": "https://www.youtube.com/@ajuntam_riba_roja_de_turia",
     "description": "Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json`."
   },
   "stats": {
     "totalVideosScanned": 121,
-    "plenoVideosMatched": 25,
+    "plenoVideosMatched": 24,
     "byKind": {
       "ordinario": 18,
       "extraordinario": 3,
       "urgente": 3,
-      "otro": 1
+      "otro": 0
     }
   },
   "items": [
@@ -84,13 +84,6 @@
       "plenoDate": "2026-01-07",
       "kind": "urgente",
       "url": "https://www.youtube.com/watch?v=oITDv_lh7rw"
-    },
-    {
-      "ytId": "AHxn3d-Kc6g",
-      "title": "Ple extrordinari i urgent 26 de desembre de 2025",
-      "plenoDate": "2025-12-26",
-      "kind": "otro",
-      "url": "https://www.youtube.com/watch?v=AHxn3d-Kc6g"
     },
     {
       "ytId": "OGM7-9SLePc",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:53:20.287Z",
+  "generatedAt": "2026-07-07T08:56:36.936Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -945,7 +945,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
-            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025) · Ayuntamiento de Riba-roja de Túria · DISTROMEL, S.A. · it · estado: awarded",
+            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025) · Ayuntamiento de Riba-roja de Túria · DISTROMEL S A · it · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -1095,8 +1095,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -1220,8 +1220,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -1496,8 +1496,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
             "similarity": 1
           }
         ],
@@ -1538,8 +1538,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -2253,8 +2253,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -2296,7 +2296,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER, S.L. · environment · estado: unknown",
+            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -3028,7 +3028,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · estado: unknown",
+            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · SOLUCIONES AVANZADAS EN INFORMATICA APLI · software · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -3209,8 +3209,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 3 : Enlace camino c/ Dolçaina – c/ Tabalet · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fmHzgB33HDSXQV0WE7lYPw%3D%3D",
+            "snippet": "Caminos Rurales (4 rurales) · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],

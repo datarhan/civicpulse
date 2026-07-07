@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:53:20.287Z",
+  "generatedAt": "2026-07-07T08:56:36.936Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -624,7 +624,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -2863,7 +2863,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 1
           }
         ],
@@ -5266,16 +5266,9 @@
       },
       "verification": {
         "claimId": "1tgd1h4-057-cit-992015",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=xW6EFaJPAKqiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato administrativo para el SERVICIO de SOCORRISMO en piscinas municipales, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social, contribuyendo al cumplimiento del ODS 8 relativo a proteger los derechos laborales y promover un entorno de trabajo seguro y sin riesgos, su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · GESTION Y EVENTOS LAZARO · culture · estado: unknown",
-            "similarity": 0.67
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -5285,7 +5278,7 @@
           "priorClaims"
         ]
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6894,7 +6887,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -7238,7 +7231,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -7315,7 +7308,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -8184,7 +8177,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -8259,7 +8252,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zKicSihCdZJ7h85%2Fpmmsfw%3D%3D",
-            "snippet": "contrato tramitación anticipada servicio .. mantenimiento . instalaciones de Alumbrado Público del Ayuntamiento de Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, SARA, varios criterios de adjudicación con criterios medioambientales, con condición de ejecución de carácter socio-laboral contribuyendo cumplimiento ODS 11 relativo a las ciudades y comunidades sostenibles · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA · maintenance · estado: unknown",
+            "snippet": "contrato tramitación anticipada servicio .. mantenimiento . instalaciones de Alumbrado Público del Ayuntamiento de Riba-roja de Túria, por procedimiento abierto, mejor relación calidad-precio, SARA, varios criterios de adjudicación con criterios medioambientales, con condición de ejecución de carácter socio-laboral contribuyendo cumplimiento ODS 11 relativo a las ciudades y comunidades sostenibles · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA, SLU · maintenance · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -8650,7 +8643,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ww0xu9SFVy2iEJrVRqloyA%3D%3D",
-            "snippet": "Contrato de servicio de desratización, desinsectación, desinfectación de la red pública de saneamiento municipal y dependencias municipales y el tratamiento de simúlidos en el término municipal de Riba-Roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · Compañía de Tratamientos Levante, s.l. · environment · estado: unknown",
+            "snippet": "Contrato de servicio de desratización, desinsectación, desinfectación de la red pública de saneamiento municipal y dependencias municipales y el tratamiento de simúlidos en el término municipal de Riba-Roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental · Ayuntamiento de Riba-roja de Túria · COMPAÑIA DE TRATAMIENTOS LEVANTE, S.L.U. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -14479,7 +14472,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER, S.L. · environment · estado: unknown",
+            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -16167,7 +16160,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RFCNb0rioz17h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato Menor de Base de Datos Jurídica Corporativa, de Recursos Humanos y Hacienda Local · Ayuntamiento de Riba-roja de Túria · ESPUBLICO SERVICIOS PARA LA ADMINISTRACIÓN S.A. · legal · estado: awarded",
+            "snippet": "Contrato Menor de Base de Datos Jurídica Corporativa, de Recursos Humanos y Hacienda Local · Ayuntamiento de Riba-roja de Túria · Espublico Servicios para la Administración, S.A. · legal · estado: awarded",
             "similarity": 1
           }
         ],
@@ -16208,7 +16201,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RFCNb0rioz17h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato Menor de Base de Datos Jurídica Corporativa, de Recursos Humanos y Hacienda Local · Ayuntamiento de Riba-roja de Túria · ESPUBLICO SERVICIOS PARA LA ADMINISTRACIÓN S.A. · legal · estado: awarded",
+            "snippet": "Contrato Menor de Base de Datos Jurídica Corporativa, de Recursos Humanos y Hacienda Local · Ayuntamiento de Riba-roja de Túria · Espublico Servicios para la Administración, S.A. · legal · estado: awarded",
             "similarity": 1
           }
         ],
@@ -16718,7 +16711,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -16759,7 +16752,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 1
           }
         ],
@@ -16800,7 +16793,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 1
           }
         ],
@@ -16841,7 +16834,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown",
+            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL, S.A · transportation · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -17034,7 +17027,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 1
           }
         ],
@@ -17146,7 +17139,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown",
+            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL, S.A · transportation · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -17187,7 +17180,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown",
+            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL, S.A · transportation · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -17229,7 +17222,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown",
+            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL, S.A · transportation · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -17270,7 +17263,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown",
+            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL, S.A · transportation · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -17340,7 +17333,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Doc3rS%2FtmoQaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL SA · transportation · estado: unknown",
+            "snippet": "Un vehículo protección civil. · Ayuntamiento de Riba-roja de Túria · TRANSTEL, S.A · transportation · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -17381,7 +17374,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 1
           }
         ],
@@ -17716,7 +17709,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 1
           }
         ],
@@ -17757,7 +17750,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -21536,7 +21529,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ngqf58oaRxQQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · Compañía de Tratamientos Levante, s.l. · environment · estado: unknown",
+            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · COMPAÑIA DE TRATAMIENTOS LEVANTE, S.L.U. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -22795,7 +22788,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cZqNj57a2H8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Mejora de accesibilidad y reforma de aceras y alumbrado público en la Colonia · Ayuntamiento de Riba-roja de Túria · SOCIEDAD IBÉRICA DE CONSTRUCCIONES ELÉCTRICAS, S.A. · construction · estado: unknown",
+            "snippet": "Mejora de accesibilidad y reforma de aceras y alumbrado público en la Colonia · Ayuntamiento de Riba-roja de Túria · SOCIEDAD IBERICA DE CONSTRUCCIONES ELECTRICAS,SA (SICE) · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -32461,7 +32454,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UOJGb0cV33kBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de servicio de seguimiento y control de la implementación del “plan estratégico participado de Riba-roja de Túria (2017-2025) (Plan Riba y PlanRiba-plus) por procedimiento abierto, varios criterios de adjudicación, con condiciones especiales de ejecución de carácter medioambiental y social, contribuyendo al cumplimiento de los ODS 1, ODS 2, ODS 3, ODS 4, ODS 5, ODS 6, ODS 7, ODS 8, ODS 9, ODS 10,ODS 11, ODS 12, ODS 13, ODS 15, ODS 16, ODS 17. · Ayuntamiento de Riba-roja de Túria · UNIVERSITAT DE VALÈNCIA · environment · estado: unknown",
+            "snippet": "Contrato de servicio de seguimiento y control de la implementación del “plan estratégico participado de Riba-roja de Túria (2017-2025) (Plan Riba y PlanRiba-plus) por procedimiento abierto, varios criterios de adjudicación, con condiciones especiales de ejecución de carácter medioambiental y social, contribuyendo al cumplimiento de los ODS 1, ODS 2, ODS 3, ODS 4, ODS 5, ODS 6, ODS 7, ODS 8, ODS 9, ODS 10,ODS 11, ODS 12, ODS 13, ODS 15, ODS 16, ODS 17. · Ayuntamiento de Riba-roja de Túria · Instituto de robótica y tecnologías de la información y las comunicaciones – Universitat de València · environment · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -33394,7 +33387,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=kplM8Bx8FIGXQV0WE7lYPw%3D%3D",
-            "snippet": "Contrato menor, para la prestación del servicio organización evento infantil RIBAJOVE 2021 del Ayuntamiento de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · GRUPO A RIURE S.L · other · estado: awarded",
+            "snippet": "Contrato menor, para la prestación del servicio organización evento infantil RIBAJOVE 2021 del Ayuntamiento de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · GRUPO A RIURE · other · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -33513,7 +33506,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER, S.L. · environment · estado: unknown",
+            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -33892,7 +33885,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AjL5GAsJ1%2B8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · RIBAMON, ASSOCIACIO DE ACTIVITATS LUDIQUES D'OCI I TEMPS LLIURE · education · estado: unknown",
+            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · education · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -33935,7 +33928,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AjL5GAsJ1%2B8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · RIBAMON, ASSOCIACIO DE ACTIVITATS LUDIQUES D'OCI I TEMPS LLIURE · education · estado: unknown",
+            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · education · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -33979,7 +33972,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cMYE1ymfKpN7h85%2Fpmmsfw%3D%3D",
-            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y  ASESORES,  SLP · legal · estado: unknown",
+            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y ASESORES, SLP · legal · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -34064,7 +34057,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cMYE1ymfKpN7h85%2Fpmmsfw%3D%3D",
-            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y  ASESORES,  SLP · legal · estado: unknown",
+            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y ASESORES, SLP · legal · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -34106,7 +34099,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cMYE1ymfKpN7h85%2Fpmmsfw%3D%3D",
-            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y  ASESORES,  SLP · legal · estado: unknown",
+            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y ASESORES, SLP · legal · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -34148,7 +34141,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rc7yJ5%2F%2F7ymmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato administrativo para la prestación de los servicios especializados de una agencia de comunicación para la inserción de publicidad institucional del ayuntamiento de Riba-roja de Túria en los medios de comunicación por procedimiento abierto, dividido en dos lotes, mejor relación calidad-precio y con condición de ejecución especial de carácter social, medioambiental y técnico contribuyendo al cumplimiento del ODS 16 “Crear instituciones eficaces, responsables e inclusivas”, siendo su tramitación ordinaria. (Ctto. 191/2023) · Ayuntamiento de Riba-roja de Túria · M DOS B COMUNICACION SL · legal · estado: unknown",
+            "snippet": "Contrato administrativo para la prestación de los servicios especializados de una agencia de comunicación para la inserción de publicidad institucional del ayuntamiento de Riba-roja de Túria en los medios de comunicación por procedimiento abierto, dividido en dos lotes, mejor relación calidad-precio y con condición de ejecución especial de carácter social, medioambiental y técnico contribuyendo al cumplimiento del ODS 16 “Crear instituciones eficaces, responsables e inclusivas”, siendo su tramitación ordinaria. (Ctto. 191/2023) · Ayuntamiento de Riba-roja de Túria · MDOSB COMUNICACIÓN SL · legal · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -34399,7 +34392,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AjL5GAsJ1%2B8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · RIBAMON, ASSOCIACIO DE ACTIVITATS LUDIQUES D'OCI I TEMPS LLIURE · education · estado: unknown",
+            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · education · estado: unknown",
             "similarity": 0.5
           }
         ],

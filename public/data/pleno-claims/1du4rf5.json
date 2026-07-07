@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:53:20.287Z",
+  "generatedAt": "2026-07-07T08:56:36.936Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -2982,6 +2982,48 @@
     },
     {
       "claim": {
+        "id": "1du4rf5-053-acu-9b104e",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 53,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "compra de un banco y una fonte, que en ningún caso fija la justificación de por qué se due como extrajudicial.",
+        "context": "compra de un banco y una fonte, que en ningún caso fija la justificación de por qué se due como extrajudicial. No se sabe si es porque no falta nota partida, si es que hay una reparación… No tiene ninguna justificación.",
+        "topic": "fiscal",
+        "entities": {
+          "referencedEntity": "compra de un banco y una fonte"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "Esta afirmación se refiere a la compra de un banco y una fuente gestionada como pago extrajudicial sin justificación clara. Es verificable mediante la revisión de los registros financieros municipales y la documentación adjunta a dicha compra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-053-acu-9b104e",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fzebv5hGIqaiEJrVRqloyA%3D%3D",
+            "snippet": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles. · Ayuntamiento de Riba-roja de Túria · Banco Bilbao Vizcaya Argentaria, SA · furniture · estado: awarded",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "1du4rf5-053-pro-43d4cb",
         "plenoId": "1du4rf5",
         "plenoDate": "2025-11-03",
@@ -5259,7 +5301,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos. · Ayuntamiento de Riba-roja de Túria · TELEFÓNICA SOLUCIONES DE INFORMÁTICA Y COMUNICACIONES DE  ESPAÑA, SOCIEDAD ANÓNI · it · estado: unknown",
+            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos. · Ayuntamiento de Riba-roja de Túria · Telefónica Soluciones de Informática y Comunicaciones de España, SAU · it · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -5539,7 +5581,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -6524,7 +6566,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY, SL · architecture · estado: unknown",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY SL · architecture · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -6685,7 +6727,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3oQipIc0pfMSugstABGr5A%3D%3D",
-            "snippet": "Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de medio ambiental, contribuyendo al cumplimiento del ODS 16 Paz, justicia e instituciones sólidas en su meta 16.1 Reducir significativamente todas las formas de violencia. · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA · security · estado: unknown",
+            "snippet": "Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de medio ambiental, contribuyendo al cumplimiento del ODS 16 Paz, justicia e instituciones sólidas en su meta 16.1 Reducir significativamente todas las formas de violencia. · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA, SLU · security · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -6927,7 +6969,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 1
           }
         ],
@@ -7011,7 +7053,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Vu%2FK69eJC2guf4aBO%2BvQlQ%3D%3D",
-            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GABINET SOLUCIONS AMBIENTALS SL · other · estado: awarded",
+            "snippet": "servicio de redacción del plan territorial municipal frente emergencias y plan de actuación municipal frente al riesgo de incendio forestal del término municipal de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · MEDI XXI GSA. S.L. · other · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -7690,7 +7732,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA · environment · estado: awarded",
+            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -8403,7 +8445,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cMYE1ymfKpN7h85%2Fpmmsfw%3D%3D",
-            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y  ASESORES,  SLP · legal · estado: unknown",
+            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y ASESORES, SLP · legal · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -9092,7 +9134,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · estado: unknown",
+            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · SOLUCIONES AVANZADAS EN INFORMATICA APLI · software · estado: unknown",
             "similarity": 1
           }
         ],
@@ -9606,7 +9648,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · UTE TICSMART - TECHHEROX · it · estado: unknown",
+            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · TICSMART SL · it · estado: unknown",
             "similarity": 0.67
           }
         ],
