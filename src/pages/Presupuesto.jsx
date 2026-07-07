@@ -1,6 +1,7 @@
 import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
+import { useBudgetExecution } from '../hooks/useBudgetExecution'
 import { useBdns } from '../hooks/useBdns'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
@@ -353,6 +354,116 @@ function BudgetCharts() {
   )
 }
 
+function EjecucionSection() {
+  const { data } = useBudgetExecution()
+  const p = data?.latest
+  if (!p || !(p.gastos?.total?.actual > 0)) return null
+  const eur = (n) =>
+    new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+      maximumFractionDigits: 0,
+    }).format(n)
+  const maxCh = Math.max(...p.gastos.chapters.map((c) => c.actual), 1)
+  return (
+    <Card>
+      <SectionHead
+        eyebrow={`Ejecución · ${p.year}${p.trimestre ? ` · ${p.trimestre}º trimestre` : ''}`}
+        title="Ejecución presupuestaria"
+      />
+      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', margin: '10px 0 18px' }}>
+        {[
+          {
+            k: 'Gastos ejecutados',
+            e: p.gastos.total.ejecutado,
+            a: p.gastos.total.actual,
+            pc: p.ejecucionPct.gastos,
+          },
+          {
+            k: 'Ingresos ejecutados',
+            e: p.ingresos.total.ejecutado,
+            a: p.ingresos.total.actual,
+            pc: p.ejecucionPct.ingresos,
+          },
+        ].map((s) => (
+          <div key={s.k} style={{ flex: '1 1 220px' }}>
+            <div className="mono" style={{ fontSize: 22, fontWeight: 600, color: 'var(--civic)' }}>
+              {s.pc}%
+            </div>
+            <div style={{ fontSize: 12.5, color: 'var(--ink60)', marginTop: 4 }}>
+              {s.k} · <span className="mono">{eur(s.e)}</span> de{' '}
+              <span className="mono">{eur(s.a)}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {p.gastos.chapters.map((c) => {
+          const cp = c.actual > 0 ? Math.round((c.ejecutado / c.actual) * 100) : 0
+          return (
+            <div key={c.capitulo}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  fontSize: 12.5,
+                  marginBottom: 3,
+                }}
+              >
+                <span
+                  style={{
+                    color: 'var(--ink)',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {c.label}
+                </span>
+                <span className="mono" style={{ color: 'var(--ink60)', flexShrink: 0 }}>
+                  {cp}% · {eur(c.ejecutado)}
+                </span>
+              </div>
+              <div
+                style={{
+                  height: 7,
+                  background: 'var(--soft)',
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                }}
+              >
+                <div
+                  style={{
+                    height: '100%',
+                    width: `${Math.max(2, (c.actual / maxCh) * 100)}%`,
+                    background: 'var(--border)',
+                    borderRadius: 4,
+                    position: 'relative',
+                  }}
+                >
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: `${cp}%`,
+                      background: 'var(--civic)',
+                      borderRadius: 4,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+      <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 12, marginBottom: 0 }}>
+        Ejecutado = obligaciones reconocidas netas sobre presupuesto definitivo. Fuente:
+        Ayuntamiento de Riba-roja · estados de ejecución presupuestaria.
+      </p>
+    </Card>
+  )
+}
+
 export default function Presupuesto() {
   return (
     <div
@@ -360,6 +471,9 @@ export default function Presupuesto() {
       style={{ padding: '24px 24px 48px', maxWidth: 1400, margin: '0 auto' }}
     >
       <RealBudgetHeader />
+      <div style={{ marginBottom: 16 }}>
+        <EjecucionSection />
+      </div>
       <div style={{ marginBottom: 16 }}>
         <GastoDashboard />
       </div>
