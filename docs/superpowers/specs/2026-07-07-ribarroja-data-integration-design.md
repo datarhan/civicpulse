@@ -133,6 +133,21 @@ narrow the schema — decide at the spike, don't assume.
 | `/datos` | FOI stats, financial indicators | data only |
 | DANA reportaje | NOT the actas (moot); possibly obras/urbanismo context | curator refresh only if a cited number changes |
 
+## Wave 1b — deferred (2026-07-07 decision)
+
+Wiring `budget-execution.json` into `claim-verifier.ts` is **deferred until
+Wave 1.1 backfills more execution periods.** Recon during 1b design found the
+immediate value is modest: (a) only 1 period (2025) currently ships, so the
+corpus can only corroborate 2025-execution claims; (b) execution data is by
+**económica capítulo** (Personal/Corrientes/Inversiones…) which does NOT map to
+the claim **topic** axis (`TOPIC_TO_BUDGET_HINTS` targets program/functional
+names), so matching must key off claim verbatim vs capítulo labels — narrow
+(mostly capítulo-level claims like "las inversiones apenas se han ejecutado").
+When built: **evidence-only** (emit a `budget-execution` ClaimEvidence row;
+NEVER auto-flip a verdict on keyword matching — libel-safe), then the $0
+deterministic re-run; the metered sin-datos second-pass only once there are
+enough periods + matching claims to justify it.
+
 ## Wave 1.1 follow-up (from Wave 1 execution, 2026-07-07)
 
 Wave 1 shipped **1 fully-clean budget-execution period (2025)** — the honesty
