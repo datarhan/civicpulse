@@ -94,3 +94,35 @@ export function parseBudgetExecutionPdf(text: string): ExecDoc {
 
   return { kind, year, fechaListado, chapters, total: amountsToLine(totAmounts, kind) }
 }
+
+export interface BudgetExecutionPeriod {
+  year: number
+  trimestre: number | null
+  fechaListado: string | null
+  gastos: { total: ExecDoc['total']; chapters: ExecLine[] }
+  ingresos: { total: ExecDoc['total']; chapters: ExecLine[] }
+  ejecucionPct: { gastos: number; ingresos: number }
+}
+
+export function pct(ejecutado: number, actual: number): number {
+  if (!(actual > 0)) return 0
+  return Math.round((ejecutado / actual) * 1000) / 10
+}
+
+export function mergeExecutionPeriod(
+  gastos: ExecDoc,
+  ingresos: ExecDoc,
+  meta: { trimestre: number | null },
+): BudgetExecutionPeriod {
+  return {
+    year: gastos.year || ingresos.year,
+    trimestre: meta.trimestre,
+    fechaListado: gastos.fechaListado ?? ingresos.fechaListado,
+    gastos: { total: gastos.total, chapters: gastos.chapters },
+    ingresos: { total: ingresos.total, chapters: ingresos.chapters },
+    ejecucionPct: {
+      gastos: pct(gastos.total.ejecutado, gastos.total.actual),
+      ingresos: pct(ingresos.total.ejecutado, ingresos.total.actual),
+    },
+  }
+}

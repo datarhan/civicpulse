@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { parseSpanishAmount, parseBudgetExecutionPdf } from '../src/scraper/budget-execution'
+import { mergeExecutionPeriod, pct } from '../src/scraper/budget-execution'
 
 const fx = (n: string) => readFileSync(join(__dirname, 'fixtures', n), 'utf8')
 
@@ -70,5 +71,24 @@ describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
     expect(c1.inicial).toBe(17963497.13)
     expect(c1.actual).toBe(17963497.13)
     expect(c1.ejecutado).toBe(12730686.61)
+  })
+})
+
+describe('mergeExecutionPeriod', () => {
+  it('pct is executed/actual as a 0–100 percentage, safe on zero', () => {
+    expect(pct(18909465.12, 62123153.08)).toBe(30.4)
+    expect(pct(5, 0)).toBe(0)
+  })
+
+  it('combines gastos+ingresos into one period with execution %', () => {
+    const g = parseBudgetExecutionPdf(fx('budget-execution-gastos_2t2025.txt'))
+    const i = parseBudgetExecutionPdf(fx('budget-execution-ingresos_2t2025.txt'))
+    const p = mergeExecutionPeriod(g, i, { trimestre: 2 })
+    expect(p.year).toBe(2025)
+    expect(p.trimestre).toBe(2)
+    expect(p.gastos.total.actual).toBe(62123153.08)
+    expect(p.ejecucionPct.gastos).toBe(30.4)
+    expect(p.ejecucionPct.ingresos).toBe(61.8)
+    expect(p.ingresos.chapters.length).toBeGreaterThan(0)
   })
 })
