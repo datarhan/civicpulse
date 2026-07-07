@@ -46,3 +46,29 @@ describe('parseBudgetExecutionPdf — gastos 2T2025', () => {
     expect(c2.actual).toBeGreaterThan(0)
   })
 })
+
+describe('parseBudgetExecutionPdf — ingresos 2T2025', () => {
+  const doc = parseBudgetExecutionPdf(fx('budget-execution-ingresos_2t2025.txt'))
+
+  it('detects the ingresos kind', () => {
+    expect(doc.kind).toBe('ingresos')
+    expect(doc.year).toBe(2025)
+  })
+
+  it('uses the ingresos column layout: actual = col 1, ejecutado (DR) = col 3', () => {
+    // Ingresos has no Modificación column; actual is the previsión definitiva.
+    expect(doc.total.inicial).toBe(39034883.74)
+    expect(doc.total.actual).toBe(59611751.19)
+    expect(doc.total.ejecutado).toBe(36814321.64) // Derechos Reconocidos ≈ 61.8% ejecución
+    expect(doc.total.modificaciones).toBe(20576867.45) // derived: actual − inicial
+  })
+
+  it('extracts revenue chapters incl. Cap 1 Impuestos directos', () => {
+    expect(doc.chapters.length).toBeGreaterThan(2)
+    const c1 = doc.chapters.find((c) => c.capitulo === 1)!
+    expect(c1.label).toBe('Impuestos directos')
+    expect(c1.inicial).toBe(17963497.13)
+    expect(c1.actual).toBe(17963497.13)
+    expect(c1.ejecutado).toBe(12730686.61)
+  })
+})
