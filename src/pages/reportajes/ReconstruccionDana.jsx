@@ -1,0 +1,515 @@
+import { useReportaje } from '../../hooks/useReportaje'
+import { Card, SectionHead } from '../../components/Primitives'
+
+const SERIF = "'Fraunces', Georgia, serif"
+const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
+
+function eurC(n) {
+  if (n >= 1e6) return (n / 1e6).toFixed(2).replace('.', ',') + ' M€'
+  if (n >= 1e3) return Math.round(n / 1e3) + ' k€'
+  return Math.round(n) + ' €'
+}
+function eurFull(n) {
+  return new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR',
+    maximumFractionDigits: 0,
+  }).format(n)
+}
+
+/* ---- Cronograma (barras por mes) ---- */
+function Timeline({ data }) {
+  const W = 680,
+    H = 210,
+    mL = 6,
+    mR = 6,
+    mT = 14,
+    mB = 26
+  const iw = W - mL - mR,
+    ih = H - mT - mB
+  const max = Math.max(...data.map((d) => d.amount))
+  const bw = iw / data.length
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      style={{ width: '100%', display: 'block' }}
+      role="img"
+      aria-label="Cronograma de adjudicaciones DANA por mes"
+    >
+      <line x1={mL} y1={mT + ih} x2={W - mR} y2={mT + ih} stroke="var(--border)" strokeWidth="1" />
+      {data.map((d, i) => {
+        const x = mL + i * bw
+        const bx = x + bw * 0.16
+        const bwid = bw * 0.68
+        const bh = d.amount > 0 ? Math.max(2, (d.amount / max) * ih) : 0
+        const mo = +d.month.slice(5) - 1
+        return (
+          <g key={d.month}>
+            {d.amount > 0 && (
+              <rect x={bx} y={mT + ih - bh} width={bwid} height={bh} rx="2" fill="var(--civic)">
+                <title>{`${MES[mo]} ${d.month.slice(0, 4)} · ${eurC(d.amount)} · ${d.count} contrato${d.count > 1 ? 's' : ''}`}</title>
+              </rect>
+            )}
+            {d.amount === max && (
+              <text
+                x={bx + bwid / 2}
+                y={mT + ih - bh - 5}
+                textAnchor="middle"
+                className="mono"
+                style={{ fontSize: 9.5, fill: 'var(--ink60)' }}
+              >
+                {eurC(d.amount)}
+              </text>
+            )}
+            {(i % 2 === 0 || i === data.length - 1) && (
+              <text
+                x={x + bw / 2}
+                y={H - 9}
+                textAnchor="middle"
+                className="mono"
+                style={{ fontSize: 9, fill: 'var(--ink50)' }}
+              >
+                {MES[mo] + ' ' + d.month.slice(2, 4)}
+              </text>
+            )}
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
+
+/* ---- Mapa de contratos geolocalizados ---- */
+function MapaContratos({ boundary, bbox, places, danaPlaces }) {
+  const pad = 20
+  const cosLat = Math.cos((((bbox.north + bbox.south) / 2) * Math.PI) / 180)
+  const lngSpan = bbox.east - bbox.west
+  const latSpan = bbox.north - bbox.south
+  const H = 520
+  const W = Math.round(H * ((lngSpan * cosLat) / latSpan))
+  const iw = W - pad * 2
+  const ih = H - pad * 2
+  const px = (lng) => pad + ((lng - bbox.west) / lngSpan) * iw
+  const py = (lat) => pad + ((bbox.north - lat) / latSpan) * ih
+  const path = boundary
+    .map((p, i) => (i ? 'L' : 'M') + px(p[1]).toFixed(1) + ' ' + py(p[0]).toFixed(1))
+    .join(' ')
+    .concat(' Z')
+  const maxAmt = Math.max(...places.map((p) => p.amount))
+  const rOf = (a) => 4 + Math.sqrt(a / maxAmt) * 16
+  const sorted = [...places].sort((a, b) => b.amount - a.amount)
+  const anchors = danaPlaces.slice(0, 2)
+  return (
+    <svg
+      viewBox={`0 0 ${W} ${H}`}
+      style={{ width: '100%', maxWidth: 440, margin: '0 auto', display: 'block' }}
+      role="img"
+      aria-label="Mapa de Riba-roja de Túria con los contratos geolocalizados"
+    >
+      <path
+        d={path}
+        fill="var(--soft)"
+        stroke="var(--ink50)"
+        strokeWidth="1"
+        strokeLinejoin="round"
+      />
+      {sorted.map((p, i) => (
+        <circle
+          key={i}
+          cx={px(p.lng).toFixed(1)}
+          cy={py(p.lat).toFixed(1)}
+          r={rOf(p.amount).toFixed(1)}
+          fill="var(--civic)"
+          fillOpacity={p.danaAmount > 0 ? 0.72 : 0.4}
+          stroke={p.danaAmount > 0 ? 'var(--paper)' : 'var(--civic)'}
+          strokeWidth={p.danaAmount > 0 ? 1.2 : 1}
+        >
+          <title>{`${p.name} · ${eurFull(p.amount)} · ${p.contractCount} contrato${p.contractCount > 1 ? 's' : ''}${p.danaAmount > 0 ? ` · DANA ${eurC(p.danaAmount)}` : ''}`}</title>
+        </circle>
+      ))}
+      {anchors.map((p, i) => {
+        const x = px(p.lng)
+        const y = py(p.lat)
+        const r = rOf(p.amount)
+        return (
+          <g key={'a' + i}>
+            <rect
+              x={x + r + 2}
+              y={y - 6}
+              width={p.name.length * 4.9 + 4}
+              height={12}
+              rx="2"
+              fill="var(--paper)"
+              fillOpacity="0.82"
+            />
+            <text
+              x={x + r + 4}
+              y={y + 3}
+              className="mono"
+              style={{ fontSize: 8.5, fill: 'var(--ink)', fontWeight: 500 }}
+            >
+              {p.name}
+            </text>
+          </g>
+        )
+      })}
+    </svg>
+  )
+}
+
+/* ---- Barras horizontales (adjudicatarios / zonas) ---- */
+function Barras({ rows }) {
+  const max = Math.max(...rows.map((r) => r.value))
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 11 }}>
+      {rows.map((r, i) => (
+        <div key={i}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'baseline',
+              gap: 12,
+              fontSize: 13,
+              marginBottom: 5,
+            }}
+          >
+            <span
+              style={{
+                color: 'var(--ink)',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {r.label}
+            </span>
+            <span className="mono" style={{ color: 'var(--ink60)', fontSize: 12.5, flexShrink: 0 }}>
+              {eurC(r.value)}
+              {r.count != null && (
+                <span style={{ color: 'var(--ink50)', fontSize: 11 }}> · {r.count}</span>
+              )}
+            </span>
+          </div>
+          <div
+            style={{
+              height: 8,
+              background: 'var(--soft)',
+              borderRadius: 5,
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                height: '100%',
+                width: Math.max(3, (r.value / max) * 100) + '%',
+                background: 'var(--civic)',
+                borderRadius: 5,
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+const CAP = (s) => (s.length > 34 ? s.slice(0, 33) + '…' : s)
+
+export default function ReconstruccionDana() {
+  const { loading, error, data } = useReportaje('reconstruccion-dana')
+
+  if (loading)
+    return (
+      <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
+        <p style={{ color: 'var(--ink60)' }}>Cargando reportaje…</p>
+      </div>
+    )
+  if (error || !data)
+    return (
+      <div className="cp-page" style={{ padding: 24, maxWidth: 760, margin: '0 auto' }}>
+        <p style={{ color: 'var(--ink60)' }}>No se pudo cargar el reportaje.</p>
+      </div>
+    )
+
+  const t = data.totals
+  const m = data.meta
+
+  return (
+    <div
+      className="cp-page"
+      style={{ padding: '24px', maxWidth: 760, margin: '0 auto', fontSize: 16, lineHeight: 1.62 }}
+    >
+      {m.estado !== 'publicado' && (
+        <div
+          style={{
+            background: 'var(--warn-soft)',
+            border: '1px solid var(--warn)',
+            color: 'var(--warn-ink)',
+            borderRadius: 10,
+            padding: '10px 14px',
+            fontSize: 12.5,
+            marginBottom: 22,
+          }}
+        >
+          <strong>Borrador editorial · pendiente de derecho de réplica.</strong> Esta pieza aún no
+          es una publicación definitiva: se ha ofrecido su versión al Ayuntamiento de Riba-roja y se
+          incorporará antes de darla por publicada.
+        </div>
+      )}
+
+      <div
+        className="mono"
+        style={{
+          fontSize: 10.5,
+          color: 'var(--ink50)',
+          textTransform: 'uppercase',
+          letterSpacing: '.08em',
+        }}
+      >
+        {m.seccion}
+      </div>
+      <h1
+        style={{
+          fontFamily: SERIF,
+          fontSize: 'clamp(30px, 5vw, 42px)',
+          fontWeight: 600,
+          letterSpacing: '-.015em',
+          lineHeight: 1.08,
+          margin: '4px 0 14px',
+        }}
+      >
+        {m.titulo}
+      </h1>
+      <p style={{ fontSize: 18, color: 'var(--ink60)', lineHeight: 1.5, margin: '0 0 26px' }}>
+        {m.subtitulo}
+      </p>
+
+      {/* KPIs */}
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(4, 1fr)',
+          gap: 1,
+          background: 'var(--border)',
+          border: '1px solid var(--border)',
+          borderRadius: 10,
+          overflow: 'hidden',
+          margin: '0 0 30px',
+        }}
+      >
+        {[
+          { n: '14,5 M€', l: 'solo del Estado (Orden TMD/101/2025)', tone: 'var(--civic)' },
+          { n: '73', l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
+          { n: '72', l: `geolocalizados · ${eurC(t.situatedAmount)}` },
+          {
+            n: '0',
+            l: 'órganos que fiscalizan los contratos municipales',
+            tone: 'var(--warn-ink)',
+          },
+        ].map((s, i) => (
+          <div key={i} style={{ background: 'var(--paper)', padding: '16px 14px' }}>
+            <div
+              className="mono"
+              style={{
+                fontSize: 22,
+                fontWeight: 500,
+                color: s.tone || 'var(--ink)',
+                lineHeight: 1,
+              }}
+            >
+              {s.n}
+            </div>
+            <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 7, lineHeight: 1.3 }}>
+              {s.l}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <article style={{ color: 'var(--ink80)' }}>
+        <p>
+          En los días que siguieron a la DANA del 29 de octubre de 2024, el Ayuntamiento de
+          Riba-roja de Túria firmó contratos casi a diario. Palas para despejar caminos, camiones
+          para retirar el lodo, bombas para achicar los polígonos anegados. Solo en noviembre de
+          aquel año adjudicó <b>22 contratos por 1,39 millones de euros</b>, buena parte por el
+          procedimiento de emergencia que permite la ley cuando no hay tiempo para un concurso. Año
+          y medio después, la reconstrucción todavía se contrata: el último gran contrato con
+          referencia a la DANA que consta en el registro público —un vallado de parcelas en los
+          polígonos industriales por <b>445.313 euros</b>— se adjudicó en marzo de 2026.
+        </p>
+        <p>
+          Entre esas dos fechas, un análisis de la contratación municipal permite seguir el rastro
+          del dinero contrato a contrato, y en muchos casos calle a calle. De los 14,05 millones que
+          el Ayuntamiento adjudicó entre 2018 y 2026,{' '}
+          <b>73 contratos por 2,24 millones referencian expresamente la DANA</b> en su título. Es
+          una cifra conservadora —el suelo trazable, no el total de la reconstrucción—, pero{' '}
+          <b>extiende en 16 meses la última cuenta pública del propio Ayuntamiento</b>, que en 2024
+          cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la riada.
+        </p>
+
+        <h2 style={hStyle()}>La ola y la cola</h2>
+        <p>
+          El grueso llegó de golpe. La retirada de fango y la limpieza de caminos y viales coparon
+          las primeras semanas: media docena de empresas se repartieron esos trabajos entre el 20 y
+          el 25 de noviembre de 2024, cada una por importes de entre 55.000 y 240.000 euros.
+          Después, el ritmo cayó y la contratación se estiró durante todo 2025 y hasta bien entrado
+          2026: recuperación de instalaciones, colectores, grupos electrógenos, ascensores.
+        </p>
+        <Card style={{ margin: '18px 0 8px' }}>
+          <SectionHead
+            eyebrow="Cuándo · nov 2024 – abr 2026"
+            title="Contratos con referencia DANA, por mes"
+          />
+          <div style={{ marginTop: 10 }}>
+            <Timeline data={data.timelineFull} />
+          </div>
+        </Card>
+        <p style={cap()}>
+          Importe adjudicado (sin IVA) por mes. Fuente: PLACSP/Gobierto · contratos cuyo título
+          referencia la DANA.
+        </p>
+
+        <h2 style={hStyle()}>El mapa, contrato a contrato</h2>
+        <p>
+          Situados sobre el mapa del municipio, esos contratos se concentran donde más golpeó el
+          agua. El poblado de <b>l'Oliveral</b> absorbe el mayor gasto DANA geolocalizado (125.000
+          euros, seis contratos) y la urbanización <b>La Reva</b> le sigue de cerca (99.000 euros,
+          siete contratos): son, precisamente, dos de las zonas industriales que la riada dejó bajo
+          el barro. El alcalde, Robert Raga (PSPV), cifró en unas 1.400 empresas y 20.000
+          trabajadores el tejido del área industrial afectada por la DANA.
+        </p>
+        <Card style={{ margin: '18px 0 8px' }}>
+          <SectionHead eyebrow="Dónde" title="Contratos municipales geolocalizados" />
+          <div style={{ marginTop: 10 }}>
+            <MapaContratos
+              boundary={data.boundary}
+              bbox={data.bbox}
+              places={data.places}
+              danaPlaces={data.danaPlaces}
+            />
+          </div>
+        </Card>
+        <p style={cap()}>
+          Radio proporcional a √importe; los puntos más intensos concentran gasto DANA. Contorno
+          municipal real (OSM). Fuente: tender-geo · resolutor determinista de topónimos.
+        </p>
+
+        <h2 style={hStyle()}>Los adjudicatarios</h2>
+        <p>
+          Ocho empresas concentran la mayor parte del gasto DANA trazado. Los describimos por lo que
+          consta en el registro público —importe y objeto—, sin atribuir irregularidad.
+        </p>
+        <Card style={{ margin: '18px 0 20px' }}>
+          <Barras
+            rows={data.contractors.map((c) => ({
+              label: CAP(c.name),
+              value: c.amount,
+              count: c.count,
+            }))}
+          />
+        </Card>
+
+        <h2 style={hStyle()}>El gasto DANA que hemos podido situar</h2>
+        <p>
+          Seis emplazamientos absorben el gasto DANA geolocalizado —una fracción del total, la que
+          el título del contrato permite ubicar con precisión—.
+        </p>
+        <Card style={{ margin: '18px 0 20px' }}>
+          <Barras
+            rows={data.danaPlaces.map((p) => ({
+              label: p.name,
+              value: p.danaAmount,
+              count: p.contractCount,
+            }))}
+          />
+        </Card>
+
+        <h2 style={hStyle()}>De dónde viene el dinero</h2>
+        <p>
+          La reconstrucción de Riba-roja se financia desde al menos cinco administraciones, y
+          conviene no confundir lo anunciado con lo ejecutado ni sumar unas ayudas con otras, porque
+          cofinancian obras solapadas. Solo del Estado, el municipio tiene reconocidos{' '}
+          <b>14.553.099,88 euros</b> por la Orden TMD/101/2025, que cubre hasta el 100 % de la
+          reparación de infraestructuras. A eso se añaden 9,5 millones de fondos europeos FEDER para
+          la agenda urbana, las partidas del Plan Endavant de la Generalitat, las obras de
+          emergencia del cauce del Túria que ejecuta la Confederación Hidrográfica del Júcar, y
+          ayudas de la Diputació de València. El presupuesto municipal de reconstrucción para 2025
+          —43,5 millones— recibió su aprobación inicial en el pleno extraordinario y urgente del 31
+          de julio de 2025, con los votos a favor del gobierno del PSPV, el rechazo del PP y la
+          abstención de Compromís, Esquerra Unida-Podem y Vox.
+        </p>
+
+        <h2 style={hStyle()}>Quién audita esto — nadie, todavía</h2>
+        <p>
+          Ese caudal de dinero público llega, en su tramo municipal, sin un control externo
+          específico. La Sindicatura de Comptes anunció la fiscalización de los contratos y
+          subvenciones ligados a la DANA, pero acotada al <b>sector autonómico</b> —la ferroviaria
+          FGV y la pública VAERSA, donde ya detectó sobrecostes y falta de transparencia—, no a los
+          ayuntamientos. Los contratos de emergencia municipales, adjudicados a menudo sin
+          concurrencia por la urgencia de la catástrofe, quedan por ahora fuera de esa mirada.
+          Tampoco el visor infoDANA del Gobierno, que detalla las ayudas <i>pueblo a pueblo</i>,
+          desciende al contrato concreto ni a la calle.
+        </p>
+
+        <h2 style={hStyle()}>Lo que falta</h2>
+        <p>
+          Adjudicar no es terminar. La reposición de las infraestructuras hídricas del municipio iba
+          al <b>30 %</b> en 2026, según la concesionaria: seguían pendientes los colectores de la
+          calle dels Fusters y los grupos electrógenos de emergencia de las estaciones de bombeo de
+          El Oliveral y el Sector 13, un contrato de unos 100.000 euros aún sin adjudicar. Las
+          pasarelas del Túria que la avenida se llevó por delante no se reconstruyeron hasta{' '}
+          <b>abril de 2026</b>, casi dieciocho meses después.
+        </p>
+        <p>
+          La DANA causó seis víctimas mortales en el término municipal, según el balance del
+          Ayuntamiento, y una factura que la administración aún salda a plazos: el Consistorio ha
+          cifrado en torno a los 22 millones de euros los daños del municipio. Este análisis no
+          atribuye a nadie una mala gestión: pone sobre la mesa, con datos abiertos y verificables,
+          adónde ha ido el dinero de la reconstrucción y qué queda por hacer.
+        </p>
+      </article>
+
+      <Card style={{ margin: '30px 0 0', background: 'var(--soft)' }}>
+        <SectionHead eyebrow="Transparencia" title="Ficha técnica" />
+        <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '8px 0 0', lineHeight: 1.5 }}>
+          Los datos de contratación proceden del portal de transparencia municipal (PLACSP, vía la
+          plataforma Gobierto) y se han geolocalizado con un resolutor determinista de topónimos que
+          solo sitúa un contrato cuando su título nombra un lugar concreto. Se consideran «DANA» los
+          contratos cuyo título menciona la DANA, el temporal de lluvias o el 29 de octubre; es un
+          criterio transparente y reproducible, no un cómputo exhaustivo del gasto de
+          reconstrucción. Importes sin IVA, sobre contratos adjudicados (datos a {m.fechaDatos}).
+          Las cifras de fallecidos, daños municipales, tejido industrial afectado y sentido del voto
+          proceden de declaraciones del Ayuntamiento recogidas por la prensa local. Metodología
+          completa en{' '}
+          <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+            /metodologia
+          </a>
+          .
+        </p>
+        <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '12px 0 0', lineHeight: 1.5 }}>
+          El Ayuntamiento de Riba-roja dispone de derecho de réplica sobre esta información, que se
+          publicará íntegra. Contacto y correcciones:{' '}
+          <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+            aviso legal
+          </a>
+          .
+        </p>
+      </Card>
+    </div>
+  )
+}
+
+function hStyle() {
+  return {
+    fontFamily: SERIF,
+    fontSize: 25,
+    fontWeight: 600,
+    letterSpacing: '-.01em',
+    lineHeight: 1.15,
+    margin: '34px 0 12px',
+  }
+}
+function cap() {
+  return { fontSize: 12.5, color: 'var(--ink50)', margin: '10px 0 4px', lineHeight: 1.45 }
+}

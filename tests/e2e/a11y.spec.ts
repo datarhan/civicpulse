@@ -36,6 +36,7 @@ const STRICT_ROUTES = [
   '/laboratorio/agentes',
   '/nosotros',
   '/about',
+  '/reportajes/reconstruccion-dana',
   '/laboratorio/agentes/a-robert-raga-bio',
   '/lab-health',
   '/metodologia',
