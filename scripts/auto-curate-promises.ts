@@ -326,7 +326,13 @@ async function main() {
       'https://civicpulse.es/data/budget.json'
 
     const statusCandidates: DraftStatusChange[] = []
-    const minerStats = { retrieved: 0, emitted: 0, hallucinatedCite: 0, belowConfidence: 0 }
+    const minerStats = {
+      retrieved: 0,
+      emitted: 0,
+      hallucinatedCite: 0,
+      belowConfidence: 0,
+      idMismatch: 0,
+    }
     for (const p of snap.items) {
       const input: RetrievalInput = {
         promise: {
@@ -348,6 +354,7 @@ async function main() {
       minerStats.emitted += mined.stats.emitted
       minerStats.hallucinatedCite += mined.stats.rejected.hallucinatedCite
       minerStats.belowConfidence += mined.stats.rejected.belowConfidence
+      minerStats.idMismatch += mined.stats.rejected.idMismatch
       for (const c of mined.candidates) {
         const draft: DraftStatusChange = {
           draftId: makeStatusDraftId(c.promiseId, c.proposedStatus, c.evidence.url),
@@ -376,7 +383,7 @@ async function main() {
       }
     }
     process.stdout.write(
-      `[auto-curate-promises] status: ${statusCandidates.length} candidate(s) · retrieved=${minerStats.retrieved} emitted=${minerStats.emitted} rejected(cite=${minerStats.hallucinatedCite}, conf=${minerStats.belowConfidence})\n`,
+      `[auto-curate-promises] status: ${statusCandidates.length} candidate(s) · retrieved=${minerStats.retrieved} emitted=${minerStats.emitted} rejected(cite=${minerStats.hallucinatedCite}, conf=${minerStats.belowConfidence}, id=${minerStats.idMismatch})\n`,
     )
 
     const seenTransitions = new Set<string>([

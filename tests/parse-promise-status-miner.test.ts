@@ -102,11 +102,13 @@ describe('mineStatusChanges', () => {
     expect(out.stats.rejected.belowConfidence).toBe(1)
   })
 
-  it('forces the mined promise id even when the LLM echoes a wrong one', async () => {
-    // Reproducer for the 2026-07-07 FATAL: the LLM echoed the promise's topic
-    // ("infraestructura_transporte") instead of its id, and the trusted echo
-    // crashed applyStatusChange downstream. The miner runs in a single-promise
-    // context — the id is never the LLM's to choose.
+  it('rejects a change whose echoed promiseId is not the mined promise', async () => {
+    // Reproducer for the 2026-07-07 FATAL: the LLM echoed an invented id
+    // ("infraestructura_transporte") instead of the mined promise's, and the
+    // trusted echo crashed applyStatusChange downstream. All 7 queued drafts
+    // that day carried invented ids for news about THIRD PARTIES — so a
+    // mismatched echo means subject drift, and the change must be dropped
+    // (forcing our id would mis-attach unrelated news to a real promise).
     const stub = async () => ({
       changes: [
         {
@@ -122,7 +124,7 @@ describe('mineStatusChanges', () => {
       ],
     })
     const out = await mineStatusChanges(input, notFrozen, stub as never)
-    expect(out.candidates).toHaveLength(1)
-    expect(out.candidates[0].promiseId).toBe('psoe-obra')
+    expect(out.candidates).toHaveLength(0)
+    expect(out.stats.rejected.idMismatch).toBe(1)
   })
 })

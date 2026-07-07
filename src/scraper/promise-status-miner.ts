@@ -69,14 +69,14 @@ export async function mineStatusChanges(
     frozen: boolean
     candidatesRetrieved: number
     emitted: number
-    rejected: { hallucinatedCite: number; belowConfidence: number }
+    rejected: { hallucinatedCite: number; belowConfidence: number; idMismatch: number }
   }
 }> {
   const stats = {
     frozen: false,
     candidatesRetrieved: 0,
     emitted: 0,
-    rejected: { hallucinatedCite: 0, belowConfidence: 0 },
+    rejected: { hallucinatedCite: 0, belowConfidence: 0, idMismatch: 0 },
   }
   if (isFrozen(opts.snapshot, opts.now)) {
     stats.frozen = true
@@ -137,13 +137,15 @@ export async function mineStatusChanges(
     const cand = flat[ch.candidateIndex]
     const kind = CORPUS_TO_KIND[cand.corpus] ?? 'otro'
     const url = kind === 'budget' ? (opts.budgetSourceUrl ?? cand.url) : cand.url
-    // The mining context is single-promise: the id is ours, never the LLM's.
-    // Trusting the echo let a mangled id ("infraestructura_transporte", the
-    // topic) reach applyStatusChange and abort the whole 2026-07-07 run.
+    // The mining context is single-promise: a change echoing a DIFFERENT id
+    // is the LLM drifting to the article's subject, not ours (2026-07-07:
+    // all 7 queued drafts carried invented ids — "viviendasAsequibles",
+    // "planEmergencias" — for news about third parties, and one aborted the
+    // whole run at apply time). Forcing our id would mis-attach unrelated
+    // news to a real promise, so reject the change instead.
     if (ch.promiseId !== input.promise.id) {
-      process.stderr.write(
-        `[status-miner] LLM echoed promiseId "${ch.promiseId}" for promise "${input.promise.id}" — forcing the real id\n`,
-      )
+      stats.rejected.idMismatch += 1
+      continue
     }
     out.push({
       promiseId: input.promise.id,
