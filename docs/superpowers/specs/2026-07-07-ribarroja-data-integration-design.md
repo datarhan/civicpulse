@@ -133,6 +133,19 @@ narrow the schema — decide at the spike, don't assume.
 | `/datos` | FOI stats, financial indicators | data only |
 | DANA reportaje | NOT the actas (moot); possibly obras/urbanismo context | curator refresh only if a cited number changes |
 
+## Wave 1.1 follow-up (from Wave 1 execution, 2026-07-07)
+
+Wave 1 shipped **1 fully-clean budget-execution period (2025)** — the honesty
+gate drops years whose PDF sheets use older/variant SICALWIN layouts the parser
+can't yet read (spec asked for ≥4; operator accepted honesty-over-coverage).
+Wave 1.1 backlog to reach broader coverage:
+
+- Parse the **2023 "corrientes"** + **2026 "detalle"** estado-de-ejecución layouts.
+- Fix the **2024 ingresos** mis-parse (empty chapters, 0.1% artifact).
+- Per-quarter selection on year index pages (currently parse-and-select-best per page).
+- When a multi-period time-series UI lands on `/presupuesto`, add per-metric
+  validation so no partially-broken period can surface.
+
 ## Deferred / explicitly out of scope
 
 - **Actas de Mesas de Contratación** → curator micro-task, not a wave (premise collapsed).
