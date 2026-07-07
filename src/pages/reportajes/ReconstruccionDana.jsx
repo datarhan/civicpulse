@@ -214,6 +214,151 @@ function Barras({ rows }) {
   )
 }
 
+/* ---- Encabezado de sección numerado ---- */
+function SecHead({ num, kicker, title }) {
+  return (
+    <div style={{ margin: '34px 0 12px' }}>
+      <div
+        className="mono"
+        style={{ fontSize: 11.5, color: 'var(--ink50)', letterSpacing: '.04em', marginBottom: 6 }}
+      >
+        {num} · {kicker}
+      </div>
+      <h2
+        style={{
+          fontFamily: SERIF,
+          fontSize: 25,
+          fontWeight: 600,
+          letterSpacing: '-.01em',
+          lineHeight: 1.15,
+          margin: 0,
+        }}
+      >
+        {title}
+      </h2>
+    </div>
+  )
+}
+
+/* ---- De dónde viene el dinero (lista de financiadores, sin sumar) ---- */
+const FUNDERS = [
+  {
+    who: 'Gobierno de España',
+    sub: 'Orden TMD/101/2025 · hasta el 100 % de las obras',
+    fig: '14.553.100 €',
+  },
+  {
+    who: 'Generalitat · Plan Endavant',
+    sub: '17,5 M€ ayuda directa + escombros + EDAR + centro de salud',
+    fig: '46,3 M€',
+  },
+  { who: 'UE · FEDER (Plan EDIL)', sub: 'reconstrucción urbana', fig: '9,5 M€' },
+  {
+    who: 'Estado · CHJ',
+    sub: 'emergencia del cauce del Túria (parte de 19 M€ / 12 municipios)',
+    fig: 'río Túria',
+  },
+  { who: 'Diputació de València', sub: 'ayuda provincial + personal', fig: 'provincial' },
+]
+function Funders() {
+  return (
+    <div style={{ margin: '4px 0 8px' }}>
+      <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink50)', marginBottom: 8 }}>
+        Importes anunciados <span style={{ color: 'var(--warn-ink)' }}>· no sumar</span>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 1,
+          background: 'var(--border)',
+          border: '1px solid var(--border)',
+          borderRadius: 10,
+          overflow: 'hidden',
+        }}
+      >
+        {FUNDERS.map((f, i) => (
+          <div
+            key={i}
+            style={{
+              background: 'var(--paper)',
+              padding: '12px 16px',
+              display: 'grid',
+              gridTemplateColumns: '1fr auto',
+              gap: 12,
+              alignItems: 'baseline',
+            }}
+          >
+            <div style={{ fontSize: 13.5, color: 'var(--ink)' }}>
+              {f.who}
+              <div style={{ color: 'var(--ink50)', fontSize: 11.5, marginTop: 2 }}>{f.sub}</div>
+            </div>
+            <div
+              className="mono"
+              style={{
+                fontSize: 13.5,
+                color: 'var(--civic)',
+                fontWeight: 500,
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {f.fig}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontSize: 13, color: 'var(--ink50)', margin: '10px 0 0' }}>
+        Cofinancian obras solapadas: <b style={{ color: 'var(--ink60)' }}>no deben sumarse</b> en
+        una única cifra de reconstrucción.
+      </p>
+    </div>
+  )
+}
+
+/* ---- Callout ámbar: lo que sigue sin ejecutarse ---- */
+function Callout() {
+  const li = { marginBottom: 7, color: 'var(--ink80)', fontSize: 14.5, lineHeight: 1.45 }
+  const em = { color: 'var(--warn-ink)' }
+  return (
+    <div
+      style={{
+        background: 'var(--warn-soft)',
+        border: '1px solid var(--warn)',
+        borderRadius: 12,
+        padding: '18px 22px',
+        margin: '16px 0 8px',
+      }}
+    >
+      <div
+        style={{
+          fontSize: 12,
+          textTransform: 'uppercase',
+          letterSpacing: '.1em',
+          color: 'var(--warn-ink)',
+          fontWeight: 700,
+          marginBottom: 10,
+        }}
+      >
+        Adjudicado no es ejecutado
+      </div>
+      <ul style={{ margin: 0, paddingLeft: 20 }}>
+        <li style={li}>
+          La reposición hídrica del municipio iba al <b style={em}>30 %</b> en 2026, según la
+          concesionaria.
+        </li>
+        <li style={li}>
+          Pendientes: colectores en <b style={em}>calle dels Fusters</b>, grupos electrógenos en{' '}
+          <b style={em}>El Oliveral</b> y <b style={em}>Sector 13</b> (~100.000 €, sin adjudicar).
+        </li>
+        <li style={{ ...li, marginBottom: 0 }}>
+          Las pasarelas del Túria no se reconstruyeron hasta <b style={em}>abril de 2026</b>, ~18
+          meses después.
+        </li>
+      </ul>
+    </div>
+  )
+}
+
 const CAP = (s) => (s.length > 34 ? s.slice(0, 33) + '…' : s)
 
 export default function ReconstruccionDana() {
@@ -348,7 +493,7 @@ export default function ReconstruccionDana() {
           cifró en 63 contratos de emergencia y 2.048.621 euros su respuesta inmediata a la riada.
         </p>
 
-        <h2 style={hStyle()}>La ola y la cola</h2>
+        <SecHead num="01" kicker="Cuándo" title="La ola y la cola" />
         <p>
           El grueso llegó de golpe. La retirada de fango y la limpieza de caminos y viales coparon
           las primeras semanas: media docena de empresas se repartieron esos trabajos entre el 20 y
@@ -370,7 +515,7 @@ export default function ReconstruccionDana() {
           referencia la DANA.
         </p>
 
-        <h2 style={hStyle()}>El mapa, contrato a contrato</h2>
+        <SecHead num="02" kicker="Dónde" title="El mapa, contrato a contrato" />
         <p>
           Situados sobre el mapa del municipio, esos contratos se concentran donde más golpeó el
           agua. El poblado de <b>l'Oliveral</b> absorbe el mayor gasto DANA geolocalizado (125.000
@@ -395,7 +540,7 @@ export default function ReconstruccionDana() {
           municipal real (OSM). Fuente: tender-geo · resolutor determinista de topónimos.
         </p>
 
-        <h2 style={hStyle()}>Los adjudicatarios</h2>
+        <SecHead num="03" kicker="Quién" title="Los adjudicatarios" />
         <p>
           Ocho empresas concentran la mayor parte del gasto DANA trazado. Los describimos por lo que
           consta en el registro público —importe y objeto—, sin atribuir irregularidad.
@@ -410,7 +555,7 @@ export default function ReconstruccionDana() {
           />
         </Card>
 
-        <h2 style={hStyle()}>El gasto DANA que hemos podido situar</h2>
+        <SecHead num="04" kicker="Zonas" title="El gasto DANA que hemos podido situar" />
         <p>
           Seis emplazamientos absorben el gasto DANA geolocalizado —una fracción del total, la que
           el título del contrato permite ubicar con precisión—.
@@ -425,22 +570,23 @@ export default function ReconstruccionDana() {
           />
         </Card>
 
-        <h2 style={hStyle()}>De dónde viene el dinero</h2>
+        <SecHead num="05" kicker="Financiación" title="De dónde viene el dinero" />
         <p>
           La reconstrucción de Riba-roja se financia desde al menos cinco administraciones, y
           conviene no confundir lo anunciado con lo ejecutado ni sumar unas ayudas con otras, porque
           cofinancian obras solapadas. Solo del Estado, el municipio tiene reconocidos{' '}
           <b>14.553.099,88 euros</b> por la Orden TMD/101/2025, que cubre hasta el 100 % de la
-          reparación de infraestructuras. A eso se añaden 9,5 millones de fondos europeos FEDER para
-          la agenda urbana, las partidas del Plan Endavant de la Generalitat, las obras de
-          emergencia del cauce del Túria que ejecuta la Confederación Hidrográfica del Júcar, y
-          ayudas de la Diputació de València. El presupuesto municipal de reconstrucción para 2025
-          —43,5 millones— recibió su aprobación inicial en el pleno extraordinario y urgente del 31
-          de julio de 2025, con los votos a favor del gobierno del PSPV, el rechazo del PP y la
-          abstención de Compromís, Esquerra Unida-Podem y Vox.
+          reparación de infraestructuras.
+        </p>
+        <Funders />
+        <p>
+          El presupuesto municipal de reconstrucción para 2025 —43,5 millones— recibió su aprobación
+          inicial en el pleno extraordinario y urgente del 31 de julio de 2025, con los votos a
+          favor del gobierno del PSPV, el rechazo del PP y la abstención de Compromís, Esquerra
+          Unida-Podem y Vox.
         </p>
 
-        <h2 style={hStyle()}>Quién audita esto — nadie, todavía</h2>
+        <SecHead num="06" kicker="El vacío" title="Quién audita esto — nadie, todavía" />
         <p>
           Ese caudal de dinero público llega, en su tramo municipal, sin un control externo
           específico. La Sindicatura de Comptes anunció la fiscalización de los contratos y
@@ -452,16 +598,13 @@ export default function ReconstruccionDana() {
           desciende al contrato concreto ni a la calle.
         </p>
 
-        <h2 style={hStyle()}>Lo que falta</h2>
+        <SecHead num="07" kicker="Lo pendiente" title="Lo que sigue sin ejecutarse" />
         <p>
-          Adjudicar no es terminar. La reposición de las infraestructuras hídricas del municipio iba
-          al <b>30 %</b> en 2026, según la concesionaria: seguían pendientes los colectores de la
-          calle dels Fusters y los grupos electrógenos de emergencia de las estaciones de bombeo de
-          El Oliveral y el Sector 13, un contrato de unos 100.000 euros aún sin adjudicar. Las
-          pasarelas del Túria que la avenida se llevó por delante no se reconstruyeron hasta{' '}
-          <b>abril de 2026</b>, casi dieciocho meses después.
+          Adjudicar no es terminar. Casi dieciocho meses después de la riada, buena parte de la
+          reconstrucción seguía en marcha —o sin empezar—.
         </p>
-        <p>
+        <Callout />
+        <p style={{ marginTop: 20 }}>
           La DANA causó seis víctimas mortales en el término municipal, según el balance del
           Ayuntamiento, y una factura que la administración aún salda a plazos: el Consistorio ha
           cifrado en torno a los 22 millones de euros los daños del municipio. Este análisis no
@@ -470,46 +613,102 @@ export default function ReconstruccionDana() {
         </p>
       </article>
 
-      <Card style={{ margin: '30px 0 0', background: 'var(--soft)' }}>
-        <SectionHead eyebrow="Transparencia" title="Ficha técnica" />
-        <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '8px 0 0', lineHeight: 1.5 }}>
-          Los datos de contratación proceden del portal de transparencia municipal (PLACSP, vía la
-          plataforma Gobierto) y se han geolocalizado con un resolutor determinista de topónimos que
-          solo sitúa un contrato cuando su título nombra un lugar concreto. Se consideran «DANA» los
-          contratos cuyo título menciona la DANA, el temporal de lluvias o el 29 de octubre; es un
-          criterio transparente y reproducible, no un cómputo exhaustivo del gasto de
-          reconstrucción. Importes sin IVA, sobre contratos adjudicados (datos a {m.fechaDatos}).
-          Las cifras de fallecidos, daños municipales, tejido industrial afectado y sentido del voto
-          proceden de declaraciones del Ayuntamiento recogidas por la prensa local. Metodología
-          completa en{' '}
-          <a href="/metodologia" style={{ color: 'var(--civic)' }}>
-            /metodologia
-          </a>
-          .
-        </p>
-        <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '12px 0 0', lineHeight: 1.5 }}>
-          El Ayuntamiento de Riba-roja dispone de derecho de réplica sobre esta información, que se
-          publicará íntegra. Contacto y correcciones:{' '}
-          <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
-            aviso legal
-          </a>
-          .
-        </p>
-      </Card>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: 14,
+          margin: '32px 0 0',
+        }}
+      >
+        <div
+          style={{
+            background: 'var(--soft)',
+            border: '1px solid var(--border)',
+            borderRadius: 12,
+            padding: '18px 20px',
+          }}
+        >
+          <h3 style={boxH()}>Fuentes primarias</h3>
+          <ul style={boxUl()}>
+            <li style={boxLi()}>
+              <b>PLACSP / Gobierto</b> — el ledger contrato a contrato.
+            </li>
+            <li style={boxLi()}>
+              <b>BOE</b> — Orden TMD/101/2025; RDL DANA 6/2024 y 7/2024.
+            </li>
+            <li style={boxLi()}>
+              <b>Ayuntamiento</b> — nota «14,5 millones» + acuerdos de la Junta de Gobierno Local.
+            </li>
+            <li style={boxLi()}>
+              <b>Regmeet / ribarroja.es</b> — orden del día del pleno del 31-jul-2025.
+            </li>
+            <li style={boxLi()}>
+              <b>Generalitat</b> — balance de reconstrucción + visor infoDANA.
+            </li>
+          </ul>
+        </div>
+        <div
+          style={{
+            background: 'var(--soft)',
+            border: '1px solid var(--warn)',
+            borderRadius: 12,
+            padding: '18px 20px',
+          }}
+        >
+          <h3 style={boxH()}>Método y cautelas</h3>
+          <ul style={boxUl()}>
+            <li style={boxLi()}>
+              <b>«DANA» = coincidencia por palabra en el título</b> del contrato: el suelo trazable,
+              no el total de reconstrucción.
+            </li>
+            <li style={boxLi()}>
+              Importes sin IVA, sobre contratos adjudicados (datos a {m.fechaDatos}).{' '}
+              <b>Adjudicado ≠ ejecutado</b>; los financiadores no se suman.
+            </li>
+            <li style={boxLi()}>
+              Fallecidos, daños municipales, tejido industrial y sentido del voto: declaraciones del
+              Ayuntamiento recogidas por la prensa local.
+            </li>
+            <li style={boxLi()}>
+              Cada cifra enlaza a su fuente. Metodología en{' '}
+              <a href="/metodologia" style={{ color: 'var(--civic)' }}>
+                /metodologia
+              </a>
+              .
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '16px 0 0', lineHeight: 1.5 }}>
+        El Ayuntamiento de Riba-roja dispone de derecho de réplica sobre esta información, que se
+        publicará íntegra. Contacto y correcciones:{' '}
+        <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
+          aviso legal
+        </a>
+        .
+      </p>
     </div>
   )
 }
 
-function hStyle() {
-  return {
-    fontFamily: SERIF,
-    fontSize: 25,
-    fontWeight: 600,
-    letterSpacing: '-.01em',
-    lineHeight: 1.15,
-    margin: '34px 0 12px',
-  }
-}
 function cap() {
   return { fontSize: 12.5, color: 'var(--ink50)', margin: '10px 0 4px', lineHeight: 1.45 }
+}
+function boxH() {
+  return {
+    fontSize: 12,
+    textTransform: 'uppercase',
+    letterSpacing: '.1em',
+    color: 'var(--ink50)',
+    margin: '0 0 12px',
+    fontWeight: 700,
+  }
+}
+function boxUl() {
+  return { margin: 0, paddingLeft: 18 }
+}
+function boxLi() {
+  return { fontSize: 13, color: 'var(--ink60)', marginBottom: 8, lineHeight: 1.45 }
 }
