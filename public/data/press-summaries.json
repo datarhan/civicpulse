@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:18:19.381Z",
+  "generatedAt": "2026-07-07T08:15:27.858Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
@@ -13,31 +13,31 @@
       "articleId": "i93nqo",
       "fingerprint": "pihqa0",
       "summary": "El PSOE de Riba-roja de Túria ha criticado la convocatoria de un pleno extraordinario por parte del PP, celebrado 72 horas antes del pleno ordinario. Según la oposición, dicha convocatoria supondrá un coste aproximado de 4.000 euros para el Ayuntamiento. El asunto afecta a la organización y al gasto de la corporación municipal.",
-      "generatedAt": "2026-07-06T08:18:06.264Z"
+      "generatedAt": "2026-07-07T08:15:27.855Z"
     },
     {
       "articleId": "1d0qbik",
       "fingerprint": "kwatf8",
       "summary": "El Consell ha autorizado la creación y explotación de un aparcamiento para aproximadamente 400 vehículos pesados en el Parque Logístico de Riba-roja de Túria. Esta infraestructura busca mejorar la capacidad de estacionamiento en la zona y facilitar la operativa logística.",
-      "generatedAt": "2026-07-06T08:18:13.057Z"
+      "generatedAt": "2026-07-07T08:15:27.857Z"
     },
     {
       "articleId": "1ilpvg1",
       "fingerprint": "e4vfjg",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha aprobado el Plan Territorial Municipal de Emergencias, un documento que fija los protocolos de actuación ante riesgos como olas de calor, incendios, inundaciones y temporales. El plan establece la coordinación de recursos municipales para la protección de la población ante estas situaciones.",
-      "generatedAt": "2026-07-06T08:18:13.058Z"
+      "generatedAt": "2026-07-07T08:15:27.857Z"
     },
     {
       "articleId": "jrb2xk",
       "fingerprint": "s55xq8",
       "summary": "El Ayuntamiento ha anunciado la construcción de un aparcamiento para aproximadamente 400 camiones en el Parque Logístico de Valencia, ubicado en Riba-roja de Túria. Esta infraestructura busca mejorar la gestión del tráfico de vehículos pesados en la zona.",
-      "generatedAt": "2026-07-06T08:18:19.373Z"
+      "generatedAt": "2026-07-07T08:15:27.858Z"
     },
     {
       "articleId": "f3wulw",
       "fingerprint": "wzti7k",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha puesto en marcha la Escuela Municipal de Verano Inclusiva, en la que participan cerca de 700 niños y niñas del municipio. La iniciativa se desarrolla durante el periodo estival y se enmarca en los programas municipales de conciliación familiar y ocio infantil.",
-      "generatedAt": "2026-07-06T08:18:19.381Z"
+      "generatedAt": "2026-07-07T08:15:27.858Z"
     }
   ]
 }

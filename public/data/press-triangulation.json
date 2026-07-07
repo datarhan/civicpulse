@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:18:20.611Z",
+  "generatedAt": "2026-07-07T08:15:28.594Z",
   "clusters": [
     {
       "clusterId": "1pb4pmk",
@@ -67,6 +67,90 @@
       }
     },
     {
+      "clusterId": "17s9le4",
+      "articleIds": [
+        "1icahjc",
+        "olul7k"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-06-29T11:09:53.000Z",
+      "latestDate": "2026-06-29T11:52:36.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1g57ty4",
+      "articleIds": [
+        "1cb6bds",
+        "62t9nq"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-07-01T12:21:18.000Z",
+      "latestDate": "2026-07-01T15:27:40.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1v8db01",
+      "articleIds": [
+        "1iqks4s",
+        "rd3l4s"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-06-11T07:00:00.000Z",
+      "latestDate": "2026-06-11T11:28:21.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "1wdv8mw",
+      "articleIds": [
+        "f3wulw",
+        "pynaos"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Las Provincias"
+      ],
+      "earliestDate": "2026-07-01T12:44:04.000Z",
+      "latestDate": "2026-07-05T21:25:20.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      }
+    },
+    {
       "clusterId": "4oulog",
       "articleIds": [
         "145n70",
@@ -110,7 +194,7 @@
     }
   ],
   "stats": {
-    "totalClusters": 5,
+    "totalClusters": 9,
     "triangulated3Plus": 1
   }
 }

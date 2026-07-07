@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-06T08:18:36.806Z",
+  "generatedAt": "2026-07-07T08:16:19.000Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
   "stats": {
     "total": 5,
-    "alive": 5,
-    "dead": 0,
+    "alive": 4,
+    "dead": 1,
     "error": 0,
     "archived": 0
   },
@@ -18,7 +18,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-06T08:18:23.198Z",
+      "checkedAt": "2026-07-07T08:15:36.210Z",
       "error": null
     },
     {
@@ -28,18 +28,18 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-06T08:18:28.050Z",
+      "checkedAt": "2026-07-07T08:15:42.514Z",
       "error": null
     },
     {
       "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
-      "status": "alive",
-      "httpStatus": 200,
+      "status": "dead",
+      "httpStatus": 502,
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-06T08:18:29.117Z",
-      "error": null
+      "checkedAt": "2026-07-07T08:16:13.389Z",
+      "error": "HTTP 502"
     },
     {
       "articleUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVHVJUnBiRVRrUUdMSmhIZjhlb1JNQUNVM0E5Z2ktRDU0STRrQjRqdWdOUk5PUVdrV2Y2Nkl5M1dWNWJwZEtteGRtU0RmYm9takh6OElpMk1kWXdFWTJMTTBMZlZxN09GTU5KakdLWDhVZXRnakhRYnU4Y2QwTHY5Yy1HdEZHRUdDa2d1ejJSa0lGS2c?oc=5",
@@ -48,7 +48,7 @@
       "articleSource": "Actualidad Valencia",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-06T08:18:35.136Z",
+      "checkedAt": "2026-07-07T08:16:15.452Z",
       "error": null
     },
     {
@@ -58,7 +58,7 @@
       "articleSource": "Ayuntamiento de Riba-roja de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-06T08:18:36.606Z",
+      "checkedAt": "2026-07-07T08:16:18.800Z",
       "error": null
     }
   ]
