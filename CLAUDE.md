@@ -449,7 +449,12 @@ every production surface reads real JSON.
 - `tweaks` state (dark mode, density) persists to `localStorage` under
   `cp:tweaks` and applies `html.dark` class + `html` font-size.
 - Breadcrumb derives from `useLocation()` matched against the `NAV`
-  array in `components/Sidebar.jsx`.
+  array. `NAV` (+ `NAV_SECONDARY`, the legal/editorial footer links) is the
+  single shared nav source in `src/nav.js` — re-exported from
+  `components/Sidebar.jsx` for back-compat. BOTH the labelled `Sidebar` and the
+  icon-only landing `LeftRail` (`variants/direction-d/LeftRail.jsx`) render from
+  it, so a route added once appears in both and the two menus can't drift. Add a
+  unique glyph in `SectionGlyph.jsx` for every `to` (rail shows one per route).
 
 ### Routes
 - `/` → `variants/DirectionD.jsx` — the MVP landing (no sidebar).
