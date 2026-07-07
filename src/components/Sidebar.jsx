@@ -1,152 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import { Ic } from './Icons'
 import { SectionGlyph } from './SectionGlyph'
 import { useWikidata } from '../hooks/useWikidata'
 import { useT } from '../i18n'
+import { NAV, NAV_SECONDARY } from '../nav'
 
-// Landing (/) always renders Direction D — the map kiosk with real data.
-// Table-view pages below stay inside the Sidebar+Topbar shell.
-// `labelKey` is an i18n key; `label` is the fallback display string used by
-// breadcrumb matching when the key is not loaded (e.g. during SSR/hydration).
-export const NAV = [
-  { to: '/', id: 'inicio', labelKey: 'nav.inicio', label: 'Panel', icon: Ic.home, shortcut: 'G H' },
-  {
-    to: '/cambios',
-    id: 'cambios',
-    labelKey: 'nav.cambios',
-    label: 'Novedades',
-    icon: Ic.chart,
-    shortcut: 'G N',
-  },
-  {
-    to: '/cargos',
-    id: 'cargos',
-    labelKey: 'nav.cargos',
-    label: 'Cargos',
-    icon: Ic.people,
-    shortcut: 'G C',
-  },
-  {
-    to: '/presupuesto',
-    id: 'presup',
-    labelKey: 'nav.presup',
-    label: 'Presupuesto',
-    icon: Ic.coin,
-    shortcut: 'G P',
-  },
-  {
-    to: '/plenos',
-    id: 'plenos',
-    labelKey: 'nav.plenos',
-    label: 'Plenos',
-    icon: Ic.scale,
-    shortcut: 'G L',
-  },
-  {
-    to: '/promesas',
-    id: 'promesas',
-    labelKey: 'nav.promesas',
-    label: 'Promesas',
-    icon: Ic.scale,
-    shortcut: 'G R',
-  },
-  {
-    to: '/departamentos',
-    id: 'depts',
-    labelKey: 'nav.departamentos',
-    label: 'Departamentos',
-    icon: Ic.building,
-    shortcut: 'G E',
-  },
-  {
-    to: '/hallazgos',
-    id: 'findings',
-    labelKey: 'nav.hallazgos',
-    label: 'Hallazgos',
-    icon: Ic.warn,
-    shortcut: 'G F',
-  },
-  {
-    to: '/declaraciones',
-    id: 'declaraciones',
-    labelKey: 'nav.declaraciones',
-    label: 'Declaraciones',
-    icon: Ic.list ?? Ic.warn,
-    shortcut: 'G L',
-  },
-  {
-    to: '/datos',
-    id: 'datos',
-    labelKey: 'nav.datos',
-    label: 'Datos',
-    icon: Ic.chart,
-    shortcut: 'G D',
-  },
-  {
-    to: '/quejas',
-    id: 'quejas',
-    labelKey: 'nav.quejas',
-    label: 'Quejas',
-    icon: Ic.warn,
-    shortcut: 'G Q',
-  },
-  {
-    to: '/empleo',
-    id: 'empleo',
-    labelKey: 'nav.empleo',
-    label: 'Empleo',
-    icon: Ic.building,
-    shortcut: 'G O',
-  },
-  {
-    to: '/laboratorio',
-    id: 'laboratorio',
-    labelKey: 'nav.laboratorio',
-    label: 'Laboratorio',
-    icon: Ic.lab,
-    shortcut: 'G B',
-  },
-  // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
-  // surface — it drafts biographies of named living officials. It is hidden
-  // from the public production build for the MVP launch and stays available in
-  // dev. Re-enable in production via VITE_ENABLE_PERIODISTAS=true. Keep this
-  // gate in sync with PERIODISTAS_ENABLED in src/App.jsx.
-  ...(import.meta.env.MODE !== 'production' || import.meta.env.VITE_ENABLE_PERIODISTAS === 'true'
-    ? [
-        {
-          to: '/laboratorio/agentes',
-          id: 'agentes',
-          labelKey: 'nav.agentes',
-          label: 'Periodistas',
-          icon: Ic.lab,
-          shortcut: 'G A',
-        },
-      ]
-    : []),
-  // /curator is dev-only — surfaces in the sidebar only when running
-  // `npm run dev` on a curator's laptop. Production builds tree-shake
-  // this entry out via the import.meta.env.MODE check below.
-  ...(import.meta.env.MODE !== 'production'
-    ? [
-        {
-          to: '/curator',
-          id: 'curator',
-          labelKey: 'nav.curator',
-          label: 'Curator (dev)',
-          icon: Ic.settings ?? Ic.warn,
-          shortcut: 'G C',
-        },
-      ]
-    : []),
-  {
-    to: '/nosotros',
-    id: 'nosotros',
-    labelKey: 'nav.nosotros',
-    label: 'Quiénes somos',
-    icon: Ic.people,
-    shortcut: 'G S',
-  },
-]
+export { NAV }
 
 function CityChip() {
   const { data } = useWikidata()
@@ -341,13 +199,14 @@ export function Sidebar({ open = false, onClose }) {
           {t('sidebar.footer.tag')}
         </div>
         <div style={{ fontSize: 11, color: 'var(--ink60)', marginTop: 3 }}>
-          <a href="/aviso-legal" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
-            {t('sidebar.footer.legal')}
-          </a>{' '}
-          ·{' '}
-          <a href="/metodologia" style={{ color: 'var(--civic)', textDecoration: 'none' }}>
-            {t('sidebar.footer.method')}
-          </a>
+          {NAV_SECONDARY.map((n, i) => (
+            <span key={n.to}>
+              {i > 0 && ' · '}
+              <a href={n.to} style={{ color: 'var(--civic)', textDecoration: 'none' }}>
+                {t(n.labelKey)}
+              </a>
+            </span>
+          ))}
         </div>
       </div>
     </aside>

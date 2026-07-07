@@ -3,6 +3,7 @@ import { render } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { SECTION_GLYPHS, glyphFor, SectionGlyph } from '../../src/components/SectionGlyph'
 import { NAV } from '../../src/components/Sidebar'
+import { NAV_SECONDARY } from '../../src/nav'
 
 // The canonical assignment from Detalles Gráficos v2 §03 ("Un glifo, una sección").
 const SPEC = {
@@ -33,9 +34,11 @@ describe('SectionGlyph — canonical per-section assignment', () => {
     expect(SECTION_GLYPHS['/promesas'].tone).toBe('civic')
   })
 
-  it('gives every sidebar NAV route a glyph — no section left unmarked', () => {
-    for (const n of NAV) {
-      expect(SECTION_GLYPHS[n.to], `NAV route ${n.to} needs a glyph`).toBeTruthy()
+  it('gives every nav route a glyph — primary + secondary, no section left unmarked', () => {
+    // Both the labelled Sidebar and the icon-only LeftRail render these from the
+    // shared src/nav.js; the rail shows a glyph per route, so every one needs one.
+    for (const n of [...NAV, ...NAV_SECONDARY]) {
+      expect(SECTION_GLYPHS[n.to], `nav route ${n.to} needs a glyph`).toBeTruthy()
     }
   })
 
@@ -57,7 +60,7 @@ describe('SectionGlyph — render', () => {
     const { container } = render(
       <MemoryRouter>
         <SectionGlyph to="/quejas" />
-      </MemoryRouter>
+      </MemoryRouter>,
     )
     expect(container.textContent).toContain('◍')
   })
@@ -69,7 +72,7 @@ describe('SectionGlyph — render', () => {
     const { container: civic } = render(<SectionGlyph to="/promesas" />)
     // The CSSOM lowercases the keyword — assert case-insensitively.
     expect(civic.querySelector('[data-section-glyph]').style.color.toLowerCase()).toBe(
-      'currentcolor'
+      'currentcolor',
     )
   })
 

@@ -30,6 +30,7 @@ export const SECTION_GLYPHS = {
   '/laboratorio': { glyph: '◈', tone: 'intel' }, // comparte glifo con IA — a propósito
   // Sections outside the §03 grid — kept unique so the whole rail stays 1:1.
   '/metodologia': { glyph: '§', tone: 'civic' }, // el contrato editorial
+  '/aviso-legal': { glyph: '¶', tone: 'civic' }, // el marginal legal (pareja de §)
   '/nosotros': { glyph: '❦', tone: 'civic' }, // el colofón: quién firma
   '/laboratorio/agentes': { glyph: '✎', tone: 'intel' }, // el periodista (familia IA)
   '/curator': { glyph: '⧉', tone: 'civic' }, // la mesa de curación (dev)
