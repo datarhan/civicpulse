@@ -11,6 +11,8 @@ import {
   parseBudgetExecutionPdf,
   mergeExecutionPeriod,
   type BudgetExecutionPeriod,
+  type ExecDoc,
+  type ExecKind,
 } from '../src/scraper/budget-execution'
 import {
   fetchPdfText,
@@ -21,40 +23,61 @@ import {
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'public/data/budget-execution.json')
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-// From a period content-page, find its gastos + ingresos PDF URLs.
-async function pdfUrlsFor(pageUrl: string): Promise<{ gastos?: string; ingresos?: string }> {
+// From a period content-page, collect ALL candidate gastos + ingresos PDF URLs,
+// in page order. We no longer guess the right sheet from the filename/text
+// (resumen vs detalle): the caller parses every candidate and selects the one
+// with a valid grand total AND the most chapters, so a chapter-ful detalle
+// sheet wins over a chapter-less summary.
+async function pdfUrlsFor(pageUrl: string): Promise<{ gastos: string[]; ingresos: string[] }> {
   const res = await fetch(pageUrl, {
     headers: { 'User-Agent': 'Mozilla/5.0 (compatible; CivicPulse/0.1)' },
   })
-  if (!res.ok) return {}
+  if (!res.ok) return { gastos: [], ingresos: [] }
   const html = await res.text()
   const links = [...html.matchAll(/href="([^"]+\.pdf[^"]*)"[^>]*>([^<]*)</gi)].map((m) => ({
     href: m[1].startsWith('http') ? m[1] : `https://www.ribarroja.es${m[1]}`,
     text: m[2],
   }))
-  const isResumen = (l: { text: string; href: string }) =>
-    /resumen/i.test(l.text) || /resumen/i.test(l.href)
-  const isDetalle = (l: { text: string; href: string }) =>
-    /detalle|corriente/i.test(l.text) || /detalle|corriente/i.test(l.href)
-  // When a page carries several gastos/ingresos PDFs, prefer a "resumen" sheet
-  // OVER a "detalle"/"corriente" one: the detalle variants lack the Total
-  // Capítulo/Total Gastos summary markers the parser keys on. But only escape
-  // to resumen when the default (first-match) pick is itself a detalle/corriente
-  // sheet — a plain summary first-match (e.g. 2025's "GASTOS 1T") already parses
-  // cleanly, and a page may list several trimestres' PDFs at once, so blindly
-  // grabbing an unrelated later-trimestre "resumen" would only lose good data.
-  const pick = (rx: RegExp) => {
-    const matches = links.filter((l) => rx.test(l.text) || rx.test(l.href))
-    if (matches.length === 0) return undefined
-    if (isDetalle(matches[0])) return (matches.find(isResumen) ?? matches[0]).href
-    return matches[0].href
-  }
-  return { gastos: pick(/gasto/i), ingresos: pick(/ingreso/i) }
+  const candidates = (rx: RegExp) =>
+    links.filter((l) => rx.test(l.text) || rx.test(l.href)).map((l) => l.href)
+  return { gastos: candidates(/gasto/i), ingresos: candidates(/ingreso/i) }
 }
 
 function trimestreOf(label: string): number | null {
   const m = label.match(/(\d)\s*[ºo]?\s*trimestre|trimestre\s*(\d)/i)
   return m ? Number(m[1] || m[2]) : null
+}
+
+const emptyDoc = (kind: ExecKind): ExecDoc => ({
+  kind,
+  year: 0,
+  fechaListado: null,
+  chapters: [],
+  total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 },
+})
+
+// Fetch + parse every candidate PDF for one side and pick the best ExecDoc:
+// a valid grand total (total.actual > 0) AND the MOST chapters — so a
+// chapter-ful detalle sheet beats a chapter-less summary. Candidates are
+// fetched serially with the shared throttle; a throwing/empty candidate is
+// skipped, not fatal. Returns an empty doc when nothing usable was found (the
+// plausibility gate then drops the period).
+async function selectBestDoc(urls: string[], kind: ExecKind): Promise<ExecDoc> {
+  const docs: ExecDoc[] = []
+  for (const url of urls) {
+    try {
+      const text = await fetchPdfText(url)
+      if (text) docs.push(parseBudgetExecutionPdf(text))
+    } catch (err) {
+      console.warn(`skip candidate (${kind}): ${url} · ${(err as Error).message}`)
+    } finally {
+      await sleep(400)
+    }
+  }
+  const best = docs
+    .filter((d) => d.total.actual > 0)
+    .sort((a, b) => b.chapters.length - a.chapters.length)[0]
+  return best ?? emptyDoc(kind)
 }
 
 // A period only ships if the figures are internally plausible: real year,
@@ -81,43 +104,24 @@ async function main() {
     // Best-effort per period: any throw (network error, corrupt/blocked PDF,
     // parser failure) skips THIS period and continues with the rest.
     try {
-      const { gastos: gUrl, ingresos: iUrl } = await pdfUrlsFor(it.href)
-      if (!gUrl && !iUrl) {
+      const { gastos: gUrls, ingresos: iUrls } = await pdfUrlsFor(it.href)
+      await sleep(400)
+      if (gUrls.length === 0 && iUrls.length === 0) {
         console.warn(`skip (no PDFs): ${it.label}`)
         continue
       }
-      const [gText, iText] = await Promise.all([
-        gUrl ? fetchPdfText(gUrl) : Promise.resolve(null),
-        iUrl ? fetchPdfText(iUrl) : Promise.resolve(null),
-      ])
-      if (!gText && !iText) {
-        console.warn(`skip (PDF fetch failed): ${it.label}`)
+      // Parse every candidate per side, select the one with a valid total and
+      // the most chapters (recovers per-capítulo detalle over a summary sheet).
+      const g = await selectBestDoc(gUrls, 'gastos')
+      const i = await selectBestDoc(iUrls, 'ingresos')
+      if (g.total.actual <= 0 && i.total.actual <= 0) {
+        console.warn(`skip (no usable PDF): ${it.label}`)
         continue
       }
-      const g = gText
-        ? parseBudgetExecutionPdf(gText)
-        : {
-            kind: 'gastos' as const,
-            year: 0,
-            fechaListado: null,
-            chapters: [],
-            total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 },
-          }
-      const i = iText
-        ? parseBudgetExecutionPdf(iText)
-        : {
-            kind: 'ingresos' as const,
-            year: 0,
-            fechaListado: null,
-            chapters: [],
-            total: { inicial: 0, modificaciones: 0, actual: 0, ejecutado: 0 },
-          }
       periods.push(mergeExecutionPeriod(g, i, { trimestre: trimestreOf(it.label) }))
     } catch (err) {
       console.warn(`skip (error): ${it.label} · ${(err as Error).message}`)
       continue
-    } finally {
-      await sleep(400)
     }
   }
   // Validation gate: keep only plausible periods; log + drop the rest.
