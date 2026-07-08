@@ -2,6 +2,7 @@ import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
 import { Ic } from '../components/Icons'
 import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
+import { useAsociaciones } from '../hooks/useAsociaciones'
 import { useOfficials } from '../hooks/useOfficials'
 import { useBudget } from '../hooks/useBudget'
 import { useTenders } from '../hooks/useTenders'
@@ -592,6 +593,58 @@ function TransparencyDocsCard() {
   )
 }
 
+function AsociacionesCard() {
+  const { data } = useAsociaciones()
+  const rows = data?.asociaciones ?? []
+  if (rows.length === 0) return null
+  const byTipo = rows.reduce((acc, a) => {
+    const k = a.tipo || 'Otras'
+    acc[k] = (acc[k] || 0) + 1
+    return acc
+  }, {})
+  const tipos = Object.entries(byTipo).sort((a, b) => b[1] - a[1])
+  return (
+    <Card>
+      <SectionHead
+        eyebrow={`Registro municipal · ${data?.fechaRegistro ?? ''}`}
+        title={`Entidades y asociaciones (${rows.length})`}
+      />
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: '10px 0 16px' }}>
+        {tipos.map(([t, n]) => (
+          <Pill key={t} tone="neutral">
+            {t} · <span className="mono">{n}</span>
+          </Pill>
+        ))}
+      </div>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+          gap: '4px 16px',
+        }}
+      >
+        {rows.map((a, i) => (
+          <div
+            key={i}
+            style={{
+              fontSize: 12.5,
+              color: 'var(--ink80)',
+              padding: '3px 0',
+              borderBottom: '1px solid var(--border2)',
+            }}
+          >
+            {a.nombre}
+            {a.tipo && <span style={{ color: 'var(--ink50)' }}> · {a.tipo}</span>}
+          </div>
+        ))}
+      </div>
+      <p style={{ fontSize: 11.5, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
+        Fuente: Registro Municipal de Asociaciones · Ayuntamiento de Riba-roja de Túria.
+      </p>
+    </Card>
+  )
+}
+
 export default function Datos() {
   const t = useT()
   return (
@@ -641,6 +694,10 @@ export default function Datos() {
 
       <div style={{ marginBottom: 18 }}>
         <TransparencyDocsCard />
+      </div>
+
+      <div style={{ marginBottom: 18 }}>
+        <AsociacionesCard />
       </div>
 
       <div
