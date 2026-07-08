@@ -42,6 +42,14 @@ async function main() {
   const text = await fetchPdfText(target.href)
   if (!text) throw new Error('asociaciones: register PDF fetch failed')
   const doc = parseAsociacionesPdf(text)
+  // Honesty: the `email` field can carry a wrong-but-valid value when the PDF
+  // glues an unseen town/venue into the address→correo seam (see
+  // asociaciones.ts header — the EMAIL_ONLY_RE gate guarantees well-formedness,
+  // not correctness). No surface consumes `email`, so it is OMITTED from the
+  // published snapshot until the Wave 3.1 town-gazetteer hardening lands — an
+  // absent field beats a wrong one in publicly-downloadable open data. The
+  // parser still returns it for that future work + the regression tests.
+  const publicAsociaciones = doc.asociaciones.map(({ email: _email, ...rest }) => rest)
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(
     OUT,
@@ -50,7 +58,7 @@ async function main() {
         generatedAt: new Date().toISOString(),
         source: target.href,
         fechaRegistro: doc.fechaRegistro,
-        asociaciones: doc.asociaciones,
+        asociaciones: publicAsociaciones,
       },
       null,
       2,
