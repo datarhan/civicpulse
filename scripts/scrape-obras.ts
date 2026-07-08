@@ -61,15 +61,16 @@ async function main() {
     // and "pla"/"edificant" have no gazetteer counterpart. Display `nombre`
     // stays full. PlaceMatch.point is a [lat, lng] TUPLE (not {lat,lng}).
     const geoName = item.nombre.replace(/^\s*pla\s+edificant\s+/i, '')
-    let match = matchNameToGazetteer(geoName, candidates)
-    // School-consistency guard: a CEIP/escola obra's tokens can be sparse enough
-    // to collide with an unrelated place once the municipality name is stripped
-    // ("CEIP Camp de Túria" → "camp" → a football field). A school obra may only
-    // map to a school POI; otherwise honest null beats a wrong pin.
-    const isSchool = /ceip|col·?legi|colegio|escola|escuela/i.test(item.nombre)
-    if (match && isSchool && !/col·?legi|colegio|ceip|escola|escuela|educaci/i.test(match.name)) {
-      match = null
-    }
+    // School-consistency: a CEIP/escola obra's tokens can be sparse enough to
+    // collide with an unrelated place once the municipality name is stripped
+    // ("Camp de Túria" → "camp" → a football pitch). Restrict the candidate pool
+    // to school POIs BEFORE matching (a positive filter, not match-then-reject)
+    // so the correct school wins even when a same-token non-school POI sorts
+    // first, and no non-school pin can slip in for a school obra.
+    const SCHOOL_RE = /col·?legi|colegio|ceip|escola|escuela|educaci|institut|ies\b/i
+    const isSchool = SCHOOL_RE.test(item.nombre)
+    const pool = isSchool ? candidates.filter((c) => SCHOOL_RE.test(c.name)) : candidates
+    const match = matchNameToGazetteer(geoName, pool)
     obras.push({
       id: slug(item.nombre),
       ...item,

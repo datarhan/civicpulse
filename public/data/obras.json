@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T09:23:38.405Z",
+  "generatedAt": "2026-07-08T09:31:03.470Z",
   "source": "https://www.ribarroja.es/portal_de_transparencia/5_transparencia_en_materias_de_urbanismo__obras_publicas_y_medioambiente/obras_de_infraestructuras_en_curso/contenidos/2467622/1909893",
   "obras": [
     {
@@ -78,7 +78,11 @@
       "plazoMeses": 3,
       "inicio": "2020-06-29",
       "empresa": "LLOP PROYECTOS INTEGRALES, S.L.",
-      "bajaPct": 12
+      "bajaPct": 12,
+      "lat": 39.5493045,
+      "lng": -0.5717854,
+      "placeName": "Col·legi d'Educació Infantil i Primària Camp de Túria",
+      "placeKind": "poi"
     },
     {
       "id": "rotondas-cv-372-y-cv-336",
