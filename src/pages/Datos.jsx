@@ -4,6 +4,7 @@ import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
 import { useAsociaciones } from '../hooks/useAsociaciones'
 import { useProcesosSelectivos } from '../hooks/useProcesosSelectivos'
+import { useObras } from '../hooks/useObras'
 import { useOfficials } from '../hooks/useOfficials'
 import { useBudget } from '../hooks/useBudget'
 import { useTenders } from '../hooks/useTenders'
@@ -47,6 +48,7 @@ function DatasetsCatalog() {
   const empleo = useEmpleo().data
   const procesos = useProcesosSelectivos().data
   const asociaciones = useAsociaciones().data
+  const obras = useObras().data
 
   const items = [
     {
@@ -205,6 +207,14 @@ function DatasetsCatalog() {
       updated: formatDate(asociaciones?.generatedAt),
       source: 'Registro Municipal · Ayto.',
       path: '/data/asociaciones.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Obras en curso',
+      rows: obras?.obras ? `${obras.obras.length} obras` : '—',
+      updated: formatDate(obras?.generatedAt),
+      source: 'Portal de Transparencia · Ayto.',
+      path: '/data/obras.json',
       fmt: ['json'],
     },
   ]

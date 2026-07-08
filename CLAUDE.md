@@ -23,6 +23,7 @@ npm run scrape:budget               # CONPREL municipal budget XLS (MinHac)
 npm run scrape:budget-execution     # Estados de ejecución presupuestaria (gastos+ingresos, per quarter) → budget-execution.json
 npm run scrape:procesos-selectivos  # Municipal hiring processes (oposiciones/bolsas) → procesos-selectivos.json → /empleo-publico
 npm run scrape:asociaciones         # Registro Municipal de Asociaciones (dated PDF) → asociaciones.json → /datos directory
+npm run scrape:obras                 # Obras de infraestructura en curso (7 fichas · importes/baja/empresa + geo) → obras.json → /presupuesto + map
 npm run scrape:tenders              # Gobierto tender/contract feed (mirrors PLACSP)
 npm run scrape:tenders-ted          # EU TED v3 — contracts above EU threshold (Riba-roja buyer)
 npm run scrape:boe                  # BOE last 30 days · filters titulos mentioning Riba-roja
@@ -576,6 +577,7 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 | Budget execution (ejecutado vs presupuestado, quarterly) | `budget-execution.ts` → `budget-execution.json` | Ayuntamiento estados de ejecución PDFs (SICALWIN) | `/presupuesto` "Ejecución presupuestaria" |
 | Municipal hiring (procesos selectivos) | `procesos-selectivos.ts` → `procesos-selectivos.json` | ribarroja.es procesos-selectivos list | `/empleo-publico` |
 | Association register | `asociaciones.ts` → `asociaciones.json` | Registro Municipal de Asociaciones PDF | `/datos` entidades directory |
+| Obras en curso (municipal infrastructure) | `obras.ts` → `obras.json` | Portal de Transparencia · obras-de-infraestructuras-en-curso fichas | `/presupuesto` section + landing-map layer |
 | Contracts + tenders (730 + 449 at last snapshot, €16.5M awarded) | `tenders.ts` → `tenders.json` | **Gobierto** SQL-over-HTTP API at `ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select * from {contratos,licitaciones}` — public mirror of PLACSP. Parser keeps the full row incl. `duration`/`estimatedValue`/`contractorType` and the winner (`assignee`, NOT `contractor` = the buyer). | `/presupuesto` (`Últimos contratos adjudicados`); Direction D editorial column (`LiveContracts`); the shared `ContractCard` (winner + baja% + CPV label + procedimiento + nº licitadores) on the landing `PlacePopup` + `/presupuesto` `ZoneDrilldown` |
 | Street/camino gazetteer (539: 465 calle · 37 avenida · 20 camino · 12 carretera · 5 plaza) | `streets.ts` → `streets.json` | **OSM Overpass API** — every named `highway` way inside `wikidata=Q23701`, segments merged per accent/case-folded name, point = the longest segment's middle vertex (on-street) | Input to the tender **place-resolver** (`compute-tender-geo.ts`) — never fetched at runtime |
 | CPV-2008 → Spanish labels (414 codes present, trimmed) | `build-cpv-labels.ts` → `cpv-labels.json` | Official **EU/TED CPV-2008** vocabulary (`ted.europa.eu/…/cpv_2008_xml`, EU open data). Occasional curator build; `src/lib/cpv.js` degrades to embedded 2-digit division labels for misses | `ContractCard` CPV chips on the money popups + `/presupuesto` drilldown |

@@ -39,6 +39,7 @@ SCRAPERS=(
   scrape:empleo
   scrape:procesos-selectivos
   scrape:asociaciones
+  scrape:obras
   scrape:wikidata
   scrape:ctbg
   scrape:sindicatura
@@ -75,12 +76,17 @@ SCRAPERS=(
 #   - scrape:asociaciones — single-source dated register PDF on ribarroja.es;
 #     a PDF-layout change breaking the parser must not red the whole run, and
 #     the prior register snapshot stays valid meanwhile.
+#   - scrape:obras — single-source transparency fichas (PDF) on ribarroja.es;
+#     depends on the geo/streets/civic-poi gazetteer for pin placement. A ficha
+#     layout change (or missing gazetteer) must not red the whole run; the prior
+#     obras snapshot stays valid meanwhile.
 BEST_EFFORT=(
   scrape:metro-network
   scrape:empleo
   scrape:budget-execution
   scrape:procesos-selectivos
   scrape:asociaciones
+  scrape:obras
   scrape:geo
   scrape:civic-poi
   scrape:streets
