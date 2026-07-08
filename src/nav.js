@@ -110,6 +110,14 @@ export const NAV = [
     shortcut: 'G O',
   },
   {
+    to: '/empleo-publico',
+    id: 'empleo-publico',
+    labelKey: 'nav.empleoPublico',
+    label: 'Empleo público',
+    icon: Ic.building,
+    shortcut: 'G U',
+  },
+  {
     to: '/laboratorio',
     id: 'laboratorio',
     labelKey: 'nav.laboratorio',

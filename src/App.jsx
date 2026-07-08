@@ -20,6 +20,7 @@ const Plenos = lazy(() => import('./pages/Plenos'))
 const PlenoDetalle = lazy(() => import('./pages/PlenoDetalle'))
 const Datos = lazy(() => import('./pages/Datos'))
 const Empleo = lazy(() => import('./pages/Empleo'))
+const EmpleoPublico = lazy(() => import('./pages/EmpleoPublico'))
 const EmpleoDetalle = lazy(() => import('./pages/EmpleoDetalle'))
 const Promesas = lazy(() => import('./pages/Promesas'))
 const Departamentos = lazy(() => import('./pages/Departamentos'))
@@ -114,6 +115,7 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/plenos/:id" element={<PlenoDetalle />} />
               <Route path="/datos" element={<Datos />} />
               <Route path="/empleo" element={<Empleo />} />
+              <Route path="/empleo-publico" element={<EmpleoPublico />} />
               <Route path="/empleo/:id" element={<EmpleoDetalle />} />
               <Route path="/promesas" element={<Promesas />} />
               <Route path="/departamentos" element={<Departamentos />} />
