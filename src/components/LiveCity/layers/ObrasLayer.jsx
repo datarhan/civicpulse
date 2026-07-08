@@ -37,6 +37,7 @@ export function ObrasLayer({ obras }) {
                 {o.importeAdjudicacion != null ? ` · ${fmtEur(o.importeAdjudicacion)} adj.` : ''}
                 {typeof o.bajaPct === 'number' ? ` · baja ${o.bajaPct}%` : ''}
                 {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
+                {o.inicio ? ` · inicio ${o.inicio}` : ''}
               </div>
               <a
                 href={o.fichaUrl}

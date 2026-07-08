@@ -481,12 +481,27 @@ function ObrasEnCursoSection() {
     <Card style={{ marginBottom: 16 }}>
       <SectionHead
         eyebrow="Urbanismo · infraestructuras"
-        title={`Obras en curso (${obras.length})`}
+        title="Obras de infraestructura · 2019–2020 (FEDER)"
       />
-      <p style={{ fontSize: 12.5, color: 'var(--ink60)', margin: '2px 0 14px', maxWidth: '68ch' }}>
-        Las obras de infraestructura más importantes declaradas por el Ayuntamiento — el reverso del
-        capítulo de inversiones que arriba figura ejecutado al mínimo.
+      <p style={{ fontSize: 12.5, color: 'var(--ink60)', margin: '2px 0 8px', maxWidth: '68ch' }}>
+        Lote de {obras.length} obras de 2019–2020, cofinanciadas con el FEDER de la Comunitat
+        Valenciana 2014–2020. El Ayuntamiento las publicó en su página «obras de infraestructuras en
+        curso».
       </p>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          margin: '0 0 14px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <Pill tone="warn">No actualizado desde feb 2021</Pill>
+        <span style={{ fontSize: 12, color: 'var(--ink60)' }}>
+          no refleja las obras actuales del municipio
+        </span>
+      </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {obras.map((o) => (
           <div key={o.id} style={{ paddingBottom: 10, borderBottom: '1px solid var(--border2)' }}>

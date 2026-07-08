@@ -8,7 +8,7 @@ test.describe('Presupuesto · obras en curso', () => {
       if (m.type() === 'error') errors.push(m.text())
     })
     await page.goto('/presupuesto', { waitUntil: 'domcontentloaded' })
-    await expect(page.getByText(/Obras en curso/i).first()).toBeVisible({ timeout: 8000 })
+    await expect(page.getByText(/Obras de infraestructura/i).first()).toBeVisible({ timeout: 8000 })
     await expect(page.getByText('Porta del Barranc').first()).toBeVisible()
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
