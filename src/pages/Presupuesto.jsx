@@ -2,6 +2,7 @@ import { Card, ExtLink, Pill, SectionHead } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import { useBudget, formatEuros, EXPENSE_COLORS, PROGRAM_COLORS } from '../hooks/useBudget'
 import { useBudgetExecution } from '../hooks/useBudgetExecution'
+import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
@@ -464,6 +465,72 @@ function EjecucionSection() {
   )
 }
 
+function ObrasEnCursoSection() {
+  const { data } = useObras()
+  const obras = data?.obras ?? []
+  if (obras.length === 0) return null
+  const eur = (n) =>
+    typeof n === 'number'
+      ? new Intl.NumberFormat('es-ES', {
+          style: 'currency',
+          currency: 'EUR',
+          maximumFractionDigits: 0,
+        }).format(n)
+      : '—'
+  return (
+    <Card style={{ marginBottom: 16 }}>
+      <SectionHead
+        eyebrow="Urbanismo · infraestructuras"
+        title={`Obras en curso (${obras.length})`}
+      />
+      <p style={{ fontSize: 12.5, color: 'var(--ink60)', margin: '2px 0 14px', maxWidth: '68ch' }}>
+        Las obras de infraestructura más importantes declaradas por el Ayuntamiento — el reverso del
+        capítulo de inversiones que arriba figura ejecutado al mínimo.
+      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        {obras.map((o) => (
+          <div key={o.id} style={{ paddingBottom: 10, borderBottom: '1px solid var(--border2)' }}>
+            <div
+              style={{
+                display: 'flex',
+                gap: 10,
+                justifyContent: 'space-between',
+                alignItems: 'baseline',
+              }}
+            >
+              <span style={{ fontWeight: 600 }}>{o.nombre}</span>
+              {typeof o.bajaPct === 'number' && (
+                <Pill tone={o.bajaPct >= 20 ? 'ok' : 'neutral'}>
+                  baja <span className="mono">{o.bajaPct}%</span>
+                </Pill>
+              )}
+            </div>
+            <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
+              {o.empresa ? `${o.empresa} · ` : ''}
+              {o.importeAdjudicacion != null ? `${eur(o.importeAdjudicacion)} adj.` : ''}
+              {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
+              {o.inicio ? ` · inicio ${o.inicio}` : ''}
+            </div>
+            <a
+              href={o.fichaUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mono"
+              style={{ fontSize: 10.5, color: 'var(--civic)', textDecoration: 'underline' }}
+            >
+              Ver ficha ↗
+            </a>
+          </div>
+        ))}
+      </div>
+      <p style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
+        Fuente: Portal de Transparencia · obras de infraestructuras en curso · Ayuntamiento de
+        Riba-roja de Túria.
+      </p>
+    </Card>
+  )
+}
+
 export default function Presupuesto() {
   return (
     <div
@@ -474,6 +541,7 @@ export default function Presupuesto() {
       <div style={{ marginBottom: 16 }}>
         <EjecucionSection />
       </div>
+      <ObrasEnCursoSection />
       <div style={{ marginBottom: 16 }}>
         <GastoDashboard />
       </div>
