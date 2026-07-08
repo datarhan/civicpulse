@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T09:18:36.754Z",
+  "generatedAt": "2026-07-08T09:23:38.405Z",
   "source": "https://www.ribarroja.es/portal_de_transparencia/5_transparencia_en_materias_de_urbanismo__obras_publicas_y_medioambiente/obras_de_infraestructuras_en_curso/contenidos/2467622/1909893",
   "obras": [
     {
@@ -48,7 +48,11 @@
       "plazoMeses": 3,
       "inicio": "2020-05-18",
       "empresa": "ASSISTACASA 2005, S.L.",
-      "bajaPct": 17.6
+      "bajaPct": 17.6,
+      "lat": 39.5473561,
+      "lng": -0.5639968,
+      "placeName": "Col·legi d'Educació Infantil i Primària Eres Altes",
+      "placeKind": "poi"
     },
     {
       "id": "pla-edificant-ceip-mas-d-escoto",
@@ -59,7 +63,11 @@
       "plazoMeses": 3,
       "inicio": "2019-08-05",
       "empresa": "DESARROLLO Y GESTIÓN, S.L.",
-      "bajaPct": 3.3
+      "bajaPct": 3.3,
+      "lat": 39.5504954,
+      "lng": -0.5811206,
+      "placeName": "Col·legi d'Educació Infantil i Primària Mas d’Escoto",
+      "placeKind": "poi"
     },
     {
       "id": "pla-edificant-ceip-camp-de-turia",

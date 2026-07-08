@@ -55,8 +55,21 @@ async function main() {
         ? Math.round(((f.importeLicitacion - f.importeAdjudicacion) / f.importeLicitacion) * 1000) /
           10
         : undefined
-    // PlaceMatch.point is a [lat, lng] TUPLE (not {lat,lng}).
-    const match = matchNameToGazetteer(item.nombre, candidates)
+    // Geo-resolve on a normalised name: strip the GVA program prefix "Pla
+    // Edificant" (a funding-line label, not a place) so the school obras match
+    // their CEIP POI — matchNameToGazetteer requires EVERY input token to hit,
+    // and "pla"/"edificant" have no gazetteer counterpart. Display `nombre`
+    // stays full. PlaceMatch.point is a [lat, lng] TUPLE (not {lat,lng}).
+    const geoName = item.nombre.replace(/^\s*pla\s+edificant\s+/i, '')
+    let match = matchNameToGazetteer(geoName, candidates)
+    // School-consistency guard: a CEIP/escola obra's tokens can be sparse enough
+    // to collide with an unrelated place once the municipality name is stripped
+    // ("CEIP Camp de Túria" → "camp" → a football field). A school obra may only
+    // map to a school POI; otherwise honest null beats a wrong pin.
+    const isSchool = /ceip|col·?legi|colegio|escola|escuela/i.test(item.nombre)
+    if (match && isSchool && !/col·?legi|colegio|ceip|escola|escuela|educaci/i.test(match.name)) {
+      match = null
+    }
     obras.push({
       id: slug(item.nombre),
       ...item,
