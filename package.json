@@ -37,6 +37,7 @@
     "scrape:plenos": "npx tsx scripts/scrape-plenos.ts",
     "scrape:empleo": "npx tsx scripts/scrape-empleo.ts",
     "scrape:procesos-selectivos": "npx tsx scripts/scrape-procesos-selectivos.ts",
+    "scrape:asociaciones": "npx tsx scripts/scrape-asociaciones.ts",
     "scrape:wikidata": "npx tsx scripts/scrape-wikidata.ts",
     "scrape:promise-suggestions": "npx tsx scripts/scrape-promise-suggestions.ts",
     "scrape:factcheck": "npx tsx scripts/scrape-factcheck.ts",
