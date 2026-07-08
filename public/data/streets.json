@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:46:48.805Z",
+  "generatedAt": "2026-07-08T06:46:32.604Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -5262,8 +5262,8 @@
       "slug": "carretera-ribarroja-villamarchante",
       "kind": "carretera",
       "point": [
-        39.5629132,
-        -0.5987138
+        39.5629989,
+        -0.6005896
       ]
     },
     {

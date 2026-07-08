@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-06T08:53:25.483Z",
+  "generatedAt": "2026-07-08T06:56:48.016Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -56,17 +56,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTC1XUXd4VkU3SHlmVFAtV0Z6UTU0TzAzRlIycy11MS1sR01MOWhpYWRsT2hQb0QxSmdhVHdmTTVYT2VuVFVieUJSdUVVWU1yaXlJLTlUOGJ3MW1ObVpaaG83YjJUVWFOTmkyZFkwMHVkNmYyRXBQTzlwUGp5OExSR2I4NGY3V2R3U05fZEM4bFoxbVVkdDR4MHFJb2JyMXc3ZmRLUXl5T1Z6cnVUVzBQNWx2UUpwZXc1NDZz0gHAAUFVX3lxTFBXSTdSdFZmcDhVd2kwYlBUY29mM0dfZS1xeVRXSVZVMGZBRDRvSGlmZ3F2S3RSdFRnZ2xNWlI2S3dtVHRfZGNKVTRGYXJGdEpTWWR5dXRNU0hsZWNURU9aS2puYlZjdzhOTzJwV1BNRWhtbnZ6bHdiNE5GRWp0cjMtb1NZMEhZVzJaYWVsV2RiVjhoM0hMSXpuVVFDd1ZINzVVQjcxbTRlSlNPZUFwU19qQUJZdUJoYi00YUhtME44MA?oc=5",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-inyecta-un-25%25-m%C3%A1s-de-ayudas-econ%C3%B3micas-directas-al-comercio-local-previstas-para-el-a%C3%B1o-2026-y-sit%C3%BAa-la-partida-en-550.000-euros-encaminada-a-la-reactivaci%C3%B3n-del-sector",
           "date": "2026-06-02",
           "quote": "Riba-roja de Túria inyecta un 25% más de ayudas económicas directas al comercio local previstas para el año 2026 y sitúa la partida en 550.000 euros encaminada a la reactivación del sector",
@@ -76,10 +65,21 @@
             "2026",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "kind": "press",
+          "publisher": "iberdrolaespana.com",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -117,18 +117,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTC1XUXd4VkU3SHlmVFAtV0Z6UTU0TzAzRlIycy11MS1sR01MOWhpYWRsT2hQb0QxSmdhVHdmTTVYT2VuVFVieUJSdUVVWU1yaXlJLTlUOGJ3MW1ObVpaaG83YjJUVWFOTmkyZFkwMHVkNmYyRXBQTzlwUGp5OExSR2I4NGY3V2R3U05fZEM4bFoxbVVkdDR4MHFJb2JyMXc3ZmRLUXl5T1Z6cnVUVzBQNWx2UUpwZXc1NDZz0gHAAUFVX3lxTFBXSTdSdFZmcDhVd2kwYlBUY29mM0dfZS1xeVRXSVZVMGZBRDRvSGlmZ3F2S3RSdFRnZ2xNWlI2S3dtVHRfZGNKVTRGYXJGdEpTWWR5dXRNU0hsZWNURU9aS2puYlZjdzhOTzJwV1BNRWhtbnZ6bHdiNE5GRWp0cjMtb1NZMEhZVzJaYWVsV2RiVjhoM0hMSXpuVVFDd1ZINzVVQjcxbTRlSlNPZUFwU19qQUJZdUJoYi00YUhtME44MA?oc=5",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "inversion",
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
@@ -150,10 +138,21 @@
             "plan",
             "aprueba"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQMFIxMi1hRmdyRlFDNWxETmNkX2tldkVZTEpSSC0tZWptTEdwSE81b1k1cFJKaVpYVVVhQ2puN1c5N1VzMXhwXzRtNzA5QVpFVll2ZjBhcF9fbjNHeVBPSndoTVl6UWdwTWxPUGc4OHZaall3aUR3REJMNlozTkpvUjNMVFhZVXM0LWY3Z2ZGeU03WU5JS0ExSG9COEN3RFdfXzB5ZTFBZkc5dWtVZHFXbXMwelVMUHJuWE1r?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola España invierte más de 10 millones de euros en Riba-roja para la renovación de instalaciones afectadas por la DANA",
+          "kind": "press",
+          "publisher": "iberdrolaespana.com",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -189,18 +188,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTC1XUXd4VkU3SHlmVFAtV0Z6UTU0TzAzRlIycy11MS1sR01MOWhpYWRsT2hQb0QxSmdhVHdmTTVYT2VuVFVieUJSdUVVWU1yaXlJLTlUOGJ3MW1ObVpaaG83YjJUVWFOTmkyZFkwMHVkNmYyRXBQTzlwUGp5OExSR2I4NGY3V2R3U05fZEM4bFoxbVVkdDR4MHFJb2JyMXc3ZmRLUXl5T1Z6cnVUVzBQNWx2UUpwZXc1NDZz0gHAAUFVX3lxTFBXSTdSdFZmcDhVd2kwYlBUY29mM0dfZS1xeVRXSVZVMGZBRDRvSGlmZ3F2S3RSdFRnZ2xNWlI2S3dtVHRfZGNKVTRGYXJGdEpTWWR5dXRNU0hsZWNURU9aS2puYlZjdzhOTzJwV1BNRWhtbnZ6bHdiNE5GRWp0cjMtb1NZMEhZVzJaYWVsV2RiVjhoM0hMSXpuVVFDd1ZINzVVQjcxbTRlSlNPZUFwU19qQUJZdUJoYi00YUhtME44MA?oc=5",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "millon",
-            "tras"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
           "date": "2026-05-11",
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
@@ -213,11 +200,22 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
-          "date": "2026-07-03",
-          "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
+          "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
+          "date": "2026-07-07",
+          "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "València Extra",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNSlZQV05CUDhLbG5tN0JDYlFyenJzVWoyQXZ2eVg2cFVVeTFETjg4VEtwZjdrYi0yUDZFZUh2Z2dja19GcF82emNyeFRaYW1Lb2tybVdlUXhaMEZ0YTNtSUtVb2kwbVRoTjJxenA0MmRCZzlXWUVrSDNId1k3Vk1oNGhRNlFSV3U3Z1lhNnAwRWluSVo0?oc=5",
+          "date": "2026-07-07",
+          "quote": "Riba-roja tramita dos planes urbanísticos tras la DANA",
+          "kind": "press",
+          "publisher": "Actualidad Valencia",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -225,27 +223,72 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.287,
       "reasoning": [
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
-          "date": "2026-05-18",
-          "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeGtnMGMtdkVZdDBGY0Rzel9Xd1Y4SU9LQ1E5TVdOemdhcUM0X0ZKWlg1ZVF0X0RkQlo4bldfcTFhT0h5NkNFUDl6ZC1YUlowQUI4b05BbWstc0ctM0RuRW5TNjdqX19XZHIwV2c4Q1dMY1dOa2xTZU9uamZnYTdJM1EwTTczclFVa0xGTzB1SHc3QlI3cUF6OVNsQWo2NE5jM1NTZUxTMjZmcUZ1bHhxNmtwRXdZc3RLVnd0ZWNibnFVcFpEa3BFcVM1Q2dxUENJZmFvam9jZ1E1VVE?oc=5",
+          "date": "2026-07-07",
+          "quote": "Riba-roja proyecta nuevos suelos para viviendas y empresas en zonas sin riesgo de inundación",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "nuevo",
+            "suelo",
+            "vivienda"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
+          "date": "2026-07-07",
+          "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
+          "kind": "press",
+          "publisher": "València Extra",
+          "matchedKeywords": [
+            "suelo",
+            "vivienda"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi9AFBVV95cUxPQ2JhQ21ISGticDB0NTBFMHpEMHIxWUdBR3B5QUt1ZVNYcDVqSE04dGZhY1VIMTcwNlhzN2hWelVfVElXRjd0N3ZQcnVacUZKYWQ4eVIyekxQXzdYU0JEWGZ5cW9tZE5WRmVxV3dHdURyU1VOU3dXU2NOT1FJWC1OellLeVB1R0UzZmpEeWl3b0xwREZfOFcwUVpOcXU5dktGRTJ0Wm50TUZITXlsQmRiRkNmbGhKTHNydmRPbU1LalJXWXJjc0ppeWI2c201cURhSWk1NGpNeDNxUkRCeUJYTkY4Qy1NQlh1dng5bHZfUEdzSFZf?oc=5",
+          "date": "2026-07-07",
+          "quote": "Generalitat y Riba-roja colaboran en el desarrollo de suelo para viviendas e industrias en \"zonas seguras\"",
           "kind": "press",
           "publisher": "Valencia Plaza",
           "matchedKeywords": [
-            "plan",
+            "suelo",
+            "vivienda"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
+          "date": "2026-07-07",
+          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "suelo",
+            "vivienda"
+          ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-y-el-ayuntamiento-de-riba-roja-colaboran-para-desarrollar-suelo-para-viviendas-e-industrias-en-zonas-seguras",
+          "date": "2026-07-07",
+          "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "suelo",
             "vivienda"
           ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -253,11 +296,11 @@
       "confidence": 0.175,
       "reasoning": [
         {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBZbEd6d0tIQVpvaGtySWY4VVFQR1JDREpvaEJMOV83V2ZUUmNXczllTjV1TDFrSGxPUHRycy05YkhKdWZicldYbnhJUm1XX1R1NFZhY2hjdFRVSjRoajd3RlZ3QVNJTEItSGtoY0hTbw?oc=5",
           "date": "2026-05-18",
-          "quote": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+          "quote": "La Generalitat acuerda con Riba-roja de Túria la construcción de 36 viviendas protegidas industrializadas en el marco del Plan Vive Dana",
           "kind": "press",
-          "publisher": "Valencia Plaza",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "construccion",
             "vivienda"
@@ -296,7 +339,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -331,7 +374,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -351,7 +394,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -371,7 +414,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -379,7 +422,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -387,7 +430,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -400,18 +443,6 @@
           "quote": "Veolia ejecuta en Riba-roja de Túria un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
           "kind": "press",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "dana",
-            "millon",
-            "euro"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPTC1XUXd4VkU3SHlmVFAtV0Z6UTU0TzAzRlIycy11MS1sR01MOWhpYWRsT2hQb0QxSmdhVHdmTTVYT2VuVFVieUJSdUVVWU1yaXlJLTlUOGJ3MW1ObVpaaG83YjJUVWFOTmkyZFkwMHVkNmYyRXBQTzlwUGp5OExSR2I4NGY3V2R3U05fZEM4bFoxbVVkdDR4MHFJb2JyMXc3ZmRLUXl5T1Z6cnVUVzBQNWx2UUpwZXc1NDZz0gHAAUFVX3lxTFBXSTdSdFZmcDhVd2kwYlBUY29mM0dfZS1xeVRXSVZVMGZBRDRvSGlmZ3F2S3RSdFRnZ2xNWlI2S3dtVHRfZGNKVTRGYXJGdEpTWWR5dXRNU0hsZWNURU9aS2puYlZjdzhOTzJwV1BNRWhtbnZ6bHdiNE5GRWp0cjMtb1NZMEhZVzJaYWVsV2RiVjhoM0hMSXpuVVFDd1ZINzVVQjcxbTRlSlNPZUFwU19qQUJZdUJoYi00YUhtME44MA?oc=5",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "dana",
             "millon",
@@ -451,16 +482,38 @@
             "dana",
             "millon"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMnlfdjAxdlpGZ2hOejB5OS0xQVVUOGdONkswYS1hLWtjNjVETy1wQ1VUUkhBdDUyUjRFejhwQUNKWmRLSzFzeG52cGIzWTNDQWxsOWk1ZzBteEdvZHAyMHQ3XzQzZTFCdWEwN2pWX0liWVZndXd0Q01Cc2pOUzZDaNIBgAFBVV95cUxPZ0lnNkRITFBueE1wcUl2SC1RVWsybnNpaXlZVmZld3MyUzBDZ1JNYWpIcGpCWjliTUc1NFVod0htOTVfNTk5d2JQbmM5NDB5LU55T1lLNFg4QlVsRUxBTjlJbmRDZlg2NzBRRE1vME1JQ2hrN2wyZHR0dl9hd0huRw?oc=5",
+          "date": "2026-05-11",
+          "quote": "Iberdrola invierte 10 millones en Riba-roja para la renovación de instalaciones afectadas por la dana",
+          "kind": "press",
+          "publisher": "Expansión",
+          "matchedKeywords": [
+            "dana",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPeGtnMGMtdkVZdDBGY0Rzel9Xd1Y4SU9LQ1E5TVdOemdhcUM0X0ZKWlg1ZVF0X0RkQlo4bldfcTFhT0h5NkNFUDl6ZC1YUlowQUI4b05BbWstc0ctM0RuRW5TNjdqX19XZHIwV2c4Q1dMY1dOa2xTZU9uamZnYTdJM1EwTTczclFVa0xGTzB1SHc3QlI3cUF6OVNsQWo2NE5jM1NTZUxTMjZmcUZ1bHhxNmtwRXdZc3RLVnd0ZWNibnFVcFpEa3BFcVM1Q2dxUENJZmFvam9jZ1E1VVE?oc=5",
+          "date": "2026-07-07",
+          "quote": "Riba-roja proyecta nuevos suelos para viviendas y empresas en zonas sin riesgo de inundación",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "zona",
+            "riesgo"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
@@ -474,7 +527,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -514,13 +567,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
       "proposedStatus": "documentada",
-      "confidence": 0,
+      "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQN3JuMmxKZFVOb012bHdlYWxZWlU0ZkFSQWNlZTNEMjdaV1lJU2ZJaWN1MTJTR19HUW9jemtpRVlKN1lwcUlmYjRURmV4UUpnNExtM05Nb0JFYUdoQ09EbHJEMWpFcXJjSXcyMUlYOEtvTkRfOFNFWVBKYk4wOHdxdTNkNFJIX3NSQjZ3UXg2cUx6LTF5WG9GRXE5bkQtNS1JWTNRWVRNVkxWYTN3STVXOGsyQmRVbTdSUE1MZ3RsaVVjYWhLTFNvUGp0ZWprXzQ?oc=5",
+          "date": "2026-07-07",
+          "quote": "Plan Urbanístico de Reconstrucción avanza en Riba-roja",
+          "kind": "press",
+          "publisher": "Valencia News",
+          "matchedKeywords": [
+            "plan",
+            "avanza"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
           "date": "2026-06-01",
@@ -558,7 +622,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -602,7 +666,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -643,7 +707,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -667,13 +731,25 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
       "proposedStatus": "documentada",
       "confidence": 0.287,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNdzJsZVRna3VWTWE1OTNRdk40VGZkaG92eW9Zc2Vaam4wcVhMdzJTanc0WXREbXZzaHJyQ1g5RFZ3M2lUTFJiSVA1QTVseGh5Q2hGdnhhRHhwVTRWVW9EcS1WVUxiYVJVUldQajNjNXY0RjE5Z21xRFRSNEUyOGRMNHZVQW8xT01SU0ZhVTdHZUdGeUkyN3phZktzYkVjY1lwRnVEV2dvTG80ZnFSVVdzTkxzZ0dzWlhhOUVfNVNQejJGNGl5MDU3TXduZDFBSWlQOVdWVzFkNmpha1VoNUlV?oc=5",
+          "date": "2026-07-07",
+          "quote": "El Ejército desmonta el puente militar de Riba-roja tras 19 meses de servicio después de la dana",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "tras",
+            "puente",
+            "militar"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
           "date": "2026-07-03",
@@ -709,10 +785,21 @@
             "puente",
             "militar"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNSlZQV05CUDhLbG5tN0JDYlFyenJzVWoyQXZ2eVg2cFVVeTFETjg4VEtwZjdrYi0yUDZFZUh2Z2dja19GcF82emNyeFRaYW1Lb2tybVdlUXhaMEZ0YTNtSUtVb2kwbVRoTjJxenA0MmRCZzlXWUVrSDNId1k3Vk1oNGhRNlFSV3U3Z1lhNnAwRWluSVo0?oc=5",
+          "date": "2026-07-07",
+          "quote": "Riba-roja tramita dos planes urbanísticos tras la DANA",
+          "kind": "press",
+          "publisher": "Actualidad Valencia",
+          "matchedKeywords": [
+            "plan",
+            "tras"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -743,7 +830,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -762,7 +849,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -794,7 +881,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -829,39 +916,16 @@
             "repartira",
             "asistent"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
-          "date": "2026-06-16",
-          "quote": "Cine de verano en Riba-roja: 2.000 helados gratis y una semana de acceso gratuito",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "helado",
-            "gratuito"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOT3hWdHJ6S1V5cld5eU96cHBKOWF3bHd3MmhSYkRJSV94YTRMRkVKSUM4S0hKc004amFuTFFKbG5fU3hVM2w0NFB6SHp2VnowcUh0bjhVTW1Pejg0bHVNSFZIWE5NbVFUcWxMNndHa0kxNnluSS1WUXRNTHdxNXZ2N2pwbnRuWlk1WG9LaU5YYWZITkxDUkd6TnhYU2RZdXdobHFoZlhidXhvNk9JRzFQV3JabS1ESTIzWmh4U0NyVmtGYVBKQnR3NTE4TEJjQXcyUDJxczRIRQ?oc=5",
-          "date": "2026-06-16",
-          "quote": "Cine de verano en Riba-roja: 2.000 helados gratis y una semana de acceso gratuito",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "semana",
-            "acceso",
-            "gratuito"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
           "date": "2026-06-16",
@@ -886,13 +950,25 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.287,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxQVVU1Q0pvTkYzNTRwWmN4Mkd6WE9YSDVISlRLOWRnWXNhRXFuekcwcjItQmNkM2FXYWQ2WUJoLXg0aHhBOHJQOVBoZktyS1hoNFpaNXRlS1ZNams0dzJaT0Y0TS1XTXU1SWtfZ1dXYUI1QjktZDNjQUZNTE92ZnZUdm9GU0stSzJlWjVDZjE1UVZSQXpybWpRbndnd0lUa3N0UnhDRlhwbWlZcUpPbGNNSkNkd2lKQTk1djZ1UVY0Z2VFWGIzdFk5VTlHRzlhSGl1SGF1SFZ0QXBkQQ?oc=5",
+          "date": "2026-07-07",
+          "quote": "Ribajazz 2026 llenará de música el Castell de Riba-roja: programación, fechas y conciertos",
+          "kind": "press",
+          "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "programacion",
+            "2026",
+            "musica"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/talleres-de-sensibilizaci%C3%B3n-musical-del-conservatorio-de-m%C3%BAsica-para-el-curso-2026-2027",
           "date": "2026-06-17",
@@ -906,7 +982,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-06T08:53:25.370Z"
+      "generatedAt": "2026-07-08T06:56:47.905Z"
     }
   ],
   "llmEvidence": [],
