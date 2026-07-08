@@ -158,9 +158,14 @@ justified for local-only edicts BOP misses.
   disclosed). The `email` field is JSON-only — NOT rendered (/datos shows
   nombre + tipo). Harden with a town gazetteer (prefer null on unresolved
   glue) BEFORE surfacing `email` on any public page.
-- **Add trim-regression tests** for the rewritten `extractEmail` branches
-  (Valencia/`s-n`/ú/digit) + the wrapped-row attachment — currently only
-  Cervantes + aggregates are pinned.
+- ~~**Add trim-regression tests** for the rewritten `extractEmail` branches~~
+  **DONE (2026-07-08):** 4 regression tests lock town-strip / `s-n` / wrapped-row
+  reconstruction + the Donadones known-limitation. Also DONE this pass:
+  `email` OMITTED from the published snapshot (honesty); both new snapshots added
+  to the `/datos` DatasetsCatalog; `/empleo-publico` page chrome bilingual (es+ca);
+  AsociacionesCard eyebrow null-date guarded. STILL OPEN: the email town-gazetteer
+  itself (only needed if `email` is ever surfaced), procesos `%`-encoded slug ids,
+  per-process document extraction, BOP-0-items diagnostic.
 - **Procesos-selectivos:** decode `%`-encoded slug ids; per-process document
   (bases/listas/tribunal PDF) extraction from detail pages; bilingual (ca)
   chrome for /empleo-publico (sibling /empleo is bilingual).
