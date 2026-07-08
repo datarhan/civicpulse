@@ -9,6 +9,14 @@
  *   so a naive email regex absorbs the tail of the address ("…de Túria" →
  *   "ria…", "…46190" → leading digits, "…s/n" → "n"). `extractEmail` trims
  *   only those observed remnants — an honest miss beats a fabricated email.
+ *   KNOWN RESIDUAL (Wave 3.1): the final `EMAIL_ONLY_RE` gate guarantees
+ *   WELL-FORMEDNESS, not correctness. An address ending in an unseen town/venue
+ *   glued to the email (e.g. a town not in the trim list) can pass as a
+ *   valid-looking but WRONG email rather than degrading to null (1/85 in the
+ *   fixture: "Espai Dona" → Donadones…@). The `email` field is therefore
+ *   JSON-only — NOT rendered on any surface (/datos shows nombre + tipo). A
+ *   town-gazetteer hardening to prefer null on unresolved glue is tracked as a
+ *   Wave 3.1 follow-up. Do not surface `email` on a public page until then.
  * - long rows wrap across lines: a fragment line carries the fields the
  *   previous row is still missing (tipo / domicilio / email). Fragments are
  *   attached to the previous row instead of surfacing as junk rows.

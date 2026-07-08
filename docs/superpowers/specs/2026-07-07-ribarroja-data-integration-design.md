@@ -133,6 +133,24 @@ narrow the schema — decide at the spike, don't assume.
 | `/datos` | FOI stats, financial indicators | data only |
 | DANA reportaje | NOT the actas (moot); possibly obras/urbanismo context | curator refresh only if a cited number changes |
 
+## Wave 3.1 follow-up (from Wave 3 execution, 2026-07-08)
+
+- **Asociaciones email extraction — town-gazetteer hardening.** The register
+  PDF glues the domicilio column into the correo column; `extractEmail`
+  (`src/scraper/asociaciones.ts`) trims observed remnants and gates on
+  `EMAIL_ONLY_RE`, which guarantees a WELL-FORMED email but not a CORRECT one:
+  an address ending in an unlisted town/venue glued to the email can pass as a
+  wrong-but-valid email instead of an honest null (1/85 in the 2026-05 fixture,
+  disclosed). The `email` field is JSON-only — NOT rendered (/datos shows
+  nombre + tipo). Harden with a town gazetteer (prefer null on unresolved
+  glue) BEFORE surfacing `email` on any public page.
+- **Add trim-regression tests** for the rewritten `extractEmail` branches
+  (Valencia/`s-n`/ú/digit) + the wrapped-row attachment — currently only
+  Cervantes + aggregates are pinned.
+- **Procesos-selectivos:** decode `%`-encoded slug ids; per-process document
+  (bases/listas/tribunal PDF) extraction from detail pages; bilingual (ca)
+  chrome for /empleo-publico (sibling /empleo is bilingual).
+
 ## Wave 2 feasibility (probed 2026-07-07 — SPIKE NEEDED before speccing)
 
 The **Tablón de edictos** is NOT a static server-rendered table. It is the
