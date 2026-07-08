@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "generatedAt": "2026-07-07",
+  "generatedAt": "2026-07-08",
   "legalNotice": "Auditoría editorial automatizada. Los lotes con ≥1 veredicto contradicho se mantienen en editorial/press-auto-curation-queue.md hasta revisión humana; los medios afectados pueden ejercer derecho de réplica mediante el formulario .github/ISSUE_TEMPLATE/press-finding-response.yml.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues",
   "methodologyUrl": "/metodologia#laboratorio-prensa",

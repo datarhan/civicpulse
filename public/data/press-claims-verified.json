@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-07T08:15:26.928Z",
+  "generatedAt": "2026-07-08T08:16:07.729Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 6,
+    "total": 3,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 6,
+      "sin-datos": 3,
       "promesa-repetida": 0
     }
   },
@@ -142,128 +142,6 @@
         "articleSource": "Valencia Plaza",
         "articleSourceHost": "valenciaplaza.com",
         "articleFingerprint": "kwatf8"
-      }
-    },
-    {
-      "claim": {
-        "id": "1ilpvg1-0-dat",
-        "articleId": "1ilpvg1",
-        "articleFingerprint": "e4vfjg",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
-        "articleDate": "2026-07-03T10:21:41.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "dato_municipal",
-        "attributedSource": "municipal",
-        "verbatim": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
-        "context": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
-        "topic": "seguridad",
-        "entities": {
-          "date": "2026-07-03",
-          "referencedEntity": "Plan Territorial Municipal de Emergencias"
-        },
-        "confidence": 0.75,
-        "reasoning": "Es un dato municipal verificable: la aprobación oficial de un plan de emergencias puede contrastarse con actas o boletines oficiales del ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1ilpvg1-0-dat",
-        "verdict": "sin-datos",
-        "summary": "No se ha encontrado el dato municipal en las series locales.",
-        "evidence": [],
-        "checkedAgainst": [],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "e4vfjg"
-      }
-    },
-    {
-      "claim": {
-        "id": "jrb2xk-0-num",
-        "articleId": "jrb2xk",
-        "articleFingerprint": "s55xq8",
-        "articleSource": "Actualidad Valencia",
-        "articleSourceHost": "actualidadvalencia.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVHVJUnBiRVRrUUdMSmhIZjhlb1JNQUNVM0E5Z2ktRDU0STRrQjRqdWdOUk5PUVdrV2Y2Nkl5M1dWNWJwZEtteGRtU0RmYm9takh6OElpMk1kWXdFWTJMTTBMZlZxN09GTU5KakdLWDhVZXRnakhRYnU4Y2QwTHY5Yy1HdEZHRUdDa2d1ejJSa0lGS2c?oc=5",
-        "articleDate": "2026-07-03T10:15:40.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "un aparcamiento para cerca de 400 camiones en Riba-roja",
-        "context": "El Parque Logístico de Valencia tendrá un aparcamiento para cerca de 400 camiones en Riba-roja.",
-        "topic": "movilidad",
-        "entities": {
-          "count": 400,
-          "countUnit": "camiones",
-          "referencedEntity": "Parque Logístico de Valencia"
-        },
-        "confidence": 0.9,
-        "reasoning": "El número de camiones que se mencionan es un dato cuantificable y verificable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "jrb2xk-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNVHVJUnBiRVRrUUdMSmhIZjhlb1JNQUNVM0E5Z2ktRDU0STRrQjRqdWdOUk5PUVdrV2Y2Nkl5M1dWNWJwZEtteGRtU0RmYm9takh6OElpMk1kWXdFWTJMTTBMZlZxN09GTU5KakdLWDhVZXRnakhRYnU4Y2QwTHY5Yy1HdEZHRUdDa2d1ejJSa0lGS2c?oc=5",
-        "articleSource": "Actualidad Valencia",
-        "articleSourceHost": "actualidadvalencia.com",
-        "articleFingerprint": "s55xq8"
-      }
-    },
-    {
-      "claim": {
-        "id": "f3wulw-0-num",
-        "articleId": "f3wulw",
-        "articleFingerprint": "wzti7k",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleUrl": "https://www.ribarroja.es/es/noticia/arranca-la-escuela-municipal-de-verano-inclusiva-con-cerca-de-700-ni%C3%B1os-y-ni%C3%B1as-en-riba-roja-de-t%C3%BAria",
-        "articleDate": "2026-07-01T12:44:04.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "municipal",
-        "verbatim": "Arranca la Escuela Municipal de Verano Inclusiva con cerca de 700 niños y niñas en Riba-roja de Túria",
-        "context": "Titular publicado por el Ayuntamiento de Riba-roja de Túria (01/07/2026): Arranca la Escuela Municipal de Verano Inclusiva con cerca de 700 niños y niñas en Riba-roja de Túria.",
-        "topic": "educacion",
-        "entities": {
-          "count": 700,
-          "countUnit": "niños y niñas",
-          "referencedEntity": "Escuela Municipal de Verano Inclusiva"
-        },
-        "confidence": 0.6,
-        "reasoning": "Es una cifra de participantes en un programa municipal, contrastable con los registros de inscripción del Ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "f3wulw-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget"
-        ],
-        "articleUrl": "https://www.ribarroja.es/es/noticia/arranca-la-escuela-municipal-de-verano-inclusiva-con-cerca-de-700-ni%C3%B1os-y-ni%C3%B1as-en-riba-roja-de-t%C3%BAria",
-        "articleSource": "Ayuntamiento de Riba-roja de Túria",
-        "articleSourceHost": "ribarroja.es",
-        "articleFingerprint": "wzti7k"
       }
     }
   ]
