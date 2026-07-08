@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react'
 import { MapContainer, TileLayer } from 'react-leaflet'
 import { useTenderGeo } from '../../hooks/useTenderGeo'
 import { useTenders } from '../../hooks/useTenders'
+import { useObras } from '../../hooks/useObras'
 import { EMPTY_TENDER_GEO } from '../../lib/tender-geo'
 import { DEFAULT_CENTER, ResizeOnMount } from './shared'
 import { MunicipalBoundary } from './network/MunicipalBoundary'
@@ -14,6 +15,7 @@ import { NeighborhoodsLayer } from './layers/NeighborhoodsLayer'
 import { FloodRiskLayer } from './layers/FloodRiskLayer'
 import { CivicPoiLayer } from './layers/CivicPoiLayer'
 import { QuejasLayer } from './layers/QuejasLayer'
+import { ObrasLayer } from './layers/ObrasLayer'
 import { LayerControl } from './controls/LayerControl'
 import { MoneyTimeSlider } from './controls/MoneyTimeSlider'
 import { FloodLegend } from './controls/FloodLegend'
@@ -47,11 +49,18 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // (civic-POI) flagship, so the landing reads richer on load with the public
   // facilities in view. Money (static snapshot at the latest date) / quejas
   // (citizen-complaint heat) / flood are opt-in via their chips.
-  const [layers, setLayers] = useState({ money: false, poi: true, quejas: false, flood: false })
+  const [layers, setLayers] = useState({
+    money: false,
+    poi: true,
+    quejas: false,
+    flood: false,
+    obras: false,
+  })
   const toggleLayer = (k) => setLayers((s) => ({ ...s, [k]: !s[k] }))
 
   const { data: tgeo } = useTenderGeo()
   const { data: tenders } = useTenders()
+  const { data: obrasData } = useObras()
   const snapshot = tgeo || EMPTY_TENDER_GEO
   const dateMin = snapshot.universe?.dateMin ? new Date(snapshot.universe.dateMin).getTime() : null
   const dateMax = snapshot.universe?.dateMax ? new Date(snapshot.universe.dateMax).getTime() : null
@@ -106,6 +115,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
         )}
         {layers.poi && <CivicPoiLayer />}
         {layers.quejas && <QuejasLayer />}
+        {layers.obras && <ObrasLayer obras={obrasData?.obras} />}
       </MapContainer>
 
       <NetworkLegend />

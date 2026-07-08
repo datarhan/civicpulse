@@ -13,6 +13,7 @@ export const MAP_LAYERS = [
   { key: 'poi', labelKey: 'map.layer.poi', glyph: '◉' },
   { key: 'quejas', labelKey: 'map.layer.quejas', glyph: '⚑' },
   { key: 'flood', labelKey: 'map.layer.flood', glyph: '≈' },
+  { key: 'obras', labelKey: 'map.layer.obras', glyph: '⚒' },
 ]
 
 const cardStyle = {

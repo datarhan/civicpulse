@@ -143,6 +143,7 @@ const CATALOGUE = {
     // Map (landing interactive layers)
     'map.layers.title': 'Capas del mapa',
     'map.layer.money': 'Gasto municipal',
+    'map.layer.obras': 'Obras en curso',
     'map.layer.poi': 'Servicios',
     'map.layer.quejas': 'Quejas',
     'map.layer.flood': 'Riesgo inundación',
@@ -414,6 +415,7 @@ const CATALOGUE = {
     // Map (landing interactive layers)
     'map.layers.title': 'Capes del mapa',
     'map.layer.money': 'Despesa municipal',
+    'map.layer.obras': 'Obres en curs',
     'map.layer.poi': 'Serveis',
     'map.layer.quejas': 'Queixes',
     'map.layer.flood': 'Risc d’inundació',
