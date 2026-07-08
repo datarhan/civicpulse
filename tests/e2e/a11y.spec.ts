@@ -27,6 +27,7 @@ const STRICT_ROUTES = [
   '/declaraciones',
   '/datos',
   '/empleo',
+  '/empleo-publico',
   `/empleo/${FIRST_OFERTA_ID}`,
   '/quejas',
   '/quejas/dashboard',
