@@ -3,6 +3,7 @@ import { Ic } from '../components/Icons'
 import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
 import { useAsociaciones } from '../hooks/useAsociaciones'
+import { useProcesosSelectivos } from '../hooks/useProcesosSelectivos'
 import { useOfficials } from '../hooks/useOfficials'
 import { useBudget } from '../hooks/useBudget'
 import { useTenders } from '../hooks/useTenders'
@@ -44,6 +45,8 @@ function DatasetsCatalog() {
   const votes = usePlenoVotes().data
   const quejas = useQuejas().data
   const empleo = useEmpleo().data
+  const procesos = useProcesosSelectivos().data
+  const asociaciones = useAsociaciones().data
 
   const items = [
     {
@@ -186,6 +189,22 @@ function DatasetsCatalog() {
       updated: formatDate(quejas?.generatedAt),
       source: 'Telegram bot · Open311',
       path: '/data/quejas.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Empleo público (procesos selectivos)',
+      rows: procesos?.procesos ? `${procesos.procesos.length} procesos` : '—',
+      updated: formatDate(procesos?.generatedAt),
+      source: 'ribarroja.es · scraper',
+      path: '/data/procesos-selectivos.json',
+      fmt: ['json'],
+    },
+    {
+      name: 'Registro de asociaciones',
+      rows: asociaciones?.asociaciones ? `${asociaciones.asociaciones.length} entidades` : '—',
+      updated: formatDate(asociaciones?.generatedAt),
+      source: 'Registro Municipal · Ayto.',
+      path: '/data/asociaciones.json',
       fmt: ['json'],
     },
   ]
@@ -606,7 +625,7 @@ function AsociacionesCard() {
   return (
     <Card>
       <SectionHead
-        eyebrow={`Registro municipal · ${data?.fechaRegistro ?? ''}`}
+        eyebrow={`Registro municipal${data?.fechaRegistro ? ` · ${data.fechaRegistro}` : ''}`}
         title={`Entidades y asociaciones (${rows.length})`}
       />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, margin: '10px 0 16px' }}>
