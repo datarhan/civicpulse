@@ -133,6 +133,20 @@ narrow the schema — decide at the spike, don't assume.
 | `/datos` | FOI stats, financial indicators | data only |
 | DANA reportaje | NOT the actas (moot); possibly obras/urbanismo context | curator refresh only if a cited number changes |
 
+## Wave 2 edictos — SPIKE DONE: not worth it (2026-07-08)
+
+Feasibility spike ran all three approaches; edictos is **not HTTP-scrapeable**
+and the value is already covered:
+  1. CMS-republished PDFs — no discoverable listing (probed /es/tablon-*, /es/edictos, /es/anuncios, /es/bandos → all 404).
+  2. Server body — the tablonEdictos.do page (200/161KB) has ZERO edict content: "edicto" appears only in nav chrome, 0 dates, 0 expediente refs, no table, no JSON island. Fully JS-loaded.
+  3. Grid handshake — GET (JSESSIONID, no ViewState token) + POST formAction=btLoad returns the same 161KB shell, no edicts. The Sedipualba JSF grid builds its requests in JS; only a HEADLESS render would work.
+**Decision: DEFER edictos.** Headless is heavy/fragile for a nightly, AND the
+legally-material edicts already publish in the **provincial BOP** (`scrape:bop`
+→ Riba-roja edictos) and **BOE** (`scrape:boe`) which we already scrape — the
+municipal Tablón largely mirrors these. (Both showed 0 items on 2026-07-08 = a
+quiet 30-day window, not a coverage gap.) Revisit only if a headless scraper is
+justified for local-only edicts BOP misses.
+
 ## Wave 3.1 follow-up (from Wave 3 execution, 2026-07-08)
 
 - **Asociaciones email extraction — town-gazetteer hardening.** The register
