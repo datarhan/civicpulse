@@ -37,6 +37,7 @@ SCRAPERS=(
   scrape:plenos
   scrape:pleno-agendas
   scrape:empleo
+  scrape:procesos-selectivos
   scrape:wikidata
   scrape:ctbg
   scrape:sindicatura
@@ -67,10 +68,14 @@ SCRAPERS=(
 #   - scrape:budget-execution — single-source SICALWIN PDFs on ribarroja.es;
 #     a PDF-layout change (or the WAF) breaking the parser must not red the
 #     whole run, and the prior quarter's snapshot stays valid meanwhile.
+#   - scrape:procesos-selectivos — single-source server-rendered HTML list on
+#     ribarroja.es; a markup change breaking the parser must not red the whole
+#     run, and the prior snapshot of hiring processes stays valid meanwhile.
 BEST_EFFORT=(
   scrape:metro-network
   scrape:empleo
   scrape:budget-execution
+  scrape:procesos-selectivos
   scrape:geo
   scrape:civic-poi
   scrape:streets
