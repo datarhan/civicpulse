@@ -38,6 +38,7 @@ SCRAPERS=(
   scrape:pleno-agendas
   scrape:empleo
   scrape:procesos-selectivos
+  scrape:asociaciones
   scrape:wikidata
   scrape:ctbg
   scrape:sindicatura
@@ -71,11 +72,15 @@ SCRAPERS=(
 #   - scrape:procesos-selectivos — single-source server-rendered HTML list on
 #     ribarroja.es; a markup change breaking the parser must not red the whole
 #     run, and the prior snapshot of hiring processes stays valid meanwhile.
+#   - scrape:asociaciones — single-source dated register PDF on ribarroja.es;
+#     a PDF-layout change breaking the parser must not red the whole run, and
+#     the prior register snapshot stays valid meanwhile.
 BEST_EFFORT=(
   scrape:metro-network
   scrape:empleo
   scrape:budget-execution
   scrape:procesos-selectivos
+  scrape:asociaciones
   scrape:geo
   scrape:civic-poi
   scrape:streets
