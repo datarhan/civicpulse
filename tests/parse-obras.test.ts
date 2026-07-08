@@ -46,4 +46,11 @@ describe('parseObraFicha', () => {
     expect(rotondas.inicio).toBeUndefined()
     expect(rotondas.plazoMeses).toBe(7)
   })
+
+  it('NEVER leaks the técnico municipal (libel-adjacent) into any parsed field', () => {
+    // The Porta del Barranc ficha names "Ana Teresí Brisa, arquitecta municipal"
+    // as the técnico responsable. That named individual must not appear in the
+    // parser output — the técnico is deliberately not parsed. Lock the invariant.
+    expect(JSON.stringify(porta)).not.toMatch(/Brisa|arquitect|t[eé]cnic/i)
+  })
 })
