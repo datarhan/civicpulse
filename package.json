@@ -22,6 +22,7 @@
     "scrape:ispa": "npx tsx scripts/scrape-ispa.ts",
     "scrape:budget": "npx tsx scripts/scrape-budget.ts",
     "scrape:budget-execution": "npx tsx scripts/scrape-budget-execution.ts",
+    "scrape:obras": "npx tsx scripts/scrape-obras.ts",
     "scrape:tenders": "npx tsx scripts/scrape-tenders.ts",
     "scrape:padron": "npx tsx scripts/scrape-padron.ts",
     "scrape:participa": "npx tsx scripts/scrape-participa.ts",

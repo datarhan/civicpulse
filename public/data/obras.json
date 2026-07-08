@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-07-08T09:18:36.754Z",
+  "source": "https://www.ribarroja.es/portal_de_transparencia/5_transparencia_en_materias_de_urbanismo__obras_publicas_y_medioambiente/obras_de_infraestructuras_en_curso/contenidos/2467622/1909893",
+  "obras": [
+    {
+      "id": "porta-del-barranc",
+      "nombre": "Porta del Barranc",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-01_Ficha-obra-Porta-del-Barranc.pdf",
+      "importeLicitacion": 925455.74,
+      "importeAdjudicacion": 668086.5,
+      "plazoMeses": 6,
+      "inicio": "2019-03-25",
+      "empresa": "LICUAS, S.A.",
+      "bajaPct": 27.8
+    },
+    {
+      "id": "ampliacion-cementerio",
+      "nombre": "ampliación Cementerio",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-02_Ficha-obra-ampliacin-Cementerio.pdf",
+      "importeLicitacion": 575960,
+      "importeAdjudicacion": 457197.05,
+      "plazoMeses": 6,
+      "inicio": "2019-08-02",
+      "empresa": "BLUEDEC, S.L.",
+      "bajaPct": 20.6,
+      "lat": 39.4767673,
+      "lng": -0.585373,
+      "placeName": "Cementerio de San Jaime",
+      "placeKind": "poi"
+    },
+    {
+      "id": "recuperacion-torre",
+      "nombre": "recuperación Torre",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-03_Ficha-obra-recuperacin-Torre.pdf",
+      "importeLicitacion": 699999.99,
+      "importeAdjudicacion": 577499.99,
+      "plazoMeses": 6,
+      "inicio": "2020-02-24",
+      "empresa": "LLOP PROYECTOS INTEGRALES, S.L.",
+      "bajaPct": 17.5
+    },
+    {
+      "id": "pla-edificant-ceip-eres-altes",
+      "nombre": "Pla Edificant CEIP ERES ALTES",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-04_Ficha-obras-Pla-Edificant-CEIP-ERES-ALTES.pdf",
+      "importeLicitacion": 444582.89,
+      "importeAdjudicacion": 366505.13,
+      "plazoMeses": 3,
+      "inicio": "2020-05-18",
+      "empresa": "ASSISTACASA 2005, S.L.",
+      "bajaPct": 17.6
+    },
+    {
+      "id": "pla-edificant-ceip-mas-d-escoto",
+      "nombre": "Pla Edificant CEIP MAS D'ESCOTO",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-05_Ficha-obras-Pla-Edificant-CEIP-MAS-D-ESCOTO.pdf",
+      "importeLicitacion": 133323.31,
+      "importeAdjudicacion": 128882.61,
+      "plazoMeses": 3,
+      "inicio": "2019-08-05",
+      "empresa": "DESARROLLO Y GESTIÓN, S.L.",
+      "bajaPct": 3.3
+    },
+    {
+      "id": "pla-edificant-ceip-camp-de-turia",
+      "nombre": "Pla Edificant CEIP CAMP DE TURIA",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-06_Ficha-obras-Pla-Edificant-CEIP-CAMP-DE-TURIA.pdf",
+      "importeLicitacion": 236128.58,
+      "importeAdjudicacion": 207820.95,
+      "plazoMeses": 3,
+      "inicio": "2020-06-29",
+      "empresa": "LLOP PROYECTOS INTEGRALES, S.L.",
+      "bajaPct": 12
+    },
+    {
+      "id": "rotondas-cv-372-y-cv-336",
+      "nombre": "rotondas CV-372 y CV-336",
+      "fichaUrl": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/2467622/filesGroup/20210203-07_Ficha-obras-rotondas-CV-372-y-CV-336.pdf",
+      "importeLicitacion": 1338720.71,
+      "importeAdjudicacion": 1175687.69,
+      "plazoMeses": 7,
+      "empresa": "BECSA, S.A.",
+      "bajaPct": 12.2
+    }
+  ]
+}
