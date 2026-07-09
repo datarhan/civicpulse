@@ -38,6 +38,7 @@ const STRICT_ROUTES = [
   '/nosotros',
   '/about',
   '/reportajes/reconstruccion-dana',
+  '/blog/building-civicpulse-with-ai',
   '/laboratorio/agentes/a-robert-raga-bio',
   '/lab-health',
   '/metodologia',
