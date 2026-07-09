@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T08:16:07.729Z",
+  "generatedAt": "2026-07-09T08:15:16.891Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"

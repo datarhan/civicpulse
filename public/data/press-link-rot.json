@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T08:16:14.235Z",
+  "generatedAt": "2026-07-09T08:15:23.969Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
@@ -18,7 +18,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-08T08:16:12.861Z",
+      "checkedAt": "2026-07-09T08:15:22.307Z",
       "error": null
     },
     {
@@ -28,7 +28,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-08T08:16:14.033Z",
+      "checkedAt": "2026-07-09T08:15:23.768Z",
       "error": null
     }
   ]

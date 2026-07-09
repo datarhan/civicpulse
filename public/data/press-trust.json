@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T08:16:09.203Z",
+  "generatedAt": "2026-07-09T08:15:18.222Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1293,47 +1293,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1ipta7w",
-      "articleFingerprint": "1j7u7hc",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-reclama-a-la-generalitat-la-reactivaci%C3%B3n-del-proyecto-para-prolongar-la-llegada-del-metro-hasta-el-centro-del-casco-urbano-y-una-pasarela-en-val%C3%A8ncia-la-vella",
-      "date": "2026-06-08T12:51:52.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "ai2e0",
-      "articleFingerprint": "wuo42e",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/listados-definitivos-de-la-escuela-de-verano-2026",
-      "date": "2026-06-08T10:25:06.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 32,
+      "articleCount": 30,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,

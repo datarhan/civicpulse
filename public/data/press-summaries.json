@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T08:16:08.502Z",
+  "generatedAt": "2026-07-09T08:15:17.582Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
@@ -13,13 +13,13 @@
       "articleId": "i93nqo",
       "fingerprint": "pihqa0",
       "summary": "El PSOE de Riba-roja de Túria ha criticado la convocatoria de un pleno extraordinario por parte del PP, celebrado 72 horas antes del pleno ordinario. Según la oposición, dicha convocatoria supondrá un coste aproximado de 4.000 euros para el Ayuntamiento. El asunto afecta a la organización y al gasto de la corporación municipal.",
-      "generatedAt": "2026-07-08T08:16:08.501Z"
+      "generatedAt": "2026-07-09T08:15:17.580Z"
     },
     {
       "articleId": "1d0qbik",
       "fingerprint": "kwatf8",
       "summary": "El Consell ha autorizado la creación y explotación de un aparcamiento para aproximadamente 400 vehículos pesados en el Parque Logístico de Riba-roja de Túria. Esta infraestructura busca mejorar la capacidad de estacionamiento en la zona y facilitar la operativa logística.",
-      "generatedAt": "2026-07-08T08:16:08.502Z"
+      "generatedAt": "2026-07-09T08:15:17.582Z"
     }
   ]
 }
