@@ -1,26 +1,257 @@
 {
-  "generatedAt": "2026-07-08T06:56:13.914Z",
+  "generatedAt": "2026-07-10T08:09:59.344Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 65,
-    "openTotal": 65,
-    "inRibaRoja": 35,
-    "closingSoon": 13,
-    "withDetail": 65,
+    "total": 66,
+    "openTotal": 66,
+    "inRibaRoja": 36,
+    "closingSoon": 14,
+    "withDetail": 66,
     "byMonth": {
-      "2026-07": 4,
+      "2026-07": 6,
       "2026-06": 20,
-      "2026-05": 37,
+      "2026-05": 36,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2484",
+      "fo": 2484,
+      "codigo": "2026/00184",
+      "titulo": "Personal de limpieza (H/M/D) en Llíria",
+      "publishedAt": "2026-07-09",
+      "deadline": "2026-09-09",
+      "location": "Lliría Llíria (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2484",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00184"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de limpieza (H/M/D) en Llíria"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Funciones: - Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza Requisitos: - Valorable Certificado de Discapacidad igual o superior al 33% o Incapacidad. - Disponer de vehículo propio para desplazarse al centro de trabajo. - Incorporación inmediata."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Lliría, Municipio: Llíria, Provincia: Valencia, CP: 46160"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a viernes (JULIO 14:00 a 21:45) Y (AGOSTO 06:00 A 13:45)"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "-Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Funciones: - Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza Requisitos: - Valorable Certificado de Discapacidad igual o superior al 33% o Incapacidad. - Disponer de vehículo propio para desplazarse al centro de trabajo. - Incorporación inmediata.",
+        "municipio": "Llíria",
+        "provincia": "Valencia",
+        "cp": "46160",
+        "jornada": "Completa",
+        "horario": "Lunes a viernes (JULIO 14:00 a 21:45) Y (AGOSTO 06:00 A 13:45)",
+        "salario": "Según convenio",
+        "funciones": "-Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza industrial. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2483",
+      "fo": 2483,
+      "codigo": "2026/00183",
+      "titulo": "Personal de Limpieza",
+      "publishedAt": "2026-07-09",
+      "deadline": "2026-09-09",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2483",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00183"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de Limpieza"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Funciones:"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "INDIFERENTE"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes de 9:00 a 15:45"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          }
+        ],
+        "tipoContrato": "INDIFERENTE",
+        "numPuestos": "1",
+        "observaciones": "Funciones:",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "horario": "De lunes a viernes de 9:00 a 15:45",
+        "salario": "Según convenio",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2482",
+      "fo": 2482,
+      "codigo": "2026/00182",
+      "titulo": "Departamento Tele Venta",
+      "publishedAt": "2026-07-09",
+      "deadline": "2026-09-09",
+      "location": "PI INDUSTRIAL BASSA LA REVA , Municipio: Riba-Roja de Túria, Provincia Valencia C.P. 46190 Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2482",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00182"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Departamento Tele Venta"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "TRANSPORTE Y ALMACENAMIENTO"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUXILIARES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "PI INDUSTRIAL BASSA LA REVA , Municipio: Riba-Roja de Túria, Provincia Valencia C.P. 46190, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "completa"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a viernes 08:00 a 14:00 16:00 a 18:30 . Viernes tarde libre por turnos"
+          },
+          {
+            "label": "Salario",
+            "value": "1885.78 brutos"
+          },
+          {
+            "label": "Funciones",
+            "value": "Atención al cliente Venta a clientes de empresa Prospecciones de mercado Sustitución de vacaciones de comerciales"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Empatía Capacidad de trabajar en equipo Conocimientos Valenciano Experiencia temas comerciales"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "AUXILIARES ADMINISTRATIVOS",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "De lunes a viernes 08:00 a 14:00 16:00 a 18:30 . Viernes tarde libre por turnos",
+        "salario": "1885.78 brutos",
+        "funciones": "Atención al cliente Venta a clientes de empresa Prospecciones de mercado Sustitución de vacaciones de comerciales",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "AGENTES COMERCIALES",
+            "experiencia": "1 Años"
+          }
+        ]
+      }
+    },
     {
       "id": "2481",
       "fo": 2481,
@@ -268,92 +499,6 @@
         "horario": "DE 17H A 20H",
         "salario": "SEGÚN CONVENIO",
         "funciones": "ATENCIÓN AL PÚBLICO CAPACIDAD DE TRABAJO EN EQUIPO BUEN CONTROL DE BASES DE DATOS CAPACIDAD DE ORGANIZACIÓN",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2173",
-      "fo": 2173,
-      "codigo": "2025/00205",
-      "titulo": "Secretario/a - recepcionista",
-      "publishedAt": "2026-07-01",
-      "deadline": "2026-09-01",
-      "location": "RESIDENCIA DE PERSONAS MAYORES ENTRE NARANJOS Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2173",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00205"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Secretario/a - recepcionista"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere: - Vehículo propio"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Menos de 1 mes"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "RESIDENCIA DE PERSONAS MAYORES ENTRE NARANJOS, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "De lunes a sábado por la mañana. Del 18/08 al 01/09/2025"
-          },
-          {
-            "label": "Horario",
-            "value": "40 HORAS SEMANALES"
-          },
-          {
-            "label": "Salario",
-            "value": "Segun convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Atender las llamadas - Control de entrada y salida de familiares - Dar información del centro"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Menos de 1 mes",
-        "numPuestos": "1",
-        "observaciones": "Se requiere: - Vehículo propio",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno mañana",
-        "horario": "40 HORAS SEMANALES",
-        "salario": "Segun convenio",
-        "funciones": "- Atender las llamadas - Control de entrada y salida de familiares - Dar información del centro",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
@@ -4886,79 +5031,6 @@
             "experiencia": "1 Años, 6 Meses"
           }
         ]
-      }
-    },
-    {
-      "id": "2422",
-      "fo": 2422,
-      "codigo": "2026/00124",
-      "titulo": "Personal de limpieza",
-      "publishedAt": "2026-05-08",
-      "deadline": "2026-07-08",
-      "location": "Valencia (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2422",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00124"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de limpieza"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requiere vehículo propio."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Valencia, Provincia: Valencia, CP: 46018"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza en polígonos, despachos y oficinas."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "2",
-        "observaciones": "Requiere vehículo propio.",
-        "municipio": "Valencia",
-        "provincia": "Valencia",
-        "cp": "46018",
-        "jornada": "Parcial",
-        "salario": "Según convenio",
-        "funciones": "Limpieza en polígonos, despachos y oficinas.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {

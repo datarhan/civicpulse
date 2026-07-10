@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-08T06:45:02.909Z",
+  "generatedAt": "2026-07-10T07:59:08.449Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -7,9 +7,23 @@
   },
   "stats": {
     "daysFetched": 26,
-    "daysWithMatches": 0,
-    "total": 0,
-    "byDepartamento": {}
+    "daysWithMatches": 1,
+    "total": 1,
+    "byDepartamento": {
+      "ADMINISTRACIÓN LOCAL": 1
+    }
   },
-  "items": []
+  "items": [
+    {
+      "id": "8293fbe3bdf7",
+      "identificador": "BOE-A-2026-15077",
+      "publicacionDate": "2026-07-10T00:00:00.000Z",
+      "departamento": "ADMINISTRACIÓN LOCAL",
+      "seccion": "II. Autoridades y personal. - B. Oposiciones y concursos",
+      "epigrafe": "Personal funcionario y laboral",
+      "titulo": "Resolución de 2 de julio de 2026, del Ayuntamiento de Riba-roja de Túria (Valencia/València), referente a la convocatoria para proveer varias plazas.",
+      "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-15077",
+      "urlPdf": "https://www.boe.es/boe/dias/2026/07/10/pdfs/BOE-A-2026-15077.pdf"
+    }
+  ]
 }
