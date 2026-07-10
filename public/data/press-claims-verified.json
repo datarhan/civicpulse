@@ -1,20 +1,150 @@
 {
-  "generatedAt": "2026-07-09T08:15:16.891Z",
+  "generatedAt": "2026-07-10T08:15:49.300Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 3,
+    "total": 5,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 3,
+      "sin-datos": 5,
       "promesa-repetida": 0
     }
   },
   "items": [
+    {
+      "claim": {
+        "id": "40rpxn-0-num",
+        "articleId": "40rpxn",
+        "articleFingerprint": "r5vqv8",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWEtNMmtPdEFpcDhLZVE4aXFDWVJjRW8xS21zMjFQamZUQ3VWZ3JXSGJUWF9PSV9Xc2ZYazMwTGlaVjg0cmROSE1heXV0QlBBY0QtczBjMjZEYTZfZGRjLUtSem9ESXdWamxLeVJ2VGRkNFBRRGtVeWFjaVJKNWc0Q3YtSVQ2TE9ESlk4dzNOSnpZeV9BSjhwcVBiOFk0Z0NKNngwMmc4TjVPa0x0bkVpSE9ncWplZGEyZ2Nwb01qdEg1a24zLTY4UkJhbEVVVTNhZzZlQk5vMmhuVHNNbHRaMw?oc=5",
+        "articleDate": "2026-07-08T12:07:28.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja activa una barrera de 20 cañones de agua frente al riesgo de incendios",
+        "context": "El municipio ha tomado medidas para prevenir incendios debido a la ola de calor que afecta a la región.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 20,
+          "countUnit": "cañones",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.9,
+        "reasoning": "El número de cañones de agua es un dato verificable y específico.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "40rpxn-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWEtNMmtPdEFpcDhLZVE4aXFDWVJjRW8xS21zMjFQamZUQ3VWZ3JXSGJUWF9PSV9Xc2ZYazMwTGlaVjg0cmROSE1heXV0QlBBY0QtczBjMjZEYTZfZGRjLUtSem9ESXdWamxLeVJ2VGRkNFBRRGtVeWFjaVJKNWc0Q3YtSVQ2TE9ESlk4dzNOSnpZeV9BSjhwcVBiOFk0Z0NKNngwMmc4TjVPa0x0bkVpSE9ncWplZGEyZ2Nwb01qdEg1a24zLTY4UkJhbEVVVTNhZzZlQk5vMmhuVHNNbHRaMw?oc=5",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleFingerprint": "r5vqv8"
+      }
+    },
+    {
+      "claim": {
+        "id": "febeas-0-num",
+        "articleId": "febeas",
+        "articleFingerprint": "9khk0g",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
+        "articleDate": "2026-07-08T09:28:57.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja pone en marcha los 20 cañones de agua en el Parc Fluvial",
+        "context": "El Ayuntamiento de Riba-roja ha implementado una nueva medida de seguridad en el Parc Fluvial.",
+        "topic": "seguridad",
+        "entities": {
+          "count": 20,
+          "countUnit": "cañones",
+          "date": "2026-07-08",
+          "referencedEntity": "Parc Fluvial"
+        },
+        "confidence": 0.9,
+        "reasoning": "El número de cañones de agua es un dato verificable y específico.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "febeas-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "9khk0g"
+      }
+    },
+    {
+      "claim": {
+        "id": "gqfi7s-0-num",
+        "articleId": "gqfi7s",
+        "articleFingerprint": "1kr12qz",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84627-riba-roja-activa-els-20-canons-daigua-en-el-parc-fluvial-per-a-protegir-les-urbanitzacions.html",
+        "articleDate": "2026-07-08T09:25:10.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja activa els 20 canons d’aigua en el Parc Fluvial",
+        "context": "El titular menciona que Riba-roja ha activado un sistema de canones de agua en el Parque Fluvial.",
+        "topic": "seguridad",
+        "entities": {
+          "count": 20,
+          "countUnit": "canons",
+          "referencedEntity": "Parc Fluvial"
+        },
+        "confidence": 0.8,
+        "reasoning": "El claim es contrastable porque se menciona un número específico de canones de agua activados.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "gqfi7s-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84627-riba-roja-activa-els-20-canons-daigua-en-el-parc-fluvial-per-a-protegir-les-urbanitzacions.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "1kr12qz"
+      }
+    },
     {
       "claim": {
         "id": "i93nqo-0-acu",
@@ -99,49 +229,6 @@
         "articleSource": "Periòdic del Camp de Túria",
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "pihqa0"
-      }
-    },
-    {
-      "claim": {
-        "id": "1d0qbik-0-num",
-        "articleId": "1d0qbik",
-        "articleFingerprint": "kwatf8",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOREd5TVRYRVl4M3p2WmxtQnRRcUQ2YlpkcFFfWjBKUVBoWDg0MllHcnMyUTNEa2k3THVSNU91NXNUNjZtTzNyODVWV0dNWm5jN19IdGZmSFd1MGJZOGktenlVa1Y5S2NmT1JSSk1CdW5kYm5RckFYeFU1dHRRT2JZcllXRkNYd05fZHpwVG5xR25MeXlJaFZhX095ckdRVW1SSDlqaDBidVlXQmVUWnE3ZFQwckx5UThJUkRZVDZLWWhEOWZKbUljaVdmSlhlNlNRS2VsWXQyRHVpbEZxdk1nZExncGtmbFRZMVBYZ1hQNUItQnlMSXN5Y0p0TW9IN0l3eFBKNVNWWU5RU1dYaXc?oc=5",
-        "articleDate": "2026-07-03T11:43:38.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "un aparcamiento para unos 400 vehículos pesados",
-        "context": "El Consell autoriza la creación y explotación de un aparcamiento para unos 400 vehículos pesados en el Parque Logístico de Riba-roja de Túria.",
-        "topic": "urbanismo",
-        "entities": {
-          "count": 400,
-          "countUnit": "vehículos pesados",
-          "referencedEntity": "aparcamientos"
-        },
-        "confidence": 0.9,
-        "reasoning": "El claim menciona un número específico de vehículos pesados que se podrán aparcar, lo cual es verificable.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1d0qbik-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOREd5TVRYRVl4M3p2WmxtQnRRcUQ2YlpkcFFfWjBKUVBoWDg0MllHcnMyUTNEa2k3THVSNU91NXNUNjZtTzNyODVWV0dNWm5jN19IdGZmSFd1MGJZOGktenlVa1Y5S2NmT1JSSk1CdW5kYm5RckFYeFU1dHRRT2JZcllXRkNYd05fZHpwVG5xR25MeXlJaFZhX095ckdRVW1SSDlqaDBidVlXQmVUWnE3ZFQwckx5UThJUkRZVDZLWWhEOWZKbUljaVdmSlhlNlNRS2VsWXQyRHVpbEZxdk1nZExncGtmbFRZMVBYZ1hQNUItQnlMSXN5Y0p0TW9IN0l3eFBKNVNWWU5RU1dYaXc?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "kwatf8"
       }
     }
   ]

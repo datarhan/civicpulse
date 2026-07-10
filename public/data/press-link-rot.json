@@ -1,16 +1,46 @@
 {
-  "generatedAt": "2026-07-09T08:15:23.969Z",
+  "generatedAt": "2026-07-10T08:16:05.507Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
   "stats": {
-    "total": 2,
-    "alive": 2,
+    "total": 4,
+    "alive": 4,
     "dead": 0,
     "error": 0,
     "archived": 0
   },
   "items": [
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWEtNMmtPdEFpcDhLZVE4aXFDWVJjRW8xS21zMjFQamZUQ3VWZ3JXSGJUWF9PSV9Xc2ZYazMwTGlaVjg0cmROSE1heXV0QlBBY0QtczBjMjZEYTZfZGRjLUtSem9ESXdWamxLeVJ2VGRkNFBRRGtVeWFjaVJKNWc0Q3YtSVQ2TE9ESlk4dzNOSnpZeV9BSjhwcVBiOFk0Z0NKNngwMmc4TjVPa0x0bkVpSE9ncWplZGEyZ2Nwb01qdEg1a24zLTY4UkJhbEVVVTNhZzZlQk5vMmhuVHNNbHRaMw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "El Periódico de Aquí",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-10T08:16:01.985Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia Plaza",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-10T08:16:03.436Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84627-riba-roja-activa-els-20-canons-daigua-en-el-parc-fluvial-per-a-protegir-les-urbanitzacions.html",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Periòdic del Camp de Túria",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-10T08:16:04.580Z",
+      "error": null
+    },
     {
       "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
       "status": "alive",
@@ -18,17 +48,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-09T08:15:22.307Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://news.google.com/rss/articles/CBMijgJBVV95cUxOREd5TVRYRVl4M3p2WmxtQnRRcUQ2YlpkcFFfWjBKUVBoWDg0MllHcnMyUTNEa2k3THVSNU91NXNUNjZtTzNyODVWV0dNWm5jN19IdGZmSFd1MGJZOGktenlVa1Y5S2NmT1JSSk1CdW5kYm5RckFYeFU1dHRRT2JZcllXRkNYd05fZHpwVG5xR25MeXlJaFZhX095ckdRVW1SSDlqaDBidVlXQmVUWnE3ZFQwckx5UThJUkRZVDZLWWhEOWZKbUljaVdmSlhlNlNRS2VsWXQyRHVpbEZxdk1nZExncGtmbFRZMVBYZ1hQNUItQnlMSXN5Y0p0TW9IN0l3eFBKNVNWWU5RU1dYaXc?oc=5",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Valencia Plaza",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-07-09T08:15:23.768Z",
+      "checkedAt": "2026-07-10T08:16:05.306Z",
       "error": null
     }
   ]
