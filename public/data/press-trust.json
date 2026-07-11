@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T08:15:59.402Z",
+  "generatedAt": "2026-07-11T08:15:14.100Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1259,30 +1259,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1j5bx9c",
-      "articleFingerprint": "o1znw4",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/regantes-del-t%C3%BAria-se-re%C3%BAnen-en-el-castell-de-riba-roja-para-celebrar-la-junta-general-del-sindicato-de-regulaci%C3%B3n-de-las-aguas-del-t%C3%BAria",
-      "date": "2026-06-10T13:14:14.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 31,
+      "articleCount": 30,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
