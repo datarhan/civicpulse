@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T07:31:25.672Z",
+  "generatedAt": "2026-07-11T07:39:23.420Z",
   "source": {
     "description": "Claims extracted automatically from YouTube-derived pleno transcripts. Each record carries requiresHumanApproval:true and is cross-referenced against tenders / BDNS / budget / promises by the verifier pass before any editorial surface.",
     "contract": "Machine-written; never substitutes for the published human-verified record. Speaker attribution at bloc level only — no individual naming."
