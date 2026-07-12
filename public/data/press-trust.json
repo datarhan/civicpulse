@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T08:15:14.100Z",
+  "generatedAt": "2026-07-12T08:15:11.494Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1225,47 +1225,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1iqks4s",
-      "articleFingerprint": "1v8db01",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
-      "date": "2026-06-11T11:28:21.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "pxqjqc",
-      "articleFingerprint": "kkbqhk",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/matricula-escuela-oficial-de-idiomas-curso-2026-2027",
-      "date": "2026-06-11T08:37:11.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 30,
+      "articleCount": 28,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
