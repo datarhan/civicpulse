@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-11T07:40:19.595Z",
+  "generatedAt": "2026-07-12T07:51:38.360Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
   },
   "stats": {
-    "total": 5382,
+    "total": 5410,
     "byVerdict": {
-      "verificado": 176,
-      "parcial": 617,
+      "verificado": 178,
+      "parcial": 619,
       "contradicho": 0,
-      "sin-datos": 4589,
+      "sin-datos": 4613,
       "promesa-repetida": 0
     }
   },
@@ -184183,6 +184183,981 @@
       },
       "verification": {
         "claimId": "1tgd1h4-395-afi-e6d591",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-003-acu-4077e0",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 3,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "empresa que ahora, después de 15 años, pues, parece que está investigada en un grupo de empresas por diferentes cuestiones de financiamiento de partidos políticos, Partido Popular, Partido Socialista, etcétera.",
+        "context": "Y voy a estar tres meses o hace 15 años trabajando en una empresa que ahora, después de 15 años, pues, parece que está investigada en un grupo de empresas por diferentes cuestiones de financiamiento de partidos políticos, Partido Popular, Partido Socialista, etcétera. Sé que se ríen, pero es así, digo, por el Partido Popular.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "partido popular, partido socialista"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Se afirma que una empresa en la que el orador trabajó está investigada por financiación ilegal de partidos políticos (PP y PSOE), lo cual se puede contrastar mediante información de causas judiciales o policiales abiertas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-003-acu-4077e0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-006-afi-a295b7",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 6,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "mi trabajo era un trabajo de tres meses en una empresa",
+        "context": "Bueno, ahora, cuatro años después, es lo mismo, y digo, delante de todos y de todas, que mi trabajo era un trabajo de tres meses en una empresa, que va a descubrir lo que creo que marcaba el convenio de conductores",
+        "topic": "empleo",
+        "entities": {
+          "count": 3,
+          "countUnit": "meses"
+        },
+        "confidence": 0.95,
+        "reasoning": "Se puede verificar la duración exacta del contrato laboral en la vida laboral de la Seguridad Social del concejal.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-006-afi-a295b7",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-005-acu-9b94c5",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 5,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "en el año 2019, cuando el Partido Popular me va a denunciar también por un tema de una página web, colaboré, después se va a archivar el caso, y quedé, pues, libre de cualquier tipo de, diríamos, de responsabilidad.",
+        "context": "Me he pasado en el año 2019, cuando el Partido Popular me va a denunciar también por un tema de una página web, colaboré, después se va a archivar el caso, y quedé, pues, libre de cualquier tipo de, diríamos, de responsabilidad. Bueno, ahora, cuatro años después, es lo mismo",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "partido popular"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.95,
+        "reasoning": "Se puede contrastar con los registros judiciales de denuncias del Partido Popular y las resoluciones de archivo judicial en el año 2019.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-005-acu-9b94c5",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-008-afi-0b4c66",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 8,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "estoy en una relación de tres meses con una empresa",
+        "context": "para demostrar, no, rectificar, que no tengo ningún problema en ningún tipo de información lógica y sensata para demostrar lo que voy a hacer o estoy en una relación de tres meses con una empresa. También diré una cosa.",
+        "topic": "transparencia",
+        "entities": {
+          "count": 3,
+          "countUnit": "meses",
+          "referencedEntity": "vida laboral"
+        },
+        "confidence": 0.9,
+        "reasoning": "El concejal afirma mantener una relación laboral o contractual de tres meses con una empresa, lo cual se puede constatar en su informe de vida laboral o en su declaración de actividades.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-008-afi-0b4c66",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-006-acu-9beae9",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 6,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "año 2019, cuando el Partido Popular me va a denunciar también por un tema de una página web, colaboré, después se va a archivar el caso",
+        "context": "Me he pasado en el año 2019, cuando el Partido Popular me va a denunciar también por un tema de una página web, colaboré, después se va a archivar el caso, y quedé, pues, libre de cualquier tipo de, diríamos, de responsabilidad.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "denuncia del partido popular"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.95,
+        "reasoning": "Se puede comprobar en los registros judiciales la existencia y el posterior archivo de una denuncia del PP contra el concejal en 2019.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-006-acu-9beae9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-006-afi-7adb0b",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 6,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "convenio de conductores, que eran 1.200, 1.300 euros al mes",
+        "context": "mi trabajo era un trabajo de tres meses en una empresa, que va a descubrir lo que creo que marcaba el convenio de conductores, que eran 1.200, 1.300 euros al mes, que estuve de marzo a agosto",
+        "topic": "empleo",
+        "entities": {
+          "amountEuros": 1200,
+          "referencedEntity": "convenio de conductores"
+        },
+        "confidence": 0.85,
+        "reasoning": "Se puede contrastar el rango salarial mencionado con las tablas salariales del convenio colectivo de conductores oficial.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-006-afi-7adb0b",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-007-afi-8b65da",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 7,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "que eran 1.200, 1.300 euros al mes, que estuve de marzo a agosto",
+        "context": "conductores, que eran 1.200, 1.300 euros al mes, que estuve de marzo a agosto, a partir del día en que la relación con la empresa, que estaba",
+        "topic": "empleo",
+        "entities": {},
+        "confidence": 0.85,
+        "reasoning": "El orador afirma haber percibido un salario de 1.200-1.300 euros mensuales en un periodo de marzo a agosto, verificable mediante contratos de trabajo y nóminas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-007-afi-8b65da",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-017-cit-1eb385",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 17,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "dentro del Departamento de Contratación, el programa Rivalicita, que ya conocéis todos, con el primer compromiso que te pone ahí, queremos que nos conozcas",
+        "context": "Transparencia, como podéis recoger y ver en el propio documento, pues, por ejemplo, dentro del Departamento de Contratación, el programa Rivalicita, que ya conocéis todos, con el primer compromiso que te pone ahí, queremos que nos conozcas. Hace accesibilidad y cercanía.",
+        "topic": "transparencia",
+        "entities": {
+          "referencedEntity": "programa rivalicita"
+        },
+        "confidence": 0.9,
+        "reasoning": "Se menciona el programa de contratación y transparencia 'Rivalicita' del Ayuntamiento, cuya existencia y actividad son verificables en los portales públicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-017-cit-1eb385",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
+            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-018-cit-142313",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 18,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "tenemos el nuevo centro sanitario. Aquí ya viene reflejado,",
+        "context": "Pero lo que es cierto es que aquí se recoge una parte muy importante para nuestra ciudadanía, como son dentro de las actuaciones urbanísticas de mi compañera Tere. Tere, pues tenemos el nuevo centro sanitario. Aquí ya viene reflejado,",
+        "topic": "salud",
+        "entities": {
+          "referencedEntity": "nuevo centro sanitario"
+        },
+        "confidence": 0.95,
+        "reasoning": "Se menciona el proyecto del nuevo centro sanitario como parte de las actuaciones urbanísticas, algo verificable en el plan de inversiones del municipio o en los presupuestos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-018-cit-142313",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-019-cit-c1bb69",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 19,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "Se ha remitido al servicio de infraestructuras la documentación técnica requerida por la consellería para la cesión del solar e inicio de la redacción del proyecto de construcción del nuevo centro sanitario por parte de la consellería",
+        "context": "Tere, pues tenemos el nuevo centro sanitario. Aquí ya viene reflejado, en la memoria del 2021, que es la siguiente indicación, ¿no? Se ha remitido al servicio de infraestructuras la documentación técnica requerida por la consellería para la cesión del solar e inicio de la redacción del proyecto de construcción del nuevo centro sanitario por parte de la consellería. Es decir, no hablamos de palabras, sino ya de hechos, y eso está recogido en la memoria del 2021.",
+        "topic": "salud",
+        "entities": {
+          "referencedEntity": "nuevo centro sanitario"
+        },
+        "confidence": 1,
+        "reasoning": "Se puede verificar en los registros municipales o de la Conselleria de Sanidad si se remitió la documentación técnica descrita.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-019-cit-c1bb69",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-019-cit-d5a1ca",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 19,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "O el plan convivir, que también se recoge aquí",
+        "context": "Es decir, no hablamos de palabras, sino ya de hechos, y eso está recogido en la memoria del 2021. O el plan convivir, que también se recoge aquí. Y también se recoge la nueva residencia mixta, con 40 plaza",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "plan convivir"
+        },
+        "confidence": 1,
+        "reasoning": "Se puede contrastar la memoria del 2021 para comprobar si incluye el plan Convivir.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-019-cit-d5a1ca",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-019-afi-ffabfc",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 19,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "nueva residencia mixta, con 40 plaza",
+        "context": "Es decir, no hablamos de palabras, sino ya de hechos, y eso está recogido en la memoria del 2021. O el plan convivir, que también se recoge aquí. Y también se recoge la nueva residencia mixta, con 40 plaza",
+        "topic": "social",
+        "entities": {
+          "count": 40,
+          "countUnit": "plaza",
+          "referencedEntity": "nueva residencia mixta"
+        },
+        "confidence": 1,
+        "reasoning": "Se puede contrastar con el proyecto oficial de la residencia o la memoria municipal para verificar que se planifican 40 plazas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-019-afi-ffabfc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-020-cit-f64a06",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 20,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "el plan convivir, que también se recoge aquí",
+        "context": "en la memoria del 2021. O el plan convivir, que también se recoge aquí. Y también se recoge la nueva residencia mixta",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "plan convivir"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable en la memoria municipal de 2021 y en la resolución de adhesión del municipio al Plan Convivir.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-020-cit-f64a06",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-020-afi-ffabfc",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 20,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "nueva residencia mixta, con 40 plazas para personas con diversidad funcional y 81 plazas para personas mayores dependientes",
+        "context": "O el plan convivir, que también se recoge aquí. Y también se recoge la nueva residencia mixta, con 40 plazas para personas con diversidad funcional y 81 plazas para personas mayores dependientes. Además de un centro de día con 40 plazas para personas con",
+        "topic": "social",
+        "entities": {
+          "count": 81,
+          "countUnit": "plazas",
+          "referencedEntity": "residencia mixta"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable en la memoria técnica y los pliegos de contratación o creación de la residencia mixta.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-020-afi-ffabfc",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-020-afi-a31e60",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 20,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "centro de día de inserción sociolaboral, con una valoración estimada, que también se recoge aquí, de 26.480.000 euros",
+        "context": "diversidad funcional y 40 para mayores. Y un centro de día de inserción sociolaboral, con una valoración estimada, que también se recoge aquí, de 26.480.000 euros en un edificio de tres plantas y con 13.000 metros cuadrados. ¿Por qué digo esto también?",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 26480000,
+          "referencedEntity": "centro de día de inserción sociolaboral"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable en el presupuesto del proyecto del centro de día de inserción sociolaboral reflejado en la memoria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-020-afi-a31e60",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-020-afi-bcefb9",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 20,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "edificio de tres plantas y con 13.000 metros cuadrados",
+        "context": "Y un centro de día de inserción sociolaboral, con una valoración estimada, que también se recoge aquí, de 26.480.000 euros en un edificio de tres plantas y con 13.000 metros cuadrados. ¿Por qué digo esto también?",
+        "topic": "urbanismo",
+        "entities": {
+          "count": 13000,
+          "countUnit": "metros cuadrados",
+          "referencedEntity": "centro de día de inserción sociolaboral"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable en los planos del proyecto básico y de ejecución del edificio del centro de día.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-020-afi-bcefb9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-023-cit-c2b4b9",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 23,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Tenemos las ayudas concedidas a autónomos, microempresas y emprendedores, con 30.000 euros por una parte, con 615.000 por otra parte, con otros 291.000 por otra parte, más de un millón de euros",
+        "context": "Y tenemos, por ejemplo, los cursos de formación o también el Plan Resistir. Tenemos las ayudas concedidas a autónomos, microempresas y emprendedores, con 30.000 euros por una parte, con 615.000 por otra parte, con otros 291.000 por otra parte, más de un millón de euros, que eso lo hemos aprobado entre todos, que aquí no estoy recogiéndolo como algo que lo hemos hecho entre todos.",
+        "topic": "empleo",
+        "entities": {
+          "amountEuros": 1000000,
+          "referencedEntity": "plan resistir"
+        },
+        "confidence": 1,
+        "reasoning": "Se citan las cuantías específicas aprobadas para las ayudas a autónomos, microempresas y emprendedores asociadas al Plan Resistir.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-023-cit-c2b4b9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-022-cit-0a658d",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 22,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "se va a hacer una residencia",
+        "context": "y aquí está recogido en la ciudadanía, lo va a poder ver, es que se va a hacer una residencia, se va a hacer un centro de salud",
+        "topic": "social",
+        "entities": {
+          "referencedEntity": "residencia"
+        },
+        "confidence": 1,
+        "reasoning": "Verifica si existe planeamiento municipal o proyecto para la construcción de una residencia.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-022-cit-0a658d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-022-cit-b05c40",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 22,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "se va a hacer un centro de salud en una zona, en un solar, que ha comprado este ayuntamiento y es patrimonio de Riva Roja",
+        "context": "es que se va a hacer una residencia, se va a hacer un centro de salud en una zona, en un solar, que ha comprado este ayuntamiento y es patrimonio de Riva Roja. Y es importante que también se recoja.",
+        "topic": "salud",
+        "entities": {
+          "referencedEntity": "centro de salud"
+        },
+        "confidence": 1,
+        "reasoning": "Verifica en el inventario de bienes del Ayuntamiento si adquirió un solar para construir un centro de salud.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-022-cit-b05c40",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
+            "snippet": "Servicio Dirección Facultativa de las obras de finalización del Centro Polivalente Cultural en Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-022-cit-f500d8",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 22,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "tenemos, por ejemplo, los cursos de formación o también el Plan Resistir",
+        "context": "la época en la que vivimos el COVID, ¿no? Y aquí también te habla de los programas, ¿no? Y tenemos, por ejemplo, los cursos de formación o también el Plan Resistir. Tenemos las ayudas concedidas",
+        "topic": "empleo",
+        "entities": {
+          "referencedEntity": "plan resistir"
+        },
+        "confidence": 1,
+        "reasoning": "Verifica en las actas municipales la adhesión y ejecución del Plan Resistir en Riba-roja de Túria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-022-cit-f500d8",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-022-afi-00b637",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 22,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "ayudas concedidas a autónomos, microempresas y emprendedores, con 30.000 euros por una parte, con 615.000 por otra parte, con otros 291.000 por otra parte, más de un millón de euros",
+        "context": "Tenemos las ayudas concedidas a autónomos, microempresas y emprendedores, con 30.000 euros por una parte, con 615.000 por otra parte, con otros 291.000 por otra parte, más de un millón de euros, que eso lo hemos aprobado entre todos,",
+        "topic": "empleo",
+        "entities": {
+          "amountEuros": 1000000,
+          "referencedEntity": "ayudas concedidas a autónomos, microempresas y emprendedores"
+        },
+        "confidence": 1,
+        "reasoning": "Comprueba si las cantidades de 30.000, 615.000 y 291.000 euros otorgadas en ayudas suman más de un millón de euros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-022-afi-00b637",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-021-afi-c79650",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 21,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "valoración estimada, que también se recoge aquí, de 26.480.000 euros en un edificio de tres plantas y con 13.000 metros cuadrados",
+        "context": "Y un centro de día de inserción sociolaboral, con una valoración estimada, que también se recoge aquí, de 26.480.000 euros en un edificio de tres plantas y con 13.000 metros cuadrados. ¿Por qué digo esto también?",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 26480000,
+          "count": 13000,
+          "countUnit": "metros cuadrados",
+          "referencedEntity": "centro de día de inserción sociolaboral"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable en el presupuesto o programa de actuación del centro de día de inserción sociolaboral.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-021-afi-c79650",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-021-cit-21a613",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 21,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "se va a hacer una residencia, se va a hacer un centro de salud en una zona, en un solar, que ha comprado este ayuntamiento y es patrimonio de Riva Roja",
+        "context": "Pues PACADAR, y aquí está recogido en la ciudadanía, lo va a poder ver, es que se va a hacer una residencia, se va a hacer un centro de salud en una zona, en un solar, que ha comprado este ayuntamiento y es patrimonio de Riva Roja. Y es importante que también se recoja.",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "pacadar"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable en el inventario del patrimonio municipal respecto al solar PACADAR y planes de obras aprobados.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-021-cit-21a613",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
+            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-027-cit-e4e772",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 27,
+        "type": "cita_obra",
+        "speakerGroup": null,
+        "verbatim": "yo he citado Pacadar, porque es algo que es un poco delicado para algunos. Nosotros creemos que es el futuro de Rivarrocha y que está ahí, pero bueno, entiendo que a algunos no les agrada.",
+        "context": "l trabajo de un Gobierno, efectivamente. Pero creo que deberían estar orgullosos del trabajo que se hace. Es de veras, ahí está, yo he citado Pacadar, porque es algo que es un poco delicado para algunos. Nosotros creemos que es el futuro de Rivarrocha y que está ahí, pero bueno, entiendo que a algunos no les agrada. Gracias. ¿Alguna palabra más? ¿Paula?",
+        "topic": "urbanismo",
+        "entities": {
+          "referencedEntity": "pacadar"
+        },
+        "confidence": 0.9,
+        "reasoning": "Menciona el emplazamiento o proyecto de Pacadar, una actuación urbanística e industrial en Riba-roja de Túria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-027-cit-e4e772",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
+            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-032-afi-7003f9",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 32,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "los fallos están informados desde el día 12 de diciembre, que se anaba a hacer una ordenanza. Es va a pasar también online el día 12 de diciembre, y el día 22 de diciembre también van a rebre una copia",
+        "context": "cipación activa en la elaboración de las normas. También quiero decir que los fallos están informados desde el día 12 de diciembre, que se anaba a hacer una ordenanza. Es va a pasar también online el día 12 de diciembre, y el día 22 de diciembre también van a rebre una copia para que la atingan.",
+        "topic": "transparencia",
+        "entities": {
+          "date": "2022-12-12",
+          "referencedEntity": "ordenanza"
+        },
+        "confidence": 0.8,
+        "reasoning": "Verificable comprobando la fecha de registro o envío online de la propuesta de ordenanza en los sistemas municipales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-032-afi-7003f9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-032-pro-3bc481",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 32,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "la de catalanes y la de corresponsales juveniles vendrán a continuación a los plenos",
+        "context": "Esta es la primera, y diré que también la de catalanes y la de corresponsales juveniles vendrán a continuación a los plenos. Gracias.",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "ordenanza de corresponsales juveniles"
+        },
+        "confidence": 0.8,
+        "reasoning": "Verificable en las actas de sesiones plenarias posteriores para constatar la presentación de dichas ordenanzas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-032-pro-3bc481",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-033-afi-47e043",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 33,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "la Ley de Servicios Sociales nos marca que tenemos que tener tres comisiones, la Comisión Técnica de Valoración y Seguimiento de Prestaciones, la Comisión Técnica de Intervención Social y la Comisión Técnica Organizativa",
+        "context": "En este caso, la Ley de Servicios Sociales nos marca que tenemos que tener tres comisiones, la Comisión Técnica de Valoración y Seguimiento de Prestaciones, la Comisión Técnica de Intervención Social y la Comisión Técnica Organizativa. Los dos primeros ya van a pasar por pleno",
+        "topic": "social",
+        "entities": {
+          "count": 3,
+          "countUnit": "comisiones",
+          "referencedEntity": "ley de servicios sociales"
+        },
+        "confidence": 0.95,
+        "reasoning": "Se cita una cifra concreta (tres comisiones) atribuida al mandato de la Ley de Servicios Sociales, lo cual es contrastable con el texto de dicha ley.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-033-afi-47e043",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      }
+    },
+    {
+      "claim": {
+        "id": "1r6yy0-033-pro-607ca1",
+        "plenoId": "1r6yy0",
+        "plenoDate": "2023-01-23",
+        "segmentIndex": 33,
+        "type": "promesa",
+        "speakerGroup": null,
+        "verbatim": "Los dos primeros ya van a pasar por pleno más exactamente el 26 de julio",
+        "context": "la Ley de Servicios Sociales nos marca que tenemos que tener tres comisiones, la Comisión Técnica de Valoración y Seguimiento de Prestaciones, la Comisión Técnica de Intervención Social y la Comisión Técnica Organizativa. Los dos primeros ya van a pasar por pleno más exactamente el 26 de julio. Estos dos serán receptivos",
+        "topic": "social",
+        "entities": {
+          "count": 2,
+          "countUnit": "comisiones",
+          "date": "2023-07-26",
+          "referencedEntity": "comisiones técnicas de valoración y seguimiento, y de intervención social"
+        },
+        "confidence": 0.9,
+        "reasoning": "Es un compromiso para llevar a pleno dos de las comisiones en una fecha específica (26 de julio de 2023), verificable en las actas de dicho pleno.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1r6yy0-033-pro-607ca1",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],

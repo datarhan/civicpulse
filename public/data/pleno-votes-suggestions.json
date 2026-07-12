@@ -1,16 +1,18 @@
 {
-  "generatedAt": "2026-07-11T07:39:26.889Z",
+  "generatedAt": "2026-07-12T07:50:45.972Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 1,
+    "total": 2,
     "byEngine": {
-      "regex": 1
+      "regex": 1,
+      "llm": 1
     },
     "byPleno": {
-      "rx4hb4": 1
+      "rx4hb4": 1,
+      "1r6yy0": 1
     }
   },
   "items": [
@@ -41,6 +43,42 @@
       "confidence": 0.7,
       "requiresHumanApproval": true,
       "engine": "regex",
+      "regmeetCheck": {
+        "regmeetOutcome": null,
+        "status": "no-regmeet"
+      }
+    },
+    {
+      "plenoId": "1r6yy0",
+      "plenoDate": "2023-01-23",
+      "itemNumber": 1,
+      "excerpt": "El primer punto sería el punto de aprobación\n[1134.6 → 1142.6] de actas anteriores. Aprovemos por unanimidad que es el acta del 8 de diciembre y 30 de diciembre\n[1142.6 → 1145.6] de 2022.",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Otro",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.95,
+      "requiresHumanApproval": true,
+      "engine": "llm",
       "regmeetCheck": {
         "regmeetOutcome": null,
         "status": "no-regmeet"

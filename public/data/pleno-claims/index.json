@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T07:40:19.799Z",
+  "generatedAt": "2026-07-12T07:51:38.566Z",
   "version": "1",
   "plenos": [
     {
@@ -456,15 +456,42 @@
         "vivienda": 2
       },
       "bytes": 1603780
+    },
+    {
+      "plenoId": "1r6yy0",
+      "plenoDate": "2023-01-23",
+      "chunkPath": "pleno-claims/1r6yy0.json",
+      "itemCount": 25,
+      "toggleCount": 21,
+      "byVerdict": {
+        "sin-datos": 21,
+        "parcial": 2,
+        "verificado": 2
+      },
+      "byType": {
+        "afirmacion_numerica": 12,
+        "cita_obra": 7,
+        "cita_convenio": 4,
+        "promesa": 2
+      },
+      "byTopic": {
+        "empleo": 6,
+        "transparencia": 3,
+        "salud": 3,
+        "social": 9,
+        "urbanismo": 3,
+        "other": 1
+      },
+      "bytes": 39211
     }
   ],
   "totals": {
-    "items": 3772,
-    "plenos": 15,
+    "items": 3797,
+    "plenos": 16,
     "byVerdict": {
-      "sin-datos": 2979,
-      "parcial": 617,
-      "verificado": 176
+      "sin-datos": 3000,
+      "parcial": 619,
+      "verificado": 178
     }
   }
 }
