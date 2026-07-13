@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T07:59:57.426Z",
+  "generatedAt": "2026-07-13T17:08:08.099Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -259,7 +259,7 @@
       "name": "Parc Municipal Maldonado",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5477533,
+      "lat": 39.5477716,
       "lng": -0.5797717
     },
     {

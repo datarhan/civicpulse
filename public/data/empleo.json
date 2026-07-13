@@ -1,26 +1,344 @@
 {
-  "generatedAt": "2026-07-10T08:09:59.344Z",
+  "generatedAt": "2026-07-13T17:11:19.665Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 66,
-    "openTotal": 66,
-    "inRibaRoja": 36,
-    "closingSoon": 14,
-    "withDetail": 66,
+    "total": 67,
+    "openTotal": 67,
+    "inRibaRoja": 37,
+    "closingSoon": 27,
+    "withDetail": 67,
     "byMonth": {
-      "2026-07": 6,
+      "2026-07": 9,
       "2026-06": 20,
-      "2026-05": 36,
+      "2026-05": 34,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2489",
+      "fo": 2489,
+      "codigo": "2026/00188",
+      "titulo": "Operario/a Cristalero/a con discapacidad",
+      "publishedAt": "2026-07-13",
+      "deadline": "2026-09-13",
+      "location": "Cheste (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2489",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00188"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a Cristalero/a con discapacidad"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se requiere certificado de discapacidad/ IPT Se requiere experiencia previa en el sector."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46380"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno mañana"
+          },
+          {
+            "label": "Horario",
+            "value": "L-V 6:00-13:36H"
+          },
+          {
+            "label": "Salario",
+            "value": "1444 € brutos/mes 12 pagas"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza de cristalería interior y exterior."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "1",
+        "categoria": "PEONES",
+        "observaciones": "Se requiere certificado de discapacidad/ IPT Se requiere experiencia previa en el sector.",
+        "municipio": "Cheste",
+        "provincia": "Valencia",
+        "cp": "46380",
+        "jornada": "Completa Turnos: Turno mañana",
+        "horario": "L-V 6:00-13:36H",
+        "salario": "1444 € brutos/mes 12 pagas",
+        "funciones": "Limpieza de cristalería interior y exterior.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2488",
+      "fo": 2488,
+      "codigo": "2026/00187",
+      "titulo": "AUXILIAR ADMINISTRATIVO",
+      "publishedAt": "2026-07-13",
+      "deadline": "2026-09-13",
+      "location": "POLIGONO INDUSTRIAL Loriguilla (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2488",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00187"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "AUXILIAR ADMINISTRATIVO"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Ubicación: Loriguilla (Valencia) Incorporación: Septiembre Jornada: Completa En Kalpae Ibérica seguimos creciendo Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa. Requisitos Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. Se ofrece Incorporación estable a una empresa en pleno crecimiento. Incorporación durante el mes de septiembre. Buen ambiente de trabajo y posibilidad de desarrollo profesional. Formación inicial para facilitar la adaptación al puesto. Horario Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h. Si te interesa formar parte de un equipo dinámico y desarrollar tu carrera en una empresa referente en el sector del movimiento de tierras, la maquinaria y la gestión de residuos, esperamos recibir tu candidatura."
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "CONSTRUCCIÓN"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUXILIARES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLIGONO INDUSTRIAL, Municipio: Loriguilla, Provincia: Valencia, CP: 46393"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Salario",
+            "value": "1500"
+          },
+          {
+            "label": "Funciones",
+            "value": "Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "categoria": "AUXILIARES ADMINISTRATIVOS",
+        "observaciones": "Ubicación: Loriguilla (Valencia) Incorporación: Septiembre Jornada: Completa En Kalpae Ibérica seguimos creciendo Buscamos incorporar un/a Auxiliar Administrativo/a para nuestra oficina de Loriguilla, con capacidad de organización, atención al detalle y experiencia en tareas administrativas relacionadas con el sector de la construcción, movimiento de tierras o maquinaria. Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa. Requisitos Formación en Administración, Gestión Administrativa o similar. Se valorará experiencia previa en empresas de construcción, obra civil, maquinaria o sectores afines. Experiencia en el manejo de plataformas documentales empresariales. Dominio de Microsoft Office, especialmente Excel. Persona organizada, resolutiva, metódica y con capacidad para gestionar varias tareas simultáneamente. Vehículo propio para desplazarse al centro de trabajo. Se ofrece Incorporación estable a una empresa en pleno crecimiento. Incorporación durante el mes de septiembre. Buen ambiente de trabajo y posibilidad de desarrollo profesional. Formación inicial para facilitar la adaptación al puesto. Horario Lunes a jueves: de 09:00 a 14:00 h y de 15:00 a 18:30 h. Viernes: de 08:00 a 14:00 h. Si te interesa formar parte de un equipo dinámico y desarrollar tu carrera en una empresa referente en el sector del movimiento de tierras, la maquinaria y la gestión de residuos, esperamos recibir tu candidatura.",
+        "municipio": "Loriguilla",
+        "provincia": "Valencia",
+        "cp": "46393",
+        "jornada": "Completa Turnos: Turno partido",
+        "salario": "1500",
+        "funciones": "Funciones principales Control diario de partes de trabajo del personal. Revisión y gestión de albaranes de maquinaria y transporte. Preparación y seguimiento de certificaciones mensuales. Gestión documental de clientes y proveedores. Administración de plataformas documentales como Nalanda, Quioo, ProAPP, Achilles y otras similares. Archivo y control de documentación administrativa. Apoyo al departamento de administración en las tareas propias del puesto. Coordinación documental con los diferentes departamentos de la empresa.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2486",
+      "fo": 2486,
+      "codigo": "2026/00186",
+      "titulo": "Operario/a de limpieza industrial",
+      "publishedAt": "2026-07-10",
+      "deadline": "2026-09-10",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2486",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00186"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operario/a de limpieza industrial"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Buscamos una persona con perfil de personal operario/a de limpieza para garantizar que nuestras instalaciones y equipos cumplan los más altos estándares de higiene y seguridad alimentaria. Requisitos : Experiencia de al menos un año en puesto similar Formacion en productos de limpieza, con experiencia de al menos 1 año, en limpieza industrial. Disponer de vehículo propio para acceder al lugar de trabajo Capacidad de trabajo a turnos y festivos INCORPORACIÓN INMEDIATA."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Parcial"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Jornada de trabajo de 4 días a la semana."
+          },
+          {
+            "label": "Horario",
+            "value": "De 16:00 a 20:00 horas."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Cumplimiento de instrucciones de trabajo de limpieza y desinfección de cada zona de trabajo, incluidas máquinas, entendiendo todas las fases del proceso encomendado. - Dejar la máquinas, utensilios, herramientas y zonas de trabajo en perfectas condiciones higiénicas. - Dejar preparadas y organizadas todas las máquinas, utensilios y herramientas, listos para producción - Reponer bolsas de basura, jabón de manos y desinfectantes en todas las zonas de la fábrica - Control del inventario de materiales y productos químicos, para reportar al responsable directo."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "- Capacidad de trabajo en equipo - Capacidad de reacción ante incidencias - Persona responsable y organizada"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Buscamos una persona con perfil de personal operario/a de limpieza para garantizar que nuestras instalaciones y equipos cumplan los más altos estándares de higiene y seguridad alimentaria. Requisitos : Experiencia de al menos un año en puesto similar Formacion en productos de limpieza, con experiencia de al menos 1 año, en limpieza industrial. Disponer de vehículo propio para acceder al lugar de trabajo Capacidad de trabajo a turnos y festivos INCORPORACIÓN INMEDIATA.",
+        "jornada": "Parcial",
+        "horario": "De 16:00 a 20:00 horas.",
+        "salario": "Según convenio",
+        "funciones": "- Cumplimiento de instrucciones de trabajo de limpieza y desinfección de cada zona de trabajo, incluidas máquinas, entendiendo todas las fases del proceso encomendado. - Dejar la máquinas, utensilios, herramientas y zonas de trabajo en perfectas condiciones higiénicas. - Dejar preparadas y organizadas todas las máquinas, utensilios y herramientas, listos para producción - Reponer bolsas de basura, jabón de manos y desinfectantes en todas las zonas de la fábrica - Control del inventario de materiales y productos químicos, para reportar al responsable directo.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2485",
+      "fo": 2485,
+      "codigo": "2026/00185",
+      "titulo": "Personal de producción",
+      "publishedAt": "2026-07-10",
+      "deadline": "2026-09-10",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2485",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00185"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal de producción"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se busca una persona responsable, proactiva, comprometida y con capacidad para trabajar en equipo. Requisitos : Se valorará experiencia previa en empresas del sector alimentario o en entornos industriales de producción. Cerfiticado de Manipulador de Alimentos en vigor. Disponibilidad para trabajar a turnos. Vehículo propio. INCORPORACIÓN INMEDIATA ."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "FIJOS DISCONTINUOS"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno rotativo"
+          },
+          {
+            "label": "Horario",
+            "value": "De lunes a domingo con los descansos establecidos legalmente."
+          },
+          {
+            "label": "Salario",
+            "value": "18.000€ - 19.000€ bruto anual, según experiencia y valía."
+          },
+          {
+            "label": "Funciones",
+            "value": "- Manejo de equipos y herramientas específicas de producción (cuchillos, lavadoras, cortadoras, entre otros) - Preparación y corte de materia prima para su posterior procesamiento. - Envasado, empaquetado y etiquetado del producto final. - Abastecimiento de líneas de producción. - Apoyo a maquinistas y al equipo de operaciones. - Limpieza y mantenimiento de la zona de trabajo, garantizando el cumplimiento de los estándares de higiene y seguridad alimentaria."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "FIJOS DISCONTINUOS",
+        "numPuestos": "1",
+        "observaciones": "Se busca una persona responsable, proactiva, comprometida y con capacidad para trabajar en equipo. Requisitos : Se valorará experiencia previa en empresas del sector alimentario o en entornos industriales de producción. Cerfiticado de Manipulador de Alimentos en vigor. Disponibilidad para trabajar a turnos. Vehículo propio. INCORPORACIÓN INMEDIATA .",
+        "jornada": "Completa Turnos: Turno rotativo",
+        "horario": "De lunes a domingo con los descansos establecidos legalmente.",
+        "salario": "18.000€ - 19.000€ bruto anual, según experiencia y valía.",
+        "funciones": "- Manejo de equipos y herramientas específicas de producción (cuchillos, lavadoras, cortadoras, entre otros) - Preparación y corte de materia prima para su posterior procesamiento. - Envasado, empaquetado y etiquetado del producto final. - Abastecimiento de líneas de producción. - Apoyo a maquinistas y al equipo de operaciones. - Limpieza y mantenimiento de la zona de trabajo, garantizando el cumplimiento de los estándares de higiene y seguridad alimentaria.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2484",
       "fo": 2484,
@@ -419,87 +737,6 @@
             "experiencia": "1 Años"
           }
         ]
-      }
-    },
-    {
-      "id": "2477",
-      "fo": 2477,
-      "codigo": "2026/00177",
-      "titulo": "Auxiliar administrativo/a",
-      "publishedAt": "2026-07-02",
-      "deadline": "2026-09-02",
-      "location": "POLIDEPORTIVO MUNICIPAL DE LELIANA Eliana (l') (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2477",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00177"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativo/a"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES ARTÍSTICAS, RECREATIVAS Y DE ENTRENIMIENTO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE RELEVO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLIDEPORTIVO MUNICIPAL DE LELIANA, Municipio: Eliana (l'), Provincia: Valencia, CP: 46183"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "LUNES A VIERNES"
-          },
-          {
-            "label": "Horario",
-            "value": "DE 17H A 20H"
-          },
-          {
-            "label": "Salario",
-            "value": "SEGÚN CONVENIO"
-          },
-          {
-            "label": "Funciones",
-            "value": "ATENCIÓN AL PÚBLICO CAPACIDAD DE TRABAJO EN EQUIPO BUEN CONTROL DE BASES DE DATOS CAPACIDAD DE ORGANIZACIÓN"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE RELEVO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "municipio": "Eliana (l')",
-        "provincia": "Valencia",
-        "cp": "46183",
-        "jornada": "Parcial Turnos: Turno tarde",
-        "horario": "DE 17H A 20H",
-        "salario": "SEGÚN CONVENIO",
-        "funciones": "ATENCIÓN AL PÚBLICO CAPACIDAD DE TRABAJO EN EQUIPO BUEN CONTROL DE BASES DE DATOS CAPACIDAD DE ORGANIZACIÓN",
-        "ocupaciones": []
       }
     },
     {
@@ -4513,69 +4750,6 @@
       }
     },
     {
-      "id": "2431",
-      "fo": 2431,
-      "codigo": "2026/00132",
-      "titulo": "Repartidor/a",
-      "publishedAt": "2026-05-18",
-      "deadline": "2026-07-18",
-      "location": "Loriguilla Loriguilla (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2431",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00132"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Repartidor/a"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Loriguilla, Municipio: Loriguilla, Provincia: Valencia, CP: 46939"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "8:30 a 13:30 y de 14:00 a 17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "municipio": "Loriguilla",
-        "provincia": "Valencia",
-        "cp": "46939",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "8:30 a 13:30 y de 14:00 a 17:00",
-        "salario": "Según convenio",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2429",
       "fo": 2429,
       "codigo": "2026/00131",
@@ -4937,100 +5111,6 @@
         "funciones": "Las propias de la categoría.",
         "vehiculo": "Sí",
         "ocupaciones": []
-      }
-    },
-    {
-      "id": "2423",
-      "fo": 2423,
-      "codigo": "2026/00125",
-      "titulo": "Operario/a producción planta reciclaje",
-      "publishedAt": "2026-05-11",
-      "deadline": "2026-07-10",
-      "location": "PI Ribarroja Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2423",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00125"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a producción planta reciclaje"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "SUMINISTRO DE AGUA, ACTIVIDADES DE SANEAMIENTO, GESTIÓN DE RESIDUOS Y DESCONTAMINACIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "PI Ribarroja, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno partido, Turno rotativo"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "turnos de mañana, tarde, noche o partido"
-          },
-          {
-            "label": "Horario",
-            "value": "turnos rotativos: 6 a 14h, 14 a 22, 22 a 06 o turno central de 8 a 14h y de 15 a 17.30h"
-          },
-          {
-            "label": "Salario",
-            "value": "10.85 €brutos la hora"
-          },
-          {
-            "label": "Funciones",
-            "value": "Tareas de triado, selección y clasificación manual de materiales como plástico, aluminio y madera, para su posterior reciclado"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "categoria": "PEONES",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno partido, Turno rotativo",
-        "horario": "turnos rotativos: 6 a 14h, 14 a 22, 22 a 06 o turno central de 8 a 14h y de 15 a 17.30h",
-        "salario": "10.85 €brutos la hora",
-        "funciones": "Tareas de triado, selección y clasificación manual de materiales como plástico, aluminio y madera, para su posterior reciclado",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Clasificadores de desechos, operarios de punto limpio y recogedores de chatarra"
-          },
-          {
-            "nombre": "Peones agrícolas en huertas, invernaderos, viveros y jardines",
-            "experiencia": "1 Años, 6 Meses"
-          }
-        ]
       }
     },
     {

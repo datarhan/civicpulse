@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-10T08:00:25.737Z",
+  "generatedAt": "2026-07-13T17:09:51.853Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -3142,8 +3142,8 @@
       "slug": "carrer-del-mas-de-montes",
       "kind": "calle",
       "point": [
-        39.4805062,
-        -0.5875882
+        39.4832932,
+        -0.5874328
       ]
     },
     {
@@ -5262,8 +5262,8 @@
       "slug": "carretera-ribarroja-villamarchante",
       "kind": "carretera",
       "point": [
-        39.5629989,
-        -0.6005896
+        39.5629132,
+        -0.5987138
       ]
     },
     {

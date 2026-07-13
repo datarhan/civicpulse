@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-10T08:10:05.193Z",
-  "source": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260528%2020260527%20Registro%20Asociaciones%20Web.pdf",
-  "fechaRegistro": "27 mayo 2026",
+  "generatedAt": "2026-07-13T17:11:21.207Z",
+  "source": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260709%20Registro%20Asociaciones%20Web.pdf",
+  "fechaRegistro": "09 de julio 2026",
   "asociaciones": [
     {
       "nombre": "Centro Cultural Cervantes",
       "tipo": "Cultural",
-      "domicilio": "C/ Doctor Cerveró, 15. Riba-roja de Túria"
+      "domicilio": "C/ Doctor Cerveró, 15. Riba-roja de TúriaG46694352"
     },
     {
       "nombre": "Jubilados y Pensionistas de Riba-roja de Túria UDP",
@@ -16,7 +16,7 @@
     {
       "nombre": "Club Taekondo Subirón",
       "tipo": "Deportiva",
-      "domicilio": "C/ Cid, 15. Riba-roja de Túria."
+      "domicilio": "C/ Cid, 15. Riba-roja de Túria.G40571069"
     },
     {
       "nombre": "AMPA Mas de Escoto",
@@ -36,17 +36,17 @@
     {
       "nombre": "Festividad de San Antonio Abad",
       "tipo": "Cultural",
-      "domicilio": "C/ Bodeguetes, 62. Riba-roja de Túria."
+      "domicilio": "C/ Bodeguetes, 62. Riba-roja de Túria.G98403132"
     },
     {
       "nombre": "Turia canina",
       "tipo": "B.Animal",
-      "domicilio": "Avda de la Paz, 88. Riba-roja de Túria."
+      "domicilio": "Avda de la Paz, 88. Riba-roja de Túria.G40502353"
     },
     {
       "nombre": "DJ R Associació de Disc Jockeys de Ribar-roja",
       "tipo": "Fiestas",
-      "domicilio": "C/ 2 de Mayo, 33. Riba-roja de Túria."
+      "domicilio": "C/ 2 de Mayo, 33. Riba-roja de Túria.G98954597"
     },
     {
       "nombre": "ASOCIACIÓN TYRIUS",
@@ -66,7 +66,7 @@
     {
       "nombre": "Asociación Clavarias de Santa Rita Ribarroja",
       "tipo": "Cultural",
-      "domicilio": "C/Garelli y Pastor 5. Riba-roja de Túria"
+      "domicilio": "C/Garelli y Pastor 5. Riba-roja de TúriaG19813229"
     },
     {
       "nombre": "Asociación Fibroribarroja",
@@ -76,12 +76,12 @@
     {
       "nombre": "Asociación Búfalos del Túria",
       "tipo": "Deportiva",
-      "domicilio": "C/Cristo de los afligidos, 55,1 Riba-roja de Túria"
+      "domicilio": "C/Cristo de los afligidos, 55,1 Riba-roja de TúriaG21937750"
     },
     {
       "nombre": "Asociación Residencial Reva",
       "tipo": "Vecinal",
-      "domicilio": "C/ SANTA CLARA, S/N (Club social)"
+      "domicilio": "C/ SANTA CLARA, S/N (Club social)G97086920"
     },
     {
       "nombre": "Asociación ciudadana de la Urb. Entrenaranjos",
@@ -89,49 +89,64 @@
       "domicilio": "Calle 104, nº 12"
     },
     {
-      "nombre": "ASOCIACIÓN VECINAL PARQUE MONTEALCEDO",
+      "nombre": "Asociación vecinal Parque Montealcedo",
       "tipo": "Vecinal",
-      "domicilio": "C/ 1, nº 7 (Montealcedo). Riba-roja de Túria"
+      "domicilio": "C/ 1, nº 7 (Montealcedo). Riba-roja de TúriaG22610091"
     },
     {
-      "nombre": "ASOCIACIÓN CULTURAL TEATRAL INTERESCENA",
+      "nombre": "Asociación Cultural Teatral Interescena",
       "tipo": "Cultural",
       "domicilio": "C/1, nº 47 (Urbanización Parque Montelcedo), Riba-roja de Túria"
     },
     {
-      "nombre": "ASOCIACIÓN \"ARRIBA EL TEATRO\"",
+      "nombre": "G24784993",
+      "tipo": null,
+      "domicilio": null
+    },
+    {
+      "nombre": "Asociación Arriba el Teatro",
       "tipo": "Cultural",
-      "domicilio": "C/ Vicente Blasco Ibáñez, 6 pta. 1"
+      "domicilio": "C/ Vicente Blasco Ibáñez, 6 pta. 1G23892680"
     },
     {
       "nombre": "Asociación Cultural Fiestas Cristo de los Afligidos 2026 de Riba-roja de Túria",
       "tipo": "Fiestas",
-      "domicilio": "C/ Major, 3 pta 1"
+      "domicilio": "C/ Major, 3 pta 1G24883001"
     },
     {
       "nombre": "Asociación de vecinos Collao - Llobatera",
       "tipo": "Vecinal",
-      "domicilio": "Apartado de correos 266"
+      "domicilio": "Apartado de correos 266G97228043"
     },
     {
       "nombre": "Amamanta, grupo de apoyo a la lactancia materna",
       "tipo": "Mujer",
-      "domicilio": "c/ Luis Santangel, Vilamarxant"
+      "domicilio": "c/ Luis Santangel, VilamarxantG97283717"
     },
     {
       "nombre": "Asociació Dones de la Mediterránea",
       "tipo": "Mujer",
-      "domicilio": "c/ carretera Vilamarxant, Espai"
+      "domicilio": "c/ carretera Vilamarxant, Espai DonaG96115407"
     },
     {
       "nombre": "Asociación Riba-rock",
       "tipo": "Cultural",
-      "domicilio": "C/ Villamarchante, 86-19 Riba-roja del Túria"
+      "domicilio": "C/ Villamarchante, 86-19"
     },
     {
-      "nombre": "Asociación Cultural Taurina",
-      "tipo": "Cultural",
-      "domicilio": "Ctra. Villamarchante, 50-1Riba-roja de Túria"
+      "nombre": "46190 Riba-roja del TúriaG96107396ribarockasociacion@gmail.com",
+      "tipo": null,
+      "domicilio": null
+    },
+    {
+      "nombre": "Asociación Pou d'Escoto",
+      "tipo": "Vecinal",
+      "domicilio": "c/ Mayor 17, Riba-roja de Túria - 46190"
+    },
+    {
+      "nombre": "Asociación Cultural TaurinaCultural Ctra. Villamarchante, 50-1Riba-roja de TúriaG98409055asocultaurinaribaroja@gmail.com",
+      "tipo": null,
+      "domicilio": null
     },
     {
       "nombre": "Artistas de Riba-roja",
@@ -141,22 +156,22 @@
     {
       "nombre": "Club Triatló Riba-roja de Túria",
       "tipo": "Deportiva",
-      "domicilio": "C/ Manises nº2 pta. 3B, 46190 Riba-roja de Túria"
+      "domicilio": "C/ Manises nº2 pta. 3B, 46190 Riba-roja de TúriaG-98473978"
     },
     {
       "nombre": "Riba-roja Solidaria",
       "tipo": "Solidaria",
-      "domicilio": "c/ Primero de Mayo, 41. Riba-roja de Túria 46190"
+      "domicilio": "c/ Primero de Mayo, 41. Riba-roja de Túria 46190G98631054"
     },
     {
       "nombre": "Cooperación y desarrollo de Togo (ACD-TOGO-AFRICA)",
       "tipo": "Solidaria",
-      "domicilio": "Virgen de los Desamparados 29,  Riba-roja de Túria 46190"
+      "domicilio": "Virgen de los Desamparados 29,  Riba-roja de Túria 46190G98592348"
     },
     {
       "nombre": "Clun Handbol Taurons Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "c/ Camp de Túria, 23. Riba-roja de Túria."
+      "domicilio": "c/ Camp de Túria, 23. Riba-roja de Túria.G98631211"
     },
     {
       "nombre": "Aluesha RIBAYOGA",
@@ -164,19 +179,24 @@
       "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
     },
     {
+      "nombre": "G98674443",
+      "tipo": null,
+      "domicilio": null
+    },
+    {
       "nombre": "Club de Tenis el Collao",
       "tipo": "Deportiva",
-      "domicilio": "Carretera MANISES RIBARROJA KM 7"
+      "domicilio": "Carretera MANISES RIBARROJA KM 7G46341558"
     },
     {
       "nombre": "Club Judo Judokan",
       "tipo": "Deportiva",
-      "domicilio": "DOCTOR FLEMING, S/N. Pabellón Municipal"
+      "domicilio": "DOCTOR FLEMING, S/N. Pabellón MunicipalG97173223"
     },
     {
       "nombre": "Club de ball Esportiu Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Jerte, 76. Riba-roja de Túria"
+      "domicilio": "C/ Jerte, 76. Riba-roja de TúriaG98374317"
     },
     {
       "nombre": "Club de Baloncesto Camp de Túria",
@@ -184,54 +204,59 @@
       "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
     },
     {
+      "nombre": "G97159131",
+      "tipo": null,
+      "domicilio": null
+    },
+    {
       "nombre": "Club de futbol sala Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
+      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)G46985586"
     },
     {
       "nombre": "Riba-roja Club de Fútbol",
       "tipo": "Deportiva",
-      "domicilio": "Avenida del Polideportivo s/n"
+      "domicilio": "Avenida del Polideportivo s/nG46713798"
     },
     {
       "nombre": "Club de Natación",
       "tipo": "Deportiva",
-      "domicilio": "Avenida Pacadar, La Malla. Riba-roja de Túria. 46190"
+      "domicilio": "Avenida Pacadar, La Malla. Riba-roja de Túria. 46190G96112602"
     },
     {
       "nombre": "Club de Galotxa de Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Bodeguetes, 43. Riba-roja de Túria"
+      "domicilio": "C/ Bodeguetes, 43. Riba-roja de TúriaG46992632"
     },
     {
       "nombre": "Club de Karate Nakadaka",
       "tipo": "Deportiva",
-      "domicilio": "Crta Villamarchante, 86"
+      "domicilio": "Crta Villamarchante, 86G98126394"
     },
     {
       "nombre": "Club Atletisme Riba-peu",
       "tipo": "Deportiva",
-      "domicilio": "C/ Eres Altes 18. Riba-roja de Túria."
+      "domicilio": "C/ Eres Altes 18. Riba-roja de Túria.G96768429"
     },
     {
       "nombre": "Club Gimnasía Rítmica Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
+      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)G97132344"
     },
     {
       "nombre": "Club Cicloturista Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Fernando el Católico, 29. Riba-roja de Túria- 46190"
+      "domicilio": "C/ Fernando el Católico, 29. Riba-roja de Túria- 46190G94409842"
     },
     {
       "nombre": "Sociedad de Columbicultura las 4 Plumas",
       "tipo": "Deportiva",
-      "domicilio": "C/ Hernán Cortes, 57 de Riba-roja de Túria, 46190"
+      "domicilio": "C/ Hernán Cortes, 57 de Riba-roja de Túria, 46190G96339981"
     },
     {
       "nombre": "Grup de Esplai de Ball Esportiu BAILANDO BAILANDO",
       "tipo": "Deportiva",
-      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
+      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)G97410526"
     },
     {
       "nombre": "Club Deportivo Aluhesa Riba-yoga",
@@ -239,34 +264,39 @@
       "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
     },
     {
+      "nombre": "G98771421",
+      "tipo": null,
+      "domicilio": null
+    },
+    {
       "nombre": "Club de deportes de escalada y Montaña",
       "tipo": "Deportiva",
-      "domicilio": "C/ Primero de Mayo, 34 - 4. Riba-roja de Túria"
+      "domicilio": "C/ Primero de Mayo, 34 - 4. Riba-roja de TúriaG98773625"
     },
     {
       "nombre": "AMPA IES EL QUINT",
       "tipo": "Educativa",
-      "domicilio": "Camí de les ànimes s/n. Riba-roja de Túria"
+      "domicilio": "Camí de les ànimes s/n. Riba-roja de TúriaG98505944"
     },
     {
       "nombre": "Asociación de Vecinos de Masía de Traver",
       "tipo": "Vecinal",
-      "domicilio": "C/ Lozoya nº 2. Riba-roja de Túria."
+      "domicilio": "C/ Lozoya nº 2. Riba-roja de Túria.G96611652"
     },
     {
       "nombre": "Club deportivo METAESPORT",
       "tipo": "Deportiva",
-      "domicilio": "Crta Villamarchante, 121. Riba-roja de Túria"
+      "domicilio": "Crta Villamarchante, 121. Riba-roja de TúriaG98658263"
     },
     {
       "nombre": "Club de pádel Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Vivers, 1. Riba-roja de Túria"
+      "domicilio": "C/ Vivers, 1. Riba-roja de TúriaG97820138"
     },
     {
       "nombre": "Club de Caza la Garza",
       "tipo": "Deportiva",
-      "domicilio": "Crta Valencia, 33. Riba-roja de Túria"
+      "domicilio": "Crta Valencia, 33. Riba-roja de TúriaG46955993"
     },
     {
       "nombre": "Riba-ACTUA",
@@ -276,12 +306,12 @@
     {
       "nombre": "Club d`escacs Castell de Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Mayor, 37. Riba-roja de Túria"
+      "domicilio": "C/ Mayor, 37. Riba-roja de TúriaG98881691"
     },
     {
       "nombre": "CLUB DE TENIS IN&OUT RIBA-ROJA DE TURIA",
       "tipo": "Deportiva",
-      "domicilio": "C/ Mayor, 131, Riba-roja de Túria"
+      "domicilio": "C/ Mayor, 131, Riba-roja de TúriaG98888794"
     },
     {
       "nombre": "Asociación Cultural a Ribarroja Teatro",
@@ -291,22 +321,22 @@
     {
       "nombre": "Bolilleras Riba-roja de Túria",
       "tipo": "Cultural",
-      "domicilio": "Arrosals, Espai de la Dona"
+      "domicilio": "Arrosals, Espai de la DonaG97616049"
     },
     {
       "nombre": "Asoc. Fiestas Valencia la Vella",
       "tipo": "Fiestas",
-      "domicilio": "C/ Cactus, nº 87 Urbanización Valencia la Vella"
+      "domicilio": "C/ Cactus, nº 87 Urbanización Valencia la VellaV97326037"
     },
     {
       "nombre": "Club Izard centre excursionista Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Facundo y Mullor, 3. Riba-roja"
+      "domicilio": "C/ Facundo y Mullor, 3. Riba-rojaG46977369"
     },
     {
       "nombre": "Asoc. Bunyoleres del Poble",
       "tipo": "Cultural",
-      "domicilio": "Avda de la Paz, s/n. Centro Social."
+      "domicilio": "Avda de la Paz, s/n. Centro Social.G98930860"
     },
     {
       "nombre": "Cor Veus del Túria",
@@ -321,37 +351,32 @@
     {
       "nombre": "Morteros Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)"
+      "domicilio": "C/ Doctor Fleming s/n  (Pabellón Municipal)G98825502"
     },
     {
       "nombre": "Gatos de Masía de Traver",
       "tipo": "B.Animal",
-      "domicilio": "C/ Llobregat, 28. Riba-roja de Túria"
-    },
-    {
-      "nombre": "Chirimbolo Teatro",
-      "tipo": "Cultural",
-      "domicilio": "C/ Vicente Blasco Ibañez, 6 . Riba-roja de Túria."
+      "domicilio": "C/ Llobregat, 28. Riba-roja de TúriaG98999691"
     },
     {
       "nombre": "Asoc Aficionados a la Fotografía de Riba-roja de Túria",
       "tipo": "Cultural",
-      "domicilio": "C/ Major, 37. Riba-roja de Túria"
+      "domicilio": "C/ Major, 37. Riba-roja de TúriaG40597791"
     },
     {
       "nombre": "AMPA Ceip Camp de Túria",
       "tipo": "Educativa",
-      "domicilio": "c/ Luis Santangel, s/n. Riba-roja de Túria"
+      "domicilio": "c/ Luis Santangel, s/n. Riba-roja de TúriaG97389290"
     },
     {
       "nombre": "Centre de Estudis Local",
       "tipo": "Cultural",
-      "domicilio": "C/ Trinquet, 1. Riba-roja de Túria"
+      "domicilio": "C/ Trinquet, 1. Riba-roja de TúriaG40641268"
     },
     {
       "nombre": "Club Deportivo RACING",
       "tipo": "Deportiva",
-      "domicilio": "C/ Velázquez, 12. Riba-roja de Túria"
+      "domicilio": "C/ Velázquez, 12. Riba-roja de TúriaG40660458"
     },
     {
       "nombre": "Falla la Amistat",
@@ -366,7 +391,7 @@
     {
       "nombre": "Falla la Pau",
       "tipo": "Fallas",
-      "domicilio": "Avenida de la Paz nº 51. Riba-roja de Túria"
+      "domicilio": "Avenida de la Paz nº 51. Riba-roja de TúriaG96302302"
     },
     {
       "nombre": "Falla el Túria",
@@ -376,7 +401,7 @@
     {
       "nombre": "HC Sport",
       "tipo": "Deportiva",
-      "domicilio": "C/ Pizarro, 35 . Riba-roja de Túria"
+      "domicilio": "C/ Pizarro, 35 . Riba-roja de TúriaG40590630"
     },
     {
       "nombre": "Canya la Anguila",
@@ -391,22 +416,22 @@
     {
       "nombre": "Movimiento Poético de Riba-roja",
       "tipo": "Cultural",
-      "domicilio": "C/ Mercat, 49. Riba-roja de Túria"
+      "domicilio": "C/ Mercat, 49. Riba-roja de TúriaG06787642"
     },
     {
       "nombre": "Veu i Defensa Animal de Riba-roja",
       "tipo": "B.Animal",
-      "domicilio": "Seminar, PTDA Carot"
+      "domicilio": "Seminar, PTDA CarotG40584104"
     },
     {
       "nombre": "Vecinos de Valencia la Vella",
       "tipo": "Vecinal",
-      "domicilio": "Avda de las Palmeras, centro social. Riba-roja de Túria."
+      "domicilio": "Avda de las Palmeras, centro social. Riba-roja de Túria.G46994075"
     },
     {
       "nombre": "Club de vuelo libre levante EAGLES",
       "tipo": "Deportiva",
-      "domicilio": "C/ Urumea, 11. Riba-roja de Túria"
+      "domicilio": "C/ Urumea, 11. Riba-roja de TúriaG67785014"
     },
     {
       "nombre": "Coet",
@@ -416,92 +441,97 @@
     {
       "nombre": "Casa Colombia",
       "tipo": "Cultural",
-      "domicilio": "C/ La Ribera,1,61, Torrente"
+      "domicilio": "C/ La Ribera,1,61, TorrenteG72654361"
     },
     {
       "nombre": "Falla la Unió",
       "tipo": "Fallas",
-      "domicilio": "Plaça del Ajuntament, 12. Riba-roja de Túria"
+      "domicilio": "Plaça del Ajuntament, 12. Riba-roja de TúriaG96184965"
     },
     {
       "nombre": "Jabatos trail team",
       "tipo": "Deportiva",
-      "domicilio": "C/ Cura Teresí, 8. Riba-roja de Túria"
+      "domicilio": "C/ Cura Teresí, 8. Riba-roja de TúriaG44623718"
     },
     {
       "nombre": "Ampa Eres Altes",
       "tipo": "Educativa",
-      "domicilio": "C/ Eres Altes s/n. Riba-roja de Túria."
+      "domicilio": "C/ Eres Altes s/n. Riba-roja de Túria.G46212270"
     },
     {
       "nombre": "Pous de Martí",
       "tipo": "Vecinal",
-      "domicilio": "Avda Santiago Apóstol s/n. Riba-roja de Túria"
+      "domicilio": "Avda Santiago Apóstol s/n. Riba-roja de TúriaG96029665"
     },
     {
       "nombre": "Club Olímpico de Tiro Riba-roja",
       "tipo": "Deportiva",
-      "domicilio": "Ptda de la Santa, Polígono 26. Riba-roja de Túria."
+      "domicilio": "Ptda de la Santa, Polígono 26. Riba-roja de Túria.G46373825"
     },
     {
       "nombre": "Moros i Cristians",
       "tipo": "Cultural",
-      "domicilio": "C/ Virgen de Begoña, 16. Riba-roja de Túria"
+      "domicilio": "C/ Virgen de Begoña, 16. Riba-roja de TúriaG97048409"
     },
     {
       "nombre": "Ampa la mallà IES Riba-roja",
       "tipo": "Educativa",
-      "domicilio": "Avda del Polideportivo s/n. Riba-roja de Túria"
+      "domicilio": "Avda del Polideportivo s/n. Riba-roja de TúriaG46734216"
     },
     {
       "nombre": "Comunidad Energética Masia Traver",
       "tipo": "Medioambiental",
-      "domicilio": "C/ Lozoya, 2. Riba-roja de Túria."
+      "domicilio": "C/ Lozoya, 2. Riba-roja de Túria.G44542140"
     },
     {
       "nombre": "Del Corral i del Carrer",
       "tipo": "Cultural",
-      "domicilio": "C/ Cisterna nº9"
+      "domicilio": "C/ Cisterna nº9G98976368"
     },
     {
       "nombre": "Gats del Jardí del Molí",
       "tipo": "B.Animal",
-      "domicilio": "C/ Doctor Cerveró, 23. Riba-roja de Túria."
+      "domicilio": "C/ Doctor Cerveró, 23. Riba-roja de Túria.G06886857"
     },
     {
       "nombre": "Associació de Families del Col.legi d'educació infantil i primària Cervantes",
       "tipo": "Educativa",
-      "domicilio": "Carrer Generalitat, 7. Riba-roja de Túria."
+      "domicilio": "Carrer Generalitat, 7. Riba-roja de Túria.G46979274"
     },
     {
       "nombre": "Asociación de vecinos de la Llobatera Alta",
       "tipo": "Vecinal",
-      "domicilio": "C/ Oboe, 51. Riba-roja de Túria.;"
+      "domicilio": "C/ Oboe, 51. Riba-roja de Túria.G44965549 ;"
     },
     {
-      "nombre": "Asociación de vecinos Parque Montealcedo",
+      "nombre": "Asociación de vecinos Urbanización Parque Montealcedo",
       "tipo": "Vecinal",
-      "domicilio": "C/ José Iturbi s/n. Centro social Riba-roja de Túria."
+      "domicilio": "C/ José Iturbi s/n. Centro social Riba-roja de Túria.G56640899"
     },
     {
-      "nombre": "Agrupación Musical Festera de Riba-roja de Túria (Agrupación cultural festera Xaranga el Minaor)",
+      "nombre": "Agrupación Musical Festera de Riba-roja de Túria (Agrupación cultural festera",
+      "tipo": null,
+      "domicilio": null
+    },
+    {
+      "nombre": "Xaranga el Minaor)",
       "tipo": "Fiestas",
-      "domicilio": "C/ Ramón y Cajal, 19. Riba-roja de Túria"
+      "domicilio": "C/ Ramón y Cajal, 19. Riba-roja de TúriaG97678999"
     },
     {
       "nombre": "Asoc. Cultural Ribadards",
       "tipo": "Deportiva",
-      "domicilio": "C/ Arrosals, 49. Riba-roja de Túria."
+      "domicilio": "C/ Arrosals, 49. Riba-roja de Túria.G56827322"
     },
     {
       "nombre": "Painting Walls",
       "tipo": "Cultural",
-      "domicilio": "C/ Lepanto 45. Riba-roja de Túria."
+      "domicilio": "C/ Lepanto 45. Riba-roja de Túria.G72596554"
     },
     {
-      "nombre": "Casa Peru",
-      "tipo": "Cultural",
-      "domicilio": "Pere Rico, 12 de la ciudad de Valencia"
+      "nombre": "Casa PeruCulturalPere Rico, 12 de la ciudad de ValenciaG06932602",
+      "tipo": null,
+      "domicilio": null
     },
     {
       "nombre": "Fiestas Masía de Traver",
