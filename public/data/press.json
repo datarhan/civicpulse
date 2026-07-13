@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-13T17:06:03.664Z",
+  "generatedAt": "2026-07-13T18:27:54.939Z",
   "feeds": [
     {
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
       "ok": true,
-      "items": 96
+      "items": 95
     },
     {
       "url": "https://www.infoturia.com/riba-roja-de-turia/feed/",
@@ -21,7 +21,7 @@
     }
   ],
   "stats": {
-    "total": 155,
+    "total": 154,
     "sources": 20,
     "latestDate": "2026-07-13T16:17:57.000Z"
   },
@@ -993,6 +993,15 @@
       "section": "Foment economic i Comerc"
     },
     {
+      "id": "cj9s5k",
+      "title": "Riba-roja inyecta un 25% más de ayudas económicas directas al comercio local y sitúa la partida en 550.000 euros",
+      "link": "https://news.google.com/rss/articles/CBMi_AFBVV95cUxPTW1FTzVrLXlXM21GUC0zb0lZT19jOVM5aWpHdl9wRnZnbzgyeW5HWTJXb1dXdEJLbUVKV2V3d2U5MldKbTJVcEUxM3dfdTV5eXFydUtEd0hyVlkyaGZsSlByMl93SnJuZ3ptVDVVb0hFd1FvVlNYR3FxRkU4ZEx0MTNEaWdZUEFnNXFzN3U2cDJINk5rWWFzalZ0VURudlhlY0tDdTZBZ19oSkI4VnJiNlh5SFdxOFE2Q2t4RDI2OVo4VmIyUW5fazJtMG9KTi1XRkxabnVmODNSbXp0RGVjVDZCMGVaaWozMmZQVXFiYklzOFc5TVRLcHQ2ZjI?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-06-02T07:00:00.000Z",
+      "fingerprint": "vzmbw0"
+    },
+    {
       "id": "79ae60",
       "title": "Riba-roja inyecta un 25% más de ayudas directas al comercio local",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOY29hajJoZDhJUXdPYklGUFprbEdhazVhMjcwMXhZVWhBNzB1bmVvQmtQWTZfYmQwSHQ2SkpIZ1EwZjltYzdnZ0tBUnNfOHZNQ2g3QkdYSU5XWDdzQzV0ZFExbXFFcDRwY2gwbnZVWXhILXU1OGNGWEJKWGo3QVg2cU9ZZlIwOHMwSkd5TlF5V2o4U0UteGMyeEVheElZYUN4UDFsN3Z5VWZueTJNS2M40gG0AUFVX3lxTFBqZ1QwZVB5STdndlBqbUphV1RLUHIyS0J1OUFxQ1hFaWhseU9QZklYcXh3LV9EYWtRVUdvM1RjVjJaOEJBcnNQQjdDeXBDUFNJaV9uTkRwclREb295Z1dTUXRYVlk1eXZPYVNjSGZxZm11eldFSHFST2cxY2VZNmdsa2FZS2IzMTgxRElyNUNHdGxpOUIwSjBOU0llZmZfS08yV0hwb09tS0ZPV1p2Q1lOWE9wVw?oc=5",
@@ -1229,6 +1238,15 @@
       "fingerprint": "1e27bv0"
     },
     {
+      "id": "1ffmg10",
+      "title": "Riba-roja de Túria pide a la Generalitat declarar zona tensionada por el alza del alquiler",
+      "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPSmZJTUJsNFZ4TGh2NjdQV21zaGVrR2RaTUQ1bUdVTHdsNWhOMVdsUk1YNGJRNFZCbTlJZEhVYkkwdnJfRm5OeUYwWWZObE5kYk5uTDhsUGhLZ0VGVXJrZF83TnNpTzhmT081RHg1RjB3bTdDcmFyMjRCeWFaWlJ4ajYtTk1KZnV6Rlhvc0NrVnpHaWNvUzNTWVlLbmlpdVpIWUZ0V3dPUDFGWmlGSng5OTBIOU43eFNsV2g4eWNObjhLQXhfMFluSnp1bTBfeDBVR3NReFJBZEJ5VGlWT3Zv0gHkAUFVX3lxTFB5ZFhUY0hsLU02V3NfaWFZSlFscTQtazN1R2xKcU1ZeXB2bHdzcjZVOWtPZ245T0ROU25WRGQ4aDhXNUNHNzN3bDEtaGFJa3J1MElMOUR2aHJINDZPTktqdFhfSDRJazBQbVphak8xNWlRS3JNS2hwOGNvdFRMRjgxV3NhS09mU24tWXV2c2QxcmNSTzd1NnpKNmxORjlpamEyeGowSFh6UzJCclBtbTRUM1JGQjRYQ0xYQ3R3akVUMk9YQ2c4T2VsQlNvNHVITldleFVqVlA5YzFLd1RQZEgtVU5wQw?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-05-13T07:00:00.000Z",
+      "fingerprint": "1muc9rk"
+    },
+    {
       "id": "1igggdc",
       "title": "Profesorado de la comarca del Camp de Túria protesta por la escuela pública en la segunda jornada de huelga educativa",
       "link": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxObTFLYURHM1FlTTd2cmVobGdCZkQ0c0NJTVZkYnNGMEtEYnhkQVBxeS1sNXB5OXpDLVFwMDUxeTJqZnl6V2ZDQnJGSTFkTm1OcGpzeG90THZvT3V5Rm9RWEhILWlmRFhfaEw0TzVqeVVqdjFrc1NUTTI3NTVzN0FOdGIzaDFudFdhcWNsM0dLTW4yeWFvbjNTMTJCVkxabGxnV25ucGFnMzVzQU84bkd6dlRyUTdEd19sQzBScl84ajUwTldFMlpFRHNMYTlfZXAwbEN2Y0Uzcno1aUpoZjBv0gHkAUFVX3lxTE5xME4tbGdUbmpZR0EyNTljd1otQ0huRXpKdWw4d1A0ZWhKRDIzZVp5dVBVRUQwSHFoaGF4UFo0T2pQNWZCUkJ1QnBqd3BQU0FaYWNyc2dRQzdtWGJKbnk0dkVLOVJwb1hnRHNqRzNqZUd4VTRKTk9YSTczeVljRkxYTDRRU09nX1FEVFB0bUpaYVZVSnA2NkNzMi1CNHlVZFB5WDQ0OVhSMkY0MzhaVGJzc1ktQnR5SmhlU19qd1MxT1NSdVB0S0liX3FLdVhVUURsV0lJbWY0M1NMZVVFUUhsVkZLdg?oc=5",
@@ -1292,15 +1310,6 @@
       "fingerprint": "1xkkb8g"
     },
     {
-      "id": "c2lr90",
-      "title": "Del “vertedero incontrolado” a espacio sostenible: Riba-roja culmina la recuperación de Basseta Blanca",
-      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxOZlk1VmszdWhDQUl1VW1oa3FidjU0Z20walJrUjFseXRPTmhaUEFkcEtydEJqclZvTWlwOUZtRXo4RkNraGV1TW9TU2ZmTHhlQ1ZaMUFuLW1lNFpNVk80T09XbHNaZlVuaVdHdkdmTkVtUEh2aEE1MGtKQlBuVDAtQXo0WUFVRGhkejg3cHpiZU1PWWNiVm9RTHRXWlhnWDNHVGhmbTJZVHV0RjE3X0ZYdUFXbURGRzZENHQ1Mm1IWnRwVnZrOGpKLWhzcGZSUURCdnF0YnptdGp2VGp6UmNQWnlvMDU2RW_SAewBQVVfeXFMTktYRldRZGdvcmdYX2xGWHZpUndGUUhOcjUxR25VOE5URXdMVU9sTF9OVzRPa0F5T2lxeXB2bUJ6a1NnQUM2eVotbW9xNnkzWVVQUkpXRE02THYzU1VtaHUwTDU4M1VWOF9WcTQxRGEzLXpoTUt6Z0czTEtOU2ZTYTJvbl96c2ZWX2hxZGhYdGRuMXY4US16S0FBS2VKSHdzWW1oRXBGb0IxVTVHYlpIQmVpV1J5QkxUU0VOVm9SUmFKSE40aEotaElmZzMxMlV1RnlhTFA3dkFWeGM5WHU5QzY2NUFTTTVPZDAyazU?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-05-02T07:00:00.000Z",
-      "fingerprint": "jjdxy3"
-    },
-    {
       "id": "1haw1fw",
       "title": "La Generalitat presenta en el polígono industrial de Riba-roja el proyecto ‘València Comparte Coche’ para promover la movilidad compartida",
       "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1ldU9LdXpXUHdBWHc4QWVKVWNhZUpuNGt2OFFJUEMwTUtmUmtKT0s5TWVTajRRZFFrcWZlT00wdTRoaVVHYU1RV0pqYXFreVpxSGxMRXFvMzFPNm1nbERDSVEwRDZndmY4ZWRFZ19QUQ?oc=5",
@@ -1335,15 +1344,6 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-04-24T07:00:00.000Z",
       "fingerprint": "19vacjk"
-    },
-    {
-      "id": "9jyl4w",
-      "title": "Riba-roja de Túria mejora la Casa de la Molinera por valor de 72.000 euros",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOckMxRVQ4MHVMcjhtTXJqVXJlOXdMbzlmdDlzREs1ZEpVSkhPcllrVG9WTlNkUGhLbXVzYXlreG1ueEEyUm92MnhwVjBpN0N5eUJPMnFnY2ZXMktnYkxaOVlNT0JCZC1XRzN4cXJIQ04zR0o3bUNVMkVKaVFkU2RaNXFmZWdjcDJZUUd3ZXVoSUxPTXNxajFwQUJqOXZCWUdZ?oc=5",
-      "source": "elperiodic.com",
-      "sourceHost": "elperiodic.com",
-      "date": "2026-04-23T07:00:00.000Z",
-      "fingerprint": "11s15gk"
     },
     {
       "id": "38n7h8",
@@ -1398,15 +1398,6 @@
       "sourceHost": "umivaleactiva.es",
       "date": "2026-04-14T07:00:00.000Z",
       "fingerprint": "1wc2ewk"
-    },
-    {
-      "id": "1miozy0",
-      "title": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
-      "source": "Las Provincias",
-      "sourceHost": "lasprovincias.es",
-      "date": "2026-04-13T07:00:00.000Z",
-      "fingerprint": "1sev8tc"
     },
     {
       "id": "npr6ww",
