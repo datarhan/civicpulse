@@ -76,10 +76,11 @@ SCRAPERS=(
 #   - scrape:asociaciones — single-source dated register PDF on ribarroja.es;
 #     a PDF-layout change breaking the parser must not red the whole run, and
 #     the prior register snapshot stays valid meanwhile.
-#   - scrape:obras — single-source transparency fichas (PDF) on ribarroja.es;
-#     depends on the geo/streets/civic-poi gazetteer for pin placement. A ficha
-#     layout change (or missing gazetteer) must not red the whole run; the prior
-#     obras snapshot stays valid meanwhile.
+#   - scrape:obras — two ficha listings (PDF) on ribarroja.es (transparency
+#     FEDER 2019-20 + urbanismo Plan RENOVE 2023-24); depends on the
+#     geo/streets/civic-poi gazetteer for pin placement. A ficha layout change,
+#     a missing gazetteer, or either listing 404ing must not red the whole run;
+#     the prior obras snapshot stays valid meanwhile.
 BEST_EFFORT=(
   scrape:metro-network
   scrape:empleo
