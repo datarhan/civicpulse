@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T08:15:23.307Z",
+  "generatedAt": "2026-07-13T08:15:27.402Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
@@ -18,7 +18,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-12T08:15:19.316Z",
+      "checkedAt": "2026-07-13T08:15:23.052Z",
       "error": null
     },
     {
@@ -28,7 +28,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-12T08:15:20.929Z",
+      "checkedAt": "2026-07-13T08:15:24.187Z",
       "error": null
     },
     {
@@ -38,7 +38,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-12T08:15:22.195Z",
+      "checkedAt": "2026-07-13T08:15:26.144Z",
       "error": null
     },
     {
@@ -48,7 +48,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-12T08:15:23.104Z",
+      "checkedAt": "2026-07-13T08:15:27.201Z",
       "error": null
     }
   ]

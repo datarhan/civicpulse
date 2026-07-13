@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T08:15:11.494Z",
+  "generatedAt": "2026-07-13T08:15:15.820Z",
   "windowDays": 30,
   "articles": [
     {
@@ -1208,30 +1208,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "1gjsmko",
-      "articleFingerprint": "1ho6138",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/horario-de-verano-2026-en-el-cementerio-municipal",
-      "date": "2026-06-12T11:26:30.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 28,
+      "articleCount": 27,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,

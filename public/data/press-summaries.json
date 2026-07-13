@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T08:15:10.714Z",
+  "generatedAt": "2026-07-13T08:15:15.275Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
@@ -13,25 +13,25 @@
       "articleId": "40rpxn",
       "fingerprint": "r5vqv8",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha activado una barrera de 20 cañones de agua como medida preventiva ante el riesgo de incendios debido a la ola de calor. Esta acción busca proteger las áreas vulnerables y mitigar posibles incendios en la localidad.",
-      "generatedAt": "2026-07-12T08:15:10.711Z"
+      "generatedAt": "2026-07-13T08:15:15.272Z"
     },
     {
       "articleId": "febeas",
       "fingerprint": "9khk0g",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha activado 20 cañones de agua en el Parc Fluvial. Esta medida tiene como objetivo proteger a las urbanizaciones cercanas de posibles incendios forestales.",
-      "generatedAt": "2026-07-12T08:15:10.713Z"
+      "generatedAt": "2026-07-13T08:15:15.273Z"
     },
     {
       "articleId": "gqfi7s",
       "fingerprint": "1kr12qz",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha activado 20 canones de agua en el Parque Fluvial con el objetivo de proteger las urbanizaciones cercanas. Esta medida busca prevenir posibles incendios y mejorar la seguridad en la zona.",
-      "generatedAt": "2026-07-12T08:15:10.713Z"
+      "generatedAt": "2026-07-13T08:15:15.274Z"
     },
     {
       "articleId": "i93nqo",
       "fingerprint": "pihqa0",
       "summary": "El PSOE de Riba-roja de Túria ha criticado la convocatoria de un pleno extraordinario por parte del PP, celebrado 72 horas antes del pleno ordinario. Según la oposición, dicha convocatoria supondrá un coste aproximado de 4.000 euros para el Ayuntamiento. El asunto afecta a la organización y al gasto de la corporación municipal.",
-      "generatedAt": "2026-07-12T08:15:10.714Z"
+      "generatedAt": "2026-07-13T08:15:15.275Z"
     }
   ]
 }
