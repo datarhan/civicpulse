@@ -477,16 +477,20 @@ function ObrasEnCursoSection() {
           maximumFractionDigits: 0,
         }).format(n)
       : '—'
+  const renove = obras.filter((o) => o.programa === 'renove')
+  const feder = obras.filter((o) => o.programa !== 'renove')
   return (
     <Card style={{ marginBottom: 16 }}>
       <SectionHead
         eyebrow="Urbanismo · infraestructuras"
-        title="Obras de infraestructura · 2019–2020 (FEDER)"
+        title="Obras de infraestructura · fichas municipales 2019–2024"
       />
       <p style={{ fontSize: 12.5, color: 'var(--ink60)', margin: '2px 0 8px', maxWidth: '68ch' }}>
-        Lote de {obras.length} obras de 2019–2020, cofinanciadas con el FEDER de la Comunitat
-        Valenciana 2014–2020. El Ayuntamiento las publicó en su página «obras de infraestructuras en
-        curso».
+        {obras.length} obras publicadas por el Ayuntamiento en fichas oficiales:{' '}
+        {renove.length > 0 &&
+          `${renove.length} actuaciones del Plan RENOVE de adecuación de viales (ejecutadas 2023–2024) y `}
+        {feder.length} obras de 2019–2020 cofinanciadas con el FEDER de la Comunitat Valenciana
+        2014–2020.
       </p>
       <div
         style={{
@@ -497,50 +501,58 @@ function ObrasEnCursoSection() {
           flexWrap: 'wrap',
         }}
       >
-        <Pill tone="warn">No actualizado desde feb 2021</Pill>
+        <Pill tone="warn">Últimas fichas publicadas: feb 2024</Pill>
         <span style={{ fontSize: 12, color: 'var(--ink60)' }}>
-          no refleja las obras actuales del municipio
+          obras ya ejecutadas · no refleja obras posteriores
         </span>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-        {obras.map((o) => (
-          <div key={o.id} style={{ paddingBottom: 10, borderBottom: '1px solid var(--border2)' }}>
-            <div
-              style={{
-                display: 'flex',
-                gap: 10,
-                justifyContent: 'space-between',
-                alignItems: 'baseline',
-              }}
-            >
-              <span style={{ fontWeight: 600 }}>{o.nombre}</span>
-              {typeof o.bajaPct === 'number' && (
-                <Pill tone={o.bajaPct >= 20 ? 'ok' : 'neutral'}>
-                  baja <span className="mono">{o.bajaPct}%</span>
-                </Pill>
-              )}
+        {obras.map((o) => {
+          const importe = o.importeAdjudicacion ?? o.costePrevisto
+          const importeLabel = o.importeAdjudicacion != null ? 'adj.' : 'previsto'
+          return (
+            <div key={o.id} style={{ paddingBottom: 10, borderBottom: '1px solid var(--border2)' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: 10,
+                  justifyContent: 'space-between',
+                  alignItems: 'baseline',
+                }}
+              >
+                <span style={{ fontWeight: 600 }}>{o.nombre}</span>
+                <span style={{ display: 'flex', gap: 6, alignItems: 'baseline' }}>
+                  <Pill tone="neutral">{o.programa === 'renove' ? 'Plan RENOVE' : 'FEDER'}</Pill>
+                  {typeof o.bajaPct === 'number' && (
+                    <Pill tone={o.bajaPct >= 20 ? 'ok' : 'neutral'}>
+                      baja <span className="mono">{o.bajaPct}%</span>
+                    </Pill>
+                  )}
+                </span>
+              </div>
+              <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
+                {o.empresa ? `${o.empresa} · ` : ''}
+                {importe != null ? `${eur(importe)} ${importeLabel}` : ''}
+                {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
+                {o.inicio ? ` · inicio ${o.inicio}` : ''}
+                {o.fechaEjecucion ? ` · ejecución ${o.fechaEjecucion}` : ''}
+              </div>
+              <a
+                href={o.fichaUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mono"
+                style={{ fontSize: 10.5, color: 'var(--civic)', textDecoration: 'underline' }}
+              >
+                Ver ficha ↗
+              </a>
             </div>
-            <div className="mono" style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 3 }}>
-              {o.empresa ? `${o.empresa} · ` : ''}
-              {o.importeAdjudicacion != null ? `${eur(o.importeAdjudicacion)} adj.` : ''}
-              {o.plazoMeses ? ` · ${o.plazoMeses} meses` : ''}
-              {o.inicio ? ` · inicio ${o.inicio}` : ''}
-            </div>
-            <a
-              href={o.fichaUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mono"
-              style={{ fontSize: 10.5, color: 'var(--civic)', textDecoration: 'underline' }}
-            >
-              Ver ficha ↗
-            </a>
-          </div>
-        ))}
+          )
+        })}
       </div>
       <p style={{ fontSize: 11, color: 'var(--ink50)', marginTop: 10, marginBottom: 0 }}>
-        Fuente: Portal de Transparencia · obras de infraestructuras en curso · Ayuntamiento de
-        Riba-roja de Túria.
+        Fuente: Ayuntamiento de Riba-roja de Túria — Portal de Transparencia («obras de
+        infraestructuras en curso») y página del Plan RENOVE de adecuación de viales.
       </p>
     </Card>
   )

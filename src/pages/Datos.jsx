@@ -210,10 +210,10 @@ function DatasetsCatalog() {
       fmt: ['json'],
     },
     {
-      name: 'Obras de infraestructura (2019–2020)',
+      name: 'Obras de infraestructura (2019–2024)',
       rows: obras?.obras ? `${obras.obras.length} obras` : '—',
       updated: formatDate(obras?.generatedAt),
-      source: 'Portal de Transparencia · Ayto.',
+      source: 'Transparencia + Plan RENOVE · Ayto.',
       path: '/data/obras.json',
       fmt: ['json'],
     },
