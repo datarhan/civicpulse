@@ -68,11 +68,28 @@ async function main() {
   console.log(`[pleno-agendas] fetching ${take} plenos (of ${plenos.length})`)
   const results: EnrichedPleno[] = []
   let fetchFailures = 0
+  // Circuit breaker: N consecutive pages failing to fetch means regmeet.com
+  // is down or blocking this IP range (it blackholes GitHub-runner IPs since
+  // 2026-07-11) — walking the remaining plenos at ~15 s timeout + 1.5 s
+  // sleep each only burns the nightly's time budget. Keep yesterday's
+  // snapshot (writing a walk full of empty agendas would zero the department
+  // dashboards — the f4fa424 incident) and red the run instead.
+  const MAX_CONSECUTIVE_FETCH_FAILURES = 3
+  let consecutiveFetchFailures = 0
   for (let i = 0; i < take; i++) {
     const p = plenos[i]
     process.stdout.write(`[${i + 1}/${take}] ${p.date} ${p.title.slice(0, 50)} … `)
     const buf = await fetchPage(p.link)
     if (!buf) fetchFailures += 1
+    consecutiveFetchFailures = buf ? 0 : consecutiveFetchFailures + 1
+    if (consecutiveFetchFailures >= MAX_CONSECUTIVE_FETCH_FAILURES) {
+      console.error(
+        `\n[pleno-agendas] ${consecutiveFetchFailures} consecutive pages unreachable — ` +
+          `upstream down or blocking this IP range; aborting early ` +
+          `(existing snapshot left untouched)`,
+      )
+      process.exit(1)
+    }
     let agenda: PlenoAgendaItem[] = []
     if (buf) {
       const parsed = parsePlenoAgenda(buf)

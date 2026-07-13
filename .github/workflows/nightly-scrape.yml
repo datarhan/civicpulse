@@ -17,7 +17,14 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    # Job budget must stay ABOVE the scrape step's own timeout-minutes: a
+    # JOB timeout cancels the whole run and `if: !cancelled()` then skips
+    # the Commit step — that exact failure lost 3 straight nights of fresh
+    # data (2026-07-11 → 07-13) when SEPE/regmeet started blackholing
+    # GitHub-runner IPs and slow-failing fetch retries pushed the scrape
+    # past 20 min. The scrape step is time-boxed below instead; a step
+    # timeout only fails the STEP, and the commit still runs.
+    timeout-minutes: 30
     permissions:
       contents: write
     steps:
@@ -37,6 +44,11 @@ jobs:
 
       - name: Run scraper(s)
         id: scrape
+        # Time-box the scrape BELOW the job timeout: exceeding this fails
+        # only this step (rc stays unset → health gate reds the run), while
+        # the !cancelled() Commit step still pushes every adapter that
+        # finished before the axe fell.
+        timeout-minutes: 15
         # ADAPTERS passed via env (not inline ${{ }}) so a workflow_dispatch
         # input can never break out of the case "..." quoting into the shell.
         env:
@@ -126,7 +138,7 @@ jobs:
               -m "chore(data): nightly real-data refresh ($TODAY)" \
               -m "Pipelines: $ADAPTERS" \
               -m "Triggered: $EVENT_NAME" \
-              -m "Scrape rc: ${SCRAPE_RC:-0} (partial refresh commits the adapters that succeeded)"
+              -m "Scrape rc: ${SCRAPE_RC:-step-timeout} (partial refresh commits the adapters that succeeded)"
             git push origin HEAD
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
@@ -143,7 +155,7 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "- Pipelines: \`$ADAPTERS\`" >> "$GITHUB_STEP_SUMMARY"
           echo "- Changed: \`${CHANGED:-false}\`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Critical scrape rc: \`${SCRAPE_RC:-0}\` (0 = all critical adapters ok; best-effort metro-network/participa never set this)" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Critical scrape rc: \`${SCRAPE_RC:-step-timeout}\` (0 = all critical adapters ok; best-effort metro-network/participa never set this; step-timeout = scrape step killed at 15 min)" >> "$GITHUB_STEP_SUMMARY"
           echo "- Tests: \`${TESTS_OUTCOME:-skipped}\`" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           # generatedAt per file: a frozen adapter is invisible in file
@@ -167,7 +179,14 @@ jobs:
           TESTS_OUTCOME: ${{ steps.tests.outcome }}
         run: |
           fail=0
-          if [ "${SCRAPE_RC:-0}" -ne 0 ]; then
+          # An UNSET rc means the scrape step was killed by its
+          # timeout-minutes before it could report — treat that as a
+          # critical failure, never as green (the fresh data from the
+          # adapters that finished was still committed above).
+          if [ -z "${SCRAPE_RC:-}" ]; then
+            echo "::error::Scrape step hit its 15-min timeout before reporting rc. Adapters that finished were committed; this red run blocks the deploy until the slow/hung source is fixed."
+            fail=1
+          elif [ "$SCRAPE_RC" -ne 0 ]; then
             echo "::error::One or more CRITICAL scrapers failed (rc=${SCRAPE_RC}). Fresh data from the healthy adapters was committed; this red run intentionally blocks the deploy until the critical source is fixed."
             fail=1
           fi

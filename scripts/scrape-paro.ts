@@ -51,6 +51,15 @@ function candidateUrl(year: number, monthIdx: number): string {
 // in main() stays the real failure backstop, so a genuine SEPE outage still
 // reds the run — it is never silently masked.
 const FETCH_ATTEMPTS = 3
+// Consecutive months failing at the NETWORK level (never an HTTP status —
+// a not-yet-published month 404s and must not count) that abort the walk.
+// When SEPE blackholes the caller's IP range (GitHub-runner IPs since
+// 2026-07-11), all 24 months fail identically; retrying each one used to
+// burn ~15 min of the nightly's 20-min budget, the job timed out CANCELLED,
+// and the !cancelled() commit step threw away every other adapter's fresh
+// data. Three same-shaped failures in a row are proof the host is
+// unreachable, not that a month is missing — stop paying for the rest.
+const MAX_CONSECUTIVE_NET_FAILURES = 3
 async function fetchMonthXls(url: string): Promise<Response | null> {
   for (let attempt = 1; attempt <= FETCH_ATTEMPTS; attempt++) {
     try {
@@ -60,8 +69,10 @@ async function fetchMonthXls(url: string): Promise<Response | null> {
             'CivicPulse/0.1 (+https://github.com/datarhan/civicpulse) civic-tech ingestion',
           Accept: 'application/vnd.ms-excel,application/octet-stream,*/*',
         },
-        // Per-month budget — one stalled SEPE download must not hang the chain.
-        signal: AbortSignal.timeout(120_000),
+        // Per-attempt budget — a healthy SEPE serves the XLS in ~1-2 s; a
+        // stalled/blackholed connection must fail fast, not hang the chain
+        // (30 s × 3 attempts × 3 breaker months ≈ 5 min worst case).
+        signal: AbortSignal.timeout(30_000),
       })
     } catch (err) {
       const detail = err instanceof Error ? err.message : String(err)
@@ -79,31 +90,45 @@ async function fetchMonthXls(url: string): Promise<Response | null> {
   return null
 }
 
-async function tryMonth(year: number, monthIdx: number): Promise<ParoSnapshot | null> {
+// netFail distinguishes "the host never answered" (feeds the circuit
+// breaker) from "answered but no data for that month" (404 / nav page —
+// normal for the newest months, never counted against the breaker).
+async function tryMonth(
+  year: number,
+  monthIdx: number,
+): Promise<{ snap: ParoSnapshot | null; netFail: boolean }> {
   const url = candidateUrl(year, monthIdx)
   const res = await fetchMonthXls(url)
-  if (!res || !res.ok) return null
+  if (!res) return { snap: null, netFail: true }
+  if (!res.ok) return { snap: null, netFail: false }
   const ct = res.headers.get('content-type') || ''
-  if (!/excel|octet|msword/.test(ct) && res.headers.get('content-length') === '0') return null
+  if (!/excel|octet|msword/.test(ct) && res.headers.get('content-length') === '0')
+    return { snap: null, netFail: false }
   const buf = Buffer.from(await res.arrayBuffer())
   // SEPE XLS starts with D0 CF 11 E0 (CDFV2); anything else is the nav page
-  if (buf[0] !== 0xd0 || buf[1] !== 0xcf) return null
+  if (buf[0] !== 0xd0 || buf[1] !== 0xcf) return { snap: null, netFail: false }
   const period = `${year}-${String(monthIdx + 1).padStart(2, '0')}`
-  return parseSepeParoMonth(buf, { municipio: MUNI, period })
+  return { snap: parseSepeParoMonth(buf, { municipio: MUNI, period }), netFail: false }
 }
 
 async function main() {
   const now = new Date()
   const results: ParoSnapshot[] = []
+  let consecutiveNetFailures = 0
   // Walk back 24 months from now.
   for (let back = 0; back < 24; back++) {
     const d = new Date(now.getFullYear(), now.getMonth() - back, 1)
     // One month failing (network or parse) must never abort the 24-month walk —
     // the months that DID resolve still make a valid snapshot. Only a fully
-    // empty walk is a real failure, handled by the 0/24 guard below.
+    // empty walk is a real failure, handled by the 0/24 guard below. The one
+    // exception: MAX_CONSECUTIVE_NET_FAILURES months in a row that never got
+    // an answer from the host means WE are unreachable/blocked — walking the
+    // remaining months would only burn the nightly's time budget.
     let snap: ParoSnapshot | null = null
     try {
-      snap = await tryMonth(d.getFullYear(), d.getMonth())
+      const attempt = await tryMonth(d.getFullYear(), d.getMonth())
+      snap = attempt.snap
+      consecutiveNetFailures = attempt.netFail ? consecutiveNetFailures + 1 : 0
     } catch (err) {
       const detail = err instanceof Error ? err.message : String(err)
       console.warn(`[paro] ${d.getFullYear()}-${d.getMonth() + 1} skipped: ${detail}`)
@@ -111,6 +136,17 @@ async function main() {
     if (snap) {
       results.push(snap)
       console.log(`[paro] ${snap.period}: ${snap.total} total (${snap.men}H / ${snap.women}M)`)
+    }
+    if (consecutiveNetFailures >= MAX_CONSECUTIVE_NET_FAILURES) {
+      // Writing the partial walk would shrink the published series (same
+      // reasoning as the 0/24 guard below: an unreachable host is not a
+      // data state). Keep yesterday's snapshot and red the run.
+      console.error(
+        `[paro] ${consecutiveNetFailures} consecutive months unreachable at the network level — ` +
+          `sepe.es is down or blocking this IP range; aborting the walk early ` +
+          `(${results.length} months fetched, existing snapshot left untouched)`,
+      )
+      process.exit(1)
     }
   }
   results.sort((a, b) => a.period.localeCompare(b.period))
