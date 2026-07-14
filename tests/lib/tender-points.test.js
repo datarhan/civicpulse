@@ -6,6 +6,7 @@ const A = (over) => ({
   amount: over.amount,
   date: 'date' in over ? over.date : '2024-01-01',
   dana: over.dana ?? false,
+  contractType: over.contractType,
   point: over.point ?? [39.5, -0.5],
   place: over.place ?? { kind: 'street', name: 'Carrer X', matchedText: 'Carrer X', sourceId: 'x' },
 })
@@ -45,6 +46,31 @@ describe('lib/tender-points — placeAmountsAt', () => {
     )
     expect(m.get('x')?.amount).toBe(50)
     expect(m.get('x')?.dana).toBe(true)
+  })
+
+  it('restricts to construction contracts when obrasOnly is set', () => {
+    const m = placeAmountsAt(
+      [
+        A({ id: '1', amount: 100, contractType: 'services' }),
+        A({ id: '2', amount: 50, contractType: 'construction' }),
+        A({ id: '3', amount: 25 }), // no contractType at all → excluded under the filter
+      ],
+      { obrasOnly: true },
+    )
+    expect(m.get('x')?.amount).toBe(50)
+    expect(m.get('x')?.count).toBe(1)
+  })
+
+  it('obrasOnly composes with danaOnly (both must hold)', () => {
+    const m = placeAmountsAt(
+      [
+        A({ id: '1', amount: 100, contractType: 'construction', dana: false }),
+        A({ id: '2', amount: 50, contractType: 'construction', dana: true }),
+        A({ id: '3', amount: 25, contractType: 'services', dana: true }),
+      ],
+      { obrasOnly: true, danaOnly: true },
+    )
+    expect(m.get('x')?.amount).toBe(50)
   })
 
   it('excludes undated assignments (no position on the timeline)', () => {
