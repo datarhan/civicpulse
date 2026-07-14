@@ -1,9 +1,22 @@
 import { stripDiacritics } from './normalize'
-import { resolvePlace, foldTitle, type Candidate, type PlaceKind } from './place-resolver'
+import {
+  resolvePlace,
+  resolveDistinctPlaces,
+  foldTitle,
+  type Candidate,
+  type PlaceKind,
+} from './place-resolver'
 
 export interface ContractInput {
   id: string
   title: string
+  /**
+   * Objeto of the parent licitación, for multi-lot contracts whose own title
+   * is just the LOT name ("Obra completa"). Joined by the caller on the base
+   * id (contratos "4558191#1" ↔ licitaciones "4558191"). Scanned alongside
+   * the title for zone/place/DANA signals — same procurement, same objeto.
+   */
+  parentTitle?: string | null
   status?: string
   finalAmount?: number
   finalAmountNoTaxes?: number
@@ -42,6 +55,8 @@ export interface TenderGeoAssignment {
   point: [number, number] | null
   /** Provenance of the point — the named place the title matched, or null. */
   place: PlaceRef | null
+  /** Parent licitación objeto, when the row is a lot and the parent added signal. */
+  parentTitle?: string | null
 }
 export interface TenderGeoZone {
   slug: string
@@ -191,7 +206,12 @@ export function matchContractsToZones(
     totalAmount += amt.amount
 
     const title = c.title || ''
-    const folded = foldText(title)
+    // Widen the searched text with the parent licitación objeto when it adds
+    // signal (multi-lot rows whose own title is just the lot name). Display
+    // titles stay untouched — only the resolution input grows.
+    const parentAdds = c.parentTitle && foldText(c.parentTitle) !== foldText(title)
+    const geoText = parentAdds ? `${title} · ${c.parentTitle}` : title
+    const folded = foldText(geoText)
     const dana = DANA_RE.test(folded)
     if (dana) {
       danaAwardedContracts++
@@ -210,8 +230,23 @@ export function matchContractsToZones(
 
     // Precise point via a curator override (LLM-suggested, human-approved) if
     // present, else the deterministic resolver (POIs only for works contracts).
+    // The contract's OWN title always wins; the parent objeto is only a
+    // fallback and only when it names exactly ONE distinct place — a multi-lot
+    // parent enumerating several lots' places can't say which lot goes where,
+    // and an honest miss beats a wrong pin.
     const isWorks = (c.contractType ?? '') === 'construction'
     const override = opts.overrides?.[c.id]
+    let resolved = resolvePlace(foldTitle(title), candidates, { allowPoi: isWorks })
+    let placedViaParent = false
+    if (!resolved && parentAdds) {
+      const parentPlaces = resolveDistinctPlaces(foldTitle(c.parentTitle!), candidates, {
+        allowPoi: isWorks,
+      })
+      if (parentPlaces.length === 1) {
+        resolved = parentPlaces[0]
+        placedViaParent = true
+      }
+    }
     const place = override
       ? {
           point: override.point,
@@ -220,7 +255,7 @@ export function matchContractsToZones(
           matchedText: override.matchedText,
           sourceId: override.sourceId,
         }
-      : resolvePlace(foldTitle(title), candidates, { allowPoi: isWorks })
+      : resolved
 
     // A contract reaches the map if it named a barrio (aggregate) OR resolved to
     // a precise point. Contracts that are genuinely non-spatial fall through.
@@ -246,6 +281,7 @@ export function matchContractsToZones(
             sourceId: place.sourceId,
           }
         : null,
+      ...(placedViaParent ? { parentTitle: c.parentTitle } : {}),
     })
     if (date) {
       if (!dateMin || date < dateMin) dateMin = date

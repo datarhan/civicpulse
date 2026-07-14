@@ -303,6 +303,11 @@ const STREET_INDICATOR_TOKENS = new Set([
   'c',
   'cl',
   'calle',
+  'calles',
+  'caminos',
+  'avenidas',
+  'carreteras',
+  'plazas',
   'carrer',
   'carrers',
   'avinguda',
@@ -594,4 +599,36 @@ export function resolvePlace(
     }
   }
   return best
+}
+
+/**
+ * Every distinct place a folded text matches (same gates as resolvePlace,
+ * deduped by sourceId). For callers that must detect AMBIGUITY rather than
+ * pick a winner — e.g. a multi-lot parent objeto that enumerates the places
+ * of several lots: one distinct match is trustworthy, two or more are not.
+ */
+export function resolveDistinctPlaces(
+  foldedTitle: string,
+  candidates: Candidate[],
+  opts: { allowPoi?: boolean } = {},
+): PlaceMatch[] {
+  const { allowPoi = true } = opts
+  const padded = ` ${foldedTitle} `
+  const streetOk = hasStreetIndicator(foldedTitle)
+  const bySource = new Map<string, PlaceMatch>()
+  for (const c of candidates) {
+    if (c.kind === 'street' && !streetOk) continue
+    if (c.kind === 'poi' && !allowPoi) continue
+    if (!c.needles.some((n) => matches(padded, n))) continue
+    if (!bySource.has(c.sourceId)) {
+      bySource.set(c.sourceId, {
+        point: c.point,
+        kind: c.kind,
+        name: c.name,
+        matchedText: c.name,
+        sourceId: c.sourceId,
+      })
+    }
+  }
+  return [...bySource.values()]
 }
