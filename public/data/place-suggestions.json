@@ -1,34 +1,15 @@
 {
-  "generatedAt": "2026-07-05T12:48:03.124Z",
+  "generatedAt": "2026-07-14T07:47:34.814Z",
   "promptVersion": "place-geocode-v1",
   "backend": "claude-code",
   "stats": {
-    "candidatesScanned": 300,
-    "suggested": 7,
-    "unmatched": 48,
-    "noPlace": 243,
+    "candidatesScanned": 301,
+    "suggested": 4,
+    "unmatched": 47,
+    "noPlace": 248,
     "lowConfidence": 2
   },
   "suggestions": [
-    {
-      "contractId": "3725734",
-      "title": "Contrato de obras de MEJORA DE ACCESIBILIDAD AVENIDA DE LA PAZ derivado del SDA 2 de Obras de sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria (Ctto 44/2022 – SDA 2/2020).",
-      "amount": 37705.69,
-      "date": "2022-08-23",
-      "llmPlaceName": "Avenida de la Paz",
-      "confidence": 0.95,
-      "reasoning": "El título nombra explícitamente la Avenida de la Paz como lugar concreto donde se ejecuta la obra de mejora de accesibilidad, siendo más específico que la referencia genérica a viales y parques del municipio.",
-      "match": {
-        "sourceId": "avinguda-de-la-pau",
-        "name": "Avinguda de la Pau",
-        "kind": "street",
-        "point": [
-          39.5475704,
-          -0.5757486
-        ]
-      },
-      "requiresHumanApproval": true
-    },
     {
       "contractId": "737827",
       "title": "Obra de pavimentación del Camí del conde, reparación de aceras, calzada y zanja polígonos",
@@ -44,25 +25,6 @@
         "point": [
           39.4781462,
           -0.5811841
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "4486293",
-      "title": "Contrato administrativo de obras para la ejecución del proyecto para la Reforma de edificio para la vivienda tutelada municipal con demolición parcial en Av de la Paz 44 (Ctto252/2024)",
-      "amount": 183446,
-      "date": "2024-09-05",
-      "llmPlaceName": "Avenida de la Paz",
-      "confidence": 0.9,
-      "reasoning": "El título indica la dirección concreta 'Av de la Paz 44' donde se ejecuta la obra de reforma del edificio.",
-      "match": {
-        "sourceId": "avinguda-de-la-pau",
-        "name": "Avinguda de la Pau",
-        "kind": "street",
-        "point": [
-          39.5475704,
-          -0.5757486
         ]
       },
       "requiresHumanApproval": true
@@ -101,25 +63,6 @@
         "point": [
           39.5476452,
           -0.5744608
-        ]
-      },
-      "requiresHumanApproval": true
-    },
-    {
-      "contractId": "2197024",
-      "title": "Contrato para suministro de material para alumbrado público en Avda. Castaño Fase I, mediante alimentación solar fotovoltaica con equipos LED, derivado del sistema dinámico de adquisición (SDA) de suministro de material de electricidad (Ctto 48/2022 – SDA 2/2021).",
-      "amount": 10471.95,
-      "date": "2023-04-26",
-      "llmPlaceName": "Avenida Castaño",
-      "confidence": 0.85,
-      "reasoning": "El título nombra la Avda. Castaño (Fase I) como ubicación concreta del alumbrado público a suministrar/instalar.",
-      "match": {
-        "sourceId": "avinguda-del-castanyer",
-        "name": "Avinguda del Castanyer",
-        "kind": "street",
-        "point": [
-          39.5354222,
-          -0.5360689
         ]
       },
       "requiresHumanApproval": true
