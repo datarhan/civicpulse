@@ -50,6 +50,129 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.zones.find((z) => z.slug === 'monte-alcedo')!.amount).toBe(100000)
   })
 
+  it('resolves a generic lot title through the parent tender objeto (parentTitle)', () => {
+    // Gobierto stores the LOT name as title for multi-lot contracts ("Obra
+    // completa"); the parent licitación title carries the real objeto with the
+    // place. Resolution scans both; the assignment records the parent title so
+    // the popup can declare why the pin sits there.
+    const candidates = buildGazetteer({
+      pois: [{ id: 'barranc-dels-moros', name: 'Barranc dels Moros', lat: 39.53, lng: -0.58 }],
+    })
+    const snap = matchContractsToZones(
+      [
+        {
+          id: '4558191',
+          title: 'Obra completa',
+          parentTitle:
+            'Obras Adecuación del Barranc dels Moros como itinerario turístico y peatonal (Fase I) de Riba-roja de Túria dividido en dos lotes',
+          status: 'awarded',
+          finalAmount: 760217,
+          awardDate: '2024-12-26',
+          contractType: 'construction',
+          categoryTitle: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+      candidates,
+    )
+    const a = snap.assignments.find((x) => x.id === '4558191')!
+    expect(a.place?.sourceId).toBe('barranc-dels-moros')
+    expect(a.parentTitle).toContain('Barranc dels Moros')
+  })
+
+  it('does NOT place a lot when the parent objeto names MULTIPLE places (ambiguous)', () => {
+    // A multi-lot parent enumerating per-lot places ("calles X, Y… y camino
+    // rural Z, dividido en dos lotes") cannot tell which place belongs to
+    // which lot — an honest miss beats a wrong pin.
+    const candidates = buildGazetteer({
+      streets: [
+        {
+          slug: 'carrer-dels-furs',
+          name: 'Carrer dels Furs del Regne',
+          point: [39.54, -0.57] as [number, number],
+        },
+        {
+          slug: 'carrer-de-perpinyanet',
+          name: 'Carrer de Perpinyanet',
+          point: [39.55, -0.56] as [number, number],
+        },
+      ],
+    })
+    const snap = matchContractsToZones(
+      [
+        {
+          id: '4446501',
+          title: 'Asfaltado camino rural.',
+          parentTitle:
+            'Contrato obras, proyectos Reasfaltado casco urbano calles Furs del Regne y Perpinyanet y Asfaltado camino rural Enllaç Llidona-Potros, dividido en dos lotes',
+          status: 'awarded',
+          finalAmount: 71264,
+          awardDate: '2024-07-08',
+          contractType: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+      candidates,
+    )
+    expect(snap.assignments.find((x) => x.id === '4446501')?.place ?? null).toBeNull()
+  })
+
+  it('the parent objeto never overrides a place the lot title names itself', () => {
+    const candidates = buildGazetteer({
+      pois: [{ id: 'barranc-dels-moros', name: 'Barranc dels Moros', lat: 39.53, lng: -0.58 }],
+      streets: [
+        {
+          slug: 'carrer-de-sagunt',
+          name: 'Carrer de Sagunt',
+          point: [39.55, -0.56] as [number, number],
+        },
+      ],
+    })
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'lot-own',
+          title: 'Reurbanización aceras C/ Sagunt (lote 1)',
+          parentTitle: 'Obras varias junto al Barranc dels Moros, dividido en dos lotes',
+          status: 'awarded',
+          finalAmount: 50000,
+          awardDate: '2024-07-08',
+          contractType: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+      candidates,
+    )
+    expect(snap.assignments.find((x) => x.id === 'lot-own')?.place?.sourceId).toBe(
+      'carrer-de-sagunt',
+    )
+  })
+
+  it('a contract without parentTitle keeps resolving on its own title only', () => {
+    const candidates = buildGazetteer({
+      pois: [{ id: 'barranc-dels-moros', name: 'Barranc dels Moros', lat: 39.53, lng: -0.58 }],
+    })
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'x1',
+          title: 'Obra completa',
+          status: 'awarded',
+          finalAmount: 1000,
+          awardDate: '2024-01-01',
+          contractType: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+      candidates,
+    )
+    expect(snap.assignments.find((x) => x.id === 'x1')).toBeUndefined()
+  })
+
   it('zone-locates "Residencial Reva" (sin artículo) onto urbanitzacio-la-reva', () => {
     const snap = matchContractsToZones(
       [

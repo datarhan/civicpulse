@@ -329,6 +329,24 @@ describe('place-resolver — resolvePlace', () => {
     expect(resolvePlace(foldTitle('Taller de pilates y suelo pélvico'), CANDS)).toBeNull()
   })
 
+  it('accepts the plural street indicator ("calles X, Y") — PLACSP objetos enumerate streets', () => {
+    const cands: Candidate[] = [
+      {
+        kind: 'street',
+        name: 'Carrer de Luis Santàngel',
+        point: [39.54, -0.57],
+        sourceId: 'carrer-de-luis-santangel',
+        needles: ['luis santangel'],
+        specificity: 3,
+      },
+    ]
+    const m = resolvePlace(
+      foldTitle('Reasfaltado casco urbano calles Furs del Regne, Luis Santangel y Lepanto'),
+      cands,
+    )
+    expect(m?.sourceId).toBe('carrer-de-luis-santangel')
+  })
+
   it('requires a street-type word in the title to trust a street match (toponym guard)', () => {
     const cands: Candidate[] = [
       {
