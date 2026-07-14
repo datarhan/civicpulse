@@ -69,6 +69,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
   // the layer opens on the full cumulative picture; scrubbing/playing sets it.
   const [at, setAt] = useState(null)
   const [danaOnly, setDanaOnly] = useState(false)
+  const [obrasOnly, setObrasOnly] = useState(false)
   const effectiveAt = at ?? dateMax ?? Infinity
 
   const contractsById = useMemo(
@@ -110,6 +111,7 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
             snapshot={snapshot}
             at={effectiveAt}
             danaOnly={danaOnly}
+            obrasOnly={obrasOnly}
             contractsById={contractsById}
           />
         )}
@@ -146,6 +148,8 @@ export default function StylizedMap({ center = DEFAULT_CENTER }) {
             onChange={setAt}
             danaOnly={danaOnly}
             onToggleDana={setDanaOnly}
+            obrasOnly={obrasOnly}
+            onToggleObras={setObrasOnly}
           />
         )}
         {layers.poi && <PoiLegend />}

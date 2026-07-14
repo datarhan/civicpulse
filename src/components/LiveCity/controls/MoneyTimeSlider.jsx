@@ -16,11 +16,21 @@ const cardStyle = {
 /**
  * Money-timeline control for the landing map's spending layer. Play sweeps the
  * cumulative cursor `value` from min→max (2018→2025) via rAF; a range input
- * scrubs it; a DANA toggle restricts to flood-recovery spend. Bails to the end
- * frame under prefers-reduced-motion (no animation) and cancels the rAF on
- * unmount / toggle-off. Mirrors Presupuesto/TimeSlider, re-themed for the map.
+ * scrubs it; a DANA toggle restricts to flood-recovery spend; an obras toggle
+ * restricts to construction contracts. Bails to the end frame under
+ * prefers-reduced-motion (no animation) and cancels the rAF on unmount /
+ * toggle-off. Mirrors Presupuesto/TimeSlider, re-themed for the map.
  */
-export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleDana }) {
+export function MoneyTimeSlider({
+  min,
+  max,
+  value,
+  onChange,
+  danaOnly,
+  onToggleDana,
+  obrasOnly,
+  onToggleObras,
+}) {
   const t = useT()
   const [playing, setPlaying] = useState(false)
   const raf = useRef(0)
@@ -77,24 +87,44 @@ export function MoneyTimeSlider({ min, max, value, onChange, danaOnly, onToggleD
         >
           {t('map.money.title')}
         </span>
-        <button
-          type="button"
-          onClick={() => onToggleDana(!danaOnly)}
-          aria-pressed={danaOnly}
-          style={{
-            all: 'unset',
-            cursor: 'pointer',
-            fontSize: 10,
-            fontWeight: 700,
-            padding: '2px 7px',
-            borderRadius: 999,
-            border: `1px solid ${danaOnly ? '#E08600' : '#C9C3B4'}`,
-            background: danaOnly ? 'rgba(224,134,0,.16)' : 'transparent',
-            color: danaOnly ? '#A85F00' : 'rgba(11,15,25,.6)',
-          }}
-        >
-          {t('map.money.dana')}
-        </button>
+        <span style={{ display: 'flex', gap: 4 }}>
+          <button
+            type="button"
+            onClick={() => onToggleObras(!obrasOnly)}
+            aria-pressed={obrasOnly}
+            style={{
+              all: 'unset',
+              cursor: 'pointer',
+              fontSize: 10,
+              fontWeight: 700,
+              padding: '2px 7px',
+              borderRadius: 999,
+              border: `1px solid ${obrasOnly ? '#2463EB' : '#C9C3B4'}`,
+              background: obrasOnly ? 'rgba(36,99,235,.14)' : 'transparent',
+              color: obrasOnly ? '#1D4FBB' : 'rgba(11,15,25,.6)',
+            }}
+          >
+            {t('map.money.obras')}
+          </button>
+          <button
+            type="button"
+            onClick={() => onToggleDana(!danaOnly)}
+            aria-pressed={danaOnly}
+            style={{
+              all: 'unset',
+              cursor: 'pointer',
+              fontSize: 10,
+              fontWeight: 700,
+              padding: '2px 7px',
+              borderRadius: 999,
+              border: `1px solid ${danaOnly ? '#E08600' : '#C9C3B4'}`,
+              background: danaOnly ? 'rgba(224,134,0,.16)' : 'transparent',
+              color: danaOnly ? '#A85F00' : 'rgba(11,15,25,.6)',
+            }}
+          >
+            {t('map.money.dana')}
+          </button>
+        </span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
         <button

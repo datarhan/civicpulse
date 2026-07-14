@@ -28,11 +28,11 @@ function pinRadius(amount) {
  * civic-blue. Hover → quick total; click → PlacePopup with the contract cards.
  * Real data only: a pin exists only when a contract title named that place.
  */
-export function MoneyLayer({ snapshot, at, danaOnly, contractsById }) {
+export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById }) {
   const { data: cpv } = useCpvLabels()
   const places = useMemo(
-    () => [...placeAmountsAt(snapshot?.assignments, { at, danaOnly }).values()],
-    [snapshot, at, danaOnly],
+    () => [...placeAmountsAt(snapshot?.assignments, { at, danaOnly, obrasOnly }).values()],
+    [snapshot, at, danaOnly, obrasOnly],
   )
 
   return (
@@ -74,6 +74,7 @@ export function MoneyLayer({ snapshot, at, danaOnly, contractsById }) {
                 assignments={snapshot?.assignments}
                 contractsById={contractsById}
                 danaOnly={danaOnly}
+                obrasOnly={obrasOnly}
                 cpvDict={cpv?.codes}
               />
             </Popup>

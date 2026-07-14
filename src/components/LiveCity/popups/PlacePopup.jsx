@@ -21,9 +21,15 @@ const KIND_LABEL = {
  * ContractCard. Honest by construction: a contract only appears here because its
  * title named this street / equipment / zone.
  */
-export function PlacePopup({ place, assignments, contractsById, danaOnly, cpvDict }) {
+export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasOnly, cpvDict }) {
   const works = (assignments || [])
-    .filter((a) => a.place?.sourceId === place.sourceId && a.point && (!danaOnly || a.dana))
+    .filter(
+      (a) =>
+        a.place?.sourceId === place.sourceId &&
+        a.point &&
+        (!danaOnly || a.dana) &&
+        (!obrasOnly || a.contractType === 'construction'),
+    )
     .map((a) => ({ a, c: contractsById.get(a.id) }))
     .filter((w) => w.c)
     .sort((x, y) => (y.a.date || '').localeCompare(x.a.date || ''))
