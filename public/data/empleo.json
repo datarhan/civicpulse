@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-13T17:11:19.665Z",
+  "generatedAt": "2026-07-14T06:37:41.697Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 67,
-    "openTotal": 67,
-    "inRibaRoja": 37,
-    "closingSoon": 27,
-    "withDetail": 67,
+    "total": 65,
+    "openTotal": 65,
+    "inRibaRoja": 36,
+    "closingSoon": 29,
+    "withDetail": 65,
     "byMonth": {
       "2026-07": 9,
       "2026-06": 20,
-      "2026-05": 34,
+      "2026-05": 32,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
@@ -4906,209 +4906,6 @@
         "horario": "De martes a sábado de noches. De 24:00 a 08:00 horas.",
         "salario": "22.000 € brutos",
         "funciones": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2427",
-      "fo": 2427,
-      "codigo": "2026/00128",
-      "titulo": "Técnico/a de Mantenimiento y Frigorista - Contenedores Reefer y Camión Frigorífico",
-      "publishedAt": "2026-05-13",
-      "deadline": "2026-07-13",
-      "location": "Parque Logístico de Valencia, Parque logístico - Av. Puerto de Alicante, 11, Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2427",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00128"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Técnico/a de Mantenimiento y Frigorista - Contenedores Reefer y Camión Frigorífico"
-          },
-          {
-            "label": "Observaciones",
-            "value": "¿Qué estamos buscando? Formación y Certificaciones Grado Superior en Instalaciones Térmicas y de Fluidos. Certificación para la Manipulación de Gases Refrigerantes Fluorados (obligatoria). Requisitos adicionales Experiencia previa en reparación y mantenimiento de maquinaria Reefer o equipos frigoríficos industriales. Experiencia o disposición para realizar asistencia técnica en terminal. Conocimiento de buenas prácticas en seguridad y prevención de riesgos laborales en entornos frigoríficos. Vehículo propio. Conocimientos en: Sistemas de refrigeración industrial. Diagnóstico de averías frigoríficas, eléctricas y mecánicas. Realización de Pre-Trip Inspection (PTI). Ejecución de Cold Treatment (CT). Competencias personales Autonomía y capacidad de resolución de incidencias técnicas. Responsabilidad y orientación a la seguridad y calidad del trabajo. Capacidad de trabajo en equipo. Rigor en el cumplimiento de procedimientos y registros técnicos."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Contrato indefinido a jornada completa"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 1ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Parque Logístico de Valencia, Parque logístico - Av. Puerto de Alicante, 11,, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46910"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno rotativo"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Lunes a viernes, con turnos rotativos, en coordinación con el resto del equipo"
-          },
-          {
-            "label": "Horario",
-            "value": "7:00 h a 15:00 h 8:00 h a 17:00 h, con descanso de 1h para comer. 9:00 h a 18:00 h, con descanso de 1h para comer."
-          },
-          {
-            "label": "Salario",
-            "value": "22.000 - 26.000 euros brutos/anuales"
-          },
-          {
-            "label": "Funciones",
-            "value": "-Reparación y mantenimiento de maquinaria Reefer (contenedores frigoríficos). -Realización de Pre-Trip Inspection (PTI) en contenedores Reefer, verificando el correcto funcionamiento de los sistemas antes de su puesta en servicio. -Ejecución de Cold Treatment (CT) conforme a los procedimientos establecidos. -Asistencia técnica a terminal, realizando intervenciones sobre equipos frigoríficos cuando sea requerido. -Diagnóstico y resolución de averías frigoríficas, eléctricas y mecánicas en contenedores Reefer y camión frigorífico. -Manipulación y control de refrigerantes fluorados, cumpliendo la normativa vigente. -Comprobación y ajuste de componentes del sistema frigorífico: compresores, condensadores, evaporadores, sondas y sistemas de control. -Registro de las operaciones realizadas y reporte de incidencias conforme a los procedimientos internos. -Cumplimiento estricto de las normas de seguridad y prevención de riesgos laborales, especialmente en trabajos con equipos frigoríficos."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Contrato indefinido a jornada completa",
-        "numPuestos": "2",
-        "categoria": "OFICIAL DE 1ª",
-        "observaciones": "¿Qué estamos buscando? Formación y Certificaciones Grado Superior en Instalaciones Térmicas y de Fluidos. Certificación para la Manipulación de Gases Refrigerantes Fluorados (obligatoria). Requisitos adicionales Experiencia previa en reparación y mantenimiento de maquinaria Reefer o equipos frigoríficos industriales. Experiencia o disposición para realizar asistencia técnica en terminal. Conocimiento de buenas prácticas en seguridad y prevención de riesgos laborales en entornos frigoríficos. Vehículo propio. Conocimientos en: Sistemas de refrigeración industrial. Diagnóstico de averías frigoríficas, eléctricas y mecánicas. Realización de Pre-Trip Inspection (PTI). Ejecución de Cold Treatment (CT). Competencias personales Autonomía y capacidad de resolución de incidencias técnicas. Responsabilidad y orientación a la seguridad y calidad del trabajo. Capacidad de trabajo en equipo. Rigor en el cumplimiento de procedimientos y registros técnicos.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46910",
-        "jornada": "Completa Turnos: Turno rotativo",
-        "horario": "7:00 h a 15:00 h 8:00 h a 17:00 h, con descanso de 1h para comer. 9:00 h a 18:00 h, con descanso de 1h para comer.",
-        "salario": "22.000 - 26.000 euros brutos/anuales",
-        "funciones": "-Reparación y mantenimiento de maquinaria Reefer (contenedores frigoríficos). -Realización de Pre-Trip Inspection (PTI) en contenedores Reefer, verificando el correcto funcionamiento de los sistemas antes de su puesta en servicio. -Ejecución de Cold Treatment (CT) conforme a los procedimientos establecidos. -Asistencia técnica a terminal, realizando intervenciones sobre equipos frigoríficos cuando sea requerido. -Diagnóstico y resolución de averías frigoríficas, eléctricas y mecánicas en contenedores Reefer y camión frigorífico. -Manipulación y control de refrigerantes fluorados, cumpliendo la normativa vigente. -Comprobación y ajuste de componentes del sistema frigorífico: compresores, condensadores, evaporadores, sondas y sistemas de control. -Registro de las operaciones realizadas y reporte de incidencias conforme a los procedimientos internos. -Cumplimiento estricto de las normas de seguridad y prevención de riesgos laborales, especialmente en trabajos con equipos frigoríficos.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "MECÁNICOS DE MANTENIMIENTO INDUSTRIAL",
-            "experiencia": "2 Años"
-          },
-          {
-            "nombre": "ELECTRÓNICOS DE MANTENIMIENTO Y REPARACIÓN DE INSTALACIONES DE REFRIGERACIÓN Y CLIMATIZACIÓN",
-            "experiencia": "2 Años"
-          },
-          {
-            "nombre": "INGENIEROS DE MANTENIMIENTO Y REPARACIÓN",
-            "experiencia": "2 Años"
-          },
-          {
-            "nombre": "ELECTRÓNICOS DE MANTENIMIENTO Y REPARACIÓN INDUSTRIAL",
-            "experiencia": "2 Años"
-          },
-          {
-            "nombre": "TÉCNICOS DE MANTENIMIENTO DE EQUIPOS ELECTROMECÁNICOS",
-            "experiencia": "2 Años"
-          },
-          {
-            "nombre": "INSTALADORES-AJUSTADORES DE CONDUCCIONES DE FLUIDOS",
-            "experiencia": "2 Años"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2426",
-      "fo": 2426,
-      "codigo": "2026/00127",
-      "titulo": "Auxiliar de enfermería",
-      "publishedAt": "2026-05-13",
-      "deadline": "2026-07-13",
-      "location": "calle Jaen .18 Pobla de Vallbona (la) (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2426",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00127"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar de enfermería"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos académicos : FP1 , FP2 , Rama Sanitaria Imprescindible vehículo para llegar al puesto de trabajo Carnet de Manipulador de alimentos"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "calle Jaen .18, Municipio: Pobla de Vallbona (la), Provincia: Valencia, CP: 46185"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno rotativo, Festivos"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Posibilidad de turno fijo de mañana o de tarde."
-          },
-          {
-            "label": "Horario",
-            "value": "Rotativo , mañanas y tardes"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Las propias de la categoría."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "observaciones": "Requisitos académicos : FP1 , FP2 , Rama Sanitaria Imprescindible vehículo para llegar al puesto de trabajo Carnet de Manipulador de alimentos",
-        "municipio": "Pobla de Vallbona (la)",
-        "provincia": "Valencia",
-        "cp": "46185",
-        "jornada": "Completa Turnos: Turno rotativo, Festivos",
-        "horario": "Rotativo , mañanas y tardes",
-        "salario": "Según convenio",
-        "funciones": "Las propias de la categoría.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-13T18:25:15.739Z",
+  "generatedAt": "2026-07-14T06:32:35.031Z",
   "source": {
     "contracts": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20contratos",
     "tenders": "https://ribalicita.ribarroja.es/api/v1/data/data.csv?sql=select%20*%20from%20licitaciones",
@@ -25857,6 +25857,29 @@
       "numberOfBatches": 0
     },
     {
+      "id": "4571529",
+      "title": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Enrique Caurín Domingo con DNI 44857190Z",
+      "documentNumber": "7E/2024",
+      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3QyKPaqU%2BzuKeVWTb9Scog%3D%3D",
+      "status": "revoked",
+      "contractType": "services",
+      "processType": "negotiated_without_publicity",
+      "minorContract": false,
+      "submissionDate": "2024-11-15",
+      "openProposalsDate": "2024-11-15",
+      "contractor": "Ayuntamiento de Riba-roja de Túria",
+      "contractValue": 18556.04,
+      "initialAmount": 22452.81,
+      "initialAmountNoTaxes": 18556.04,
+      "categoryTitle": "environment",
+      "cpvs": [
+        "90611000",
+        "63111000",
+        "90500000"
+      ],
+      "numberOfBatches": 0
+    },
+    {
       "id": "4570704",
       "title": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Áridos Mijares, S.L. con CIF B12018008",
       "documentNumber": "4E/2024",
@@ -25940,29 +25963,6 @@
       "contractValue": 30351.08,
       "initialAmount": 36724.81,
       "initialAmountNoTaxes": 30351.08,
-      "categoryTitle": "environment",
-      "cpvs": [
-        "90611000",
-        "63111000",
-        "90500000"
-      ],
-      "numberOfBatches": 0
-    },
-    {
-      "id": "4571529",
-      "title": "Servicio de limpieza de caminos y viales como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Enrique Caurín Domingo con DNI 44857190Z",
-      "documentNumber": "7E/2024",
-      "permalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3QyKPaqU%2BzuKeVWTb9Scog%3D%3D",
-      "status": "revoked",
-      "contractType": "services",
-      "processType": "negotiated_without_publicity",
-      "minorContract": false,
-      "submissionDate": "2024-11-15",
-      "openProposalsDate": "2024-11-15",
-      "contractor": "Ayuntamiento de Riba-roja de Túria",
-      "contractValue": 18556.04,
-      "initialAmount": 22452.81,
-      "initialAmountNoTaxes": 18556.04,
       "categoryTitle": "environment",
       "cpvs": [
         "90611000",
