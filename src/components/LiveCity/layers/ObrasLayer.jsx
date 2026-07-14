@@ -1,7 +1,6 @@
 // @ts-check
-import { useEffect, useRef } from 'react'
-import { CircleMarker, Popup, Tooltip, useMap } from 'react-leaflet'
-import L from 'leaflet'
+import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
+import { FitToPins } from './FitToPins'
 
 const fmtEur = (n) =>
   typeof n === 'number'
@@ -45,28 +44,6 @@ function renderObraDetail(o) {
       </a>
     </div>
   )
-}
-
-/**
- * On layer enable, make sure every obra pin is actually on screen: the map's
- * default framing centers the casco and can clip the southern pins (e.g. the
- * Cementerio — Leaflet culls off-view circles to an empty path, so the pin
- * silently doesn't paint). Only widens/pans when needed; never zooms in.
- */
-function FitToPins({ points }) {
-  const map = useMap()
-  const fitted = useRef(false)
-  useEffect(() => {
-    // fit once per layer enable, as soon as the pins exist (the snapshot may
-    // still be loading when the user toggles the layer on)
-    if (fitted.current || !points.length) return
-    fitted.current = true
-    const bounds = L.latLngBounds(points)
-    if (!map.getBounds().contains(bounds)) {
-      map.fitBounds(bounds, { padding: [48, 48], maxZoom: map.getZoom() })
-    }
-  }, [map, points])
-  return null
 }
 
 /**

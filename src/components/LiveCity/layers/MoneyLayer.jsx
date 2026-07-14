@@ -4,6 +4,7 @@ import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
 import { placeAmountsAt } from '../../../lib/tender-points'
 import { useCpvLabels } from '../../../hooks/useCpvLabels'
 import { PlacePopup } from '../popups/PlacePopup'
+import { FitToPins } from './FitToPins'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -37,6 +38,7 @@ export function MoneyLayer({ snapshot, at, danaOnly, obrasOnly, contractsById })
 
   return (
     <>
+      <FitToPins points={places.map((p) => p.point)} />
       {places.map((p) => {
         const color = p.dana ? '#E08600' : '#2463EB'
         return (
