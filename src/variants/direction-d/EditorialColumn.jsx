@@ -16,6 +16,7 @@
 import { PALETTE, SANS } from './tokens'
 import { EditorialMasthead, QuejaCTA } from './blocks/Masthead'
 import { LeadStory } from './blocks/LeadStory'
+import { ReportajeBlockD } from './blocks/ReportajeBlockD'
 import { AlcaldeBox } from './blocks/AlcaldeBox'
 import { CoalitionRing, PromesasBlockD, DepartamentosBlockD } from './blocks/GovernmentBlocks'
 import {
@@ -43,6 +44,7 @@ function EditorialColumn({ now }) {
       <EditorialMasthead now={now} />
       <QuejaCTA />
       <LeadStory />
+      <ReportajeBlockD />
       <AlcaldeBox />
       <CoalitionRing />
       <PromesasBlockD />

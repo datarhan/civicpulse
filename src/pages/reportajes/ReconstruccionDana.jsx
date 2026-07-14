@@ -682,8 +682,9 @@ export default function ReconstruccionDana() {
       </div>
 
       <p style={{ fontSize: 13, color: 'var(--ink60)', margin: '16px 0 0', lineHeight: 1.5 }}>
-        El Ayuntamiento de Riba-roja dispone de derecho de réplica sobre esta información, que se
-        publicará íntegra. Contacto y correcciones:{' '}
+        Este medio solicitó la versión del Ayuntamiento de Riba-roja, que no respondió dentro del
+        plazo. El derecho de réplica sigue abierto: se publicará íntegro si se recibe. Contacto y
+        correcciones:{' '}
         <a href="/aviso-legal" style={{ color: 'var(--civic)' }}>
           aviso legal
         </a>

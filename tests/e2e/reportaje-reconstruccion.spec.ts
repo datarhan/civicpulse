@@ -17,8 +17,9 @@ test.describe('Reportaje · reconstrucción DANA (/reportajes/reconstruccion-dan
     await expect(page.getByText('14,5 M€').first()).toBeVisible()
     // The accountability thesis + libel-safe framing must be present.
     await expect(page.getByText(/sin atribuir irregularidad/).first()).toBeVisible()
-    // Pre-publication right-of-reply notice while estado !== 'publicado'.
-    await expect(page.getByText(/pendiente de derecho de réplica/).first()).toBeVisible()
+    // Published right-of-reply notice (estado === 'publicado'): Ayuntamiento
+    // was contacted and did not respond within the window; réplica stays open.
+    await expect(page.getByText(/no respondió dentro del plazo/).first()).toBeVisible()
     // The three data visualisations render as inline SVG.
     expect(await page.locator('svg[role="img"]').count()).toBeGreaterThanOrEqual(2)
 
