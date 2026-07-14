@@ -9,6 +9,10 @@ import { resolve } from 'node:path'
 import { matchContractsToZones, ZONE_ALIASES, type ZoneInput } from '../src/scraper/tender-geo'
 import { buildGazetteer } from '../src/scraper/place-resolver'
 import { validatePlaceOverrides, type PlaceKind } from '../src/scraper/place-suggestion'
+import {
+  validateGazetteerSupplement,
+  supplementToGazetteerInput,
+} from '../src/scraper/gazetteer-supplement'
 
 const DATA = resolve('public/data')
 const OUT = resolve(DATA, 'tender-geo.json')
@@ -45,11 +49,19 @@ async function main() {
   // precise pins, never a crash). Streets + civic POIs feed the resolver.
   const streetsSnap = await readJsonIfExists(resolve(DATA, 'streets.json'))
   const poiSnap = await readJsonIfExists(resolve(DATA, 'civic-poi.json'))
+  // Curated gazetteer supplement (hand-edited, validated) — places OSM lacks
+  // or lacks the Spanish name for. Merged into the same input buckets, so the
+  // resolver's honesty gates apply unchanged.
+  const suppSnap = await readJsonIfExists(resolve(DATA, 'gazetteer-supplement.json'))
+  if (suppSnap) validateGazetteerSupplement(suppSnap)
+  const supp = suppSnap
+    ? supplementToGazetteerInput(suppSnap)
+    : { streets: [], pois: [], zones: [], zoneAliases: {} }
   const candidates = buildGazetteer({
-    streets: streetsSnap?.streets ?? [],
-    pois: poiSnap?.pois ?? [],
-    zones,
-    zoneAliases: ZONE_ALIASES,
+    streets: [...(streetsSnap?.streets ?? []), ...supp.streets],
+    pois: [...(poiSnap?.pois ?? []), ...supp.pois],
+    zones: [...zones, ...supp.zones],
+    zoneAliases: { ...ZONE_ALIASES, ...supp.zoneAliases },
   })
 
   // Curator-approved LLM geocode overrides (place-overrides.json). Absent file →

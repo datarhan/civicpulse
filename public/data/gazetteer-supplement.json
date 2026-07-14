@@ -1,0 +1,115 @@
+{
+  "updatedAt": "2026-07-14T09:00:00.000Z",
+  "_comment": "CURATED — human-edited only, never touched by scrapers. Places the OSM-derived gazetteer lacks (or lacks the Spanish name for), so the deterministic place-resolver can situate contracts that name them. Every point cites provenance: an OSM object id or an official URL. Schema: src/scraper/gazetteer-supplement.ts. Consumed by compute-tender-geo.ts and scrape-obras.ts.",
+  "entries": [
+    {
+      "slug": "castell-de-riba-roja",
+      "name": "Castell de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [39.54798, -0.56508],
+      "aliases": ["Castillo de Riba-roja de Túria", "Castillo de Riba-roja"],
+      "source": { "osmType": "way", "osmId": 542763134 },
+      "note": "historic=castle en OSM; ausente de civic-poi (tag fuera del harvest)"
+    },
+    {
+      "slug": "way-39586076",
+      "name": "Polideportivo Municipal",
+      "kind": "poi",
+      "point": [39.5460249, -0.5806981],
+      "aliases": ["Polideportivo"],
+      "source": { "osmType": "way", "osmId": 39586076 },
+      "note": "alias castellano del 'Poliesportiu Municipal de Riba-Roja de Túria' ya presente en civic-poi; mismo slug (way-39586076) para que ambas variantes agreguen sobre el mismo pin"
+    },
+    {
+      "slug": "pavello-municipal",
+      "name": "Pavelló Municipal de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [39.54395, -0.57328],
+      "aliases": ["Pabellón deportivo municipal", "Pabellón Municipal"],
+      "source": { "osmType": "way", "osmId": 551533538 },
+      "note": "leisure=sports_hall en OSM; ausente de civic-poi"
+    },
+    {
+      "slug": "mercat-municipal",
+      "name": "Mercat Municipal",
+      "kind": "poi",
+      "point": [39.54635, -0.56768],
+      "aliases": ["Mercado Municipal"],
+      "source": { "osmType": "way", "osmId": 39528691 },
+      "note": "edificio sin mapear en OSM; anclado al punto medio de su calle epónima Carrer del Mercat (way 39528691)"
+    },
+    {
+      "slug": "jaciment-valencia-la-vella",
+      "name": "Jaciment Visigòtic de València la Vella",
+      "kind": "poi",
+      "point": [39.52974, -0.52503],
+      "aliases": [
+        "Yacimiento arqueológico de Valencia la Vella",
+        "Yacimiento de Valencia la Vella"
+      ],
+      "source": { "osmType": "way", "osmId": 1176535578 },
+      "note": "historic=archaeological_site; distinto de la urbanización homónima — los alias exigen la palabra 'yacimiento' para no robarle títulos a la zona"
+    },
+    {
+      "slug": "gallipont",
+      "name": "Gallipont",
+      "kind": "urbanizacion",
+      "point": [39.55865, -0.55638],
+      "aliases": ["Urbanización Gallipont", "Urbanitzacio Gallipont"],
+      "source": { "osmType": "node", "osmId": 1243439349 },
+      "note": "place=locality en OSM; fuera del harvest de barrios de geo.ts"
+    },
+    {
+      "slug": "canyada-de-l-anguila",
+      "name": "La Canyada de l'Anguila",
+      "kind": "urbanizacion",
+      "point": [39.50646, -0.56416],
+      "aliases": ["Canya Anguila", "Canyada Anguila"],
+      "source": { "osmType": "node", "osmId": 13045776748 },
+      "note": "place=locality en OSM"
+    },
+    {
+      "slug": "la-sargueta",
+      "name": "La Sargueta",
+      "kind": "urbanizacion",
+      "point": [39.48555, -0.55304],
+      "source": { "osmType": "node", "osmId": 1243394022 },
+      "note": "place=locality en OSM; partida rural junto al Pozalet"
+    },
+    {
+      "slug": "poligon-industrial-casanova",
+      "name": "Polígono Industrial Casanova",
+      "kind": "urbanizacion",
+      "point": [39.48269, -0.5564],
+      "source": { "osmType": "way", "osmId": 1332175351 },
+      "note": "landuse=industrial en OSM (centroide)"
+    },
+    {
+      "slug": "poligon-industrial-masia-balo",
+      "name": "Polígono Industrial Masía Baló",
+      "kind": "urbanizacion",
+      "point": [39.47822, -0.58302],
+      "aliases": ["Masia Balo", "Masía de Baló"],
+      "source": { "osmType": "relation", "osmId": 18250510 },
+      "note": "polígono sin objeto propio en OSM; anclado a la masía epónima Mas de Baló (relation 18250510), dentro del ámbito del polígono"
+    },
+    {
+      "slug": "urb-lliri-groc",
+      "name": "Urbanización Lliri Groc",
+      "kind": "urbanizacion",
+      "point": [39.52513, -0.5188],
+      "aliases": ["Lliri Groc"],
+      "source": { "osmType": "way", "osmId": 148239691 },
+      "note": "urbanización sin objeto propio en OSM; anclada al punto medio del Carrer del Lliri Groc"
+    },
+    {
+      "slug": "zona-pacadar",
+      "name": "Zona Pacadar",
+      "kind": "urbanizacion",
+      "point": [39.54148, -0.57145],
+      "aliases": ["Pacadar"],
+      "source": { "osmType": "way", "osmId": 1112746541 },
+      "note": "antigua zona industrial Pacadar en el casco urbano; anclada a la Avinguda Pacadar (way 1112746541)"
+    }
+  ]
+}

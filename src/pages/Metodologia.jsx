@@ -695,12 +695,20 @@ export default function Metodologia() {
           persona la revisa y la aprueba. Es una ayuda de cobertura, no una fuente: el listado
           automático nunca sustituye a la revisión humana.
         </p>
+        <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
+          El callejero se completa con un <strong>suplemento curado</strong> de lugares que
+          OpenStreetMap aún no recoge o solo recoge en valenciano (el Mercat Municipal, el Castell,
+          el Pavelló, polígonos y urbanizaciones): cada entrada es editada a mano, cita su
+          procedencia (el objeto OSM o la página oficial de la que sale la coordenada) y pasa por
+          las mismas vallas conservadoras del emparejador. Sin procedencia verificable, el lugar no
+          entra.
+        </p>
       </Card>
 
       <p style={{ marginTop: 22, fontSize: 12, color: 'var(--ink50)' }}>
-        Última revisión de este documento: 4 de julio de 2026 (geolocalización del gasto por nombre
-        de calle/equipamiento/zona con vallas de honestidad conservadoras, y ficha de contrato con
-        adjudicatario + baja + CPV). Cambios futuros sólo mediante PR público.
+        Última revisión de este documento: 14 de julio de 2026 (suplemento curado del callejero con
+        procedencia obligatoria para lugares ausentes de OSM). Cambios futuros sólo mediante PR
+        público.
       </p>
     </div>
   )

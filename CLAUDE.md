@@ -560,6 +560,7 @@ public/data/sindic.json              (schema: src/scraper/sindic.ts)
 public/data/plantilla.json           (curated · cited · municipal-workforce headcount on /cargos)
 public/data/dedicaciones.json        (schema: src/scraper/dedicaciones.ts · per-councillor salary by role, from the pleno acuerdo)
 public/data/place-overrides.json     (schema: src/scraper/place-suggestion.ts · curator-promoted LLM geocodes · applied by compute:tender-geo)
+public/data/gazetteer-supplement.json (schema: src/scraper/gazetteer-supplement.ts · hand-curated places OSM lacks (or lacks the Spanish name for), each with OSM-id/URL provenance · merged into the resolver gazetteer by compute:tender-geo + scrape:obras)
 
 # Machine-written LLM suggestions — NEVER rendered publicly (curator-only input):
 public/data/place-suggestions.json   (schema: src/scraper/place-suggestion.ts · every row requiresHumanApproval:true · from suggest:place-geocode)

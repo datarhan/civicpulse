@@ -17,6 +17,10 @@ import {
   type PlaceMatch,
 } from '../src/scraper/place-resolver'
 import { ZONE_ALIASES } from '../src/scraper/tender-geo'
+import {
+  validateGazetteerSupplement,
+  supplementToGazetteerInput,
+} from '../src/scraper/gazetteer-supplement'
 
 const DATA = join(dirname(fileURLToPath(import.meta.url)), '..', 'public/data')
 const OUT = join(DATA, 'obras.json')
@@ -145,11 +149,17 @@ async function main() {
       centroid: n.centroid,
     }),
   )
+  // Curated gazetteer supplement — same merge as compute-tender-geo.ts.
+  const suppSnap = await readJson('gazetteer-supplement.json')
+  if (suppSnap) validateGazetteerSupplement(suppSnap)
+  const supp = suppSnap
+    ? supplementToGazetteerInput(suppSnap)
+    : { streets: [], pois: [], zones: [], zoneAliases: {} }
   const candidates = buildGazetteer({
-    streets: streets?.streets ?? [],
-    pois: pois?.pois ?? [],
-    zones,
-    zoneAliases: ZONE_ALIASES,
+    streets: [...(streets?.streets ?? []), ...supp.streets],
+    pois: [...(pois?.pois ?? []), ...supp.pois],
+    zones: [...zones, ...supp.zones],
+    zoneAliases: { ...ZONE_ALIASES, ...supp.zoneAliases },
   })
 
   // Newest lote first (RENOVE 2023–24, then FEDER 2019–20). Each lote is

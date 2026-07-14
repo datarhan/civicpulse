@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T06:38:45.176Z",
+  "generatedAt": "2026-07-14T09:02:26.094Z",
   "source": {
     "tenders": "2026-07-14T06:32:35.031Z",
     "geo": "2026-07-14T06:33:47.616Z"
@@ -7,12 +7,12 @@
   "universe": {
     "totalContracts": 373,
     "totalAmount": 14048926.899999997,
-    "locatedContracts": 29,
-    "locatedAmount": 668248.94,
-    "situatedContracts": 72,
-    "situatedAmount": 2036285.44,
-    "danaContracts": 9,
-    "danaAmount": 274422.42000000004,
+    "locatedContracts": 31,
+    "locatedAmount": 697388.94,
+    "situatedContracts": 89,
+    "situatedAmount": 2578783.6099999994,
+    "danaContracts": 10,
+    "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 73,
     "danaAwardedAmount": 2241265.7499999995,
     "dateMin": "2018-01-24",
@@ -26,9 +26,9 @@
         39.4840972,
         -0.572073
       ],
-      "contractCount": 7,
-      "amount": 241148.79000000004,
-      "danaAmount": 98806.64
+      "contractCount": 9,
+      "amount": 270288.79000000004,
+      "danaAmount": 100681.64
     },
     {
       "slug": "l-oliveral",
@@ -106,9 +106,9 @@
         39.4840972,
         -0.572073
       ],
-      "contractCount": 7,
-      "amount": 241148.79000000004,
-      "danaAmount": 98806.64
+      "contractCount": 9,
+      "amount": 270288.79000000004,
+      "danaAmount": 100681.64
     },
     {
       "slug": "avinguda-de-la-pau",
@@ -147,6 +147,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "poligon-industrial-masia-balo",
+      "name": "Polígono Industrial Masía Baló",
+      "kind": "urbanizacion",
+      "point": [
+        39.47822,
+        -0.58302
+      ],
+      "contractCount": 2,
+      "amount": 150301.44,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrer-arrosals",
       "name": "Carrer Arrosals",
       "kind": "street",
@@ -171,6 +183,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "mercat-municipal",
+      "name": "Mercado Municipal",
+      "kind": "poi",
+      "point": [
+        39.54635,
+        -0.56768
+      ],
+      "contractCount": 3,
+      "amount": 108300.4,
+      "danaAmount": 0
+    },
+    {
       "slug": "el-pou-d-escoto",
       "name": "el Pou d'Escoto",
       "kind": "urbanizacion",
@@ -192,6 +216,18 @@
       ],
       "contractCount": 1,
       "amount": 85000,
+      "danaAmount": 0
+    },
+    {
+      "slug": "zona-pacadar",
+      "name": "Zona Pacadar",
+      "kind": "urbanizacion",
+      "point": [
+        39.54148,
+        -0.57145
+      ],
+      "contractCount": 1,
+      "amount": 78980,
       "danaAmount": 0
     },
     {
@@ -255,6 +291,30 @@
       "danaAmount": 0
     },
     {
+      "slug": "way-39586076",
+      "name": "Polideportivo Municipal",
+      "kind": "poi",
+      "point": [
+        39.5460249,
+        -0.5806981
+      ],
+      "contractCount": 2,
+      "amount": 46133.83,
+      "danaAmount": 0
+    },
+    {
+      "slug": "castell-de-riba-roja",
+      "name": "Castillo de Riba-roja de Túria",
+      "kind": "poi",
+      "point": [
+        39.54798,
+        -0.56508
+      ],
+      "contractCount": 1,
+      "amount": 38387.18,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrero-de-l-esglesia",
       "name": "Carreró de l'Església",
       "kind": "street",
@@ -277,6 +337,18 @@
       "contractCount": 3,
       "amount": 30473.399999999998,
       "danaAmount": 22977.96
+    },
+    {
+      "slug": "pavello-municipal",
+      "name": "Pabellón deportivo municipal",
+      "kind": "poi",
+      "point": [
+        39.54395,
+        -0.57328
+      ],
+      "contractCount": 1,
+      "amount": 28543.9,
+      "danaAmount": 0
     },
     {
       "slug": "way-1178031442",
@@ -435,6 +507,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "poligon-industrial-casanova",
+      "name": "Polígono Industrial Casanova",
+      "kind": "urbanizacion",
+      "point": [
+        39.48269,
+        -0.5564
+      ],
+      "contractCount": 1,
+      "amount": 18066,
+      "danaAmount": 0
+    },
+    {
       "slug": "carrer-pobla-de-vallbona",
       "name": "Carrer Pobla de Vallbona",
       "kind": "street",
@@ -471,6 +555,18 @@
       "danaAmount": 0
     },
     {
+      "slug": "gallipont",
+      "name": "Gallipont",
+      "kind": "urbanizacion",
+      "point": [
+        39.55865,
+        -0.55638
+      ],
+      "contractCount": 1,
+      "amount": 12900,
+      "danaAmount": 0
+    },
+    {
       "slug": "urbanitzacio-la-llobatera",
       "name": "Urbanització La Llobatera",
       "kind": "urbanizacion",
@@ -504,6 +600,30 @@
       ],
       "contractCount": 1,
       "amount": 12000,
+      "danaAmount": 0
+    },
+    {
+      "slug": "urb-lliri-groc",
+      "name": "Urbanización Lliri Groc",
+      "kind": "urbanizacion",
+      "point": [
+        39.52513,
+        -0.5188
+      ],
+      "contractCount": 1,
+      "amount": 11894.21,
+      "danaAmount": 0
+    },
+    {
+      "slug": "canyada-de-l-anguila",
+      "name": "La Canyada de l'Anguila",
+      "kind": "urbanizacion",
+      "point": [
+        39.50646,
+        -0.56416
+      ],
+      "contractCount": 1,
+      "amount": 11851.21,
       "danaAmount": 0
     },
     {
@@ -552,6 +672,18 @@
       ],
       "contractCount": 1,
       "amount": 9048.55,
+      "danaAmount": 0
+    },
+    {
+      "slug": "la-sargueta",
+      "name": "La Sargueta",
+      "kind": "urbanizacion",
+      "point": [
+        39.48555,
+        -0.55304
+      ],
+      "contractCount": 1,
+      "amount": 8000,
       "danaAmount": 0
     },
     {
@@ -772,6 +904,27 @@
       }
     },
     {
+      "id": "4327346",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 12900,
+      "amountKind": "final",
+      "date": "2023-09-25",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.55865,
+        -0.55638
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Gallipont",
+        "matchedText": "Gallipont",
+        "sourceId": "gallipont"
+      }
+    },
+    {
       "id": "695744",
       "zones": [
         "el-molinet"
@@ -794,6 +947,27 @@
         "name": "el Molinet",
         "matchedText": "el Molinet",
         "sourceId": "el-molinet"
+      }
+    },
+    {
+      "id": "auto-ig973c",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 78980,
+      "amountKind": "final",
+      "date": "2023-12-04",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54148,
+        -0.57145
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Zona Pacadar",
+        "matchedText": "Zona Pacadar",
+        "sourceId": "zona-pacadar"
       }
     },
     {
@@ -969,6 +1143,48 @@
       }
     },
     {
+      "id": "9895895",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 28543.9,
+      "amountKind": "final",
+      "date": "2026-04-08",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54395,
+        -0.57328
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Pabellón deportivo municipal",
+        "matchedText": "Pabellón deportivo municipal",
+        "sourceId": "pavello-municipal"
+      }
+    },
+    {
+      "id": "462533",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8530.85,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.5460249,
+        -0.5806981
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Polideportivo Municipal",
+        "matchedText": "Polideportivo Municipal",
+        "sourceId": "way-39586076"
+      }
+    },
+    {
       "id": "3925762",
       "zones": [],
       "matchedAlias": {},
@@ -1040,6 +1256,27 @@
       }
     },
     {
+      "id": "555236",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 8000,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.48555,
+        -0.55304
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "La Sargueta",
+        "matchedText": "La Sargueta",
+        "sourceId": "la-sargueta"
+      }
+    },
+    {
       "id": "668071",
       "zones": [],
       "matchedAlias": {},
@@ -1100,6 +1337,27 @@
         "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
         "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
         "sourceId": "way-1178031442"
+      }
+    },
+    {
+      "id": "13417",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11894.21,
+      "amountKind": "final",
+      "date": "2019-06-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.52513,
+        -0.5188
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanización Lliri Groc",
+        "matchedText": "Urbanización Lliri Groc",
+        "sourceId": "urb-lliri-groc"
       }
     },
     {
@@ -1262,6 +1520,73 @@
       }
     },
     {
+      "id": "4582156",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "residencial reva"
+      },
+      "dana": true,
+      "amount": 1875,
+      "amountKind": "final",
+      "date": "2024-12-10",
+      "contractType": "services",
+      "categoryTitle": "transportation",
+      "point": [
+        39.4840972,
+        -0.572073
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Reva",
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "5456102",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 38387.18,
+      "amountKind": "final",
+      "date": "2023-12-29",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54798,
+        -0.56508
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Castillo de Riba-roja de Túria",
+        "matchedText": "Castillo de Riba-roja de Túria",
+        "sourceId": "castell-de-riba-roja"
+      }
+    },
+    {
+      "id": "5247428",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 11851.21,
+      "amountKind": "final",
+      "date": "2023-11-06",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.50646,
+        -0.56416
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "La Canyada de l'Anguila",
+        "matchedText": "La Canyada de l'Anguila",
+        "sourceId": "canyada-de-l-anguila"
+      }
+    },
+    {
       "id": "5388060",
       "zones": [],
       "matchedAlias": {},
@@ -1280,6 +1605,27 @@
         "name": "Carrer de Perpinyanet",
         "matchedText": "Carrer de Perpinyanet",
         "sourceId": "carrer-de-perpinyanet"
+      }
+    },
+    {
+      "id": "1550047",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 143801.44,
+      "amountKind": "final",
+      "date": "2021-10-22",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.47822,
+        -0.58302
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Polígono Industrial Masía Baló",
+        "matchedText": "Polígono Industrial Masía Baló",
+        "sourceId": "poligon-industrial-masia-balo"
       }
     },
     {
@@ -1438,6 +1784,48 @@
       }
     },
     {
+      "id": "554861",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 6500,
+      "amountKind": "final",
+      "date": "2018-04-11",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.47822,
+        -0.58302
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Polígono Industrial Masía Baló",
+        "matchedText": "Polígono Industrial Masía Baló",
+        "sourceId": "poligon-industrial-masia-balo"
+      }
+    },
+    {
+      "id": "632446",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 29748.76,
+      "amountKind": "final",
+      "date": "2019-12-18",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.54635,
+        -0.56768
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Mercado Municipal",
+        "matchedText": "Mercado Municipal",
+        "sourceId": "mercat-municipal"
+      }
+    },
+    {
       "id": "632456",
       "zones": [
         "el-pou-d-escoto"
@@ -1593,6 +1981,27 @@
       }
     },
     {
+      "id": "1598936",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 18066,
+      "amountKind": "final",
+      "date": "2020-01-15",
+      "contractType": "construction",
+      "categoryTitle": "other",
+      "point": [
+        39.48269,
+        -0.5564
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Polígono Industrial Casanova",
+        "matchedText": "Polígono Industrial Casanova",
+        "sourceId": "poligon-industrial-casanova"
+      }
+    },
+    {
       "id": "1881768",
       "zones": [],
       "matchedAlias": {},
@@ -1614,6 +2023,27 @@
       }
     },
     {
+      "id": "1498554",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 53351.24,
+      "amountKind": "final",
+      "date": "2021-10-21",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54635,
+        -0.56768
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Mercado Municipal",
+        "matchedText": "Mercado Municipal",
+        "sourceId": "mercat-municipal"
+      }
+    },
+    {
       "id": "2870786",
       "zones": [],
       "matchedAlias": {},
@@ -1632,6 +2062,27 @@
         "name": "Ajuntament de Riba-roja de Túria",
         "matchedText": "Ajuntament de Riba-roja de Túria",
         "sourceId": "node-5809597354"
+      }
+    },
+    {
+      "id": "3733335",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 25200.4,
+      "amountKind": "final",
+      "date": "2022-08-30",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54635,
+        -0.56768
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Mercado Municipal",
+        "matchedText": "Mercado Municipal",
+        "sourceId": "mercat-municipal"
       }
     },
     {
@@ -1936,6 +2387,27 @@
       }
     },
     {
+      "id": "1561776",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 37602.98,
+      "amountKind": "final",
+      "date": "2021-11-10",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5460249,
+        -0.5806981
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Polideportivo",
+        "matchedText": "Polideportivo",
+        "sourceId": "way-39586076"
+      }
+    },
+    {
       "id": "3662891",
       "zones": [
         "urbanitzacio-la-reva"
@@ -2000,6 +2472,31 @@
         "name": "Carrer del Cronista Cerveró",
         "matchedText": "Carrer del Cronista Cerveró",
         "sourceId": "carrer-del-cronista-cervero"
+      }
+    },
+    {
+      "id": "8619260",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "residencial reva"
+      },
+      "dana": false,
+      "amount": 27265,
+      "amountKind": "final",
+      "date": "2025-08-05",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4840972,
+        -0.572073
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Reva",
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
