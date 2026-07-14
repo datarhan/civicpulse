@@ -103,6 +103,14 @@
       "note": "urbanización sin objeto propio en OSM; anclada al punto medio del Carrer del Lliri Groc"
     },
     {
+      "slug": "barranc-dels-moros",
+      "name": "Barranc dels Moros",
+      "kind": "poi",
+      "point": [39.54713, -0.56558],
+      "source": { "osmType": "node", "osmId": 13092901648 },
+      "note": "el barranco (cauce) no lleva nombre en OSM dentro del término; anclado al 'Pi canari del barranc dels Moros' (nodo con nombre en OSM), sobre el propio cauce junto al casco antiguo — el tramo del itinerario turístico-peatonal Fase I"
+    },
+    {
       "slug": "zona-pacadar",
       "name": "Zona Pacadar",
       "kind": "urbanizacion",

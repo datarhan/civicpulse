@@ -90,8 +90,21 @@ async function main() {
     }
   }
 
+  // Multi-lot join: Gobierto stores the LOT name as the contract title
+  // ("Obra completa"); the parent licitación row (same base id) carries the
+  // real objeto — often the only place signal. Local, deterministic join.
+  const tenderById = new Map<string, { title?: string }>(
+    (tenders.tenders || []).map((t: { id: string | number; title?: string }) => [String(t.id), t]),
+  )
+  const contracts = (tenders.contracts || []).map((c: { id: string | number; title?: string }) => {
+    // Join for every contract — matchContractsToZones only widens the searched
+    // text when the parent objeto actually differs from the row's own title.
+    const parent = tenderById.get(String(c.id).split('#')[0])
+    return parent?.title ? { ...c, parentTitle: parent.title } : c
+  })
+
   const snap = matchContractsToZones(
-    tenders.contracts || [],
+    contracts,
     zones,
     {
       generatedAt: new Date().toISOString(),

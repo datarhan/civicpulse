@@ -100,6 +100,8 @@ npm run lookup-catastro -- --refcat 4720001YJ2742S0001JF
 # Cross-source department accountability scalar (runs inside scrape:all)
 npm run compute:dept-stats          # writes plazosVencidosCount into plenos-agendas.json.stats
 npm run compute:tender-geo          # place contract titles at streets/POIs/zones (place-resolver) ·
+                                    # multi-lot rows also scan the parent licitación objeto (joined on
+                                    # base id; used only when it names exactly ONE place — ambiguity gate) ·
                                     # writes tender-geo.json (zones[] + places[] + situated) · runs in scrape:all
 
 # CPV-2008 → Spanish label dictionary (occasional/curator build — vocabulary is

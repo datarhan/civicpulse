@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T09:02:26.094Z",
+  "generatedAt": "2026-07-14T09:41:04.582Z",
   "source": {
     "tenders": "2026-07-14T06:32:35.031Z",
     "geo": "2026-07-14T06:33:47.616Z"
@@ -9,8 +9,8 @@
     "totalAmount": 14048926.899999997,
     "locatedContracts": 31,
     "locatedAmount": 697388.94,
-    "situatedContracts": 89,
-    "situatedAmount": 2578783.6099999994,
+    "situatedContracts": 92,
+    "situatedAmount": 3354731.1499999994,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 73,
@@ -98,6 +98,18 @@
     }
   ],
   "places": [
+    {
+      "slug": "barranc-dels-moros",
+      "name": "Barranc dels Moros",
+      "kind": "poi",
+      "point": [
+        39.54713,
+        -0.56558
+      ],
+      "contractCount": 3,
+      "amount": 775947.5399999999,
+      "danaAmount": 0
+    },
     {
       "slug": "urbanitzacio-la-reva",
       "name": "Urbanització La Reva",
@@ -700,6 +712,50 @@
     }
   ],
   "assignments": [
+    {
+      "id": "4558191",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 628279.07,
+      "amountKind": "final",
+      "date": "2024-12-26",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54713,
+        -0.56558
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Barranc dels Moros",
+        "matchedText": "Barranc dels Moros",
+        "sourceId": "barranc-dels-moros"
+      },
+      "parentTitle": "Obras Adecuación del Barranc dels Moros como itinerario turístico y peatonal (Fase I) de Riba-roja de Túria dividido en dos lotes, en el marco del Plan de Recuperación, Transformación y Resiliencia-  Financiado por la  Unión Europea, Next Generation”"
+    },
+    {
+      "id": "4558191#1",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 117218.47,
+      "amountKind": "final",
+      "date": "2024-12-26",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54713,
+        -0.56558
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Barranc dels Moros",
+        "matchedText": "Barranc dels Moros",
+        "sourceId": "barranc-dels-moros"
+      },
+      "parentTitle": "Obras Adecuación del Barranc dels Moros como itinerario turístico y peatonal (Fase I) de Riba-roja de Túria dividido en dos lotes, en el marco del Plan de Recuperación, Transformación y Resiliencia-  Financiado por la  Unión Europea, Next Generation”"
+    },
     {
       "id": "4598648",
       "zones": [
@@ -1542,6 +1598,27 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
+      }
+    },
+    {
+      "id": "5302801",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 30450,
+      "amountKind": "final",
+      "date": "2023-11-23",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.54713,
+        -0.56558
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Barranc dels Moros",
+        "matchedText": "Barranc dels Moros",
+        "sourceId": "barranc-dels-moros"
       }
     },
     {

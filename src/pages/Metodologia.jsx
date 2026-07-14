@@ -668,7 +668,11 @@ export default function Metodologia() {
           cuando su título <strong>nombra</strong> un lugar concreto —una calle o camino, un
           equipamiento público (colegio, polideportivo, parque), una urbanización o un barrio— y lo
           cotejamos contra un callejero de OpenStreetMap y el índice de equipamientos. Cada punto
-          declara su procedencia («situado por «…»»).
+          declara su procedencia («situado por «…»»). En los contratos por <strong>lotes</strong>,
+          cuyo título es solo el nombre del lote («Obra completa»), consultamos además el objeto de
+          la licitación madre — y solo lo usamos cuando nombra <strong>un único</strong> lugar: si
+          la licitación enumera los sitios de varios lotes, no se puede saber qué lote va dónde y
+          preferimos no situar. El pin declara el objeto de la licitación («Lote de: …»).
         </p>
         <p style={{ fontSize: 13, lineHeight: 1.55, color: 'var(--ink70)', marginTop: 8 }}>
           El emparejamiento es deliberadamente <strong>conservador</strong> —preferimos no situar un

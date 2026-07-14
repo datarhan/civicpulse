@@ -66,15 +66,21 @@ export function PlacePopup({ place, assignments, contractsById, danaOnly, obrasO
       </div>
       <div style={{ marginTop: 6, maxHeight: 260, overflowY: 'auto' }}>
         {works.map(({ a, c }) => (
-          <ContractCard
-            key={a.id}
-            contract={c}
-            amount={a.amount}
-            amountKind={a.amountKind}
-            date={a.date}
-            dana={a.dana}
-            cpvDict={cpvDict}
-          />
+          <div key={a.id}>
+            <ContractCard
+              contract={c}
+              amount={a.amount}
+              amountKind={a.amountKind}
+              date={a.date}
+              dana={a.dana}
+              cpvDict={cpvDict}
+            />
+            {a.parentTitle && (
+              <div style={{ fontSize: 10, color: 'rgba(11,15,25,.55)', margin: '2px 2px 8px' }}>
+                Lote de: «{a.parentTitle}»
+              </div>
+            )}
+          </div>
         ))}
       </div>
       <div
