@@ -1,20 +1,410 @@
 {
-  "generatedAt": "2026-07-13T08:15:14.647Z",
+  "generatedAt": "2026-07-14T08:16:41.749Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 5,
+    "total": 12,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 5,
+      "sin-datos": 12,
       "promesa-repetida": 0
     }
   },
   "items": [
+    {
+      "claim": {
+        "id": "hwjyxk-0-num",
+        "articleId": "hwjyxk",
+        "articleFingerprint": "oun6xw",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84704-riba-roja-redueix-latur-en-quasi-100-persones-desde-juny-del-passat-any.html",
+        "articleDate": "2026-07-13T16:17:57.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "Riba-roja redueix l’atur en quasi 100 persones desde juny del passat any",
+        "context": "El titular del artículo menciona una reducción del desempleo en Riba-roja de Túria, indicando que casi 100 personas han encontrado trabajo desde junio del año anterior.",
+        "topic": "empleo",
+        "entities": {
+          "count": 100,
+          "countUnit": "personas",
+          "date": "2025-06-01",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.8,
+        "reasoning": "La afirmación se puede verificar a través de datos de empleo del municipio.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "hwjyxk-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84704-riba-roja-redueix-latur-en-quasi-100-persones-desde-juny-del-passat-any.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "oun6xw"
+      }
+    },
+    {
+      "claim": {
+        "id": "fr1840-0-num",
+        "articleId": "fr1840",
+        "articleFingerprint": "syu568",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
+        "articleDate": "2026-07-13T12:15:09.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "Riba-roja reduce el paro en casi 100 personas entre junio del pasado año y el actual",
+        "context": "El Ayuntamiento de Riba-roja de Túria ha informado sobre la reducción del paro en el municipio.",
+        "topic": "empleo",
+        "entities": {
+          "count": 100,
+          "countUnit": "personas",
+          "date": "2026-06-01",
+          "referencedEntity": "Riba-roja de Túria"
+        },
+        "confidence": 0.8,
+        "reasoning": "La afirmación sobre la reducción del paro es cuantificable y se puede verificar con datos de empleo.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "fr1840-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "syu568"
+      }
+    },
+    {
+      "claim": {
+        "id": "fr1840-1-num",
+        "articleId": "fr1840",
+        "articleFingerprint": "syu568",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
+        "articleDate": "2026-07-13T12:15:09.000Z",
+        "segmentIndex": 1,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "municipal",
+        "verbatim": "las afiliaciones a la Seguridad Social vuelven a marcar un nuevo récord de 22.094",
+        "context": "El Ayuntamiento también destacó que las afiliaciones a la Seguridad Social han alcanzado un nuevo récord.",
+        "topic": "empleo",
+        "entities": {
+          "count": 22094,
+          "countUnit": "afiliaciones",
+          "date": "2026-07-01",
+          "referencedEntity": "Seguridad Social"
+        },
+        "confidence": 0.8,
+        "reasoning": "El dato sobre las afiliaciones a la Seguridad Social es verificable y se puede contrastar con registros oficiales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "fr1840-1-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
+        "articleSource": "Ayuntamiento de Riba-roja de Túria",
+        "articleSourceHost": "ribarroja.es",
+        "articleFingerprint": "syu568"
+      }
+    },
+    {
+      "claim": {
+        "id": "1qkqwdk-0-num",
+        "articleId": "1qkqwdk",
+        "articleFingerprint": "3v6y6g",
+        "articleSource": "Aguasresiduales",
+        "articleSourceHost": "aguasresiduales.info",
+        "articleUrl": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNYnFVV1htLVdfWC12U0h6NjRCRGFYWHhQbTVkMGQ3djIzV0hxd0t4Q3dRaWRDT3ZuWlBlUC1IYXNXbGRNNjJ0NWxJWG1mbnRVSmRwSk9LQkhUaVNWWmpoTXhVeEVXNU9TSDJBLWh3M2ZhcF9zZ0R0dzg1a0JkS2owUG1vUWk3RENqM09UNEkzbk5xMmRIUGhGYmxwR2dZVU93WHcydzNmODhZdw?oc=5",
+        "articleDate": "2026-07-13T10:21:41.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "La Generalitat Valenciana autoriza una inversión de 23,6 M€ para ampliar la EDAR de Setrece en Riba-roja de Túria",
+        "context": "La Generalitat Valenciana ha tomado la decisión de financiar la ampliación de la EDAR de Setrece, lo que implica una inversión significativa en infraestructura.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 23600000,
+          "date": "2026-07-13",
+          "referencedEntity": "EDAR de Setrece"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación incluye una cifra específica de inversión autorizada por una entidad gubernamental, lo que permite su verificación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1qkqwdk-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNYnFVV1htLVdfWC12U0h6NjRCRGFYWHhQbTVkMGQ3djIzV0hxd0t4Q3dRaWRDT3ZuWlBlUC1IYXNXbGRNNjJ0NWxJWG1mbnRVSmRwSk9LQkhUaVNWWmpoTXhVeEVXNU9TSDJBLWh3M2ZhcF9zZ0R0dzg1a0JkS2owUG1vUWk3RENqM09UNEkzbk5xMmRIUGhGYmxwR2dZVU93WHcydzNmODhZdw?oc=5",
+        "articleSource": "Aguasresiduales",
+        "articleSourceHost": "aguasresiduales.info",
+        "articleFingerprint": "3v6y6g"
+      }
+    },
+    {
+      "claim": {
+        "id": "mnfpps-0-num",
+        "articleId": "mnfpps",
+        "articleFingerprint": "ejkdlc",
+        "articleSource": "RETEMA",
+        "articleSourceHost": "retema.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQVFRnWlRKekJVM3pyQUZLN1hOYkpJTEd3NU1VdVYxNF9OQkpmNWVSc2VvcWhEQnlVa0hHUjZXSG1LcV9lTFJGSDQ2Y1lKMVZyUVRweWhLNms0V21KbkFQUXFGVDh0SWtBWkVFY2NhY1FqMHg4MWZKb1pjdXFnTGhFejlTNzhrS1pkRkZwYjl3cTRrSnd0UHdsYTRQM3pZaThYUUV0cG5NQWpKOXRTNGxLdUN4RGZqdC1nYVptNHVn?oc=5",
+        "articleDate": "2026-07-13T08:00:44.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "La Generalitat invertirá 23,6 millones para ampliar la depuradora de Setrece en Riba-roja de Túria",
+        "context": "La Generalitat invertirá 23,6 millones para ampliar la depuradora de Setrece en Riba-roja de Túria.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 23600000,
+          "date": "2026-07-13",
+          "referencedEntity": "depuradora de Setrece"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación incluye una cifra específica de inversión que puede ser verificada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "mnfpps-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQVFRnWlRKekJVM3pyQUZLN1hOYkpJTEd3NU1VdVYxNF9OQkpmNWVSc2VvcWhEQnlVa0hHUjZXSG1LcV9lTFJGSDQ2Y1lKMVZyUVRweWhLNms0V21KbkFQUXFGVDh0SWtBWkVFY2NhY1FqMHg4MWZKb1pjdXFnTGhFejlTNzhrS1pkRkZwYjl3cTRrSnd0UHdsYTRQM3pZaThYUUV0cG5NQWpKOXRTNGxLdUN4RGZqdC1nYVptNHVn?oc=5",
+        "articleSource": "RETEMA",
+        "articleSourceHost": "retema.es",
+        "articleFingerprint": "ejkdlc"
+      }
+    },
+    {
+      "claim": {
+        "id": "26cjmz-0-num",
+        "articleId": "26cjmz",
+        "articleFingerprint": "gzvees",
+        "articleSource": "Valencia News",
+        "articleSourceHost": "valencianews.es",
+        "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQM3pNcER2RE8yX21oLU85YTZVOEJFZ3hLUm1OUFEtcFJwOHdrZWtyVFBZWDZDYm5GcldNaUNZY2E4aVFhVWVmUjBuWDJCc0piTjBQbjFiZmoxR1dITG1DM3BQYU9jSjA2U0xLdjhGeDF0WXVjanI2amhXdl9EUGVzc180RVAzb2tYS1p0WW44alpfbkE2U05vR2pRSm5meEtuTm03amIwSUdSNHVIWFZLUQ?oc=5",
+        "articleDate": "2026-07-10T14:28:08.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Consell invierte 23,6 millones para ampliar la depuradora de Riba-roja de Túria",
+        "context": "El Consell ha anunciado una inversión significativa en la infraestructura de Riba-roja de Túria.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 23600000,
+          "date": "2026-07-10",
+          "referencedEntity": "depuradora de Riba-roja de Túria"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación incluye una cifra específica de inversión que puede ser verificada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "26cjmz-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQM3pNcER2RE8yX21oLU85YTZVOEJFZ3hLUm1OUFEtcFJwOHdrZWtyVFBZWDZDYm5GcldNaUNZY2E4aVFhVWVmUjBuWDJCc0piTjBQbjFiZmoxR1dITG1DM3BQYU9jSjA2U0xLdjhGeDF0WXVjanI2amhXdl9EUGVzc180RVAzb2tYS1p0WW44alpfbkE2U05vR2pRSm5meEtuTm03amIwSUdSNHVIWFZLUQ?oc=5",
+        "articleSource": "Valencia News",
+        "articleSourceHost": "valencianews.es",
+        "articleFingerprint": "gzvees"
+      }
+    },
+    {
+      "claim": {
+        "id": "1m9xihc-0-num",
+        "articleId": "1m9xihc",
+        "articleFingerprint": "90okto",
+        "articleSource": "València Extra",
+        "articleSourceHost": "valenciaextra.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
+        "articleDate": "2026-07-10T12:20:00.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
+        "context": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 23600000,
+          "date": "2026-07-10",
+          "referencedEntity": "depuradora de Riba-roja de Túria"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación incluye una cifra específica de inversión que puede ser verificada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1m9xihc-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
+        "articleSource": "València Extra",
+        "articleSourceHost": "valenciaextra.com",
+        "articleFingerprint": "90okto"
+      }
+    },
+    {
+      "claim": {
+        "id": "1jxa9ng-0-num",
+        "articleId": "1jxa9ng",
+        "articleFingerprint": "r7hnyw",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84660-el-consell-inverteix-236-milions-per-a-ampliar-la-depuradora-a-riba-roja.html",
+        "articleDate": "2026-07-10T12:16:02.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Consell inverteix 23,6 milions per a ampliar la depuradora a Riba-roja",
+        "context": "El Consell ha anunciado una inversión significativa en la infraestructura de Riba-roja.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 23600000,
+          "date": "2026-07-10",
+          "referencedEntity": "depuradora"
+        },
+        "confidence": 0.9,
+        "reasoning": "La cifra de inversión es un dato verificable y específico que se puede contrastar.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1jxa9ng-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84660-el-consell-inverteix-236-milions-per-a-ampliar-la-depuradora-a-riba-roja.html",
+        "articleSource": "Periòdic del Camp de Túria",
+        "articleSourceHost": "infoturia.com",
+        "articleFingerprint": "r7hnyw"
+      }
+    },
+    {
+      "claim": {
+        "id": "1f13ysw-0-num",
+        "articleId": "1f13ysw",
+        "articleFingerprint": "1ia3a3o",
+        "articleSource": "Actualidad Valencia",
+        "articleSourceHost": "actualidadvalencia.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1QYl9rWWVFeUdNQU9Tek5fSXN5VWJQR1RLNF9zNjBzQ1NLTy1KQ25kVG8yRmpwRzhFTDFCUzhVU2hTY1E3OU9RYldRLVR0NU5SUjZfUXNvRXNwX2JHVGVnRXl4SnBjUGZfSXMwY25ya1F1NXc?oc=5",
+        "articleDate": "2026-07-10T12:08:43.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "El Consell destina 23,6 millones a ampliar la depuradora de Setrece en Riba-roja",
+        "context": "El Consell ha anunciado una inversión significativa en la infraestructura de Riba-roja de Túria.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "amountEuros": 23600000,
+          "date": "2026-07-10",
+          "referencedEntity": "depuradora de Setrece"
+        },
+        "confidence": 0.9,
+        "reasoning": "La cifra de 23,6 millones es un dato verificable sobre la inversión anunciada.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1f13ysw-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1QYl9rWWVFeUdNQU9Tek5fSXN5VWJQR1RLNF9zNjBzQ1NLTy1KQ25kVG8yRmpwRzhFTDFCUzhVU2hTY1E3OU9RYldRLVR0NU5SUjZfUXNvRXNwX2JHVGVnRXl4SnBjUGZfSXMwY25ya1F1NXc?oc=5",
+        "articleSource": "Actualidad Valencia",
+        "articleSourceHost": "actualidadvalencia.com",
+        "articleFingerprint": "1ia3a3o"
+      }
+    },
     {
       "claim": {
         "id": "40rpxn-0-num",
@@ -143,92 +533,6 @@
         "articleSource": "Periòdic del Camp de Túria",
         "articleSourceHost": "infoturia.com",
         "articleFingerprint": "1kr12qz"
-      }
-    },
-    {
-      "claim": {
-        "id": "i93nqo-0-acu",
-        "articleId": "i93nqo",
-        "articleFingerprint": "pihqa0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
-        "articleDate": "2026-07-03T15:20:11.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "acusacion_publica",
-        "attributedSource": "opposition",
-        "verbatim": "El PSOE de Riba-roja critica al PP per convocar un ple extraordinari 72 hores abans de l'ordinari",
-        "context": "El PSOE de Riba-roja critica al PP per convocar un ple extraordinari 72 hores abans de l'ordinari que costarà 4.000 euros",
-        "topic": "transparencia",
-        "entities": {
-          "count": 72,
-          "countUnit": "hores",
-          "referencedEntity": "PP"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.6,
-        "reasoning": "Es una crítica de l'oposició sobre un fet temporal verificable (diferència d'hores entre convocatòries de plens) que es pot contrastar amb les actes municipals.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "i93nqo-0-acu",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "pihqa0"
-      }
-    },
-    {
-      "claim": {
-        "id": "i93nqo-1-num",
-        "articleId": "i93nqo",
-        "articleFingerprint": "pihqa0",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
-        "articleDate": "2026-07-03T15:20:11.000Z",
-        "segmentIndex": 1,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "unspecified",
-        "verbatim": "que costarà 4.000 euros",
-        "context": "critica al PP per convocar un ple extraordinari 72 hores abans de l'ordinari que costarà 4.000 euros",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 4000,
-          "referencedEntity": "ple extraordinari"
-        },
-        "confidence": 0.55,
-        "reasoning": "S'atribueix un cost concret (4.000 euros) a la convocatòria del ple extraordinari, xifra verificable contra el pressupost municipal, però no queda clar qui l'afirma.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "i93nqo-1-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget"
-        ],
-        "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
-        "articleSource": "Periòdic del Camp de Túria",
-        "articleSourceHost": "infoturia.com",
-        "articleFingerprint": "pihqa0"
       }
     }
   ]

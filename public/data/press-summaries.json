@@ -1,37 +1,79 @@
 {
-  "generatedAt": "2026-07-13T08:15:15.275Z",
+  "generatedAt": "2026-07-14T08:17:07.074Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
   },
   "stats": {
-    "total": 4,
-    "requested": 4
+    "total": 11,
+    "requested": 11
   },
   "items": [
+    {
+      "articleId": "hwjyxk",
+      "fingerprint": "oun6xw",
+      "summary": "El Ayuntamiento de Riba-roja de Túria ha informado que el número de desempleados en la localidad ha disminuido en casi 100 personas desde junio del año pasado. Esta reducción en la tasa de desempleo se enmarca en las iniciativas locales para fomentar el empleo y la formación en la zona.",
+      "generatedAt": "2026-07-14T08:16:47.082Z"
+    },
+    {
+      "articleId": "fr1840",
+      "fingerprint": "syu568",
+      "summary": "El Ayuntamiento de Riba-roja de Túria informa que el desempleo ha disminuido en cerca de 100 personas entre junio del año pasado y el actual. Además, las afiliaciones a la Seguridad Social han alcanzado un nuevo récord de 22.094.",
+      "generatedAt": "2026-07-14T08:16:49.748Z"
+    },
+    {
+      "articleId": "1qkqwdk",
+      "fingerprint": "3v6y6g",
+      "summary": "La Generalitat Valenciana ha autorizado una inversión de 23,6 millones de euros para la ampliación de la Estación Depuradora de Aguas Residuales (EDAR) de Setrece, ubicada en Riba-roja de Túria. Esta ampliación tiene como objetivo mejorar la capacidad de tratamiento de aguas residuales en la zona.",
+      "generatedAt": "2026-07-14T08:16:52.744Z"
+    },
+    {
+      "articleId": "mnfpps",
+      "fingerprint": "ejkdlc",
+      "summary": "La Generalitat ha anunciado una inversión de 23,6 millones de euros para la ampliación de la depuradora de Setrece, ubicada en Riba-roja de Túria. Esta obra tiene como objetivo mejorar la capacidad de tratamiento de aguas residuales en la zona, beneficiando así a la comunidad local.",
+      "generatedAt": "2026-07-14T08:16:55.597Z"
+    },
+    {
+      "articleId": "26cjmz",
+      "fingerprint": "gzvees",
+      "summary": "El Consell ha anunciado una inversión de 23,6 millones de euros para la ampliación de la depuradora de Riba-roja de Túria. Esta obra tiene como objetivo mejorar la capacidad de tratamiento de aguas residuales en la localidad, beneficiando así a la población y al medio ambiente.",
+      "generatedAt": "2026-07-14T08:16:58.424Z"
+    },
+    {
+      "articleId": "1m9xihc",
+      "fingerprint": "90okto",
+      "summary": "El Ayuntamiento ha anunciado la ampliación de la depuradora de Riba-roja de Túria, un proyecto que ha estado en espera durante diez años. La inversión destinada a esta obra asciende a 23,6 millones de euros, lo que permitirá mejorar la capacidad de tratamiento de aguas residuales en la localidad.",
+      "generatedAt": "2026-07-14T08:17:01.199Z"
+    },
+    {
+      "articleId": "1jxa9ng",
+      "fingerprint": "r7hnyw",
+      "summary": "El Consell ha anunciado una inversión de 23,6 millones de euros para la ampliación de la depuradora en Riba-roja de Túria. Esta obra tiene como objetivo mejorar la capacidad de tratamiento de aguas residuales en la localidad, beneficiando así a la población y al medio ambiente.",
+      "generatedAt": "2026-07-14T08:17:04.258Z"
+    },
+    {
+      "articleId": "1f13ysw",
+      "fingerprint": "1ia3a3o",
+      "summary": "El Consell ha asignado 23,6 millones de euros para la ampliación de la depuradora de Setrece en Riba-roja de Túria. Esta inversión busca mejorar la capacidad de tratamiento de aguas residuales en la localidad, lo que podría tener un impacto en la gestión ambiental de la zona.",
+      "generatedAt": "2026-07-14T08:17:07.070Z"
+    },
     {
       "articleId": "40rpxn",
       "fingerprint": "r5vqv8",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha activado una barrera de 20 cañones de agua como medida preventiva ante el riesgo de incendios debido a la ola de calor. Esta acción busca proteger las áreas vulnerables y mitigar posibles incendios en la localidad.",
-      "generatedAt": "2026-07-13T08:15:15.272Z"
+      "generatedAt": "2026-07-14T08:17:07.072Z"
     },
     {
       "articleId": "febeas",
       "fingerprint": "9khk0g",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha activado 20 cañones de agua en el Parc Fluvial. Esta medida tiene como objetivo proteger a las urbanizaciones cercanas de posibles incendios forestales.",
-      "generatedAt": "2026-07-13T08:15:15.273Z"
+      "generatedAt": "2026-07-14T08:17:07.073Z"
     },
     {
       "articleId": "gqfi7s",
       "fingerprint": "1kr12qz",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha activado 20 canones de agua en el Parque Fluvial con el objetivo de proteger las urbanizaciones cercanas. Esta medida busca prevenir posibles incendios y mejorar la seguridad en la zona.",
-      "generatedAt": "2026-07-13T08:15:15.274Z"
-    },
-    {
-      "articleId": "i93nqo",
-      "fingerprint": "pihqa0",
-      "summary": "El PSOE de Riba-roja de Túria ha criticado la convocatoria de un pleno extraordinario por parte del PP, celebrado 72 horas antes del pleno ordinario. Según la oposición, dicha convocatoria supondrá un coste aproximado de 4.000 euros para el Ayuntamiento. El asunto afecta a la organización y al gasto de la corporación municipal.",
-      "generatedAt": "2026-07-13T08:15:15.275Z"
+      "generatedAt": "2026-07-14T08:17:07.074Z"
     }
   ]
 }

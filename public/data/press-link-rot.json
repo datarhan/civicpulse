@@ -1,16 +1,96 @@
 {
-  "generatedAt": "2026-07-13T08:15:27.402Z",
+  "generatedAt": "2026-07-14T08:17:28.314Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
   "stats": {
-    "total": 4,
-    "alive": 4,
+    "total": 11,
+    "alive": 11,
     "dead": 0,
     "error": 0,
     "archived": 0
   },
   "items": [
+    {
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84704-riba-roja-redueix-latur-en-quasi-100-persones-desde-juny-del-passat-any.html",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Periòdic del Camp de Túria",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:10.283Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Ayuntamiento de Riba-roja de Túria",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:13.772Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNYnFVV1htLVdfWC12U0h6NjRCRGFYWHhQbTVkMGQ3djIzV0hxd0t4Q3dRaWRDT3ZuWlBlUC1IYXNXbGRNNjJ0NWxJWG1mbnRVSmRwSk9LQkhUaVNWWmpoTXhVeEVXNU9TSDJBLWh3M2ZhcF9zZ0R0dzg1a0JkS2owUG1vUWk3RENqM09UNEkzbk5xMmRIUGhGYmxwR2dZVU93WHcydzNmODhZdw?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Aguasresiduales",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:15.207Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQVFRnWlRKekJVM3pyQUZLN1hOYkpJTEd3NU1VdVYxNF9OQkpmNWVSc2VvcWhEQnlVa0hHUjZXSG1LcV9lTFJGSDQ2Y1lKMVZyUVRweWhLNms0V21KbkFQUXFGVDh0SWtBWkVFY2NhY1FqMHg4MWZKb1pjdXFnTGhFejlTNzhrS1pkRkZwYjl3cTRrSnd0UHdsYTRQM3pZaThYUUV0cG5NQWpKOXRTNGxLdUN4RGZqdC1nYVptNHVn?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "RETEMA",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:16.537Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQM3pNcER2RE8yX21oLU85YTZVOEJFZ3hLUm1OUFEtcFJwOHdrZWtyVFBZWDZDYm5GcldNaUNZY2E4aVFhVWVmUjBuWDJCc0piTjBQbjFiZmoxR1dITG1DM3BQYU9jSjA2U0xLdjhGeDF0WXVjanI2amhXdl9EUGVzc180RVAzb2tYS1p0WW44alpfbkE2U05vR2pRSm5meEtuTm03amIwSUdSNHVIWFZLUQ?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Valencia News",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:17.849Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "València Extra",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:19.081Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84660-el-consell-inverteix-236-milions-per-a-ampliar-la-depuradora-a-riba-roja.html",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Periòdic del Camp de Túria",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:20.621Z",
+      "error": null
+    },
+    {
+      "articleUrl": "https://news.google.com/rss/articles/CBMic0FVX3lxTE1QYl9rWWVFeUdNQU9Tek5fSXN5VWJQR1RLNF9zNjBzQ1NLTy1KQ25kVG8yRmpwRzhFTDFCUzhVU2hTY1E3OU9RYldRLVR0NU5SUjZfUXNvRXNwX2JHVGVnRXl4SnBjUGZfSXMwY25ya1F1NXc?oc=5",
+      "status": "alive",
+      "httpStatus": 200,
+      "articleSource": "Actualidad Valencia",
+      "archivedUrl": null,
+      "archivedAt": null,
+      "checkedAt": "2026-07-14T08:17:22.145Z",
+      "error": null
+    },
     {
       "articleUrl": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxQWEtNMmtPdEFpcDhLZVE4aXFDWVJjRW8xS21zMjFQamZUQ3VWZ3JXSGJUWF9PSV9Xc2ZYazMwTGlaVjg0cmROSE1heXV0QlBBY0QtczBjMjZEYTZfZGRjLUtSem9ESXdWamxLeVJ2VGRkNFBRRGtVeWFjaVJKNWc0Q3YtSVQ2TE9ESlk4dzNOSnpZeV9BSjhwcVBiOFk0Z0NKNngwMmc4TjVPa0x0bkVpSE9ncWplZGEyZ2Nwb01qdEg1a24zLTY4UkJhbEVVVTNhZzZlQk5vMmhuVHNNbHRaMw?oc=5",
       "status": "alive",
@@ -18,7 +98,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-13T08:15:23.052Z",
+      "checkedAt": "2026-07-14T08:17:23.637Z",
       "error": null
     },
     {
@@ -28,7 +108,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-13T08:15:24.187Z",
+      "checkedAt": "2026-07-14T08:17:27.150Z",
       "error": null
     },
     {
@@ -38,17 +118,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-13T08:15:26.144Z",
-      "error": null
-    },
-    {
-      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84575-el-psoe-de-riba-roja-critica-al-pp-per-convocar-un-ple-extraordinari-72-hores-abans-de-lordinari-que-costara-4-000-euros.html",
-      "status": "alive",
-      "httpStatus": 200,
-      "articleSource": "Periòdic del Camp de Túria",
-      "archivedUrl": null,
-      "archivedAt": null,
-      "checkedAt": "2026-07-13T08:15:27.201Z",
+      "checkedAt": "2026-07-14T08:17:28.113Z",
       "error": null
     }
   ]

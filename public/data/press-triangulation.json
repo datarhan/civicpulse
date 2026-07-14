@@ -1,6 +1,38 @@
 {
-  "generatedAt": "2026-07-13T08:15:15.823Z",
+  "generatedAt": "2026-07-14T08:17:07.785Z",
   "clusters": [
+    {
+      "clusterId": "1ia3a3o",
+      "articleIds": [
+        "1f13ysw",
+        "1jxa9ng",
+        "1qkqwdk",
+        "26cjmz",
+        "mnfpps"
+      ],
+      "outlets": [
+        "Actualidad Valencia",
+        "Aguasresiduales",
+        "Periòdic del Camp de Túria",
+        "RETEMA",
+        "Valencia News"
+      ],
+      "earliestDate": "2026-07-10T12:08:43.000Z",
+      "latestDate": "2026-07-13T10:21:41.000Z",
+      "amountDrift": {
+        "min": 23600000,
+        "max": 23600000,
+        "spread": 0,
+        "spreadPct": 0
+      },
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 5,
+        "promesa-repetida": 0
+      }
+    },
     {
       "clusterId": "1bo26tg",
       "articleIds": [
@@ -124,8 +156,8 @@
         "Ayuntamiento de Riba-roja de Túria",
         "Levante-EMV"
       ],
-      "earliestDate": "2026-07-01T12:21:18.000Z",
-      "latestDate": "2026-07-01T15:27:40.000Z",
+      "earliestDate": "2026-07-01T07:00:00.000Z",
+      "latestDate": "2026-07-01T12:21:18.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -158,7 +190,7 @@
     }
   ],
   "stats": {
-    "totalClusters": 7,
-    "triangulated3Plus": 2
+    "totalClusters": 8,
+    "triangulated3Plus": 3
   }
 }
