@@ -50,6 +50,26 @@ describe('scraper/tender-geo — matchContractsToZones', () => {
     expect(snap.zones.find((z) => z.slug === 'monte-alcedo')!.amount).toBe(100000)
   })
 
+  it('zone-locates "Residencial Reva" (sin artículo) onto urbanitzacio-la-reva', () => {
+    const snap = matchContractsToZones(
+      [
+        {
+          id: 'c-reva',
+          title: 'OBRAS acometida eléctrica ascensores Residencial Reva',
+          status: 'awarded',
+          finalAmount: 27265,
+          awardDate: '2025-08-05',
+          contractType: 'construction',
+          categoryTitle: 'construction',
+        },
+      ],
+      ZONES,
+      OPTS,
+    )
+    const a = snap.assignments.find((x) => x.id === 'c-reva')!
+    expect(a.zones).toEqual(['urbanitzacio-la-reva'])
+  })
+
   it('assigns a contract naming two zones to both, but counts it once in locatedAmount', () => {
     const snap = matchContractsToZones(
       [
