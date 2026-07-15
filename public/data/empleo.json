@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-14T06:37:41.697Z",
+  "generatedAt": "2026-07-15T06:44:07.432Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 65,
-    "openTotal": 65,
+    "total": 64,
+    "openTotal": 64,
     "inRibaRoja": 36,
-    "closingSoon": 29,
-    "withDetail": 65,
+    "closingSoon": 30,
+    "withDetail": 64,
     "byMonth": {
       "2026-07": 9,
       "2026-06": 20,
-      "2026-05": 32,
+      "2026-05": 31,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
@@ -4746,84 +4746,6 @@
         "salario": "1400 € brutos/mes 12 pagas",
         "funciones": "Carga de camiones y tareas de almacén.",
         "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2429",
-      "fo": 2429,
-      "codigo": "2026/00131",
-      "titulo": "Operario/a de limpieza con discapacidad",
-      "publishedAt": "2026-05-15",
-      "deadline": "2026-07-15",
-      "location": "",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2429",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00131"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de limpieza con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Experiencia mínima: al menos 1 año Certificado de discapacidad igual o superior al 33% Disponibilidad horaria Imprescindible disponer de vehículo propio"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno noche"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato temporal prorrogable"
-          },
-          {
-            "label": "Horario",
-            "value": "De lunes a domingo. Horario en función de las necesiades."
-          },
-          {
-            "label": "Salario",
-            "value": "1.400€ brutos/mes"
-          },
-          {
-            "label": "Funciones",
-            "value": "-Limpieza y desinfección de zonas comunes: terminales, pasillos, aseos, áreas de embarque y desembarque. -Gestión de residuos y reposición de material higiénico. -Uso adecuado de maquinaria y productos de limpieza específicos. -Cumplimiento de normas de seguridad e higiene establecidas en el recinto."
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Requisitos : Experiencia mínima: al menos 1 año Certificado de discapacidad igual o superior al 33% Disponibilidad horaria Imprescindible disponer de vehículo propio",
-        "jornada": "Completa Turnos: Turno noche",
-        "horario": "De lunes a domingo. Horario en función de las necesiades.",
-        "salario": "1.400€ brutos/mes",
-        "funciones": "-Limpieza y desinfección de zonas comunes: terminales, pasillos, aseos, áreas de embarque y desembarque. -Gestión de residuos y reposición de material higiénico. -Uso adecuado de maquinaria y productos de limpieza específicos. -Cumplimiento de normas de seguridad e higiene establecidas en el recinto.",
         "ocupaciones": []
       }
     },

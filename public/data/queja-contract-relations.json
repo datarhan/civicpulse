@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-14T06:38:46.300Z",
+  "generatedAt": "2026-07-15T06:45:04.257Z",
   "source": "queja-contract-relations engine v1 (deterministic)",
   "stats": {
     "frozen": false,
     "quejasScanned": 1,
-    "contractsScanned": 375,
+    "contractsScanned": 376,
     "tierA": 1,
     "tierB": 119,
     "reason": null
@@ -357,21 +357,6 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
-      "tenderId": "auto-ig973c",
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=kV65v9YplwI4NavIWzMcHA%3D%3D",
       "tenderId": "4486293",
       "via": "deterministic",
@@ -434,6 +419,21 @@
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
       "tenderId": "4559613",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
+      "tenderId": "auto-ig973c",
       "via": "deterministic",
       "signals": {
         "department": {
@@ -973,21 +973,6 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=gP2RnDPFAp07u6%2B%2FR7DUoA%3D%3D",
-      "tenderId": "4599362",
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2FkoZxcCnpDnSoTX3z%2F7wA%3D%3D",
       "tenderId": "2868019",
       "via": "deterministic",
@@ -1078,6 +1063,21 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=gP2RnDPFAp07u6%2B%2FR7DUoA%3D%3D",
+      "tenderId": "4599362",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=29qX6XFa9KQQK2TEfXGy%2BA%3D%3D",
       "tenderId": "104780",
       "via": "deterministic",
@@ -1153,6 +1153,21 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
+      "tenderId": "3859835",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rqI1R%2F3Wu1Iuf4aBO%2BvQlQ%3D%3D",
       "tenderId": "3725692",
       "via": "deterministic",
@@ -1185,21 +1200,6 @@
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H6cBPUupEL%2Bmq21uxhbaVQ%3D%3D",
       "tenderId": "3733354",
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
-      "tenderId": "3859835",
       "via": "deterministic",
       "signals": {
         "department": {
@@ -1541,21 +1541,6 @@
     },
     {
       "quejaId": "Q-KJY6XSVG",
-      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9ZDftrijnUGiEJrVRqloyA%3D%3D",
-      "tenderId": "3733477",
-      "via": "deterministic",
-      "signals": {
-        "department": {
-          "slug": "urbanismo"
-        }
-      },
-      "tier": "B",
-      "score": 0.55,
-      "relationLabel": "misma materia",
-      "requiresHumanApproval": true
-    },
-    {
-      "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fzebv5hGIqaiEJrVRqloyA%3D%3D",
       "tenderId": "1524361",
       "via": "deterministic",
@@ -1867,6 +1852,21 @@
       "quejaId": "Q-KJY6XSVG",
       "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HH80l6iyhM%2Brz3GQd5r6SQ%3D%3D",
       "tenderId": "2520567",
+      "via": "deterministic",
+      "signals": {
+        "department": {
+          "slug": "urbanismo"
+        }
+      },
+      "tier": "B",
+      "score": 0.55,
+      "relationLabel": "misma materia",
+      "requiresHumanApproval": true
+    },
+    {
+      "quejaId": "Q-KJY6XSVG",
+      "tenderPermalink": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=9ZDftrijnUGiEJrVRqloyA%3D%3D",
+      "tenderId": "3733477",
       "via": "deterministic",
       "signals": {
         "department": {
