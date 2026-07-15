@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T08:17:07.785Z",
+  "generatedAt": "2026-07-15T08:55:58.191Z",
   "clusters": [
     {
       "clusterId": "1ia3a3o",
@@ -55,31 +55,6 @@
         "parcial": 0,
         "contradicho": 0,
         "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "667p4g",
-      "articleIds": [
-        "1rnqaoc",
-        "40rpxn",
-        "febeas",
-        "suulkc"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "El Periódico de Aquí",
-        "Levante-EMV",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-07-08T09:28:57.000Z",
-      "latestDate": "2026-07-09T08:28:11.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 2,
         "promesa-repetida": 0
       }
     },
@@ -187,10 +162,52 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       }
+    },
+    {
+      "clusterId": "667p4g",
+      "articleIds": [
+        "40rpxn",
+        "suulkc"
+      ],
+      "outlets": [
+        "El Periódico de Aquí",
+        "Levante-EMV"
+      ],
+      "earliestDate": "2026-07-08T12:07:28.000Z",
+      "latestDate": "2026-07-09T08:28:11.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      }
+    },
+    {
+      "clusterId": "7ufsj8",
+      "articleIds": [
+        "az9dgh",
+        "rsig4c"
+      ],
+      "outlets": [
+        "Ayuntamiento de Riba-roja de Túria",
+        "Valencia Plaza"
+      ],
+      "earliestDate": "2026-07-14T11:18:16.000Z",
+      "latestDate": "2026-07-14T12:16:23.000Z",
+      "amountDrift": null,
+      "verdictMix": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 1,
+        "promesa-repetida": 0
+      }
     }
   ],
   "stats": {
-    "totalClusters": 8,
-    "triangulated3Plus": 3
+    "totalClusters": 9,
+    "triangulated3Plus": 2
   }
 }

@@ -1,20 +1,105 @@
 {
-  "generatedAt": "2026-07-14T08:16:41.749Z",
+  "generatedAt": "2026-07-15T08:15:53.793Z",
   "source": {
     "description": "Press claims verified against municipal data",
     "contract": "src/scraper/press-verifier.ts"
   },
   "stats": {
-    "total": 12,
+    "total": 13,
     "byVerdict": {
       "verificado": 0,
       "parcial": 0,
       "contradicho": 0,
-      "sin-datos": 12,
+      "sin-datos": 13,
       "promesa-repetida": 0
     }
   },
   "items": [
+    {
+      "claim": {
+        "id": "phv8v6-0-num",
+        "articleId": "phv8v6",
+        "articleFingerprint": "1mrrwk8",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOVElVSXJzeV9sdXNkOWhqUGtEV09pMmJ5Rjh3OWJmMXFzZmNPRHdVYjJMbjM0SEQ0SEl6R3M1a1BJWUx1aUxlZ0FBQVZHVHNiRjlXNkt0Z3pqaVNhaE9mY0p5SVZ4Rm9KWndjOXdoaHAySWhPcl9RcTJuS2ZWcjNJUXlVVHY2SThCalRxODhISW5peTdVU3VNSVhIYlZfbFBIR0xnbjlaSnRGc2FRYVRjdExlbklHRmhlTGRieTFiVllkcEJ2MnNrY0QtVGxxZw?oc=5",
+        "articleDate": "2026-07-15T06:30:40.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "un gran pulmón verde de 5 hectáreas",
+        "context": "El proyecto Pacadar 360 tiene como objetivo transformar Riba-roja de Túria con un gran pulmón verde de 5 hectáreas.",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 5,
+          "countUnit": "hectáreas"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación sobre el tamaño del pulmón verde es cuantificable y se puede verificar.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "phv8v6-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOVElVSXJzeV9sdXNkOWhqUGtEV09pMmJ5Rjh3OWJmMXFzZmNPRHdVYjJMbjM0SEQ0SEl6R3M1a1BJWUx1aUxlZ0FBQVZHVHNiRjlXNkt0Z3pqaVNhaE9mY0p5SVZ4Rm9KWndjOXdoaHAySWhPcl9RcTJuS2ZWcjNJUXlVVHY2SThCalRxODhISW5peTdVU3VNSVhIYlZfbFBIR0xnbjlaSnRGc2FRYVRjdExlbklHRmhlTGRieTFiVllkcEJ2MnNrY0QtVGxxZw?oc=5",
+        "articleSource": "El Periódico de Aquí",
+        "articleSourceHost": "elperiodicodeaqui.com",
+        "articleFingerprint": "1mrrwk8"
+      }
+    },
+    {
+      "claim": {
+        "id": "rsig4c-0-num",
+        "articleId": "rsig4c",
+        "articleFingerprint": "7ufsj8",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
+        "articleDate": "2026-07-14T12:16:23.000Z",
+        "segmentIndex": 0,
+        "segmentKind": "title",
+        "type": "afirmacion_numerica",
+        "attributedSource": "outlet",
+        "verbatim": "un gran parque urbano de 5 hectáreas",
+        "context": "El 'Pacadar 360' de Riba-roja: un gran parque urbano de 5 hectáreas adaptado al nuevo contexto climático",
+        "topic": "medio-ambiente",
+        "entities": {
+          "count": 5,
+          "countUnit": "hectáreas",
+          "referencedEntity": "Pacadar 360"
+        },
+        "confidence": 0.9,
+        "reasoning": "La afirmación sobre el tamaño del parque es cuantificable y se puede verificar.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rsig4c-0-num",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget"
+        ],
+        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
+        "articleSource": "Valencia Plaza",
+        "articleSourceHost": "valenciaplaza.com",
+        "articleFingerprint": "7ufsj8"
+      }
+    },
     {
       "claim": {
         "id": "hwjyxk-0-num",
@@ -446,50 +531,6 @@
         "articleSource": "El Periódico de Aquí",
         "articleSourceHost": "elperiodicodeaqui.com",
         "articleFingerprint": "r5vqv8"
-      }
-    },
-    {
-      "claim": {
-        "id": "febeas-0-num",
-        "articleId": "febeas",
-        "articleFingerprint": "9khk0g",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
-        "articleDate": "2026-07-08T09:28:57.000Z",
-        "segmentIndex": 0,
-        "segmentKind": "title",
-        "type": "afirmacion_numerica",
-        "attributedSource": "outlet",
-        "verbatim": "Riba-roja pone en marcha los 20 cañones de agua en el Parc Fluvial",
-        "context": "El Ayuntamiento de Riba-roja ha implementado una nueva medida de seguridad en el Parc Fluvial.",
-        "topic": "seguridad",
-        "entities": {
-          "count": 20,
-          "countUnit": "cañones",
-          "date": "2026-07-08",
-          "referencedEntity": "Parc Fluvial"
-        },
-        "confidence": 0.9,
-        "reasoning": "El número de cañones de agua es un dato verificable y específico.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "febeas-0-num",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget"
-        ],
-        "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
-        "articleSource": "Valencia Plaza",
-        "articleSourceHost": "valenciaplaza.com",
-        "articleFingerprint": "9khk0g"
       }
     },
     {

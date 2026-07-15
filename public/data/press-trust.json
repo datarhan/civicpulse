@@ -1,7 +1,92 @@
 {
-  "generatedAt": "2026-07-14T08:17:07.783Z",
+  "generatedAt": "2026-07-15T08:55:58.190Z",
   "windowDays": 30,
   "articles": [
+    {
+      "articleId": "phv8v6",
+      "articleFingerprint": "1mrrwk8",
+      "outlet": "El Periódico de Aquí",
+      "outletHost": "elperiodicodeaqui.com",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxOVElVSXJzeV9sdXNkOWhqUGtEV09pMmJ5Rjh3OWJmMXFzZmNPRHdVYjJMbjM0SEQ0SEl6R3M1a1BJWUx1aUxlZ0FBQVZHVHNiRjlXNkt0Z3pqaVNhaE9mY0p5SVZ4Rm9KWndjOXdoaHAySWhPcl9RcTJuS2ZWcjNJUXlVVHY2SThCalRxODhISW5peTdVU3VNSVhIYlZfbFBIR0xnbjlaSnRGc2FRYVRjdExlbklHRmhlTGRieTFiVllkcEJ2MnNrY0QtVGxxZw?oc=5",
+      "date": "2026-07-15T06:30:40.000Z",
+      "indicators": {
+        "localCoverage": false,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": true,
+        "opinionFraction": 0
+      },
+      "score": 3
+    },
+    {
+      "articleId": "bnoqgl",
+      "articleFingerprint": "g4pzc0",
+      "outlet": "Periòdic del Camp de Túria",
+      "outletHost": "infoturia.com",
+      "url": "https://www.infoturia.com/riba-roja-de-turia/84747-riba-roja-obri-els-refugis-climatics-davant-lonada-de-calor.html",
+      "date": "2026-07-14T16:44:40.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "rsig4c",
+      "articleFingerprint": "7ufsj8",
+      "outlet": "Valencia Plaza",
+      "outletHost": "valenciaplaza.com",
+      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
+      "date": "2026-07-14T12:16:23.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": true,
+        "opinionFraction": 0
+      },
+      "score": 4
+    },
+    {
+      "articleId": "az9dgh",
+      "articleFingerprint": "z5cvi0",
+      "outlet": "Ayuntamiento de Riba-roja de Túria",
+      "outletHost": "ribarroja.es",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-presenta-en-madrid-el-guardian-y-%E2%80%98pacadar-360%E2%80%99%2C-el-gran-parque-urbano-de-5-hect%C3%A1reas-resiliente-y-adaptado-al-nuevo-contexto-clim%C3%A1tico",
+      "date": "2026-07-14T11:18:16.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
+    {
+      "articleId": "kdfnm4",
+      "articleFingerprint": "1b8xpa4",
+      "outlet": "Levante-EMV",
+      "outletHost": "levante-emv.com",
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxQajlQN2RXaDV0RFZpSW8tQmRGQmRhR3Q3bi1mcWNjeHBoeHkxb2VjMnRiM3UyTDl6MEZzRGtBX3hsQUVHNnNOZTJvT3pZbHFvTnljZlNGUG1jTUFaZUxzLUFnc2NnZ2JZUnVST3dKMUxiQktCVk1sajd4eXB6Nk1pdmhRQWFDbUloRHJ2bl9YQlZlSGNDMFZkSWw1Tmc3LU0xV1pKNWxBelNwRnpaMmU0bC10Mk8wZXlmMzBCdTZlQkRXOWlsdmFQOW9iWHQ4ZmdqcEE4cUFrcXZGM3h0d181Vm9KZ3ZzUdIB6wFBVV95cUxPSHZ3WUdXT1ZEVDBXSHg3T0htZ3EybVZHbWE5eU5oQ1dTbXhDb2R5anJSR0NiNFdUNERuN1p2YUliSWJpSkh6c09oOFY1MUVFZVYzWlR0WG5pTGlSWjlITWN6a2sxLUNzYTNFYVM0MjNKUWpJbklBbHc1QWk1V1p0UXMybTQwV1owd3psOWZjWjZQODE2dDdUUC1sWVF0VGZHYVd1M3Nrc3RFem9QVlRHb2tpX0JfNTh5aTY1NmlpM2wydWpZOUxUdDh0VWloa2luZ050VW4tclhpNGxTZmlvTUw0ZmtyX3A0OEln?oc=5",
+      "date": "2026-07-14T09:24:48.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
+    },
     {
       "articleId": "1xngaeb",
       "articleFingerprint": "xpf2bo",
@@ -120,6 +205,23 @@
         "opinionFraction": 0
       },
       "score": 3
+    },
+    {
+      "articleId": "8ftx3g",
+      "articleFingerprint": "iraa52",
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOOF9oZXd2Yjh0dEg2ZWpVSXRDcWhSNnFNYTlPMHhpZ3dCekpUcHhZMGFtc3ROVHNVOHZnLTBZb3VIQWlBRHNLRlJ3V0dmRlJSMXJ0TEZHYzZaM3VIdm9nNVI1cmRPemRRZ1BIcERQZnZPcmM2TDduMjVla0hPTzBPNzVVTThlb29LWWFBV2Nlclo2ZFNQbk9Jb2lsbjR6dENWeVVBMTNhY3Z0b3fSAbABQVVfeXFMTVQxNWJnemVXOS1QZUY2SFZHTnRhTEtyaHFZS0RydVJMdTlyZk9XODRndmFzNV9zaTVFSE13dHRwTVpZc0RhS3ViWmVsS0xHZDhLMVhZZWZRbWZYRlZjNndxSGhldkpDdG9VMk9EMHRwVG1ZS2Y1dUg1VXNvQzJvTm12TU4tVXJsM0o3TlZaM3lXZkFobDFWdU1STzlESm4xZnRKLTlLU215N0czSHhIbUs?oc=5",
+      "date": "2026-07-12T21:50:49.000Z",
+      "indicators": {
+        "localCoverage": true,
+        "datedArticle": true,
+        "municipalSourceMatch": false,
+        "corroboratedAcrossOutlets": false,
+        "factualClaimsPresent": false,
+        "opinionFraction": 0
+      },
+      "score": 2
     },
     {
       "articleId": "26cjmz",
@@ -273,23 +375,6 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "febeas",
-      "articleFingerprint": "9khk0g",
-      "outlet": "Valencia Plaza",
-      "outletHost": "valenciaplaza.com",
-      "url": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxPVXRLcnZocVE2VEgzeF9hVVhwMDZEelRzcUtjeGlacHg0MWRhUHd3NDMwa28yaVpvZGVwT3VPOXFfN2ljcnYzNW5zT2lXMUkweTlYR1AtYld4SUVKR2JJTlFURWdzWDgxbXVEekt0SDZmdUZQZldSOGhkM29EM1dGSUZZR0Frb1VIdFFNYUYtRXozVUpOMzRfYmppcWNpV1M3QUJ1RWlJUFNETmdaZDMyRzFod2M3RmJCU2doT190cmdNWVpoNkhlTDB6bmxFVTdOWDgxekkxektJYVFuOW8teHM3WjdERGdhaUV0SWNnM1U?oc=5",
-      "date": "2026-07-08T09:28:57.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": true,
-        "opinionFraction": 0
-      },
-      "score": 4
     },
     {
       "articleId": "gqfi7s",
@@ -870,23 +955,6 @@
       "score": 2
     },
     {
-      "articleId": "mc2sl4",
-      "articleFingerprint": "7v68y8",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/84456-riba-roja-patrimoni-naturalesa-i-gastronomia-per-a-atraure-al-turista-de-proximitat.html",
-      "date": "2026-06-29T12:23:09.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
       "articleId": "olul7k",
       "articleFingerprint": "17s9le4",
       "outlet": "Ayuntamiento de Riba-roja de Túria",
@@ -927,23 +995,6 @@
       "outletHost": "levante-emv.com",
       "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPY2hhanVEWFJIeUYzQ1c1QTJna2VsV21VSW92VXAtUENLOEp5dkRsWVlpejRVdHZBVjJvRWNrSWMzWWtrT01yM04tMm5KemJlZHJQTTN2aXBUOWVLc3BfMm9rdktrSUw2N1dZazV6N1BDdzJnd1g4SGUxY0JlQWVPUjRSSGJDVnFjS3ZwbEN3c0RNOS1Jc1NPMjY3Tm1FeWFrTlVQVW00eXFhVkM4dWdSdUJEaEJObGJ0UTBLWFNVbmxCSVhMMXpRX1B6amVkM2gxQjJV0gHYAUFVX3lxTE9Eb2dlMmNTVmhSNTUtb292V01XUUtJNUJ1ODJwZGxZa0tjQ0xlNGQxWlBFOW5MNkppVEN4QWtGM2s5dTF0VWlMWW80MXdrMWtXdW00emZpZGJjRU9McmpHYXVQaXctYk5BejJ0SzR4aHEzWjBLM2xMZ2RVZEk3azFYV0NrSkV6Z0NUa1g4bWg5ZDhEVDJUc3E4WjVrVFRrTjRzOF9sMTl6ZHQ0OWlRbkRTWmx4UEsyckJrZnRSQjB1N0sxZGpiYlk1SW8wcFp0OXoxdFhqcDVIZw?oc=5",
       "date": "2026-06-29T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "115eif4",
-      "articleFingerprint": "1yge4u0",
-      "outlet": "Periòdic del Camp de Túria",
-      "outletHost": "infoturia.com",
-      "url": "https://www.infoturia.com/riba-roja-de-turia/84430-riba-roja-redueix-el-nombre-daturats-en-1-100-persones.html",
-      "date": "2026-06-26T15:49:55.000Z",
       "indicators": {
         "localCoverage": true,
         "datedArticle": true,
@@ -1276,64 +1327,13 @@
         "opinionFraction": 0
       },
       "score": 2
-    },
-    {
-      "articleId": "2yha68",
-      "articleFingerprint": "1hn4rrd",
-      "outlet": "rfet.es",
-      "outletHost": "rfet.es",
-      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxPazJhZWw2NDlpVTBjRzI2Q3haT0o4MG9rU3ZWelgyc19DZFA3TF8wN3A4LTJRQTVvRTN0LVZ3M3NXbEtiNDBKYU9oN1pZRml5LWg2eV95TS1oOXJxNzBiNy13S1V5LVloVFlpZEkzUGV2SFY3ajNkT3lrU1FYUm16N0dOellydER6Xzh1LWs2UzRLYUV6a1V6SEtqWHlrQ2RvM3c?oc=5",
-      "date": "2026-06-15T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": false,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 1
-    },
-    {
-      "articleId": "1pg30ew",
-      "articleFingerprint": "48r8pk",
-      "outlet": "Levante-EMV",
-      "outletHost": "levante-emv.com",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxNWjhVdkgtOFFBbUxBay15ZWhoeDZ6dXkteXJxS2NTck0wVExjM1FrUDFvb3diVXVhbjFjNnpqWlQ0bFFIRWFaOUFOUG55YmFxdElRblBPY0NMOUxQblZReVdzTHc4MzlPS0tQbG5QYXM0UE04MGJfQ1JXREdlbklVVmhDbnRubnl6YVR6bnJ0RWVHejN4WjNJV1hTRXlHRWN3U0pQRjEtZmY3OU9wZ1Jvc0FjT2tUMlJPWVFMTlhhM0x6QVdxelhBNW1oQm_SAdIBQVVfeXFMT2hLMFNSdlVKeGY0SXQ4dDMzRjFFYnEweFl2Q1dTeG56LUlpajI3V0RfTkN6cTZsSS1OT19Wa3hrNkdDRWpyUnFKVXFMcnAxMUhpMlpmNDh6WnRlcVFIQjZQZnNNaVhMVm9qTzViVjJHVkRMdXUxUU9NYXBEaGpLbVFOMlBGT2IyQTlWcFZwOHRHOXFWc0tfMkhCR21odzFRY2kwV25Nb1I4MS1KUFZIV1BWWXcxVWwwRi1yWmdnVFNaQm8yQTNFWkJaMTg2QWNvQ2Vn?oc=5",
-      "date": "2026-06-15T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
-    },
-    {
-      "articleId": "xurjku",
-      "articleFingerprint": "qrphcg",
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNUGNTY3hQa05YcDR3a0EwUWkwRTJISHQxeDhHM2FyNFlSUmMtQ1JpVENBUVdGN2Q4OTVfbUFaLXFoa3R3NGRmR1FJcm1MYllYblpVTmlHSDdBeU5ncHNja1V6T2ppcWh3SGdZZmxTcGdfOEpTX24xcXVUT1h5OXNqWjB2SW1GdFR6bEM4OUtmWWVIaG5BcFJxa1ozckllTUtRZVQ4eTQ5OWMwelFwWDBlXzc0blFZVFNjRV9ydtIBwgFBVV95cUxOcVRsbkFGWWFaaVlwQWZUSldTU0NCRlp6Nl9PYVBMN3ExeC1ReXE1ZEpmazEzVW1VY3draEVPa2p2OW9JaXdEMGZUNnpweUdKZ3QzU0xwQ0NROXNkaXFXZl9kcW1COEhqVGNoSlVoM3ZOZTMtVjhFNThMSl9GTXlTcUZqYlNoM25aeF9jVktFM2ltd2cxeW1VOXRtTkJFRXkxclBaT2lrOXNTOVg2SmZCNkJwMmxyWmhzcVJYNnZ4eUpiZw?oc=5",
-      "date": "2026-06-15T07:00:00.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 31,
+      "articleCount": 32,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1363,7 +1363,7 @@
     {
       "outlet": "Periòdic del Camp de Túria",
       "outletHost": "infoturia.com",
-      "articleCount": 10,
+      "articleCount": 9,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1371,37 +1371,22 @@
         "sin-datos": 3,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2.6,
+      "meanTrustScore": 2.67,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
     {
-      "outlet": "Las Provincias",
-      "outletHost": "lasprovincias.es",
-      "articleCount": 4,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 2,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
       "outlet": "El Periódico de Aquí",
       "outletHost": "elperiodicodeaqui.com",
-      "articleCount": 4,
+      "articleCount": 5,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 2,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 1.5,
+      "meanTrustScore": 1.8,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1419,6 +1404,21 @@
       "meanTrustScore": 2.5,
       "verifiedRatio": 0,
       "contradictedRatio": 0
+    },
+    {
+      "outlet": "Las Provincias",
+      "outletHost": "lasprovincias.es",
+      "articleCount": 4,
+      "verdictCounts": {
+        "verificado": 0,
+        "parcial": 0,
+        "contradicho": 0,
+        "sin-datos": 0,
+        "promesa-repetida": 0
+      },
+      "meanTrustScore": 2,
+      "verifiedRatio": null,
+      "contradictedRatio": null
     },
     {
       "outlet": "Actualidad Valencia",
@@ -1528,21 +1528,6 @@
     {
       "outlet": "Valenciabonita",
       "outletHost": "valenciabonita.es",
-      "articleCount": 1,
-      "verdictCounts": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      },
-      "meanTrustScore": 1,
-      "verifiedRatio": null,
-      "contradictedRatio": null
-    },
-    {
-      "outlet": "rfet.es",
-      "outletHost": "rfet.es",
       "articleCount": 1,
       "verdictCounts": {
         "verificado": 0,
