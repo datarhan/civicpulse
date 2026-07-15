@@ -35,6 +35,8 @@ const Cambios = lazy(() => import('./pages/Cambios'))
 const Nosotros = lazy(() => import('./pages/Nosotros'))
 const About = lazy(() => import('./pages/About'))
 const ReconstruccionDana = lazy(() => import('./pages/reportajes/ReconstruccionDana'))
+// BORRADOR local (no committeado): reportaje inteligencia turística — ver .git/info/exclude
+const InteligenciaTuristica = lazy(() => import('./pages/reportajes/InteligenciaTuristica'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
 // is gated below by `import.meta.env.MODE !== 'production'`. Production
@@ -138,6 +140,10 @@ function InnerShell({ onOpenCmdK }) {
               <Route path="/about" element={<About />} />
               {/* Long-form data reportaje — unlisted (not in NAV) until right-of-reply is served. */}
               <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
+              <Route
+                path="/reportajes/inteligencia-turistica"
+                element={<InteligenciaTuristica />}
+              />
               {/* English engineering blog post — unlisted (not in NAV), canonical home for HN/civic-tech. */}
               <Route path="/blog/building-civicpulse-with-ai" element={<BuildingCivicPulse />} />
               <Route path="/metodologia" element={<Metodologia />} />

@@ -1,0 +1,505 @@
+{
+  "generatedAt": "2026-07-15T12:00:00.000Z",
+  "meta": {
+    "slug": "inteligencia-turistica",
+    "seccion": "Reportaje · Dinero público",
+    "titulo": "Dos millones para el «destino inteligente»: qué compró Riba-roja con los fondos europeos de turismo",
+    "subtitulo": "El Ayuntamiento celebra una «innovadora plataforma» que analiza el comportamiento de los visitantes. El expediente de contratación permite reconstruir qué se compró exactamente, a quién, con qué calendario — y qué queda para el municipio cuando los contratos terminan.",
+    "estado": "publicado",
+    "publicadoEl": "15 de julio de 2026",
+    "fechaDatos": "15 de julio de 2026"
+  },
+  "kpis": [
+    {
+      "n": "2,11 M€",
+      "l": "Plan de Sostenibilidad Turística 2022 · 100 % Next Generation EU · hasta 16 actuaciones"
+    },
+    {
+      "n": "51.787 €",
+      "l": "los dos contratos de «inteligencia turística» (sin IVA), celebrados en la nota municipal"
+    },
+    {
+      "n": "≈1,56 M€",
+      "l": "del plan localizado en el registro de contratación (sin IVA) — ≈1,89 M€ con IVA"
+    },
+    {
+      "n": "jun 2026",
+      "l": "fecha límite europea (Hito 221 del PRTR) que marcó todo el calendario"
+    }
+  ],
+  "claims": [
+    "«El Ayuntamiento y Movea Consulting culminan un proyecto pionero financiado con fondos Next Generation EU»",
+    "«una plataforma tecnológica avanzada capaz de analizar el comportamiento de los visitantes del municipio mediante datos anonimizados de movilidad turística y métricas procedentes de redes sociales»",
+    "«una visión sin precedentes sobre cómo, cuándo y desde dónde llegan los visitantes a Riba-roja de Túria»",
+    "«identificar perfiles de visitantes, conocer su procedencia geográfica, analizar la duración de las estancias, estudiar los patrones de movilidad»",
+    "«cuadros de mando interactivos, mapas dinámicos, indicadores estratégicos y sistemas de generación automática de informes»",
+    "«Riba-roja de Túria se sitúa entre los municipios que están incorporando herramientas avanzadas de inteligencia turística»"
+  ],
+  "claimsOmitido": "La nota no menciona el coste de la actuación (31.339 €, IVA incluido), no enlaza a la plataforma ni a ningún dato resultante, y no contiene declaraciones atribuidas a ningún cargo con nombre y apellidos.",
+  "plan": {
+    "total": "2.112.907,99 €",
+    "convocatoria": "II Convocatoria Extraordinaria de Planes de Sostenibilidad Turística en Destino 2022 (Plan de Recuperación, Transformación y Resiliencia)",
+    "objetivo": "conectar el río Túria, el casco antiguo y los principales recursos patrimoniales a través del Barranc dels Moros",
+    "actuaciones": "14–16 actuaciones según la comunicación municipal",
+    "deadline": "Hito 221 del PRTR: finalización de todos los proyectos en el segundo trimestre de 2026"
+  },
+  "cluster": [
+    {
+      "ano": "2021",
+      "objeto": "Plan Director de Destino Turístico Inteligente (antecedente, pre-PSTD)",
+      "empresa": "Sien Planificación Inteligente S.L.",
+      "importe": 14650,
+      "licitadores": 1,
+      "proc": "menor",
+      "pstd": false
+    },
+    {
+      "ano": "2024",
+      "objeto": "SMART OFFICE del PSTD (oficina técnica del plan)",
+      "empresa": "Sien Planificación Inteligente S.L.",
+      "importe": 64960,
+      "licitadores": 1,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2024",
+      "objeto": "Gerencia del PSTD",
+      "empresa": "Auren Consultores SP SPL",
+      "importe": 45250,
+      "licitadores": 4,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2024",
+      "objeto": "Gamificación · cultura y río Túria",
+      "empresa": "CM Plastik",
+      "importe": 14403,
+      "licitadores": 1,
+      "proc": "menor",
+      "pstd": true
+    },
+    {
+      "ano": "2024",
+      "objeto": "Obras: Barranc dels Moros como itinerario turístico y peatonal, Fase I (2 lotes)",
+      "empresa": "BECSA, S.A.",
+      "importe": 745498,
+      "licitadores": 2,
+      "proc": "abierto simpl.",
+      "pstd": true
+    },
+    {
+      "ano": "2025",
+      "objeto": "Dirección de obra + coordinación de seguridad, obras Barranc dels Moros",
+      "empresa": "Vetges Tu i Mediterrània SLP",
+      "importe": 24750,
+      "licitadores": 1,
+      "proc": "2 menores",
+      "pstd": true
+    },
+    {
+      "ano": "2025",
+      "objeto": "Sistema de realidad aumentada",
+      "empresa": "AR Vision 2049, S.L.",
+      "importe": 40455,
+      "licitadores": 4,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2025",
+      "objeto": "Panel de Inteligencia de datos turísticos (ctto. 97/2025)",
+      "empresa": "Deepsense S.L.",
+      "importe": 25887,
+      "licitadores": 6,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2025",
+      "objeto": "Informes de movilidad · perfil y comportamiento de la demanda (ctto. 101/2025)",
+      "empresa": "Movea Consulting Mobility S.L.",
+      "importe": 25900,
+      "licitadores": 2,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2025",
+      "objeto": "Campañas de promoción turística segmentadas",
+      "empresa": "Autoritas Consulting S.A.",
+      "importe": 26000,
+      "licitadores": 1,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2025",
+      "objeto": "Sensores de conteo de personas · Parque Natural del Túria",
+      "empresa": "Gimeno Digital Technologies S.L.",
+      "importe": 61050,
+      "licitadores": 6,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2026",
+      "objeto": "Suministro para accesibilidad de los yacimientos arqueológicos",
+      "empresa": "Puntodis S.L.",
+      "importe": 75861,
+      "licitadores": 1,
+      "proc": "abierto",
+      "pstd": true
+    },
+    {
+      "ano": "2026",
+      "objeto": "Obras: pérgolas con vegetación en el itinerario del Barranc dels Moros",
+      "empresa": "Nerco Infraestructuras, S.L.",
+      "importe": 131336,
+      "licitadores": 1,
+      "proc": "abierto simpl.",
+      "pstd": true,
+      "nota": "adjudicado por el 100 % del presupuesto base — sin baja"
+    },
+    {
+      "ano": "2026",
+      "objeto": "Obras: mejora del carril bici y refugios climáticos",
+      "empresa": "Obra Civil y Edificación Escrimar S.L.L.",
+      "importe": 244790,
+      "licitadores": 6,
+      "proc": "abierto simpl.",
+      "pstd": true
+    },
+    {
+      "ano": "2026",
+      "objeto": "Asesoramiento implantación modelo DTI (32 días, al cierre del plan)",
+      "empresa": "SEGITTUR (sociedad estatal)",
+      "importe": 14738,
+      "licitadores": 1,
+      "proc": "menor",
+      "pstd": true
+    },
+    {
+      "ano": "2026",
+      "objeto": "Estudio de Repercusiones del PSTD (evaluación del plan)",
+      "empresa": "Sien Planificación Inteligente S.L.",
+      "importe": 14100,
+      "licitadores": 2,
+      "proc": "menor",
+      "pstd": true
+    },
+    {
+      "ano": "2026",
+      "objeto": "Accesibilidad universal en patrimonio y turismo (proyecto)",
+      "empresa": "Horizontes Accesibles S.L.",
+      "importe": 6612,
+      "licitadores": 1,
+      "proc": "menor",
+      "pstd": true
+    }
+  ],
+  "clusterNota": "Importes de adjudicación sin IVA (registro Gobierto/PLACSP del Ayuntamiento, 15-jul-2026). La tabla recoge los contratos cuyo objeto cita el PSTD o corresponde a una actuación identificada del plan. Suman ≈1,56 M€ sin IVA (≈1,89 M€ con IVA) de los 2,11 M€ del plan; la prensa local sitúa además en licitación un sistema de gestión inteligente de residuos (~200.000 €). La pérgola del Barranc se adjudicó por el 100 % del presupuesto base, sin baja, con una única oferta.",
+  "panel": {
+    "expediente": "97/2025",
+    "objeto": "Desarrollo e implantación de un Panel de Inteligencia de datos turísticos (actuación nº 11 del PSTD, eje de Transición digital)",
+    "base": "45.454,55 € sin IVA (55.000 € con IVA)",
+    "criterios": [
+      {
+        "c": "Propuesta técnica (juicio de valor, sobre B)",
+        "p": 49
+      },
+      {
+        "c": "Precio (fórmula)",
+        "p": 40
+      },
+      {
+        "c": "Equipo de trabajo (fórmula)",
+        "p": 7
+      },
+      {
+        "c": "Mejoras (fórmula)",
+        "p": 4
+      }
+    ],
+    "criteriosNota": "49 de 100 puntos dependían de un juicio de valor: el máximo posible sin activar el comité de expertos que la ley exige cuando los criterios subjetivos superan a los automáticos (art. 146.2.a LCSP).",
+    "ofertas": [
+      {
+        "empresa": "Deepsense, S.L.",
+        "precio": "31.323,70 €",
+        "sobreB": "35,75",
+        "sobreC": "51,00",
+        "total": "86,75",
+        "resultado": "adjudicataria"
+      },
+      {
+        "empresa": "UTE Doymo – Belerofontech, S.L.",
+        "precio": "36.300,00 €",
+        "sobreB": "27,75",
+        "sobreC": "42,32",
+        "total": "70,07",
+        "resultado": "2ª"
+      },
+      {
+        "empresa": "Gimeno Digital Technologies, S.L.",
+        "precio": "49.329,39 €",
+        "sobreB": "40,25",
+        "sobreC": "24,54",
+        "total": "64,79",
+        "resultado": "3ª · mejor propuesta técnica"
+      },
+      {
+        "empresa": "Fundació Eurecat",
+        "precio": "41.079,50 €",
+        "sobreB": "27,25",
+        "sobreC": "36,26",
+        "total": "63,51",
+        "resultado": "4ª"
+      }
+    ],
+    "excluidas": [
+      {
+        "empresa": "Península Corporate Innovation SL",
+        "motivo": "exclusión propuesta por la mesa el 16-sep-2025 por «posible contaminación de sobres»: «vulneración del principio de secreto de las proposiciones»"
+      },
+      {
+        "empresa": "Recursos en la Red, S.L.",
+        "motivo": "misma causa y sesión"
+      }
+    ],
+    "hitos": "El expediente se aprobó en Junta de Gobierno Local el 25-jun-2025; anuncio el 1-jul-2025 con 15 días naturales de plazo; 9 actas de mesa, incluida una rectificación de error aritmético en la baremación (acta 8, 27-oct-2025); decreto de Alcaldía nº 3900 de 4-nov-2025; adjudicación acordada el 10-dic-2025 y publicada el 16-dic-2025; formalización el 15-ene-2026; fin de contrato el 10-jun-2026.",
+    "anormalidad": "La oferta ganadora quedó un 43 % por debajo del presupuesto base. El umbral de anormalidad del pliego (art. 85 RD 1098/2001) solo se activa si el precio baja del 20 % de la media Y ADEMÁS la puntuación técnica supera en 10 % la media — condiciones acumulativas; el informe técnico concluyó que «ninguna de las empresas incumple en bajas».",
+    "erratas": "El propio pliego técnico muestra señales de redacción apresurada: cita dos presupuestos sin IVA distintos en la misma página (43.450 € y 45.454,55 €) y un párrafo de plazos que mezcla una fecha límite de «enero de 2026» con una adjudicación «en julio de 2026»."
+  },
+  "movea": {
+    "expediente": "101/2025",
+    "objeto": "Servicio de informes de movilidad: recopilación y análisis de datos turísticos sobre el perfil y comportamiento de la demanda (actuación nº 10 del PSTD)",
+    "base": "36.363,64 € sin IVA (44.000 € con IVA)",
+    "criterios": [
+      {
+        "c": "Propuesta técnica (juicio de valor, sobre B)",
+        "p": 40
+      },
+      {
+        "c": "Precio (fórmula)",
+        "p": 40
+      },
+      {
+        "c": "Indicadores adicionales sobre el mínimo (0,5 puntos por indicador, hasta 30)",
+        "p": 15
+      },
+      {
+        "c": "Experiencia adicional del jefe de proyecto",
+        "p": 5
+      }
+    ],
+    "ofertas": [
+      {
+        "empresa": "Movea Consulting Mobility, S.L.",
+        "precio": "25.900,00 € (sin IVA)",
+        "sobreB": "36",
+        "sobreC": "39,07",
+        "total": "75,07",
+        "resultado": "adjudicataria · oferta más cara"
+      },
+      {
+        "empresa": "Península Corporate Innovation, S.L.",
+        "precio": "23.636,37 € (sin IVA)",
+        "sobreB": "23",
+        "sobreC": "39,25",
+        "total": "62,25",
+        "resultado": "descartada · oferta más barata"
+      }
+    ],
+    "ofertasNota": "Solo dos licitadores. En los criterios automáticos quedaron casi empatados (39,25 frente a 39,07): los 15 puntos por «indicadores adicionales» — un criterio que premia prometer más KPI — neutralizaron la ventaja de la oferta 2.263,63 € más barata. La adjudicación la decidió el juicio de valor: 36 frente a 23.",
+    "hitos": "Anuncio el 14-ago-2025 con plazo hasta el 29-ago-2025; mesa constituida el 16-sep-2025; decreto de Alcaldía nº 3897 de 4-nov-2025; adjudicación acordada el 10-dic-2025, publicada el 16-dic-2025; formalización el 15-ene-2026; fin de contrato el 15-jul-2026 — dos semanas después de cerrado el trimestre que los pliegos citan como hito europeo de finalización."
+  },
+  "compra": {
+    "panel": [
+      "Cuadro de mando BI en la nube (SaaS) «tipo PowerBI, Qlik o Tableau», con certificación de nivel MEDIO del Esquema Nacional de Seguridad y conformidad con cinco normas UNE de destinos inteligentes + la ontología de SEGITTUR",
+      "Conectores de datos: INE, DATAESTUR, datos.gob, AEMET, ficheros internos municipales; capacidad de ingesta de redes sociales «Facebook, Instagram, twitter/X, whatsapp, otros»",
+      "Mínimo 5 informes y 10 cuadros de mando; formación de 8 horas; SLA de incidencias de 12/48/96 horas; equipo mínimo de 2 personas",
+      "La adjudicataria ofertó LinkSense, «una herramienta propia» (según el acta de valoración) que la empresa comercializa a otros destinos DTI"
+    ],
+    "movilidad": [
+      "Datos de señalización de la red móvil de al menos un operador nacional, anonimizados y agregados, más módulo de redes sociales y web (Facebook, X, Instagram, YouTube, Google Analytics, Google Ads, Google Trends)",
+      "Indicadores mensuales: tipología (turista, excursionista, residente), origen, sociodemografía (género, edad y/o nivel de ingresos), duración de estancia, pernoctaciones, franjas horarias",
+      "Mínimo dos anualidades de datos históricos previos al contrato; exportación en CSV/JSON/XLSX y formatos GIS; los datos en bruto descargables por el personal municipal",
+      "Tres informes de análisis + memoria final; licencias de uso de la plataforma «durante la duración del contrato»"
+    ],
+    "caducidad": "Ambas herramientas son SaaS: el acceso del Ayuntamiento a la plataforma de movilidad está licenciado solo «durante la duración del contrato», que terminó el 15 de julio de 2026; el panel terminó el 10 de junio de 2026. Ningún contrato del plan prevé presupuesto de continuidad.",
+    "openData": {
+      "promesa": "«El Ayuntamiento de Riba-roja de turia publicará dicha información parcial o totalmente, con licencia de uso abierta, en la sección de descargas de la página web del Ayuntamiento» — pliego de prescripciones técnicas del panel, §12",
+      "estado": "A fecha de 15 de julio de 2026 esta redacción no ha localizado esa publicación en ribarroja.es ni en el portal de turismo. Es una de las preguntas formuladas al Ayuntamiento."
+    },
+    "campanas": "La tercera pata «de datos» del plan — la campaña de promoción segmentada adjudicada a Autoritas Consulting (26.000 € sin IVA, única oferta) — presume, según la nota recogida por la prensa, de geolocalizar «en tiempo real» a los visitantes del Parque Natural para dirigirles publicidad que los empuje al casco urbano."
+  },
+  "empresas": {
+    "deepsense": {
+      "titulo": "Deepsense, S.L. — el panel",
+      "bullets": [
+        "Microempresa valenciana constituida el 14 de abril de 2021 con 3.000 € de capital (BORME); administradores solidarios Enrique García Vidal y Francisco Vaquer Estalrich, sus dos cofundadores. Entre 2 y 4 personas según registros mercantiles, LinkedIn y el Parc Científic de la Universitat de València, donde tiene su oficina",
+        "Objeto social según ROLECE: «el desarrollo de productos y servicios de consultoría de software e inteligencia artificial». Estatuto de empresa emergente (Ley 28/2022) desde octubre de 2024",
+        "Su producto es una plataforma repetible: LinkSense (marca registrada), catalogada por Invattur y ya entregada en Caravaca de la Cruz (abril de 2025, antes de la adjudicación de Riba-roja). Tras Riba-roja ganó los paneles análogos de l'Alfàs del Pi (40.496 €, −30 %, 6 ofertas), Santa Pola (21.500 €, −35 %, 6 ofertas) y Gijón (107.600 €, −33 %, 4 ofertas)",
+        "Acumula 21 adjudicaciones públicas por 404.942,77 € según el agregador Gobierto. Las bajas del 30-43 % son consistentes en toda la serie — economía de producto reutilizable, no desarrollo a medida; la de Riba-roja (−43 %) es la mayor documentada"
+      ]
+    },
+    "movea": {
+      "titulo": "Movea Consulting Mobility, S.L. — los informes de movilidad",
+      "bullets": [
+        "Sociedad limitada unipersonal constituida el 18 de abril de 2023 con 3.000 € de capital (BORME): Juan Bueno Carrillo es socio único y administrador único. Bueno es un consultor de movilidad veterano — ingeniero de telecomunicaciones, fundador de Myrentgo, socio del clúster AVIA, profesor asociado en EDEM",
+        "Su web y su porfolio público (10 proyectos) son de consultoría clásica de movilidad — PMUS, carriles bici, transporte público, formación vial — sin ningún producto de big data turístico ni proveedor de datos de operador móvil documentado. La plataforma de Riba-roja es su primer proyecto documentado de este tipo",
+        "El proyecto que el Ayuntamiento describe como «pionero» no aparece, a fecha de este reportaje, en la página de proyectos de la propia empresa",
+        "No se ha localizado ninguna otra adjudicación PSTD a Movea en España, ni trabajo previo para Riba-roja: el contrato 101/2025 es su único expediente con este Ayuntamiento"
+      ]
+    },
+    "vinculos": "El test de la hipótesis inicial de esta investigación merece decirse en voz alta: no hemos encontrado ningún vínculo documentado entre ninguna de las dos adjudicatarias — o sus administradores — y los cargos municipales de Riba-roja, el PSPV-PSOE local o las consultoras del plan (Sien, Auren). Las búsquedas cruzadas en BORME, prensa y registros devolvieron cero resultados. Lo que los documentos sí dibujan es otra cosa: un programa europeo con fecha de caducidad que creó un mercado de paneles y de informes que los pueblos compran a toda prisa, a veces con una sola oferta sobre la mesa."
+  },
+  "baseline": {
+    "titulo": "El turismo que se quiere medir",
+    "bullets": [
+      "Riba-roja de Túria no es «punto turístico» del INE: la encuesta de ocupación hotelera solo desciende a 10 municipios de la Comunitat Valenciana, y este no es uno de ellos. No existe ninguna serie oficial de visitantes del municipio, y este medio no ha localizado ningún dato de visitantes publicado por la oficina de turismo.",
+      "La oferta reglada de alojamiento del municipio, según el Registre de Turisme de la Generalitat (datos abiertos, 2026): 4 hoteles/pensiones con 145 plazas, 17 viviendas de uso turístico con 122 plazas, 0 casas rurales y 0 campings — unas 267 plazas turísticas en total para 24.616 habitantes.",
+      "Los activos son reales pero de excursión, no de pernoctación: el Parc Natural del Túria (8.041 ha compartidas con otros 13 municipios), el castillo con los museos MUPLA y MUCA, los yacimientos visigodos de València la Vella y Pla de Nadal, y el propio Barranc dels Moros que el plan urbaniza como corredor peatonal.",
+      "El producto de Deepsense que compró el municipio, LinkSense, se comercializa — según la propia nota municipal del 8 de julio — para «municipios de entre 5.000 y 30.000 habitantes»: primero turismo, después el resto de áreas municipales.",
+      "La medición que el pueblo no tiene es, precisamente, lo que el plan compra: sensores de conteo de personas (61.050 €), datos de telefonía móvil (25.900 €) y un panel para visualizarlos (25.887 €)."
+    ],
+    "plenoQuote": "«…o el plan de sostenibilidad turística en destinos, con la que sí, esa digitalización de nuestro municipio, llegará a alcanzar un punto más que relevante, incluyendo la realidad aumentada, la gamificación […] los informes de movilidad, que serán sistemas para recopilación y análisis de datos, tanto patrones de movilidad, como análisis de redes sociales, las campañas de promoción segmentada, que tratarán la segmentación demográfica, o por intereses o por comportamiento, como el retargeting o geotargeting…»",
+    "plenoQuoteFuente": "Intervención en defensa de la gestión del equipo de gobierno durante el debate de una moción sobre innovación, pleno ordinario del 9 de marzo de 2026 (transcripción propia del audio de la sesión; atribución a nivel de grupo)"
+  },
+  "dana": {
+    "bullets": [
+      "El PSTD se concedió en diciembre de 2022, casi dos años antes de la DANA del 29 de octubre de 2024. Es dinero finalista de la UE: legalmente no podía desviarse a la reconstrucción.",
+      "Las obras del Barranc dels Moros — un itinerario turístico a través de un barranco — salieron a licitación con plazo hasta el 25 de noviembre de 2024, cuatro semanas después de la riada, y se adjudicaron a BECSA el 26 de diciembre de 2024 por 745.498 € sin IVA (2 licitadores).",
+      "Los sensores de conteo de personas para el Parque Natural del Túria — el espacio arrasado por la riada — se adjudicaron el 26 de diciembre de 2025 (61.050 €, 6 licitadores).",
+      "Sí existía margen legal para replantear el calendario: el art. 18 del RDL 7/2024 permitía ampliar la ejecución hasta agosto de 2026 en las zonas gravemente afectadas — Riba-roja lo estaba, con convenio estatal DANA publicado en el BOE —, la Conferencia Sectorial de Turismo extendió todos los PSTD hasta junio de 2026, y Turisme CV amplió a agosto de 2026 su línea de cohesión para entidades locales afectadas. La comarca recibió además 750.000 € de fondos turísticos DANA a través de la Mancomunitat Camp de Túria.",
+      "No consta en ningún registro público consultado (BOE, DOGV, ministerio, GVA, prensa) que Riba-roja solicitara modificar o reprogramar su propio plan de 2,11 M€ tras la DANA: el calendario observable es el de una carrera contra el cierre — cinco adjudicaciones entre el 16 de diciembre de 2025 y el 2 de enero de 2026, dos obras más en febrero y mayo, y los últimos menores a semanas del final.",
+      "En paralelo, este medio documentó 73 contratos municipales con referencia DANA por 2,24 M€ sin IVA hasta abril de 2026 (véase el reportaje «Reconstrucción DANA»)."
+    ]
+  },
+  "preguntas": [
+    "¿Dónde pueden consultarse los datos e informes que el pliego del panel obligaba a publicar «con licencia de uso abierta» en la web municipal?",
+    "¿Qué personal del Ayuntamiento usa hoy el panel y los informes de movilidad, y con qué frecuencia?",
+    "¿Qué decisiones de gestión turística han cambiado como resultado de los datos obtenidos?",
+    "¿Qué ocurre con el acceso a ambas plataformas SaaS ahora que los contratos han terminado? ¿Hay presupuesto municipal para renovarlas?",
+    "¿Por qué el criterio de juicio de valor del panel se fijó en 49 puntos — una unidad por debajo del umbral que habría exigido un comité de expertos?",
+    "¿Se planteó el Ayuntamiento, tras la DANA, solicitar la reprogramación de actuaciones del PSTD hacia la recuperación de los espacios turísticos dañados?",
+    "¿Cuál es el grado de ejecución final del plan (2,11 M€) certificado ante la Comisión de Seguimiento, y qué actuaciones se quedaron sin ejecutar?",
+    "¿Considera el Ayuntamiento publicar el Estudio de Repercusiones del PSTD encargado en mayo de 2026?"
+  ],
+  "fuentes": [
+    {
+      "label": "Nota municipal, 7-jul-2026: «Riba-roja de Túria impulsa la inteligencia turística…»",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-impulsa-la-inteligencia-tur%C3%ADstica-con-una-innovadora-plataforma-de-an%C3%A1lisis-de-movilidad-y-comportamiento-de-visitantes"
+    },
+    {
+      "label": "PLACSP · expediente 97/2025 (Panel de Inteligencia · Deepsense): anuncio, pliegos, 9 actas y adjudicación",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fGWK7%2B%2Fp3sZJ8Trn0ZPzLw%3D%3D"
+    },
+    {
+      "label": "PLACSP · expediente 101/2025 (Informes de movilidad · Movea): anuncio, pliegos, actas y adjudicación",
+      "url": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6iplwbLBriGdkQsA7ROvsg%3D%3D"
+    },
+    {
+      "label": "Perfil del contratante de Riba-roja (Gobierto/Ribalicita) — registro completo de contratos citados",
+      "url": "https://ribalicita.ribarroja.es/"
+    },
+    {
+      "label": "Web de turismo municipal · Plan de Sostenibilidad Turística en Destino (2.112.907,99 €)",
+      "url": "https://www.ribarojadeturiaturismo.com/rt/web_php/index.php?contenido=descripcion&id_boto=4074&lang=6"
+    },
+    {
+      "label": "Valencia Plaza, 25-ago-2025: cuatro nuevas actuaciones del PSTD a licitación",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/riba-roja-abre-el-plazo-de-licitacion-para-cuatro-nuevas-actuaciones-del-plan-de-sostenibilidad-turistica-en-destino"
+    },
+    {
+      "label": "LinkSense (Deepsense) · página de producto con la lista de destinos usuarios",
+      "url": "https://www.destinosinteligentes.es/soluciones/linksense/"
+    },
+    {
+      "label": "BORME 12-may-2021 · constitución de Deepsense SL (capital 3.000 €)",
+      "url": "https://www.boe.es/diario_borme/txt.php?id=BORME-A-2021-88-46"
+    },
+    {
+      "label": "BORME 12-may-2023 · constitución de Movea Consulting Mobility SL (unipersonal, 3.000 €)",
+      "url": "https://www.boe.es/borme/dias/2023/05/12/pdfs/BORME-A-2023-89-46.pdf"
+    },
+    {
+      "label": "ribaroja.com, 4-feb-2026: crónica local de las cinco adjudicaciones PSTD de diciembre",
+      "url": "https://www.ribaroja.com/riba-roja-de-turia-adjudica-cinc-noves-actuacions-per-a-impulsar-un-turisme-mes-sostenible-i-intel%C2%B7ligent/"
+    },
+    {
+      "label": "Red DTI Comunitat Valenciana (Invattur) · Riba-roja, destino de nivel 2",
+      "url": "https://invattur.es/sobre-la-red-de-destinos-turisticos-inteligentes.html"
+    },
+    {
+      "label": "CivicPulse · Reconstrucción DANA, contrato a contrato (contexto)",
+      "url": "/reportajes/reconstruccion-dana"
+    },
+    {
+      "label": "Transcripción propia del pleno ordinario del 9 de marzo de 2026 (audio oficial)",
+      "url": "/plenos"
+    },
+    {
+      "label": "Nota municipal, 8-jul-2026: implantación de LinkSense (panel de Deepsense)",
+      "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-túria-impulsa-su-transformación-turística-y-territorial-con-la-implantación-de-linksense"
+    },
+    {
+      "label": "INE · encuesta de ocupación hotelera, tabla 2078 (Riba-roja no es punto turístico)",
+      "url": "https://www.ine.es/jaxiT3/Tabla.htm?t=2078"
+    },
+    {
+      "label": "GVA datos abiertos · Registre de Turisme: hoteles de la Comunitat (4 establecimientos / 145 plazas en Riba-roja)",
+      "url": "https://dadesobertes.gva.es/va/dataset/dades-turisme-hotels-comunitat-valenciana"
+    },
+    {
+      "label": "GVA datos abiertos · viviendas de uso turístico (17 VUT / 122 plazas en Riba-roja)",
+      "url": "https://dadesobertes.gva.es/va/dataset/tur-gestur-vt"
+    },
+    {
+      "label": "BOE · resolución de la Comisión Mixta del Tribunal de Cuentas con recomendaciones sobre los PSTD",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-14669"
+    },
+    {
+      "label": "RDL 7/2024, art. 18 · ampliación de plazos de ejecución hasta agosto de 2026 en zonas DANA",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2024-23130"
+    },
+    {
+      "label": "La Moncloa, 10-feb-2026 · Conferencia Sectorial: todos los PSTD con plazo hasta junio de 2026",
+      "url": "https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/industria-turismo/Paginas/2026/100226-hereu-conferencia-sectorial-turismo.aspx"
+    },
+    {
+      "label": "DOGV 3-mar-2026 · Turisme CV amplía a agosto de 2026 la ejecución para entidades locales afectadas por la DANA (línea ACD)",
+      "url": "https://dogv.gva.es/datos/2026/03/03/pdf/2026_6842_es.pdf"
+    },
+    {
+      "label": "Ministerio de Industria y Turismo · 7,15 M€ NextGen a 9 mancomunidades DANA (750.000 € a Camp de Túria)",
+      "url": "https://www.mintur.gob.es/es-es/gabineteprensa/notasprensa/2025/paginas/ayudas-turismo-dana-fondos-next-generation.aspx"
+    },
+    {
+      "label": "El Periódico de Aquí, 23-feb-2026 · el PSTD avanza en tres nuevas actuaciones (pérgolas, carril bici, residuos)",
+      "url": "https://valencia.elperiodicodeaqui.com/epda-noticias/el-plan-de-sostenibilidad-turistica-en-destinos-de-riba-roja-avanza-en-tres-nuevas-actuaciones/100006051"
+    },
+    {
+      "label": "Valencia Plaza, 29-jun-2026 · campaña segmentada con geolocalización en tiempo real (Autoritas)",
+      "url": "https://valenciaplaza.com/valenciaplaza/comarca-y-empresa/riba-roja-lanza-una-campana-digital-segmentada-para-atraer-al-turista-de-proximidad"
+    },
+    {
+      "label": "elDiario.es Cantabria, 9-abr-2026 · «Despilfarro como filosofía» (crítica a la ejecución de los PSTD)",
+      "url": "https://www.eldiario.es/cantabria/primera-pagina/despilfarro-filosofia_132_13128895.html"
+    }
+  ],
+  "metodo": [
+    "Todas las cifras de contratos proceden del registro público (PLACSP y su espejo municipal Gobierto), importes sin IVA salvo indicación. Datos a 15 de julio de 2026.",
+    "Las citas de pliegos y actas son literales de los PDF firmados publicados en el perfil del contratante; los documentos citados están archivados por esta redacción.",
+    "Adjudicado no es ejecutado: los importes son precios de adjudicación.",
+    "Este reportaje no atribuye irregularidad alguna a empresas ni a cargos: describe procedimientos, precios y calendarios que constan en documentos oficiales, y formula preguntas.",
+    "Conflicto de intereses: el editor de CivicPulse valoró concurrir a una de las licitaciones analizadas y no llegó a presentar oferta. La pieza se apoya exclusivamente en documentación pública verificable.",
+    "Derecho de réplica abierto: se ha solicitado la versión del Ayuntamiento y de las empresas citadas antes de la publicación definitiva; se publicará íntegra si se recibe."
+  ],
+  "comparables": {
+    "parrafo1": "Riba-roja no es un caso aislado — es un caso de manual. El mismo panel de Deepsense se implantó en Santa Pola (21.500 €), l’Alfàs del Pi (40.496 €) y Caravaca de la Cruz; Ponferrada pagó 262.821 € por su «sistema de inteligencia turística»; Torrevieja licitó su transición digital PSTD por 1,14 M€; la Diputación de Jaén adjudicó un observatorio de oleoturismo por 39.667 € con una sola oferta; y San Esteban de Gormaz — 2.900 habitantes — recibió 45.423 € solo para comunicar su proyecto de transformación digital turística.",
+    "parrafo2": "El programa entero está bajo escrutinio: el Tribunal de Cuentas instó en 2025 a «revisar y reajustar los criterios de valoración» de los PSTD y a implantar manuales de procedimiento, la prensa ha documentado alcaldes que renuncian a millones por no poder ejecutarlos a tiempo — «despilfarro como filosofía», tituló elDiario.es sobre los planes cántabros, con los «paneles inteligentes» entre las «ocurrencias» —, y en febrero de 2026 el propio ministerio pactó con las comunidades «simplificar y agilizar la recta final» de los fondos."
+  },
+  "notaLinkSense": "Al día siguiente, el 8 de julio, una segunda nota anunciaba «la implantación de LinkSense», el panel de Deepsense — dos celebraciones consecutivas para dos contratos que terminaban con el plan."
+}
