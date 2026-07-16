@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-15T06:36:06.554Z",
+  "generatedAt": "2026-07-16T06:43:45.367Z",
   "feeds": [
     {
       "url": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es",
       "platform": "Google News RSS",
       "ok": true,
-      "items": 99
+      "items": 100
     },
     {
       "url": "https://www.infoturia.com/riba-roja-de-turia/feed/",
@@ -22,12 +22,11 @@
   ],
   "stats": {
     "total": 157,
-    "sources": 19,
-    "latestDate": "2026-07-15T06:30:40.000Z"
+    "sources": 18,
+    "latestDate": "2026-07-16T04:00:38.000Z"
   },
   "sources": [
     "Actualidad Valencia",
-    "Aguasresiduales",
     "Ayuntamiento de Riba-roja de Túria",
     "Cadena SER",
     "Comunica GVA",
@@ -47,6 +46,35 @@
     "rfet.es"
   ],
   "items": [
+    {
+      "id": "qz052r",
+      "title": "Políticas de prevención, el Guardian",
+      "link": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPMHFPc1ZpLURFMUd1N19tc3ZRako2Y3dnSWIyYUVIbU5nSzRXYXdmY19iN29JbEZTNm50OW9SNnlpNlhaekNpS0l4TGlqRWk1WXFqZUFSX2JQU1NsemxYSXhxTmJRbTFjeEVqTklMOVY0YU8waGNtUXduTnZfemx2RmxXalBRd1NLU0M5MFFTQ1JPSVZSVkHSAZsBQVVfeXFMTzRMTmYtdmtfeWlIT202eUF3Y0tvNzBPQWJRUlN6RFJtY0FQLXlNdFExT0ZodHU0R1d1dnI0S0xRUUNUOFJFU25SeXZpZW80UDB0MkJyVVczT0tTVkdZbW5PNjJtbFItM2Q0TjlHNGp4QjdsTUctemFvMUpWa2hPdFZYZjRZc1A3aHhMd2d5R3Jta1FmQ3lMaTU3VEU?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-07-16T04:00:38.000Z",
+      "fingerprint": "zhiaa6"
+    },
+    {
+      "id": "qlv1ts",
+      "title": "Así se prepara el Camp de Túria para una tarde de riesgo extremo por calor, tormentas y posibles reventones térmicos",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPbTNOTXlFYzQxWS14Y2ZrVFpFX29KUU8xbFY1TzZFOEt1aUc3YTRWVjRQSmxGUUc3Q0ItWnBxYlMzTk5hZDhRQU9CT3NyVTFNWGpYZktsRm53VGQzM2FkeHlESFNrNFdGb3NxUTdrTjdUanBIcU9SZks4ZHFVVG5JbzVPcl94UUJZYlRDN192UVNVbUFZOTMtVlNLdV9uQ243c1k0T3lHdUl2YUJaUGJmZk9CNktVRWhPc1VDSlNkbEN5Q3JPS29NdWNONjJzQXZFMUVvRUhQNA?oc=5",
+      "source": "El Periódico de Aquí",
+      "sourceHost": "elperiodicodeaqui.com",
+      "date": "2026-07-15T14:42:00.000Z",
+      "fingerprint": "vvofos"
+    },
+    {
+      "id": "higxho",
+      "title": "El Ayuntamiento de Riba-roja de Túria completa el informe de Diagnóstico DTI",
+      "link": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-completa-el-informe-de-diagn%C3%B3stico-dti",
+      "source": "Ayuntamiento de Riba-roja de Túria",
+      "sourceHost": "ribarroja.es",
+      "date": "2026-07-15T11:41:52.000Z",
+      "fingerprint": "1sifhiw",
+      "official": true,
+      "section": "Patrimonio y Turismo"
+    },
     {
       "id": "phv8v6",
       "title": "Pacadar 360: el proyecto que transformará Riba-roja con un gran pulmón verde de 5 hectáreas",
@@ -83,7 +111,7 @@
       "date": "2026-07-14T11:18:16.000Z",
       "fingerprint": "z5cvi0",
       "official": true,
-      "section": "Medi ambient"
+      "section": "Medio ambiente"
     },
     {
       "id": "kdfnm4",
@@ -103,7 +131,7 @@
       "date": "2026-07-14T06:10:17.000Z",
       "fingerprint": "xpf2bo",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "2c5kl0",
@@ -132,7 +160,7 @@
       "date": "2026-07-13T12:15:09.000Z",
       "fingerprint": "syu568",
       "official": true,
-      "section": "Foment economic i Comerc"
+      "section": "Fomento economico y Comercio"
     },
     {
       "id": "17q4qqk",
@@ -143,16 +171,7 @@
       "date": "2026-07-13T10:52:17.000Z",
       "fingerprint": "3i7nrw",
       "official": true,
-      "section": "Educacio"
-    },
-    {
-      "id": "1qkqwdk",
-      "title": "La Generalitat Valenciana autoriza una inversión de 23,6 M€ para ampliar la EDAR de Setrece en Riba-roja de Túria",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNYnFVV1htLVdfWC12U0h6NjRCRGFYWHhQbTVkMGQ3djIzV0hxd0t4Q3dRaWRDT3ZuWlBlUC1IYXNXbGRNNjJ0NWxJWG1mbnRVSmRwSk9LQkhUaVNWWmpoTXhVeEVXNU9TSDJBLWh3M2ZhcF9zZ0R0dzg1a0JkS2owUG1vUWk3RENqM09UNEkzbk5xMmRIUGhGYmxwR2dZVU93WHcydzNmODhZdw?oc=5",
-      "source": "Aguasresiduales",
-      "sourceHost": "aguasresiduales.info",
-      "date": "2026-07-13T10:21:41.000Z",
-      "fingerprint": "3v6y6g"
+      "section": "Educacion"
     },
     {
       "id": "mnfpps",
@@ -217,7 +236,7 @@
       "date": "2026-07-10T09:00:00.000Z",
       "fingerprint": "s2t5u0",
       "official": true,
-      "section": "Patrimoni y Turisme"
+      "section": "Patrimonio y Turismo"
     },
     {
       "id": "suulkc",
@@ -237,7 +256,7 @@
       "date": "2026-07-08T12:19:07.000Z",
       "fingerprint": "n2wiek",
       "official": true,
-      "section": "Patrimoni y Turisme"
+      "section": "Patrimonio y Turismo"
     },
     {
       "id": "40rpxn",
@@ -257,7 +276,7 @@
       "date": "2026-07-08T11:27:48.000Z",
       "fingerprint": "lpy7hl",
       "official": true,
-      "section": "Medi ambient"
+      "section": "Medio ambiente"
     },
     {
       "id": "gqfi7s",
@@ -277,7 +296,7 @@
       "date": "2026-07-07T11:37:13.000Z",
       "fingerprint": "1dmqqsg",
       "official": true,
-      "section": "Patrimoni y Turisme"
+      "section": "Patrimonio y Turismo"
     },
     {
       "id": "3axhfk",
@@ -296,15 +315,6 @@
       "sourceHost": "valenciaextra.com",
       "date": "2026-07-07T10:30:00.000Z",
       "fingerprint": "1bo26tg"
-    },
-    {
-      "id": "1uvp6ys",
-      "title": "Plan Urbanístico de Reconstrucción avanza en Riba-roja",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQN3JuMmxKZFVOb012bHdlYWxZWlU0ZkFSQWNlZTNEMjdaV1lJU2ZJaWN1MTJTR19HUW9jemtpRVlKN1lwcUlmYjRURmV4UUpnNExtM05Nb0JFYUdoQ09EbHJEMWpFcXJjSXcyMUlYOEtvTkRfOFNFWVBKYk4wOHdxdTNkNFJIX3NSQjZ3UXg2cUx6LTF5WG9GRXE5bkQtNS1JWTNRWVRNVkxWYTN3STVXOGsyQmRVbTdSUE1MZ3RsaVVjYWhLTFNvUGp0ZWprXzQ?oc=5",
-      "source": "Valencia News",
-      "sourceHost": "valencianews.es",
-      "date": "2026-07-07T09:54:47.000Z",
-      "fingerprint": "g7lzsg"
     },
     {
       "id": "1mw3vkg",
@@ -351,7 +361,7 @@
       "date": "2026-07-07T08:50:27.000Z",
       "fingerprint": "1ub8x8r",
       "official": true,
-      "section": "Urbanisme"
+      "section": "Urbanismo"
     },
     {
       "id": "fd07hv",
@@ -377,7 +387,7 @@
       "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5OQlpvWTZ2TEUwbVJvRU9aM3dsTDdEeEhYSG1EOG5nekVPUldlSGZpRmZFTldhMGRHWkVOUjZsRVJCNjRRcTdhXzZ2RFg4QmhxN1FJX0VJN19aV3lObC1EZ0cwQ0VOM1B3Y0VPS2tackczRjR4M3pFcmNRZFp2RGM?oc=5",
       "source": "Valenciabonita",
       "sourceHost": "valenciabonita.es",
-      "date": "2026-07-07T00:55:38.000Z",
+      "date": "2026-07-07T07:00:00.000Z",
       "fingerprint": "k2dhbg"
     },
     {
@@ -419,15 +429,6 @@
       "fingerprint": "kity0k"
     },
     {
-      "id": "1pug9g7",
-      "title": "El PSOE de Riba-roja de Túria critica al PP por convocar un pleno extraordinario sobre la recogida de basura",
-      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOX0I4azN2Zzl4VEUwdm1mVjAtaUZoT21tWjQ1dmJhc212ZGFHX0x1aFVWRDBVZDhLTFFXOWFXY3pwdlBXVUhYZ3FtV1pQaGtYaWlsWENET25oSWd3U2R2OXJHbG9SM25tVENwOTQ0LUJ4RUNMenhrR0hrMERIRktaeEZvSWJndU13cm1XWmZlTlhQSmFoRlNCdnFJQVVRcmw4bzA4TEZKdUVHTWx5dmw5UllZcFFIRHhzWVlTZ2E4bXVSWmI1eVVwdnVR?oc=5",
-      "source": "elperiodic.com",
-      "sourceHost": "elperiodic.com",
-      "date": "2026-07-03T13:49:27.000Z",
-      "fingerprint": "1uz03vg"
-    },
-    {
       "id": "1np6bdi",
       "title": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
@@ -464,6 +465,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-07-03T07:00:00.000Z",
       "fingerprint": "1lwm8g4"
+    },
+    {
+      "id": "1pug9g7",
+      "title": "El PSOE de Riba-roja de Túria critica al PP por convocar un pleno extraordinario sobre la recogida de basura",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOX0I4azN2Zzl4VEUwdm1mVjAtaUZoT21tWjQ1dmJhc212ZGFHX0x1aFVWRDBVZDhLTFFXOWFXY3pwdlBXVUhYZ3FtV1pQaGtYaWlsWENET25oSWd3U2R2OXJHbG9SM25tVENwOTQ0LUJ4RUNMenhrR0hrMERIRktaeEZvSWJndU13cm1XWmZlTlhQSmFoRlNCdnFJQVVRcmw4bzA4TEZKdUVHTWx5dmw5UllZcFFIRHhzWVlTZ2E4bXVSWmI1eVVwdnVR?oc=5",
+      "source": "elperiodic.com",
+      "sourceHost": "elperiodic.com",
+      "date": "2026-07-03T07:00:00.000Z",
+      "fingerprint": "1uz03vg"
     },
     {
       "id": "jrb2xk",
@@ -512,7 +522,7 @@
       "date": "2026-07-01T12:44:04.000Z",
       "fingerprint": "wzti7k",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "1cb6bds",
@@ -523,7 +533,7 @@
       "date": "2026-07-01T12:21:18.000Z",
       "fingerprint": "k2wuzo",
       "official": true,
-      "section": "Industrials"
+      "section": "Industriales"
     },
     {
       "id": "kkf4qb",
@@ -594,16 +604,7 @@
       "date": "2026-06-29T11:52:36.000Z",
       "fingerprint": "17s9le4",
       "official": true,
-      "section": "Patrimoni y Turisme"
-    },
-    {
-      "id": "1icahjc",
-      "title": "Riba-roja lanza una campaña digital segmentada para atraer al turista de proximidad",
-      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNWXlLeGRMdW9aTW80cV9qTEV4THB4bjhCdkhqcW9tOUY0RUg3RUJnOUNhMWF3aG5uMHNDbk1mSUE5UkVkc3lFbm1jTF81bW5VWVlpTUdubURxS0FMbE1mYkhub0l2a2pBT3VwM2N4R1lKaVhDOGhOQkVnMFFDWnJEQkl4VFpsY2dDb0VKek9ZZ2xudklBSlRuVW40WnZhbDFMQXNkLTVpYzFCOG9qb1RVVWNvVmVRTjF3Rzl0ODlsWWdjZXNpb2lLT3MtMloxcEtnb0NncUp6WW8?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
-      "date": "2026-06-29T11:05:21.000Z",
-      "fingerprint": "1e8ii34"
+      "section": "Patrimonio y Turismo"
     },
     {
       "id": "7yuspw",
@@ -632,7 +633,7 @@
       "date": "2026-06-26T07:10:31.000Z",
       "fingerprint": "4oulog",
       "official": true,
-      "section": "Foment economic i Comerc"
+      "section": "Fomento economico y Comercio"
     },
     {
       "id": "1kmwinw",
@@ -643,7 +644,7 @@
       "date": "2026-06-25T11:57:57.000Z",
       "fingerprint": "usun54",
       "official": true,
-      "section": "Esports"
+      "section": "Deportes"
     },
     {
       "id": "19ea7oo",
@@ -654,7 +655,7 @@
       "date": "2026-06-25T10:16:37.000Z",
       "fingerprint": "1ferod4",
       "official": true,
-      "section": "Foment economic i Comerc"
+      "section": "Fomento economico y Comercio"
     },
     {
       "id": "1ppr35c",
@@ -665,7 +666,7 @@
       "date": "2026-06-23T12:05:20.000Z",
       "fingerprint": "p6xhsd",
       "official": true,
-      "section": "Festes"
+      "section": "Fiestas"
     },
     {
       "id": "wmldwg",
@@ -676,7 +677,7 @@
       "date": "2026-06-22T11:39:23.000Z",
       "fingerprint": "qf98zo",
       "official": true,
-      "section": "Juventut"
+      "section": "Joventud"
     },
     {
       "id": "11bfg2o",
@@ -696,7 +697,7 @@
       "date": "2026-06-18T12:20:36.000Z",
       "fingerprint": "1dt9if0",
       "official": true,
-      "section": "Foment economic i Comerc"
+      "section": "Fomento economico y Comercio"
     },
     {
       "id": "1gdzlug",
@@ -707,7 +708,7 @@
       "date": "2026-06-18T11:28:05.000Z",
       "fingerprint": "1pb4pmk",
       "official": true,
-      "section": "Patrimoni y Turisme"
+      "section": "Patrimonio y Turismo"
     },
     {
       "id": "21k8px",
@@ -729,7 +730,7 @@
       "date": "2026-06-18T09:19:17.000Z",
       "fingerprint": "1wd6a58",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "ymucqt",
@@ -740,7 +741,7 @@
       "date": "2026-06-17T15:06:53.000Z",
       "fingerprint": "1k3g16v",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "6xn9e8",
@@ -769,7 +770,7 @@
       "date": "2026-06-16T11:49:58.000Z",
       "fingerprint": "cczxrc",
       "official": true,
-      "section": "Urbanitzacions"
+      "section": "Urbanizaciones"
     },
     {
       "id": "42py3v",
@@ -791,7 +792,7 @@
       "date": "2026-06-16T10:00:25.000Z",
       "fingerprint": "x2tc4t",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "16j03i4",
@@ -802,7 +803,7 @@
       "date": "2026-06-16T09:28:40.000Z",
       "fingerprint": "4bzm78",
       "official": true,
-      "section": "Igualtat"
+      "section": "Igualdad"
     },
     {
       "id": "l7u54j",
@@ -849,7 +850,7 @@
       "date": "2026-06-12T11:26:30.000Z",
       "fingerprint": "1ho6138",
       "official": true,
-      "section": "Urbanisme"
+      "section": "Urbanismo"
     },
     {
       "id": "1iqks4s",
@@ -860,7 +861,7 @@
       "date": "2026-06-11T11:28:21.000Z",
       "fingerprint": "1v8db01",
       "official": true,
-      "section": "Servicis publics"
+      "section": "Servicios publicos"
     },
     {
       "id": "pxqjqc",
@@ -871,7 +872,7 @@
       "date": "2026-06-11T08:37:11.000Z",
       "fingerprint": "kkbqhk",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "1j5bx9c",
@@ -902,7 +903,7 @@
       "date": "2026-06-08T12:51:52.000Z",
       "fingerprint": "1j7u7hc",
       "official": true,
-      "section": "Transport"
+      "section": "Transporte"
     },
     {
       "id": "ai2e0",
@@ -913,7 +914,7 @@
       "date": "2026-06-08T10:25:06.000Z",
       "fingerprint": "wuo42e",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "t5kjag",
@@ -925,15 +926,6 @@
       "fingerprint": "v39d3w"
     },
     {
-      "id": "btxf98",
-      "title": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
-      "source": "El Periódico de Aquí",
-      "sourceHost": "elperiodicodeaqui.com",
-      "date": "2026-06-08T07:00:00.000Z",
-      "fingerprint": "1b9yb98"
-    },
-    {
       "id": "17j0jc",
       "title": "Una mota de 1,3 kilómetros sobre el Barranco de Poyo refuerza la seguridad del área industrial y de Residencial La Reva",
       "link": "https://www.ribarroja.es/es/noticia/una-mota-de-1%2C3-kil%C3%B3metros-sobre-el-barranco-de-poyo-refuerza-la-seguridad-del-%C3%A1rea-industrial-y-de-residencial-la-reva",
@@ -942,7 +934,7 @@
       "date": "2026-06-05T15:27:07.000Z",
       "fingerprint": "ghhn8c",
       "official": true,
-      "section": "Urbanisme"
+      "section": "Urbanismo"
     },
     {
       "id": "19pltuv",
@@ -962,7 +954,7 @@
       "date": "2026-06-04T10:04:37.000Z",
       "fingerprint": "w14jao",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "1vgqfo8",
@@ -982,7 +974,7 @@
       "date": "2026-06-03T10:05:47.000Z",
       "fingerprint": "8wo8bk",
       "official": true,
-      "section": "Festes"
+      "section": "Fiestas"
     },
     {
       "id": "ok7uw0",
@@ -993,7 +985,7 @@
       "date": "2026-06-02T15:47:23.000Z",
       "fingerprint": "1xg5g",
       "official": true,
-      "section": "Foment economic i Comerc"
+      "section": "Fomento economico y Comercio"
     },
     {
       "id": "cj9s5k",
@@ -1024,7 +1016,7 @@
       "date": "2026-06-01T12:37:41.000Z",
       "fingerprint": "wnf7gy",
       "official": true,
-      "section": "Educacio"
+      "section": "Educacion"
     },
     {
       "id": "15duw24",
@@ -1055,7 +1047,7 @@
       "date": "2026-05-28T11:04:42.000Z",
       "fingerprint": "18p2oeg",
       "official": true,
-      "section": "Medi ambient"
+      "section": "Medio ambiente"
     },
     {
       "id": "1fqtrzw",
@@ -1088,18 +1080,7 @@
       "date": "2026-05-27T11:34:36.000Z",
       "fingerprint": "1v0cu0x",
       "official": true,
-      "section": "Industrials"
-    },
-    {
-      "id": "956sns",
-      "title": "Proceso selectivo bolsa de Ingeniero Técnico",
-      "link": "https://www.ribarroja.es/es/noticia/proceso-selectivo-bolsa-de-ingeniero-t%C3%A9cnico",
-      "source": "Ayuntamiento de Riba-roja de Túria",
-      "sourceHost": "ribarroja.es",
-      "date": "2026-05-26T16:45:01.000Z",
-      "fingerprint": "xmejag",
-      "official": true,
-      "section": null
+      "section": "Industriales"
     },
     {
       "id": "lh4ab6",
@@ -1336,15 +1317,6 @@
       "fingerprint": "1wc2ewk"
     },
     {
-      "id": "npr6ww",
-      "title": "Sanidad confirma la construcción del nuevo Centro de Salud de Riba-roja de Túria para comienzos de 2027",
-      "link": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPREdjNDFUMDAtZVdTOXdNNTdnUEVpRGRoX2NTQ0h0bjJ6MnhNZ1dHYmpkLTRDbXAtRVJpTmZTWVpRUnlVUFNiSWZYYU1YcDJKNEZDaW1TVFdteFhjVjNlTG52S1R5M3B1Tlk3Z2xTWk9ScEl6Zzl3Q19IT0FMQ0QzTlNSbm1FTEM2MlFxLV96UjFCeDRaQnd4YTEzczN4OWh1YTU4b0F0clRkUkV1Qm1ka0ZiOXBzTUU3NU1jdGh6b3diRDFpV01uaWZUVm5ELWIySEtHTGJRX0E4RnoyMTJ3VnZXSGN4aWhCMG13LWIwNGhVX0E?oc=5",
-      "source": "Valencia Plaza",
-      "sourceHost": "valenciaplaza.com",
-      "date": "2026-04-08T07:00:00.000Z",
-      "fingerprint": "93xa78"
-    },
-    {
       "id": "1kjuvlw",
       "title": "Un nuevo centro de salud en Riba-roja de Túria: obras en 2027 para aliviar la saturación sanitaria",
       "link": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxNRHBwSFZVbDZKR2JWQy1ndC1fdFNMay1pRFNKd0h5NFVnQy1WMzM3c3FQSnZhdDl2NG9QcDNIZEVQV1NDWVU2YzF0eEEtdEk0dmJfSE5Kb2tIbkQtRDFtalV6b201RnFPSTMwMW1mYVdhUnVuYlNIUlFMSnh4dTIwUTZZLWlIS2pJcEk0RVo4cWlucGxVOUFuTUwwM2hLeElfT2gxVDZyVktGa2JlZDg5a0RYU1RoMURQc2gxbWE5OTVCb3J2UjZTbWlqTTZnMlh4X1VacUs1cTlyNUnSAeABQVVfeXFMTTRPZjl3NzY5a2RxbjRFYXo4UWJLVVNLSG05YXpGVXRIMVRXcGpoUGkwMFZKeVJQRzFqUUdVb3VhYWE0UmxIalJ0ME9zWmtKb2FnS2lLbjBBXzJ6MVlrUzQ1NkpFaDU0bWlOQy1Ybk1EY0Y2amJlMF9yVXFSYkx3VHhDMlhkOHU3N3BHLVR6aGEtRy1VT3NUMG1kRXRlZzZFSW5KUTFLQWZSS2pKVWZwcDFkX0VpT1lqVVYydkNwcTFGcXVnWFhNbTZlb1dKOHZxTUhZSU5iUzNYbDgzbUh4YTg?oc=5",
@@ -1352,6 +1324,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-04-08T07:00:00.000Z",
       "fingerprint": "1vhff70"
+    },
+    {
+      "id": "npr6ww",
+      "title": "Sanidad confirma la construcción del nuevo Centro de Salud de Riba-roja de Túria para comienzos de 2027",
+      "link": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxPREdjNDFUMDAtZVdTOXdNNTdnUEVpRGRoX2NTQ0h0bjJ6MnhNZ1dHYmpkLTRDbXAtRVJpTmZTWVpRUnlVUFNiSWZYYU1YcDJKNEZDaW1TVFdteFhjVjNlTG52S1R5M3B1Tlk3Z2xTWk9ScEl6Zzl3Q19IT0FMQ0QzTlNSbm1FTEM2MlFxLV96UjFCeDRaQnd4YTEzczN4OWh1YTU4b0F0clRkUkV1Qm1ka0ZiOXBzTUU3NU1jdGh6b3diRDFpV01uaWZUVm5ELWIySEtHTGJRX0E4RnoyMTJ3VnZXSGN4aWhCMG13LWIwNGhVX0E?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-04-08T07:00:00.000Z",
+      "fingerprint": "93xa78"
     },
     {
       "id": "1jh56w4",
@@ -1424,6 +1405,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-03-17T07:00:00.000Z",
       "fingerprint": "4c34wo"
+    },
+    {
+      "id": "gezwra",
+      "title": "Riba-roja de Túria aprueba un presupuesto récord de 46 millones de euros",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOQkJrTllwdmN3clZkRXV1eTEtVFpsSkpfTmFUeXJZMFQ2R0w5R3ZxNkJ1TGw5REpETTFySXpzdHlCWFhleWJ3a3hMRkJobkpfZkxvUWM0TXZLNEk0ZWlpVDFzVXotYkNjVXRyTFJZYmhtUXZtZlcwbTlGSk5BY1dqb0lkTUgzY0ZQSFhLVFA0bFpmOU94cXd3SkM1aFlPcTVUeGFqcGFPcUNjajJRakFGdlVWUUpjQ2JMYlJWbUdNT1F5dVoyYVlYN19n?oc=5",
+      "source": "Valencia Plaza",
+      "sourceHost": "valenciaplaza.com",
+      "date": "2026-03-16T07:00:00.000Z",
+      "fingerprint": "1g1rfxk"
     },
     {
       "id": "kx50bk",
@@ -1516,15 +1506,6 @@
       "fingerprint": "a4ku2s"
     },
     {
-      "id": "1syvupc",
-      "title": "Riba-roja suspende el contrato de recogida de residuos por incumplimiento de la empresa",
-      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOaHVVOTdOeG1PNXFVd0ZuakNuTkRhc0NBV3NGUGJ5d3hDZkcxRmgtTW82ZGdDZXNhdlk2TlAxNkxpdGlVdjM0VnRQTUNDdHdBSzJWTjl3VHBtNjZtVUV4Nm0yZm5yRlBxdnR0ZkNINjdxOUZrWXpjbGVzdFpMZ3FWTmRVVHNKSnlOQ3BjR3hOWWVmaFNpSk9iM0RoOG1hOHBhckgtQXdTcXplM2xfR1RzTkgxenlGNTZMSVJJTUxsX0ZwZEdtanB1VzBLQ2bSAdIBQVVfeXFMTkNIZng4bDJuNG9OYWp0Q2YxY25Sd0hQbHNIVUQxMG9xb2RpQTZRSDZ2MUZ1SkRXYjhCUmdZdkg2VVJVVEl4RnAzOGVVMS1ZTkJBcVh5cUtwYktYZnhVVHNxWk9fcjhJUzNhaVl1MGpoUm1SZ2REQ1NfdVQ0YmhOc3hKem9mNkhRQzZKSmdLYlYxR2RiN1ZuUDB2NmJVYmFITGhYWUpQMVhnVzdrSGlLOWJCZC1qUmN0cFhabmpYMk1LOVdDakpIbmQ2ZmRuMy1IU3hB?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-01-07T08:00:00.000Z",
-      "fingerprint": "14l2x1k"
-    },
-    {
       "id": "h7cwqj",
       "title": "El Ayuntamiento de Riba-roja impulsará en el periodo 2026-2029 la construcción de vivienda en el municipio",
       "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
@@ -1550,6 +1531,24 @@
       "sourceHost": "valencianews.es",
       "date": "2025-12-22T08:00:00.000Z",
       "fingerprint": "10a5syw"
+    },
+    {
+      "id": "1ch361k",
+      "title": "Vuelve a Riba-roja de Túria la Festa del Dux, una de las citas visigodas más destacadas de España",
+      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFAyUkM0U1FzMzY3dUZQY0xqTEkxRkhuTVE0alVRbm5zWnlGbTd3aVplZGU0QWVscWpTa3B5QWgyQmR6RnlpcmVDTU1lOXFrNjhsb1FCc0hNbDlRQUtxNlRrMVdWVF9yRXdWbEdWZQ?oc=5",
+      "source": "Valenciabonita",
+      "sourceHost": "valenciabonita.es",
+      "date": "2025-10-29T07:00:00.000Z",
+      "fingerprint": "57hzi9"
+    },
+    {
+      "id": "vonoag",
+      "title": "Innovación apoya la creación en Riba-roja de Túria de un laboratorio de pruebas para validar soluciones en resiliencia climática",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE9MZUhGVE1sdmg1MndOdUdqSzMzN1FLOXFxMl9XT3hmUVpoU2VhdFJvalVneHdOZ2ZPWTJkaUJHRkJ4R3VhamdJQ2tfM05halJ0SFVubzNBbHdoMnJqeWVMUXMyODhkeW5XZ21sZkRYUQ?oc=5",
+      "source": "Comunica GVA",
+      "sourceHost": "comunica.gva.es",
+      "date": "2025-09-18T07:00:00.000Z",
+      "fingerprint": "shr9c0"
     },
     {
       "id": "je6vcc",

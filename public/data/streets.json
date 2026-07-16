@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T06:41:15.195Z",
+  "generatedAt": "2026-07-16T06:44:54.421Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -5258,8 +5258,8 @@
     },
     {
       "id": "way-30824595",
-      "name": "Carretera Ribarroja - Villamarchante",
-      "slug": "carretera-ribarroja-villamarchante",
+      "name": "Carretera Riba-roja – Vilamarxant",
+      "slug": "carretera-riba-roja-vilamarxant",
       "kind": "carretera",
       "point": [
         39.5629989,

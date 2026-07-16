@@ -1,26 +1,509 @@
 {
-  "generatedAt": "2026-07-15T06:44:07.432Z",
+  "generatedAt": "2026-07-16T06:48:38.399Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 64,
-    "openTotal": 64,
-    "inRibaRoja": 36,
+    "total": 69,
+    "openTotal": 69,
+    "inRibaRoja": 40,
     "closingSoon": 30,
-    "withDetail": 64,
+    "withDetail": 69,
     "byMonth": {
-      "2026-07": 9,
+      "2026-07": 15,
       "2026-06": 20,
-      "2026-05": 31,
+      "2026-05": 30,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2495",
+      "fo": 2495,
+      "codigo": "2026/00194",
+      "titulo": "OPERARIO/A DE CARPINTERÍA METÁLICA",
+      "publishedAt": "2026-07-15",
+      "deadline": "2026-09-15",
+      "location": "Riba-roja de Túria Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2495",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00194"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "OPERARIO/A DE CARPINTERÍA METÁLICA"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes a viernes jornada partida"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Instalación de ventanas, puertas, mosquiteras, mamparas"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Se precisa persona para trabajar el sector de la carpintería metálica, formación a cargo de la empresa. Se requiere carné de conducir, ganas de trabajar y actitud",
+        "jornada": "Completa",
+        "horario": "Lunes a viernes jornada partida",
+        "salario": "Según convenio",
+        "funciones": "Instalación de ventanas, puertas, mosquiteras, mamparas",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2494",
+      "fo": 2494,
+      "codigo": "2026/00193",
+      "titulo": "PERSONAL PARA ESTABLECIMIENTO COMERCIAL",
+      "publishedAt": "2026-07-15",
+      "deadline": "2026-09-15",
+      "location": "Riba-roja Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2494",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00193"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "PERSONAL PARA ESTABLECIMIENTO COMERCIAL"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Personal para atención al público Ubicación y traslado de género Elaboración de producto Limpieza establecimiento"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Lunes, martes, viernes, sábado y domingo de 6.00-14.00 Miércoles y jueves libre"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Actitud y ganas de trabajar"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Personal para atención al público Ubicación y traslado de género Elaboración de producto Limpieza establecimiento",
+        "jornada": "Completa",
+        "horario": "Lunes, martes, viernes, sábado y domingo de 6.00-14.00 Miércoles y jueves libre",
+        "salario": "Según convenio",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2493",
+      "fo": 2493,
+      "codigo": "2026/00192",
+      "titulo": "OPERARIO/A DE CONTROL DE CALIDAD DE PRUEBAS DE SERVICIO E INSTALACIONES (área fontanería y/o electricidad)",
+      "publishedAt": "2026-07-15",
+      "deadline": "2026-09-15",
+      "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2493",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00192"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "OPERARIO/A DE CONTROL DE CALIDAD DE PRUEBAS DE SERVICIO E INSTALACIONES (área fontanería y/o electricidad)"
+          },
+          {
+            "label": "Observaciones",
+            "value": "¿Qué ofrecemos?"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Pedrapiquers, s/n-Pol. Ind., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos en obra según normativa. Pruebas de estanqueidad en cubiertas y ventanas para comprobar filtraciones, pruebas de fontanería, saneamiento, baja tensión, PCI, ACS, climatización, Blower Door Registro de datos de los ensayos realizados. Mantenimiento básico de equipos y vehículos. Apoyo en oficina técnica. Realización de informes. Apoyo en el laboratorio. Orden y limpieza."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Requisitos: Conocimientos y/o experiencia previa realizando tareas de fontanería/electricidad. Se valorará poseer estudios, diplomas y/o carnets relacionados con edificación y obra civil, eficiencia energética, fontanería, electricidad, instalación y mantenimiento Carnet de conducir y vehículo propio para acceder a nuestras instalaciones. Manejo de dispositivo móvil a nivel usuario. Ser una persona organizada y con capacidad para la resolución de incidencias. Ganas de querer dar lo mejor desde el primer día y de crecer con todo el equipo."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "observaciones": "¿Qué ofrecemos?",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "salario": "Según convenio + variable",
+        "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos en obra según normativa. Pruebas de estanqueidad en cubiertas y ventanas para comprobar filtraciones, pruebas de fontanería, saneamiento, baja tensión, PCI, ACS, climatización, Blower Door Registro de datos de los ensayos realizados. Mantenimiento básico de equipos y vehículos. Apoyo en oficina técnica. Realización de informes. Apoyo en el laboratorio. Orden y limpieza.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "Electricistas de la construcción y afines"
+          },
+          {
+            "nombre": "Fontaneros"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2492",
+      "fo": 2492,
+      "codigo": "2026/00191",
+      "titulo": "OPERARIO/A DE RECOGIDA DE MUESTRAS EN OBRAS DE CONSTRUCCIÓN",
+      "publishedAt": "2026-07-15",
+      "deadline": "2026-09-15",
+      "location": "C/ Pedrapiquers, s/n-Pol. Ind. Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2492",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00191"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "OPERARIO/A DE RECOGIDA DE MUESTRAS EN OBRAS DE CONSTRUCCIÓN"
+          },
+          {
+            "label": "Observaciones",
+            "value": "¿Qué ofrecemos?"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "C/ Pedrapiquers, s/n-Pol. Ind., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio + variable"
+          },
+          {
+            "label": "Funciones",
+            "value": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos de materiales en obra según normativa. Toma de muestras. Registro de datos de las muestras recogidas. Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). Categorización de las muestras obtenidas. Transporte de muestras recogidas al laboratorio para su posterior análisis. Mantenimiento básico de equipos y vehículos. Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "Requisitos: Experiencia previa en el sector de construcción. Carnet de conducir y vehículo propio para acceder a nuestras instalaciones. Manejo de dispositivo móvil nivel usuario. Ser una persona organizada y con capacidad para la resolución de incidencias. Ganas de querer dar lo mejor desde el primer día y de crecer con todo el equipo."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "observaciones": "¿Qué ofrecemos?",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "salario": "Según convenio + variable",
+        "funciones": "La persona seleccionada tendrá como misión realizar el control de calidad en obra acudiendo con la furgoneta de empresa, siguiendo la ruta marcada por el responsable, realizando las siguientes funciones: Realización de ensayos de materiales en obra según normativa. Toma de muestras. Registro de datos de las muestras recogidas. Recogida de muestras de materiales de obra (hormigón, morteros, aceros, ladrillos, suelos, zahorras, etc.). Categorización de las muestras obtenidas. Transporte de muestras recogidas al laboratorio para su posterior análisis. Mantenimiento básico de equipos y vehículos. Apoyo en el laboratorio descargando, cargando y desmoldando probetas. Orden y limpieza.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "PEONES DE LA CONSTRUCCIÓN DE EDIFICIOS"
+          },
+          {
+            "nombre": "Peones de la construcción de edificios"
+          },
+          {
+            "nombre": "ENCOFRADORES"
+          },
+          {
+            "nombre": "Encofradores y operarios de puesta en obra de hormigón"
+          },
+          {
+            "nombre": "Albañiles"
+          },
+          {
+            "nombre": "ALBAÑILES"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2490",
+      "fo": 2490,
+      "codigo": "2026/00190",
+      "titulo": "Auxiliar administrativo/a",
+      "publishedAt": "2026-07-15",
+      "deadline": "2026-09-15",
+      "location": "Poligono Industrial Poyo de Reva Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2490",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00190"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Auxiliar administrativo/a"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "temporal + indefinido"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "AUXILIARES ADMINISTRATIVOS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Poligono Industrial Poyo de Reva, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa Turnos: Turno partido"
+          },
+          {
+            "label": "Horario",
+            "value": "- 2 semanas 8 a 17 h - 1 semana 9 a 18:30 h - 1 sábado cada 3 de 8 a 13:30 h"
+          },
+          {
+            "label": "Salario",
+            "value": "17.500 €"
+          },
+          {
+            "label": "Funciones",
+            "value": "Tareas de apoyo en general a administración pero su tarea principal será administrativo de prevención ( se formará a la persona si no tiene experiencia) Necesitamos que tenga mucha actitud."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
+        "duracion": "temporal + indefinido",
+        "numPuestos": "1",
+        "categoria": "AUXILIARES ADMINISTRATIVOS",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46394",
+        "jornada": "Completa Turnos: Turno partido",
+        "horario": "- 2 semanas 8 a 17 h - 1 semana 9 a 18:30 h - 1 sábado cada 3 de 8 a 13:30 h",
+        "salario": "17.500 €",
+        "funciones": "Tareas de apoyo en general a administración pero su tarea principal será administrativo de prevención ( se formará a la persona si no tiene experiencia) Necesitamos que tenga mucha actitud.",
+        "vehiculo": "Sí",
+        "ocupaciones": [
+          {
+            "nombre": "Asistentes de dirección y administrativos",
+            "experiencia": "1 Años, 5 Meses"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2491",
+      "fo": 2491,
+      "codigo": "2026/00189",
+      "titulo": "Personal para puesto de limpieza",
+      "publishedAt": "2026-07-15",
+      "deadline": "2026-09-15",
+      "location": "MANISES-VALENCIA Manises (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2491",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00189"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Personal para puesto de limpieza"
+          },
+          {
+            "label": "Observaciones",
+            "value": "- Incorporación inmediata"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "OTROS SERVICIOS"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "MANISES-VALENCIA, Municipio: Manises, Provincia: Valencia, CP: 46940"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "jornada completa/parcial"
+          },
+          {
+            "label": "Salario",
+            "value": "segun convenio"
+          },
+          {
+            "label": "Funciones",
+            "value": "Capacidad para realizar tareas de limpieza en centros deportivos, club náuticos, comunidades, etc."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "2",
+        "observaciones": "- Incorporación inmediata",
+        "municipio": "Manises",
+        "provincia": "Valencia",
+        "cp": "46940",
+        "jornada": "Completa",
+        "horario": "jornada completa/parcial",
+        "salario": "segun convenio",
+        "funciones": "Capacidad para realizar tareas de limpieza en centros deportivos, club náuticos, comunidades, etc.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2489",
       "fo": 2489,
@@ -4745,89 +5228,6 @@
         "horario": "12:00h-19:36h",
         "salario": "1400 € brutos/mes 12 pagas",
         "funciones": "Carga de camiones y tareas de almacén.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2428",
-      "fo": 2428,
-      "codigo": "2026/00130",
-      "titulo": "Mozo/a de almacén con discapacidad",
-      "publishedAt": "2026-05-15",
-      "deadline": "2026-07-15",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2428",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00130"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Mozo/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos : Experiencia mínima: al menos 1 año Disponer de certificado de discapacidad del 33% o superior. Disponer de vehículo propio Experiencia previa"
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno noche"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato inicial temporal prorrogable hasta indefinido"
-          },
-          {
-            "label": "Horario",
-            "value": "De martes a sábado de noches. De 24:00 a 08:00 horas."
-          },
-          {
-            "label": "Salario",
-            "value": "22.000 € brutos"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Requisitos : Experiencia mínima: al menos 1 año Disponer de certificado de discapacidad del 33% o superior. Disponer de vehículo propio Experiencia previa",
-        "jornada": "Completa Turnos: Turno noche",
-        "horario": "De martes a sábado de noches. De 24:00 a 08:00 horas.",
-        "salario": "22.000 € brutos",
-        "funciones": "- Despaletizar - Ubicación de la mercancía - Utilización de PDA - Mantenimiento de la limpieza del lugar",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

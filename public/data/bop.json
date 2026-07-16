@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T06:35:54.540Z",
+  "generatedAt": "2026-07-16T06:43:31.482Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -8,9 +8,19 @@
   "stats": {
     "total": 10,
     "daysCovered": 21,
-    "latestDate": "2026-07-10"
+    "latestDate": "2026-07-16"
   },
   "anuncios": [
+    {
+      "id": "64b8231cdace",
+      "regNumber": "2026/08872",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del III Plan de Igualdad",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-07-16",
+      "bulletinDate": "16/07/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08872",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=16%2F07%2F2026"
+    },
     {
       "id": "b21f45d56796",
       "regNumber": "2026/08534",
@@ -100,16 +110,6 @@
       "bulletinDate": "17/06/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F07331",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=17%2F06%2F2026"
-    },
-    {
-      "id": "aefdb0cd58ce",
-      "regNumber": "2026/07297",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la convocatoria de subvenciones destinadas para fiestas de urbanizaciones de 2026. Identificador BDNS: 910849",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-06-16",
-      "bulletinDate": "16/06/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F07297",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=16%2F06%2F2026"
     }
   ]
 }

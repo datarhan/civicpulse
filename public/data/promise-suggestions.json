@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-15T06:44:58.986Z",
+  "generatedAt": "2026-07-16T06:49:33.839Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -79,7 +79,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -153,7 +153,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -224,7 +224,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -288,7 +288,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -355,7 +355,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -390,7 +390,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -428,7 +428,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -448,7 +448,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -456,7 +456,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -464,7 +464,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -530,7 +530,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -561,7 +561,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -601,24 +601,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQN3JuMmxKZFVOb012bHdlYWxZWlU0ZkFSQWNlZTNEMjdaV1lJU2ZJaWN1MTJTR19HUW9jemtpRVlKN1lwcUlmYjRURmV4UUpnNExtM05Nb0JFYUdoQ09EbHJEMWpFcXJjSXcyMUlYOEtvTkRfOFNFWVBKYk4wOHdxdTNkNFJIX3NSQjZ3UXg2cUx6LTF5WG9GRXE5bkQtNS1JWTNRWVRNVkxWYTN3STVXOGsyQmRVbTdSUE1MZ3RsaVVjYWhLTFNvUGp0ZWprXzQ?oc=5",
-          "date": "2026-07-07",
-          "quote": "Plan Urbanístico de Reconstrucción avanza en Riba-roja",
-          "kind": "press",
-          "publisher": "Valencia News",
-          "matchedKeywords": [
-            "plan",
-            "avanza"
-          ]
-        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
           "date": "2026-06-01",
@@ -656,7 +645,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -700,7 +689,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -730,7 +719,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -754,7 +743,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -821,7 +810,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -838,21 +827,10 @@
             "metro",
             "proyecto"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
-          "date": "2026-06-08",
-          "quote": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "metro",
-            "proyecto"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -871,7 +849,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -914,7 +892,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -963,7 +941,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -994,7 +972,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -1037,7 +1015,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-15T06:44:58.875Z"
+      "generatedAt": "2026-07-16T06:49:33.746Z"
     }
   ],
   "llmEvidence": [],
