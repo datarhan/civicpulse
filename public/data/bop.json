@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-16T06:43:31.482Z",
+  "generatedAt": "2026-07-17T06:38:12.275Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -8,9 +8,19 @@
   "stats": {
     "total": 10,
     "daysCovered": 21,
-    "latestDate": "2026-07-16"
+    "latestDate": "2026-07-17"
   },
   "anuncios": [
+    {
+      "id": "13dee094df2e",
+      "regNumber": "2026/08918",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación de las bases para la provisión en propiedad de una plaza de administrativo/a de administración general, grupo C1, mediante promoción interna restringida",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-07-17",
+      "bulletinDate": "17/07/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08918",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=17%2F07%2F2026"
+    },
     {
       "id": "64b8231cdace",
       "regNumber": "2026/08872",
@@ -100,16 +110,6 @@
       "bulletinDate": "18/06/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F07376",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=18%2F06%2F2026"
-    },
-    {
-      "id": "a104e066962e",
-      "regNumber": "2026/07331",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la delegación de competencias para la celebración de matrimonios civiles",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-06-17",
-      "bulletinDate": "17/06/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F07331",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=17%2F06%2F2026"
     }
   ]
 }

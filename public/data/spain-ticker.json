@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-07-16T06:49:32.608Z",
+  "generatedAt": "2026-07-17T06:43:16.702Z",
   "sources": {
     "luz": {
       "ok": true,
-      "asOf": "2026-07-16",
+      "asOf": "2026-07-17",
       "unit": "€/kWh",
-      "currentValue": 0.20345,
+      "currentValue": 0.19506,
       "currentHour": 8,
-      "dayMin": 0.10595,
-      "dayMax": 0.29429,
+      "dayMin": 0.13143000000000002,
+      "dayMax": 0.29706,
       "hourlyCurve": [
-        0.18175,
-        0.17592,
-        0.17556,
-        0.17488,
-        0.17478,
-        0.17645,
-        0.18415,
-        0.19147999999999998,
-        0.20345,
-        0.17346999999999999,
-        0.22181,
-        0.20156,
-        0.2,
-        0.19572,
-        0.11997,
-        0.10912000000000001,
-        0.10595,
-        0.10911,
-        0.18528,
-        0.2063,
-        0.25599,
-        0.29429,
-        0.23273,
-        0.22456
+        0.18133000000000002,
+        0.17572,
+        0.17009,
+        0.1703,
+        0.16997,
+        0.17165,
+        0.18736000000000003,
+        0.19384,
+        0.19506,
+        0.16525,
+        0.21259999999999998,
+        0.20812999999999998,
+        0.20393,
+        0.20197,
+        0.13143000000000002,
+        0.13166,
+        0.1325,
+        0.13288999999999998,
+        0.21511000000000002,
+        0.24371,
+        0.28424,
+        0.29706,
+        0.2261,
+        0.21456999999999998
       ],
-      "deltaVsYesterdayPct": -2.272662739470524,
+      "deltaVsYesterdayPct": 3.177941478852469,
       "sourceUrl": "https://www.ree.es/es/datos/mercados/precios-mercados-tiempo-real"
     },
     "gasolina": {
       "ok": true,
-      "asOf": "2026-07-16",
+      "asOf": "2026-07-17",
       "unit": "€/L",
-      "gasolina95": 1.5116666666666667,
-      "diesel": 1.5897058823529413,
+      "gasolina95": 1.5166666666666666,
+      "diesel": 1.6076470588235292,
       "stationCount": 19,
       "sourceUrl": "https://geoportalgasolineras.es"
     },
@@ -153,14 +153,10 @@
     },
     "bceMRO": {
       "ok": true,
-      "asOf": "2026-07-16",
+      "asOf": "2026-07-17",
       "value": 2.4,
       "unit": "%",
       "history": [
-        {
-          "period": "2026-07-05",
-          "value": 2.4
-        },
         {
           "period": "2026-07-06",
           "value": 2.4
@@ -203,6 +199,10 @@
         },
         {
           "period": "2026-07-16",
+          "value": 2.4
+        },
+        {
+          "period": "2026-07-17",
           "value": 2.4
         }
       ]
@@ -266,7 +266,7 @@
     },
     "aemet": {
       "ok": true,
-      "asOf": "2026-07-16T06:49:31.966Z",
+      "asOf": "2026-07-17T06:43:16.250Z",
       "active": true,
       "highestLevel": "naranja",
       "counts": {
@@ -278,7 +278,7 @@
     },
     "dgt": {
       "ok": true,
-      "asOf": "2026-07-16T08:48:58.809+02:00",
+      "asOf": "2026-07-17T08:42:59.221+02:00",
       "incidents": [
         {
           "road": "A-7",
@@ -437,56 +437,8 @@
           "location": null
         },
         {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "CV-35",
-          "description": "CV-35",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
+          "road": "A-3",
+          "description": "A-3",
           "severity": null,
           "location": null
         },
@@ -509,24 +461,6 @@
           "location": null
         },
         {
-          "road": "A-3",
-          "description": "A-3",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "V-31",
-          "description": "V-31",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "V-31",
-          "description": "V-31",
-          "severity": null,
-          "location": null
-        },
-        {
           "road": "A-7",
           "description": "A-7",
           "severity": null,
@@ -545,9 +479,57 @@
           "location": null
         },
         {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
           "road": "A-7",
           "description": "A-7",
           "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-31",
+          "description": "V-31",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "V-30",
+          "description": "V-30",
+          "severity": "medium",
+          "location": null
+        },
+        {
+          "road": "CV-35",
+          "description": "CV-35",
+          "severity": "medium",
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": "medium",
           "location": null
         },
         {
@@ -563,26 +545,14 @@
           "location": null
         },
         {
-          "road": "A-3",
-          "description": "A-3",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "CV-35",
-          "description": "CV-35",
-          "severity": null,
-          "location": null
-        },
-        {
           "road": "A-7",
           "description": "A-7",
           "severity": null,
           "location": null
         },
         {
-          "road": "V-31",
-          "description": "V-31",
+          "road": "A-7",
+          "description": "A-7",
           "severity": null,
           "location": null
         },
@@ -595,6 +565,12 @@
         {
           "road": "V-30",
           "description": "V-30",
+          "severity": "medium",
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
           "severity": null,
           "location": null
         },
@@ -605,8 +581,8 @@
           "location": null
         },
         {
-          "road": "CV-35",
-          "description": "CV-35",
+          "road": "A-7",
+          "description": "A-7",
           "severity": null,
           "location": null
         },
@@ -629,32 +605,20 @@
           "location": null
         },
         {
-          "road": "A-7",
-          "description": "A-7",
+          "road": "A-3",
+          "description": "A-3",
           "severity": null,
           "location": null
         },
         {
-          "road": "A-7",
-          "description": "A-7",
+          "road": "A-3",
+          "description": "A-3",
           "severity": null,
           "location": null
         },
         {
           "road": "CV-35",
           "description": "CV-35",
-          "severity": "medium",
-          "location": null
-        },
-        {
-          "road": "A-7",
-          "description": "A-7",
-          "severity": null,
-          "location": null
-        },
-        {
-          "road": "V-31",
-          "description": "V-31",
           "severity": null,
           "location": null
         },
@@ -677,8 +641,20 @@
           "location": null
         },
         {
-          "road": "V-31",
-          "description": "V-31",
+          "road": "CV-35",
+          "description": "CV-35",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
           "severity": null,
           "location": null
         },
@@ -691,7 +667,13 @@
         {
           "road": "A-3",
           "description": "A-3",
-          "severity": "medium",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
           "location": null
         },
         {
@@ -701,8 +683,38 @@
           "location": null
         },
         {
-          "road": "V-31",
-          "description": "V-31",
+          "road": "V-30",
+          "description": "V-30",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "CV-35",
+          "description": "CV-35",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-3",
+          "description": "A-3",
+          "severity": null,
+          "location": null
+        },
+        {
+          "road": "A-7",
+          "description": "A-7",
           "severity": null,
           "location": null
         }
