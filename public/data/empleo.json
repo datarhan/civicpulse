@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T06:42:25.610Z",
+  "generatedAt": "2026-07-18T06:32:25.046Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -9,18 +9,100 @@
     "total": 69,
     "openTotal": 69,
     "inRibaRoja": 40,
-    "closingSoon": 29,
+    "closingSoon": 30,
     "withDetail": 69,
     "byMonth": {
-      "2026-07": 15,
+      "2026-07": 16,
       "2026-06": 20,
-      "2026-05": 30,
+      "2026-05": 29,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2496",
+      "fo": 2496,
+      "codigo": "2026/00195",
+      "titulo": "Operari@ de limpieza con discapaciad",
+      "publishedAt": "2026-07-17",
+      "deadline": "2026-09-17",
+      "location": "Cheste (Valencia)",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2496",
+      "inRibaRoja": false,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00195"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Operari@ de limpieza con discapaciad"
+          },
+          {
+            "label": "Porcentaje de discapacidad",
+            "value": "Igual o superior a 33%"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATACION DISCAPACIDAD"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "De 1 a 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "2"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "PEONES"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46380"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Turnos: Turno mañana, Turno tarde"
+          },
+          {
+            "label": "Horario",
+            "value": "L-D 6:00-13:36/ 14.20-21:56h (2 días de descanso)"
+          },
+          {
+            "label": "Salario",
+            "value": "1444 € brutos/mes 12 pagas"
+          },
+          {
+            "label": "Funciones",
+            "value": "Limpieza de comedor, oficinas, exterior, salas comunes, baños."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATACION DISCAPACIDAD",
+        "duracion": "De 1 a 6 meses",
+        "numPuestos": "2",
+        "categoria": "PEONES",
+        "municipio": "Cheste",
+        "provincia": "Valencia",
+        "cp": "46380",
+        "jornada": "Turnos: Turno mañana, Turno tarde",
+        "horario": "L-D 6:00-13:36/ 14.20-21:56h (2 días de descanso)",
+        "salario": "1444 € brutos/mes 12 pagas",
+        "funciones": "Limpieza de comedor, oficinas, exterior, salas comunes, baños.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2495",
       "fo": 2495,
@@ -5141,93 +5223,6 @@
         "jornada": "Completa Turnos: Turno mañana, Turno tarde",
         "horario": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas",
         "salario": "1294€ (14 pagas) + plus de festivos y domingos según convenio",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2430",
-      "fo": 2430,
-      "codigo": "2026/00135",
-      "titulo": "Operario/a de almacén con discapacidad",
-      "publishedAt": "2026-05-19",
-      "deadline": "2026-07-17",
-      "location": "Cheste (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2430",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00135"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a de almacén con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere carnet de carretillero."
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Cheste, Provincia: Valencia, CP: 46830"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "12:00h-19:36h"
-          },
-          {
-            "label": "Salario",
-            "value": "1400 € brutos/mes 12 pagas"
-          },
-          {
-            "label": "Funciones",
-            "value": "Carga de camiones y tareas de almacén."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Se requiere carnet de carretillero.",
-        "municipio": "Cheste",
-        "provincia": "Valencia",
-        "cp": "46830",
-        "jornada": "Completa Turnos: Turno tarde",
-        "horario": "12:00h-19:36h",
-        "salario": "1400 € brutos/mes 12 pagas",
-        "funciones": "Carga de camiones y tareas de almacén.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

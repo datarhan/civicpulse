@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-17T06:35:14.127Z",
+  "generatedAt": "2026-07-18T06:27:40.351Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -7,13 +7,25 @@
   },
   "stats": {
     "daysFetched": 26,
-    "daysWithMatches": 1,
-    "total": 1,
+    "daysWithMatches": 2,
+    "total": 2,
     "byDepartamento": {
+      "SERVICIOS COMUNES PROCESALES": 1,
       "ADMINISTRACIÓN LOCAL": 1
     }
   },
   "items": [
+    {
+      "id": "c0fc27881caa",
+      "identificador": "BOE-B-2026-24558",
+      "publicacionDate": "2026-07-18T00:00:00.000Z",
+      "departamento": "SERVICIOS COMUNES PROCESALES",
+      "seccion": "IV. Administración de Justicia",
+      "epigrafe": "",
+      "titulo": "RIBARROJA TURIA",
+      "urlHtml": "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-24558",
+      "urlPdf": "https://www.boe.es/boe/dias/2026/07/18/pdfs/BOE-B-2026-24558.pdf"
+    },
     {
       "id": "8293fbe3bdf7",
       "identificador": "BOE-A-2026-15077",
