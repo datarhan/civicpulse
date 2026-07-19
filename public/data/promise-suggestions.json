@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-18T06:33:15.669Z",
+  "generatedAt": "2026-07-19T07:12:07.422Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -30,18 +30,6 @@
             "aprueba",
             "alto",
             "historia"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
-          "date": "2026-03-27",
-          "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "millon",
-            "euro",
-            "aprueba"
           ]
         },
         {
@@ -76,34 +64,27 @@
             "2026",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
+          "date": "2026-04-15",
+          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
+      "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQNnFuX3p5UGhMRHNTRmhfVm5CcG9pbnNjZDZWblA2SnJHNEVkWEZnLWxMVlpvUmZJMWV1V2Q5N084MGF2U2psWFMxTDFWYmRNaGEtUkFRZGNzTnpzS0RhWUVxME9nZmQtR2U5TmxNZndNRnVmRERWa2Q1eWxUVnl1X1Btb255UGNTdU5seW9rWVRGT3BoQmdLek9sZjVyWWJfcXREaEM5VzVaTXFrbDMtdl9CTEFHNTJQNzI2TnNjMDlvYVNXZWZuMGtXeXNaWUNUeXhZVWlrYVk3c1k3SGVJNGlXRXNfc0Z6MlU3WmRUaDJWeFh1UGNn?oc=5",
-          "date": "2026-03-27",
-          "quote": "Riba-roja aprueba inversiones de 5,9 millones de euros, entre las que destaca un Plan de Refugios Climáticos",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "plan",
-            "refugio",
-            "climatico",
-            "aprueba",
-            "inversion",
-            "millon",
-            "euro",
-            "entre",
-            "destaca"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
           "date": "2026-07-10",
@@ -150,16 +131,43 @@
             "plan",
             "aprueba"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi-gFBVV95cUxQZVF3ZlQxckM0bjhXWV81S2hBTjlGa1g2VTJnOFMxd2xTR1dqUUtwWElza3VQYjkyb2RDczNHcTVXRWpGcFJoTGptcWU0MzhOZDRqeFVIbGFNbDI2eld3YUpUSUFHYWtVYVlIOFMzS3NMMlFiUmFmc0djd21rY0FITDd2Ym9KYk1IZ1RCNGZJVm1OZ3dIOE9sUmE3Tl9tdUZTa1pfbHd3ZzZ0Ti13eXY1Q2dCcmczc01PS3ZlaWFHMDNjQ3dmZGZsZVUtNFMxcXU3Z0hoUnpIMXBOUlJUbkNqSmI2cFRxbmViTzZ3Wlk4c2l0X3ViNGFKZUhn?oc=5",
+          "date": "2026-04-27",
+          "quote": "Riba-roja destinará este año 3,3 millones en inversiones públicas gracias al superávit de las cuentas de 2025",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "inversion",
+            "millon"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "reconstruccion",
+            "dana",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira",
+            "tras"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
           "date": "2026-06-11",
@@ -205,21 +213,10 @@
             "dana",
             "tras"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -283,13 +280,29 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
+          "date": "2026-01-02",
+          "quote": "El Ayuntamiento de Riba-roja impulsará en el periodo 2026-2029 la construcción de vivienda en el municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "construccion",
+            "vivienda",
+            "2026",
+            "2029",
+            "impulsara",
+            "periodo",
+            "municipio"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
           "date": "2026-05-18",
@@ -334,7 +347,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -355,21 +368,10 @@
             "finalizara",
             "julio"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxNd1N5clNhOXBTNXpQcVlvRE13VFZiS09fYVJSeFlSNktUeThHbHhjQXVXQWJpUWRRZ25TVW84ajJRbExmTTR5aXl1QkdpR0c4QkhKZ0ItOHV2R3k3MGZGM1FvMFh6YmpGNnFYQ01tN3FzSnFNVHI2TlQ3c3E0eVNkdTlXbVBuQmF2QjZPaGEwRmU0NWx2RnU4NVFvdzF3bjdhdElCUGZ5UlU2U0hHdlpjU2RUTnRPNDZoUndNWVlLTEtOLUVNdGVXcE9SWDF1QkVxS0FUZE5PT1FDelNDeHVUSE130gHnAUFVX3lxTE9KWkxNTFFPbVNQNWtMRGl0bHJRRjdKdDFXWW1CblNVQXpfRldsczBMVWc3cG1seFpyeFhFZkQzQjJEbzBQblVRYkJudXAwcGM4UUN0ZzdOYmY0dlVkZUpudENvTmNNY2FLV3NfT3p6T013X184aE93RmhZbHBWU3ZSN3RLNDc5bkZURGl3WHBCU3NiYTRiTTByekdNV085WHRiVUdLeXZBREx5bFA0TkxlaW1mVE5aemUwbjdoamR0UGdWeGNOYVNud1l2NkJ1M0ludXpGVmNnQTFVWGJ3UXRaVVJhbkxIdw?oc=5",
-          "date": "2026-05-14",
-          "quote": "Riba-roja instala una malla en ocho hectáreas del Parc Natural del Túria para frenar especies invasoras y minimizar el riesgo de incendios",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "parc",
-            "natural"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -407,7 +409,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -427,7 +429,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -435,7 +437,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -443,7 +445,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -508,7 +510,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -539,13 +541,24 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "documentada",
-      "confidence": 0,
+      "confidence": 0.175,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
+          "date": "2026-03-17",
+          "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "gestion",
+            "municipio"
+          ]
+        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
           "date": "2026-03-09",
@@ -579,7 +592,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -634,7 +647,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -678,7 +691,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -708,7 +721,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -732,7 +745,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -787,7 +800,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -818,7 +831,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -837,7 +850,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -880,7 +893,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -917,17 +930,6 @@
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQUTZBM0RkeVFxMTF5b3o4Ynl6WXpxNmQ5T2JSNm11clZoRm1BRnhaV3EtNm1oQTVwTHNhMnViSDVUTS1qd3k2U1B6cnl0UWE5MnM5dWJSZ0pkMUtnYkkwZGVmWXo3d3B0Ml9UTlUzX2JubmVXQTRFekJoeEs0ak5hV1pESjIwWTEzR2F5WTltb0VXWTVHb05EV0FLS2ctOTFEOTBRZzNjczgxZlE1WlFROEhNMVpnYnRQOUNDZlJBYVJSZW9EbUVZQTNFZ2tGNUtmMkQ2elQ0MA?oc=5",
-          "date": "2026-07-17",
-          "quote": "Helados Estiu bate récord: factura 164 millones y vende más de 46 millones de litros de helado en un solo año",
-          "kind": "press",
-          "publisher": "Noticias Ciudadanas",
-          "matchedKeywords": [
-            "helado",
-            "estiu"
-          ]
-        },
-        {
           "url": "https://www.infoturia.com/riba-roja-de-turia/84805-helados-estiu-embene-46-milions-de-litres-de-gelat.html",
           "date": "2026-07-16",
           "quote": "Helados Estiu ven 46 milions de litres de gelat",
@@ -951,7 +953,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -982,7 +984,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -1024,7 +1026,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-18T06:33:15.557Z"
+      "generatedAt": "2026-07-19T07:12:07.310Z"
     }
   ],
   "llmEvidence": [],
