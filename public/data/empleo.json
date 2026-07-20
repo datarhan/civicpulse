@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-19T07:11:18.466Z",
+  "generatedAt": "2026-07-20T07:57:17.769Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 69,
-    "openTotal": 69,
+    "total": 68,
+    "openTotal": 68,
     "inRibaRoja": 40,
-    "closingSoon": 30,
-    "withDetail": 69,
+    "closingSoon": 25,
+    "withDetail": 68,
     "byMonth": {
       "2026-07": 16,
       "2026-06": 20,
-      "2026-05": 29,
+      "2026-05": 28,
       "2026-04": 2,
       "2026-01": 1,
       "2025-11": 1
@@ -3233,105 +3233,6 @@
         "horario": "Lunes a Viernes jornada partida",
         "salario": "Según convenio",
         "funciones": "Reparto de mercancía a nivel regional",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2447",
-      "fo": 2447,
-      "codigo": "2026/00148",
-      "titulo": "Operador Centro de Comunicaciones y Túnel",
-      "publishedAt": "2026-05-27",
-      "deadline": "2026-07-27",
-      "location": "Centro de Conservación de Carreteras, autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2447",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00148"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operador Centro de Comunicaciones y Túnel"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Imprescindible residir próximo al puesto de trabajo. Se ofrece estabilidad laboral. Buen ambiente de trabajo."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 2ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Centro de Conservación de Carreteras, autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Trabajo a turnos (12 horas)"
-          },
-          {
-            "label": "Horario",
-            "value": "7:00 a 19:00 o 19:00 a 7:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Convenio + Complementos"
-          },
-          {
-            "label": "Funciones",
-            "value": "Se encargará de la gestión del tráfico y de la gestión de incidentes, controlando el tráfico y aplicando los procedimientos planificados, de la gestión de las instalaciones, controlando la disponibilidad de los equipos y gestionando su mantenimiento para garantizar un nivel de servicio adecuado mediante el manejo de sistemas tecnológicos complejos y la toma de decisiones críticas en tiempo real. Siendo las principales tareas que se llevarán a cabo, de carácter enunciativo y no exhaustivo: - Vigilar y supervisar la circulación del tráfico y señalizar las incidencias que se presentan en el túnel y carrereras. - Controlar y manejar el equipamiento del túnel con un sistema SCADA. - Controlar los accesos a locales y a los túneles mediante sistemas computerizados. - Manejar aplicaciones ofimáticas para la gestión de la información documentación. - Grabar datos en los sistemas informáticos. - Clasificar, registrar y archivar la documentación en soporte convencional o informático. - Avisar al equipo de mantenimiento en caso de avería o degradación de las instalaciones que pudieran afectar a la seguridad del túnel. - Avisar al equipo de vigilancia en carretera y/o a los servicios de emergencia ante incidentes de tráfico. - Gestión de herramienta ofimática para seguimiento de incidencias en carretera."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Capacidad para trabajar en equipo, compromiso y actitud proactiva. Imprescindible carnet de conducir B para acudir al puesto de trabajo."
-          },
-          {
-            "label": "Informática",
-            "value": "Experiencia mínima de 1 año en el manejo de las siguientes herramientas: - Ofimática y sistema operativo Windows. - Valorable, uso de sistemas SCADA."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "categoria": "OFICIAL DE 2ª",
-        "observaciones": "Imprescindible residir próximo al puesto de trabajo. Se ofrece estabilidad laboral. Buen ambiente de trabajo.",
-        "municipio": "Paterna",
-        "provincia": "Valencia",
-        "cp": "46988",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos",
-        "horario": "7:00 a 19:00 o 19:00 a 7:00",
-        "salario": "Convenio + Complementos",
-        "funciones": "Se encargará de la gestión del tráfico y de la gestión de incidentes, controlando el tráfico y aplicando los procedimientos planificados, de la gestión de las instalaciones, controlando la disponibilidad de los equipos y gestionando su mantenimiento para garantizar un nivel de servicio adecuado mediante el manejo de sistemas tecnológicos complejos y la toma de decisiones críticas en tiempo real. Siendo las principales tareas que se llevarán a cabo, de carácter enunciativo y no exhaustivo: - Vigilar y supervisar la circulación del tráfico y señalizar las incidencias que se presentan en el túnel y carrereras. - Controlar y manejar el equipamiento del túnel con un sistema SCADA. - Controlar los accesos a locales y a los túneles mediante sistemas computerizados. - Manejar aplicaciones ofimáticas para la gestión de la información documentación. - Grabar datos en los sistemas informáticos. - Clasificar, registrar y archivar la documentación en soporte convencional o informático. - Avisar al equipo de mantenimiento en caso de avería o degradación de las instalaciones que pudieran afectar a la seguridad del túnel. - Avisar al equipo de vigilancia en carretera y/o a los servicios de emergencia ante incidentes de tráfico. - Gestión de herramienta ofimática para seguimiento de incidencias en carretera.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
