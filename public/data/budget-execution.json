@@ -1,6 +1,336 @@
 {
-  "generatedAt": "2026-07-20T07:39:01.544Z",
+  "generatedAt": "2026-07-21T06:46:24.668Z",
   "source": "https://www.ribarroja.es/es/1_gestion_presupuestaria/2_estados_ejecucion_presupuesto",
-  "periods": [],
-  "latest": null
+  "periods": [
+    {
+      "year": 2025,
+      "trimestre": null,
+      "fechaListado": "31/12/2025",
+      "gastos": {
+        "total": {
+          "inicial": 37599838.15,
+          "modificaciones": 24523314.93,
+          "actual": 62123153.08,
+          "ejecutado": 18909465.12
+        },
+        "chapters": [
+          {
+            "capitulo": 1,
+            "label": "GASTOS DE PERSONAL",
+            "inicial": 19516194.19,
+            "modificaciones": 1366419.78,
+            "actual": 20882613.97,
+            "ejecutado": 9050222.8
+          },
+          {
+            "capitulo": 2,
+            "label": "GASTOS CORRIENTES EN BIENES Y SERVICIOS",
+            "inicial": 14311925.08,
+            "modificaciones": 1079901.38,
+            "actual": 15391826.46,
+            "ejecutado": 7565289.65
+          },
+          {
+            "capitulo": 3,
+            "label": "GASTOS FINANCIEROS",
+            "inicial": 362680.17,
+            "modificaciones": 0,
+            "actual": 362680.17,
+            "ejecutado": 54661.03
+          },
+          {
+            "capitulo": 4,
+            "label": "TRANSFERENCIAS CORRIENTES",
+            "inicial": 2149520.62,
+            "modificaciones": 13258.44,
+            "actual": 2162779.06,
+            "ejecutado": 540939.25
+          },
+          {
+            "capitulo": 6,
+            "label": "INVERSIONES REALES",
+            "inicial": 0,
+            "modificaciones": 22063735.33,
+            "actual": 22063735.33,
+            "ejecutado": 1034230.67
+          },
+          {
+            "capitulo": 7,
+            "label": "TRANSFERENCIAS DE CAPITAL",
+            "inicial": 338668.57,
+            "modificaciones": 0,
+            "actual": 338668.57,
+            "ejecutado": 204622.72
+          },
+          {
+            "capitulo": 8,
+            "label": "ACTIVOS FINANCIEROS",
+            "inicial": 25000,
+            "modificaciones": 0,
+            "actual": 25000,
+            "ejecutado": 11750
+          },
+          {
+            "capitulo": 9,
+            "label": "PASIVOS FINANCIEROS",
+            "inicial": 895849.52,
+            "modificaciones": 0,
+            "actual": 895849.52,
+            "ejecutado": 447749
+          }
+        ]
+      },
+      "ingresos": {
+        "total": {
+          "inicial": 43516817.13,
+          "modificaciones": 25494616.63,
+          "actual": 69011433.76,
+          "ejecutado": 58915029.57
+        },
+        "chapters": [
+          {
+            "capitulo": 1,
+            "label": "Impuestos directos",
+            "inicial": 17907000,
+            "modificaciones": 0,
+            "actual": 17907000,
+            "ejecutado": 17747708.5
+          },
+          {
+            "capitulo": 2,
+            "label": "Impuestos indirectos",
+            "inicial": 2000000,
+            "modificaciones": 0,
+            "actual": 2000000,
+            "ejecutado": 1434754.94
+          },
+          {
+            "capitulo": 3,
+            "label": "Tasas, precios públicos y otros ingresos",
+            "inicial": 6877208.58,
+            "modificaciones": 0,
+            "actual": 6877208.58,
+            "ejecutado": 5530477.74
+          },
+          {
+            "capitulo": 4,
+            "label": "Transferencia corrientes",
+            "inicial": 14038355.2,
+            "modificaciones": 3029763.45,
+            "actual": 17068118.65,
+            "ejecutado": 16369959.64
+          },
+          {
+            "capitulo": 5,
+            "label": "Ingresos patrimoniales",
+            "inicial": 885688.62,
+            "modificaciones": 0,
+            "actual": 885688.62,
+            "ejecutado": 1038720.77
+          },
+          {
+            "capitulo": 6,
+            "label": "Enajenación de inversiones reales",
+            "inicial": 0,
+            "modificaciones": 0,
+            "actual": 0,
+            "ejecutado": 0
+          },
+          {
+            "capitulo": 7,
+            "label": "Transferencias de capital",
+            "inicial": 0,
+            "modificaciones": 16121809.31,
+            "actual": 16121809.31,
+            "ejecutado": 14989393.25
+          },
+          {
+            "capitulo": 8,
+            "label": "Activos financieros",
+            "inicial": 25000,
+            "modificaciones": 6343043.87,
+            "actual": 6368043.87,
+            "ejecutado": 20450
+          },
+          {
+            "capitulo": 9,
+            "label": "Pasivos financieros",
+            "inicial": 1783564.73,
+            "modificaciones": 0,
+            "actual": 1783564.73,
+            "ejecutado": 1783564.73
+          }
+        ]
+      },
+      "ejecucionPct": {
+        "gastos": 30.4,
+        "ingresos": 85.4
+      }
+    }
+  ],
+  "latest": {
+    "year": 2025,
+    "trimestre": null,
+    "fechaListado": "31/12/2025",
+    "gastos": {
+      "total": {
+        "inicial": 37599838.15,
+        "modificaciones": 24523314.93,
+        "actual": 62123153.08,
+        "ejecutado": 18909465.12
+      },
+      "chapters": [
+        {
+          "capitulo": 1,
+          "label": "GASTOS DE PERSONAL",
+          "inicial": 19516194.19,
+          "modificaciones": 1366419.78,
+          "actual": 20882613.97,
+          "ejecutado": 9050222.8
+        },
+        {
+          "capitulo": 2,
+          "label": "GASTOS CORRIENTES EN BIENES Y SERVICIOS",
+          "inicial": 14311925.08,
+          "modificaciones": 1079901.38,
+          "actual": 15391826.46,
+          "ejecutado": 7565289.65
+        },
+        {
+          "capitulo": 3,
+          "label": "GASTOS FINANCIEROS",
+          "inicial": 362680.17,
+          "modificaciones": 0,
+          "actual": 362680.17,
+          "ejecutado": 54661.03
+        },
+        {
+          "capitulo": 4,
+          "label": "TRANSFERENCIAS CORRIENTES",
+          "inicial": 2149520.62,
+          "modificaciones": 13258.44,
+          "actual": 2162779.06,
+          "ejecutado": 540939.25
+        },
+        {
+          "capitulo": 6,
+          "label": "INVERSIONES REALES",
+          "inicial": 0,
+          "modificaciones": 22063735.33,
+          "actual": 22063735.33,
+          "ejecutado": 1034230.67
+        },
+        {
+          "capitulo": 7,
+          "label": "TRANSFERENCIAS DE CAPITAL",
+          "inicial": 338668.57,
+          "modificaciones": 0,
+          "actual": 338668.57,
+          "ejecutado": 204622.72
+        },
+        {
+          "capitulo": 8,
+          "label": "ACTIVOS FINANCIEROS",
+          "inicial": 25000,
+          "modificaciones": 0,
+          "actual": 25000,
+          "ejecutado": 11750
+        },
+        {
+          "capitulo": 9,
+          "label": "PASIVOS FINANCIEROS",
+          "inicial": 895849.52,
+          "modificaciones": 0,
+          "actual": 895849.52,
+          "ejecutado": 447749
+        }
+      ]
+    },
+    "ingresos": {
+      "total": {
+        "inicial": 43516817.13,
+        "modificaciones": 25494616.63,
+        "actual": 69011433.76,
+        "ejecutado": 58915029.57
+      },
+      "chapters": [
+        {
+          "capitulo": 1,
+          "label": "Impuestos directos",
+          "inicial": 17907000,
+          "modificaciones": 0,
+          "actual": 17907000,
+          "ejecutado": 17747708.5
+        },
+        {
+          "capitulo": 2,
+          "label": "Impuestos indirectos",
+          "inicial": 2000000,
+          "modificaciones": 0,
+          "actual": 2000000,
+          "ejecutado": 1434754.94
+        },
+        {
+          "capitulo": 3,
+          "label": "Tasas, precios públicos y otros ingresos",
+          "inicial": 6877208.58,
+          "modificaciones": 0,
+          "actual": 6877208.58,
+          "ejecutado": 5530477.74
+        },
+        {
+          "capitulo": 4,
+          "label": "Transferencia corrientes",
+          "inicial": 14038355.2,
+          "modificaciones": 3029763.45,
+          "actual": 17068118.65,
+          "ejecutado": 16369959.64
+        },
+        {
+          "capitulo": 5,
+          "label": "Ingresos patrimoniales",
+          "inicial": 885688.62,
+          "modificaciones": 0,
+          "actual": 885688.62,
+          "ejecutado": 1038720.77
+        },
+        {
+          "capitulo": 6,
+          "label": "Enajenación de inversiones reales",
+          "inicial": 0,
+          "modificaciones": 0,
+          "actual": 0,
+          "ejecutado": 0
+        },
+        {
+          "capitulo": 7,
+          "label": "Transferencias de capital",
+          "inicial": 0,
+          "modificaciones": 16121809.31,
+          "actual": 16121809.31,
+          "ejecutado": 14989393.25
+        },
+        {
+          "capitulo": 8,
+          "label": "Activos financieros",
+          "inicial": 25000,
+          "modificaciones": 6343043.87,
+          "actual": 6368043.87,
+          "ejecutado": 20450
+        },
+        {
+          "capitulo": 9,
+          "label": "Pasivos financieros",
+          "inicial": 1783564.73,
+          "modificaciones": 0,
+          "actual": 1783564.73,
+          "ejecutado": 1783564.73
+        }
+      ]
+    },
+    "ejecucionPct": {
+      "gastos": 30.4,
+      "ingresos": 85.4
+    }
+  }
 }

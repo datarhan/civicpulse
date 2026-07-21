@@ -1,16 +1,26 @@
 {
-  "generatedAt": "2026-07-20T07:40:03.641Z",
+  "generatedAt": "2026-07-21T06:47:17.568Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 9,
-    "daysCovered": 20,
-    "latestDate": "2026-07-17"
+    "total": 10,
+    "daysCovered": 21,
+    "latestDate": "2026-07-21"
   },
   "anuncios": [
+    {
+      "id": "f560c197d5c9",
+      "regNumber": "2026/09022",
+      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación de la relación definitiva de personas admitidas y excluidas, órgano técnico de selección y fecha del primer ejercicio del proceso selectivo para la constitución de una bolsa de empleo de ingeniero/a técnico/a del Ayuntamiento",
+      "entity": "Ayuntamiento de Riba-roja de Túria",
+      "date": "2026-07-21",
+      "bulletinDate": "21/07/2026",
+      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F09022",
+      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=21%2F07%2F2026"
+    },
     {
       "id": "13dee094df2e",
       "regNumber": "2026/08918",

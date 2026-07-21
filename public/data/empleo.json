@@ -1,26 +1,247 @@
 {
-  "generatedAt": "2026-07-20T07:57:17.769Z",
+  "generatedAt": "2026-07-21T06:51:34.120Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 68,
-    "openTotal": 68,
-    "inRibaRoja": 40,
-    "closingSoon": 25,
-    "withDetail": 68,
+    "total": 64,
+    "openTotal": 64,
+    "inRibaRoja": 39,
+    "closingSoon": 26,
+    "withDetail": 64,
     "byMonth": {
-      "2026-07": 16,
-      "2026-06": 20,
-      "2026-05": 28,
+      "2026-07": 19,
+      "2026-06": 19,
+      "2026-05": 23,
       "2026-04": 2,
-      "2026-01": 1,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2498",
+      "fo": 2498,
+      "codigo": "2026/00197",
+      "titulo": "CELADOR/A",
+      "publishedAt": "2026-07-21",
+      "deadline": "2026-09-21",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2498",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00197"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "CELADOR/A"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Salario",
+            "value": "segun convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "numPuestos": "1",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "salario": "segun convenio",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2275",
+      "fo": 2275,
+      "codigo": "2025/00305",
+      "titulo": "Mecánico/a de Taller - Montaje de neumáticos",
+      "publishedAt": "2026-07-21",
+      "deadline": "2026-09-21",
+      "location": "Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2275",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2025/00305"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "Mecánico/a de Taller - Montaje de neumáticos"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Incorporación inmediata. Formación en buenas prácticas y seguridad. Persona responsable, comprometida y con ganas de aprender. Requisitos : - Educación mínima. ESO o equivalente (valorables estudios técnicos en automoción) - Experiencia mínima: 1 año en talleres mecánicos o en servicios de neumáticos. - Conocimientos básicos en seguridad laboral. - Capacidad de trabajo en equipo y atención al cliente. - Vehículo propio ."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Observaciones jornada",
+            "value": "Contrato estable tras periodo de prueba"
+          },
+          {
+            "label": "Salario",
+            "value": "18.000€ - 24.000€"
+          },
+          {
+            "label": "Funciones",
+            "value": "- Montaje y desmontaje de neumáticos con maquinaria especializada. - Balanceo dinámico y estático, asegurando un correcto rendimiento del vehículo. - Alineación de dirección (si aplica) con equipos específicos. - Reparación segura de pinchazos y daños en neumáticos. - Revisión técnica del estado de los neumáticos (presión, dibujo, deformaciones). - Mantenimiento y cuidado de herramientas y equipos. - Atención al cliente en taller, ofreciendo un servicio profesional y cordial."
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          },
+          {
+            "label": "Habilidades",
+            "value": "- Experiencia en neumáticos de automóvil, SUV y camión (valorable). - Organización y limpieza en el trabajo. - Buen trato al cliente y habilidades de comunicación."
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "1",
+        "observaciones": "Incorporación inmediata. Formación en buenas prácticas y seguridad. Persona responsable, comprometida y con ganas de aprender. Requisitos : - Educación mínima. ESO o equivalente (valorables estudios técnicos en automoción) - Experiencia mínima: 1 año en talleres mecánicos o en servicios de neumáticos. - Conocimientos básicos en seguridad laboral. - Capacidad de trabajo en equipo y atención al cliente. - Vehículo propio .",
+        "jornada": "Completa",
+        "salario": "18.000€ - 24.000€",
+        "funciones": "- Montaje y desmontaje de neumáticos con maquinaria especializada. - Balanceo dinámico y estático, asegurando un correcto rendimiento del vehículo. - Alineación de dirección (si aplica) con equipos específicos. - Reparación segura de pinchazos y daños en neumáticos. - Revisión técnica del estado de los neumáticos (presión, dibujo, deformaciones). - Mantenimiento y cuidado de herramientas y equipos. - Atención al cliente en taller, ofreciendo un servicio profesional y cordial.",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2497",
+      "fo": 2497,
+      "codigo": "2026/00196",
+      "titulo": "CONDUCTOR GRUA RÍGIDO Y ARTICULADO",
+      "publishedAt": "2026-07-20",
+      "deadline": "2026-09-20",
+      "location": "POLÍGONO INDUSTRIAL Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2497",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00196"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "CONDUCTOR GRUA RÍGIDO Y ARTICULADO"
+          },
+          {
+            "label": "Sector CNAE",
+            "value": "TRANSPORTE Y ALMACENAMIENTO"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "Más de 6 meses"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "3"
+          },
+          {
+            "label": "Categoría profesional",
+            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "POLÍGONO INDUSTRIAL, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "8:00 - 14:00/15:00 - 17:00"
+          },
+          {
+            "label": "Salario",
+            "value": "SEGÚN CONVENIO"
+          },
+          {
+            "label": "Funciones",
+            "value": "Trasporte de vehículos (recogida y entrega)"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "Más de 6 meses",
+        "numPuestos": "3",
+        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
+        "municipio": "Riba-roja de Túria",
+        "provincia": "Valencia",
+        "cp": "46190",
+        "jornada": "Completa",
+        "horario": "8:00 - 14:00/15:00 - 17:00",
+        "salario": "SEGÚN CONVENIO",
+        "funciones": "Trasporte de vehículos (recogida y entrega)",
+        "vehiculo": "Sí",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2496",
       "fo": 2496,
@@ -2300,72 +2521,6 @@
         "horario": "De lunes a viernes de 8h a 17h",
         "salario": "Según convenio más incentivos y pagas",
         "funciones": "Trabajo de tabiqueria, maestreado, revestimientos, escayola, toda la albañilería en general. Trabajos en zaguanes, viviendas y facahdas principalmente",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2461",
-      "fo": 2461,
-      "codigo": "2026/00162",
-      "titulo": "Técnico en seguridad junior",
-      "publishedAt": "2026-06-09",
-      "deadline": "2026-08-09",
-      "location": "Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2461",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00162"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Técnico en seguridad junior"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "INDIFERENTE"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Conocimientos de electricidad y electrónica."
-          }
-        ],
-        "tipoContrato": "INDIFERENTE",
-        "numPuestos": "2",
-        "observaciones": "Se requiere Técnico en seguridad junior, con conocimientos de electricidad y electrónica. Se valorará la experiencia, aunque no es un requisito indispensable. Salario según convenio.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "salario": "Según convenio",
-        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
@@ -4741,394 +4896,6 @@
       }
     },
     {
-      "id": "2441",
-      "fo": 2441,
-      "codigo": "2026/00142",
-      "titulo": "Limpieza de oficinas y vestuarios en planta de reciclaje",
-      "publishedAt": "2026-05-22",
-      "deadline": "2026-07-20",
-      "location": "Parque Logístico Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2441",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00142"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpieza de oficinas y vestuarios en planta de reciclaje"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Imprescindible vehículo para acceder al puesto, no hay transporte público. Experiencia en limpieza al menos 3 años"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Parque Logístico, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Se abona plus festividad y plus nocturnidad"
-          },
-          {
-            "label": "Horario",
-            "value": "(lunes a viernes) 07:00h a 15:00h (lunes a jueves) 16:00 a 24:00 (viernes) 14:30 a 22:30"
-          },
-          {
-            "label": "Salario",
-            "value": "1.424,50€"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza en vestuarios, despachos, laboratorio, comedores, etc."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "Imprescindible vehículo para acceder al puesto, no hay transporte público. Experiencia en limpieza al menos 3 años",
-        "jornada": "Turnos: Turno mañana, Turno tarde",
-        "horario": "(lunes a viernes) 07:00h a 15:00h (lunes a jueves) 16:00 a 24:00 (viernes) 14:30 a 22:30",
-        "salario": "1.424,50€",
-        "funciones": "Limpieza en vestuarios, despachos, laboratorio, comedores, etc.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2438",
-      "fo": 2438,
-      "codigo": "2026/00139",
-      "titulo": "Empleada/o de limpieza",
-      "publishedAt": "2026-05-20",
-      "deadline": "2026-07-20",
-      "location": "Pol. Industrial Riba-roja de Túria Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2438",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00139"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Empleada/o de limpieza"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere puntualidad. Se valorará incorporación inmediata y experiencia en el sector."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Pol. Industrial Riba-roja de Túria, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana"
-          },
-          {
-            "label": "Horario",
-            "value": "6:00 a 14:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza en oficinas y despachos"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "1",
-        "observaciones": "Se requiere puntualidad. Se valorará incorporación inmediata y experiencia en el sector.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Completa Turnos: Turno mañana",
-        "horario": "6:00 a 14:00",
-        "salario": "Según convenio",
-        "funciones": "Limpieza en oficinas y despachos",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Personal de limpieza de oficinas, hoteles y otros establecimientos similares",
-            "experiencia": "6 Meses"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2437",
-      "fo": 2437,
-      "codigo": "2026/00138",
-      "titulo": "Auxiliar de enfermería",
-      "publishedAt": "2026-05-20",
-      "deadline": "2026-07-20",
-      "location": "Bétera (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2437",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00138"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar de enfermería"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se requiere : C.F Técnico/a en Cuidados Auxiliares de enfermería; Técnico/a de Atención Sociosanitaria; Técnico/a en Atención de Personas en situación de Dependencia o Certificado de Profesionalidad. Carnet de Manipulador de Alimentos. Imprescindible carnet de conducir. Se valorará experiencia en el puesto."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "3"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Bétera, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato temporal por sustitución baja IT y continuidad e contrato periodo vacacional"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas: de 7:00 a 14:30 horas Tardes: de 14:30 a 22:00 horas"
-          },
-          {
-            "label": "Salario",
-            "value": "1.221€ (14 pagas) + plus de festivos y domingos según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Tareas propias del puesto. - Atención directa de los residentes."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "- El/la profesional que opta al puesto de trabajo ha de tener habilidades sociales y en concreto ser sensible al colectivo. - Buena presencia y saber expresarse correctamente. - Capacidad de trabajo en equipo y resolutivo/a."
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "3",
-        "observaciones": "Se requiere : C.F Técnico/a en Cuidados Auxiliares de enfermería; Técnico/a de Atención Sociosanitaria; Técnico/a en Atención de Personas en situación de Dependencia o Certificado de Profesionalidad. Carnet de Manipulador de Alimentos. Imprescindible carnet de conducir. Se valorará experiencia en el puesto.",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
-        "horario": "Mañanas: de 7:00 a 14:30 horas Tardes: de 14:30 a 22:00 horas",
-        "salario": "1.221€ (14 pagas) + plus de festivos y domingos según convenio",
-        "funciones": "- Tareas propias del puesto. - Atención directa de los residentes.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2435",
-      "fo": 2435,
-      "codigo": "2026/00137",
-      "titulo": "Pinche de cocina",
-      "publishedAt": "2026-05-20",
-      "deadline": "2026-07-20",
-      "location": "Bétera (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2435",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00137"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Pinche de cocina"
-          },
-          {
-            "label": "Observaciones",
-            "value": "40 H/semanales Requisitos: - Graduado en ESO o equivalente. - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Bétera, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Periodo vacacional"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas"
-          },
-          {
-            "label": "Salario",
-            "value": "1221€ (14 pagas) + plus de festivos y domingos según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "observaciones": "40 H/semanales Requisitos: - Graduado en ESO o equivalente. - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto.",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno rotativo",
-        "horario": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas",
-        "salario": "1221€ (14 pagas) + plus de festivos y domingos según convenio",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2434",
-      "fo": 2434,
-      "codigo": "2026/00136",
-      "titulo": "Cocinero/a",
-      "publishedAt": "2026-05-20",
-      "deadline": "2026-07-20",
-      "location": "Bétera (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2434",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00136"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Cocinero/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "40 H/semanales Requisitos: - Título de cocina - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto."
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE OBRA O SERVICIO DETERMINADO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Bétera, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Periodo vacacional"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas"
-          },
-          {
-            "label": "Salario",
-            "value": "1294€ (14 pagas) + plus de festivos y domingos según convenio"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE OBRA O SERVICIO DETERMINADO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "observaciones": "40 H/semanales Requisitos: - Título de cocina - Carnet de manipulador de alimentos - Imprescindible carnet de conducir Se valorará experiencia previa en el puesto.",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde",
-        "horario": "Mañanas de 7:00 a 15:00 horas Tardes: de 14:00 a 22:00 horas",
-        "salario": "1294€ (14 pagas) + plus de festivos y domingos según convenio",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2411",
       "fo": 2411,
       "codigo": "2026/00112",
@@ -5274,92 +5041,6 @@
             "experiencia": "2 Años"
           }
         ]
-      }
-    },
-    {
-      "id": "2309",
-      "fo": 2309,
-      "codigo": "2026/00011",
-      "titulo": "Chófer grúa coches",
-      "publishedAt": "2026-01-14",
-      "deadline": "2028-02-28",
-      "location": "POLÍGONO INDUSTRIAL Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2309",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00011"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Chófer grúa coches"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "TRANSPORTE Y ALMACENAMIENTO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 3ª y ESPECIALISTAS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "POLÍGONO INDUSTRIAL, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "8:00-14:00 Y 15:00-17:00"
-          },
-          {
-            "label": "Salario",
-            "value": "SEGÚN CONVENIO"
-          },
-          {
-            "label": "Funciones",
-            "value": "Trasporte de vehículos (recogida y entrega)"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Tarjetas CAP y tacógrafo Carnet conducir C (mínimo)"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "categoria": "OFICIAL DE 3ª y ESPECIALISTAS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa",
-        "horario": "8:00-14:00 Y 15:00-17:00",
-        "salario": "SEGÚN CONVENIO",
-        "funciones": "Trasporte de vehículos (recogida y entrega)",
-        "vehiculo": "Sí",
-        "ocupaciones": []
       }
     },
     {
