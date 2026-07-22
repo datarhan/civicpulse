@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-21T06:52:26.849Z",
+  "generatedAt": "2026-07-22T07:11:46.755Z",
   "source": {
-    "tenders": "2026-07-21T06:46:27.159Z",
-    "geo": "2026-07-21T06:47:45.832Z"
+    "tenders": "2026-07-22T07:05:53.421Z",
+    "geo": "2026-07-22T07:07:20.116Z"
   },
   "universe": {
-    "totalContracts": 374,
-    "totalAmount": 14054157.239999993,
+    "totalContracts": 379,
+    "totalAmount": 14297643.179999994,
     "locatedContracts": 31,
-    "locatedAmount": 697388.9399999998,
+    "locatedAmount": 697388.94,
     "situatedContracts": 92,
-    "situatedAmount": 3354731.15,
+    "situatedAmount": 3354731.1499999994,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 73,
@@ -49,7 +49,7 @@
         -0.5912189
       ],
       "contractCount": 5,
-      "amount": 89470.3,
+      "amount": 89470.29999999999,
       "danaAmount": 16382.03
     },
     {
@@ -215,7 +215,7 @@
         -0.5912189
       ],
       "contractCount": 5,
-      "amount": 89470.3,
+      "amount": 89470.29999999999,
       "danaAmount": 16382.03
     },
     {
@@ -830,27 +830,6 @@
       }
     },
     {
-      "id": "745132",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 14400,
-      "amountKind": "final",
-      "date": "2019-07-25",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5473561,
-        -0.5639968
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
-        "sourceId": "way-1178031442"
-      }
-    },
-    {
       "id": "3725734",
       "zones": [],
       "matchedAlias": {},
@@ -1111,6 +1090,27 @@
       }
     },
     {
+      "id": "3925762",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 39655.97,
+      "amountKind": "final",
+      "date": "2022-11-10",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5439777,
+        -0.5812609
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Campo de Fútbol Municipal Roberto Gil",
+        "matchedText": "Campo de Fútbol Municipal Roberto Gil",
+        "sourceId": "way-39586077"
+      }
+    },
+    {
       "id": "543940",
       "zones": [],
       "matchedAlias": {},
@@ -1129,6 +1129,73 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
+      }
+    },
+    {
+      "id": "2197024",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 10471.95,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
+      "point": [
+        39.5354222,
+        -0.5360689
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Avinguda del Castanyer",
+        "matchedText": "Avinguda del Castanyer",
+        "sourceId": "avinguda-del-castanyer"
+      }
+    },
+    {
+      "id": "2196998",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 10471.95,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
+      "id": "9975923",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 24020.82,
+      "amountKind": "final",
+      "date": "2026-04-20",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5433045,
+        -0.5757486
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Complex Esportiu La Mallà",
+        "matchedText": "Complex Esportiu La Mallà",
+        "sourceId": "way-1095351062"
       }
     },
     {
@@ -1262,27 +1329,6 @@
       }
     },
     {
-      "id": "3925762",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 39655.97,
-      "amountKind": "final",
-      "date": "2022-11-10",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5439777,
-        -0.5812609
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Campo de Fútbol Municipal Roberto Gil",
-        "matchedText": "Campo de Fútbol Municipal Roberto Gil",
-        "sourceId": "way-39586077"
-      }
-    },
-    {
       "id": "506691",
       "zones": [
         "l-oliveral"
@@ -1393,6 +1439,27 @@
         "name": "Carrer de les Bodeguetes",
         "matchedText": "Carrer de les Bodeguetes",
         "sourceId": "carrer-de-les-bodeguetes"
+      }
+    },
+    {
+      "id": "745132",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 14400,
+      "amountKind": "final",
+      "date": "2019-07-25",
+      "contractType": "services",
+      "categoryTitle": "other",
+      "point": [
+        39.5473561,
+        -0.5639968
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "matchedText": "Col·legi d'Educació Infantil i Primària Eres Altes",
+        "sourceId": "way-1178031442"
       }
     },
     {
@@ -1531,27 +1598,6 @@
         "name": "Urbanització La Reva",
         "matchedText": "Urbanització La Reva",
         "sourceId": "urbanitzacio-la-reva"
-      }
-    },
-    {
-      "id": "9975923",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 24020.82,
-      "amountKind": "final",
-      "date": "2026-04-20",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5433045,
-        -0.5757486
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Complex Esportiu La Mallà",
-        "matchedText": "Complex Esportiu La Mallà",
-        "sourceId": "way-1095351062"
       }
     },
     {
@@ -2739,52 +2785,6 @@
         "name": "Carrer de les Ànimes",
         "matchedText": "Carrer de les Ànimes",
         "sourceId": "carrer-de-les-animes"
-      }
-    },
-    {
-      "id": "2197024",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5354222,
-        -0.5360689
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Avinguda del Castanyer",
-        "matchedText": "Avinguda del Castanyer",
-        "sourceId": "avinguda-del-castanyer"
-      }
-    },
-    {
-      "id": "2196998",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
       }
     }
   ]

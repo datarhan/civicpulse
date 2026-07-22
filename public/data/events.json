@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-21T06:47:33.063Z",
+  "generatedAt": "2026-07-22T07:06:59.163Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -261,14 +261,14 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/bufalo%20kids.jpg?itok=jDFKoTD_"
     },
     {
-      "id": "85xn0k",
-      "title": "Cine 'Napoleón'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27napole%C3%B3n%27",
+      "id": "w1r1u4",
+      "title": "Cine 'Lilo & Stitch'",
+      "link": "https://www.ribarroja.es/es/evento/cine-%27lilo-%26-stitch%27",
       "eventDate": "2026-07-31T20:00:00.000Z",
       "eventDateText": "31 de julio de 2026 22:00",
       "publishedDate": "2026-05-21T15:54:35.000Z",
       "excerpt": "Película gratuita",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/napoleon.jpg?itok=ernEo9Zb"
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260717%20lilo%26stich.jpg?itok=whnsodhR"
     },
     {
       "id": "1k00uk8",
@@ -431,16 +431,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/21%20madama%20buterflay.jpg?itok=ZByBU8pL"
     },
     {
-      "id": "1q71hzg",
-      "title": "Musical 'We love disco'",
-      "link": "https://www.ribarroja.es/es/evento/musical-%27we-love-disco%27",
-      "eventDate": "2026-10-04T17:00:00.000Z",
-      "eventDateText": "04 de octubre de 2026 19:00",
-      "publishedDate": "2026-05-31T12:03:07.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/22%20disco%20we%20love.jpg?itok=_mKFwwl6"
-    },
-    {
       "id": "z5khol",
       "title": "Teatro 'Els sants inocents'",
       "link": "https://www.ribarroja.es/es/evento/teatro-%27els-sants-inocents%27",
@@ -479,6 +469,16 @@
       "publishedDate": "2026-05-31T11:20:23.000Z",
       "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/25%20peter%20pan.jpg?itok=x4Gcr-Q-"
+    },
+    {
+      "id": "19jtvs8",
+      "title": "Danza 'Al compás de Nino'",
+      "link": "https://www.ribarroja.es/es/evento/danza-%27al-comp%C3%A1s-de-nino%27",
+      "eventDate": "2026-12-04T18:00:00.000Z",
+      "eventDateText": "04 de diciembre de 2026 19:00",
+      "publishedDate": "2026-07-21T11:50:53.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260717%2025%20A%20al%20compas%20de%20Nino.jpg?itok=h2v72top"
     },
     {
       "id": "53mxwc",
