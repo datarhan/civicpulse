@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-23T06:57:53.327Z",
+  "generatedAt": "2026-07-24T06:52:00.921Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
@@ -9,17 +9,147 @@
     "total": 64,
     "openTotal": 64,
     "inRibaRoja": 39,
-    "closingSoon": 26,
+    "closingSoon": 24,
     "withDetail": 64,
     "byMonth": {
-      "2026-07": 20,
-      "2026-06": 19,
+      "2026-07": 22,
+      "2026-06": 17,
       "2026-05": 22,
       "2026-04": 2,
       "2025-11": 1
     }
   },
   "items": [
+    {
+      "id": "2502",
+      "fo": 2502,
+      "codigo": "2026/00201",
+      "titulo": "MOZ@ ALMACÉN DEPARTAMENTO INTERNACIONAL",
+      "publishedAt": "2026-07-23",
+      "deadline": "2026-09-23",
+      "location": "Área Industrial Riba-roja Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2502",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00201"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "MOZ@ ALMACÉN DEPARTAMENTO INTERNACIONAL"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Incorporasción inmediata"
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "3 MESES DE PRUEBA + INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Área Industrial Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Desde las 08:00 hasta las 17:00 (-1 hora comida)."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio de moz@ especialista"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "3 MESES DE PRUEBA + INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "Incorporasción inmediata",
+        "jornada": "Completa",
+        "horario": "Desde las 08:00 hasta las 17:00 (-1 hora comida).",
+        "salario": "Según convenio de moz@ especialista",
+        "ocupaciones": []
+      }
+    },
+    {
+      "id": "2501",
+      "fo": 2501,
+      "codigo": "2026/00200",
+      "titulo": "ATC INTERNACIONAL",
+      "publishedAt": "2026-07-23",
+      "deadline": "2026-09-23",
+      "location": "Área Industrial Riba-roja Riba-roja de Túria",
+      "status": "Abierta",
+      "statusTone": "ok",
+      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2501",
+      "inRibaRoja": true,
+      "detail": {
+        "fields": [
+          {
+            "label": "Código",
+            "value": "2026/00200"
+          },
+          {
+            "label": "Nombre de la oferta",
+            "value": "ATC INTERNACIONAL"
+          },
+          {
+            "label": "Observaciones",
+            "value": "Incorpración inmediata Imprescindible B2 en inglés, el francés-alemán e italiano suman puntos."
+          },
+          {
+            "label": "Tipo de contrato",
+            "value": "CONTRATO INDEFINIDO"
+          },
+          {
+            "label": "Duración del contrato",
+            "value": "3 MESES DE PRUEBA + INDEFINIDO"
+          },
+          {
+            "label": "Número de puestos",
+            "value": "1"
+          },
+          {
+            "label": "Lugar puesto de trabajo",
+            "value": "Área Industrial Riba-roja, Municipio: Riba-roja de Túria, Provincia: Valencia"
+          },
+          {
+            "label": "Tipo de jornada laboral",
+            "value": "Completa"
+          },
+          {
+            "label": "Horario",
+            "value": "Desde las 08:00 hasta las 17:00 (- 1 hora comida)."
+          },
+          {
+            "label": "Salario",
+            "value": "Según convenio auxilair admon"
+          }
+        ],
+        "tipoContrato": "CONTRATO INDEFINIDO",
+        "duracion": "3 MESES DE PRUEBA + INDEFINIDO",
+        "numPuestos": "1",
+        "observaciones": "Incorpración inmediata Imprescindible B2 en inglés, el francés-alemán e italiano suman puntos.",
+        "jornada": "Completa",
+        "horario": "Desde las 08:00 hasta las 17:00 (- 1 hora comida).",
+        "salario": "Según convenio auxilair admon",
+        "ocupaciones": []
+      }
+    },
     {
       "id": "2500",
       "fo": 2500,
@@ -1599,155 +1729,6 @@
           {
             "nombre": "MONTADORES DE MUEBLES DE MADERA O SIMILARES",
             "experiencia": "1 Años"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2475",
-      "fo": 2475,
-      "codigo": "2026/00176",
-      "titulo": "Limpieza polígono",
-      "publishedAt": "2026-06-30",
-      "deadline": "2026-08-30",
-      "location": "En el polígono industrial. Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2475",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00176"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpieza polígono"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "3"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "En el polígono industrial., Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46190"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Jornada disponible de 30 a 39 horas semana"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza de la empresa ubicada en el polígono."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "3",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46190",
-        "jornada": "Parcial",
-        "salario": "Según convenio",
-        "funciones": "Limpieza de la empresa ubicada en el polígono.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Otro personal de limpieza"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2474",
-      "fo": 2474,
-      "codigo": "2026/00175",
-      "titulo": "Limpieza polígono",
-      "publishedAt": "2026-06-30",
-      "deadline": "2026-08-30",
-      "location": "En el polígono industrial. Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2474",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00175"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpieza polígono"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO A TIEMPO PARCIAL"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "3"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "En el polígono industrial., Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Jornada disponible de 30 a 39 horas semana"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Limpieza de la empresa ubicada en el polígono."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO A TIEMPO PARCIAL",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "3",
-        "jornada": "Parcial",
-        "salario": "Según convenio",
-        "funciones": "Limpieza de la empresa ubicada en el polígono.",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "Otro personal de limpieza"
           }
         ]
       }

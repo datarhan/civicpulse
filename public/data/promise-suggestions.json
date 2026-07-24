@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-23T06:58:43.043Z",
+  "generatedAt": "2026-07-24T06:52:49.417Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -145,7 +145,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -211,7 +211,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -275,7 +275,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -326,7 +326,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -361,7 +361,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -399,7 +399,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -419,7 +419,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -427,7 +427,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -435,7 +435,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -500,7 +500,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -531,7 +531,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -593,24 +593,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQN3JuMmxKZFVOb012bHdlYWxZWlU0ZkFSQWNlZTNEMjdaV1lJU2ZJaWN1MTJTR19HUW9jemtpRVlKN1lwcUlmYjRURmV4UUpnNExtM05Nb0JFYUdoQ09EbHJEMWpFcXJjSXcyMUlYOEtvTkRfOFNFWVBKYk4wOHdxdTNkNFJIX3NSQjZ3UXg2cUx6LTF5WG9GRXE5bkQtNS1JWTNRWVRNVkxWYTN3STVXOGsyQmRVbTdSUE1MZ3RsaVVjYWhLTFNvUGp0ZWprXzQ?oc=5",
-          "date": "2026-07-07",
-          "quote": "Plan Urbanístico de Reconstrucción avanza en Riba-roja",
-          "kind": "press",
-          "publisher": "Valencia News",
-          "matchedKeywords": [
-            "plan",
-            "avanza"
-          ]
-        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/39ea40e164f970c54b0530436d5a9f7a?idioma=castellano",
           "date": "2026-06-01",
@@ -648,7 +637,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -692,7 +681,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -722,7 +711,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -746,7 +735,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -790,7 +779,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -810,7 +799,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -829,24 +818,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQblJ3Vy1EZldGOVNaX2NTOUkxbUYxVDc1UGhSaE9WbzZkTHhYdXpxbXZxd2gzUmhwa21ZVzdrQko1dzlPOFBWbTc5VHczejBkNHBmcVB0SEdXcnQ5Wm05d25nQUhielZsNjVUTlZUZmV3Qjh1Q3k1M3B4eFhXYlpWVnRkbUIzM3ZYT1JRVl9OZXRhZjFCVTZXZUNzNGIwLUFXa09lTDhCMGRXaFBXcGIwQUFvbjZldw?oc=5",
-          "date": "2026-07-17",
-          "quote": "Robert Raga asiste a la constitución de la entidad supramunicipal en Benaguasil",
-          "kind": "press",
-          "publisher": "elperiodic.com",
-          "matchedKeywords": [
-            "robert",
-            "raga"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
           "date": "2026-07-10",
@@ -860,7 +838,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -920,7 +898,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -951,25 +929,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPbWU0N2VLNmw1WHZkcjVVV29fQng2VkF3cUhqQmV0RzdxUzFLUXRUUW8yS2lxYU9LX2M0dS1hR1B4X1RhZWFIVEhOaWJnbkJiSnZLb2N2NUoxU3NrcWFwbVlPckJWS0FtckhNSW9ZeFNncEhDR2swcFBPMzZneGdMM3lMNTZkMEJLeUhVMGRzbHZtQkRhRk1BRnFlX1NNYnhCaEdpdk9mcHh1b20wbTI1dTJhN1lSRHNrbnVEUk05cmk1eDdzbGtROXFEbzNsUV9GemRFM3FWTDU4MU0?oc=5",
-          "date": "2026-07-17",
-          "quote": "¿Dónde ver la final del Mundial en el Camp de Túria? Estos municipios instalarán pantalla gigante este domingo",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "pantalla",
-            "gigante",
-            "final"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/ocupaci%C3%B3n-temporal-de-v%C3%ADa-p%C3%BAblica-para-la-instalaci%C3%B3n-de-televisores-para-ver-la-final-del-mundial",
           "date": "2026-07-17",
@@ -1005,7 +971,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-23T06:58:42.932Z"
+      "generatedAt": "2026-07-24T06:52:49.336Z"
     }
   ],
   "llmEvidence": [],

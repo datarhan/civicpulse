@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-22T07:05:24.276Z",
+  "generatedAt": "2026-07-24T06:43:45.168Z",
   "source": {
     "name": "Portal de Transparencia · Ayuntamiento de Riba-roja de Túria"
   },
@@ -15,17 +15,154 @@
       "category": "cv",
       "label": "Datos biográficos / CV de los cargos",
       "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
-      "ok": false,
-      "count": 0
+      "ok": true,
+      "count": 17
     }
   ],
   "stats": {
-    "total": 9,
+    "total": 26,
     "byCategory": {
+      "cv": 17,
       "rpt": 9
     }
   },
   "docs": [
+    {
+      "id": "65a32d0011f0",
+      "title": "Dades biogràfiques Robert Raga",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Robert-Raga-Gadea.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "62c72d812cd6",
+      "title": "Dades biogràfiques Teresa Pozuelo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250817-CV-TERESA-POZUELO.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "38f623cc5df3",
+      "title": "Dades biogràfiques José Luis Ramos",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Luis-Ramos.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "4a13adbaa7e6",
+      "title": "Dades biogràfiques José Ángel Hernández",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250818-CURRICULUM-JOSE769-A769NGEL-HERNA769NDEZ.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "31a610fbe5e5",
+      "title": "Dades biogràfiques Eva Lara Catalá",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "3d061199b6e5",
+      "title": "Dades biogràfiques Rafael Gómez Sánchez",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "6ac45bcf941a",
+      "title": "Dades biogràfiques Esther Gómez Laredo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "2e4fce84c5e3",
+      "title": "Dades biogràfiques José Manuel Vila Oltra",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Manuel-Vila-Oltra.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "39806b9365e3",
+      "title": "Dades biogràfiques Raquel Pamblanco Paredes",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "ef7e2812de91",
+      "title": "Dades biogràfiques Alfredo Pla Gimenez",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Alfredo-Pla-Gimenez.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "f5579cf91c06",
+      "title": "Dades biogràfiques David Barbancho",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20241118-CV_DAVID_BARRANCHO_2.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "ef616ac99a5a",
+      "title": "Dades biogràfiques Alberto J Gimeno Calvo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "46f013ffb07e",
+      "title": "Dades biogràfiques María José Pradas Ramo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "e4490aea6b13",
+      "title": "Dades biogràfiques Salvador Ferrer Cortina",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "9278cb2c548b",
+      "title": "Dades biogràfiques José Luis Fernández Santamaria",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "59fe2f6d6c57",
+      "title": "Dades biogràfiques Rafa Folgado Navarro",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
+    {
+      "id": "f9a34c1af4d4",
+      "title": "Dades biogràfiques José Manuel Gallardo",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/EU_UP-Jose-Manuel-Gallardo.pdf",
+      "category": "cv",
+      "categoryLabel": "Datos biográficos / CV de los cargos",
+      "year": null
+    },
     {
       "id": "ac1ef482dc42",
       "title": "Relació llocs de treball i plantilla personal 2024",
