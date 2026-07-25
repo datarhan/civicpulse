@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-24T06:52:00.921Z",
+  "generatedAt": "2026-07-25T06:41:47.063Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 64,
-    "openTotal": 64,
+    "total": 62,
+    "openTotal": 62,
     "inRibaRoja": 39,
-    "closingSoon": 24,
-    "withDetail": 64,
+    "closingSoon": 26,
+    "withDetail": 62,
     "byMonth": {
       "2026-07": 22,
       "2026-06": 17,
-      "2026-05": 22,
+      "2026-05": 20,
       "2026-04": 2,
       "2025-11": 1
     }
@@ -4449,88 +4449,6 @@
       }
     },
     {
-      "id": "2281",
-      "fo": 2281,
-      "codigo": "2025/00311",
-      "titulo": "Técnico/a de climatización",
-      "publishedAt": "2026-05-24",
-      "deadline": "2026-07-24",
-      "location": "P.I. LA LLOMA Paiporta (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2281",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00311"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Técnico/a de climatización"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Se valorará: - Formación en PRL 20 horas - IPRL trabajos en altura"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "SUMINISTRO DE ENERGÍA ELÉCTRICA, GAS, VAPOR Y AIRE ACONDICIONADO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 1ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "P.I. LA LLOMA, Municipio: Paiporta, Provincia: Valencia, CP: 46960"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "08:30-14 / 16:00-19:00 de lunes a viernes"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio industria del metal"
-          },
-          {
-            "label": "Funciones",
-            "value": "Desempeñará sus tareas de manera independiente o conjunta en trabajos dedicados al montaje, mantenimiento, diagnóstico, reparación y puesta en marcha de equipos y sistemas de climatización, aire acondicionado, calefacción, tratamiento de aire, ventilación."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "numPuestos": "2",
-        "categoria": "OFICIAL DE 1ª",
-        "observaciones": "Se valorará: - Formación en PRL 20 horas - IPRL trabajos en altura",
-        "municipio": "Paiporta",
-        "provincia": "Valencia",
-        "cp": "46960",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "08:30-14 / 16:00-19:00 de lunes a viernes",
-        "salario": "Según convenio industria del metal",
-        "funciones": "Desempeñará sus tareas de manera independiente o conjunta en trabajos dedicados al montaje, mantenimiento, diagnóstico, reparación y puesta en marcha de equipos y sistemas de climatización, aire acondicionado, calefacción, tratamiento de aire, ventilación.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2282",
       "fo": 2282,
       "codigo": "2025/00310",
@@ -4777,96 +4695,6 @@
         "horario": "De 14:00 a 22:30 horas. Dos días libres consecutivos: martes y miércoles",
         "salario": "1.500€/mes",
         "funciones": "Manejo de freidora y plancha, entre otras.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2109",
-      "fo": 2109,
-      "codigo": "2025/00139",
-      "titulo": "Operario/a en conservación de carreteras",
-      "publishedAt": "2026-05-23",
-      "deadline": "2026-07-24",
-      "location": "Autovía A-7/E-15, km 328, sentido Barcelona Paterna (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2109",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2025/00139"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operario/a en conservación de carreteras"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "CONSTRUCCIÓN"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "OFICIAL DE 2ª"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Autovía A-7/E-15, km 328, sentido Barcelona, Municipio: Paterna, Provincia: Valencia, CP: 46988"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Turno rotativo"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañana , Tarde y noche"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio + Complementos"
-          },
-          {
-            "label": "Funciones",
-            "value": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc..."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Valorable carnet C (+E), Mov. Tierras, PRL, albañilería, soldadura, etc..."
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "5",
-        "categoria": "OFICIAL DE 2ª",
-        "municipio": "Paterna",
-        "provincia": "Valencia",
-        "cp": "46988",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno noche, Turno rotativo, Festivos",
-        "horario": "Mañana , Tarde y noche",
-        "salario": "Según convenio + Complementos",
-        "funciones": "Detección y subsanación de incidencias y daños en la carretera, atención a accidentes, señalización en carretera , borrado de pintadas, retirada de obstáculos, limpieza y reposición de balizamiento, reparación de baches , limpieza de drenajes , retirada desprendimientos, etc...",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

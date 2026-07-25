@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-23T06:46:13.033Z",
+  "generatedAt": "2026-07-25T06:36:57.292Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
   },
   "stats": {
     "total": 50,
-    "upcoming": 31,
-    "nextDate": "2026-07-23T20:00:00.000Z"
+    "upcoming": 29,
+    "nextDate": "2026-07-25T20:00:00.000Z"
   },
   "events": [
     {

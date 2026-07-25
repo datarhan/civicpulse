@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T06:44:47.153Z",
+  "generatedAt": "2026-07-25T06:35:51.269Z",
   "source": {
     "url": "https://api.ted.europa.eu/v3/notices/search",
     "query": "buyer-name~\"Riba-roja\"",

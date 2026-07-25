@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-24T06:52:49.417Z",
+  "generatedAt": "2026-07-25T06:42:39.168Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -30,17 +30,6 @@
             "aprueba",
             "alto",
             "historia"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
-            "millon",
-            "euro"
           ]
         },
         {
@@ -75,28 +64,27 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
       "proposedStatus": "documentada",
       "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
-            "inversion",
-            "millon",
-            "euro"
-          ]
-        },
         {
           "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
           "date": "2026-06-11",
@@ -142,16 +130,43 @@
             "inversion",
             "millon"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
+          "date": "2026-04-15",
+          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
       "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxObV9RSjA1QVNRSHZneEtGcXhKaE5EeXdNb1ZxdzNLZlNEZEJJVW5MdV9tNGVBLTJMY2RaX2R5SXEyVHRmajM5N3M4VTlLMWFtamFuNjRiVUloM2tsb09ZQ1JsRUdRUU9rZmRKQks1Zk5KNzRYUGVEcGg4SUVKYWFnOUNJanBSMmxoaHVwNm5IaXBHV3dsN1ZvNVN0VldiQUxFQUZnWkRGX2JGWWx6MGluRDNoSEJuWVN3YWpMdFI5dnpMQ0tKeV8wcThmU1VfS1BqLVpLdVhEaGhpRktW0gHiAUFVX3lxTFA5TU8zTGhDSW5NSzJOUVlZVEdRbEgzSFpPaU43NWtZOW9kdTZuNmZPbHNaVlFpVW9MX3VPV0VUUnNRZ0s4NUtHM0RhSnM0SkJjVXlVb245UXFaSWllWlpGTW9kaWxYV0RQWnlPdmFEYlVMVHNudU5KMkJ5a2RvRF9adHhZRHFqdmpyR1BwR2hyY1ZxMTF1WS11dmV4NFZVcWM2Q2RMa0VpblR4NmN2SWZRcHdVSVVRbmlVNWZiQVZDc25COFlXVWJsLWhXUHlrOThwQ29IV25UbU03Y3l6ZW02V0E?oc=5",
+          "date": "2026-02-10",
+          "quote": "Riba-roja de Túria recibirá 9,5 millones de fondos europeos tras la dana para su reconstrucción",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "reconstruccion",
+            "dana",
+            "millon",
+            "fondo",
+            "europeo",
+            "recibira",
+            "tras"
+          ]
+        },
         {
           "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
           "date": "2026-06-11",
@@ -197,21 +212,10 @@
             "dana",
             "tras"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -275,13 +279,29 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxQTUtCa3phbUUyMnRSMUdsUEZqUzlocHRveDJTNENMemVMdXdqTW9xaFRmbHBYRHppYzNjNUdRMXBOOTdPcklpZE9kdzdkX1F5alBYZk5nNEllMXppSjNuTzUzYkstSkpuOGdXbEpLV3FISmoyd2t2WXg0RXlCLWRQR0VTWG04M1VYRDJvdnJvNE8yLWdKYlRTcnhhTUFjMm5kVW5Yb1NCdUdyeHdSNGYwaVZUSmZGZmJFYm1FRVBuaGNlYmNxX2NUYk5oS3RCWlRQMHlDWFhHakhZYUkxb2NCOXlKdmY5dExlWG5pdkJoSm9WYmw5TE1v?oc=5",
+          "date": "2026-01-02",
+          "quote": "El Ayuntamiento de Riba-roja impulsará en el periodo 2026-2029 la construcción de vivienda en el municipio",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "construccion",
+            "vivienda",
+            "2026",
+            "2029",
+            "impulsara",
+            "periodo",
+            "municipio"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
           "date": "2026-05-18",
@@ -326,7 +346,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -361,7 +381,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -399,7 +419,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -419,7 +439,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -427,7 +447,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -435,7 +455,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -450,17 +470,6 @@
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
             "dana",
-            "millon",
-            "euro"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
             "millon",
             "euro"
           ]
@@ -497,10 +506,21 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
+          "date": "2026-04-08",
+          "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
+          "kind": "press",
+          "publisher": "Comunica GVA",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -531,24 +551,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "documentada",
       "confidence": 0.175,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxObExLcEhBMW94bklJNXhKZTlSQlpwNVc1QWdVTDdwVnZiYUhCNWJ1a3ZsakVCdzAyb0VqcEY3OVJTczEyblhOaW5iaVpXb01nT0Jxa2x3X0p1WFRJOGlEM3ZYZ2RsRHhaNFJLdHduZEQtbkZtb0RubTl0cDRSTm1lZ0o1U19ZU3RkTGh1cWttcEFfeWlISHlCVXVRX3BpX0NQSzA1Z3JpUjVuLXVjRkHSAbMBQVVfeXFMTkh1SW1UbXpfS0FqS3Jkb2JoajBxTzktUXJaa2UwbXhtMVIzaWZITkpvZlhGT0xIZ0lmUVJESVJ2T014cnR1c25pdDBFc2pGXzVaTTYyTndESEVkTU55aHI3VFVNQzFTMk1CM0RGTlNUVjk4NnFMWlJ5WDNlVjhWeHJBcFI4NkxfZzlCRkh1RUI2Nm4wb19CS3Iwc2JienJMTkcxUzBmVGdraW1NblRJeVRoOUE?oc=5",
-          "date": "2026-04-13",
-          "quote": "El 93% de los vecinos de Riba-roja aprueba el servicio de agua potable",
-          "kind": "press",
-          "publisher": "Las Provincias",
-          "matchedKeywords": [
-            "servicio",
-            "vecino"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
           "date": "2026-03-17",
@@ -593,7 +602,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -637,7 +646,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -681,7 +690,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -711,7 +720,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -735,7 +744,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -779,7 +788,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -799,7 +808,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -818,27 +827,15 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
-      "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQLXpNVFF4dXhIbXpqaTJQXzN6dVN4Rl9vSFZndThNUFMtdWluaTNMUUp3dnh2QThhamFZWERDM2s2aWV1R1dqLW1mODV3UnIyeHcyRHkwdmQ2YVlhb3pxRnFJQjJMcEhYYmFBVmlwYjdGWEVFUE1teFBtODZmcVVncDRJaFlYVV9fd3JyRzRqdXBqcmFCLXhFZHZVSWJMcGtJSzN0NVpLSGpaZ1A3b0tZV3hxMWJJRk5aRGh3eTlGeng0MGduVktLcnVzQnU0MHhBSDF1eUZCaWRWSUZMM2prMno2Mi1zdnhxMVFURlp2UTd5bFIwYlpmOWF3a2U0OVhMTklIZXJ4NA?oc=5",
-          "date": "2026-07-10",
-          "quote": "Una década de espera: la depuradora de Riba-roja de Túria se amplía por fin con una inversión de 23,6 millones de euros",
-          "kind": "press",
-          "publisher": "València Extra",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -898,7 +895,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -929,7 +926,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -971,7 +968,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-24T06:52:49.336Z"
+      "generatedAt": "2026-07-25T06:42:39.057Z"
     }
   ],
   "llmEvidence": [],
