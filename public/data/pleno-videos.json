@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-25T07:30:06.454Z",
+  "generatedAt": "2026-07-26T07:30:07.333Z",
   "source": {
     "channelUrl": "https://www.youtube.com/@ajuntam_riba_roja_de_turia",
     "description": "Ajuntament de Riba-roja YouTube channel — pleno recordings only. Feed produced via `yt-dlp --flat-playlist --dump-json`."
@@ -8,26 +8,26 @@
     "totalVideosScanned": 121,
     "plenoVideosMatched": 25,
     "byKind": {
-      "ordinario": 18,
-      "extraordinario": 3,
+      "ordinario": 19,
+      "extraordinario": 2,
       "urgente": 3,
       "otro": 1
     }
   },
   "items": [
     {
+      "ytId": "nZK1v9ZnKDc",
+      "title": "Ple Ordinari 27 de juliol de 2026.",
+      "plenoDate": "2026-07-27",
+      "kind": "ordinario",
+      "url": "https://www.youtube.com/watch?v=nZK1v9ZnKDc"
+    },
+    {
       "ytId": "dTFyPL7FkVE",
       "title": "Ple Ordinari  6 de juliol de 2026.",
       "plenoDate": "2026-07-06",
       "kind": "ordinario",
       "url": "https://www.youtube.com/watch?v=dTFyPL7FkVE"
-    },
-    {
-      "ytId": "L6Cy1hTrpIc",
-      "title": "Ple Extraordinari 3 de juliol de 2026.",
-      "plenoDate": "2026-07-03",
-      "kind": "extraordinario",
-      "url": "https://www.youtube.com/watch?v=L6Cy1hTrpIc"
     },
     {
       "ytId": "0eTSguBbRsc",
