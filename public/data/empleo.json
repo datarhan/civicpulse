@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-26T07:20:51.702Z",
+  "generatedAt": "2026-07-27T08:06:30.463Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 62,
-    "openTotal": 62,
-    "inRibaRoja": 39,
-    "closingSoon": 24,
-    "withDetail": 62,
+    "total": 59,
+    "openTotal": 59,
+    "inRibaRoja": 38,
+    "closingSoon": 10,
+    "withDetail": 59,
     "byMonth": {
       "2026-07": 22,
-      "2026-06": 17,
-      "2026-05": 20,
+      "2026-06": 16,
+      "2026-05": 18,
       "2026-04": 2,
       "2025-11": 1
     }
@@ -2702,97 +2702,6 @@
       }
     },
     {
-      "id": "2458",
-      "fo": 2458,
-      "codigo": "2026/00159",
-      "titulo": "Limpiador/a oficinas (con vehículo)",
-      "publishedAt": "2026-06-05",
-      "deadline": "2026-08-05",
-      "location": "Polígono industrial Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2458",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00159"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpiador/a oficinas (con vehículo)"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Requisitos Experiencia previa en limpieza. Imprescindible vehículo propio para poder acceder al centro de trabajo. Residencia en Ribarroja o alrededores. Disponibilidad para trabajar en el horario estipulado. Disponibilidad para incorporación inmediata."
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "OTROS SERVICIOS"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Contrato por interinidad (sin duración estimada)"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "PEONES"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono industrial, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Parcial Turnos: Turno tarde"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Contrato eventual por interinidad."
-          },
-          {
-            "label": "Horario",
-            "value": "L-V de 19:30 a 21:30 Jornada parcial de 20 horas semanales."
-          },
-          {
-            "label": "Salario",
-            "value": "500 euros brutos al mes + 3 pagas extra."
-          },
-          {
-            "label": "Funciones",
-            "value": "- Limpieza de superficies e instalaciones. - Limpieza de oficinas, servicios, vestuarios y zonas comunes."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO EVENTUAL POR CIRCUNSTANCIAS DE LA PRODUCCION",
-        "duracion": "Contrato por interinidad (sin duración estimada)",
-        "numPuestos": "1",
-        "categoria": "PEONES",
-        "observaciones": "Requisitos Experiencia previa en limpieza. Imprescindible vehículo propio para poder acceder al centro de trabajo. Residencia en Ribarroja o alrededores. Disponibilidad para trabajar en el horario estipulado. Disponibilidad para incorporación inmediata.",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Parcial Turnos: Turno tarde",
-        "horario": "L-V de 19:30 a 21:30 Jornada parcial de 20 horas semanales.",
-        "salario": "500 euros brutos al mes + 3 pagas extra.",
-        "funciones": "- Limpieza de superficies e instalaciones. - Limpieza de oficinas, servicios, vestuarios y zonas comunes.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
       "id": "2456",
       "fo": 2456,
       "codigo": "2026/00158",
@@ -3452,94 +3361,6 @@
       }
     },
     {
-      "id": "2446",
-      "fo": 2446,
-      "codigo": "2026/00147",
-      "titulo": "Cocinero/a - Pinche de cocina",
-      "publishedAt": "2026-05-26",
-      "deadline": "2026-07-26",
-      "location": "San Antonio de Benagéber (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2446",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00147"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Cocinero/a - Pinche de cocina"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES SANITARIAS Y DE SERVICIOS SOCIALES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO DE RELEVO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "De 1 a 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "Ayudantes no titulados"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: San Antonio de Benagéber, Provincia: Valencia, CP: 46184"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno mañana, Turno tarde, Turno partido"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Jornada partida o continua, según días"
-          },
-          {
-            "label": "Horario",
-            "value": "Mañanas de 09:30 A 15:00 H. Tardes de 19:00 A 21:30 H."
-          },
-          {
-            "label": "Salario",
-            "value": "1.356,65 € BRUTO MES"
-          },
-          {
-            "label": "Funciones",
-            "value": "PREPARADO DE MENÚS, LIMPIEZA DE COCINA Y DE OFFICE, Y AYUDA A LA COCINERA EN LA ELABORACIÓN DE LOS MENÚS"
-          }
-        ],
-        "tipoContrato": "CONTRATO DE RELEVO",
-        "duracion": "De 1 a 6 meses",
-        "numPuestos": "1",
-        "categoria": "Ayudantes no titulados",
-        "municipio": "San Antonio de Benagéber",
-        "provincia": "Valencia",
-        "cp": "46184",
-        "jornada": "Completa Turnos: Turno mañana, Turno tarde, Turno partido",
-        "horario": "Mañanas de 09:30 A 15:00 H. Tardes de 19:00 A 21:30 H.",
-        "salario": "1.356,65 € BRUTO MES",
-        "funciones": "PREPARADO DE MENÚS, LIMPIEZA DE COCINA Y DE OFFICE, Y AYUDA A LA COCINERA EN LA ELABORACIÓN DE LOS MENÚS",
-        "ocupaciones": [
-          {
-            "nombre": "PINCHES DE COCINA"
-          },
-          {
-            "nombre": "COCINEROS, EN GENERAL"
-          }
-        ]
-      }
-    },
-    {
       "id": "2443",
       "fo": 2443,
       "codigo": "2026/00146",
@@ -3617,83 +3438,6 @@
         "jornada": "Completa",
         "horario": "7:00-15:30H",
         "salario": "22859.28 BRUTO ANUAL",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2445",
-      "fo": 2445,
-      "codigo": "2026/00145",
-      "titulo": "Operaria/o con discapacidad",
-      "publishedAt": "2026-05-26",
-      "deadline": "2026-07-26",
-      "location": "Fuente del jarro Paterna (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2445",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00145"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Operaria/o con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Funciones: - Disposición y preparación de material en palet. - Enfardado de cartón. - Preparación y ubicación del material en almacén. - Cumplimentación de la documentación de partes de trabajo. Requisitos: - Certificado discapacidad y/o incapacidad igual o superior al 33%. - Imprescindible vehículo para acceder al centro de trabajo."
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Fuente del jarro, Municipio: Paterna, Provincia: Valencia, CP: 46988"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Turnos: Turno mañana, Turno tarde"
-          },
-          {
-            "label": "Horario",
-            "value": "Horario de 6:00 a 14:00, de 14:00 a 22:00 con disponibilidad de noches."
-          },
-          {
-            "label": "Salario",
-            "value": "17000€-18000 brutos/año"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Disposición y preparación de material en palet. - Enfardado de cartón. - Preparación y ubicación del material en almacén. - Cumplimentación de la documentación de partes de trabajo."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "numPuestos": "1",
-        "observaciones": "Funciones: - Disposición y preparación de material en palet. - Enfardado de cartón. - Preparación y ubicación del material en almacén. - Cumplimentación de la documentación de partes de trabajo. Requisitos: - Certificado discapacidad y/o incapacidad igual o superior al 33%. - Imprescindible vehículo para acceder al centro de trabajo.",
-        "municipio": "Paterna",
-        "provincia": "Valencia",
-        "cp": "46988",
-        "jornada": "Turnos: Turno mañana, Turno tarde",
-        "horario": "Horario de 6:00 a 14:00, de 14:00 a 22:00 con disponibilidad de noches.",
-        "salario": "17000€-18000 brutos/año",
-        "funciones": "- Disposición y preparación de material en palet. - Enfardado de cartón. - Preparación y ubicación del material en almacén. - Cumplimentación de la documentación de partes de trabajo.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }
