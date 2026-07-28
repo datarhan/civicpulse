@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T08:02:54.500Z",
+  "generatedAt": "2026-07-28T07:12:53.141Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -212,8 +212,8 @@
       "slug": "avinguda-del-poliesportiu",
       "kind": "avenida",
       "point": [
-        39.5482137,
-        -0.5820194
+        39.5481546,
+        -0.5819859
       ]
     },
     {
@@ -1162,8 +1162,8 @@
       "slug": "carrer-d-ausias-march",
       "kind": "calle",
       "point": [
-        39.5483025,
-        -0.5781625
+        39.5479281,
+        -0.578358
       ]
     },
     {
@@ -2007,13 +2007,13 @@
       ]
     },
     {
-      "id": "way-20021656",
+      "id": "way-39527983",
       "name": "Carrer de la Senyera",
       "slug": "carrer-de-la-senyera",
       "kind": "calle",
       "point": [
-        39.5439984,
-        -0.5617921
+        39.5434087,
+        -0.5594436
       ]
     },
     {
@@ -3142,8 +3142,8 @@
       "slug": "carrer-del-mas-de-montes",
       "kind": "calle",
       "point": [
-        39.4832932,
-        -0.5874328
+        39.4805062,
+        -0.5875882
       ]
     },
     {
@@ -4412,8 +4412,8 @@
       "slug": "carrer-lozoya",
       "kind": "calle",
       "point": [
-        39.5382122,
-        -0.5405755
+        39.5379528,
+        -0.5410775
       ]
     },
     {
@@ -5222,8 +5222,8 @@
       "slug": "carretera-de-vilamarxant",
       "kind": "carretera",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5490165,
+        -0.5824119
       ]
     },
     {
@@ -5258,12 +5258,12 @@
     },
     {
       "id": "way-30824595",
-      "name": "Carretera Ribarroja - Villamarchante",
-      "slug": "carretera-ribarroja-villamarchante",
+      "name": "Carretera Riba-roja – Vilamarxant",
+      "slug": "carretera-riba-roja-vilamarxant",
       "kind": "carretera",
       "point": [
-        39.5629132,
-        -0.5987138
+        39.5629989,
+        -0.6005896
       ]
     },
     {

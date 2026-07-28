@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T08:07:20.080Z",
+  "generatedAt": "2026-07-28T07:17:26.624Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -33,6 +33,17 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+          "date": "2026-07-27",
+          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "euro"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
           "date": "2026-06-11",
           "quote": "Veolia ejecuta en Riba-roja de Túria un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
@@ -40,17 +51,6 @@
           "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
             "millon",
-            "euro"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-inyecta-un-25%25-m%C3%A1s-de-ayudas-econ%C3%B3micas-directas-al-comercio-local-previstas-para-el-a%C3%B1o-2026-y-sit%C3%BAa-la-partida-en-550.000-euros-encaminada-a-la-reactivaci%C3%B3n-del-sector",
-          "date": "2026-06-02",
-          "quote": "Riba-roja de Túria inyecta un 25% más de ayudas económicas directas al comercio local previstas para el año 2026 y sitúa la partida en 550.000 euros encaminada a la reactivación del sector",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
             "euro"
           ]
         },
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -110,6 +110,17 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+          "date": "2026-07-27",
+          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "inversion",
+            "euro"
+          ]
+        },
+        {
           "url": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
           "date": "2026-07-03",
           "quote": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
@@ -130,21 +141,10 @@
             "inversion",
             "millon"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
-          "date": "2026-04-15",
-          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -192,6 +192,17 @@
           ]
         },
         {
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrYkg0SGpiV1cxSEEwQTVqdFdVZkpYLVNhYU5jdVFOUlhwaFh5akZqNDZsamdyYWRMSFRrN0VKbW9DVnNfbkM2Zl9tZ3MtMEV3MUlPWTdUVHpmeU1hRXRtUWZjdVphZEN2MUlvaV9hWUUtcHF4ajRnd0FoVDFQQVN6NzVqWGNoYy16TFRadjBDenRWc25NSzRWRkhza25XTGRlNi1KbnBKdDlWTFBWV29jV0MwRXJqMExjMNIB8gFBVV95cUxPTi1qYUtLWnhKTDNnTnNTSlUyMnZKejkweHdteTlOTjJYeGNaMFpZRW1rZE9DUFJ6Z012VG9VYm5mYkc2X2ZEOEFkeFM4ZnFNQ3F2XzNBV2JiQ1B0ZFM3cjNsaHpfbEVWeGdRWmNuTHBSdmNNRjdyZ1RzbVA2c1laWjNpeUpjSXlXYzlnZmdiSnhseXZrRFN6YjRaYzc1Q1FmVmRBWUY5ZXlBZlFOcDR2MnlmanVrV1hNSzBnNERJRmczOFZqYXJTd0s0N0FwYlhQazEyd0pDeUZXSmxUdk9fTWlrU1RxZm83ZXRrelE3TFlJUQ?oc=5",
+          "date": "2026-07-28",
+          "quote": "Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
@@ -201,21 +212,10 @@
             "dana",
             "tras"
           ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNdzJsZVRna3VWTWE1OTNRdk40VGZkaG92eW9Zc2Vaam4wcVhMdzJTanc0WXREbXZzaHJyQ1g5RFZ3M2lUTFJiSVA1QTVseGh5Q2hGdnhhRHhwVTRWVW9EcS1WVUxiYVJVUldQajNjNXY0RjE5Z21xRFRSNEUyOGRMNHZVQW8xT01SU0ZhVTdHZUdGeUkyN3phZktzYkVjY1lwRnVEV2dvTG80ZnFSVVdzTkxzZ0dzWlhhOUVfNVNQejJGNGl5MDU3TXduZDFBSWlQOVdWVzFkNmpha1VoNUlV?oc=5",
-          "date": "2026-07-07",
-          "quote": "El Ejército desmonta el puente militar de Riba-roja tras 19 meses de servicio después de la dana",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "dana",
-            "tras"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -279,13 +279,38 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0.4,
       "reasoning": [
+        {
+          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPYWFGd1N1TTR4Si0wWWJ5bnJ1c3M0QTJSdTJwNlZCVjh6THZtMS1UYmJOTXM0Z2NCMWZhd2RDSjFmNVg5XzVyTmtrQTJxcnRHNTJyRnZLQ1pXYTlZZnZRdkpOaWhjNDItejNhR09Yang5NnlNek14VVVyWVpoa0tybE1XTnMxTTVfNzRBbWhUUGM4OEFCdWdBVXk3TldtQUJHZVlpRzlIU1BTeVY4YWtlQlpmdXBUXy05T20yWXVLWWZCVWQ4RVozQkN3QdIB0AFBVV95cUxQeFlQdVl0Y2QxRTNjNkUzM1g1eF9XX19fREkzQUhyOHE5QkhLaWRpX0h1S3dRRmNPQlhLNmwxalJjQ01xZjJ0dlNraUg2VGdHRVdZZGRyV3pEbVpaZUtOVlJDdE5XdVBaV2t0eUtxcFB6S3ZyS2J0MzBGZmtGcjRVdW9SNm9JUS1MOU1RZGo5N2h0WHBFdzNIZFBtRkRJRE4zSnQ5c0V1ZVhVNUotSjhLWEJma0FjQjl0UVBzc253Y2FoM0dIWFJvV0JVVklRSVdw?oc=5",
+          "date": "2026-01-02",
+          "quote": "Riba-roja de Túria impulsará la construcción de vivienda entre 2026 y 2029",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "construccion",
+            "vivienda",
+            "2026",
+            "2029",
+            "impulsara"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxNbm5HWlgtZjJKVmhlaEZLdTVNajc0NG8yVS1xOTkxYmRoeFM4RUtBb3phSDR2cmVtU3NUVEVCMHBiT2RKMmJMSDZYbDIxWm1vUjUtSmVrTVhCQnNxTXI4RmdXTkRld3pXdTVYOEJtdDNUZDZMalVpeEM0dHN4SDQ2VHNxck9vZi0zSncwMDlVSFRCa1QxN1VvY2Y3dVdWdk5hNzU5M2NONHd1ZHQzY09J0gG0AUFVX3lxTE9KSmJOcTlldHRZMmVoN29MejlIRGM3WGw3WFJtNFNUdEp0QmhFb3RzbkhDazMyMmpYWGllZ2JFcUJFd25Mbzh2ZnVwcnY2MkNYMWpDS3dETEVNMzFCbG4xc3JJRkppTUMwM3dLSEVaVnRpOE4wWEFheDlMTHJfRXh4Qmh6YkhRemZJbk1rUzdkb3BTQ3g1c05QWm43VFV5YTgxX0NkcWNmZ2J2VEMzU3o1LTkwUA?oc=5",
+          "date": "2026-07-26",
+          "quote": "Avance en la construcción del futuro centro de salud del municipio",
+          "kind": "press",
+          "publisher": "Las Provincias",
+          "matchedKeywords": [
+            "construccion",
+            "municipio"
+          ]
+        },
         {
           "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
           "date": "2026-05-18",
@@ -330,7 +355,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -365,7 +390,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -391,6 +416,17 @@
           ]
         },
         {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+          "date": "2026-07-27",
+          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "2026",
+            "participacion"
+          ]
+        },
+        {
           "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
@@ -403,7 +439,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -423,7 +459,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -431,7 +467,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -439,7 +475,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -504,7 +540,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -535,7 +571,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -575,7 +611,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -619,7 +655,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -663,7 +699,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -693,7 +729,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -714,10 +750,21 @@
             "urbanizacion",
             "vecino"
           ]
+        },
+        {
+          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
+          "date": "2026-07-27",
+          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
+          "kind": "press",
+          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "matchedKeywords": [
+            "euro",
+            "participacion"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -761,7 +808,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -792,7 +839,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -811,7 +858,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -819,7 +866,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -879,7 +926,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -910,7 +957,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -952,7 +999,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-27T08:07:19.969Z"
+      "generatedAt": "2026-07-28T07:17:26.513Z"
     }
   ],
   "llmEvidence": [],

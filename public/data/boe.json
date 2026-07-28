@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-27T08:00:22.754Z",
+  "generatedAt": "2026-07-28T07:08:17.442Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
     "description": "BOE official daily gazette — open-data JSON. Matches Ayuntamiento + tribunal + GVA references to the municipality."
   },
   "stats": {
-    "daysFetched": 26,
+    "daysFetched": 27,
     "daysWithMatches": 3,
     "total": 3,
     "byDepartamento": {

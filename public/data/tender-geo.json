@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-27T08:07:23.952Z",
+  "generatedAt": "2026-07-28T07:17:30.566Z",
   "source": {
-    "tenders": "2026-07-27T07:59:51.569Z",
-    "geo": "2026-07-27T08:01:19.005Z"
+    "tenders": "2026-07-28T07:07:40.482Z",
+    "geo": "2026-07-28T07:09:02.664Z"
   },
   "universe": {
     "totalContracts": 379,
@@ -499,8 +499,8 @@
       "name": "Carrer del Mas de Montes",
       "kind": "street",
       "point": [
-        39.4832932,
-        -0.5874328
+        39.4805062,
+        -0.5875882
       ],
       "contractCount": 1,
       "amount": 20661.16,
@@ -559,7 +559,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "contractCount": 1,
@@ -703,8 +703,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5490165,
+        -0.5824119
       ],
       "contractCount": 1,
       "amount": 7336,
@@ -1276,8 +1276,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5492186,
-        -0.5827079
+        39.5490165,
+        -0.5824119
       ],
       "place": {
         "kind": "street",
@@ -1716,8 +1716,8 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.4832932,
-        -0.5874328
+        39.4805062,
+        -0.5875882
       ],
       "place": {
         "kind": "street",
@@ -2357,7 +2357,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "place": {
