@@ -127,13 +127,24 @@ export interface PlenoFinding {
 }
 
 /**
- * Per-correction record for pleno findings. Fields are deliberately
- * narrow — corrections apply only to title/summary/severity (the
- * curator-editable surface). Quote text and evidence refs are
- * append-only; to change them, retract + republish.
+ * Per-correction record for pleno findings. The curator-editable
+ * surface is title/summary/severity. Citation fields —
+ * `sourceClaimIds`, `quote.<i>.text`, `quote.<i>.sourceClaimId` —
+ * are correctable ONLY for record-supersession repairs: when a
+ * re-transcription of the pleno replaces the transcript of record,
+ * re-keying claim ids and revising the verbatim (2026-07-29, first
+ * case: f-2026-03-09-afi-a9546e after the 2026-07-06 purge of
+ * hallucinated transcripts). Every such repair leaves a public row
+ * here. Ordinary quote edits remain forbidden: retract + republish.
  */
 export interface PlenoFindingCorrection {
-  field: 'title' | 'summary' | 'severity'
+  field:
+    | 'title'
+    | 'summary'
+    | 'severity'
+    | 'sourceClaimIds'
+    | `quote.${number}.text`
+    | `quote.${number}.sourceClaimId`
   original: string
   corrected: string
   /** Curator's plain-language explanation (≥20 chars). */
@@ -142,6 +153,9 @@ export interface PlenoFindingCorrection {
   /** ISO date of the correction. */
   correctedAt: string
 }
+
+/** Correction field paths addressing a quote row: quote.<i>.text / quote.<i>.sourceClaimId */
+export const CORRECTION_QUOTE_FIELD_RE = /^quote\.(\d+)\.(text|sourceClaimId)$/
 
 export interface PlenoFindingsSnapshot {
   version: string
@@ -320,14 +334,16 @@ function validateFinding(f: unknown, idx: number): PlenoFinding {
     }
   }
 
-  const CORRECTION_FIELDS: PlenoFindingCorrection['field'][] = ['title', 'summary', 'severity']
+  const CORRECTION_FIELDS: string[] = ['title', 'summary', 'severity', 'sourceClaimIds']
   const rawCorrections = Array.isArray(o.corrections) ? (o.corrections as unknown[]) : []
   const corrections: PlenoFindingCorrection[] = rawCorrections.map((c, ci) => {
     must(typeof c === 'object' && c !== null, `items[${idx}].corrections[${ci}] must be object`)
     const co = c as Record<string, unknown>
     must(
-      typeof co.field === 'string' && (CORRECTION_FIELDS as string[]).includes(co.field),
-      `items[${idx}].corrections[${ci}].field must be one of ${CORRECTION_FIELDS.join(',')}`,
+      typeof co.field === 'string' &&
+        (CORRECTION_FIELDS.includes(co.field) || CORRECTION_QUOTE_FIELD_RE.test(co.field)),
+      `items[${idx}].corrections[${ci}].field must be one of ${CORRECTION_FIELDS.join(',')} ` +
+        'or quote.<i>.text / quote.<i>.sourceClaimId',
     )
     must(
       typeof co.original === 'string' && co.original.length > 0,
@@ -404,4 +420,51 @@ export function validateFindingsSnapshot(json: string): PlenoFindingsSnapshot {
     methodologyUrl: raw.methodologyUrl as string,
     items,
   }
+}
+
+/**
+ * Apply a correction value to a finding and return the ORIGINAL value
+ * as a string (for the corrections log row). Mutates the finding in
+ * place; the caller MUST re-validate the whole snapshot before
+ * persisting (the CLI does — invalid severity enums, short quotes,
+ * etc. are caught there, keeping this helper simple).
+ *
+ * `sourceClaimIds` takes the corrected value as a comma-separated id
+ * list; `quote.<i>.*` paths address one quote row (see
+ * CORRECTION_QUOTE_FIELD_RE). Citation fields exist for
+ * record-supersession repairs only — see PlenoFindingCorrection.
+ */
+export function applyFindingCorrection(
+  finding: PlenoFinding,
+  field: string,
+  corrected: string,
+): string {
+  if (field === 'title' || field === 'summary' || field === 'severity') {
+    const original = String(finding[field] ?? '')
+    ;(finding as unknown as Record<string, unknown>)[field] = corrected
+    return original
+  }
+  if (field === 'sourceClaimIds') {
+    const ids = corrected
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+    if (ids.length < 1) throw new Error('sourceClaimIds correction needs ≥1 id')
+    const original = finding.sourceClaimIds.join(',')
+    finding.sourceClaimIds = ids
+    return original
+  }
+  const m = CORRECTION_QUOTE_FIELD_RE.exec(field)
+  if (m) {
+    const qi = Number(m[1])
+    const quote = finding.quotes[qi]
+    if (!quote) {
+      throw new Error(`quote index ${qi} out of range (finding has ${finding.quotes.length})`)
+    }
+    const prop = m[2] as 'text' | 'sourceClaimId'
+    const original = String(quote[prop] ?? '')
+    quote[prop] = corrected
+    return original
+  }
+  throw new Error(`unknown correction field "${field}"`)
 }

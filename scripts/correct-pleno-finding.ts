@@ -21,6 +21,8 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import {
+  applyFindingCorrection,
+  CORRECTION_QUOTE_FIELD_RE,
   validateFindingsSnapshot,
   type PlenoFindingCorrection,
   type PlenoFindingsSnapshot,
@@ -42,24 +44,29 @@ function bail(msg: string, code = 2): never {
   process.exit(code)
 }
 
-const ALLOWED_FIELDS = ['title', 'summary', 'severity'] as const
-type AllowedField = (typeof ALLOWED_FIELDS)[number]
+const ALLOWED_FIELDS = ['title', 'summary', 'severity', 'sourceClaimIds'] as const
 
 async function main() {
   const id = process.argv[2]
-  const field = getFlag('--field') as AllowedField | null
+  const field = getFlag('--field')
   const corrected = getFlag('--new')
   const reason = getFlag('--reason')
   const editor = getFlag('--editor')
 
   if (!id || !field || corrected == null || !reason || !editor) {
     bail(
-      'Usage: correct-pleno-finding <id> --field <title|summary|severity> ' +
+      'Usage: correct-pleno-finding <id> ' +
+        '--field <title|summary|severity|sourceClaimIds|quote.<i>.text|quote.<i>.sourceClaimId> ' +
         '--new "<text>" --reason "<≥20 chars>" --editor "<name>"',
     )
   }
-  if (!(ALLOWED_FIELDS as readonly string[]).includes(field)) {
-    bail(`--field must be one of ${ALLOWED_FIELDS.join(', ')}`)
+  if (
+    !(ALLOWED_FIELDS as readonly string[]).includes(field) &&
+    !CORRECTION_QUOTE_FIELD_RE.test(field)
+  ) {
+    bail(
+      `--field must be one of ${ALLOWED_FIELDS.join(', ')} or quote.<i>.text / quote.<i>.sourceClaimId`,
+    )
   }
   if (reason.trim().length < 20) {
     bail('--reason must be ≥20 chars (IFCN corrections trail)')
@@ -76,13 +83,18 @@ async function main() {
   const finding = snap.items.find((f) => f.id === id)
   if (!finding) bail(`no finding with id "${id}"`)
 
-  const original = String((finding as unknown as Record<string, unknown>)[field] ?? '')
+  let original: string
+  try {
+    original = applyFindingCorrection(finding, field, corrected)
+  } catch (err) {
+    bail((err as Error).message)
+  }
   if (original === corrected) {
     bail(`field ${field} is already "${corrected}" — no change to record`)
   }
 
   const entry: PlenoFindingCorrection = {
-    field,
+    field: field as PlenoFindingCorrection['field'],
     original,
     corrected,
     reason: reason.trim(),
@@ -90,7 +102,6 @@ async function main() {
     correctedAt: new Date().toISOString(),
   }
   finding.corrections = [...(finding.corrections ?? []), entry]
-  ;(finding as unknown as Record<string, unknown>)[field] = corrected
 
   const updated: PlenoFindingsSnapshot = {
     ...snap,

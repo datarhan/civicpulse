@@ -5,7 +5,11 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { validateFindingsSnapshot, type PlenoFindingCorrection } from '../src/scraper/pleno-finding'
+import {
+  applyFindingCorrection,
+  validateFindingsSnapshot,
+  type PlenoFindingCorrection,
+} from '../src/scraper/pleno-finding'
 
 const BASE = {
   version: '1.0',
@@ -94,6 +98,46 @@ describe('pleno-finding — corrections log', () => {
     ).toThrow(/editor required/)
   })
 
+  it('accepts citation-repair fields (quote.<i>.text / quote.<i>.sourceClaimId / sourceClaimIds)', () => {
+    const parsed = validateFindingsSnapshot(
+      JSON.stringify(
+        withCorrections([
+          {
+            field: 'quote.0.text',
+            original: 'old verbatim text from the superseded transcript body',
+            corrected: 'new verbatim text from the re-transcribed record body',
+            reason: 'la re-transcripción del pleno invalidó el verbatim citado originalmente',
+          },
+          {
+            field: 'quote.0.sourceClaimId',
+            original: '1sqj7is-000-afi-a9546e',
+            corrected: '1sqj7is-001-afi-a1e446',
+            reason: 'la re-transcripción del pleno re-generó el id del claim citado aquí',
+          },
+          {
+            field: 'sourceClaimIds',
+            original: '1sqj7is-000-afi-a9546e',
+            corrected: '1sqj7is-001-afi-a1e446',
+            reason: 'la re-transcripción del pleno re-generó los ids de claims citados',
+          },
+        ]),
+      ),
+    )
+    expect(parsed.items[0].corrections).toHaveLength(3)
+    expect(parsed.items[0].corrections?.[0].field).toBe('quote.0.text')
+  })
+
+  it('rejects citation-path fields that address nothing', () => {
+    expect(() =>
+      validateFindingsSnapshot(
+        JSON.stringify(withCorrections([{ field: 'quote.x.text' as 'summary' }])),
+      ),
+    ).toThrow(/field must be one of/)
+    expect(() =>
+      validateFindingsSnapshot(JSON.stringify(withCorrections([{ field: 'quotes' as 'summary' }]))),
+    ).toThrow(/field must be one of/)
+  })
+
   it('accepts multiple corrections on a single finding', () => {
     const parsed = validateFindingsSnapshot(
       JSON.stringify(
@@ -111,5 +155,55 @@ describe('pleno-finding — corrections log', () => {
     )
     expect(parsed.items[0].corrections).toHaveLength(2)
     expect(parsed.items[0].corrections?.[1].field).toBe('severity')
+  })
+})
+
+describe('applyFindingCorrection', () => {
+  const finding = () => JSON.parse(JSON.stringify(BASE)).items[0]
+
+  it('re-points sourceClaimIds from a comma-separated list and returns the original', () => {
+    const f = finding()
+    const original = applyFindingCorrection(f, 'sourceClaimIds', '1sqj7is-001-afi-a1e446')
+    expect(original).toBe('1sqj7is-042-afi-abcdef')
+    expect(f.sourceClaimIds).toEqual(['1sqj7is-001-afi-a1e446'])
+  })
+
+  it('replaces a quote text in place', () => {
+    const f = finding()
+    const original = applyFindingCorrection(
+      f,
+      'quote.0.text',
+      'proponemos al pleno convalidar y aprobar el expediente',
+    )
+    expect(original).toBe('un expediente de 242.255 euros en reconocimientos extrajudiciales')
+    expect(f.quotes[0].text).toBe('proponemos al pleno convalidar y aprobar el expediente')
+  })
+
+  it('replaces a quote sourceClaimId in place', () => {
+    const f = finding()
+    applyFindingCorrection(f, 'quote.0.sourceClaimId', '1sqj7is-001-afi-a1e446')
+    expect(f.quotes[0].sourceClaimId).toBe('1sqj7is-001-afi-a1e446')
+  })
+
+  it('still applies plain top-level fields (title/summary/severity)', () => {
+    const f = finding()
+    const original = applyFindingCorrection(f, 'severity', 'notable')
+    expect(original).toBe('informational')
+    expect(f.severity).toBe('notable')
+  })
+
+  it('throws on an out-of-range quote index and on unknown fields', () => {
+    const f = finding()
+    expect(() => applyFindingCorrection(f, 'quote.7.text', 'whatever text this is')).toThrow(
+      /quote index 7/,
+    )
+    expect(() => applyFindingCorrection(f, 'quotes', 'nope')).toThrow(/unknown correction field/)
+  })
+
+  it('rejects an empty sourceClaimIds replacement', () => {
+    const f = finding()
+    expect(() => applyFindingCorrection(f, 'sourceClaimIds', '  ,  ')).toThrow(
+      /sourceClaimIds correction needs ≥1 id/,
+    )
   })
 })

@@ -588,9 +588,17 @@ export default function Metodologia() {
         <ul style={{ margin: '6px 0 0', paddingLeft: 20 }}>
           <li>
             Cada modificación posterior al primer publicado a <code>title</code>,{' '}
-            <code>summary</code> o <code>severity</code> se aplica vía la herramienta{' '}
-            <code>npm run correct-press-finding</code>, que añade al hallazgo una fila permanente
-            con texto original, texto corregido, motivo (≥20 caracteres), editor/a y fecha ISO.
+            <code>summary</code> o <code>severity</code> se aplica vía las herramientas{' '}
+            <code>npm run correct-press-finding</code> / <code>correct-pleno-finding</code>, que
+            añaden al hallazgo una fila permanente con texto original, texto corregido, motivo (≥20
+            caracteres), editor/a y fecha ISO.
+          </li>
+          <li>
+            En hallazgos de pleno, los campos de cita (<code>sourceClaimIds</code>, texto e id de
+            cada cita) solo son corregibles cuando una <strong>re-transcripción</strong> sustituye
+            el transcript de registro y re-genera los ids/verbatim de los claims citados
+            («record-supersession»). Cada re-anclaje deja su fila pública en la bitácora. Editar una
+            cita por cualquier otro motivo sigue prohibido: se retira y re-publica el hallazgo.
           </li>
           <li>
             La bitácora de correcciones se renderiza pública dentro de la tarjeta del hallazgo. El
