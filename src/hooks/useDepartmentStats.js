@@ -5,7 +5,7 @@ import { usePromises } from './usePromises'
 import { usePlenoAgendas } from './usePlenoAgendas'
 import { usePlenoVotes } from './usePlenoVotes'
 import { useQuejas } from './useQuejas'
-import { usePlenoClaims } from './usePlenoClaims'
+import { usePlenoClaimsManifest } from './usePlenoClaims'
 import { computeDepartmentStats } from '../lib/department-stats'
 
 /**
@@ -13,13 +13,16 @@ import { computeDepartmentStats } from '../lib/department-stats'
  * canonical DepartmentSlug. The heavy lifting lives in
  * src/lib/department-stats.js — this hook only fetches + memoizes.
  *
- * Sources: officials, promises, pleno-agendas, pleno-votes, quejas,
- *          pleno-claims-verified (LLM-second-pass-aware).
+ * Sources: officials, promises, pleno-agendas, pleno-votes, quejas, and
+ * the pleno-claims chunk manifest's totals.byTopicVerdict cross-tab
+ * (~12 KB) — the same numbers the full chunk corpus would produce,
+ * without downloading it (LLM-second-pass-aware: the chunker runs after
+ * the base ⊕ overlay merge).
  *
- * Claims are NOT a blocker for the loading state — when the verifier
- * snapshot is missing or still loading, we render the rest of the page
- * with declaraciones=zero. This keeps /departamentos working while a
- * long verify-llm run is in progress (it rewrites the file mid-run).
+ * Claims are NOT a blocker for the loading state — when the manifest is
+ * missing or still loading, we render the rest of the page with
+ * declaraciones=zero. This keeps /departamentos working while a long
+ * verify run is in progress (it rewrites the files mid-run).
  *
  * Returns:
  *   { loading: boolean, error: Error|null, data: AggregateResult|null }
@@ -30,10 +33,10 @@ export function useDepartmentStats() {
   const agendas = usePlenoAgendas()
   const votes = usePlenoVotes()
   const quejas = useQuejas()
-  const claims = usePlenoClaims()
+  const manifest = usePlenoClaimsManifest()
 
   // Required sources gate the loading state. Claims are best-effort —
-  // a missing/erroring verified.json shouldn't block the dept page.
+  // a missing/erroring chunk manifest shouldn't block the dept page.
   const loading =
     officials.loading || promises.loading || agendas.loading || votes.loading || quejas.loading
   const error =
@@ -47,7 +50,7 @@ export function useDepartmentStats() {
       agendas: agendas.data,
       votes: votes.data,
       quejas: quejas.data,
-      claims: claims.error ? null : claims.data,
+      claimsSummary: manifest.error ? null : (manifest.data?.totals?.byTopicVerdict ?? null),
     })
   }, [
     loading,
@@ -57,8 +60,8 @@ export function useDepartmentStats() {
     agendas.data,
     votes.data,
     quejas.data,
-    claims.data,
-    claims.error,
+    manifest.data,
+    manifest.error,
   ])
 
   // Worst-case freshness across the 5 required inputs. A page that
