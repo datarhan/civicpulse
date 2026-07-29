@@ -16,6 +16,7 @@ const ROUTES = [
   '/departamentos',
   '/departamentos/urbanismo',
   '/hallazgos',
+  '/reportajes',
   '/declaraciones',
   '/datos',
   '/empleo',

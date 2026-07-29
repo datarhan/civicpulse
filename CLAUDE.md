@@ -415,16 +415,17 @@ the journalist subsystem too; only the test tree and the dead
 `scripts/draft-finding-suggestions.ts` stay outside its `include`). The
 unit/integration suite is Vitest +
 happy-dom; fixtures live in `tests/fixtures/`. The end-to-end suite is
-Playwright (`tests/e2e/*.spec.ts`) and covers **82 tests, zero failures**:
+Playwright (`tests/e2e/*.spec.ts`) and covers **127 tests, zero failures**
+(treat as a floor — the count grows with every route):
 
 - per-route specs: landing, cargos (+ /:slug), presupuesto, plenos,
-  promesas, departamentos (+ /:slug), hallazgos, declaraciones, datos,
-  quejas (+ dashboard + /:id), cambios, metodologia, aviso-legal, and
-  the catch-all redirect
+  promesas, departamentos (+ /:slug), hallazgos, reportajes (index +
+  landing teasers), declaraciones, datos, quejas (+ dashboard + /:id),
+  cambios, metodologia, aviso-legal, and the catch-all redirect
 - cross-cutting (`chrome.spec.ts`): Cmd+K spotlight, dark-mode toggle,
   i18n switch (es ↔ ca), and every sidebar nav link
-- mobile shell at 375px across 19 routes + hamburger drawer
-- axe-core WCAG 2.1 AA strict-pass across 19 routes
+- mobile shell at 375px across 23 routes + hamburger drawer
+- axe-core WCAG 2.1 AA strict-pass across 31 routes
   (`a11y.spec.ts`'s `STRICT_ROUTES`). The file also exposes a
   `KNOWN_DEBT_ROUTES` scaffold for quarantining future regressions
   without losing visibility — currently empty.
@@ -476,6 +477,7 @@ every production surface reads real JSON.
 - `/departamentos/:slug` — detail view (compromisos plenarios + promesas + puntos sin voto + quejas activas + claim ledger filtered by topic)
 - `/cargos/:slug` — per-councillor detail (portfolio chips + party promises + agenda items in their portfolios + assigned quejas)
 - `/hallazgos` — editorial findings dashboard · severity/speaker/pleno filters · per-finding permalinks · right-of-reply button on each card
+- `/reportajes` — index of long-form data reportajes; `/reportajes/:slug` piezas (reconstruccion-dana, inteligencia-turistica) keep their figures FROZEN in `public/data/reportajes/<slug>.json`. Shared registry `src/reportajes.js` feeds both the index and the landing teaser (`ReportajeBlockD`); a pieza renders only when `meta.estado === 'publicado'` (honesty gate — borradores pending right-of-reply never list)
 - `/datos` — catálogo of every JSON snapshot w/ Wikidata + padrón charts
 - `/empleo` — open job vacancies (Agència de Col·locació · ADL) · filter-reactive stats (KPIs + sparkline/contract/municipio charts + opt-in lazy Leaflet bubble map) · filters (search / municipio / contrato / jornada / cierre / "Solo Riba-roja") · numbered pagination · rich cards (funciones + chips) · RSS link. Pure logic in `src/lib/empleo.js` (TDD); UI in `src/components/empleo/{EmpleoStats,EmpleoFilters,EmpleoMap}.jsx`
 - `/empleo/:id` — per-offer detail (ficha: contrato/jornada/salario/funciones + ocupaciones solicitadas + inscribirse-en-el-portal CTA)

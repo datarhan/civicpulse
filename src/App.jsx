@@ -34,8 +34,8 @@ const AvisoLegal = lazy(() => import('./pages/AvisoLegal'))
 const Cambios = lazy(() => import('./pages/Cambios'))
 const Nosotros = lazy(() => import('./pages/Nosotros'))
 const About = lazy(() => import('./pages/About'))
+const Reportajes = lazy(() => import('./pages/Reportajes'))
 const ReconstruccionDana = lazy(() => import('./pages/reportajes/ReconstruccionDana'))
-// BORRADOR local (no committeado): reportaje inteligencia turística — ver .git/info/exclude
 const InteligenciaTuristica = lazy(() => import('./pages/reportajes/InteligenciaTuristica'))
 const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 // /curator is dev-only — see vite-curator-plugin.js. The lazy import
@@ -138,7 +138,9 @@ function InnerShell({ onOpenCmdK }) {
               {Curator && <Route path="/curator" element={<Curator />} />}
               <Route path="/nosotros" element={<Nosotros />} />
               <Route path="/about" element={<About />} />
-              {/* Long-form data reportaje — unlisted (not in NAV) until right-of-reply is served. */}
+              {/* Long-form data reportajes — indexed at /reportajes (in NAV); each pieza keeps
+                  its figures frozen in its own JSON snapshot. */}
+              <Route path="/reportajes" element={<Reportajes />} />
               <Route path="/reportajes/reconstruccion-dana" element={<ReconstruccionDana />} />
               <Route
                 path="/reportajes/inteligencia-turistica"

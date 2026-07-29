@@ -23,6 +23,7 @@ export const SECTION_GLYPHS = {
   '/promesas': { glyph: '▣', tone: 'civic' }, // la casilla marcada
   '/departamentos': { glyph: '▦', tone: 'civic' }, // el organigrama
   '/hallazgos': { glyph: '▲', tone: 'civic' }, // la señal
+  '/reportajes': { glyph: '▧', tone: 'civic' }, // la trama: la investigación que cruza los datos
   '/declaraciones': { glyph: '❝', tone: 'civic' }, // la cita
   '/datos': { glyph: '▥', tone: 'civic' }, // la tabla
   '/quejas': { glyph: '◍', tone: 'civic' }, // el pin sobre el mapa

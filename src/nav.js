@@ -78,6 +78,14 @@ export const NAV = [
     shortcut: 'G F',
   },
   {
+    to: '/reportajes',
+    id: 'reportajes',
+    labelKey: 'nav.reportajes',
+    label: 'Reportajes',
+    icon: Ic.list ?? Ic.warn,
+    shortcut: 'G J',
+  },
+  {
     to: '/declaraciones',
     id: 'declaraciones',
     labelKey: 'nav.declaraciones',

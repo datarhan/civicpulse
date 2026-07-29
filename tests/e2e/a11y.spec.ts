@@ -3,14 +3,11 @@ import AxeBuilder from '@axe-core/playwright'
 import { readFileSync } from 'node:fs'
 
 // A real pleno id with claims, read from the committed manifest (for /plenos/:id).
-const FIRST_PLENO_ID = JSON.parse(
-  readFileSync('public/data/pleno-claims/index.json', 'utf8'),
-).plenos?.[0]?.plenoId
+const FIRST_PLENO_ID = JSON.parse(readFileSync('public/data/pleno-claims/index.json', 'utf8'))
+  .plenos?.[0]?.plenoId
 
 // A real job-offer id, read from the committed snapshot (for /empleo/:id).
-const FIRST_OFERTA_ID = JSON.parse(
-  readFileSync('public/data/empleo.json', 'utf8'),
-).items?.[0]?.id
+const FIRST_OFERTA_ID = JSON.parse(readFileSync('public/data/empleo.json', 'utf8')).items?.[0]?.id
 
 // Routes the suite enforces — must stay free of critical/serious violations.
 const STRICT_ROUTES = [
@@ -37,7 +34,9 @@ const STRICT_ROUTES = [
   '/laboratorio/agentes',
   '/nosotros',
   '/about',
+  '/reportajes',
   '/reportajes/reconstruccion-dana',
+  '/reportajes/inteligencia-turistica',
   '/blog/building-civicpulse-with-ai',
   '/laboratorio/agentes/a-robert-raga-bio',
   '/lab-health',

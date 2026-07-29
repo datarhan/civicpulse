@@ -29,6 +29,7 @@ const CATALOGUE = {
     'nav.promesas': 'Promesas',
     'nav.departamentos': 'Departamentos',
     'nav.hallazgos': 'Hallazgos',
+    'nav.reportajes': 'Reportajes',
     'nav.declaraciones': 'Declaraciones',
     'nav.datos': 'Datos',
     'nav.quejas': 'Quejas',
@@ -44,6 +45,13 @@ const CATALOGUE = {
     'nav.nosotros': 'Quiénes somos',
     'nav.agentes': 'Periodistas',
     'nav.section': 'Navegación',
+
+    // Reportajes (índice de piezas long-form)
+    'reportajes.eyebrow': 'CivicPulse · investigaciones de datos',
+    'reportajes.title': 'Reportajes',
+    'reportajes.intro':
+      'Piezas largas a partir del registro público: cifras congeladas en el momento de la publicación y cada afirmación con su fuente.',
+    'reportajes.read': 'Leer el reportaje →',
 
     // Empleo (ofertas de empleo · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',
@@ -305,6 +313,7 @@ const CATALOGUE = {
     'nav.promesas': 'Promeses',
     'nav.departamentos': 'Departaments',
     'nav.hallazgos': 'Troballes',
+    'nav.reportajes': 'Reportatges',
     'nav.declaraciones': 'Declaracions',
     'nav.datos': 'Dades',
     'nav.quejas': 'Queixes',
@@ -320,6 +329,13 @@ const CATALOGUE = {
     'nav.nosotros': 'Qui som',
     'nav.agentes': 'Periodistes',
     'nav.section': 'Navegació',
+
+    // Reportatges (índex de peces long-form)
+    'reportajes.eyebrow': 'CivicPulse · investigacions de dades',
+    'reportajes.title': 'Reportatges',
+    'reportajes.intro':
+      'Peces llargues a partir del registre públic: xifres congelades en el moment de la publicació i cada afirmació amb la seua font.',
+    'reportajes.read': 'Llegir el reportatge →',
 
     // Empleo (ofertes d’ocupació · Agència de Col·locació)
     'empleo.eyebrow': 'Agència de Col·locació · ADL',
