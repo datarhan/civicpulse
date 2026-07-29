@@ -53,7 +53,7 @@ export function QuejaCTA() {
   return (
     <div
       style={{
-        marginTop: 10,
+        margin: '10px 0 22px',
         padding: '14px 16px',
         background: '#EEF4FF',
         border: '1px solid #C7D7F8',
