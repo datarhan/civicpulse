@@ -16,13 +16,27 @@ export const ALLOWED_ASSIGNMENT_KINDS: readonly AssignmentKind[] = [
   'topic-deep-dive',
 ] as const
 
-export type AssignmentStatus = 'pending' | 'running' | 'drafted' | 'promoted' | 'failed'
+/**
+ * `archived` = terminal state for a superseded/unpublished assignment:
+ * its report was removed from the published index (e.g. replaced by a
+ * newer version of the same bio, 2026-07-29). Archived assignments are
+ * hidden from the public /laboratorio/agentes list; git history remains
+ * the audit trail.
+ */
+export type AssignmentStatus =
+  | 'pending'
+  | 'running'
+  | 'drafted'
+  | 'promoted'
+  | 'failed'
+  | 'archived'
 export const ALLOWED_ASSIGNMENT_STATUSES: readonly AssignmentStatus[] = [
   'pending',
   'running',
   'drafted',
   'promoted',
   'failed',
+  'archived',
 ] as const
 
 export type SubjectKind = 'official' | 'topic' | 'entity'

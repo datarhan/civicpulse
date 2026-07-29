@@ -7,6 +7,7 @@ export const ASSIGNMENT_STATUS_LABEL = {
   drafted: 'Borrador',
   promoted: 'Publicado',
   failed: 'Fallido',
+  archived: 'Archivado',
 }
 
 export const ASSIGNMENT_STATUS_TONE = {
@@ -15,6 +16,7 @@ export const ASSIGNMENT_STATUS_TONE = {
   drafted: 'warn',
   promoted: 'ok',
   failed: 'crit',
+  archived: 'ghost',
 }
 
 // Shipped before the first `journalist:assign` run produces the file → a 404

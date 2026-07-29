@@ -21,6 +21,9 @@ export default function Agentes() {
   const reports = useJournalistReports()
   const loading = assignments.loading || reports.loading
   const reportsByAssignment = new Map((reports.data?.items ?? []).map((r) => [r.assignmentId, r]))
+  // Archived = superseded/unpublished (report removed from the published
+  // index). Hidden here; git history is the audit trail.
+  const visibleAssignments = (assignments.data?.items ?? []).filter((a) => a.status !== 'archived')
 
   return (
     <div style={{ padding: '24px 0', display: 'grid', gap: 16 }}>
@@ -37,14 +40,14 @@ export default function Agentes() {
         <SectionHead title="Asignaciones" />
         {loading ? (
           <div style={{ color: 'var(--ink50)', fontSize: 13 }}>Cargando…</div>
-        ) : (assignments.data?.items ?? []).length === 0 ? (
+        ) : visibleAssignments.length === 0 ? (
           <div style={{ color: 'var(--ink50)', fontSize: 13 }}>
             Aún no hay asignaciones. Un curador puede crear la primera con{' '}
             <code>npm run journalist:assign</code>.
           </div>
         ) : (
           <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-            {assignments.data.items.map((a) => {
+            {visibleAssignments.map((a) => {
               const report = reportsByAssignment.get(a.id)
               return (
                 <li

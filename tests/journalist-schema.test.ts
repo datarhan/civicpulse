@@ -751,3 +751,15 @@ describe('Phase B: small dossier kinds', () => {
     ).not.toThrow()
   })
 })
+
+describe('assignment status: archived (superseded/unpublished)', () => {
+  it('accepts an archived assignment', () => {
+    const snap = {
+      version: '1.0',
+      generatedAt: '2026-07-29T10:00:00.000Z',
+      items: [{ ...SAMPLE_ASSIGNMENT, status: 'archived' }],
+    }
+    const parsed = validateAssignmentsSnapshot(JSON.stringify(snap))
+    expect(parsed.items[0].status).toBe('archived')
+  })
+})
