@@ -72,6 +72,14 @@ export interface PlenoClaimsChunkManifest {
     items: number
     plenos: number
     byVerdict: Record<string, number>
+    /**
+     * topic → verdict → count over the exact item set written into the
+     * chunks (post gateItemsForPublic). Lets /departamentos aggregate
+     * per-department declaration counts from the ~12 KB manifest instead
+     * of downloading every chunk; the topic→department mapping stays
+     * client-side in src/lib/department-claim-topics.js.
+     */
+    byTopicVerdict: Record<string, Record<string, number>>
   }
 }
 
@@ -174,6 +182,7 @@ export function buildManifest(
   const plenosOut: PlenoClaimsChunkManifest['plenos'] = []
   const chunks = new Map<string, PlenoClaimsChunk>()
   const totalsByVerdict: Record<string, number> = {}
+  const byTopicVerdict: Record<string, Record<string, number>> = {}
   let totalItems = 0
   for (const [plenoId, items] of itemsByPleno) {
     const { chunk, descriptor } = buildChunkAndDescriptor(plenoId, items, generatedAt)
@@ -182,6 +191,13 @@ export function buildManifest(
     totalItems += descriptor.itemCount
     for (const [k, v] of Object.entries(descriptor.byVerdict)) {
       totalsByVerdict[k] = (totalsByVerdict[k] ?? 0) + v
+    }
+    for (const it of items) {
+      const t = it.claim?.topic
+      const v = it.verification?.verdict
+      if (typeof t !== 'string' || typeof v !== 'string') continue
+      const row = (byTopicVerdict[t] ??= {})
+      row[v] = (row[v] ?? 0) + 1
     }
   }
   // Most recent pleno first (mirror groupItemsByPleno order).
@@ -195,6 +211,7 @@ export function buildManifest(
         items: totalItems,
         plenos: plenosOut.length,
         byVerdict: totalsByVerdict,
+        byTopicVerdict,
       },
     },
     chunks,

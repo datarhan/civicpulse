@@ -159,3 +159,24 @@ describe('chunker applies the public gate', () => {
     expect(manifest.totals.items).toBe(2)
   })
 })
+
+describe('manifest totals.byTopicVerdict', () => {
+  it('cross-tabs topic × verdict over all chunked items', () => {
+    const a = mkItem('p1', '2026-01-01', 0, 'verificado')
+    a.claim.topic = 'urbanismo'
+    const b = mkItem('p1', '2026-01-01', 1, 'sin-datos')
+    b.claim.topic = 'urbanismo'
+    const c = mkItem('p2', '2026-02-02', 0, 'contradicho')
+    c.claim.topic = 'fiscal'
+    const { manifest } = buildManifest(groupItemsByPleno([a, b, c]), '2026-07-29T00:00:00Z')
+    expect(manifest.totals.byTopicVerdict).toEqual({
+      urbanismo: { verificado: 1, 'sin-datos': 1 },
+      fiscal: { contradicho: 1 },
+    })
+  })
+
+  it('is empty (not absent) for an empty corpus', () => {
+    const { manifest } = buildManifest(groupItemsByPleno([]), '2026-07-29T00:00:00Z')
+    expect(manifest.totals.byTopicVerdict).toEqual({})
+  })
+})

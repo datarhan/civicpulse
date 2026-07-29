@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T13:06:18.365Z",
+  "generatedAt": "2026-07-29T14:06:48.782Z",
   "version": "1",
   "plenos": [
     {
@@ -526,6 +526,73 @@
       "sin-datos": 3196,
       "parcial": 674,
       "verificado": 198
+    },
+    "byTopicVerdict": {
+      "social": {
+        "sin-datos": 208,
+        "parcial": 30,
+        "verificado": 9
+      },
+      "empleo": {
+        "sin-datos": 110,
+        "parcial": 17,
+        "verificado": 1
+      },
+      "transparencia": {
+        "sin-datos": 525,
+        "parcial": 121,
+        "verificado": 43
+      },
+      "fiscal": {
+        "sin-datos": 541,
+        "verificado": 12,
+        "parcial": 37
+      },
+      "other": {
+        "sin-datos": 334,
+        "parcial": 63,
+        "verificado": 16
+      },
+      "educacion": {
+        "sin-datos": 163,
+        "parcial": 37,
+        "verificado": 16
+      },
+      "urbanismo": {
+        "parcial": 139,
+        "sin-datos": 412,
+        "verificado": 45
+      },
+      "medio-ambiente": {
+        "sin-datos": 349,
+        "verificado": 22,
+        "parcial": 62
+      },
+      "movilidad": {
+        "parcial": 48,
+        "sin-datos": 124,
+        "verificado": 7
+      },
+      "seguridad": {
+        "verificado": 10,
+        "sin-datos": 85,
+        "parcial": 45
+      },
+      "salud": {
+        "parcial": 31,
+        "sin-datos": 115,
+        "verificado": 3
+      },
+      "vivienda": {
+        "sin-datos": 84,
+        "verificado": 1,
+        "parcial": 15
+      },
+      "cultura": {
+        "parcial": 29,
+        "sin-datos": 146,
+        "verificado": 13
+      }
     }
   }
 }
