@@ -35,12 +35,33 @@ describe('lib/tender-geo', () => {
       ],
       10,
     )
-    expect(top[0]).toEqual({ assignee: 'ACME', amount: 140, count: 2 }) // 100 + 40, sin IVA
+    expect(top[0]).toEqual({ assignee: 'ACME', amount: 140, count: 2, variantCount: 1 }) // 100 + 40, sin IVA
     expect(top[1].assignee).toBe('BETA')
   })
   it('topContractors falls back to the tax-included amount when no sin-IVA figure exists', () => {
     const top = topContractors([{ assignee: 'GAMMA', status: 'awarded', finalAmount: 200 }], 10)
-    expect(top[0]).toEqual({ assignee: 'GAMMA', amount: 200, count: 1 })
+    expect(top[0]).toEqual({ assignee: 'GAMMA', amount: 200, count: 1, variantCount: 1 })
+  })
+  it('topContractors merges razón-social variants when an entity resolver is provided', () => {
+    const contracts = [
+      { status: 'awarded', assignee: 'VARESER 96, S.L.', finalAmountNoTaxes: 1000 },
+      { status: 'awarded', assignee: 'VARESER 96 SL', finalAmountNoTaxes: 500 },
+      { status: 'awarded', assignee: 'INSDAGAR SL', finalAmountNoTaxes: 700 },
+      { status: 'in-tender', assignee: 'VARESER 96 SL', finalAmountNoTaxes: 9999 },
+    ]
+    const resolver = (raw: string) =>
+      raw.startsWith('VARESER') ? { key: 'vareser 96 sl', canonicalName: 'VARESER 96, S.L.' } : null
+    const top = topContractors(contracts, 15, resolver)
+    const vareser = top.find((t) => t.assignee === 'VARESER 96, S.L.')
+    expect(vareser).toEqual({
+      assignee: 'VARESER 96, S.L.',
+      amount: 1500,
+      count: 2,
+      variantCount: 2,
+    })
+    expect(top.some((t) => t.assignee === 'VARESER 96 SL')).toBe(false)
+    // unresolved names keep raw grouping
+    expect(top.find((t) => t.assignee === 'INSDAGAR SL')?.variantCount).toBe(1)
   })
   it('moneyRadiusMeters reproduces the GastoMap scale and floors non-positive to 0', () => {
     // The single source of truth for the money-bubble radius: 150 + √amount/6

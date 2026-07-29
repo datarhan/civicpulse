@@ -87,7 +87,17 @@ export function moneyRadiusMeters(amount) {
  * @param {number} [n]
  * @returns {{assignee:string,amount:number,count:number}[]}
  */
-export function topContractors(contracts, n = 15) {
+/**
+ * Top contract winners by awarded money. Without `resolver`, groups by
+ * the raw assignee string (legacy behavior). With `resolver` —
+ * `(rawName) => {key, canonicalName} | null`, built from entities.json —
+ * name variants of the same company merge into one row rendered under
+ * its canonical razón social, with `variantCount` for the UI hint.
+ * @param {any[]} contracts
+ * @param {number} [n]
+ * @param {((raw: string) => {key: string, canonicalName: string} | null) | null} [resolver]
+ */
+export function topContractors(contracts, n = 15, resolver = null) {
   const m = new Map()
   for (const c of contracts || []) {
     // Awarded money only — "who received the awarded money". Sin IVA (PLACSP).
@@ -96,12 +106,19 @@ export function topContractors(contracts, n = 15) {
     if (!(amount > 0)) continue
     const name = c.assignee
     if (!name) continue
-    const cur = m.get(name) || { assignee: name, amount: 0, count: 0 }
+    const resolved = resolver ? resolver(name) : null
+    const key = resolved?.key ?? name
+    const display = resolved?.canonicalName ?? name
+    const cur = m.get(key) || { assignee: display, amount: 0, count: 0, variants: new Set() }
     cur.amount += amount
     cur.count += 1
-    m.set(name, cur)
+    cur.variants.add(name)
+    m.set(key, cur)
   }
-  return [...m.values()].sort((a, b) => b.amount - a.amount).slice(0, n)
+  return [...m.values()]
+    .map(({ variants, ...row }) => ({ ...row, variantCount: variants.size }))
+    .sort((a, b) => b.amount - a.amount)
+    .slice(0, n)
 }
 
 /**

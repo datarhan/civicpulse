@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { topContractors, contractAmount } from '../../lib/tender-geo'
+import { useEntities } from '../../hooks/useEntities'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -10,18 +11,35 @@ const fmtEur = (n) =>
 
 export default function ContractorLeaderboard({ contracts }) {
   const [open, setOpen] = useState(null)
-  const top = useMemo(() => topContractors(contracts, 15), [contracts])
+  const entities = useEntities()
+  // Raw razón social → canonical entity, from the nightly registry.
+  // Registry missing (fresh clone) → null resolver → raw-name grouping.
+  const resolver = useMemo(() => {
+    const companies = entities.data?.companies
+    if (!companies?.length) return null
+    const byVariant = new Map()
+    for (const co of companies) {
+      for (const v of co.variants || []) {
+        byVariant.set(v, { key: co.nameKey, canonicalName: co.canonicalName })
+      }
+    }
+    return (raw) => byVariant.get(raw) ?? null
+  }, [entities.data])
+  const top = useMemo(() => topContractors(contracts, 15, resolver), [contracts, resolver])
   const byAssignee = useMemo(() => {
     const m = new Map()
     for (const c of contracts || []) {
       if (!c.assignee) continue
       if (!(c.status === 'awarded' && contractAmount(c) > 0)) continue
-      const arr = m.get(c.assignee) || []
+      // Key the drill-down by the same display name the row uses, so a
+      // merged company lists the contracts of every razón social variant.
+      const display = resolver?.(c.assignee)?.canonicalName ?? c.assignee
+      const arr = m.get(display) || []
       arr.push(c)
-      m.set(c.assignee, arr)
+      m.set(display, arr)
     }
     return m
-  }, [contracts])
+  }, [contracts, resolver])
   const max = top.length ? top[0].amount : 1
   return (
     <div>
@@ -42,7 +60,14 @@ export default function ContractorLeaderboard({ contracts }) {
               width: '100%',
             }}
           >
-            <span style={{ flex: 1, fontSize: 12.5, fontWeight: 500 }}>{t.assignee}</span>
+            <span style={{ flex: 1, fontSize: 12.5, fontWeight: 500 }}>
+              {t.assignee}
+              {t.variantCount > 1 && (
+                <span style={{ fontSize: 10, color: 'var(--ink50)', marginLeft: 6 }}>
+                  · {t.variantCount} razones sociales
+                </span>
+              )}
+            </span>
             <span
               style={{
                 height: 6,
