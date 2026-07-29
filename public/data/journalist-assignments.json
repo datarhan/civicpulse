@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-29T18:55:10.981Z",
+  "generatedAt": "2026-07-29T18:57:21.186Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -41,7 +41,7 @@
       "brief": "Biografía pública completa del alcalde Robert Raga Gadea (julio 2026): cobertura de web abierta (prensa regional y nacional vía SearXNG), declaraciones verbatim de los plenos 2023-2026 a través del corpus transcrito, gestión de la reconstrucción post-DANA, trayectoria política y profesional, y red de relaciones institucionales.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-29T18:48:53.951Z",
-      "status": "drafted",
+      "status": "promoted",
       "lastRunAt": "2026-07-29T18:55:10.981Z"
     }
   ]
