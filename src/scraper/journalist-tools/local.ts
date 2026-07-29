@@ -1,8 +1,12 @@
 /**
  * Journalist tools — local-snapshot search + per-domain fetchers (officials,
- * press, pleno-claims, promises). Verbatim from the monolith.
+ * press, pleno-claims, promises), plus semantic recall over the embedded
+ * agent corpus (transcripts + press) with graceful lexical-only fallback.
  */
+import { resolve } from 'node:path'
 import { matchesAnyToken, readJsonSnapshot, tokenize } from './internal'
+import { loadAgentCorpus, rankAgentCorpus, type AgentCorpusRow } from '../agent-corpus'
+import { embedTexts } from '../embed-client'
 
 // ─── Local-snapshot tools ──────────────────────────────────────────────────
 
@@ -71,6 +75,104 @@ function candidateArrays(obj: Record<string, unknown>): Array<[string, unknown[]
     if (Array.isArray(v)) out.push([k, v as unknown[]])
   }
   return out
+}
+
+// ─── Semantic local search (agent corpus) ──────────────────────────────────
+
+const AGENT_CORPUS_DEFAULT_PATH = resolve('.embed-cache', 'agent-corpus.jsonl')
+
+/** Per-path corpus cache: rows once loaded, 'unavailable' once failed. */
+const corpusCache = new Map<string, AgentCorpusRow[] | 'unavailable'>()
+const warnedPaths = new Set<string>()
+
+function warnOnce(path: string, msg: string): void {
+  if (warnedPaths.has(path)) return
+  warnedPaths.add(path)
+  process.stderr.write(`[journalist-tools] ${msg}\n`)
+}
+
+let defaultEmbedFn: ((text: string) => Promise<number[]>) | null = null
+
+function getDefaultEmbedFn(): (text: string) => Promise<number[]> {
+  if (!defaultEmbedFn) {
+    defaultEmbedFn = async (text: string) => {
+      const backend =
+        (process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined) ??
+        (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : 'ollama')
+      const apiKey =
+        backend === 'ollama'
+          ? undefined
+          : backend === 'gemini'
+            ? process.env.GEMINI_API_KEY
+            : process.env.OPENAI_API_KEY
+      const [vec] = await embedTexts(
+        [text],
+        backend === 'ollama' ? { backend } : { backend, apiKey },
+      )
+      return vec
+    }
+  }
+  return defaultEmbedFn
+}
+
+/**
+ * Semantic recall over the agent corpus (transcript chunks + press
+ * headlines) embedded by `npm run embed:agent-corpus`. Returns hits in
+ * the same LocalHit shape the lexical search uses, with
+ * `matchedField: 'semantic'` and the corpus snippet as preview — so the
+ * agent's citation building works unchanged.
+ *
+ * GRACEFUL DEGRADE IS THE CONTRACT: a missing cache file, an unusable
+ * embed backend, or any embed error resolves to `[]` (with one stderr
+ * warning per process) — the agent then behaves exactly as before this
+ * feature existed. Never throws.
+ */
+export async function semanticLocalHits(
+  query: string,
+  opts: {
+    topK?: number
+    cachePath?: string
+    embedFn?: (text: string) => Promise<number[]>
+  } = {},
+): Promise<LocalHit[]> {
+  const q = (query ?? '').trim()
+  if (!q) return []
+  const cachePath = opts.cachePath ?? AGENT_CORPUS_DEFAULT_PATH
+  const topK = opts.topK ?? 4
+
+  let rows = corpusCache.get(cachePath)
+  if (rows === undefined) {
+    try {
+      rows = loadAgentCorpus(cachePath).rows
+    } catch {
+      rows = 'unavailable'
+      warnOnce(
+        cachePath,
+        `agent corpus not available at ${cachePath} — semantic local search off ` +
+          '(run `npm run embed:agent-corpus` to enable); falling back to lexical only',
+      )
+    }
+    corpusCache.set(cachePath, rows)
+  }
+  if (rows === 'unavailable' || rows.length === 0) return []
+
+  let queryVec: number[]
+  try {
+    queryVec = await (opts.embedFn ?? getDefaultEmbedFn())(q)
+  } catch (err) {
+    warnOnce(
+      `${cachePath}#embed`,
+      `query embedding failed (${(err as Error).message}) — semantic local search off for this run`,
+    )
+    return []
+  }
+
+  return rankAgentCorpus(queryVec, rows, topK).map(({ row, score }) => ({
+    localPath: row.localPath,
+    matchedField: 'semantic',
+    preview: row.snippet,
+    row: { sourceId: row.sourceId, ref: row.ref, score, meta: row.meta },
+  }))
 }
 
 function flattenForSearch(row: unknown, depth = 0): string {

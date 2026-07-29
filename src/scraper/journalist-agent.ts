@@ -80,6 +80,7 @@ import {
   fetchWikipedia,
   resetCitationCounter,
   searchLocalSnapshots,
+  semanticLocalHits,
   webSearch,
   webSearchYears,
   type LocalHit,
@@ -271,11 +272,16 @@ export async function runJournalistAgent(
       try {
         switch (q.suggestedTool) {
           case 'local-snapshot': {
-            const hits: LocalHit[] = searchLocalSnapshots(q.queryHint ?? subjectName, {
+            const lexical: LocalHit[] = searchLocalSnapshots(q.queryHint ?? subjectName, {
               perFileLimit: 2,
             })
-            localHitCount += hits.length
-            for (const h of hits.slice(0, 3)) {
+            // Semantic recall over embedded transcripts + press — the only
+            // path that can see the .txt transcripts at all. Resolves to []
+            // when the corpus/backend is unavailable (lexical-only fallback).
+            const semantic: LocalHit[] = await semanticLocalHits(q.queryHint ?? subjectName)
+            const hits = [...lexical.slice(0, 3), ...semantic.slice(0, 3)]
+            localHitCount += lexical.length + semantic.length
+            for (const h of hits) {
               const cite = buildLocalCitation({
                 localPath: h.localPath,
                 title: `${h.localPath} · ${h.matchedField}`,
