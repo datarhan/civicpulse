@@ -161,6 +161,20 @@ fi
 
 echo ""
 echo "================================================================"
+echo "[scrape-all] running: check:relations (report-only)"
+echo "================================================================"
+# Cross-snapshot referential-integrity audit (findings→claims, manifest→
+# chunks, relations→quejas/tenders, …). --soft: report, never fail the
+# nightly — a partial scrape night must not red the commit-then-gate
+# design. Strict mode (exit 1 on error-level breakage) is the default
+# for manual runs: `npm run check:relations`.
+if ! npm run check:relations -- --soft; then
+  echo "[scrape-all] SOFT-FAILED: check:relations — best-effort, not counted"
+  soft_failures+=("check:relations")
+fi
+
+echo ""
+echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
 if [ ${#soft_failures[@]} -gt 0 ]; then
