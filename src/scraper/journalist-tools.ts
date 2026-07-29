@@ -35,5 +35,6 @@ export * from './journalist-tools/web'
 export * from './journalist-tools/gazette'
 export * from './journalist-tools/bio-extract'
 export * from './journalist-tools/citations'
+export * from './journalist-tools/domain-trust'
 // CACHE_DIR was the one internal re-exported publicly (callers/tests).
 export { CACHE_DIR } from './journalist-tools/internal'

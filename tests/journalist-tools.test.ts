@@ -197,9 +197,9 @@ describe('citation builders', () => {
     expect(c2.excerpt).toBeUndefined()
   })
 
-  it('builds web citations with medium trust by default', () => {
+  it('builds web citations with domain-table trust (unknown → low, press → medium, override wins)', () => {
     tools.resetCitationCounter()
-    const cite = tools.buildWebCitation({
+    const unknown = tools.buildWebCitation({
       url: 'https://example.org/article',
       title: 'External article',
       publisher: 'Example',
@@ -207,10 +207,29 @@ describe('citation builders', () => {
       excerpt: 'Some excerpt from the page',
       archiveUrl: 'https://web.archive.org/web/20260301/https://example.org/article',
     })
-    expect(cite.kind).toBe('web')
-    expect(cite.trust).toBe('medium')
-    expect(cite.url).toBe('https://example.org/article')
-    expect(cite.archiveUrl).toContain('web.archive.org')
+    expect(unknown.kind).toBe('web')
+    expect(unknown.trust).toBe('low') // unknown domain: honest default
+    expect(unknown.url).toBe('https://example.org/article')
+    expect(unknown.archiveUrl).toContain('web.archive.org')
+
+    const press = tools.buildWebCitation({
+      url: 'https://www.lasprovincias.es/comunitat/x.html',
+      title: 'Pieza de prensa',
+    })
+    expect(press.trust).toBe('medium')
+
+    const official = tools.buildWebCitation({
+      url: 'https://www.transportes.gob.es/nota',
+      title: 'Nota ministerial',
+    })
+    expect(official.trust).toBe('high')
+
+    const overridden = tools.buildWebCitation({
+      url: 'https://example.org/article',
+      title: 'Con override explícito',
+      trust: 'high',
+    })
+    expect(overridden.trust).toBe('high')
   })
 
   it('builds Wikidata citations with high trust', () => {

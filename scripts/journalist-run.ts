@@ -123,6 +123,9 @@ async function main(): Promise<void> {
       ...(opts.tokenBudget ? { tokenBudget: opts.tokenBudget } : {}),
       ...(opts.stopAfter ? { stopAfter: opts.stopAfter } : {}),
     })
+    for (const w of (out.draft?.warnings ?? []).slice(0, 12)) {
+      process.stdout.write(`[journalist:run]   ⚠ ${w}\n`)
+    }
     draft = out.draft
     process.stdout.write(
       `[journalist:run] research summary: ${JSON.stringify(out.debug.researchSummary)}\n` +

@@ -89,6 +89,7 @@ import {
 } from './journalist-tools'
 
 import { keepValidUrlAccounts } from './journalist-agent/shared'
+import { groundNarrativeSections } from './journalist-agent/grounding'
 import type { RunAgentOptions, RunAgentResult } from './journalist-agent/shared'
 import {
   buildEarlyDraft,
@@ -238,7 +239,7 @@ export async function runJournalistAgent(
       publisher: ph.source,
       publishedAt: ph.publishedAt || undefined,
       excerpt: ph.summary,
-      trust: 'medium',
+      // trust: decided by the domain-trust table (known outlet → medium)
     })
     sources.push(cite)
     evidence.push({
@@ -1055,6 +1056,16 @@ export async function runJournalistAgent(
     ...restS,
     ...gapsSection,
   ]
+
+  // ─── Stage 3.5: deterministic narrative grounding ───────────────────────
+  // Token/figure overlap of each narrative against its cited excerpts —
+  // fabricated numbers and citation-drift surface as [grounding] warnings
+  // BEFORE the LLM verify pass (which receives them in draftJson) and
+  // persist into the draft for the curator. Warn-only, zero LLM cost.
+  const grounding = groundNarrativeSections(sections, sources)
+  for (const w of grounding.warnings) {
+    if (!warnings.includes(w)) warnings.push(w)
+  }
 
   if (opts.stopAfter === 'synth') {
     return finalize(assignment, sections, sources, warnings, evidence, plan, synth, null, {

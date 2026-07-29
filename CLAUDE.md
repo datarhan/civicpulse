@@ -1077,6 +1077,19 @@ only the original public surface.
 - LLM I/O via the existing `callLLM` infra (cache, telemetry, backend
   fallback chain). Token budget per assignment: `JOURNALIST_TOKEN_BUDGET`
   (default 200K).
+- **Stage 3.5 (deterministic grounding, 2026-07-29):**
+  `journalist-agent/grounding.ts` checks every narrative against the
+  excerpts of the sources it cites — figures absent from cited evidence
+  (the fabricated-number tell) + a lexical-overlap floor → `[grounding]`
+  warnings that persist into the draft and feed the verify LLM
+  (prompt v2: evidence-only judging, temporal rule, softening bias).
+  Warn-only; zero LLM cost.
+- **Web-citation trust** comes from the curated domain table
+  (`journalist-tools/domain-trust.ts`): official/institutional zones →
+  high, established Spanish/Valencian press + IFCN fact-checkers →
+  medium, unknown domains → low (an unknown domain gets the curator's
+  attention, not the benefit of the doubt). Explicit `trust` overrides
+  still win.
 - Right-of-reply: `.github/ISSUE_TEMPLATE/journalist-report-response.yml`
   - `.github/workflows/ingest-journalist-responses.yml` — fires when an
     issue gains BOTH labels `derecho-replica` AND `periodista`, parses the

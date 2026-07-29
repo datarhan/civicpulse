@@ -5,6 +5,7 @@
  */
 import type { CitationKind, CitationTrust, SourceCitation } from '../journalist'
 import { nowIso } from './internal'
+import { trustForUrl } from './domain-trust'
 import type { WikidataPayload, WikipediaSummary } from './web'
 
 // ─── Citation builders ─────────────────────────────────────────────────────
@@ -50,7 +51,9 @@ export function buildWebCitation(opts: {
     url: opts.url,
     title: opts.title,
     retrievedAt: nowIso(),
-    trust: opts.trust ?? ('medium' as CitationTrust),
+    // Default = the curated domain-trust table (official → high, known
+    // press → medium, unknown → low); explicit opts.trust still wins.
+    trust: opts.trust ?? trustForUrl(opts.url),
     ...(opts.publisher ? { publisher: opts.publisher } : {}),
     ...(opts.publishedAt ? { publishedAt: opts.publishedAt } : {}),
     ...(opts.excerpt ? { excerpt: opts.excerpt.slice(0, 500) } : {}),
