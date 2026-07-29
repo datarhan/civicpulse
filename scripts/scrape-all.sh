@@ -150,6 +150,18 @@ fi
 
 echo ""
 echo "================================================================"
+echo "[scrape-all] running: compute:entities"
+echo "================================================================"
+# Canonical company/people registry (name-variant merge + curated
+# aliases). Deterministic, no network — inputs are tenders.json +
+# officials.json + entity-overrides.json already on disk.
+if ! npm run compute:entities; then
+  echo "[scrape-all] FAILED: compute:entities"
+  failures+=("compute:entities")
+fi
+
+echo ""
+echo "================================================================"
 echo "[scrape-all] running: scrape:queja-contract-relations (best-effort)"
 echo "================================================================"
 # Depends on tender-geo.json (situated places) + the bot's quejas.json. Pure +
