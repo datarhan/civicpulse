@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-28T07:16:34.013Z",
+  "generatedAt": "2026-07-29T07:25:19.131Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 46,
-    "openTotal": 46,
-    "inRibaRoja": 29,
-    "closingSoon": 8,
-    "withDetail": 46,
+    "total": 44,
+    "openTotal": 44,
+    "inRibaRoja": 28,
+    "closingSoon": 5,
+    "withDetail": 44,
     "byMonth": {
       "2026-07": 22,
       "2026-06": 16,
-      "2026-05": 6,
+      "2026-05": 4,
       "2026-04": 1,
       "2025-11": 1
     }
@@ -3196,166 +3196,6 @@
         "horario": "Lunes a jueves de 8:00 a 14:00 h y 15:00 a 17:30 h Viernes de 7:00 a 14:30 h",
         "salario": "Según convenio",
         "funciones": "Realizaría tareas de archivo. Atención telefónica. Tareas de equipo. Investigación de histórico de clientes para realización de ofertas. Apoyo a otros puestos de trabajo. Realizar las ofertas a clientes en nuestro programa de gestión. Persona con agilidad mental, dinámica, facilidad de comunicación y ganas de trabajar y formar parte del equipo.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2450",
-      "fo": 2450,
-      "codigo": "2026/00150",
-      "titulo": "Limpiador/a con discapacidad",
-      "publishedAt": "2026-05-28",
-      "deadline": "2026-07-28",
-      "location": "Polígono Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2450",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00150"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Limpiador/a con discapacidad"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Funciones: -Limpieza de almacén, zonas comunes. -Gestión de residuos y reciclaje. -Manejo de productos y equipos de limpieza. Requisitos: -Imprescindible vehículo propio para desplazarse al centro de trabajo. -Certificado de discapacidad / incapacidad igual o mayor 33%. -Incorporación inmediata."
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATACION DISCAPACIDAD"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Polígono, Municipio: Riba-roja de Túria, Provincia: Valencia"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "JORNADA COMPLETA de lunes a viernes. Turno de 08:00h a 16:00h. Contratación estable."
-          },
-          {
-            "label": "Salario",
-            "value": "SEGUN CONVENIO"
-          },
-          {
-            "label": "Funciones",
-            "value": "-Limpieza de almacén, zonas comunes.. -Gestión de residuos y reciclaje. -Manejo de productos y equipos de limpieza."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATACION DISCAPACIDAD",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "1",
-        "observaciones": "Funciones: -Limpieza de almacén, zonas comunes. -Gestión de residuos y reciclaje. -Manejo de productos y equipos de limpieza. Requisitos: -Imprescindible vehículo propio para desplazarse al centro de trabajo. -Certificado de discapacidad / incapacidad igual o mayor 33%. -Incorporación inmediata.",
-        "jornada": "Completa",
-        "horario": "JORNADA COMPLETA de lunes a viernes. Turno de 08:00h a 16:00h. Contratación estable.",
-        "salario": "SEGUN CONVENIO",
-        "funciones": "-Limpieza de almacén, zonas comunes.. -Gestión de residuos y reciclaje. -Manejo de productos y equipos de limpieza.",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2448",
-      "fo": 2448,
-      "codigo": "2026/00149",
-      "titulo": "Repartidor",
-      "publishedAt": "2026-05-28",
-      "deadline": "2026-07-28",
-      "location": "Villamarchante Vilamarxant (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2448",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00149"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Repartidor"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "TRANSPORTE Y ALMACENAMIENTO"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "5"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Villamarchante, Municipio: Vilamarxant, Provincia: Valencia, CP: 46191"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "La empresa se hace cargo de las dietas"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a Viernes jornada partida"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Reparto de mercancía a nivel regional"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "5",
-        "municipio": "Vilamarxant",
-        "provincia": "Valencia",
-        "cp": "46191",
-        "jornada": "Completa",
-        "horario": "Lunes a Viernes jornada partida",
-        "salario": "Según convenio",
-        "funciones": "Reparto de mercancía a nivel regional",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T07:12:46.775Z",
+  "generatedAt": "2026-07-29T07:13:56.545Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -247,28 +247,20 @@
       "lng": -0.5626679
     },
     {
-      "id": "way-556778456",
-      "name": "Parc Lineal Arrosals",
+      "id": "way-572095263",
+      "name": "Parc de Rosalía de Castro",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5448982,
-      "lng": -0.5753428
+      "lat": 39.5438783,
+      "lng": -0.5767846
     },
     {
       "id": "way-39589891",
       "name": "Parc Municipal Maldonado",
       "category": "verde",
       "kind": "park",
-      "lat": 39.5477533,
+      "lat": 39.5477716,
       "lng": -0.5797717
-    },
-    {
-      "id": "way-572095263",
-      "name": "Parc Rosalía de Castro",
-      "category": "verde",
-      "kind": "park",
-      "lat": 39.5438783,
-      "lng": -0.5767846
     },
     {
       "id": "way-551533189",
@@ -288,14 +280,14 @@
     }
   ],
   "stats": {
-    "total": 35,
+    "total": 34,
     "byCategory": {
       "civico": 5,
       "cultura": 4,
       "deporte": 7,
       "educacion": 11,
       "salud": 3,
-      "verde": 5
+      "verde": 4
     }
   }
 }
