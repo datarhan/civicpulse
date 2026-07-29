@@ -207,19 +207,42 @@ export interface ExaSearchPayload {
  * backend-agnostic contract the agent already consumes — renaming them
  * would ripple through journalist-agent.ts unnecessarily.
  */
+/**
+ * Single source of truth for the backend selection — used by webSearch()
+ * and by journalist-run's start-of-run banner, so an unconfigured
+ * backend is loudly visible BEFORE a run silently skips every open-web
+ * query (the 2026-07-29 v2 bio run only revealed webResults:0 in the
+ * post-hoc research summary).
+ */
+export function describeWebSearchBackend(env: NodeJS.ProcessEnv = process.env): {
+  backend: 'searxng' | 'exa' | 'none'
+  detail: string
+  url?: string
+} {
+  const searxngUrl = env.SEARXNG_URL?.trim()
+  if (searxngUrl) {
+    return { backend: 'searxng', detail: `searxng @ ${searxngUrl}`, url: searxngUrl }
+  }
+  if (env.EXA_API_KEY) return { backend: 'exa', detail: 'exa (paid REST)' }
+  return {
+    backend: 'none',
+    detail:
+      'NONE — open-web queries will be skipped (run `npm run searxng:up` + set SEARXNG_URL, or set EXA_API_KEY)',
+  }
+}
+
 export async function webSearch(
   query: string,
   opts: { numResults?: number; includeText?: boolean } = {},
 ): Promise<ExaSearchPayload> {
   const numResults = Math.min(opts.numResults ?? 6, 8)
   const includeText = opts.includeText ?? true
-  const searxngUrl = process.env.SEARXNG_URL?.trim()
-  if (searxngUrl) {
-    return webSearchSearxng(query, searxngUrl, { numResults, includeText })
+  const backend = describeWebSearchBackend()
+  if (backend.backend === 'searxng' && backend.url) {
+    return webSearchSearxng(query, backend.url, { numResults, includeText })
   }
-  const apiKey = process.env.EXA_API_KEY
-  if (apiKey) {
-    return webSearchExa(query, apiKey, { numResults, includeText })
+  if (backend.backend === 'exa' && process.env.EXA_API_KEY) {
+    return webSearchExa(query, process.env.EXA_API_KEY, { numResults, includeText })
   }
   return {
     query,

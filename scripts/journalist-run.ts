@@ -24,6 +24,7 @@ import {
   type JournalistReportDraft,
 } from '../src/scraper/journalist'
 import { runJournalistAgent, JournalistAgentError } from '../src/scraper/journalist-agent'
+import { describeWebSearchBackend } from '../src/scraper/journalist-tools'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('public/data/journalist-reports-suggestions.json')
@@ -114,6 +115,9 @@ async function main(): Promise<void> {
   try {
     process.stdout.write(
       `[journalist:run] starting agent for ${assignment.id} · subject="${assignment.subject.name}"\n`,
+    )
+    process.stdout.write(
+      `[journalist:run] web-search backend: ${describeWebSearchBackend().detail}\n`,
     )
     const out = await runJournalistAgent(assignment, {
       ...(opts.tokenBudget ? { tokenBudget: opts.tokenBudget } : {}),
