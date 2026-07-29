@@ -166,6 +166,17 @@ export async function semanticLocalHits(
     )
     return []
   }
+  const corpusDim = rows[0]?.embedding.length ?? 0
+  if (queryVec.length !== corpusDim) {
+    // Backend switched without re-embedding the corpus (768-dim nomic vs
+    // 1536-dim OpenAI aren't comparable) — degrade instead of garbage.
+    warnOnce(
+      `${cachePath}#dim`,
+      `query dim ${queryVec.length} ≠ corpus dim ${corpusDim} — run ` +
+        '`npm run embed:agent-corpus -- --rebuild` with the active backend',
+    )
+    return []
+  }
 
   return rankAgentCorpus(queryVec, rows, topK).map(({ row, score }) => ({
     localPath: row.localPath,

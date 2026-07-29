@@ -79,3 +79,14 @@ describe('semanticLocalHits', () => {
     expect(hits).toEqual([])
   })
 })
+
+describe('semanticLocalHits dimension guard', () => {
+  it('resolves to [] when the query dim mismatches the corpus dim', async () => {
+    const cachePath = writeCorpus([mkRow('a', [1, 0, 0])])
+    const hits = await semanticLocalHits('depuradora', {
+      cachePath,
+      embedFn: async () => [1, 0, 0, 0, 0], // 5-dim query vs 3-dim corpus
+    })
+    expect(hits).toEqual([])
+  })
+})
