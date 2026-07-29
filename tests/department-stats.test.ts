@@ -309,3 +309,34 @@ describe('computeDepartmentStats — claims (LLM verifier-aware)', () => {
     expect(r.bySlug.urbanismo.declaraciones.conEvidencia).toBe(0)
   })
 })
+
+describe('claimsSummary cross-tab path', () => {
+  it('produces identical declaraciones to the items path', () => {
+    const items = [
+      { claim: { topic: 'urbanismo' }, verification: { verdict: 'verificado' } },
+      { claim: { topic: 'urbanismo' }, verification: { verdict: 'contradicho' } },
+      { claim: { topic: 'fiscal' }, verification: { verdict: 'sin-datos' } },
+      { claim: { topic: 'fiscal' }, verification: { verdict: 'promesa-repetida' } },
+      { claim: { topic: 'servicios' }, verification: { verdict: 'parcial' } },
+    ]
+    const summary = {
+      urbanismo: { verificado: 1, contradicho: 1 },
+      fiscal: { 'sin-datos': 1, 'promesa-repetida': 1 },
+      servicios: { parcial: 1 },
+    }
+    const viaItems = computeDepartmentStats({ claims: { items } })
+    const viaSummary = computeDepartmentStats({ claimsSummary: summary })
+    for (const slug of Object.keys(viaItems.bySlug)) {
+      expect(viaSummary.bySlug[slug].declaraciones).toEqual(viaItems.bySlug[slug].declaraciones)
+    }
+  })
+
+  it('claimsSummary takes precedence over claims when both are present', () => {
+    const viaBoth = computeDepartmentStats({
+      claims: { items: [{ claim: { topic: 'urbanismo' }, verification: { verdict: 'verificado' } }] },
+      claimsSummary: {},
+    })
+    const anyDecl = Object.values(viaBoth.bySlug).some((b) => b.declaraciones.total > 0)
+    expect(anyDecl).toBe(false)
+  })
+})

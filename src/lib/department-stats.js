@@ -91,6 +91,29 @@ function flattenAgendas(agendasSnapshot) {
 }
 
 /**
+ * Add `count` claims with `verdict` into a dept bucket's declaraciones.
+ * Shared by the items path and the manifest cross-tab path so the two
+ * can never drift on verdict bucketing.
+ */
+function addDeclaraciones(d, verdict, count) {
+  d.total += count
+  if (verdict === 'verificado') {
+    d.verificado += count
+    d.conEvidencia += count
+  } else if (verdict === 'parcial') {
+    d.parcial += count
+    d.conEvidencia += count
+  } else if (verdict === 'contradicho') {
+    d.contradicho += count
+    d.conEvidencia += count
+  } else if (verdict === 'promesa-repetida') {
+    d.promesaRepetida += count
+  } else if (verdict === 'sin-datos') {
+    d.sinDatos += count
+  }
+}
+
+/**
  * Main entry point. All inputs are tolerant of null/undefined — returns
  * an always-populated result with zero counts for absent data. Stable
  * deterministic output order = ALLOWED_DEPARTMENT_SLUGS order.
@@ -101,6 +124,9 @@ function flattenAgendas(agendasSnapshot) {
  * @param {any} [input.votes]
  * @param {any} [input.quejas]
  * @param {any} [input.claims]
+ * @param {any} [input.claimsSummary]  topic→verdict→count cross-tab (the chunk
+ *   manifest's totals.byTopicVerdict); when present it is used INSTEAD of
+ *   claims.items — same numbers, none of the corpus download
  * @param {Date} [input.now]
  */
 export function computeDepartmentStats({
@@ -110,6 +136,7 @@ export function computeDepartmentStats({
   votes,
   quejas,
   claims,
+  claimsSummary,
   now = new Date(),
 }) {
   /** @type {Record<string, DepartmentStats>} */
@@ -187,29 +214,30 @@ export function computeDepartmentStats({
   // matching how citizens think about responsibility. We count by verdict
   // and aggregate `conEvidencia = verificado + parcial + contradicho` as
   // the editorially-meaningful "claim has data backing it" total.
-  const claimList = claims?.items ?? []
-  for (const it of claimList) {
-    const topic = it?.claim?.topic
-    const verdict = it?.verification?.verdict
-    if (!topic || !verdict) continue
-    const slugs = topicToDeptSlugs(topic)
-    for (const slug of slugs) {
-      if (!buckets[slug]) continue
-      const d = buckets[slug].declaraciones
-      d.total += 1
-      if (verdict === 'verificado') {
-        d.verificado += 1
-        d.conEvidencia += 1
-      } else if (verdict === 'parcial') {
-        d.parcial += 1
-        d.conEvidencia += 1
-      } else if (verdict === 'contradicho') {
-        d.contradicho += 1
-        d.conEvidencia += 1
-      } else if (verdict === 'promesa-repetida') {
-        d.promesaRepetida += 1
-      } else if (verdict === 'sin-datos') {
-        d.sinDatos += 1
+  if (claimsSummary && typeof claimsSummary === 'object') {
+    // Cross-tab from the chunk manifest (totals.byTopicVerdict) — same
+    // numbers as iterating the items, computed by the chunker over the
+    // exact item set the chunks contain.
+    for (const [topic, verdicts] of Object.entries(claimsSummary)) {
+      const slugs = topicToDeptSlugs(topic)
+      for (const [verdict, raw] of Object.entries(verdicts ?? {})) {
+        const count = Number(raw) || 0
+        if (count <= 0) continue
+        for (const slug of slugs) {
+          if (!buckets[slug]) continue
+          addDeclaraciones(buckets[slug].declaraciones, verdict, count)
+        }
+      }
+    }
+  } else {
+    const claimList = claims?.items ?? []
+    for (const it of claimList) {
+      const topic = it?.claim?.topic
+      const verdict = it?.verification?.verdict
+      if (!topic || !verdict) continue
+      for (const slug of topicToDeptSlugs(topic)) {
+        if (!buckets[slug]) continue
+        addDeclaraciones(buckets[slug].declaraciones, verdict, 1)
       }
     }
   }
