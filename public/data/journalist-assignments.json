@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-05-23T19:48:57.374Z",
+  "generatedAt": "2026-07-29T18:13:21.135Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -15,6 +15,20 @@
       "createdAt": "2026-05-23T12:02:33.613Z",
       "status": "promoted",
       "lastRunAt": "2026-05-23T19:44:56.431Z"
+    },
+    {
+      "id": "a-robert-raga-bio-v2",
+      "kind": "biography",
+      "subject": {
+        "slug": "robert-raga-gadea",
+        "name": "Robert Raga Gadea",
+        "kind": "official"
+      },
+      "brief": "Biografía pública actualizada del alcalde Robert Raga Gadea (julio 2026): trayectoria y declaraciones registradas en los plenos 2023-2026 vía el corpus transcrito, gestión de la reconstrucción post-DANA, compromisos electorales 2023-2027 y cobertura de prensa reciente.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-29T18:04:31.344Z",
+      "status": "drafted",
+      "lastRunAt": "2026-07-29T18:13:21.135Z"
     }
   ]
 }
