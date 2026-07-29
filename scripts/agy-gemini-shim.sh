@@ -9,7 +9,7 @@
 set -euo pipefail
 
 prompt=""
-model="gemini-3.5-flash"
+model="gemini-3.5-flash-medium"
 while [ $# -gt 0 ]; do
   case "$1" in
     -p | --prompt | --print)

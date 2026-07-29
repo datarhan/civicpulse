@@ -51,7 +51,7 @@ git pull --rebase --autostash origin main
 # (no interactive session to attach to) and burns the shared Max quota;
 # sonnet also violates the opus-or-fable model policy. agy runs headless.
 export LLM_BACKEND="${LLM_BACKEND:-agy}"
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash}"
+export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"
 # Gemini stays as a fallback target. GOOGLE_GENAI_USE_GCA=true so the
 # chain can switch to Pro plan auth if claude-code hits a quota wall.
 # gemini-2.5-pro is the highest tier the gemini CLI Pro subscription

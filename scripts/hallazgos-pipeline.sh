@@ -71,7 +71,10 @@ trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT
 # ---- env --------------------------------------------------------------
 if [ -f "$REPO_DIR/.env" ]; then set -a; . "$REPO_DIR/.env"; set +a; fi
 export LLM_BACKEND=agy
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash}"
+# agy renamed its slugs (2026-07): bare "gemini-3.5-flash" became invalid —
+# every call errored, so the whole chain silently drained to metered openai.
+# Slugs now carry the effort tier; -medium matches the old default behavior.
+export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"
 # openai (API, metered ~$0.006/min ≈ $0.72 per 2h pleno) replaced mlx as the
 # default on 2026-07-07: MLX large-v3 pinned the local GPU for ~30 min/run and
 # tripped the Metal watchdog on long sessions. Requires OPENAI_API_KEY (from
