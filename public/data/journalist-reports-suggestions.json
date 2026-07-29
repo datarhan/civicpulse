@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-29T18:13:21.138Z",
+  "generatedAt": "2026-07-29T18:55:10.989Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -777,6 +777,409 @@
           "kind": "local-snapshot",
           "title": "Officials snapshot — Robert Raga Gadea",
           "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-002",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 1237hbp-090-afi-aeb2af · 2026-07-03 · afirmacion_numerica",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-003",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 11025xk-026-acu-cedc46 · 2026-06-01 · acusacion_publica",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "Nuestro alcalde, el señor Raga, en las elecciones del 2023, abril del 2023 concretamente, usted se reúne con vecinos de Valencia de la Villa. En un vídeo que está publicado en Facebook, de acceso libre para todo el mundo, usted declara las progresas electorales que la gran mayoría no ha cumplido",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-004",
+          "kind": "local-snapshot",
+          "title": "Pleno claim k4olcs-089-acu-1d6828 · 2026-04-20 · acusacion_publica",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-005",
+          "kind": "local-snapshot",
+          "title": "Pleno claim k4olcs-088-cit-2c649f · 2026-04-20 · cita_convenio",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "esos recursos europeos, FEDER y de la Unión Europea",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-006",
+          "kind": "local-snapshot",
+          "title": "Pleno claim ma87e0-107-cit-f9724f · 2026-03-16 · cita_convenio",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-007",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 19gax3o-137-cit-78abd7 · 2026-01-19 · cita_obra",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-008",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 1qi8axv-003-cit-0209e8 · 2025-12-23 · cita_obra",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "pasamos a votar el punto 2, que es la prórroga del contrato.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-009",
+          "kind": "local-snapshot",
+          "title": "Pleno claim qz6weg-073-acu-1c7836 · 2025-12-01 · acusacion_publica",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "ustedes vienen aquí a remover otra vez la historia y la historia.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-010",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Fuente oficial: www.ribarroja.es",
+          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
+        },
+        {
+          "id": "src-011",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-012",
+          "kind": "local-snapshot",
+          "title": "public/data/press.json · items",
+          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "excerpt": "1tph5ek · Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana · https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrY",
+          "localPath": "public/data/press.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-013",
+          "kind": "local-snapshot",
+          "title": "public/data/press.json · items",
+          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "excerpt": "104njpk · Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA · https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5",
+          "localPath": "public/data/press.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-014",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/rx4hb4.txt · semantic",
+          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "excerpt": "[13297.9 → 13299.9] de reconstrucción es una agenda [13299.9 → 13301.9] que se da a partir [13301.9 → 13303.9] de la DANA porque nosotros [13303.9 → 13305.9] como ha dicho antes [13305.9 → 13307.9] vamos a optar por el e",
+          "localPath": "public/data/pleno-transcripts/rx4hb4.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-015",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/rx4hb4.txt · semantic",
+          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "excerpt": "[13012.2 → 13014.2] servicios urbanos y espacios [13014.2 → 13016.2] naturales afectados [13016.2 → 13018.2] por la DANA asegurando [13018.2 → 13020.2] su funcionalidad y su seguridad [13020.2 → 13023.3] si usted me va a",
+          "localPath": "public/data/pleno-transcripts/rx4hb4.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-016",
+          "kind": "local-snapshot",
+          "title": "public/data/press.json · semantic",
+          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "excerpt": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana · Levante-EMV",
+          "localPath": "public/data/press.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-017",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Texto completo: ribarroja.es",
+          "retrievedAt": "2026-07-29T18:12:15.068Z",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "relationships.edges[1] (oposicion→raga): node 'Oposición municipal' is a generic label for an unidentified speaker (src-003 quote itself marked 'sin identificar en el corpus'); edge is speculative, not a specifically named entity."
+      ],
+      "legalSensitivity": "medium",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-robert-raga-bio-v3-2026-07-29",
+      "assignmentId": "a-robert-raga-bio-v3",
+      "generatedAt": "2026-07-29T18:55:10.981Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v1;synth=journalist-synth-v2;verify=journalist-verify-v1",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "robert-raga-gadea",
+            "photoPath": "/data/photos/robert-raga-gadea.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Alcaldía",
+              "Innovación",
+              "Planificación estratégica y grandes proyectos y cooperación nacional e internacional"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Cargo y trayectoria institucional",
+            "bodyMarkdown": "Robert Raga Gadea ejerce como alcalde de Riba-roja de Túria por el PSOE, con responsabilidad sobre las áreas de Alcaldía, Innovación, Planificación estratégica y grandes proyectos, y cooperación nacional e internacional. Sus datos biográficos oficiales figuran publicados en el portal de transparencia del Ayuntamiento de Riba-roja de Túria.",
+            "sourceIds": [
+              "src-001",
+              "src-010"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Reconstrucción post-DANA",
+            "bodyMarkdown": "La gestión municipal de la reconstrucción tras la DANA ha sido objeto de cobertura periodística y de debate en los plenos entre 2025 y 2026. La prensa recogió que las obras de la mota motivaron las exhumaciones del cementerio musulmán de Riba-roja, así como la planificación conjunta entre la Generalitat y el Ayuntamiento de suelo seguro para industrias y viviendas tras la DANA. Las transcripciones de los plenos registran intervenciones sobre una agenda de reconstrucción de servicios urbanos y espacios naturales afectados, orientada a asegurar su funcionalidad y seguridad, con una mención a la agenda urbana de reconstrucción y a China en ese contexto.",
+            "sourceIds": [
+              "src-011",
+              "src-012",
+              "src-014",
+              "src-015",
+              "src-016"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Fondos europeos y críticas en el pleno",
+            "bodyMarkdown": "En el pleno del 20 de abril de 2026 se registró una intervención que acusó públicamente a la gestión municipal de no haber administrado adecuadamente los fondos europeos destinados a la Formación Profesional en centros públicos, en el mismo debate en que se citaron los recursos del FEDER y de la Unión Europea vinculados a la reconstrucción.",
+            "sourceIds": [
+              "src-004",
+              "src-005"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Acusación pública sobre promesas electorales",
+            "bodyMarkdown": "En el pleno del 1 de junio de 2026 quedó registrada una intervención pública que atribuyó al alcalde Robert Raga declaraciones realizadas en un encuentro con vecinos de la urbanización Valencia de la Villa durante la campaña electoral de abril de 2023, difundidas en un vídeo publicado en Facebook, sobre promesas electorales que, según dicha intervención, no se habrían cumplido en su mayoría. El informe documenta la existencia de esta acusación tal como consta en el acta del pleno, sin pronunciarse sobre su veracidad.",
+            "sourceIds": [
+              "src-003"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Debate sobre destino de fondos municipales",
+            "bodyMarkdown": "En el pleno del 16 de marzo de 2026 se citó una comunicación de Cáritas en la que, según la intervención registrada, la entidad manifestó su preferencia por que una parte de los fondos municipales que se le destinan se aplicara a la inversión en el campanario en lugar de a su gasto corriente.",
+            "sourceIds": [
+              "src-006"
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "2026-03-16",
+                "label": "Pleno municipal: debate sobre destino de fondos y comunicación de Cáritas",
+                "sourceIds": [
+                  "src-006"
+                ]
+              },
+              {
+                "date": "2026-04-20",
+                "label": "Pleno municipal: acusación pública sobre gestión de fondos europeos en FP y cita de fondos FEDER/UE",
+                "sourceIds": [
+                  "src-004",
+                  "src-005"
+                ]
+              },
+              {
+                "date": "2026-06-01",
+                "label": "Pleno municipal: acusación pública sobre promesas electorales de la campaña de 2023",
+                "sourceIds": [
+                  "src-003"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Robert Raga Gadea",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "PSOE",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Ayuntamiento de Riba-roja de Túria",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "Generalitat Valenciana",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n5",
+                "label": "Cáritas",
+                "tone": "neutral",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "afiliación política (PSOE)",
+                "sourceIds": [
+                  "src-001"
+                ]
+              },
+              {
+                "from": "n3",
+                "to": "n4",
+                "relation": "coordinación institucional en la reconstrucción post-DANA",
+                "sourceIds": [
+                  "src-012"
+                ]
+              },
+              {
+                "from": "n3",
+                "to": "n5",
+                "relation": "diálogo sobre destino de fondos municipales",
+                "sourceIds": [
+                  "src-006"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-reconstruccion-dana-9-5m"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "usted se reúne con vecinos de Valencia de la Villa. En un vídeo que está publicado en Facebook, de acceso libre para todo el mundo, usted declara las progresas electorales que la gran mayoría no ha cumplido",
+            "attributedTo": "Intervención en el pleno (interlocutor no identificado)",
+            "date": "2026-06-01",
+            "sourceId": "src-003"
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos",
+            "attributedTo": "Intervención en el pleno (interlocutor no identificado)",
+            "date": "2026-04-20",
+            "sourceId": "src-004"
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.",
+            "attributedTo": "Cáritas (según intervención en el pleno)",
+            "date": "2026-03-16",
+            "sourceId": "src-006"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "careerPolitical.Alcalde (Ayuntamiento de Riba-roja de Túria, PSOE) - startYear",
+                "reason": "src-001 confirms role=alcalde, party=PSOE, portfolios; src-010 confirms municipality via page title. No excerpt states a mandate start year, so omitted rather than invented; src-003's '2023 elecciones' is an adversarial quote, not a stated term-start date."
+              },
+              {
+                "field": "education",
+                "reason": "No body excerpt or regex hint contains any degree, institution, or academic detail for this subject."
+              },
+              {
+                "field": "identity (dateOfBirth, birthplace, residence, nationality)",
+                "reason": "src-010 links to the official biographical-data page, but the fetched excerpt only contains the page title and a stylesheet tag, not actual biographical content."
+              },
+              {
+                "field": "onlinePresence.Facebook",
+                "reason": "src-003 mentions a video published on Facebook about the subject, but gives no handle or account URL for him, so a verified entry cannot be built."
+              },
+              {
+                "field": "fecha de nacimiento",
+                "reason": "no encontrado en fuentes accesibles"
+              },
+              {
+                "field": "formación",
+                "reason": "no encontrado en fuentes accesibles"
+              },
+              {
+                "field": "carrera profesional",
+                "reason": "no encontrado en fuentes accesibles"
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Robert Raga Gadea",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/officials.json",
           "trust": "high",
           "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional"
@@ -785,7 +1188,7 @@
           "id": "src-002",
           "kind": "local-snapshot",
           "title": "Pleno claim 1237hbp-090-afi-aeb2af · 2026-07-03 · afirmacion_numerica",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado"
@@ -794,7 +1197,7 @@
           "id": "src-003",
           "kind": "local-snapshot",
           "title": "Pleno claim 11025xk-026-acu-cedc46 · 2026-06-01 · acusacion_publica",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "Nuestro alcalde, el señor Raga, en las elecciones del 2023, abril del 2023 concretamente, usted se reúne con vecinos de Valencia de la Villa. En un vídeo que está publicado en Facebook, de acceso libre para todo el mundo, usted declara las progresas electorales que la gran mayoría no ha cumplido"
@@ -803,7 +1206,7 @@
           "id": "src-004",
           "kind": "local-snapshot",
           "title": "Pleno claim k4olcs-089-acu-1d6828 · 2026-04-20 · acusacion_publica",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos"
@@ -812,7 +1215,7 @@
           "id": "src-005",
           "kind": "local-snapshot",
           "title": "Pleno claim k4olcs-088-cit-2c649f · 2026-04-20 · cita_convenio",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "esos recursos europeos, FEDER y de la Unión Europea"
@@ -821,7 +1224,7 @@
           "id": "src-006",
           "kind": "local-snapshot",
           "title": "Pleno claim ma87e0-107-cit-f9724f · 2026-03-16 · cita_convenio",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro."
@@ -830,7 +1233,7 @@
           "id": "src-007",
           "kind": "local-snapshot",
           "title": "Pleno claim 19gax3o-137-cit-78abd7 · 2026-01-19 · cita_obra",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil."
@@ -839,7 +1242,7 @@
           "id": "src-008",
           "kind": "local-snapshot",
           "title": "Pleno claim 1qi8axv-003-cit-0209e8 · 2025-12-23 · cita_obra",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "pasamos a votar el punto 2, que es la prórroga del contrato."
@@ -848,7 +1251,7 @@
           "id": "src-009",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-073-acu-1c7836 · 2025-12-01 · acusacion_publica",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.500Z",
           "localPath": "public/data/pleno-claims-suggestions.json",
           "trust": "high",
           "excerpt": "ustedes vienen aquí a remover otra vez la historia y la historia."
@@ -858,42 +1261,42 @@
           "kind": "web",
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Fuente oficial: www.ribarroja.es",
-          "retrievedAt": "2026-07-29T18:12:12.722Z",
+          "retrievedAt": "2026-07-29T18:50:05.502Z",
           "trust": "high",
           "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
         },
         {
           "id": "src-011",
           "kind": "local-snapshot",
-          "title": "public/data/officials.json · officials",
-          "retrievedAt": "2026-07-29T18:12:15.066Z",
-          "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
-        },
-        {
-          "id": "src-012",
-          "kind": "local-snapshot",
           "title": "public/data/press.json · items",
-          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "retrievedAt": "2026-07-29T18:50:07.980Z",
           "localPath": "public/data/press.json",
           "trust": "high",
           "excerpt": "1tph5ek · Las exhumaciones del cementerio musulmán de Riba-roja se realizaron por las obras de la mota tras la dana · https://news.google.com/rss/articles/CBMi7AFBVV95cUxNTTNEZzBxcE9NTUNYNzV4bDh0dW1veWxGRHNOT0l0bkM0LTFyaEQzZmhiWVFOY1hQTFZrY"
         },
         {
-          "id": "src-013",
+          "id": "src-012",
           "kind": "local-snapshot",
           "title": "public/data/press.json · items",
-          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "retrievedAt": "2026-07-29T18:50:07.980Z",
           "localPath": "public/data/press.json",
           "trust": "high",
           "excerpt": "104njpk · Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA · https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5"
         },
         {
+          "id": "src-013",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-claims-suggestions.json · items",
+          "retrievedAt": "2026-07-29T18:50:07.980Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "brxx5g-125-afi-b466bc · brxx5g · 2026-07-06 · 125 · afirmacion_numerica ·  · Habían arrepegado más de 800 firmes · teníamos temperaturas en Camp de Turias de 36 grados. Habían arrepegado más de 800 firmes porque bollían, y bollían un colach"
+        },
+        {
           "id": "src-014",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/rx4hb4.txt · semantic",
-          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "retrievedAt": "2026-07-29T18:50:07.980Z",
           "localPath": "public/data/pleno-transcripts/rx4hb4.txt",
           "trust": "high",
           "excerpt": "[13297.9 → 13299.9] de reconstrucción es una agenda [13299.9 → 13301.9] que se da a partir [13301.9 → 13303.9] de la DANA porque nosotros [13303.9 → 13305.9] como ha dicho antes [13305.9 → 13307.9] vamos a optar por el e"
@@ -902,7 +1305,7 @@
           "id": "src-015",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/rx4hb4.txt · semantic",
-          "retrievedAt": "2026-07-29T18:12:15.066Z",
+          "retrievedAt": "2026-07-29T18:50:07.980Z",
           "localPath": "public/data/pleno-transcripts/rx4hb4.txt",
           "trust": "high",
           "excerpt": "[13012.2 → 13014.2] servicios urbanos y espacios [13014.2 → 13016.2] naturales afectados [13016.2 → 13018.2] por la DANA asegurando [13018.2 → 13020.2] su funcionalidad y su seguridad [13020.2 → 13023.3] si usted me va a"
@@ -910,24 +1313,133 @@
         {
           "id": "src-016",
           "kind": "local-snapshot",
-          "title": "public/data/press.json · semantic",
-          "retrievedAt": "2026-07-29T18:12:15.066Z",
-          "localPath": "public/data/press.json",
+          "title": "public/data/pleno-transcripts/rx4hb4.txt · semantic",
+          "retrievedAt": "2026-07-29T18:50:07.980Z",
+          "localPath": "public/data/pleno-transcripts/rx4hb4.txt",
           "trust": "high",
-          "excerpt": "Riba-roja desmonta el puente militar que conectó a más de 3.500 vecinos tras la dana · Levante-EMV"
+          "excerpt": "[12968.8 → 12970.8] no hacer uso de ella [12970.8 → 12972.8] y atender como municipio afectado [12972.8 → 12974.8] por la DANA [12974.8 → 12976.8] que hemos sido en China [12976.8 → 12979.7] a la agenda urbana de reconst"
         },
         {
           "id": "src-017",
           "kind": "web",
+          "url": "https://www.transportes.gob.es/ministerio/comunicacion/sala-prensa/vie-04072025-1228",
+          "title": "Transportes suscribe un convenio con el Ayuntamiento de Riba ...",
+          "retrievedAt": "2026-07-29T18:50:09.311Z",
+          "trust": "medium",
+          "excerpt": "4 jul 2025 ... ... Roja de Turia, representado por su alcalde-presidente, Robert Raga Gadea; han suscrito un convenio para la reparación del Puente Histórico del ..."
+        },
+        {
+          "id": "src-018",
+          "kind": "web",
+          "url": "https://www.civicpulse.es/",
+          "title": "CivicPulse · Riba-roja de Túria",
+          "retrievedAt": "2026-07-29T18:50:09.311Z",
+          "trust": "medium",
+          "excerpt": "Robert Raga Gadea. Alcalde. Robert Raga Gadea. PSOErraga@ribarroja.es. 19promesas · PSOE3puntos en pleno · Alcaldía →Innovación →. Gobierno municipal · 2025."
+        },
+        {
+          "id": "src-019",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/Anuncio%20publicac%20bases%20proc%20select%20promoc%20interna%20restring%204%20plazas%20tec%20A1_0.pdf",
+          "title": "ANUNCIO - Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-29T18:50:09.311Z",
+          "trust": "medium",
+          "excerpt": "18 jun 2026 ... En Riba-roja de Turia, a fecha de la firma electrónica. El Alcalde. Roberto Raga Gadea. Identificador srA1 aLwR hkxp nBbd X/t3 kXsq EUI= URL ..."
+        },
+        {
+          "id": "src-020",
+          "kind": "web",
+          "url": "https://www.fvmp.es/wp-content/uploads/2024/01/Memoria-de-gestion-2022-2023-CAST.pdf",
+          "title": "Memoria de gestión 2022 – 2023 - FVMP",
+          "retrievedAt": "2026-07-29T18:50:10.096Z",
+          "trust": "medium",
+          "excerpt": "Titular: Robert Raga Gadea, alcalde del Ayuntamiento de Riba-Roja de Túria ... - PERE ROSTOLL, director general de Relaciones Informativas Generalitat Valenciana."
+        },
+        {
+          "id": "src-021",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
+          "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
+          "retrievedAt": "2026-07-29T18:50:10.096Z",
+          "trust": "medium",
+          "excerpt": "10 feb 2025 ... ... Ayuntamiento. Todo ello bajo la Presidencia del Sr. Alcalde, Roberto Raga Gadea, asistido de la Secretaria. General Sra. Ylenia Díaz Morán ..."
+        },
+        {
+          "id": "src-022",
+          "kind": "web",
+          "url": "https://www.elperiodic.com/quart_poblet/noticias/politica",
+          "title": "Noticias de Política en Quart de Poblet - elperiodic.com",
+          "retrievedAt": "2026-07-29T18:50:10.096Z",
+          "trust": "medium",
+          "excerpt": "La Agrupación Socialista de Quart de Poblet ha culminado su proceso de renovación orgánica con un respaldo abrumador del 96,6% a la candidatura de Adolfo Gadea ..."
+        },
+        {
+          "id": "src-023",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
+          "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-29T18:50:10.099Z",
+          "trust": "medium",
+          "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …"
+        },
+        {
+          "id": "src-024",
+          "kind": "web",
+          "url": "https://www.transfermarkt.es/robert-sanchez/profil/spieler/403151",
+          "title": "Robert Sánchez - Perfil del jugador 25/26 | Transfermarkt",
+          "retrievedAt": "2026-07-29T18:50:10.099Z",
+          "trust": "medium",
+          "excerpt": "18 de nov de 1997 · Robert Sánchez, 28, España Chelsea FC, desde 2023 Portero Valor de mercado: 22,00 mill. € * 18/11/1997 en Cartagena, España."
+        },
+        {
+          "id": "src-025",
+          "kind": "web",
+          "url": "https://dictionnaire.lerobert.com/",
+          "title": "Dictionnaire français gratuit – Dico en ligne Le Robert",
+          "retrievedAt": "2026-07-29T18:50:10.099Z",
+          "trust": "medium",
+          "excerpt": "Découvrez encore plus de contenus (étymologie, citations littéraires, définitions plus détaillées…) ainsi que de nombreuses fonctionnalités qui vous permettront d’effectuer des recherches passionnantes …"
+        },
+        {
+          "id": "src-026",
+          "kind": "web",
+          "url": "https://robertsspaceindustries.com/en/star-citizen",
+          "title": "Star-Citizen",
+          "retrievedAt": "2026-07-29T18:50:10.099Z",
+          "trust": "medium",
+          "excerpt": "Roberts Space Industries is the official go-to website for all news about Star Citizen and Squadron 42. It also hosts the online store for game items and merch, as well as all the community tools used by our …"
+        },
+        {
+          "id": "src-027",
+          "kind": "web",
+          "url": "https://www.europapress.es/sociedad/noticia-robert-prevost-cardenal-eeuu-ascendencia-espanola-misionero-agustino-peru-jefe-obispos-20250507145212.html",
+          "title": "Robert Prevost, cardenal de EE.UU y ascendencia española, misionero ...",
+          "retrievedAt": "2026-07-29T18:50:10.099Z",
+          "trust": "medium",
+          "excerpt": "9 de may de 2025 · MADRID, 8 May. (EUROPA PRESS) - El cardenal estadounidense Robert Prevost se ha convertido este jueves en el Papa 267 de la historia con el nombre de León XIV."
+        },
+        {
+          "id": "src-028",
+          "kind": "web",
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Texto completo: ribarroja.es",
-          "retrievedAt": "2026-07-29T18:12:15.068Z",
+          "retrievedAt": "2026-07-29T18:50:10.101Z",
           "trust": "high",
           "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-029",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-29T18:50:10.101Z",
+          "trust": "high",
+          "excerpt": "Robert (muñeco) - Wikipedia, la enciclopedia libre <link rel=\"dn",
+          "archiveUrl": "http://web.archive.org/web/20251230231709/https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)"
         }
       ],
       "warnings": [
-        "relationships.edges[1] (oposicion→raga): node 'Oposición municipal' is a generic label for an unidentified speaker (src-003 quote itself marked 'sin identificar en el corpus'); edge is speculative, not a specifically named entity."
+        "narrative[2]: claim that FEDER/UE funds cited are 'vinculados a la reconstrucción' is not stated in src-005 excerpt (only names FEDER/UE resources, no reconstruction linkage)."
       ],
       "legalSensitivity": "medium",
       "requiresHumanApproval": true
