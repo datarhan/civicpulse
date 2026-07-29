@@ -1,12 +1,13 @@
 // @ts-check
 /**
- * Single hook loading all 7 press-lab JSON snapshots in parallel and
- * memoising them for the /laboratorio page. Each snapshot is optional:
- * missing files resolve to empty arrays so the page renders honest
- * empty-states (e.g., first run before the LLM extractor has produced
- * any claim suggestions yet).
+ * Single hook loading the press-lab JSON snapshots in parallel (via the
+ * session-cached snapshot store) and memoising them for the /laboratorio
+ * page. Each snapshot is optional: missing files resolve to empty arrays
+ * so the page renders honest empty-states (e.g., first run before the
+ * LLM extractor has produced any claim suggestions yet).
  */
 import { useEffect, useState } from 'react'
+import { loadSnapshotOptional } from '../lib/snapshot-store'
 
 const FILES = [
   '/data/press.json',
@@ -19,16 +20,6 @@ const FILES = [
   '/data/factcheck.json',
   '/data/press-link-rot.json',
 ]
-
-async function fetchOptional(url) {
-  try {
-    const res = await fetch(url, { cache: 'no-cache' })
-    if (!res.ok) return null
-    return await res.json()
-  } catch {
-    return null
-  }
-}
 
 export function usePressLab() {
   const [state, setState] = useState({
@@ -47,7 +38,7 @@ export function usePressLab() {
 
   useEffect(() => {
     let cancelled = false
-    Promise.all(FILES.map(fetchOptional)).then((blobs) => {
+    Promise.all(FILES.map(loadSnapshotOptional)).then((blobs) => {
       if (cancelled) return
       const [press, summaries, verified, trust, triangulation, gaps, findings, factcheck, linkRot] =
         blobs

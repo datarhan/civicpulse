@@ -1,6 +1,8 @@
 // @ts-check
 import { useEffect, useState } from 'react'
 import { useJsonFetch } from './useJsonFetch'
+import { useSnapshot } from './useSnapshot'
+import { loadSnapshotData } from '../lib/snapshot-store'
 
 export const CLAIM_TYPE_LABEL = {
   promesa: 'Promesa',
@@ -34,78 +36,65 @@ export const VERDICT_TONE = {
   'promesa-repetida': 'intel',
 }
 
+const EMPTY_MANIFEST = { plenos: [], totals: { items: 0, byVerdict: {} } }
+const EMPTY_CHUNK = { items: [] }
+
 /**
  * Loads pleno-claims via the chunked layout produced by
  * `npm run chunk-pleno-claims` (called automatically at the end of
  * `verify:pleno-claims`):
  *
- *   public/data/pleno-claims/index.json    ← manifest (~8 KB)
+ *   public/data/pleno-claims/index.json    ← manifest (~12 KB)
  *   public/data/pleno-claims/<plenoId>.json ← per-pleno chunks
  *
- * Strategy: fetch the manifest first (small), then fetch all chunks
- * in parallel. The `{items, stats}` shape returned to the consumer is
- * identical to the legacy monolith so existing pages don't change.
- *
- * Vercel serves each chunk individually gzipped + edge-cached, and
- * HTTP/2 multiplexes the parallel fetches. With 11 plenos the
- * round-trip is ~1 wall-clock second on a fresh load and ~0 on
- * cached visits because the manifest's ETag changes only when at
- * least one chunk does.
+ * Strategy: manifest first (small), then all chunks in parallel — every
+ * fetch rides the session-cached snapshot store, so the corpus loads at
+ * most once per SPA session no matter how many surfaces mount this hook
+ * (/declaraciones + ClaimLedger on /departamentos/:slug share it), and
+ * the chunk entries also serve /plenos/:id from cache. The `{items,
+ * stats}` shape returned to the consumer is identical to the legacy
+ * monolith so existing pages don't change.
  *
  * Falls back to an empty ledger when the manifest isn't generated yet
  * (feature ships honest-empty for the first run on a clean clone).
  */
 export function usePlenoClaims() {
+  const manifest = useSnapshot('/data/pleno-claims/index.json', EMPTY_MANIFEST)
   const [state, setState] = useState({ loading: true, error: null, data: null })
   useEffect(() => {
+    if (manifest.loading) return undefined
+    if (manifest.error) {
+      setState({ loading: false, error: manifest.error, data: null })
+      return undefined
+    }
     let alive = true
-    ;(async () => {
-      try {
-        const manifestRes = await fetch('/data/pleno-claims/index.json', { cache: 'no-cache' })
-        if (manifestRes.status === 404) {
-          if (alive) {
-            setState({
-              loading: false,
-              error: null,
-              data: { items: [], stats: { total: 0, byVerdict: {} } },
-            })
-          }
-          return
-        }
-        if (!manifestRes.ok) {
-          throw new Error(`pleno-claims manifest returned ${manifestRes.status}`)
-        }
-        const manifest = await manifestRes.json()
-        const chunks = await Promise.all(
-          (manifest.plenos ?? []).map(async (p) => {
-            const r = await fetch(`/data/${p.chunkPath}`, { cache: 'no-cache' })
-            if (!r.ok) throw new Error(`chunk ${p.chunkPath} returned ${r.status}`)
-            return r.json()
-          }),
-        )
-        const items = chunks.flatMap((c) => c.items ?? [])
-        const data = {
-          generatedAt: manifest.generatedAt,
-          items,
-          stats: {
-            total: manifest.totals?.items ?? items.length,
-            byVerdict: manifest.totals?.byVerdict ?? {},
+    const plenos = manifest.data?.plenos ?? []
+    Promise.all(plenos.map((p) => loadSnapshotData(`/data/${p.chunkPath}`)))
+      .then((chunks) => {
+        if (!alive) return
+        const items = chunks.flatMap((c) => c?.items ?? [])
+        setState({
+          loading: false,
+          error: null,
+          data: {
+            generatedAt: manifest.data?.generatedAt,
+            items,
+            stats: {
+              total: manifest.data?.totals?.items ?? items.length,
+              byVerdict: manifest.data?.totals?.byVerdict ?? {},
+            },
           },
-        }
-        if (alive) setState({ loading: false, error: null, data })
-      } catch (error) {
+        })
+      })
+      .catch((error) => {
         if (alive) setState({ loading: false, error, data: null })
-      }
-    })()
+      })
     return () => {
       alive = false
     }
-  }, [])
+  }, [manifest.loading, manifest.error, manifest.data])
   return state
 }
-
-const EMPTY_MANIFEST = { plenos: [], totals: { items: 0, byVerdict: {} } }
-const EMPTY_CHUNK = { items: [] }
 
 /**
  * Per-pleno claim descriptors (counts only) from the chunk manifest — the

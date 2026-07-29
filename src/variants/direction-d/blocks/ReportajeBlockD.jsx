@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { REPORTAJE_SLUGS } from '../../../reportajes'
+import { loadSnapshotOptional } from '../../../lib/snapshot-store'
 import { PALETTE, MONO } from '../tokens'
 
 // Compact landing teaser for the long-form data reportajes. Follows the
@@ -16,11 +17,7 @@ function useReportajesPublicados() {
   useEffect(() => {
     let alive = true
     Promise.all(
-      REPORTAJE_SLUGS.map((slug) =>
-        fetch(`/data/reportajes/${slug}.json`)
-          .then((r) => (r.ok ? r.json() : null))
-          .catch(() => null),
-      ),
+      REPORTAJE_SLUGS.map((slug) => loadSnapshotOptional(`/data/reportajes/${slug}.json`)),
     ).then((snaps) => {
       if (!alive) return
       setItems(
