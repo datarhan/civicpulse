@@ -81,6 +81,7 @@ import {
   resetCitationCounter,
   searchLocalSnapshots,
   semanticLocalHits,
+  trustForUrl,
   webSearch,
   webSearchYears,
   type LocalHit,
@@ -348,7 +349,6 @@ export async function runJournalistAgent(
                 title: r.title || r.url,
                 publishedAt: r.publishedDate?.slice(0, 10),
                 excerpt: r.text,
-                trust: 'medium',
               })
               sources.push(cite)
               evidence.push({
@@ -401,8 +401,11 @@ export async function runJournalistAgent(
             if (result.archiveUrl) {
               const cite = buildWebCitation({
                 url: result.archiveUrl,
+                // Trust of the ORIGINAL domain — an archived copy of a
+                // junk site is still junk; web.archive.org itself must
+                // not launder it to high.
+                trust: trustForUrl(url),
                 title: `Snapshot Wayback de ${new URL(url).hostname}`,
-                trust: 'high',
                 archiveUrl: result.archiveUrl,
               })
               sources.push(cite)
@@ -542,7 +545,6 @@ export async function runJournalistAgent(
                 title: h.title.slice(0, 240),
                 publisher: 'Hemeroteca La Vanguardia',
                 publishedAt: h.date,
-                trust: 'medium',
               })
               sources.push(cite)
               evidence.push({
@@ -619,7 +621,6 @@ export async function runJournalistAgent(
           title: r.title || r.url,
           publishedAt,
           excerpt: r.text,
-          trust: 'medium',
         })
         sources.push(cite)
         evidence.push({
