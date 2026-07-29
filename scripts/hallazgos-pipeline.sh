@@ -164,6 +164,19 @@ else
   log "no new extractions — skipping verify"
 fi
 
+# ---- refresh the agent semantic corpus (incremental, best-effort) -----
+# Transcript chunks + press headlines → .embed-cache/agent-corpus.jsonl
+# (gitignored, local to this Mac — exactly where the journalist agent
+# runs). Sha-keyed incremental: a no-change night embeds nothing and
+# costs nothing; a new transcript adds ~200 chunks (~fractions of a
+# cent). EMBED_BACKEND is PINNED to openai to match the corpus's
+# 1536-dim build — an accidental ollama fallback would append 768-dim
+# rows into a 1536-dim corpus (mixed dims = junk ranking). No key /
+# API down → warn only; the agent degrades to lexical-only search.
+log "embed:agent-corpus (incremental, openai-pinned)…"
+EMBED_BACKEND=openai npm run embed:agent-corpus \
+  || log "warn: embed:agent-corpus non-zero — semantic corpus stale; agent falls back to lexical"
+
 # ---- promote (libel-safe gates; no-op under LOREG freeze) -------------
 # The CURATOR stage must never silently go metered (project policy: never
 # openai/anthropic for auto-curate). Strip the metered keys + disable the

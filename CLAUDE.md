@@ -117,9 +117,11 @@ npm run entity-alias -- "<variant>" "<canonical>" [--note …] [--curator …]
                                     # (validated: no self-aliases/chains) + registry rebuild
 npm run embed:agent-corpus          # embed transcripts (line-window chunks) + press headlines →
                                     # .embed-cache/agent-corpus.jsonl (gitignored) for the journalist
-                                    # agent's semantic local search · sha-incremental · NOT in
-                                    # scrape:all (needs an embed backend; agent degrades to lexical
-                                    # without it) · --rebuild after switching EMBED_BACKEND
+                                    # agent's semantic local search · sha-incremental (no-change run =
+                                    # 0 API calls) · NOT in scrape:all (CI has no backend) — chained
+                                    # best-effort into hallazgos-pipeline.sh, EMBED_BACKEND pinned to
+                                    # openai so an ollama fallback can't mix 768-dim rows into the
+                                    # 1536-dim corpus · --rebuild after deliberately switching backends
 
 # CPV-2008 → Spanish label dictionary (occasional/curator build — vocabulary is
 # static, so NOT in scrape:all). Downloads the official EU/TED CPV vocabulary,
