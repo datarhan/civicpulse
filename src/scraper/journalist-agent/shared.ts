@@ -54,3 +54,14 @@ export interface RunAgentResult {
     }
   }
 }
+
+/**
+ * Drop LLM-projected social/account rows whose url would fail the
+ * section validator (URL_RE) — a handle without a scheme must not
+ * poison the whole draft at persist time (2026-07-29: first v2 bio run
+ * died on `accounts[0].url must be URL`). Section-build discipline:
+ * unsupported rows are dropped, never guessed.
+ */
+export function keepValidUrlAccounts<T extends { url?: unknown }>(rows: T[]): T[] {
+  return rows.filter((r) => typeof r.url === 'string' && /^https?:\/\/\S+$/.test(r.url))
+}

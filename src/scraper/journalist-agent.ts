@@ -88,6 +88,7 @@ import {
   type PromiseHit,
 } from './journalist-tools'
 
+import { keepValidUrlAccounts } from './journalist-agent/shared'
 import type { RunAgentOptions, RunAgentResult } from './journalist-agent/shared'
 import {
   buildEarlyDraft,
@@ -903,14 +904,18 @@ export async function runJournalistAgent(
       .filter((f) => f.sourceIds.length >= 1)
     if (fin.length > 0) bioSections.push({ kind: 'financial', payload: { items: fin } })
 
-    // online-presence
-    const onl = (proj.onlinePresence ?? []).map((o) => ({
-      platform: o.platform,
-      handle: o.handle,
-      url: o.url,
-      ...(o.verifiedAt ? { verifiedAt: o.verifiedAt } : {}),
-      sourceIds: validateRefs(o.citationIds ?? []),
-    }))
+    // online-presence — keepValidUrlAccounts drops rows whose url would
+    // fail the validator (a bare handle/domain from the LLM must not
+    // poison the whole draft at persist time).
+    const onl = keepValidUrlAccounts(
+      (proj.onlinePresence ?? []).map((o) => ({
+        platform: o.platform,
+        handle: o.handle,
+        url: o.url,
+        ...(o.verifiedAt ? { verifiedAt: o.verifiedAt } : {}),
+        sourceIds: validateRefs(o.citationIds ?? []),
+      })),
+    )
     if (onl.length > 0) bioSections.push({ kind: 'online-presence', payload: { accounts: onl } })
 
     // awards
