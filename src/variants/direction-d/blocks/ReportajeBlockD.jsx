@@ -1,38 +1,45 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useReportaje } from '../../../hooks/useReportaje'
 import { REPORTAJE_SLUGS } from '../../../reportajes'
 import { PALETTE, SERIF, MONO } from '../tokens'
 
-// Landing teasers for our long-form data reportajes, newest first, rendered
-// from the shared registry (src/reportajes.js — the same list the /reportajes
-// index uses, so the two surfaces can't drift). Honesty gate per pieza:
-// a teaser renders ONLY when the piece is actually published
-// (estado === 'publicado') — never while it's a borrador pending
-// right-of-reply. Each teaser degrades to null on load/error.
-export function ReportajeBlockD() {
-  return (
-    <>
-      {REPORTAJE_SLUGS.map((slug, i) => (
-        <ReportajeTeaser key={slug} slug={slug} first={i === 0} />
-      ))}
-    </>
-  )
+// Compact landing teaser for the long-form data reportajes: one kicker, the
+// published piezas as plain title links (no standfirst), and a single footer
+// link to the /reportajes index. Renders from the shared registry
+// (src/reportajes.js — the same list the index uses) so the two surfaces
+// can't drift. Honesty gate intact: only meta.estado === 'publicado' piezas
+// list, and the whole block disappears when none are published (or on
+// load/error) — never an empty shell.
+function useReportajesPublicados() {
+  const [items, setItems] = useState(null)
+  useEffect(() => {
+    let alive = true
+    Promise.all(
+      REPORTAJE_SLUGS.map((slug) =>
+        fetch(`/data/reportajes/${slug}.json`)
+          .then((r) => (r.ok ? r.json() : null))
+          .catch(() => null),
+      ),
+    ).then((snaps) => {
+      if (!alive) return
+      setItems(
+        snaps
+          .map((snap, i) => ({ slug: REPORTAJE_SLUGS[i], meta: snap?.meta }))
+          .filter((x) => x.meta && x.meta.estado === 'publicado'),
+      )
+    })
+    return () => {
+      alive = false
+    }
+  }, [])
+  return items
 }
 
-function ReportajeTeaser({ slug, first }) {
-  const { loading, error, data } = useReportaje(slug)
-  if (loading || error || !data) return null
-  const m = data.meta || {}
-  if (m.estado !== 'publicado') return null
-  const href = '/reportajes/' + (m.slug || slug)
+export function ReportajeBlockD() {
+  const items = useReportajesPublicados()
+  if (!items || items.length === 0) return null
   return (
-    <article
-      style={{
-        paddingTop: first ? 0 : 18,
-        paddingBottom: 22,
-        borderBottom: '1px solid ' + PALETTE.hair,
-      }}
-    >
+    <article style={{ paddingBottom: 18, borderBottom: '1px solid ' + PALETTE.hair }}>
       <div
         style={{
           fontFamily: MONO,
@@ -43,41 +50,44 @@ function ReportajeTeaser({ slug, first }) {
           textTransform: 'uppercase',
         }}
       >
-        Reportaje · CivicPulse
+        Reportajes · CivicPulse
       </div>
-      <h2
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, margin: '9px 0 0' }}>
+        {items.map(({ slug, meta }) => (
+          <h2
+            key={slug}
+            style={{
+              margin: 0,
+              fontFamily: SERIF,
+              fontSize: 15.5,
+              fontWeight: 700,
+              letterSpacing: '-.01em',
+              lineHeight: 1.3,
+            }}
+          >
+            <Link
+              to={'/reportajes/' + (meta.slug || slug)}
+              style={{ color: 'inherit', textDecoration: 'none' }}
+            >
+              {meta.titulo}
+            </Link>
+          </h2>
+        ))}
+      </div>
+      <div
         style={{
-          fontFamily: SERIF,
-          fontSize: 24,
-          fontWeight: 800,
-          letterSpacing: '-.02em',
-          lineHeight: 1.12,
-          margin: '8px 0 10px',
+          fontFamily: MONO,
+          fontSize: 10.5,
+          color: PALETTE.ink60,
+          letterSpacing: '.06em',
+          marginTop: 11,
         }}
       >
-        <Link to={href} style={{ color: 'inherit', textDecoration: 'none' }}>
-          {m.titulo}
-        </Link>
-      </h2>
-      {m.subtitulo && (
-        <div
-          style={{
-            fontFamily: SERIF,
-            fontSize: 14.5,
-            color: PALETTE.ink80,
-            lineHeight: 1.45,
-            fontStyle: 'italic',
-            marginBottom: 12,
-          }}
+        <Link
+          to="/reportajes"
+          style={{ color: PALETTE.civic, textDecoration: 'none', fontWeight: 600 }}
         >
-          {m.subtitulo}
-        </div>
-      )}
-      <div
-        style={{ fontFamily: MONO, fontSize: 10.5, color: PALETTE.ink60, letterSpacing: '.06em' }}
-      >
-        <Link to={href} style={{ color: PALETTE.civic, textDecoration: 'none', fontWeight: 600 }}>
-          Leer el reportaje →
+          Todos los reportajes →
         </Link>
       </div>
     </article>
