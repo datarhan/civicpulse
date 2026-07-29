@@ -19,6 +19,7 @@
  */
 
 import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
+import { normalizeCompanyKey } from './entities'
 
 export type CheckLevel = 'error' | 'warn'
 export type CheckStatus = 'ok' | 'broken' | 'skipped'
@@ -62,6 +63,17 @@ export interface RelationsCheckInputs {
   } | null
   dedicaciones?: { byOfficial?: Array<{ slug?: string }> } | null
   officials?: { officials?: Array<{ slug?: string }> } | null
+  entities?: {
+    companies?: Array<{
+      id?: string
+      nameKey?: string
+      variants?: string[]
+      contractIds?: Array<string | number>
+    }>
+  } | null
+  entityOverrides?: {
+    aliases?: Array<{ variantKey?: string; canonicalKey?: string }>
+  } | null
 }
 
 const CAP = 20
@@ -101,6 +113,8 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     approvedRelations,
     dedicaciones,
     officials,
+    entities,
+    entityOverrides,
   } = inputs
 
   const verifiedIds = new Set(
@@ -235,6 +249,20 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
       return { checked, broken }
     }),
 
+    check('entities-contracts', 'error', entities != null && tenders != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const co of entities?.companies ?? []) {
+        for (const cid of co?.contractIds ?? []) {
+          checked += 1
+          if (!tenderIds.has(String(cid))) {
+            broken.push(`${co?.nameKey ?? co?.id ?? '?'} → contract ${String(cid)} unknown`)
+          }
+        }
+      }
+      return { checked, broken }
+    }),
+
     check('promises-dept-slugs', 'error', promises != null, () => {
       let checked = 0
       const broken: string[] = []
@@ -279,6 +307,39 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         if (!row?.slug) continue
         checked += 1
         if (!officialSlugs.has(row.slug)) broken.push(`dedicación → official ${row.slug}`)
+      }
+      return { checked, broken }
+    }),
+
+    check('entity-overrides-keys', 'warn', entityOverrides != null && entities != null, () => {
+      // Stale-alias debt, not breakage. Semantics: after an alias applies,
+      // its variantKey deliberately does NOT appear as a registry nameKey
+      // (that's what merging means) — a variant is LIVE iff some company's
+      // raw variants still normalize to it. The canonicalKey must exist as
+      // a registry nameKey (the merged company).
+      const nameKeys = new Set(
+        (entities?.companies ?? []).map((c) => c?.nameKey).filter((k): k is string => !!k),
+      )
+      const liveVariantKeys = new Set(
+        (entities?.companies ?? []).flatMap((c) =>
+          (c?.variants ?? []).map((v) => normalizeCompanyKey(v)),
+        ),
+      )
+      let checked = 0
+      const broken: string[] = []
+      for (const a of entityOverrides?.aliases ?? []) {
+        if (a?.canonicalKey) {
+          checked += 1
+          if (!nameKeys.has(a.canonicalKey)) {
+            broken.push(`alias canonical "${a.canonicalKey}" not in registry`)
+          }
+        }
+        if (a?.variantKey) {
+          checked += 1
+          if (!liveVariantKeys.has(a.variantKey)) {
+            broken.push(`alias variant "${a.variantKey}" matches no current razón social`)
+          }
+        }
       }
       return { checked, broken }
     }),

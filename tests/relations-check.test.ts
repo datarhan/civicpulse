@@ -115,7 +115,10 @@ describe('runRelationsChecks', () => {
     const rs = byName(
       runRelationsChecks({
         plenos: { items: [{ id: 'known' }] },
-        manifest: { plenos: [{ plenoId: 'chunked', chunkPath: 'x', itemCount: 0 }], totals: { items: 0 } },
+        manifest: {
+          plenos: [{ plenoId: 'chunked', chunkPath: 'x', itemCount: 0 }],
+          totals: { items: 0 },
+        },
         chunkFiles: { x: { items: [] } },
         votes: {
           items: [
@@ -147,7 +150,9 @@ describe('runRelationsChecks', () => {
     const rs = byName(
       runRelationsChecks({
         promises: { items: [{ id: 'pr-1' }] },
-        findings: { items: [{ id: 'f1', sourceClaimIds: [], relatedPromiseIds: ['pr-1', 'pr-X'] }] },
+        findings: {
+          items: [{ id: 'f1', sourceClaimIds: [], relatedPromiseIds: ['pr-1', 'pr-X'] }],
+        },
         verified: { items: [] },
       }),
     )
@@ -168,5 +173,62 @@ describe('runRelationsChecks', () => {
     expect(rs['votes-agendas'].level).toBe('warn')
     expect(rs['dedicaciones-officials'].status).toBe('broken')
     expect(rs['dedicaciones-officials'].level).toBe('warn')
+  })
+})
+
+describe('entity registry checks', () => {
+  it('flags a company citing an unknown contractId (error level)', () => {
+    const rs = byName(
+      runRelationsChecks({
+        tenders: { contracts: [{ id: 'c-1' }], tenders: [] },
+        entities: {
+          companies: [{ id: 'co-x', nameKey: 'acme sl', contractIds: ['c-1', 'c-GONE'] }],
+        },
+      }),
+    )
+    expect(rs['entities-contracts'].status).toBe('broken')
+    expect(rs['entities-contracts'].level).toBe('error')
+    expect(rs['entities-contracts'].broken[0]).toContain('c-GONE')
+  })
+
+  it('passes a clean registry and skips without inputs', () => {
+    const clean = byName(
+      runRelationsChecks({
+        tenders: { contracts: [{ id: 'c-1' }], tenders: [] },
+        entities: { companies: [{ id: 'co-x', nameKey: 'acme sl', contractIds: ['c-1'] }] },
+      }),
+    )
+    expect(clean['entities-contracts'].status).toBe('ok')
+    expect(byName(runRelationsChecks({}))['entities-contracts'].status).toBe('skipped')
+  })
+
+  it('warns on stale alias keys (variant no longer among razones sociales, canonical gone)', () => {
+    const rs = byName(
+      runRelationsChecks({
+        entities: {
+          companies: [
+            {
+              id: 'co-x',
+              nameKey: 'acme sl',
+              // raw variants normalize to 'acme sl' and 'acme comercial sl'
+              variants: ['ACME, S.L.', 'ACME COMERCIAL SL'],
+              contractIds: [],
+            },
+          ],
+        },
+        entityOverrides: {
+          aliases: [
+            // LIVE alias: variant still present among raw variants, canonical exists
+            { variantKey: 'acme comercial sl', canonicalKey: 'acme sl' },
+            // STALE alias: no current razón social normalizes to 'ghost co'
+            { variantKey: 'ghost co', canonicalKey: 'acme sl' },
+          ],
+        },
+      }),
+    )
+    expect(rs['entity-overrides-keys'].status).toBe('broken')
+    expect(rs['entity-overrides-keys'].level).toBe('warn')
+    expect(rs['entity-overrides-keys'].broken).toHaveLength(1)
+    expect(rs['entity-overrides-keys'].broken[0]).toContain('ghost co')
   })
 })

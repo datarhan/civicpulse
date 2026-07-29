@@ -55,6 +55,8 @@ function main() {
     approvedRelations: readJson('queja-contract-relations-approved.json'),
     dedicaciones: readJson('dedicaciones.json'),
     officials: readJson('officials.json'),
+    entities: readJson('entities.json'),
+    entityOverrides: readJson('entity-overrides.json'),
   }
 
   const results = runRelationsChecks(inputs)
