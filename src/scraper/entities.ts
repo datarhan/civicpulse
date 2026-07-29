@@ -25,36 +25,45 @@
 import { fnv32 } from './hash'
 import { stripDiacritics } from './normalize'
 
-// Longest-first; matched repeatedly against the END of the token list.
-const LEGAL_FORM_SUFFIXES: string[][] = [
-  ['sociedad', 'limitada', 'unipersonal'],
-  ['sociedad', 'anonima', 'unipersonal'],
-  ['sociedad', 'limitada', 'laboral'],
-  ['sociedad', 'limitada'],
-  ['sociedad', 'anonima'],
-  ['sociedad', 'cooperativa'],
-  ['s', 'l', 'u'],
-  ['s', 'a', 'u'],
-  ['s', 'l', 'l'],
-  ['s', 'l'],
-  ['s', 'a'],
-  ['s', 'coop', 'v'],
-  ['s', 'coop'],
-  ['coop', 'v'],
-  ['slu'],
-  ['sau'],
-  ['sll'],
-  ['sl'],
-  ['sa'],
-  ['scp'],
-  ['sccl'],
-  ['cb'],
-  ['aie'],
+// Longest-first within each shadowing group; matched repeatedly against
+// the END of the token list. The FAMILY survives as a canonical token in
+// the key: "TRANS SABATER SL" and "TRANS SABATER SA" are different legal
+// forms (possibly different entities) and must NOT merge — caught on the
+// first live build, 2026-07-29. Within a family, spelling variants
+// (S.L. / SL / Sociedad Limitada / S.L.U.) still merge.
+const LEGAL_FORM_SUFFIXES: Array<{ tokens: string[]; family: string }> = [
+  { tokens: ['sociedad', 'limitada', 'unipersonal'], family: 'sl' },
+  { tokens: ['sociedad', 'limitada', 'laboral'], family: 'sl' },
+  { tokens: ['sociedad', 'limitada'], family: 'sl' },
+  { tokens: ['sociedad', 'anonima', 'unipersonal'], family: 'sa' },
+  { tokens: ['sociedad', 'anonima'], family: 'sa' },
+  { tokens: ['sociedad', 'cooperativa', 'valenciana'], family: 'coop' },
+  { tokens: ['sociedad', 'cooperativa'], family: 'coop' },
+  { tokens: ['s', 'l', 'u'], family: 'sl' },
+  { tokens: ['s', 'l', 'l'], family: 'sl' },
+  { tokens: ['s', 'l'], family: 'sl' },
+  { tokens: ['s', 'a', 'u'], family: 'sa' },
+  { tokens: ['s', 'a'], family: 'sa' },
+  { tokens: ['s', 'coop', 'v'], family: 'coop' },
+  { tokens: ['s', 'coop'], family: 'coop' },
+  { tokens: ['coop', 'v'], family: 'coop' },
+  { tokens: ['slu'], family: 'sl' },
+  { tokens: ['sll'], family: 'sl' },
+  { tokens: ['sl'], family: 'sl' },
+  { tokens: ['sau'], family: 'sa' },
+  { tokens: ['sa'], family: 'sa' },
+  { tokens: ['sccl'], family: 'coop' },
+  { tokens: ['scp'], family: 'scp' },
+  { tokens: ['cb'], family: 'cb' },
+  { tokens: ['aie'], family: 'aie' },
 ]
 
 /**
- * Normalize a raw company name to its canonical join key. Deterministic
- * and conservative: fold + end-suffix strip only.
+ * Normalize a raw company name to its canonical join key: fold +
+ * end-suffix strip, with the legal-form FAMILY appended as a canonical
+ * token. Deterministic and conservative — a bare name (no legal form)
+ * keys without a family token and therefore does NOT auto-merge with
+ * its SL/SA namesakes (an honest miss; use the overrides file).
  */
 export function normalizeCompanyKey(raw: string): string {
   const folded = stripDiacritics(String(raw ?? ''))
@@ -63,20 +72,24 @@ export function normalizeCompanyKey(raw: string): string {
     .trim()
   if (!folded) return ''
   let tokens = folded.split(' ')
+  let family: string | null = null
   let changed = true
   while (changed) {
     changed = false
     for (const suffix of LEGAL_FORM_SUFFIXES) {
-      if (tokens.length <= suffix.length) continue
-      const tail = tokens.slice(tokens.length - suffix.length)
-      if (tail.join(' ') === suffix.join(' ')) {
-        tokens = tokens.slice(0, tokens.length - suffix.length)
+      if (tokens.length <= suffix.tokens.length) continue
+      const tail = tokens.slice(tokens.length - suffix.tokens.length)
+      if (tail.join(' ') === suffix.tokens.join(' ')) {
+        tokens = tokens.slice(0, tokens.length - suffix.tokens.length)
+        // Innermost form wins when stacked; in practice stacked suffixes
+        // belong to the same family.
+        family = suffix.family
         changed = true
         break
       }
     }
   }
-  return tokens.join(' ')
+  return family ? `${tokens.join(' ')} ${family}` : tokens.join(' ')
 }
 
 /** Stable company id from the normalized key (shared fnv32 — never fork). */

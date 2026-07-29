@@ -31,6 +31,20 @@ describe('normalizeCompanyKey', () => {
     expect(normalizeCompanyKey('INSDAGAR SL')).not.toBe(normalizeCompanyKey('VARESER 96 SL'))
   })
 
+  it('preserves the legal-form family — an S.L. never merges with an S.A.', () => {
+    // Caught live 2026-07-29: TRANS SABATER, S.L. vs TRANS SABATER, S.A.
+    // are different legal forms and possibly different entities; the key
+    // keeps a canonical family token instead of erasing the form.
+    expect(normalizeCompanyKey('TRANS SABATER, S.L.')).not.toBe(
+      normalizeCompanyKey('TRANS SABATER, S.A.'),
+    )
+    // …while variants WITHIN a family still merge (SL ≡ S.L. ≡ Sociedad
+    // Limitada ≡ S.L.U.).
+    expect(normalizeCompanyKey('TRANS SABATER, S.L.')).toBe(
+      normalizeCompanyKey('Trans Sabater Sociedad Limitada'),
+    )
+  })
+
   it('only strips legal forms at the END of the name', () => {
     // "SA" as an interior word must survive (e.g. a name starting with it).
     expect(normalizeCompanyKey('SA PALOMA CATERING')).toContain('sa paloma')
