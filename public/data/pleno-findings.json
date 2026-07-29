@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-07T09:05:54.437Z",
+  "generatedAt": "2026-07-29T14:35:12.901Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -130,7 +130,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-05-11-acu-a870a4",
@@ -816,7 +817,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2026-04-20-cit-b9b013",
@@ -1247,13 +1249,13 @@
       "summary": "El pleno de 9 de marzo de 2026 convalidó un reconocimiento extrajudicial de crédito por 242.255 euros, correspondientes a gastos realizados a finales del ejercicio anterior. Nuestra base de datos municipal de contratos y de subvenciones BDNS no registra ninguna operación de ese importe, lo que es consistente con la naturaleza de un reconocimiento extrajudicial (facturación interna convalidada a posteriori, no una licitación pública). Sin contraste automático: la traza queda en el acta y el expediente interno, no en contratacion.es.",
       "severity": "informational",
       "sourceClaimIds": [
-        "1sqj7is-000-afi-a9546e"
+        "1sqj7is-001-afi-a1e446"
       ],
       "quotes": [
         {
-          "text": "se trata de un expediente de gastos por importe total de 242.255 euros, correspondientes a gastos realizados a finales del pasado año",
+          "text": "proponemos al pleno convalidar y aprobar el expediente de reconocimiento extrajudicial de créditos por importe de 242.255 euros",
           "speakerGroup": null,
-          "sourceClaimId": "1sqj7is-000-afi-a9546e"
+          "sourceClaimId": "1sqj7is-001-afi-a1e446"
         }
       ],
       "corroboration": [],
@@ -1262,7 +1264,32 @@
       "curatorName": "ejemplo-curador",
       "publishedAt": "2026-04-23",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "sourceClaimIds",
+          "original": "1sqj7is-000-afi-a9546e",
+          "corrected": "1sqj7is-001-afi-a1e446",
+          "reason": "Re-transcripción del pleno 09-03-2026 (publicada el 2026-07-06 tras la purga de transcripciones alucinadas) re-generó los ids y el verbatim de los claims; se re-ancla la cita al claim vigente del mismo expediente de reconocimiento extrajudicial de 242.255 €.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-07-29T14:35:12.041Z"
+        },
+        {
+          "field": "quote.0.sourceClaimId",
+          "original": "1sqj7is-000-afi-a9546e",
+          "corrected": "1sqj7is-001-afi-a1e446",
+          "reason": "Re-transcripción del pleno 09-03-2026 (publicada el 2026-07-06 tras la purga de transcripciones alucinadas) re-generó los ids y el verbatim de los claims; se re-ancla la cita al claim vigente del mismo expediente de reconocimiento extrajudicial de 242.255 €.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-07-29T14:35:12.471Z"
+        },
+        {
+          "field": "quote.0.text",
+          "original": "se trata de un expediente de gastos por importe total de 242.255 euros, correspondientes a gastos realizados a finales del pasado año",
+          "corrected": "proponemos al pleno convalidar y aprobar el expediente de reconocimiento extrajudicial de créditos por importe de 242.255 euros",
+          "reason": "Re-transcripción del pleno 09-03-2026 (publicada el 2026-07-06 tras la purga de transcripciones alucinadas) re-generó los ids y el verbatim de los claims; se re-ancla la cita al claim vigente del mismo expediente de reconocimiento extrajudicial de 242.255 €.",
+          "editor": "Sergei Lutchenko",
+          "correctedAt": "2026-07-29T14:35:12.900Z"
+        }
+      ]
     },
     {
       "id": "f-2026-03-09-acu-d94904",
@@ -1946,7 +1973,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-12-23-acu-a1ba00",
@@ -2551,7 +2579,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-11-03-acu-431140",
@@ -2924,7 +2953,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
-      "response": null
+      "response": null,
+      "corrections": []
     }
   ]
 }
