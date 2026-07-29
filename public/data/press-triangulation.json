@@ -1,35 +1,26 @@
 {
-  "generatedAt": "2026-07-15T08:55:58.191Z",
+  "generatedAt": "2026-07-29T08:17:59.154Z",
   "clusters": [
     {
-      "clusterId": "1ia3a3o",
+      "clusterId": "19400z8",
       "articleIds": [
-        "1f13ysw",
-        "1jxa9ng",
-        "1qkqwdk",
-        "26cjmz",
-        "mnfpps"
+        "1264700",
+        "1rhb90n",
+        "v9agr0"
       ],
       "outlets": [
-        "Actualidad Valencia",
-        "Aguasresiduales",
-        "Periòdic del Camp de Túria",
-        "RETEMA",
-        "Valencia News"
+        "Ayuntamiento de Riba-roja de Túria",
+        "El Periódico de Aquí",
+        "Levante-EMV"
       ],
-      "earliestDate": "2026-07-10T12:08:43.000Z",
-      "latestDate": "2026-07-13T10:21:41.000Z",
-      "amountDrift": {
-        "min": 23600000,
-        "max": 23600000,
-        "spread": 0,
-        "spreadPct": 0
-      },
+      "earliestDate": "2026-07-20T12:27:50.000Z",
+      "latestDate": "2026-07-20T16:16:33.000Z",
+      "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 5,
+        "sin-datos": 1,
         "promesa-repetida": 0
       }
     },
@@ -38,80 +29,15 @@
       "articleIds": [
         "104njpk",
         "17amonc",
-        "1nq9i7v",
         "1vv0ta0"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Comunica GVA",
         "Levante-EMV",
         "València Extra"
       ],
-      "earliestDate": "2026-07-07T08:50:27.000Z",
+      "earliestDate": "2026-07-07T07:00:00.000Z",
       "latestDate": "2026-07-07T10:30:00.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "16u4794",
-      "articleIds": [
-        "42py3v",
-        "l7u54j"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-06-16T07:00:00.000Z",
-      "latestDate": "2026-06-16T11:19:13.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "174bad4",
-      "articleIds": [
-        "1aj87ro",
-        "5qong8"
-      ],
-      "outlets": [
-        "El Periódico de Aquí",
-        "Periòdic del Camp de Túria"
-      ],
-      "earliestDate": "2026-07-06T17:36:06.000Z",
-      "latestDate": "2026-07-07T08:08:25.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "17s9le4",
-      "articleIds": [
-        "1icahjc",
-        "olul7k"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Valencia Plaza"
-      ],
-      "earliestDate": "2026-06-29T11:05:21.000Z",
-      "latestDate": "2026-06-29T11:52:36.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -125,35 +51,16 @@
       "clusterId": "1g57ty4",
       "articleIds": [
         "1cb6bds",
-        "62t9nq"
+        "62t9nq",
+        "k8pllc"
       ],
       "outlets": [
         "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
+        "Levante-EMV",
+        "elperiodic.com"
       ],
       "earliestDate": "2026-07-01T07:00:00.000Z",
-      "latestDate": "2026-07-01T12:21:18.000Z",
-      "amountDrift": null,
-      "verdictMix": {
-        "verificado": 0,
-        "parcial": 0,
-        "contradicho": 0,
-        "sin-datos": 0,
-        "promesa-repetida": 0
-      }
-    },
-    {
-      "clusterId": "1pb4pmk",
-      "articleIds": [
-        "1gdzlug",
-        "lfzdj"
-      ],
-      "outlets": [
-        "Ayuntamiento de Riba-roja de Túria",
-        "Levante-EMV"
-      ],
-      "earliestDate": "2026-06-17T07:00:00.000Z",
-      "latestDate": "2026-06-18T11:28:05.000Z",
+      "latestDate": "2026-07-01T13:41:37.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
@@ -173,14 +80,14 @@
         "El Periódico de Aquí",
         "Levante-EMV"
       ],
-      "earliestDate": "2026-07-08T12:07:28.000Z",
-      "latestDate": "2026-07-09T08:28:11.000Z",
+      "earliestDate": "2026-07-08T07:00:00.000Z",
+      "latestDate": "2026-07-09T07:00:00.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     },
@@ -195,19 +102,19 @@
         "Valencia Plaza"
       ],
       "earliestDate": "2026-07-14T11:18:16.000Z",
-      "latestDate": "2026-07-14T12:16:23.000Z",
+      "latestDate": "2026-07-14T13:16:00.000Z",
       "amountDrift": null,
       "verdictMix": {
         "verificado": 0,
         "parcial": 0,
         "contradicho": 0,
-        "sin-datos": 1,
+        "sin-datos": 0,
         "promesa-repetida": 0
       }
     }
   ],
   "stats": {
-    "totalClusters": 9,
-    "triangulated3Plus": 2
+    "totalClusters": 5,
+    "triangulated3Plus": 3
   }
 }
