@@ -103,6 +103,11 @@ npm run compute:tender-geo          # place contract titles at streets/POIs/zone
                                     # multi-lot rows also scan the parent licitación objeto (joined on
                                     # base id; used only when it names exactly ONE place — ambiguity gate) ·
                                     # writes tender-geo.json (zones[] + places[] + situated) · runs in scrape:all
+npm run check:relations             # cross-snapshot FK audit (findings→claims, manifest→chunks,
+                                    # relations→quejas/tenders, votes→plenos, suggestions→promises,
+                                    # dept slugs; warn: stale overlay entries, votes↔agendas,
+                                    # dedicaciones slugs) · strict exits 1 on error-level breakage ·
+                                    # scrape-all runs it with --soft (report-only)
 
 # CPV-2008 → Spanish label dictionary (occasional/curator build — vocabulary is
 # static, so NOT in scrape:all). Downloads the official EU/TED CPV vocabulary,
@@ -629,10 +634,25 @@ public/data/quejas.json              (schema: bot/src/services/snapshot.ts)
 
 ### Hooks
 
-Every page loads its snapshot via a small hook that does `fetch()` +
-`useState` (`loading / error / data`). No data-fetching libraries are
-wired (yet) — React Query / SWR can be added when we hit a real refresh
-loop.
+Every page loads its snapshot via a small domain hook returning
+`loading / error / data`. Since 2026-07 all of them ride ONE delivery
+layer: `useJsonFetch` → `useSnapshot` (`src/hooks/useSnapshot.js`) → the
+module-level **snapshot store** (`src/lib/snapshot-store.js`) — a
+session-lifetime, single-flight cache. Concurrent mounts of the same
+path share one fetch; route navigation stops refetching unchanged
+snapshots; 2xx and 404 results cache for the SPA session while errors
+are never cached (per-mount retry). `invalidateSnapshots()` clears it
+(the vitest setup does this between tests). Deliberate bypasses:
+`useLabHealth` (measures raw bytes over the network) and the external
+Open-Meteo hooks (`useLiveWeather`, `useAirQuality`). No React Query /
+SWR — the store is ~150 lines and covers the need.
+
+`/departamentos` aggregates its "declaraciones" counts from the pleno-
+claims chunk manifest's `totals.byTopicVerdict` cross-tab (~12 KB,
+written by the chunker over the exact post-gate item set) instead of
+downloading the 6 MB chunk corpus; the full corpus loads only where
+claim bodies render (`/declaraciones`, `ClaimLedger`) and at most once
+per session via the store.
 
 - `useOfficials` + `partyColor()`
 - `useIspa` + `ispaLatest` / `formatEuros` (ISPA cargo salaries · multi-year · `/cargos`)
