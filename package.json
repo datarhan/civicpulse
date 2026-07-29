@@ -54,6 +54,7 @@
     "scrape:sindicatura": "npx tsx scripts/scrape-sindicatura.ts",
     "scrape:consell-cv": "npx tsx scripts/scrape-consell-cv.ts",
     "scrape:pleno-videos": "npx tsx scripts/scrape-pleno-videos.ts",
+    "check:transcripts": "npx tsx scripts/check-transcript-sanity.ts",
     "scrape:spain-ticker": "npx tsx scripts/scrape-spain-ticker.ts",
     "transcribe:pleno": "bash scripts/transcribe-pleno.sh",
     "transcribe:batch": "bash scripts/transcribe-pleno-batch.sh",

@@ -89,6 +89,18 @@ if [ ! -f "$AUDIO" ]; then
 fi
 echo "[transcribe] audio size: $(du -h "$AUDIO" | cut -f1)"
 
+# ── Pre-flight: refuse silent/broken audio before paying for ASR ────────
+# A dead audio track (e.g. the 22-min "Part I" 2023 upload that produced an
+# all-dots transcript on 2026-07-10) still costs real money to "transcribe"
+# and can only yield hallucination. Whole-file mean level below -45 dB means
+# there is no speech to find — bail while it's still free.
+MEAN_DB=$(ffmpeg -hide_banner -i "$AUDIO" -af volumedetect -f null - 2>&1 | sed -n 's/.*mean_volume: \(-*[0-9.]*\) dB.*/\1/p')
+if [ -n "$MEAN_DB" ] && awk "BEGIN{exit !($MEAN_DB < -45)}"; then
+  echo "[transcribe] audio mean level ${MEAN_DB} dB < -45 dB — track is silent/broken, refusing to transcribe" >&2
+  exit 1
+fi
+echo "[transcribe] audio mean level: ${MEAN_DB:-n/a} dB"
+
 # ── Optional pre-Whisper denoise ────────────────────────────────────────
 # Default OFF. When `WHISPER_DENOISE=1`, we re-encode `$AUDIO` through
 # ffmpeg's `afftdn` (FFT-based noise reduction, built-in — no extra
@@ -141,29 +153,39 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     exit 1
   fi
 
-  OPUS="$WORKDIR/audio.ogg"
-  echo "[transcribe] re-encoding to 16kbps mono opus for upload…"
-  ffmpeg -hide_banner -loglevel error -y \
-    -i "$AUDIO" \
-    -ac 1 -ar 16000 -c:a libopus -b:a 16k \
-    "$OPUS"
-  echo "[transcribe] opus size: $(du -h "$OPUS" | cut -f1)"
-
-  SIZE_BYTES=$(stat -f%z "$OPUS" 2>/dev/null || stat -c%s "$OPUS")
-  # Chunk threshold: 24 MB (1 MB safety margin under OpenAI's 25 MB upload cap).
-  # Each chunk is ~1200 seconds (20 minutes) @ 16 kbps opus ≈ 2.4 MB — well
-  # under the cap but long enough that segment boundaries don't cut mid-
-  # utterance too often.
+  # ── Chunked upload (duration-based) ──────────────────────────────────────
+  # POSTMORTEM 2026-07-29: whisper-1 given ONE multi-hour request reliably
+  # degenerates into a hallucination loop on this corpus — the music/silence
+  # intro seeds a repeated line ("Más información www.alimmenta.com", "Más
+  # palabras"…) that conditioning never escapes, and the WHOLE session comes
+  # back as garbage (brxx5g, rmtyr, anrfd5, 1r6yy0; five published transcripts
+  # were 100% loop before the 2026-07-29 sweep caught them). The old trigger
+  # split only above 24 MB, but 3 h at the old 16 kbps ≈ 21-23 MB — long
+  # plenos ALWAYS went single-shot. So: split by DURATION. Anything over
+  # 25 min is segmented into 20-min chunks re-encoded straight from the
+  # source audio (fresh headers per chunk; -reset_timestamps keeps whisper's
+  # per-chunk times at 0 so the offset math below holds), and a loop can
+  # contaminate at most one chunk — the sanity gate below catches what's left.
+  # Per-chunk uploads also lift the 25 MB single-file pressure, so chunks get
+  # 64 kbps (A/B on real pleno audio 2026-07-29: measurably better WER than
+  # 16 kbps; same API price — whisper-1 bills minutes, not bytes). 20 min @
+  # 64 kbps ≈ 9.6 MB; a ≤25-min single file ≤ 12 MB. Both far under the cap.
+  DUR_S=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$AUDIO" 2>/dev/null | cut -d. -f1)
+  DUR_S=${DUR_S:-0}
   CHUNK_SECS=1200
   CHUNK_DIR="$WORKDIR/chunks"
   mkdir -p "$CHUNK_DIR"
-  if [ "$SIZE_BYTES" -gt 25165824 ]; then
-    echo "[transcribe] opus ${SIZE_BYTES} bytes > 24 MB — splitting into ${CHUNK_SECS}s chunks…"
+  if [ "$DUR_S" -gt 1500 ]; then
+    echo "[transcribe] audio ${DUR_S}s > 1500s — splitting into ${CHUNK_SECS}s chunks @ 64 kbps mono opus…"
     ffmpeg -hide_banner -loglevel error -y \
-      -i "$OPUS" -f segment -segment_time "$CHUNK_SECS" -c copy \
+      -i "$AUDIO" -f segment -segment_time "$CHUNK_SECS" -reset_timestamps 1 \
+      -ac 1 -ar 16000 -c:a libopus -b:a 64k \
       "$CHUNK_DIR/chunk-%03d.ogg"
   else
-    cp "$OPUS" "$CHUNK_DIR/chunk-000.ogg"
+    echo "[transcribe] audio ${DUR_S}s ≤ 1500s — single upload @ 64 kbps mono opus…"
+    ffmpeg -hide_banner -loglevel error -y \
+      -i "$AUDIO" -ac 1 -ar 16000 -c:a libopus -b:a 64k \
+      "$CHUNK_DIR/chunk-000.ogg"
     CHUNK_SECS=0  # marker: single chunk, no time offset needed
   fi
   N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
@@ -350,6 +372,19 @@ PYEOF
 fi
 
 echo "[transcribe] transcript: $OUT_PATH"
+
+# ── Sanity gate: quarantine degenerate output instead of publishing ─────
+# See src/scraper/transcript-sanity.ts for the postmortem + thresholds
+# (calibrated so all 38 genuine transcripts pass and the 6 hallucination-
+# loop files fail). On failure the transcript moves into the auto-cleaned
+# workdir: nothing is published, the pipeline's backlog selector keeps the
+# pleno pending, and the next run retries; repeat offenders get
+# TRANSCRIBE_BLOCKLIST'ed by the operator.
+if ! (cd "$REPO_ROOT" && npx tsx scripts/check-transcript-sanity.ts "$OUT_PATH"); then
+  echo "[transcribe] SANITY GATE FAILED — transcript quarantined, NOT published" >&2
+  mv "$OUT_PATH" "$WORKDIR/rejected-$PLENO_ID.txt" 2>/dev/null || rm -f "$OUT_PATH"
+  exit 1
+fi
 
 # ── Optional speaker diarization (post-Whisper) ─────────────────────────
 # Default OFF to keep the pipeline's wall-time + dependency surface

@@ -158,8 +158,17 @@ npm run extract:pleno-claims -- <plenoId|--all> [--min-confidence 0.5] [--concur
 #                           the hallazgos-pipeline cron default since
 #                           2026-07-07 (zero local GPU/CPU),
 #                           done in 30-60s. Requires OPENAI_API_KEY in .env
-#                           or shell env. Audio re-encoded to 16kbps opus so a
-#                           3h pleno fits under the 25 MB upload cap.
+#                           or shell env. Audio over 25 min is split into
+#                           20-min chunks re-encoded to 64 kbps mono opus
+#                           (whisper-1 fed ONE multi-hour request degenerates
+#                           into hallucination loops — 2026-07-29 postmortem;
+#                           per-chunk uploads sit far under the 25 MB cap).
+#
+# Every engine's output must pass the degenerate-transcript sanity gate
+# (src/scraper/transcript-sanity.ts): repetition-loop / dominant-line /
+# no-content transcripts are quarantined instead of published and the pleno
+# stays in the pipeline backlog for retry. Sweep the published corpus any
+# time with `npm run check:transcripts` (exit 1 on any failure).
 #   WHISPER_ENGINE=local  · faster-whisper CPU int8, $0, ~0.3× realtime
 #                           (default — fallback when MLX isn't bootstrapped).
 #   WHISPER_MODEL env chooses the Whisper weights (large-v3 default,

@@ -42,11 +42,13 @@ MAX_PLENOS="${MAX_PLENOS:-2}"
 
 # Plenos that repeatedly abort transcription are blocklisted so they stop
 # burning a MAX_PLENOS slot on every run without ever succeeding.
-# Space/comma-separated; override via env. Default EMPTY since the engine
-# switch to OpenAI Whisper (2026-07-07): the old entries (c8kr44, rmtyr) were
-# MLX Metal-GPU-watchdog poison pills, and the OpenAI path has no Metal
-# watchdog (long audio is chunked under the 25 MB upload cap instead).
-TRANSCRIBE_BLOCKLIST="${TRANSCRIBE_BLOCKLIST:-}"
+# Space/comma-separated; override via env.
+#   1l7hhu7 · 2023-02-13 — the only channel upload is "Part I", a 22:36 clip
+#             whose audio carries no intelligible speech (whisper returns
+#             all-dots; volumedetect near-silence). Even a clean transcript
+#             of a Part-I-only video would misrepresent the session, so this
+#             pleno stays honest-empty until a full recording appears.
+TRANSCRIBE_BLOCKLIST="${TRANSCRIBE_BLOCKLIST:-1l7hhu7}"
 
 cd "$(dirname "$0")/.."
 REPO_DIR="$(pwd -P)"
@@ -83,6 +85,14 @@ git pull --rebase --autostash origin main || { log "git pull failed — aborting
 
 # ---- refresh the video index (cheap) ----------------------------------
 npm run scrape:pleno-videos || log "warn: scrape:pleno-videos failed — continuing with existing index"
+
+# ---- refresh the agenda snapshot (best-effort) ------------------------
+# regmeet.com blackholes GitHub-runner IPs, so the nightly workflow's
+# breaker skips scrape:pleno-agendas there — which froze the snapshot for
+# 3 weeks in July 2026 (the 2026-07-06 pleno rendered with an empty orden
+# del día). This residential-IP run is the snapshot's only reliable
+# refresh path. Polite crawl (1.5 s/request, sequential), non-fatal.
+npm run scrape:pleno-agendas || log "warn: scrape:pleno-agendas failed — continuing with existing snapshot"
 
 # ---- transcribable backlog: missing transcript AND has a video, newest first
 TARGETS=$(TRANSCRIBE_BLOCKLIST="$TRANSCRIBE_BLOCKLIST" node -e '
