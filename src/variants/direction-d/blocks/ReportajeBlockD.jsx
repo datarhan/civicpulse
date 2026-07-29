@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { REPORTAJE_SLUGS } from '../../../reportajes'
-import { PALETTE, SERIF, MONO } from '../tokens'
+import { PALETTE, MONO } from '../tokens'
 
-// Compact landing teaser for the long-form data reportajes: one kicker, the
-// published piezas as plain title links (no standfirst), and a single footer
-// link to the /reportajes index. Renders from the shared registry
-// (src/reportajes.js — the same list the index uses) so the two surfaces
-// can't drift. Honesty gate intact: only meta.estado === 'publicado' piezas
-// list, and the whole block disappears when none are published (or on
+// Compact landing teaser for the long-form data reportajes. Follows the
+// column's list idiom (same row typography and hairline separators as the
+// press block): one kicker, each published pieza as a bare headline link, and
+// a single footer link to the /reportajes index. Renders from the shared
+// registry (src/reportajes.js — the same list the index uses) so the two
+// surfaces can't drift. Honesty gate intact: only meta.estado === 'publicado'
+// piezas list, and the whole block disappears when none are published (or on
 // load/error) — never an empty shell.
 function useReportajesPublicados() {
   const [items, setItems] = useState(null)
@@ -39,7 +40,7 @@ export function ReportajeBlockD() {
   const items = useReportajesPublicados()
   if (!items || items.length === 0) return null
   return (
-    <article style={{ paddingBottom: 18, borderBottom: '1px solid ' + PALETTE.hair }}>
+    <article style={{ paddingBottom: 16, borderBottom: '1px solid ' + PALETTE.hair }}>
       <div
         style={{
           fontFamily: MONO,
@@ -52,35 +53,31 @@ export function ReportajeBlockD() {
       >
         Reportajes · CivicPulse
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, margin: '9px 0 0' }}>
-        {items.map(({ slug, meta }) => (
-          <h2
-            key={slug}
-            style={{
-              margin: 0,
-              fontFamily: SERIF,
-              fontSize: 15.5,
-              fontWeight: 700,
-              letterSpacing: '-.01em',
-              lineHeight: 1.3,
-            }}
-          >
+      {items.map(({ slug, meta }, i) => (
+        <div
+          key={slug}
+          style={{
+            padding: '10px 0',
+            borderTop: i === 0 ? 'none' : '1px solid ' + PALETTE.hair,
+          }}
+        >
+          <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.35 }}>
             <Link
               to={'/reportajes/' + (meta.slug || slug)}
               style={{ color: 'inherit', textDecoration: 'none' }}
             >
               {meta.titulo}
             </Link>
-          </h2>
-        ))}
-      </div>
+          </div>
+        </div>
+      ))}
       <div
         style={{
           fontFamily: MONO,
           fontSize: 10.5,
           color: PALETTE.ink60,
           letterSpacing: '.06em',
-          marginTop: 11,
+          marginTop: 2,
         }}
       >
         <Link
