@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:51:38.566Z",
+  "generatedAt": "2026-07-29T13:06:18.365Z",
   "version": "1",
   "plenoId": "11025xk",
   "plenoDate": "2026-06-01",
@@ -379,8 +379,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
-            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
+            "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del ODS 9 relativo a desarrollar de infraestructuras fiables, sostenibles, resilientes y de calidad, promover una industrialización inclusiva y sostenible, aumentar el acceso de las pequeñas industrias y otras empresas y de aquí a 2030, modernizar la infraestructura y reconvertir las industrias para que sean sostenibles. (Ctto. 60/2022) · Ayuntamiento de Riba-roja de Túria · construction · estado: unknown",
             "similarity": 0.5
           }
         ],

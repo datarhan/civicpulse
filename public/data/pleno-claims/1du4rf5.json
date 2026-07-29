@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:51:38.566Z",
+  "generatedAt": "2026-07-29T13:06:18.365Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -274,7 +274,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jWidbGlyMpRvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento. · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
+            "snippet": "Contrato menor, obras proyecto Reforma Centro Social del Ayuntamiento. · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 SOCIEDAD LIMITADA · construction · estado: awarded",
             "similarity": 1
           }
         ],
@@ -3007,7 +3007,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fzebv5hGIqaiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles. · Ayuntamiento de Riba-roja de Túria · Banco Bilbao Vizcaya Argentaria, SA · furniture · estado: awarded",
+            "snippet": "Contrato de suministro del césped del Campo de fútbol \"Francisco Soriano\" mediante arrendamiento financiero con opción de compra, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social y medioambiental, ODS 11 relativo a lograr que las ciudades sean sostenibles. · Ayuntamiento de Riba-roja de Túria · BANCO BILBAO VIZCAYA ARGENTARIA S.A. · furniture · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -4380,8 +4380,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5T2oVJPrWqiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · INICIATIVA SOCIAL INTEGRAL P.B. SL. · health · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
+            "snippet": "Lote 1 - Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · health · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -5301,7 +5301,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos. · Ayuntamiento de Riba-roja de Túria · Telefónica Soluciones de Informática y Comunicaciones de España, SAU · it · estado: unknown",
+            "snippet": "Plan de adecuación al esquema nacional de seguridad. Consultoría integral en materia de protección de datos. · Ayuntamiento de Riba-roja de Túria · Telefonica Soluciones de informática y comunicaciones de España SAU · it · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -5657,8 +5657,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IpOZheEgOJ97h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato administrativo de servicio “Programa de ocio para las personas mayores”, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social; contribuyendo al ODS 8 “Trabajo decente y crecimiento económico” y 11 “Ciudades y comunidades sostenibles”; siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE ATENCIÓN Y AYUDA A LA DEPENDENCIA, S.L. · health · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
+            "snippet": "Lote 1 - Servicio Ayuda a Domicilio personas sin grado de dependencia · Ayuntamiento de Riba-roja de Túria · health · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -6566,7 +6566,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY SL · architecture · estado: unknown",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY S.L. · architecture · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -6727,7 +6727,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3oQipIc0pfMSugstABGr5A%3D%3D",
-            "snippet": "Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de medio ambiental, contribuyendo al cumplimiento del ODS 16 Paz, justicia e instituciones sólidas en su meta 16.1 Reducir significativamente todas las formas de violencia. · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA, SLU · security · estado: unknown",
+            "snippet": "Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de medio ambiental, contribuyendo al cumplimiento del ODS 16 Paz, justicia e instituciones sólidas en su meta 16.1 Reducir significativamente todas las formas de violencia. · Ayuntamiento de Riba-roja de Túria · EIFFAGE ENERGIA · security · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -8445,7 +8445,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cMYE1ymfKpN7h85%2Fpmmsfw%3D%3D",
-            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS Y ASESORES, SLP · legal · estado: unknown",
+            "snippet": "contrato de servicio del asesoría jurídica y defensa procesal del Ayuntamiento de Riba-roja de Túria por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, y con mejoras vinculadas al objeto del contrato, contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos · Ayuntamiento de Riba-roja de Túria · NOGUERA ABOGADOS &amp; ASESORES, S.L. · legal · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -8495,6 +8495,90 @@
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-185-acu-604643",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 185,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Porque, como decía Teresa, es una ley estatal. Será en el gobierno de España, en el Congreso de los Diputados",
+        "context": "El mio pensamiento es el válido y el que no hay que imposar. Porque, como decía Teresa, es una ley estatal. Será en el gobierno de España, en el Congreso de los Diputados, dond",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "ley estatal"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This claim asserts that a particular law is state-level and originates from the Spanish government and Congress. This is a verifiable legal fact that can be checked against official legislative records for the specific law being referenced in the discussion.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-185-acu-604643",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
+            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD ESTATAL CORREOS Y TELEGRAFOS,  S.A. S.M.E. · telecom · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-186-acu-1f263a",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 186,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "Porque, como decía Teresa, es una ley estatal.",
+        "context": "El mio pensamiento es el válido y el que no hay que imposar. Porque, como decía Teresa, es una ley estatal. Será en el gobierno de España, en el Congreso de los Diputados, donde tienen que debatir si la tauromaquia es válida o no.",
+        "topic": "cultura",
+        "entities": {
+          "referencedEntity": "ley estatal"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 1,
+        "reasoning": "This claim asserts that a law (implicitly related to tauromaquia, given the context) is a state law, which is a factual statement verifiable by checking national legislation.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-186-acu-1f263a",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
+            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD ESTATAL CORREOS Y TELEGRAFOS,  S.A. S.M.E. · telecom · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -8588,7 +8672,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1h50qXdqGOuKeVWTb9Scog%3D%3D",
-            "snippet": "Servicio de Gamificación aplicada a la puesta en valor de la cultura y su relación con el Rio Túria, dentro del Plan de Sostenibilidad Turística en Destino (PSTD/22) de Riba-roja de Túria EJE 3 Actuación 06, financiado con fondos Next Generation · Ayuntamiento de Riba-roja de Túria · CM PLASTIK · culture · estado: awarded",
+            "snippet": "Servicio de Gamificación aplicada a la puesta en valor de la cultura y su relación con el Rio Túria, dentro del Plan de Sostenibilidad Turística en Destino (PSTD/22) de Riba-roja de Túria EJE 3 Actuación 06, financiado con fondos Next Generation · Ayuntamiento de Riba-roja de Túria · CM PLASTIK RECYCLING, S.L. · culture · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -8630,7 +8714,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded",
+            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · construction · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -8672,7 +8756,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G9Ov8%2BrfB%2BAuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded",
+            "snippet": "Contrato menor de obras, para la reparación del centro de transformación del auditorio y casa de la cultura de Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · construction · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -8754,6 +8838,90 @@
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-225-acu-c78768",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 225,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "fijar el ejemplo de la comunidad autonómica de Cataluña y de Baleares volviendo a llevar los huevos y no se permitir porque va contra una ley estatal",
+        "context": "a mí me hace gracia que fijar el ejemplo de la comunidad autonómica de Cataluña y de Baleares volviendo a llevar los huevos y no se permitir porque va contra una ley estatal vamos a llevar nosotros las reglas de tráfico en la Comunidad Valenciana",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "ley estatal"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "The claim suggests that actions in Cataluña and Baleares are against a state law. This can be verified by checking relevant state legislation and actions in those communities.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-225-acu-c78768",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
+            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD ESTATAL CORREOS Y TELEGRAFOS,  S.A. S.M.E. · telecom · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-225-acu-002e85",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 225,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "vamos a llevar nosotros las reglas de tráfico en la Comunidad Valenciana y que no nos dicen porque es de Llochica porque va contra una ley estatal",
+        "context": "y no se permitir porque va contra una ley estatal vamos a llevar nosotros las reglas de tráfico en la Comunidad Valenciana y que no nos dicen porque es de Llochica porque va contra una ley estatal es que al final las leyes estatales",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "ley estatal"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "The claim implies that certain traffic rules implemented or proposed in the Comunidad Valenciana might be against a state law. This can be verified by reviewing traffic regulations in the Comunidad Valenciana and comparing them with state laws.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-225-acu-002e85",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
+            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD ESTATAL CORREOS Y TELEGRAFOS,  S.A. S.M.E. · telecom · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -9059,8 +9227,50 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1h50qXdqGOuKeVWTb9Scog%3D%3D",
-            "snippet": "Servicio de Gamificación aplicada a la puesta en valor de la cultura y su relación con el Rio Túria, dentro del Plan de Sostenibilidad Turística en Destino (PSTD/22) de Riba-roja de Túria EJE 3 Actuación 06, financiado con fondos Next Generation · Ayuntamiento de Riba-roja de Túria · CM PLASTIK · culture · estado: awarded",
+            "snippet": "Servicio de Gamificación aplicada a la puesta en valor de la cultura y su relación con el Rio Túria, dentro del Plan de Sostenibilidad Turística en Destino (PSTD/22) de Riba-roja de Túria EJE 3 Actuación 06, financiado con fondos Next Generation · Ayuntamiento de Riba-roja de Túria · CM PLASTIK RECYCLING, S.L. · culture · estado: awarded",
             "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "promises",
+          "budget",
+          "priorClaims"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-236-acu-91014e",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 236,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "porque es una ley estatal",
+        "context": "demagógica vale pero una sencilla razón porque es una ley estatal evidentemente en el Ayuntamiento y también si hay un mal compromiso",
+        "topic": "other",
+        "entities": {
+          "referencedEntity": "ley estatal"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.95,
+        "reasoning": "The speaker claims that the law under discussion is state-level, which can be verified by consulting legislative databases for its origin and scope.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-236-acu-91014e",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
+            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · SOCIEDAD ESTATAL CORREOS Y TELEGRAFOS,  S.A. S.M.E. · telecom · estado: awarded",
+            "similarity": 1
           }
         ],
         "checkedAgainst": [
@@ -9134,7 +9344,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · SOLUCIONES AVANZADAS EN INFORMATICA APLI · software · estado: unknown",
+            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · estado: unknown",
             "similarity": 1
           }
         ],
@@ -9648,7 +9858,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mV0QInbOtkfnSoTX3z%2F7wA%3D%3D",
-            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · TICSMART SL · it · estado: unknown",
+            "snippet": "ervicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al ODS 9 INDUSTRIA, INNOVACION E INFRAESTRUCTURA en relación a la meta 9.5.c para aumentar significativamente el acceso a la tecnología de la información y las comunicaciones y esforzarse por proporcionar acceso universal y asequible a Internet. · Ayuntamiento de Riba-roja de Túria · UTE TICSMART - MAINJOBS · it · estado: unknown",
             "similarity": 0.67
           }
         ],

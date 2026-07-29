@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T07:51:38.566Z",
+  "generatedAt": "2026-07-29T13:06:18.365Z",
   "version": "1",
   "plenoId": "toa3rc",
   "plenoDate": "2025-12-26",
@@ -319,8 +319,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zrEVw5Kwd28SugstABGr5A%3D%3D",
-            "snippet": "Contrato de patrocinio Carrera Ciclista Cadetes Riba-roja · Ayuntamiento de Riba-roja de Túria · Grupo Cicloturista Riba-roja · other · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MlfeSI2PCg2rz3GQd5r6SQ%3D%3D",
+            "snippet": "Contrato para la ejecución del contrato de servicios de actividades de ocio sociocultural y educativo (RIBAJOVE), derivado del sistema dinámico de adquisición (SDA) para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. (Ctto 61/2022 – SDA 2/2022). · Ayuntamiento de Riba-roja de Túria · GRUPO A RIURE · health · estado: awarded",
             "similarity": 0.5
           }
         ],
