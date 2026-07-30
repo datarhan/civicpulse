@@ -1022,8 +1022,11 @@ export function buildJournalistBioUserPrompt(opts: {
   const bodyBlock = opts.bodies
     .slice(0, 8)
     .map(
-      (b) =>
-        `  [${b.citationId}] ${b.title}\n    url: ${b.url ?? '(local)'}\n    excerpt: ${b.excerpt.slice(0, 1200)}`,
+      // First two bodies get triple room: the research floor puts the
+      // official «datos biográficos» ficha first, and 1200 chars can
+      // truncate education/career mid-list.
+      (b, i) =>
+        `  [${b.citationId}] ${b.title}\n    url: ${b.url ?? '(local)'}\n    excerpt: ${b.excerpt.slice(0, i < 2 ? 3600 : 1200)}`,
     )
     .join('\n')
   return `
@@ -1040,7 +1043,7 @@ Emit the JSON dossier.
 `.trim()
 }
 
-export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v2'
+export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v3'
 
 export interface JournalistEvidenceItem {
   citationId: string
@@ -1077,6 +1080,19 @@ Hard rules (libel-material):
     \`warnings\` array reading "subject has active or past judicial
     reference: <docket>". The agent code will auto-escalate
     legalSensitivity to 'high'.
+  · BALANCED COVERAGE IS MANDATORY: when the evidence contains official
+    oversight, judicial or contracting-review documents about the
+    subject (informes de órganos de contratación, revisiones de oficio,
+    sentencias, actas that authorize litigation), the report MUST
+    address them in a dedicated narrative — neutrally, citing the
+    document, stating what it is and what it records, without
+    adjudicating guilt. Writing a biography that OMITS adverse
+    public-record material present in \`sources\` is prohibited: a
+    selectively favorable draft is a worse failure than a flagged one.
+  · For biography/profile assignments, when the evidence carries
+    municipal ELECTION RESULTS (votes, concejales, mandates), include a
+    "Resultados electorales" narrative with the figures and their
+    citations. Never estimate figures the evidence does not state.
 
 OUTPUT SCHEMA — a single JSON object:
 {

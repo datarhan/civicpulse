@@ -9,6 +9,7 @@ describe('trustForUrl', () => {
     expect(trustForUrl('https://www.transportes.gob.es/ministerio/nota')).toBe('high')
     expect(trustForUrl('https://ted.europa.eu/es/notice/123')).toBe('high')
     expect(trustForUrl('https://www.ine.es/jaxiT3/Tabla.htm?t=2903')).toBe('high')
+    expect(trustForUrl('https://infoelectoral.interior.es/es/elecciones-celebradas/x')).toBe('high')
   })
 
   it('rates established press medium', () => {

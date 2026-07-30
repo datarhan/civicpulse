@@ -232,6 +232,84 @@ export async function runJournalistAgent(
     })
   }
 
+  // ─── Biography research floor (deterministic, plan-independent) ─────────
+  // The dossier core (identity / education / career) must never depend on
+  // planner choices or search luck: the 2026-07 v3/v4 runs shipped ZERO
+  // identity/education sections because no fetched body carried bio data —
+  // while the canonical source, the official «datos biográficos» ficha,
+  // sat unfetched in officials.json cvUrl the whole time. Floor:
+  //   1. always fetch cvUrl (long body kept for Stage 2c — the 480-char
+  //      ledger excerpt is too short for education/career extraction);
+  //   2. always run two fixed web queries (biografía + resultados
+  //      electorales municipales — town-scoped repo, constant is fine).
+  const bioExtraBodies: Array<{
+    citationId: string
+    url?: string
+    title: string
+    excerpt: string
+  }> = []
+  if (assignment.kind === 'biography' || assignment.kind === 'profile') {
+    if (officialRow?.cvUrl && /^https?:\/\//.test(officialRow.cvUrl)) {
+      const fetched = await fetchUrl(officialRow.cvUrl)
+      urlFetches += 1
+      if (fetched.ok && fetched.bodyExcerpt) {
+        const clean = stripHtml(fetched.bodyExcerpt)
+        const cite = buildWebCitation({
+          url: fetched.url,
+          title: `Datos biográficos oficiales — ${subjectName}`,
+          excerpt: clean.slice(0, 480),
+          archiveUrl: fetched.archiveUrl,
+        })
+        sources.push(cite)
+        evidence.push({
+          citationId: cite.id,
+          kind: cite.kind,
+          title: cite.title,
+          url: cite.url,
+          trust: cite.trust,
+          excerpt: cite.excerpt,
+        })
+        bioExtraBodies.push({
+          citationId: cite.id,
+          url: cite.url,
+          title: cite.title,
+          excerpt: clean.slice(0, 4000),
+        })
+      } else {
+        warnings.push(
+          `bio-floor: ficha biográfica oficial (${officialRow.cvUrl}) sin contenido utilizable`,
+        )
+      }
+    }
+    const floorQueries = [
+      `"${subjectName}" biografía trayectoria`,
+      'resultados elecciones municipales Riba-roja de Túria 2023 concejales',
+    ]
+    for (const fq of floorQueries) {
+      const res = await webSearch(fq, { numResults: 4 })
+      webResults += res.results.length
+      for (const r of res.results) {
+        if (!r.url || !/^https?:\/\//.test(r.url)) continue
+        const cite = buildWebCitation({
+          url: r.url,
+          title: r.title || r.url,
+          publishedAt: r.publishedDate?.slice(0, 10),
+          excerpt: r.text,
+        })
+        sources.push(cite)
+        evidence.push({
+          citationId: cite.id,
+          kind: cite.kind,
+          title: cite.title,
+          url: cite.url,
+          publishedAt: cite.publishedAt,
+          trust: cite.trust,
+          excerpt: cite.excerpt,
+        })
+      }
+    }
+  }
+
   for (const ph of pressHits.slice(0, 8)) {
     if (!ph.url || !/^https?:\/\//.test(ph.url)) continue
     const cite = buildWebCitation({
@@ -707,9 +785,21 @@ export async function runJournalistAgent(
     // Compose hint table by concatenating all fetched bodies through the
     // regex extractor. Cheap and resilient — even when the LLM fails,
     // the projection still ships whatever regex-only data we got.
-    const allBodies = sources
-      .filter((s) => s.excerpt && s.excerpt.length > 80)
-      .map((s) => ({ citationId: s.id, url: s.url, title: s.title, excerpt: s.excerpt as string }))
+    // bioExtraBodies FIRST: the research floor's long-form cvUrl body
+    // (4000 chars) beats its own 480-char ledger excerpt, and the
+    // slice(0, 8) below must never squeeze the canonical ficha out.
+    const bodyById = new Map<
+      string,
+      { citationId: string; url?: string; title: string; excerpt: string }
+    >()
+    for (const b of bioExtraBodies) bodyById.set(b.citationId, b)
+    for (const s of sources) {
+      if (bodyById.has(s.id)) continue
+      if (s.excerpt && s.excerpt.length > 80) {
+        bodyById.set(s.id, { citationId: s.id, url: s.url, title: s.title, excerpt: s.excerpt })
+      }
+    }
+    const allBodies = [...bodyById.values()]
     const concatText = allBodies.map((b) => b.excerpt).join('\n\n')
     const hints = extractBioEntities(concatText, subjectName)
     const bio = await callLLM({

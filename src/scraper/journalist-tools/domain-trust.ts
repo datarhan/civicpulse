@@ -27,6 +27,7 @@ const HIGH_TRUST_ZONES: readonly string[] = [
   'congreso.es',
   'senado.es',
   'dival.es', // Diputació de València (BOP)
+  'interior.es', // incl. infoelectoral.interior.es (resultados electorales)
   'poderjudicial.es',
   'consejodetransparencia.es',
   'seg-social.es',
