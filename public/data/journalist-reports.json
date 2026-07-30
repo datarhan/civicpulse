@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T21:21:59.943Z",
+  "generatedAt": "2026-07-30T21:34:53.859Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -86,6 +86,20 @@
               "src-023",
               "src-025",
               "src-001"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Las conexiones de Rafael Gómez Sánchez que constan en documentos públicos son de naturaleza político-administrativa: fue miembro de la Junta de Gobierno Local hasta julio de 2023, cuando una resolución de la Alcaldía le cesó y nombró en su lugar a Rafael Folgado Navarro; pertenece al grupo municipal socialista, integrado por 11 de los 21 concejales; y sus áreas de gestión proceden del decreto de delegación del alcalde Roberto Raga. Como comprobación rutinaria, esta redacción ha cruzado su nombre con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y los contratos del ámbito del transporte —su sector profesional entre 2001 y 2015, según su CV autodeclarado— y del ámbito deportivo se adjudicaron a empresas sin coincidencia nominal con el concejal. El registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales, por lo que esas vías no permiten trazar vínculos personales. Este medio no ha podido consultar de forma concluyente el Registro Mercantil (la homonimia del nombre impide una búsqueda fiable sin identificador), por lo que no puede afirmar ni descartar vínculos societarios; las relaciones estrictamente personales (compañeros de estudios, amistades) no constan en fuentes públicas y no se publican sin constancia documental.",
+            "sourceIds": [
+              "src-025",
+              "src-062",
+              "src-063",
+              "src-065",
+              "src-002"
             ]
           }
         },
@@ -241,6 +255,18 @@
                 "label": "Rafael Folgado Navarro",
                 "tone": "neutral",
                 "kind": "person"
+              },
+              {
+                "id": "n5",
+                "label": "Junta de Gobierno Local",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n6",
+                "label": "Roberto Raga (alcalde)",
+                "tone": "civic",
+                "kind": "person"
               }
             ],
             "edges": [
@@ -267,6 +293,22 @@
                 "relation": "cesado en la Junta de Gobierno Local, sustituido por",
                 "sourceIds": [
                   "src-025"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n5",
+                "relation": "miembro hasta julio de 2023 (cesado por resolución de Alcaldía)",
+                "sourceIds": [
+                  "src-025"
+                ]
+              },
+              {
+                "from": "n6",
+                "to": "n1",
+                "relation": "le delegó sus áreas de gestión por resolución (07-07-2023)",
+                "sourceIds": [
+                  "src-063"
                 ]
               }
             ]
@@ -335,6 +377,10 @@
               {
                 "field": "education (regex hint)",
                 "reason": "Hints citan 'Diplomado en Informática y ADE' y 'Licenciado en Derecho y Master en Función Directiva' pero ningún body los corrobora; coincide con homónimos (src-003/004/005) y src-022 — probable fuga de otro CV, no atribuible al sujeto, omitido"
+              },
+              {
+                "field": "Vínculos societarios y personales",
+                "reason": "El Registro Mercantil no ha podido consultarse de forma concluyente (homonimia) y las relaciones personales (estudios, amistades) no constan en fuentes públicas. Las comprobaciones nominales sobre los 804 contratos municipales, el registro de asociaciones y la BDNS no arrojaron coincidencia alguna con el concejal."
               }
             ]
           }
@@ -439,6 +485,15 @@
           "excerpt": "5. Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica. 6. Se delegan en el Concejal D. Rafael Gómez, las competencias que al Alcalde le corresponden en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes.",
           "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
           "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "local-snapshot",
+          "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+          "retrievedAt": "2026-07-30T21:34:53.859Z",
+          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Gómez Sánchez». 58 contratos de ámbito del transporte (Automoción La Pista SA, Autobuses Dura SL, Selan Bus SL, Taxis Mota, entre otros) y 46 de ámbito deportivo (Ecosiona Facility Services SL, Compañía de Tratamientos Levante SL, Saludes Parques Infantiles SL, Club de Básquet Riba-roja) sin coincidencia nominal con el concejal.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
         }
       ],
       "warnings": [
@@ -447,7 +502,7 @@
       "legalSensitivity": "medium",
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-30T17:44:34.912Z",
-      "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»). AMPLIACIÓN 2026-07-30 (revisión del operador): el bloque «Resultados electorales» solo recitaba porcentajes de partido; sustituido por «Elección y nombramiento» con la cadena de acceso al cargo verificada contra las actas — proclamación como electo y toma de posesión (sesión constitutiva 17-06-2023), formación del grupo socialista (11/21 concejales) y decreto de delegación de áreas del alcalde (sesión 07-07-2023), con ventanas literales de las transcripciones como fuentes nuevas.",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»). AMPLIACIÓN 2026-07-30 (revisión del operador): el bloque «Resultados electorales» solo recitaba porcentajes de partido; sustituido por «Elección y nombramiento» con la cadena de acceso al cargo verificada contra las actas — proclamación como electo y toma de posesión (sesión constitutiva 17-06-2023), formación del grupo socialista (11/21 concejales) y decreto de delegación de áreas del alcalde (sesión 07-07-2023), con ventanas literales de las transcripciones como fuentes nuevas. AMPLIACIÓN 2026-07-30 (revisión del operador, bloque Relaciones): añadidas las conexiones administrativas documentadas (pertenencia a la JGL hasta el cese de 07-2023, delegación de áreas por el alcalde, grupo municipal) y una narrativa de comprobaciones con resultados honestos — barridos nominales sobre 804 contratos (58 de transporte, su sector previo; 46 de deportes, su área) sin coincidencia alguna; asociaciones y BDNS no publican nombres; Registro Mercantil no consultable con fiabilidad por homonimia. Ninguna asociación sin documento se publica; la hipótesis de vínculos personales queda declarada como límite, no como insinuación.",
       "corrections": [],
       "response": null
     },
