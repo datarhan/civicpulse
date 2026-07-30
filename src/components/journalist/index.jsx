@@ -45,7 +45,7 @@ export * from './SourceLedger'
 
 // ─── Section dispatcher ──────────────────────────────────────────────────
 
-export function ReportSectionRenderer({ section, sourceMap }) {
+export function ReportSectionRenderer({ section, sourceMap, firstOfKind }) {
   switch (section.kind) {
     case 'portrait':
       return <PortraitHeader />
@@ -94,7 +94,7 @@ export function ReportSectionRenderer({ section, sourceMap }) {
     case 'promise-board':
       return <PromiseMiniBoard payload={section.payload} />
     case 'quote-card':
-      return <QuoteCard payload={section.payload} sourceMap={sourceMap} />
+      return <QuoteCard payload={section.payload} sourceMap={sourceMap} withHead={firstOfKind} />
     default:
       return null
   }

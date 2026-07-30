@@ -429,6 +429,9 @@ export function CareerTimeline({ payload, sourceMap }) {
   return (
     <Card>
       <SectionHead title="Cronología" />
+      <p style={{ margin: '0 0 6px 0', fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+        Hitos documentados de la biografía y del cargo, cada uno con su fuente.
+      </p>
       <ol style={{ margin: 0, padding: 0, listStyle: 'none' }}>
         {events.map((e, i) => (
           <li
@@ -442,7 +445,7 @@ export function CareerTimeline({ payload, sourceMap }) {
             }}
           >
             <span className="mono" style={{ fontSize: 11, color: 'var(--ink50)', minWidth: 88 }}>
-              {e.date}
+              {formatEventDate(e.date)}
             </span>
             <span style={{ fontSize: 13, color: 'var(--ink80)' }}>
               {e.label}
@@ -748,9 +751,25 @@ export function PromiseMiniBoard({ payload }) {
 
 // ─── Section: quote card ─────────────────────────────────────────────────
 
-export function QuoteCard({ payload, sourceMap }) {
+export function QuoteCard({ payload, sourceMap, withHead = false }) {
+  const src = sourceMap?.get?.(payload.sourceId)
   return (
     <Card>
+      {withHead && (
+        <>
+          <SectionHead title="Citas literales" />
+          <p
+            style={{
+              margin: '0 0 10px 0',
+              fontSize: 12,
+              color: 'var(--ink60)',
+              fontStyle: 'italic',
+            }}
+          >
+            Fragmentos textuales de los documentos y entrevistas citados, reproducidos sin editar.
+          </p>
+        </>
+      )}
       <blockquote
         style={{
           margin: 0,
@@ -766,14 +785,40 @@ export function QuoteCard({ payload, sourceMap }) {
       </blockquote>
       <div style={{ marginTop: 10, fontSize: 12, color: 'var(--ink60)' }}>
         — <strong>{payload.attributedTo}</strong>
-        {payload.date && <span className="mono"> · {payload.date}</span>}
+        {payload.date && <span className="mono"> · {formatEventDate(payload.date)}</span>}
         <CitationPills ids={[payload.sourceId]} sourceMap={sourceMap} />
       </div>
+      {src && (
+        <div style={{ marginTop: 6, fontSize: 11.5, color: 'var(--ink50)' }}>
+          Fuente: {src.title}
+          {src.url && (
+            <>
+              {' '}
+              <a
+                href={src.url}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: 'var(--civic)', textDecoration: 'none' }}
+              >
+                ver original ↗
+              </a>
+            </>
+          )}
+        </div>
+      )}
     </Card>
   )
 }
 
 // ─── Helpers ─────────────────────────────────────────────────────────────
+
+// ISO date → «9 abr 1966». Noon anchor avoids TZ day-shift; falls back to
+// the raw string on anything unparseable.
+function formatEventDate(iso) {
+  const d = new Date(`${iso}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return iso
+  return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+}
 
 function formatYearSpan(start, end, openLabel = '') {
   if (start === undefined && end === undefined) return ''

@@ -244,13 +244,18 @@ export function LegalSensitivityBadge({ level, warnings }) {
         )}
       </div>
       {open && warnings && (
-        <ul style={{ margin: '10px 0 0 0', padding: 0, listStyle: 'none', fontSize: 11.5 }}>
-          {warnings.map((w, i) => (
-            <li key={i} style={{ padding: '2px 0', color: 'var(--ink60)' }}>
-              · {w}
-            </li>
-          ))}
-        </ul>
+        <div style={{ marginTop: 10 }}>
+          <p style={{ margin: 0, fontSize: 11.5, fontStyle: 'italic', color: 'var(--ink60)' }}>
+            Límites de verificación que el proceso editorial señala en lugar de omitir:
+          </p>
+          <ul style={{ margin: '6px 0 0 0', padding: 0, listStyle: 'none', fontSize: 11.5 }}>
+            {warnings.map((w, i) => (
+              <li key={i} style={{ padding: '2px 0', color: 'var(--ink60)' }}>
+                · {w}
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </Card>
   )

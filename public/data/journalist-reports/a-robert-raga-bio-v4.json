@@ -35,7 +35,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Trayectoria profesional y formación",
-        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publica, cursó el acceso a la universidad para mayores de 25 años y realizó una matriculación en magisterio EGB y la educación secundaria obligatoria en el Colegio Público Miguel Cervantes. En ese mismo currículum autodeclarado consta que trabajó como autónomo en el sector de las energías renovables y la seguridad entre 2007 y 2011, y posteriormente como asesor en la Diputació de València entre 2011 y 2015.",
+        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publica, cursó el acceso a la universidad para mayores de 25 años y realizó una matriculación en magisterio EGB y la «Educación 2ª obligatoria» —así consta literalmente— en el Colegio Público Miguel Cervantes. En ese mismo currículum autodeclarado consta que trabajó como autónomo en el sector de las energías renovables y la seguridad entre 2007 y 2011, y posteriormente como asesor en la Diputació de València entre 2011 y 2015.",
         "sourceIds": [
           "src-002",
           "src-009"
@@ -254,46 +254,39 @@
       "payload": {
         "events": [
           {
+            "date": "1966-04-09",
+            "label": "Nace en Riba-roja de Túria (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "date": "2019-05-26",
+            "label": "Elecciones municipales: el PSPV-PSOE gana con el 45,92% de los votos",
+            "sourceIds": [
+              "src-008"
+            ]
+          },
+          {
             "date": "2021-06-18",
-            "label": "Informe 02/2021 de la Junta Superior de Contractació Administrativa sobre contratación irregular y revisión de oficio",
+            "label": "La Junta Superior de Contractació Administrativa (GVA) emite el Informe 02/2021, en respuesta a la consulta del Ayuntamiento sobre la concesión del alcantarillado",
             "sourceIds": [
               "src-015",
               "src-018"
             ]
           },
           {
-            "date": "2022-12-30",
-            "label": "Preside la sesión extraordinaria del Pleno municipal",
+            "date": "2023-05-28",
+            "label": "Elecciones municipales: el PSPV-PSOE revalida el gobierno con el 49,69% de los votos",
             "sourceIds": [
-              "src-017"
-            ]
-          },
-          {
-            "date": "2023-05-08",
-            "label": "Sesión ordinaria del Pleno municipal",
-            "sourceIds": [
-              "src-025"
-            ]
-          },
-          {
-            "date": "2023-05-24",
-            "label": "Sesión extraordinaria telemática del Pleno municipal",
-            "sourceIds": [
-              "src-024"
+              "src-008"
             ]
           },
           {
             "date": "2023-07-07",
-            "label": "Acuerdo del Pleno fija la dedicación exclusiva de la alcaldía en 48.234,08 €/año",
+            "label": "El Pleno fija la dedicación exclusiva de la alcaldía en 48.234,08 € anuales",
             "sourceIds": [
               "src-006"
-            ]
-          },
-          {
-            "date": "2025-02-10",
-            "label": "Sesión ordinaria del Pleno municipal",
-            "sourceIds": [
-              "src-019"
             ]
           },
           {
@@ -386,17 +379,17 @@
     {
       "kind": "quote-card",
       "payload": {
-        "verbatim": "Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana",
-        "attributedTo": "Junta Superior de Contractació Administrativa (Informe 02/2021)",
-        "date": "2021-06-18",
-        "sourceId": "src-015"
+        "verbatim": "Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial",
+        "attributedTo": "Robert Raga, sobre las obras de protección post-DANA — entrevista en Las Provincias",
+        "date": "2026-03-09",
+        "sourceId": "src-039"
       }
     },
     {
       "kind": "quote-card",
       "payload": {
         "verbatim": "REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN",
-        "attributedTo": "Junta Superior de Contractació Administrativa (Informe 02/2021)",
+        "attributedTo": "Materia del Informe 02/2021 — Junta Superior de Contractació Administrativa (GVA)",
         "date": "2021-06-18",
         "sourceId": "src-018"
       }
@@ -404,8 +397,8 @@
     {
       "kind": "quote-card",
       "payload": {
-        "verbatim": "ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA",
-        "attributedTo": "Robert Raga Gadea (CV autodeclarado)",
+        "verbatim": "ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA Asesor institucional",
+        "attributedTo": "CV autodeclarado de Robert Raga — ficha oficial de transparencia",
         "sourceId": "src-002"
       }
     },
@@ -414,44 +407,20 @@
       "payload": {
         "missing": [
           {
-            "field": "identity.dateOfBirth",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
+            "field": "Identidad y formación",
+            "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el currículum que el propio alcalde publica en la ficha de transparencia municipal («CV autodeclarado»); no hemos localizado corroboración independiente."
           },
           {
-            "field": "identity.birthplace",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
+            "field": "Trayectoria profesional previa (1989–2015)",
+            "reason": "Las etapas como funcionario de la Administración local (1989), autónomo en energías renovables y seguridad (2007–2011) y asesor institucional en la Diputació de València (2011–2015) proceden solo de su CV autodeclarado."
           },
           {
-            "field": "education[0]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
+            "field": "Inicio del primer mandato (2015)",
+            "reason": "Ninguna fuente independiente consultada acredita la fecha de acceso a la alcaldía en 2015: el dato procede del CV autodeclarado y las fichas oficiales consultadas no indican fecha de investidura."
           },
           {
-            "field": "education[1]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
-          },
-          {
-            "field": "education[2]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
-          },
-          {
-            "field": "careerPolitical[0]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
-          },
-          {
-            "field": "careerProfessional[0]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
-          },
-          {
-            "field": "careerProfessional[1]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
-          },
-          {
-            "field": "careerProfessional[2]",
-            "reason": "sólo autodeclarado (CV oficial) — sin corroboración independiente"
-          },
-          {
-            "field": "careerPolitical (mandato 2023-actual)",
-            "reason": "Snapshot independiente (src-001, src-003) y acuerdo de pleno de 07/07/2023 (src-006) confirman que sigue como alcalde tras las elecciones de 2023, pero ninguna fuente indica explícitamente el año de inicio del tercer mandato; se omite para no inventar una fecha."
+            "field": "Familia, patrimonio y actividades empresariales",
+            "reason": "Sin datos en las fuentes públicas consultadas durante esta investigación; este informe no incluye afirmaciones que no pueda citar."
           }
         ]
       }
@@ -483,24 +452,6 @@
       "title": "Conoce el salario público de Roberto Pascual Raga Gadea",
       "retrievedAt": "2026-07-30T15:52:28.628Z",
       "excerpt": "Roberto Pascual Raga Gadea es Alcalde Del Ayuntamiento De Riba-Roja De Túria por el partido PSOE. Conoce su salario público.",
-      "trust": "medium"
-    },
-    {
-      "id": "src-004",
-      "kind": "web",
-      "url": "https://www.transportes.gob.es/recursos_mfom/audienciainfopublica/recursos/anuncio_bop.pdf",
-      "title": "DIPUTACIÓ PROVINCIAL DE VALÈNCIA Edita: DIPUTACIÓN ...",
-      "retrievedAt": "2026-07-30T15:52:28.628Z",
-      "excerpt": "17 jun 2019 ... nes, Roberto-Pascual Raga Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... estudios oficiales que se determinan en las bases de la convocatoria,.",
-      "trust": "high"
-    },
-    {
-      "id": "src-005",
-      "kind": "web",
-      "url": "https://www.fvmp.es/wp-content/uploads/2024/01/Memoria-de-gestion-2022-2023-CAST.pdf",
-      "title": "Memoria de gestión 2022 – 2023 - FVMP",
-      "retrievedAt": "2026-07-30T15:52:28.628Z",
-      "excerpt": "• Robert Raga Gadea, alcalde-presidente del Ayuntamiento de Riba-roja de ... • Universidad de Alicante: Cesión de aulas por parte de la Universidad de.",
       "trust": "medium"
     },
     {
@@ -549,57 +500,12 @@
       "trust": "high"
     },
     {
-      "id": "src-011",
-      "kind": "web",
-      "url": "https://porunaeconomiacircular.es/wp-content/uploads/2024/04/PresentacionRibarojadeTuria.pdf",
-      "title": "PDF Robert Raga Gadea, Alcalde de Riba-roja de Túri",
-      "retrievedAt": "2026-07-30T15:52:28.635Z",
-      "excerpt": "Agua regenerada para usos industriales en Riba-roja de Túria Con Robert Raga Gadea, Alcalde de Riba-roja de Túria Obtenga más información en",
-      "trust": "low"
-    },
-    {
-      "id": "src-012",
-      "kind": "web",
-      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
-      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
-      "retrievedAt": "2026-07-30T15:52:28.635Z",
-      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
-      "trust": "medium"
-    },
-    {
-      "id": "src-013",
-      "kind": "web",
-      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
-      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
-      "retrievedAt": "2026-07-30T15:52:28.635Z",
-      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
-      "trust": "medium"
-    },
-    {
-      "id": "src-014",
-      "kind": "web",
-      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
-      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
-      "retrievedAt": "2026-07-30T15:52:28.635Z",
-      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
-      "trust": "low"
-    },
-    {
       "id": "src-015",
       "kind": "web",
       "url": "https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151",
       "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
       "retrievedAt": "2026-07-30T15:52:28.635Z",
       "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ... Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana ...",
-      "trust": "high"
-    },
-    {
-      "id": "src-016",
-      "kind": "web",
-      "url": "https://www.transportes.gob.es/recursos_mfom/audienciainfopublica/recursos/anuncio_bop.pdf",
-      "title": "DIPUTACIÓ PROVINCIAL DE VALÈNCIA Edita: DIPUTACIÓN ...",
-      "retrievedAt": "2026-07-30T15:52:28.636Z",
-      "excerpt": "17 jun 2019 ... nes, Roberto-Pascual Raga Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... del/de la sentencia número 139/19 del Juzgado de lo Social número.",
       "trust": "high"
     },
     {
@@ -648,24 +554,6 @@
       "trust": "high"
     },
     {
-      "id": "src-022",
-      "kind": "web",
-      "url": "https://gruporaga.com/",
-      "title": "Home - GRUPO RAGA",
-      "retrievedAt": "2026-07-30T15:52:28.636Z",
-      "excerpt": "Grupo RAGA es una de las principales compañías en la gestión de zonas verdes y servicios urbanos. Más de 50 años dedicados al …",
-      "trust": "low"
-    },
-    {
-      "id": "src-023",
-      "kind": "web",
-      "url": "https://academia.gal/inicio",
-      "title": "Inicio - Real Academia Galega",
-      "retrievedAt": "2026-07-30T15:52:28.636Z",
-      "excerpt": "Mércores, 16 de Setembro de 2026 - 18:00 horas",
-      "trust": "low"
-    },
-    {
       "id": "src-024",
       "kind": "local-snapshot",
       "title": "public/data/pleno-transcripts/15000go.txt · semantic",
@@ -684,123 +572,6 @@
       "trust": "high"
     },
     {
-      "id": "src-026",
-      "kind": "local-snapshot",
-      "title": "public/data/pleno-transcripts/buag5g.txt · semantic",
-      "retrievedAt": "2026-07-30T15:52:31.494Z",
-      "excerpt": "[0.0 → 0.0] Rafael Gomez Sanchez [0.0 → 0.0] Maria Esther Gomez Laredo [0.0 → 0.0] Francisco Javier Garcia Escudero [0.0 → 0.0] Compromís per Riba- L’Esquerra de Riba- Podemos/Podem – VOX [0.0 → 0.0] roja: Compromís roja",
-      "localPath": "public/data/pleno-transcripts/buag5g.txt",
-      "trust": "high"
-    },
-    {
-      "id": "src-027",
-      "kind": "local-snapshot",
-      "title": "public/data/pleno-transcripts/1wum8h8.txt · semantic",
-      "retrievedAt": "2026-07-30T15:52:31.494Z",
-      "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 3 D'ABRIL DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 3 d'abril de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]",
-      "localPath": "public/data/pleno-transcripts/1wum8h8.txt",
-      "trust": "high"
-    },
-    {
-      "id": "src-028",
-      "kind": "local-snapshot",
-      "title": "Pleno claim 1237hbp-090-afi-aeb2af · 2026-07-03 · afirmacion_numerica",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-029",
-      "kind": "local-snapshot",
-      "title": "Pleno claim 11025xk-026-acu-cedc46 · 2026-06-01 · acusacion_publica",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "Nuestro alcalde, el señor Raga, en las elecciones del 2023, abril del 2023 concretamente, usted se reúne con vecinos de Valencia de la Villa. En un vídeo que está publicado en Facebook, de acceso libre para todo el mundo, usted declara las progresas electorales que la gran mayoría no ha cumplido",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-030",
-      "kind": "local-snapshot",
-      "title": "Pleno claim k4olcs-089-acu-1d6828 · 2026-04-20 · acusacion_publica",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-031",
-      "kind": "local-snapshot",
-      "title": "Pleno claim k4olcs-088-cit-2c649f · 2026-04-20 · cita_convenio",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "esos recursos europeos, FEDER y de la Unión Europea",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-032",
-      "kind": "local-snapshot",
-      "title": "Pleno claim ma87e0-107-cit-f9724f · 2026-03-16 · cita_convenio",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-033",
-      "kind": "local-snapshot",
-      "title": "Pleno claim 19gax3o-137-cit-78abd7 · 2026-01-19 · cita_obra",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil.",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-034",
-      "kind": "local-snapshot",
-      "title": "Pleno claim 1qi8axv-003-cit-0209e8 · 2025-12-23 · cita_obra",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "pasamos a votar el punto 2, que es la prórroga del contrato.",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-035",
-      "kind": "local-snapshot",
-      "title": "Pleno claim qz6weg-073-acu-1c7836 · 2025-12-01 · acusacion_publica",
-      "retrievedAt": "2026-07-30T15:52:31.495Z",
-      "excerpt": "ustedes vienen aquí a remover otra vez la historia y la historia.",
-      "localPath": "public/data/pleno-claims-suggestions.json",
-      "trust": "high"
-    },
-    {
-      "id": "src-036",
-      "kind": "web",
-      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
-      "title": "Fuente oficial: www.ribarroja.es",
-      "retrievedAt": "2026-07-30T15:52:33.064Z",
-      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
-      "trust": "high"
-    },
-    {
-      "id": "src-037",
-      "kind": "web",
-      "url": "https://www.instagram.com/reel/DbRHhpBx5lP/",
-      "title": "Los políticos deben de pagar por todo lo que está ... - Instagram",
-      "retrievedAt": "2026-07-30T15:52:33.065Z",
-      "excerpt": "hace 3 días ... Intervención del alcalde actual de Riba-roja de Túria Robert Raga Gadea (PSOE) en el debate sobre la fábrica de gas metano proyectada en el ...",
-      "trust": "low"
-    },
-    {
-      "id": "src-038",
-      "kind": "web",
-      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
-      "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
-      "retrievedAt": "2026-07-30T15:52:33.065Z",
-      "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria ... en el ámbito de zonas inundables de Riba-roja de Túria como consecuencia de la DANA.",
-      "trust": "high"
-    },
-    {
       "id": "src-039",
       "kind": "web",
       "url": "https://www.lasprovincias.es/comunitat/robert-raga-parque-turia-gran-olvidado-reconstruccion-20260309001801-nt.html",
@@ -808,140 +579,26 @@
       "retrievedAt": "2026-07-30T15:52:33.065Z",
       "excerpt": "Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial. –¿Riba-roja es como el nudo gordiano para prevenir otra dana?",
       "trust": "medium"
-    },
-    {
-      "id": "src-040",
-      "kind": "web",
-      "url": "https://www.fvmp.es/wp-content/uploads/2024/01/Memoria-de-gestion-2022-2023-CAST.pdf",
-      "title": "Memoria de gestión 2022 – 2023 - FVMP",
-      "retrievedAt": "2026-07-30T15:52:33.065Z",
-      "excerpt": "Titular: Robert Raga Gadea, alcalde del Ayuntamiento de Riba-Roja de Túria ... Buñol, en la provincia de Valencia, centrado en la determinación de las iniciativas ...",
-      "trust": "medium"
-    },
-    {
-      "id": "src-041",
-      "kind": "web",
-      "url": "https://www.dival.es/sites/default/files/secretaria/bloque5_6.pdf",
-      "title": "5. Fomento al desarrollo económico y social - Diputació de València",
-      "retrievedAt": "2026-07-30T15:52:33.065Z",
-      "excerpt": "actividades culturales entre la Diputación y diversas instituciones ... con cargo a la Conselleria de Educación y Ciencia, Diputación Provincial y los ...",
-      "trust": "high"
-    },
-    {
-      "id": "src-042",
-      "kind": "web",
-      "url": "https://www.instagram.com/tribunaldelasaguas/",
-      "title": "Tribunal de les Aigües de la Vega de València (@tribunaldelasaguas)",
-      "retrievedAt": "2026-07-30T15:52:33.065Z",
-      "excerpt": "... Robert Raga Gadea i el concejal de la localitat, José Luis Ramos. ... Diputación de Valencia por hacerlo posible. — Així va ser l'acte de presentació del ...",
-      "trust": "low"
-    },
-    {
-      "id": "src-043",
-      "kind": "web",
-      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
-      "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
-      "retrievedAt": "2026-07-30T15:52:33.066Z",
-      "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria ... juicio del Ayuntamiento de Riba-roja de Túria en el orden jurisdiccional contencioso-.",
-      "trust": "high"
-    },
-    {
-      "id": "src-044",
-      "kind": "web",
-      "url": "https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151",
-      "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
-      "retrievedAt": "2026-07-30T15:52:33.066Z",
-      "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de Turia, Valencia, actuando ... Sentencia del Tribunal Superior de Justicia ...",
-      "trust": "high"
-    },
-    {
-      "id": "src-045",
-      "kind": "web",
-      "url": "https://es.m.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
-      "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
-      "retrievedAt": "2026-07-30T15:52:33.066Z",
-      "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …",
-      "trust": "medium"
-    },
-    {
-      "id": "src-046",
-      "kind": "web",
-      "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
-      "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
-      "retrievedAt": "2026-07-30T15:52:33.068Z",
-      "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …",
-      "trust": "medium"
-    },
-    {
-      "id": "src-047",
-      "kind": "web",
-      "url": "https://www.transfermarkt.es/robert-sanchez/profil/spieler/403151",
-      "title": "Robert Sánchez - Perfil del jugador 25/26 | Transfermarkt",
-      "retrievedAt": "2026-07-30T15:52:33.068Z",
-      "excerpt": "18 de nov de 1997 · Robert Sánchez, 28, España Chelsea FC, desde 2023 Portero Valor de mercado: 22,00 mill. € * 18/11/1997 en Cartagena, España.",
-      "trust": "low"
-    },
-    {
-      "id": "src-048",
-      "kind": "web",
-      "url": "https://dictionnaire.lerobert.com/",
-      "title": "Dictionnaire français gratuit – Dico en ligne Le Robert",
-      "retrievedAt": "2026-07-30T15:52:33.068Z",
-      "excerpt": "Découvrez encore plus de contenus (étymologie, citations littéraires, définitions plus détaillées…) ainsi que de nombreuses fonctionnalités qui vous permettront d’effectuer des recherches passionnantes …",
-      "trust": "low"
-    },
-    {
-      "id": "src-049",
-      "kind": "web",
-      "url": "https://robertsspaceindustries.com/en/star-citizen",
-      "title": "Star-Citizen",
-      "retrievedAt": "2026-07-30T15:52:33.068Z",
-      "excerpt": "Roberts Space Industries is the official go-to website for all news about Star Citizen and Squadron 42. It also hosts the online store for game items and merch, as well as all the community tools used by our …",
-      "trust": "low"
-    },
-    {
-      "id": "src-050",
-      "kind": "web",
-      "url": "https://www.europapress.es/sociedad/noticia-robert-prevost-cardenal-eeuu-ascendencia-espanola-misionero-agustino-peru-jefe-obispos-20250507145212.html",
-      "title": "Robert Prevost, cardenal de EE.UU y ascendencia española, misionero ...",
-      "retrievedAt": "2026-07-30T15:52:33.068Z",
-      "excerpt": "9 de may de 2025 · MADRID, 8 May. (EUROPA PRESS) - El cardenal estadounidense Robert Prevost se ha convertido este jueves en el Papa 267 de la historia con el nombre de León XIV.",
-      "trust": "medium"
-    },
-    {
-      "id": "src-051",
-      "kind": "web",
-      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
-      "title": "Texto completo: ribarroja.es",
-      "retrievedAt": "2026-07-30T15:52:33.069Z",
-      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
-      "trust": "high"
-    },
-    {
-      "id": "src-052",
-      "kind": "web",
-      "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
-      "archiveUrl": "http://web.archive.org/web/20251230231709/https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
-      "title": "Texto completo: es.wikipedia.org",
-      "retrievedAt": "2026-07-30T15:52:33.069Z",
-      "excerpt": "Robert (muñeco) - Wikipedia, la enciclopedia libre <link rel=\"dn",
-      "trust": "high"
     }
   ],
   "warnings": [
-    "[grounding] narrativa «Informe de la Junta Superior de Contractació Administrativa»: cifras sin respaldo en las fuentes citadas: 02, 18",
-    "identity: dateOfBirth/birthplace cited to src-001 only; src-001's excerpt has no birth data — actual support is in src-002 (citation mismatch).",
-    "narrative[Cargo y responsabilidades municipales]: cites src-021, which is absent from the provided sources — unverifiable claim.",
-    "narrative[Actividad plenaria]: cites src-019/src-020/src-024/src-025, none present in provided sources; sessions of 8/5/2023, 24/5/2023, 10/2/2025 and the Jun-2026 filing are unverifiable.",
-    "narrative[Actividad plenaria]: 'secretaria general, Ylenia Díaz Morán' has no supporting citation excerpt among provided sources — soften or corroborate.",
-    "narrative[Trayectoria profesional y formación]: 'educación secundaria obligatoria' may overstate src-002's literal 'Educación 2ª obligatoria (EGB)'.",
-    "career-political: 2015 start year for first Alcalde term is not directly shown in any cited excerpt (src-002 excerpt cuts off before political-role dates).",
-    "legal-record: fila 139/19 RETIRADA — falsa asociación por colindancia en boletín multi-anuncio (ver curatorNotes)"
+    "El inicio del primer mandato como alcalde (2015) procede del CV autodeclarado del propio sujeto; no se ha localizado corroboración independiente de esa fecha.",
+    "Los datos biográficos marcados «según su CV» proceden de un documento autodeclarado publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "RETRACTACIÓN 2026-07-30: retirada la fila «sentencia 139/19» del historial judicial — falsa asociación por colindancia de anuncios en un boletín multi-edicto (ver notas del curador)."
   ],
   "legalSensitivity": "high",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-30T15:56:39.140Z",
-  "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador. CORRECCIÓN 2026-07-30 (verificación integral contra documentos primarios): narrativa del Informe 02/2021 reescrita — la consulta la formuló el propio Ayuntamiento y el contrato anulado se licitó en 2012, antes del mandato del sr. Raga (TSJCV apelación 962/2016); cita de identity corregida a la ficha; añadido el mandato 2023–actual.",
-  "corrections": [],
+  "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador. CORRECCIÓN 2026-07-30 (verificación integral contra documentos primarios): narrativa del Informe 02/2021 reescrita — la consulta la formuló el propio Ayuntamiento y el contrato anulado se licitó en 2012, antes del mandato del sr. Raga (TSJCV apelación 962/2016); cita de identity corregida a la ficha; añadido el mandato 2023–actual. DEPURACIÓN EDITORIAL 2026-07-30 (claridad de bloques, revisión del operador): cronología reconstruida como hitos biográficos datados (retiradas las sesiones plenarias rutinarias sin contenido); citas literales sustituidas por citas con contexto (añadida la entrevista de Las Provincias de 09-03-2026 como fuente citada; retirado el fragmento de título «Sentencia del Tribunal Superior…» sin valor informativo); lagunas agrupadas en 4 filas en lenguaje claro; advertencias depuradas — 5 filas eliminadas por ser comprobablemente falsas u obsoletas tras las correcciones (src-019/020/021/024/025 sí constan en el registro de fuentes; la secretaria general sí figura textualmente en el acta citada src-019; los guarismos «02» y «18» señalados por el grounding son el número y la fecha del Informe 02/2021, presentes en las fuentes citadas; la cita de identidad ya se corrigió a src-002); registro de fuentes reducido a las filas citadas por alguna sección — 35 filas de resultados de búsqueda no utilizados retiradas, incluidas homónimas irrelevantes (artículos sobre «Robert (muñeco)», un futbolista y un diccionario francés). El rastro completo de investigación se conserva en el borrador (journalist-reports-suggestions.json).",
+  "corrections": [
+    {
+      "field": "narrative.Trayectoria profesional y formación.bodyMarkdown",
+      "original": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publica, cursó el acceso a la universidad para mayores de 25 años y realizó una matriculación en magisterio EGB y la educación secundaria obligatoria en el Colegio Público Miguel Cervantes. En ese mismo currículum autodeclarado consta que trabajó como autónomo en el sector de las energías renovables y la seguridad entre 2007 y 2011, y posteriormente como asesor en la Diputació de València entre 2011 y 2015.",
+      "corrected": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento de Riba-roja de Túria, Robert (Roberto Pascual) Raga Gadea nació el 9 de abril de 1966 en Riba-roja de Túria. Según los datos biográficos que él mismo publica, cursó el acceso a la universidad para mayores de 25 años y realizó una matriculación en magisterio EGB y la «Educación 2ª obligatoria» —así consta literalmente— en el Colegio Público Miguel Cervantes. En ese mismo currículum autodeclarado consta que trabajó como autónomo en el sector de las energías renovables y la seguridad entre 2007 y 2011, y posteriormente como asesor en la Diputació de València entre 2011 y 2015.",
+      "reason": "El texto decía «educación secundaria obligatoria»; el CV autodeclarado dice literalmente «Educación 2ª obligatoria» (etapa EGB, anterior a la ESO). Se ajusta al literal para no sobreinterpretar el documento.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-07-30"
+    }
+  ],
   "response": null
 }

@@ -249,6 +249,7 @@ export default function AgenteReporte() {
                 section={section}
                 sourceMap={sourceMap}
                 subjectName={subjectName}
+                firstOfKind={anchorId === `sec-${section.kind}`}
               />
             </section>
           ))}
