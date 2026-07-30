@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T08:17:34.926Z",
+  "generatedAt": "2026-07-30T08:15:30.189Z",
   "source": {
     "description": "Press claims extracted by the laboratory pipeline",
     "contract": "src/scraper/press-claim.ts"
@@ -7,37 +7,37 @@
   "stats": {
     "total": 10,
     "byType": {
-      "promesa": 3,
-      "afirmacion_numerica": 7,
+      "promesa": 2,
+      "afirmacion_numerica": 8,
       "cita_obra": 0,
       "cita_convenio": 0,
       "acusacion_publica": 0,
       "dato_municipal": 0
     },
     "bySource": {
-      "Periòdic del Camp de Túria": 6,
-      "Ayuntamiento de Riba-roja de Túria": 3,
-      "El Periódico de Aquí": 1
+      "Periòdic del Camp de Túria": 8,
+      "El Periódico de Aquí": 1,
+      "Valencia Plaza": 1
     },
     "byTopic": {
       "fiscal": 0,
       "vivienda": 0,
       "movilidad": 0,
-      "medio-ambiente": 0,
+      "medio-ambiente": 2,
       "social": 0,
-      "cultura": 4,
+      "cultura": 3,
       "seguridad": 0,
-      "empleo": 0,
+      "empleo": 1,
       "urbanismo": 0,
-      "salud": 5,
+      "salud": 3,
       "transparencia": 0,
       "educacion": 0,
       "demografia": 0,
       "other": 1
     },
     "byAttributedSource": {
-      "outlet": 4,
-      "municipal": 6,
+      "outlet": 7,
+      "municipal": 3,
       "opposition": 0,
       "unspecified": 0
     }
@@ -65,30 +65,6 @@
       },
       "confidence": 0.9,
       "reasoning": "La afirmación incluye una cifra específica de inversión que puede ser verificada.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "1e5ntzg-0-num",
-      "articleId": "1e5ntzg",
-      "articleFingerprint": "eravvk",
-      "articleSource": "Ayuntamiento de Riba-roja de Túria",
-      "articleSourceHost": "ribarroja.es",
-      "articleUrl": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-      "articleDate": "2026-07-27T09:53:53.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "title",
-      "type": "afirmacion_numerica",
-      "attributedSource": "municipal",
-      "verbatim": "una inversión de 61.000 euros en artes escénicas",
-      "context": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027",
-      "topic": "cultura",
-      "entities": {
-        "amountEuros": 61000,
-        "date": "2026-07-27",
-        "referencedEntity": "programa PLATEA 2026-2027"
-      },
-      "confidence": 0.9,
-      "reasoning": "La cifra de inversión es un dato verificable relacionado con el programa mencionado.",
       "requiresHumanApproval": true
     },
     {
@@ -158,52 +134,6 @@
       },
       "confidence": 0.8,
       "reasoning": "La afirmación indica un compromiso de la Generalitat para solicitar la licencia del proyecto, lo que es verificable.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "ry7k7c-0-pro",
-      "articleId": "ry7k7c",
-      "articleFingerprint": "1ufc1dg",
-      "articleSource": "Ayuntamiento de Riba-roja de Túria",
-      "articleSourceHost": "ribarroja.es",
-      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-avanza-hacia-la-construcci%C3%B3n-del-futuro-centro-de-salud",
-      "articleDate": "2026-07-21T12:30:40.000Z",
-      "segmentIndex": 0,
-      "segmentKind": "body",
-      "type": "promesa",
-      "attributedSource": "municipal",
-      "verbatim": "el Ayuntamiento “está firmemente comprometido con su ejecución y en colaborar en todo lo que sea necesario para que sea por fin una realidad”",
-      "context": "El alcalde ha subrayado que se trata del proyecto “más importante y esperado” por sus vecinos y que el Ayuntamiento “está firmemente comprometido con su ejecución y en colaborar en todo lo que sea necesario para que sea por fin una realidad”.",
-      "topic": "salud",
-      "entities": {
-        "referencedEntity": "Centro de Atención Primaria"
-      },
-      "confidence": 0.8,
-      "reasoning": "El alcalde expresa el compromiso del Ayuntamiento con la construcción del nuevo centro de salud.",
-      "requiresHumanApproval": true
-    },
-    {
-      "id": "ry7k7c-1-num",
-      "articleId": "ry7k7c",
-      "articleFingerprint": "1ufc1dg",
-      "articleSource": "Ayuntamiento de Riba-roja de Túria",
-      "articleSourceHost": "ribarroja.es",
-      "articleUrl": "https://www.ribarroja.es/es/noticia/riba-roja-avanza-hacia-la-construcci%C3%B3n-del-futuro-centro-de-salud",
-      "articleDate": "2026-07-21T12:30:40.000Z",
-      "segmentIndex": 1,
-      "segmentKind": "body",
-      "type": "afirmacion_numerica",
-      "attributedSource": "municipal",
-      "verbatim": "más de 26.000 habitantes",
-      "context": "Raga ha recordado que Riba-roja necesita “urgentemente” un nuevo centro de salud que se ajuste a las dimensiones y necesidades actuales del municipio, con “más médicos y personal sanitario que garanticen una sanidad pública de calidad y suficiente a nuestros más de 26.000 habitantes”.",
-      "topic": "salud",
-      "entities": {
-        "count": 26000,
-        "countUnit": "habitantes",
-        "referencedEntity": "Riba-roja de Túria"
-      },
-      "confidence": 0.9,
-      "reasoning": "La cifra de habitantes es un dato verificable sobre la población de Riba-roja de Túria.",
       "requiresHumanApproval": true
     },
     {
@@ -278,6 +208,79 @@
       },
       "confidence": 0.9,
       "reasoning": "La afirmación sobre la cantidad de gelato vendido es un dato numérico que puede ser verificado.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "rsig4c-0-num",
+      "articleId": "rsig4c",
+      "articleFingerprint": "7ufsj8",
+      "articleSource": "Valencia Plaza",
+      "articleSourceHost": "valenciaplaza.com",
+      "articleUrl": "https://news.google.com/rss/articles/CBMi8AFBVV95cUxOSTRVWWpaYXFDeFJIaGdOc01MSG9vQXJVTEhuVEFJRDFQLWJCQU1BTEtaOE9ENjNpcUtCeEpTME9jdnhXUkRGeXdTdGMtc3Bva080WDNRM0o5VzdXN2lvdzB2ZGRHSjMtdVJxWjZodHdOWWwwTkJoQmVXNTM5ZGVtVENaSUlESTItZTlCSV80RVFra1hTdkdFOWtacmotcTA3MG4ydExVS0hZOC1uOTFqOEQyT05uN1ZfQk9kdXVMZG44UThhVVpFc1NjS0xVYlBmSXV2YWxWb1hTdXlpd1FDMlpsSTZWRkFGRmh4aU5SX3k?oc=5",
+      "articleDate": "2026-07-14T07:00:00.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "un gran parque urbano de 5 hectáreas",
+      "context": "El 'Pacadar 360' de Riba-roja: un gran parque urbano de 5 hectáreas adaptado al nuevo contexto climático",
+      "topic": "medio-ambiente",
+      "entities": {
+        "count": 5,
+        "countUnit": "hectáreas",
+        "referencedEntity": "Pacadar 360"
+      },
+      "confidence": 0.9,
+      "reasoning": "La afirmación sobre el tamaño del parque es cuantificable y se puede verificar.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "hwjyxk-0-num",
+      "articleId": "hwjyxk",
+      "articleFingerprint": "oun6xw",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84704-riba-roja-redueix-latur-en-quasi-100-persones-desde-juny-del-passat-any.html",
+      "articleDate": "2026-07-13T16:17:57.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "Riba-roja redueix l’atur en quasi 100 persones desde juny del passat any",
+      "context": "El titular del artículo menciona una reducción del desempleo en Riba-roja de Túria, indicando que casi 100 personas han encontrado trabajo desde junio del año anterior.",
+      "topic": "empleo",
+      "entities": {
+        "count": 100,
+        "countUnit": "personas",
+        "date": "2025-06-01",
+        "referencedEntity": "Riba-roja de Túria"
+      },
+      "confidence": 0.8,
+      "reasoning": "La afirmación se puede verificar a través de datos de empleo del municipio.",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "1jxa9ng-0-num",
+      "articleId": "1jxa9ng",
+      "articleFingerprint": "r7hnyw",
+      "articleSource": "Periòdic del Camp de Túria",
+      "articleSourceHost": "infoturia.com",
+      "articleUrl": "https://www.infoturia.com/riba-roja-de-turia/84660-el-consell-inverteix-236-milions-per-a-ampliar-la-depuradora-a-riba-roja.html",
+      "articleDate": "2026-07-10T12:16:02.000Z",
+      "segmentIndex": 0,
+      "segmentKind": "title",
+      "type": "afirmacion_numerica",
+      "attributedSource": "outlet",
+      "verbatim": "El Consell inverteix 23,6 milions per a ampliar la depuradora a Riba-roja",
+      "context": "El Consell ha anunciado una inversión significativa en la infraestructura de Riba-roja.",
+      "topic": "medio-ambiente",
+      "entities": {
+        "amountEuros": 23600000,
+        "date": "2026-07-10",
+        "referencedEntity": "depuradora"
+      },
+      "confidence": 0.9,
+      "reasoning": "La cifra de inversión es un dato verificable y específico que se puede contrastar.",
       "requiresHumanApproval": true
     }
   ]
