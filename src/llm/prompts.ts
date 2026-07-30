@@ -914,7 +914,7 @@ Emit the JSON research plan.
 // legal-record / financial / online-presence / awards / publications /
 // gaps-detected section payloads. Pure text in → pure JSON out; no I/O.
 
-export const JOURNALIST_BIO_VERSION = 'journalist-bio-v2'
+export const JOURNALIST_BIO_VERSION = 'journalist-bio-v3'
 
 export interface JournalistBioBodySnippet {
   citationId: string
@@ -957,6 +957,16 @@ Hard rules:
     without adjudicating anything the document does not say.
   · NEVER invent dates, institutions, employers, or family members. If
     the body doesn't say it, omit it.
+  · SELF-DECLARED vs INDEPENDENT: a body whose title marks it as the
+    subject's own CV ("CV autodeclarado", ficha, currículum, flyer de
+    partido) is SELF-DECLARED — candidates misstate degrees and careers.
+    Still emit those facts (what the subject claims is itself a fact),
+    but for EVERY identity/education/career item supported ONLY by
+    self-declared bodies, add a gapsDetected row:
+    { "field": "<section>[<i>]", "reason": "sólo autodeclarado (CV
+    oficial) — sin corroboración independiente" }. When an independent
+    body (press, Dialnet, gazettes, registries) corroborates the same
+    fact, cite BOTH citationIds and skip the gap row.
   · Family names: only emit when an official transparency portal or
     a high-trust citation names the person explicitly. Default omit.
   · Financial figures: only when the source URL host is
@@ -1051,7 +1061,7 @@ Emit the JSON dossier.
 `.trim()
 }
 
-export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v3'
+export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v4'
 
 export interface JournalistEvidenceItem {
   citationId: string
@@ -1101,6 +1111,12 @@ Hard rules (libel-material):
     municipal ELECTION RESULTS (votes, concejales, mandates), include a
     "Resultados electorales" narrative with the figures and their
     citations. Never estimate figures the evidence does not state.
+  · SELF-DECLARED ATTRIBUTION: biographical facts (studies, degrees,
+    prior jobs) whose only support is the subject's own CV/ficha
+    (sources titled "CV autodeclarado" or similar) MUST be attributed
+    in the prose: "según su currículum oficial", "según los datos
+    biográficos que él mismo publica". Never present a self-declared
+    claim in the neutral voice of verified fact.
 
 OUTPUT SCHEMA — a single JSON object:
 {

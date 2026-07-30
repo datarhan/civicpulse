@@ -251,17 +251,21 @@ export async function runJournalistAgent(
     excerpt: string
   }> = []
   if (assignment.kind === 'biography' || assignment.kind === 'profile') {
+    // Surname pair anchors matching + recall throughout the floor:
+    // "Robert Raga" and the registry form "ROBERTO PASCUAL RAGA GADEA"
+    // both hit on "Raga Gadea".
+    const nameTokens = subjectName.trim().split(/\s+/)
+    const surnames = nameTokens.length >= 2 ? nameTokens.slice(-2).join(' ') : subjectName
     if (officialRow?.cvUrl && /^https?:\/\//.test(officialRow.cvUrl)) {
       // The transparencia cvUrl is a LISTING page whose per-councillor
       // bio content lives in linked «Dades biogràfiques» PDFs (probe
       // 2026-07-30) — resolve through to the subject's own document
       // first; fall back to the listing body (plain, then headless)
       // only when no per-person document matches.
-      const surname = subjectName.trim().split(/\s+/).slice(-2).join(' ')
       const looksLikeBoilerplate = (body: string | null): boolean => {
         if (!body) return true
         const clean = stripHtml(body)
-        return clean.length < 400 || !clean.toLowerCase().includes(surname.toLowerCase())
+        return clean.length < 400 || !clean.toLowerCase().includes(surnames.toLowerCase())
       }
       const bioDocUrl = await resolveBioDocumentUrl(officialRow.cvUrl, subjectName)
       let fetched: Awaited<ReturnType<typeof fetchUrl>> | null = null
@@ -269,7 +273,11 @@ export async function runJournalistAgent(
       if (bioDocUrl) {
         fetched = looksLikePdf(bioDocUrl) ? await fetchPdfUrl(bioDocUrl) : await fetchUrl(bioDocUrl)
         urlFetches += 1
-        citeTitle = `Dades biogràfiques oficials (ficha) — ${subjectName}`
+        // SELF-DECLARED source: the ficha is the subject's own published
+        // CV. The title says so — the source ledger must never let a
+        // politician's self-description read as independent verification
+        // (operator directive 2026-07-30: candidates lie about degrees).
+        citeTitle = `CV autodeclarado (ficha oficial de transparencia) — ${subjectName}`
       }
       if (!fetched?.ok || !fetched.bodyExcerpt) {
         fetched = await fetchUrl(officialRow.cvUrl)
@@ -310,6 +318,56 @@ export async function runJournalistAgent(
         )
       }
     }
+    // Independent-corroboration floor (operator directive 2026-07-30):
+    // the ficha is self-declared, and candidates lie — every bio fact
+    // wants an INDEPENDENT leg. Deterministic sweeps over sources the
+    // subject does not control: Dialnet (academic publications — a
+    // claimed degree often leaves a trail), the La Vanguardia
+    // hemeroteca, and an open-web education query excluding the
+    // Ayuntamiento's own domain.
+    const dialnetHits = await fetchDialnet(subjectName, 6)
+    for (const h of dialnetHits.slice(0, 3)) {
+      const cite = buildWebCitation({
+        url: h.url,
+        title: h.title.slice(0, 240),
+        publisher: 'Dialnet',
+      })
+      sources.push(cite)
+      evidence.push({
+        citationId: cite.id,
+        kind: cite.kind,
+        title: cite.title,
+        url: cite.url,
+        trust: cite.trust,
+      })
+    }
+    const independentQueries = [
+      `"${surnames}" universidad OR licenciado OR estudios -site:ribarroja.es`,
+    ]
+    for (const iq of independentQueries) {
+      const res = await webSearch(iq, { numResults: 3 })
+      webResults += res.results.length
+      for (const r of res.results) {
+        if (!r.url || !/^https?:\/\//.test(r.url)) continue
+        const cite = buildWebCitation({
+          url: r.url,
+          title: r.title || r.url,
+          publishedAt: r.publishedDate?.slice(0, 10),
+          excerpt: r.text,
+        })
+        sources.push(cite)
+        evidence.push({
+          citationId: cite.id,
+          kind: cite.kind,
+          title: cite.title,
+          url: cite.url,
+          publishedAt: cite.publishedAt,
+          trust: cite.trust,
+          excerpt: cite.excerpt,
+        })
+      }
+    }
+
     // Election results floor: official GVA/ARGOS series from our own
     // elections.json (scrape:elections) — a local high-trust citation
     // so the «Resultados electorales» narrative gets real figures.
@@ -356,14 +414,10 @@ export async function runJournalistAgent(
     // Legal-record floor (operator-requested 2026-07-30): judicial,
     // oversight and tax records must be systematically sought, not
     // stumbled upon — the GVA contracting informe naming the alcalde
-    // (src-018 of the v4 run) was found by generic search luck. The
-    // surname pair anchors recall: "Robert Raga" and the registry form
-    // "ROBERTO PASCUAL RAGA GADEA" both hit on "Raga Gadea". Retrieval
-    // widens here; the libel gates stay exactly where they were
-    // (legal-record auto-bumps sensitivity to high, every row needs a
-    // ≥20-char verbatim docket cite, promotion needs the human ack).
-    const nameTokens = subjectName.trim().split(/\s+/)
-    const surnames = nameTokens.length >= 2 ? nameTokens.slice(-2).join(' ') : subjectName
+    // (src-018 of the v4 run) was found by generic search luck.
+    // Retrieval widens here; the libel gates stay exactly where they
+    // were (legal-record auto-bumps sensitivity to high, every row
+    // needs a ≥20-char verbatim docket cite, promotion needs the ack).
     const floorQueries = [
       `"${subjectName}" biografía trayectoria`,
       'resultados elecciones municipales Riba-roja de Túria 2023 concejales',
