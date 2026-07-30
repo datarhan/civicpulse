@@ -56,10 +56,17 @@
     {
       "kind": "narrative",
       "payload": {
-        "heading": "Resultados electorales",
-        "bodyMarkdown": "En las elecciones municipales de Riba-roja de Túria de 2023, el PSPV-PSOE obtuvo el 49,69% de los votos, seguido del PP (30,91%), VOX (7,9%), Podem (5,77%) y Compromís (5,73%), con una abstención del 30,31%. En los comicios de 2019, el PSPV-PSOE había logrado el 45,92%, por delante del PP (18,88%), Ciudadanos (11,52%), Compromís (7,22%), EUPV (5,71%), Podem (5,46%) y VOX (5,13%), con una abstención del 33,25%.",
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "Rafael Gómez Sánchez fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión del cargo mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023. En el pleno de organización del mandato quedó constancia de la formación del grupo municipal socialista, integrado por 11 de los 21 concejales de la corporación, con Gómez Sánchez entre sus miembros. Sus responsabilidades concretas no proceden de una elección directa, sino de una delegación del alcalde: una resolución de la Alcaldía documentada en la sesión extraordinaria del 7 de julio de 2023 le delegó las competencias «en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes», y el mismo pleno fijó su dedicación exclusiva en 38.891,66 euros anuales. En los comicios de 2019 el PSPV-PSOE había obtenido el 45,92% de los votos; según su currículum autodeclarado, ya había sido regidor en el mandato 2019-2023.",
         "sourceIds": [
-          "src-007"
+          "src-060",
+          "src-061",
+          "src-064",
+          "src-062",
+          "src-063",
+          "src-007",
+          "src-006",
+          "src-002"
         ]
       }
     },
@@ -168,6 +175,15 @@
             ]
           },
           {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo, toma posesión en la sesión constitutiva de la corporación",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-064"
+            ]
+          },
+          {
             "date": "2023-07-07",
             "label": "El Pleno fija su dedicación exclusiva como concejal delegado en 38.891,66 €/año (expte. 4533/2023/GEN)",
             "sourceIds": [
@@ -179,6 +195,13 @@
             "label": "Resolución de Alcaldía documentada en la sesión extraordinaria: cesa como miembro de la Junta de Gobierno Local; le sustituye Rafael Folgado Navarro",
             "sourceIds": [
               "src-025"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Resolución de Alcaldía le delega las áreas de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes",
+            "sourceIds": [
+              "src-063"
             ]
           }
         ]
@@ -364,6 +387,51 @@
       "excerpt": "[0.0 → 0.0] abril, Reguladora de las Bases del Régimen Local, RESUELVO: [0.0 → 0.0] PRIMERO.- Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local. [0.0 → 0.0] SEGUNDO.- Nombrar a D. Rafael Folgado ",
       "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
       "trust": "high"
+    },
+    {
+      "id": "src-060",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · proclamación de electos",
+      "retrievedAt": "2026-07-30T21:21:59.943Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · juramento o promesa",
+      "retrievedAt": "2026-07-30T21:21:59.943Z",
+      "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · toma de posesión (lista con el sujeto)",
+      "retrievedAt": "2026-07-30T21:21:59.943Z",
+      "excerpt": "- Raquel Pamblanco Paredes - Jose Manuel Vila Oltra - Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista",
+      "retrievedAt": "2026-07-30T21:21:59.943Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente) 6. Don Rafael Gómez Sánchez 7. Doña Maria Esther Gómez Laredo 8. Don José Manuel Vila Oltra (Independiente) 9. Doña Raquel Pamblanco Paredes 10. Don Alfredo Plá Giménez 11. Don David Barbancho Martínez",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias",
+      "retrievedAt": "2026-07-30T21:21:59.943Z",
+      "excerpt": "5. Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica. 6. Se delegan en el Concejal D. Rafael Gómez, las competencias que al Alcalde le corresponden en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
     }
   ],
   "warnings": [
@@ -372,7 +440,7 @@
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-30T17:44:34.912Z",
-  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»).",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»). AMPLIACIÓN 2026-07-30 (revisión del operador): el bloque «Resultados electorales» solo recitaba porcentajes de partido; sustituido por «Elección y nombramiento» con la cadena de acceso al cargo verificada contra las actas — proclamación como electo y toma de posesión (sesión constitutiva 17-06-2023), formación del grupo socialista (11/21 concejales) y decreto de delegación de áreas del alcalde (sesión 07-07-2023), con ventanas literales de las transcripciones como fuentes nuevas.",
   "corrections": [],
   "response": null
 }

@@ -547,22 +547,34 @@ export async function runJournalistAgent(
     // pre-seeded and rarely requests 'local-snapshot' queries, which
     // left semanticLocalHits dead in real runs (localHits:0 twice,
     // 2026-07-29/30). Biography runs always get transcript recall.
-    const semFloor = await semanticLocalHits(subjectName, { topK: 4 })
-    localHitCount += semFloor.length
-    for (const h of semFloor) {
-      const cite = buildLocalCitation({
-        localPath: h.localPath,
-        title: `${h.localPath} · ${h.matchedField}`,
-        excerpt: h.preview,
-      })
-      sources.push(cite)
-      evidence.push({
-        citationId: cite.id,
-        kind: cite.kind,
-        title: cite.title,
-        trust: cite.trust,
-        excerpt: cite.excerpt,
-      })
+    // The appointment-chain queries surface the actas that answer "how
+    // did the subject obtain the office" — constitution session (electo
+    // proclamation, oath, investidura votes) and the alcalde's
+    // delegation decree (2026-07-30 operator review: party-level vote
+    // shares alone don't explain how the person was chosen).
+    const semFloorQueries = [
+      { q: subjectName, topK: 4 },
+      { q: `${subjectName} juramento promesa toma de posesión sesión constitutiva`, topK: 3 },
+      { q: `delegación de competencias en favor del concejal ${subjectName}`, topK: 3 },
+    ]
+    for (const { q, topK } of semFloorQueries) {
+      const semFloor = await semanticLocalHits(q, { topK })
+      localHitCount += semFloor.length
+      for (const h of semFloor) {
+        const cite = buildLocalCitation({
+          localPath: h.localPath,
+          title: `${h.localPath} · ${h.matchedField}`,
+          excerpt: h.preview,
+        })
+        sources.push(cite)
+        evidence.push({
+          citationId: cite.id,
+          kind: cite.kind,
+          title: cite.title,
+          trust: cite.trust,
+          excerpt: cite.excerpt,
+        })
+      }
     }
     // Official gazettes, deterministically (sanciones, edictos,
     // nombramientos, expropiaciones — the acto-administrativo trail).

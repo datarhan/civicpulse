@@ -1095,7 +1095,7 @@ Emit the JSON dossier.
 `.trim()
 }
 
-export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v5'
+export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v6'
 
 export interface JournalistEvidenceItem {
   citationId: string
@@ -1154,9 +1154,16 @@ Hard rules (libel-material):
     public-record material present in \`sources\` is prohibited: a
     selectively favorable draft is a worse failure than a flagged one.
   · For biography/profile assignments, when the evidence carries
-    municipal ELECTION RESULTS (votes, concejales, mandates), include a
-    "Resultados electorales" narrative with the figures and their
-    citations. Never estimate figures the evidence does not state.
+    municipal ELECTION RESULTS and/or acta records of the subject's
+    election, include an "Elección y nombramiento" narrative that
+    explains HOW THE SUBJECT OBTAINED THE OFFICE — proclamation as
+    concejal electo, toma de posesión (juramento/promesa), investidura
+    votes, group formation, the alcalde's delegation decree assigning
+    their áreas — citing each step to the acta that records it.
+    Party-level vote shares are supporting context, not the story: a
+    block that only recites party percentages fails this rule. Never
+    estimate figures, list positions, or appointment steps the evidence
+    does not state.
   · SELF-DECLARED ATTRIBUTION: biographical facts (studies, degrees,
     prior jobs) whose only support is the subject's own CV/ficha
     (sources titled "CV autodeclarado" or similar) MUST be attributed
