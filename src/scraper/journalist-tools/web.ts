@@ -738,3 +738,80 @@ export async function audit(
   }
   return { url, alive, status, archiveUrl, archivedAt, checkedAt, ...(error ? { error } : {}) }
 }
+
+// ─── Ficha bio-document resolver ───────────────────────────────────────────
+// The transparencia «datos biográficos» page is a LISTING: the actual bio
+// content lives in per-councillor PDFs linked as «Dades biogràfiques
+// <Name>» (probe 2026-07-30). fetchUrl's 8 KB body cap misses the links
+// on the 124 KB page, so the resolver fetches the full HTML itself.
+
+export interface ListingAnchor {
+  href: string
+  text: string
+}
+
+export function extractAnchors(html: string): ListingAnchor[] {
+  const out: ListingAnchor[] = []
+  for (const m of String(html ?? '').matchAll(/<a\s[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)) {
+    const text = m[2]
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim()
+    out.push({ href: m[1], text })
+  }
+  return out
+}
+
+function foldForMatch(s: string): string {
+  return String(s ?? '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+}
+
+/**
+ * Pick the anchor that names the subject: ≥2 of the subject's name
+ * tokens (≥3 chars, diacritics folded) must appear in href+text; PDFs
+ * get a tiebreak bump. Null when nobody matches — an honest miss beats
+ * a colleague's CV attached to the wrong person.
+ */
+export function matchBioAnchor(anchors: ListingAnchor[], subjectName: string): string | null {
+  const tokens = foldForMatch(subjectName)
+    .split(' ')
+    .filter((t) => t.length >= 3)
+  if (tokens.length === 0) return null
+  let best: { href: string; score: number } | null = null
+  for (const a of anchors) {
+    const hay = foldForMatch(`${a.href} ${a.text}`)
+    const hits = tokens.filter((t) => hay.includes(t)).length
+    if (hits < 2) continue
+    const score = hits + (/\.pdf(\?|#|$)/i.test(a.href) ? 0.5 : 0)
+    if (!best || score > best.score) best = { href: a.href, score }
+  }
+  return best?.href ?? null
+}
+
+/**
+ * Resolve the subject's bio document URL from a listing page. Fetches
+ * the FULL page body (no 8 KB cap), matches anchors, absolutizes.
+ * Null on any failure — callers fall back to the listing itself.
+ */
+export async function resolveBioDocumentUrl(
+  listingUrl: string,
+  subjectName: string,
+): Promise<string | null> {
+  return cached('resolveBioDocumentUrl', { listingUrl, subjectName }, async () => {
+    try {
+      const res = await fetch(listingUrl, { headers: { 'User-Agent': UA } })
+      if (!res.ok) return null
+      const html = await res.text()
+      const href = matchBioAnchor(extractAnchors(html), subjectName)
+      if (!href) return null
+      return new URL(href, listingUrl).toString()
+    } catch {
+      return null
+    }
+  })
+}

@@ -76,6 +76,7 @@
     "promote-vote": "npx tsx scripts/promote-pleno-vote-suggestion.ts",
     "compute:dept-stats": "npx tsx scripts/compute-dept-stats.ts",
     "compute:tender-geo": "npx tsx scripts/compute-tender-geo.ts",
+    "scrape:elections": "npx tsx scripts/scrape-elections.ts",
     "compute:entities": "npx tsx scripts/compute-entities.ts",
     "entity-alias": "npx tsx scripts/entity-alias.ts",
     "build:cpv-labels": "npx tsx scripts/build-cpv-labels.ts",

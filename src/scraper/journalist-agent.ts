@@ -80,6 +80,7 @@ import {
   fetchWikidata,
   fetchWikipedia,
   resetCitationCounter,
+  resolveBioDocumentUrl,
   searchLocalSnapshots,
   semanticLocalHits,
   trustForUrl,
@@ -251,28 +252,40 @@ export async function runJournalistAgent(
   }> = []
   if (assignment.kind === 'biography' || assignment.kind === 'profile') {
     if (officialRow?.cvUrl && /^https?:\/\//.test(officialRow.cvUrl)) {
-      let fetched = await fetchUrl(officialRow.cvUrl)
-      urlFetches += 1
-      // Drupal serves the ficha shell server-side but the biographical
-      // content can be boilerplate-only on a plain fetch (2026-07-30 run:
-      // "only returned page boilerplate/stylesheet metadata"). When the
-      // body is short or never names the subject, re-render headless.
+      // The transparencia cvUrl is a LISTING page whose per-councillor
+      // bio content lives in linked «Dades biogràfiques» PDFs (probe
+      // 2026-07-30) — resolve through to the subject's own document
+      // first; fall back to the listing body (plain, then headless)
+      // only when no per-person document matches.
       const surname = subjectName.trim().split(/\s+/).slice(-2).join(' ')
       const looksLikeBoilerplate = (body: string | null): boolean => {
         if (!body) return true
         const clean = stripHtml(body)
         return clean.length < 400 || !clean.toLowerCase().includes(surname.toLowerCase())
       }
-      if (!fetched.ok || looksLikeBoilerplate(fetched.bodyExcerpt)) {
-        const headless = await fetchUrlHeadless(officialRow.cvUrl)
+      const bioDocUrl = await resolveBioDocumentUrl(officialRow.cvUrl, subjectName)
+      let fetched: Awaited<ReturnType<typeof fetchUrl>> | null = null
+      let citeTitle = `Datos biográficos oficiales — ${subjectName}`
+      if (bioDocUrl) {
+        fetched = looksLikePdf(bioDocUrl) ? await fetchPdfUrl(bioDocUrl) : await fetchUrl(bioDocUrl)
         urlFetches += 1
-        if (headless.ok && !looksLikeBoilerplate(headless.bodyExcerpt)) fetched = headless
+        citeTitle = `Dades biogràfiques oficials (ficha) — ${subjectName}`
       }
-      if (fetched.ok && fetched.bodyExcerpt) {
+      if (!fetched?.ok || !fetched.bodyExcerpt) {
+        fetched = await fetchUrl(officialRow.cvUrl)
+        urlFetches += 1
+        citeTitle = `Datos biográficos oficiales — ${subjectName}`
+        if (!fetched.ok || looksLikeBoilerplate(fetched.bodyExcerpt)) {
+          const headless = await fetchUrlHeadless(officialRow.cvUrl)
+          urlFetches += 1
+          if (headless.ok && !looksLikeBoilerplate(headless.bodyExcerpt)) fetched = headless
+        }
+      }
+      if (fetched.ok && fetched.bodyExcerpt && !looksLikeBoilerplate(fetched.bodyExcerpt)) {
         const clean = stripHtml(fetched.bodyExcerpt)
         const cite = buildWebCitation({
           url: fetched.url,
-          title: `Datos biográficos oficiales — ${subjectName}`,
+          title: citeTitle,
           excerpt: clean.slice(0, 480),
           archiveUrl: fetched.archiveUrl,
         })
@@ -295,6 +308,49 @@ export async function runJournalistAgent(
         warnings.push(
           `bio-floor: ficha biográfica oficial (${officialRow.cvUrl}) sin contenido utilizable`,
         )
+      }
+    }
+    // Election results floor: official GVA/ARGOS series from our own
+    // elections.json (scrape:elections) — a local high-trust citation
+    // so the «Resultados electorales» narrative gets real figures.
+    const ELECTIONS_PATH = resolve('public/data/elections.json')
+    if (existsSync(ELECTIONS_PATH)) {
+      try {
+        const el = JSON.parse(readFileSync(ELECTIONS_PATH, 'utf8')) as {
+          source?: { title?: string; publisher?: string }
+          elections?: Array<{
+            year: number
+            abstencionPct: number | null
+            results: Array<{ party: string; pct: number }>
+          }>
+        }
+        const fmt = (e: NonNullable<typeof el.elections>[number]) =>
+          `Municipales ${e.year}: ` +
+          e.results.map((r) => `${r.party} ${r.pct}%`).join(', ') +
+          (e.abstencionPct != null ? ` · abstención ${e.abstencionPct}%` : '')
+        const latest = (el.elections ?? []).slice(0, 2)
+        if (latest.length > 0) {
+          const cite = buildLocalCitation({
+            localPath: 'public/data/elections.json',
+            title: `Resultados electorales municipales — ${el.source?.publisher ?? 'GVA/ARGOS'}`,
+            excerpt: latest.map(fmt).join(' · '),
+          })
+          sources.push(cite)
+          evidence.push({
+            citationId: cite.id,
+            kind: cite.kind,
+            title: cite.title,
+            trust: cite.trust,
+            excerpt: cite.excerpt,
+          })
+          bioExtraBodies.push({
+            citationId: cite.id,
+            title: cite.title,
+            excerpt: (el.elections ?? []).map(fmt).join('\n'),
+          })
+        }
+      } catch {
+        warnings.push('bio-floor: elections.json ilegible — resultados electorales omitidos')
       }
     }
     // Legal-record floor (operator-requested 2026-07-30): judicial,

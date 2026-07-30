@@ -29,6 +29,10 @@ npm run scrape:tenders-ted          # EU TED v3 — contracts above EU threshold
 npm run scrape:boe                  # BOE last 30 days · filters titulos mentioning Riba-roja
 npm run scrape:bop                  # BOP València last 30 days · Riba-roja edictos (PDF walk)
 npm run scrape:padron               # INE Tempus3 30-year population series
+npm run scrape:elections            # GVA/ICV WFS «Mapa electoral — Elecciones Locales» (ARGOS-fed) ·
+                                    #   municipales vote shares 1980s→2023 for INE 46214 → elections.json ·
+                                    #   best-effort in scrape:all (near-static) · feeds the journalist
+                                    #   agent's «Resultados electorales» floor citation
 npm run scrape:participa            # Votiveu (WordPress) citizen-participation blog
 npm run scrape:press                # Google News + infoturia + Ayuntamiento RSS
 npm run scrape:events               # Ayuntamiento events/agenda RSS feed
@@ -564,6 +568,7 @@ scripts/scrape-ispa.ts                →  src/scraper/ispa.ts              → 
 scripts/scrape-budget.ts              →  src/scraper/budget.ts            →  public/data/budget.json
 scripts/scrape-tenders.ts             →  src/scraper/tenders.ts           →  public/data/tenders.json
 scripts/scrape-padron.ts              →  src/scraper/padron.ts            →  public/data/padron.json
+scripts/scrape-elections.ts           →  src/scraper/elections.ts         →  public/data/elections.json
 scripts/scrape-participa.ts           →  src/scraper/participa.ts         →  public/data/participa.json
 scripts/scrape-press.ts               →  src/scraper/press.ts             →  public/data/press.json
 scripts/scrape-events.ts              →  src/scraper/events.ts            →  public/data/events.json

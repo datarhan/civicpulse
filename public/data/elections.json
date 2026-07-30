@@ -1,0 +1,287 @@
+{
+  "generatedAt": "2026-07-30T11:06:10.855Z",
+  "source": {
+    "title": "Mapa electoral municipal de la Comunitat Valenciana: Elecciones Locales",
+    "publisher": "Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+    "url": "https://dadesobertes.gva.es/dataset/mapa-electoral-municipal-de-la-comunitat-valenciana-elecciones-locales",
+    "license": "CC-BY 4.0 (dadesobertes.gva.es)"
+  },
+  "municipality": {
+    "ine": "46214",
+    "poblacion": 23555
+  },
+  "elections": [
+    {
+      "year": 2023,
+      "type": "municipales",
+      "abstencionPct": 30.31,
+      "results": [
+        {
+          "party": "PSPV-PSOE",
+          "pct": 49.69
+        },
+        {
+          "party": "PP",
+          "pct": 30.91
+        },
+        {
+          "party": "VOX",
+          "pct": 7.9
+        },
+        {
+          "party": "Podem",
+          "pct": 5.77
+        },
+        {
+          "party": "Compromís",
+          "pct": 5.73
+        }
+      ]
+    },
+    {
+      "year": 2019,
+      "type": "municipales",
+      "abstencionPct": 33.25,
+      "results": [
+        {
+          "party": "PSPV-PSOE",
+          "pct": 45.92
+        },
+        {
+          "party": "PP",
+          "pct": 18.88
+        },
+        {
+          "party": "Ciudadanos",
+          "pct": 11.52
+        },
+        {
+          "party": "Compromís",
+          "pct": 7.22
+        },
+        {
+          "party": "EUPV",
+          "pct": 5.71
+        },
+        {
+          "party": "Podem",
+          "pct": 5.46
+        },
+        {
+          "party": "VOX",
+          "pct": 5.13
+        }
+      ]
+    },
+    {
+      "year": 2015,
+      "type": "municipales",
+      "abstencionPct": 25.61,
+      "results": [
+        {
+          "party": "PP",
+          "pct": 29.19
+        },
+        {
+          "party": "PSPV-PSOE",
+          "pct": 24.92
+        },
+        {
+          "party": "Ciudadanos",
+          "pct": 12.33
+        },
+        {
+          "party": "Compromís",
+          "pct": 11.88
+        },
+        {
+          "party": "EUPV",
+          "pct": 6.91
+        }
+      ]
+    },
+    {
+      "year": 2011,
+      "type": "municipales",
+      "abstencionPct": 27.64,
+      "results": [
+        {
+          "party": "PP",
+          "pct": 48.69
+        },
+        {
+          "party": "PSPV-PSOE",
+          "pct": 35.07
+        },
+        {
+          "party": "EUPV",
+          "pct": 9.44
+        },
+        {
+          "party": "Compromís",
+          "pct": 6.79
+        }
+      ]
+    },
+    {
+      "year": 2007,
+      "type": "municipales",
+      "abstencionPct": 2.48,
+      "results": [
+        {
+          "party": "PP",
+          "pct": 54.14
+        },
+        {
+          "party": "PSPV-PSOE",
+          "pct": 34.34
+        },
+        {
+          "party": "EUPV",
+          "pct": 9.97
+        }
+      ]
+    },
+    {
+      "year": 2003,
+      "type": "municipales",
+      "abstencionPct": 24.69,
+      "results": [
+        {
+          "party": "PP",
+          "pct": 47.79
+        },
+        {
+          "party": "PSPV-PSOE",
+          "pct": 38.38
+        },
+        {
+          "party": "EUPV",
+          "pct": 7.73
+        },
+        {
+          "party": "Compromís",
+          "pct": 4.36
+        }
+      ]
+    },
+    {
+      "year": 1999,
+      "type": "municipales",
+      "abstencionPct": 25.87,
+      "results": [
+        {
+          "party": "PP",
+          "pct": 51.45
+        },
+        {
+          "party": "PSPV-PSOE",
+          "pct": 36.04
+        },
+        {
+          "party": "EUPV",
+          "pct": 5.98
+        },
+        {
+          "party": "Compromís",
+          "pct": 3.37
+        }
+      ]
+    },
+    {
+      "year": 1995,
+      "type": "municipales",
+      "abstencionPct": 19.28,
+      "results": [
+        {
+          "party": "PP",
+          "pct": 48.3
+        },
+        {
+          "party": "PSPV-PSOE",
+          "pct": 35.07
+        },
+        {
+          "party": "EUPV",
+          "pct": 12.58
+        },
+        {
+          "party": "Compromís",
+          "pct": 1.96
+        }
+      ]
+    },
+    {
+      "year": 1991,
+      "type": "municipales",
+      "abstencionPct": 23.6,
+      "results": [
+        {
+          "party": "PSPV-PSOE",
+          "pct": 51.34
+        },
+        {
+          "party": "PP",
+          "pct": 35.15
+        },
+        {
+          "party": "EUPV",
+          "pct": 9.8
+        }
+      ]
+    },
+    {
+      "year": 1987,
+      "type": "municipales",
+      "abstencionPct": 20.8,
+      "results": [
+        {
+          "party": "PSPV-PSOE",
+          "pct": 53.55
+        },
+        {
+          "party": "PP",
+          "pct": 26.32
+        },
+        {
+          "party": "EUPV",
+          "pct": 6.72
+        }
+      ]
+    },
+    {
+      "year": 1983,
+      "type": "municipales",
+      "abstencionPct": 18.37,
+      "results": [
+        {
+          "party": "PSPV-PSOE",
+          "pct": 56.99
+        },
+        {
+          "party": "PP",
+          "pct": 22.78
+        },
+        {
+          "party": "EUPV",
+          "pct": 7.59
+        }
+      ]
+    },
+    {
+      "year": 1979,
+      "type": "municipales",
+      "abstencionPct": 17.05,
+      "results": [
+        {
+          "party": "PSPV-PSOE",
+          "pct": 35.12
+        },
+        {
+          "party": "EUPV",
+          "pct": 20.29
+        }
+      ]
+    }
+  ]
+}
