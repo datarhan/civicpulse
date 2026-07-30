@@ -138,7 +138,10 @@ export function groundNarrativeSections(
     const evidenceTokens = new Set(foldTokens(evidenceText))
     const evidenceNumbers = new Set(numberTokens(evidenceText))
 
-    const missingNumbers = numberTokens(bodyMarkdown).filter((n) => !evidenceNumbers.has(n))
+    // Inline citation ids ("(src-001)") are references, not figures —
+    // first live run flagged their digits as fabricated numbers.
+    const bodySansCiteIds = bodyMarkdown.replace(/\bsrc-\d+\b/g, ' ')
+    const missingNumbers = numberTokens(bodySansCiteIds).filter((n) => !evidenceNumbers.has(n))
     if (missingNumbers.length > 0) {
       warnings.push(
         `[grounding] narrativa «${heading}»: cifras sin respaldo en las fuentes citadas: ${missingNumbers.join(', ')}`,

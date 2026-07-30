@@ -88,3 +88,20 @@ describe('groundNarrativeSections', () => {
     expect(out.warnings).toEqual([])
   })
 })
+
+describe('grounding vs citation-id noise', () => {
+  it('does not treat inline src-NNN citation ids as unsupported figures', () => {
+    const sections = [
+      narrative(
+        'Con citas inline',
+        'El informe (src-001) y el acta (src-019) documentan la revisión de oficio del contrato.',
+        ['src-1'],
+      ),
+    ]
+    const sources = [
+      src('src-1', 'La junta documenta la revisión de oficio del contrato en su informe y acta.'),
+    ]
+    const out = groundNarrativeSections(sections, sources)
+    expect(out.warnings).toEqual([])
+  })
+})

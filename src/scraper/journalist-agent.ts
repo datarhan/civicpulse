@@ -76,6 +76,7 @@ import {
   fetchTopUrls,
   fetchUrl,
   fetchUrlHeadless,
+  looksLikePdf,
   fetchWikidata,
   fetchWikipedia,
   resetCitationCounter,
@@ -250,8 +251,23 @@ export async function runJournalistAgent(
   }> = []
   if (assignment.kind === 'biography' || assignment.kind === 'profile') {
     if (officialRow?.cvUrl && /^https?:\/\//.test(officialRow.cvUrl)) {
-      const fetched = await fetchUrl(officialRow.cvUrl)
+      let fetched = await fetchUrl(officialRow.cvUrl)
       urlFetches += 1
+      // Drupal serves the ficha shell server-side but the biographical
+      // content can be boilerplate-only on a plain fetch (2026-07-30 run:
+      // "only returned page boilerplate/stylesheet metadata"). When the
+      // body is short or never names the subject, re-render headless.
+      const surname = subjectName.trim().split(/\s+/).slice(-2).join(' ')
+      const looksLikeBoilerplate = (body: string | null): boolean => {
+        if (!body) return true
+        const clean = stripHtml(body)
+        return clean.length < 400 || !clean.toLowerCase().includes(surname.toLowerCase())
+      }
+      if (!fetched.ok || looksLikeBoilerplate(fetched.bodyExcerpt)) {
+        const headless = await fetchUrlHeadless(officialRow.cvUrl)
+        urlFetches += 1
+        if (headless.ok && !looksLikeBoilerplate(headless.bodyExcerpt)) fetched = headless
+      }
       if (fetched.ok && fetched.bodyExcerpt) {
         const clean = stripHtml(fetched.bodyExcerpt)
         const cite = buildWebCitation({
@@ -299,7 +315,8 @@ export async function runJournalistAgent(
       `"${surnames}" "revisión de oficio" OR "junta superior de contratación"`,
       `"${surnames}" fiscal OR "económico-administrativo" OR hacienda`,
     ]
-    for (const fq of floorQueries) {
+    const legalHitUrls: string[] = []
+    for (const [fqIdx, fq] of floorQueries.entries()) {
       const res = await webSearch(fq, { numResults: 3 })
       webResults += res.results.length
       for (const r of res.results) {
@@ -320,7 +337,55 @@ export async function runJournalistAgent(
           trust: cite.trust,
           excerpt: cite.excerpt,
         })
+        if (fqIdx >= 2) legalHitUrls.push(r.url)
       }
+    }
+    // Full-body enrichment for high-trust legal hits: a 160-char search
+    // snippet cannot support a verbatim docket cite, so the verify pass
+    // rightly flags every legal claim as unverifiable (2026-07-30 run).
+    // Fetch the actual document (PDF-aware) for up to 3 official-domain
+    // hits, upgrade the citation excerpt, and hand the long body to
+    // Stage 2c for legalRecord extraction with real verbatim refs.
+    for (const legalUrl of legalHitUrls.filter((u) => trustForUrl(u) === 'high').slice(0, 3)) {
+      const fetched = looksLikePdf(legalUrl)
+        ? await fetchPdfUrl(legalUrl)
+        : await fetchUrl(legalUrl)
+      urlFetches += 1
+      if (!fetched.ok || !fetched.bodyExcerpt) continue
+      const clean = stripHtml(fetched.bodyExcerpt)
+      const existing = sources.find((s) => s.url === legalUrl)
+      if (existing) {
+        existing.excerpt = clean.slice(0, 480)
+        const ev = evidence.find((e) => e.citationId === existing.id)
+        if (ev) ev.excerpt = existing.excerpt
+        bioExtraBodies.push({
+          citationId: existing.id,
+          url: legalUrl,
+          title: existing.title,
+          excerpt: clean.slice(0, 4000),
+        })
+      }
+    }
+    // Semantic recall floor: the planner treats local corpora as
+    // pre-seeded and rarely requests 'local-snapshot' queries, which
+    // left semanticLocalHits dead in real runs (localHits:0 twice,
+    // 2026-07-29/30). Biography runs always get transcript recall.
+    const semFloor = await semanticLocalHits(subjectName, { topK: 4 })
+    localHitCount += semFloor.length
+    for (const h of semFloor) {
+      const cite = buildLocalCitation({
+        localPath: h.localPath,
+        title: `${h.localPath} · ${h.matchedField}`,
+        excerpt: h.preview,
+      })
+      sources.push(cite)
+      evidence.push({
+        citationId: cite.id,
+        kind: cite.kind,
+        title: cite.title,
+        trust: cite.trust,
+        excerpt: cite.excerpt,
+      })
     }
     // Official gazettes, deterministically (sanciones, edictos,
     // nombramientos, expropiaciones — the acto-administrativo trail).

@@ -472,7 +472,7 @@ const HEADLESS_FETCH_ALLOW = new Set([
  * HTML route, which is exactly what `fetchUrl` did before this fix,
  * so the change is upside-only.
  */
-function looksLikePdf(url: string): boolean {
+export function looksLikePdf(url: string): boolean {
   try {
     const u = new URL(url)
     return /\.pdf$/i.test(u.pathname)
