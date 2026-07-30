@@ -27,7 +27,7 @@
         "dateOfBirth": "1966-04-09",
         "birthplace": "Riba-roja de Túria",
         "sourceIds": [
-          "src-001"
+          "src-002"
         ]
       }
     },
@@ -78,8 +78,8 @@
     {
       "kind": "narrative",
       "payload": {
-        "heading": "Informe de la Junta Superior de Contractació Administrativa",
-        "bodyMarkdown": "La Junta Superior de Contractació Administrativa de la Generalitat Valenciana emitió el Informe 02/2021, de 18 de junio de 2021, sobre contratación irregular, enriquecimiento injusto, revisión de oficio y la improcedencia del procedimiento negociado por urgencia en obras que, según el documento, debían haber sido objeto de licitación. El informe cita a Roberto Pascual Raga Gadea en su condición de alcalde del Ayuntamiento de Riba-roja de Túria y hace referencia a una sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana relacionada con el expediente. Se trata de un documento del registro público de la administración autonómica; no constituye por sí mismo una declaración de responsabilidad personal.",
+        "heading": "Consulta sobre la concesión del alcantarillado (Informe 02/2021)",
+        "bodyMarkdown": "El Informe 02/2021 de la Junta Superior de Contractació Administrativa de la Generalitat Valenciana (18 de junio de 2021) responde a una consulta formulada por el propio Ayuntamiento de Riba-roja de Túria — firmada por Roberto Pascual Raga Gadea en nombre y representación de la corporación — sobre el servicio de concesión de la gestión del alcantarillado, control de vertidos y depuración (Expte. 27/2018). El origen del caso es anterior a su mandato: el Pleno aprobó los pliegos de esa licitación el 30 de julio de 2012, y una sentencia del Tribunal Superior de Justícia de la Comunitat Valenciana (apelación 962/2016, firme) declaró la nulidad de los pliegos y de todo el procedimiento de licitación y adjudicación. La Junta concluye que la situación genera un enriquecimiento injusto de la administración (con cita del Dictamen 558/2020 del Consell Consultiu), que procede la revisión de oficio y que el recurso al procedimiento negociado por urgencia no resulta justificable, debiendo acudirse a un procedimiento abierto con publicidad. El documento es de control consultivo y no establece responsabilidades individuales.",
         "sourceIds": [
           "src-015",
           "src-018"
@@ -150,6 +150,15 @@
               "src-017",
               "src-001",
               "src-003"
+            ]
+          },
+          {
+            "role": "Alcalde (mandato en curso)",
+            "org": "Ajuntament de Riba-roja de Túria",
+            "startYear": 2023,
+            "endYear": null,
+            "sourceIds": [
+              "src-001"
             ]
           }
         ]
@@ -932,7 +941,7 @@
   "legalSensitivity": "high",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-30T15:56:39.140Z",
+  "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador. CORRECCIÓN 2026-07-30 (verificación integral contra documentos primarios): narrativa del Informe 02/2021 reescrita — la consulta la formuló el propio Ayuntamiento y el contrato anulado se licitó en 2012, antes del mandato del sr. Raga (TSJCV apelación 962/2016); cita de identity corregida a la ficha; añadido el mandato 2023–actual.",
   "corrections": [],
-  "response": null,
-  "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador."
+  "response": null
 }
