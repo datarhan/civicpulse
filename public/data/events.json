@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T07:13:31.995Z",
+  "generatedAt": "2026-07-30T07:12:13.761Z",
   "source": {
     "url": "https://www.ribarroja.es/es/eventos/rss.xml",
     "platform": "Drupal RSS (oficial)"
@@ -7,7 +7,7 @@
   "stats": {
     "total": 50,
     "upcoming": 27,
-    "nextDate": "2026-07-29T20:00:00.000Z"
+    "nextDate": "2026-07-30T20:00:00.000Z"
   },
   "events": [
     {
@@ -211,16 +211,6 @@
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/Supergirl.jpg?itok=1odK4JCD"
     },
     {
-      "id": "18zv4kc",
-      "title": "Cine 'Las obejas detectives'",
-      "link": "https://www.ribarroja.es/es/evento/cine-%27las-obejas-detectives%27",
-      "eventDate": "2026-07-24T20:00:00.000Z",
-      "eventDateText": "24 de julio de 2026 22:00",
-      "publishedDate": "2026-05-21T15:46:47.000Z",
-      "excerpt": "Venta de entradas anticipadas en: https://aytoribaroja.janto.es/",
-      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/las%20ovejas%20dectetives.jpg?itok=rGCyO6Ae"
-    },
-    {
       "id": "1krqmpo",
       "title": "Cine 'Supergirl'",
       "link": "https://www.ribarroja.es/es/evento/cine-%27supergirl%27-0",
@@ -289,6 +279,16 @@
       "publishedDate": "2026-05-21T15:57:41.000Z",
       "excerpt": "Película gratuita",
       "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/aquaman_.jpg?itok=l6myF9f_"
+    },
+    {
+      "id": "scb32k",
+      "title": "Donación sangre 3 de agosto de 2026",
+      "link": "https://www.ribarroja.es/es/evento/donaci%C3%B3n-sangre-3-de-agosto-de-2026",
+      "eventDate": "2026-08-03T07:30:00.000Z",
+      "eventDateText": "03 de agosto de 2026 09:30",
+      "publishedDate": "2026-07-29T06:17:52.000Z",
+      "excerpt": null,
+      "image": "https://www.ribarroja.es/sites/www.ribarroja.es/files/styles/interior_contenido_/public/20260729%20Cartel%20donacion%20agosto%202026.jpg?itok=nDmzIyLo"
     },
     {
       "id": "1axqhko",

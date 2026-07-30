@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-07-29T07:25:19.131Z",
+  "generatedAt": "2026-07-30T07:17:59.504Z",
   "source": {
     "origin": "https://ribaocupacio.portalemp.com",
     "platform": "portalemp — ribaocupacio · Agència de Col·locació (ADL), Ajuntament de Riba-roja de Túria",
     "listEndpoint": "https://ribaocupacio.portalemp.com/ofertas.html?acc=tableData"
   },
   "stats": {
-    "total": 44,
-    "openTotal": 44,
-    "inRibaRoja": 28,
+    "total": 41,
+    "openTotal": 41,
+    "inRibaRoja": 27,
     "closingSoon": 5,
-    "withDetail": 44,
+    "withDetail": 41,
     "byMonth": {
       "2026-07": 22,
       "2026-06": 16,
-      "2026-05": 4,
+      "2026-05": 1,
       "2026-04": 1,
       "2025-11": 1
     }
@@ -1534,6 +1534,10 @@
           {
             "label": "Salario",
             "value": "Según convenio"
+          },
+          {
+            "label": "Requiere vehículo propio",
+            "value": "Sí"
           }
         ],
         "tipoContrato": "INDIFERENTE",
@@ -1544,6 +1548,7 @@
         "cp": "46190",
         "horario": "De lunes a viernes de 9:00 a 15:45",
         "salario": "Según convenio",
+        "vehiculo": "Sí",
         "ocupaciones": []
       }
     },
@@ -2928,274 +2933,6 @@
         "horario": "DE 8.30 H A 17,30 H. DE LUNES A VIERNES",
         "salario": "Según convenio",
         "funciones": "FORMAR HAMBURGUESAS, EMPAQUETAR, ETC",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2451",
-      "fo": 2451,
-      "codigo": "2026/00153",
-      "titulo": "Secretario/a",
-      "publishedAt": "2026-05-29",
-      "deadline": "2026-07-29",
-      "location": "Vilamarxant (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2451",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00153"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Secretario/a"
-          },
-          {
-            "label": "Observaciones",
-            "value": "Imprescindible vehículo para llegar al puesto de trabajo"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "ACTIVIDADES ADMINISTRATIVAS Y SERVICIOS AUXLIARES"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "3 MESES + INDEFINIDO"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Municipio: Vilamarxant, Provincia: Valencia, CP: 46191"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a viernes a jornada partida"
-          },
-          {
-            "label": "Salario",
-            "value": "1400€ APROX."
-          },
-          {
-            "label": "Funciones",
-            "value": "Las propias del puesto"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "3 MESES + INDEFINIDO",
-        "numPuestos": "2",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "observaciones": "Imprescindible vehículo para llegar al puesto de trabajo",
-        "municipio": "Vilamarxant",
-        "provincia": "Valencia",
-        "cp": "46191",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "Lunes a viernes a jornada partida",
-        "salario": "1400€ APROX.",
-        "funciones": "Las propias del puesto",
-        "vehiculo": "Sí",
-        "ocupaciones": []
-      }
-    },
-    {
-      "id": "2452",
-      "fo": 2452,
-      "codigo": "2026/00152",
-      "titulo": "Personal de limpieza (H/M/D) con discapacidad. Turno nocturno.",
-      "publishedAt": "2026-05-29",
-      "deadline": "2026-07-29",
-      "location": "Chiva Chiva (Valencia)",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2452",
-      "inRibaRoja": false,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00152"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Personal de limpieza (H/M/D) con discapacidad. Turno nocturno."
-          },
-          {
-            "label": "Observaciones",
-            "value": "Imprescindible vehículo propio para desplazarse al centro de trabajo. Certificado de Discapacidad mayor a 33%, o Incapacidad Permanente Total."
-          },
-          {
-            "label": "Porcentaje de discapacidad",
-            "value": "Igual o superior a 33%"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Más de 6 meses"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "2"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Chiva, Municipio: Chiva, Provincia: Valencia, CP: 46370"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa"
-          },
-          {
-            "label": "Horario",
-            "value": "LUNES A VIERNES de 22:00 a 6:00"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "- Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza de maquinarias. - Gestión de residuos y reciclaje. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza"
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Más de 6 meses",
-        "numPuestos": "2",
-        "observaciones": "Imprescindible vehículo propio para desplazarse al centro de trabajo. Certificado de Discapacidad mayor a 33%, o Incapacidad Permanente Total.",
-        "municipio": "Chiva",
-        "provincia": "Valencia",
-        "cp": "46370",
-        "jornada": "Completa",
-        "horario": "LUNES A VIERNES de 22:00 a 6:00",
-        "salario": "Según convenio",
-        "funciones": "- Limpieza de oficinas. - Limpieza de zonas comunes. - Limpieza de maquinarias. - Gestión de residuos y reciclaje. - Manejo de productos y equipos de limpieza. - Reposición de suministros necesarios para la limpieza",
-        "vehiculo": "Sí",
-        "ocupaciones": [
-          {
-            "nombre": "PERSONAL DE LIMPIEZA O LIMPIADORES EN GENERAL",
-            "experiencia": "6 Meses"
-          }
-        ]
-      }
-    },
-    {
-      "id": "2449",
-      "fo": 2449,
-      "codigo": "2026/00151",
-      "titulo": "Auxiliar administrativo/a",
-      "publishedAt": "2026-05-29",
-      "deadline": "2026-07-29",
-      "location": "Poligono del Oliveral Riba-roja de Túria",
-      "status": "Abierta",
-      "statusTone": "ok",
-      "url": "https://ribaocupacio.portalemp.com/ofertas.html?fo=2449",
-      "inRibaRoja": true,
-      "detail": {
-        "fields": [
-          {
-            "label": "Código",
-            "value": "2026/00151"
-          },
-          {
-            "label": "Nombre de la oferta",
-            "value": "Auxiliar administrativo/a"
-          },
-          {
-            "label": "Sector CNAE",
-            "value": "INDUSTRIA MANUFACTURERA"
-          },
-          {
-            "label": "Tipo de contrato",
-            "value": "CONTRATO INDEFINIDO"
-          },
-          {
-            "label": "Duración del contrato",
-            "value": "Puesto con carácter indefinido"
-          },
-          {
-            "label": "Número de puestos",
-            "value": "1"
-          },
-          {
-            "label": "Categoría profesional",
-            "value": "AUXILIARES ADMINISTRATIVOS"
-          },
-          {
-            "label": "Lugar puesto de trabajo",
-            "value": "Poligono del Oliveral, Municipio: Riba-roja de Túria, Provincia: Valencia, CP: 46394"
-          },
-          {
-            "label": "Tipo de jornada laboral",
-            "value": "Completa Turnos: Turno partido"
-          },
-          {
-            "label": "Observaciones jornada",
-            "value": "Vacaciones: se cierran 3 semanas en agosto y el resto se reparte en puentes y días en Navidad."
-          },
-          {
-            "label": "Horario",
-            "value": "Lunes a jueves de 8:00 a 14:00 h y 15:00 a 17:30 h Viernes de 7:00 a 14:30 h"
-          },
-          {
-            "label": "Salario",
-            "value": "Según convenio"
-          },
-          {
-            "label": "Funciones",
-            "value": "Realizaría tareas de archivo. Atención telefónica. Tareas de equipo. Investigación de histórico de clientes para realización de ofertas. Apoyo a otros puestos de trabajo. Realizar las ofertas a clientes en nuestro programa de gestión. Persona con agilidad mental, dinámica, facilidad de comunicación y ganas de trabajar y formar parte del equipo."
-          },
-          {
-            "label": "Requiere vehículo propio",
-            "value": "Sí"
-          },
-          {
-            "label": "Habilidades",
-            "value": "Empatía y habilidades comerciales básicas Proactividad y capacidad de aprendizaje Capacidad de comunicación oral y escrita"
-          },
-          {
-            "label": "Informática",
-            "value": "Dominio de herramientas ofimáticas (Word, Excel, Outlook)"
-          }
-        ],
-        "tipoContrato": "CONTRATO INDEFINIDO",
-        "duracion": "Puesto con carácter indefinido",
-        "numPuestos": "1",
-        "categoria": "AUXILIARES ADMINISTRATIVOS",
-        "municipio": "Riba-roja de Túria",
-        "provincia": "Valencia",
-        "cp": "46394",
-        "jornada": "Completa Turnos: Turno partido",
-        "horario": "Lunes a jueves de 8:00 a 14:00 h y 15:00 a 17:30 h Viernes de 7:00 a 14:30 h",
-        "salario": "Según convenio",
-        "funciones": "Realizaría tareas de archivo. Atención telefónica. Tareas de equipo. Investigación de histórico de clientes para realización de ofertas. Apoyo a otros puestos de trabajo. Realizar las ofertas a clientes en nuestro programa de gestión. Persona con agilidad mental, dinámica, facilidad de comunicación y ganas de trabajar y formar parte del equipo.",
         "vehiculo": "Sí",
         "ocupaciones": []
       }

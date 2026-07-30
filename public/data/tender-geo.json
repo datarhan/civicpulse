@@ -1,16 +1,16 @@
 {
-  "generatedAt": "2026-07-29T07:26:17.163Z",
+  "generatedAt": "2026-07-30T07:20:25.876Z",
   "source": {
-    "tenders": "2026-07-29T07:12:14.642Z",
-    "geo": "2026-07-29T07:13:51.272Z"
+    "tenders": "2026-07-30T07:09:33.923Z",
+    "geo": "2026-07-30T07:12:45.611Z"
   },
   "universe": {
-    "totalContracts": 379,
-    "totalAmount": 14297643.179999994,
+    "totalContracts": 382,
+    "totalAmount": 14730483.179999996,
     "locatedContracts": 31,
     "locatedAmount": 697388.94,
-    "situatedContracts": 92,
-    "situatedAmount": 3354731.1499999994,
+    "situatedContracts": 91,
+    "situatedAmount": 3344259.1999999993,
     "danaContracts": 10,
     "danaAmount": 276297.42000000004,
     "danaAwardedContracts": 73,
@@ -559,7 +559,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "contractCount": 1,
@@ -660,18 +660,6 @@
       ],
       "contractCount": 1,
       "amount": 10807.16,
-      "danaAmount": 0
-    },
-    {
-      "slug": "avinguda-del-castanyer",
-      "name": "Avinguda del Castanyer",
-      "kind": "street",
-      "point": [
-        39.5354222,
-        -0.5360689
-      ],
-      "contractCount": 1,
-      "amount": 10471.95,
       "danaAmount": 0
     },
     {
@@ -784,28 +772,24 @@
       }
     },
     {
-      "id": "4559761",
-      "zones": [
-        "urbanitzacio-la-reva"
-      ],
-      "matchedAlias": {
-        "urbanitzacio-la-reva": "urbanizacion reva"
-      },
+      "id": "3733423",
+      "zones": [],
+      "matchedAlias": {},
       "dana": false,
-      "amount": 58900,
+      "amount": 12000,
       "amountKind": "final",
-      "date": "2024-11-06",
-      "contractType": "construction",
-      "categoryTitle": "construction",
+      "date": "2022-08-30",
+      "contractType": "services",
+      "categoryTitle": "other",
       "point": [
-        39.4840972,
-        -0.572073
+        39.5420868,
+        -0.5438471
       ],
       "place": {
-        "kind": "urbanizacion",
-        "name": "Urbanització La Reva",
-        "matchedText": "Urbanització La Reva",
-        "sourceId": "urbanitzacio-la-reva"
+        "kind": "street",
+        "name": "Avinguda de la Masia de Traver",
+        "matchedText": "Avinguda de la Masia de Traver",
+        "sourceId": "avinguda-de-la-masia-de-traver"
       }
     },
     {
@@ -848,27 +832,6 @@
         "name": "Avinguda de la Pau",
         "matchedText": "Avinguda de la Pau",
         "sourceId": "avinguda-de-la-pau"
-      }
-    },
-    {
-      "id": "3733423",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 12000,
-      "amountKind": "final",
-      "date": "2022-08-30",
-      "contractType": "services",
-      "categoryTitle": "other",
-      "point": [
-        39.5420868,
-        -0.5438471
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Avinguda de la Masia de Traver",
-        "matchedText": "Avinguda de la Masia de Traver",
-        "sourceId": "avinguda-de-la-masia-de-traver"
       }
     },
     {
@@ -960,7 +923,7 @@
       }
     },
     {
-      "id": "4327346",
+      "id": "1892105",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1027,7 +990,7 @@
       }
     },
     {
-      "id": "auto-ig973c",
+      "id": "1892105#1",
       "zones": [],
       "matchedAlias": {},
       "dana": false,
@@ -1045,48 +1008,6 @@
         "name": "Zona Pacadar",
         "matchedText": "Zona Pacadar",
         "sourceId": "zona-pacadar"
-      }
-    },
-    {
-      "id": "4367745",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 76879,
-      "amountKind": "final",
-      "date": "2023-12-04",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5451001,
-        -0.5757313
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Arrosals",
-        "matchedText": "Carrer Arrosals",
-        "sourceId": "carrer-arrosals"
-      }
-    },
-    {
-      "id": "4384147",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 41537.52,
-      "amountKind": "final",
-      "date": "2024-01-10",
-      "contractType": "construction",
-      "categoryTitle": "construction",
-      "point": [
-        39.5451001,
-        -0.5757313
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Carrer Arrosals",
-        "matchedText": "Carrer Arrosals",
-        "sourceId": "carrer-arrosals"
       }
     },
     {
@@ -1129,52 +1050,6 @@
         "name": "Cementerio de San Jaime",
         "matchedText": "Cementerio de San Jaime",
         "sourceId": "way-740051593"
-      }
-    },
-    {
-      "id": "2197024",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5354222,
-        -0.5360689
-      ],
-      "place": {
-        "kind": "street",
-        "name": "Avinguda del Castanyer",
-        "matchedText": "Avinguda del Castanyer",
-        "sourceId": "avinguda-del-castanyer"
-      }
-    },
-    {
-      "id": "2196998",
-      "zones": [
-        "el-pou-d-escoto"
-      ],
-      "matchedAlias": {
-        "el-pou-d-escoto": "escoto"
-      },
-      "dana": false,
-      "amount": 10471.95,
-      "amountKind": "final",
-      "date": "2023-04-26",
-      "contractType": "supplies",
-      "categoryTitle": "electrical",
-      "point": [
-        39.5483742,
-        -0.5912189
-      ],
-      "place": {
-        "kind": "urbanizacion",
-        "name": "el Pou d'Escoto",
-        "matchedText": "el Pou d'Escoto",
-        "sourceId": "el-pou-d-escoto"
       }
     },
     {
@@ -1706,6 +1581,52 @@
       }
     },
     {
+      "id": "1891608",
+      "zones": [
+        "el-pou-d-escoto"
+      ],
+      "matchedAlias": {
+        "el-pou-d-escoto": "escoto"
+      },
+      "dana": false,
+      "amount": 10471.95,
+      "amountKind": "final",
+      "date": "2023-04-26",
+      "contractType": "supplies",
+      "categoryTitle": "electrical",
+      "point": [
+        39.5483742,
+        -0.5912189
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "el Pou d'Escoto",
+        "matchedText": "el Pou d'Escoto",
+        "sourceId": "el-pou-d-escoto"
+      }
+    },
+    {
+      "id": "1892105#4",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 76879,
+      "amountKind": "final",
+      "date": "2023-12-04",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5451001,
+        -0.5757313
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Arrosals",
+        "matchedText": "Carrer Arrosals",
+        "sourceId": "carrer-arrosals"
+      }
+    },
+    {
       "id": "2868019",
       "zones": [],
       "matchedAlias": {},
@@ -1724,6 +1645,52 @@
         "name": "Carrer del Mas de Montes",
         "matchedText": "Carrer del Mas de Montes",
         "sourceId": "carrer-del-mas-de-montes"
+      }
+    },
+    {
+      "id": "1892105#6",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 41537.52,
+      "amountKind": "final",
+      "date": "2024-01-10",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.5451001,
+        -0.5757313
+      ],
+      "place": {
+        "kind": "street",
+        "name": "Carrer Arrosals",
+        "matchedText": "Carrer Arrosals",
+        "sourceId": "carrer-arrosals"
+      }
+    },
+    {
+      "id": "1892105#7",
+      "zones": [
+        "urbanitzacio-la-reva"
+      ],
+      "matchedAlias": {
+        "urbanitzacio-la-reva": "urbanizacion reva"
+      },
+      "dana": false,
+      "amount": 58900,
+      "amountKind": "final",
+      "date": "2024-11-06",
+      "contractType": "construction",
+      "categoryTitle": "construction",
+      "point": [
+        39.4840972,
+        -0.572073
+      ],
+      "place": {
+        "kind": "urbanizacion",
+        "name": "Urbanització La Reva",
+        "matchedText": "Urbanització La Reva",
+        "sourceId": "urbanitzacio-la-reva"
       }
     },
     {
@@ -2121,27 +2088,6 @@
       }
     },
     {
-      "id": "2870786",
-      "zones": [],
-      "matchedAlias": {},
-      "dana": false,
-      "amount": 6995,
-      "amountKind": "final",
-      "date": "2022-04-01",
-      "contractType": "supplies",
-      "categoryTitle": "energy",
-      "point": [
-        39.5469545,
-        -0.5666236
-      ],
-      "place": {
-        "kind": "poi",
-        "name": "Ajuntament de Riba-roja de Túria",
-        "matchedText": "Ajuntament de Riba-roja de Túria",
-        "sourceId": "node-5809597354"
-      }
-    },
-    {
       "id": "3733335",
       "zones": [],
       "matchedAlias": {},
@@ -2160,6 +2106,27 @@
         "name": "Mercado Municipal",
         "matchedText": "Mercado Municipal",
         "sourceId": "mercat-municipal"
+      }
+    },
+    {
+      "id": "2870786",
+      "zones": [],
+      "matchedAlias": {},
+      "dana": false,
+      "amount": 6995,
+      "amountKind": "final",
+      "date": "2022-04-01",
+      "contractType": "supplies",
+      "categoryTitle": "energy",
+      "point": [
+        39.5469545,
+        -0.5666236
+      ],
+      "place": {
+        "kind": "poi",
+        "name": "Ajuntament de Riba-roja de Túria",
+        "matchedText": "Ajuntament de Riba-roja de Túria",
+        "sourceId": "node-5809597354"
       }
     },
     {
@@ -2357,7 +2324,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477716,
+        39.5477533,
         -0.5797717
       ],
       "place": {

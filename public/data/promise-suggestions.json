@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-29T07:26:13.239Z",
+  "generatedAt": "2026-07-30T07:20:22.006Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
   "counts": {
     "total": 24,
     "byProposedStatus": {
-      "documentada": 22,
-      "en-progreso": 2
+      "documentada": 21,
+      "en-progreso": 3
     },
     "llmEvidence": 0
   },
@@ -33,28 +33,6 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
-            "euro"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja de Túria un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "millon",
-            "euro"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
           "date": "2026-04-15",
           "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
@@ -75,28 +53,27 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNakRrZUdQNWp6SmZtbThMSVJRb3ZVOWduczNjN1MxY0F0OHZheTJHWEN6QlJHd0R4TUI2eTc3VUh1WnBXRG5sRktvRVVIaXFvX2FPeEY4dXNTX3U3THl6SFRSSy1HYmJNWWFxQjJFMDBjMFpBYkNSdm9lTzJpVnBLcFc1NUNpOEIyOHlEREFnT3Jkbjc4MXJ6cHVMU28xaGhvQkZ2NjF0WEtLUkRpYTlWMHVLN0NYR0xkQzEtOXNzN0FHY0ZHNGRBMnR0V3dHUG95OElvYThqZ2NRQdIB3wFBVV95cUxPSFJ1TXlrSDhIUzdUeHhQVFpwVmp6Vlp0NXoxLTctMS0tQ3hGb2VzNXZ2bUw3Nnk1Z2l0V1QtM0FLa3BPeXhVcmMyMG44MmpQQVd5ZU00U0pDdy1KeUlKUEl3UEpXME9KUVcxTXhxeWFpZi1GWWhiNDdrWXFmem5EREdDNzFLVC1yN3c0dXV6ODFrWWxLcXdHeE1jS2pQd09uTWhyRXk4SUZ0ZHk2QTloT0FGb0ttRFFoWGxGRDg5NXRyOWJFR0pBWlFpNTJJckRSanFuNlg2bm5sUDlmV1Nn?oc=5",
+          "date": "2026-03-17",
+          "quote": "El alcalde de Riba-roja de Túria retoma los encuentros 'Espai Obert' con los vecinos para explicar el presupuesto de 2026",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "presupuesto",
+            "2026"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
       "proposedStatus": "documentada",
       "confidence": 0.287,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja de Túria un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "inversion",
-            "millon",
-            "euro"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
           "date": "2026-04-08",
@@ -110,22 +87,11 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "inversion",
-            "euro"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-aprueba-el-plan-territorial-municipal-de-emergencias-para-proteger-a-la-poblaci%C3%B3n-frente-a-las-olas-de-calor%2C-los-incendios%2C-las-inundaciones-o-los-temporales",
+          "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
           "date": "2026-07-03",
           "quote": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "plan",
             "aprueba"
@@ -141,10 +107,21 @@
             "inversion",
             "millon"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNSXVDNFh4b2F5Q050eW9vX1BJclVqRHVqM2tKdkhoY2xkSkF6S1lrN2szdEZDZkhIQ1pjYUJ1dmd5Y2M0dXM1bkwwNEZTVXhWMS1UUHFBTzlNb1djaW5fYVd4Z1BiTDdELWNKdUE2U04wNnhmNWN2cnFPVkRaN1ZmV0tDSVlCZ20wTDdLd1FWSER0dVNESlBTeThwYUo3UEFlQW44MkhHSGNtdlJ0ZkdaN3YtUkVjd3ZTQVZjbGstTkZncmtfMUhvYWdFcGl6eXVEWjFlQ1lSTmVSR3VuS0Z5T3dDNGtxazZxZlV1XzhR?oc=5",
+          "date": "2026-04-15",
+          "quote": "El Gobierno destina 19 millones de euros a las obras de emergencia y restauración fluvial del Túria",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -164,18 +141,6 @@
             "fondo",
             "europeo",
             "recibira",
-            "tras"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja de Túria un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "dana",
-            "millon",
             "tras"
           ]
         },
@@ -212,10 +177,21 @@
             "dana",
             "tras"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
+          "date": "2026-07-07",
+          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
+          "kind": "press",
+          "publisher": "Levante-EMV",
+          "matchedKeywords": [
+            "dana",
+            "tras"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -228,17 +204,6 @@
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
           "publisher": "València Extra",
-          "matchedKeywords": [
-            "suelo",
-            "vivienda"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/la-generalitat-y-el-ayuntamiento-de-riba-roja-colaboran-para-desarrollar-suelo-para-viviendas-e-industrias-en-zonas-seguras",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -268,7 +233,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -287,28 +252,6 @@
             "2026",
             "2029",
             "impulsara"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-mejora-de-la-accesibilidad-en-viviendas-y-edificios-residenciales-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
-          "date": "2026-07-28",
-          "quote": "Bases ayudas económicas para la mejora de la accesibilidad en viviendas y edificios residenciales en Riba-roja de Túria, ejercicios 2026-27",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "vivienda",
-            "2026"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/bases-ayudas-econ%C3%B3micas-para-la-rehabilitaci%C3%B3n-de-fachadas-de-viviendas-en-riba-roja-de-t%C3%BAria%2C-ejercicios-2026-27",
-          "date": "2026-07-28",
-          "quote": "Bases ayudas económicas para la rehabilitación de fachadas de viviendas en Riba-roja de Túria, ejercicios 2026-27",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "vivienda",
-            "2026"
           ]
         },
         {
@@ -355,7 +298,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -390,7 +333,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -416,17 +359,6 @@
           ]
         },
         {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
-            "participacion"
-          ]
-        },
-        {
           "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOLTg0R21tWmZmVWZDZ1lXbHdFS0ltRERMNm5GbGdnZkdWRkVzcUVrdjQyajBwS2NNS3ViOHZXTzRpZXBuOW16Q3BLa3hFZXQ5MTBXZGhyR1EycmMybk82VGtpbmdfRnlDWG4zaWNFNDFfVnRJWG9jd09ubnVFNW5JR1BFbGVya1JlSnVUT25Wa2ZYS1FlTkw3TDkzUUItdmhhZFJQblRFN2Q4cm1fdjNDc3lBTzE5NkZrY3pRYXUxTmJxZ9IBxwFBVV95cUxQbFMwUVl4el9lVXg4WTZaZF9oWDI2b1VDQUJaWHMtVm5MQ0dWNlk4UG9iYjFzSzlzTEpDMXFKLU9wb3pNc0hlYzRNTWVoVVN6TkVkbXg0TWhlanV3cGJvR3ZjSHZBUmNvb05UZHB1eE5oeW1aWVRleERZb0xvYkNiVmpFenM2dGZZU1lWSkJkdFQ1dzFCYWdwaG5IaUxSOC1Wc3Ryd0pDVE9kWndRRzFWZDFsZ3ZVQWN2cmMtb1YtMDNJZGJnVnZz?oc=5",
           "date": "2026-03-17",
           "quote": "Riba-roja de Túria aprueba su presupuesto municipal de 2026, el más alto de su historia con 46 millones",
@@ -439,7 +371,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -459,7 +391,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -467,7 +399,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -475,23 +407,22 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
-      "proposedStatus": "documentada",
-      "confidence": 0.287,
+      "proposedStatus": "en-progreso",
+      "confidence": 0.35,
       "reasoning": [
         {
-          "url": "https://www.ribarroja.es/es/noticia/veolia-ejecuta-en-riba-roja-de-t%C3%BAria-un-30%25-de-las-obras-de-reposici%C3%B3n-y-mejora-de-las-infraestructuras-h%C3%ADdricas-tras-la-dana-que-supondr%C3%A1n-una-inversi%C3%B3n-de-4%2C4-millones-de-euros",
-          "date": "2026-06-11",
-          "quote": "Veolia ejecuta en Riba-roja de Túria un 30% de las obras de reposición y mejora de las infraestructuras hídricas tras la DANA que supondrán una inversión de 4,4 millones de euros",
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
+          "date": "2026-07-03",
+          "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "dana",
-            "millon",
-            "euro"
+            "municipio"
           ]
         },
         {
@@ -500,17 +431,6 @@
           "quote": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
           "kind": "press",
           "publisher": "Levante-EMV",
-          "matchedKeywords": [
-            "dana",
-            "millon"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPMnlfdjAxdlpGZ2hOejB5OS0xQVVUOGdONkswYS1hLWtjNjVETy1wQ1VUUkhBdDUyUjRFejhwQUNKWmRLSzFzeG52cGIzWTNDQWxsOWk1ZzBteEdvZHAyMHQ3XzQzZTFCdWEwN2pWX0liWVZndXd0Q01Cc2pOUzZDaNIBgAFBVV95cUxPZ0lnNkRITFBueE1wcUl2SC1RVWsybnNpaXlZVmZld3MyUzBDZ1JNYWpIcGpCWjliTUc1NFVod0htOTVfNTk5d2JQbmM5NDB5LU55T1lLNFg4QlVsRUxBTjlJbmRDZlg2NzBRRE1vME1JQ2hrN2wyZHR0dl9hd0huRw?oc=5",
-          "date": "2026-05-11",
-          "quote": "Iberdrola invierte 10 millones en Riba-roja para la renovación de instalaciones afectadas por la dana",
-          "kind": "press",
-          "publisher": "Expansión",
           "matchedKeywords": [
             "dana",
             "millon"
@@ -537,10 +457,21 @@
             "millon",
             "euro"
           ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxNZ2ZLZVItLUJ6ekJfVGgxMzNTUDJLNkd0alNRejl0eXhFZGRkUU1BR29kb3cxSkRnRE9NQ1VJUElCZEdYNUZCTG51Qm04TnVfcWxfX2h3RVhtc2Y1dVNnVkcwRzRNYTJwbnBpbmthU0pjZ0xOMUZtZmxxZ0FRa2cxZUVCUTd4UmRwZFMxRGFnaDBzU2ZoMWZsQTF4QWZKdUhmbE5SVksxaHR5a0cxTmVxTVYzc1pOMlktb05HbEdySk1LTUVBUTAydlE3MnpBenRhbm1Wc2hMdmNwbGU3cXBjT0FZY19PRjNzc1JoYi1kSFljTUtUR1E?oc=5",
+          "date": "2026-03-12",
+          "quote": "Riba-roja resuelve el contrato de recogida de residuos que adjudicó a Garbialdi por 17,3 millones de euros",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
+          "matchedKeywords": [
+            "millon",
+            "euro"
+          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -571,24 +502,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
+      "confidence": 0,
       "reasoning": [
-        {
-          "url": "https://news.google.com/rss/articles/CBMihAJBVV95cUxQaGRtV2FkRDFueG5qdm1JUDJkdWNOQVI5LURwSmtzVnFNUGdxblAxRjVPODM5RXJfdk0tQU1yVjJWRVNQXzJkcnRNRHdYNFpLMlpteFJSQk9obmw5cW1iM2g4V093c2JVX0IzcGxBbmw2THFrMnk4UWlfQ1hHWWpFVmFseTlGOTlqdlcxMEJTa3JRR3BaMVJwc1RERlY5MXZQMUZMbmlrWE5qME0tN0NSSVA4ZFlKV3JJTURjLUJYTTl1T2F2ZFpUTElrQzB2U2ZzQnVrODg0TzB5cGdxNnMwSVB4NG5aRnBISFE4ZTNfY2lkeHJtUlVGcTdPeFg2RjhKc1MxaA?oc=5",
-          "date": "2026-03-17",
-          "quote": "El alcalde de Riba-roja acerca la atención ciudadana y la gestión municipal a urbanizaciones y barrios del municipio",
-          "kind": "press",
-          "publisher": "Valencia Plaza",
-          "matchedKeywords": [
-            "gestion",
-            "municipio"
-          ]
-        },
         {
           "url": "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano",
           "date": "2026-03-09",
@@ -622,7 +542,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -666,7 +586,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -710,7 +630,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -718,11 +638,11 @@
       "confidence": 0.35,
       "reasoning": [
         {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-n%C3%BAmero-de-parados-en-casi-1.100-personas-en-los-%C3%BAltimos-a%C3%B1os-y-sit%C3%BAa-la-tasa-de-desempleados-en-8%E2%80%9990%25-sobre-el-total",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPV3hRcloxaVl3cnRzQlVKbU5KeFM5S2Q3dWhrNi11S2FHODcwd0xzZW5ySXBaSEtkdW1SZlNEWVdNVmRtTVA0Z056R1h2a2NRUXdUd20zaTV6bHZGcUU4ZDNsak5QeUxGQnFkbFlSUlF6emFORThhenRhNk1SWTV2dmw4cWtscEFiQUNjMjRmbUZES2tQcDVYel83V0RPWXVOa0dqZWEtZ2FjU09sNC10OElUMHNsN0M3dVlnSmlJOHBpNUJBU1NNWUJTN3NsVU4xdUxB?oc=5",
           "date": "2026-06-26",
-          "quote": "Riba-roja reduce el número de parados en casi 1.100 personas en los últimos años y sitúa la tasa de desempleados en 8’90% sobre el total",
+          "quote": "Riba-roja reduce el número de parados en casi 1.100 personas en los últimos años",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "reduce",
             "numero"
@@ -740,42 +660,15 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
       "proposedStatus": "documentada",
-      "confidence": 0.4,
-      "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-destina-17.200-euros-para-las-asociaciones-de-vecinos-y-las-comisiones-de-fiestas-de-las-urbanizaciones-para-promocionar-las-actividades-y-los-actos-festivos-de-este-a%C3%B1o",
-          "date": "2026-06-23",
-          "quote": "Riba-roja de Túria destina 17.200 euros para las asociaciones de vecinos y las comisiones de fiestas de las urbanizaciones para promocionar las actividades y los actos festivos de este año",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "asociacion",
-            "comision",
-            "fiesta",
-            "urbanizacion",
-            "vecino"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/el-ayuntamiento-de-riba-roja-de-t%C3%BAria-renueva-su-participaci%C3%B3n-en-el-programa-platea-2026-2027-con-una-inversi%C3%B3n-de-61.000-euros-en-artes-esc%C3%A9nicas",
-          "date": "2026-07-27",
-          "quote": "El Ayuntamiento de Riba-roja de Túria renueva su participación en el programa PLATEA 2026-2027 con una inversión de 61.000 euros en artes escénicas",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "euro",
-            "participacion"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -788,6 +681,18 @@
           "quote": "El Ejército desmonta el puente militar de Riba-roja tras 19 meses de servicio después de la dana",
           "kind": "press",
           "publisher": "El Periódico de Aquí",
+          "matchedKeywords": [
+            "tras",
+            "puente",
+            "militar"
+          ]
+        },
+        {
+          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
+          "date": "2026-07-03",
+          "quote": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
+          "kind": "press",
+          "publisher": "Valencia Plaza",
           "matchedKeywords": [
             "tras",
             "puente",
@@ -808,38 +713,15 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
-      "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-de-t%C3%BAria-reclama-a-la-generalitat-la-reactivaci%C3%B3n-del-proyecto-para-prolongar-la-llegada-del-metro-hasta-el-centro-del-casco-urbano-y-una-pasarela-en-val%C3%A8ncia-la-vella",
-          "date": "2026-06-08",
-          "quote": "Riba-roja de Túria reclama a la Generalitat la reactivación del proyecto para prolongar la llegada del metro hasta el centro del casco urbano y una pasarela en València la Vella",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "metro",
-            "proyecto"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNN3VfOHBuMm1SZlk0OXpSbk45bU5Rd1dVVkdxX0h0QUlHSXJQeGdQdk81ZFdvbDRubGViUHF0TGRxRlJWLW5VTmF3Zy1JMG9YdnpxX2R4TnZlQTIxRXdaZFlMVzlkS0hWS0JrMXJjckhHR1pPNllZTk5NcmdIN0FnSGVINVBJdWFiLTB4WXJqclBKN2pBWURhdnlTb3FwdHdCNG9KRlpYZ2RzMGdvSTRpczduSmplUFgtVzc0RGVZSlBWX1dSNWtyeEZHLTdzZHlMa0w2WA?oc=5",
-          "date": "2026-06-08",
-          "quote": "Riba-roja pide reactivar el proyecto para llevar el metro hasta el casco urbano",
-          "kind": "press",
-          "publisher": "El Periódico de Aquí",
-          "matchedKeywords": [
-            "metro",
-            "proyecto"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -858,7 +740,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -878,28 +760,13 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
       "proposedStatus": "documentada",
       "confidence": 0.4,
       "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
-          "date": "2026-06-16",
-          "quote": "Riba-roja repartirá de forma gratuita más de 2.000 helados a las personas asistentes al Cinema d'Estiu",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "helado",
-            "cinema",
-            "estiu",
-            "repartira",
-            "persona",
-            "asistent"
-          ]
-        },
         {
           "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxPVmlicEE2Z25xZi15c1NmMnNCdWRjSTlDbGlZU1BGLS1XYmVveU05OGZQYUFGN2tOS2lDajIwSGRac1Y1aklEdE5JYnFTWW9qTXdGM2hkMTc4bVFVc082bXRzeGoyMGJWV2RLOTYwaW0zTlE3NlRhTXVmaWd4VnhfSGNrcGx6cm55WlhxY1RBWmtlYlNfNUpBbjJwdHBJMXlHMi1OSk5iYVpNQVR2VGZuSlJIRWJnMXpkWHpSM3ZrZlhFUzdHWThJTDZFTUM3djhxbjAyN2VvWdIB3AFBVV95cUxQM3JzY0N1Q0NkQ3plTUNwclRWZXNxOTFzLXBVdldaYWpaTnA1Q3g2Y000RzdEUHBiN0NwODdmRFhDaDhzUW9la3dIUTNEaGZqMldXLU00Q3U0OUpuVGt5Uk81OXJLOGNLelZQZzZJeUE2UjZmVHRQREtobi1mbkFnSTNKRDlYSDhOTUNoTUVIcDlQa1J2akE4NGVXcVJVUEFGNmNHT1pDSEl2WWxrRnYwZXllQWh6NURpUURlRzR1OWZSVnI4c1dpQ1VabFd2aWlwbXNTLURfRzlCMFlk?oc=5",
           "date": "2026-06-16",
@@ -924,21 +791,10 @@
             "helado",
             "estiu"
           ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-reduce-el-paro-en-casi-100-personas-entre-junio-del-pasado-a%C3%B1o-y-el-actual-y-las-afiliaciones-a-la-seguridad-social-vuelven-a-marcar-un-nuevo-r%C3%A9cord-de-22.094",
-          "date": "2026-07-13",
-          "quote": "Riba-roja reduce el paro en casi 100 personas entre junio del pasado año y el actual y las afiliaciones a la Seguridad Social vuelven a marcar un nuevo récord de 22.094",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "entre",
-            "persona"
-          ]
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -946,14 +802,14 @@
       "confidence": 0.175,
       "reasoning": [
         {
-          "url": "https://www.ribarroja.es/es/noticia/riba-roja-repartir%C3%A1-de-forma-gratuita-m%C3%A1s-de-2.000-helados-a-las-personas-asistentes-al-cinema-d%27estiu",
-          "date": "2026-06-16",
-          "quote": "Riba-roja repartirá de forma gratuita más de 2.000 helados a las personas asistentes al Cinema d'Estiu",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxONi1XQzBZQ1pNZGFKTGZVeUhsRDBpTWhsaG45d3l1T05EdjU5alNxQUJFT1hZZmVRZDYzdElTcmx4dXZXMUpyYVRTRDJnUzFwNDVpTDN4Vjh3aDZVZWxYbXlQWlhueXhhT3lpUkxlZ2c5QWduRDd2T0tUc0gwbVU3RnE5Zw?oc=5",
+          "date": "2026-07-30",
+          "quote": "Fiestas Patronales de Agosto de Riba-roja de Túria 2026: programa completo de actos y conciertos gratuitos",
           "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
+          "publisher": "Valenciabonita",
           "matchedKeywords": [
-            "cinema",
-            "estiu"
+            "gratuito",
+            "agosto"
           ]
         },
         {
@@ -969,49 +825,15 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
       "proposedStatus": "documentada",
-      "confidence": 0.175,
-      "reasoning": [
-        {
-          "url": "https://www.ribarroja.es/es/noticia/ocupaci%C3%B3n-temporal-de-v%C3%ADa-p%C3%BAblica-para-la-instalaci%C3%B3n-de-televisores-para-ver-la-final-del-mundial",
-          "date": "2026-07-17",
-          "quote": "Ocupación temporal de vía pública para la instalación de televisores para ver la final del Mundial",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "instalacion",
-            "final"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/convocatoria-extraordinaria-de-pruebas-de-acceso-a-las-ense%C3%B1anzas-elementales-y-profesionales-de-m%C3%BAsica-y-danza%2C-curso-2026-2027",
-          "date": "2026-07-14",
-          "quote": "Convocatoria Extraordinaria de pruebas de acceso a las Enseñanzas Elementales y Profesionales de Música y Danza, curso 2026-2027",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
-            "musica"
-          ]
-        },
-        {
-          "url": "https://www.ribarroja.es/es/noticia/talleres-de-sensibilizaci%C3%B3n-musical-del-conservatorio-de-m%C3%BAsica-para-el-curso-2026-2027",
-          "date": "2026-06-17",
-          "quote": "Talleres de Sensibilización Musical del Conservatorio de Música para el curso 2026-2027",
-          "kind": "press",
-          "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "2026",
-            "musica"
-          ]
-        }
-      ],
+      "confidence": 0,
+      "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-07-29T07:26:13.130Z"
+      "generatedAt": "2026-07-30T07:20:21.904Z"
     }
   ],
   "llmEvidence": [],
