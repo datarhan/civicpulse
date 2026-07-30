@@ -27,10 +27,12 @@ describe('parseEleccionesLocales', () => {
     expect([...pcts].sort((a, b) => b - a)).toEqual(pcts)
   })
 
-  it('parses the full multi-election series back to 2003', () => {
+  it('parses the full multi-election series (2023 back into the 1980s, strictly descending)', () => {
     const snap = parseEleccionesLocales(FIXTURE, '46214')
     const years = snap.elections.map((e) => e.year)
-    expect(years).toEqual([2023, 2019, 2015, 2011, 2007, 2003])
+    expect(years.slice(0, 6)).toEqual([2023, 2019, 2015, 2011, 2007, 2003])
+    expect(years[years.length - 1]).toBeLessThan(2000) // 1900s tail present
+    expect(years.every((y, i) => i === 0 || y < years[i - 1])).toBe(true)
     const r19 = Object.fromEntries(snap.elections[1].results.map((p) => [p.party, p.pct]))
     expect(r19['PSPV-PSOE']).toBeCloseTo(45.92, 2)
     expect(r19['PP']).toBeCloseTo(18.88, 2)
