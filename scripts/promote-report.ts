@@ -33,6 +33,7 @@ import {
   type JournalistReportDraft,
   type JournalistReportsSnapshot,
 } from '../src/scraper/journalist'
+import { pruneUncitedSources } from '../src/scraper/journalist-agent/builders'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
 const DRAFTS = resolve('public/data/journalist-reports-suggestions.json')
@@ -137,8 +138,18 @@ function main(): void {
     requiresHumanApproval?: boolean
   }
   void _strip
+  // Published contract = sources cited by the report. The research
+  // sweep's unused (often homonym) ledger rows stay in the draft only.
+  const citedSources = pruneUncitedSources(draft.sections, draft.sources)
+  if (citedSources.length < draft.sources.length) {
+    process.stdout.write(
+      `[promote-report] pruned ${draft.sources.length - citedSources.length} uncited source rows ` +
+        `(${draft.sources.length}→${citedSources.length}); full trail stays in the draft\n`,
+    )
+  }
   const report: JournalistReport = {
     ...(base as Omit<JournalistReportDraft, 'requiresHumanApproval'>),
+    sources: citedSources,
     promotedBy: opts.curator,
     promotedAt: new Date().toISOString(),
     ...(opts.curatorNotes ? { curatorNotes: opts.curatorNotes } : {}),

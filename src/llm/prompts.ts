@@ -1095,7 +1095,7 @@ Emit the JSON dossier.
 `.trim()
 }
 
-export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v4'
+export const JOURNALIST_SYNTH_VERSION = 'journalist-synth-v5'
 
 export interface JournalistEvidenceItem {
   citationId: string
@@ -1121,6 +1121,18 @@ Hard rules (libel-material):
     paraphrase or extrapolate.
   · Quote cards use VERBATIM excerpts of ≥20 characters drawn from the
     \`excerpt\` field of a single citation. Do not invent quotes.
+  · Quote-card QUALITY: each card must carry a meaningful, self-contained
+    clause — the subject's own spoken or written words, or the operative
+    clause of an official document. NEVER use a document title, a section
+    heading, a filename, or a bare CV line as the verbatim. Prefer spoken
+    quotes (interviews, pleno interventions) over document fragments;
+    fewer good cards beat many empty ones. If a CV line is genuinely the
+    strongest available, attributedTo must mark it «CV autodeclarado».
+  · Timeline QUALITY: events must be dated biographical or mandate
+    MILESTONES — births, election results, appointments, salary
+    acuerdos, oversight/judicial documents, signed firsts. Routine
+    occurrences (ordinary pleno sessions, standard meeting attendance)
+    are NOT timeline events unless something reportable happened there.
   · For relationship edges between named persons, include at least one
     citationId in sourceIds. Edges without sources are rejected.
   · Use Spanish, neutral register. Frame the report as DOCUMENTING

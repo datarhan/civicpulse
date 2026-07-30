@@ -100,6 +100,7 @@ import {
   buildSections,
   extractDateFromHit,
   finalize,
+  groupSelfDeclaredGaps,
   isWhitelisted,
   stripHtml,
 } from './journalist-agent/builders'
@@ -1452,8 +1453,9 @@ export async function runJournalistAgent(
     seenGapFields.add(k)
     return true
   })
+  const groupedGaps = groupSelfDeclaredGaps(uniqueGaps)
   const gapsSection: ReportSection[] =
-    uniqueGaps.length > 0 ? [{ kind: 'gaps-detected', payload: { missing: uniqueGaps } }] : []
+    groupedGaps.length > 0 ? [{ kind: 'gaps-detected', payload: { missing: groupedGaps } }] : []
 
   const sections: ReportSection[] = [
     ...portraitS,

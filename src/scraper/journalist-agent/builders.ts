@@ -21,6 +21,81 @@ import { AGENT_VERSION, DRAFT_PROMPT_VERSION, PARTY_TONE, type RunAgentResult } 
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
+export interface GapRow {
+  field: string
+  reason: string
+}
+
+// The bio-extract prompt mandates one gap row PER self-declared item
+// («education[0]», «careerProfessional[2]», …) — precise for merging, but
+// unreadable raw on a public page (2026-07-30 operator review: 9 identical
+// machine strings drowned the one informative row). Collapse the per-item
+// self-declared rows into one human row per theme; every other row passes
+// through untouched, in order.
+const SELF_DECLARED_REASON_RE = /s[oó]lo autodeclarado/i
+const SELF_DECLARED_THEMES: Array<{ rx: RegExp; label: string; reason: string }> = [
+  {
+    rx: /^identity/i,
+    label: 'Identidad (nacimiento)',
+    reason:
+      'La fecha y el lugar de nacimiento constan únicamente en el CV autodeclarado del propio sujeto (ficha oficial de transparencia); sin corroboración independiente localizada.',
+  },
+  {
+    rx: /^education/i,
+    label: 'Formación declarada',
+    reason:
+      'Los estudios declarados constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada.',
+  },
+  {
+    rx: /^career/i,
+    label: 'Trayectoria declarada',
+    reason:
+      'Las etapas profesionales o políticas marcadas «según su CV» constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada.',
+  },
+]
+
+export function groupSelfDeclaredGaps(rows: ReadonlyArray<GapRow>): GapRow[] {
+  const out: GapRow[] = []
+  const emitted = new Set<string>()
+  for (const g of rows) {
+    const theme = SELF_DECLARED_REASON_RE.test(g.reason)
+      ? SELF_DECLARED_THEMES.find((t) => t.rx.test(g.field))
+      : undefined
+    if (!theme) {
+      out.push(g)
+      continue
+    }
+    if (emitted.has(theme.label)) continue
+    emitted.add(theme.label)
+    out.push({ field: theme.label, reason: theme.reason })
+  }
+  return out
+}
+
+// Published contract = sources CITED by the report. Research sweeps leave
+// dozens of unused (often homonym) hits in the draft ledger; publishing
+// them misleads (2026-07-30: 35 of 52 rows were cited by nothing, incl.
+// Wikipedia's «Robert (muñeco)»). Walk the sections for sourceIds/sourceId
+// refs and keep only cited rows. The draft keeps the full research trail.
+export function pruneUncitedSources(
+  sections: ReadonlyArray<ReportSection>,
+  sources: ReadonlyArray<SourceCitation>,
+): SourceCitation[] {
+  const referenced = new Set<string>()
+  const walk = (v: unknown): void => {
+    if (Array.isArray(v)) {
+      for (const x of v) walk(x)
+    } else if (v && typeof v === 'object') {
+      const o = v as Record<string, unknown>
+      if (Array.isArray(o.sourceIds)) for (const id of o.sourceIds) referenced.add(String(id))
+      if (typeof o.sourceId === 'string') referenced.add(o.sourceId)
+      for (const x of Object.values(o)) walk(x)
+    }
+  }
+  walk(sections)
+  return sources.filter((s) => referenced.has(s.id))
+}
+
 const TRUSTED_HOSTS = new Set([
   'ribarroja.es',
   'www.ribarroja.es',
