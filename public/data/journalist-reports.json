@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T15:56:39.141Z",
+  "generatedAt": "2026-07-30T16:27:15.491Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -190,23 +190,6 @@
                 "startYear": 1989,
                 "sourceIds": [
                   "src-002"
-                ]
-              }
-            ]
-          }
-        },
-        {
-          "kind": "legal-record",
-          "payload": {
-            "items": [
-              {
-                "caseRef": "sentencia 139/19",
-                "court": "Juzgado de lo Social",
-                "date": "2019-06-17",
-                "verbatimRef": "Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... del/de la sentencia número 139/19 del Juzgado de lo Social número.",
-                "sourceIds": [
-                  "src-016",
-                  "src-004"
                 ]
               }
             ]
@@ -951,14 +934,14 @@
         "narrative[Actividad plenaria]: 'secretaria general, Ylenia Díaz Morán' has no supporting citation excerpt among provided sources — soften or corroborate.",
         "narrative[Trayectoria profesional y formación]: 'educación secundaria obligatoria' may overstate src-002's literal 'Educación 2ª obligatoria (EGB)'.",
         "career-political: 2015 start year for first Alcalde term is not directly shown in any cited excerpt (src-002 excerpt cuts off before political-role dates).",
-        "legal-record item is truncated mid-field ('Gadea. 2019'); partially matches src-004/src-016 (sentencia 139/19) but full verbatim is unverifiable from given excerpt.",
-        "Judicial tokens ('Sentencia', case 139/19) appear in src-015/src-016 and the legal-record item; informe explicitly disclaims a personal-responsibility finding."
+        "legal-record: fila 139/19 RETIRADA — falsa asociación por colindancia en boletín multi-anuncio (ver curatorNotes)"
       ],
       "legalSensitivity": "high",
       "promotedBy": "Sergei Lutchenko",
       "promotedAt": "2026-07-30T15:56:39.140Z",
       "corrections": [],
-      "response": null
+      "response": null,
+      "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador."
     }
   ]
 }
