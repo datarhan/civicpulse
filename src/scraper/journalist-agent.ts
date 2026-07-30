@@ -93,6 +93,7 @@ import {
 
 import { keepValidUrlAccounts } from './journalist-agent/shared'
 import { groundNarrativeSections } from './journalist-agent/grounding'
+import { synthesizeLegalRecordRows } from './journalist-agent/legal-rows'
 import type { RunAgentOptions, RunAgentResult } from './journalist-agent/shared'
 import {
   buildEarlyDraft,
@@ -366,6 +367,71 @@ export async function runJournalistAgent(
           excerpt: cite.excerpt,
         })
       }
+    }
+
+    // Financial floor: the subject's official remuneration from our own
+    // curated snapshots — dedicaciones.json (pleno acuerdo, per-slug) and
+    // ispa.json (Hacienda's ISPA; only the alcalde is identifiable there).
+    // These two localPaths are explicitly allow-listed by the financial
+    // projection gate below (official data, not self-declared).
+    try {
+      const DED = resolve('public/data/dedicaciones.json')
+      if (subjectSlug && existsSync(DED)) {
+        const ded = JSON.parse(readFileSync(DED, 'utf8')) as {
+          source?: { title?: string }
+          byOfficial?: Array<{
+            slug: string
+            amountEuros: number
+            dedicacion: string
+            role: string
+          }>
+        }
+        const row = (ded.byOfficial ?? []).find((o) => o.slug === subjectSlug)
+        if (row) {
+          const cite = buildLocalCitation({
+            localPath: 'public/data/dedicaciones.json',
+            title: 'Retribución del cargo — acuerdo de pleno (dedicaciones)',
+            excerpt: `${row.role}: dedicación ${row.dedicacion}, ${row.amountEuros.toLocaleString('es-ES')} €/año. Fuente: ${ded.source?.title ?? 'acuerdo de pleno'}`,
+          })
+          sources.push(cite)
+          evidence.push({
+            citationId: cite.id,
+            kind: cite.kind,
+            title: cite.title,
+            trust: cite.trust,
+            excerpt: cite.excerpt,
+          })
+          bioExtraBodies.push({ citationId: cite.id, title: cite.title, excerpt: cite.excerpt! })
+        }
+      }
+      const ISPA = resolve('public/data/ispa.json')
+      if (existsSync(ISPA) && /alcald/i.test(officialRow?.role ?? '')) {
+        const ispa = JSON.parse(readFileSync(ISPA, 'utf8')) as {
+          alcaldeTrend?: Array<{ year: number; amountEuros: number }>
+        }
+        const trend = ispa.alcaldeTrend ?? []
+        if (trend.length > 0) {
+          const text = trend
+            .map((t) => `${t.year}: ${t.amountEuros.toLocaleString('es-ES')} €`)
+            .join(' · ')
+          const cite = buildLocalCitation({
+            localPath: 'public/data/ispa.json',
+            title: 'Retribuciones anuales del alcalde — ISPA (Ministerio de Hacienda)',
+            excerpt: text.slice(0, 480),
+          })
+          sources.push(cite)
+          evidence.push({
+            citationId: cite.id,
+            kind: cite.kind,
+            title: cite.title,
+            trust: cite.trust,
+            excerpt: cite.excerpt,
+          })
+          bioExtraBodies.push({ citationId: cite.id, title: cite.title, excerpt: text })
+        }
+      }
+    } catch {
+      warnings.push('bio-floor: retribuciones (ispa/dedicaciones) ilegibles — omitidas')
     }
 
     // Election results floor: official GVA/ARGOS series from our own
@@ -1032,10 +1098,16 @@ export async function runJournalistAgent(
 
     const sourceIdSet = new Set(sources.map((s) => s.id))
     const validateRefs = (ids: string[]): string[] => ids.filter((id) => sourceIdSet.has(id))
+    // Curated official local snapshots that may back financial rows —
+    // ISPA (Hacienda) and the pleno-acuerdo dedicaciones are OFFICIAL
+    // remuneration records, unlike the subject's self-declared CV.
+    const FINANCIAL_LOCAL_ALLOW = ['public/data/ispa.json', 'public/data/dedicaciones.json']
     const allowFinancialHosts = (ids: string[]): string[] =>
       ids.filter((id) => {
         const src = sources.find((s) => s.id === id)
-        if (!src?.url) return false
+        if (!src) return false
+        if (src.localPath && FINANCIAL_LOCAL_ALLOW.includes(src.localPath)) return true
+        if (!src.url) return false
         try {
           const host = new URL(src.url).hostname.replace(/^www\./, '')
           return [
@@ -1196,15 +1268,26 @@ export async function runJournalistAgent(
       .filter((l) => l.sourceIds.length >= 1) // schema requires ≥1
     if (legal.length > 0) bioSections.push({ kind: 'legal-record', payload: { items: legal } })
     if (legal.length === 0) {
-      // Deterministic visibility backstop: official documents with
-      // judicial tokens were fetched, yet the extractor emitted no
-      // structured legal rows — never let the legal track vanish into
-      // prose silently (2026-07-30: informe 02/2021 + BOP 139/19 were
-      // narrative-only until this).
+      // Deterministic fallback: the LLM keeps routing judicial documents
+      // into prose even under a MANDATORY prompt rule (informe 02/2021 +
+      // BOP 139/19 stayed narrative-only twice, 2026-07-30). Synthesize
+      // rows directly from the fetched official documents — verbatim
+      // docket + derived issuing body, no outcome inferred — and surface
+      // what still resists extraction as a warning.
       const judicialBodies = allBodies.filter((b) =>
         JUDICIAL_TOKENS.some((rx) => rx.test(b.excerpt)),
       )
-      if (judicialBodies.length > 0) {
+      const synthRows = synthesizeLegalRecordRows(judicialBodies).map((r) => ({
+        ...r,
+        sourceIds: validateRefs(r.sourceIds),
+      }))
+      const usable = synthRows.filter((r) => r.sourceIds.length >= 1)
+      if (usable.length > 0) {
+        bioSections.push({ kind: 'legal-record', payload: { items: usable } })
+        warnings.push(
+          `bio: legal-record sintetizado deterministicamente de ${usable.length} referencia(s) oficial(es) — outcome pendiente de curador`,
+        )
+      } else if (judicialBodies.length > 0) {
         warnings.push(
           `bio: ${judicialBodies.length} documento(s) con tokens judiciales sin fila legal-record — revisar ${judicialBodies
             .map((b) => b.citationId)

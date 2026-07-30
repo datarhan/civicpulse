@@ -914,7 +914,7 @@ Emit the JSON research plan.
 // legal-record / financial / online-presence / awards / publications /
 // gaps-detected section payloads. Pure text in → pure JSON out; no I/O.
 
-export const JOURNALIST_BIO_VERSION = 'journalist-bio-v4'
+export const JOURNALIST_BIO_VERSION = 'journalist-bio-v5'
 
 export interface JournalistBioBodySnippet {
   citationId: string
@@ -977,8 +977,12 @@ Hard rules:
     fact, cite BOTH citationIds and skip the gap row.
   · Family names: only emit when an official transparency portal or
     a high-trust citation names the person explicitly. Default omit.
-  · Financial figures: only when the source URL host is
-    transparentia.newtral.es, boe.es, or dogv.gva.es. Otherwise omit.
+  · Financial figures: only when the source is transparentia.newtral.es,
+    boe.es, dogv.gva.es — or the official LOCAL remuneration snapshots
+    provided among the bodies (titles mentioning ISPA / «acuerdo de
+    pleno (dedicaciones)»): those carry the cargo's salary and yearly
+    trend and MUST become \`financial\` rows (metric "salary", one per
+    year where given). Otherwise omit.
   · Spanish names retain their original orthography (no normalisation).
 
 OUTPUT — a single JSON object matching the schema:
