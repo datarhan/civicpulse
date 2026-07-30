@@ -281,12 +281,26 @@ export async function runJournalistAgent(
         )
       }
     }
+    // Legal-record floor (operator-requested 2026-07-30): judicial,
+    // oversight and tax records must be systematically sought, not
+    // stumbled upon — the GVA contracting informe naming the alcalde
+    // (src-018 of the v4 run) was found by generic search luck. The
+    // surname pair anchors recall: "Robert Raga" and the registry form
+    // "ROBERTO PASCUAL RAGA GADEA" both hit on "Raga Gadea". Retrieval
+    // widens here; the libel gates stay exactly where they were
+    // (legal-record auto-bumps sensitivity to high, every row needs a
+    // ≥20-char verbatim docket cite, promotion needs the human ack).
+    const nameTokens = subjectName.trim().split(/\s+/)
+    const surnames = nameTokens.length >= 2 ? nameTokens.slice(-2).join(' ') : subjectName
     const floorQueries = [
       `"${subjectName}" biografía trayectoria`,
       'resultados elecciones municipales Riba-roja de Túria 2023 concejales',
+      `"${surnames}" sentencia OR juzgado OR tribunal`,
+      `"${surnames}" "revisión de oficio" OR "junta superior de contratación"`,
+      `"${surnames}" fiscal OR "económico-administrativo" OR hacienda`,
     ]
     for (const fq of floorQueries) {
-      const res = await webSearch(fq, { numResults: 4 })
+      const res = await webSearch(fq, { numResults: 3 })
       webResults += res.results.length
       for (const r of res.results) {
         if (!r.url || !/^https?:\/\//.test(r.url)) continue
@@ -305,6 +319,31 @@ export async function runJournalistAgent(
           publishedAt: cite.publishedAt,
           trust: cite.trust,
           excerpt: cite.excerpt,
+        })
+      }
+    }
+    // Official gazettes, deterministically (sanciones, edictos,
+    // nombramientos, expropiaciones — the acto-administrativo trail).
+    for (const [gazetteFn, publisher] of [
+      [fetchBoeForSubject, 'BOE'],
+      [fetchDogvForSubject, 'DOGV'],
+    ] as const) {
+      const hits = await gazetteFn(surnames, 6)
+      for (const h of hits.slice(0, 4)) {
+        const cite = buildWebCitation({
+          url: h.url,
+          title: h.title.slice(0, 240),
+          publisher,
+          publishedAt: h.date || undefined,
+        })
+        sources.push(cite)
+        evidence.push({
+          citationId: cite.id,
+          kind: cite.kind,
+          title: cite.title,
+          url: cite.url,
+          publishedAt: cite.publishedAt,
+          trust: cite.trust,
         })
       }
     }

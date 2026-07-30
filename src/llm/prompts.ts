@@ -914,7 +914,7 @@ Emit the JSON research plan.
 // legal-record / financial / online-presence / awards / publications /
 // gaps-detected section payloads. Pure text in → pure JSON out; no I/O.
 
-export const JOURNALIST_BIO_VERSION = 'journalist-bio-v1'
+export const JOURNALIST_BIO_VERSION = 'journalist-bio-v2'
 
 export interface JournalistBioBodySnippet {
   citationId: string
@@ -947,6 +947,14 @@ Hard rules:
   · Verbatim case-number tokens (PA NNNN/YYYY, "Sentencia",
     "recurso contencioso-administrativo") trigger a judicial entry —
     DO NOT paraphrase the docket. Quote the docket reference verbatim.
+  · legalRecord SCOPE: judicial rulings (sentencias, autos), formal
+    oversight findings (informes de juntas de contratación, revisiones
+    de oficio, fiscalizaciones), and tax / económico-administrativo
+    resolutions — OFFICIAL documents only (courts, gazettes, oversight
+    bodies, tax tribunals). Press ALLEGATIONS are never a legalRecord
+    row: without an official document reference, route the item to
+    gapsDetected. Record what the document states (parties, outcome)
+    without adjudicating anything the document does not say.
   · NEVER invent dates, institutions, employers, or family members. If
     the body doesn't say it, omit it.
   · Family names: only emit when an official transparency portal or
