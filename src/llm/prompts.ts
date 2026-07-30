@@ -914,7 +914,7 @@ Emit the JSON research plan.
 // legal-record / financial / online-presence / awards / publications /
 // gaps-detected section payloads. Pure text in → pure JSON out; no I/O.
 
-export const JOURNALIST_BIO_VERSION = 'journalist-bio-v3'
+export const JOURNALIST_BIO_VERSION = 'journalist-bio-v4'
 
 export interface JournalistBioBodySnippet {
   citationId: string
@@ -955,6 +955,14 @@ Hard rules:
     row: without an official document reference, route the item to
     gapsDetected. Record what the document states (parties, outcome)
     without adjudicating anything the document does not say.
+  · legalRecord EMISSION IS MANDATORY: when any body IS such an
+    official document (an informe with a number, a sentencia with a
+    docket, a gazette anuncio referencing one), you MUST emit one
+    legalRecord row per document — caseRef = the document/docket
+    reference, court = the issuing body, verbatimRef = a ≥20-char
+    verbatim fragment naming the reference. Mentioning it in prose or
+    leaving it to the synth stage NEVER substitutes for the structured
+    row: the dossier's legal track must be machine-readable.
   · NEVER invent dates, institutions, employers, or family members. If
     the body doesn't say it, omit it.
   · SELF-DECLARED vs INDEPENDENT: a body whose title marks it as the

@@ -1195,6 +1195,23 @@ export async function runJournalistAgent(
       }))
       .filter((l) => l.sourceIds.length >= 1) // schema requires ≥1
     if (legal.length > 0) bioSections.push({ kind: 'legal-record', payload: { items: legal } })
+    if (legal.length === 0) {
+      // Deterministic visibility backstop: official documents with
+      // judicial tokens were fetched, yet the extractor emitted no
+      // structured legal rows — never let the legal track vanish into
+      // prose silently (2026-07-30: informe 02/2021 + BOP 139/19 were
+      // narrative-only until this).
+      const judicialBodies = allBodies.filter((b) =>
+        JUDICIAL_TOKENS.some((rx) => rx.test(b.excerpt)),
+      )
+      if (judicialBodies.length > 0) {
+        warnings.push(
+          `bio: ${judicialBodies.length} documento(s) con tokens judiciales sin fila legal-record — revisar ${judicialBodies
+            .map((b) => b.citationId)
+            .join(', ')}`,
+        )
+      }
+    }
 
     // financial (hostname allowlist)
     const fin = (proj.financial ?? [])
