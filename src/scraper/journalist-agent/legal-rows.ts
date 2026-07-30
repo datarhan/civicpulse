@@ -90,3 +90,36 @@ export function synthesizeLegalRecordRows(bodies: LegalBody[]): SynthesizedLegal
   }
   return rows
 }
+
+export interface LlmLegalRow extends SynthesizedLegalRow {
+  date?: string
+  outcome?: string
+}
+
+/**
+ * Union merge — the engineering answer to "the LLM ignores structural
+ * mandates" (it routed judicial docs to prose twice under a MANDATORY
+ * prompt rule, 2026-07-30): the deterministic pass provides the FLOOR,
+ * the LLM only ENRICHES, and this merge guarantees the floor by
+ * construction. Keyed by folded caseRef: an LLM row on the same docket
+ * wins field-wise (it saw the full body and can add date/outcome and a
+ * more precise court); seeds with no LLM counterpart are appended
+ * verbatim; LLM-added dockets the deterministic pass missed are kept.
+ * `appendedSeeds` tells the caller how many rows the LLM dropped, for
+ * the warning trail.
+ */
+export function mergeLegalRows(
+  seeds: SynthesizedLegalRow[],
+  llmRows: LlmLegalRow[],
+): { rows: LlmLegalRow[]; appendedSeeds: number } {
+  const keyOf = (r: SynthesizedLegalRow) => r.caseRef.toLowerCase().replace(/\s+/g, ' ').trim()
+  const rows: LlmLegalRow[] = [...llmRows]
+  const llmKeys = new Set(llmRows.map(keyOf))
+  let appendedSeeds = 0
+  for (const seed of seeds) {
+    if (llmKeys.has(keyOf(seed))) continue
+    rows.push(seed)
+    appendedSeeds += 1
+  }
+  return { rows, appendedSeeds }
+}

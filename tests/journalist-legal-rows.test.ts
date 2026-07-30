@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest'
-import { synthesizeLegalRecordRows } from '../src/scraper/journalist-agent/legal-rows'
+import {
+  mergeLegalRows,
+  synthesizeLegalRecordRows,
+} from '../src/scraper/journalist-agent/legal-rows'
 
 const INFORME_BODY = {
   citationId: 'src-013',
@@ -53,5 +56,55 @@ describe('synthesizeLegalRecordRows', () => {
       excerpt: 'Se menciona el expediente 77/2020 sin más contexto identificable en este texto.',
     }
     expect(synthesizeLegalRecordRows([vague])).toEqual([])
+  })
+})
+
+describe('mergeLegalRows — deterministic floor + LLM enrichment union', () => {
+  const seed = {
+    caseRef: 'sentencia 139/19',
+    court: 'Juzgado de lo Social',
+    verbatimRef: 'se hace saber la sentencia número 139/19 del Juzgado de lo Social número dos',
+    sourceIds: ['src-016'],
+  }
+  const seedInforme = {
+    caseRef: 'informe 02/2021',
+    court: 'Junta Superior de Contractació Administrativa (GVA)',
+    verbatimRef:
+      'Informe 02/2021, de 18 de junio de 2021. Contratación irregular: revisión de oficio',
+    sourceIds: ['src-013'],
+  }
+
+  it('guarantees every seed survives when the LLM emits nothing', () => {
+    const { rows, appendedSeeds } = mergeLegalRows([seed, seedInforme], [])
+    expect(rows).toHaveLength(2)
+    expect(appendedSeeds).toBe(2)
+  })
+
+  it('LLM enrichment wins field-wise on the same docket (case-insensitive key)', () => {
+    const enriched = {
+      caseRef: 'Sentencia 139/19',
+      court: 'Juzgado de lo Social nº 2 de Valencia',
+      date: '2019-05-20',
+      outcome: 'condena al Ayuntamiento',
+      verbatimRef: 'sentencia número 139/19 del Juzgado de lo Social número dos de Valencia',
+      sourceIds: ['src-016'],
+    }
+    const { rows, appendedSeeds } = mergeLegalRows([seed, seedInforme], [enriched])
+    expect(rows).toHaveLength(2)
+    const r = rows.find((x) => /139\/19/.test(x.caseRef))!
+    expect(r.court).toContain('nº 2')
+    expect(r.outcome).toBe('condena al Ayuntamiento')
+    expect(appendedSeeds).toBe(1) // only the informe seed was appended
+  })
+
+  it('keeps LLM-added rows the deterministic pass missed', () => {
+    const extra = {
+      caseRef: 'expediente 2019/8305',
+      court: 'Juzgado de lo Social',
+      verbatimRef: 'expediente número 2019/8305 contra el Ayuntamiento de Riba-roja de Túria',
+      sourceIds: ['src-016'],
+    }
+    const { rows } = mergeLegalRows([seed], [extra])
+    expect(rows).toHaveLength(2)
   })
 })

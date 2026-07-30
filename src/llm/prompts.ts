@@ -914,7 +914,7 @@ Emit the JSON research plan.
 // legal-record / financial / online-presence / awards / publications /
 // gaps-detected section payloads. Pure text in → pure JSON out; no I/O.
 
-export const JOURNALIST_BIO_VERSION = 'journalist-bio-v5'
+export const JOURNALIST_BIO_VERSION = 'journalist-bio-v6'
 
 export interface JournalistBioBodySnippet {
   citationId: string
@@ -1048,6 +1048,13 @@ export function buildJournalistBioUserPrompt(opts: {
   subjectSlug?: string
   hints: JournalistBioRegexHints
   bodies: JournalistBioBodySnippet[]
+  /** Deterministically pre-extracted legal rows the LLM must ENRICH, not originate. */
+  preExtractedLegal?: Array<{
+    caseRef: string
+    court: string
+    verbatimRef: string
+    sourceIds: string[]
+  }>
 }): string {
   const bodyBlock = opts.bodies
     .slice(0, 8)
@@ -1068,7 +1075,22 @@ ${JSON.stringify(opts.hints, null, 2)}
 
 FETCHED BODIES (cite by citationId in every emitted entity):
 ${bodyBlock || '  (none)'}
-
+${
+  opts.preExtractedLegal && opts.preExtractedLegal.length > 0
+    ? `
+PRE-EXTRACTED LEGAL ROWS (deterministic, from official documents —
+your legalRecord starts from these; ENRICH, do not re-originate):
+${JSON.stringify(opts.preExtractedLegal, null, 2)}
+Rules for these rows:
+  · Keep every row. Enrich with date/outcome and a more precise court
+    when the bodies state them; you may clean the verbatimRef to a
+    fuller verbatim fragment from the same body.
+  · Only drop a row if it is demonstrably a false match — and then
+    justify it in gapsDetected.
+  · Add rows for official documents these missed.
+`
+    : ''
+}
 Emit the JSON dossier.
 `.trim()
 }

@@ -93,7 +93,7 @@ import {
 
 import { keepValidUrlAccounts } from './journalist-agent/shared'
 import { groundNarrativeSections } from './journalist-agent/grounding'
-import { synthesizeLegalRecordRows } from './journalist-agent/legal-rows'
+import { mergeLegalRows, synthesizeLegalRecordRows } from './journalist-agent/legal-rows'
 import type { RunAgentOptions, RunAgentResult } from './journalist-agent/shared'
 import {
   buildEarlyDraft,
@@ -1082,6 +1082,15 @@ export async function runJournalistAgent(
     const allBodies = [...bodyById.values()]
     const concatText = allBodies.map((b) => b.excerpt).join('\n\n')
     const hints = extractBioEntities(concatText, subjectName)
+    // Deterministic legal floor computed BEFORE the LLM call and handed
+    // to it as pre-extracted candidates to ENRICH — the propose-verify
+    // inversion. The LLM proved twice (2026-07-30) that it ignores
+    // "mandatory" origination rules; it does not get to originate the
+    // legal track anymore, only to enrich it (dates, outcomes, court
+    // precision) and to add dockets the regex missed. The union merge
+    // after the call guarantees every seed survives by construction.
+    const judicialBodies = allBodies.filter((b) => JUDICIAL_TOKENS.some((rx) => rx.test(b.excerpt)))
+    const legalSeeds = synthesizeLegalRecordRows(judicialBodies)
     const bio = await callLLM({
       systemPrompt: buildJournalistBioSystemPrompt(),
       userPrompt: buildJournalistBioUserPrompt({
@@ -1089,6 +1098,7 @@ export async function runJournalistAgent(
         ...(subjectSlug ? { subjectSlug } : {}),
         hints,
         bodies: allBodies.slice(0, 8),
+        ...(legalSeeds.length > 0 ? { preExtractedLegal: legalSeeds } : {}),
       }),
       promptVersion: JOURNALIST_BIO_VERSION,
       schema: JournalistBioResponseSchema,
@@ -1254,8 +1264,12 @@ export async function runJournalistAgent(
     }))
     if (cpro.length > 0) bioSections.push({ kind: 'career-professional', payload: { items: cpro } })
 
-    // legal-record
-    const legal = (proj.legalRecord ?? [])
+    // legal-record — deterministic floor ∪ LLM enrichment. The seeds
+    // were handed to the LLM as pre-extracted candidates; the merge
+    // guarantees every seed docket survives BY CONSTRUCTION (LLM rows
+    // win field-wise on the same docket — they carry date/outcome/court
+    // precision; LLM-added dockets the regex missed are kept).
+    const llmLegalRows = (proj.legalRecord ?? [])
       .filter((l) => l.verbatimRef.length >= 20)
       .map((l) => ({
         caseRef: l.caseRef,
@@ -1266,34 +1280,22 @@ export async function runJournalistAgent(
         sourceIds: validateRefs(l.citationIds ?? []),
       }))
       .filter((l) => l.sourceIds.length >= 1) // schema requires ≥1
+    const validSeeds = legalSeeds
+      .map((r) => ({ ...r, sourceIds: validateRefs(r.sourceIds) }))
+      .filter((r) => r.sourceIds.length >= 1)
+    const { rows: legal, appendedSeeds } = mergeLegalRows(validSeeds, llmLegalRows)
     if (legal.length > 0) bioSections.push({ kind: 'legal-record', payload: { items: legal } })
-    if (legal.length === 0) {
-      // Deterministic fallback: the LLM keeps routing judicial documents
-      // into prose even under a MANDATORY prompt rule (informe 02/2021 +
-      // BOP 139/19 stayed narrative-only twice, 2026-07-30). Synthesize
-      // rows directly from the fetched official documents — verbatim
-      // docket + derived issuing body, no outcome inferred — and surface
-      // what still resists extraction as a warning.
-      const judicialBodies = allBodies.filter((b) =>
-        JUDICIAL_TOKENS.some((rx) => rx.test(b.excerpt)),
+    if (appendedSeeds > 0) {
+      warnings.push(
+        `bio: ${appendedSeeds} fila(s) legal-record garantizada(s) por el suelo determinista (el LLM no las enriqueció) — outcome pendiente de curador`,
       )
-      const synthRows = synthesizeLegalRecordRows(judicialBodies).map((r) => ({
-        ...r,
-        sourceIds: validateRefs(r.sourceIds),
-      }))
-      const usable = synthRows.filter((r) => r.sourceIds.length >= 1)
-      if (usable.length > 0) {
-        bioSections.push({ kind: 'legal-record', payload: { items: usable } })
-        warnings.push(
-          `bio: legal-record sintetizado deterministicamente de ${usable.length} referencia(s) oficial(es) — outcome pendiente de curador`,
-        )
-      } else if (judicialBodies.length > 0) {
-        warnings.push(
-          `bio: ${judicialBodies.length} documento(s) con tokens judiciales sin fila legal-record — revisar ${judicialBodies
-            .map((b) => b.citationId)
-            .join(', ')}`,
-        )
-      }
+    }
+    if (legal.length === 0 && judicialBodies.length > 0) {
+      warnings.push(
+        `bio: ${judicialBodies.length} documento(s) con tokens judiciales sin fila legal-record — revisar ${judicialBodies
+          .map((b) => b.citationId)
+          .join(', ')}`,
+      )
     }
 
     // financial (hostname allowlist)
