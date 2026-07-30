@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T17:44:34.919Z",
+  "generatedAt": "2026-07-30T22:36:09.726Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -71,6 +71,20 @@
       "createdAt": "2026-07-30T17:33:09.642Z",
       "status": "promoted",
       "lastRunAt": "2026-07-30T17:40:06.942Z"
+    },
+    {
+      "id": "a-teresa-pozuelo-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "teresa-pozuelo-martin",
+        "name": "Teresa Pozuelo Martín",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Teresa Pozuelo Martín, concejala (PSOE) de Urbanismo, Vivienda, Obra Pública y Áreas Industriales y Cementerio, Primera Teniente de Alcalde y portavoz del grupo socialista en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-30T22:19:48.500Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-30T22:29:47.384Z"
     }
   ]
 }

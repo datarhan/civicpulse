@@ -16,8 +16,9 @@ editorial value and libel safety live — never skip it, never promote a raw dra
 
 - SearXNG up: `docker ps | grep searxng` (else `npm run searxng:up`) and `SEARXNG_URL` in `.env`.
 - Env: the repo has NO dotenv — always `set -a && source .env && set +a` before metered/LLM commands.
-- Backend policy: `LLM_BACKEND=claude-code LLM_CONCURRENCY=1` ($0 Max plan). NEVER default to
-  metered openai for curation; NEVER auto-start ollama.
+- Backend policy: `LLM_BACKEND=claude-code LLM_CONCURRENCY=1` (coste cero, plan Max — avoid
+  dollar-number literals in this file; the skill runtime interpolates them as positional args).
+  NEVER default to metered openai for curation; NEVER auto-start ollama.
 - Embed corpus for semantic recall exists (`.embed-cache/agent-corpus.jsonl`); rebuild only if stale.
 
 ## Phase 1 — Assign

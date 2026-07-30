@@ -1,0 +1,611 @@
+{
+  "id": "r-teresa-pozuelo-bio-2026-07-30",
+  "assignmentId": "a-teresa-pozuelo-bio",
+  "generatedAt": "2026-07-30T22:29:47.383Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "teresa-pozuelo-martin",
+        "photoPath": "/data/photos/teresa-pozuelo-martin.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Urbanismo",
+          "Vivienda",
+          "Obra Pública",
+          "Áreas Industriales y Cementerio"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "birthplace": "València",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo municipal",
+        "bodyMarkdown": "Teresa Pozuelo Martín es concejala del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE). Tiene asignadas las áreas de Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio, según la ficha oficial del consistorio y el resumen interno de cargos municipales.",
+        "sourceIds": [
+          "src-001",
+          "src-009"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Formación y trayectoria previa",
+        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, Teresa Pozuelo Martín es arquitecta técnica (Universitat Politècnica de València, 1998) e ingeniera de edificación (UPV, 2011), con un máster en Project Management y formación como técnico en prevención de riesgos laborales, ambos en la FLC de València.\n\nEl mismo currículum autodeclarado recoge una trayectoria profesional en el sector de la construcción — ayudante de jefe de obra en Pavituria SL (1997) y arquitecta técnica y jefa de obra en Grupo Tremon SA (1998-2010) — y su etapa como regidora del Ayuntamiento desde 2015, con responsabilidades en planificación urbanística, urbanismo, cementerios, obras y servicios.",
+        "sourceIds": [
+          "src-060",
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "Teresa Pozuelo Martín fue proclamada concejala electa en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos, tras el 45,92% de 2019— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023, en la que intervino en el turno de palabra como representante del Partido Socialista Obrero Español.\n\nEn el pleno de organización del mandato quedó documentado el triple origen de sus responsabilidades: el grupo municipal socialista, del que es la número dos, la designó portavoz; una resolución de Alcaldía la nombró Primera Teniente de Alcalde, y figura como primer miembro de la Junta de Gobierno Local; y el decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio». El mismo pleno fijó su dedicación exclusiva en 43.067,36 euros anuales.",
+        "sourceIds": [
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-065",
+          "src-006",
+          "src-066",
+          "src-067",
+          "src-068",
+          "src-069",
+          "src-070",
+          "src-005"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Retribución del cargo",
+        "bodyMarkdown": "Como Primera Teniente de Alcalde, su retribución quedó fijada por Acuerdo del Pleno de 07/07/2023, que estableció el régimen económico de los concejales (expediente 4533/2023/GEN): dedicación exclusiva y una asignación anual de 43.067,36 €, consignada en el acuerdo bajo el área de Territorio y Agenda Urbana.",
+        "sourceIds": [
+          "src-005"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge una única actividad: la concejalía, con inicio consignado el 15 de junio de 2019. No declara ninguna otra actividad, empleo ni participación empresarial.\n\nEn el apartado de bienes declara un activo de 394.118,84 euros —308.049,90 euros en bienes inmuebles por valor catastral y 86.068,94 euros en otros bienes— y un pasivo de 90.759,21 euros: el tercer activo más alto declarado en la corporación.\n\nEl inicio consignado en esa declaración (2019) difiere del que recoge su currículum, que sitúa su etapa de regidora desde 2015; ambos documentos proceden de la propia concejala y la discrepancia queda señalada en «Lagunas detectadas».",
+        "sourceIds": [
+          "src-071",
+          "src-072",
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Las conexiones de Teresa Pozuelo Martín que constan en documentos públicos son de naturaleza político-administrativa: portavoz del grupo municipal socialista, Primera Teniente de Alcalde, miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado su apellido y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con su apellido, y ni Grupo Tremon SA ni Pavituria SL —donde trabajó entre 1997 y 2010, según su CV— constan como adjudicatarios municipales. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (77 contratos identificados): el 44% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 23% fueron contratos menores (20% en el conjunto).\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "sourceIds": [
+          "src-073",
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Menciones en boletines oficiales",
+        "bodyMarkdown": "Las búsquedas en boletines oficiales (BOE) relacionadas con su nombre devuelven resultados de personas homónimas: una referencia de 1938 a Sebastián Pozuelo Martín y un listado de 2026 de admitidos a examen de patrón de embarcaciones a nombre de Martín-Pozuelo Martín de la Sierra. No se ha identificado ninguna mención verificada en el BOE atribuible a la concejala Teresa Pozuelo Martín.",
+        "sourceIds": [
+          "src-003",
+          "src-004"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Arquitecto Técnico",
+            "institution": "Universitat Politècnica de València",
+            "endYear": 1998,
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "degree": "Ingeniero de Edificación",
+            "institution": "Universitat Politècnica de València",
+            "endYear": 2011,
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "degree": "Máster en Project Management",
+            "institution": "FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "degree": "Técnico en Prevención de Riesgos Laborales",
+            "institution": "FLC de València",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Regidora — planificación urbanística, urbanismo, cementerios, obras y servicios (según su CV; su declaración estatutaria consigna el inicio el 15/06/2019)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2015,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-061",
+              "src-072"
+            ]
+          },
+          {
+            "role": "Concejala · Primera Teniente de Alcalde — Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio",
+            "org": "Ayuntamiento",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-001",
+              "src-005",
+              "src-068",
+              "src-069",
+              "src-070"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Ayudante de jefe de obra",
+            "org": "Pavituria SL",
+            "startYear": 1997,
+            "endYear": 1997,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "role": "Arquitecta técnica y jefa de obra",
+            "org": "Grupo Tremon SA",
+            "startYear": 1998,
+            "endYear": 2010,
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "salary",
+            "amountEuros": 43067.36,
+            "description": "1ª Teniente de Alcalde · Territorio y Agenda Urbana: dedicación exclusiva, 43.067,36 €/año, fijado por Acuerdo del Pleno de 07/07/2023 (Expediente 4533/2023/GEN)",
+            "sourceIds": [
+              "src-005"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 394118.84,
+            "description": "Activo declarado al tomar posesión (2023): 308.049,90 € en bienes inmuebles (valor catastral) + 86.068,94 € en otros bienes; pasivo declarado: 90.759,21 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN) — el tercer activo más alto declarado en la corporación.",
+            "sourceIds": [
+              "src-071"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial declarada: la única actividad que recoge su declaración oficial de actividades (toma de posesión 2023) es la concejalía del Ayuntamiento de Riba-roja de Túria, con inicio consignado el 15/06/2019.",
+            "sourceIds": [
+              "src-072"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2019-05-26",
+            "label": "Elecciones municipales 2019 en Riba-roja de Túria: el PSPV-PSOE obtiene el 45,92% de los votos.",
+            "sourceIds": [
+              "src-006"
+            ]
+          },
+          {
+            "date": "2023-05-28",
+            "label": "Elecciones municipales 2023 en Riba-roja de Túria: el PSPV-PSOE revalida el gobierno con el 49,69% de los votos.",
+            "sourceIds": [
+              "src-006"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamada concejala electa; toma posesión en la sesión constitutiva e interviene como representante del grupo socialista",
+            "sourceIds": [
+              "src-062",
+              "src-064",
+              "src-065"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Acuerdo del Pleno fija el régimen económico de los concejales; la Primera Teniente de Alcalde percibe 43.067,36 €/año en dedicación exclusiva.",
+            "sourceIds": [
+              "src-005"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Nombrada Primera Teniente de Alcalde y portavoz del grupo socialista; el decreto de áreas le delega Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio",
+            "sourceIds": [
+              "src-067",
+              "src-068",
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Teresa Pozuelo Martín",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "PSOE (PSPV-PSOE)",
+            "tone": "neutral",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Ayuntamiento de Riba-roja de Túria",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n4",
+            "label": "Junta de Gobierno Local",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n5",
+            "label": "Roberto Raga (alcalde)",
+            "tone": "civic",
+            "kind": "person"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejala del grupo municipal",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "concejala de Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio",
+            "sourceIds": [
+              "src-001",
+              "src-009"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "portavoz del grupo municipal socialista",
+            "sourceIds": [
+              "src-067"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "primer miembro de su composición",
+            "sourceIds": [
+              "src-070"
+            ]
+          },
+          {
+            "from": "n5",
+            "to": "n1",
+            "relation": "la nombró Primera Teniente de Alcalde y le delegó sus áreas (07-07-2023)",
+            "sourceIds": [
+              "src-068",
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-reduce-concejales-dedicacion-exclusiva"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delega en la Primera Teniente de Alcalde, Dª Teresa Pozuelo Marín, las competencias que al Alcalde le corresponden en materia de Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio.",
+        "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria (el acta escribe «Marín»)",
+        "date": "2023-07-07",
+        "sourceId": "src-069"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Identidad (nacimiento)",
+            "reason": "Su CV autodeclarado solo consigna el lugar (València); no hemos localizado la fecha de nacimiento en ninguna fuente pública."
+          },
+          {
+            "field": "Formación y trayectoria declaradas",
+            "reason": "Los estudios y las etapas profesionales proceden únicamente del CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Inicio como regidora (2015 o 2019)",
+            "reason": "Su currículum sitúa su etapa de regidora desde 2015; su declaración estatutaria de actividades consigna el 15/06/2019. Ambos documentos proceden de la propia concejala; ninguna fuente independiente fija la fecha."
+          },
+          {
+            "field": "Vínculos societarios y personales",
+            "reason": "La declaración oficial no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidos sus antiguos empleadores Grupo Tremon SA y Pavituria SL, asociaciones, BDNS) no arrojaron coincidencia alguna."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — Teresa Pozuelo Martín",
+      "retrievedAt": "2026-07-30T22:20:52.726Z",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://www.boe.es/gazeta/dias/1938/01/04/pdfs/GRP-1938-4.pdf",
+      "title": "•42. PRESIDENCIA. DEL ' ' CONSEJO, DE MINISTROS - BOE.es",
+      "retrievedAt": "2026-07-30T22:20:54.998Z",
+      "excerpt": "Universidad de Barcelona. *.•. 77® Gregorio González Ramos '. Aduana de Farga ... Sebastián Pozuelo Martín. San Lorenzo Calatrava ido. ' - ®. ' 1.500. -Ángel ...",
+      "trust": "high"
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://www.transportes.gob.es/recursos_mfom/paginabasica/recursos/listado_definitivo_admitidos_per_junio_2026_vi.pdf",
+      "title": "LISTA DE ADMITIDOS PARA PATRÓN DE EMBARCACIONES DE ...",
+      "retrievedAt": "2026-07-30T22:20:54.998Z",
+      "excerpt": "19 jun 2026 ... UNIVERSIDAD AUTÓNOMA DE MADRID: FACULTAD DE DERECHO. Hora ... MARTIN-POZUELO MARTIN DE LA SIERRA. ***0718**. ANGEL. 349. MASJUAN GINEL.",
+      "trust": "high"
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+      "retrievedAt": "2026-07-30T22:20:55.031Z",
+      "excerpt": "1ª Teniente de Alcalde · Territorio y Agenda Urbana: dedicación exclusiva, 43.067,36 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+      "localPath": "public/data/dedicaciones.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-006",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-30T22:20:55.032Z",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+      "localPath": "public/data/elections.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/datos/sra.-d%C2%AA.-teresa-pozuelo-mart%C3%ADn",
+      "title": "Sra. Dª. Teresa Pozuelo Martín | Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-30T22:20:55.665Z",
+      "excerpt": "Áreas: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio.",
+      "trust": "high"
+    },
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250817-CV-TERESA-POZUELO.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — Teresa Pozuelo Martín · formación",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "FORMACIÓN INGENIERO DE EDIFICACIÓN • UNIV. POLITÉCNICA DE VALÈNCIA• 2011 MASTER PROYECT MANAGEMENT • FLC DE VALÈNCIA Master de Project Management. Curso Superior de Dirección y Gestión de Proyectos y Construcción TECNICO EN PREVENCION RIESGOS LABORALES por la FLC de VALENCIA ARQUITECTO TÉCNICO • UNIV. POLITÉCNICA DE VALÈNCIA• 1998",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250817-CV-TERESA-POZUELO.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — Teresa Pozuelo Martín · experiencia",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "EXPERIENCIA PROFESIONAL REGIDORA • 2015-2023 • AYTO DE RIBA-ROJA DE TÚRIA. Planificación urbanística, urbanismo , cementerios , obras y servicios ARQUITECTO TÉCNICO & JEFE DE OBRA • 1998-2010 • GRUPO TREMON, S.A. AYUDANTE JEFE DE OBRA • 1997 • PAVITURIA, S.L",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · proclamación de electos",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · juramento o promesa",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · toma de posesión (lista con la sujeto)",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "- Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March - Maria Teresa Pozuelo Martin - Roberto Pascual Raga Gadea",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · turno de palabra de los grupos",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "Una vez realizada está operación, el Señor Alcalde como Presidente ya de la sesión concede un turno de palabra a los representantes de cada Grupo Político, interviniendo: - Dª. Mª. Teresa Pozuelo Martín, Partido Socialista Obrero Español - Alberto Jose Gimeno Calvo (independiente), Partido Popular",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · designación de portavoz",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "Siendo su Portavoz: Doña María Teresa Pozuelo Martín Portavoz suplente: José Ángel Hernández Carrizosa Portavoz suplente: Don José Luis Ramos March",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · tenencias de alcaldía",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "6 PRIMERO.- Nombrar como titulares de las Tenencias de Alcaldía a los siguientes concejales: Primer Teniente de Alcalde: Teresa Pozuelo Martín. Segundo Teniente de Alcalde: José Luis Ramos March. Tercer Teniente de Alcalde: José Ángel Hernández Carrizosa.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 2)",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "cooperación nacional e internacional. 2. Se delega en la Primera Teniente de Alcalde, Dª Teresa Pozuelo Marín, las competencias que al Alcalde le corresponden en materia de Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-070",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · composición de la Junta de Gobierno Local",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "TERCERO.- En virtud de lo anteriormente dispuesto la composición de la Junta queda conformada por los siguientes miembros: Alcalde-Presidente: D. Roberto Pascual Raga Gadea. 1. Dª Mª Teresa Pozuelo Martín 21",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-071",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "Concejala MARIA TERESA POZUELO MARTIN 308.049,90 86.068,94 394.118,84 90.759,21 ConcejaL JOSE LUIS RAMOS MARCH 265.175,68 257.960,00 523.135,68 0,00",
+      "trust": "high"
+    },
+    {
+      "id": "src-072",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "MARIA TERESA POZUELO MARTIN Concejala Ayuntamiento Riba-roja de Túria 15/06/2019 JOSE LUIS RAMOS MARCH Pensionista Pensionista",
+      "trust": "high"
+    },
+    {
+      "id": "src-073",
+      "kind": "local-snapshot",
+      "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+      "retrievedAt": "2026-07-30T22:35:41.293Z",
+      "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "Los datos de formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "Su currículum consigna su etapa de regidora desde 2015 y su declaración estatutaria el 15/06/2019 como inicio; ambos documentos proceden de la propia concejala y la discrepancia se publica sin resolver.",
+    "La ficha biográfica en PDF existe en el portal con un patrón de nombre nuevo (20250817-CV-TERESA-POZUELO.pdf) que el agente no localizó automáticamente; fue verificada e integrada manualmente por el curador."
+  ],
+  "legalSensitivity": "medium",
+  "promotedBy": "Sergei Lutchenko",
+  "promotedAt": "2026-07-30T22:36:09.719Z",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV en PDF SÍ existe en el portal con patrón de nombre nuevo (20250817-CV-TERESA-POZUELO.pdf) que el agente no localizó — descargada, verificada e integrada manualmente (identidad, formación en edificación/arquitectura técnica UPV, trayectoria en Grupo Tremon SA y Pavituria SL, regidora desde 2015). Cadena de nombramiento verificada contra las actas íntegras: proclamada electa y toma de posesión (9jatoj, 17-06-2023, con intervención como representante del PSOE), portavoz del grupo, Primera Tenencia de Alcaldía, primera integrante de la JGL y delegación del punto 2 del decreto de áreas (16ujrlm, 07-07-2023, ventanas literales). Declaración estatutaria integrada (activo 394.118,84 €, el tercero más alto de la corporación; pasivo 90.759,21 €; sin actividad empresarial). DISCREPANCIA publicada sin resolver: regidora desde 2015 según su CV, 15/06/2019 según su declaración — ambos autodeclarados. Comprobaciones: 0 de 804 contratos con su apellido; sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL — sector construcción, coincidente con sus áreas de Urbanismo y Obra Pública) NO constan como adjudicatarios municipales; indicadores de competencia de sus áreas mejores que la media (44% licitador único frente a 55%). Retiradas por homonimia las secciones de LinkedIn (coincidencia solo nominal) y press-sparkline (una novela de ficción); 9 advertencias del verificador reducidas a 3 reales.",
+  "corrections": [],
+  "response": null
+}
