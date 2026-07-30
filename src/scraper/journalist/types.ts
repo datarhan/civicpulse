@@ -87,6 +87,10 @@ export const ALLOWED_SECTION_KINDS: readonly SectionKind[] = [
 
 // Hosts that may back `financial` rows. Pulled from official transparency
 // portals only — schema rejects financial rows whose sources don't match.
+// ribarroja.es added 2026-07-30: the municipality's OWN transparency portal
+// publishes the statutory declaraciones de actividades y bienes of its
+// councillors (Decreto 191/2010 del Consell, with CSV verification) — the
+// primary official source for declared-assets/business rows about them.
 export const FINANCIAL_SOURCE_ALLOW: readonly string[] = [
   'transparentia.newtral.es',
   'newtral.es',
@@ -94,6 +98,8 @@ export const FINANCIAL_SOURCE_ALLOW: readonly string[] = [
   'www.boe.es',
   'dogv.gva.es',
   'gva.es',
+  'ribarroja.es',
+  'www.ribarroja.es',
 ] as const
 
 export type CitationKind =
