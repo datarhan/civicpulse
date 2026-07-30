@@ -1,8 +1,150 @@
 {
-  "generatedAt": "2026-07-29T13:06:41.619Z",
-  "bundleCount": 0,
+  "generatedAt": "2026-07-30T08:04:35.623Z",
+  "bundleCount": 2,
   "archivedCount": 0,
   "contract": "Eligible bundles (no contradicho, all gates passed) that have not yet been promoted. The weekly auto-curate cron promotes the top 5 by score; the rest are listed here for the curator dashboard.",
-  "bundles": [],
+  "bundles": [
+    {
+      "plenoId": "c8kr44",
+      "plenoDate": "2025-09-08",
+      "plenoTitle": "Sesión de fecha 08 de septiembre de 2025",
+      "topic": "medio-ambiente",
+      "blocs": [
+        "Compromís",
+        "PSOE"
+      ],
+      "score": 10.1,
+      "quotes": [
+        {
+          "claimId": "c8kr44-073-cit-d6d194",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "el contrato que hemos aprobado, ya me ha ido mejor, y el área de contratación, si no me lo traslado, en el sentido que es flexible. Por lo tanto, el contrato se puede modificar, está amparado, y además está aprobado",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N%2B2T11NdqTUBPRBxZ4nJ%2Fg%3D%3D",
+              "snippet": "contrato de OBRAS DE CANALIZACIÓN DE ALIVIADERO DE BALSA DE RECOGIDA DE PLUVIALES EN POLÍGONO INDUSTRIAL por procedimiento abierto súper simplificado, un criterio de adjudicación, con condición especial de ejecución de carácter so"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-160-cit-e59f43",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "ahora hemos empezado a trabajar en un plan de refugios climáticos",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+              "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medi"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-047-cit-8dec6a",
+          "speakerGroup": "Compromís",
+          "verdict": "parcial",
+          "confidence": 1,
+          "verbatim": "que por fin ya tenemos un contrato para la recogida de residuos sólidos urbanos en el municipio.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
+              "snippet": "Contrato adquisición de 320 contendores de carga lateral para el servicio de recogida de residuos en Riba-roja de Túria, así como la retirada y gestión del actual parque existente. · Ayuntamiento de Riba-roja de Túria · Sulo Ibéri"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-146-cit-ccd20c",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "optamos todas nuestras licitaciones para vehículos eléctricos no solo los propios nuestros",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sigih%2BOEc2d7h85%2Fpmmsfw%3D%3D",
+              "snippet": "obras de reparación goteras en edificios municipales. · Ayuntamiento de Riba-roja de Túria · Licitaciones y Obras Hambit, S.L. · construction · estado: awarded"
+            }
+          ]
+        }
+      ],
+      "itemCount": 4
+    },
+    {
+      "plenoId": "c8kr44",
+      "plenoDate": "2025-09-08",
+      "plenoTitle": "Sesión de fecha 08 de septiembre de 2025",
+      "topic": "educacion",
+      "blocs": [
+        "Compromís",
+        "PP",
+        "PSOE"
+      ],
+      "score": 8.2,
+      "quotes": [
+        {
+          "claimId": "c8kr44-231-acu-70a34f",
+          "speakerGroup": "PP",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "La semana pasada, durante toda la semana, los maestros van tener que estar netejando antes de ellos mismos las aulas, porque las aulas no estaban adecuadas.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
+              "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-119-cit-e9c4b9",
+          "speakerGroup": "Compromís",
+          "verdict": "parcial",
+          "confidence": 0.85,
+          "verbatim": "todas las actuaciones que se han tenido, tanto en los colegios de esta localidad, en algunos de ellos, como el Camp de Turía, que ha sido, vamos, pensé que ha sido pegarle la volta al calcetín.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=w73EHAJuKn57h85%2Fpmmsfw%3D%3D",
+              "snippet": "Contrato de patrocinio entre el Ayuntamiento y el Club de Básquet Riba-roja Camp de Túria a los efectos de colaborar en el Campus Multideporte Verano 2018 · Ayuntamiento de Riba-roja de Túria · Club de Básquet Riba-roja Camp de Tú"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-242-cit-671430",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "como dice Eva, hemos estado un par de días, o tres, y está solventado, el mantenimiento",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+              "snippet": "Servicio mantenimiento instalaciones térmicas deportes. · Ayuntamiento de Riba-roja de Túria · ECOSIONA FACILITY SERVICES SOCIEDAD LIMITADA · maintenance · estado: unknown"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-243-cit-be89b4",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.8,
+          "verbatim": "hemos estado un par de días, o tres, y está solventado, el mantenimiento que han hecho los colegios ha sido un mantenimiento adecuado, así como lo han traído a todos los directores, para hablar con Paki, para todo el mundo, hemos vuelto a mejorar las escuelas",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z9Rkh6a2Oj8QK2TEfXGy%2BA%3D%3D",
+              "snippet": "Mantenimiento de las instalaciones contraincendios en edificios municipales · Ayuntamiento de Riba-roja de Túria · SOLER PREVENCIÓN Y SEGURIDAD SA · security · estado: unknown"
+            }
+          ]
+        }
+      ],
+      "itemCount": 4
+    }
+  ],
   "archived": []
 }

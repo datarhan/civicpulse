@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T14:06:48.782Z",
+  "generatedAt": "2026-07-30T08:04:21.860Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -726,7 +726,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · health · estado: awarded",
+            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -876,7 +876,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · health · estado: awarded",
+            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -1517,7 +1517,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KFJ4LSXR4ZGzz8fXU2i3eQ%3D%3D",
-            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025 · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · health · estado: awarded",
+            "snippet": "Servicio ornamentación alumbrado navideño 2024-2025 · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -2051,8 +2051,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PAA4ouM3mNjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato de servicios de mantenimiento de las zonas verdes de la CV-370 y el carril bici de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, único criterio de adjudicación y condición especial de ejecución de carácter social y medioambiental reservado a Centros Especiales de Empleo de iniciativa social contribuyendo al cumplimiento del ODS 8 relativo a la promoción del crecimiento económico inclusivo · Ayuntamiento de Riba-roja de Túria · COMPAÑÍA ESPECIAL EMPLEO E INTEGRACIÓN, S.L. · agriculture · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dj0UfagL4ccSugstABGr5A%3D%3D",
+            "snippet": "servicio de limpieza de refuerzo para prevenir la\nexpansión del COVID-19 en los centros escolares mediante tramitación de emergencia. · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -2268,8 +2268,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -2304,9 +2304,16 @@
       },
       "verification": {
         "claimId": "19gax3o-034-cit-8ae8be",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dsw60vrWRmm5HQrHoP3G5A%3D%3D",
+            "snippet": "Suministro con instalación de juegos infantiles en Parque Asunción de Nuestra Señora · Ayuntamiento de Riba-roja de Túria · industry · estado: unknown",
+            "similarity": 0.8
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
@@ -2316,7 +2323,7 @@
           "priorClaims"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -3203,7 +3210,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
-            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · construction · estado: awarded",
+            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -3887,7 +3894,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=CCI7dKoKJnuXQV0WE7lYPw%3D%3D",
-            "snippet": "El objeto del contrato es el suministro e instalación de una estación de carga rápida para vehículos eléctricos e híbridos enchufables por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas perspectiva de genero y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · ELECTRONIC TRAFIC, SA · electrical · estado: unknown",
+            "snippet": "El objeto del contrato es el suministro e instalación de una estación de carga rápida para vehículos eléctricos e híbridos enchufables por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas perspectiva de genero y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · ELECTRONIC TRAFIC, S.A. · electrical · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -7953,7 +7960,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5dHMlg8mKGsQyBAnWzHfCg%3D%3D",
-            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · construction · estado: awarded",
+            "snippet": "Contrato menor de obras de reposición de alumbrado público en zona industrial de Riba-roja de Túria, como actuaciones de emergencia tras daños por la DANA (Ctto. 168M/2025). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · construction · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -8125,7 +8132,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ZDLv1lEzZyjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ASSISTACASA S.L · construction · estado: unknown",
+            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -8583,14 +8590,14 @@
       },
       "verification": {
         "claimId": "19gax3o-124-cit-452536",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
-            "similarity": 1
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
+            "similarity": 0.67
           }
         ],
         "checkedAgainst": [
@@ -8897,8 +8904,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
+            "snippet": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · HIDROLOGÍA, PROYECTOS, DESARROLLO Y GESTIÓN, S.L. · construction · estado: unknown",
             "similarity": 1
           }
         ],
@@ -9284,8 +9291,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -9325,8 +9332,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -9368,7 +9375,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM, S.L. · environment · estado: unknown",
+            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM,S.L. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -9443,7 +9450,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM, S.L. · environment · estado: unknown",
+            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM,S.L. · environment · estado: unknown",
             "similarity": 1
           }
         ],
@@ -9836,7 +9843,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM, S.L. · environment · estado: unknown",
+            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM,S.L. · environment · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -9978,8 +9985,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 1
           }
         ],
@@ -10014,14 +10021,14 @@
       },
       "verification": {
         "claimId": "19gax3o-145-cit-31097b",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
-            "similarity": 1
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
+            "similarity": 0.5
           }
         ],
         "checkedAgainst": [
@@ -10094,14 +10101,14 @@
       },
       "verification": {
         "claimId": "19gax3o-146-cit-288e9a",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
-            "similarity": 1
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
+            "similarity": 0.5
           }
         ],
         "checkedAgainst": [
@@ -10174,8 +10181,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
+            "snippet": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · HIDROLOGÍA, PROYECTOS, DESARROLLO Y GESTIÓN, S.L. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -10216,8 +10223,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6eiWKGfBAKmrz3GQd5r6SQ%3D%3D",
+            "snippet": "contrato de ejecución de las obras de construcción de pabellón deportivo cubierto en CEIP Mas d’Escoto – Fase I (movimiento de tierras y muro de contención) por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · HIDROLOGÍA, PROYECTOS, DESARROLLO Y GESTIÓN, S.L. · construction · estado: unknown",
             "similarity": 1
           }
         ],
@@ -10438,7 +10445,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM, S.L. · environment · estado: unknown",
+            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM,S.L. · environment · estado: unknown",
             "similarity": 1
           }
         ],
@@ -11631,8 +11638,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -11742,8 +11749,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 1
           }
         ],
@@ -11921,8 +11928,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
+            "snippet": "Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · maintenance · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -13155,7 +13162,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ZDLv1lEzZyjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ASSISTACASA S.L · construction · estado: unknown",
+            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -13197,7 +13204,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ZDLv1lEzZyjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ASSISTACASA S.L · construction · estado: unknown",
+            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · estado: unknown",
             "similarity": 0.5
           }
         ],
@@ -13407,7 +13414,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BylZjlFxmVEQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM, S.L. · environment · estado: unknown",
+            "snippet": "Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá · Ayuntamiento de Riba-roja de Túria · RECOLIM,S.L. · environment · estado: unknown",
             "similarity": 1
           }
         ],

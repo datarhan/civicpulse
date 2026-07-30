@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T14:06:48.782Z",
+  "generatedAt": "2026-07-30T08:04:21.860Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -1002,7 +1002,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ngqf58oaRxQQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · Compañía de Tratamientos Levante S.L · environment · estado: unknown",
+            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · COMPAÑIA DE TRATAMIENTOS LEVANTE SL (CTL) · environment · estado: unknown",
             "similarity": 0.67
           }
         ],
@@ -5487,8 +5487,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IjCJ31IoVeJWhbmkna2nXQ%3D%3D",
-            "snippet": "Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón deportivo, así como la Avenida Pacadar y C/ Arrosals. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
+            "snippet": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · construction · estado: unknown",
             "similarity": 0.5
           }
         ],

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T14:06:48.782Z",
+  "generatedAt": "2026-07-30T08:04:21.860Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -133,8 +133,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pxvriyOBf9tSYrkJkLlFdw%3D%3D",
-            "snippet": "Contrato de obras proyecto “Vallado linde urbanización REVA con CV-383 del término municipal de Riba-roja de Túria” derivado del sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria. (Ctto 200/2023bis – SDA 2/2020). · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=r30kXD%2FMos%2BiEJrVRqloyA%3D%3D",
+            "snippet": "Contrato de obras de MEJORA DE ACCESIBILIDAD AVENIDA DE LA PAZ derivado del SDA 2 de Obras de sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria (Ctto 44/2022 – SDA 2/2020). · Ayuntamiento de Riba-roja de Túria · BROCOSER 19 S.L. · construction · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -2442,7 +2442,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3xW6gXNqA8wBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Obras desvío linea aérea de media tensión cementerio municipal · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · other · estado: awarded",
+            "snippet": "Obras desvío linea aérea de media tensión cementerio municipal · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · other · estado: awarded",
             "similarity": 1
           }
         ],
@@ -3289,8 +3289,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio. · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G%2BmnRyGH352ExvMJXBMHHQ%3D%3D",
+            "snippet": "Contrato adquisición de 320 contendores de carga lateral para el servicio de recogida de residuos en Riba-roja de Túria, así como la retirada y gestión del actual parque existente. · Ayuntamiento de Riba-roja de Túria · Sulo Ibérica, S.A. · construction · estado: awarded",
             "similarity": 0.5
           }
         ],
@@ -3635,7 +3635,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR SOCIEDAD LIMITADA · health · estado: awarded",
+            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
             "similarity": 0.5
           }
         ],

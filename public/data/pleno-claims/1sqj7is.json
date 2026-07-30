@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T14:06:48.782Z",
+  "generatedAt": "2026-07-30T08:04:21.860Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -1558,8 +1558,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pxvriyOBf9tSYrkJkLlFdw%3D%3D",
-            "snippet": "Contrato de obras proyecto “Vallado linde urbanización REVA con CV-383 del término municipal de Riba-roja de Túria” derivado del sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria. (Ctto 200/2023bis – SDA 2/2020). · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · VPROYECTA OFICINAS SL · textile · estado: awarded",
             "similarity": 1
           }
         ],
@@ -1751,8 +1751,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pxvriyOBf9tSYrkJkLlFdw%3D%3D",
-            "snippet": "Contrato de obras proyecto “Vallado linde urbanización REVA con CV-383 del término municipal de Riba-roja de Túria” derivado del sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria. (Ctto 200/2023bis – SDA 2/2020). · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · VPROYECTA OFICINAS SL · textile · estado: awarded",
             "similarity": 1
           }
         ],
@@ -1855,8 +1855,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pxvriyOBf9tSYrkJkLlFdw%3D%3D",
-            "snippet": "Contrato de obras proyecto “Vallado linde urbanización REVA con CV-383 del término municipal de Riba-roja de Túria” derivado del sistema dinámico de adquisición para la ejecución de obras de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria. (Ctto 200/2023bis – SDA 2/2020). · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eQSvV%2FmKsbQSugstABGr5A%3D%3D",
+            "snippet": "Contrato de suministro para el MOBILIARIO en el CENTRO SOCIAL “LA BOTAIA” (DESPACHO DEL 9 AL 16) derivado del Sistema Dinámico de Adquisición de suministro de materiales y productos de utilización diaria del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · VPROYECTA OFICINAS SL · textile · estado: awarded",
             "similarity": 1
           }
         ],
@@ -3025,7 +3025,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA, S.L. · culture · estado: unknown",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA SOCIEDAD LIMITADA · culture · estado: unknown",
             "similarity": 0.5
           }
         ],

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T14:06:48.782Z",
+  "generatedAt": "2026-07-30T08:04:21.860Z",
   "version": "1",
   "plenoId": "toa3rc",
   "plenoDate": "2025-12-26",
@@ -319,8 +319,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=MlfeSI2PCg2rz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato para la ejecución del contrato de servicios de actividades de ocio sociocultural y educativo (RIBAJOVE), derivado del sistema dinámico de adquisición (SDA) para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. (Ctto 61/2022 – SDA 2/2022). · Ayuntamiento de Riba-roja de Túria · GRUPO A RIURE · health · estado: awarded",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tSwMOlAy0wKLAncw3qdZkA%3D%3D",
+            "snippet": "Contrato servicio de alquiler grupo electrógeno, durante el desarrollo de la campaña de promoción y dinamización del comercio local en la Feria del Comercio de Riba-roja de Túria, contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · health · estado: unknown",
             "similarity": 0.5
           }
         ],

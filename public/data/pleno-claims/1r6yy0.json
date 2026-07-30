@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T14:06:48.782Z",
+  "generatedAt": "2026-07-30T08:04:21.860Z",
   "version": "1",
   "plenoId": "1r6yy0",
   "plenoDate": "2023-01-23",
@@ -525,7 +525,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
-            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 SOCIEDAD LIMITADA · construction · estado: awarded",
+            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
             "similarity": 1
           }
         ],
@@ -745,7 +745,7 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4w9Nqs7MG9AeC9GJQOEBkQ%3D%3D",
-            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 SOCIEDAD LIMITADA · construction · estado: awarded",
+            "snippet": "El objeto es la ejecución de las  obras, para el proyecto “APARCAMIENTO PROVISIONAL EN ZONA PACADAR” de Riba-roja de Túria. (Ctto. 254/2023). · Ayuntamiento de Riba-roja de Túria · RAYSO SERVICIOS 2014 S.L. · construction · estado: awarded",
             "similarity": 1
           }
         ],
