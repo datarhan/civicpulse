@@ -4,6 +4,7 @@ import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
+import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT, useLocale } from '../i18n'
 
@@ -68,6 +69,7 @@ export default function CargoDetalle() {
   const promisesSnap = usePromises()
   const agendasSnap = usePlenoAgendas()
   const quejasSnap = useQuejas()
+  const bioRoutes = useBioReportRoutes()
 
   if (officialsSnap.loading) {
     return (
@@ -209,13 +211,23 @@ export default function CargoDetalle() {
             >
               {official.email || 'alcaldia@ribarroja.es'}
             </a>
-            {official.cvUrl && (
-              <ExtLink
-                href={official.cvUrl}
+            {bioRoutes.get(official.slug) ? (
+              <Link
+                to={bioRoutes.get(official.slug)}
+                title="Informe biográfico del agente periodista de CivicPulse"
                 style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
               >
                 Biografía →
-              </ExtLink>
+              </Link>
+            ) : (
+              official.cvUrl && (
+                <ExtLink
+                  href={official.cvUrl}
+                  style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+                >
+                  Biografía →
+                </ExtLink>
+              )
             )}
           </div>
         </div>

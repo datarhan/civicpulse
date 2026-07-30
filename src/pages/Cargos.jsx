@@ -5,6 +5,7 @@ import { useOfficials, partyColor } from '../hooks/useOfficials'
 import { useIspa, ispaLatest, formatEuros, alcaldeGrowth } from '../hooks/useIspa'
 import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
+import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { fmtDateLong } from '../lib/formatters'
@@ -360,7 +361,7 @@ function PlantillaCard() {
   )
 }
 
-function OfficialCard({ o, big = false }) {
+function OfficialCard({ o, big = false, bioRoute }) {
   const color = partyColor(o.party)
   return (
     <Card hover>
@@ -472,13 +473,23 @@ function OfficialCard({ o, big = false }) {
         >
           {o.email || 'alcaldia@ribarroja.es'}
         </a>
-        {o.cvUrl && (
-          <ExtLink
-            href={o.cvUrl}
+        {bioRoute ? (
+          <Link
+            to={bioRoute}
+            title="Informe biográfico del agente periodista de CivicPulse"
             style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
           >
             Biografía →
-          </ExtLink>
+          </Link>
+        ) : (
+          o.cvUrl && (
+            <ExtLink
+              href={o.cvUrl}
+              style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+            >
+              Biografía →
+            </ExtLink>
+          )
         )}
       </div>
       <RetribucionBadge official={o} />
@@ -536,6 +547,7 @@ function CompositionBar({ composition, total }) {
 
 function CorporacionMunicipal() {
   const { loading, error, data } = useOfficials()
+  const bioRoutes = useBioReportRoutes()
 
   if (loading) {
     return (
@@ -588,7 +600,7 @@ function CorporacionMunicipal() {
 
       {mayor && (
         <div style={{ marginBottom: 14 }}>
-          <OfficialCard o={mayor} big />
+          <OfficialCard o={mayor} big bioRoute={bioRoutes.get(mayor.slug)} />
         </div>
       )}
 
@@ -617,7 +629,7 @@ function CorporacionMunicipal() {
         }}
       >
         {rest.map((o) => (
-          <OfficialCard key={o.slug} o={o} />
+          <OfficialCard key={o.slug} o={o} bioRoute={bioRoutes.get(o.slug)} />
         ))}
       </div>
     </div>

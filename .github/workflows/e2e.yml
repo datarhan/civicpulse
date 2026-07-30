@@ -48,6 +48,11 @@ jobs:
 
       - name: Build production bundle
         run: npm run build
+        env:
+          # Prod parity: civicpulse.es launched Periodistas IA (Vercel sets
+          # this var), so e2e must test the same route set — incl. the
+          # /cargos «Biografía →» link into the published agent report.
+          VITE_ENABLE_PERIODISTAS: 'true'
 
       - name: Run Playwright tests
         run: npm run test:e2e

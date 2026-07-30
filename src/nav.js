@@ -1,4 +1,5 @@
 import { Ic } from './components/Icons'
+import { PERIODISTAS_ENABLED } from './flags'
 
 // Single source of truth for site navigation. BOTH the labelled Sidebar
 // (InnerShell routes) and the icon-only LeftRail (the `/` landing) render from
@@ -134,11 +135,10 @@ export const NAV = [
     shortcut: 'G B',
   },
   // "Periodistas" (the AI journalist agent) is the highest legal-sensitivity
-  // surface — it drafts biographies of named living officials. It is hidden
-  // from the public production build for the MVP launch and stays available in
-  // dev. Re-enable in production via VITE_ENABLE_PERIODISTAS=true. Keep this
-  // gate in sync with PERIODISTAS_ENABLED in src/App.jsx.
-  ...(import.meta.env.MODE !== 'production' || import.meta.env.VITE_ENABLE_PERIODISTAS === 'true'
+  // surface — it drafts biographies of named living officials. Hidden from
+  // production builds unless VITE_ENABLE_PERIODISTAS=true — same flag that
+  // registers the routes (src/flags.js).
+  ...(PERIODISTAS_ENABLED
     ? [
         {
           to: '/laboratorio/agentes',

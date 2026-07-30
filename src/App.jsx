@@ -5,6 +5,7 @@ import { Topbar } from './components/Topbar'
 import { CmdK } from './components/CmdK'
 import { TweaksPanel, TweaksButton } from './components/TweaksPanel'
 import { useT } from './i18n'
+import { PERIODISTAS_ENABLED } from './flags'
 
 // Route-level code-split. DirectionD is the landing page and carries
 // Leaflet + CartoDB tile deps — lazy-loading drops initial JS to
@@ -44,14 +45,11 @@ const BuildingCivicPulse = lazy(() => import('./pages/blog/BuildingCivicPulse'))
 const isDev = import.meta.env.MODE !== 'production'
 const Curator = isDev ? lazy(() => import('./pages/Curator')) : null
 
-// "Periodistas IA" (the journalist agent) generates AI-drafted biographies of
-// named living officials — the highest legal-sensitivity surface in the app.
-// It is HIDDEN from the public production build for the MVP launch and stays
-// available in dev for curators. Re-enable in production by setting
-// VITE_ENABLE_PERIODISTAS=true (e.g. a Vercel env var). When disabled, the
-// routes are absent so the chunks are tree-shaken out and any direct URL
-// falls through to the catch-all redirect.
-export const PERIODISTAS_ENABLED = isDev || import.meta.env.VITE_ENABLE_PERIODISTAS === 'true'
+// "Periodistas IA" flag lives in src/flags.js (leaf module) so pages and
+// hooks can read it without importing the router. When disabled, the routes
+// are absent so the chunks are tree-shaken out and any direct URL falls
+// through to the catch-all redirect.
+export { PERIODISTAS_ENABLED } from './flags'
 const Agentes = PERIODISTAS_ENABLED ? lazy(() => import('./pages/Agentes')) : null
 const AgenteReporte = PERIODISTAS_ENABLED ? lazy(() => import('./pages/AgenteReporte')) : null
 

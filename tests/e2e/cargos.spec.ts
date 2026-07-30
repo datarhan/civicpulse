@@ -23,6 +23,18 @@ test.describe('Cargos (/cargos)', () => {
     expect(errors.filter((e) => !/favicon|ws:/i.test(e))).toEqual([])
   })
 
+  test('the alcalde card links Biografía to the published journalist report', async ({ page }) => {
+    await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
+    // The alcalde has a published agent report, so his Biografía link must be
+    // the INTERNAL report route (the old external transparency-listing URL
+    // was useless as a biography). Other councillors keep the cvUrl fallback.
+    const bioLink = page.locator('a[href^="/laboratorio/agentes/"]', { hasText: 'Biografía' })
+    await expect(bioLink.first()).toBeVisible({ timeout: 8000 })
+    await bioLink.first().click()
+    await expect(page).toHaveURL(/\/laboratorio\/agentes\/a-robert-raga-bio/)
+    await expect(page.getByText('Robert Raga Gadea').first()).toBeVisible({ timeout: 8000 })
+  })
+
   test('clicking a councillor link navigates into the detail view', async ({ page }) => {
     await page.goto('/cargos', { waitUntil: 'domcontentloaded' })
     const link = page.locator('a[href^="/cargos/"]').first()
