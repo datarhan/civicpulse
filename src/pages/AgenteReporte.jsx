@@ -11,9 +11,10 @@
 //   │              SOURCE LEDGER (table)               │
 //   └──────────────────────────────────────────────────┘
 
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Card, ExtLink, SectionHead } from '../components/Primitives'
+import { useOfficials } from '../hooks/useOfficials'
 import {
   FactsSidebar,
   HeroBand,
@@ -46,14 +47,27 @@ const SECTION_LABEL = {
 }
 
 function sectionsToToc(sections) {
+  // Anchor ids must mirror sectionAnchorId's occurrence counting (which
+  // walks EVERY section, portrait included). Narratives get one TOC entry
+  // per heading — a single collapsed «Trayectoria» hid 8 narratives from
+  // navigation (2026-07-31 operator review). Other kinds dedupe by kind.
   const seen = new Set()
+  const occ = new Map()
   const toc = []
-  for (let i = 0; i < sections.length; i++) {
-    const s = sections[i]
+  for (const s of sections) {
+    const base = `sec-${s.kind}`
+    const n = occ.get(s.kind) ?? 0
+    occ.set(s.kind, n + 1)
+    const anchor = n === 0 ? base : `${base}-${n}`
     if (s.kind === 'portrait') continue // surfaced via HeroBand
+    if (s.kind === 'narrative') {
+      const h = s.payload?.heading ?? 'Narrativa'
+      toc.push({ id: anchor, label: h.length > 30 ? `${h.slice(0, 28).trimEnd()}…` : h })
+      continue
+    }
     if (seen.has(s.kind)) continue
     seen.add(s.kind)
-    toc.push({ id: `sec-${s.kind}`, label: SECTION_LABEL[s.kind] ?? s.kind })
+    toc.push({ id: anchor, label: SECTION_LABEL[s.kind] ?? s.kind })
   }
   return toc
 }
@@ -151,6 +165,66 @@ function ResponseBlock({ response, reportId }) {
   )
 }
 
+// The accumulated curator log is a public audit trail, but rendered raw it
+// was a wall of text (2026-07-31 review). Split into dated entries by the
+// editorial markers the CLIs/passes use, collapsed by default.
+const NOTE_MARKER_RE =
+  /(?=\b(?:RETRACTACIÓN|CORRECCIÓN|AMPLIACIÓN|REVISIÓN DE CURADURÍA|DECLARACIÓN OFICIAL|DEPURACIÓN EDITORIAL|VIGILANCIA)\b)/
+
+function CuratorNotesBlock({ notes }) {
+  const [open, setOpen] = useState(false)
+  const entries = notes
+    .split(NOTE_MARKER_RE)
+    .map((s) => s.trim())
+    .filter(Boolean)
+  return (
+    <Card>
+      <SectionHead title="Notas de curaduría" />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap' }}>
+        <p style={{ margin: 0, flex: 1, fontSize: 12, color: 'var(--ink60)', fontStyle: 'italic' }}>
+          Registro público del trabajo editorial sobre este informe: verificaciones, correcciones y
+          señales en seguimiento.
+        </p>
+        <button
+          onClick={() => setOpen((v) => !v)}
+          style={{
+            fontSize: 11,
+            padding: '4px 10px',
+            borderRadius: 6,
+            border: '1px solid var(--border)',
+            background: 'transparent',
+            color: 'var(--ink60)',
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {open ? 'Ocultar' : `Ver ${entries.length} ${entries.length === 1 ? 'nota' : 'notas'}`}
+        </button>
+      </div>
+      {open && (
+        <ol
+          style={{ margin: '12px 0 0 0', padding: 0, listStyle: 'none', display: 'grid', gap: 10 }}
+        >
+          {entries.map((e, i) => (
+            <li
+              key={i}
+              style={{
+                fontSize: 12,
+                lineHeight: 1.55,
+                color: 'var(--ink60)',
+                paddingLeft: 10,
+                borderLeft: '2px solid var(--border)',
+              }}
+            >
+              {e}
+            </li>
+          ))}
+        </ol>
+      )}
+    </Card>
+  )
+}
+
 export default function AgenteReporte() {
   const params = useParams()
   const id = params.assignmentId ?? ''
@@ -164,6 +238,10 @@ export default function AgenteReporte() {
   const tocItems = useMemo(() => (report ? sectionsToToc(report.sections) : []), [report])
   const subjectName = assignment?.subject.name ?? report?.assignmentId ?? ''
   const portraitPayload = report?.sections.find((s) => s.kind === 'portrait')?.payload
+  const officialsState = useOfficials()
+  const party = officialsState.data?.officials?.find(
+    (o) => o.slug === portraitPayload?.officialSlug,
+  )?.party
 
   if (loading) {
     return <div style={{ padding: '40px 24px', color: 'var(--ink50)' }}>Cargando informe…</div>
@@ -234,6 +312,7 @@ export default function AgenteReporte() {
         subjectName={subjectName}
         portraitPayload={portraitPayload}
         report={report}
+        party={party}
         soulDownloadUrl={soulDownloadUrl}
       />
 
@@ -257,21 +336,7 @@ export default function AgenteReporte() {
           <ResponseBlock response={report.response} reportId={report.id} />
           <CorrectionLog corrections={report.corrections} />
 
-          {report.curatorNotes && (
-            <Card>
-              <SectionHead title="Notas de curaduría" />
-              <p
-                style={{
-                  margin: 0,
-                  fontSize: 12.5,
-                  color: 'var(--ink60)',
-                  whiteSpace: 'pre-wrap',
-                }}
-              >
-                {report.curatorNotes}
-              </p>
-            </Card>
-          )}
+          {report.curatorNotes && <CuratorNotesBlock notes={report.curatorNotes} />}
 
           <div style={{ marginTop: 12, fontSize: 11, color: 'var(--ink50)' }}>
             <Link to="/laboratorio/agentes" style={{ color: 'var(--ink60)' }}>

@@ -67,7 +67,13 @@ export function IdentityCard({ payload, sourceMap }) {
           <>
             <dt style={labelStyle}>Nacimiento</dt>
             <dd style={cellStyle}>
-              <span className="mono">{payload.dateOfBirth}</span>
+              {formatEventDate(payload.dateOfBirth)}
+              {ageFromDate(payload.dateOfBirth) != null && (
+                <span style={{ color: 'var(--ink50)' }}>
+                  {' '}
+                  · {ageFromDate(payload.dateOfBirth)} años
+                </span>
+              )}
               <CitationPills ids={payload.sourceIds} sourceMap={sourceMap} />
             </dd>
           </>
@@ -752,7 +758,7 @@ export function PromiseMiniBoard({ payload }) {
 // ─── Section: quote card ─────────────────────────────────────────────────
 
 export function QuoteCard({ payload, sourceMap, withHead = false }) {
-  const src = sourceMap?.get?.(payload.sourceId)
+  const src = sourceMap?.get?.(payload.sourceId)?.src
   return (
     <Card>
       {withHead && (
@@ -813,11 +819,22 @@ export function QuoteCard({ payload, sourceMap, withHead = false }) {
 // ─── Helpers ─────────────────────────────────────────────────────────────
 
 // ISO date → «9 abr 1966». Noon anchor avoids TZ day-shift; falls back to
-// the raw string on anything unparseable.
-function formatEventDate(iso) {
+// the raw string on anything unparseable. Shared by hero/ficha too.
+export function formatEventDate(iso) {
   const d = new Date(`${iso}T12:00:00`)
   if (Number.isNaN(d.getTime())) return iso
   return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })
+}
+
+// Current age from an ISO birth date (render-time, deterministic).
+export function ageFromDate(iso) {
+  const d = new Date(`${iso}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return null
+  const now = new Date()
+  let age = now.getFullYear() - d.getFullYear()
+  const m = now.getMonth() - d.getMonth()
+  if (m < 0 || (m === 0 && now.getDate() < d.getDate())) age -= 1
+  return age
 }
 
 function formatYearSpan(start, end, openLabel = '') {

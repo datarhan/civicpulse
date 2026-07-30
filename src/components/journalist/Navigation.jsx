@@ -1,6 +1,7 @@
 // Journalist UI — page framing: sticky scroll-spy TOC, facts sidebar, legal badge.
 import { useEffect, useState } from 'react'
 import { Card, Pill } from '../Primitives'
+import { ageFromDate, formatEventDate } from './Sections'
 import { LEGAL_SENSITIVITY_LABEL, LEGAL_SENSITIVITY_TONE } from '../../hooks/useJournalistReports'
 
 // ─── Sticky TOC with scroll-spy ──────────────────────────────────────────
@@ -76,18 +77,6 @@ export function FactsSidebar({ report, subjectName, assignment }) {
   const promiseBoard =
     report.sections.find((s) => s.kind === 'promise-board')?.payload?.promiseIds ?? []
   const press = report.sections.find((s) => s.kind === 'press-sparkline')?.payload
-  const dossierKinds = [
-    'identity',
-    'education',
-    'career-political',
-    'career-professional',
-    'legal-record',
-    'financial',
-    'online-presence',
-    'awards',
-    'publications',
-  ]
-  const dossierPresent = report.sections.filter((s) => dossierKinds.includes(s.kind)).length
 
   const rows = []
   if (portrait?.portfolios?.length) {
@@ -104,25 +93,37 @@ export function FactsSidebar({ report, subjectName, assignment }) {
     })
   }
   if (identity?.dateOfBirth) {
-    rows.push({ label: 'Nacimiento', value: <span className="mono">{identity.dateOfBirth}</span> })
+    const age = ageFromDate(identity.dateOfBirth)
+    rows.push({
+      label: 'Nacimiento',
+      value: (
+        <>
+          {formatEventDate(identity.dateOfBirth)}
+          {age != null && <span style={{ color: 'var(--ink50)' }}> · {age} años</span>}
+        </>
+      ),
+    })
   }
   if (identity?.birthplace) {
     rows.push({ label: 'Lugar', value: identity.birthplace })
   }
-  if (careerPol[0]) {
-    const c = careerPol[0]
-    rows.push({
-      label: 'Cargo actual',
-      value: (
-        <>
-          {c.role}
-          <br />
-          <span style={{ color: 'var(--ink50)', fontSize: 11 }}>
-            {c.org} · desde {c.startYear}
-          </span>
-        </>
-      ),
-    })
+  {
+    // Current (open-ended) mandate wins over the first historical row.
+    const c = careerPol.find((i) => i.endYear == null) ?? careerPol[0]
+    if (c) {
+      rows.push({
+        label: 'Cargo actual',
+        value: (
+          <>
+            {c.role}
+            <br />
+            <span style={{ color: 'var(--ink50)', fontSize: 11 }}>
+              {c.org} · desde {c.startYear}
+            </span>
+          </>
+        ),
+      })
+    }
   }
   if (education[0]) {
     rows.push({
@@ -147,7 +148,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
   }
   if (promiseBoard.length > 0) {
     rows.push({
-      label: 'Promesas',
+      label: 'Promesas (partido)',
       value: `${promiseBoard.length} documentadas`,
     })
   }
@@ -167,11 +168,7 @@ export function FactsSidebar({ report, subjectName, assignment }) {
   }
   rows.push({
     label: 'Fuentes',
-    value: `${report.sources.length} consultadas`,
-  })
-  rows.push({
-    label: 'Secciones',
-    value: `${dossierPresent}/9 del dossier`,
+    value: `${report.sources.length} citadas`,
   })
 
   return (
