@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T10:48:42.936Z",
+  "generatedAt": "2026-07-30T11:29:18.136Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -41,7 +41,7 @@
       "brief": "Biografía pública completa del alcalde Robert Raga Gadea (julio 2026): cobertura de web abierta (prensa regional y nacional vía SearXNG), declaraciones verbatim de los plenos 2023-2026 a través del corpus transcrito, gestión de la reconstrucción post-DANA, trayectoria política y profesional, y red de relaciones institucionales.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-29T18:48:53.951Z",
-      "status": "promoted",
+      "status": "archived",
       "lastRunAt": "2026-07-29T18:55:10.981Z"
     },
     {
@@ -55,8 +55,8 @@
       "brief": "Biografía pública del alcalde Robert Raga Gadea (julio 2026, pipeline endurecido): cobertura de web abierta con niveles de confianza por dominio, declaraciones verbatim de los plenos vía corpus transcrito, contraste determinista de cifras contra las fuentes citadas, reconstrucción post-DANA, trayectoria y red institucional.",
       "createdBy": "civicpulse-curator",
       "createdAt": "2026-07-29T19:32:34.624Z",
-      "status": "drafted",
-      "lastRunAt": "2026-07-30T10:48:42.936Z"
+      "status": "promoted",
+      "lastRunAt": "2026-07-30T11:27:46.936Z"
     }
   ]
 }
