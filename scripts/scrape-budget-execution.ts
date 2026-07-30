@@ -4,7 +4,8 @@
  * per period: a period whose PDFs 404, fail to fetch, or throw is skipped
  * (logged), never fatal — one bad PDF can't abort the whole run.
  */
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
@@ -138,6 +139,28 @@ async function main() {
   })
   survivors.sort((a, b) => a.year - b.year || (a.trimestre ?? 0) - (b.trimestre ?? 0))
   const latest = survivors[survivors.length - 1] ?? null
+  // Anti-shrink guard (same reasoning as scrape-paro): an unreachable or
+  // reshuffled upstream page is NOT a data state. 2026-07-30 the nightly
+  // overwrote a healthy snapshot with periods:[] and the /presupuesto
+  // «Ejecución presupuestaria» section vanished (caught by e2e). Refuse
+  // to replace a non-empty snapshot with an empty one; exit non-zero so
+  // the best-effort wrapper logs a soft failure and yesterday's data
+  // stays live.
+  if (survivors.length === 0 && existsSync(OUT)) {
+    try {
+      const prev = JSON.parse(await readFile(OUT, 'utf8')) as { periods?: unknown[] }
+      if ((prev.periods?.length ?? 0) > 0) {
+        console.error(
+          `[budget-execution] parsed 0 plausible periods but the existing snapshot has ` +
+            `${prev.periods!.length} — upstream layout change or WAF; keeping the existing ` +
+            `snapshot untouched and failing the run`,
+        )
+        process.exit(1)
+      }
+    } catch {
+      /* unreadable previous snapshot → fall through and write */
+    }
+  }
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(
     OUT,
