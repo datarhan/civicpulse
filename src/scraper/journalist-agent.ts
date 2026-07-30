@@ -1090,7 +1090,7 @@ export async function runJournalistAgent(
     // precision) and to add dockets the regex missed. The union merge
     // after the call guarantees every seed survives by construction.
     const judicialBodies = allBodies.filter((b) => JUDICIAL_TOKENS.some((rx) => rx.test(b.excerpt)))
-    const legalSeeds = synthesizeLegalRecordRows(judicialBodies)
+    const legalSeeds = synthesizeLegalRecordRows(judicialBodies, subjectName)
     const bio = await callLLM({
       systemPrompt: buildJournalistBioSystemPrompt(),
       userPrompt: buildJournalistBioUserPrompt({

@@ -11,11 +11,20 @@ const INFORME_BODY = {
     'Informe 02/2021, de 18 de junio de 2021. Contratación irregular: revisión de oficio de obras que deben ser objeto de licitación. ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de Turia, actuando en nombre y representación del mismo. La Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana de 25 de marzo de 2019 declara la obligación de indemnizar.',
 }
 
-const BOP_BODY = {
+// REAL structure of the bulletin that produced the 2026-07-30 false
+// association: the subject signs an unrelated wedding-delegation edicto,
+// pages away from a labor execution against a private company. The
+// synthesizer must extract NOTHING for the subject from this.
+const BOP_MULTI_BODY = {
   citationId: 'src-014',
-  title: 'Anuncio — Boletín Oficial de la Provincia de València',
+  title: 'DIPUTACIÓ PROVINCIAL DE VALÈNCIA — BOP N.º 115 17-VI-2019',
   excerpt:
-    'Edicto del Juzgado de lo Social número dos de Valencia sobre expediente número 2019/8305 contra el Ayuntamiento; se hace saber la sentencia número 139/19 del Juzgado de lo Social número dos, notificada a Roberto-Pascual Raga Gadea.',
+    'Ayuntamiento de Riba-roja de Túria. Edicto sobre delegación celebración matrimonio civil. El alcalde en funciones, Roberto-Pascual Raga Gadea. 2019/8305 22 N.º 115 17-VI-2019 BUTLLETÍ OFICIAL DE LA PROVÍNCIA DE VALÈNCIA ' +
+    'Ayuntamiento de Aielo de Rugat. Anuncio sobre exposición al público de la aprobación definitiva de la modificación de créditos del presupuesto municipal vigente. '.repeat(
+      12,
+    ) +
+    '2019/8310 45 N.º 115 17-VI-2019 BUTLLETÍ OFICIAL DE LA PROVÍNCIA DE VALÈNCIA ' +
+    'Juzgado de lo Social número tres. Edicto sobre ejecución número 1.132/19-CE contra Montemu Soluciones Industriales SLU, despachando ejecución de la sentencia número 139/19 del Juzgado de lo Social número trece de Valencia.',
 }
 
 const CLEAN_BODY = {
@@ -25,28 +34,29 @@ const CLEAN_BODY = {
 }
 
 describe('synthesizeLegalRecordRows', () => {
-  it('extracts one row per official document with docket, issuing body and verbatim window', () => {
-    const rows = synthesizeLegalRecordRows([INFORME_BODY, BOP_BODY, CLEAN_BODY])
-    expect(rows.length).toBeGreaterThanOrEqual(2)
+  it('extracts rows only where the SUBJECT appears near the docket', () => {
+    const rows = synthesizeLegalRecordRows(
+      [INFORME_BODY, BOP_MULTI_BODY, CLEAN_BODY],
+      'Robert Raga Gadea',
+    )
     const informe = rows.find((r) => /02\/2021/.test(r.caseRef))
     expect(informe).toBeDefined()
     expect(informe!.court).toContain('Junta Superior')
     expect(informe!.verbatimRef.length).toBeGreaterThanOrEqual(20)
     expect(informe!.sourceIds).toEqual(['src-013'])
-    const bop = rows.find((r) => /139\/19/.test(r.caseRef))
-    expect(bop).toBeDefined()
-    expect(bop!.court).toContain('Juzgado de lo Social')
-    expect(bop!.sourceIds).toEqual(['src-014'])
+    // THE 2026-07-30 FALSE-ASSOCIATION CLASS: the subject signs a wedding
+    // edicto pages away from another party's labor execution — no row.
+    expect(rows.some((r) => /139\/19/.test(r.caseRef))).toBe(false)
   })
 
   it('never invents rows from non-judicial bodies', () => {
-    expect(synthesizeLegalRecordRows([CLEAN_BODY])).toEqual([])
+    expect(synthesizeLegalRecordRows([CLEAN_BODY], 'Robert Raga Gadea')).toEqual([])
   })
 
   it('dedupes the same docket across bodies, keeping the first source', () => {
-    const dup = { ...BOP_BODY, citationId: 'src-099' }
-    const rows = synthesizeLegalRecordRows([BOP_BODY, dup])
-    expect(rows.filter((r) => /139\/19/.test(r.caseRef))).toHaveLength(1)
+    const dup = { ...INFORME_BODY, citationId: 'src-099' }
+    const rows = synthesizeLegalRecordRows([INFORME_BODY, dup], 'Robert Raga Gadea')
+    expect(rows.filter((r) => /02\/2021/.test(r.caseRef))).toHaveLength(1)
   })
 
   it('skips references whose issuing body cannot be derived (honest miss)', () => {
@@ -55,7 +65,7 @@ describe('synthesizeLegalRecordRows', () => {
       title: 'Documento',
       excerpt: 'Se menciona el expediente 77/2020 sin más contexto identificable en este texto.',
     }
-    expect(synthesizeLegalRecordRows([vague])).toEqual([])
+    expect(synthesizeLegalRecordRows([vague], 'Robert Raga Gadea')).toEqual([])
   })
 })
 

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Card, ExtLink, Pill, SectionHead } from '../Primitives'
 import { Sparkline } from '../Charts'
 import { CitationPills } from './Citations'
+import { usePromises, STATUS_LABEL, STATUS_TONE } from '../../hooks/usePromises'
 
 // ─── Section: portrait (now slim — most info is in HeroBand) ─────────────
 
@@ -690,18 +691,56 @@ export function PressSparklineBlock({ payload }) {
 
 export function PromiseMiniBoard({ payload }) {
   const ids = payload.promiseIds || []
+  const promises = usePromises()
   if (ids.length === 0) return null
+  // Resolve ids against the curated tracker so readers see the promise,
+  // not a slug (operator review 2026-07-30: raw ids read as "not enough
+  // data"). Unresolved ids fall back to the slug — honest, still linked.
+  const byId = new Map((promises.data?.items ?? []).map((p) => [p.id, p]))
   return (
     <Card>
       <SectionHead title="Promesas referenciadas" />
       <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
-        {ids.map((id) => (
-          <li key={id} style={{ padding: '4px 0', fontSize: 12.5 }}>
-            <Link to={`/promesas#${id}`} style={{ color: 'var(--ink80)' }}>
-              {id} →
-            </Link>
-          </li>
-        ))}
+        {ids.map((id) => {
+          const p = byId.get(id)
+          return (
+            <li
+              key={id}
+              style={{ padding: '8px 0', borderBottom: '1px solid var(--border2)', fontSize: 12.5 }}
+            >
+              <Link
+                to={`/promesas#${id}`}
+                style={{ color: 'var(--ink)', textDecoration: 'none', display: 'block' }}
+              >
+                {p ? (
+                  <>
+                    <span style={{ display: 'block', lineHeight: 1.45 }}>
+                      «{p.quote.length > 140 ? p.quote.slice(0, 140) + '…' : p.quote}»
+                    </span>
+                    <span
+                      style={{
+                        display: 'flex',
+                        gap: 6,
+                        marginTop: 4,
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                      }}
+                    >
+                      <Pill tone={STATUS_TONE[p.status] || 'ghost'}>
+                        {STATUS_LABEL[p.status] || p.status}
+                      </Pill>
+                      <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>
+                        {p.party} · {(p.madeAt || '').slice(0, 10)}
+                      </span>
+                    </span>
+                  </>
+                ) : (
+                  <span style={{ color: 'var(--ink60)' }}>{id} →</span>
+                )}
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </Card>
   )

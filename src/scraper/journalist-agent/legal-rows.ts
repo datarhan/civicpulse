@@ -65,24 +65,62 @@ function verbatimWindow(text: string, index: number, matchLen: number): string {
   return text.slice(start, end).replace(/\s+/g, ' ').trim()
 }
 
+// A gazette daily bulletin concatenates dozens of unrelated announcements;
+// its masthead repeats between them. ≥2 repeats ⇒ multi-announcement.
+const BULLETIN_MASTHEAD_RE = /N\.º\s*\d+\s|BUTLLET[IÍ] OFICIAL|BOLET[IÍ]N OFICIAL/gi
+
+function isMultiAnnouncementBulletin(text: string): boolean {
+  return (text.match(BULLETIN_MASTHEAD_RE) ?? []).length >= 2
+}
+
+function foldForSubject(s: string): string {
+  return String(s ?? '')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+}
+
 /**
- * One row per distinct docket reference found in judicial bodies.
- * Dedupe by normalized caseRef across bodies (first body wins).
+ * One row per distinct docket reference found in judicial bodies —
+ * ONLY where the docket is about the SUBJECT.
+ *
+ * Subject-proximity rule (root cause of the 2026-07-30 false
+ * association, where the subject's wedding-delegation edicto and an
+ * unrelated company's labor execution shared one BOP bulletin): in a
+ * multi-announcement bulletin the subject's surname pair must appear
+ * within ±800 chars of the docket match; in a single document it must
+ * appear anywhere. No surname, no row — an honest miss beats a false
+ * judicial imputation on a named living person.
  */
-export function synthesizeLegalRecordRows(bodies: LegalBody[]): SynthesizedLegalRow[] {
+export function synthesizeLegalRecordRows(
+  bodies: LegalBody[],
+  subjectName: string,
+): SynthesizedLegalRow[] {
+  const surnameTokens = foldForSubject(subjectName).trim().split(/\s+/)
+  const surnames = surnameTokens.length >= 2 ? surnameTokens.slice(-2).join(' ') : subjectName
   const seen = new Set<string>()
   const rows: SynthesizedLegalRow[] = []
   for (const body of bodies) {
     const haystack = `${body.title}\n${body.excerpt}`
+    const folded = foldForSubject(haystack)
+    if (!folded.includes(surnames)) continue
     const issuer = deriveIssuer(haystack)
     if (!issuer) continue
+    const multi = isMultiAnnouncementBulletin(haystack)
     for (const m of haystack.matchAll(DOCKET_RE)) {
+      const at = m.index ?? 0
+      if (multi) {
+        const windowFolded = foldForSubject(
+          haystack.slice(Math.max(0, at - 800), at + m[0].length + 800),
+        )
+        if (!windowFolded.includes(surnames)) continue
+      }
       const keyword = m[1].toLowerCase()
       const ref = m[2].replace('-', '/')
       const caseRef = `${keyword} ${ref}`
       const key = caseRef.replace(/\s+/g, ' ')
       if (seen.has(key)) continue
-      const verbatimRef = verbatimWindow(haystack, m.index ?? 0, m[0].length)
+      const verbatimRef = verbatimWindow(haystack, at, m[0].length)
       if (verbatimRef.length < 20) continue
       seen.add(key)
       rows.push({ caseRef, court: issuer, verbatimRef, sourceIds: [body.citationId] })
