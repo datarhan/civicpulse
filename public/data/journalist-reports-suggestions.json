@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T15:55:53.139Z",
+  "generatedAt": "2026-07-30T17:44:12.064Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -2618,9 +2618,9 @@
           "kind": "local-snapshot",
           "title": "Officials snapshot — Robert Raga Gadea",
           "retrievedAt": "2026-07-30T15:52:28.626Z",
+          "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "role: alcalde · party: PSOE · portfolios: Alcaldía, Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional"
+          "trust": "high"
         },
         {
           "id": "src-002",
@@ -2628,8 +2628,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Robert-Raga-Gadea.pdf",
           "title": "CV autodeclarado (ficha oficial de transparencia) — Robert Raga Gadea",
           "retrievedAt": "2026-07-30T15:52:28.627Z",
-          "trust": "high",
-          "excerpt": "SN PRESENTACIÓN 9 ABRIL 1966 RIBA-ROJA DE TÚRIA rraga@ribarroja.es FORMACIÓN ACCESO A UNIVERSIDAD MAYORES DE 25 AÑOS• COLEGIO PÚBLICO MIGUEL CERVANTES• Matriculación en magisterio EGB• COLEGIO PÚBLICO MIGUEL CERVANTES• Educación 2ª obligatoria EXPERIENCIA PROFESIONAL ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA Asesor institucional AUTÓNOMO • 2007 - 2011• AUTÓNOMO Autónomo en el sector de las energías renovables y de la seguridad FUNCIONARIO DE LA ADMINISTRACIÓN LOCAL • 1989 -"
+          "excerpt": "SN PRESENTACIÓN 9 ABRIL 1966 RIBA-ROJA DE TÚRIA rraga@ribarroja.es FORMACIÓN ACCESO A UNIVERSIDAD MAYORES DE 25 AÑOS• COLEGIO PÚBLICO MIGUEL CERVANTES• Matriculación en magisterio EGB• COLEGIO PÚBLICO MIGUEL CERVANTES• Educación 2ª obligatoria EXPERIENCIA PROFESIONAL ASESOR • 2011 - 2015• DIPUTACIÓ DE VALÈNCIA Asesor institucional AUTÓNOMO • 2007 - 2011• AUTÓNOMO Autónomo en el sector de las energías renovables y de la seguridad FUNCIONARIO DE LA ADMINISTRACIÓN LOCAL • 1989 -",
+          "trust": "high"
         },
         {
           "id": "src-003",
@@ -2637,8 +2637,8 @@
           "url": "https://transparentia.newtral.es/ficha/roberto-pascual-raga-gadea",
           "title": "Conoce el salario público de Roberto Pascual Raga Gadea",
           "retrievedAt": "2026-07-30T15:52:28.628Z",
-          "trust": "medium",
-          "excerpt": "Roberto Pascual Raga Gadea es Alcalde Del Ayuntamiento De Riba-Roja De Túria por el partido PSOE. Conoce su salario público."
+          "excerpt": "Roberto Pascual Raga Gadea es Alcalde Del Ayuntamiento De Riba-Roja De Túria por el partido PSOE. Conoce su salario público.",
+          "trust": "medium"
         },
         {
           "id": "src-004",
@@ -2646,8 +2646,8 @@
           "url": "https://www.transportes.gob.es/recursos_mfom/audienciainfopublica/recursos/anuncio_bop.pdf",
           "title": "DIPUTACIÓ PROVINCIAL DE VALÈNCIA Edita: DIPUTACIÓN ...",
           "retrievedAt": "2026-07-30T15:52:28.628Z",
-          "trust": "high",
-          "excerpt": "17 jun 2019 ... nes, Roberto-Pascual Raga Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... estudios oficiales que se determinan en las bases de la convocatoria,."
+          "excerpt": "17 jun 2019 ... nes, Roberto-Pascual Raga Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... estudios oficiales que se determinan en las bases de la convocatoria,.",
+          "trust": "high"
         },
         {
           "id": "src-005",
@@ -2655,35 +2655,35 @@
           "url": "https://www.fvmp.es/wp-content/uploads/2024/01/Memoria-de-gestion-2022-2023-CAST.pdf",
           "title": "Memoria de gestión 2022 – 2023 - FVMP",
           "retrievedAt": "2026-07-30T15:52:28.628Z",
-          "trust": "medium",
-          "excerpt": "• Robert Raga Gadea, alcalde-presidente del Ayuntamiento de Riba-roja de ... • Universidad de Alicante: Cesión de aulas por parte de la Universidad de."
+          "excerpt": "• Robert Raga Gadea, alcalde-presidente del Ayuntamiento de Riba-roja de ... • Universidad de Alicante: Cesión de aulas por parte de la Universidad de.",
+          "trust": "medium"
         },
         {
           "id": "src-006",
           "kind": "local-snapshot",
           "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
           "retrievedAt": "2026-07-30T15:52:28.634Z",
+          "excerpt": "Alcaldía: dedicación exclusiva, 48.234,08 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
           "localPath": "public/data/dedicaciones.json",
-          "trust": "high",
-          "excerpt": "Alcaldía: dedicación exclusiva, 48.234,08 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)"
+          "trust": "high"
         },
         {
           "id": "src-007",
           "kind": "local-snapshot",
           "title": "Retribuciones anuales del alcalde — ISPA (Ministerio de Hacienda)",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
+          "excerpt": "2020: 45.461,94 € · 2021: 45.916,56 € · 2022: 52.855,48 € · 2024: 48.647,5 €",
           "localPath": "public/data/ispa.json",
-          "trust": "high",
-          "excerpt": "2020: 45.461,94 € · 2021: 45.916,56 € · 2022: 52.855,48 € · 2024: 48.647,5 €"
+          "trust": "high"
         },
         {
           "id": "src-008",
           "kind": "local-snapshot",
           "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high",
-          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+          "trust": "high"
         },
         {
           "id": "src-009",
@@ -2691,8 +2691,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/PSOE%20Robert%20Raga%20Gadea_0.pdf",
           "title": "PDF SN D. ROBERT RAGA GADEA - ribarroja.es",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "high",
-          "excerpt": "AUTÓNOMO • 2007 - 2011• AUTÓNOMO Autónomo en el sector de las energías renovables y de la seguridad"
+          "excerpt": "AUTÓNOMO • 2007 - 2011• AUTÓNOMO Autónomo en el sector de las energías renovables y de la seguridad",
+          "trust": "high"
         },
         {
           "id": "src-010",
@@ -2700,8 +2700,8 @@
           "url": "http://www.ribarroja.es/es/datos/sr.-d.-robert-raga-gadea",
           "title": "Sr. D. Robert Raga Gadea | Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "high",
-          "excerpt": "Áreas: Alcaldía. Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional."
+          "excerpt": "Áreas: Alcaldía. Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional.",
+          "trust": "high"
         },
         {
           "id": "src-011",
@@ -2709,8 +2709,8 @@
           "url": "https://porunaeconomiacircular.es/wp-content/uploads/2024/04/PresentacionRibarojadeTuria.pdf",
           "title": "PDF Robert Raga Gadea, Alcalde de Riba-roja de Túri",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "low",
-          "excerpt": "Agua regenerada para usos industriales en Riba-roja de Túria Con Robert Raga Gadea, Alcalde de Riba-roja de Túria Obtenga más información en"
+          "excerpt": "Agua regenerada para usos industriales en Riba-roja de Túria Con Robert Raga Gadea, Alcalde de Riba-roja de Túria Obtenga más información en",
+          "trust": "low"
         },
         {
           "id": "src-012",
@@ -2718,8 +2718,8 @@
           "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
           "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "medium",
-          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+          "trust": "medium"
         },
         {
           "id": "src-013",
@@ -2727,8 +2727,8 @@
           "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
           "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "medium",
-          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+          "trust": "medium"
         },
         {
           "id": "src-014",
@@ -2736,8 +2736,8 @@
           "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
           "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "low",
-          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+          "trust": "low"
         },
         {
           "id": "src-015",
@@ -2745,8 +2745,8 @@
           "url": "https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151",
           "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
           "retrievedAt": "2026-07-30T15:52:28.635Z",
-          "trust": "high",
-          "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ... Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana ..."
+          "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ... Sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana ...",
+          "trust": "high"
         },
         {
           "id": "src-016",
@@ -2754,8 +2754,8 @@
           "url": "https://www.transportes.gob.es/recursos_mfom/audienciainfopublica/recursos/anuncio_bop.pdf",
           "title": "DIPUTACIÓ PROVINCIAL DE VALÈNCIA Edita: DIPUTACIÓN ...",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "high",
-          "excerpt": "17 jun 2019 ... nes, Roberto-Pascual Raga Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... del/de la sentencia número 139/19 del Juzgado de lo Social número."
+          "excerpt": "17 jun 2019 ... nes, Roberto-Pascual Raga Gadea. 2019/8305. Page 22. 22. N.º 115. 17-VI ... del/de la sentencia número 139/19 del Juzgado de lo Social número.",
+          "trust": "high"
         },
         {
           "id": "src-017",
@@ -2763,8 +2763,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8482331/filesGroup/20221230-16-P.pdf",
           "title": "Estimado amigo, - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "high",
-          "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos"
+          "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos",
+          "trust": "high"
         },
         {
           "id": "src-018",
@@ -2772,8 +2772,8 @@
           "url": "https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151",
           "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "high",
-          "excerpt": "21 jun 2021 ... REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ..."
+          "excerpt": "21 jun 2021 ... REVISIÓN DE OFICIO. OBRAS QUE DEBEN SER OBJETO DE LICITACIÓN ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de ...",
+          "trust": "high"
         },
         {
           "id": "src-019",
@@ -2781,8 +2781,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
           "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "high",
-          "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria. General Sra. Ylenia Díaz Morán. Declarado abierto el acto por la presidencia, se pasa al ..."
+          "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria. General Sra. Ylenia Díaz Morán. Declarado abierto el acto por la presidencia, se pasa al ...",
+          "trust": "high"
         },
         {
           "id": "src-020",
@@ -2790,8 +2790,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/Anuncio%20publicac%20bases%20proc%20select%20promoc%20interna%20restring%204%20plazas%20tec%20A1_0.pdf",
           "title": "ANUNCIO - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "high",
-          "excerpt": "18 jun 2026 ... En Riba-roja de Turia, a fecha de la firma electrónica. El Alcalde. Roberto Raga Gadea ... Revisión de oficio y recursos. Tema 6. Procedimiento ..."
+          "excerpt": "18 jun 2026 ... En Riba-roja de Turia, a fecha de la firma electrónica. El Alcalde. Roberto Raga Gadea ... Revisión de oficio y recursos. Tema 6. Procedimiento ...",
+          "trust": "high"
         },
         {
           "id": "src-021",
@@ -2799,8 +2799,8 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/agendas/robert_raga_gadea/contenidos/5271926/5901757",
           "title": "Agenda Robert Raga Gadea - Ayuntamiento de Riba-roja de Túria",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "high",
-          "excerpt": "Hacienda · Tesorería · Periodo medio de pago y morosidad · Gestión tributaria ... Agenda Robert Raga Gadea. Alcalde - President. En este espacio puedes ..."
+          "excerpt": "Hacienda · Tesorería · Periodo medio de pago y morosidad · Gestión tributaria ... Agenda Robert Raga Gadea. Alcalde - President. En este espacio puedes ...",
+          "trust": "high"
         },
         {
           "id": "src-022",
@@ -2808,8 +2808,8 @@
           "url": "https://gruporaga.com/",
           "title": "Home - GRUPO RAGA",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "low",
-          "excerpt": "Grupo RAGA es una de las principales compañías en la gestión de zonas verdes y servicios urbanos. Más de 50 años dedicados al …"
+          "excerpt": "Grupo RAGA es una de las principales compañías en la gestión de zonas verdes y servicios urbanos. Más de 50 años dedicados al …",
+          "trust": "low"
         },
         {
           "id": "src-023",
@@ -2817,116 +2817,116 @@
           "url": "https://academia.gal/inicio",
           "title": "Inicio - Real Academia Galega",
           "retrievedAt": "2026-07-30T15:52:28.636Z",
-          "trust": "low",
-          "excerpt": "Mércores, 16 de Setembro de 2026 - 18:00 horas"
+          "excerpt": "Mércores, 16 de Setembro de 2026 - 18:00 horas",
+          "trust": "low"
         },
         {
           "id": "src-024",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/15000go.txt · semantic",
           "retrievedAt": "2026-07-30T15:52:31.494Z",
+          "excerpt": "[0.0 → 0.0] ACTA SESSIÓ EXTRAORDINÀRIA CELEBRADA PER L'AJUNTAMENT [0.0 → 0.0] PLE EL DIA 24 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sessió telemàtica a distància [0.0 → 0.0] Data: 24 de maig de 2023 [0.0 → 0.0] Hora: 09.30 [0.",
           "localPath": "public/data/pleno-transcripts/15000go.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] ACTA SESSIÓ EXTRAORDINÀRIA CELEBRADA PER L'AJUNTAMENT [0.0 → 0.0] PLE EL DIA 24 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sessió telemàtica a distància [0.0 → 0.0] Data: 24 de maig de 2023 [0.0 → 0.0] Hora: 09.30 [0."
+          "trust": "high"
         },
         {
           "id": "src-025",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/67qdq8.txt · semantic",
           "retrievedAt": "2026-07-30T15:52:31.494Z",
+          "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 8 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 8 de maig de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]",
           "localPath": "public/data/pleno-transcripts/67qdq8.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 8 DE MAIG DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 8 de maig de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]"
+          "trust": "high"
         },
         {
           "id": "src-026",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/buag5g.txt · semantic",
           "retrievedAt": "2026-07-30T15:52:31.494Z",
+          "excerpt": "[0.0 → 0.0] Rafael Gomez Sanchez [0.0 → 0.0] Maria Esther Gomez Laredo [0.0 → 0.0] Francisco Javier Garcia Escudero [0.0 → 0.0] Compromís per Riba- L’Esquerra de Riba- Podemos/Podem – VOX [0.0 → 0.0] roja: Compromís roja",
           "localPath": "public/data/pleno-transcripts/buag5g.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] Rafael Gomez Sanchez [0.0 → 0.0] Maria Esther Gomez Laredo [0.0 → 0.0] Francisco Javier Garcia Escudero [0.0 → 0.0] Compromís per Riba- L’Esquerra de Riba- Podemos/Podem – VOX [0.0 → 0.0] roja: Compromís roja"
+          "trust": "high"
         },
         {
           "id": "src-027",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1wum8h8.txt · semantic",
           "retrievedAt": "2026-07-30T15:52:31.494Z",
+          "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 3 D'ABRIL DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 3 d'abril de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]",
           "localPath": "public/data/pleno-transcripts/1wum8h8.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] ACTA SESSIÓ ORDINÀRIA CELEBRADA PER L'AJUNTAMENT PLE EL [0.0 → 0.0] DIA 3 D'ABRIL DE 2023 [0.0 → 0.0] Lloc: Sala d'actes de l'Ajuntament [0.0 → 0.0] Data: 3 d'abril de 2023 [0.0 → 0.0] Hora: 17.30 [0.0 → 0.0]"
+          "trust": "high"
         },
         {
           "id": "src-028",
           "kind": "local-snapshot",
           "title": "Pleno claim 1237hbp-090-afi-aeb2af · 2026-07-03 · afirmacion_numerica",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "la tasa del 2026 tiene que ser bonificada también en parte porque el servicio que se ofrece al pagar una tasa no es el adecuado"
+          "trust": "high"
         },
         {
           "id": "src-029",
           "kind": "local-snapshot",
           "title": "Pleno claim 11025xk-026-acu-cedc46 · 2026-06-01 · acusacion_publica",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "Nuestro alcalde, el señor Raga, en las elecciones del 2023, abril del 2023 concretamente, usted se reúne con vecinos de Valencia de la Villa. En un vídeo que está publicado en Facebook, de acceso libre para todo el mundo, usted declara las progresas electorales que la gran mayoría no ha cumplido",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Nuestro alcalde, el señor Raga, en las elecciones del 2023, abril del 2023 concretamente, usted se reúne con vecinos de Valencia de la Villa. En un vídeo que está publicado en Facebook, de acceso libre para todo el mundo, usted declara las progresas electorales que la gran mayoría no ha cumplido"
+          "trust": "high"
         },
         {
           "id": "src-030",
           "kind": "local-snapshot",
           "title": "Pleno claim k4olcs-089-acu-1d6828 · 2026-04-20 · acusacion_publica",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "la FP en centros públicos ha sido también totalmente abandonada, porque no se han gestionado adecuadamente los fondos europeos"
+          "trust": "high"
         },
         {
           "id": "src-031",
           "kind": "local-snapshot",
           "title": "Pleno claim k4olcs-088-cit-2c649f · 2026-04-20 · cita_convenio",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "esos recursos europeos, FEDER y de la Unión Europea",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "esos recursos europeos, FEDER y de la Unión Europea"
+          "trust": "high"
         },
         {
           "id": "src-032",
           "kind": "local-snapshot",
           "title": "Pleno claim ma87e0-107-cit-f9724f · 2026-03-16 · cita_convenio",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Lo destinado a Caritas, en Caritas habíamos hablado, nosotros hablamos con Caritas y dicen, preferimos que destinéis parte del dinero, a la inversión del campanario, que no al gasto corriente nuestro."
+          "trust": "high"
         },
         {
           "id": "src-033",
           "kind": "local-snapshot",
           "title": "Pleno claim 19gax3o-137-cit-78abd7 · 2026-01-19 · cita_obra",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Deixan pleca de fútbol. Es una instalación que fue el PP y no está en esas condiciones de que él está ahí Roberto Gil."
+          "trust": "high"
         },
         {
           "id": "src-034",
           "kind": "local-snapshot",
           "title": "Pleno claim 1qi8axv-003-cit-0209e8 · 2025-12-23 · cita_obra",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "pasamos a votar el punto 2, que es la prórroga del contrato.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "pasamos a votar el punto 2, que es la prórroga del contrato."
+          "trust": "high"
         },
         {
           "id": "src-035",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-073-acu-1c7836 · 2025-12-01 · acusacion_publica",
           "retrievedAt": "2026-07-30T15:52:31.495Z",
+          "excerpt": "ustedes vienen aquí a remover otra vez la historia y la historia.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "ustedes vienen aquí a remover otra vez la historia y la historia."
+          "trust": "high"
         },
         {
           "id": "src-036",
@@ -2934,8 +2934,8 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Fuente oficial: www.ribarroja.es",
           "retrievedAt": "2026-07-30T15:52:33.064Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-037",
@@ -2943,8 +2943,8 @@
           "url": "https://www.instagram.com/reel/DbRHhpBx5lP/",
           "title": "Los políticos deben de pagar por todo lo que está ... - Instagram",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
-          "trust": "low",
-          "excerpt": "hace 3 días ... Intervención del alcalde actual de Riba-roja de Túria Robert Raga Gadea (PSOE) en el debate sobre la fábrica de gas metano proyectada en el ..."
+          "excerpt": "hace 3 días ... Intervención del alcalde actual de Riba-roja de Túria Robert Raga Gadea (PSOE) en el debate sobre la fábrica de gas metano proyectada en el ...",
+          "trust": "low"
         },
         {
           "id": "src-038",
@@ -2952,8 +2952,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
           "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
-          "trust": "high",
-          "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria ... en el ámbito de zonas inundables de Riba-roja de Túria como consecuencia de la DANA."
+          "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria ... en el ámbito de zonas inundables de Riba-roja de Túria como consecuencia de la DANA.",
+          "trust": "high"
         },
         {
           "id": "src-039",
@@ -2961,8 +2961,8 @@
           "url": "https://www.lasprovincias.es/comunitat/robert-raga-parque-turia-gran-olvidado-reconstruccion-20260309001801-nt.html",
           "title": "Robert Raga, alcalde de Riba-roja: «El Parque del Turia es el gran olvidado en la reconstrucción» | Las Provincias",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
-          "trust": "medium",
-          "excerpt": "Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial. –¿Riba-roja es como el nudo gordiano para prevenir otra dana?"
+          "excerpt": "Nosotros tenemos otra en proyecto que haremos con fondos para la reconstrucción que costará unos 800.000 euros y protegerá el sector 14 del área industrial. –¿Riba-roja es como el nudo gordiano para prevenir otra dana?",
+          "trust": "medium"
         },
         {
           "id": "src-040",
@@ -2970,8 +2970,8 @@
           "url": "https://www.fvmp.es/wp-content/uploads/2024/01/Memoria-de-gestion-2022-2023-CAST.pdf",
           "title": "Memoria de gestión 2022 – 2023 - FVMP",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
-          "trust": "medium",
-          "excerpt": "Titular: Robert Raga Gadea, alcalde del Ayuntamiento de Riba-Roja de Túria ... Buñol, en la provincia de Valencia, centrado en la determinación de las iniciativas ..."
+          "excerpt": "Titular: Robert Raga Gadea, alcalde del Ayuntamiento de Riba-Roja de Túria ... Buñol, en la provincia de Valencia, centrado en la determinación de las iniciativas ...",
+          "trust": "medium"
         },
         {
           "id": "src-041",
@@ -2979,8 +2979,8 @@
           "url": "https://www.dival.es/sites/default/files/secretaria/bloque5_6.pdf",
           "title": "5. Fomento al desarrollo económico y social - Diputació de València",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
-          "trust": "high",
-          "excerpt": "actividades culturales entre la Diputación y diversas instituciones ... con cargo a la Conselleria de Educación y Ciencia, Diputación Provincial y los ..."
+          "excerpt": "actividades culturales entre la Diputación y diversas instituciones ... con cargo a la Conselleria de Educación y Ciencia, Diputación Provincial y los ...",
+          "trust": "high"
         },
         {
           "id": "src-042",
@@ -2988,8 +2988,8 @@
           "url": "https://www.instagram.com/tribunaldelasaguas/",
           "title": "Tribunal de les Aigües de la Vega de València (@tribunaldelasaguas)",
           "retrievedAt": "2026-07-30T15:52:33.065Z",
-          "trust": "low",
-          "excerpt": "... Robert Raga Gadea i el concejal de la localitat, José Luis Ramos. ... Diputación de Valencia por hacerlo posible. — Així va ser l'acte de presentació del ..."
+          "excerpt": "... Robert Raga Gadea i el concejal de la localitat, José Luis Ramos. ... Diputación de Valencia por hacerlo posible. — Així va ser l'acte de presentació del ...",
+          "trust": "low"
         },
         {
           "id": "src-043",
@@ -2997,8 +2997,8 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
           "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
           "retrievedAt": "2026-07-30T15:52:33.066Z",
-          "trust": "high",
-          "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria ... juicio del Ayuntamiento de Riba-roja de Túria en el orden jurisdiccional contencioso-."
+          "excerpt": "10 feb 2025 ... Alcalde, Roberto Raga Gadea, asistido de la Secretaria ... juicio del Ayuntamiento de Riba-roja de Túria en el orden jurisdiccional contencioso-.",
+          "trust": "high"
         },
         {
           "id": "src-044",
@@ -3006,8 +3006,8 @@
           "url": "https://hisenda.gva.es/documents/90598054/174096224/Informe+02-2021%2C+de+18+de+junio+de+2021.+Contrataci%C3%B3n+irregular.+Enriquecimiento+injusto.+Revisi%C3%B3n+de+oficio.+Obras+que+deben+ser+objeto+de+licitaci%C3%B3n.+Improcedencia+del+procedimiento+negociado+por+urgencia..pdf/f7fc7957-08d9-42d3-9323-d90751669f54?t=1640594675151",
           "title": "JUNTA SUPERIOR DE CONTRACTACIÓ ADMINISTRATIVA Carrer ...",
           "retrievedAt": "2026-07-30T15:52:33.066Z",
-          "trust": "high",
-          "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de Turia, Valencia, actuando ... Sentencia del Tribunal Superior de Justicia ..."
+          "excerpt": "21 jun 2021 ... ROBERTO PASCUAL RAGA GADEA, Alcalde del Ayuntamiento de Riba-roja de Turia, Valencia, actuando ... Sentencia del Tribunal Superior de Justicia ...",
+          "trust": "high"
         },
         {
           "id": "src-045",
@@ -3015,8 +3015,8 @@
           "url": "https://es.m.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
           "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-30T15:52:33.066Z",
-          "trust": "medium",
-          "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …"
+          "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …",
+          "trust": "medium"
         },
         {
           "id": "src-046",
@@ -3024,8 +3024,8 @@
           "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
           "title": "Robert (muñeco) - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-30T15:52:33.068Z",
-          "trust": "medium",
-          "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …"
+          "excerpt": "Roberto, también conocido como Robert El Muñeco, 1 Robert El Muñeco Embrujado, 2 3 4 o Robert El Muñeco Encantado, 5 es un muñeco que una vez fue propiedad del pintor y autor de Key West …",
+          "trust": "medium"
         },
         {
           "id": "src-047",
@@ -3033,8 +3033,8 @@
           "url": "https://www.transfermarkt.es/robert-sanchez/profil/spieler/403151",
           "title": "Robert Sánchez - Perfil del jugador 25/26 | Transfermarkt",
           "retrievedAt": "2026-07-30T15:52:33.068Z",
-          "trust": "low",
-          "excerpt": "18 de nov de 1997 · Robert Sánchez, 28, España Chelsea FC, desde 2023 Portero Valor de mercado: 22,00 mill. € * 18/11/1997 en Cartagena, España."
+          "excerpt": "18 de nov de 1997 · Robert Sánchez, 28, España Chelsea FC, desde 2023 Portero Valor de mercado: 22,00 mill. € * 18/11/1997 en Cartagena, España.",
+          "trust": "low"
         },
         {
           "id": "src-048",
@@ -3042,8 +3042,8 @@
           "url": "https://dictionnaire.lerobert.com/",
           "title": "Dictionnaire français gratuit – Dico en ligne Le Robert",
           "retrievedAt": "2026-07-30T15:52:33.068Z",
-          "trust": "low",
-          "excerpt": "Découvrez encore plus de contenus (étymologie, citations littéraires, définitions plus détaillées…) ainsi que de nombreuses fonctionnalités qui vous permettront d’effectuer des recherches passionnantes …"
+          "excerpt": "Découvrez encore plus de contenus (étymologie, citations littéraires, définitions plus détaillées…) ainsi que de nombreuses fonctionnalités qui vous permettront d’effectuer des recherches passionnantes …",
+          "trust": "low"
         },
         {
           "id": "src-049",
@@ -3051,8 +3051,8 @@
           "url": "https://robertsspaceindustries.com/en/star-citizen",
           "title": "Star-Citizen",
           "retrievedAt": "2026-07-30T15:52:33.068Z",
-          "trust": "low",
-          "excerpt": "Roberts Space Industries is the official go-to website for all news about Star Citizen and Squadron 42. It also hosts the online store for game items and merch, as well as all the community tools used by our …"
+          "excerpt": "Roberts Space Industries is the official go-to website for all news about Star Citizen and Squadron 42. It also hosts the online store for game items and merch, as well as all the community tools used by our …",
+          "trust": "low"
         },
         {
           "id": "src-050",
@@ -3060,8 +3060,8 @@
           "url": "https://www.europapress.es/sociedad/noticia-robert-prevost-cardenal-eeuu-ascendencia-espanola-misionero-agustino-peru-jefe-obispos-20250507145212.html",
           "title": "Robert Prevost, cardenal de EE.UU y ascendencia española, misionero ...",
           "retrievedAt": "2026-07-30T15:52:33.068Z",
-          "trust": "medium",
-          "excerpt": "9 de may de 2025 · MADRID, 8 May. (EUROPA PRESS) - El cardenal estadounidense Robert Prevost se ha convertido este jueves en el Papa 267 de la historia con el nombre de León XIV."
+          "excerpt": "9 de may de 2025 · MADRID, 8 May. (EUROPA PRESS) - El cardenal estadounidense Robert Prevost se ha convertido este jueves en el Papa 267 de la historia con el nombre de León XIV.",
+          "trust": "medium"
         },
         {
           "id": "src-051",
@@ -3069,18 +3069,18 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Texto completo: ribarroja.es",
           "retrievedAt": "2026-07-30T15:52:33.069Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-052",
           "kind": "web",
           "url": "https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
+          "archiveUrl": "http://web.archive.org/web/20251230231709/https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)",
           "title": "Texto completo: es.wikipedia.org",
           "retrievedAt": "2026-07-30T15:52:33.069Z",
-          "trust": "high",
           "excerpt": "Robert (muñeco) - Wikipedia, la enciclopedia libre <link rel=\"dn",
-          "archiveUrl": "http://web.archive.org/web/20251230231709/https://es.wikipedia.org/wiki/Robert_(mu%C3%B1eco)"
+          "trust": "high"
         }
       ],
       "warnings": [
@@ -3094,6 +3094,797 @@
         "legal-record: fila 139/19 RETIRADA — falsa asociación por colindancia en boletín multi-anuncio (ver curatorNotes)"
       ],
       "legalSensitivity": "high",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-rafael-gomez-bio-2026-07-30",
+      "assignmentId": "a-rafael-gomez-bio",
+      "generatedAt": "2026-07-30T17:40:06.941Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v5;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "rafael-gomez-sanchez",
+            "photoPath": "/data/photos/rafael-gomez-sanchez.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Servicios públicos municipales",
+              "Urbanizaciones",
+              "barrios y diseminados",
+              "Movilidad y Deportes"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1976-01-15",
+            "birthplace": "València",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo actual",
+            "bodyMarkdown": "Rafael Gómez Sánchez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes. Ejerce el cargo en régimen de dedicación exclusiva, con una retribución anual de 38.891,66 euros fijada por acuerdo del Pleno municipal de 7 de julio de 2023 (expediente 4533/2023/GEN).",
+            "sourceIds": [
+              "src-001",
+              "src-006"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Formación y trayectoria previa",
+            "bodyMarkdown": "Según su currículum oficial publicado en el portal de transparencia municipal, Rafael Gómez Sánchez cursó en 1995 estudios de grado III en Industrias Alimentarias en el Instituto San Vicente Ferrer. El mismo currículum autodeclarado indica que trabajó como transportista por cuenta propia entre 2001 y 2015 y que fue regidor del Ayuntamiento de Riba-roja de Túria entre 2019 y 2023, con delegaciones en Barrios y urbanizaciones, Parques y jardines, Servicios Públicos y Transporte y movilidad.",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Resultados electorales",
+            "bodyMarkdown": "En las elecciones municipales de Riba-roja de Túria de 2023, el PSPV-PSOE obtuvo el 49,69% de los votos, seguido del PP (30,91%), VOX (7,9%), Podem (5,77%) y Compromís (5,73%), con una abstención del 30,31%. En los comicios de 2019, el PSPV-PSOE había logrado el 45,92%, por delante del PP (18,88%), Ciudadanos (11,52%), Compromís (7,22%), EUPV (5,71%), Podem (5,46%) y VOX (5,13%), con una abstención del 33,25%.",
+            "sourceIds": [
+              "src-007"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Actividad plenaria y resoluciones oficiales",
+            "bodyMarkdown": "Las actas de los plenos municipales registran a Rafael Gómez Sánchez entre los concejales de la corporación. En el acta de la sesión extraordinaria del 7 de julio de 2023 quedó documentada una resolución de la Alcaldía que, en ejercicio de las atribuciones del artículo 23.1 de la Ley 7/1985, acordó cesarle como miembro de la Junta de Gobierno Local y nombrar en su lugar a Rafael Folgado Navarro, quedando renovada la composición de la Junta. La resolución afecta a la pertenencia a ese órgano: el registro municipal vigente sigue atribuyendo al concejal las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes.",
+            "sourceIds": [
+              "src-023",
+              "src-025",
+              "src-001"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Estudios en grado III en Industrias Alimentarias",
+                "institution": "Instituto San Vicente Ferrer",
+                "endYear": 1995,
+                "sourceIds": [
+                  "src-002"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Regidor / Concejal delegado — Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad (Servicios públicos, Urbanizaciones, Movilidad y Deportes)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2019,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-002",
+                  "src-001",
+                  "src-006"
+                ]
+              },
+              {
+                "role": "Concejal delegado — Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes (mandato en curso)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-001",
+                  "src-006"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Transportista (autónomo)",
+                "org": "Autónomo — sector transporte",
+                "startYear": 2001,
+                "endYear": 2015,
+                "sourceIds": [
+                  "src-002"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "salary",
+                "amountEuros": 38891.66,
+                "description": "Concejal delegado (Servicios públicos, Urbanizaciones, Movilidad y Deportes): dedicación exclusiva, 38.891,66 €/año, según Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+                "sourceIds": [
+                  "src-006"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1976-01-15",
+                "label": "Nace en València (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-002"
+                ]
+              },
+              {
+                "date": "2023-05-28",
+                "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+                "sourceIds": [
+                  "src-007"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "El Pleno fija su dedicación exclusiva como concejal delegado en 38.891,66 €/año (expte. 4533/2023/GEN)",
+                "sourceIds": [
+                  "src-006"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Resolución de Alcaldía documentada en la sesión extraordinaria: cesa como miembro de la Junta de Gobierno Local; le sustituye Rafael Folgado Navarro",
+                "sourceIds": [
+                  "src-025"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Rafael Gómez Sánchez",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "PSOE (PSPV-PSOE)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Ayuntamiento de Riba-roja de Túria",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "Rafael Folgado Navarro",
+                "tone": "neutral",
+                "kind": "person"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal afiliado a",
+                "sourceIds": [
+                  "src-001"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "concejal delegado de",
+                "sourceIds": [
+                  "src-001",
+                  "src-006"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "cesado en la Junta de Gobierno Local, sustituido por",
+                "sourceIds": [
+                  "src-025"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-presupuesto-2026-46m",
+              "psoe-refugios-climaticos-2026",
+              "psoe-reconstruccion-dana-9-5m",
+              "psoe-vivienda-900-hogares",
+              "psoe-construccion-vivienda-2026-2029",
+              "psoe-pasarelas-parc-natural-turia",
+              "psoe-espai-obert-presupuesto",
+              "psoe-alumbrado-led-680k",
+              "psoe-metro-l9-agosto",
+              "psoe-respuesta-quejas-sector-14-48h",
+              "psoe-reduce-concejales-dedicacion-exclusiva",
+              "ac-psoe-1cbkzxt",
+              "ac-psoe-1v0679f",
+              "ac-psoe-jfg7bc",
+              "ac-psoe-1ah9zqk",
+              "ac-psoe-pl3lsq",
+              "ac-psoe-ppa53a",
+              "ac-psoe-1m04lfw",
+              "ac-psoe-sysee8"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes: dedicación exclusiva, 38.891,66 €/año.",
+            "attributedTo": "Ayuntamiento de Riba-roja de Túria (Acuerdo de Pleno)",
+            "date": "2023-07-07",
+            "sourceId": "src-006"
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local.",
+            "attributedTo": "Alcaldía de Riba-roja de Túria (Resolución)",
+            "sourceId": "src-025",
+            "date": "2023-07-07"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Identidad (nacimiento)",
+                "reason": "La fecha y el lugar de nacimiento constan únicamente en el CV autodeclarado del propio sujeto (ficha oficial de transparencia); sin corroboración independiente localizada."
+              },
+              {
+                "field": "Formación declarada",
+                "reason": "Los estudios declarados constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada."
+              },
+              {
+                "field": "Trayectoria declarada",
+                "reason": "Las etapas profesionales o políticas marcadas «según su CV» constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada."
+              },
+              {
+                "field": "education (regex hint)",
+                "reason": "Hints citan 'Diplomado en Informática y ADE' y 'Licenciado en Derecho y Master en Función Directiva' pero ningún body los corrobora; coincide con homónimos (src-003/004/005) y src-022 — probable fuga de otro CV, no atribuible al sujeto, omitido"
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Rafael Gómez Sánchez",
+          "retrievedAt": "2026-07-30T17:34:20.519Z",
+          "excerpt": "role: concejal · party: PSOE · portfolios: Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-002",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Rafael Gómez Sánchez",
+          "retrievedAt": "2026-07-30T17:34:24.741Z",
+          "excerpt": "SN PRESENTACIÓN FORMACIÓN MÓDULOS FORMATIVOS• INSTITUTO SAN VICENTE FERRER• 1995 Estudios en grado III en Industrias Alimentarias EXPERIENCIA PROFESIONAL REGIDOR • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad TRANSPORTISTA • 2001 - 2015• AUTÓNOMO Autónomo en el sector transporte 15 ENERO 1976 VALÈNCIA rgomez@ribarroja.es D. RAFAEL GÓMEZ SÁNCHEZ SERVICIOS PÚBLICOS MUNICIPALES, URBANIZACION",
+          "trust": "high"
+        },
+        {
+          "id": "src-003",
+          "kind": "web",
+          "url": "https://www.uv.es/uvweb/universidad/es/ficha-persona-1285950309813.html?p2=gomezs",
+          "title": "lucia gomez sanchez - Ficha persona",
+          "retrievedAt": "2026-07-30T17:34:25.746Z",
+          "excerpt": "Fitxa persona. foto Lucia Gomez Sanchez. LUCIA GOMEZ SANCHEZ PDI-Prof. Permanent Laboral Ppl. lucia.gomez-sanchez@uv.es ... Estudios de Género de la Universitat ...",
+          "trust": "low"
+        },
+        {
+          "id": "src-004",
+          "kind": "web",
+          "url": "https://www.uclm.es/estudios/eid/novedades/resena-tesis/elena-gomez-sanchez",
+          "title": "Gomez-Sanchez - UCLM",
+          "retrievedAt": "2026-07-30T17:34:25.747Z",
+          "excerpt": "21 jul 2023 ... Elena Gómez Sánchez, nueva Doctora por la Universidad de Castilla-La ... estudios en distintos escenarios. Se pone de manifiesto la ...",
+          "trust": "low"
+        },
+        {
+          "id": "src-005",
+          "kind": "web",
+          "url": "https://dialnet.unirioja.es/servlet/aleaut?codigo=209493",
+          "title": "Yolanda Gómez Sánchez - Dialnet - Universidad de La Rioja",
+          "retrievedAt": "2026-07-30T17:34:25.747Z",
+          "excerpt": "Tesis doctoral dirigida por Anselmo del Moral Torres ( dir. tes. ), Yolanda Gómez Sánchez ( codir. tes. ). UNED. Universidad Nacional de Educación a Distancia ( ...",
+          "trust": "low"
+        },
+        {
+          "id": "src-006",
+          "kind": "local-snapshot",
+          "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+          "retrievedAt": "2026-07-30T17:34:25.786Z",
+          "excerpt": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+          "localPath": "public/data/dedicaciones.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-007",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-30T17:34:25.787Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+          "localPath": "public/data/elections.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-008",
+          "kind": "web",
+          "url": "https://www.diariocordoba.com/lo-ultimo/2017/12/05/sandokan-vida-vertigo-36514344.html",
+          "title": "Sandokán, una vida de vértigo - Diario Córdoba",
+          "retrievedAt": "2026-07-30T17:34:26.415Z",
+          "excerpt": "5 dic 2017 ... Rafael Gómez (Córdoba, 1944) cuenta con una dilatadísima trayectoria ... El grupo Rafael Gómez Sánchez tuvo más de cincuenta empresas y llegó ...",
+          "trust": "low"
+        },
+        {
+          "id": "src-009",
+          "kind": "web",
+          "url": "https://www.tiktok.com/@rafasanchez_oficial/video/7485041288111394070",
+          "title": "Confesiones de vida a los 63 años - Rafa Sánchez - TikTok",
+          "retrievedAt": "2026-07-30T17:34:26.415Z",
+          "excerpt": "23 mar 2025 ... La gira BIOGRAFÍA arranca la próxima semana y ... SIGUENOS EN YOUTUBE PARA MAS VIDEOS COMO ESTE!!! sonido original - Rafael Gomez Sánchez.",
+          "trust": "low"
+        },
+        {
+          "id": "src-010",
+          "kind": "web",
+          "url": "https://www.facebook.com/ElPeriodicoMediterraneo/posts/la-lista-completa-de-los-grandes-morosos-de-castell%C3%B3n-con-hacienda-lee-la-notici/1641849497944659/",
+          "title": "La lista completa de los grandes morosos de Castellón ... - Facebook",
+          "retrievedAt": "2026-07-30T17:34:26.415Z",
+          "excerpt": "30 jun 2026 ... El cordobés Rafael Gómez Sánchez, conocido como Sandokán, debe a ... A pesar de que parte de su trayectoria profesional es un misterio ...",
+          "trust": "low"
+        },
+        {
+          "id": "src-011",
+          "kind": "web",
+          "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+          "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+          "retrievedAt": "2026-07-30T17:34:26.416Z",
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+          "trust": "medium"
+        },
+        {
+          "id": "src-012",
+          "kind": "web",
+          "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+          "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+          "retrievedAt": "2026-07-30T17:34:26.416Z",
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-013",
+          "kind": "web",
+          "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+          "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+          "retrievedAt": "2026-07-30T17:34:26.416Z",
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+          "trust": "low"
+        },
+        {
+          "id": "src-014",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/G%C3%B3mez",
+          "title": "Gómez - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-30T17:34:27.166Z",
+          "excerpt": "Gómez es un apellido patronímico español muy común en España, Filipinas, e Hispanoamérica. Deriva del nombre de \"Gome\" más …",
+          "trust": "medium"
+        },
+        {
+          "id": "src-015",
+          "kind": "web",
+          "url": "https://ov.gomezgroupmetering.com/preLogin",
+          "title": "Gomez Group Metering - Acceso a Oficina Virtual",
+          "retrievedAt": "2026-07-30T17:34:27.166Z",
+          "excerpt": "Indícanos tu correo electrónico y te enviaremos los datos para que puedas acceder a tu Área de Propietarios.",
+          "trust": "low"
+        },
+        {
+          "id": "src-016",
+          "kind": "web",
+          "url": "https://www.gomezgroupmetering.com/",
+          "title": "Gomez Group Metering - Lectura e Instalación de Contadores",
+          "retrievedAt": "2026-07-30T17:34:27.166Z",
+          "excerpt": "REPARTIDORES DE COSTES Con este pequeño dispositivo electrónico de fácil instalación controlará, en todo momento, su …",
+          "trust": "low"
+        },
+        {
+          "id": "src-017",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/G%C3%B3mez",
+          "title": "Gómez - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-30T17:34:29.095Z",
+          "excerpt": "Gómez es un apellido patronímico español muy común en España, Filipinas, e Hispanoamérica. Deriva del nombre de \"Gome\" más …",
+          "trust": "medium"
+        },
+        {
+          "id": "src-018",
+          "kind": "web",
+          "url": "https://ov.gomezgroupmetering.com/preLogin",
+          "title": "Gomez Group Metering - Acceso a Oficina Virtual",
+          "retrievedAt": "2026-07-30T17:34:29.095Z",
+          "excerpt": "Indícanos tu correo electrónico y te enviaremos los datos para que puedas acceder a tu Área de Propietarios.",
+          "trust": "low"
+        },
+        {
+          "id": "src-019",
+          "kind": "web",
+          "url": "https://www.gomezgroupmetering.com/",
+          "title": "Gomez Group Metering - Lectura e Instalación de Contadores",
+          "retrievedAt": "2026-07-30T17:34:29.095Z",
+          "excerpt": "REPARTIDORES DE COSTES Con este pequeño dispositivo electrónico de fácil instalación controlará, en todo momento, su …",
+          "trust": "low"
+        },
+        {
+          "id": "src-020",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/G%C3%B3mez",
+          "title": "Gómez - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-30T17:34:29.496Z",
+          "excerpt": "Gómez es un apellido patronímico español muy común en España, Filipinas, e Hispanoamérica. Deriva del nombre de \"Gome\" más -ez patronímico formante de apellidos terminados en -ez.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-021",
+          "kind": "web",
+          "url": "https://ov.gomezgroupmetering.com/preLogin",
+          "title": "Gomez Group Metering - Acceso a Oficina Virtual",
+          "retrievedAt": "2026-07-30T17:34:29.497Z",
+          "excerpt": "Indícanos tu correo electrónico y te enviaremos los datos para que puedas acceder a tu Área de Propietarios.",
+          "trust": "low"
+        },
+        {
+          "id": "src-022",
+          "kind": "web",
+          "url": "https://sede.agenciatributaria.gob.es/static_files/Sede/Tema/Agencia_tributaria/Trabajar_AEAT/OEP_2021/A2/CTH/Inf_Convocatoria/Curric_trib_CTH21_22.pdf",
+          "title": "INFORME SOBRE ELECCION DE DESTINO - Agencia Tributaria",
+          "retrievedAt": "2026-07-30T17:34:29.497Z",
+          "excerpt": "1 Agencia Tributaria Curriculum vitae de los miembros del Tribunal calificador de las pruebas selectivas para el ingreso, por acceso libre, en el Cuerpo Técnico de Hacienda (OEP 2021-2022) TRIBUNAL TITULAR 1 Presidenta: Doña María Azucena Horreo Tuero Subdirectora General de Inspección Territorial en el Departamento de Inspección Financiera y Tributaria de la Agencia Estatal de Administración Tributaria.  Licenciada en Derecho.  Pertenece al Cuerpo Superior de Inspectores d",
+          "trust": "high"
+        },
+        {
+          "id": "src-023",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/buag5g.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:33.687Z",
+          "excerpt": "[0.0 → 0.0] Rafael Gomez Sanchez [0.0 → 0.0] Maria Esther Gomez Laredo [0.0 → 0.0] Francisco Javier Garcia Escudero [0.0 → 0.0] Compromís per Riba- L’Esquerra de Riba- Podemos/Podem – VOX [0.0 → 0.0] roja: Compromís roja",
+          "localPath": "public/data/pleno-transcripts/buag5g.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-024",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:33.687Z",
+          "excerpt": "[0.0 → 0.0] a) La asistencia al Alcalde en el ejercicio de sus atribuciones. [0.0 → 0.0] b) Las atribuciones que el Alcalde u otro órgano municipal le delegue o le atribuyan las leyes. [0.0 → 0.0] Cuarto.- Considerando l",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-025",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:33.687Z",
+          "excerpt": "[0.0 → 0.0] abril, Reguladora de las Bases del Régimen Local, RESUELVO: [0.0 → 0.0] PRIMERO.- Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local. [0.0 → 0.0] SEGUNDO.- Nombrar a D. Rafael Folgado ",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-026",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1qi8axv.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:33.687Z",
+          "excerpt": "[4950.0 → 4980.0] Y, Lania, ¿qué opináis? ¿José Manuel? ¿Rafa? ¿Tampoco? José Ángel, por favor. Sí. Visto lo visto, no se trata de un escenario. Se trata de una inversión en partes para un escenario y de un quitamiedos p",
+          "localPath": "public/data/pleno-transcripts/1qi8axv.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-027",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 11025xk-119-afi-fa6906 · 2026-06-01 · afirmacion_numerica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "Por eso se bonifica esas buenas prácticas como dice Rafael con el 20%.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-028",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 11025xk-119-afi-2791ff · 2026-06-01 · afirmacion_numerica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "Ahora será un coste mínimo porque serán con 200, pues los contenedores serán muy poquitos.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-029",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 10yl550-096-acu-792069 · 2026-05-11 · acusacion_publica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "la verdad es que un Partido Socialista Obrero Español que tiene al señor Sánchez al frente del país y cuando llegan aquí a Igualadana se le ocurre decir que no es verdad que la piden o que la pidan.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-030",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 10yl550-168-acu-e84ecd · 2026-05-11 · acusacion_publica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "Pedro Sánchez ha realizado más de una decena de anuncios sobre planes de viviendas desde el 2018 también metiendo en un acumulado más de 230.000 viviendas públicas desequibles",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-031",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 10yl550-169-afi-bcc5e1 · 2026-05-11 · afirmacion_numerica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "más de 230.000 viviendas públicas desequibles",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-032",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 1qi8axv-008-acu-70d81b · 2025-12-23 · acusacion_publica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "María Esther Gómez Laredo. Sí. María Esther Gómez Laredo.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-033",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 1qi8axv-052-cit-c905c3 · 2025-12-23 · cita_obra",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "un contrato que además venía aprobado por un plan local de residuos que nos marcaba el camino a seguir a la hora de elaborar.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-034",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 1qi8axv-052-acu-f2ab10 · 2025-12-23 · acusacion_publica",
+          "retrievedAt": "2026-07-30T17:34:35.280Z",
+          "excerpt": "desde el día 1 que comenzó esta empresa, el Gobierno ha hecho todo lo que tenía que hacer dirigidamente para actuar.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-035",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Fuente oficial: www.ribarroja.es",
+          "retrievedAt": "2026-07-30T17:34:35.283Z",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
+        },
+        {
+          "id": "src-036",
+          "kind": "wikipedia",
+          "url": "https://es.wikipedia.org/wiki/Rafael_G%C3%B3mez_S%C3%A1nchez",
+          "title": "Wikipedia (es): Rafael Gómez Sánchez",
+          "publisher": "Wikipedia es",
+          "retrievedAt": "2026-07-30T17:34:36.353Z",
+          "excerpt": "Rafael Gómez Sánchez, popularmente conocido como Sandokán, es un empresario español del ámbito local, siendo un personaje especialmente conocido en la capital cordobesa. En 2006 fue detenido por su presunta implicación en el Caso Malaya, una serie de tramas de corrupción ocurridas en Marbella.",
+          "trust": "high"
+        },
+        {
+          "id": "src-037",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-30T17:34:37.791Z",
+          "excerpt": "rafael-gomez-sanchez · Rafael Gómez Sánchez · Sr. · concejal · PSOE · Servicios públicos municipales · Urbanizaciones · barrios y diseminados · Movilidad y Deportes · alcaldia@ribarroja.es · /data/photos/rafael-gomez-sanchez.jpg · https://w",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-038",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-30T17:34:37.791Z",
+          "excerpt": "maria-esther-gomez-laredo · María Esther Gómez Laredo · Sra. · concejal · PSOE · Participación y transparencia · Atención a la ciudadanía · Turismo y patrimonio histórico · Promoción de la Salud e Infraestructuras sanitarias · alcaldia@riba",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-039",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-claims-suggestions.json · items",
+          "retrievedAt": "2026-07-30T17:34:37.791Z",
+          "excerpt": "brxx5g-067-afi-48fd15 · brxx5g · 2026-07-06 · 67 · afirmacion_numerica ·  · porque no se puede incrementar 200 euros mensuales en el complemento específico autonómico y vincularlo al IPC · ahora es insuficiente para ustedes porque no se pue",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-040",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1pe6awk.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:37.791Z",
+          "excerpt": "[0.0 → 0.0] DENOMINACIÓN PUESTO RETRIBUCIÓN [0.0 → 0.0] (anual bruta) [0.0 → 0.0] Secretaría de alcaldía 37.377,93 € [0.0 → 0.0] Coordinador Áreas de Gobierno y Relaciones Institucionales 37.377,93 € [0.0 → 0.0] Coordina",
+          "localPath": "public/data/pleno-transcripts/1pe6awk.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-041",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:37.791Z",
+          "excerpt": "[0.0 → 0.0] DENOMINACIÓN PUESTO RETRIBUCIÓN [0.0 → 0.0] (anual bruta) [0.0 → 0.0] Secretaría de alcaldía 37.377,93 € [0.0 → 0.0] Coordinador Áreas de Gobierno y Relaciones Institucionales 37.377,93 € [0.0 → 0.0] Coordina",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-042",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/19xkzxw.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:37.791Z",
+          "excerpt": "[0.0 → 0.0] motivación del servidor público y del objetivo de mejora permanente de la actuación municipal. [0.0 → 0.0] En definitiva, el complemento de productividad/actividad profesional retribuye a los/las [0.0 → 0.0] ",
+          "localPath": "public/data/pleno-transcripts/19xkzxw.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-043",
+          "kind": "web",
+          "url": "https://finance.yahoo.com/quote/GOOG/",
+          "title": "Alphabet Inc. (GOOG) Stock Price, News, Quote & History - Yahoo …",
+          "retrievedAt": "2026-07-30T17:34:38.646Z",
+          "excerpt": "Find the latest Alphabet Inc. (GOOG) stock quote, history, news and other vital information to help you with your stock trading and …",
+          "trust": "low"
+        },
+        {
+          "id": "src-044",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/transparencia",
+          "title": "Transparencia | Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-30T17:34:38.646Z",
+          "excerpt": "El nuevo portal de transparencia municipal se enmarca dentro de esta estrategia y pretende acercar a los ciudadanos del municipio toda la información de interés que les ayude a conocer mejor la gestión de la entidad.",
+          "trust": "high"
+        },
+        {
+          "id": "src-045",
+          "kind": "web",
+          "url": "https://www.google.com/finance/beta/quote/GOOG:NASDAQ",
+          "title": "Alphabet Inc Class C (GOOG) Stock Price & News - Google Finance",
+          "retrievedAt": "2026-07-30T17:34:38.646Z",
+          "excerpt": "Alphabet is listed on the large-cap section of the Nasdaq under the ticker symbols GOOGL and GOOG; both classes of stock are …",
+          "trust": "low"
+        },
+        {
+          "id": "src-046",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Raphael_(cantante)",
+          "title": "Raphael (cantante) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-30T17:34:39.287Z",
+          "excerpt": "Raphael (cantante) No debe confundirse con Raphael (cantante francés). ... Miguel Rafael Martos Sánchez (Linares, Jaén, 5 de …",
+          "trust": "medium"
+        },
+        {
+          "id": "src-047",
+          "kind": "web",
+          "url": "http://ricosogorb.cjav.org/gci/jardi%20altabix%20gcivil%20SANSANET/dicci_pol_val.pdf",
+          "title": "Diccionario biográfico de políticos valencianos 1810-2005 A",
+          "retrievedAt": "2026-07-30T17:34:39.287Z",
+          "excerpt": "... Roja y de la Junta de Obras del Puerto. (1946), vocal de la Cámara de ... concejal del Ayuntamiento de. Alicante. En 2003 fue expulsada del PSOE [FMS].",
+          "trust": "low"
+        },
+        {
+          "id": "src-048",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260617%20Rafa%20G%C3%B3mez.pdf",
+          "title": "PDF D. RAFAEL GÓMEZ SÁNCHEZ - ribarroja.es",
+          "retrievedAt": "2026-07-30T17:34:39.287Z",
+          "excerpt": "D. RAFAEL GÓMEZ SÁNCHEZ SERVICIOS PÚBLICOS MUNICIPALES, URBANIZACIONES, BARRIOS Y DISEMINADOS, MOVILIDAD Y DEPORTES.",
+          "trust": "high"
+        },
+        {
+          "id": "src-049",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Rafael_G%C3%B3mez_S%C3%A1nchez",
+          "title": "Rafael Gómez Sánchez - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-30T17:34:41.385Z",
+          "excerpt": "Rafael Gómez Sánchez (Córdoba, 1944), popularmente conocido como Sandokán, es un empresario español del ámbito local, siendo un personaje especialmente ...",
+          "trust": "medium"
+        },
+        {
+          "id": "src-050",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Texto completo: ribarroja.es",
+          "retrievedAt": "2026-07-30T17:34:43.523Z",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
+        },
+        {
+          "id": "src-051",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Raphael_(cantante)",
+          "archiveUrl": "http://web.archive.org/web/20260625065022/https://es.wikipedia.org/wiki/Raphael_(cantante)",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-30T17:34:43.525Z",
+          "excerpt": "Raphael (cantante) - Wikipedia, la enciclopedia libre <meta name=\"robots\" content=\"max-ima",
+          "trust": "high"
+        },
+        {
+          "id": "src-052",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Rafael_G%C3%B3mez_S%C3%A1nchez",
+          "archiveUrl": "http://web.archive.org/web/20240809142024/https://es.wikipedia.org/wiki/Rafael_G%C3%B3mez_S%C3%A1nchez",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-30T17:34:43.525Z",
+          "excerpt": "Rafael Gómez Sánchez - Wikipedia, la enciclopedia libre <link rel=\"alternate\" type=\"application/atom+xml\" t",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos de identidad, formación y trayectoria previa proceden únicamente del CV autodeclarado del propio sujeto publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas»."
+      ],
+      "legalSensitivity": "medium",
       "requiresHumanApproval": true
     }
   ]

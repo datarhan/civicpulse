@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T15:56:39.143Z",
+  "generatedAt": "2026-07-30T17:44:34.919Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -57,6 +57,20 @@
       "createdAt": "2026-07-29T19:32:34.624Z",
       "status": "promoted",
       "lastRunAt": "2026-07-30T15:55:53.133Z"
+    },
+    {
+      "id": "a-rafael-gomez-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "rafael-gomez-sanchez",
+        "name": "Rafael Gómez Sánchez",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Rafael Gómez Sánchez, concejal (PSOE) de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes en Riba-roja de Túria: identidad y formación, trayectoria previa, resultados electorales, retribución del cargo, actividad plenaria y menciones en boletines o resoluciones oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-30T17:33:09.642Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-30T17:40:06.942Z"
     }
   ]
 }

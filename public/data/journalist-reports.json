@@ -1,10 +1,388 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T16:54:17.970Z",
+  "generatedAt": "2026-07-30T17:44:34.917Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-rafael-gomez-bio-2026-07-30",
+      "assignmentId": "a-rafael-gomez-bio",
+      "generatedAt": "2026-07-30T17:40:06.941Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v5;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "rafael-gomez-sanchez",
+            "photoPath": "/data/photos/rafael-gomez-sanchez.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Servicios públicos municipales",
+              "Urbanizaciones",
+              "barrios y diseminados",
+              "Movilidad y Deportes"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1976-01-15",
+            "birthplace": "València",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo actual",
+            "bodyMarkdown": "Rafael Gómez Sánchez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE), con las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes. Ejerce el cargo en régimen de dedicación exclusiva, con una retribución anual de 38.891,66 euros fijada por acuerdo del Pleno municipal de 7 de julio de 2023 (expediente 4533/2023/GEN).",
+            "sourceIds": [
+              "src-001",
+              "src-006"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Formación y trayectoria previa",
+            "bodyMarkdown": "Según su currículum oficial publicado en el portal de transparencia municipal, Rafael Gómez Sánchez cursó en 1995 estudios de grado III en Industrias Alimentarias en el Instituto San Vicente Ferrer. El mismo currículum autodeclarado indica que trabajó como transportista por cuenta propia entre 2001 y 2015 y que fue regidor del Ayuntamiento de Riba-roja de Túria entre 2019 y 2023, con delegaciones en Barrios y urbanizaciones, Parques y jardines, Servicios Públicos y Transporte y movilidad.",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Resultados electorales",
+            "bodyMarkdown": "En las elecciones municipales de Riba-roja de Túria de 2023, el PSPV-PSOE obtuvo el 49,69% de los votos, seguido del PP (30,91%), VOX (7,9%), Podem (5,77%) y Compromís (5,73%), con una abstención del 30,31%. En los comicios de 2019, el PSPV-PSOE había logrado el 45,92%, por delante del PP (18,88%), Ciudadanos (11,52%), Compromís (7,22%), EUPV (5,71%), Podem (5,46%) y VOX (5,13%), con una abstención del 33,25%.",
+            "sourceIds": [
+              "src-007"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Actividad plenaria y resoluciones oficiales",
+            "bodyMarkdown": "Las actas de los plenos municipales registran a Rafael Gómez Sánchez entre los concejales de la corporación. En el acta de la sesión extraordinaria del 7 de julio de 2023 quedó documentada una resolución de la Alcaldía que, en ejercicio de las atribuciones del artículo 23.1 de la Ley 7/1985, acordó cesarle como miembro de la Junta de Gobierno Local y nombrar en su lugar a Rafael Folgado Navarro, quedando renovada la composición de la Junta. La resolución afecta a la pertenencia a ese órgano: el registro municipal vigente sigue atribuyendo al concejal las delegaciones de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes.",
+            "sourceIds": [
+              "src-023",
+              "src-025",
+              "src-001"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Estudios en grado III en Industrias Alimentarias",
+                "institution": "Instituto San Vicente Ferrer",
+                "endYear": 1995,
+                "sourceIds": [
+                  "src-002"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Regidor / Concejal delegado — Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad (Servicios públicos, Urbanizaciones, Movilidad y Deportes)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2019,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-002",
+                  "src-001",
+                  "src-006"
+                ]
+              },
+              {
+                "role": "Concejal delegado — Servicios públicos municipales, Urbanizaciones, barrios y diseminados, y Movilidad y Deportes (mandato en curso)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-001",
+                  "src-006"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Transportista (autónomo)",
+                "org": "Autónomo — sector transporte",
+                "startYear": 2001,
+                "endYear": 2015,
+                "sourceIds": [
+                  "src-002"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "salary",
+                "amountEuros": 38891.66,
+                "description": "Concejal delegado (Servicios públicos, Urbanizaciones, Movilidad y Deportes): dedicación exclusiva, 38.891,66 €/año, según Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+                "sourceIds": [
+                  "src-006"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1976-01-15",
+                "label": "Nace en València (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-002"
+                ]
+              },
+              {
+                "date": "2023-05-28",
+                "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+                "sourceIds": [
+                  "src-007"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "El Pleno fija su dedicación exclusiva como concejal delegado en 38.891,66 €/año (expte. 4533/2023/GEN)",
+                "sourceIds": [
+                  "src-006"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Resolución de Alcaldía documentada en la sesión extraordinaria: cesa como miembro de la Junta de Gobierno Local; le sustituye Rafael Folgado Navarro",
+                "sourceIds": [
+                  "src-025"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Rafael Gómez Sánchez",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "PSOE (PSPV-PSOE)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Ayuntamiento de Riba-roja de Túria",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "Rafael Folgado Navarro",
+                "tone": "neutral",
+                "kind": "person"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal afiliado a",
+                "sourceIds": [
+                  "src-001"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "concejal delegado de",
+                "sourceIds": [
+                  "src-001",
+                  "src-006"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "cesado en la Junta de Gobierno Local, sustituido por",
+                "sourceIds": [
+                  "src-025"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-presupuesto-2026-46m",
+              "psoe-refugios-climaticos-2026",
+              "psoe-reconstruccion-dana-9-5m",
+              "psoe-vivienda-900-hogares",
+              "psoe-construccion-vivienda-2026-2029",
+              "psoe-pasarelas-parc-natural-turia",
+              "psoe-espai-obert-presupuesto",
+              "psoe-alumbrado-led-680k",
+              "psoe-metro-l9-agosto",
+              "psoe-respuesta-quejas-sector-14-48h",
+              "psoe-reduce-concejales-dedicacion-exclusiva",
+              "ac-psoe-1cbkzxt",
+              "ac-psoe-1v0679f",
+              "ac-psoe-jfg7bc",
+              "ac-psoe-1ah9zqk",
+              "ac-psoe-pl3lsq",
+              "ac-psoe-ppa53a",
+              "ac-psoe-1m04lfw",
+              "ac-psoe-sysee8"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes: dedicación exclusiva, 38.891,66 €/año.",
+            "attributedTo": "Ayuntamiento de Riba-roja de Túria (Acuerdo de Pleno)",
+            "date": "2023-07-07",
+            "sourceId": "src-006"
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local.",
+            "attributedTo": "Alcaldía de Riba-roja de Túria (Resolución)",
+            "date": "2023-07-07",
+            "sourceId": "src-025"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Identidad (nacimiento)",
+                "reason": "La fecha y el lugar de nacimiento constan únicamente en el CV autodeclarado del propio sujeto (ficha oficial de transparencia); sin corroboración independiente localizada."
+              },
+              {
+                "field": "Formación declarada",
+                "reason": "Los estudios declarados constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada."
+              },
+              {
+                "field": "Trayectoria declarada",
+                "reason": "Las etapas profesionales o políticas marcadas «según su CV» constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada."
+              },
+              {
+                "field": "education (regex hint)",
+                "reason": "Hints citan 'Diplomado en Informática y ADE' y 'Licenciado en Derecho y Master en Función Directiva' pero ningún body los corrobora; coincide con homónimos (src-003/004/005) y src-022 — probable fuga de otro CV, no atribuible al sujeto, omitido"
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Rafael Gómez Sánchez",
+          "retrievedAt": "2026-07-30T17:34:20.519Z",
+          "excerpt": "role: concejal · party: PSOE · portfolios: Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-002",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Rafael-Gomez-Sanchez.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Rafael Gómez Sánchez",
+          "retrievedAt": "2026-07-30T17:34:24.741Z",
+          "excerpt": "SN PRESENTACIÓN FORMACIÓN MÓDULOS FORMATIVOS• INSTITUTO SAN VICENTE FERRER• 1995 Estudios en grado III en Industrias Alimentarias EXPERIENCIA PROFESIONAL REGIDOR • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad TRANSPORTISTA • 2001 - 2015• AUTÓNOMO Autónomo en el sector transporte 15 ENERO 1976 VALÈNCIA rgomez@ribarroja.es D. RAFAEL GÓMEZ SÁNCHEZ SERVICIOS PÚBLICOS MUNICIPALES, URBANIZACION",
+          "trust": "high"
+        },
+        {
+          "id": "src-006",
+          "kind": "local-snapshot",
+          "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+          "retrievedAt": "2026-07-30T17:34:25.786Z",
+          "excerpt": "Concejal delegado · Servicios públicos, Urbanizaciones, Movilidad y Deportes: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+          "localPath": "public/data/dedicaciones.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-007",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-30T17:34:25.787Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+          "localPath": "public/data/elections.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-023",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/buag5g.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:33.687Z",
+          "excerpt": "[0.0 → 0.0] Rafael Gomez Sanchez [0.0 → 0.0] Maria Esther Gomez Laredo [0.0 → 0.0] Francisco Javier Garcia Escudero [0.0 → 0.0] Compromís per Riba- L’Esquerra de Riba- Podemos/Podem – VOX [0.0 → 0.0] roja: Compromís roja",
+          "localPath": "public/data/pleno-transcripts/buag5g.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-025",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · semantic",
+          "retrievedAt": "2026-07-30T17:34:33.687Z",
+          "excerpt": "[0.0 → 0.0] abril, Reguladora de las Bases del Régimen Local, RESUELVO: [0.0 → 0.0] PRIMERO.- Cesar a D. Rafael Gómez Sánchez como miembro de la Junta de Gobierno Local. [0.0 → 0.0] SEGUNDO.- Nombrar a D. Rafael Folgado ",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos de identidad, formación y trayectoria previa proceden únicamente del CV autodeclarado del propio sujeto publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas»."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-30T17:44:34.912Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»).",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-robert-raga-bio-v4-2026-07-30",
       "assignmentId": "a-robert-raga-bio-v4",
