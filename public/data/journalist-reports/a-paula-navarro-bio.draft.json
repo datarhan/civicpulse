@@ -1,0 +1,693 @@
+{
+  "id": "r-paula-navarro-bio-2026-07-31",
+  "assignmentId": "a-paula-navarro-bio",
+  "generatedAt": "2026-07-31T18:42:36.011Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "paula-navarro-sanfeliu",
+        "photoPath": "/data/photos/paula-navarro-sanfeliu.jpg",
+        "partyTone": "intel",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo municipal",
+        "bodyMarkdown": "Paula Navarro Sanfeliu es concejal del Ayuntamiento de Riba-roja de Túria por el Partido Popular, en cuyo grupo figura en el **puesto n.º 7** — y, como la n.º 6, sin la marca «(Independiente)» que acompaña a cinco de los siete miembros, es decir, como integrante del propio partido. Es la **concejala más joven de la corporación**: la sesión constitutiva la designó para formar la Mesa de Edad junto al concejal de más edad. El portal de transparencia municipal no publica CV suyo, por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+        "sourceIds": [
+          "src-063",
+          "src-062",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección, Mesa de Edad y representación",
+        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019. En la sesión constitutiva de 17-06-2023, por ser la concejala de menor edad, integró la **Mesa de Edad** junto al concejal de mayor edad (José Manuel Vila, que la presidió) — el órgano que dirige la toma de posesión y la elección del alcalde. Prestó juramento o promesa y quedó adscrita al Grupo Municipal Popular.\n\nEn el pleno de organización de 07-07-2023 es titular por su grupo en tres comisiones informativas. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión). Las transcripciones de pleno la identifican además como **representante del Grupo Popular en el Consejo Municipal de Igualdad** — un rol que ambas partes dan por sentado en el debate; este medio recoge el cargo, no el intercambio político en el que se mencionó (transcripción automática, sin diarización fiable de intervenciones).",
+        "sourceIds": [
+          "src-060",
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-065",
+          "src-070"
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejal, n.º 7 del Grupo Municipal Popular; vocal de la Mesa de Edad (la más joven); titular en tres comisiones informativas",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-060",
+              "src-062",
+              "src-063",
+              "src-064"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 0,
+            "description": "Declaración de bienes al tomar posesión (2023): 0,00 € en bienes inmuebles, 0,00 € en otros bienes — activo total 0,00 € — y 0,00 € de pasivo. Es la única declaración de la corporación con todos los campos a cero, coherente con el inicio de una carrera profesional. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-066",
+              "src-068"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial: su actividad declarada es la de enfermera, con varios contratos en centros públicos y privados entre 2021 y 2023 (SERGAS, Residencias Domus Vi, Servasa y el Hospital Sanitas de Manises) — el perfil de una profesional sanitaria de incorporación reciente al mercado laboral. Sin dedicación municipal, su empleo es compatible con el régimen de asistencias.",
+            "sourceIds": [
+              "src-067"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-065"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Navarro Sanfeliu». Sus empleadores declarados son centros sanitarios (públicos y privados), ajenos al corpus de contratación municipal.\n\nLímites declarados: al no publicar el portal municipal CV suyo, no consta fecha de nacimiento ni formación académica; su papel en el Consejo Municipal de Igualdad se apoya en transcripciones automáticas de pleno (sin diarización) y no en un acta de nombramiento localizada; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-071",
+          "src-070"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Paula Navarro Sanfeliu",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Popular (PP)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Mesa de Edad (sesión constitutiva)",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n4",
+            "label": "Consejo Municipal de Igualdad",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal n.º 7 del grupo; titular en tres comisiones (acta 07-07-2023)",
+            "sourceIds": [
+              "src-063",
+              "src-064"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "vocal por ser la concejala más joven de la corporación (acta 17-06-2023)",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "representante del Grupo Popular (según transcripciones de pleno, sin acta de nombramiento localizada)",
+            "sourceIds": [
+              "src-070"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2023-06-17",
+            "label": "Proclamada concejal electa; por ser la más joven, integra la Mesa de Edad que dirige la toma de posesión (primera candidatura documentada, n.º 7 del PP)",
+            "sourceIds": [
+              "src-060",
+              "src-062"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Integrada en el Grupo Municipal Popular; titular en tres comisiones informativas; sin dedicación (régimen de asistencias)",
+            "sourceIds": [
+              "src-063",
+              "src-064",
+              "src-065"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 0,00 € y pasivo 0,00 € (la única toda a cero); actividad de enfermera (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-066",
+              "src-067",
+              "src-068"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "CV no publicado en el portal municipal",
+            "reason": "El portal de transparencia publica CV de 17 miembros de la corporación pero no de Navarro (ni de Trejo, Guzmán o Boix). Sin CV, no consta fecha de nacimiento ni formación académica; su edad solo se infiere de su papel en la Mesa de Edad (la más joven)."
+          },
+          {
+            "field": "Nombramiento formal en el Consejo de Igualdad",
+            "reason": "Su papel como representante del PP en el Consejo Municipal de Igualdad consta en transcripciones automáticas de pleno pero no se ha localizado el acuerdo o acta de designación; se publica el rol con esa cautela."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — Paula Navarro Sanfeliu",
+      "retrievedAt": "2026-07-31T18:37:03.860Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: concejal · party: PP · portfolios: "
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://www.pamplona.es/entidades/universidad-de-navarra-unav",
+      "title": "Universidad de Navarra (UNAV) | Ayuntamiento de Pamplona",
+      "retrievedAt": "2026-07-31T18:37:08.062Z",
+      "trust": "low",
+      "excerpt": "Fundada en 1952, de naturaleza privada, se rige conforme a sus propios estatutos e imparte los estudios de Diplomado, Licenciado, Ingeniero y Arquitecto y Doctorado. Tienen otros centros ubicados en San Sebastián, Barcelona y Madrid."
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://sedeelectronica.pamplona.es/FichaTramite.aspx?id=20-40957",
+      "title": "Sede Electrónica - Ayuntamiento de Pamplona - Universidad de Navarra (UNAV)",
+      "retrievedAt": "2026-07-31T18:37:08.063Z",
+      "trust": "low",
+      "excerpt": "Fundada en 1952, de naturaleza privada, se rige conforme a sus propios estatutos e imparte los estudios de Diplomado, Licenciado, Ingeniero y Arquitecto y Doctorado. Tienen otros centros ubicados en San Sebastián, Barcelona y Madrid. CENTROS DE LA UNIVERSIDAD DE NAVARRA: Escuela Técnica Superior ..."
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://unavarra.es/pdi?dato=descripcion&uid=263",
+      "title": "Universidad Pública de Navarra - Campus de Excelencia Internacional",
+      "retrievedAt": "2026-07-31T18:37:08.063Z",
+      "trust": "low",
+      "excerpt": "Licenciatura y Doctorado en Ciencias Políticas y Sociología por la Universidad Complutense de Madrid con las especialidades de Sociología Política y Psicología Social. Premio Nacional de Terminación de Estudios, del Ministerio de Educación y Ciencia a través del Instituto Nacional de ..."
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T18:37:08.064Z",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://www.thalia.de/?msockid=2c02d790724b60150284c0377314618f",
+      "title": "Thalia Online Shop | Bücher, eBooks, Spielzeug, uvm. kaufen | Thalia",
+      "retrievedAt": "2026-07-31T18:37:08.845Z",
+      "trust": "low",
+      "excerpt": "Spielzeit by Thalia: Spielzeug für alle von 0 - 12 Jahren Für kleine Wirbelwinde, große Tüftler und alles dazwischen: Spielzeit bringt dir Spielzeug und Geschenkideen für Kinder von 0 - 12 Jahren. Schnell …"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://www.thalia.de/kategorie/buecher-2/?msockid=2c02d790724b60150284c0377314618f",
+      "title": "Bücher, Sachbücher, Ratgeber & Comics online kaufen | Thalia",
+      "retrievedAt": "2026-07-31T18:37:08.845Z",
+      "trust": "low",
+      "excerpt": "Bücher versandkostenfrei bei Thalia Wahrer Luxus ist, Zeit zu haben, ein Buch zu lesen. Durch die Nutzung unseres versandkostenfreien Online-Buchhandels sparen Sie Einkaufszeit, die Sie …"
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://jobs.thalia.de/",
+      "title": "Jobs & Karriere bei Thalia",
+      "retrievedAt": "2026-07-31T18:37:08.846Z",
+      "trust": "low",
+      "excerpt": "Entdecke spannende Karrieremöglichkeiten bei Thalia. Finde alle Infos und bewirb dich direkt auf deinen Traumjob – ideal für alle Karrierestufen!"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T18:37:08.846Z",
+      "trust": "medium",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T18:37:08.846Z",
+      "trust": "medium",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T18:37:08.846Z",
+      "trust": "low",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://www.herbolarionavarro.es/",
+      "title": "Herbolario Navarro | Tienda online de productos naturales",
+      "retrievedAt": "2026-07-31T18:37:09.340Z",
+      "trust": "low",
+      "excerpt": "En Herbolario Navarro online encontrarás todos los productos y marcas de alimentación natural, cosmética natural, dietética y mucho más. Envío 24/48h en días laborables."
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://sumnavarro.es/",
+      "title": "Suministros Navarro, S.A.U.",
+      "retrievedAt": "2026-07-31T18:37:09.340Z",
+      "trust": "low",
+      "excerpt": "Contacto: Suministros Navarro, S.A.U. Avda. del textil, nº 2 - 46870 - Ontinyent (Valencia) Telf.: 962910848 | mail: sumnavarro@sumnavarro.es"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://www.navarro.com/es/",
+      "title": "Inicio - Navarro Discount Pharmacy",
+      "retrievedAt": "2026-07-31T18:37:09.340Z",
+      "trust": "low",
+      "excerpt": "Hace 2 días · Navarro Discount Pharmacy offering OTC, Over The Counter Medicine, Niche Hispanic Products, Hispanic Goods, Pharmacy Serving Miami Dade and Broward"
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://www.herbolarionavarro.es/",
+      "title": "Herbolario Navarro | Tienda online de productos naturales",
+      "retrievedAt": "2026-07-31T18:37:10.589Z",
+      "trust": "low",
+      "excerpt": "En Herbolario Navarro online encontrarás todos los productos y marcas de alimentación natural, cosmética natural, dietética y mucho más. Envío 24/48h en días laborables."
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://sumnavarro.es/",
+      "title": "Suministros Navarro, S.A.U.",
+      "retrievedAt": "2026-07-31T18:37:10.589Z",
+      "trust": "low",
+      "excerpt": "Contacto: Suministros Navarro, S.A.U. Avda. del textil, nº 2 - 46870 - Ontinyent (Valencia) Telf.: 962910848 | mail: sumnavarro@sumnavarro.es"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://www.navarro.com/es/",
+      "title": "Inicio - Navarro Discount Pharmacy",
+      "retrievedAt": "2026-07-31T18:37:10.589Z",
+      "trust": "low",
+      "excerpt": "Hace 2 días · Navarro Discount Pharmacy offering OTC, Over The Counter Medicine, Niche Hispanic Products, Hispanic Goods, Pharmacy Serving Miami Dade and Broward"
+    },
+    {
+      "id": "src-018",
+      "kind": "web",
+      "url": "https://www.herbolarionavarro.es/",
+      "title": "Herbolario Navarro | Tienda online de productos naturales",
+      "retrievedAt": "2026-07-31T18:37:10.910Z",
+      "trust": "low",
+      "excerpt": "En Herbolario Navarro online encontrarás todos los productos y marcas de alimentación natural, cosmética natural, dietética y mucho más. Envío 24/48h en días laborables."
+    },
+    {
+      "id": "src-019",
+      "kind": "web",
+      "url": "https://sumnavarro.es/",
+      "title": "Suministros Navarro, S.A.U.",
+      "retrievedAt": "2026-07-31T18:37:10.910Z",
+      "trust": "low",
+      "excerpt": "Contacto: Suministros Navarro, S.A.U. Avda. del textil, nº 2 - 46870 - Ontinyent (Valencia) Telf.: 962910848 | mail: sumnavarro@sumnavarro.es"
+    },
+    {
+      "id": "src-020",
+      "kind": "web",
+      "url": "https://www.navarro.com/es/",
+      "title": "Inicio - Navarro Discount Pharmacy",
+      "retrievedAt": "2026-07-31T18:37:10.910Z",
+      "trust": "low",
+      "excerpt": "Hace 2 días · Navarro Discount Pharmacy offering OTC, Over The Counter Medicine, Niche Hispanic Products, Hispanic Goods, Pharmacy Serving Miami Dade and Broward"
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 10yl550-330-acu-7c65c5 · 2026-05-11 · acusacion_publica",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "no recogen tampoco al votar, en contra de los presupuestos"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-155-afi-476d6d · 2026-01-19 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el pasado pleno del 3 de noviembre"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-155-cit-dd9021 · 2026-01-19 · cita_obra",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "si había estado informada de toda la programación del 25 de noviembre y también de la NIT Violeta"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-156-acu-e2fcc5 · 2026-01-19 · acusacion_publica",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el pasado pleno del 3 de noviembre en el Toro de Plexi Preguntas se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad si había estado informada de toda la programación del 25 de noviembre y también de la NIT Violeta"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-156-acu-6bc5c1 · 2026-01-19 · acusacion_publica",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Paula Navarro, como representante de este partido del Consejo de Igualdad, recibió"
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1qi8axv-124-afi-c4d442 · 2025-12-23 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "María José Pradas. Sí. Salvador Ferrer. A favor. Laura Gutmann. A favor."
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1du4rf5-080-cit-aaef1a · 2025-11-03 · cita_obra",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "el Gobierno de España ya ha aprobado ... el Real Decreto Ley 11-2025, el 21 de octubre"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1r6yy0-027-cit-e4e772 · 2023-01-23 · cita_obra",
+      "retrievedAt": "2026-07-31T18:37:14.367Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "yo he citado Pacadar, porque es algo que es un poco delicado para algunos. Nosotros creemos que es el futuro de Rivarrocha y que está ahí, pero bueno, entiendo que a algunos no les agrada."
+    },
+    {
+      "id": "src-029",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T18:37:14.369Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:37:14.569Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:37:14.569Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "public/data/press.json · feeds",
+      "retrievedAt": "2026-07-31T18:37:14.569Z",
+      "localPath": "public/data/press.json",
+      "trust": "high",
+      "excerpt": "https://news.google.com/rss/search?q=%22Riba-roja%20de%20T%C3%BAria%22&hl=es&gl=ES&ceid=ES:es · Google News RSS · true · 100"
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:37:14.801Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+    },
+    {
+      "id": "src-034",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:37:14.801Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+    },
+    {
+      "id": "src-035",
+      "kind": "local-snapshot",
+      "title": "public/data/press.json · items",
+      "retrievedAt": "2026-07-31T18:37:14.801Z",
+      "localPath": "public/data/press.json",
+      "trust": "high",
+      "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU"
+    },
+    {
+      "id": "src-036",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:37:14.976Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+    },
+    {
+      "id": "src-037",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:37:14.976Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+    },
+    {
+      "id": "src-038",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T18:37:14.976Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "brxx5g-067-afi-48fd15 · brxx5g · 2026-07-06 · 67 · afirmacion_numerica ·  · porque no se puede incrementar 200 euros mensuales en el complemento específico autonómico y vincularlo al IPC · ahora es insuficiente para ustedes porque no se pue"
+    },
+    {
+      "id": "src-039",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T18:37:17.477Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-060",
+      "retrievedAt": "2026-07-31T18:46:19.301Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "David Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu"
+    },
+    {
+      "id": "src-061",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo"
+    },
+    {
+      "id": "src-062",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — formación de la Mesa de Edad (Navarro Sanfeliu, la más joven, junto al mayor)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Acto seguido se procede a formar la Mesa de Edad para lo cual se invita que suban al estrado\nlos Sres. D. Jose Manuel Vila Oltra y Dª. Paula Navarro Sanfeliu, asumiendo la Presidencia el\nprimero de ellos, previa formulación de juramento o promesa a los efectos de tomar posesión de sus\ncargos de Concejales."
+    },
+    {
+      "id": "src-063",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Navarro n.º 7, sin la marca «Independiente»)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:"
+    },
+    {
+      "id": "src-064",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular (incl. Navarro)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu"
+    },
+    {
+      "id": "src-065",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+    },
+    {
+      "id": "src-066",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "PAULA NAVARRO SANFELIU 0,00 0,00 0,00 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+    },
+    {
+      "id": "src-067",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "PAULA NAVARRO SANFELIU | Enfermera · SERGAS · Residencias Domus Vi · Servasa · Sanitas Hospital Manises — [varios contratos como enfermera en centros públicos y privados entre 2021 y 2023, con fechas de inicio y cese en columnas separadas]"
+    },
+    {
+      "id": "src-068",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+    },
+    {
+      "id": "src-069",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Navarro",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Paula Navarro Sanfeliu (ni de Trejo, Guzmán o Boix)."
+    },
+    {
+      "id": "src-070",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "local-snapshot",
+      "trust": "medium",
+      "title": "Transcripción automática del pleno de 19-01-2026 — Navarro, representante del PP en el Consejo Municipal de Igualdad (rol, no diarizado)",
+      "localPath": "public/data/pleno-transcripts/19gax3o.txt",
+      "url": "https://www.civicpulse.es/data/pleno-transcripts/19gax3o.txt",
+      "excerpt": "se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad"
+    },
+    {
+      "id": "src-071",
+      "retrievedAt": "2026-07-31T18:46:19.302Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Navarro Sanfeliu». No consta como adjudicataria del Ayuntamiento; sus empleadores declarados son centros sanitarios, ajenos al corpus de contratación municipal."
+    }
+  ],
+  "warnings": [
+    "El portal municipal no publica CV de la concejala: los datos biográficos básicos (nacimiento, formación) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+    "Su representación en el Consejo Municipal de Igualdad procede de transcripciones automáticas de pleno (sin diarización fiable); se recoge el rol —premisa no discutida por las partes— pero no el intercambio político en el que se mencionó."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

@@ -1,10 +1,347 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T18:35:11.903Z",
+  "generatedAt": "2026-07-31T18:46:45.390Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-paula-navarro-bio-2026-07-31",
+      "assignmentId": "a-paula-navarro-bio",
+      "generatedAt": "2026-07-31T18:42:36.011Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "paula-navarro-sanfeliu",
+            "photoPath": "/data/photos/paula-navarro-sanfeliu.jpg",
+            "partyTone": "intel",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo municipal",
+            "bodyMarkdown": "Paula Navarro Sanfeliu es concejal del Ayuntamiento de Riba-roja de Túria por el Partido Popular, en cuyo grupo figura en el **puesto n.º 7** — y, como la n.º 6, sin la marca «(Independiente)» que acompaña a cinco de los siete miembros, es decir, como integrante del propio partido. Es la **concejala más joven de la corporación**: la sesión constitutiva la designó para formar la Mesa de Edad junto al concejal de más edad. El portal de transparencia municipal no publica CV suyo, por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+            "sourceIds": [
+              "src-063",
+              "src-062",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección, Mesa de Edad y representación",
+            "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019. En la sesión constitutiva de 17-06-2023, por ser la concejala de menor edad, integró la **Mesa de Edad** junto al concejal de mayor edad (José Manuel Vila, que la presidió) — el órgano que dirige la toma de posesión y la elección del alcalde. Prestó juramento o promesa y quedó adscrita al Grupo Municipal Popular.\n\nEn el pleno de organización de 07-07-2023 es titular por su grupo en tres comisiones informativas. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión). Las transcripciones de pleno la identifican además como **representante del Grupo Popular en el Consejo Municipal de Igualdad** — un rol que ambas partes dan por sentado en el debate; este medio recoge el cargo, no el intercambio político en el que se mencionó (transcripción automática, sin diarización fiable de intervenciones).",
+            "sourceIds": [
+              "src-060",
+              "src-062",
+              "src-063",
+              "src-064",
+              "src-065",
+              "src-070"
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejal, n.º 7 del Grupo Municipal Popular; vocal de la Mesa de Edad (la más joven); titular en tres comisiones informativas",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-060",
+                  "src-062",
+                  "src-063",
+                  "src-064"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 0,
+                "description": "Declaración de bienes al tomar posesión (2023): 0,00 € en bienes inmuebles, 0,00 € en otros bienes — activo total 0,00 € — y 0,00 € de pasivo. Es la única declaración de la corporación con todos los campos a cero, coherente con el inicio de una carrera profesional. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-066",
+                  "src-068"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Sin actividad empresarial: su actividad declarada es la de enfermera, con varios contratos en centros públicos y privados entre 2021 y 2023 (SERGAS, Residencias Domus Vi, Servasa y el Hospital Sanitas de Manises) — el perfil de una profesional sanitaria de incorporación reciente al mercado laboral. Sin dedicación municipal, su empleo es compatible con el régimen de asistencias.",
+                "sourceIds": [
+                  "src-067"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-065"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Navarro Sanfeliu». Sus empleadores declarados son centros sanitarios (públicos y privados), ajenos al corpus de contratación municipal.\n\nLímites declarados: al no publicar el portal municipal CV suyo, no consta fecha de nacimiento ni formación académica; su papel en el Consejo Municipal de Igualdad se apoya en transcripciones automáticas de pleno (sin diarización) y no en un acta de nombramiento localizada; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-071",
+              "src-070"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Paula Navarro Sanfeliu",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Popular (PP)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Mesa de Edad (sesión constitutiva)",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "Consejo Municipal de Igualdad",
+                "tone": "neutral",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal n.º 7 del grupo; titular en tres comisiones (acta 07-07-2023)",
+                "sourceIds": [
+                  "src-063",
+                  "src-064"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "vocal por ser la concejala más joven de la corporación (acta 17-06-2023)",
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "representante del Grupo Popular (según transcripciones de pleno, sin acta de nombramiento localizada)",
+                "sourceIds": [
+                  "src-070"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejal electa; por ser la más joven, integra la Mesa de Edad que dirige la toma de posesión (primera candidatura documentada, n.º 7 del PP)",
+                "sourceIds": [
+                  "src-060",
+                  "src-062"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Integrada en el Grupo Municipal Popular; titular en tres comisiones informativas; sin dedicación (régimen de asistencias)",
+                "sourceIds": [
+                  "src-063",
+                  "src-064",
+                  "src-065"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 0,00 € y pasivo 0,00 € (la única toda a cero); actividad de enfermera (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-066",
+                  "src-067",
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "CV no publicado en el portal municipal",
+                "reason": "El portal de transparencia publica CV de 17 miembros de la corporación pero no de Navarro (ni de Trejo, Guzmán o Boix). Sin CV, no consta fecha de nacimiento ni formación académica; su edad solo se infiere de su papel en la Mesa de Edad (la más joven)."
+              },
+              {
+                "field": "Nombramiento formal en el Consejo de Igualdad",
+                "reason": "Su papel como representante del PP en el Consejo Municipal de Igualdad consta en transcripciones automáticas de pleno pero no se ha localizado el acuerdo o acta de designación; se publica el rol con esa cautela."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T18:46:19.301Z",
+          "excerpt": "David Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu",
+          "trust": "high"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — formación de la Mesa de Edad (Navarro Sanfeliu, la más joven, junto al mayor)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "Acto seguido se procede a formar la Mesa de Edad para lo cual se invita que suban al estrado\nlos Sres. D. Jose Manuel Vila Oltra y Dª. Paula Navarro Sanfeliu, asumiendo la Presidencia el\nprimero de ellos, previa formulación de juramento o promesa a los efectos de tomar posesión de sus\ncargos de Concejales.",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Navarro n.º 7, sin la marca «Independiente»)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular (incl. Navarro)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "PAULA NAVARRO SANFELIU 0,00 0,00 0,00 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "PAULA NAVARRO SANFELIU | Enfermera · SERGAS · Residencias Domus Vi · Servasa · Sanitas Hospital Manises — [varios contratos como enfermera en centros públicos y privados entre 2021 y 2023, con fechas de inicio y cese en columnas separadas]",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Navarro",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Paula Navarro Sanfeliu (ni de Trejo, Guzmán o Boix).",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/pleno-transcripts/19gax3o.txt",
+          "title": "Transcripción automática del pleno de 19-01-2026 — Navarro, representante del PP en el Consejo Municipal de Igualdad (rol, no diarizado)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "se preguntó a la rechidora Paula Navarro en cualidad de representante del Grupo del Consejo de Igualdad",
+          "localPath": "public/data/pleno-transcripts/19gax3o.txt",
+          "trust": "medium"
+        },
+        {
+          "id": "src-071",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T18:46:19.302Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Navarro Sanfeliu». No consta como adjudicataria del Ayuntamiento; sus empleadores declarados son centros sanitarios, ajenos al corpus de contratación municipal.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "El portal municipal no publica CV de la concejala: los datos biográficos básicos (nacimiento, formación) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+        "Su representación en el Consejo Municipal de Igualdad procede de transcripciones automáticas de pleno (sin diarización fiable); se recoge el rol —premisa no discutida por las partes— pero no el intercambio político en el que se mencionó."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T18:46:45.381Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente mínimo (6 secciones, 8 avisos), sin CV publicado (patrón Trejo/Guzmán/Boix). Perfil sobre primarios: actas (electa 17-06-2023; MESA DE EDAD como concejala más joven de la corporación junto al mayor Vila que preside; grupo PP n.º 7 SIN marca «Independiente» = miembro del partido; titular en 3 comisiones; asistencias), BOP (0 en candidaturas 2015/2019 → primera candidatura 2023) y declaración verificada contra PDF + render p2/p3: activo 0,00 € y pasivo 0,00 € — la ÚNICA declaración toda a cero de la corporación; actividad de enfermera con varios contratos 2021-2023 (SERGAS, Domus Vi, Servasa, Sanitas Manises). Rol en el Consejo Municipal de Igualdad: incluido con CAUTELA — es premisa NO discutida por ambas partes en el pleno 19-01-2026 (ASR), pero SIN acta de nombramiento localizada; se recoge SOLO el rol, NO el intercambio acusatorio sobre la programación del 25-N / NIT Violeta (claims tagged acusacion_publica), y se marca la limitación en lagunas. src-021 (acusacion_publica 2026-05-11) NO citado → podado. Eliminada la sección promise-board. Barrido de adjudicatarios: 0 «Navarro Sanfeliu»; empleadores sanitarios ajenos al corpus.",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-juan-boix-bio-2026-07-31",
       "assignmentId": "a-juan-boix-bio",

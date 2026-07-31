@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T18:35:11.908Z",
+  "generatedAt": "2026-07-31T18:46:45.396Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -281,6 +281,20 @@
       "createdAt": "2026-07-31T18:26:37.050Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T18:31:51.162Z"
+    },
+    {
+      "id": "a-paula-navarro-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "paula-navarro-sanfeliu",
+        "name": "Paula Navarro Sanfeliu",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Paula Navarro Sanfeliu, concejal (PP) en la oposición del Ayuntamiento de Riba-roja de Túria: identidad, elección (candidatura, toma de posesión y su papel en la Mesa de Edad como concejala más joven), papel en la oposición (grupo municipal y comisiones), retribución por asistencias, patrimonio declarado (enfermera) y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T18:36:00.795Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T18:42:36.012Z"
     }
   ]
 }
