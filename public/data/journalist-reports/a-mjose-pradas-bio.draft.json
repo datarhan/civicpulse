@@ -1,0 +1,1026 @@
+{
+  "id": "r-mjose-pradas-bio-2026-07-31",
+  "assignmentId": "a-mjose-pradas-bio",
+  "generatedAt": "2026-07-31T17:42:07.306Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "maria-jose-pradas-ramo",
+        "photoPath": "/data/photos/maria-jose-pradas-ramo.jpg",
+        "partyTone": "intel",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1973-11-10",
+        "birthplace": "Valencia",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad, formación y trayectoria",
+        "bodyMarkdown": "María José Pradas Ramo (Valencia, 10 de noviembre de 1973) es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»**. Según el CV que publica el portal municipal, es **licenciada en Psicología** por la Universidad de Valencia (1996) y **diplomada en Magisterio** con especialidad en Educación Especial (Centro Universitario Cardenal Cisneros, 2011), con más de mil horas de formación certificada y participación en una publicación sobre inteligencia emocional editada por la Conselleria (2013).\n\nSu trayectoria tiene dos etapas: una década en el sector privado (ONO, 1999-2009, supervisora de atención al cliente y técnico de procesos) y, desde 2009, la **Conselleria de Educación como orientadora educativa** — su declaración estatutaria data el ingreso el 22-10-2009 («Interina-funcionaria carrera»). Desde el curso 2021-22 ejerce en el **CEIP Cervantes del propio Riba-roja**: la orientadora de un colegio público del municipio se sienta hoy en la oposición del pleno, y es titular por su grupo precisamente de la comisión informativa que dictamina Educación.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-069",
+          "src-066"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y toma de posesión",
+        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: en los boletines de candidaturas de 2015 y 2019, las doce apariciones del apellido «Pradas» corresponden a candidatos homónimos de otras circunscripciones (Meliana, Picassent, L'Eliana y otras) — ninguna en el bloque de Riba-roja. Entró como **n.º 3** de la lista del PP encabezada por Alberto Gimeno Calvo, en un grupo donde cinco de los siete concejales figuran registrados como independientes.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al Grupo Municipal Popular y titular por su grupo en comisiones informativas — entre ellas la de **Educación, Cultura, Deportes y Fiestas**, su ámbito profesional. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).",
+        "sourceIds": [
+          "src-071",
+          "src-063",
+          "src-064",
+          "src-065",
+          "src-066",
+          "src-067"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Papel en la oposición municipal",
+        "bodyMarkdown": "Su labor de control se articula por las vías ordinarias del grupo: titular en las comisiones informativas y partícipe de las iniciativas colectivas del Grupo Municipal Popular — como la **solicitud de pleno extraordinario sobre el servicio de recogida de basuras y la tasa** que el orden del día de 03-07-2026 ratifica en su punto 1.\n\nLas transcripciones automáticas de los plenos no llevan identificación de hablantes, y las votaciones constan a nivel de grupo, por lo que este medio no atribuye a la concejal intervenciones ni sentidos de voto individuales: las acciones documentadas aquí son las del grupo del que forma parte.",
+        "sourceIds": [
+          "src-066",
+          "src-072"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Licenciatura en Psicología",
+            "institution": "Universidad de Valencia",
+            "endYear": 1996,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Diplomatura en Magisterio — Especialidad Educación Especial",
+            "institution": "Centro Universitario Cardenal Cisneros",
+            "endYear": 2011,
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejal, n.º 3 de la lista del Grupo Municipal Popular («Independiente»)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-063",
+              "src-064",
+              "src-065"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Supervisor del servicio de atención al cliente y Técnico de Procesos",
+            "org": "ONO",
+            "startYear": 1999,
+            "endYear": 2009,
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "role": "Orientadora educativa de centros de Infantil-Primaria, Educación Secundaria y Educación Especial (Valencia y Castellón); desde el curso 2021-22 en el CEIP Cervantes de Riba-roja de Túria",
+            "org": "Conselleria de Educación",
+            "startYear": 2009,
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 207655.95,
+            "description": "Activo declarado al tomar posesión (2023): 194.081,86 € en bienes inmuebles + 13.574,09 € en otros bienes = 207.655,95 €; pasivo declarado: 25.970,00 €. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-068",
+              "src-070"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial: su actividad declarada es el puesto público en la Conselleria de Educación («Interina-funcionaria carrera», desde el 22-10-2009), coherente con su CV (orientadora educativa; desde el curso 2021-22 en el CEIP Cervantes de Riba-roja). Sin dedicación municipal, el empleo público autonómico es compatible con el régimen de asistencias.",
+            "sourceIds": [
+              "src-069",
+              "src-060",
+              "src-067"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-067"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "publications",
+      "payload": {
+        "items": [
+          {
+            "title": "Inteligencia Emocional aplicada a las dificultades de aprendizaje. Experiencias positivas de intervención educativa y superación",
+            "venue": "Conselleria de Educación, Cultura y Deporte de la Generalitat Valenciana",
+            "year": 2013,
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1973-11-10",
+            "label": "Nace en Valencia (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "1996-06-30",
+            "label": "Licenciatura en Psicología, Universidad de Valencia (CV)",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "date": "1999-01-01",
+            "label": "Etapa en ONO (1999-2009): supervisora de atención al cliente y técnico de procesos (CV)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "2009-10-22",
+            "label": "Ingreso en la Conselleria de Educación como orientadora educativa (fecha de su declaración de actividades)",
+            "sourceIds": [
+              "src-069",
+              "src-060"
+            ]
+          },
+          {
+            "date": "2011-06-30",
+            "label": "Diplomatura en Magisterio, especialidad Educación Especial (CV)",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "date": "2013-06-30",
+            "label": "Participa en una publicación sobre inteligencia emocional editada por la Conselleria (CV)",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "date": "2021-09-01",
+            "label": "Destino en el CEIP Cervantes de Riba-roja de Túria (CV)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamada concejal electa y juramento; primera candidatura documentada (n.º 3 del PP, «Independiente»)",
+            "sourceIds": [
+              "src-063",
+              "src-064",
+              "src-065"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Titular en comisiones informativas — entre ellas la de Educación; sin dedicación (asistencias)",
+            "sourceIds": [
+              "src-066",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 207.655,95 € · pasivo 25.970,00 € (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-068",
+              "src-070"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «PRADAS». Su empleadora declarada es una administración pública (Conselleria de Educación), no un operador privado con relación contractual con el Ayuntamiento.\n\nNota de desambiguación: en los materiales del pleno y la prensa del periodo aparece **Salomé Pradas**, exconsellera de la Generalitat vinculada a la gestión de la DANA — es una persona distinta sin relación documentada con la concejal, y este medio ha verificado que ninguna fuente citada en este perfil las confunde.\n\nLímites declarados: la condición exacta de su puesto autonómico («Interina-funcionaria carrera», tal como imprime la declaración) no es determinable con las fuentes abiertas consultadas; las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-071",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "María José Pradas Ramo",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Conselleria de Educación (GVA)",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n4",
+            "label": "CEIP Cervantes (Riba-roja de Túria)",
+            "tone": "intel",
+            "kind": "entity"
+          },
+          {
+            "id": "n5",
+            "label": "Comisión Informativa de Educación, Cultura, Deportes y Fiestas",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal n.º 3 del grupo, registrada «(Independiente)» (acta 07-07-2023)",
+            "sourceIds": [
+              "src-065"
+            ]
+          },
+          {
+            "from": "n3",
+            "to": "n1",
+            "relation": "empleadora desde el 22-10-2009 (declaración de actividades; orientadora educativa según CV)",
+            "sourceIds": [
+              "src-069",
+              "src-060"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "destino profesional desde el curso 2021-22 (CV)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n5",
+            "relation": "titular por su grupo de la comisión que dictamina su ámbito profesional",
+            "sourceIds": [
+              "src-066"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "pp-voto-contra-fondos-dana",
+          "pp-gasto-innecesario-pacadar",
+          "pp-critica-gestion-socialista"
+        ]
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Condición administrativa exacta en la Conselleria",
+            "reason": "La declaración imprime «Interina-funcionaria carrera» sin desambiguar si el puesto es de interinidad o de carrera; los registros de personal de la Conselleria no son de acceso público con detalle individual. Se transcribe tal cual consta."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Datos biográficos autodeclarados",
+            "reason": "Nacimiento, formación y etapas laborales proceden del CV que publica el portal municipal; los títulos universitarios no son verificables gratuitamente y el Registro Civil no es de acceso público."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — María José Pradas Ramo",
+      "retrievedAt": "2026-07-31T17:36:06.350Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: concejal · party: PP · portfolios: "
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — María José Pradas Ramo",
+      "retrievedAt": "2026-07-31T17:36:07.325Z",
+      "trust": "high",
+      "excerpt": "Dª. MARÍA JOSÉ PRADAS RAMO ramramoramo Concejala del Partido Popular FORMACIÓN LICENCIATURA EN PSICOLOGÍA- UNIVERSIDAD DE VALENCIA- 1996 DIPLOMATURA EN MAGISTERIO-CENTRO UNIVERSITARIO CARDENAL CISNEROS- 2011 Especialidad Educación especial OTROS: Más de 1000 horas en Cursos de formación en distintas competencias del área de psicología, pedagogía y nuevas tecnologías relacionadas con la educación, así como proyectos de innovación e investigación. Certificados por la Conselleri"
+    },
+    {
+      "id": "src-003",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T17:36:09.442Z",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(madre_de_Jes%C3%BAs)",
+      "title": "María (madre de Jesús) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:36:10.500Z",
+      "trust": "medium",
+      "excerpt": "Tanto Μαρία como Μαριάμ aparecen en el Nuevo Testamento. María es un nombre conocido en el Tanaj judío (el Antiguo Testamento cristiano) por haber sido el nombre de la hermana de Moisés y …"
+    },
+    {
+      "id": "src-005",
+      "kind": "web",
+      "url": "https://www.bibliaon.com/es/maria/",
+      "title": "La historia de María (madre de Jesús) - Biblia",
+      "retrievedAt": "2026-07-31T17:36:10.500Z",
+      "trust": "low",
+      "excerpt": "María fue una joven virgen de Nazaret, elegida por Dios para concebir a Jesús por medio del Espíritu Santo. Ella jugó un papel importante en la historia de Jesús, ya que fue la madre del Salvador."
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "title": "María (nombre) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:36:10.500Z",
+      "trust": "medium",
+      "excerpt": "María (en hebreo: מרים, romanizado: Mīryam, Mīryām, en arameo: ܡܪܝܡ, romanizado: Maryam, en griego: Μαριάμ, romanizado: Mariám, variante corta Μαρία, María) es un nombre propio femenino de …"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T17:36:10.500Z",
+      "trust": "medium",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T17:36:10.500Z",
+      "trust": "medium",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T17:36:10.500Z",
+      "trust": "low",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://www.briggsavsolutions.com/",
+      "title": "AV Integrator | Nashville, TN | Briggs A/V Solutions",
+      "retrievedAt": "2026-07-31T17:36:11.102Z",
+      "trust": "low",
+      "excerpt": "Briggs AV Solutions delivers premium audio, video, and automation systems for high-end residences where performance, design, and reliability matter. Our residential services are focused exclusively on …"
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://www.briggsavsolutions.com/location/",
+      "title": "Nashville Location | Briggs A/V Solutions | AV Intergrator",
+      "retrievedAt": "2026-07-31T17:36:11.102Z",
+      "trust": "low",
+      "excerpt": "With over a decade of experience, Briggs AV Solutions has earned a reputation for dependable audio visual systems and expert craftsmanship. As a locally owned and operated company, we understand …"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://allmywebneeds.com/portfolio/briggs-av-solutions",
+      "title": "Website for Briggs AV Solutions | Nashville, TN",
+      "retrievedAt": "2026-07-31T17:36:11.102Z",
+      "trust": "low",
+      "excerpt": "Briggs AV Solutions is a full-service commercial and residential audio visual integration company specializing in custom AV systems, structured cabling, fiber splicing, smart home automation, security …"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://www.amway.com/en_US/Artistry-Skin-Nutrition%E2%84%A2-Vitamin-C-%2B-HA3-Daily-Serum-p-125517V?msockid=19ca05e514196bfd183e124215726a7f",
+      "title": "Artistry Skin Nutrition™ Vitamin C + HA3 Daily Serum",
+      "retrievedAt": "2026-07-31T17:36:11.562Z",
+      "trust": "low",
+      "excerpt": "The multi-benefit results of Artistry Skin Nutrition™ Vitamin C + HA 3 Daily Serum come from its multiple exceptional ingredients: 10% …"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://skinsort.com/products/skin-nutrition-botanicals/hyaluronic-acid-1-vitamin-c-serum",
+      "title": "Skin Nutrition Botanicals Hyaluronic Acid 1% + Vitamin C Serum",
+      "retrievedAt": "2026-07-31T17:36:11.562Z",
+      "trust": "low",
+      "excerpt": "11 de jul de 2024 · Ingredients in Skin Nutrition Botanicals Hyaluronic Acid 1% + Vitamin C Serum explained: benefits, concerns, and …"
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://www.eatingwell.com/does-collagen-and-vitamin-c-work-for-skin-health-12020119",
+      "title": "Does Taking Collagen with Vitamin C Benefit Your Skin? - EatingWell",
+      "retrievedAt": "2026-07-31T17:36:11.562Z",
+      "trust": "low",
+      "excerpt": "21 de jul de 2026 · Skin-health experts explain whether taking collagen and vitamin C together can improve skin health and share …"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://www.fao.org/international-tea-day/en/",
+      "title": "International Tea Day | 21 May",
+      "retrievedAt": "2026-07-31T17:36:11.854Z",
+      "trust": "low",
+      "excerpt": "International Tea Day is an opportunity to celebrate the cultural heritage, health benefits and economic importance of tea, while …"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/International_Tea_Day",
+      "title": "International Tea Day - Wikipedia",
+      "retrievedAt": "2026-07-31T17:36:11.854Z",
+      "trust": "medium",
+      "excerpt": "The International Tea Day aims to raise awareness of the long history and the deep cultural and economic significance of tea around …"
+    },
+    {
+      "id": "src-018",
+      "kind": "web",
+      "url": "https://internationalteaday.org/",
+      "title": "International Tea Day",
+      "retrievedAt": "2026-07-31T17:36:11.854Z",
+      "trust": "low",
+      "excerpt": "The Day will promote and foster collective actions to implement activities in favour of the sustainable production and consumption of …"
+    },
+    {
+      "id": "src-019",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.631Z",
+      "localPath": "public/data/pleno-transcripts/11025xk.txt",
+      "trust": "high",
+      "excerpt": "[5490.0 → 5520.0] en mi local, dije, ¿qué problema tenía este problema? Me han quedado en el pleno. No pasa nada, no pasa nada. Vosotros hacéis como cuando tenéis Salomé Pradas, así en la foto y así en la web, que es lo "
+    },
+    {
+      "id": "src-020",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.631Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.631Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] voluntat i l'amor pel que fan. Especialment exigents són els certàmens internacionals per la [0.0 → 0.0] càrrega de treball que comporten i també l'exigència econòmica inherent. Seria impossible poder [0.0 → "
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.631Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.932Z",
+      "localPath": "public/data/pleno-transcripts/11025xk.txt",
+      "trust": "high",
+      "excerpt": "[5490.0 → 5520.0] en mi local, dije, ¿qué problema tenía este problema? Me han quedado en el pleno. No pasa nada, no pasa nada. Vosotros hacéis como cuando tenéis Salomé Pradas, así en la foto y así en la web, que es lo "
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.932Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:12.932Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] la corporación, José Luís Serrano Borraz. [0.0 → 0.0] Declarado abierto el acto por la presidencia, se pasa al estudio y acuerdo de los asuntos [0.0 → 0.0] consignados en el Orden del Día. [0.0 → 0.0] 1.- Apr"
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:13.251Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0"
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:13.251Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:13.251Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:"
+    },
+    {
+      "id": "src-029",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-034-afi-199709 · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-056-acu-f05a1c · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Mediante una moción aprobada así en este pleno mes de abril mostramos ya nuestro apoyo institucional hacia el profesor Valencià en defensa de una educación de calidad malgrado los votos en contra de PP y Vox"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-094-cit-096ad1 · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "estamos hablando de la climatización que durante años esperamos y estamos hablando del edificante."
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-093-cit-95517a · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "estamos hablando de la climatización que durante años esperamos y estamos hablando del edificante."
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo"
+    },
+    {
+      "id": "src-034",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-616b80 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+    },
+    {
+      "id": "src-035",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-099-cit-8a1dc7 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+    },
+    {
+      "id": "src-036",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-103-acu-92ea5a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T17:36:15.007Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Efectivamente, en el Pacto del Botánico no se hizo absolutamente nada."
+    },
+    {
+      "id": "src-037",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T17:36:15.009Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-038",
+      "kind": "web",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
+      "title": "Campaña de Renta 2025 - Agencia Tributaria",
+      "retrievedAt": "2026-07-31T17:36:15.876Z",
+      "trust": "high",
+      "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …"
+    },
+    {
+      "id": "src-039",
+      "kind": "web",
+      "url": "https://sede.agenciatributaria.gob.es/",
+      "title": "Agencia Tributaria: Inicio",
+      "retrievedAt": "2026-07-31T17:36:15.876Z",
+      "trust": "high",
+      "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta"
+    },
+    {
+      "id": "src-040",
+      "kind": "web",
+      "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
+      "title": "Inicio - Agencia Tributaria",
+      "retrievedAt": "2026-07-31T17:36:15.876Z",
+      "trust": "low",
+      "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite."
+    },
+    {
+      "id": "src-041",
+      "kind": "web",
+      "url": "https://www.google.no/index.html",
+      "title": "Google",
+      "retrievedAt": "2026-07-31T17:36:16.239Z",
+      "trust": "low",
+      "excerpt": "Search the world's information, including webpages, images, videos and more. Google has many special features to help you find …"
+    },
+    {
+      "id": "src-042",
+      "kind": "web",
+      "url": "https://www.google.com/#!%20/=",
+      "title": "Google",
+      "retrievedAt": "2026-07-31T17:36:16.239Z",
+      "trust": "low",
+      "excerpt": "Vi vil gjerne vise deg en beskrivelse her, men området du ser på lar oss ikke gjøre det."
+    },
+    {
+      "id": "src-043",
+      "kind": "web",
+      "url": "https://www.google.com/?hl=no",
+      "title": "Google",
+      "retrievedAt": "2026-07-31T17:36:16.239Z",
+      "trust": "low",
+      "excerpt": "Annonsering Alt om Google Google.com in English © 2026"
+    },
+    {
+      "id": "src-044",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T17:36:16.776Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "jose-luis-ramos-march · José Luis Ramos March · Sr. · concejal · PSOE · Agenda 2030 · Emergencia climática · Fondos Europeos · Integridad · Agricultura · Actividades y Edificios públicos · jlramos@ribarroja.es · /data/photos/jose-luis-ramos"
+    },
+    {
+      "id": "src-045",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T17:36:16.776Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "jose-angel-hernandez-carrizosa · José Ángel Hernández Carrizosa · Sr. · concejal · PSOE · Administración y Servicios Generales · Compra Pública · Recursos Humanos · Finanzas públicas y recaudación · Fomento económico · Empleo y Emprendimien"
+    },
+    {
+      "id": "src-046",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T17:36:16.776Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "brxx5g-034-afi-199709 · brxx5g · 2026-07-06 · 34 · afirmacion_numerica ·  · En un incremento de 130.000 euros, Seguridad Social incluida · [2575.0 → 2576.0] José Ángel [2602.0 → 2604.0] En un incremento de 130.000 euros, Seguridad Social in"
+    },
+    {
+      "id": "src-047",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:16.776Z",
+      "localPath": "public/data/pleno-transcripts/11025xk.txt",
+      "trust": "high",
+      "excerpt": "[5550.0 → 5580.0] Pues ya queda votar 14 votos a favor, 7 abstenciones ¿Urro Socialista? A favor ¿Partido Popular? A favor ¿Vox? A favor Esquerra de Podemos y Compromís A favor Pasemos al 100.2 del día, punto 5 ¿Qué es? "
+    },
+    {
+      "id": "src-048",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:16.776Z",
+      "localPath": "public/data/pleno-transcripts/11025xk.txt",
+      "trust": "high",
+      "excerpt": "[5580.0 → 5610.0] La Cuchesa de Pau, subquivida de Ribarracha. José Ángel. Buenas tardes. Bueno, pues donemos contes del nombramiento de la Cuchesa de Pau por parte del Tribunal Superior de Justicia de la Comunidad Valen"
+    },
+    {
+      "id": "src-049",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+      "retrievedAt": "2026-07-31T17:36:16.776Z",
+      "localPath": "public/data/pleno-transcripts/11025xk.txt",
+      "trust": "high",
+      "excerpt": "[5730.0 → 5760.0] no te cae de problema. Y ahora estén votando el chuche suplente del titular del juzgado de Pau. Pasemos a votar. ¿Este es Don Alcóndel? Sí, es que como el nombramiento no lo ha hecho el ayuntamiento, po"
+    },
+    {
+      "id": "src-050",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(madre_de_Jes%C3%BAs)",
+      "title": "María (madre de Jesús) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:36:18.604Z",
+      "trust": "medium",
+      "excerpt": "Tanto Μαρία como Μαριάμ aparecen en el Nuevo Testamento. María es un nombre conocido en el Tanaj judío (el Antiguo Testamento cristiano) por haber sido el nombre de la hermana de Moisés y …"
+    },
+    {
+      "id": "src-051",
+      "kind": "web",
+      "url": "https://www.bibliaon.com/es/maria/",
+      "title": "La historia de María (madre de Jesús) - Biblia",
+      "retrievedAt": "2026-07-31T17:36:18.604Z",
+      "trust": "low",
+      "excerpt": "María fue una joven virgen de Nazaret, elegida por Dios para concebir a Jesús por medio del Espíritu Santo. Ella jugó un papel importante en la historia de Jesús, ya que fue la madre del Salvador."
+    },
+    {
+      "id": "src-052",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "title": "María (nombre) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:36:18.604Z",
+      "trust": "medium",
+      "excerpt": "María (en hebreo: מרים, romanizado: Mīryam, Mīryām, en arameo: ܡܪܝܡ, romanizado: Maryam, en griego: Μαριάμ, romanizado: Mariám, variante corta Μαρία, María) es un nombre propio femenino de …"
+    },
+    {
+      "id": "src-053",
+      "kind": "web",
+      "url": "https://www.elsantorosario.es/",
+      "title": "El Santo Rosario en Radio María - El Santo Rosario",
+      "retrievedAt": "2026-07-31T17:36:18.604Z",
+      "trust": "low",
+      "excerpt": "El Santo Rosario y Radio María Uno de los aspectos esenciales del carisma de Radio María es el amor filial por la Madre de Dios y Madre de la Iglesia. Nuestro mismo nombre quiere indicar una identidad …"
+    },
+    {
+      "id": "src-054",
+      "kind": "web",
+      "url": "https://radiomaria.es/",
+      "title": "Radio María España - Una Radio que cambia vidas",
+      "retrievedAt": "2026-07-31T17:36:18.604Z",
+      "trust": "low",
+      "excerpt": "Desde Radio María nos unimos en acción de gracias por la visita del Sucesor de Pedro y oramos por la fecundidad de este acontecimiento de gracia que ha llenado a España de alegría, confiando el …"
+    },
+    {
+      "id": "src-055",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T17:36:18.605Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-056",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(madre_de_Jes%C3%BAs)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T17:36:18.605Z",
+      "trust": "high",
+      "excerpt": "María (madre de Jesús) - Wikipedia, la enciclopedia libre <link rel=\"stylesheet\" href=\"/w/load.php?lang=es&amp",
+      "archiveUrl": "http://web.archive.org/web/20260726091412/https://es.wikipedia.org/wiki/Mar%C3%ADa_%28madre_de_Jes%C3%BAs%29"
+    },
+    {
+      "id": "src-057",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T17:36:18.606Z",
+      "trust": "high",
+      "excerpt": "María (nombre) - Wikipedia, la enciclopedia libre <link rel=\"license\" href=\"https://creativecommons.org",
+      "archiveUrl": "http://web.archive.org/web/20251105114150/https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)"
+    },
+    {
+      "id": "src-060",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — presentación y experiencia (ONO · Conselleria · CEIP Cervantes) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+      "excerpt": "PRESENTACIÓN \n \n10 NOVIEMBRE 1973 \nVALENCIA \nmjpradas@ppribarroja.com \n \nEXPERIENCIA PROFESIONAL \n \n \nONO- 1999-2009 \nSupervisor del servicio de atención al cliente y Técnico de \nProcesos.  \n \nCONSELLERIA DE EDUCACIÓN- 2009-actualidad. \nOrientadora educativa de diversos centros de Infantil-Primaria, \nEducación Secundaria y Educación Especial de la provincia de \nValencia y Castellón. \n \nDesde el curso 2021-22 en el CEIP Cervantes de Riba-roja de"
+    },
+    {
+      "id": "src-061",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — formación (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+      "excerpt": "FORMACIÓN \n \nLICENCIATURA EN PSICOLOGÍA- UNIVERSIDAD DE \nVALENCIA- 1996 \n \nDIPLOMATURA EN MAGISTERIO-CENTRO UNIVERSITARIO \nCARDENAL CISNEROS- 2011 \nEspecialidad Educación especial"
+    },
+    {
+      "id": "src-062",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — participación en publicación (2013) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+      "excerpt": "Participación en la publicación del libro “Inteligencia Emocional \naplicada a las dificultades de aprendizaje. Experiencias positivas \nde intervención educativa y superación”. Editado por la Conselleria \nde Educación, Cultura y Deporte de la G.V. 2013"
+    },
+    {
+      "id": "src-063",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Eva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo"
+    },
+    {
+      "id": "src-064",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo"
+    },
+    {
+      "id": "src-065",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Pradas n.º 3, «(Independiente)»)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:"
+    },
+    {
+      "id": "src-066",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu"
+    },
+    {
+      "id": "src-067",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+    },
+    {
+      "id": "src-068",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "MARIA JOSE PRADAS RAMO 194.081,86 13.574,09 207.655,95 25.970,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+    },
+    {
+      "id": "src-069",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "MARIA JOSE PRADAS RAMO | Interina-funcionaria carrera · Consellería de Educación · 22/10/2009 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de inicio]"
+    },
+    {
+      "id": "src-070",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+    },
+    {
+      "id": "src-071",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Barrido determinista — adjudicatarios y candidaturas BOP (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «PRADAS». Candidaturas BOP 28-04-2015 y 30-04-2019: las 12 apariciones de «PRADAS» corresponden a candidatos homónimos de otras circunscripciones (Meliana, Picassent, Andilla, L'Eliana, Senyera, Almàssera, Foios y otras); ninguna dentro del bloque de Riba-roja de Túria, y «PRADAS RAMO» no aparece en ningún boletín."
+    },
+    {
+      "id": "src-072",
+      "retrievedAt": "2026-07-31T17:45:15.620Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Orden del día del pleno extraordinario de 03-07-2026 — solicitado por el Grupo Municipal Popular (RSU y tasa de basura)",
+      "localPath": "public/data/plenos-agendas.json",
+      "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+      "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura»."
+    }
+  ],
+  "warnings": [
+    "Los datos biográficos (nacimiento, formación, ONO, Conselleria) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora el ingreso en la Conselleria (22-10-2009).",
+    "Salomé Pradas, exconsellera vinculada a la gestión de la DANA, es una persona distinta que aparece en materiales del periodo; este perfil no la cita y ninguna fuente citada las confunde.",
+    "Las votaciones del pleno constan a nivel de grupo y las transcripciones no identifican hablantes: este perfil no atribuye a la concejal sentidos de voto ni intervenciones individuales."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

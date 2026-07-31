@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T17:34:21.901Z",
+  "generatedAt": "2026-07-31T17:45:41.705Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -225,6 +225,20 @@
       "createdAt": "2026-07-31T17:25:45.585Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T17:31:26.980Z"
+    },
+    {
+      "id": "a-mjose-pradas-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "maria-jose-pradas-ramo",
+        "name": "María José Pradas Ramo",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de María José Pradas Ramo, concejal (PP) en la oposición del Ayuntamiento de Riba-roja de Túria: identidad y formación, trayectoria previa (funcionaria de la Conselleria de Educación), elección (candidatura y toma de posesión), papel en la oposición (grupo municipal y comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T17:35:03.856Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T17:42:07.307Z"
     }
   ]
 }

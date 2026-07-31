@@ -1,10 +1,525 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T17:34:21.895Z",
+  "generatedAt": "2026-07-31T17:45:41.700Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-mjose-pradas-bio-2026-07-31",
+      "assignmentId": "a-mjose-pradas-bio",
+      "generatedAt": "2026-07-31T17:42:07.306Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "maria-jose-pradas-ramo",
+            "photoPath": "/data/photos/maria-jose-pradas-ramo.jpg",
+            "partyTone": "intel",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1973-11-10",
+            "birthplace": "Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad, formación y trayectoria",
+            "bodyMarkdown": "María José Pradas Ramo (Valencia, 10 de noviembre de 1973) es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»**. Según el CV que publica el portal municipal, es **licenciada en Psicología** por la Universidad de Valencia (1996) y **diplomada en Magisterio** con especialidad en Educación Especial (Centro Universitario Cardenal Cisneros, 2011), con más de mil horas de formación certificada y participación en una publicación sobre inteligencia emocional editada por la Conselleria (2013).\n\nSu trayectoria tiene dos etapas: una década en el sector privado (ONO, 1999-2009, supervisora de atención al cliente y técnico de procesos) y, desde 2009, la **Conselleria de Educación como orientadora educativa** — su declaración estatutaria data el ingreso el 22-10-2009 («Interina-funcionaria carrera»). Desde el curso 2021-22 ejerce en el **CEIP Cervantes del propio Riba-roja**: la orientadora de un colegio público del municipio se sienta hoy en la oposición del pleno, y es titular por su grupo precisamente de la comisión informativa que dictamina Educación.",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062",
+              "src-069",
+              "src-066"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y toma de posesión",
+            "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: en los boletines de candidaturas de 2015 y 2019, las doce apariciones del apellido «Pradas» corresponden a candidatos homónimos de otras circunscripciones (Meliana, Picassent, L'Eliana y otras) — ninguna en el bloque de Riba-roja. Entró como **n.º 3** de la lista del PP encabezada por Alberto Gimeno Calvo, en un grupo donde cinco de los siete concejales figuran registrados como independientes.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al Grupo Municipal Popular y titular por su grupo en comisiones informativas — entre ellas la de **Educación, Cultura, Deportes y Fiestas**, su ámbito profesional. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).",
+            "sourceIds": [
+              "src-071",
+              "src-063",
+              "src-064",
+              "src-065",
+              "src-066",
+              "src-067"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Papel en la oposición municipal",
+            "bodyMarkdown": "Su labor de control se articula por las vías ordinarias del grupo: titular en las comisiones informativas y partícipe de las iniciativas colectivas del Grupo Municipal Popular — como la **solicitud de pleno extraordinario sobre el servicio de recogida de basuras y la tasa** que el orden del día de 03-07-2026 ratifica en su punto 1.\n\nLas transcripciones automáticas de los plenos no llevan identificación de hablantes, y las votaciones constan a nivel de grupo, por lo que este medio no atribuye a la concejal intervenciones ni sentidos de voto individuales: las acciones documentadas aquí son las del grupo del que forma parte.",
+            "sourceIds": [
+              "src-066",
+              "src-072"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Licenciatura en Psicología",
+                "institution": "Universidad de Valencia",
+                "endYear": 1996,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Diplomatura en Magisterio — Especialidad Educación Especial",
+                "institution": "Centro Universitario Cardenal Cisneros",
+                "endYear": 2011,
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejal, n.º 3 de la lista del Grupo Municipal Popular («Independiente»)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-063",
+                  "src-064",
+                  "src-065"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Supervisor del servicio de atención al cliente y Técnico de Procesos",
+                "org": "ONO",
+                "startYear": 1999,
+                "endYear": 2009,
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "role": "Orientadora educativa de centros de Infantil-Primaria, Educación Secundaria y Educación Especial (Valencia y Castellón); desde el curso 2021-22 en el CEIP Cervantes de Riba-roja de Túria",
+                "org": "Conselleria de Educación",
+                "startYear": 2009,
+                "sourceIds": [
+                  "src-060"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 207655.95,
+                "description": "Activo declarado al tomar posesión (2023): 194.081,86 € en bienes inmuebles + 13.574,09 € en otros bienes = 207.655,95 €; pasivo declarado: 25.970,00 €. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-068",
+                  "src-070"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Sin actividad empresarial: su actividad declarada es el puesto público en la Conselleria de Educación («Interina-funcionaria carrera», desde el 22-10-2009), coherente con su CV (orientadora educativa; desde el curso 2021-22 en el CEIP Cervantes de Riba-roja). Sin dedicación municipal, el empleo público autonómico es compatible con el régimen de asistencias.",
+                "sourceIds": [
+                  "src-069",
+                  "src-060",
+                  "src-067"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-067"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "publications",
+          "payload": {
+            "items": [
+              {
+                "title": "Inteligencia Emocional aplicada a las dificultades de aprendizaje. Experiencias positivas de intervención educativa y superación",
+                "venue": "Conselleria de Educación, Cultura y Deporte de la Generalitat Valenciana",
+                "year": 2013,
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1973-11-10",
+                "label": "Nace en Valencia (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "1996-06-30",
+                "label": "Licenciatura en Psicología, Universidad de Valencia (CV)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "date": "1999-01-01",
+                "label": "Etapa en ONO (1999-2009): supervisora de atención al cliente y técnico de procesos (CV)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2009-10-22",
+                "label": "Ingreso en la Conselleria de Educación como orientadora educativa (fecha de su declaración de actividades)",
+                "sourceIds": [
+                  "src-069",
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2011-06-30",
+                "label": "Diplomatura en Magisterio, especialidad Educación Especial (CV)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "date": "2013-06-30",
+                "label": "Participa en una publicación sobre inteligencia emocional editada por la Conselleria (CV)",
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "date": "2021-09-01",
+                "label": "Destino en el CEIP Cervantes de Riba-roja de Túria (CV)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejal electa y juramento; primera candidatura documentada (n.º 3 del PP, «Independiente»)",
+                "sourceIds": [
+                  "src-063",
+                  "src-064",
+                  "src-065"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Titular en comisiones informativas — entre ellas la de Educación; sin dedicación (asistencias)",
+                "sourceIds": [
+                  "src-066",
+                  "src-067"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 207.655,95 € · pasivo 25.970,00 € (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-068",
+                  "src-070"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «PRADAS». Su empleadora declarada es una administración pública (Conselleria de Educación), no un operador privado con relación contractual con el Ayuntamiento.\n\nNota de desambiguación: en los materiales del pleno y la prensa del periodo aparece **Salomé Pradas**, exconsellera de la Generalitat vinculada a la gestión de la DANA — es una persona distinta sin relación documentada con la concejal, y este medio ha verificado que ninguna fuente citada en este perfil las confunde.\n\nLímites declarados: la condición exacta de su puesto autonómico («Interina-funcionaria carrera», tal como imprime la declaración) no es determinable con las fuentes abiertas consultadas; las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-071",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "María José Pradas Ramo",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Conselleria de Educación (GVA)",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "CEIP Cervantes (Riba-roja de Túria)",
+                "tone": "intel",
+                "kind": "entity"
+              },
+              {
+                "id": "n5",
+                "label": "Comisión Informativa de Educación, Cultura, Deportes y Fiestas",
+                "tone": "neutral",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal n.º 3 del grupo, registrada «(Independiente)» (acta 07-07-2023)",
+                "sourceIds": [
+                  "src-065"
+                ]
+              },
+              {
+                "from": "n3",
+                "to": "n1",
+                "relation": "empleadora desde el 22-10-2009 (declaración de actividades; orientadora educativa según CV)",
+                "sourceIds": [
+                  "src-069",
+                  "src-060"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "destino profesional desde el curso 2021-22 (CV)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n5",
+                "relation": "titular por su grupo de la comisión que dictamina su ámbito profesional",
+                "sourceIds": [
+                  "src-066"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "pp-voto-contra-fondos-dana",
+              "pp-gasto-innecesario-pacadar",
+              "pp-critica-gestion-socialista"
+            ]
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Condición administrativa exacta en la Conselleria",
+                "reason": "La declaración imprime «Interina-funcionaria carrera» sin desambiguar si el puesto es de interinidad o de carrera; los registros de personal de la Conselleria no son de acceso público con detalle individual. Se transcribe tal cual consta."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Datos biográficos autodeclarados",
+                "reason": "Nacimiento, formación y etapas laborales proceden del CV que publica el portal municipal; los títulos universitarios no son verificables gratuitamente y el Registro Civil no es de acceso público."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+          "title": "CV publicado en el portal municipal — presentación y experiencia (ONO · Conselleria · CEIP Cervantes) (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "PRESENTACIÓN \n \n10 NOVIEMBRE 1973 \nVALENCIA \nmjpradas@ppribarroja.com \n \nEXPERIENCIA PROFESIONAL \n \n \nONO- 1999-2009 \nSupervisor del servicio de atención al cliente y Técnico de \nProcesos.  \n \nCONSELLERIA DE EDUCACIÓN- 2009-actualidad. \nOrientadora educativa de diversos centros de Infantil-Primaria, \nEducación Secundaria y Educación Especial de la provincia de \nValencia y Castellón. \n \nDesde el curso 2021-22 en el CEIP Cervantes de Riba-roja de",
+          "trust": "medium"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "FORMACIÓN \n \nLICENCIATURA EN PSICOLOGÍA- UNIVERSIDAD DE \nVALENCIA- 1996 \n \nDIPLOMATURA EN MAGISTERIO-CENTRO UNIVERSITARIO \nCARDENAL CISNEROS- 2011 \nEspecialidad Educación especial",
+          "trust": "medium"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-M-Jose-Pradas-Ramo.pdf",
+          "title": "CV publicado en el portal municipal — participación en publicación (2013) (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Participación en la publicación del libro “Inteligencia Emocional \naplicada a las dificultades de aprendizaje. Experiencias positivas \nde intervención educativa y superación”. Editado por la Conselleria \nde Educación, Cultura y Deporte de la G.V. 2013",
+          "trust": "medium"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Eva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Pradas n.º 3, «(Independiente)»)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "MARIA JOSE PRADAS RAMO 194.081,86 13.574,09 207.655,95 25.970,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "MARIA JOSE PRADAS RAMO | Interina-funcionaria carrera · Consellería de Educación · 22/10/2009 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de inicio]",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista — adjudicatarios y candidaturas BOP (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «PRADAS». Candidaturas BOP 28-04-2015 y 30-04-2019: las 12 apariciones de «PRADAS» corresponden a candidatos homónimos de otras circunscripciones (Meliana, Picassent, Andilla, L'Eliana, Senyera, Almàssera, Foios y otras); ninguna dentro del bloque de Riba-roja de Túria, y «PRADAS RAMO» no aparece en ningún boletín.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "local-snapshot",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+          "title": "Orden del día del pleno extraordinario de 03-07-2026 — solicitado por el Grupo Municipal Popular (RSU y tasa de basura)",
+          "retrievedAt": "2026-07-31T17:45:15.620Z",
+          "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
+          "localPath": "public/data/plenos-agendas.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos (nacimiento, formación, ONO, Conselleria) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora el ingreso en la Conselleria (22-10-2009).",
+        "Salomé Pradas, exconsellera vinculada a la gestión de la DANA, es una persona distinta que aparece en materiales del periodo; este perfil no la cita y ninguna fuente citada las confunde.",
+        "Las votaciones del pleno constan a nivel de grupo y las transcripciones no identifican hablantes: este perfil no atribuye a la concejal sentidos de voto ni intervenciones individuales."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T17:45:41.692Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente (12 secciones, con publications) sometido al pase forense. CV primario parseado (nacida 10-11-1973 Valencia; Psicología UV 1996 + Magisterio Ed. Especial 2011; ONO 1999-2009; Conselleria de Educación desde 2009 — orientadora, en el CEIP Cervantes del propio municipio desde 2021-22; libro 2013). Declaración verificada contra PDF + render: activo 207.655,95 € (194.081,86 inmuebles + 13.574,09 otros), pasivo 25.970 €; actividad «Interina-funcionaria carrera Conselleria 22/10/2009» (condición exacta indeterminable — laguna transcrita tal cual). RIESGO DE HOMONIMIA RESUELTO: las 12 apariciones «PRADAS» en BOP 2015/2019 verificadas una a una como candidatos de OTRAS circunscripciones (ninguna en el bloque Riba-roja); Salomé Pradas (exconsellera, DANA) citada en un transcript recuperado semánticamente (src-019) — NO citada por ninguna sección, podada en el promote, y nota de desambiguación publicada. CLAIM DE VOTO RETIRADO: la afirmación «PP+Vox votaron contra la moción del docente de valenciano» (15-04-2024) se apoyaba solo en una claim machine-extracted de un bloque rival (src-030, capa requiresHumanApproval) sin registro en pleno-votes.json — eliminada del perfil; la vía correcta es la curación de votos (promote-vote), no la biografía. «Papel en la oposición» reconstruido con instrumentos documentados (comisiones + pleno extraordinario a petición del grupo) + límite explícito de no-atribución individual. Barrido adjudicatarios: 0 «PRADAS». Advertencia 18,79% (src-007 agregador, no citado) resuelta: la narrativa cita elections.json.",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-soraya-trejo-bio-2026-07-31",
       "assignmentId": "a-soraya-trejo-bio",
