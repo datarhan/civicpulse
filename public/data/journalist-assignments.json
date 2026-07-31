@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T22:36:09.726Z",
+  "generatedAt": "2026-07-31T07:25:52.974Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -85,6 +85,20 @@
       "createdAt": "2026-07-30T22:19:48.500Z",
       "status": "promoted",
       "lastRunAt": "2026-07-30T22:29:47.384Z"
+    },
+    {
+      "id": "a-jose-luis-ramos-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "jose-luis-ramos-march",
+        "name": "José Luis Ramos March",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de José Luis Ramos March, concejal (PSOE) de Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura y Actividades y Edificios públicos, Segundo Teniente de Alcalde en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T07:12:41.806Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T07:21:29.166Z"
     }
   ]
 }

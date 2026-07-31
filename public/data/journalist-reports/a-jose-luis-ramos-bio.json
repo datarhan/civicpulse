@@ -1,0 +1,682 @@
+{
+  "id": "r-jose-luis-ramos-bio-2026-07-31",
+  "assignmentId": "a-jose-luis-ramos-bio",
+  "generatedAt": "2026-07-31T07:21:29.165Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "jose-luis-ramos-march",
+        "photoPath": "/data/photos/jose-luis-ramos-march.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Agenda 2030",
+          "Emergencia climática",
+          "Fondos Europeos",
+          "Integridad",
+          "Agricultura",
+          "Actividades y Edificios públicos"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1960-12-19",
+        "birthplace": "Riba-roja de Túria",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y formación",
+        "bodyMarkdown": "Según su currículum oficial publicado en el portal de transparencia del Ayuntamiento de Riba-roja de Túria, José Luis Ramos March nació el 19 de diciembre de 1960 en Riba-roja de Túria. De acuerdo con los datos biográficos que él mismo declara, cursó el graduado escolar en la Universidad Laboral de Cheste (1975) y el BUP en el IES Rodrigo Botet de Manises (1979), además de un curso de «Política de Riesgos en el sector financiero» impartido por la Fundación de Estudios Bursátiles y Financieros.",
+        "sourceIds": [
+          "src-002"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Cargo y responsabilidades municipales",
+        "bodyMarkdown": "José Luis Ramos March es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE y ocupa el cargo de Segundo Teniente de Alcalde. Tiene asignadas las áreas de Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura y Actividades y Edificios públicos.",
+        "sourceIds": [
+          "src-001",
+          "src-009",
+          "src-019",
+          "src-020"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "José Luis Ramos March fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023, en la que la Secretaría dio cuenta de que los electos habían formulado la declaración de intereses que preceptúa el artículo 75.7 de la Ley 7/1985.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número tres del grupo municipal socialista y portavoz suplente; una resolución de Alcaldía lo nombró Segundo Teniente de Alcalde y consta como segundo miembro de la Junta de Gobierno Local; y el punto 3 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura y Comercio». El registro municipal vigente recoge hoy, en lugar de Comercio, las áreas de Actividades y Edificios públicos — las delegaciones han variado durante el mandato.\n\nNo figura entre las siete dedicaciones exclusivas del acuerdo de régimen económico aprobado en la misma sesión.",
+        "sourceIds": [
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-028",
+          "src-006",
+          "src-065",
+          "src-066",
+          "src-067",
+          "src-068",
+          "src-069",
+          "src-001",
+          "src-072"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Actividad plenaria",
+        "bodyMarkdown": "José Luis Ramos March ha figurado como concejal asistente del grupo municipal socialista en sesiones del pleno, entre ellas la ordinaria del 10 de febrero de 2025 y la extraordinaria del 30 de diciembre de 2022. En el punto relativo a integridad, tomó la palabra para abordar la falta de designación de la figura de responsable del sistema interno de información.",
+        "sourceIds": [
+          "src-016",
+          "src-017",
+          "src-024"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge como actividad la condición de pensionista, sin ninguna actividad empresarial, empleo ni cargo privado.\n\nEn el apartado de bienes declara un activo de 523.135,68 euros —265.175,68 euros en bienes inmuebles por valor catastral y 257.960,00 euros en otros bienes— y un pasivo de 0,00 euros: el segundo activo más alto declarado en la corporación.",
+        "sourceIds": [
+          "src-070",
+          "src-071"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Las conexiones de José Luis Ramos March que constan en documentos públicos son de naturaleza político-administrativa: número tres y portavoz suplente del grupo municipal socialista, Segundo Teniente de Alcalde, segundo miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadores previos declarados con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ninguna de las entidades bancarias donde ejerció según su CV (Banco de València, Caja Campo, Cajamar) consta como adjudicataria municipal. Los indicadores de competencia de la contratación en sus áreas desde julio de 2023 (34 contratos identificados): el 38% se adjudicó con un solo licitador, frente al 55% del conjunto municipal, y el 21% fueron contratos menores.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "sourceIds": [
+          "src-073",
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Graduado escolar",
+            "institution": "Universidad Laboral de Cheste",
+            "endYear": 1975,
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "degree": "BUP (Bachillerato Unificado Polivalente)",
+            "institution": "IES Rodrigo Botet de Manises",
+            "endYear": 1979,
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "degree": "Curso \"Política de Riesgos en el sector financiero\"",
+            "institution": "Fundación de Estudios Bursátiles y Financieros",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "degree": "Grado elemental de ahorro en el sector de la banca",
+            "institution": "ESIC",
+            "sourceIds": [
+              "src-002"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Regidor — Comercio, sostenibilidad, transición ecológica, economía circular y agricultura",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2019,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "role": "Concejal · Segundo Teniente de Alcalde — Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura, Actividades y Edificios públicos",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-001",
+              "src-067",
+              "src-068"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Director (sector banca)",
+            "org": "Cajamar",
+            "startYear": 2011,
+            "endYear": 2016,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "role": "Director (sector banca)",
+            "org": "Caja Campo",
+            "startYear": 1997,
+            "endYear": 2011,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "role": "Director (sector banca)",
+            "org": "Banco de València",
+            "startYear": 1992,
+            "endYear": 1997,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "role": "Administrativo (sector banca)",
+            "org": "Banco de València",
+            "startYear": 1982,
+            "endYear": 1992,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "online-presence",
+      "payload": {
+        "accounts": [
+          {
+            "platform": "Web oficial ayuntamiento",
+            "handle": "jose-luis-ramos-march",
+            "url": "https://www.ribarroja.es/es/pagina/jose-luis-ramos-march",
+            "sourceIds": [
+              "src-019"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 523135.68,
+            "description": "Activo declarado al tomar posesión (2023): 265.175,68 € en bienes inmuebles (valor catastral) + 257.960,00 € en otros bienes; pasivo declarado: 0,00 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN) — el segundo activo más alto declarado en la corporación.",
+            "sourceIds": [
+              "src-070"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial declarada: su declaración oficial de actividades recoge la condición de pensionista. No figura entre las 7 dedicaciones exclusivas del acuerdo de régimen económico de 07-07-2023.",
+            "sourceIds": [
+              "src-071",
+              "src-072"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1960-12-19",
+            "label": "Nacimiento de José Luis Ramos March en Riba-roja de Túria, según su currículum autodeclarado",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "date": "2023-05-28",
+            "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+            "sourceIds": [
+              "src-006"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo; toma posesión en la sesión constitutiva de la corporación",
+            "sourceIds": [
+              "src-062",
+              "src-064"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Nombrado Segundo Teniente de Alcalde y portavoz suplente; el decreto de áreas le delega Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura y Comercio",
+            "sourceIds": [
+              "src-066",
+              "src-067",
+              "src-068"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "José Luis Ramos March",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Roberto Raga Gadea",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n3",
+            "label": "PSOE",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n4",
+            "label": "Junta de Gobierno Local",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n2",
+            "to": "n1",
+            "relation": "Como alcalde, le nombró Segundo Teniente de Alcalde y le delegó competencias",
+            "sourceIds": [
+              "src-029"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "Concejal por",
+            "sourceIds": [
+              "src-001",
+              "src-009"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "segundo miembro de su composición",
+            "sourceIds": [
+              "src-069"
+            ]
+          },
+          {
+            "from": "n2",
+            "to": "n1",
+            "relation": "lo nombró Segundo Teniente de Alcalde y le delegó sus áreas (07-07-2023)",
+            "sourceIds": [
+              "src-067",
+              "src-068"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "portavoz suplente del grupo municipal",
+            "sourceIds": [
+              "src-066"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-refugios-climaticos-2026",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-espai-obert-presupuesto",
+          "psoe-alumbrado-led-680k",
+          "psoe-metro-l9-agosto",
+          "psoe-respuesta-quejas-sector-14-48h",
+          "psoe-reduce-concejales-dedicacion-exclusiva",
+          "ac-psoe-1cbkzxt",
+          "ac-psoe-1v0679f",
+          "ac-psoe-jfg7bc",
+          "ac-psoe-1ah9zqk",
+          "ac-psoe-pl3lsq",
+          "ac-psoe-ppa53a",
+          "ac-psoe-1m04lfw",
+          "ac-psoe-sysee8"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delega en el Segundo Teniente de Alcalde, D. Jose Luis Ramos March, las competencias que al Alcalde le correspondan en materia de Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura y Comercio.",
+        "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria",
+        "date": "2023-07-07",
+        "sourceId": "src-068"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Identidad (nacimiento)",
+            "reason": "La fecha y el lugar de nacimiento constan únicamente en el CV autodeclarado del propio sujeto (ficha oficial de transparencia); sin corroboración independiente localizada."
+          },
+          {
+            "field": "Formación declarada",
+            "reason": "Los estudios declarados constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Trayectoria declarada",
+            "reason": "Las etapas profesionales o políticas marcadas «según su CV» constan únicamente en el CV autodeclarado del propio sujeto; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Retribución efectiva",
+            "reason": "No figura entre las dedicaciones exclusivas del acuerdo de régimen económico; el detalle de asistencias e indemnizaciones efectivamente percibidas no consta en los snapshots consultados."
+          },
+          {
+            "field": "Vínculos societarios y personales",
+            "reason": "Su declaración oficial recoge la condición de pensionista sin actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus antiguas entidades bancarias empleadoras) no arrojaron coincidencia alguna."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — José Luis Ramos March",
+      "retrievedAt": "2026-07-31T07:14:24.112Z",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura, Actividades y Edificios públicos",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Luis-Ramos.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — José Luis Ramos March",
+      "retrievedAt": "2026-07-31T07:14:29.915Z",
+      "excerpt": "PRESENTACIÓN 19 DICIEMBRE 1960 RIBA- ROJA DE TÚRIA jlramos@ribarroja.es SN FORMACIÓN GRADUADO ESCOLAR• UNIVERSIDAD LABORAL DE CHESTE• 1975 Graduado escolar BUP• IES RODRIGO BOTET DE MANISES• 1979 BUP OTROS: Curso “Política de Riesgos en el sector financiero” en Fundación de Estudios Bursátiles y Financieros. “Grado elemental de ahorro en el sector de la banca” en ESIC EXPERIENCIA PROFESIONAL REGIDOR • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Comercio, sostenibilidad, tran",
+      "trust": "high"
+    },
+    {
+      "id": "src-006",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T07:14:31.109Z",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+      "localPath": "public/data/elections.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "http://www.ribarroja.es/sites/www.ribarroja.es/files/PSOE%20Jose%20Luis%20Ramos_0.pdf",
+      "title": "PDF SN D. JOSÉ LUIS RAMOS MARCH - ribarroja.es",
+      "retrievedAt": "2026-07-31T07:14:31.687Z",
+      "excerpt": "D. JOSÉ LUIS RAMOS MARCH AGENDA 2030, EMERGENCIA CLIMÁTICA, FONDOS EUROPEOS, INTEGRIDAD, AGRICULTURA Y ACTIVIDADES.",
+      "trust": "high"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/20250210-DF.pdf",
+      "title": "Acta Sesión Ordinaria celebrada por el ayuntamiento pleno el día ...",
+      "retrievedAt": "2026-07-31T07:14:32.585Z",
+      "excerpt": "ACTA SESIÓN ORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 10 DE FEBRERO DE 2025 Lugar: Salón de Actos del Ayuntamiento Fecha: 10 de febrero de 2025 Hora: 17:30 CARÁCTER DE LA SESION: ORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Teresa Pozuelo Martín Jose Luis Ramos March Jose Angel Hernandez Carrizosa Eva Lara Catalá Rafael Gomez Sanchez Maria Esther Gomez Laredo Jose Manuel Vila O",
+      "trust": "high"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/8482331/filesGroup/20221230-16-P.pdf",
+      "title": "Estimado amigo, - Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T07:14:32.585Z",
+      "excerpt": "ACTA SESIÓN EXTRAORDINARIA CELEBRADA POR EL AYUNTAMIENTO PLENO EL DÍA 30 DE DICIEMBRE DE 2022 Lugar: Salón de Actos del Ayuntamiento Fecha: 30 de diciembre de 2022 Hora: 09:00 CARÁCTER DE LA SESION: EXTRAORDINARIA ALCALDE-PRESIDENTE: ROBERTO RAGA GADEA CONCEJALES ASISTENTES: Partido Socialista Obrero Español (PSOE) Partido Popular (PP) Ciudadanos Partido de la Ciudadanía (CS) Roberto Pascual Raga Gadea Maria Teresa Pozuelo Martin Jose Luis Ramos March Zafira Perez Pacheco Jos",
+      "trust": "high"
+    },
+    {
+      "id": "src-019",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/pagina/jose-luis-ramos-march",
+      "title": "Jose Luis Ramos March | Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T07:14:33.224Z",
+      "excerpt": "Jose Luis Ramos March | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet",
+      "trust": "high"
+    },
+    {
+      "id": "src-020",
+      "kind": "web",
+      "url": "http://www.ribarroja.es/es/ayuntamiento/corporacion_municipal",
+      "title": "Corporación Municipal | Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T07:14:33.224Z",
+      "excerpt": "Corporación Municipal · Sr. D. Robert Raga Gadea. Áreas: Alcaldía. · Sra. Dª. Teresa Pozuelo Martín. · Sr. D. José Luis Ramos March. · Sr. D. José Ángel Hernández ...",
+      "trust": "high"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/k4olcs.txt · semantic",
+      "retrievedAt": "2026-07-31T07:14:38.983Z",
+      "excerpt": "[1440.0 → 1470.0] Compromiso Pasemos así en punto, integridad, que es no haber designación de la figura de responsable del sistema interno de información. Tiene la palabra José Luis Ramos. Buenas tardes a todos y todas. ",
+      "localPath": "public/data/pleno-transcripts/k4olcs.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · semantic",
+      "retrievedAt": "2026-07-31T07:14:40.208Z",
+      "excerpt": "[0.0 → 0.0] manifieste en este momento. [0.0 → 0.0] Por la Sra. Secretaria se da cuenta que han formulado la declaración de intereses que [0.0 → 0.0] preceptúa el art. 75.7 de la Ley 7/85 y 131.1 de la Ley 8/2010 de 23 d",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-029",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · semantic",
+      "retrievedAt": "2026-07-31T07:14:40.505Z",
+      "excerpt": "[0.0 → 0.0] competencias que al Alcalde le corresponden en materia de Urbanismo, Vivienda, Obra Pública, [0.0 → 0.0] Áreas Industriales y Cementerio. [0.0 → 0.0] 3. Se delega en el Segundo Teniente de Alcalde, D. Jose Lu",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Luis-Ramos.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — José Luis Ramos March · identidad y formación",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "19 DICIEMBRE 1960 RIBA- ROJA DE TÚRIA jlramos@ribarroja.es SN FORMACIÓN GRADUADO ESCOLAR• UNIVERSIDAD LABORAL DE CHESTE• 1975 Graduado escolar BUP",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Luis-Ramos.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — José Luis Ramos March · experiencia",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "EXPERIENCIA PROFESIONAL REGIDOR • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Comercio, sostenibilidad, transición ecológica, economía circular y agricultura DIRECTOR • 2011 - 2016• CAJAMAR Director sector de la banca DIRECTOR • 1997 - 2011• CAJA CAMPO Director sector de la banca DIRECTOR• 1992 - 1997• BANCO DE VALÈNCIA",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · proclamación de electos",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · juramento o promesa",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · toma de posesión (lista con el sujeto)",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "- Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March - Maria Teresa Pozuelo Martin - Roberto Pascual Raga Gadea",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · portavoz y suplentes del grupo",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "Siendo su Portavoz: Doña María Teresa Pozuelo Martín Portavoz suplente: José Ángel Hernández Carrizosa Portavoz suplente: Don José Luis Ramos March Por el Grupo político municipal con la denominación de Grupo Municipal Partido Popular Riba-roja de",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · tenencias de alcaldía",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "6 PRIMERO.- Nombrar como titulares de las Tenencias de Alcaldía a los siguientes concejales: Primer Teniente de Alcalde: Teresa Pozuelo Martín. Segundo Teniente de Alcalde: José Luis Ramos March. Tercer Teniente de Alcalde: José Ángel Hernández Carrizosa.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 3)",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "3. Se delega en el Segundo Teniente de Alcalde, D. Jose Luis Ramos March, las competencias que al Alcalde le correspondan en materia de Agenda 2030, Emergencia climática, Fondos Europeos, Integridad, Agricultura y Comercio.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · composición de la Junta de Gobierno Local",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "TERCERO.- En virtud de lo anteriormente dispuesto la composición de la Junta queda conformada por los siguientes miembros: Alcalde-Presidente: D. Roberto Pascual Raga Gadea. 1. Dª Mª Teresa Pozuelo Martín 21 2. D. José Luís Ramos March",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-070",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "ConcejaL JOSE LUIS RAMOS MARCH 265.175,68 257.960,00 523.135,68 0,00 Concejal JOSE ANGEL HERNANDEZ CARRIZOSA 18.898,55 21.434,88 40.333,43 53.201,23",
+      "trust": "high"
+    },
+    {
+      "id": "src-071",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "MARIA TERESA POZUELO MARTIN Concejala Ayuntamiento Riba-roja de Túria 15/06/2019 JOSE LUIS RAMOS MARCH Pensionista Pensionista JOSE ANGEL HERNANDEZ CARRIZOSA Concejal Ayuntamiento Riba-roja de Túria 14/06/2019",
+      "trust": "high"
+    },
+    {
+      "id": "src-072",
+      "kind": "local-snapshot",
+      "title": "public/data/dedicaciones.json · acuerdo de régimen económico · dedicaciones exclusivas",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "Acuerdo del Pleno de 07-07-2023 (expte. 4533/2023/GEN): 7 dedicaciones exclusivas — 1 de 48.234,08 €, 2 de 43.067,36 € y 4 de 38.891,66 €. José Luis Ramos March no figura entre ellas.",
+      "localPath": "public/data/dedicaciones.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-073",
+      "kind": "local-snapshot",
+      "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+      "retrievedAt": "2026-07-31T07:25:34.362Z",
+      "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado del propio concejal publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "Las áreas delegadas han variado durante el mandato: el decreto de julio de 2023 incluía Comercio; el registro municipal vigente recoge en su lugar Actividades y Edificios públicos. Se publican ambas con su fuente."
+  ],
+  "legalSensitivity": "medium",
+  "promotedBy": "Sergei Lutchenko",
+  "promotedAt": "2026-07-31T07:25:52.967Z",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): cita de identidad corregida al CV (PSOE-Jose-Luis-Ramos.pdf, «19 DICIEMBRE 1960 RIBA-ROJA DE TÚRIA»); fila de mandato única y ambigua dividida en 2019-2023 (literal del CV) y 2023-actual. Cadena de nombramiento verificada contra las actas íntegras con ventanas literales: proclamado electo y posesión (9jatoj, con la dación de las declaraciones de intereses ex art. 75.7), número tres y portavoz suplente del grupo, Segunda Tenencia, segundo miembro de la JGL y punto 3 del decreto de áreas; documentada la VARIACIÓN de delegaciones durante el mandato (Comercio en 07-2023 → Actividades y Edificios públicos en el registro vigente). Declaración estatutaria integrada: activo 523.135,68 € (el segundo más alto de la corporación), pasivo 0, condición de pensionista sin actividad empresarial; NO figura entre las 7 dedicaciones exclusivas — sección financial nueva y laguna sobre la retribución efectiva. Comprobaciones: 0/804 contratos con sus apellidos; sus antiguas entidades bancarias empleadoras (Banco de València, Caja Campo, Cajamar) no constan como adjudicatarias; competencia de sus áreas mejor que la media (38% licitador único frente a 55%). 5 de las 7 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-024/026-029 SÍ constan y respaldan las afirmaciones; las ventanas de tenencia y delegación añadidas completan la de la Segunda Tenencia).",
+  "corrections": [],
+  "response": null
+}
