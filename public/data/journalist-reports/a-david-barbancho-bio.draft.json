@@ -1,0 +1,1156 @@
+{
+  "id": "r-david-barbancho-bio-2026-07-31",
+  "assignmentId": "a-david-barbancho-bio",
+  "generatedAt": "2026-07-31T13:08:18.225Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "david-barbancho-martinez",
+        "photoPath": "/data/photos/david-barbancho-martinez.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Acción social y políticas inclusivas",
+          "Mayores",
+          "Juventud y Servicios Jurídicos"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1995-08-29",
+        "birthplace": "València",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo público",
+        "bodyMarkdown": "David Barbancho Martínez es concejal del Ayuntamiento de Riba-roja de Túria por el PSOE. Ejerce las delegaciones de Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos.",
+        "sourceIds": [
+          "src-001"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Formación académica (según currículum autodeclarado)",
+        "bodyMarkdown": "Según el currículum oficial que él mismo publica en el portal de transparencia municipal, Barbancho cursó el grado en Derecho entre 2019 y 2024 en la Universidad Camilo José Cela. El mismo currículum autodeclarado indica que realizó un máster universitario en Recursos Humanos: Organización y Gestión del Talento entre 2017 y 2018, también en la Universidad Camilo José Cela, y que en 2024 se encontraba cursando un máster de Fiscalidad Internacional y Derecho Tributario en la Universidad Internacional de la Rioja.",
+        "sourceIds": [
+          "src-002"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "La primera candidatura documentada de David Barbancho es de 2019: ocupó el **puesto n.º 15** de la lista del PSPV-PSOE por Riba-roja de Túria (BOP de València n.º 82, 30-04-2019) y no obtuvo escaño. Durante aquel mandato trabajó para el propio Ayuntamiento como **personal eventual** — el personal de libre designación política —, según su declaración estatutaria y su CV (2019-2023).\n\nEn las municipales de 2023, con el PSPV-PSOE como fuerza más votada (49,69%), sí obtuvo acta: la sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. Queda adscrito al **Grupo Municipal Socialista** (puesto 11, acta de organización de 07-07-2023).\n\nSu cargo ejecutivo nace por **delegación del alcalde**: el punto 11 del decreto le atribuye las competencias «en materia de Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos». El mismo pleno lo hace titular de la Comisión Informativa de Inclusión Social, Igualdad, Promoción de la Salud y Bienestar Animal — la que dictamina su área — y le reconoce **dedicación exclusiva con 38.891,66 € brutos anuales**.\n\nA sus 27 años en la toma de posesión (nacido en 1995), es el concejal más joven del equipo de gobierno, y su ascenso es interno: empresa vinculada al área social (2017-2019) → personal eventual del Ayuntamiento (2019-2023) → concejal delegado del área (2023).",
+        "sourceIds": [
+          "src-070",
+          "src-004",
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-065",
+          "src-067",
+          "src-066",
+          "src-060",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Retribución",
+        "bodyMarkdown": "Como concejal delegado de Acción social, Mayores y Juventud con dedicación exclusiva, su retribución anual asciende a 38.891,66 euros, según el acuerdo del Pleno de 7 de julio de 2023 que fija el régimen económico de los concejales (Expediente 4533/2023/GEN).",
+        "sourceIds": [
+          "src-003"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Actividad plenaria y registros oficiales",
+        "bodyMarkdown": "En la **Carta de Servicios** aprobada por el pleno de 15-04-2024, Barbancho figura nominalmente como **líder de dos programas municipales**: el programa 5, «Políticas Inclusivas, Derechos Sociales y Mayores» (con la responsable de Servicios Sociales como empleada pública de referencia, en el Centro Social La Botaia), y el programa 12, «Juventud» (con el Técnico de Juventud). Es la atribución operativa documentada de sus delegaciones: objetivos, indicadores de calidad y perspectiva ODS por programa.\n\nSu nombramiento como concejal delegado y su régimen retributivo constan en el expediente 4533/2023/GEN aprobado en el pleno de organización. En los transcritos de pleno disponibles no consta ninguna intervención suya en el turno de palabra identificada nominalmente — la atribución individual de intervenciones requiere una llamada nominal en el acta, que no se da en su caso.",
+        "sourceIds": [
+          "src-074",
+          "src-075",
+          "src-003"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Máster Universitario en Fiscalidad Internacional, Derecho Tributario (actualmente cursando)",
+            "institution": "Universidad Internacional de la Rioja",
+            "startYear": 2024,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Grado en Derecho",
+            "institution": "Universidad Camilo José Cela",
+            "startYear": 2019,
+            "endYear": 2024,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Máster Universitario en RRHH: Organización y Gestión del Talento",
+            "institution": "Universidad Camilo José Cela",
+            "startYear": 2017,
+            "endYear": 2018,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Grado en Administración y Dirección de Empresas",
+            "institution": "Universidad de Valencia",
+            "startYear": 2013,
+            "endYear": 2017,
+            "sourceIds": [
+              "src-002",
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Grado en Administración y Dirección de Empresas",
+            "institution": "Universidad de Valencia",
+            "startYear": 2013,
+            "endYear": 2017,
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Regidor / Concejal delegado de Acción Social, Mayores, Juventud y Servicios Jurídicos",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-060",
+              "src-065",
+              "src-066"
+            ]
+          },
+          {
+            "role": "Personal eventual (personal de confianza) — su CV lo titula «Director»",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2019,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-060",
+              "src-069"
+            ]
+          },
+          {
+            "role": "Candidato n.º 15 de la lista del PSPV-PSOE (sin obtener escaño)",
+            "org": "Elecciones municipales de Riba-roja de Túria",
+            "startYear": 2019,
+            "endYear": 2019,
+            "sourceIds": [
+              "src-070"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Director de RRHH (su declaración estatutaria lo consigna como «Directivo»)",
+            "org": "Juntsumem, S.L.",
+            "startYear": 2017,
+            "endYear": 2019,
+            "sourceIds": [
+              "src-060",
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 108594.2,
+            "description": "Activo declarado al tomar posesión (2023): 95.094,20 € en bienes inmuebles + 13.500,00 € en otros bienes = 108.594,20 €; pasivo declarado: 78.000,00 € — el mayor endeudamiento declarado de la corporación 2023. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-068",
+              "src-071"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad privada vigente declarada: la tabla de actividades consigna dos etapas ya cesadas — personal eventual del Ayuntamiento (cese 2023; la casilla de inicio imprime «2029», errata evidente del documento) y directivo de Juntsumem, S.L. (2017-2019). Con dedicación exclusiva desde 07-07-2023, no concurre actividad privada simultánea en los documentos consultados.",
+            "sourceIds": [
+              "src-069",
+              "src-066"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "amountEuros": 38891.66,
+            "description": "Concejal delegado de Acción Social, Mayores y Juventud — dedicación exclusiva, según Acuerdo del Pleno de 07/07/2023 (Expediente 4533/2023/GEN)",
+            "sourceIds": [
+              "src-003",
+              "src-066"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1995-08-29",
+            "label": "Nace en València (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "2013-09-01",
+            "label": "Grado en ADE, Universidad de Valencia (2013-2017, CV)",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "date": "2017-09-01",
+            "label": "Máster en RRHH (UCJC, 2017-2018) y director de RRHH en Juntsumem, S.L. (2017-2019)",
+            "sourceIds": [
+              "src-061",
+              "src-060",
+              "src-069"
+            ]
+          },
+          {
+            "date": "2018-02-08",
+            "label": "El Ayuntamiento adjudica a Juntsumem, S.L. el plan de diversidad funcional (104.545,45 €, procedimiento abierto, 2 licitadores)",
+            "sourceIds": [
+              "src-072"
+            ]
+          },
+          {
+            "date": "2019-04-30",
+            "label": "Candidato n.º 15 del PSPV-PSOE (BOP n.º 82) — sin escaño",
+            "sourceIds": [
+              "src-070"
+            ]
+          },
+          {
+            "date": "2019-09-01",
+            "label": "Personal eventual del Ayuntamiento (2019-2023; la declaración imprime «2029» como inicio, errata evidente) e inicio del grado en Derecho (UCJC, 2019-2024)",
+            "sourceIds": [
+              "src-069",
+              "src-060",
+              "src-061"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo y juramento en la sesión constitutiva",
+            "sourceIds": [
+              "src-062",
+              "src-063"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Delegación de Acción social, Mayores, Juventud y Servicios Jurídicos (punto 11) + dedicación exclusiva 38.891,66 € + titular de la comisión de Inclusión Social",
+            "sourceIds": [
+              "src-065",
+              "src-066",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 108.594,20 € · pasivo 78.000,00 € · sin actividad privada vigente (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-068",
+              "src-069",
+              "src-071"
+            ]
+          },
+          {
+            "date": "2024-04-15",
+            "label": "Líder de los programas 5 (Políticas Inclusivas, Derechos Sociales y Mayores) y 12 (Juventud) en la Carta de Servicios aprobada en pleno",
+            "sourceIds": [
+              "src-074",
+              "src-075"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Juntsumem, S.L.: la empresa, el contrato municipal y las fechas",
+        "bodyMarkdown": "Su declaración estatutaria consigna que fue **directivo de Juntsumem, S.L. entre 2017 y 2019**; su CV precisa el cargo — **director de RRHH** — y escribe el nombre «Juntsumen». En ese periodo tenía entre 21 y 23 años.\n\nEl registro municipal de contratación documenta que **el Ayuntamiento de Riba-roja adjudicó a Juntsumem, S.L. el 08-02-2018** — en mitad de esa etapa — el «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje»: procedimiento abierto, 2 licitadores, 115.000,00 € de licitación y **104.545,45 € de adjudicación**, con ejecución de octubre de 2017 a octubre de 2019 — ventana que coincide con su etapa declarada en la empresa. El área material del contrato — servicios sociales para personas con diversidad funcional (CPV 85320000) — es la misma que hoy dirige como concejal delegado.\n\nLos mismos datos abiertos acotan el alcance: es la **única adjudicación a Juntsumem, S.L. en todo el corpus municipal**. Las ediciones posteriores del programa fueron a otros prestadores — Fundación Juan I. Muñoz Bastide (2021 y 2025), Riba Actua (2022) y AUCA Projectes Educatius (2025), estas dos últimas ya bajo su mandato como delegado del área.\n\n**Este medio no afirma irregularidad alguna**: la adjudicación es anterior a todos sus cargos públicos (entró como personal eventual en 2019 y como concejal en 2023), ningún documento consultado acredita su participación en aquel procedimiento, y la empresa no vuelve a contratar con el Ayuntamiento. Se publican las fechas y los importes porque un registro público de trayectoria debe documentar la secuencia completa: directivo de una empresa adjudicataria del área social → personal eventual del Ayuntamiento → concejal delegado de esa misma área.",
+        "sourceIds": [
+          "src-069",
+          "src-060",
+          "src-072",
+          "src-073"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "Su declaración de bienes al tomar posesión (septiembre de 2023, expte. 3971/2023/GEN conforme al Decreto 191/2010 del Consell, publicada en el BOP n.º 180 de 15-09-2023) consigna un **activo de 108.594,20 €** (95.094,20 € en bienes inmuebles + 13.500,00 € en otros bienes) y un **pasivo de 78.000,00 €** — el mayor endeudamiento declarado de la corporación 2023, compatible con la compra de vivienda habitual con hipoteca, aunque el documento no detalla la naturaleza de la deuda.\n\nEn actividades declara dos etapas ya cesadas: personal eventual del Ayuntamiento (hasta 2023) y directivo de Juntsumem, S.L. (2017-2019). La casilla de inicio de la etapa de eventual imprime **«2029»** — una errata evidente del documento oficial (el cese es 2023 y la etapa anterior termina en 2019; su CV data el ingreso en 2019). Con **dedicación exclusiva** desde julio de 2023, no consta actividad privada simultánea — su situación no plantea la tensión exclusividad/actividad que concurre en otros miembros del equipo de gobierno.",
+        "sourceIds": [
+          "src-068",
+          "src-069",
+          "src-066",
+          "src-060",
+          "src-071"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas ejecutadas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «BARBANCHO». La búsqueda por la empresa de su etapa privada, **Juntsumem, S.L., devuelve exactamente 1 contrato** (2018, detallado en la sección anterior) y ninguno posterior.\n\nEn el gasto de su área bajo su mandato, las adjudicaciones tituladas del programa de diversidad funcional de 2025 fueron a la Fundación Juan I. Muñoz Bastide (175.351,81 €) y a AUCA Projectes Educatius (31.271,51 €) — entidades sin vínculo documentado con el concejal en las fuentes consultadas.\n\nLímites declarados: el Registro Mercantil no ofrece una vía estructurada gratuita para reconstruir el accionariado o los administradores de Juntsumem, S.L. — la relación exacta del concejal con la propiedad de la empresa (empleado directivo vs. socio) no es verificable con fuentes abiertas y **no se afirma**; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-072",
+          "src-073",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "David Barbancho Martínez",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Socialista (PSPV-PSOE)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Robert Raga Gadea (alcalde)",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n4",
+            "label": "Ayuntamiento de Riba-roja de Túria",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n5",
+            "label": "Juntsumem, S.L.",
+            "tone": "intel",
+            "kind": "entity"
+          },
+          {
+            "id": "n6",
+            "label": "Comisión Informativa de Inclusión Social",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal del grupo (puesto 11, acta 07-07-2023)",
+            "sourceIds": [
+              "src-064"
+            ]
+          },
+          {
+            "from": "n3",
+            "to": "n1",
+            "relation": "delegación de Acción social, Mayores, Juventud y Servicios Jurídicos (decreto, punto 11)",
+            "sourceIds": [
+              "src-065"
+            ]
+          },
+          {
+            "from": "n4",
+            "to": "n1",
+            "relation": "personal eventual (personal de confianza) 2019-2023",
+            "sourceIds": [
+              "src-069",
+              "src-060"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n5",
+            "relation": "director de RRHH 2017-2019 (declaración + CV)",
+            "sourceIds": [
+              "src-069",
+              "src-060"
+            ]
+          },
+          {
+            "from": "n4",
+            "to": "n5",
+            "relation": "adjudicación del plan de diversidad funcional, 08-02-2018 · 104.545,45 €",
+            "sourceIds": [
+              "src-072"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n6",
+            "relation": "titular de la comisión que dictamina su área",
+            "sourceIds": [
+              "src-067"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-refugios-climaticos-2026",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-espai-obert-presupuesto",
+          "psoe-alumbrado-led-680k",
+          "psoe-metro-l9-agosto",
+          "psoe-respuesta-quejas-sector-14-48h",
+          "psoe-reduce-concejales-dedicacion-exclusiva",
+          "ac-psoe-1cbkzxt",
+          "ac-psoe-1v0679f",
+          "ac-psoe-jfg7bc",
+          "ac-psoe-1ah9zqk",
+          "ac-psoe-pl3lsq",
+          "ac-psoe-ppa53a",
+          "ac-psoe-1m04lfw",
+          "ac-psoe-sysee8"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delegan en el Concejal D. David Barbancho las competencias en materia de Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos.",
+        "attributedTo": "Decreto de delegaciones de la Alcaldía (punto 11), acta del pleno de organización de 07-07-2023",
+        "sourceId": "src-065",
+        "date": "2023-07-07"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Juntsumem, S.L. — titularidad y objeto social",
+            "reason": "El Registro Mercantil no ofrece una vía estructurada gratuita para reconstruir administradores, socios u objeto social de la empresa donde fue directivo (2017-2019) y que resultó adjudicataria municipal en 2018. Su relación exacta con la propiedad (empleado directivo vs. socio) no es verificable con fuentes abiertas y no se afirma."
+          },
+          {
+            "field": "Puesto exacto como personal eventual (2019-2023)",
+            "reason": "Su CV titula la etapa «Director» y la declaración «Personal eventual», pero ningún documento accesible especifica cuál de los puestos de confianza del organigrama ocupó ni su retribución en aquel mandato. El decreto de nombramiento de personal eventual 2019 no está publicado en las fuentes consultadas."
+          },
+          {
+            "field": "Naturaleza del pasivo declarado (78.000 €)",
+            "reason": "La declaración consigna el importe pero no la naturaleza de la deuda (hipoteca, préstamo personal…). Es el mayor pasivo declarado de la corporación 2023; sin el detalle, la cifra se publica sin interpretación."
+          },
+          {
+            "field": "Errata «2029» en el documento oficial",
+            "reason": "La casilla de inicio de su etapa como personal eventual imprime «2029» en la declaración publicada — errata evidente por contexto (cese 2023; su CV data el ingreso en 2019). El Ayuntamiento no ha publicado corrección; este medio la transcribe [sic] y lo señala."
+          },
+          {
+            "field": "Datos biográficos autodeclarados",
+            "reason": "Nacimiento y formación proceden del CV que publica el portal municipal; el Registro Civil no es de acceso público y los títulos universitarios no son verificables gratuitamente. Familia y relaciones personales: sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — David Barbancho Martínez",
+      "retrievedAt": "2026-07-31T13:03:05.106Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos"
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20241118-CV_DAVID_BARRANCHO_2.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — David Barbancho Martínez",
+      "retrievedAt": "2026-07-31T13:03:06.765Z",
+      "trust": "high",
+      "excerpt": "SN FORMACIÓN MASTER UNIVERSITARIO• Actualmente cursando MASTER DE FISCALIDAD INTERNACIONAL, DERECHO TRIBUTARIO• 2024 Universidad Internacional de la Rioja GRADO • DERECHO • 2019-2024 Universidad Camilo José Cela MASTER UNIVERSITARIO• EN RRHH: ORGANIZACIÓN Y GESTIÓN DEL TALENTO • 2017-2018 Universidad Camilo José Cela GRADO • ADMINISTRACIÓN Y DIRECCIÓN DE EMPRESAS • 2013-2017 Universidad de Valencia IDIOMAS: Alemán – Certificado B1 por el Goethe Institut Rotenberg, Alemania. I"
+    },
+    {
+      "id": "src-003",
+      "kind": "local-snapshot",
+      "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+      "retrievedAt": "2026-07-31T13:03:07.878Z",
+      "localPath": "public/data/dedicaciones.json",
+      "trust": "high",
+      "excerpt": "Concejal delegado · Acción social, Mayores y Juventud: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)"
+    },
+    {
+      "id": "src-004",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T13:03:07.879Z",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+    },
+    {
+      "id": "src-005",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David",
+      "title": "David - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T13:03:08.337Z",
+      "trust": "medium",
+      "excerpt": "El término representa una conocida ideología real del Cercano Oriente, posiblemente de origen egipcio, en el antiguo Israel. Según el Nuevo Testamento, Jesucristo pertenece al linaje de David y es …"
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://dle.rae.es/david",
+      "title": "David | Definición | Diccionario de la lengua española | RAE - ASALE",
+      "retrievedAt": "2026-07-31T13:03:08.337Z",
+      "trust": "low",
+      "excerpt": "Responsable: Real Academia Española. Finalidades: Gestionar su suscripción al boletín mensual de la RAE. Derechos: Tiene derecho a acceder, rectificar y suprimir sus datos, así como a otros derechos, …"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David_(Miguel_%C3%81ngel)",
+      "title": "David (Miguel Ángel) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T13:03:08.337Z",
+      "trust": "medium",
+      "excerpt": "El David es una escultura de mármol blanco de 5,17 metros 1 de altura y 5572 kilogramos de peso, 2 esculpida por Miguel Ángel Buonarroti entre 1501 y 1504 por encargo de la Opera del Duomo de la …"
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T13:03:08.338Z",
+      "trust": "medium",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T13:03:08.338Z",
+      "trust": "medium",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T13:03:08.338Z",
+      "trust": "low",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://www.niit.com/nigeria/",
+      "title": "NIIT || Nigeria",
+      "retrievedAt": "2026-07-31T13:03:08.811Z",
+      "trust": "low",
+      "excerpt": "NIIT, a global leader in skills & talent development, established its presence in Nigeria by setting up an education centre in Ikeja, …"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://www.niit.com/en/learning-outsourcing/",
+      "title": "NIIT Managed Learning Services | Enterprise Training Solutions",
+      "retrievedAt": "2026-07-31T13:03:08.811Z",
+      "trust": "low",
+      "excerpt": "NIIT is a global leader in managed learning and training services for Fortune 500 companies. Schedule a demo to see our full suite of …"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://www.niit.ai/india",
+      "title": "NIIT India – Job-Ready Tech and GenAI Courses Online",
+      "retrievedAt": "2026-07-31T13:03:08.811Z",
+      "trust": "low",
+      "excerpt": "Enroll in NIIT's courses in Full Stack, Data Science, GenAI, Digital Marketing and Cybersecurity. Mentor-led programs with placement …"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://www.drinksdirect.com/",
+      "title": "Drinks Direct - Online Drinks Store for Wine, Champagne, Spirits and …",
+      "retrievedAt": "2026-07-31T13:03:09.120Z",
+      "trust": "low",
+      "excerpt": "Drinks Direct is the UK's leading Online Drinks Store Wine, Champagne, Spirits and Gifts. Over 2000 drinks available for delivery …"
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://www.drinksdirect.com/spirits",
+      "title": "Spirits - Buy online at DrinksDirect.com. UK delivery.",
+      "retrievedAt": "2026-07-31T13:03:09.120Z",
+      "trust": "low",
+      "excerpt": "Spirits Explore our outstanding range of spirits, where famous labels sit alongside exciting discoveries from around the world. From …"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://www.drinksdirect.com/wine-sparkling-wine-white-sparkling-wine",
+      "title": "White Sparkling Wine - Drinks Direct",
+      "retrievedAt": "2026-07-31T13:03:09.120Z",
+      "trust": "low",
+      "excerpt": "Wine / Sparkling Wine White Sparkling Wine White sparkling wine offers a world of effervescent delight that rivals its famous French …"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://mail.google.com/mail",
+      "title": "Gmail - Email from Google",
+      "retrievedAt": "2026-07-31T13:03:09.645Z",
+      "trust": "low",
+      "excerpt": "Gmail is email that's intuitive, efficient, and useful. 15 GB of storage, less spam, and mobile access."
+    },
+    {
+      "id": "src-018",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.255Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-019",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.255Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] orgullosos y participes. [0.0 → 0.0] VICENTE CONTELLES, deportista local en la disciplina de atletismo. [0.0 → 0.0] PAU ASENSIO MARTINEZ, deportista local en la disciplina de karate. [0.0 → 0.0] MARTINA GIL O"
+    },
+    {
+      "id": "src-020",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.255Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[1410.0 → 1440.0] Y yo también puedo preguntar si puede el Partido Popular si con ellos, porque ha dicho que no, su espacio político... Vale. José Ángel, otra intervención. Pues no lo sabemos. Lo único que sabemos es que"
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.255Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[1440.0 → 1470.0] muy ruina, evidentemente es que hablamos de otros, igual que cuando nos han dicho que el centro de salud sí, es un tema que teníamos mucha expectativa, trabajamos mucho, pero desde el año 2015, no desde"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.560Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.560Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 30.0] Música [30.0 → 60.0] Música [60.0 → 90.0] Música [90.0 → 120.0] Música [120.0 → 150.0] Música [150.0 → 180.0] Música [180.0 → 210.0] Música [210.0 → 240.0] Música [240.0 → 270.0] Música [270.0 → 300.0] Músic"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.560Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.866Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.866Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0"
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:11.866Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-033-cit-fd9d72 · 2026-01-19 · cita_obra",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el área de deportes, obras de urbanización en el tramo vial de Jorge Martínez Aspar"
+    },
+    {
+      "id": "src-029",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-033-cit-50938d · 2026-01-19 · cita_obra",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "obras de rehabilitación de la f"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-034-cit-919a2f · 2026-01-19 · cita_obra",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "obras de urbanización en el tramo vial de Jorge Martínez Aspar"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 19gax3o-034-cit-b06cd1 · 2026-01-19 · cita_obra",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "obras de rehabilitación de la fachada del edificio del complejo deportivo La Mayá"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1qi8axv-124-afi-285358 · 2025-12-23 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Raquel Panblanco. Sí. Alfredo Pla. Sí. David Barbancho. Sí. Alberto Jimeno. A favor."
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1du4rf5-098-acu-34f383 · 2025-11-03 · acusacion_publica",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "No vaya a pasar como otras ayudas, como puede ser los de la DANA."
+    },
+    {
+      "id": "src-034",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1du4rf5-098-pro-2f7b40 · 2025-11-03 · promesa",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Sobre tus enmiendas, David, las acepto, las cinco, las aceptamos y las añadiremos y se lo pasaremos a la secretaria."
+    },
+    {
+      "id": "src-035",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 1du4rf5-097-afi-7076be · 2025-11-03 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T13:03:14.430Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "el Partido Popular se alegra de esta aprobación dotada de 500 millones de euros"
+    },
+    {
+      "id": "src-036",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T13:03:14.433Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-037",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David",
+      "title": "David - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T13:03:14.826Z",
+      "trust": "medium",
+      "excerpt": "El término representa una conocida ideología real del Cercano Oriente, posiblemente de origen egipcio, en el antiguo Israel. Según …"
+    },
+    {
+      "id": "src-038",
+      "kind": "web",
+      "url": "https://dle.rae.es/david",
+      "title": "David | Definición | Diccionario de la lengua española | RAE - ASALE",
+      "retrievedAt": "2026-07-31T13:03:14.826Z",
+      "trust": "low",
+      "excerpt": "Responsable: Real Academia Española. Finalidades: Gestionar su suscripción al boletín mensual de la RAE. Derechos: Tiene …"
+    },
+    {
+      "id": "src-039",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David_(Miguel_%C3%81ngel)",
+      "title": "David (Miguel Ángel) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T13:03:14.826Z",
+      "trust": "medium",
+      "excerpt": "El David es una escultura de mármol blanco de 5,17 metros 1 de altura y 5572 kilogramos de peso, 2 esculpida por Miguel Ángel …"
+    },
+    {
+      "id": "src-040",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T13:03:15.253Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "david-barbancho-martinez · David Barbancho Martínez · Sr. · concejal · PSOE · Acción social y políticas inclusivas · Mayores · Juventud y Servicios Jurídicos · alcaldia@ribarroja.es · /data/photos/david-barbancho-martinez.jpg · https://www."
+    },
+    {
+      "id": "src-041",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T13:03:15.253Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "1qi8axv-124-afi-285358 · 1qi8axv · 2025-12-23 · 124 · afirmacion_numerica · Otro · Raquel Panblanco. Sí. Alfredo Pla. Sí. David Barbancho. Sí. Alberto Jimeno. A favor. · Raquel Panblanco. Sí. Alfredo Pla. Sí. David Barbancho. Sí. Alberto Ji"
+    },
+    {
+      "id": "src-042",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-verified.json · items",
+      "retrievedAt": "2026-07-31T13:03:15.253Z",
+      "localPath": "public/data/pleno-claims-verified.json",
+      "trust": "high",
+      "excerpt": "1qi8axv-124-afi-285358 · 1qi8axv · 2025-12-23 · 124 · afirmacion_numerica · Otro · Raquel Panblanco. Sí. Alfredo Pla. Sí. David Barbancho. Sí. Alberto Jimeno. A favor. · Raquel Panblanco. Sí. Alfredo Pla. Sí. David Barbancho. Sí. Alberto Ji"
+    },
+    {
+      "id": "src-043",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:15.253Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+    },
+    {
+      "id": "src-044",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:15.253Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[1410.0 → 1440.0] Y yo también puedo preguntar si puede el Partido Popular si con ellos, porque ha dicho que no, su espacio político... Vale. José Ángel, otra intervención. Pues no lo sabemos. Lo único que sabemos es que"
+    },
+    {
+      "id": "src-045",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+      "retrievedAt": "2026-07-31T13:03:15.253Z",
+      "localPath": "public/data/pleno-transcripts/11025xk.txt",
+      "trust": "high",
+      "excerpt": "[4620.0 → 4650.0] La indicación que hacemos es tres en la Consejería de Medio Ambiente con el secretario autonómico por el tema de Porcino, que al fin y al cabo se ha salvado al pueblo de Río Rocha más de 25 millones de "
+    },
+    {
+      "id": "src-046",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David",
+      "title": "David - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T13:03:18.051Z",
+      "trust": "medium",
+      "excerpt": "El término representa una conocida ideología real del Cercano Oriente, posiblemente de origen egipcio, en el antiguo Israel. Según el Nuevo Testamento, Jesucristo pertenece al linaje de David y es …"
+    },
+    {
+      "id": "src-047",
+      "kind": "web",
+      "url": "https://dle.rae.es/david",
+      "title": "David | Definición | Diccionario de la lengua española | RAE - ASALE",
+      "retrievedAt": "2026-07-31T13:03:18.051Z",
+      "trust": "low",
+      "excerpt": "Responsable: Real Academia Española. Finalidades: Gestionar su suscripción al boletín mensual de la RAE. Derechos: Tiene derecho a acceder, rectificar y suprimir sus datos, así como a otros derechos, …"
+    },
+    {
+      "id": "src-048",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David_(Miguel_%C3%81ngel)",
+      "title": "David (Miguel Ángel) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T13:03:18.051Z",
+      "trust": "medium",
+      "excerpt": "El David es una escultura de mármol blanco de 5,17 metros 1 de altura y 5572 kilogramos de peso, 2 esculpida por Miguel Ángel Buonarroti entre 1501 y 1504 por encargo de la Opera del Duomo de la …"
+    },
+    {
+      "id": "src-049",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/David",
+      "title": "David - Wikipedia",
+      "retrievedAt": "2026-07-31T13:03:18.051Z",
+      "trust": "medium",
+      "excerpt": "David is honored as an ideal king and the forefather of the future Hebrew Messiah in Jewish prophetic literature, and many psalms are attributed to him. David is also richly represented in post-biblical …"
+    },
+    {
+      "id": "src-050",
+      "kind": "web",
+      "url": "https://www.navarra.es/home_eu/Temas/Vivienda/Ciudadanos/Ayudas+y+subvenciones/David/",
+      "title": "DAVID - navarra.es",
+      "retrievedAt": "2026-07-31T13:03:18.051Z",
+      "trust": "low",
+      "excerpt": "Etxebizitza Eskuratzeko Kenkarien Programa (DAVID) Etxebizitza eskuratzeko kenkarien programa (DAVID) prestazio bat da, ohiko etxebizitzaren errenta ordaintzen laguntzeko, diru-sarrera zehatz …"
+    },
+    {
+      "id": "src-051",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T13:03:24.248Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-052",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T13:03:24.249Z",
+      "trust": "high",
+      "excerpt": "David - Wikipedia, la enciclopedia libre <meta name=\"referrer\""
+    },
+    {
+      "id": "src-053",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/David_(Miguel_%C3%81ngel)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T13:03:24.250Z",
+      "trust": "high",
+      "excerpt": "David (Miguel Ángel) - Wikipedia, la enciclopedia libre <link rel=\"alternate\" type=\"application/x-wiki\" title=\"Editar\" href=\"/w/index.php?title=",
+      "archiveUrl": "http://web.archive.org/web/20260629081839/https://es.wikipedia.org/wiki/David_(Miguel_%C3%81ngel)"
+    },
+    {
+      "id": "src-060",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — presentación y experiencia (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20241118-CV_DAVID_BARRANCHO_2.pdf",
+      "excerpt": "PRESENTACIÓN \n \n29 AGOSTO 1995 \nVALÈNCIA \ndbarbancho@ribarroja.es \n \n REGIDOR • 2023 - ACTUAL• AYUNTAMIENTO RIBA-ROJA DE TÚRIA \nResponsable del Área de Inclusión y Derechos Sociales  \n \nPERSONAL DE CONFIANZA • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA \nDE TÚRIA\n \n \n \nDIRECTOR • 2017 - 2019• JUNTSUMEN S.L. \nDirector de RRHH \n \n \n \n \n \nD. David Barbancho Martínez \nACCIÓN SOCIAL Y POLÍTICAS INCLUSIVAS,  \nMAYORES, JUVENTUD Y SERVICIOS JURÍDICOS."
+    },
+    {
+      "id": "src-061",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — formación e idiomas (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20241118-CV_DAVID_BARRANCHO_2.pdf",
+      "excerpt": "FORMACIÓN\n \nMASTER UNIVERSITARIO• Actualmente cursando MASTER DE \nFISCALIDAD INTERNACIONAL, DERECHO TRIBUTARIO• 2024 \nUniversidad Internacional de la Rioja \n \nGRADO • DERECHO • 2019-2024 \nUniversidad Camilo José Cela\n \n \nMASTER UNIVERSITARIO• EN RRHH: ORGANIZACIÓN Y GESTIÓN DEL \nTALENTO • 2017-2018 \nUniversidad Camilo José Cela\n \n \nGRADO • ADMINISTRACIÓN Y DIRECCIÓN DE EMPRESAS • 2013-2017 \nUniversidad de Valencia"
+    },
+    {
+      "id": "src-062",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Maria Teresa Pozuelo Martin\nJose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez"
+    },
+    {
+      "id": "src-063",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo"
+    },
+    {
+      "id": "src-064",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Socialista (Barbancho, puesto 11)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son:\n1. Don Roberto Pascual Raga Gadea\n2. Doña Maria Teresa Pozuelo Martín\n3. Don José Luis Ramos March\n4. Don José Ángel Hernández Carrizosa\n5. Doña Eva Lara Catalá (Independiente)\n6. Don Rafael Gómez Sánchez\n7. Doña Maria Esther Gómez Laredo\n8. Don José Manuel Vila Oltra (Independiente)\n9. Doña Raquel Pamblanco Paredes\n10. Don Alfredo Plá Giménez\n11. Don David Barbancho Martínez"
+    },
+    {
+      "id": "src-065",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — decreto de delegaciones, punto 11 (Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le\ncorresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y\nBienestar Animal.\n10. Se delegan en el Concejal D. Alfredo Plá, las competencias que al Alcalde le\ncorresponden en materia de Fallas, Fiestas y Tradiciones.\n11. Se delegan en el Concejal D. David Barbancho las competencias en materia de Acción\nsocial y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos."
+    },
+    {
+      "id": "src-066",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — régimen de dedicación exclusiva (38.891,66 € brutos anuales)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "- Concejal delegada de Seguridad y emergencias, Igualdad, Comunicación e Información y\nBienestar Animal: 38.891,66 € brutos anuales.\n- Concejal delegada de Participación y transparencia, Atención a la ciudadanía, Turismo y\nPatrimonio Histórico: 38.891,66 € brutos anuales.\n- Concejal delegado de Acción social y políticas inclusivas, Mayores, Juventud y Servicios\nJurídicos: 38.891,66 € brutos anuales."
+    },
+    {
+      "id": "src-067",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa de Inclusión Social (titular)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "5. Comisión Informativa de Inclusión Social, Igualdad, Promoción de la Salud y Bienestar animal\nQue englobará las siguientes materias: Políticas inclusivas, derechos sociales, Igualdad, Mayores,\nPromoción de la salud y hábitos saludables, y Bienestar Animal.\nGrupo Municipal Socialista de Riba-roja\nTitular: D. David Barbancho Martínez\nTitular: Dª Raquel Pamblanco Paredes\nTitular: Dª Esther Gómez Laredo."
+    },
+    {
+      "id": "src-068",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "DAVID BARBANCHO MARTÍNEZ 95.094,20 13.500,00 108.594,20 78.000,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+    },
+    {
+      "id": "src-069",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "DAVID BARBANCHO MARTÍNEZ | Personal eventual · Ayuntamiento Riba-roja de Túria · inicio «2029» · cese 2023 | Directivo · JUNTSUMEM, S.L. · inicio 2017 · cese 2019 — [transcripción por columnas de la tabla; la casilla de inicio «2029» figura así en el documento oficial: errata evidente por contexto (el cese es 2023 y la etapa anterior termina en 2019)]"
+    },
+    {
+      "id": "src-070",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidaturas, circunscripción Riba-roja de Túria (PSOE, puesto 15)",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "excerpt": "PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.)\nTITULARES\n1. ROBERTO PASCUAL RAGA GADEA\n2. MARIA TERESA POZUELO MARTIN\n3. JOSE LUIS RAMOS MARCH\n4. ZAFIRA PEREZ PACHECO\n5. JOSE ANGEL HERNANDEZ CARRIZOSA\n6. MARIA DOLORES VERDEGUER ROYO\n7. JOSE LUIS LOPEZ GALDON\n8. ANA CRISTINA FOLGADO MORALES\n9. RAFAEL GOMEZ SANCHEZ\n10. MARIA ESTHER GOMEZ LAREDO\n11. FRANCISCO JAVIER GARCIA ESCUDERO\n12. NURIA COBALEDA ARNAU\n13. ALFREDO PLA GIMENEZ\n14. CONCEPCION NAVARRO NAVARRO\n15. DAVID BARBANCHO MARTINEZ"
+    },
+    {
+      "id": "src-071",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+    },
+    {
+      "id": "src-072",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Contrato municipal adjudicado a Juntsumem, S.L. (2018) + barrido determinista (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "tenders.contracts[id=77927]: «Servicio para la ejecución del Plan de Formación, Ocio y Tiempo Libre para personas con diversidad funcional y/o dificultades en el aprendizaje» · assignee=Juntsumem, S.L. · procedimiento abierto · 2 licitadores · importe inicial 115.000,00 € · adjudicación 104.545,45 € · awardDate 2018-02-08 · ejecución 2017-10-01→2019-10-01 · CPV 85320000. Barrido nominal «BARBANCHO» en adjudicatarios: 0 coincidencias."
+    },
+    {
+      "id": "src-073",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Ediciones posteriores del programa de diversidad funcional — adjudicatarios (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "Ediciones posteriores del mismo programa en tenders.json: 2021-03-06 Fundación de la Comunitat Valenciana Juan I. Muñoz Bastide (125.867,50 €) · 2022-07-01 escuela de verano Riba Actua (33.538,12 €) · 2025-07-24 programa municipal Fundación Juan I. Muñoz Bastide (175.351,81 €) y escuela de verano AUCA Projectes Educatius SL (31.271,51 €). Juntsumem, S.L. no vuelve a aparecer como adjudicatario en el corpus."
+    },
+    {
+      "id": "src-074",
+      "retrievedAt": "2026-07-31T13:13:56.327Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta pleno 15-04-2024 — Carta de Servicios: líder del programa 5, Políticas Inclusivas, Derechos Sociales y Mayores",
+      "url": "https://regmeet.com/aytoribarroja/participaciones/640258597cbc50037072712f964cf5d8?idioma=castellano",
+      "excerpt": "5. POLÍTICAS INCLUSIVAS, DERECHOS SOCIALES Y MAYORES\n(SS)\nLíder: David Barbancho Martínez, Concejal delegado\nPersona empleada pública responsable: Rosa Segarra,\nResponsable de Servicios Sociales.\nC/ Santander, 4 (Centro Social La Botaia), 46190 Riba-roja de Túria,"
+    },
+    {
+      "id": "src-075",
+      "retrievedAt": "2026-07-31T13:13:56.328Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta pleno 15-04-2024 — Carta de Servicios: líder del programa 12, Juventud",
+      "url": "https://regmeet.com/aytoribarroja/participaciones/640258597cbc50037072712f964cf5d8?idioma=castellano",
+      "excerpt": "12. JUVENTUD (JUV)\nLíder: David Barbancho Martínez, Concejal delegado\nPersona empleada pública responsable: Isaac Abellán, Técnico\nde Juventud"
+    }
+  ],
+  "warnings": [
+    "Los datos biográficos (nacimiento, formación, etapas laborales) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora las etapas de Juntsumem y de personal eventual pero contiene una errata de año («2029») transcrita [sic].",
+    "La sección sobre Juntsumem, S.L. documenta fechas e importes de registros públicos; la adjudicación es anterior a los cargos públicos del concejal y este medio no afirma su participación en aquel procedimiento ni irregularidad alguna.",
+    "La cobertura de prensa local indexada apenas menciona personalmente al concejal; los agregados del observatorio reflejan al municipio en general."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

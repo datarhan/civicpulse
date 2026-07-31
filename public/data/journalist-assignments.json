@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T12:59:57.361Z",
+  "generatedAt": "2026-07-31T13:14:19.360Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -183,6 +183,20 @@
       "createdAt": "2026-07-31T12:40:56.764Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T12:47:59.869Z"
+    },
+    {
+      "id": "a-david-barbancho-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "david-barbancho-martinez",
+        "name": "David Barbancho Martínez",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de David Barbancho Martínez, concejal (PSOE) de Acción social y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T13:02:16.565Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T13:08:18.226Z"
     }
   ]
 }
