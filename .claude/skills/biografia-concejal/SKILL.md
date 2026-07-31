@@ -62,6 +62,11 @@ Read the draft's sections, sources, warnings. Then:
 4. **Homonym scan:** list cited vs uncited sources. Only CITED noise matters (promote prunes
    uncited automatically). «Rafael Gómez»-class names attract heavy noise — the subject-surname
    pair must appear in any cited excerpt.
+   **Garble propagation:** when you remove a Whisper-garbled quote card or homonym row, grep the
+   NARRATIVE BODIES for the same strings — synth propagates garbles into prose with invented
+   glosses (2026-07-31: «Edifican Heredado» → published as a «plan de rehabilitación de
+   vivienda» when Pla Edificant is the schools program). Also check that «intervenciones suyas»
+   claims trace to a nominal floor-call in the transcript, not just a bloc-level claim row.
 5. **Apply fixes to the DRAFT** via a one-shot validated script (pattern: read
    `journalist-reports-suggestions.json`, mutate, `writeSnapshot(..., validateDraftsSnapshot)`,
    `rewriteJsonIfPresent` the `.draft.json` chunk, delete script after run).
