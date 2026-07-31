@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T19:00:52.221Z",
+  "generatedAt": "2026-07-31T19:13:32.320Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -309,6 +309,20 @@
       "createdAt": "2026-07-31T18:47:38.977Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T18:56:47.979Z"
+    },
+    {
+      "id": "a-jmgallardo-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "jose-manuel-gallardo-martinez",
+        "name": "José Manuel Gallardo Martínez",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de José Manuel Gallardo Martínez, concejal y portavoz de Esquerra Unida-Podem en el Ayuntamiento de Riba-roja de Túria: identidad y formación (trabajo social), elección (candidatura, toma de posesión, candidatura a la alcaldía), papel en la oposición (grupo municipal unipersonal y comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T19:01:44.580Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T19:09:21.555Z"
     }
   ]
 }

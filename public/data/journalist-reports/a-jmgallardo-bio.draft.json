@@ -1,0 +1,869 @@
+{
+  "id": "r-jmgallardo-bio-2026-07-31",
+  "assignmentId": "a-jmgallardo-bio",
+  "generatedAt": "2026-07-31T19:09:21.554Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "jose-manuel-gallardo-martinez",
+        "photoPath": "/data/photos/jose-manuel-gallardo-martinez.jpg",
+        "partyTone": "neutral",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1993-02-02",
+        "birthplace": "Riba-roja de Túria",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Técnico Superior en Integración Social",
+            "institution": "CIPFP Misericordia",
+            "startYear": 2011,
+            "endYear": 2013,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Grado en Trabajo Social (mención en Salud)",
+            "institution": "Universitat de València",
+            "startYear": 2013,
+            "endYear": 2017,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Máster en Bienestar Social: Intervención Familiar",
+            "institution": "Universitat de València",
+            "startYear": 2018,
+            "endYear": 2019,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Máster en Profesorado de Secundaria y Formación Profesional",
+            "institution": "Universitat de València",
+            "startYear": 2020,
+            "endYear": 2021,
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Coordinador del Plan de Ocio y Formación para personas con diversidad funcional de Riba-roja de Túria",
+            "org": "Asociación Orilla-Actúa",
+            "startYear": 2016,
+            "endYear": 2016,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Integrador social — programa de Apoyo a la Vida Independiente",
+            "org": "Patronato Intermunicipal Francisco Esteve",
+            "startYear": 2017,
+            "endYear": 2018,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Trabajador social — intervención familiar, dependencia y diversidad funcional",
+            "org": "Asociación APRODIS",
+            "startYear": 2019,
+            "sourceIds": [
+              "src-062",
+              "src-071"
+            ]
+          },
+          {
+            "role": "Trabajador social — atención a personas sordas",
+            "org": "Fundación FESORD CV",
+            "startYear": 2022,
+            "sourceIds": [
+              "src-062",
+              "src-071"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 5505.72,
+            "description": "Declaración de bienes al tomar posesión (2023): 0,00 € en bienes inmuebles + 5.505,72 € en otros bienes = 5.505,72 € de activo; pasivo declarado: 0,00 €. Es, tras la declaración a cero de Paula Navarro, el patrimonio más modesto de la corporación — sin inmuebles y sin deudas. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-070",
+              "src-073"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial: su actividad declarada es el empleo por cuenta ajena como trabajador social en dos entidades del tercer sector — Asociación APRODIS (desde 2019) y Fundación FESORD CV (desde 2022). Sin dedicación municipal, el empleo es compatible con el régimen de asistencias.",
+            "sourceIds": [
+              "src-071",
+              "src-062"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo público",
+        "bodyMarkdown": "José Manuel Gallardo Martínez (Riba-roja de Túria, 2 de febrero de 1993) es **concejal y portavoz del Grupo Municipal Esquerra Unida-Podem** — el único concejal de esa coalición, que constituye por sí solo el grupo. Nacido en el propio municipio y **trabajador social de profesión**, es el concejal más joven de la oposición y el de perfil más especializado en servicios sociales: grado en Trabajo Social por la Universitat de València, máster en bienestar social e intervención familiar, y años de ejercicio en entidades del tercer sector.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-066"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "Gallardo tiene recorrido previo en la izquierda local: en 2019 concurrió en el **puesto n.º 2** de la candidatura de EUPV-ERPV por Riba-roja (BOP de València n.º 82, 30-04-2019), encabezada por Rafael Gómez Muñoz — persona distinta del concejal socialista Rafael Gómez Sánchez —, sin obtener entonces el acta. En 2023 encabezó la lista de Esquerra Unida-Podem y logró el escaño.\n\nLa sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona y presta juramento o promesa. Como cabeza de lista, presentó **candidatura a la Alcaldía**: obtuvo **0 votos** en la votación de investidura (la coalición cuenta con un solo concejal), en la que fue proclamado alcalde Robert Raga con 11 votos.\n\nEn el pleno de organización de 07-07-2023 queda constituido como **grupo municipal unipersonal y portavoz de Esquerra Unida-Podem**, y —al ser el único miembro— es titular por su grupo en las **cinco comisiones informativas**. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).",
+        "sourceIds": [
+          "src-072",
+          "src-064",
+          "src-065",
+          "src-067",
+          "src-066",
+          "src-068",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Un trabajador social en la oposición",
+        "bodyMarkdown": "La trayectoria profesional de Gallardo está enteramente en el ámbito social y, en buena parte, en su propio municipio. Antes de la política ejerció como **integrador social** en el programa de Apoyo a la Vida Independiente del Patronato Intermunicipal Francisco Esteve (2017-2018) y, en 2016, coordinó el **Plan de Ocio y Formación para personas con diversidad funcional de Riba-roja** a través de la Asociación Orilla-Actúa. Desde 2019 es **trabajador social en la Asociación APRODIS** (intervención familiar, dependencia y diversidad funcional) y desde 2022 en la **Fundación FESORD CV** (atención a personas sordas).\n\nEse perfil —un profesional de los servicios sociales que se sienta en la oposición— es infrecuente en la corporación y hace de él un concejal especializado precisamente en las materias que su formación y su empleo cubren a diario.",
+        "sourceIds": [
+          "src-063",
+          "src-062",
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "José Manuel Gallardo Martínez",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Esquerra Unida-Podem (unipersonal)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "APRODIS · FESORD (entidades del tercer sector, empleadoras)",
+            "tone": "intel",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal único y portavoz; cabeza de lista, candidato a la Alcaldía (0 votos); antes n.º 2 de EUPV en 2019",
+            "sourceIds": [
+              "src-066",
+              "src-067",
+              "src-072"
+            ]
+          },
+          {
+            "from": "n3",
+            "to": "n1",
+            "relation": "trabajador social por cuenta ajena (APRODIS desde 2019, FESORD desde 2022)",
+            "sourceIds": [
+              "src-071",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Gallardo Martínez» y **0** para las entidades del tercer sector de su trayectoria (APRODIS, FESORD, Orilla-Actúa). Ninguna consta como adjudicataria del Ayuntamiento bajo esos nombres.\n\nLímites declarados: la homonimia es notable en su caso (el nombre «José» y el apellido «Gallardo Martínez» arrojan numerosos resultados de otras personas y municipios, descartados uno a uno) y el cabeza de su lista de 2019, Rafael Gómez Muñoz, no debe confundirse con el concejal socialista Rafael Gómez Sánchez; las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-074",
+          "src-072"
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2017-06-30",
+            "label": "Grado en Trabajo Social (Universitat de València, 2013-2017); ya con experiencia como integrador social y coordinador del plan municipal de diversidad funcional (2016)",
+            "sourceIds": [
+              "src-061",
+              "src-063"
+            ]
+          },
+          {
+            "date": "2019-04-30",
+            "label": "Candidato n.º 2 de EUPV-ERPV por Riba-roja (BOP n.º 82), tras el cabeza Rafael Gómez Muñoz — sin escaño",
+            "sourceIds": [
+              "src-072"
+            ]
+          },
+          {
+            "date": "2019-09-01",
+            "label": "Trabajador social en la Asociación APRODIS (intervención familiar, dependencia y diversidad funcional)",
+            "sourceIds": [
+              "src-062",
+              "src-071"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo por Esquerra Unida-Podem; candidato a la Alcaldía con 0 votos",
+            "sourceIds": [
+              "src-064",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Constituido grupo unipersonal y portavoz; titular en las cinco comisiones; sin dedicación (asistencias)",
+            "sourceIds": [
+              "src-066",
+              "src-068",
+              "src-069"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 5.505,72 € (sin inmuebles) · pasivo 0,00 € (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-070",
+              "src-073"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Por el Grupo político municipal con la denominación de Grupo Municipal Esquerra Unida-Podem: Unides, es: 1. Don José Manuel Gallardo Martínez. Siendo su Portavoz: Don José Manuel Gallardo Martínez.",
+        "attributedTo": "Acta del pleno de organización de 07-07-2023 (constitución del Grupo Municipal Esquerra Unida-Podem)",
+        "sourceId": "src-066",
+        "date": "2023-07-07"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Homonimia del nombre",
+            "reason": "Las búsquedas web bajo «José … Gallardo Martínez» arrojan numerosos resultados de otras personas y municipios; ninguno se refiere al concejal. Este perfil se construye sobre su CV, las actas y su declaración, no sobre esas coincidencias."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Resultado de EUPV en 2019",
+            "reason": "Consta su candidatura n.º 2 en 2019, pero la asignación exacta de escaños de la coalición de izquierda aquel mandato no se detalla en las fuentes consultadas más allá de que él no obtuvo acta hasta 2023."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — José Manuel Gallardo Martínez",
+      "retrievedAt": "2026-07-31T19:02:24.623Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: concejal · party: Otro · portfolios: "
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://es.linkedin.com/in/paula-gallardo-mart%C3%ADnez-23b147180",
+      "title": "Paula Gallardo Martínez - Estudiante en Universitat de València",
+      "retrievedAt": "2026-07-31T19:02:28.838Z",
+      "trust": "low",
+      "excerpt": "Mira el perfil de Paula Gallardo Martínez en LinkedIn, una red profesional ... VIU - Universidad Internacional de Valencia. may 2023 - actualidad 3 años ..."
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://www.fundacioncristinamasaveu.com/portfolio/carmen-gallardo/",
+      "title": "CARMEN GALLARDO MARTÍNEZ - Fundación Maria Cristina ...",
+      "retrievedAt": "2026-07-31T19:02:28.838Z",
+      "trust": "low",
+      "excerpt": "PERFIL PROFESIONAL. Carmen Gallardo Martínez (Oviedo, Asturias, 2000), finalizó con Matrícula de Honor sus estudios de Bachillerato Internacional en el IES Real ..."
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://fu-berlin.academia.edu/EduardoGallardo",
+      "title": "Eduardo Gallardo Martinez - Freie Universität Berlin - Academia.edu",
+      "retrievedAt": "2026-07-31T19:02:28.838Z",
+      "trust": "low",
+      "excerpt": "Eduardo Gallardo Martinez, Freie Universität Berlin: 92 Followers, 67 Following, 16 Research papers ... Espacio Regional Revista de Estudios Sociales. Vol ..."
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T19:02:28.839Z",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:29.235Z",
+      "trust": "medium",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la …"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "José (patriarca) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:29.235Z",
+      "trust": "medium",
+      "excerpt": "Sus hijos Efraín y Manasés, nacidos de la egipcia Asenat, constituyeron dos de las doce tribus de Israel, conocidas como Casa de …"
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia",
+      "retrievedAt": "2026-07-31T19:02:29.235Z",
+      "trust": "medium",
+      "excerpt": "French vernacular form The French given name José, pronounced [ʒoze], is an old vernacular form of the French name Joseph, and …"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T19:02:29.235Z",
+      "trust": "medium",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T19:02:29.235Z",
+      "trust": "medium",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T19:02:29.235Z",
+      "trust": "low",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Marcelo_Gallardo",
+      "title": "Marcelo Gallardo - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:29.650Z",
+      "trust": "medium",
+      "excerpt": "Durante la Copa América 2015, Gallardo contrató a seis jugadores: Milton Casco, Nicolás Bertolo, Luis González, Javier Saviola, …"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://dle.rae.es/gallardo",
+      "title": "gallardo, gallarda | Diccionario de la lengua española",
+      "retrievedAt": "2026-07-31T19:02:29.650Z",
+      "trust": "low",
+      "excerpt": "1. adj. Desembarazado, airoso y galán. 2. adj. Bizarro, valiente. 3. adj. Dicho de lo que corresponde al ánimo: Grande, excelente. …"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://distribucionesgallardo.com/",
+      "title": "Distribuciones Gallardo",
+      "retrievedAt": "2026-07-31T19:02:29.651Z",
+      "trust": "low",
+      "excerpt": "Distribuciones Gallardo es un grupo de empresas que se dedica a la venta de muebles en general , tapiceria, auxiliares, cocinas y …"
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Marcelo_Gallardo",
+      "title": "Marcelo Gallardo - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:30.294Z",
+      "trust": "medium",
+      "excerpt": "Durante la Copa América 2015, Gallardo contrató a seis jugadores: Milton Casco, Nicolás Bertolo, Luis González, Javier Saviola, Lucas Alario y Tabaré Viudez, estos dos últimos fueron de gran …"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://dle.rae.es/gallardo",
+      "title": "gallardo, gallarda | Diccionario de la lengua española",
+      "retrievedAt": "2026-07-31T19:02:30.294Z",
+      "trust": "low",
+      "excerpt": "1. adj. Desembarazado, airoso y galán. 2. adj. Bizarro, valiente. 3. adj. Dicho de lo que corresponde al ánimo: Grande, excelente. Gallardo pensamiento. Gallardo poeta."
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://aytosagunto.es/media/2zhfi5xh/pl070727.pdf",
+      "title": "o o o O O o - Ayuntamiento de Sagunto",
+      "retrievedAt": "2026-07-31T19:02:30.294Z",
+      "trust": "low",
+      "excerpt": "04/05/2007 000328/2007-GT Gallardo Martinez Ana Josefa - Inclusión en padrón y liquidación ivtm ... 07/05/2007 000552/2007-GT Ayto Sagunto - Revisión de oficio ..."
+    },
+    {
+      "id": "src-018",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Marcelo_Gallardo",
+      "title": "Marcelo Gallardo - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:31.032Z",
+      "trust": "medium",
+      "excerpt": "Durante la Copa América 2015, Gallardo contrató a seis jugadores: Milton Casco, Nicolás Bertolo, Luis González, Javier Saviola, Lucas Alario y Tabaré Viudez, estos dos últimos fueron de gran …"
+    },
+    {
+      "id": "src-019",
+      "kind": "web",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2025-22037",
+      "title": "BOE-A-2025-22037 Resolución de 28 de octubre de 2025, de la ...",
+      "retrievedAt": "2026-07-31T19:02:31.032Z",
+      "trust": "high",
+      "excerpt": "Agencia Estatal Bolet&iacute;n Oficial del Estado Ir a contenido Consultar el diario oficial BOE Idioma actual: Castellano / es Puede seleccionar otro idioma: es / Castellano ca / Catal&agrave; gl / Galego eu / Euskara va / Valenci&agrave; en / English fr / Fran&ccedil;ais Buscar Mi BOE Desconectado. Pulse para acceder al servicio 'Mi BOE' Men&uacute; Men&uacute; Diarios Oficiales BOE BORME Otros diarios oficiales Informaci&oacute;n Jur&iacute;dica Todo el Derecho Biblioteca "
+    },
+    {
+      "id": "src-020",
+      "kind": "web",
+      "url": "https://dle.rae.es/gallardo",
+      "title": "gallardo, gallarda | Diccionario de la lengua española",
+      "retrievedAt": "2026-07-31T19:02:31.032Z",
+      "trust": "low",
+      "excerpt": "1. adj. Desembarazado, airoso y galán. 2. adj. Bizarro, valiente. 3. adj. Dicho de lo que corresponde al ánimo: Grande, excelente. Gallardo pensamiento. Gallardo poeta."
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-034-afi-199709 · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-616b80 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-099-cit-8a1dc7 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-103-acu-92ea5a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Efectivamente, en el Pacto del Botánico no se hizo absolutamente nada."
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-104-acu-107c02 · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el Pacto del Botánico no se hizo absolutamente nada. Si no se degradó, creo, lo que es el sistema educativo valenciano."
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-209-afi-c6e9ef · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el 24, votaremos a favor porque es una moción"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-277-acu-401b6a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T19:02:33.405Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "como no hemos tenido una buena recogida de residuos, no imputable al ayuntamiento, imputable a una empresa que no va a cumplir sus obligaciones"
+    },
+    {
+      "id": "src-029",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T19:02:33.407Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T19:02:33.734Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "jose-manuel-gallardo-martinez · José Manuel Gallardo Martínez · Sr. · concejal · Otro ·  · alcaldia@ribarroja.es · /data/photos/jose-manuel-gallardo-martinez.jpg ·  · https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T19:02:33.734Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "brxx5g-020-pro-07ad18 · brxx5g · 2026-07-06 · 20 · promesa ·  · Nosotros votaremos a favor de este plan de igualdad. · Nosotros votaremos a favor de este plan de igualdad. Es el tercero. La plantilla está muy equilibrada. · social · plan de"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T19:02:33.734Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "brxx5g-034-afi-b853e8 · brxx5g · 2026-07-06 · 34 · afirmacion_numerica ·  · Ya estamos, 20 a favor y una abstención · [2548.0 → 2549.0] ¿Ester ha votado? [2550.0 → 2552.0] Ya estamos, 20 a favor y una abstención [2553.0 → 2554.0] Grupo Soci"
+    },
+    {
+      "id": "src-033",
+      "kind": "web",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
+      "title": "Campaña de Renta 2025 - Agencia Tributaria",
+      "retrievedAt": "2026-07-31T19:02:34.216Z",
+      "trust": "high",
+      "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este …"
+    },
+    {
+      "id": "src-034",
+      "kind": "web",
+      "url": "https://sede.agenciatributaria.gob.es/",
+      "title": "Agencia Tributaria: Inicio",
+      "retrievedAt": "2026-07-31T19:02:34.216Z",
+      "trust": "high",
+      "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la …"
+    },
+    {
+      "id": "src-035",
+      "kind": "web",
+      "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
+      "title": "Inicio - Agencia Tributaria",
+      "retrievedAt": "2026-07-31T19:02:34.216Z",
+      "trust": "low",
+      "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite."
+    },
+    {
+      "id": "src-036",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:38.143Z",
+      "trust": "medium",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la influencia del cristianismo, al ser el nombre de José de Nazaret padre …"
+    },
+    {
+      "id": "src-037",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "José (patriarca) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T19:02:38.143Z",
+      "trust": "medium",
+      "excerpt": "Sus hijos Efraín y Manasés, nacidos de la egipcia Asenat, constituyeron dos de las doce tribus de Israel, conocidas como Casa de José, que son las más importantes del Reino de Israel y ancestros …"
+    },
+    {
+      "id": "src-038",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia",
+      "retrievedAt": "2026-07-31T19:02:38.143Z",
+      "trust": "medium",
+      "excerpt": "French vernacular form The French given name José, pronounced [ʒoze], is an old vernacular form of the French name Joseph, and is also popular under the feminine form Josée. The masculine form is …"
+    },
+    {
+      "id": "src-039",
+      "kind": "web",
+      "url": "https://dle.rae.es/jos%C3%A9",
+      "title": "José | Definición | Diccionario de la lengua española | RAE - ASALE",
+      "retrievedAt": "2026-07-31T19:02:38.143Z",
+      "trust": "low",
+      "excerpt": "Responsable: Real Academia Española. Finalidades: Gestionar su suscripción al boletín mensual de la RAE. Derechos: Tiene derecho a acceder, rectificar y suprimir sus datos, así como a otros derechos, …"
+    },
+    {
+      "id": "src-040",
+      "kind": "web",
+      "url": "https://www.serpadres.es/bebe/44971.html",
+      "title": "Significado del nombre José: origen e historia - Nombres de niño",
+      "retrievedAt": "2026-07-31T19:02:38.143Z",
+      "trust": "low",
+      "excerpt": "2 de ago de 2023 · En la tradición cristiana, José es una figura central, conocido como el esposo de la Virgen María y el padre adoptivo de Jesús. Su papel en la Biblia es fundamental, ya que es visto …"
+    },
+    {
+      "id": "src-041",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T19:02:38.146Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-042",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T19:02:38.146Z",
+      "trust": "high",
+      "excerpt": "José - Wikipedia, la enciclopedia libre </",
+      "archiveUrl": "http://web.archive.org/web/20260721153703/https://es.wikipedia.org/wiki/Jos%C3%A9"
+    },
+    {
+      "id": "src-043",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T19:02:38.146Z",
+      "trust": "high",
+      "excerpt": "José (patriarca) - Wikipedia, la enciclopedia libre <meta property=\"og:title\" content=\"José (patriarca) - Wikipedi",
+      "archiveUrl": "http://web.archive.org/web/20260114012026/https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)"
+    },
+    {
+      "id": "src-060",
+      "retrievedAt": "2026-07-31T19:13:04.359Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — presentación (nacimiento en Riba-roja) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/EU_UP-Jose-Manuel-Gallardo.pdf",
+      "excerpt": "PRESENTACIÓN 2 FEBRERO 1993 RIBA-ROJA DE TÚRIA jmgallardo@ribarroja.es"
+    },
+    {
+      "id": "src-061",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — formación (trabajo social) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/EU_UP-Jose-Manuel-Gallardo.pdf",
+      "excerpt": "MÁSTER UNIVERSITARIO EN PROFESOR/A DE SECUNDARIA I FORMACIÓN PROFESIONAL • UNIVERSIDAD DE VALÈNCIA • 2020 – 2021 MÁSTER UNIVERSITARIO EN BIENESTAR SOCIAL: INTERVENCIÓN FAMILIAR • UNIVERSIDAD DE VALÈNCIA • 2018 – 2019 GRADO EN TRABAJO SOCIAL CON MENCIÓN EN SALUD • UNIVERSIDAD DE VALÈNCIA • 2013 – 2017 TÉCNICO/A SUPERIOR EN INTEGRACIÓN SOCIAL • CIPFP MISERICORDIA • 2011 – 2013"
+    },
+    {
+      "id": "src-062",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — experiencia: trabajador social en FESORD (2022) y APRODIS (2019) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/EU_UP-Jose-Manuel-Gallardo.pdf",
+      "excerpt": "TRABAJADOR SOCIAL • 2022 - ACTUALIDAD• FUNDACIÓN FESORD Intervención social desde el departamento de Atención a Personas Sordas en referencia a recursos sociales, recursos económicos y servicios públicos. TRABAJADOR SOCIAL • 2019 - ACTUALIDAD• ASOCIACIÓN APRODIS Intervención familiar en referencia a dependencia y diversidad funcional."
+    },
+    {
+      "id": "src-063",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — experiencia previa: integrador social (Patronato Fco Esteve) y coordinación del plan de ocio y diversidad funcional (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/EU_UP-Jose-Manuel-Gallardo.pdf",
+      "excerpt": "INTEGRADOR SOCIAL • 2017-2018 • PATRONATO INTERMUNICIPAL FCO ESTEVE Responsable del programa de Apoyo a la Vida Independiente. COORDINADOR DEL PLAN DE OCIO Y FORMACIÓN PARA PERSONAS CON DIVERSIDAD FUNCIONAL DE RIBA-ROJA DE TÚRIA • 2016 • ASOCIACIÓN ORILLA-ACTÚA"
+    },
+    {
+      "id": "src-064",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Soraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez"
+    },
+    {
+      "id": "src-065",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina"
+    },
+    {
+      "id": "src-066",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Esquerra Unida-Podem (Gallardo, único miembro y portavoz)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Esquerra Unida- Podem:\nUnides, es:\n1. Don José Manuel Gallardo Martínez\nSiendo su Portavoz: Don José Manuel Gallardo Martínez"
+    },
+    {
+      "id": "src-067",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Gallardo, 0 votos)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0"
+    },
+    {
+      "id": "src-068",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa: EU-Podem, titular Gallardo (único miembro, en las cinco comisiones)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Grupo Municipal Esquerra Unida- Podem: Unides\nTitular: D. José Manuel Gallardo Martínez"
+    },
+    {
+      "id": "src-069",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+    },
+    {
+      "id": "src-070",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "JOSE MANUEL GALLARDO MARTÍNEZ 0,00 5.505,72 5.505,72 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+    },
+    {
+      "id": "src-071",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "JOSE MANUEL GALLARDO MARTÍNEZ | Trabajador Social · Asociación APRODIS · 01/09/2019 · y Fundación FESORD CV · 01/09/2022 — [tabla de actividades por columnas: cargo · entidad · fecha de inicio]"
+    },
+    {
+      "id": "src-072",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidatura de EUPV-ERPV por Riba-roja (Gallardo, puesto 2, tras el cabeza Rafael Gómez Muñoz)",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "excerpt": "CANDIDATURA NÚM. 3:\nL’ESQUERRA DE RIBA-ROJA - ESQUERRA UNIDA - ESQUERRA \nREPUBLICANA : SEGUIM ENDAVANT (EUPV-ERPV:SE)\nTITULARES\n1. RAFAEL GÓMEZ MUÑOZ\n2. JOSÉ MANUEL GALLARDO MARTÍNEZ"
+    },
+    {
+      "id": "src-073",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+    },
+    {
+      "id": "src-074",
+      "retrievedAt": "2026-07-31T19:13:04.360Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Gallardo Martínez», y 0 para las entidades sociales de su trayectoria (APRODIS, FESORD, Orilla-Actúa). Ninguna consta como adjudicataria del Ayuntamiento bajo esos nombres."
+    }
+  ],
+  "warnings": [
+    "Los datos biográficos y de trayectoria (nacimiento, formación, empleos en el tercer sector) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora los empleos en APRODIS (2019) y FESORD (2022).",
+    "El cabeza de la lista de EUPV de 2019, Rafael Gómez Muñoz, es persona distinta del concejal socialista Rafael Gómez Sánchez — homonimia señalada para evitar confusión.",
+    "Las intervenciones plenarias no se atribuyen individualmente: las transcripciones automáticas carecen de diarización fiable."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}
