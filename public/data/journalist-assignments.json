@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T07:45:50.681Z",
+  "generatedAt": "2026-07-31T08:54:38.624Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -113,6 +113,20 @@
       "createdAt": "2026-07-31T07:32:54.145Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T07:41:40.871Z"
+    },
+    {
+      "id": "a-eva-lara-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "eva-lara-catala",
+        "name": "Eva Lara Catalá",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Eva Lara Catalá, concejala (independiente en el grupo del PSOE) de Educación, Infancia y Adolescencia y Memoria Histórica en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T08:42:12.458Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T08:51:19.500Z"
     }
   ]
 }

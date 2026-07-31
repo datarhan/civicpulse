@@ -1,10 +1,559 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T08:26:19.506Z",
+  "generatedAt": "2026-07-31T08:54:38.621Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-eva-lara-bio-2026-07-31",
+      "assignmentId": "a-eva-lara-bio",
+      "generatedAt": "2026-07-31T08:51:19.499Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "eva-lara-catala",
+            "photoPath": "/data/photos/eva-lara-catala.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Educación",
+              "Infancia y Adolescencia y Memoria Histórica"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1979-05-22",
+            "birthplace": "Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Licenciada en Historia",
+                "institution": "Universitat de València",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Estudios de Arte Dramático",
+                "institution": "Sala Escalante de Valencia",
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejala delegada — Educación, Infancia y Adolescencia y Memoria Histórica (independiente en el grupo socialista)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-041",
+                  "src-066",
+                  "src-067"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática)",
+                "org": "Generalitat Valenciana — IES El Quint (Riba-roja de Túria)",
+                "startYear": 2006,
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo municipal",
+            "bodyMarkdown": "Eva Lara Catalá ejerce como concejala del Ayuntamiento de Riba-roja de Túria, integrada en el grupo municipal del PSOE, según el registro oficial de cargos electos del consistorio. Tiene delegadas las áreas de Educación, Infancia y Adolescencia y Memoria Histórica, de acuerdo con la ficha institucional publicada por el propio ayuntamiento.",
+            "sourceIds": [
+              "src-001",
+              "src-041",
+              "src-004"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y nombramiento",
+            "bodyMarkdown": "Eva Lara Catalá fue proclamada concejala electa en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023. Es su primera corporación: no figura en las candidaturas de Riba-roja de 2015 (BOP de València n.º 79) ni de 2019 (BOP n.º 82).\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número cinco del grupo municipal socialista con la condición de independiente; consta como cuarta integrante de la Junta de Gobierno Local; y el punto 5 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Educación, Infancia y Adolescencia y Memoria Histórica».\n\nNo figura entre las dedicaciones exclusivas del acuerdo de régimen económico: como miembro sin dedicación percibe asistencias por concurrencia efectiva (221,82 € por Pleno; 162,31 € por Junta de Gobierno y comisiones), compatibles con su plaza docente.",
+            "sourceIds": [
+              "src-063",
+              "src-064",
+              "src-065",
+              "src-002",
+              "src-073",
+              "src-066",
+              "src-067",
+              "src-068",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Formación y trayectoria previa",
+            "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, Eva Lara Catalá nació el 22 de mayo de 1979 en Valencia, es licenciada en Historia por la Universitat de València y cursó estudios de Arte Dramático en la Sala Escalante, con nivel superior de valenciano y francés y nivel medio de inglés.\n\nEl mismo currículum autodeclarado recoge su trayectoria docente: profesora de Educación Secundaria de la Generalitat en el IES El Quint de Riba-roja de Túria desde 2006, donde imparte Geografía e Historia e Historia del Arte y coordina los programas de Igualdad y Convivencia y el proyecto Memoria Democrática — ámbito, este último, coincidente con la delegación de Memoria Histórica que hoy ejerce.",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Patrimonio y actividades declaradas",
+            "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge como actividad su plaza de profesora en el IES El Quint, con inicio consignado en septiembre de 2008, además de la concejalía; no declara ninguna actividad empresarial. Su CV sitúa el inicio en el centro en 2006 — ambos documentos proceden de la propia concejala y la diferencia queda señalada en «Lagunas detectadas».\n\nEn el apartado de bienes declara un activo de 66.027,00 euros —65.000,00 euros en bienes inmuebles por valor catastral y 1.027,00 euros en otros bienes— y un pasivo de 61.085,76 euros. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
+            "sourceIds": [
+              "src-070",
+              "src-071",
+              "src-062",
+              "src-072"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Las conexiones de Eva Lara Catalá que constan en documentos públicos son de naturaleza político-administrativa: integrante del grupo municipal socialista como independiente, cuarta miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga. Su empleadora es la Generalitat Valenciana (plaza docente pública).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos. En el ámbito de su delegación se identifican 12 contratos educativos desde julio de 2023 — una muestra demasiado pequeña para comparar indicadores de competencia, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "sourceIds": [
+              "src-073",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Retribuciones y transparencia municipal",
+            "bodyMarkdown": "El Ayuntamiento de Riba-roja de Túria mantiene un apartado de retribuciones dentro de su portal de transparencia, donde el órgano gestor en materia de Transparencia y Gobierno Abierto custodia los ejemplares originales de las nóminas de la corporación municipal, incluidos sus concejales.",
+            "sourceIds": [
+              "src-036"
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 66027,
+                "description": "Activo declarado al tomar posesión (2023): 65.000,00 € en bienes inmuebles (valor catastral) + 1.027,00 € en otros bienes; pasivo declarado: 61.085,76 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN).",
+                "sourceIds": [
+                  "src-070"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Sin actividad empresarial declarada: su declaración recoge su plaza de profesora en el IES El Quint (desde 09/2008 según la declaración; su CV la sitúa en el centro desde 2006) y la concejalía.",
+                "sourceIds": [
+                  "src-071",
+                  "src-062"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por sesión de la Junta de Gobierno Local y de las comisiones informativas (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-069"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1979-05-22",
+                "label": "Nace en Valencia (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2023-05-28",
+                "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+                "sourceIds": [
+                  "src-002"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejala electa; toma posesión en la sesión constitutiva (su primera corporación)",
+                "sourceIds": [
+                  "src-063",
+                  "src-065"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "El decreto de áreas le delega Educación, Infancia y Adolescencia y Memoria Histórica; consta como cuarta integrante de la Junta de Gobierno Local",
+                "sourceIds": [
+                  "src-067",
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "eva-lara-catala",
+                "label": "Eva Lara Catalá",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "psoe-ribarroja",
+                "label": "PSOE (grupo municipal Riba-roja de Túria)",
+                "tone": "neutral",
+                "kind": "party"
+              },
+              {
+                "id": "ayto-ribarroja",
+                "label": "Ayuntamiento de Riba-roja de Túria",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "jgl-ribarroja",
+                "label": "Junta de Gobierno Local",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "roberto-raga",
+                "label": "Roberto Raga (alcalde)",
+                "tone": "civic",
+                "kind": "person"
+              }
+            ],
+            "edges": [
+              {
+                "from": "eva-lara-catala",
+                "to": "psoe-ribarroja",
+                "relation": "concejala integrante del grupo municipal",
+                "sourceIds": [
+                  "src-001",
+                  "src-041"
+                ]
+              },
+              {
+                "from": "eva-lara-catala",
+                "to": "ayto-ribarroja",
+                "relation": "concejala delegada de Educación, Infancia y Adolescencia y Memoria Histórica",
+                "sourceIds": [
+                  "src-004",
+                  "src-041"
+                ]
+              },
+              {
+                "from": "eva-lara-catala",
+                "to": "jgl-ribarroja",
+                "relation": "cuarta integrante de su composición",
+                "sourceIds": [
+                  "src-068"
+                ]
+              },
+              {
+                "from": "roberto-raga",
+                "to": "eva-lara-catala",
+                "relation": "le delegó Educación, Infancia y Adolescencia y Memoria Histórica (07-07-2023)",
+                "sourceIds": [
+                  "src-067"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-presupuesto-2026-46m",
+              "psoe-refugios-climaticos-2026",
+              "psoe-reconstruccion-dana-9-5m",
+              "psoe-vivienda-900-hogares",
+              "psoe-construccion-vivienda-2026-2029",
+              "psoe-pasarelas-parc-natural-turia",
+              "psoe-espai-obert-presupuesto",
+              "psoe-alumbrado-led-680k",
+              "psoe-metro-l9-agosto",
+              "psoe-respuesta-quejas-sector-14-48h",
+              "psoe-reduce-concejales-dedicacion-exclusiva",
+              "ac-psoe-1cbkzxt",
+              "ac-psoe-1v0679f",
+              "ac-psoe-jfg7bc",
+              "ac-psoe-1ah9zqk",
+              "ac-psoe-pl3lsq",
+              "ac-psoe-ppa53a",
+              "ac-psoe-1m04lfw",
+              "ac-psoe-sysee8"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica.",
+            "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria",
+            "date": "2023-07-07",
+            "sourceId": "src-067"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Identidad y formación",
+                "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+              },
+              {
+                "field": "Inicio docente (2006 o 2008)",
+                "reason": "Su CV sitúa su plaza en el IES El Quint desde 2006; su declaración estatutaria consigna septiembre de 2008. Ambos documentos proceden de la propia concejala; la diferencia se publica sin resolver."
+              },
+              {
+                "field": "Vínculos societarios y personales",
+                "reason": "Su declaración no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos; 12 del ámbito educativo) no arrojaron coincidencia alguna."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Eva Lara Catalá",
+          "retrievedAt": "2026-07-31T08:42:57.642Z",
+          "excerpt": "role: concejal · party: PSOE · portfolios: Educación, Infancia y Adolescencia y Memoria Histórica",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-002",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-31T08:43:00.301Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+          "localPath": "public/data/elections.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-004",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/datos/sra.-d%C2%AA.-eva-lara-catal%C3%A1",
+          "title": "Sra. Dª. Eva Lara Catalá | Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-31T08:43:00.967Z",
+          "excerpt": "Áreas: Educación, Infancia y Adolescencia y Memoria Histórica.",
+          "trust": "high"
+        },
+        {
+          "id": "src-036",
+          "kind": "web",
+          "url": "http://www.ribarroja.es/es/portal_de_transparencia/nominas",
+          "title": "Retribuciones | Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-31T08:43:08.383Z",
+          "excerpt": "Retribuciones El órgano gestor en materia de transparencia y Gobierno Abierto dispone y custodia los ejemplares originales de las nónimas.",
+          "trust": "high"
+        },
+        {
+          "id": "src-041",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T08:43:09.805Z",
+          "excerpt": "eva-lara-catala · Eva Lara Catalá · Sra. · concejal · PSOE · Educación · Infancia y Adolescencia y Memoria Histórica · alcaldia@ribarroja.es · /data/photos/eva-lara-catala.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Eva Lara Catalá · identidad",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "PRESENTACIÓN 22 MAYO 1979 VALENCIA elara@ribarroja.es",
+          "trust": "high"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Eva Lara Catalá · formación",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "FORMACIÓN LICENCIADA EN HISTÓRIA• UNIVERSIDAD VALENCIA• OTROS: Estudios de Arte Dramático en Sala Escalante de Valencia Nivel superior de Valenciano y Francés Nivel medio de Inglés",
+          "trust": "high"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Eva Lara Catalá · experiencia",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "EXPERIENCIA PROFESIONAL PROFESORA DE SECUNDARIA GVA • 2006 – ACTUAL • IES EL QUINT RIBA-ROJA DE TÚRIA Clases de Geografía e Historia e Historia del arte Coordinadora de Igualdad y Convivencia Coordinadora del proyecto Memoria Democrática",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · proclamación de electos",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · juramento o promesa",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · toma de posesión (lista con la sujeto)",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "- Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March - Maria Teresa Pozuelo Martin - Roberto Pascual Raga Gadea",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista (n.º 5, independiente)",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente)",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 5)",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "5. Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica. 6. Se delegan en el Concejal D. Rafael Gómez, las competencias que al Alcalde le",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · composición de la Junta de Gobierno Local",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "1. Dª Mª Teresa Pozuelo Martín. 2. D. José Luis Ramos March. 3. D. José Ángel Hernández Carrizosa. 4. Dª Eva Lara Catalá. 5. D. Rafael Gómez Sánchez.",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · régimen de indemnizaciones y asistencias",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias: - Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este importe los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni parcial). - Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán percibir este importe los miembros de la Corporación que formen parte de la misma que",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Concejala EVA LARA CATALÁ 65.000,00 1.027,00 66.027,00 61.085,76 Concejal RAFAEL GOMEZ SANCHEZ 37.500,00 3.800,00 41.300,00 4.400,00",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "JOSE ANGEL HERNANDEZ CARRIZOSA Concejal Ayuntamiento Riba-roja de Túria 14/06/2019 EVA LARA CATALÁ Profesora IES el Quint 00/09/2008 RAFAEL GOMEZ SANCHEZ Concejal Ayuntamiento Riba-roja de Túria 15/06/2019",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+          "trust": "high"
+        },
+        {
+          "id": "src-073",
+          "kind": "local-snapshot",
+          "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+        "Su CV y su declaración estatutaria difieren en el inicio de su plaza docente (2006 frente a 09/2008); ambos son autodeclarados y la discrepancia se publica sin resolver."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T08:54:38.614Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la corrida perdió el recall semántico (cuota de embeddings de OpenAI agotada — anotado para el operador) y produjo un borrador de 8 secciones; la curaduría integró los documentos primarios pre-localizados. CV descargado directamente (PSOE-Eva-Lara-Catala.pdf; el floor volvió a fallar sobre el listado): nacida 22-05-1979 en Valencia, licenciada en Historia (UV), profesora del IES El Quint desde 2006 y coordinadora del proyecto Memoria Democrática — coherente con su delegación. Cadena de nombramiento con ventanas literales: electa y posesión (17-06-2023), número cinco del grupo socialista como INDEPENDIENTE, cuarta integrante de la JGL, punto 5 del decreto de áreas; sin dedicación (asistencias 221,82/162,31 €). Primera lista en 2023 VERIFICADA por ausencia en las candidaturas de 2015 (BOP n.º 79) y 2019 (BOP n.º 82). Declaración estatutaria integrada (activo 66.027 €, pasivo 61.085,76 €; actividad: plaza docente) + BOP n.º 180. DISCREPANCIA publicada sin resolver: docente desde 2006 (CV) frente a 09/2008 (declaración). Comprobaciones: 0/804 contratos con sus apellidos; 12 contratos educativos desde 07-2023 (muestra pequeña, sin comparación de indicadores). Retirado el press-sparkline (titulares que nunca la nombran — advertencia del verificador CORRECTA); las advertencias sobre src-036/041 eran falsas (los extractos constan).",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-jose-angel-hernandez-bio-2026-07-31",
       "assignmentId": "a-jose-angel-hernandez-bio",

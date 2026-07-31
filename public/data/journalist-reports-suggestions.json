@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T07:45:31.798Z",
+  "generatedAt": "2026-07-31T08:54:21.979Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -7122,6 +7122,910 @@
       "warnings": [
         "Los datos de identidad, formación y trayectoria profesional proceden del CV autodeclarado del propio concejal publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
         "La ficha CV en PDF existe en el portal con el nombre de archivo corrupto por la codificación de acentos (…HERNA769NDEZ.pdf), que el agente no localizó automáticamente; fue verificada e integrada manualmente por el curador."
+      ],
+      "legalSensitivity": "medium",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-eva-lara-bio-2026-07-31",
+      "assignmentId": "a-eva-lara-bio",
+      "generatedAt": "2026-07-31T08:51:19.499Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "eva-lara-catala",
+            "photoPath": "/data/photos/eva-lara-catala.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Educación",
+              "Infancia y Adolescencia y Memoria Histórica"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1979-05-22",
+            "birthplace": "Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Licenciada en Historia",
+                "institution": "Universitat de València",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Estudios de Arte Dramático",
+                "institution": "Sala Escalante de Valencia",
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejala delegada — Educación, Infancia y Adolescencia y Memoria Histórica (independiente en el grupo socialista)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-041",
+                  "src-066",
+                  "src-067"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Profesora de Educación Secundaria (Geografía e Historia; coordinadora de Igualdad y Convivencia y del proyecto Memoria Democrática)",
+                "org": "Generalitat Valenciana — IES El Quint (Riba-roja de Túria)",
+                "startYear": 2006,
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo municipal",
+            "bodyMarkdown": "Eva Lara Catalá ejerce como concejala del Ayuntamiento de Riba-roja de Túria, integrada en el grupo municipal del PSOE, según el registro oficial de cargos electos del consistorio. Tiene delegadas las áreas de Educación, Infancia y Adolescencia y Memoria Histórica, de acuerdo con la ficha institucional publicada por el propio ayuntamiento.",
+            "sourceIds": [
+              "src-001",
+              "src-041",
+              "src-004"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y nombramiento",
+            "bodyMarkdown": "Eva Lara Catalá fue proclamada concejala electa en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023. Es su primera corporación: no figura en las candidaturas de Riba-roja de 2015 (BOP de València n.º 79) ni de 2019 (BOP n.º 82).\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número cinco del grupo municipal socialista con la condición de independiente; consta como cuarta integrante de la Junta de Gobierno Local; y el punto 5 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Educación, Infancia y Adolescencia y Memoria Histórica».\n\nNo figura entre las dedicaciones exclusivas del acuerdo de régimen económico: como miembro sin dedicación percibe asistencias por concurrencia efectiva (221,82 € por Pleno; 162,31 € por Junta de Gobierno y comisiones), compatibles con su plaza docente.",
+            "sourceIds": [
+              "src-063",
+              "src-064",
+              "src-065",
+              "src-002",
+              "src-073",
+              "src-066",
+              "src-067",
+              "src-068",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Formación y trayectoria previa",
+            "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, Eva Lara Catalá nació el 22 de mayo de 1979 en Valencia, es licenciada en Historia por la Universitat de València y cursó estudios de Arte Dramático en la Sala Escalante, con nivel superior de valenciano y francés y nivel medio de inglés.\n\nEl mismo currículum autodeclarado recoge su trayectoria docente: profesora de Educación Secundaria de la Generalitat en el IES El Quint de Riba-roja de Túria desde 2006, donde imparte Geografía e Historia e Historia del Arte y coordina los programas de Igualdad y Convivencia y el proyecto Memoria Democrática — ámbito, este último, coincidente con la delegación de Memoria Histórica que hoy ejerce.",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Patrimonio y actividades declaradas",
+            "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge como actividad su plaza de profesora en el IES El Quint, con inicio consignado en septiembre de 2008, además de la concejalía; no declara ninguna actividad empresarial. Su CV sitúa el inicio en el centro en 2006 — ambos documentos proceden de la propia concejala y la diferencia queda señalada en «Lagunas detectadas».\n\nEn el apartado de bienes declara un activo de 66.027,00 euros —65.000,00 euros en bienes inmuebles por valor catastral y 1.027,00 euros en otros bienes— y un pasivo de 61.085,76 euros. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
+            "sourceIds": [
+              "src-070",
+              "src-071",
+              "src-062",
+              "src-072"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Las conexiones de Eva Lara Catalá que constan en documentos públicos son de naturaleza político-administrativa: integrante del grupo municipal socialista como independiente, cuarta miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga. Su empleadora es la Generalitat Valenciana (plaza docente pública).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos. En el ámbito de su delegación se identifican 12 contratos educativos desde julio de 2023 — una muestra demasiado pequeña para comparar indicadores de competencia, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "sourceIds": [
+              "src-073",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Retribuciones y transparencia municipal",
+            "bodyMarkdown": "El Ayuntamiento de Riba-roja de Túria mantiene un apartado de retribuciones dentro de su portal de transparencia, donde el órgano gestor en materia de Transparencia y Gobierno Abierto custodia los ejemplares originales de las nóminas de la corporación municipal, incluidos sus concejales.",
+            "sourceIds": [
+              "src-036"
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 66027,
+                "description": "Activo declarado al tomar posesión (2023): 65.000,00 € en bienes inmuebles (valor catastral) + 1.027,00 € en otros bienes; pasivo declarado: 61.085,76 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN).",
+                "sourceIds": [
+                  "src-070"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Sin actividad empresarial declarada: su declaración recoge su plaza de profesora en el IES El Quint (desde 09/2008 según la declaración; su CV la sitúa en el centro desde 2006) y la concejalía.",
+                "sourceIds": [
+                  "src-071",
+                  "src-062"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por sesión de la Junta de Gobierno Local y de las comisiones informativas (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-069"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1979-05-22",
+                "label": "Nace en Valencia (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2023-05-28",
+                "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+                "sourceIds": [
+                  "src-002"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejala electa; toma posesión en la sesión constitutiva (su primera corporación)",
+                "sourceIds": [
+                  "src-063",
+                  "src-065"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "El decreto de áreas le delega Educación, Infancia y Adolescencia y Memoria Histórica; consta como cuarta integrante de la Junta de Gobierno Local",
+                "sourceIds": [
+                  "src-067",
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "eva-lara-catala",
+                "label": "Eva Lara Catalá",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "psoe-ribarroja",
+                "label": "PSOE (grupo municipal Riba-roja de Túria)",
+                "tone": "neutral",
+                "kind": "party"
+              },
+              {
+                "id": "ayto-ribarroja",
+                "label": "Ayuntamiento de Riba-roja de Túria",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "jgl-ribarroja",
+                "label": "Junta de Gobierno Local",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "roberto-raga",
+                "label": "Roberto Raga (alcalde)",
+                "tone": "civic",
+                "kind": "person"
+              }
+            ],
+            "edges": [
+              {
+                "from": "eva-lara-catala",
+                "to": "psoe-ribarroja",
+                "relation": "concejala integrante del grupo municipal",
+                "sourceIds": [
+                  "src-001",
+                  "src-041"
+                ]
+              },
+              {
+                "from": "eva-lara-catala",
+                "to": "ayto-ribarroja",
+                "relation": "concejala delegada de Educación, Infancia y Adolescencia y Memoria Histórica",
+                "sourceIds": [
+                  "src-004",
+                  "src-041"
+                ]
+              },
+              {
+                "from": "eva-lara-catala",
+                "to": "jgl-ribarroja",
+                "relation": "cuarta integrante de su composición",
+                "sourceIds": [
+                  "src-068"
+                ]
+              },
+              {
+                "from": "roberto-raga",
+                "to": "eva-lara-catala",
+                "relation": "le delegó Educación, Infancia y Adolescencia y Memoria Histórica (07-07-2023)",
+                "sourceIds": [
+                  "src-067"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-presupuesto-2026-46m",
+              "psoe-refugios-climaticos-2026",
+              "psoe-reconstruccion-dana-9-5m",
+              "psoe-vivienda-900-hogares",
+              "psoe-construccion-vivienda-2026-2029",
+              "psoe-pasarelas-parc-natural-turia",
+              "psoe-espai-obert-presupuesto",
+              "psoe-alumbrado-led-680k",
+              "psoe-metro-l9-agosto",
+              "psoe-respuesta-quejas-sector-14-48h",
+              "psoe-reduce-concejales-dedicacion-exclusiva",
+              "ac-psoe-1cbkzxt",
+              "ac-psoe-1v0679f",
+              "ac-psoe-jfg7bc",
+              "ac-psoe-1ah9zqk",
+              "ac-psoe-pl3lsq",
+              "ac-psoe-ppa53a",
+              "ac-psoe-1m04lfw",
+              "ac-psoe-sysee8"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica.",
+            "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria",
+            "date": "2023-07-07",
+            "sourceId": "src-067"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Identidad y formación",
+                "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+              },
+              {
+                "field": "Inicio docente (2006 o 2008)",
+                "reason": "Su CV sitúa su plaza en el IES El Quint desde 2006; su declaración estatutaria consigna septiembre de 2008. Ambos documentos proceden de la propia concejala; la diferencia se publica sin resolver."
+              },
+              {
+                "field": "Vínculos societarios y personales",
+                "reason": "Su declaración no recoge actividad empresarial. El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos; 12 del ámbito educativo) no arrojaron coincidencia alguna."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Eva Lara Catalá",
+          "retrievedAt": "2026-07-31T08:42:57.642Z",
+          "excerpt": "role: concejal · party: PSOE · portfolios: Educación, Infancia y Adolescencia y Memoria Histórica",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-002",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-31T08:43:00.301Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+          "localPath": "public/data/elections.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-003",
+          "kind": "web",
+          "url": "https://eva.uma.es/",
+          "title": "EVA",
+          "retrievedAt": "2026-07-31T08:43:00.967Z",
+          "excerpt": "Nota: Ha finalizado el plazo de inscripciones, por tanto, ya no se puede solicitar el PIN UMA para entrar en esta plataforma, salvo consultas de años anteriores.",
+          "trust": "low"
+        },
+        {
+          "id": "src-004",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/datos/sra.-d%C2%AA.-eva-lara-catal%C3%A1",
+          "title": "Sra. Dª. Eva Lara Catalá | Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-31T08:43:00.967Z",
+          "excerpt": "Áreas: Educación, Infancia y Adolescencia y Memoria Histórica.",
+          "trust": "high"
+        },
+        {
+          "id": "src-005",
+          "kind": "web",
+          "url": "https://eva.uma.es/eva/preguntasfrecuentes",
+          "title": "EVA",
+          "retrievedAt": "2026-07-31T08:43:00.967Z",
+          "excerpt": "Acceder mediante certificado digital o PIN UMA a la plataforma EVA en las fechas de matrícula que se establezcan para la convocatoria correspondiente. Si no tienes certificado digital, en la página …",
+          "trust": "low"
+        },
+        {
+          "id": "src-006",
+          "kind": "web",
+          "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+          "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+          "retrievedAt": "2026-07-31T08:43:00.970Z",
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+          "trust": "medium"
+        },
+        {
+          "id": "src-007",
+          "kind": "web",
+          "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+          "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+          "retrievedAt": "2026-07-31T08:43:00.970Z",
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-008",
+          "kind": "web",
+          "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+          "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+          "retrievedAt": "2026-07-31T08:43:00.970Z",
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+          "trust": "low"
+        },
+        {
+          "id": "src-009",
+          "kind": "web",
+          "url": "https://www.familjeliv.se/forum/thread/23360780-problem-med-stayfriends",
+          "title": "Problem med stayfriends - FamiljeLiv.se",
+          "retrievedAt": "2026-07-31T08:43:01.381Z",
+          "excerpt": "Problem med stayfriends Varje gång jag försöker logga in kommer samma inloggningsida upp om och om igen. Om jag skriver fel lösenord med flit så kommer det upp en annan sida där det står att jag …",
+          "trust": "low"
+        },
+        {
+          "id": "src-010",
+          "kind": "web",
+          "url": "https://www.familjeliv.se/forum/thread/67851290-hur-stanger-man-stay-friends-konto",
+          "title": "Hur stänger man Stay friends konto? - FamiljeLiv.se",
+          "retrievedAt": "2026-07-31T08:43:01.381Z",
+          "excerpt": "Hur stänger man Stay friends konto? Vill stänga ner mitt Stay friends konto. Men jag hittar inte funktionen för det. Någon som vet?",
+          "trust": "low"
+        },
+        {
+          "id": "src-011",
+          "kind": "web",
+          "url": "https://www.familjeliv.se/forum/thread/30311047-klassfoton-pa-stayfriends",
+          "title": "Klassfoton på StayFriends? - FamiljeLiv.se",
+          "retrievedAt": "2026-07-31T08:43:01.381Z",
+          "excerpt": "Klassfoton på StayFriends? Hej, jag och mamma satt och kika på StayFriends o hon hittade sina klasskaamrater från sent 70 tal och klassfoton, är det någon som måste ladda upp det som är …",
+          "trust": "low"
+        },
+        {
+          "id": "src-012",
+          "kind": "web",
+          "url": "https://cli.github.com/",
+          "title": "GitHub CLI | Take GitHub to the command line",
+          "retrievedAt": "2026-07-31T08:43:02.869Z",
+          "excerpt": "Take GitHub to the command line GitHub CLI brings GitHub to your terminal. Free and open source.",
+          "trust": "low"
+        },
+        {
+          "id": "src-013",
+          "kind": "web",
+          "url": "https://github.com/thedotmack/claude-mem",
+          "title": "GitHub - thedotmack/claude-mem: Persistent Context Across Sessions …",
+          "retrievedAt": "2026-07-31T08:43:02.869Z",
+          "excerpt": "Claude-Mem seamlessly preserves context across sessions by automatically capturing tool usage observations, generating semantic …",
+          "trust": "low"
+        },
+        {
+          "id": "src-014",
+          "kind": "web",
+          "url": "https://github.com/ruvnet/ruflo",
+          "title": "GitHub - ruvnet/ruflo: The leading agent meta-harness. Deploy ...",
+          "retrievedAt": "2026-07-31T08:43:02.869Z",
+          "excerpt": "🌊 The leading agent meta-harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build conversational …",
+          "trust": "low"
+        },
+        {
+          "id": "src-015",
+          "kind": "web",
+          "url": "https://rmunify.com/",
+          "title": "Sign In - RM Unify",
+          "retrievedAt": "2026-07-31T08:43:03.388Z",
+          "excerpt": "RM Unify is your Launch Pad to the Cloud - a single sign-on system, application library and management console designed specifically for education.",
+          "trust": "low"
+        },
+        {
+          "id": "src-016",
+          "kind": "web",
+          "url": "https://unity.rmunify.com/sso",
+          "title": "RM Unify - Automatic Login",
+          "retrievedAt": "2026-07-31T08:43:03.388Z",
+          "excerpt": "RM Unify is your Launch Pad to the Cloud - a single sign-on system, application library and management console designed specifically for education.",
+          "trust": "low"
+        },
+        {
+          "id": "src-017",
+          "kind": "web",
+          "url": "https://www.rm.com/technology/software/rm-unify",
+          "title": "Single sign-on for schools | RM Unify",
+          "retrievedAt": "2026-07-31T08:43:03.388Z",
+          "excerpt": "RM Unify is more than just a landing page; it’s the heartbeat of a trust’s digital infrastructure. It brings your cloud services together behind one login — from Microsoft 365 and Google Workspace to MIS, …",
+          "trust": "low"
+        },
+        {
+          "id": "src-018",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5OQlpvWTZ2TEUwbVJvRU9aM3dsTDdEeEhYSG1EOG5nekVPUldlSGZpRmZFTldhMGRHWkVOUjZsRVJCNjRRcTdhXzZ2RFg4QmhxN1FJX0VJN19aV3lObC1EZ0cwQ0VOM1B3Y0VPS2tackczRjR4M3pFcmNRZFp2RGM?oc=5",
+          "title": "El Castillo de Riba-roja acoge tres noches de jazz y blues con una nueva edición de RIBAJAZZ",
+          "publisher": "Valenciabonita",
+          "publishedAt": "2026-07-07",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-019",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQd3h3YjQyRFAzWjY2ODN4VGtFUjBaWlhXRTZVRkt1UFdDNUMtd3ZSWEpYTTRVS3hNRERPX000bmR4R2RMMjFyeDFGM0FkM2VlMnN0SUIzZlh0Z1RsVTFCcWgzTG9nNHRNWl9TaDl5eExXYUNocmlTNjVDN1NrNG9MSTlieUlVLVd1bUJmSVY4RVNFOXB6dFJBZ3NtYVdmV1lycmo1THJtQTdSa2Z0dDRaMnBnVHVUTTJfell1X0NNVlRHV19JbDZLc21uSW01dXl2c1ItNmdmVWVuYng4UFkzaXRNVzfSAeoBQVVfeXFMT0ktWnNLeHA1d1dFU0pBR1lYMWtWQW1xcVBoMzR0dElXSllkTThla3hNWnhDNjhZT2pJdkotRkFiNUYzcVNIX1Y1OEg5SWowWTEtODVfY1JZWC05Y3AyUi1lQUllZVR4T0drMnJPNEo2T1VxLTRBWWtiMlVjS0p0UGo0a0tfTVNTZ0dDSDNiVkJHQ2ZMTTRBYWp5VTh0ekJKTDVjRE5NUENsbXRtMlBJMF9WQkNITTRrQ0g4OVRXalpmRG03d01sc1Z3WWtfTFhXNTR3NTFzR0pvR1BBb1RqYngyRGFaU013UEp3?oc=5",
+          "title": "Finalizada la nueva mota en Riba-roja de Túria para proteger La Reva de inundaciones",
+          "publisher": "Levante-EMV",
+          "publishedAt": "2026-06-05",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-020",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNbE9McGpCRklMdTUtenVPTEpLVVU5NmpWaS1kbWdtS2NDQkJDNUdJZ0RLdzMyWFNEVl9YMXNDMlhfbjJDQnVTYjl2QmRxUzgyZ2JZZWJpbW9oamdmUno4RmozVGhhQVdrMHRHS2oxRkRWcDJKMkpzNkF2YW0yQ0VvVzZhU3E4OHdYNUZlVkNKM0s2OW9MN2pfU1pJNnZKSXdjNG5Wdy0zbGFabmZ2bGg5WFpjaHI5MlJKaFhTUnVGbFlScUFsUTJCTDktUlEzOTlLRm5QZmZsSlBpUdIB3wFBVV95cUxPYjRPcjNwVjVjc1l6ZXprZ3g5R2docEFpTDYxVUw0eHphZS1KTDZvck9lanZHaGFyTUV1ektjeTMwMUh5TkxnbTdjX3pfVm9aRmM2Tk5xbjhLLUxBVnpkUXJndG5nMmFlRm9WekJxQXlzNlg1QXJYWW1XUFc5VllHeDNCeEpxb3hyQW5Yb2IyX3Zid1VER0M3UFBITW9NNDJfcUdWeGV2Q1VraFlWN3VsTm03M3hrRkFsMk80M2lYZklDa3AyQnlmM0VZV2g0aGdwS2kzN3NfV1B4YlNhNEFR?oc=5",
+          "title": "Riba-roja contará con una nueva rotonda en La Reva para mejorar el acceso al polígono industrial",
+          "publisher": "Levante-EMV",
+          "publishedAt": "2026-05-27",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-021",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxPSmZJTUJsNFZ4TGh2NjdQV21zaGVrR2RaTUQ1bUdVTHdsNWhOMVdsUk1YNGJRNFZCbTlJZEhVYkkwdnJfRm5OeUYwWWZObE5kYk5uTDhsUGhLZ0VGVXJrZF83TnNpTzhmT081RHg1RjB3bTdDcmFyMjRCeWFaWlJ4ajYtTk1KZnV6Rlhvc0NrVnpHaWNvUzNTWVlLbmlpdVpIWUZ0V3dPUDFGWmlGSng5OTBIOU43eFNsV2g4eWNObjhLQXhfMFluSnp1bTBfeDBVR3NReFJBZEJ5VGlWT3Zv0gHkAUFVX3lxTFB5ZFhUY0hsLU02V3NfaWFZSlFscTQtazN1R2xKcU1ZeXB2bHdzcjZVOWtPZ245T0ROU25WRGQ4aDhXNUNHNzN3bDEtaGFJa3J1MElMOUR2aHJINDZPTktqdFhfSDRJazBQbVphak8xNWlRS3JNS2hwOGNvdFRMRjgxV3NhS09mU24tWXV2c2QxcmNSTzd1NnpKNmxORjlpamEyeGowSFh6UzJCclBtbTRUM1JGQjRYQ0xYQ3R3akVUMk9YQ2c4T2VsQlNvNHVITldleFVqVlA5YzFLd1RQZEgtVU5wQw?oc=5",
+          "title": "Riba-roja de Túria pide a la Generalitat declarar zona tensionada por el alza del alquiler",
+          "publisher": "Levante-EMV",
+          "publishedAt": "2026-05-13",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-022",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQXzBuTmtoekIzMVBNbzVUNGFQanY3WkliN0xIbjNIMElvQlZWaFlOZ2Y5MmNXcWJPMHVKNXpLX3dVVmRYSjczQzBQZkp3b0VGVnlaemtyRkdxcTRmaVQ3cVExdkVUTFNUVnp5UkNKdG04YmJJZHpueE1LOE5NYnJRbHNabjJBdzdJNEgxYk00YnFaWE1NWkhCMFE3VEtkRTZQVHA2bjdCNWN5VUhic2x5dUY1alJZT3lsVFVpbHFuYjlYWjdDWUZqQWZmc1cwUzllU0F4YVZwMA?oc=5",
+          "title": "Umivale Activa reabre sus instalaciones en el polígono La Reva de Riba-roja de Túria",
+          "publisher": "Umivale Activa",
+          "publishedAt": "2026-04-14",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-023",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNcUVqQmpJRzNBYmtLdzJaWTE4TjVRbl9CQkx2aWVIb0xieVF5Q2pXU01YSUdlZUVodHVjeWtGT2F2Z2Y3dlljRjZ6M0sxTnZ4U0hnSzhJenViWUliLU9qWnU1YnBCRC1zT0RqTGlkZkRyajVzcjM5NkZOZjhnMk4zOERxSjhZQkNjcmREX1FBdnFqOXgycTc5cjU2MTh1aGFLRTBhVFhXaGdtN01HMndQMjJqNXVMUGlRYy1mUVNKQmZxRVlDc19qc05ySFdIMUtQOV9HSFpjdTVtSUpsRFhMcTVtUWlfYWRu?oc=5",
+          "title": "Riba-roja de Túria limita el acceso a La Reva con una barrera con lector de matrículas",
+          "publisher": "El Periódico de Aquí",
+          "publishedAt": "2026-04-02",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-024",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOWHNkR2V2SlB1NDVHOU5LQUZjWHptbFV3VlVXdld3cm8wTkR2eDlDUHZVTXVNWWp0UFVyeU5rOHltc0V2dkc1NW1ldlZqRUhFRE1GY1VrTVdlMmg5SWtNWG9wRWQzR09OZWhvNHBOSk1nNzZlNGVveGhqd1ZjUUVMcTZ6Q3NacWd2N2J4MmZtT3l5cDB3Q3Y1Tzd6OGRSNEY4ZEZzTVZzRG5MWGl1bGN5NWE5TE1fdlVEMWJTZGtBNk9iVnk5a2ZjTlNYS2RBU1ZaTHdNYk56c9IB3AFBVV95cUxQV0piQTJ3ZTA3cERFdDEzT0gxcms0RE5zVmtsOHRSSmJGOGU0MDRVbGhIekladEo3bF95eE5nbnltNGNMUFVfdjlFTF9zOTNOV3FvUk5qcHV1SE8wS213ODVrLU5fQktwaVVlWHNjb284MDVGYzNYeVZvbDVBRVRNN1JvQTdLdE41c2xQblZvQjRQTUdqbGtZTXUwSzh0MlVqdjBLaFpoQzFxRkhhbmpMUTNOTTB0TU5Cb0s3c3VtMHlsaDAtSlZhVzV1ZGNGYWstMmMyWnhSMHlkOWt3?oc=5",
+          "title": "Riba-roja de Túria regulará las tasas de los conservatorios de música y danza a lo largo de este 2026",
+          "publisher": "Levante-EMV",
+          "publishedAt": "2026-03-24",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-025",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxOaHNIVkVkdWNXRnZfN2txUzdPRlZNS29oRHE4c0g0b2RqM1k3TFRKcDdmR01ZcDFDSWU0YmlFRU5pVFR3bkdRTjdibWN5TXZzRXZxcllGMFBPaU5WamowRDl3VktYVkRTQ1lIbEFEVGNsRmJDaHFvYjVyYUNkRG1OZzBLeHJvYjl6eDlhQ2VGS1Y2N3JiQTN6dGlwOWVOMGlPdlZoMmQ3ajFwT2NRLTk4bFlDOFBVRnFDX0dyOHh4V3dQZDdOZG1LcFRkT0d2YWVTR3fSAdcBQVVfeXFMT3YwbVE3S1VxVnMwQUpjeXJLdnFFUU00elE0QUFFb3VzTWZ2NFV2ZlFhUUNXX3AxbUV6NnQ0YjN2RWNvZ0ZfUXJRWlB6OWozeWdocFp5em5EbVF2VlQyRnY3MDVodkJqQWRXVi14WEtFNjViNjNjRmFpOUV1YnR5RzJvOU5kb2hEc29OZmZyTGQzQ0dMVXhzZkZkRmhrZ0JvQWIzVmxodjRLN1FlTWZ6NEFIQ2RjUzAzTy1VQXh3cHpCd1p0b1B5S3JXSUhKeDdTelc4aklvQkk?oc=5",
+          "title": "Riba-roja vigilará con drones el lanzamiento de pirotecnia no autorizada",
+          "publisher": "Levante-EMV",
+          "publishedAt": "2026-03-13",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "trust": "low"
+        },
+        {
+          "id": "src-026",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-013-afi-45bb2c · 2026-07-06 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "acordándose las acciones que se desarrollarán durante los próximos cuatro años.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-027",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-066-acu-9203f6 · 2026-07-06 · acusacion_publica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "vuelven a traernos hoy aquí una moción con clara intencionalidad política al igual que hicieron en abril",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-028",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-073-afi-e0ecd5 · 2026-07-06 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "Ha puesto sobre la mesa una inversión de 3.386 millones de euros para enseñanza pública.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-029",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-073-afi-3cb49a · 2026-07-06 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "Ha previsto 7.742 nuevas plazas docentes.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-030",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-076-acu-c02829 · 2026-07-06 · acusacion_publica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "no aporta soluciones nuevas, no suma a la negociación y solo busca rédito político a costa de docentes, de familias valencianas y de los chavales que están estudiando.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-031",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-086-acu-151ccd · 2026-07-06 · acusacion_publica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "Gobierno intenta vender como propias obras que son frutos precisamente de ese plan",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-032",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-085-acu-208176 · 2026-07-06 · acusacion_publica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "ahora el actual Gobierno intenta vender como propias obras que son frutos precisamente de ese plan, mientras no impulsa una nueva planificación ambiciosa para responder a las necesidades de los centros.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-033",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-097-acu-da0194 · 2026-07-06 · acusacion_publica",
+          "retrievedAt": "2026-07-31T08:43:06.704Z",
+          "excerpt": "Cuando ustedes, con el Botanic, en toda la legislatura abrieron 56.",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-034",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Fuente oficial: www.ribarroja.es",
+          "retrievedAt": "2026-07-31T08:43:06.707Z",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
+        },
+        {
+          "id": "src-035",
+          "kind": "web",
+          "url": "https://www.ad.nl/",
+          "title": "AD.nl, het laatste nieuws uit binnen- en buitenland, sport en show",
+          "retrievedAt": "2026-07-31T08:43:08.383Z",
+          "excerpt": "11 de dic de 2022 · Blijf altijd op de hoogte van het laatste nieuws via de snelste en leukste nieuwssite van Nederland, 24 uur per dag en 7 dagen in de week",
+          "trust": "low"
+        },
+        {
+          "id": "src-036",
+          "kind": "web",
+          "url": "http://www.ribarroja.es/es/portal_de_transparencia/nominas",
+          "title": "Retribuciones | Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-31T08:43:08.383Z",
+          "excerpt": "Retribuciones El órgano gestor en materia de transparencia y Gobierno Abierto dispone y custodia los ejemplares originales de las nónimas.",
+          "trust": "high"
+        },
+        {
+          "id": "src-037",
+          "kind": "web",
+          "url": "https://www.ad.nl/sport/",
+          "title": "Sport | AD.nl",
+          "retrievedAt": "2026-07-31T08:43:08.383Z",
+          "excerpt": "Blijf altijd op de hoogte van het laatste nieuws via de snelste en leukste nieuwssite van Nederland, 24 uur per dag en 7 dagen in de week",
+          "trust": "low"
+        },
+        {
+          "id": "src-038",
+          "kind": "web",
+          "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
+          "title": "Campaña de Renta 2025 - Agencia Tributaria",
+          "retrievedAt": "2026-07-31T08:43:08.674Z",
+          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este …",
+          "trust": "high"
+        },
+        {
+          "id": "src-039",
+          "kind": "web",
+          "url": "https://sede.agenciatributaria.gob.es/",
+          "title": "Agencia Tributaria: Inicio",
+          "retrievedAt": "2026-07-31T08:43:08.674Z",
+          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la …",
+          "trust": "high"
+        },
+        {
+          "id": "src-040",
+          "kind": "web",
+          "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
+          "title": "Inicio - Agencia Tributaria",
+          "retrievedAt": "2026-07-31T08:43:08.674Z",
+          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite.",
+          "trust": "low"
+        },
+        {
+          "id": "src-041",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T08:43:09.805Z",
+          "excerpt": "eva-lara-catala · Eva Lara Catalá · Sra. · concejal · PSOE · Educación · Infancia y Adolescencia y Memoria Histórica · alcaldia@ribarroja.es · /data/photos/eva-lara-catala.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-042",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T08:43:09.805Z",
+          "excerpt": "salvador-evaristo-ferrer-cortina · Salvador Evaristo Ferrer Cortina · Sr. · concejal · PP ·  · popularesribarroja@gmail.com · /data/photos/salvador-evaristo-ferrer-cortina.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-043",
+          "kind": "local-snapshot",
+          "title": "public/data/press.json · sources",
+          "retrievedAt": "2026-07-31T08:43:09.805Z",
+          "excerpt": "Levante-EMV",
+          "localPath": "public/data/press.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-044",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Texto completo: ribarroja.es",
+          "retrievedAt": "2026-07-31T08:43:11.600Z",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
+        },
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Eva Lara Catalá · identidad",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "PRESENTACIÓN 22 MAYO 1979 VALENCIA elara@ribarroja.es",
+          "trust": "high"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Eva Lara Catalá · formación",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "FORMACIÓN LICENCIADA EN HISTÓRIA• UNIVERSIDAD VALENCIA• OTROS: Estudios de Arte Dramático en Sala Escalante de Valencia Nivel superior de Valenciano y Francés Nivel medio de Inglés",
+          "trust": "high"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Eva-Lara-Catala.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Eva Lara Catalá · experiencia",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "EXPERIENCIA PROFESIONAL PROFESORA DE SECUNDARIA GVA • 2006 – ACTUAL • IES EL QUINT RIBA-ROJA DE TÚRIA Clases de Geografía e Historia e Historia del arte Coordinadora de Igualdad y Convivencia Coordinadora del proyecto Memoria Democrática",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · proclamación de electos",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · juramento o promesa",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · toma de posesión (lista con la sujeto)",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "- Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March - Maria Teresa Pozuelo Martin - Roberto Pascual Raga Gadea",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista (n.º 5, independiente)",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente)",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 5)",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "5. Se delegan en la Concejal Dª Eva Lara las competencias que al Alcalde le corresponden en materia de Educación, Infancia y Adolescencia y Memoria Histórica. 6. Se delegan en el Concejal D. Rafael Gómez, las competencias que al Alcalde le",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · composición de la Junta de Gobierno Local",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "1. Dª Mª Teresa Pozuelo Martín. 2. D. José Luis Ramos March. 3. D. José Ángel Hernández Carrizosa. 4. Dª Eva Lara Catalá. 5. D. Rafael Gómez Sánchez.",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · régimen de indemnizaciones y asistencias",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias: - Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este importe los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni parcial). - Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán percibir este importe los miembros de la Corporación que formen parte de la misma que",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Concejala EVA LARA CATALÁ 65.000,00 1.027,00 66.027,00 61.085,76 Concejal RAFAEL GOMEZ SANCHEZ 37.500,00 3.800,00 41.300,00 4.400,00",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "JOSE ANGEL HERNANDEZ CARRIZOSA Concejal Ayuntamiento Riba-roja de Túria 14/06/2019 EVA LARA CATALÁ Profesora IES el Quint 00/09/2008 RAFAEL GOMEZ SANCHEZ Concejal Ayuntamiento Riba-roja de Túria 15/06/2019",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+          "trust": "high"
+        },
+        {
+          "id": "src-073",
+          "kind": "local-snapshot",
+          "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+          "retrievedAt": "2026-07-31T08:54:21.979Z",
+          "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Lara Catalá». Contratos del ámbito educativo desde julio de 2023: 12 identificados — muestra demasiado pequeña para comparar indicadores de competencia; ninguno con vínculo nominal con la concejala. No figura en las candidaturas de 2015 (BOP n.º 79) ni de 2019 (BOP n.º 82): la de 2023 es su primera lista.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+        "Su CV y su declaración estatutaria difieren en el inicio de su plaza docente (2006 frente a 09/2008); ambos son autodeclarados y la discrepancia se publica sin resolver."
       ],
       "legalSensitivity": "medium",
       "requiresHumanApproval": true
