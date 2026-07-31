@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T08:15:52.727Z",
+  "generatedAt": "2026-07-31T08:15:27.822Z",
   "source": {
     "description": "Daily press-article link-rot audit + Wayback Machine archival index. Used to surface dead source URLs on /laboratorio and let curators cite the snapshot instead."
   },
@@ -18,7 +18,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:42.874Z",
+      "checkedAt": "2026-07-31T08:15:14.327Z",
       "error": null
     },
     {
@@ -28,7 +28,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:43.663Z",
+      "checkedAt": "2026-07-31T08:15:17.096Z",
       "error": null
     },
     {
@@ -38,7 +38,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:44.596Z",
+      "checkedAt": "2026-07-31T08:15:17.986Z",
       "error": null
     },
     {
@@ -48,7 +48,7 @@
       "articleSource": "El Periódico de Aquí",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:47.817Z",
+      "checkedAt": "2026-07-31T08:15:19.245Z",
       "error": null
     },
     {
@@ -58,7 +58,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:48.939Z",
+      "checkedAt": "2026-07-31T08:15:20.114Z",
       "error": null
     },
     {
@@ -68,7 +68,7 @@
       "articleSource": "Valencia Plaza",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:50.153Z",
+      "checkedAt": "2026-07-31T08:15:23.036Z",
       "error": null
     },
     {
@@ -78,7 +78,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:51.232Z",
+      "checkedAt": "2026-07-31T08:15:25.098Z",
       "error": null
     },
     {
@@ -88,7 +88,7 @@
       "articleSource": "Periòdic del Camp de Túria",
       "archivedUrl": null,
       "archivedAt": null,
-      "checkedAt": "2026-07-30T08:15:52.525Z",
+      "checkedAt": "2026-07-31T08:15:27.620Z",
       "error": null
     }
   ]
