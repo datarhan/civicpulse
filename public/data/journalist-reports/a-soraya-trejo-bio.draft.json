@@ -1,0 +1,755 @@
+{
+  "id": "r-soraya-trejo-bio-2026-07-31",
+  "assignmentId": "a-soraya-trejo-bio",
+  "generatedAt": "2026-07-31T17:31:26.979Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "soraya-trejo-delgado",
+        "photoPath": "/data/photos/soraya-trejo-delgado.jpg",
+        "partyTone": "intel",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo municipal",
+        "bodyMarkdown": "Soraya Trejo Delgado es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»** — como cinco de los siete miembros del grupo. Es la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+        "sourceIds": [
+          "src-062",
+          "src-068"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y toma de posesión",
+        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.\n\nSin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejal, n.º 2 de la lista y portavoz suplente del Grupo Municipal Popular («Independiente»)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 14736.27,
+            "description": "Activo declarado al tomar posesión (2023): 7.546,00 € en bienes inmuebles + 7.190,27 € en otros bienes = 14.736,27 €; pasivo declarado: 0,00 €. Es el patrimonio declarado más bajo de la corporación 2023 — coherente con el inicio de una carrera profesional. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-065",
+              "src-067"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Actividad declarada: becaria en el despacho E.A.U. Llorens, Fornés y Navarro, con incorporación el 08-06-2023 — nueve días antes de tomar posesión como concejal. Sin dedicación exclusiva ni parcial en el Ayuntamiento, la actividad privada es compatible por diseño con el régimen de asistencias.",
+            "sourceIds": [
+              "src-066",
+              "src-064"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-064"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Trayectoria y actividad declarada",
+        "bodyMarkdown": "Su única actividad profesional documentada es la que consigna su declaración estatutaria: **becaria en el despacho E.A.U. Llorens, Fornés y Navarro**, con fecha de incorporación el **8 de junio de 2023 — nueve días antes de tomar posesión** como concejal. El perfil es el de una carrera profesional en su inicio, coherente con el patrimonio declarado más bajo de la corporación (14.736,27 € de activo, sin deudas).\n\nAl no publicar el portal municipal CV suyo, no consta formación académica ni trayectoria anterior verificable. Este medio no completa ese vacío con fuentes no documentales.",
+        "sourceIds": [
+          "src-066",
+          "src-065",
+          "src-068"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «TREJO» y **0** para el despacho de su actividad declarada (Llorens, Fornés y Navarro). Ni la concejal ni el bufete constan como adjudicatarios del Ayuntamiento.\n\nLímites declarados: la naturaleza y composición del despacho E.A.U. Llorens, Fornés y Navarro no es reconstruible con fuentes abiertas gratuitas (el Registro Mercantil no ofrece vía estructurada sin pago), y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Soraya Trejo Delgado",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Alberto Gimeno Calvo (portavoz)",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n4",
+            "label": "E.A.U. Llorens, Fornés y Navarro (despacho)",
+            "tone": "intel",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal n.º 2 del grupo, registrada «(Independiente)» (acta 07-07-2023)",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "portavoz suplente del grupo cuyo portavoz titular es Gimeno",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "becaria desde el 08-06-2023 (declaración de actividades)",
+            "sourceIds": [
+              "src-066"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "pp-voto-contra-fondos-dana",
+          "pp-gasto-innecesario-pacadar",
+          "pp-critica-gestion-socialista"
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2023-06-08",
+            "label": "Se incorpora como becaria al despacho E.A.U. Llorens, Fornés y Navarro — nueve días antes de la toma de posesión (declaración de actividades)",
+            "sourceIds": [
+              "src-066"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamada concejal electa y juramento en la sesión constitutiva; primera candidatura documentada (n.º 2 del PP)",
+            "sourceIds": [
+              "src-060",
+              "src-061"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "N.º 2 y portavoz suplente del Grupo Municipal Popular, registrada «(Independiente)»; titular en comisiones; sin dedicación (asistencias)",
+            "sourceIds": [
+              "src-062",
+              "src-063",
+              "src-064"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 14.736,27 € · pasivo 0,00 € — el más bajo de la corporación (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-065",
+              "src-067"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "CV no publicado en el portal municipal",
+            "reason": "El portal de transparencia publica CV de 17 miembros de la corporación, pero no de Soraya Trejo ni de otros tres concejales del PP (Guzmán, Boix, Navarro Sanfeliu). Sin CV, no consta fecha de nacimiento, formación académica ni trayectoria previa — este perfil se limita a actas, boletines y declaración estatutaria."
+          },
+          {
+            "field": "Despacho E.A.U. Llorens, Fornés y Navarro",
+            "reason": "La naturaleza, forma jurídica y composición del despacho de su actividad declarada no son reconstruibles con fuentes abiertas gratuitas. El barrido de adjudicatarios municipales devuelve 0 coincidencias para el bufete."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — Soraya Trejo Delgado",
+      "retrievedAt": "2026-07-31T17:26:38.957Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: concejal · party: PP · portfolios: "
+    },
+    {
+      "id": "src-002",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T17:26:40.956Z",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+      "title": "Soraya (cantautora) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:41.538Z",
+      "trust": "medium",
+      "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969- Miami, Florida, 10 de mayo de 2006), conocida monónimamente como Soraya, fue una cantante colombo …"
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://www.eljuzgado.es/concejales/soraya-trejo-delgado-concejal-de-riba-roja-de-turia/",
+      "title": "SORAYA TREJO DELGADO concejal de Riba-roja de Túria - PP",
+      "retrievedAt": "2026-07-31T17:26:41.538Z",
+      "trust": "low",
+      "excerpt": "Soraya Trejo delgado ha sido elegido como concejal de Concejal en las ultimas elecciones municipales de 2023. Se presentó como candidato del partido político PP. Tenemos todos los alcaldes de España, incluido el de Riba-roja de Túria, el cual es el máximo responsable municipal."
+    },
+    {
+      "id": "src-005",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+      "title": "Soraya Arnelas - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:41.538Z",
+      "trust": "medium",
+      "excerpt": "Soraya Arnelas Rubiales (Valencia de Alcántara, Cáceres, 13 de septiembre de 1982), conocida simplemente como Soraya Arnelas o Soraya, es una cantante, compositora, actriz y modelo española."
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T17:26:41.538Z",
+      "trust": "medium",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T17:26:41.538Z",
+      "trust": "medium",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T17:26:41.538Z",
+      "trust": "low",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Ant%C3%A1rtida",
+      "title": "Antártida - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:41.920Z",
+      "trust": "medium",
+      "excerpt": "En 1895, el primer desembarco confirmado fue dirigido por un grupo noruego. La Antártida es de facto un condominio, que se rige …"
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://concepto.de/antartida/",
+      "title": "Antártida - Información, clima, relieve, fauna y características",
+      "retrievedAt": "2026-07-31T17:26:41.920Z",
+      "trust": "low",
+      "excerpt": "Antártida Te explicamos todo sobre la Antártida, su clima, flora, fauna y otras características. Además, los países que conforman el …"
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://pt.wikipedia.org/wiki/Ant%C3%A1rtida",
+      "title": "Antártida – Wikipédia, a enciclopédia livre",
+      "retrievedAt": "2026-07-31T17:26:41.920Z",
+      "trust": "medium",
+      "excerpt": "Antártida ou Antártica (ver questão do nome) é o mais meridional e o segundo menor dos continentes (maior apenas que a …"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://www.battle-bear.de/",
+      "title": "Battle Bear - Dein Shop für Trading Cards (Sammelkarten) und Games",
+      "retrievedAt": "2026-07-31T17:26:42.207Z",
+      "trust": "low",
+      "excerpt": "Battle Bear Trading Cards & Games ist Dein grosser Online-Shop und lokaler Fachhändler für Sammelkarten (Trading Card), …"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://www.tcgcheck.de/tcg-stores/index",
+      "title": "TCG Stores & Sammelkarten Laden in der Nähe finden | TCGCHECK",
+      "retrievedAt": "2026-07-31T17:26:42.208Z",
+      "trust": "low",
+      "excerpt": "Du suchst einen TCG Store oder Sammelkarten Laden in der Nähe? Mit unserer interaktiven Karte findest du schnell lokale Händler, …"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://boardoro.com/de/europe/germany/hameln/stores",
+      "title": "Spieleläden in Hameln | Shops & Events finden",
+      "retrievedAt": "2026-07-31T17:26:42.208Z",
+      "trust": "low",
+      "excerpt": "Entdecke die besten lokalen Spieleläden, TCG-Shops und Tabletop-Communitys in Hameln."
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://www.eporner.com/tag/bokep/",
+      "title": "Bokep Porn - Indo Bokep & Bokep Indo Videos - EPORNER",
+      "retrievedAt": "2026-07-31T17:26:42.789Z",
+      "trust": "low",
+      "excerpt": "Watch Bokep hd porn videos for free on Eporner.com. We have 3,561 videos with Bokep, Indo Bokep, Bokep Indo, Indonesia Bokep, …"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://onlybokep.com/category/indonesia/",
+      "title": "Bokep Indo Archives - OnlyBokep",
+      "retrievedAt": "2026-07-31T17:26:42.789Z",
+      "trust": "low",
+      "excerpt": "Nonton Bokep Indo Newest, Bokep Viral Ngentot Doggy Style Cewek Mulus HD - update setiap hari hanya di onlybokep."
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://www.eporner.com/tag/indo/",
+      "title": "Indo Porn - Indo Bokep & Bokep Indo Videos - EPORNER",
+      "retrievedAt": "2026-07-31T17:26:42.789Z",
+      "trust": "low",
+      "excerpt": "Watch Indo hd porn videos for free on Eporner.com. We have 3,296 videos with Indo, Indo Bokep, Bokep Indo, Jav Sub Indo, Bokep …"
+    },
+    {
+      "id": "src-018",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.569Z",
+      "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+      "trust": "high",
+      "excerpt": "[3570.0 → 3600.0] Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo qu"
+    },
+    {
+      "id": "src-019",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.569Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] DERECHO: [0.0 → 0.0] PRIMERO.- El art. 5.1 del RD 128/2018, de 16 de marzo, por el que se regula el régimen [0.0 → 0.0] jurídico de los funcionarios de Administración Local con habilitación nacional, al señal"
+    },
+    {
+      "id": "src-020",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.569Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[570.0 → 600.0] del Partido Socialista, que es la práctica política de portar así expedientes de reconocimiento de estado judicial. Además, de hecho, tenemos otro punto de urgencia que ha llegado hoy, hace muy poco, y qu"
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.569Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] Líder: Raquel Pamblanco Paredes. Concejala delegada [0.0 → 0.0] Persona empleada pública responsable: Fernando Tejera, [0.0 → 0.0] Intendente de la Policía Local. [0.0 → 0.0] C/Carretera de Villamarchante, 11"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.853Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 30.0] Música [30.0 → 60.0] Música [60.0 → 90.0] Música [90.0 → 120.0] Música [120.0 → 150.0] Música [150.0 → 180.0] Música [180.0 → 210.0] Música [210.0 → 240.0] Música [240.0 → 270.0] Música [270.0 → 300.0] Músic"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.853Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[330.0 → 360.0] Música [360.0 → 390.0] Música Música Música Música Música Música Música Música Música Música Música Música Música Música Música [390.0 → 420.0] Buenas tardes a todos. Vamos a comenzar por lo ordinario. Ya"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:46.853Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[360.0 → 390.0] Música Música Música Música Música Música Música Música Música Música Música Música Música Música Música [390.0 → 420.0] Buenas tardes a todos. Vamos a comenzar por lo ordinario. Ya sé que hoy nos acompañ"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:47.178Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[6030.0 → 6060.0] vamos a votar a favor de esta propuesta entendemos que queráis pero sí que cogemos esa inquietud que tenemos y nuestro compromiso es que en la junta de portavoces próximo poner como punto llevar el trat"
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:47.179Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[5460.0 → 5490.0] intervenciones de los regidores y regidores o incluso que se cambie en el ROM las intervenciones porque actualmente no está actualizado o incluso lo que hablabais de la intervención final del presidente"
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:47.179Z",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high",
+      "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:"
+    },
+    {
+      "id": "src-028",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T17:26:47.650Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-029",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T17:26:48.282Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "maria-esther-gomez-laredo · María Esther Gómez Laredo · Sra. · concejal · PSOE · Participación y transparencia · Atención a la ciudadanía · Turismo y patrimonio histórico · Promoción de la Salud e Infraestructuras sanitarias · alcaldia@riba"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T17:26:48.282Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "raquel-pamblanco-paredes · Raquel Pamblanco Paredes · Sra. · concejal · PSOE · Seguridad y emergencias · Igualdad · Comunicación e información · Protocolo y Bienestar Animal · alcaldia@ribarroja.es · /data/photos/raquel-pamblanco-paredes.jp"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "public/data/press.json · items",
+      "retrievedAt": "2026-07-31T17:26:48.282Z",
+      "localPath": "public/data/press.json",
+      "trust": "high",
+      "excerpt": "1frgix3 · El patrimonio de Riba-roja crece hasta los 321 millones en los últimos diez años tras actualizar el inventario · https://news.google.com/rss/articles/CBMi_AFBVV95cUxOejJsTVFsVVNqbFdJSWZVMGl4UmhGT1M2U2FHZ1YyV1pRMEJhR0k3Vm9RLThtOVhL"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:48.282Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[1020.0 → 1050.0] En este caso, cuando va a Granada, lo revisaré, pero creo que sí que estaba de servicio. Además, va vestido en el uniforme de policía local. Pero hacemos reconocimiento porque, detrás de que vaya vestid"
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:48.282Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[1050.0 → 1080.0] y que hay que tener una buena calidad de vida. [1080.0 → 1110.0] El PMS 2022 dice el mismo proyecto en distintas áreas de gasto. El 15 de julio de 2022. José Ángel. Sí. Bueno, en este caso, el importe d"
+    },
+    {
+      "id": "src-034",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T17:26:48.282Z",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high",
+      "excerpt": "[420.0 → 450.0] Vamos a empezar con nosotros, por primera vez, en el Pleno. Y vamos a pasar al orden del día, si os parece. La primera aprobación de actes, aprobemos. La segunda parte, parte resolutiva, el punto 2, aprob"
+    },
+    {
+      "id": "src-035",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+      "title": "Soraya (cantautora) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:49.140Z",
+      "trust": "medium",
+      "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969- Miami, Florida, 10 de mayo de 2006), conocida monónimamente como Soraya, fue una cantante colombo …"
+    },
+    {
+      "id": "src-036",
+      "kind": "web",
+      "url": "http://www.ribarroja.es/es/ayuntamiento/corporacion_municipal",
+      "title": "Corporación Municipal | Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T17:26:49.140Z",
+      "trust": "high",
+      "excerpt": "Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional. Sra. Dª. Teresa Pozuelo Martín. Áreas: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio. Sr. D. José Luis Ramos March."
+    },
+    {
+      "id": "src-037",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+      "title": "Soraya Arnelas - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:49.140Z",
+      "trust": "medium",
+      "excerpt": "Soraya Arnelas Rubiales (Valencia de Alcántara, Cáceres, 13 de septiembre de 1982), conocida simplemente como Soraya Arnelas o Soraya, es una cantante, compositora, actriz y modelo española."
+    },
+    {
+      "id": "src-038",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+      "title": "Soraya (cantautora) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:52.260Z",
+      "trust": "medium",
+      "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969- Miami, Florida, 10 de mayo de 2006), conocida …"
+    },
+    {
+      "id": "src-039",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+      "title": "Soraya Arnelas - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T17:26:52.260Z",
+      "trust": "medium",
+      "excerpt": "Soraya Arnelas Rubiales (Valencia de Alcántara, Cáceres, 13 de septiembre de 1982), conocida simplemente como Soraya Arnelas …"
+    },
+    {
+      "id": "src-040",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/Soraya_(musician)",
+      "title": "Soraya (musician) - Wikipedia",
+      "retrievedAt": "2026-07-31T17:26:52.260Z",
+      "trust": "medium",
+      "excerpt": "Soraya Raquel Lamilla Cuevas (March 11, 1969 – May 10, 2006) was a Colombian-American singer-songwriter, guitarist, arranger …"
+    },
+    {
+      "id": "src-041",
+      "kind": "web",
+      "url": "https://www.youtube.com/watch?v=AId4I9jy4sg",
+      "title": "Soraya - De Repente (Video oficial HD 1996) - YouTube",
+      "retrievedAt": "2026-07-31T17:26:52.260Z",
+      "trust": "low",
+      "excerpt": "#soraya #DeRepente Mil ojos mirando hacia mí De los tuyos no puedo huir Tu mirada me tiene encantada Si te dejo entrar, estaré …"
+    },
+    {
+      "id": "src-042",
+      "kind": "web",
+      "url": "https://music.youtube.com/playlist?list=PLgaFNC_I_ZkkogwJScsfCtbRBqrC0mxQ_",
+      "title": "Soraya - Grandes Exitos, Sus Mejores Canciones, De Repente, Quedate ...",
+      "retrievedAt": "2026-07-31T17:26:52.260Z",
+      "trust": "low",
+      "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969-Miami, Florida, 10 de mayo de 2006), conocida …"
+    },
+    {
+      "id": "src-043",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T17:26:54.650Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-044",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T17:26:54.651Z",
+      "trust": "high",
+      "excerpt": "Soraya (cantautora) - Wikipedia, la enciclopedia libre <link rel=\"preconnect\" href=\"//upload.wikimedi",
+      "archiveUrl": "http://web.archive.org/web/20251113205029/https://es.wikipedia.org/wiki/Soraya_(cantautora)"
+    },
+    {
+      "id": "src-045",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T17:26:54.651Z",
+      "trust": "high",
+      "excerpt": "Soraya Arnelas - Wikipedia, la enciclopedia libre <link rel=\"preconnect\" href=\"//upload.wikimedia.o",
+      "archiveUrl": "http://web.archive.org/web/20260423070533/https://es.wikipedia.org/wiki/Soraya_Arnelas"
+    },
+    {
+      "id": "src-060",
+      "retrievedAt": "2026-07-31T17:34:01.372Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Jose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado"
+    },
+    {
+      "id": "src-061",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo"
+    },
+    {
+      "id": "src-062",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Trejo n.º 2, «(Independiente)», portavoz suplente)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:"
+    },
+    {
+      "id": "src-063",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo"
+    },
+    {
+      "id": "src-064",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+    },
+    {
+      "id": "src-065",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "SORAYA TREJO DELGADO 7.546,00 7.190,27 14.736,27 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+    },
+    {
+      "id": "src-066",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "SORAYA TREJO DELGADO | Becaria · E.A.U. Llorens, Fornés y Navarro · 08/06/2023 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de inicio]"
+    },
+    {
+      "id": "src-067",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+    },
+    {
+      "id": "src-068",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Trejo (17 PDF para otros miembros)",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Soraya Trejo Delgado, Laura Guzmán Bruno, Juan Boix Martínez ni Paula Navarro Sanfeliu."
+    },
+    {
+      "id": "src-069",
+      "retrievedAt": "2026-07-31T17:34:01.373Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «TREJO» y 0 para «LLORENS» + «FORNÉS» (el despacho de su actividad declarada). En las candidaturas del BOP: 0 apariciones en 2019; la única coincidencia «TREJO» de 2015 corresponde a una candidata homónima de la circunscripción de Foios, no a la concejal."
+    }
+  ],
+  "warnings": [
+    "El portal municipal no publica CV de la concejal: los datos biográficos básicos (nacimiento, formación) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+    "La incorporación al despacho nueve días antes de la toma de posesión se publica como hecho fechado de su declaración estatutaria; sin dedicación municipal, la actividad privada es la situación ordinaria prevista por la ley y este medio no afirma irregularidad."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

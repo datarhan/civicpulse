@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T13:24:20.920Z",
+  "generatedAt": "2026-07-31T17:31:26.997Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -13738,8 +13738,8 @@
           "payload": {
             "verbatim": "Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular",
             "attributedTo": "Punto 1 del orden del día del pleno extraordinario de 03-07-2026 (sobre la gestión del servicio de RSU y la tasa de basura)",
-            "sourceId": "src-074",
-            "date": "2026-07-03"
+            "date": "2026-07-03",
+            "sourceId": "src-074"
           }
         },
         {
@@ -13772,9 +13772,9 @@
           "kind": "local-snapshot",
           "title": "Officials snapshot — Alberto Gimeno Calvo",
           "retrievedAt": "2026-07-31T13:18:03.625Z",
+          "excerpt": "role: concejal · party: PP · portfolios: ",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "role: concejal · party: PP · portfolios: "
+          "trust": "high"
         },
         {
           "id": "src-002",
@@ -13782,17 +13782,17 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
           "title": "CV autodeclarado (ficha oficial de transparencia) — Alberto José Gimeno Calvo",
           "retrievedAt": "2026-07-31T13:18:06.385Z",
-          "trust": "high",
-          "excerpt": "Contactar alberto.gimeno@dival.es Alberto José Gimeno Calvo Diplomat en Ciències Empresarials en la Universitat Catòlica de Valéncia Riba-roja de Túria, Valencia, España Experiència Diputació de Valencia Assessor de Ple Agost de 2023 – Actualitat Comunitat Valenciana, España Policía Local Valencia Setembre de 2021 – Abril de 2023 Comunitat Valenciana, España Policía Local Riba-roja de Túria Agost de 1998 – Setembre de 2021 Comunitat Valenciana / Comunidad Valenciana, España E"
+          "excerpt": "Contactar alberto.gimeno@dival.es Alberto José Gimeno Calvo Diplomat en Ciències Empresarials en la Universitat Catòlica de Valéncia Riba-roja de Túria, Valencia, España Experiència Diputació de Valencia Assessor de Ple Agost de 2023 – Actualitat Comunitat Valenciana, España Policía Local Valencia Setembre de 2021 – Abril de 2023 Comunitat Valenciana, España Policía Local Riba-roja de Túria Agost de 1998 – Setembre de 2021 Comunitat Valenciana / Comunidad Valenciana, España E",
+          "trust": "high"
         },
         {
           "id": "src-003",
           "kind": "local-snapshot",
           "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
           "retrievedAt": "2026-07-31T13:18:06.387Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high",
-          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+          "trust": "high"
         },
         {
           "id": "src-004",
@@ -13800,8 +13800,8 @@
           "url": "https://es.wikipedia.org/wiki/Alberto",
           "title": "Alberto - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T13:18:06.387Z",
-          "trust": "medium",
-          "excerpt": "Alberto es un nombre propio masculino de origen germánico en su variante en español. Es una contracción de Adalberto, que …"
+          "excerpt": "Alberto es un nombre propio masculino de origen germánico en su variante en español. Es una contracción de Adalberto, que …",
+          "trust": "medium"
         },
         {
           "id": "src-005",
@@ -13809,8 +13809,8 @@
           "url": "https://www.alberto-pants.com/en/",
           "title": "ALBERTO - TOUCHABLE PANTS FOR A REASON",
           "retrievedAt": "2026-07-31T13:18:06.387Z",
-          "trust": "low",
-          "excerpt": "Hace 1 día · ALBERTO – Pants We Love. German premium pants label since 1922. Jeans, casual, dressy, golf, and bike pants from …"
+          "excerpt": "Hace 1 día · ALBERTO – Pants We Love. German premium pants label since 1922. Jeans, casual, dressy, golf, and bike pants from …",
+          "trust": "low"
         },
         {
           "id": "src-006",
@@ -13818,8 +13818,8 @@
           "url": "https://www.dealberto.com/es/",
           "title": "Bodegas De Alberto | Vinos de Rueda y Enoturismo",
           "retrievedAt": "2026-07-31T13:18:06.387Z",
-          "trust": "low",
-          "excerpt": "Bodegas De Alberto, bodega familiar con DO Rueda. Vinos blancos de Verdejo y Sauvignon Blanc premiados internacionalmente. …"
+          "excerpt": "Bodegas De Alberto, bodega familiar con DO Rueda. Vinos blancos de Verdejo y Sauvignon Blanc premiados internacionalmente. …",
+          "trust": "low"
         },
         {
           "id": "src-007",
@@ -13827,8 +13827,8 @@
           "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
           "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "medium",
-          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+          "trust": "medium"
         },
         {
           "id": "src-008",
@@ -13836,8 +13836,8 @@
           "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
           "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "medium",
-          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+          "trust": "medium"
         },
         {
           "id": "src-009",
@@ -13845,8 +13845,8 @@
           "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
           "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+          "trust": "low"
         },
         {
           "id": "src-010",
@@ -13854,8 +13854,8 @@
           "url": "https://nealis.com/",
           "title": "Grupo Gimeno - Home - Nealis",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "2 de jul de 2026 · Transformamos ciudades y su ent orno para que las personas puedan vivirlas mejor ¿Te has parado a pensar …"
+          "excerpt": "2 de jul de 2026 · Transformamos ciudades y su ent orno para que las personas puedan vivirlas mejor ¿Te has parado a pensar …",
+          "trust": "low"
         },
         {
           "id": "src-011",
@@ -13863,8 +13863,8 @@
           "url": "https://nealis.com/quienes-somos/",
           "title": "Quiénes Somos - Nealis - Grupo Gimeno",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "Evolucionamos de Grupo Gimeno a Nealis mirando al futuro con la misma determinación con la que empezamos nuestra trayectoria …"
+          "excerpt": "Evolucionamos de Grupo Gimeno a Nealis mirando al futuro con la misma determinación con la que empezamos nuestra trayectoria …",
+          "trust": "low"
         },
         {
           "id": "src-012",
@@ -13872,8 +13872,8 @@
           "url": "https://www.elconfidencial.com/empresas/2025-09-29/grupo-gimeno-marca-nealis-612-millones-ingresos_4218402/",
           "title": "Grupo Gimeno engloba todos sus negocios bajo la marca Nealis tras ...",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "29 de sept de 2025 · El Grupo Gimeno, con base en Castellón, ha anunciado este lunes la redenominación de su holding …"
+          "excerpt": "29 de sept de 2025 · El Grupo Gimeno, con base en Castellón, ha anunciado este lunes la redenominación de su holding …",
+          "trust": "low"
         },
         {
           "id": "src-013",
@@ -13881,8 +13881,8 @@
           "url": "https://nealis.com/",
           "title": "Grupo Gimeno - Home - Nealis",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "2 de jul de 2026 · Transformamos ciudades y su ent orno para que las personas puedan vivirlas mejor ¿Te has parado a pensar …"
+          "excerpt": "2 de jul de 2026 · Transformamos ciudades y su ent orno para que las personas puedan vivirlas mejor ¿Te has parado a pensar …",
+          "trust": "low"
         },
         {
           "id": "src-014",
@@ -13890,8 +13890,8 @@
           "url": "https://nealis.com/quienes-somos/",
           "title": "Quiénes Somos - Nealis - Grupo Gimeno",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "Evolucionamos de Grupo Gimeno a Nealis mirando al futuro con la misma determinación con la que empezamos nuestra trayectoria …"
+          "excerpt": "Evolucionamos de Grupo Gimeno a Nealis mirando al futuro con la misma determinación con la que empezamos nuestra trayectoria …",
+          "trust": "low"
         },
         {
           "id": "src-015",
@@ -13899,8 +13899,8 @@
           "url": "https://www.elconfidencial.com/empresas/2025-09-29/grupo-gimeno-marca-nealis-612-millones-ingresos_4218402/",
           "title": "Grupo Gimeno engloba todos sus negocios bajo la marca Nealis tras ...",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "29 de sept de 2025 · El Grupo Gimeno, con base en Castellón, ha anunciado este lunes la redenominación de su holding …"
+          "excerpt": "29 de sept de 2025 · El Grupo Gimeno, con base en Castellón, ha anunciado este lunes la redenominación de su holding …",
+          "trust": "low"
         },
         {
           "id": "src-016",
@@ -13908,8 +13908,8 @@
           "url": "https://nealis.com/",
           "title": "Grupo Gimeno - Home - Nealis",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "2 de jul de 2026 · Transformamos ciudades y su ent orno para que las personas puedan vivirlas mejor ¿Te has parado a pensar …"
+          "excerpt": "2 de jul de 2026 · Transformamos ciudades y su ent orno para que las personas puedan vivirlas mejor ¿Te has parado a pensar …",
+          "trust": "low"
         },
         {
           "id": "src-017",
@@ -13917,8 +13917,8 @@
           "url": "https://nealis.com/quienes-somos/",
           "title": "Quiénes Somos - Nealis - Grupo Gimeno",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "Evolucionamos de Grupo Gimeno a Nealis mirando al futuro con la misma determinación con la que empezamos nuestra trayectoria …"
+          "excerpt": "Evolucionamos de Grupo Gimeno a Nealis mirando al futuro con la misma determinación con la que empezamos nuestra trayectoria …",
+          "trust": "low"
         },
         {
           "id": "src-018",
@@ -13926,224 +13926,224 @@
           "url": "https://www.elconfidencial.com/empresas/2025-09-29/grupo-gimeno-marca-nealis-612-millones-ingresos_4218402/",
           "title": "Grupo Gimeno engloba todos sus negocios bajo la marca Nealis tras ...",
           "retrievedAt": "2026-07-31T13:18:06.388Z",
-          "trust": "low",
-          "excerpt": "29 de sept de 2025 · El Grupo Gimeno, con base en Castellón, ha anunciado este lunes la redenominación de su holding …"
+          "excerpt": "29 de sept de 2025 · El Grupo Gimeno, con base en Castellón, ha anunciado este lunes la redenominación de su holding …",
+          "trust": "low"
         },
         {
           "id": "src-019",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:07.852Z",
+          "excerpt": "[3420.0 → 3450.0] Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi. Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación era",
           "localPath": "public/data/pleno-transcripts/1237hbp.txt",
-          "trust": "high",
-          "excerpt": "[3420.0 → 3450.0] Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi. Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación era"
+          "trust": "high"
         },
         {
           "id": "src-020",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:07.852Z",
+          "excerpt": "[3480.0 → 3510.0] Alberto, Alberto, ¿seguís? Alberto, ¿seguís? Si no puedo seguir. Ahora sí. A ver, señora, si quieren. Alberto, Alberto, seguid la intervención de la sala. Las gracias y todo eso que se comprometiste en ",
           "localPath": "public/data/pleno-transcripts/1237hbp.txt",
-          "trust": "high",
-          "excerpt": "[3480.0 → 3510.0] Alberto, Alberto, ¿seguís? Alberto, ¿seguís? Si no puedo seguir. Ahora sí. A ver, señora, si quieren. Alberto, Alberto, seguid la intervención de la sala. Las gracias y todo eso que se comprometiste en "
+          "trust": "high"
         },
         {
           "id": "src-021",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:07.852Z",
+          "excerpt": "[7950.0 → 7980.0] Alberto. Yo también he buscado información sobre el mercado tensionado en Riva Roja. Lo que pasa es que a ese dato del 2021 no he hecho caso porque es del 2021. Y el mundo del 2021 a hoy en día ha cambi",
           "localPath": "public/data/pleno-transcripts/10yl550.txt",
-          "trust": "high",
-          "excerpt": "[7950.0 → 7980.0] Alberto. Yo también he buscado información sobre el mercado tensionado en Riva Roja. Lo que pasa es que a ese dato del 2021 no he hecho caso porque es del 2021. Y el mundo del 2021 a hoy en día ha cambi"
+          "trust": "high"
         },
         {
           "id": "src-022",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:07.852Z",
+          "excerpt": "[5460.0 → 5490.0] ¿Por qué no ha cambiado el par de estudios? Alberto, dos cosas. Primero, aparte de que de una manera poco educada siempre interrumpir, siempre decirte que tú has hablado de los técnicos que no sé ni qui",
           "localPath": "public/data/pleno-transcripts/11025xk.txt",
-          "trust": "high",
-          "excerpt": "[5460.0 → 5490.0] ¿Por qué no ha cambiado el par de estudios? Alberto, dos cosas. Primero, aparte de que de una manera poco educada siempre interrumpir, siempre decirte que tú has hablado de los técnicos que no sé ni qui"
+          "trust": "high"
         },
         {
           "id": "src-023",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.117Z",
+          "excerpt": "[3420.0 → 3450.0] Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi. Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación era",
           "localPath": "public/data/pleno-transcripts/1237hbp.txt",
-          "trust": "high",
-          "excerpt": "[3420.0 → 3450.0] Y todos estuvimos de acuerdo en que el 12 de marzo se realizara un contrato con la empresa Garbialdi. Luego, posteriormente, José Ángel también afirmaba que los contratos de emergencia y subsanación era"
+          "trust": "high"
         },
         {
           "id": "src-024",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.117Z",
+          "excerpt": "[3450.0 → 3480.0] ¿Qué es lo que está pasando en el pleno? Mire, yo no convoco este pleno. El pleno lo ha pedido el Partido Popular. ¿Dónde vamos por llevarse de verdad en la Secretaría de la Montería? El lunes pueden ve",
           "localPath": "public/data/pleno-transcripts/1237hbp.txt",
-          "trust": "high",
-          "excerpt": "[3450.0 → 3480.0] ¿Qué es lo que está pasando en el pleno? Mire, yo no convoco este pleno. El pleno lo ha pedido el Partido Popular. ¿Dónde vamos por llevarse de verdad en la Secretaría de la Montería? El lunes pueden ve"
+          "trust": "high"
         },
         {
           "id": "src-025",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.117Z",
+          "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] ",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] "
+          "trust": "high"
         },
         {
           "id": "src-026",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.506Z",
+          "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:"
+          "trust": "high"
         },
         {
           "id": "src-027",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.506Z",
+          "excerpt": "[3240.0 → 3270.0] municipios, no solo a cinco, y dar traslado del presente acuerdo a las Cortes Valencianas, a la Diputación Provincial, a la Federación Valenciana de Municipios y Provincias y al Consejo de la Generalita",
           "localPath": "public/data/pleno-transcripts/10yl550.txt",
-          "trust": "high",
-          "excerpt": "[3240.0 → 3270.0] municipios, no solo a cinco, y dar traslado del presente acuerdo a las Cortes Valencianas, a la Diputación Provincial, a la Federación Valenciana de Municipios y Provincias y al Consejo de la Generalita"
+          "trust": "high"
         },
         {
           "id": "src-028",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.506Z",
+          "excerpt": "[0.0 → 0.0] y jurídicos y el Dictamen del Consell Jurídic Consultiu de la Comunitat Valenciana que constan [0.0 → 0.0] en el expediente. [0.0 → 0.0] SEGUNDO.- Obra en el expediente, en relación al órgano competente, info",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] y jurídicos y el Dictamen del Consell Jurídic Consultiu de la Comunitat Valenciana que constan [0.0 → 0.0] en el expediente. [0.0 → 0.0] SEGUNDO.- Obra en el expediente, en relación al órgano competente, info"
+          "trust": "high"
         },
         {
           "id": "src-029",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-034-afi-199709 · 2026-07-06 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida"
+          "trust": "high"
         },
         {
           "id": "src-030",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo"
+          "trust": "high"
         },
         {
           "id": "src-031",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-098-cit-616b80 · 2026-07-06 · cita_obra",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+          "trust": "high"
         },
         {
           "id": "src-032",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-099-cit-8a1dc7 · 2026-07-06 · cita_obra",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+          "trust": "high"
         },
         {
           "id": "src-033",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-103-acu-92ea5a · 2026-07-06 · acusacion_publica",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "Efectivamente, en el Pacto del Botánico no se hizo absolutamente nada.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Efectivamente, en el Pacto del Botánico no se hizo absolutamente nada."
+          "trust": "high"
         },
         {
           "id": "src-034",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-104-acu-107c02 · 2026-07-06 · acusacion_publica",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "en el Pacto del Botánico no se hizo absolutamente nada. Si no se degradó, creo, lo que es el sistema educativo valenciano.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "en el Pacto del Botánico no se hizo absolutamente nada. Si no se degradó, creo, lo que es el sistema educativo valenciano."
+          "trust": "high"
         },
         {
           "id": "src-035",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-137-cit-e5c764 · 2026-07-06 · cita_obra",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "una moción conjunta del Grupo Municipal Popular y Vox para la mejora del sombrero urbano y la instalación de agua en los espacios públicos del municipio.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "una moción conjunta del Grupo Municipal Popular y Vox para la mejora del sombrero urbano y la instalación de agua en los espacios públicos del municipio."
+          "trust": "high"
         },
         {
           "id": "src-036",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-209-afi-c6e9ef · 2026-07-06 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T13:18:08.508Z",
+          "excerpt": "en el 24, votaremos a favor porque es una moción",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "en el 24, votaremos a favor porque es una moción"
+          "trust": "high"
         },
         {
           "id": "src-037",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T13:18:08.977Z",
+          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+          "trust": "high"
         },
         {
           "id": "src-038",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T13:18:08.977Z",
+          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+          "trust": "high"
         },
         {
           "id": "src-039",
           "kind": "local-snapshot",
           "title": "public/data/press.json · items",
           "retrievedAt": "2026-07-31T13:18:08.977Z",
+          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU",
           "localPath": "public/data/press.json",
-          "trust": "high",
-          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU"
+          "trust": "high"
         },
         {
           "id": "src-040",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.977Z",
+          "excerpt": "[6060.0 → 6090.0] generar otra comisión más esa podría ser viable pero si en la próxima junta de portavoces consideramos o se considera que es mejor que queremos una comisión aparte pues tampoco estaremos en contra de es",
           "localPath": "public/data/pleno-transcripts/10yl550.txt",
-          "trust": "high",
-          "excerpt": "[6060.0 → 6090.0] generar otra comisión más esa podría ser viable pero si en la próxima junta de portavoces consideramos o se considera que es mejor que queremos una comisión aparte pues tampoco estaremos en contra de es"
+          "trust": "high"
         },
         {
           "id": "src-041",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.977Z",
+          "excerpt": "[6030.0 → 6060.0] vamos a votar a favor de esta propuesta entendemos que queráis pero sí que cogemos esa inquietud que tenemos y nuestro compromiso es que en la junta de portavoces próximo poner como punto llevar el trat",
           "localPath": "public/data/pleno-transcripts/10yl550.txt",
-          "trust": "high",
-          "excerpt": "[6030.0 → 6060.0] vamos a votar a favor de esta propuesta entendemos que queráis pero sí que cogemos esa inquietud que tenemos y nuestro compromiso es que en la junta de portavoces próximo poner como punto llevar el trat"
+          "trust": "high"
         },
         {
           "id": "src-042",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
           "retrievedAt": "2026-07-31T13:18:08.977Z",
+          "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya",
           "localPath": "public/data/pleno-transcripts/10yl550.txt",
-          "trust": "high",
-          "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya"
+          "trust": "high"
         },
         {
           "id": "src-043",
@@ -14151,8 +14151,8 @@
           "url": "https://www.dominos.co.in/",
           "title": "Domino’s Pizza – Order Online | Get 2 Regular Pizza @99 Each",
           "retrievedAt": "2026-07-31T13:18:08.982Z",
-          "trust": "low",
-          "excerpt": "Explore our range of delicious Pizzas, delivered in 30 minutes! Find a Domino's Pizza restaurant near you. Celebrate the joy of birthday with Fresh & Hot pizzas. Live Domino's Kitchen for weddings / …"
+          "excerpt": "Explore our range of delicious Pizzas, delivered in 30 minutes! Find a Domino's Pizza restaurant near you. Celebrate the joy of birthday with Fresh & Hot pizzas. Live Domino's Kitchen for weddings / …",
+          "trust": "low"
         },
         {
           "id": "src-044",
@@ -14160,8 +14160,8 @@
           "url": "https://mojopizza.in/",
           "title": "MojoPizza - Pizza delivery | Order pizza online in Mumbai, Delhi NCR ...",
           "retrievedAt": "2026-07-31T13:18:08.982Z",
-          "trust": "low",
-          "excerpt": "Order Pizzas loaded with 2X Toppings from India's Highest Rated Pizza Delivery Chain. 300+ Stores in Mumbai, Delhi NCR, Bangalore, Hyderabad, Pune, Chennai & Kolkata. Superfast delivery in 30 min."
+          "excerpt": "Order Pizzas loaded with 2X Toppings from India's Highest Rated Pizza Delivery Chain. 300+ Stores in Mumbai, Delhi NCR, Bangalore, Hyderabad, Pune, Chennai & Kolkata. Superfast delivery in 30 min.",
+          "trust": "low"
         },
         {
           "id": "src-045",
@@ -14169,8 +14169,8 @@
           "url": "https://www.pizzahut.co.in/",
           "title": "Order Pizza Online - Delivery and Takeaway",
           "retrievedAt": "2026-07-31T13:18:08.982Z",
-          "trust": "low",
-          "excerpt": "Enter your address to see your local deals, coupons and offers. Order a delicious pizza on the go, anywhere, anytime. Pizza Hut is happy to assist you with your home delivery. Every time you order, …"
+          "excerpt": "Enter your address to see your local deals, coupons and offers. Order a delicious pizza on the go, anywhere, anytime. Pizza Hut is happy to assist you with your home delivery. Every time you order, …",
+          "trust": "low"
         },
         {
           "id": "src-046",
@@ -14178,8 +14178,8 @@
           "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
           "title": "Campaña de Renta 2025 - Agencia Tributaria",
           "retrievedAt": "2026-07-31T13:18:08.982Z",
-          "trust": "high",
-          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …"
+          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …",
+          "trust": "high"
         },
         {
           "id": "src-047",
@@ -14187,8 +14187,8 @@
           "url": "https://sede.agenciatributaria.gob.es/",
           "title": "Agencia Tributaria: Inicio",
           "retrievedAt": "2026-07-31T13:18:08.982Z",
-          "trust": "high",
-          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta"
+          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta",
+          "trust": "high"
         },
         {
           "id": "src-048",
@@ -14196,8 +14196,8 @@
           "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
           "title": "Inicio - Agencia Tributaria",
           "retrievedAt": "2026-07-31T13:18:08.982Z",
-          "trust": "low",
-          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite."
+          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite.",
+          "trust": "low"
         },
         {
           "id": "src-049",
@@ -14205,8 +14205,8 @@
           "url": "https://es.wikipedia.org/wiki/Alberto",
           "title": "Alberto - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T13:18:08.984Z",
-          "trust": "medium",
-          "excerpt": "Alberto es un nombre propio masculino de origen germánico en su variante en español. Es una contracción de Adalberto, que …"
+          "excerpt": "Alberto es un nombre propio masculino de origen germánico en su variante en español. Es una contracción de Adalberto, que …",
+          "trust": "medium"
         },
         {
           "id": "src-050",
@@ -14214,8 +14214,8 @@
           "url": "https://www.alberto-pants.com/en/",
           "title": "ALBERTO - TOUCHABLE PANTS FOR A REASON",
           "retrievedAt": "2026-07-31T13:18:08.984Z",
-          "trust": "low",
-          "excerpt": "Hace 1 día · ALBERTO – Pants We Love. German premium pants label since 1922. Jeans, casual, dressy, golf, and bike pants from …"
+          "excerpt": "Hace 1 día · ALBERTO – Pants We Love. German premium pants label since 1922. Jeans, casual, dressy, golf, and bike pants from …",
+          "trust": "low"
         },
         {
           "id": "src-051",
@@ -14223,8 +14223,8 @@
           "url": "https://www.dealberto.com/es/",
           "title": "Bodegas De Alberto | Vinos de Rueda y Enoturismo",
           "retrievedAt": "2026-07-31T13:18:08.984Z",
-          "trust": "low",
-          "excerpt": "Bodegas De Alberto, bodega familiar con DO Rueda. Vinos blancos de Verdejo y Sauvignon Blanc premiados internacionalmente. …"
+          "excerpt": "Bodegas De Alberto, bodega familiar con DO Rueda. Vinos blancos de Verdejo y Sauvignon Blanc premiados internacionalmente. …",
+          "trust": "low"
         },
         {
           "id": "src-052",
@@ -14232,8 +14232,8 @@
           "url": "https://www.parabebes.com/significado-del-nombre-alberto-2938.html",
           "title": "Significado del Nombre ALBERTO - Origen, Personalidad, Santoral ...",
           "retrievedAt": "2026-07-31T13:18:08.984Z",
-          "trust": "low",
-          "excerpt": "26 de jun de 2026 · Alberto es un nombre de origen Germánico. Existen numerosos nombres que hacen gala a la honradez de la …"
+          "excerpt": "26 de jun de 2026 · Alberto es un nombre de origen Germánico. Existen numerosos nombres que hacen gala a la honradez de la …",
+          "trust": "low"
         },
         {
           "id": "src-053",
@@ -14241,8 +14241,8 @@
           "url": "https://www.chiquipedia.com/significado-nombres/alberto/",
           "title": "Significado del nombre Alberto | Origen y significado de Alberto",
           "retrievedAt": "2026-07-31T13:18:08.984Z",
-          "trust": "low",
-          "excerpt": "Alberto proviene de la unión de dos términos que se usaban en la lengua germana. Por un lado, la palabra “athal” que viene a referir …"
+          "excerpt": "Alberto proviene de la unión de dos términos que se usaban en la lengua germana. Por un lado, la palabra “athal” que viene a referir …",
+          "trust": "low"
         },
         {
           "id": "src-054",
@@ -14250,49 +14250,851 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Texto completo: ribarroja.es",
           "retrievedAt": "2026-07-31T13:18:08.986Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-055",
           "kind": "web",
           "url": "https://es.wikipedia.org/wiki/Alberto",
+          "archiveUrl": "http://web.archive.org/web/20251212162711/https://es.wikipedia.org/wiki/Alberto",
           "title": "Texto completo: es.wikipedia.org",
           "retrievedAt": "2026-07-31T13:18:08.986Z",
-          "trust": "high",
           "excerpt": "<body class=\"skin--responsive skin-vector skin-vector-search-vue mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject m",
-          "archiveUrl": "http://web.archive.org/web/20251212162711/https://es.wikipedia.org/wiki/Alberto"
+          "trust": "high"
         },
         {
           "id": "src-060",
-          "retrievedAt": "2026-07-31T17:24:16.056Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — identidad, titulación y residencia (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
-          "excerpt": "Contactar  \nalberto.gimeno@dival.es \n \n \nAlberto José Gimeno Calvo \nDiplomat en Ciències Empresarials en la Universitat Catòlica de \nValéncia \nRiba-roja de Túria, Valencia, España"
+          "title": "CV publicado en el portal municipal — identidad, titulación y residencia (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:24:16.056Z",
+          "excerpt": "Contactar  \nalberto.gimeno@dival.es \n \n \nAlberto José Gimeno Calvo \nDiplomat en Ciències Empresarials en la Universitat Catòlica de \nValéncia \nRiba-roja de Túria, Valencia, España",
+          "trust": "medium"
         },
         {
           "id": "src-061",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — experiencia: Diputació (assessor de Ple, 08/2023–) y Policía Local (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20251002-Datos-biogrficos-Alberto-J-Gimeno-Calvo.pdf",
-          "excerpt": "Experiència \nDiputació de Valencia \nAssessor de Ple \nAgost de 2023 – Actualitat  \n \nComunitat Valenciana, España \n \nPolicía Local Valencia \nSetembre de 2021 – Abril de 2023 \n \nComunitat Valenciana, España \n \nPolicía Local Riba-roja de Túria \nAgost de 1998 – Setembre de 2021"
+          "title": "CV publicado en el portal municipal — experiencia: Diputació (assessor de Ple, 08/2023–) y Policía Local (autodeclarado)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Experiència \nDiputació de Valencia \nAssessor de Ple \nAgost de 2023 – Actualitat  \n \nComunitat Valenciana, España \n \nPolicía Local Valencia \nSetembre de 2021 – Abril de 2023 \n \nComunitat Valenciana, España \n \nPolicía Local Riba-roja de Túria \nAgost de 1998 – Setembre de 2021",
+          "trust": "medium"
         },
         {
           "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Jose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — candidaturas a la Alcaldía (cabezas de lista; Gimeno «(independiente), Partido Popular»)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Presentan candidatura los siguientes Concejales/as:\n- Roberto Pascual Raga Gadea, Partido Socialista Obrero Español\n- Alberto Jose Gimeno Calvo (independiente), Partido Popular\n- Jose Luis Fernández Santamaria, VOX\n- Jose Manuel Gallardo Martínez, Esquerra Unida – Unides Podem per Riba-roja",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — votación de investidura (Raga 11 · Gimeno 7)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Interviene la Sr. Presidente indicando que finalizada la votación y realizado el escrutinio, el\nresultado es el siguiente:\nVotos a favor de D. Roberto Pascual Raga Gadea.\nVotos a favor de __11\n3\nVotos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0\nVotos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1\nVotos blancos________1",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Gimeno n.º 1 y portavoz; 5 de 7 miembros «(Independiente)»)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Inclusión Social: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "ALBERTO JOSE GIMENO CALVO 150.000,00 1.000,00 151.000,00 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "ALBERTO JOSE GIMENO CALVO | Policia · Valencia · cese 2023 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de cese; la declaración se presentó con motivo de la toma de posesión de junio de 2023]",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-073",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura del PP por Riba-roja (Gimeno ausente; cabeza de lista distinta)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "PARTIDO POPULAR (PP)\nTITULARES\n1. JOSEFA RUIZ ESTEBAN\n2. SANTIAGO NAVARRO ZARAGOZÁ\n3. PEDRO TORTAJADA RAGA\n4. RAQUEL ARGANDOÑA LÓPEZ\n5. BEGOÑA CAMPOS MARTÍNEZ\n6. PAULA BADÍA LANÁQUERA\n7. ROSA AL SIBAI GINER\n8. VICTOR ENGUIX ZARAGO",
+          "trust": "high"
+        },
+        {
+          "id": "src-074",
+          "kind": "local-snapshot",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+          "title": "Orden del día del pleno extraordinario de 03-07-2026 — solicitado por el Grupo Municipal Popular (RSU y tasa de basura)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura».",
+          "localPath": "public/data/plenos-agendas.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-075",
+          "kind": "official-doc",
+          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
+          "title": "Transcripción automática del pleno extraordinario 03-07-2026 (sin diarización de hablantes)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "¿Qué es lo que está pasando en el pleno? Mire, yo no convoco este pleno. El pleno lo ha pedido el Partido Popular.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-076",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GIMENO CALVO».",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos y la trayectoria (Policía Local 1998-2023, assessor de la Diputació desde 08/2023, diplomatura) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora únicamente el cese como policía en 2023.",
+        "La simultaneidad concejal + assessor de la Diputació se publica como hechos fechados de documentos oficiales; al no tener dedicación exclusiva municipal, la compatibilidad de ambos puestos es la situación ordinaria prevista por la ley y este medio no afirma irregularidad.",
+        "La transcripción del pleno de 03-07-2026 es automática y sin identificación de hablantes; la frase citada sobre la convocatoria se atribuye a la presidencia por su contenido («yo no convoco este pleno») y el hecho que describe está corroborado por el punto 1 del orden del día."
+      ],
+      "legalSensitivity": "medium",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-soraya-trejo-bio-2026-07-31",
+      "assignmentId": "a-soraya-trejo-bio",
+      "generatedAt": "2026-07-31T17:31:26.979Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "soraya-trejo-delgado",
+            "photoPath": "/data/photos/soraya-trejo-delgado.jpg",
+            "partyTone": "intel",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo municipal",
+            "bodyMarkdown": "Soraya Trejo Delgado es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrada como **«(Independiente)»** — como cinco de los siete miembros del grupo. Es la **n.º 2** de la candidatura y **portavoz suplente** del Grupo Municipal Popular. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+            "sourceIds": [
+              "src-062",
+              "src-068"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y toma de posesión",
+            "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019 (la única «Trejo» de 2015 es una candidata homónima de Foios). Entró como n.º 2 de la lista del PP — encabezada por Alberto Gimeno Calvo, también independiente.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al **Grupo Municipal Popular como n.º 2 y portavoz suplente**, y titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto.\n\nSin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias**: 221,82 € por Pleno y 162,31 € por comisión.",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062",
+              "src-063",
+              "src-064",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejal, n.º 2 de la lista y portavoz suplente del Grupo Municipal Popular («Independiente»)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-060",
+                  "src-061",
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 14736.27,
+                "description": "Activo declarado al tomar posesión (2023): 7.546,00 € en bienes inmuebles + 7.190,27 € en otros bienes = 14.736,27 €; pasivo declarado: 0,00 €. Es el patrimonio declarado más bajo de la corporación 2023 — coherente con el inicio de una carrera profesional. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-065",
+                  "src-067"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Actividad declarada: becaria en el despacho E.A.U. Llorens, Fornés y Navarro, con incorporación el 08-06-2023 — nueve días antes de tomar posesión como concejal. Sin dedicación exclusiva ni parcial en el Ayuntamiento, la actividad privada es compatible por diseño con el régimen de asistencias.",
+                "sourceIds": [
+                  "src-066",
+                  "src-064"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-064"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Trayectoria y actividad declarada",
+            "bodyMarkdown": "Su única actividad profesional documentada es la que consigna su declaración estatutaria: **becaria en el despacho E.A.U. Llorens, Fornés y Navarro**, con fecha de incorporación el **8 de junio de 2023 — nueve días antes de tomar posesión** como concejal. El perfil es el de una carrera profesional en su inicio, coherente con el patrimonio declarado más bajo de la corporación (14.736,27 € de activo, sin deudas).\n\nAl no publicar el portal municipal CV suyo, no consta formación académica ni trayectoria anterior verificable. Este medio no completa ese vacío con fuentes no documentales.",
+            "sourceIds": [
+              "src-066",
+              "src-065",
+              "src-068"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «TREJO» y **0** para el despacho de su actividad declarada (Llorens, Fornés y Navarro). Ni la concejal ni el bufete constan como adjudicatarios del Ayuntamiento.\n\nLímites declarados: la naturaleza y composición del despacho E.A.U. Llorens, Fornés y Navarro no es reconstruible con fuentes abiertas gratuitas (el Registro Mercantil no ofrece vía estructurada sin pago), y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Soraya Trejo Delgado",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Alberto Gimeno Calvo (portavoz)",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n4",
+                "label": "E.A.U. Llorens, Fornés y Navarro (despacho)",
+                "tone": "intel",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal n.º 2 del grupo, registrada «(Independiente)» (acta 07-07-2023)",
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "portavoz suplente del grupo cuyo portavoz titular es Gimeno",
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "becaria desde el 08-06-2023 (declaración de actividades)",
+                "sourceIds": [
+                  "src-066"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "pp-voto-contra-fondos-dana",
+              "pp-gasto-innecesario-pacadar",
+              "pp-critica-gestion-socialista"
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "2023-06-08",
+                "label": "Se incorpora como becaria al despacho E.A.U. Llorens, Fornés y Navarro — nueve días antes de la toma de posesión (declaración de actividades)",
+                "sourceIds": [
+                  "src-066"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejal electa y juramento en la sesión constitutiva; primera candidatura documentada (n.º 2 del PP)",
+                "sourceIds": [
+                  "src-060",
+                  "src-061"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "N.º 2 y portavoz suplente del Grupo Municipal Popular, registrada «(Independiente)»; titular en comisiones; sin dedicación (asistencias)",
+                "sourceIds": [
+                  "src-062",
+                  "src-063",
+                  "src-064"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 14.736,27 € · pasivo 0,00 € — el más bajo de la corporación (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-065",
+                  "src-067"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "CV no publicado en el portal municipal",
+                "reason": "El portal de transparencia publica CV de 17 miembros de la corporación, pero no de Soraya Trejo ni de otros tres concejales del PP (Guzmán, Boix, Navarro Sanfeliu). Sin CV, no consta fecha de nacimiento, formación académica ni trayectoria previa — este perfil se limita a actas, boletines y declaración estatutaria."
+              },
+              {
+                "field": "Despacho E.A.U. Llorens, Fornés y Navarro",
+                "reason": "La naturaleza, forma jurídica y composición del despacho de su actividad declarada no son reconstruibles con fuentes abiertas gratuitas. El barrido de adjudicatarios municipales devuelve 0 coincidencias para el bufete."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Soraya Trejo Delgado",
+          "retrievedAt": "2026-07-31T17:26:38.957Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "role: concejal · party: PP · portfolios: "
+        },
+        {
+          "id": "src-002",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-31T17:26:40.956Z",
+          "localPath": "public/data/elections.json",
+          "trust": "high",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+        },
+        {
+          "id": "src-003",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+          "title": "Soraya (cantautora) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:41.538Z",
+          "trust": "medium",
+          "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969- Miami, Florida, 10 de mayo de 2006), conocida monónimamente como Soraya, fue una cantante colombo …"
+        },
+        {
+          "id": "src-004",
+          "kind": "web",
+          "url": "https://www.eljuzgado.es/concejales/soraya-trejo-delgado-concejal-de-riba-roja-de-turia/",
+          "title": "SORAYA TREJO DELGADO concejal de Riba-roja de Túria - PP",
+          "retrievedAt": "2026-07-31T17:26:41.538Z",
+          "trust": "low",
+          "excerpt": "Soraya Trejo delgado ha sido elegido como concejal de Concejal en las ultimas elecciones municipales de 2023. Se presentó como candidato del partido político PP. Tenemos todos los alcaldes de España, incluido el de Riba-roja de Túria, el cual es el máximo responsable municipal."
+        },
+        {
+          "id": "src-005",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+          "title": "Soraya Arnelas - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:41.538Z",
+          "trust": "medium",
+          "excerpt": "Soraya Arnelas Rubiales (Valencia de Alcántara, Cáceres, 13 de septiembre de 1982), conocida simplemente como Soraya Arnelas o Soraya, es una cantante, compositora, actriz y modelo española."
+        },
+        {
+          "id": "src-006",
+          "kind": "web",
+          "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+          "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+          "retrievedAt": "2026-07-31T17:26:41.538Z",
+          "trust": "medium",
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+        },
+        {
+          "id": "src-007",
+          "kind": "web",
+          "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+          "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+          "retrievedAt": "2026-07-31T17:26:41.538Z",
+          "trust": "medium",
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+        },
+        {
+          "id": "src-008",
+          "kind": "web",
+          "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+          "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+          "retrievedAt": "2026-07-31T17:26:41.538Z",
+          "trust": "low",
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+        },
+        {
+          "id": "src-009",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Ant%C3%A1rtida",
+          "title": "Antártida - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:41.920Z",
+          "trust": "medium",
+          "excerpt": "En 1895, el primer desembarco confirmado fue dirigido por un grupo noruego. La Antártida es de facto un condominio, que se rige …"
+        },
+        {
+          "id": "src-010",
+          "kind": "web",
+          "url": "https://concepto.de/antartida/",
+          "title": "Antártida - Información, clima, relieve, fauna y características",
+          "retrievedAt": "2026-07-31T17:26:41.920Z",
+          "trust": "low",
+          "excerpt": "Antártida Te explicamos todo sobre la Antártida, su clima, flora, fauna y otras características. Además, los países que conforman el …"
+        },
+        {
+          "id": "src-011",
+          "kind": "web",
+          "url": "https://pt.wikipedia.org/wiki/Ant%C3%A1rtida",
+          "title": "Antártida – Wikipédia, a enciclopédia livre",
+          "retrievedAt": "2026-07-31T17:26:41.920Z",
+          "trust": "medium",
+          "excerpt": "Antártida ou Antártica (ver questão do nome) é o mais meridional e o segundo menor dos continentes (maior apenas que a …"
+        },
+        {
+          "id": "src-012",
+          "kind": "web",
+          "url": "https://www.battle-bear.de/",
+          "title": "Battle Bear - Dein Shop für Trading Cards (Sammelkarten) und Games",
+          "retrievedAt": "2026-07-31T17:26:42.207Z",
+          "trust": "low",
+          "excerpt": "Battle Bear Trading Cards & Games ist Dein grosser Online-Shop und lokaler Fachhändler für Sammelkarten (Trading Card), …"
+        },
+        {
+          "id": "src-013",
+          "kind": "web",
+          "url": "https://www.tcgcheck.de/tcg-stores/index",
+          "title": "TCG Stores & Sammelkarten Laden in der Nähe finden | TCGCHECK",
+          "retrievedAt": "2026-07-31T17:26:42.208Z",
+          "trust": "low",
+          "excerpt": "Du suchst einen TCG Store oder Sammelkarten Laden in der Nähe? Mit unserer interaktiven Karte findest du schnell lokale Händler, …"
+        },
+        {
+          "id": "src-014",
+          "kind": "web",
+          "url": "https://boardoro.com/de/europe/germany/hameln/stores",
+          "title": "Spieleläden in Hameln | Shops & Events finden",
+          "retrievedAt": "2026-07-31T17:26:42.208Z",
+          "trust": "low",
+          "excerpt": "Entdecke die besten lokalen Spieleläden, TCG-Shops und Tabletop-Communitys in Hameln."
+        },
+        {
+          "id": "src-015",
+          "kind": "web",
+          "url": "https://www.eporner.com/tag/bokep/",
+          "title": "Bokep Porn - Indo Bokep & Bokep Indo Videos - EPORNER",
+          "retrievedAt": "2026-07-31T17:26:42.789Z",
+          "trust": "low",
+          "excerpt": "Watch Bokep hd porn videos for free on Eporner.com. We have 3,561 videos with Bokep, Indo Bokep, Bokep Indo, Indonesia Bokep, …"
+        },
+        {
+          "id": "src-016",
+          "kind": "web",
+          "url": "https://onlybokep.com/category/indonesia/",
+          "title": "Bokep Indo Archives - OnlyBokep",
+          "retrievedAt": "2026-07-31T17:26:42.789Z",
+          "trust": "low",
+          "excerpt": "Nonton Bokep Indo Newest, Bokep Viral Ngentot Doggy Style Cewek Mulus HD - update setiap hari hanya di onlybokep."
+        },
+        {
+          "id": "src-017",
+          "kind": "web",
+          "url": "https://www.eporner.com/tag/indo/",
+          "title": "Indo Porn - Indo Bokep & Bokep Indo Videos - EPORNER",
+          "retrievedAt": "2026-07-31T17:26:42.789Z",
+          "trust": "low",
+          "excerpt": "Watch Indo hd porn videos for free on Eporner.com. We have 3,296 videos with Indo, Indo Bokep, Bokep Indo, Jav Sub Indo, Bokep …"
+        },
+        {
+          "id": "src-018",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.569Z",
+          "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+          "trust": "high",
+          "excerpt": "[3570.0 → 3600.0] Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo que no. Yo creo qu"
+        },
+        {
+          "id": "src-019",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.569Z",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 0.0] DERECHO: [0.0 → 0.0] PRIMERO.- El art. 5.1 del RD 128/2018, de 16 de marzo, por el que se regula el régimen [0.0 → 0.0] jurídico de los funcionarios de Administración Local con habilitación nacional, al señal"
+        },
+        {
+          "id": "src-020",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.569Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[570.0 → 600.0] del Partido Socialista, que es la práctica política de portar así expedientes de reconocimiento de estado judicial. Además, de hecho, tenemos otro punto de urgencia que ha llegado hoy, hace muy poco, y qu"
+        },
+        {
+          "id": "src-021",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.569Z",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 0.0] Líder: Raquel Pamblanco Paredes. Concejala delegada [0.0 → 0.0] Persona empleada pública responsable: Fernando Tejera, [0.0 → 0.0] Intendente de la Policía Local. [0.0 → 0.0] C/Carretera de Villamarchante, 11"
+        },
+        {
+          "id": "src-022",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.853Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 30.0] Música [30.0 → 60.0] Música [60.0 → 90.0] Música [90.0 → 120.0] Música [120.0 → 150.0] Música [150.0 → 180.0] Música [180.0 → 210.0] Música [210.0 → 240.0] Música [240.0 → 270.0] Música [270.0 → 300.0] Músic"
+        },
+        {
+          "id": "src-023",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.853Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[330.0 → 360.0] Música [360.0 → 390.0] Música Música Música Música Música Música Música Música Música Música Música Música Música Música Música [390.0 → 420.0] Buenas tardes a todos. Vamos a comenzar por lo ordinario. Ya"
+        },
+        {
+          "id": "src-024",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:46.853Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[360.0 → 390.0] Música Música Música Música Música Música Música Música Música Música Música Música Música Música Música [390.0 → 420.0] Buenas tardes a todos. Vamos a comenzar por lo ordinario. Ya sé que hoy nos acompañ"
+        },
+        {
+          "id": "src-025",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:47.178Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[6030.0 → 6060.0] vamos a votar a favor de esta propuesta entendemos que queráis pero sí que cogemos esa inquietud que tenemos y nuestro compromiso es que en la junta de portavoces próximo poner como punto llevar el trat"
+        },
+        {
+          "id": "src-026",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:47.179Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[5460.0 → 5490.0] intervenciones de los regidores y regidores o incluso que se cambie en el ROM las intervenciones porque actualmente no está actualizado o incluso lo que hablabais de la intervención final del presidente"
+        },
+        {
+          "id": "src-027",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:47.179Z",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:"
+        },
+        {
+          "id": "src-028",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Fuente oficial: www.ribarroja.es",
+          "retrievedAt": "2026-07-31T17:26:47.650Z",
+          "trust": "high",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-029",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T17:26:48.282Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "maria-esther-gomez-laredo · María Esther Gómez Laredo · Sra. · concejal · PSOE · Participación y transparencia · Atención a la ciudadanía · Turismo y patrimonio histórico · Promoción de la Salud e Infraestructuras sanitarias · alcaldia@riba"
+        },
+        {
+          "id": "src-030",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T17:26:48.282Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "raquel-pamblanco-paredes · Raquel Pamblanco Paredes · Sra. · concejal · PSOE · Seguridad y emergencias · Igualdad · Comunicación e información · Protocolo y Bienestar Animal · alcaldia@ribarroja.es · /data/photos/raquel-pamblanco-paredes.jp"
+        },
+        {
+          "id": "src-031",
+          "kind": "local-snapshot",
+          "title": "public/data/press.json · items",
+          "retrievedAt": "2026-07-31T17:26:48.282Z",
+          "localPath": "public/data/press.json",
+          "trust": "high",
+          "excerpt": "1frgix3 · El patrimonio de Riba-roja crece hasta los 321 millones en los últimos diez años tras actualizar el inventario · https://news.google.com/rss/articles/CBMi_AFBVV95cUxOejJsTVFsVVNqbFdJSWZVMGl4UmhGT1M2U2FHZ1YyV1pRMEJhR0k3Vm9RLThtOVhL"
+        },
+        {
+          "id": "src-032",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:48.282Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[1020.0 → 1050.0] En este caso, cuando va a Granada, lo revisaré, pero creo que sí que estaba de servicio. Además, va vestido en el uniforme de policía local. Pero hacemos reconocimiento porque, detrás de que vaya vestid"
+        },
+        {
+          "id": "src-033",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:48.282Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[1050.0 → 1080.0] y que hay que tener una buena calidad de vida. [1080.0 → 1110.0] El PMS 2022 dice el mismo proyecto en distintas áreas de gasto. El 15 de julio de 2022. José Ángel. Sí. Bueno, en este caso, el importe d"
+        },
+        {
+          "id": "src-034",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T17:26:48.282Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[420.0 → 450.0] Vamos a empezar con nosotros, por primera vez, en el Pleno. Y vamos a pasar al orden del día, si os parece. La primera aprobación de actes, aprobemos. La segunda parte, parte resolutiva, el punto 2, aprob"
+        },
+        {
+          "id": "src-035",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+          "title": "Soraya (cantautora) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:49.140Z",
+          "trust": "medium",
+          "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969- Miami, Florida, 10 de mayo de 2006), conocida monónimamente como Soraya, fue una cantante colombo …"
+        },
+        {
+          "id": "src-036",
+          "kind": "web",
+          "url": "http://www.ribarroja.es/es/ayuntamiento/corporacion_municipal",
+          "title": "Corporación Municipal | Ayuntamiento de Riba-roja de Túria",
+          "retrievedAt": "2026-07-31T17:26:49.140Z",
+          "trust": "high",
+          "excerpt": "Innovación, Planificación estratégica y grandes proyectos y cooperación nacional e internacional. Sra. Dª. Teresa Pozuelo Martín. Áreas: Urbanismo, Vivienda, Obra Pública, Áreas Industriales y Cementerio. Sr. D. José Luis Ramos March."
+        },
+        {
+          "id": "src-037",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+          "title": "Soraya Arnelas - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:49.140Z",
+          "trust": "medium",
+          "excerpt": "Soraya Arnelas Rubiales (Valencia de Alcántara, Cáceres, 13 de septiembre de 1982), conocida simplemente como Soraya Arnelas o Soraya, es una cantante, compositora, actriz y modelo española."
+        },
+        {
+          "id": "src-038",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+          "title": "Soraya (cantautora) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:52.260Z",
+          "trust": "medium",
+          "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969- Miami, Florida, 10 de mayo de 2006), conocida …"
+        },
+        {
+          "id": "src-039",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+          "title": "Soraya Arnelas - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T17:26:52.260Z",
+          "trust": "medium",
+          "excerpt": "Soraya Arnelas Rubiales (Valencia de Alcántara, Cáceres, 13 de septiembre de 1982), conocida simplemente como Soraya Arnelas …"
+        },
+        {
+          "id": "src-040",
+          "kind": "web",
+          "url": "https://en.wikipedia.org/wiki/Soraya_(musician)",
+          "title": "Soraya (musician) - Wikipedia",
+          "retrievedAt": "2026-07-31T17:26:52.260Z",
+          "trust": "medium",
+          "excerpt": "Soraya Raquel Lamilla Cuevas (March 11, 1969 – May 10, 2006) was a Colombian-American singer-songwriter, guitarist, arranger …"
+        },
+        {
+          "id": "src-041",
+          "kind": "web",
+          "url": "https://www.youtube.com/watch?v=AId4I9jy4sg",
+          "title": "Soraya - De Repente (Video oficial HD 1996) - YouTube",
+          "retrievedAt": "2026-07-31T17:26:52.260Z",
+          "trust": "low",
+          "excerpt": "#soraya #DeRepente Mil ojos mirando hacia mí De los tuyos no puedo huir Tu mirada me tiene encantada Si te dejo entrar, estaré …"
+        },
+        {
+          "id": "src-042",
+          "kind": "web",
+          "url": "https://music.youtube.com/playlist?list=PLgaFNC_I_ZkkogwJScsfCtbRBqrC0mxQ_",
+          "title": "Soraya - Grandes Exitos, Sus Mejores Canciones, De Repente, Quedate ...",
+          "retrievedAt": "2026-07-31T17:26:52.260Z",
+          "trust": "low",
+          "excerpt": "Soraya Raquel Lamilla Cuevas (Point Pleasant, Nueva Jersey, 11 de marzo de 1969-Miami, Florida, 10 de mayo de 2006), conocida …"
+        },
+        {
+          "id": "src-043",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Texto completo: ribarroja.es",
+          "retrievedAt": "2026-07-31T17:26:54.650Z",
+          "trust": "high",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-044",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_(cantautora)",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-31T17:26:54.651Z",
+          "trust": "high",
+          "excerpt": "Soraya (cantautora) - Wikipedia, la enciclopedia libre <link rel=\"preconnect\" href=\"//upload.wikimedi",
+          "archiveUrl": "http://web.archive.org/web/20251113205029/https://es.wikipedia.org/wiki/Soraya_(cantautora)"
+        },
+        {
+          "id": "src-045",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Soraya_Arnelas",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-31T17:26:54.651Z",
+          "trust": "high",
+          "excerpt": "Soraya Arnelas - Wikipedia, la enciclopedia libre <link rel=\"preconnect\" href=\"//upload.wikimedia.o",
+          "archiveUrl": "http://web.archive.org/web/20260423070533/https://es.wikipedia.org/wiki/Soraya_Arnelas"
+        },
+        {
+          "id": "src-060",
+          "retrievedAt": "2026-07-31T17:34:01.372Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "Jose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo"
+          "excerpt": "Jose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado"
         },
         {
-          "id": "src-063",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-061",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
@@ -14300,53 +15102,26 @@
           "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo"
         },
         {
-          "id": "src-064",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-062",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
-          "title": "Acta sesión constitutiva 17-06-2023 — candidaturas a la Alcaldía (cabezas de lista; Gimeno «(independiente), Partido Popular»)",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "Presentan candidatura los siguientes Concejales/as:\n- Roberto Pascual Raga Gadea, Partido Socialista Obrero Español\n- Alberto Jose Gimeno Calvo (independiente), Partido Popular\n- Jose Luis Fernández Santamaria, VOX\n- Jose Manuel Gallardo Martínez, Esquerra Unida – Unides Podem per Riba-roja"
-        },
-        {
-          "id": "src-065",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
-          "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión constitutiva 17-06-2023 — votación de investidura (Raga 11 · Gimeno 7)",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "Interviene la Sr. Presidente indicando que finalizada la votación y realizado el escrutinio, el\nresultado es el siguiente:\nVotos a favor de D. Roberto Pascual Raga Gadea.\nVotos a favor de __11\n3\nVotos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0\nVotos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1\nVotos blancos________1"
-        },
-        {
-          "id": "src-066",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
-          "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Gimeno n.º 1 y portavoz; 5 de 7 miembros «(Independiente)»)",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Trejo n.º 2, «(Independiente)», portavoz suplente)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:"
         },
         {
-          "id": "src-067",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-063",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
-          "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu"
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo"
         },
         {
-          "id": "src-068",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
-          "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta organización 07-07-2023 — Comisión Informativa de Inclusión Social: titulares del Grupo Popular",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez"
-        },
-        {
-          "id": "src-069",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-064",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
@@ -14354,26 +15129,26 @@
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
         },
         {
-          "id": "src-070",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-065",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
-          "excerpt": "ALBERTO JOSE GIMENO CALVO 150.000,00 1.000,00 151.000,00 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+          "excerpt": "SORAYA TREJO DELGADO 7.546,00 7.190,27 14.736,27 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
         },
         {
-          "id": "src-071",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-066",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
-          "excerpt": "ALBERTO JOSE GIMENO CALVO | Policia · Valencia · cese 2023 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de cese; la declaración se presentó con motivo de la toma de posesión de junio de 2023]"
+          "excerpt": "SORAYA TREJO DELGADO | Becaria · E.A.U. Llorens, Fornés y Navarro · 08/06/2023 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de inicio]"
         },
         {
-          "id": "src-072",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-067",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
@@ -14381,48 +15156,28 @@
           "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
         },
         {
-          "id": "src-073",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-068",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "official-doc",
           "trust": "high",
-          "title": "BOP de València n.º 82, 30-04-2019 — candidatura del PP por Riba-roja (Gimeno ausente; cabeza de lista distinta)",
-          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
-          "excerpt": "PARTIDO POPULAR (PP)\nTITULARES\n1. JOSEFA RUIZ ESTEBAN\n2. SANTIAGO NAVARRO ZARAGOZÁ\n3. PEDRO TORTAJADA RAGA\n4. RAQUEL ARGANDOÑA LÓPEZ\n5. BEGOÑA CAMPOS MARTÍNEZ\n6. PAULA BADÍA LANÁQUERA\n7. ROSA AL SIBAI GINER\n8. VICTOR ENGUIX ZARAGO"
+          "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Trejo (17 PDF para otros miembros)",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Soraya Trejo Delgado, Laura Guzmán Bruno, Juan Boix Martínez ni Paula Navarro Sanfeliu."
         },
         {
-          "id": "src-074",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
-          "kind": "local-snapshot",
-          "trust": "high",
-          "title": "Orden del día del pleno extraordinario de 03-07-2026 — solicitado por el Grupo Municipal Popular (RSU y tasa de basura)",
-          "localPath": "public/data/plenos-agendas.json",
-          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
-          "excerpt": "Punto 1: «Ratificar la solicitud para la celebración del Pleno Extraordinario presentada por parte de los miembros del Grupo Municipal Popular». Punto 2: «Debate y adopción de acuerdos en relación con la gestión del servicio de recogida de RSU, poda y voluminosos, la situación contractual del servicio y la tasa de basura»."
-        },
-        {
-          "id": "src-075",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
-          "kind": "official-doc",
-          "trust": "medium",
-          "title": "Transcripción automática del pleno extraordinario 03-07-2026 (sin diarización de hablantes)",
-          "url": "https://regmeet.com/aytoribarroja/participaciones/aba18772fc70c8cbf79a79f413ef102b?idioma=castellano",
-          "excerpt": "¿Qué es lo que está pasando en el pleno? Mire, yo no convoco este pleno. El pleno lo ha pedido el Partido Popular."
-        },
-        {
-          "id": "src-076",
-          "retrievedAt": "2026-07-31T17:24:16.057Z",
+          "id": "src-069",
+          "retrievedAt": "2026-07-31T17:34:01.373Z",
           "kind": "local-snapshot",
           "trust": "high",
           "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
           "localPath": "public/data/tenders.json",
           "url": "https://www.civicpulse.es/data/tenders.json",
-          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GIMENO CALVO»."
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «TREJO» y 0 para «LLORENS» + «FORNÉS» (el despacho de su actividad declarada). En las candidaturas del BOP: 0 apariciones en 2019; la única coincidencia «TREJO» de 2015 corresponde a una candidata homónima de la circunscripción de Foios, no a la concejal."
         }
       ],
       "warnings": [
-        "Los datos biográficos y la trayectoria (Policía Local 1998-2023, assessor de la Diputació desde 08/2023, diplomatura) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora únicamente el cese como policía en 2023.",
-        "La simultaneidad concejal + assessor de la Diputació se publica como hechos fechados de documentos oficiales; al no tener dedicación exclusiva municipal, la compatibilidad de ambos puestos es la situación ordinaria prevista por la ley y este medio no afirma irregularidad.",
-        "La transcripción del pleno de 03-07-2026 es automática y sin identificación de hablantes; la frase citada sobre la convocatoria se atribuye a la presidencia por su contenido («yo no convoco este pleno») y el hecho que describe está corroborado por el punto 1 del orden del día."
+        "El portal municipal no publica CV de la concejal: los datos biográficos básicos (nacimiento, formación) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+        "La incorporación al despacho nueve días antes de la toma de posesión se publica como hecho fechado de su declaración estatutaria; sin dedicación municipal, la actividad privada es la situación ordinaria prevista por la ley y este medio no afirma irregularidad."
       ],
       "legalSensitivity": "medium",
       "requiresHumanApproval": true

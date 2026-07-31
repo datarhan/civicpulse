@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T17:24:38.126Z",
+  "generatedAt": "2026-07-31T17:34:21.901Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -211,6 +211,20 @@
       "createdAt": "2026-07-31T13:15:55.780Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T13:24:20.901Z"
+    },
+    {
+      "id": "a-soraya-trejo-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "soraya-trejo-delgado",
+        "name": "Soraya Trejo Delgado",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Soraya Trejo Delgado, concejal (PP) en la oposición del Ayuntamiento de Riba-roja de Túria: identidad y formación, trayectoria previa, elección (candidatura y toma de posesión), papel en la oposición (grupo municipal, portavocía suplente, comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T17:25:45.585Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T17:31:26.980Z"
     }
   ]
 }
