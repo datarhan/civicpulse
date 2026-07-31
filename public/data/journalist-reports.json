@@ -1,10 +1,499 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T19:13:32.313Z",
+  "generatedAt": "2026-07-31T19:26:08.697Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-rfolgado-bio-2026-07-31",
+      "assignmentId": "a-rfolgado-bio",
+      "generatedAt": "2026-07-31T19:22:25.997Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "rafael-folgado-navarro",
+            "photoPath": "/data/photos/rafael-folgado-navarro.jpg",
+            "partyTone": "ok",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1964-02-13",
+            "birthplace": "Riba-roja de Túria",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "COU y BUP",
+                "institution": "Instituto Nacional de Bachillerato José Rodrigo Botet (Manises)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Estudios de Ciencias Empresariales",
+                "institution": "Escuela de Empresariales de Valencia",
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejal de Compromís (cabeza de lista); con la delegación de Fomento Económico, Empleo, Actividades y Agricultura según su CV",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2015,
+                "endYear": 2019,
+                "sourceIds": [
+                  "src-069",
+                  "src-062"
+                ]
+              },
+              {
+                "role": "Concejal y portavoz del Grupo Municipal Compromís (cabeza de lista)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-063",
+                  "src-065"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Gerente y oficial de 1ª en reparación y mantenimiento de bicicletas (empresa familiar)",
+                "org": "Ciclos Folgado",
+                "sourceIds": [
+                  "src-062",
+                  "src-074"
+                ]
+              },
+              {
+                "role": "Profesor especialista del módulo de conducción de grupos en bicicleta (FP de Actividades Físicas en el Medio Natural)",
+                "org": "IFP Superior n.º 2 de Cheste",
+                "startYear": 2000,
+                "endYear": 2012,
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 42078.85,
+                "description": "Declaración de bienes al tomar posesión (2023): 42.078,85 € en bienes inmuebles y 0,00 € en otros bienes; pasivo declarado: 49.226,71 € — superior a su activo (patrimonio neto negativo), compatible con un préstamo empresarial o hipotecario, aunque el documento no detalla su naturaleza. La casilla de total activo imprime «0,00» pese a los 42.078,85 € en inmuebles: errata evidente del formulario. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-073",
+                  "src-075"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Actividad declarada: autónomo al frente de Ciclos Folgado, el negocio familiar de reparación y venta de bicicletas, con fecha de inicio 01-01-2021 — coherente con su CV. Sin dedicación municipal, la actividad es compatible con el régimen de asistencias.",
+                "sourceIds": [
+                  "src-074",
+                  "src-062"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo público",
+            "bodyMarkdown": "Rafael Folgado Navarro (Riba-roja de Túria, 13 de febrero de 1964) es **concejal y portavoz del Grupo Municipal Compromís** — el único concejal de esa formación, que constituye por sí solo el grupo. Hombre del municipio y de la bicicleta —gerente del negocio familiar Ciclos Folgado y durante años profesor de un módulo de conducción de grupos en bicicleta—, es también el opositor con más recorrido institucional: ya fue concejal en el mandato 2015-2019, entonces con responsabilidades de gobierno.",
+            "sourceIds": [
+              "src-060",
+              "src-069",
+              "src-065",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Tres candidaturas y un paso por el gobierno",
+            "bodyMarkdown": "Folgado ha sido **cabeza de la lista de Compromís en Riba-roja en tres elecciones consecutivas**: 2015 (BOP n.º 79), 2019 (BOP n.º 82) y 2023. En 2015 obtuvo acta —la sesión constitutiva de 13-06-2015 lo proclama concejal electo y lo registra como candidato a la Alcaldía— y, según su CV, durante aquel mandato asumió la **delegación de Fomento Económico, Empleo, Actividades y Agricultura**: es decir, formó parte del gobierno municipal, no de la oposición.\n\nEn 2023 vuelve a la corporación: la sesión constitutiva de 17-06-2023 lo proclama concejal electo, presta juramento o promesa y, como cabeza de lista, presenta **candidatura a la Alcaldía**, obteniendo **1 voto** (el suyo) frente a los 11 de Robert Raga.\n\nEn el pleno de organización de 07-07-2023 queda constituido como **grupo municipal unipersonal y portavoz de Compromís**, y —al ser el único miembro— es titular por su grupo en las **cinco comisiones informativas**. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).",
+            "sourceIds": [
+              "src-072",
+              "src-071",
+              "src-069",
+              "src-070",
+              "src-063",
+              "src-064",
+              "src-066",
+              "src-065",
+              "src-067",
+              "src-068",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de los adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias para «Ciclos Folgado»**, el negocio que declara. Ni el concejal ni su empresa constan como adjudicatarios del Ayuntamiento.\n\n**Cautela por apellido común**: «Folgado» es un apellido muy extendido en Riba-roja —el acta de 2015 recoge incluso a otro concejal, José Luis Folgado Correa—, y bajo él aparecen tres empresas adjudicatarias (Gil Folgado Catering, Folgado Materiales de Construcción e Industrial Gil Folgado) **sin relación documentada** con Rafael Folgado Navarro. La adyacencia de apellido no es un vínculo: este medio no las atribuye al concejal sin un documento que lo acredite.\n\nLímites declarados: la naturaleza del pasivo declarado (49.226,71 €, superior a su activo) no se detalla en el documento; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-076",
+              "src-073"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Rafael Folgado Navarro",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Compromís (unipersonal)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Ciclos Folgado (negocio familiar)",
+                "tone": "intel",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal único y portavoz; cabeza de lista en 2015, 2019 y 2023; concejal con delegación de gobierno 2015-2019",
+                "sourceIds": [
+                  "src-065",
+                  "src-069",
+                  "src-071",
+                  "src-072"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "gerente y autónomo del negocio familiar de bicicletas (declaración + CV)",
+                "sourceIds": [
+                  "src-074",
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "2000-09-01",
+                "label": "Profesor especialista del módulo de conducción de grupos en bicicleta (FP, IFP de Cheste), hasta 2012, en paralelo al negocio familiar Ciclos Folgado",
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "date": "2015-04-28",
+                "label": "Cabeza de la lista de Compromís por Riba-roja (BOP n.º 79)",
+                "sourceIds": [
+                  "src-072"
+                ]
+              },
+              {
+                "date": "2015-06-13",
+                "label": "Proclamado concejal electo y candidato a la Alcaldía (Compromís); durante el mandato 2015-2019 asume, según su CV, la delegación de Fomento Económico",
+                "sourceIds": [
+                  "src-069",
+                  "src-070",
+                  "src-062"
+                ]
+              },
+              {
+                "date": "2019-04-30",
+                "label": "De nuevo cabeza de la lista de Compromís (BOP n.º 82)",
+                "sourceIds": [
+                  "src-071"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamado concejal electo (tercera candidatura como cabeza); candidato a la Alcaldía con 1 voto",
+                "sourceIds": [
+                  "src-063",
+                  "src-066"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Constituido grupo unipersonal y portavoz de Compromís; titular en las cinco comisiones; sin dedicación (asistencias)",
+                "sourceIds": [
+                  "src-065",
+                  "src-067",
+                  "src-068"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 42.078,85 € (inmuebles) · pasivo 49.226,71 € (superior al activo); autónomo de Ciclos Folgado (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-073",
+                  "src-074",
+                  "src-075"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja: 1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS). Siendo su Portavoz: Don Rafael Folgado Navarro.",
+            "attributedTo": "Acta del pleno de organización de 07-07-2023 (constitución del Grupo Municipal Compromís)",
+            "date": "2023-07-07",
+            "sourceId": "src-065"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Alcance exacto de su etapa de gobierno 2015-2019",
+                "reason": "Su CV consigna la delegación de Fomento Económico, Empleo, Actividades y Agricultura en el mandato 2015-2019, y el acta de 2015 lo confirma como concejal electo; el detalle de cuándo asumió y cesó esa delegación no se ha reconstruido con las fuentes consultadas (requiere las actas de organización de aquel mandato)."
+              },
+              {
+                "field": "Naturaleza del pasivo declarado (49.226,71 €)",
+                "reason": "Supera su activo declarado; la declaración consigna el importe pero no su naturaleza (préstamo empresarial, hipoteca…). Se publica sin interpretación, y se señala la errata de la casilla de total activo (imprime 0,00)."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica. El apellido «Folgado» es común en el municipio y no se infieren vínculos por coincidencia."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+          "title": "CV publicado en el portal municipal — presentación (nacimiento en Riba-roja) (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "PRESENTACIÓN 13 FEBRERO 1964 RIBA-ROJA DE TÚRIA rfolgado@ribarroja.es",
+          "trust": "medium"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "FORMACIÓN COU• INSTITUTO NACIONAL DE BACHILLERATO JOSÉ RODRIGO BOTET DE MANISES• COU BUP• INSTITUTO NACIONAL DE BACHILLERATO JOSÉ RODRIGO BOTET DE MANISES• BUP OTROS: Estudios de Ciencias Empresariales en la Escuela de Empresariales Valencia. Curso de Marketing, Merchandaising y Atención al cliente. Organizado por la Consellería de Industria y Comercio. 50 horas Curso de Windows, Office (word, Excel y access) e internet, organizado por TUINFOR. 48 horas.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/Compromis-Rafael-Folgado-Navarro.pdf",
+          "title": "CV publicado en el portal municipal — experiencia: concejal 2015-2019 (Fomento Económico), profesor de ciclismo y Ciclos Folgado (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Concejal Ajuntament Riba-roja de Túria legislatura 2016-2019. Concejalía de Fomento Económico, Empleo, Actividades y Agricultura Profesor especialista del Módulo de Conducción de Grupos en bicicleta de Formación Profesional de Actividades Físicas en el Medio natural de Grado Mediano años 2000-2012 en el I.F.P. Superior N.º 2 de Cheste Gerente y Oficial de 1ª en reparación y mantenimiento de bicicletas en empresa familiar denominada CICLOS FOLGADO",
+          "trust": "medium"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Maria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria\nJose Manuel Gallardo Martínez\nRafael Folgado Navarro",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "por el siguiente orden:\n- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Compromís (Folgado, único miembro y portavoz)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Compromís per Riba-roja,\nes:\n1. Don Rafael Folgado Navarro (INICIATIVA-COMPROMÍS)\nSiendo su Portavoz: Don Rafael Folgado Navarro",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Folgado, 1 voto)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Votos a favor de D. Rafael Folgado Navarro\nVotos a favor de __1",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa: Compromís, titular Folgado (único miembro, en las cinco comisiones)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Grupo Municipal Compromís per Riba-roja\nTitular: D. Rafael Folgado Navarro",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
+          "title": "Acta sesión constitutiva 13-06-2015 — concejales electos proclamados (Folgado, mandato 2015-2019)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "D. JOSÉ ÁNGEL HERNANDEZ CARRIZOSA Dª BEATRIZ QUEVEDO SÁNCHEZ D. RAFAEL FOLGADO NAVARRO D. MIQUEL CASTILLO FAUS",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
+          "title": "Acta sesión constitutiva 13-06-2015 — candidatura a la Alcaldía (Folgado, Compromís)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Don Francisco Manuel Caparrós Duran, Ciudadanos Don Rafael Gómez Muñoz, EUPV:AC Don Rafael Folgado Navarro, Compromís per Riba-roja Don Rubén Ferrer Pérez, Riba-roja Pot Don Roberto Raga Gadea, Partido Socialista Obrero Español",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura de Compromís por Riba-roja (Folgado, cabeza de lista)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "CANDIDATURA NÚM. 6:\nCOMPROMÍS PER RIBA-ROJA: COMPROMÍS MUNICIPAL (COM-\nPROMÍS MUNICIPAL)\nTITULARES\n1. RAFAEL FOLGADO NAVARRO",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+          "title": "BOP de València n.º 79, 28-04-2015 — candidatura de Compromís por Riba-roja (Folgado, cabeza de lista)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "COMPROMIS PER RIBA-ROJA DE TuRIA (COMPROMIS) 1. En RAFAEL FOLGADO NAVARRO",
+          "trust": "high"
+        },
+        {
+          "id": "src-073",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "RAFAEL FOLGADO NAVARRO 42.078,85 0,00 0,00 49.226,71 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo; la casilla de total imprime 0,00 pese a los 42.078,85 € en inmuebles: errata evidente del documento]",
+          "trust": "high"
+        },
+        {
+          "id": "src-074",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "RAFAEL FOLGADO NAVARRO | Autónomo · Ciclos Folgado · 01/01/2021 — [tabla de actividades por columnas: cargo · entidad · fecha de inicio]",
+          "trust": "high"
+        },
+        {
+          "id": "src-075",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-076",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T19:25:38.445Z",
+          "excerpt": "Barrido nominal: 0 coincidencias para «Ciclos Folgado» (su negocio declarado). El apellido «Folgado» —muy común en Riba-roja (el acta de 2015 recoge a un concejal distinto, José Luis Folgado Correa)— sí aparece en tres empresas adjudicatarias sin relación documentada con el concejal: Gil Folgado Catering, Folgado Materiales de Construcción e Industrial Gil Folgado. Adyacencia de apellido no es vínculo; sin documento, no se atribuyen.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos y de trayectoria (nacimiento, formación, Ciclos Folgado, docencia, delegación de gobierno 2015-2019) proceden del CV autodeclarado; el acta de 2015 corrobora su condición de concejal electo y candidato a la alcaldía aquel mandato, y la declaración estatutaria corrobora la actividad de autónomo (Ciclos Folgado).",
+        "Empresas con el apellido «Folgado» (Gil Folgado, Folgado Materiales de Construcción) figuran como adjudicatarias municipales pero NO se atribuyen al concejal: apellido común, sin documento que las vincule.",
+        "Las intervenciones plenarias no se atribuyen individualmente: las transcripciones automáticas carecen de diarización fiable y el borrador citaba a un genérico «Rafael» no confirmado."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T19:26:08.687Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente (7 secciones) que no construyó identidad/formación/carrera pese al CV y sí una narrativa de intervenciones atribuida a un genérico «Rafael» no confirmado (podría ser Rafael Gómez) — retirada. Reconstruido rico sobre el CV cacheado + primarios. Nacido en Riba-roja el 13-02-1964; hombre de la bicicleta (gerente del negocio familiar Ciclos Folgado + profesor de FP del módulo de conducción en bicicleta, IFP Cheste 2000-2012). TRAYECTORIA INSTITUCIONAL AMPLIA: cabeza de Compromís en Riba-roja en 2015, 2019 Y 2023 (tres consecutivas, verificadas en BOP n.º 79/2015, n.º 82/2019 y actas 2023); en el mandato 2015-2019 fue concejal (electo corroborado por acta constitutiva 13-06-2015 + candidato a alcalde 2015) con la delegación de Fomento Económico según su CV — es decir, estuvo en el gobierno, no en la oposición. 2023: electo, candidato a alcalde con 1 voto, grupo unipersonal + portavoz de Compromís, titular en las 5 comisiones, asistencias. Declaración verificada contra render p2/p3: activo 42.078,85 € (inmuebles; la casilla de total imprime «0,00» — errata del formulario señalada [sic]), pasivo 49.226,71 € (SUPERIOR al activo, patrimonio neto negativo); autónomo de Ciclos Folgado desde 2021. GATE DE APELLIDO COMÚN aplicado y publicado en el cuerpo: «Ciclos Folgado» 0 adjudicaciones; empresas homónimas (apellido muy común en el municipio — el acta 2015 recoge a otro concejal, José Luis Folgado Correa) NO se atribuyen al concejal sin documento. legalSensitivity medium. Con este dossier se completan los 21 concejales de la corporación.",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-jmgallardo-bio-2026-07-31",
       "assignmentId": "a-jmgallardo-bio",

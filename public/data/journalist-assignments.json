@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T19:13:32.320Z",
+  "generatedAt": "2026-07-31T19:26:08.705Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -323,6 +323,20 @@
       "createdAt": "2026-07-31T19:01:44.580Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T19:09:21.555Z"
+    },
+    {
+      "id": "a-rfolgado-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "rafael-folgado-navarro",
+        "name": "Rafael Folgado Navarro",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Rafael Folgado Navarro, concejal y portavoz de Compromís en el Ayuntamiento de Riba-roja de Túria: identidad y formación, trayectoria (comerciante autónomo), elección (candidatura como cabeza de lista en varias elecciones, toma de posesión, candidatura a la alcaldía), papel en la oposición (grupo municipal unipersonal y comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T19:14:59.428Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T19:22:25.998Z"
     }
   ]
 }
