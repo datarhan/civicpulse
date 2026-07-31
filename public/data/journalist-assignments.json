@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T18:46:45.396Z",
+  "generatedAt": "2026-07-31T19:00:52.221Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -295,6 +295,20 @@
       "createdAt": "2026-07-31T18:36:00.795Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T18:42:36.012Z"
+    },
+    {
+      "id": "a-jlfernandez-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "jose-luis-fernandez-santamaria",
+        "name": "José Luis Fernández Santamaría",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de José Luis Fernández Santamaría, concejal y portavoz de VOX en el Ayuntamiento de Riba-roja de Túria: identidad y formación, trayectoria previa en banca, elección (candidatura, toma de posesión, candidatura a la alcaldía), papel en la oposición (grupo municipal unipersonal y comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T18:47:38.977Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T18:56:47.979Z"
     }
   ]
 }

@@ -1,0 +1,864 @@
+{
+  "id": "r-jlfernandez-bio-2026-07-31",
+  "assignmentId": "a-jlfernandez-bio",
+  "generatedAt": "2026-07-31T18:56:47.977Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "jose-luis-fernandez-santamaria",
+        "photoPath": "/data/photos/jose-luis-fernandez-santamaria.jpg",
+        "partyTone": "warn",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1964-09-02",
+        "birthplace": "Madrid",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Licenciatura en Ciencias Económicas y Empresariales",
+            "institution": "Universidad de Valencia",
+            "endYear": 1989,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Máster en Gestión y Dirección Bancaria",
+            "institution": "Universidad Autónoma de Madrid",
+            "endYear": 2006,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Experto en Crédito Inmobiliario (LCCI) y en Asesoramiento Financiero (MIFID II), entre otras titulaciones financieras",
+            "institution": "IEAF · CUNEF",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Gerente de segmento empresarial y de financiación inmobiliaria (Comunidad Valenciana)",
+            "org": "Bankia",
+            "startYear": 2016,
+            "endYear": 2021,
+            "sourceIds": [
+              "src-063",
+              "src-062"
+            ]
+          },
+          {
+            "role": "Gerente de Negocio Inmobiliario de la Comunidad Valenciana",
+            "org": "Caixabank",
+            "startYear": 2021,
+            "endYear": 2021,
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "role": "Consultor financiero externo",
+            "org": "APROA Consultoría y Gestión (Valencia)",
+            "startYear": 2022,
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "role": "Responsable de la Vicesecretaría nacional de movilización social de VOX en la provincia de Valencia",
+            "org": "VOX",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 607435,
+            "description": "Activo declarado al tomar posesión (2023): 370.000,00 € en bienes inmuebles + 237.435,00 € en otros bienes = 607.435,00 €; pasivo declarado: 19.237,00 €. Es el mayor patrimonio total declarado de toda la corporación 2023. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-070",
+              "src-072"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Su declaración de actividades consigna un único cargo, «apoderado» en entidades de crédito, entre diciembre de 1990 y diciembre de 2021 — coherente con su carrera en Bankia y Caixabank. Su CV añade una consultoría financiera externa en APROA Consultoría y Gestión desde enero de 2022 que no figura en la declaración estatutaria de 2023 (véase «Lagunas detectadas»).",
+            "sourceIds": [
+              "src-071",
+              "src-062"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo público",
+        "bodyMarkdown": "José Luis Fernández Santamaría (Madrid, 2 de septiembre de 1964) es **concejal y portavoz del Grupo Municipal Vox** en el Ayuntamiento de Riba-roja de Túria — el único concejal de esa formación, que constituye por sí solo el grupo. Licenciado en Ciencias Económicas y Empresariales por la Universidad de Valencia (1989), con un máster en gestión y dirección bancaria y una larga lista de titulaciones financieras, es el perfil más marcadamente ligado al sector financiero de la corporación.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-066"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada** en Riba-roja: no aparece en las candidaturas de la circunscripción publicadas en el BOP ni en 2015 ni en 2019. Concurrió como **cabeza de la lista de Vox** y obtuvo el acta que dio a la formación su primer concejal en el municipio.\n\nLa sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona y presta juramento o promesa. Como cabeza de lista, presentó **candidatura a la Alcaldía**: obtuvo **1 voto** (el suyo), frente a los 11 de Robert Raga (PSPV-PSOE), proclamado alcalde, y los 7 de Alberto Gimeno (PP).\n\nEn el pleno de organización de 07-07-2023 queda constituido como **grupo municipal unipersonal y portavoz de Vox**, y —al ser el único miembro— es titular por su grupo en las **cinco comisiones informativas**. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).",
+        "sourceIds": [
+          "src-064",
+          "src-065",
+          "src-067",
+          "src-066",
+          "src-068",
+          "src-069"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Una carrera en la banca inmobiliaria",
+        "bodyMarkdown": "El grueso de la trayectoria profesional que declara Fernández transcurre en la **banca**: gerente de segmento empresarial y, después, de la dirección de financiación inmobiliaria de **Bankia** para la Comunidad Valenciana (2016-2021) y, tras la absorción de Bankia, gerente de negocio inmobiliario de la Comunidad Valenciana en **Caixabank** hasta el 31 de diciembre de 2021. Su declaración estatutaria resume esa etapa como «apoderado» en entidades de crédito entre 1990 y 2021.\n\nDesde enero de 2022, su CV lo sitúa como **consultor financiero externo en el despacho APROA Consultoría y Gestión** de Valencia, y como **responsable de la Vicesecretaría nacional de movilización social de Vox** en la provincia de Valencia — un cargo orgánico del partido. La formación complementaria que declara (experto en crédito inmobiliario, especialista MIFID II, agente y corredor de seguros) refuerza ese perfil financiero.",
+        "sourceIds": [
+          "src-063",
+          "src-062",
+          "src-071",
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Fernández Santamaría», **0** para «APROA» (su consultoría desde 2022) y **0** para «Bankia»; la única coincidencia con «Caixabank» es una filial de leasing sin relación personal con el concejal. Ni él ni sus entidades constan como adjudicatarios del Ayuntamiento.\n\nLímites declarados: su relación con la banca y con APROA es de empleo o prestación de servicios entre entidades privadas, que no deja rastro en la contratación pública municipal; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-073",
+          "src-062"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "José Luis Fernández Santamaría",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Vox (unipersonal)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Bankia / Caixabank (banca inmobiliaria)",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n4",
+            "label": "APROA Consultoría y Gestión",
+            "tone": "intel",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal único y portavoz de Vox; cabeza de lista, candidato a la Alcaldía (1 voto)",
+            "sourceIds": [
+              "src-066",
+              "src-067"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "gerente de banca inmobiliaria 2016-2021 (CV; «apoderado» en la declaración)",
+            "sourceIds": [
+              "src-063",
+              "src-071"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "consultor financiero externo desde 2022 (CV; no consta en la declaración de 2023)",
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1989-06-30",
+            "label": "Licenciatura en Ciencias Económicas y Empresariales (Universidad de Valencia)",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "date": "2016-01-01",
+            "label": "Gerente en Bankia (segmento empresarial y financiación inmobiliaria, CV), hasta su paso a Caixabank",
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "date": "2021-12-31",
+            "label": "Fin de su etapa como gerente en Caixabank; su declaración cierra en 2021 el cargo de apoderado en entidades de crédito",
+            "sourceIds": [
+              "src-062",
+              "src-071"
+            ]
+          },
+          {
+            "date": "2022-01-01",
+            "label": "Consultor financiero externo en APROA (CV) y cargo orgánico en Vox provincial",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo por Vox; candidato a la Alcaldía con 1 voto (primera candidatura documentada)",
+            "sourceIds": [
+              "src-064",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Constituido grupo unipersonal y portavoz de Vox; titular en las cinco comisiones; sin dedicación (asistencias)",
+            "sourceIds": [
+              "src-066",
+              "src-068",
+              "src-069"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 607.435,00 € (el mayor de la corporación) · pasivo 19.237,00 € (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-070",
+              "src-072"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Por el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es: 1. Don José Luis Fernández Santamaría. Siendo su Portavoz: Don José Luis Fernández Santamaría.",
+        "attributedTo": "Acta del pleno de organización de 07-07-2023 (constitución del Grupo Municipal Vox)",
+        "sourceId": "src-066",
+        "date": "2023-07-07"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Consultoría APROA no declarada en 2023",
+            "reason": "Su CV consigna una consultoría financiera externa en APROA desde enero de 2022, actividad que no aparece en la declaración de actividades presentada con la toma de posesión (septiembre de 2023), la cual solo recoge el cargo de apoderado cerrado en 2021. Se publican ambos datos; este medio no afirma incumplimiento, constata la discrepancia entre el CV y la declaración."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Composición del patrimonio",
+            "reason": "Declara el mayor activo de la corporación (607.435 €), del que 237.435 € son «otros bienes» sin desglose de naturaleza en el documento."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — José Luis Fernández Santamaría",
+      "retrievedAt": "2026-07-31T18:48:20.615Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "role: concejal · party: VOX · portfolios: "
+    },
+    {
+      "id": "src-002",
+      "kind": "web",
+      "url": "https://es.linkedin.com/in/rub%C3%A9n-fern%C3%A1ndez-santamar%C3%ADa-811a6874",
+      "title": "Rubén Fernández Santamaría - Basic Researcher - LinkedIn",
+      "retrievedAt": "2026-07-31T18:48:23.733Z",
+      "trust": "low",
+      "excerpt": "Rubén Fernández Santamaría. Basic Researcher. European Academy of Allergy and Clinical Immunology - EAACI Universitat d'Alacant. Madrid ..."
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://riuma.uma.es/entities/publication/ea83c56c-0f13-4567-920a-291761fcc3a7",
+      "title": "Cellular recognition of drug antigenic determinants by allergic ...",
+      "retrievedAt": "2026-07-31T18:48:23.733Z",
+      "trust": "low",
+      "excerpt": "Authors. Fernández-Santamaría, Rubén. Collaborators. Advisors. Torres-Jaén, María Josefa Universidad de Málaga ORCID · Fernández-Duarte, Tahía Diana Universidad ..."
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://www.cepc.gob.es/en/autor/fernandez-santamaria-jose-antonio",
+      "title": "Fernández Santamaría, José Antonio | CEPC",
+      "retrievedAt": "2026-07-31T18:48:23.733Z",
+      "trust": "high",
+      "excerpt": "Fernández Santamaría, José Antonio. Libros. Acerca del iusnaturalismo y el Estado del Barroco. CEPC. CENTRO DE ESTUDIOS POLÍTICOS Y CONSTITUCIONALES ..."
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T18:48:23.734Z",
+      "localPath": "public/data/elections.json",
+      "trust": "high",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2019-14480",
+      "title": "BOE-A-2019-14480 Candidaturas presentadas para las elecciones ...",
+      "retrievedAt": "2026-07-31T18:48:24.325Z",
+      "trust": "high",
+      "excerpt": "24 sept 2025 ... José Luis Fernández Santamaría. 5. Ana María Bellver Alcántara. 6. José Pedro Martínez Carrión. 7. Ignacio Soriano Tarín. 8. María Ángeles ..."
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T18:48:24.325Z",
+      "trust": "medium",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la …"
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://esquelas.elcorreo.com/necrologicas/fernandez-santamaria-jose-luis-276294.html",
+      "title": "FERNANDEZ SANTAMARIA,JOSE LUIS - Esquelas - El Correo",
+      "retrievedAt": "2026-07-31T18:48:24.325Z",
+      "trust": "low",
+      "excerpt": "Primer aniversario Q. E. P. D. Don José Luis Fernández Santamaría \"El vasco\" Falleció en Cruces-Barakaldo el día 3 de agosto de 2012 a los 66 años de edad, habiendo ..."
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T18:48:24.326Z",
+      "trust": "medium",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T18:48:24.326Z",
+      "trust": "medium",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T18:48:24.326Z",
+      "trust": "low",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://www.telekom.de/start",
+      "title": "Telekom | Mobilfunk, Festnetz & Internet und TV",
+      "retrievedAt": "2026-07-31T18:48:24.940Z",
+      "trust": "low",
+      "excerpt": "Bei der Telekom bekommen Sie Mobilfunk (5G/LTE), Festnetz & Internet sowie TV aus einer Hand – für zu Hause und unterwegs. …"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2012-7622",
+      "title": "BOE-A-2012-7622 Real Decreto 826/2012, de 18 de mayo, por el ...",
+      "retrievedAt": "2026-07-31T18:48:24.940Z",
+      "trust": "high",
+      "excerpt": "Agencia Estatal Bolet&iacute;n Oficial del Estado Ir a contenido Consultar el diario oficial BOE Idioma actual: Castellano / es Puede seleccionar otro idioma: es / Castellano ca / Catal&agrave; gl / Galego eu / Euskara va / Valenci&agrave; en / English fr / Fran&ccedil;ais Buscar Mi BOE Desconectado. Pulse para acceder al servicio 'Mi BOE' Men&uacute; Men&uacute; Diarios Oficiales BOE BORME Otros diarios oficiales Informaci&oacute;n Jur&iacute;dica Todo el Derecho Biblioteca "
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://www.telekom.de/e-mail/zum-e-mail-center",
+      "title": "Zum E-Mail Center | Telekom",
+      "retrievedAt": "2026-07-31T18:48:24.941Z",
+      "trust": "low",
+      "excerpt": "Telekom empfehlen Telekom Shops Kontakt Telekom E-Mail Zum E-Mail Center Bitte melden Sie sich mit Ihrem Telekom-Login an."
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://boc.cantabria.es/boces/verAnuncioAction.do?idAnuBlob=41836",
+      "title": "inspección provincial de trabajo - Boletín Oficial de Cantabria",
+      "retrievedAt": "2026-07-31T18:48:25.351Z",
+      "trust": "low",
+      "excerpt": "sobre revisión de oficio de subsidio por desempleo de fecha 1 de abril de ... FERNANDEZ SANTAMARIA BORJA. 72036366. 30-07-02 66359840. FERNANDEZ SUAREZ ..."
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://www.record.pt/",
+      "title": "Record – Tudo sobre desporto. Futebol, mercado, modalidades ...",
+      "retrievedAt": "2026-07-31T18:48:25.351Z",
+      "trust": "low",
+      "excerpt": "Record – Tudo sobre desporto. Futebol, mercado, modalidades, resultados e classificações"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://www.bopsantacruzdetenerife.es/boletines/2011/18-2-11/18-2-11.pdf",
+      "title": "Boletín 028/2011, de fecha 18/02/2011 - BOP Santa Cruz de Tenerife",
+      "retrievedAt": "2026-07-31T18:48:25.351Z",
+      "trust": "low",
+      "excerpt": "18 feb 2011 ... ... revisión de oficio del acto nulo de licencia de obras a nombre de ... Fernández Santamaría contra INSS, S.L. y otros ..."
+    },
+    {
+      "id": "src-018",
+      "kind": "web",
+      "url": "https://www.jstage.jst.go.jp/article/shinzo/43/11/43_1391/_pdf/-char/ja",
+      "title": "心拍数の調節機構 - J-STAGE",
+      "retrievedAt": "2026-07-31T18:48:25.680Z",
+      "trust": "low",
+      "excerpt": "正常心臓の心拍数は,洞結節の自発興奮が自律神経によって修飾されることによって決定される.本稿では,自動能の発生に関与する洞 …"
+    },
+    {
+      "id": "src-019",
+      "kind": "web",
+      "url": "https://www.boe.es/boe/dias/1981/05/30/pdfs/A11971-11991.pdf",
+      "title": "MINISTERIO DE HACIENDA - BOE.es",
+      "retrievedAt": "2026-07-31T18:48:25.680Z",
+      "trust": "high",
+      "excerpt": "Información de la Universidad Complutense de Madrid, con las condiciones establecidas en los artículos 8.° y 9.° de la Ley 83/ 1965, de 17 de julio, sobre estructura de las Facultades Uni­ versitarias y su Profesorado, y con los emolumentos que, según liquidación reglamentaria, le correspondan, de acuerdo con la Ley 31/1965, de 4 de mayo, y Real Decreto-ley 22/1977, de 30 de marzo, sobre retribuciones de los Funcionarios de la Ad­ ministración Giyil del Estado, y demás dispos"
+    },
+    {
+      "id": "src-020",
+      "kind": "web",
+      "url": "https://wbck.tokyo/archives/2769",
+      "title": "アスリートの最大心拍数と有酸素運動：心血管と神経系の適応 | ウェ …",
+      "retrievedAt": "2026-07-31T18:48:25.680Z",
+      "trust": "low",
+      "excerpt": "1 de jul de 2025 · まとめ 高強度有酸素運動は、アスリートの心臓に特異的な適応をもたらし、最大心拍数の向上やエネルギー効率 …"
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-034-afi-199709 · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-616b80 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-099-cit-8a1dc7 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-103-acu-92ea5a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "Efectivamente, en el Pacto del Botánico no se hizo absolutamente nada."
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-104-acu-107c02 · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el Pacto del Botánico no se hizo absolutamente nada. Si no se degradó, creo, lo que es el sistema educativo valenciano."
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-209-afi-c6e9ef · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "en el 24, votaremos a favor porque es una moción"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-277-acu-401b6a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T18:48:29.779Z",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high",
+      "excerpt": "como no hemos tenido una buena recogida de residuos, no imputable al ayuntamiento, imputable a una empresa que no va a cumplir sus obligaciones"
+    },
+    {
+      "id": "src-029",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T18:48:29.780Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:48:30.574Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "maria-esther-gomez-laredo · María Esther Gómez Laredo · Sra. · concejal · PSOE · Participación y transparencia · Atención a la ciudadanía · Turismo y patrimonio histórico · Promoción de la Salud e Infraestructuras sanitarias · alcaldia@riba"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T18:48:30.574Z",
+      "localPath": "public/data/officials.json",
+      "trust": "high",
+      "excerpt": "jose-luis-fernandez-santamaria · José Luis Fernández Santamaría · Sr. · concejal · VOX ·  · alcaldia@ribarroja.es · /data/photos/jose-luis-fernandez-santamaria.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "public/data/press.json · items",
+      "retrievedAt": "2026-07-31T18:48:30.574Z",
+      "localPath": "public/data/press.json",
+      "trust": "high",
+      "excerpt": "1frgix3 · El patrimonio de Riba-roja crece hasta los 321 millones en los últimos diez años tras actualizar el inventario · https://news.google.com/rss/articles/CBMi_AFBVV95cUxOejJsTVFsVVNqbFdJSWZVMGl4UmhGT1M2U2FHZ1YyV1pRMEJhR0k3Vm9RLThtOVhL"
+    },
+    {
+      "id": "src-033",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T18:48:31.069Z",
+      "trust": "medium",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la influencia del cristianismo, al ser el nombre de José de Nazaret padre …"
+    },
+    {
+      "id": "src-034",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "José (patriarca) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T18:48:31.069Z",
+      "trust": "medium",
+      "excerpt": "Sus hijos Efraín y Manasés, nacidos de la egipcia Asenat, constituyeron dos de las doce tribus de Israel, conocidas como Casa de José, que son las más importantes del Reino de Israel y ancestros …"
+    },
+    {
+      "id": "src-035",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia",
+      "retrievedAt": "2026-07-31T18:48:31.069Z",
+      "trust": "medium",
+      "excerpt": "French vernacular form The French given name José, pronounced [ʒoze], is an old vernacular form of the French name Joseph, and is also popular under the feminine form Josée. The masculine form is …"
+    },
+    {
+      "id": "src-036",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T18:48:34.070Z",
+      "trust": "medium",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la …"
+    },
+    {
+      "id": "src-037",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "José (patriarca) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T18:48:34.070Z",
+      "trust": "medium",
+      "excerpt": "Sus hijos Efraín y Manasés, nacidos de la egipcia Asenat, constituyeron dos de las doce tribus de Israel, conocidas como Casa de …"
+    },
+    {
+      "id": "src-038",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia",
+      "retrievedAt": "2026-07-31T18:48:34.070Z",
+      "trust": "medium",
+      "excerpt": "French vernacular form The French given name José, pronounced [ʒoze], is an old vernacular form of the French name Joseph, and …"
+    },
+    {
+      "id": "src-039",
+      "kind": "web",
+      "url": "https://dle.rae.es/jos%C3%A9",
+      "title": "José | Definición | Diccionario de la lengua española | RAE - ASALE",
+      "retrievedAt": "2026-07-31T18:48:34.070Z",
+      "trust": "low",
+      "excerpt": "Responsable: Real Academia Española. Finalidades: Gestionar su suscripción al boletín mensual de la RAE. Derechos: Tiene …"
+    },
+    {
+      "id": "src-040",
+      "kind": "web",
+      "url": "https://www.serpadres.es/bebe/44971.html",
+      "title": "Significado del nombre José: origen e historia - Nombres de niño",
+      "retrievedAt": "2026-07-31T18:48:34.070Z",
+      "trust": "low",
+      "excerpt": "2 de ago de 2023 · En la tradición cristiana, José es una figura central, conocido como el esposo de la Virgen María y el padre …"
+    },
+    {
+      "id": "src-041",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T18:48:34.073Z",
+      "trust": "high",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+    },
+    {
+      "id": "src-042",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T18:48:34.073Z",
+      "trust": "high",
+      "excerpt": "José - Wikipedia, la enciclopedia libre </",
+      "archiveUrl": "http://web.archive.org/web/20260721153703/https://es.wikipedia.org/wiki/Jos%C3%A9"
+    },
+    {
+      "id": "src-043",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T18:48:34.073Z",
+      "trust": "high",
+      "excerpt": "José (patriarca) - Wikipedia, la enciclopedia libre <meta property=\"og:title\" content=\"José (patriarca) - Wikipedi",
+      "archiveUrl": "http://web.archive.org/web/20260114012026/https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)"
+    },
+    {
+      "id": "src-060",
+      "retrievedAt": "2026-07-31T19:00:08.952Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — presentación (nacimiento) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+      "excerpt": "PRESENTACIÓN 2 SEPTIEMBRE 1964 MADRID jlsantamaria08@gmail.com"
+    },
+    {
+      "id": "src-061",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — formación (economía y banca) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+      "excerpt": "MÁSTER EN GESTION Y DIRECCION BANCARIA, por la Universidad Autónoma de Madrid, año 2006 DIPLOMADO EN URBANISMO, por Asprima, año 2005 MÁSTER EGEI, por la Universidad Politécnica de Valencia, graduado en el año 1.992. GRADUADO EN COMERCIO EXTERIOR, por la Universidad Politécnica de Madrid, año 1992. TITULADO AGENTE Y CORREDOR DE SEGUROS, por la Dirección General de Seguros, año 1991. LICENCIADO EN CIENCIAS ECONÓMICAS Y EMPRESARIALES, por la Universidad de Valencia, año 1989."
+    },
+    {
+      "id": "src-062",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — cargo en VOX provincial, consultoría APROA (desde 2022) y Caixabank (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+      "excerpt": "Responsable de la Vicesecretaría nacional de movilización social de VOX en la provincia de Valencia Actualmente y desde enero de 2022 Consultor financiero externo en el despacho profesional APROA CONSULTORIA Y GESTION de Valencia https://grupoaproa.es/equipo/ Desde marzo de 2021 GERENTE DE NEGOCIO INMOBILIARIO de la Comunidad Valenciana en CAIXABANK hasta 31 de diciembre de 2021"
+    },
+    {
+      "id": "src-063",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "medium",
+      "title": "CV publicado en el portal municipal — etapa en Bankia (2016-2021) (autodeclarado)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+      "excerpt": "Desde 2018 GERENTE DE LA DIRECCION DE FINANCIACION INMOBILIARIA de Bankia para Comunidad Valenciana Desde 2016 hasta 2018 GERENTE SEGMENTO EMPRESARIAL en Zona Centro Valencia en Bankia"
+    },
+    {
+      "id": "src-064",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Alberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria"
+    },
+    {
+      "id": "src-065",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo"
+    },
+    {
+      "id": "src-066",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Vox (Fernández, único miembro y portavoz)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:\n1. Don José Luis Fernández Santamaría\nSiendo su Portavoz: Don José Luis Fernández Santamaría"
+    },
+    {
+      "id": "src-067",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Fernández, 1 voto)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0"
+    },
+    {
+      "id": "src-068",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa: Vox, titular Fernández (único miembro, en las cinco comisiones)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "Grupo Municipal Vox Riba roja de Túria\nTitular: D. José Luis Fernández Santamaría."
+    },
+    {
+      "id": "src-069",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+    },
+    {
+      "id": "src-070",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "JOSE LUIS FERNÁNDEZ SANTAMARIA 370.000,00 237.435,00 607.435,00 19.237,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+    },
+    {
+      "id": "src-071",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "excerpt": "JOSE LUIS FERNÁNDEZ SANTAMARIA | Apoderado · Entidades de crédito · 00/12/1990 → 00/12/2021 — [tabla de actividades por columnas: cargo · entidad · inicio · cese; el «00» del día es un marcador del formulario]"
+    },
+    {
+      "id": "src-072",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "official-doc",
+      "trust": "high",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+    },
+    {
+      "id": "src-073",
+      "retrievedAt": "2026-07-31T19:00:08.953Z",
+      "kind": "local-snapshot",
+      "trust": "high",
+      "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+      "localPath": "public/data/tenders.json",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Fernández Santamaría», 0 para «APROA» (su consultoría desde 2022) y 0 para «Bankia». La única coincidencia «Caixabank» es una filial de leasing (Caixabank Equipment Finance), sin relación personal con el concejal."
+    }
+  ],
+  "warnings": [
+    "Los datos biográficos y de trayectoria (nacimiento, formación, etapas en Bankia/Caixabank y APROA, cargo en Vox provincial) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora el cargo de apoderado en entidades de crédito (1990-2021).",
+    "La discrepancia entre el CV (consultoría APROA desde 2022) y la declaración de actividades de 2023 se publica como hechos fechados; este medio no afirma incumplimiento.",
+    "Las intervenciones plenarias no se atribuyen individualmente: las transcripciones automáticas carecen de diarización fiable y el borrador del agente contenía citas de floor no verificables que se han retirado."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

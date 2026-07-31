@@ -1,10 +1,489 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T18:46:45.390Z",
+  "generatedAt": "2026-07-31T19:00:52.214Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-jlfernandez-bio-2026-07-31",
+      "assignmentId": "a-jlfernandez-bio",
+      "generatedAt": "2026-07-31T18:56:47.977Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "jose-luis-fernandez-santamaria",
+            "photoPath": "/data/photos/jose-luis-fernandez-santamaria.jpg",
+            "partyTone": "warn",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1964-09-02",
+            "birthplace": "Madrid",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Licenciatura en Ciencias Económicas y Empresariales",
+                "institution": "Universidad de Valencia",
+                "endYear": 1989,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Máster en Gestión y Dirección Bancaria",
+                "institution": "Universidad Autónoma de Madrid",
+                "endYear": 2006,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Experto en Crédito Inmobiliario (LCCI) y en Asesoramiento Financiero (MIFID II), entre otras titulaciones financieras",
+                "institution": "IEAF · CUNEF",
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Gerente de segmento empresarial y de financiación inmobiliaria (Comunidad Valenciana)",
+                "org": "Bankia",
+                "startYear": 2016,
+                "endYear": 2021,
+                "sourceIds": [
+                  "src-063",
+                  "src-062"
+                ]
+              },
+              {
+                "role": "Gerente de Negocio Inmobiliario de la Comunidad Valenciana",
+                "org": "Caixabank",
+                "startYear": 2021,
+                "endYear": 2021,
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "role": "Consultor financiero externo",
+                "org": "APROA Consultoría y Gestión (Valencia)",
+                "startYear": 2022,
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "role": "Responsable de la Vicesecretaría nacional de movilización social de VOX en la provincia de Valencia",
+                "org": "VOX",
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 607435,
+                "description": "Activo declarado al tomar posesión (2023): 370.000,00 € en bienes inmuebles + 237.435,00 € en otros bienes = 607.435,00 €; pasivo declarado: 19.237,00 €. Es el mayor patrimonio total declarado de toda la corporación 2023. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-070",
+                  "src-072"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Su declaración de actividades consigna un único cargo, «apoderado» en entidades de crédito, entre diciembre de 1990 y diciembre de 2021 — coherente con su carrera en Bankia y Caixabank. Su CV añade una consultoría financiera externa en APROA Consultoría y Gestión desde enero de 2022 que no figura en la declaración estatutaria de 2023 (véase «Lagunas detectadas»).",
+                "sourceIds": [
+                  "src-071",
+                  "src-062"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-069"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo público",
+            "bodyMarkdown": "José Luis Fernández Santamaría (Madrid, 2 de septiembre de 1964) es **concejal y portavoz del Grupo Municipal Vox** en el Ayuntamiento de Riba-roja de Túria — el único concejal de esa formación, que constituye por sí solo el grupo. Licenciado en Ciencias Económicas y Empresariales por la Universidad de Valencia (1989), con un máster en gestión y dirección bancaria y una larga lista de titulaciones financieras, es el perfil más marcadamente ligado al sector financiero de la corporación.",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-066"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y nombramiento",
+            "bodyMarkdown": "La de 2023 es su **primera candidatura documentada** en Riba-roja: no aparece en las candidaturas de la circunscripción publicadas en el BOP ni en 2015 ni en 2019. Concurrió como **cabeza de la lista de Vox** y obtuvo el acta que dio a la formación su primer concejal en el municipio.\n\nLa sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona y presta juramento o promesa. Como cabeza de lista, presentó **candidatura a la Alcaldía**: obtuvo **1 voto** (el suyo), frente a los 11 de Robert Raga (PSPV-PSOE), proclamado alcalde, y los 7 de Alberto Gimeno (PP).\n\nEn el pleno de organización de 07-07-2023 queda constituido como **grupo municipal unipersonal y portavoz de Vox**, y —al ser el único miembro— es titular por su grupo en las **cinco comisiones informativas**. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).",
+            "sourceIds": [
+              "src-064",
+              "src-065",
+              "src-067",
+              "src-066",
+              "src-068",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Una carrera en la banca inmobiliaria",
+            "bodyMarkdown": "El grueso de la trayectoria profesional que declara Fernández transcurre en la **banca**: gerente de segmento empresarial y, después, de la dirección de financiación inmobiliaria de **Bankia** para la Comunidad Valenciana (2016-2021) y, tras la absorción de Bankia, gerente de negocio inmobiliario de la Comunidad Valenciana en **Caixabank** hasta el 31 de diciembre de 2021. Su declaración estatutaria resume esa etapa como «apoderado» en entidades de crédito entre 1990 y 2021.\n\nDesde enero de 2022, su CV lo sitúa como **consultor financiero externo en el despacho APROA Consultoría y Gestión** de Valencia, y como **responsable de la Vicesecretaría nacional de movilización social de Vox** en la provincia de Valencia — un cargo orgánico del partido. La formación complementaria que declara (experto en crédito inmobiliario, especialista MIFID II, agente y corredor de seguros) refuerza ese perfil financiero.",
+            "sourceIds": [
+              "src-063",
+              "src-062",
+              "src-071",
+              "src-061"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Fernández Santamaría», **0** para «APROA» (su consultoría desde 2022) y **0** para «Bankia»; la única coincidencia con «Caixabank» es una filial de leasing sin relación personal con el concejal. Ni él ni sus entidades constan como adjudicatarios del Ayuntamiento.\n\nLímites declarados: su relación con la banca y con APROA es de empleo o prestación de servicios entre entidades privadas, que no deja rastro en la contratación pública municipal; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-073",
+              "src-062"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "José Luis Fernández Santamaría",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Vox (unipersonal)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Bankia / Caixabank (banca inmobiliaria)",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n4",
+                "label": "APROA Consultoría y Gestión",
+                "tone": "intel",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal único y portavoz de Vox; cabeza de lista, candidato a la Alcaldía (1 voto)",
+                "sourceIds": [
+                  "src-066",
+                  "src-067"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "gerente de banca inmobiliaria 2016-2021 (CV; «apoderado» en la declaración)",
+                "sourceIds": [
+                  "src-063",
+                  "src-071"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "consultor financiero externo desde 2022 (CV; no consta en la declaración de 2023)",
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1989-06-30",
+                "label": "Licenciatura en Ciencias Económicas y Empresariales (Universidad de Valencia)",
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "date": "2016-01-01",
+                "label": "Gerente en Bankia (segmento empresarial y financiación inmobiliaria, CV), hasta su paso a Caixabank",
+                "sourceIds": [
+                  "src-063"
+                ]
+              },
+              {
+                "date": "2021-12-31",
+                "label": "Fin de su etapa como gerente en Caixabank; su declaración cierra en 2021 el cargo de apoderado en entidades de crédito",
+                "sourceIds": [
+                  "src-062",
+                  "src-071"
+                ]
+              },
+              {
+                "date": "2022-01-01",
+                "label": "Consultor financiero externo en APROA (CV) y cargo orgánico en Vox provincial",
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamado concejal electo por Vox; candidato a la Alcaldía con 1 voto (primera candidatura documentada)",
+                "sourceIds": [
+                  "src-064",
+                  "src-067"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Constituido grupo unipersonal y portavoz de Vox; titular en las cinco comisiones; sin dedicación (asistencias)",
+                "sourceIds": [
+                  "src-066",
+                  "src-068",
+                  "src-069"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 607.435,00 € (el mayor de la corporación) · pasivo 19.237,00 € (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-070",
+                  "src-072"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Por el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es: 1. Don José Luis Fernández Santamaría. Siendo su Portavoz: Don José Luis Fernández Santamaría.",
+            "attributedTo": "Acta del pleno de organización de 07-07-2023 (constitución del Grupo Municipal Vox)",
+            "date": "2023-07-07",
+            "sourceId": "src-066"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Consultoría APROA no declarada en 2023",
+                "reason": "Su CV consigna una consultoría financiera externa en APROA desde enero de 2022, actividad que no aparece en la declaración de actividades presentada con la toma de posesión (septiembre de 2023), la cual solo recoge el cargo de apoderado cerrado en 2021. Se publican ambos datos; este medio no afirma incumplimiento, constata la discrepancia entre el CV y la declaración."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Composición del patrimonio",
+                "reason": "Declara el mayor activo de la corporación (607.435 €), del que 237.435 € son «otros bienes» sin desglose de naturaleza en el documento."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+          "title": "CV publicado en el portal municipal — presentación (nacimiento) (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:00:08.952Z",
+          "excerpt": "PRESENTACIÓN 2 SEPTIEMBRE 1964 MADRID jlsantamaria08@gmail.com",
+          "trust": "medium"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+          "title": "CV publicado en el portal municipal — formación (economía y banca) (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "MÁSTER EN GESTION Y DIRECCION BANCARIA, por la Universidad Autónoma de Madrid, año 2006 DIPLOMADO EN URBANISMO, por Asprima, año 2005 MÁSTER EGEI, por la Universidad Politécnica de Valencia, graduado en el año 1.992. GRADUADO EN COMERCIO EXTERIOR, por la Universidad Politécnica de Madrid, año 1992. TITULADO AGENTE Y CORREDOR DE SEGUROS, por la Dirección General de Seguros, año 1991. LICENCIADO EN CIENCIAS ECONÓMICAS Y EMPRESARIALES, por la Universidad de Valencia, año 1989.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+          "title": "CV publicado en el portal municipal — cargo en VOX provincial, consultoría APROA (desde 2022) y Caixabank (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Responsable de la Vicesecretaría nacional de movilización social de VOX en la provincia de Valencia Actualmente y desde enero de 2022 Consultor financiero externo en el despacho profesional APROA CONSULTORIA Y GESTION de Valencia https://grupoaproa.es/equipo/ Desde marzo de 2021 GERENTE DE NEGOCIO INMOBILIARIO de la Comunidad Valenciana en CAIXABANK hasta 31 de diciembre de 2021",
+          "trust": "medium"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/VOX-Jose-Luis-Fernandez-Santamaria.pdf",
+          "title": "CV publicado en el portal municipal — etapa en Bankia (2016-2021) (autodeclarado)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Desde 2018 GERENTE DE LA DIRECCION DE FINANCIACION INMOBILIARIA de Bankia para Comunidad Valenciana Desde 2016 hasta 2018 GERENTE SEGMENTO EMPRESARIAL en Zona Centro Valencia en Bankia",
+          "trust": "medium"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Alberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez\nPaula Navarro Sanfeliu\nJose Luis Fernández Santamaria",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "- Rafael Folgado Navarro\n- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Vox (Fernández, único miembro y portavoz)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:\n1. Don José Luis Fernández Santamaría\nSiendo su Portavoz: Don José Luis Fernández Santamaría",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — candidatura a la Alcaldía y votación (Fernández, 1 voto)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Votos a favor de D. Alberto Jose Gimeno Calvo\nVotos a favor de __7\nVotos a favor de D. Jose Luis Fernández Santamaria.\nVotos a favor de __1\nVotos a favor de D. Jose Manuel Gallardo Martínez\nVotos a favor de __0",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa: Vox, titular Fernández (único miembro, en las cinco comisiones)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Grupo Municipal Vox Riba roja de Túria\nTitular: D. José Luis Fernández Santamaría.",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "JOSE LUIS FERNÁNDEZ SANTAMARIA 370.000,00 237.435,00 607.435,00 19.237,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "JOSE LUIS FERNÁNDEZ SANTAMARIA | Apoderado · Entidades de crédito · 00/12/1990 → 00/12/2021 — [tabla de actividades por columnas: cargo · entidad · inicio · cese; el «00» del día es un marcador del formulario]",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-073",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T19:00:08.953Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Fernández Santamaría», 0 para «APROA» (su consultoría desde 2022) y 0 para «Bankia». La única coincidencia «Caixabank» es una filial de leasing (Caixabank Equipment Finance), sin relación personal con el concejal.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos y de trayectoria (nacimiento, formación, etapas en Bankia/Caixabank y APROA, cargo en Vox provincial) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora el cargo de apoderado en entidades de crédito (1990-2021).",
+        "La discrepancia entre el CV (consultoría APROA desde 2022) y la declaración de actividades de 2023 se publica como hechos fechados; este medio no afirma incumplimiento.",
+        "Las intervenciones plenarias no se atribuyen individualmente: las transcripciones automáticas carecen de diarización fiable y el borrador del agente contenía citas de floor no verificables que se han retirado."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T19:00:52.206Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente (10 secciones, 13 avisos, auto-legalSensitivity=high por tokens en fuentes ASR de intervenciones plenarias que se retiran). El agente NO construyó identity/education/career pese al CV disponible y sí una narrativa «Intervenciones en el pleno» con 3 quote-cards de floor no verificables (Pacto del Botánico, recogida de residuos, ASR sin diarización) → ELIMINADAS. Reconstruido rico sobre el CV cacheado + primarios: nacido Madrid 02-09-1964; Lic. Económicas UV 1989 + máster gestión bancaria UAM 2006 + titulaciones financieras; carrera en banca inmobiliaria (Bankia 2016-2021 → Caixabank hasta 31-12-2021; declaración: «apoderado entidades de crédito 1990-2021»); desde 2022 consultor en APROA + vicesecretaría provincial de VOX. Actas: cabeza de VOX, electo+juramento, candidato a alcalde con 1 VOTO (vs Raga 11, Gimeno 7), grupo unipersonal+portavoz, titular en las 5 comisiones, asistencias. Declaración verificada contra render p2: activo 607.435 € (370.000 inm + 237.435 otros) — el MAYOR de TODA la corporación —, pasivo 19.237 €. DATED-FACTS GAP publicado: la consultoría APROA (CV, desde 2022) NO figura en la declaración de actividades de 2023 (solo apoderado cerrado en 2021) — se constata la discrepancia sin afirmar incumplimiento. Barridos: 0 Fernández/APROA/Bankia; «Caixabank» solo filial de leasing. legalSensitivity recalculado a medium (0 tokens judiciales). BOP 2015/2019: 0. Corregido typo VOG→VOX en título de fuente.",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-paula-navarro-bio-2026-07-31",
       "assignmentId": "a-paula-navarro-bio",
