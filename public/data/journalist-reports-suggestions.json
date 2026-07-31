@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T17:53:22.560Z",
+  "generatedAt": "2026-07-31T18:21:45.937Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -16561,8 +16561,8 @@
           "payload": {
             "verbatim": "Por el Grupo político municipal con la denominación de Ciudadanos Partido de la Ciudadanía (CS)... Siendo su Portavoz: Salvador Evaristo Ferrer Cortina.",
             "attributedTo": "Acta de la sesión de organización de 25-06-2019 (constitución del Grupo Municipal Ciudadanos)",
-            "sourceId": "src-067",
-            "date": "2019-06-25"
+            "date": "2019-06-25",
+            "sourceId": "src-067"
           }
         },
         {
@@ -16595,9 +16595,9 @@
           "kind": "local-snapshot",
           "title": "Officials snapshot — Salvador Evaristo Ferrer Cortina",
           "retrievedAt": "2026-07-31T17:47:48.917Z",
+          "excerpt": "role: concejal · party: PP · portfolios: ",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "role: concejal · party: PP · portfolios: "
+          "trust": "high"
         },
         {
           "id": "src-002",
@@ -16605,17 +16605,17 @@
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
           "title": "CV autodeclarado (ficha oficial de transparencia) — Salvador Evaristo Ferrer Cortina",
           "retrievedAt": "2026-07-31T17:47:50.330Z",
-          "trust": "high",
-          "excerpt": "PRESENTACIÓN 11 julio 1985 VALENCIA salva@sfadministradores.com SN FORMACIÓN GRADO • DERECHO • 2014-ACTUAL Cursando grado en derecho en la Universidad a Distancia. TÍTULO • ADMINISTRADOR DE FINCAS • 2012 Colegio de administradores de fincas de Valencia y Castellón. LICENCIATURA • CIENCIAS EMPRESARIALES • 2006-2011 Licenciatura en la Universidad de Valencia. EXPERIENCIA PROFESIONAL ADMINISTRADOR DE FINCAS • 2011 - ACTUAL• SF ADMINISTRADORES Gerente en SF administradores, despa"
+          "excerpt": "PRESENTACIÓN 11 julio 1985 VALENCIA salva@sfadministradores.com SN FORMACIÓN GRADO • DERECHO • 2014-ACTUAL Cursando grado en derecho en la Universidad a Distancia. TÍTULO • ADMINISTRADOR DE FINCAS • 2012 Colegio de administradores de fincas de Valencia y Castellón. LICENCIATURA • CIENCIAS EMPRESARIALES • 2006-2011 Licenciatura en la Universidad de Valencia. EXPERIENCIA PROFESIONAL ADMINISTRADOR DE FINCAS • 2011 - ACTUAL• SF ADMINISTRADORES Gerente en SF administradores, despa",
+          "trust": "high"
         },
         {
           "id": "src-003",
           "kind": "local-snapshot",
           "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
           "retrievedAt": "2026-07-31T17:47:52.809Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
           "localPath": "public/data/elections.json",
-          "trust": "high",
-          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+          "trust": "high"
         },
         {
           "id": "src-004",
@@ -16623,8 +16623,8 @@
           "url": "https://es.wikipedia.org/wiki/Salvador_(serie_de_televisi%C3%B3n)",
           "title": "Salvador (serie de televisión) - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T17:47:53.195Z",
-          "trust": "medium",
-          "excerpt": "Salvador es una serie de televisión por internet española de drama y acción creada por Aitor Gabilondo 1 para Netflix. Está …"
+          "excerpt": "Salvador es una serie de televisión por internet española de drama y acción creada por Aitor Gabilondo 1 para Netflix. Está …",
+          "trust": "medium"
         },
         {
           "id": "src-005",
@@ -16632,8 +16632,8 @@
           "url": "https://es.wikipedia.org/wiki/El_Salvador",
           "title": "El Salvador - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T17:47:53.195Z",
-          "trust": "medium",
-          "excerpt": "El actual territorio de El Salvador comprende lo que antes fuera la alcaldía mayor de Sonsonate y lo que fue la provincia de San …"
+          "excerpt": "El actual territorio de El Salvador comprende lo que antes fuera la alcaldía mayor de Sonsonate y lo que fue la provincia de San …",
+          "trust": "medium"
         },
         {
           "id": "src-006",
@@ -16641,8 +16641,8 @@
           "url": "https://www.filmaffinity.com/es/film316369.html",
           "title": "Salvador (Serie de TV) (2026) - Filmaffinity",
           "retrievedAt": "2026-07-31T17:47:53.195Z",
-          "trust": "low",
-          "excerpt": "Salvador Aguirre debe acercarse a la banda para intentar rescatar a su hija y comprender qué la ha llevado hasta allí. Durante un …"
+          "excerpt": "Salvador Aguirre debe acercarse a la banda para intentar rescatar a su hija y comprender qué la ha llevado hasta allí. Durante un …",
+          "trust": "low"
         },
         {
           "id": "src-007",
@@ -16650,8 +16650,8 @@
           "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
           "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
           "retrievedAt": "2026-07-31T17:47:53.195Z",
-          "trust": "medium",
-          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+          "trust": "medium"
         },
         {
           "id": "src-008",
@@ -16659,8 +16659,8 @@
           "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
           "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
           "retrievedAt": "2026-07-31T17:47:53.195Z",
-          "trust": "medium",
-          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+          "trust": "medium"
         },
         {
           "id": "src-009",
@@ -16668,8 +16668,8 @@
           "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
           "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
           "retrievedAt": "2026-07-31T17:47:53.195Z",
-          "trust": "low",
-          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+          "trust": "low"
         },
         {
           "id": "src-010",
@@ -16677,8 +16677,8 @@
           "url": "https://www.xvideos.com/tags/bokep",
           "title": "bokep videos - XVIDEOS.COM",
           "retrievedAt": "2026-07-31T17:47:53.806Z",
-          "trust": "low",
-          "excerpt": "Bokep indo terbaru - Lagi rame Vidio Selebgram cantik Bali 13 min Indo Pasutri Premium - 2.2M Views - 1080p"
+          "excerpt": "Bokep indo terbaru - Lagi rame Vidio Selebgram cantik Bali 13 min Indo Pasutri Premium - 2.2M Views - 1080p",
+          "trust": "low"
         },
         {
           "id": "src-011",
@@ -16686,8 +16686,8 @@
           "url": "https://www.pornhub.com/video/search?search=bokep",
           "title": "Bokep Porn Videos | Pornhub.com",
           "retrievedAt": "2026-07-31T17:47:53.806Z",
-          "trust": "low",
-          "excerpt": "Watch Bokep porn videos for free, here on Pornhub.com. Discover the growing collection of high quality Most Relevant XXX movies …"
+          "excerpt": "Watch Bokep porn videos for free, here on Pornhub.com. Discover the growing collection of high quality Most Relevant XXX movies …",
+          "trust": "low"
         },
         {
           "id": "src-012",
@@ -16695,8 +16695,8 @@
           "url": "https://drbokep18.com/videocategory/bokep-indonesia/",
           "title": "Nonton Bokep Indonesia 18+ Terbaru - Drbokep",
           "retrievedAt": "2026-07-31T17:47:53.806Z",
-          "trust": "low",
-          "excerpt": "Temukan koleksi Bokep Indonesia terlengkap dan genre bokep indo lainnya terbaru di Drbokep!"
+          "excerpt": "Temukan koleksi Bokep Indonesia terlengkap dan genre bokep indo lainnya terbaru di Drbokep!",
+          "trust": "low"
         },
         {
           "id": "src-013",
@@ -16704,8 +16704,8 @@
           "url": "https://finance.yahoo.com/quote/INTC/",
           "title": "Intel Corporation (INTC) Stock Price, News, Quote & History - Yahoo …",
           "retrievedAt": "2026-07-31T17:47:54.484Z",
-          "trust": "low",
-          "excerpt": "Find the latest Intel Corporation (INTC) stock quote, history, news and other vital information to help you with your stock trading and …"
+          "excerpt": "Find the latest Intel Corporation (INTC) stock quote, history, news and other vital information to help you with your stock trading and …",
+          "trust": "low"
         },
         {
           "id": "src-014",
@@ -16713,8 +16713,8 @@
           "url": "https://uk.finance.yahoo.com/quote/INTC/",
           "title": "Intel Corporation (INTC) stock price, news, quote and history",
           "retrievedAt": "2026-07-31T17:47:54.484Z",
-          "trust": "low",
-          "excerpt": "Find the latest Intel Corporation (INTC) stock quote, history, news and other vital information to help you with your stock trading and …"
+          "excerpt": "Find the latest Intel Corporation (INTC) stock quote, history, news and other vital information to help you with your stock trading and …",
+          "trust": "low"
         },
         {
           "id": "src-015",
@@ -16722,8 +16722,8 @@
           "url": "https://www.google.com/finance/beta/quote/INTC:NASDAQ",
           "title": "Intel Corp (INTC) Stock Price & News - Google Finance",
           "retrievedAt": "2026-07-31T17:47:54.484Z",
-          "trust": "low",
-          "excerpt": "Get real-time stock quotes, news, financial details, and analytics for Intel Corp from Google Finance."
+          "excerpt": "Get real-time stock quotes, news, financial details, and analytics for Intel Corp from Google Finance.",
+          "trust": "low"
         },
         {
           "id": "src-016",
@@ -16731,8 +16731,8 @@
           "url": "https://english.stackexchange.com/questions/245962/there-is-not-evidence-vs-there-is-not-any-evidence-vs-there-is-no-evidence-vs",
           "title": "There is not evidence vs. There is not any evidence vs. There is no ...",
           "retrievedAt": "2026-07-31T17:47:54.964Z",
-          "trust": "low",
-          "excerpt": "13 de may de 2015 · There \"is not\" evidence. Reading this you should make a pause between not and evidence or emphasize \"is …"
+          "excerpt": "13 de may de 2015 · There \"is not\" evidence. Reading this you should make a pause between not and evidence or emphasize \"is …",
+          "trust": "low"
         },
         {
           "id": "src-017",
@@ -16740,8 +16740,8 @@
           "url": "https://english.stackexchange.com/questions/203640/whats-the-difference-in-meaning-between-evidence-and-proof",
           "title": "What's the difference in meaning between \"evidence\" and \"proof\"?",
           "retrievedAt": "2026-07-31T17:47:54.964Z",
-          "trust": "low",
-          "excerpt": "21 de oct de 2014 · Evidence means:- A thing or things helpful in forming a conclusion or judgment: The broken window was …"
+          "excerpt": "21 de oct de 2014 · Evidence means:- A thing or things helpful in forming a conclusion or judgment: The broken window was …",
+          "trust": "low"
         },
         {
           "id": "src-018",
@@ -16749,170 +16749,170 @@
           "url": "https://english.stackexchange.com/questions/118727/is-evidence-countable",
           "title": "Is \"evidence\" countable? - English Language & Usage Stack Exchange",
           "retrievedAt": "2026-07-31T17:47:54.964Z",
-          "trust": "low",
-          "excerpt": "8 de jul de 2013 · The weight of evidence; two cans of coffee, 3 loaves of bread. 4 bottles of wine, and so on. The containers are …"
+          "excerpt": "8 de jul de 2013 · The weight of evidence; two cans of coffee, 3 loaves of bread. 4 bottles of wine, and so on. The containers are …",
+          "trust": "low"
         },
         {
           "id": "src-019",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.662Z",
+          "excerpt": "[0.0 → 0.0] representación, PSOE-PSPV, Partido Popular, Vox, EUPV - PODEM: UNIDA, Compromís, de [0.0 → 0.0] acuerdo con lo previsto en la Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen [0.0 → 0.0] Local y",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] representación, PSOE-PSPV, Partido Popular, Vox, EUPV - PODEM: UNIDA, Compromís, de [0.0 → 0.0] acuerdo con lo previsto en la Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen [0.0 → 0.0] Local y"
+          "trust": "high"
         },
         {
           "id": "src-020",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.662Z",
+          "excerpt": "[0.0 → 0.0] festeres, socis i patrocinadors, ha sigut la clau per a aconseguir poder viure aquesta experiència. [0.0 → 0.0] Menció especial mereix la implicació de l'Ajuntament de Riba-roja, el suport incondicional des d",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] festeres, socis i patrocinadors, ha sigut la clau per a aconseguir poder viure aquesta experiència. [0.0 → 0.0] Menció especial mereix la implicació de l'Ajuntament de Riba-roja, el suport incondicional des d"
+          "trust": "high"
         },
         {
           "id": "src-021",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.662Z",
+          "excerpt": "[0.0 → 0.0] AUDIO: 14.mp3 [0.0 → 0.0] VIDEO: http://videople.es/6441 [0.0 → 0.0] 15.- Dar cuenta de las Resoluciones de la número 0806/2024 a la 1313/2024. [0.0 → 0.0] Se da cuenta de las resoluciones de esta Alcaldía co",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] AUDIO: 14.mp3 [0.0 → 0.0] VIDEO: http://videople.es/6441 [0.0 → 0.0] 15.- Dar cuenta de las Resoluciones de la número 0806/2024 a la 1313/2024. [0.0 → 0.0] Se da cuenta de las resoluciones de esta Alcaldía co"
+          "trust": "high"
         },
         {
           "id": "src-022",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.662Z",
+          "excerpt": "[0.0 → 0.0] orgullosos y participes. [0.0 → 0.0] VICENTE CONTELLES, deportista local en la disciplina de atletismo. [0.0 → 0.0] PAU ASENSIO MARTINEZ, deportista local en la disciplina de karate. [0.0 → 0.0] MARTINA GIL O",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] orgullosos y participes. [0.0 → 0.0] VICENTE CONTELLES, deportista local en la disciplina de atletismo. [0.0 → 0.0] PAU ASENSIO MARTINEZ, deportista local en la disciplina de karate. [0.0 → 0.0] MARTINA GIL O"
+          "trust": "high"
         },
         {
           "id": "src-023",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.983Z",
+          "excerpt": "[0.0 → 0.0] AUDIO: 14.mp3 [0.0 → 0.0] VIDEO: http://videople.es/6441 [0.0 → 0.0] 15.- Dar cuenta de las Resoluciones de la número 0806/2024 a la 1313/2024. [0.0 → 0.0] Se da cuenta de las resoluciones de esta Alcaldía co",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] AUDIO: 14.mp3 [0.0 → 0.0] VIDEO: http://videople.es/6441 [0.0 → 0.0] 15.- Dar cuenta de las Resoluciones de la número 0806/2024 a la 1313/2024. [0.0 → 0.0] Se da cuenta de las resoluciones de esta Alcaldía co"
+          "trust": "high"
         },
         {
           "id": "src-024",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.983Z",
+          "excerpt": "[3630.0 → 3660.0] Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, seño",
           "localPath": "public/data/pleno-transcripts/11025xk.txt",
-          "trust": "high",
-          "excerpt": "[3630.0 → 3660.0] Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, seño"
+          "trust": "high"
         },
         {
           "id": "src-025",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:56.983Z",
+          "excerpt": "[0.0 → 0.0] la corporación, José Luís Serrano Borraz. [0.0 → 0.0] Declarado abierto el acto por la presidencia, se pasa al estudio y acuerdo de los asuntos [0.0 → 0.0] consignados en el Orden del Día. [0.0 → 0.0] 1.- Apr",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] la corporación, José Luís Serrano Borraz. [0.0 → 0.0] Declarado abierto el acto por la presidencia, se pasa al estudio y acuerdo de los asuntos [0.0 → 0.0] consignados en el Orden del Día. [0.0 → 0.0] 1.- Apr"
+          "trust": "high"
         },
         {
           "id": "src-026",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:57.239Z",
+          "excerpt": "[0.0 → 0.0] y jurídicos y el Dictamen del Consell Jurídic Consultiu de la Comunitat Valenciana que constan [0.0 → 0.0] en el expediente. [0.0 → 0.0] SEGUNDO.- Obra en el expediente, en relación al órgano competente, info",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] y jurídicos y el Dictamen del Consell Jurídic Consultiu de la Comunitat Valenciana que constan [0.0 → 0.0] en el expediente. [0.0 → 0.0] SEGUNDO.- Obra en el expediente, en relación al órgano competente, info"
+          "trust": "high"
         },
         {
           "id": "src-027",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:57.239Z",
+          "excerpt": "[0.0 → 0.0] \"cuando su valor estimado no supere el 10 por ciento de los recursos ordinarios del presupuesto [0.0 → 0.0] ni, en cualquier caso, la cuantía de seis millones de euros\", de modo que, considerando que los [0.0",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] \"cuando su valor estimado no supere el 10 por ciento de los recursos ordinarios del presupuesto [0.0 → 0.0] ni, en cualquier caso, la cuantía de seis millones de euros\", de modo que, considerando que los [0.0"
+          "trust": "high"
         },
         {
           "id": "src-028",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:57.239Z",
+          "excerpt": "[0.0 → 0.0] acuerda: [0.0 → 0.0] Felicitar a Vicente Contelles, por la consecución del subcampeonato nacional en el Cto. España [0.0 → 0.0] de Atletismo de pista cubierta categoría Master 40, en la prueba de 200 mts liso",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] acuerda: [0.0 → 0.0] Felicitar a Vicente Contelles, por la consecución del subcampeonato nacional en el Cto. España [0.0 → 0.0] de Atletismo de pista cubierta categoría Master 40, en la prueba de 200 mts liso"
+          "trust": "high"
         },
         {
           "id": "src-029",
           "kind": "local-snapshot",
           "title": "Pleno claim brxx5g-072-acu-d36430 · 2026-07-06 · acusacion_publica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "Ni el PSOE, ni Compromís ni la extrema izquierda pueden presentarse ahora como adalides de la educación pública, cuando como muy bien ha comentado la regidora, durante años fueron incapaces de resolver los problemas estructurales del sistema.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Ni el PSOE, ni Compromís ni la extrema izquierda pueden presentarse ahora como adalides de la educación pública, cuando como muy bien ha comentado la regidora, durante años fueron incapaces de resolver los problemas estructurales del sistema."
+          "trust": "high"
         },
         {
           "id": "src-030",
           "kind": "local-snapshot",
           "title": "Pleno claim 1qi8axv-004-afi-bb1866 · 2025-12-23 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "Como estamos votando con la votación, recojo estos votos.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Como estamos votando con la votación, recojo estos votos."
+          "trust": "high"
         },
         {
           "id": "src-031",
           "kind": "local-snapshot",
           "title": "Pleno claim 1qi8axv-124-afi-c4d442 · 2025-12-23 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "María José Pradas. Sí. Salvador Ferrer. A favor. Laura Gutmann. A favor.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "María José Pradas. Sí. Salvador Ferrer. A favor. Laura Gutmann. A favor."
+          "trust": "high"
         },
         {
           "id": "src-032",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-067-afi-2daf3d · 2025-12-01 · afirmacion_numerica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "Muchos vecinos y vecinas de este pueblo fueron condenados a penas de presión, al ostracismo.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Muchos vecinos y vecinas de este pueblo fueron condenados a penas de presión, al ostracismo."
+          "trust": "high"
         },
         {
           "id": "src-033",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-067-acu-ed1029 · 2025-12-01 · acusacion_publica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "Otros, como el alcalde democrático, Salvador Ronda, fueron patidos robatorios, humillaciones.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Otros, como el alcalde democrático, Salvador Ronda, fueron patidos robatorios, humillaciones."
+          "trust": "high"
         },
         {
           "id": "src-034",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-067-acu-ee7950 · 2025-12-01 · acusacion_publica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "Dones de este pueblo fueron rapadas, sometidas a escarro público",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Dones de este pueblo fueron rapadas, sometidas a escarro público"
+          "trust": "high"
         },
         {
           "id": "src-035",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-068-acu-b3fda4 · 2025-12-01 · acusacion_publica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "Muchos vecinos y vecinas de este pueblo fueron condenados a penas de presión, al ostracismo.",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "Muchos vecinos y vecinas de este pueblo fueron condenados a penas de presión, al ostracismo."
+          "trust": "high"
         },
         {
           "id": "src-036",
           "kind": "local-snapshot",
           "title": "Pleno claim qz6weg-070-acu-82988c · 2025-12-01 · acusacion_publica",
           "retrievedAt": "2026-07-31T17:47:57.673Z",
+          "excerpt": "la cortina de humo del Partido Socialista, de lanzar ahora de un señor que se murió hace tanto tiempo y vienen aquí,",
           "localPath": "public/data/pleno-claims-suggestions.json",
-          "trust": "high",
-          "excerpt": "la cortina de humo del Partido Socialista, de lanzar ahora de un señor que se murió hace tanto tiempo y vienen aquí,"
+          "trust": "high"
         },
         {
           "id": "src-037",
@@ -16920,62 +16920,62 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Fuente oficial: www.ribarroja.es",
           "retrievedAt": "2026-07-31T17:47:57.675Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-038",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T17:47:58.030Z",
+          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+          "trust": "high"
         },
         {
           "id": "src-039",
           "kind": "local-snapshot",
           "title": "public/data/officials.json · officials",
           "retrievedAt": "2026-07-31T17:47:58.030Z",
+          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites",
           "localPath": "public/data/officials.json",
-          "trust": "high",
-          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+          "trust": "high"
         },
         {
           "id": "src-040",
           "kind": "local-snapshot",
           "title": "public/data/press.json · items",
           "retrievedAt": "2026-07-31T17:47:58.030Z",
+          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU",
           "localPath": "public/data/press.json",
-          "trust": "high",
-          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU"
+          "trust": "high"
         },
         {
           "id": "src-041",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:58.030Z",
+          "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya",
           "localPath": "public/data/pleno-transcripts/10yl550.txt",
-          "trust": "high",
-          "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya"
+          "trust": "high"
         },
         {
           "id": "src-042",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:58.030Z",
+          "excerpt": "[0.0 → 0.0] orgullosos y participes. [0.0 → 0.0] VICENTE CONTELLES, deportista local en la disciplina de atletismo. [0.0 → 0.0] PAU ASENSIO MARTINEZ, deportista local en la disciplina de karate. [0.0 → 0.0] MARTINA GIL O",
           "localPath": "public/data/pleno-transcripts/1080zow.txt",
-          "trust": "high",
-          "excerpt": "[0.0 → 0.0] orgullosos y participes. [0.0 → 0.0] VICENTE CONTELLES, deportista local en la disciplina de atletismo. [0.0 → 0.0] PAU ASENSIO MARTINEZ, deportista local en la disciplina de karate. [0.0 → 0.0] MARTINA GIL O"
+          "trust": "high"
         },
         {
           "id": "src-043",
           "kind": "local-snapshot",
           "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
           "retrievedAt": "2026-07-31T17:47:58.030Z",
+          "excerpt": "[2250.0 → 2280.0] calendario para hacer los informes técnicos para que siga una realidad que la tasa del 2025 y 2026 se pueda reducir. Gracias. Gracias, compromiso, Rafa. Gracias, señor alcalde. Buen día a todos y a toda",
           "localPath": "public/data/pleno-transcripts/1237hbp.txt",
-          "trust": "high",
-          "excerpt": "[2250.0 → 2280.0] calendario para hacer los informes técnicos para que siga una realidad que la tasa del 2025 y 2026 se pueda reducir. Gracias. Gracias, compromiso, Rafa. Gracias, señor alcalde. Buen día a todos y a toda"
+          "trust": "high"
         },
         {
           "id": "src-044",
@@ -16983,8 +16983,8 @@
           "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
           "title": "Campaña de Renta 2025 - Agencia Tributaria",
           "retrievedAt": "2026-07-31T17:47:58.324Z",
-          "trust": "high",
-          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …"
+          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …",
+          "trust": "high"
         },
         {
           "id": "src-045",
@@ -16992,8 +16992,8 @@
           "url": "https://sede.agenciatributaria.gob.es/",
           "title": "Agencia Tributaria: Inicio",
           "retrievedAt": "2026-07-31T17:47:58.324Z",
-          "trust": "high",
-          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta"
+          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta",
+          "trust": "high"
         },
         {
           "id": "src-046",
@@ -17001,8 +17001,8 @@
           "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
           "title": "Inicio - Agencia Tributaria",
           "retrievedAt": "2026-07-31T17:47:58.324Z",
-          "trust": "low",
-          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite."
+          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite.",
+          "trust": "low"
         },
         {
           "id": "src-047",
@@ -17010,8 +17010,8 @@
           "url": "https://es.wikipedia.org/wiki/Salvador_(serie_de_televisi%C3%B3n)",
           "title": "Salvador (serie de televisión) - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T17:48:00.447Z",
-          "trust": "medium",
-          "excerpt": "Salvador es una serie de televisión por internet española de drama y acción creada por Aitor Gabilondo 1 para Netflix. Está producida por Alea Media y protagonizada por Luis Tosar y Claudia Salas."
+          "excerpt": "Salvador es una serie de televisión por internet española de drama y acción creada por Aitor Gabilondo 1 para Netflix. Está producida por Alea Media y protagonizada por Luis Tosar y Claudia Salas.",
+          "trust": "medium"
         },
         {
           "id": "src-048",
@@ -17019,8 +17019,8 @@
           "url": "https://es.wikipedia.org/wiki/El_Salvador",
           "title": "El Salvador - Wikipedia, la enciclopedia libre",
           "retrievedAt": "2026-07-31T17:48:00.447Z",
-          "trust": "medium",
-          "excerpt": "El actual territorio de El Salvador comprende lo que antes fuera la alcaldía mayor de Sonsonate y lo que fue la provincia de San Salvador, que conformó la mayor parte del territorio."
+          "excerpt": "El actual territorio de El Salvador comprende lo que antes fuera la alcaldía mayor de Sonsonate y lo que fue la provincia de San Salvador, que conformó la mayor parte del territorio.",
+          "trust": "medium"
         },
         {
           "id": "src-049",
@@ -17028,8 +17028,8 @@
           "url": "https://www.filmaffinity.com/es/film316369.html",
           "title": "Salvador (Serie de TV) (2026) - Filmaffinity",
           "retrievedAt": "2026-07-31T17:48:00.447Z",
-          "trust": "low",
-          "excerpt": "Salvador Aguirre debe acercarse a la banda para intentar rescatar a su hija y comprender qué la ha llevado hasta allí. Durante un violento enfrentamiento organizado entre hinchas radicales de dos …"
+          "excerpt": "Salvador Aguirre debe acercarse a la banda para intentar rescatar a su hija y comprender qué la ha llevado hasta allí. Durante un violento enfrentamiento organizado entre hinchas radicales de dos …",
+          "trust": "low"
         },
         {
           "id": "src-050",
@@ -17037,8 +17037,8 @@
           "url": "https://www.youtube.com/watch?v=3dxf1YNvCL8",
           "title": "Salvador | Tráiler oficial | Netflix España - YouTube",
           "retrievedAt": "2026-07-31T17:48:00.447Z",
-          "trust": "low",
-          "excerpt": "26 de ene de 2026 · La serie 'Salvador' llega el 6 de febrero. Narra el viaje íntimo y doloroso de un padre que descubre que su hija forma parte de un grupo radical."
+          "excerpt": "26 de ene de 2026 · La serie 'Salvador' llega el 6 de febrero. Narra el viaje íntimo y doloroso de un padre que descubre que su hija forma parte de un grupo radical.",
+          "trust": "low"
         },
         {
           "id": "src-051",
@@ -17046,8 +17046,8 @@
           "url": "https://www.salvadorbachiller.es/",
           "title": "[Web Oficial] Tienda Online de Maletas, Bolsos y Mochilas · Salvador ...",
           "retrievedAt": "2026-07-31T17:48:00.447Z",
-          "trust": "low",
-          "excerpt": "SALVADOR BACHILLER Tu tienda online de maletas, bolsos, mochilas y... ¡muchos más! ≫ Visita nuestro catálogo online con los mejores precios."
+          "excerpt": "SALVADOR BACHILLER Tu tienda online de maletas, bolsos, mochilas y... ¡muchos más! ≫ Visita nuestro catálogo online con los mejores precios.",
+          "trust": "low"
         },
         {
           "id": "src-052",
@@ -17055,8 +17055,8 @@
           "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
           "title": "Texto completo: ribarroja.es",
           "retrievedAt": "2026-07-31T17:48:01.960Z",
-          "trust": "high",
-          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+          "trust": "high"
         },
         {
           "id": "src-053",
@@ -17064,85 +17064,730 @@
           "url": "https://es.wikipedia.org/wiki/Salvador_(serie_de_televisi%C3%B3n)",
           "title": "Texto completo: es.wikipedia.org",
           "retrievedAt": "2026-07-31T17:48:01.961Z",
-          "trust": "high",
-          "excerpt": "Salvador (serie de televisión) - Wikipedia, la enciclopedia libre <link rel=\"canonical\" href=\"https:"
+          "excerpt": "Salvador (serie de televisión) - Wikipedia, la enciclopedia libre <link rel=\"canonical\" href=\"https:",
+          "trust": "high"
         },
         {
           "id": "src-054",
           "kind": "web",
           "url": "https://es.wikipedia.org/wiki/El_Salvador",
+          "archiveUrl": "http://web.archive.org/web/20260723224623/https://es.wikipedia.org/wiki/El_Salvador",
           "title": "Texto completo: es.wikipedia.org",
           "retrievedAt": "2026-07-31T17:48:01.961Z",
-          "trust": "high",
           "excerpt": "El Salvador - Wikipedia, la enciclopedia libre <link rel=\"stylesheet\" href=\"/w/load.php?lang=es&modules=noscript&only=style",
-          "archiveUrl": "http://web.archive.org/web/20260723224623/https://es.wikipedia.org/wiki/El_Salvador"
+          "trust": "high"
         },
         {
           "id": "src-060",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — presentación (nacimiento y contacto) (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
-          "excerpt": "PRESENTACIÓN \n \n11 julio 1985 \nVALENCIA \nsalva@sfadministradores.com"
+          "title": "CV publicado en el portal municipal — presentación (nacimiento y contacto) (autodeclarado)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "PRESENTACIÓN \n \n11 julio 1985 \nVALENCIA \nsalva@sfadministradores.com",
+          "trust": "medium"
         },
         {
           "id": "src-073",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — experiencia profesional (SF Administradores, UCI/Santander, Conver Trade) (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
-          "excerpt": "EXPERIENCIA PROFESIONAL \n \nADMINISTRADOR DE FINCAS • 2011 - ACTUAL• SF ADMINISTRADORES \nGerente en SF administradores, despacho profesional dedicado a la \nadministración de fincas. \n \nASESOR HIPOTECARIO• 2007-2011 • UCI S.A.- BANCO SANTANDER S.A \nAsesoramiento y tramitación de hipotecas en establecimiento \nfinanciero de crédito. Banco Santander y BNP. \n \nRESPONSABLE CONTABLE• 2006-2007 • CONVER TRADE S.L. \nGestión administrativa en empresa de transporte."
+          "title": "CV publicado en el portal municipal — experiencia profesional (SF Administradores, UCI/Santander, Conver Trade) (autodeclarado)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "EXPERIENCIA PROFESIONAL \n \nADMINISTRADOR DE FINCAS • 2011 - ACTUAL• SF ADMINISTRADORES \nGerente en SF administradores, despacho profesional dedicado a la \nadministración de fincas. \n \nASESOR HIPOTECARIO• 2007-2011 • UCI S.A.- BANCO SANTANDER S.A \nAsesoramiento y tramitación de hipotecas en establecimiento \nfinanciero de crédito. Banco Santander y BNP. \n \nRESPONSABLE CONTABLE• 2006-2007 • CONVER TRADE S.L. \nGestión administrativa en empresa de transporte.",
+          "trust": "medium"
         },
         {
           "id": "src-061",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
           "kind": "official-doc",
-          "trust": "medium",
-          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
-          "excerpt": "FORMACIÓN \n \nGRADO • DERECHO • 2014-ACTUAL \nCursando grado en derecho en la Universidad a Distancia. \n \n \nTÍTULO • ADMINISTRADOR DE FINCAS • 2012 \nColegio de administradores de fincas de Valencia y Castellón. \n \n \nLICENCIATURA • CIENCIAS EMPRESARIALES • 2006-2011 \nLicenciatura en la Universidad de Valencia."
+          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "FORMACIÓN \n \nGRADO • DERECHO • 2014-ACTUAL \nCursando grado en derecho en la Universidad a Distancia. \n \n \nTÍTULO • ADMINISTRADOR DE FINCAS • 2012 \nColegio de administradores de fincas de Valencia y Castellón. \n \n \nLICENCIATURA • CIENCIAS EMPRESARIALES • 2006-2011 \nLicenciatura en la Universidad de Valencia.",
+          "trust": "medium"
         },
         {
           "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Maria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Ferrer n.º 4, «(Independiente)»)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo\n30\nTitular: D. Salvador Evaristo Ferrer Cortina\nSuplente: Cualquier otro Concejal de su grupo político",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/6845364/filesGroup/20190625-EXTRA-09-P---INICIO-LEGISLATURA.pdf",
+          "title": "Acta sesión de organización 25-06-2019 — constitución del Grupo Ciudadanos (CS): Ferrer, portavoz",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Ciudadanos Partido de la Ciudadanía (CS), son: Salvador Evaristo Ferrer Cortina Mª Teresa Ruiz Vendrell Siendo su Portavoz: Salvador Evaristo Ferrer Cortina Portavoz suplente: Mª Teresa Ruiz Vendrell",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura de Ciudadanos por Riba-roja: Ferrer, cabeza de lista",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "CANDIDATURA NÚM. 5:\nCIUDADANOS-PARTIDO DE LA CIUDADANIA (CS)\nTITULARES\n1. SALVADOR EVARISTO FERRER CORTINA\n2. MARIA TERESA RUIZ VENDRELL\n3. ROSARIO ÍÑIGUEZ POLIT\n4. JOSÉ RUBÉN BALLESTER ARLANDIS\n5. SARA TOLA COLÁS (INDEPENDIENTE)",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "SALVADOR EVARISTO FERRER CORTINA 250.000,00 31.740,00 281.740,00 71.000,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "SALVADOR EVARISTO FERRER CORTINA | Administrador de fincas · Salvador Ferrer Cortina · 01/01/2012 — [tabla de actividades por columnas: cargo · entidad (a nombre propio) · fecha de inicio]",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «FERRER CORTINA» y 0 para «SF ADMINISTRADORES» (el despacho de su actividad declarada de administración de fincas).",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos y profesionales (nacimiento, titulaciones, despacho SF Administradores) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora la actividad de administrador de fincas (inicio 01-01-2012).",
+        "El paso de Ciudadanos al PP se documenta con hechos (portavoz de Cs 2019-2023 por acta; n.º 4 del PP en 2023 por acta y BOP); este medio no atribuye motivación a esa decisión.",
+        "Las votaciones plenarias constan a nivel de grupo y las transcripciones no identifican hablantes con fiabilidad: este perfil no atribuye al concejal sentidos de voto ni intervenciones individuales."
+      ],
+      "legalSensitivity": "medium",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-laura-guzman-bio-2026-07-31",
+      "assignmentId": "a-laura-guzman-bio",
+      "generatedAt": "2026-07-31T18:21:45.914Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "laura-guzman-bruno",
+            "photoPath": "/data/photos/laura-guzman-bruno.jpg",
+            "partyTone": "intel",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo municipal",
+            "bodyMarkdown": "Laura Guzmán Bruno es concejal del Ayuntamiento de Riba-roja de Túria por el Partido Popular, en cuyo grupo figura en el **puesto n.º 6** — y, a diferencia de cinco de los siete miembros del grupo, sin la marca «(Independiente)» junto a su nombre en el acta, es decir, como integrante del propio partido. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+            "sourceIds": [
+              "src-062",
+              "src-068"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y trayectoria",
+            "bodyMarkdown": "Guzmán tiene recorrido previo en las listas del PP: en 2019 ya concurrió en el **puesto n.º 11** de la candidatura del Partido Popular por Riba-roja (BOP de València n.º 82, 30-04-2019) sin obtener escaño. En 2023, con el PP como segunda fuerza, entró en la corporación como n.º 6 de la lista.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al Grupo Municipal Popular. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión). Según su declaración estatutaria, es **gestora en Caixabank desde el año 2000** — una carrera en el sector financiero previa y ajena a su acta.",
+            "sourceIds": [
+              "src-067",
+              "src-060",
+              "src-061",
+              "src-062",
+              "src-063",
+              "src-065"
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Candidata n.º 11 de la lista del PP (sin obtener escaño)",
+                "org": "Elecciones municipales de Riba-roja de Túria",
+                "startYear": 2019,
+                "endYear": 2019,
+                "sourceIds": [
+                  "src-067"
+                ]
+              },
+              {
+                "role": "Concejal, n.º 6 del Grupo Municipal Popular",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-060",
+                  "src-061",
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 174573,
+                "description": "Activo declarado al tomar posesión (2023): 153.773,00 € en bienes inmuebles + 20.800,00 € en otros bienes = 174.573,00 €; pasivo declarado: 169.000,00 € — el mayor endeudamiento declarado de los concejales de la oposición, compatible con una hipoteca, aunque el documento no detalla la naturaleza de la deuda. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-064",
+                  "src-066"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Sin actividad empresarial: su actividad declarada es el empleo por cuenta ajena como gestora en Caixabank, con inicio en el año 2000. Sin dedicación municipal, el empleo privado es compatible con el régimen de asistencias.",
+                "sourceIds": [
+                  "src-065"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-063"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Guzmán Bruno». Su empleador declarado, Caixabank, presta servicios financieros que no figuran en el corpus de contratación municipal; y, en todo caso, ella es empleada del banco —no órgano decisor— y concejal de la oposición, sin participación documentada en las operaciones financieras del Ayuntamiento.\n\nLímites declarados: al no publicar el portal municipal CV suyo, no consta formación ni trayectoria más allá de la actividad declarada; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-069",
+              "src-068"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Laura Guzmán Bruno",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Popular (PP)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Caixabank (empleadora)",
+                "tone": "intel",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal n.º 6 del grupo; candidata n.º 11 en 2019 (actas + BOP)",
+                "sourceIds": [
+                  "src-062",
+                  "src-067"
+                ]
+              },
+              {
+                "from": "n3",
+                "to": "n1",
+                "relation": "gestora por cuenta ajena desde el año 2000 (declaración de actividades)",
+                "sourceIds": [
+                  "src-065"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "2000-01-01",
+                "label": "Inicio de su actividad como gestora en Caixabank (año, según su declaración de actividades)",
+                "sourceIds": [
+                  "src-065"
+                ]
+              },
+              {
+                "date": "2019-04-30",
+                "label": "Candidata n.º 11 de la lista del PP por Riba-roja (BOP n.º 82) — sin escaño",
+                "sourceIds": [
+                  "src-067"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejal electa y juramento en la sesión constitutiva (n.º 6 del PP)",
+                "sourceIds": [
+                  "src-060",
+                  "src-061"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Integrada en el Grupo Municipal Popular; sin dedicación (régimen de asistencias)",
+                "sourceIds": [
+                  "src-062",
+                  "src-063"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 174.573,00 € · pasivo 169.000,00 € (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-064",
+                  "src-066"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "CV no publicado en el portal municipal",
+                "reason": "El portal de transparencia publica CV de 17 miembros de la corporación pero no de Guzmán (ni de Trejo, Boix o Navarro Sanfeliu). Sin CV, no consta fecha de nacimiento, formación académica ni trayectoria previa más allá de la actividad declarada."
+              },
+              {
+                "field": "Naturaleza del pasivo declarado (169.000 €)",
+                "reason": "Es el mayor pasivo declarado de los concejales de la oposición; la declaración consigna el importe pero no la naturaleza de la deuda (hipoteca, préstamo…). Sin el detalle, la cifra se publica sin interpretación."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Laura Guzman Bruno",
+          "retrievedAt": "2026-07-31T18:17:07.468Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "role: concejal · party: PP · portfolios: "
+        },
+        {
+          "id": "src-002",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-31T18:17:10.060Z",
+          "localPath": "public/data/elections.json",
+          "trust": "high",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+        },
+        {
+          "id": "src-003",
+          "kind": "web",
+          "url": "https://okdiario.com/happyfm/asi-laura-sanchez-edad-pareja-donde-cuantos-hijos-tiene-16499275",
+          "title": "Así es Laura Sánchez: su edad, su pareja, de dónde es y ... - Okdiario",
+          "retrievedAt": "2026-07-31T18:17:10.717Z",
+          "trust": "low",
+          "excerpt": "27 de mar de 2026 · Hacemos un repaso a la trayectoria profesional de Laura Sánchez, sin dejar de lado aspectos de su vida personal como son su edad y su pareja."
+        },
+        {
+          "id": "src-004",
+          "kind": "web",
+          "url": "https://www.serpadres.es/familia/nombres-de-bebe/laura-significado.html",
+          "title": "Laura: significado, origen y personalidad del nombre – Ser Padres",
+          "retrievedAt": "2026-07-31T18:17:10.717Z",
+          "trust": "low",
+          "excerpt": "16 de ago de 2023 · Laura es un nombre femenino de origen latino que ha mantenido su popularidad a lo largo de los siglos. A lo largo de la historia, el nombre Laura ha sido adoptado en diversas …"
+        },
+        {
+          "id": "src-005",
+          "kind": "web",
+          "url": "https://www.parabebes.com/significado-del-nombre-laura-2487.html",
+          "title": "Significado del nombre LAURA - Origen, Personalidad ... - paraBebés",
+          "retrievedAt": "2026-07-31T18:17:10.717Z",
+          "trust": "low",
+          "excerpt": "15 de abr de 2020 · El significado del nombre Laura es \" triunfadora \", ya que proviene de la palabra latina laurea, nombre que recibía la corona de laureles que se utilizaba simbólicamente para …"
+        },
+        {
+          "id": "src-006",
+          "kind": "web",
+          "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+          "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+          "retrievedAt": "2026-07-31T18:17:10.718Z",
+          "trust": "medium",
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+        },
+        {
+          "id": "src-007",
+          "kind": "web",
+          "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+          "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+          "retrievedAt": "2026-07-31T18:17:10.718Z",
+          "trust": "medium",
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+        },
+        {
+          "id": "src-008",
+          "kind": "web",
+          "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+          "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+          "retrievedAt": "2026-07-31T18:17:10.718Z",
+          "trust": "low",
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+        },
+        {
+          "id": "src-009",
+          "kind": "web",
+          "url": "https://en.wikipedia.org/wiki/2026_Australian_Open",
+          "title": "2026 Australian Open - Wikipedia",
+          "retrievedAt": "2026-07-31T18:17:11.019Z",
+          "trust": "medium",
+          "excerpt": "The 2026 Australian Open was a Grand Slam level tennis tournament that was held at Melbourne Park, from 18 January to 1 February 2026, with the preliminary rounds played from 12 to 15 January. It was …"
+        },
+        {
+          "id": "src-010",
+          "kind": "web",
+          "url": "https://ausopen.com/",
+          "title": "Australian Open",
+          "retrievedAt": "2026-07-31T18:17:11.019Z",
+          "trust": "low",
+          "excerpt": "Tennis Australia acknowledges that the AO is held on Wurundjeri Woi Wurrung Country and we extend our respects to Elders past and present and to all First Nations People."
+        },
+        {
+          "id": "src-011",
+          "kind": "web",
+          "url": "https://ausopen.com/articles/news/australian-open-2026-dates-announced",
+          "title": "Australian Open 2026 dates announced | AO",
+          "retrievedAt": "2026-07-31T18:17:11.019Z",
+          "trust": "low",
+          "excerpt": "21 de mar de 2025 · Australian Open 2026 will unfold at Melbourne Park from 12 January to 1 February. Kicking off with the increasingly popular Opening Week and concluding with the men’s singles final at …"
+        },
+        {
+          "id": "src-012",
+          "kind": "web",
+          "url": "https://maps.google.de/intl/de/earth/",
+          "title": "Google Earth",
+          "retrievedAt": "2026-07-31T18:17:11.499Z",
+          "trust": "low",
+          "excerpt": "Google Earth ist eine fotorealistische und digitale Version unseres Planeten. Woher kommen die Bilder? Wie sind sie …"
+        },
+        {
+          "id": "src-013",
+          "kind": "web",
+          "url": "https://maps.google.de/landing/transit/cities/index.html",
+          "title": "Transit – Google Maps",
+          "retrievedAt": "2026-07-31T18:17:11.499Z",
+          "trust": "low",
+          "excerpt": "Multi-Region あいの風とやま鉄道 いすみ鉄道 いわて銀河鉄道 えちごトキめき鉄道 えちぜん鉄道 くま川鉄道 わたらせ渓谷鐵道 ヤサ …"
+        },
+        {
+          "id": "src-014",
+          "kind": "web",
+          "url": "https://maps.google.de/intl/de/help/maps/streetview/privacy.html",
+          "title": "Mit jedem weiteren Bild wird deine Karte lebendiger - Google Maps",
+          "retrievedAt": "2026-07-31T18:17:11.499Z",
+          "trust": "low",
+          "excerpt": "Mit jedem weiteren Bild wird deine Karte lebendiger In Street View werden Milliarden von Panoramabildern zu einer virtuellen …"
+        },
+        {
+          "id": "src-015",
+          "kind": "web",
+          "url": "https://www.reddit.com/r/ninite/",
+          "title": "ninite - Reddit",
+          "retrievedAt": "2026-07-31T18:17:12.170Z",
+          "trust": "low",
+          "excerpt": "r/ninite: Press J to jump to the feed. Press question mark to learn the rest of the keyboard shortcuts"
+        },
+        {
+          "id": "src-016",
+          "kind": "web",
+          "url": "https://www.reddit.com/r/buildapc/comments/bvhnaq/what_is_ninite/",
+          "title": "What is ninite? : r/buildapc - Reddit",
+          "retrievedAt": "2026-07-31T18:17:12.170Z",
+          "trust": "low",
+          "excerpt": "1 de jun de 2019 · true Planning on building a computer but need some advice? This is the place to ask! /r/buildapc is a community-driven subreddit dedicated to custom PC assembly. Anyone is welcome to …"
+        },
+        {
+          "id": "src-017",
+          "kind": "web",
+          "url": "https://community.adobe.com/questions-638/ninite-689172",
+          "title": "Ninite - Community",
+          "retrievedAt": "2026-07-31T18:17:12.170Z",
+          "trust": "low",
+          "excerpt": "I am quite disappointed in Adobe that it has forbidden Ninite to allow downloads of Flash Player.&nbsp; Is it jsut for the possible installation of the Ask Toolbar?"
+        },
+        {
+          "id": "src-018",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T18:17:13.958Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[13440.0 → 13470.0] Pues bueno, para saber por qué no hay funcionarios que no están cobrando esta carrera profesional. Si no hay algún problema en el departamento de personal. Después, queríamos saber si también hay algú"
+        },
+        {
+          "id": "src-019",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T18:17:13.958Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[13770.0 → 13800.0] En este caso, usted me está preguntando ahora. Bueno, conteste las dos preguntas que formen parte de la policía local. La primera es de Luis Benavent-Muedra, que hoy le hemos felicitado por la gran ta"
+        },
+        {
+          "id": "src-020",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T18:17:13.958Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[14550.0 → 14580.0] o empresas afectadas por esos cortes. Ese es un punto. Y el segundo es, el 26 de abril presentó una instancia para la instalación de una carpa. Nadie me contestó. Yo también es cierto que no reclamé. "
+        },
+        {
+          "id": "src-021",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T18:17:13.958Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[13800.0 → 13830.0] Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. Yo no sé. "
+        },
+        {
+          "id": "src-022",
+          "kind": "local-snapshot",
+          "title": "Pleno claim 1qi8axv-124-afi-c4d442 · 2025-12-23 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T18:17:16.673Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "María José Pradas. Sí. Salvador Ferrer. A favor. Laura Gutmann. A favor."
+        },
+        {
+          "id": "src-023",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Fuente oficial: www.ribarroja.es",
+          "retrievedAt": "2026-07-31T18:17:16.674Z",
+          "trust": "high",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-024",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T18:17:18.495Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "robert-raga-gadea · Robert Raga Gadea · Sr. · alcalde · PSOE · Alcaldía · Innovación · Planificación estratégica y grandes proyectos y cooperación nacional e internacional · rraga@ribarroja.es · /data/photos/robert-raga-gadea.jpg · https://"
+        },
+        {
+          "id": "src-025",
+          "kind": "local-snapshot",
+          "title": "public/data/officials.json · officials",
+          "retrievedAt": "2026-07-31T18:17:18.495Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "teresa-pozuelo-martin · Teresa Pozuelo Martín · Sra. · concejal · PSOE · Urbanismo · Vivienda · Obra Pública · Áreas Industriales y Cementerio · tpozuelo@ribarroja.es · /data/photos/teresa-pozuelo-martin.jpg · https://www.ribarroja.es/sites"
+        },
+        {
+          "id": "src-026",
+          "kind": "local-snapshot",
+          "title": "public/data/press.json · items",
+          "retrievedAt": "2026-07-31T18:17:18.495Z",
+          "localPath": "public/data/press.json",
+          "trust": "high",
+          "excerpt": "1547xm0 · Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales · https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU"
+        },
+        {
+          "id": "src-027",
+          "kind": "web",
+          "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
+          "title": "Campaña de Renta 2025 - Agencia Tributaria",
+          "retrievedAt": "2026-07-31T18:17:18.962Z",
+          "trust": "high",
+          "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este impuesto y las más habituales de campaña de Renta, que se responderán …"
+        },
+        {
+          "id": "src-028",
+          "kind": "web",
+          "url": "https://sede.agenciatributaria.gob.es/",
+          "title": "Agencia Tributaria: Inicio",
+          "retrievedAt": "2026-07-31T18:17:18.962Z",
+          "trust": "high",
+          "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la declaración de Renta"
+        },
+        {
+          "id": "src-029",
+          "kind": "web",
+          "url": "https://www.agenciatributaria.es/AEAT.internet/Renta.shtml",
+          "title": "Inicio - Agencia Tributaria",
+          "retrievedAt": "2026-07-31T18:17:18.962Z",
+          "trust": "low",
+          "excerpt": "Aquí nos gustaría mostrarte una descripción, pero el sitio web que estás mirando no lo permite."
+        },
+        {
+          "id": "src-030",
+          "kind": "web",
+          "url": "https://okdiario.com/happyfm/asi-laura-sanchez-edad-pareja-donde-cuantos-hijos-tiene-16499275",
+          "title": "Así es Laura Sánchez: su edad, su pareja, de dónde es y ... - Okdiario",
+          "retrievedAt": "2026-07-31T18:17:21.583Z",
+          "trust": "low",
+          "excerpt": "27 de mar de 2026 · Hacemos un repaso a la trayectoria profesional de Laura Sánchez, sin dejar de lado aspectos de su vida personal como son su edad y su pareja."
+        },
+        {
+          "id": "src-031",
+          "kind": "web",
+          "url": "https://www.serpadres.es/familia/nombres-de-bebe/laura-significado.html",
+          "title": "Laura: significado, origen y personalidad del nombre – Ser Padres",
+          "retrievedAt": "2026-07-31T18:17:21.583Z",
+          "trust": "low",
+          "excerpt": "16 de ago de 2023 · Laura es un nombre femenino de origen latino que ha mantenido su popularidad a lo largo de los siglos. A lo largo de la historia, el nombre Laura ha sido adoptado en diversas …"
+        },
+        {
+          "id": "src-032",
+          "kind": "web",
+          "url": "https://www.parabebes.com/significado-del-nombre-laura-2487.html",
+          "title": "Significado del nombre LAURA - Origen, Personalidad ... - paraBebés",
+          "retrievedAt": "2026-07-31T18:17:21.583Z",
+          "trust": "low",
+          "excerpt": "15 de abr de 2020 · El significado del nombre Laura es \" triunfadora \", ya que proviene de la palabra latina laurea, nombre que recibía la corona de laureles que se utilizaba simbólicamente para …"
+        },
+        {
+          "id": "src-033",
+          "kind": "web",
+          "url": "https://www.facebook.com/lauragtvoficial/",
+          "title": "Laura G - Facebook",
+          "retrievedAt": "2026-07-31T18:17:21.583Z",
+          "trust": "low",
+          "excerpt": "Laura G. 7,768,134 likes · 229,153 talking about this. Facebook oficial de Laura G, un espacio donde comparto lo mejor del entretenimiento y mi vida diaria"
+        },
+        {
+          "id": "src-034",
+          "kind": "web",
+          "url": "https://www.elmundo.es/loc/2026/06/18/6a33db51fc6c8374258b45bc.html",
+          "title": "Laura y Alba, las hijas de Zapatero: así viven y así es la empresa que ...",
+          "retrievedAt": "2026-07-31T18:17:21.583Z",
+          "trust": "medium",
+          "publishedAt": "2026-06-18",
+          "excerpt": "18 de jun de 2026 · Hace tiempo que las hijas góticas de Zapatero tuvieron su Renacimiento y no es el que la España que vivió el revuelo de su famosa foto con los Obama hubiese esperado. Alba (31)..."
+        },
+        {
+          "id": "src-035",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Texto completo: ribarroja.es",
+          "retrievedAt": "2026-07-31T18:17:21.585Z",
+          "trust": "high",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-060",
+          "retrievedAt": "2026-07-31T18:24:55.727Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "Maria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina"
+          "excerpt": "Jose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno"
         },
         {
-          "id": "src-063",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-061",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
-          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo"
+          "excerpt": "- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes"
         },
         {
-          "id": "src-064",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-062",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "official-doc",
           "trust": "high",
-          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Ferrer n.º 4, «(Independiente)»)",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Guzmán n.º 6, sin la marca «Independiente»)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
           "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:"
         },
         {
-          "id": "src-065",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
-          "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
-          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo\n30\nTitular: D. Salvador Evaristo Ferrer Cortina\nSuplente: Cualquier otro Concejal de su grupo político"
-        },
-        {
-          "id": "src-066",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-063",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
@@ -17150,44 +17795,26 @@
           "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
         },
         {
-          "id": "src-067",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
-          "kind": "official-doc",
-          "trust": "high",
-          "title": "Acta sesión de organización 25-06-2019 — constitución del Grupo Ciudadanos (CS): Ferrer, portavoz",
-          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/6845364/filesGroup/20190625-EXTRA-09-P---INICIO-LEGISLATURA.pdf",
-          "excerpt": "Por el Grupo político municipal con la denominación de Ciudadanos Partido de la Ciudadanía (CS), son: Salvador Evaristo Ferrer Cortina Mª Teresa Ruiz Vendrell Siendo su Portavoz: Salvador Evaristo Ferrer Cortina Portavoz suplente: Mª Teresa Ruiz Vendrell"
-        },
-        {
-          "id": "src-068",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
-          "kind": "official-doc",
-          "trust": "high",
-          "title": "BOP de València n.º 82, 30-04-2019 — candidatura de Ciudadanos por Riba-roja: Ferrer, cabeza de lista",
-          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
-          "excerpt": "CANDIDATURA NÚM. 5:\nCIUDADANOS-PARTIDO DE LA CIUDADANIA (CS)\nTITULARES\n1. SALVADOR EVARISTO FERRER CORTINA\n2. MARIA TERESA RUIZ VENDRELL\n3. ROSARIO ÍÑIGUEZ POLIT\n4. JOSÉ RUBÉN BALLESTER ARLANDIS\n5. SARA TOLA COLÁS (INDEPENDIENTE)"
-        },
-        {
-          "id": "src-069",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-064",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
-          "excerpt": "SALVADOR EVARISTO FERRER CORTINA 250.000,00 31.740,00 281.740,00 71.000,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+          "excerpt": "LAURA GUZMAN BRUNO 153.773,00 20.800,00 174.573,00 169.000,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
         },
         {
-          "id": "src-070",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-065",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
           "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
-          "excerpt": "SALVADOR EVARISTO FERRER CORTINA | Administrador de fincas · Salvador Ferrer Cortina · 01/01/2012 — [tabla de actividades por columnas: cargo · entidad (a nombre propio) · fecha de inicio]"
+          "excerpt": "LAURA GUZMAN BRUNO | Gestor · Caixabank · 2000 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de inicio (año)]"
         },
         {
-          "id": "src-071",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-066",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "official-doc",
           "trust": "high",
           "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
@@ -17195,20 +17822,37 @@
           "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
         },
         {
-          "id": "src-072",
-          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "id": "src-067",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura del PP por Riba-roja (Guzmán, puesto 11, sin escaño)",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "excerpt": "CANDIDATURA NÚM. 7:\nPARTIDO POPULAR (PP)\nTITULARES\n1. JOSEFA RUIZ ESTEBAN\n2. SANTIAGO NAVARRO ZARAGOZÁ\n3. PEDRO TORTAJADA RAGA\n4. RAQUEL ARGANDOÑA LÓPEZ\n5. BEGOÑA CAMPOS MARTÍNEZ\n6. PAULA BADÍA LANÁQUERA\n7. ROSA AL SIBAI GINER\n8. VICTOR ENGUIX ZARAGOZÁ\n9. ADRIÁN ALIAGA TORTOSA\n10. JAVIER MORENO COLL\n11. LAURA GUZMÁN BRUNO"
+        },
+        {
+          "id": "src-068",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Guzmán",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Laura Guzmán Bruno (ni de Soraya Trejo, Juan Boix ni Paula Navarro)."
+        },
+        {
+          "id": "src-069",
+          "retrievedAt": "2026-07-31T18:24:55.728Z",
           "kind": "local-snapshot",
           "trust": "high",
           "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
           "localPath": "public/data/tenders.json",
           "url": "https://www.civicpulse.es/data/tenders.json",
-          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «FERRER CORTINA» y 0 para «SF ADMINISTRADORES» (el despacho de su actividad declarada de administración de fincas)."
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GUZMÁN BRUNO». Su empleador declarado (Caixabank) presta servicios financieros que no figuran en el corpus de contratación (licitaciones y contratos menores); las operaciones de tesorería/crédito municipales se tramitan por otra vía y ella es empleada del banco, no órgano decisor, y concejal de la oposición."
         }
       ],
       "warnings": [
-        "Los datos biográficos y profesionales (nacimiento, titulaciones, despacho SF Administradores) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora la actividad de administrador de fincas (inicio 01-01-2012).",
-        "El paso de Ciudadanos al PP se documenta con hechos (portavoz de Cs 2019-2023 por acta; n.º 4 del PP en 2023 por acta y BOP); este medio no atribuye motivación a esa decisión.",
-        "Las votaciones plenarias constan a nivel de grupo y las transcripciones no identifican hablantes con fiabilidad: este perfil no atribuye al concejal sentidos de voto ni intervenciones individuales."
+        "El portal municipal no publica CV de la concejal: los datos biográficos básicos (nacimiento, formación) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+        "La cobertura de prensa indexada bajo el nombre «Laura» corresponde a homónimas (no a la concejal); por eso no se incluye bloque de menciones en prensa."
       ],
       "legalSensitivity": "medium",
       "requiresHumanApproval": true

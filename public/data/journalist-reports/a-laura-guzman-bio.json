@@ -1,0 +1,332 @@
+{
+  "id": "r-laura-guzman-bio-2026-07-31",
+  "assignmentId": "a-laura-guzman-bio",
+  "generatedAt": "2026-07-31T18:21:45.914Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "laura-guzman-bruno",
+        "photoPath": "/data/photos/laura-guzman-bruno.jpg",
+        "partyTone": "intel",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo municipal",
+        "bodyMarkdown": "Laura Guzmán Bruno es concejal del Ayuntamiento de Riba-roja de Túria por el Partido Popular, en cuyo grupo figura en el **puesto n.º 6** — y, a diferencia de cinco de los siete miembros del grupo, sin la marca «(Independiente)» junto a su nombre en el acta, es decir, como integrante del propio partido. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+        "sourceIds": [
+          "src-062",
+          "src-068"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y trayectoria",
+        "bodyMarkdown": "Guzmán tiene recorrido previo en las listas del PP: en 2019 ya concurrió en el **puesto n.º 11** de la candidatura del Partido Popular por Riba-roja (BOP de València n.º 82, 30-04-2019) sin obtener escaño. En 2023, con el PP como segunda fuerza, entró en la corporación como n.º 6 de la lista.\n\nLa sesión constitutiva de 17-06-2023 la proclama concejal electa con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación. En el pleno de organización de 07-07-2023 queda adscrita al Grupo Municipal Popular. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión). Según su declaración estatutaria, es **gestora en Caixabank desde el año 2000** — una carrera en el sector financiero previa y ajena a su acta.",
+        "sourceIds": [
+          "src-067",
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063",
+          "src-065"
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Candidata n.º 11 de la lista del PP (sin obtener escaño)",
+            "org": "Elecciones municipales de Riba-roja de Túria",
+            "startYear": 2019,
+            "endYear": 2019,
+            "sourceIds": [
+              "src-067"
+            ]
+          },
+          {
+            "role": "Concejal, n.º 6 del Grupo Municipal Popular",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 174573,
+            "description": "Activo declarado al tomar posesión (2023): 153.773,00 € en bienes inmuebles + 20.800,00 € en otros bienes = 174.573,00 €; pasivo declarado: 169.000,00 € — el mayor endeudamiento declarado de los concejales de la oposición, compatible con una hipoteca, aunque el documento no detalla la naturaleza de la deuda. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-064",
+              "src-066"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial: su actividad declarada es el empleo por cuenta ajena como gestora en Caixabank, con inicio en el año 2000. Sin dedicación municipal, el empleo privado es compatible con el régimen de asistencias.",
+            "sourceIds": [
+              "src-065"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-063"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Guzmán Bruno». Su empleador declarado, Caixabank, presta servicios financieros que no figuran en el corpus de contratación municipal; y, en todo caso, ella es empleada del banco —no órgano decisor— y concejal de la oposición, sin participación documentada en las operaciones financieras del Ayuntamiento.\n\nLímites declarados: al no publicar el portal municipal CV suyo, no consta formación ni trayectoria más allá de la actividad declarada; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-069",
+          "src-068"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Laura Guzmán Bruno",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Popular (PP)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Caixabank (empleadora)",
+            "tone": "intel",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal n.º 6 del grupo; candidata n.º 11 en 2019 (actas + BOP)",
+            "sourceIds": [
+              "src-062",
+              "src-067"
+            ]
+          },
+          {
+            "from": "n3",
+            "to": "n1",
+            "relation": "gestora por cuenta ajena desde el año 2000 (declaración de actividades)",
+            "sourceIds": [
+              "src-065"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2000-01-01",
+            "label": "Inicio de su actividad como gestora en Caixabank (año, según su declaración de actividades)",
+            "sourceIds": [
+              "src-065"
+            ]
+          },
+          {
+            "date": "2019-04-30",
+            "label": "Candidata n.º 11 de la lista del PP por Riba-roja (BOP n.º 82) — sin escaño",
+            "sourceIds": [
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamada concejal electa y juramento en la sesión constitutiva (n.º 6 del PP)",
+            "sourceIds": [
+              "src-060",
+              "src-061"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Integrada en el Grupo Municipal Popular; sin dedicación (régimen de asistencias)",
+            "sourceIds": [
+              "src-062",
+              "src-063"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 174.573,00 € · pasivo 169.000,00 € (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-064",
+              "src-066"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "CV no publicado en el portal municipal",
+            "reason": "El portal de transparencia publica CV de 17 miembros de la corporación pero no de Guzmán (ni de Trejo, Boix o Navarro Sanfeliu). Sin CV, no consta fecha de nacimiento, formación académica ni trayectoria previa más allá de la actividad declarada."
+          },
+          {
+            "field": "Naturaleza del pasivo declarado (169.000 €)",
+            "reason": "Es el mayor pasivo declarado de los concejales de la oposición; la declaración consigna el importe pero no la naturaleza de la deuda (hipoteca, préstamo…). Sin el detalle, la cifra se publica sin interpretación."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "retrievedAt": "2026-07-31T18:24:55.727Z",
+      "excerpt": "Jose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Guzmán n.º 6, sin la marca «Independiente»)",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "LAURA GUZMAN BRUNO 153.773,00 20.800,00 174.573,00 169.000,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "LAURA GUZMAN BRUNO | Gestor · Caixabank · 2000 — [transcripción por columnas de la tabla de actividades: cargo · entidad · fecha de inicio (año)]",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidatura del PP por Riba-roja (Guzmán, puesto 11, sin escaño)",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "CANDIDATURA NÚM. 7:\nPARTIDO POPULAR (PP)\nTITULARES\n1. JOSEFA RUIZ ESTEBAN\n2. SANTIAGO NAVARRO ZARAGOZÁ\n3. PEDRO TORTAJADA RAGA\n4. RAQUEL ARGANDOÑA LÓPEZ\n5. BEGOÑA CAMPOS MARTÍNEZ\n6. PAULA BADÍA LANÁQUERA\n7. ROSA AL SIBAI GINER\n8. VICTOR ENGUIX ZARAGOZÁ\n9. ADRIÁN ALIAGA TORTOSA\n10. JAVIER MORENO COLL\n11. LAURA GUZMÁN BRUNO",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Guzmán",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Laura Guzmán Bruno (ni de Soraya Trejo, Juan Boix ni Paula Navarro).",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+      "retrievedAt": "2026-07-31T18:24:55.728Z",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «GUZMÁN BRUNO». Su empleador declarado (Caixabank) presta servicios financieros que no figuran en el corpus de contratación (licitaciones y contratos menores); las operaciones de tesorería/crédito municipales se tramitan por otra vía y ella es empleada del banco, no órgano decisor, y concejal de la oposición.",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "El portal municipal no publica CV de la concejal: los datos biográficos básicos (nacimiento, formación) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+    "La cobertura de prensa indexada bajo el nombre «Laura» corresponde a homónimas (no a la concejal); por eso no se incluye bloque de menciones en prensa."
+  ],
+  "legalSensitivity": "medium",
+  "promotedBy": "Sergei Lutchenko",
+  "promotedAt": "2026-07-31T18:25:14.650Z",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente mínimo (7 secciones, 10 avisos) con fuerte ruido de homonimia por nombre común sin CV (Laura Sánchez, «hijas de Zapatero», webs de significado del nombre, Australian Open, Google Earth, ninite — todo web low-trust, podado por el promote). Perfil reconstruido íntegramente sobre primarios, patrón Trejo: actas (electa+juramento 17-06-2023; grupo PP n.º 6 SIN marca «Independiente» = miembro del propio partido, a diferencia de 5 de 7 del grupo; asistencias), BOP (candidata PP n.º 11 en 2019 sin escaño, ventana verbatim dentro del bloque de Riba-roja; 2015: 0) y declaración verificada contra PDF + render p2 (activo 174.573 € [153.773 inm + 20.800 otros], pasivo 169.000 € — el MAYOR de la oposición; actividad: gestora en Caixabank desde 2000). Secciones de ruido ELIMINADAS: press-sparkline (titulares de homónimas) y promise-board (promiseIds de partido sin vínculo individual). Comprobación del empleador Caixabank: barrido 0; nota neutral (empleada, no órgano decisor, oposición) sin insinuar conflicto. NO es titular de ninguna comisión (verificado en 16ujrlm). Sin CV publicado — documentado como fuente y laguna (afecta a 4 concejales del PP).",
+  "corrections": [],
+  "response": null
+}
