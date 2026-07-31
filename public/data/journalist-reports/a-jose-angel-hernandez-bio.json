@@ -53,7 +53,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Elección y nombramiento",
-        "bodyMarkdown": "José Ángel Hernández Carrizosa fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número cuatro del grupo municipal socialista y portavoz suplente; una resolución de Alcaldía lo nombró Tercer Teniente de Alcalde y consta como tercer miembro de la Junta de Gobierno Local; y el punto 4 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación y Fomento económico y emprendimiento». El registro municipal vigente añade hoy Comercio a sus áreas — la misma área que el decreto de 2023 asignaba al Segundo Teniente de Alcalde, reflejo de la variación de delegaciones durante el mandato. El acuerdo de régimen económico de la misma sesión fijó su dedicación exclusiva en 43.067,36 euros anuales.",
+        "bodyMarkdown": "José Ángel Hernández Carrizosa fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número cuatro del grupo municipal socialista y portavoz suplente; una resolución de Alcaldía lo nombró Tercer Teniente de Alcalde y consta como tercer miembro de la Junta de Gobierno Local; y el punto 4 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación y Fomento económico y emprendimiento». El registro municipal vigente añade hoy Comercio a sus áreas — la misma área que el decreto de 2023 asignaba al Segundo Teniente de Alcalde, reflejo de la variación de delegaciones durante el mandato. El acuerdo de régimen económico de la misma sesión fijó su dedicación exclusiva en 43.067,36 euros anuales.\n\nSu recorrido previo consta de forma independiente: concejal ya en 2010, electo en 2015 como número cinco de la lista del PSOE (BOP de València n.º 79; acta constitutiva del 13-06-2015) y Segundo Teniente de Alcalde en el mandato 2019-2023 (pleno de organización del 25-06-2019).",
         "sourceIds": [
           "src-065",
           "src-066",
@@ -65,7 +65,10 @@
           "src-071",
           "src-072",
           "src-001",
-          "src-005"
+          "src-005",
+          "src-091",
+          "src-093",
+          "src-094"
         ]
       }
     },
@@ -151,12 +154,24 @@
             ]
           },
           {
-            "role": "Concejal (inicio consignado en su declaración estatutaria: 14/06/2019)",
+            "role": "Concejal (electo en 2015, puesto 5 de la lista del PSOE)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2015,
+            "endYear": 2019,
+            "sourceIds": [
+              "src-091",
+              "src-093"
+            ]
+          },
+          {
+            "role": "Concejal · Segundo Teniente de Alcalde (mandato 2019-2023)",
             "org": "Ayuntamiento de Riba-roja de Túria",
             "startYear": 2019,
             "endYear": 2023,
             "sourceIds": [
-              "src-074"
+              "src-074",
+              "src-094",
+              "src-090"
             ]
           },
           {
@@ -266,6 +281,21 @@
             "sourceIds": [
               "src-007",
               "src-064"
+            ]
+          },
+          {
+            "date": "2015-06-13",
+            "label": "Electo concejal y toma posesión en la sesión constitutiva (puesto 5 de la lista del PSOE)",
+            "sourceIds": [
+              "src-091",
+              "src-093"
+            ]
+          },
+          {
+            "date": "2019-06-25",
+            "label": "El pleno de organización del mandato 2019-2023 lo recoge como Segundo Teniente de Alcalde",
+            "sourceIds": [
+              "src-094"
             ]
           },
           {
@@ -416,8 +446,8 @@
             "reason": "Las etapas en Vilarsal SL, Artículos de Carpintería Moreno SL, Grupo Serratable SL y Nexo Nivel SL proceden solo de su CV autodeclarado; el Registro Mercantil no se ha consultado de forma independiente."
           },
           {
-            "field": "Trayectoria política 2011-2019",
-            "reason": "Consta como concejal en 2010 (acta independiente) y desde el 14/06/2019 (declaración estatutaria); las fuentes consultadas no permiten determinar su actividad política entre ambos hitos."
+            "field": "Trayectoria política 2011-2015",
+            "reason": "Consta como concejal en 2010 (acta independiente), electo en 2015 (puesto 5 del PSOE, BOP n.º 79 + acta constitutiva) y de nuevo desde 2019. Queda sin documentar únicamente el tramo 2011-2015."
           },
           {
             "field": "Vínculos societarios y personales",
@@ -660,6 +690,46 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high"
+    },
+    {
+      "id": "src-090",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidaturas proclamadas, circunscripción Riba-roja de Túria (lista del PSOE)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL RIBA-ROJA DE TÚRIA CANDIDATURA NÚM. 1: PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) TITULARES 1. ROBERTO PASCUAL RAGA GADEA 2. MARIA TERESA POZUELO MARTIN 3. JOSE LUIS RAMOS MARCH 4. ZAFIRA PEREZ PACHECO 5. JOSE ANGEL HERNANDEZ CARRIZOSA 6. MARIA DOLORES VERDEGUER ROYO 7. JOSE LUIS LOPEZ GALDON 8. ANA CRISTINA FOLGADO MORALES 9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO",
+      "trust": "high"
+    },
+    {
+      "id": "src-091",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+      "title": "BOP de València n.º 79, 28-04-2015 — candidaturas, circunscripción Riba-roja de Túria (lista del PSOE)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL: RIbA-ROJA DE TúRIA Candidatura núm.: 1. PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) 1. Don ROBERTO RAGA GADEA 2. Doña MARIA TERESA POZUELO MARTI (Independiente) 3. Don JOSE LUIS LOPEZ GALDON 4. Doña MARIA DOLORES VERDEGUER ROYO 5. Don JOSE ANGEL HERNANDEZ CARRIZOSA 6. Doña BEATRIZ QUEVEDO SANCHEZ (Independiente) 7. Don RAFAEL GOMEZ SANCHEZ",
+      "trust": "high"
+    },
+    {
+      "id": "src-093",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
+      "title": "Acta de la sesión constitutiva de 13-06-2015 · concejales electos",
+      "publisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "D. ROBERTO RAGA GADEA Dª Mª TERESA POZUELO MARTÍN D. JOSÉ LUÍS LÓPEZ GALDÓN Dª Mª DOLORES VERDEGUER ROYO D. JOSÉ ÁNGEL HERNANDEZ CARRIZOSA",
+      "trust": "high"
+    },
+    {
+      "id": "src-094",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/6845364/filesGroup/20190625-EXTRA-09-P---INICIO-LEGISLATURA.pdf",
+      "title": "Acta del pleno de organización de 25-06-2019 · tenencias de alcaldía 2019-2023",
+      "publisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "Primer Teniente de Alcalde: Teresa Pozuelo Martín. Segundo Teniente de Alcalde: José Angel Hernández Carrizosa. Tercer Teniente de Alcalde: José Luis López Galdón. Cuarto Teniente de Alcalde: Rafael Gómez Sánchez.",
+      "trust": "high"
     }
   ],
   "warnings": [
@@ -669,7 +739,7 @@
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-31T07:45:50.673Z",
-  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV SÍ existe con el nombre de archivo corrupto por acentos (…HERNA769NDEZ.pdf) — descargada, verificada e integrada manualmente (nacido 22-09-1971 en Valencia; FPII Administración y Finanzas + Escuela de Negocios Lluís Vives; Vilarsal SL, Carpintería Moreno SL, Grupo Serratable SL y ADMINISTRADOR SOLIDARIO de Nexo Nivel SL 2008-2015). La afirmación «concejal en 2010» del borrador VERIFICADA contra el acta íntegra del pleno de 10-03-2010: figura en la lista de CONCEJALES ASISTENTES de la corporación 2007-2011 (alcalde Francisco Tarazona) — constancia INDEPENDIENTE, no autodeclarada; laguna honesta para el tramo 2011-2019. Cadena de nombramiento con ventanas literales: electo+posesión, número cuatro y portavoz suplente, Tercera Tenencia, tercer miembro de la JGL, punto 4 del decreto de áreas; la incorporación posterior de Comercio (que el decreto asignaba al Segundo Teniente) cruza con la variación documentada en el informe de Ramos March. Declaración estatutaria: activo 40.333,43 € (de los más bajos) con pasivo 53.201,23 € superior al activo; sin actividad empresarial vigente. COMPROBACIÓN CLAVE (su delegación incluye Compra Pública): ninguna de las cuatro sociedades de su CV consta como adjudicataria ni licitadora en los 804 contratos; 0 adjudicatarios con sus apellidos. 9 de las 11 advertencias del verificador eliminadas por comprobablemente falsas (los extractos SÍ constan; «1985» es el año de la Ley 7/1985); citas literales sustituidas por el decreto verbatim (una era transcripción con errores de Whisper: «Edifican Heredado» por «Pla Edificant»). CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta).",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV SÍ existe con el nombre de archivo corrupto por acentos (…HERNA769NDEZ.pdf) — descargada, verificada e integrada manualmente (nacido 22-09-1971 en Valencia; FPII Administración y Finanzas + Escuela de Negocios Lluís Vives; Vilarsal SL, Carpintería Moreno SL, Grupo Serratable SL y ADMINISTRADOR SOLIDARIO de Nexo Nivel SL 2008-2015). La afirmación «concejal en 2010» del borrador VERIFICADA contra el acta íntegra del pleno de 10-03-2010: figura en la lista de CONCEJALES ASISTENTES de la corporación 2007-2011 (alcalde Francisco Tarazona) — constancia INDEPENDIENTE, no autodeclarada; laguna honesta para el tramo 2011-2019. Cadena de nombramiento con ventanas literales: electo+posesión, número cuatro y portavoz suplente, Tercera Tenencia, tercer miembro de la JGL, punto 4 del decreto de áreas; la incorporación posterior de Comercio (que el decreto asignaba al Segundo Teniente) cruza con la variación documentada en el informe de Ramos March. Declaración estatutaria: activo 40.333,43 € (de los más bajos) con pasivo 53.201,23 € superior al activo; sin actividad empresarial vigente. COMPROBACIÓN CLAVE (su delegación incluye Compra Pública): ninguna de las cuatro sociedades de su CV consta como adjudicataria ni licitadora en los 804 contratos; 0 adjudicatarios con sus apellidos. 9 de las 11 advertencias del verificador eliminadas por comprobablemente falsas (los extractos SÍ constan; «1985» es el año de la Ley 7/1985); citas literales sustituidas por el decreto verbatim (una era transcripción con errores de Whisper: «Edifican Heredado» por «Pla Edificant»). CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). CORROBORACIÓN INDEPENDIENTE 2026-07-31: electo también en 2015 (BOP n.º 79, puesto 5 + acta constitutiva del 13-06-2015) y Segundo Teniente de Alcalde en 2019-2023 (acta de organización del 25-06-2019, BOP n.º 82 puesto 5) — la laguna de trayectoria se estrecha al tramo 2011-2015.",
   "corrections": [
     {
       "field": "narrative.Actividad plenaria.bodyMarkdown",

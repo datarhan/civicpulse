@@ -81,12 +81,16 @@
       "kind": "narrative",
       "payload": {
         "heading": "Elección e investidura",
-        "bodyMarkdown": "Robert Raga accede a la alcaldía por la vía de la investidura plenaria. En la sesión constitutiva del 17 de junio de 2023 —tras las municipales del 28 de mayo, en las que el PSPV-PSOE obtuvo el 49,69% de los votos— presentaron candidatura los concejales que encabezaban las listas electas y Raga fue elegido alcalde con 11 votos de los 21 concejales, la mayoría absoluta; el siguiente candidato obtuvo 7 votos.\n\nQuedó proclamado alcalde y tomó posesión en el mismo acto formulando promesa del cargo.\n\nEn los comicios de 2019 el PSPV-PSOE había obtenido el 45,92% de los votos.",
+        "bodyMarkdown": "Robert Raga accede a la alcaldía por la vía de la investidura plenaria. En la sesión constitutiva del 17 de junio de 2023 —tras las municipales del 28 de mayo, en las que el PSPV-PSOE obtuvo el 49,69% de los votos— presentaron candidatura los concejales que encabezaban las listas electas y Raga fue elegido alcalde con 11 votos de los 21 concejales, la mayoría absoluta; el siguiente candidato obtuvo 7 votos.\n\nQuedó proclamado alcalde y tomó posesión en el mismo acto formulando promesa del cargo.\n\nEn los comicios de 2019 el PSPV-PSOE había obtenido el 45,92% de los votos.\n\nSu primera investidura consta ahora de forma independiente: encabezó la lista del PSOE en 2015 (BOP de València n.º 79, 28-04-2015) y fue elegido alcalde el 13 de junio de 2015 con 12 votos, frente a 7 de la candidata del PP y 2 en blanco. En 2019 volvió a encabezar la candidatura (BOP n.º 82, 30-04-2019), y un acta de marzo de 2010 lo sitúa ya como concejal de la corporación 2007-2011.",
         "sourceIds": [
           "src-053",
           "src-054",
           "src-055",
-          "src-008"
+          "src-008",
+          "src-090",
+          "src-091",
+          "src-092",
+          "src-096"
         ]
       }
     },
@@ -159,13 +163,24 @@
       "payload": {
         "items": [
           {
+            "role": "Concejal — consta en el acta del pleno de 10-03-2010 (corporación 2007-2011)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2010,
+            "endYear": 2010,
+            "sourceIds": [
+              "src-096"
+            ]
+          },
+          {
             "role": "Alcalde",
             "org": "Ajuntament de Riba-roja de Túria",
             "startYear": 2015,
             "endYear": 2019,
             "sourceIds": [
               "src-002",
-              "src-057"
+              "src-057",
+              "src-092",
+              "src-091"
             ]
           },
           {
@@ -306,10 +321,18 @@
             ]
           },
           {
-            "date": "2015-06-13",
-            "label": "Accede a la alcaldía por primera vez (inicio declarado en su declaración estatutaria de actividades)",
+            "date": "2010-03-10",
+            "label": "Consta como concejal en el acta del pleno ordinario (corporación 2007-2011)",
             "sourceIds": [
-              "src-057"
+              "src-096"
+            ]
+          },
+          {
+            "date": "2015-06-13",
+            "label": "Elegido alcalde por primera vez en la sesión constitutiva, con 12 votos frente a 7 de la candidata del PP y 2 en blanco, tras encabezar la lista del PSOE",
+            "sourceIds": [
+              "src-092",
+              "src-091"
             ]
           },
           {
@@ -715,17 +738,56 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high"
+    },
+    {
+      "id": "src-090",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidaturas proclamadas, circunscripción Riba-roja de Túria (lista del PSOE)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL RIBA-ROJA DE TÚRIA CANDIDATURA NÚM. 1: PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) TITULARES 1. ROBERTO PASCUAL RAGA GADEA 2. MARIA TERESA POZUELO MARTIN 3. JOSE LUIS RAMOS MARCH 4. ZAFIRA PEREZ PACHECO 5. JOSE ANGEL HERNANDEZ CARRIZOSA 6. MARIA DOLORES VERDEGUER ROYO 7. JOSE LUIS LOPEZ GALDON 8. ANA CRISTINA FOLGADO MORALES 9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO",
+      "trust": "high"
+    },
+    {
+      "id": "src-091",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+      "title": "BOP de València n.º 79, 28-04-2015 — candidaturas, circunscripción Riba-roja de Túria (lista del PSOE)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL: RIbA-ROJA DE TúRIA Candidatura núm.: 1. PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) 1. Don ROBERTO RAGA GADEA 2. Doña MARIA TERESA POZUELO MARTI (Independiente) 3. Don JOSE LUIS LOPEZ GALDON 4. Doña MARIA DOLORES VERDEGUER ROYO 5. Don JOSE ANGEL HERNANDEZ CARRIZOSA 6. Doña BEATRIZ QUEVEDO SANCHEZ (Independiente) 7. Don RAFAEL GOMEZ SANCHEZ",
+      "trust": "high"
+    },
+    {
+      "id": "src-092",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf",
+      "title": "Acta de la sesión constitutiva de 13-06-2015 · votación de investidura y proclamación de alcalde",
+      "publisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "Votos a favor de Don Roberto Raga Gadea. Votos a favor de __12 Votos a favor de Doña Josefa Ruiz Esteban. Votos a favor de __7 Votos blancos________2 Votos nulos__________0 Por lo que queda proclamado Alcalde del Ayuntamiento de RIBA-ROJA DE TURIA el Concejal D. Roberto Raga Gadea del Grupo PARTIDO SOCIALISTA OBRERO ESPAÑOL.",
+      "trust": "high"
+    },
+    {
+      "id": "src-096",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7238980/filesGroup/Pleno20100310.pdf",
+      "title": "Acta del pleno ordinario de 10-03-2010 · concejales asistentes (corporación 2007-2011)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CONCEJALES ASISTENTES: Don SALVADOR SILVESTRE LARREA Don JAVIER MORENO COLL Doña MARÍA CRISTINA VÁZQUEZ TARAZONA Doña MARÍA JOSE RUIZ ESTEBAN Doña MARÍA DOLORES RODRÍGUEZ ROMERO. Don JOSE VICENTE TARAZONA CAMPOS Doña BEÁTRIZ CÓRCOLES NAVARRO Don JOSE LUIS FOLGADO CORREA Doña RAQUEL ARGÁNDOÑA LOPEZ Don ROBERTO PASCUAL RAGA GADEA",
+      "trust": "high"
     }
   ],
   "warnings": [
-    "El inicio del primer mandato (13/06/2015) consta en el CV autodeclarado y en la declaración estatutaria de actividades (expte. 3971/2023/GEN); ambas fuentes proceden del propio sujeto, si bien la segunda es una declaración formal publicada por la Secretaría municipal.",
     "Los datos biográficos marcados «según su CV» proceden de un documento autodeclarado publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
     "RETRACTACIÓN 2026-07-30: retirada la fila «sentencia 139/19» del historial judicial — falsa asociación por colindancia de anuncios en un boletín multi-edicto (ver notas del curador)."
   ],
   "legalSensitivity": "high",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-30T15:56:39.140Z",
-  "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador. CORRECCIÓN 2026-07-30 (verificación integral contra documentos primarios): narrativa del Informe 02/2021 reescrita — la consulta la formuló el propio Ayuntamiento y el contrato anulado se licitó en 2012, antes del mandato del sr. Raga (TSJCV apelación 962/2016); cita de identity corregida a la ficha; añadido el mandato 2023–actual. DEPURACIÓN EDITORIAL 2026-07-30 (claridad de bloques, revisión del operador): cronología reconstruida como hitos biográficos datados (retiradas las sesiones plenarias rutinarias sin contenido); citas literales sustituidas por citas con contexto (añadida la entrevista de Las Provincias de 09-03-2026 como fuente citada; retirado el fragmento de título «Sentencia del Tribunal Superior…» sin valor informativo); lagunas agrupadas en 4 filas en lenguaje claro; advertencias depuradas — 5 filas eliminadas por ser comprobablemente falsas u obsoletas tras las correcciones (src-019/020/021/024/025 sí constan en el registro de fuentes; la secretaria general sí figura textualmente en el acta citada src-019; los guarismos «02» y «18» señalados por el grounding son el número y la fecha del Informe 02/2021, presentes en las fuentes citadas; la cita de identidad ya se corrigió a src-002); registro de fuentes reducido a las filas citadas por alguna sección — 35 filas de resultados de búsqueda no utilizados retiradas, incluidas homónimas irrelevantes (artículos sobre «Robert (muñeco)», un futbolista y un diccionario francés). El rastro completo de investigación se conserva en el borrador (journalist-reports-suggestions.json). AMPLIACIÓN 2026-07-30 (revisión del operador): «Resultados electorales» sustituido por «Elección e investidura» — la vía de acceso a la alcaldía documentada con el acta de la sesión constitutiva del 17-06-2023 (candidaturas de cabezas de lista, votación 11/21 con mayoría absoluta, proclamación y toma de posesión), con ventanas literales de la transcripción como fuentes nuevas. DECLARACIÓN OFICIAL 2026-07-30: integrada su declaración estatutaria de actividades y bienes (expte. 3971/2023/GEN, Decreto 191/2010): cargos públicos exclusivamente — alcaldía con inicio declarado 13/06/2015 (resuelve la advertencia sobre el mandato de 2015, que pasa de «solo CV» a «CV + declaración formal ante Secretaría») y presidencia del Consorcio Valencia Interior (23/10/2019, añadida al grafo de relaciones); activo 95.352,78 € (inmuebles 79.052,78 + otros 16.300), pasivo 231.955,80 €. Comprobación nominal sobre 804 contratos: cero adjudicatarios con sus apellidos. Filas financial (declared-assets + business negativo), dos narrativas nuevas y laguna refocalizada a familia/Mercantil. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta).",
+  "curatorNotes": "RETRACTACIÓN 2026-07-30: se retiró la fila «sentencia 139/19» y sus menciones: el edicto del BOP N.º 115 corresponde a una ejecución laboral contra una empresa privada sin relación con el sr. Raga; su única aparición en ese boletín es la firma de una delegación de boda civil (inserción 2019/8305). Falsa asociación por colindancia de anuncios en un boletín multi-edicto; detectada en revisión del operador. CORRECCIÓN 2026-07-30 (verificación integral contra documentos primarios): narrativa del Informe 02/2021 reescrita — la consulta la formuló el propio Ayuntamiento y el contrato anulado se licitó en 2012, antes del mandato del sr. Raga (TSJCV apelación 962/2016); cita de identity corregida a la ficha; añadido el mandato 2023–actual. DEPURACIÓN EDITORIAL 2026-07-30 (claridad de bloques, revisión del operador): cronología reconstruida como hitos biográficos datados (retiradas las sesiones plenarias rutinarias sin contenido); citas literales sustituidas por citas con contexto (añadida la entrevista de Las Provincias de 09-03-2026 como fuente citada; retirado el fragmento de título «Sentencia del Tribunal Superior…» sin valor informativo); lagunas agrupadas en 4 filas en lenguaje claro; advertencias depuradas — 5 filas eliminadas por ser comprobablemente falsas u obsoletas tras las correcciones (src-019/020/021/024/025 sí constan en el registro de fuentes; la secretaria general sí figura textualmente en el acta citada src-019; los guarismos «02» y «18» señalados por el grounding son el número y la fecha del Informe 02/2021, presentes en las fuentes citadas; la cita de identidad ya se corrigió a src-002); registro de fuentes reducido a las filas citadas por alguna sección — 35 filas de resultados de búsqueda no utilizados retiradas, incluidas homónimas irrelevantes (artículos sobre «Robert (muñeco)», un futbolista y un diccionario francés). El rastro completo de investigación se conserva en el borrador (journalist-reports-suggestions.json). AMPLIACIÓN 2026-07-30 (revisión del operador): «Resultados electorales» sustituido por «Elección e investidura» — la vía de acceso a la alcaldía documentada con el acta de la sesión constitutiva del 17-06-2023 (candidaturas de cabezas de lista, votación 11/21 con mayoría absoluta, proclamación y toma de posesión), con ventanas literales de la transcripción como fuentes nuevas. DECLARACIÓN OFICIAL 2026-07-30: integrada su declaración estatutaria de actividades y bienes (expte. 3971/2023/GEN, Decreto 191/2010): cargos públicos exclusivamente — alcaldía con inicio declarado 13/06/2015 (resuelve la advertencia sobre el mandato de 2015, que pasa de «solo CV» a «CV + declaración formal ante Secretaría») y presidencia del Consorcio Valencia Interior (23/10/2019, añadida al grafo de relaciones); activo 95.352,78 € (inmuebles 79.052,78 + otros 16.300), pasivo 231.955,80 €. Comprobación nominal sobre 804 contratos: cero adjudicatarios con sus apellidos. Filas financial (declared-assets + business negativo), dos narrativas nuevas y laguna refocalizada a familia/Mercantil. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). CORROBORACIÓN INDEPENDIENTE 2026-07-31: localizados el acta de la sesión constitutiva del 13-06-2015 (investidura con 12 votos, proclamación literal), las candidaturas del BOP n.º 79/2015 y n.º 82/2019 (cabeza de lista en ambas) y el acta de 10-03-2010 (concejal de la corporación 2007-2011). La advertencia sobre el inicio del primer mandato queda RESUELTA: la fecha ya no depende de fuentes autodeclaradas.",
   "corrections": [
     {
       "field": "narrative.Trayectoria profesional y formación.bodyMarkdown",

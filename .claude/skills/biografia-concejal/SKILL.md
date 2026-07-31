@@ -104,17 +104,30 @@ page) — cite it alongside for gazette-grade identifiers.
 Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.txt` ~L1287-1300
 (221,82 €/Pleno · 162,31 €/JGL and comisiones · 119,03 €/Junta de Portavoces).
 
-**B2. Corroboration avenues for the recurring lagunas** (attempt when relevant; log honestly):
-- Mandate starts pre-2023: historic actas exist as `/files/migrate/<node>/filesGroup/*.pdf`
-  (the 10-03-2010 acta proved two subjects' 2007-2011 concejalías) but are NOT search-indexed —
-  find them via other actas' node ids or Wayback. The «Corporación 2019-2023» declaraciones
-  node currently returns HTTP 500 (retry Wayback when not rate-limited).
-- List positions per election: BOP de València candidaturas issues (~late April of 2015/2019/
-  2023) at bop.dival.es — one issue proves positions for ALL councillors of that election.
-- Administratorships: BORME (boe.es; the old buscar/borme.php form is 404 — find the current
-  endpoint; libreborme.net is Cloudflare-walled; search engines don't reach BORME depth).
-- Títulos: professional-college rosters are public by law (Ley 25/2009) — e.g. CAATIE Valencia
-  (caatvalencia.es) for aparejadores/arquitectos técnicos; needs form navigation.
+**B2. Corroboration sources for the recurring lagunas** (status as of 2026-07-31):
+- **Mandate starts pre-2023 — SOLVED.** The historic actas archive is at
+  `https://www.ribarroja.es/es/1_transparencia_activa_e_informacion_sobre_la_corporacion_municipal/plenos`
+  → per-year pages `/es/plenos/<2013-2019>` and `/es/ayuntamiento/plenos/<2008-2011>/…`. Key
+  documents already fetched and cited: **acta constitutiva 13-06-2015**
+  (`…/migrate//filesGroup/Acta-pleno-constitucion-13-06-2015.pdf` — Raga invested with 12
+  votes; electos incl. Pozuelo #2 and Hernández #5), **acta organización 25-06-2019**
+  (`…/migrate/6845364/filesGroup/20190625-EXTRA-09-P---INICIO-LEGISLATURA.pdf` — tenientes
+  2019: Pozuelo 1ª, Hernández 2º, Gómez Sánchez 4º; Pozuelo portavoz; dedicaciones 35.941,14 €),
+  **acta 10-03-2010** (Raga + Hernández concejales 2007-2011). The 2019 delegation decree was
+  withdrawn from the 25-06-2019 session (redone later) — per-área 2019 delegations need the
+  following pleno's acta.
+- **List positions per election — SOLVED for 2015/2019.** BOP full-bulletin download by date:
+  `https://bop.dival.es/bop/downloads?boletinFecha=DD/MM/YYYY` — candidaturas issues:
+  **28/04/2015 (n.º 79)** and **30/04/2019 (n.º 82)**; search «CIRCUNSCRIPCIÓN ELECTORAL
+  RIBA-ROJA» in the parsed text (2015 uses odd casing «RIbA-ROJA DE TúRIA»). 2023's special
+  issue date not yet located (25-04/02-05/03-05 tried; the 2023 group-roster order in 16ujrlm
+  covers it meanwhile). Beware in-town homonyms on OTHER lists (2015 EUPV cabeza was Rafael
+  Gómez MUÑOZ).
+- Administratorships: BORME — still no free structured path (buscar/borme.php 404, libreborme
+  Cloudflare-walled, engines don't index it). Declared limit stands.
+- Títulos: CAATIE Valencia HAS a public directory (`/pub/directorio_colegiados.aspx`, ASPX
+  POST with VIEWSTATE) — a Pozuelo search returned no visible rows (inconclusive: may not be
+  a current colegiada; absence ≠ no título). Log as attempted.
 - Birth dates and family: NO lawful public source — these stay honest gaps, never «covered».
 
 **C. Comprobaciones (conflict checks — contracts-first, NEVER social-graph-first).**

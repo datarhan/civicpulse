@@ -57,7 +57,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Elección y nombramiento",
-        "bodyMarkdown": "Rafael Gómez Sánchez fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión del cargo mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nEn el pleno de organización del mandato quedó constancia de la formación del grupo municipal socialista, integrado por 11 de los 21 concejales de la corporación, con Gómez Sánchez entre sus miembros.\n\nSus responsabilidades concretas no proceden de una elección directa, sino de una delegación del alcalde: una resolución de la Alcaldía documentada en la sesión extraordinaria del 7 de julio de 2023 le delegó las competencias «en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes», y el mismo pleno fijó su dedicación exclusiva en 38.891,66 euros anuales.\n\nEn los comicios de 2019 el PSPV-PSOE había obtenido el 45,92% de los votos; según su currículum autodeclarado, ya había sido regidor en el mandato 2019-2023.",
+        "bodyMarkdown": "Rafael Gómez Sánchez fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión del cargo mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nEn el pleno de organización del mandato quedó constancia de la formación del grupo municipal socialista, integrado por 11 de los 21 concejales de la corporación, con Gómez Sánchez entre sus miembros.\n\nSus responsabilidades concretas no proceden de una elección directa, sino de una delegación del alcalde: una resolución de la Alcaldía documentada en la sesión extraordinaria del 7 de julio de 2023 le delegó las competencias «en materia de Servicios públicos municipales, Urbanizaciones, barrios y diseminados, Movilidad y Deportes», y el mismo pleno fijó su dedicación exclusiva en 38.891,66 euros anuales.\n\nEn los comicios de 2019 el PSPV-PSOE había obtenido el 45,92% de los votos; según su currículum autodeclarado, ya había sido regidor en el mandato 2019-2023.\n\nSu recorrido electoral consta también de forma independiente: fue candidato en el puesto 7 de la lista del PSOE en 2015 sin obtener acta (BOP de València n.º 79), concurrió en el puesto 9 en 2019 (BOP n.º 82) y en aquel mandato fue además Cuarto Teniente de Alcalde.",
         "sourceIds": [
           "src-060",
           "src-061",
@@ -66,7 +66,10 @@
           "src-063",
           "src-007",
           "src-006",
-          "src-002"
+          "src-002",
+          "src-090",
+          "src-091",
+          "src-094"
         ]
       }
     },
@@ -129,14 +132,16 @@
       "payload": {
         "items": [
           {
-            "role": "Regidor — Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad",
+            "role": "Regidor · Cuarto Teniente de Alcalde — Barrios y urbanizaciones, Parques y jardines, Servicios Públicos, Transporte y movilidad",
             "org": "Ayuntamiento de Riba-roja de Túria",
             "startYear": 2019,
             "endYear": 2023,
             "sourceIds": [
               "src-002",
               "src-001",
-              "src-006"
+              "src-006",
+              "src-094",
+              "src-090"
             ]
           },
           {
@@ -209,6 +214,13 @@
             "label": "Nace en València (dato de su CV autodeclarado)",
             "sourceIds": [
               "src-002"
+            ]
+          },
+          {
+            "date": "2019-06-25",
+            "label": "El pleno de organización del mandato 2019-2023 lo recoge como Cuarto Teniente de Alcalde",
+            "sourceIds": [
+              "src-094"
             ]
           },
           {
@@ -556,6 +568,36 @@
       "retrievedAt": "2026-07-31T08:05:04.220Z",
       "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
       "trust": "high"
+    },
+    {
+      "id": "src-090",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidaturas proclamadas, circunscripción Riba-roja de Túria (lista del PSOE)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL RIBA-ROJA DE TÚRIA CANDIDATURA NÚM. 1: PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) TITULARES 1. ROBERTO PASCUAL RAGA GADEA 2. MARIA TERESA POZUELO MARTIN 3. JOSE LUIS RAMOS MARCH 4. ZAFIRA PEREZ PACHECO 5. JOSE ANGEL HERNANDEZ CARRIZOSA 6. MARIA DOLORES VERDEGUER ROYO 7. JOSE LUIS LOPEZ GALDON 8. ANA CRISTINA FOLGADO MORALES 9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO",
+      "trust": "high"
+    },
+    {
+      "id": "src-091",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+      "title": "BOP de València n.º 79, 28-04-2015 — candidaturas, circunscripción Riba-roja de Túria (lista del PSOE)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL: RIbA-ROJA DE TúRIA Candidatura núm.: 1. PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) 1. Don ROBERTO RAGA GADEA 2. Doña MARIA TERESA POZUELO MARTI (Independiente) 3. Don JOSE LUIS LOPEZ GALDON 4. Doña MARIA DOLORES VERDEGUER ROYO 5. Don JOSE ANGEL HERNANDEZ CARRIZOSA 6. Doña BEATRIZ QUEVEDO SANCHEZ (Independiente) 7. Don RAFAEL GOMEZ SANCHEZ",
+      "trust": "high"
+    },
+    {
+      "id": "src-094",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/6845364/filesGroup/20190625-EXTRA-09-P---INICIO-LEGISLATURA.pdf",
+      "title": "Acta del pleno de organización de 25-06-2019 · tenencias de alcaldía 2019-2023",
+      "publisher": "Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T08:26:19.506Z",
+      "excerpt": "Primer Teniente de Alcalde: Teresa Pozuelo Martín. Segundo Teniente de Alcalde: José Angel Hernández Carrizosa. Tercer Teniente de Alcalde: José Luis López Galdón. Cuarto Teniente de Alcalde: Rafael Gómez Sánchez.",
+      "trust": "high"
     }
   ],
   "warnings": [
@@ -564,7 +606,7 @@
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-30T17:44:34.912Z",
-  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»). AMPLIACIÓN 2026-07-30 (revisión del operador): el bloque «Resultados electorales» solo recitaba porcentajes de partido; sustituido por «Elección y nombramiento» con la cadena de acceso al cargo verificada contra las actas — proclamación como electo y toma de posesión (sesión constitutiva 17-06-2023), formación del grupo socialista (11/21 concejales) y decreto de delegación de áreas del alcalde (sesión 07-07-2023), con ventanas literales de las transcripciones como fuentes nuevas. AMPLIACIÓN 2026-07-30 (revisión del operador, bloque Relaciones): añadidas las conexiones administrativas documentadas (pertenencia a la JGL hasta el cese de 07-2023, delegación de áreas por el alcalde, grupo municipal) y una narrativa de comprobaciones con resultados honestos — barridos nominales sobre 804 contratos (58 de transporte, su sector previo; 46 de deportes, su área) sin coincidencia alguna; asociaciones y BDNS no publican nombres; Registro Mercantil no consultable con fiabilidad por homonimia. Ninguna asociación sin documento se publica; la hipótesis de vínculos personales queda declarada como límite, no como insinuación. VIGILANCIA (señal débil en seguimiento; muestra insuficiente para publicarla como hallazgo): 6 de los 20 contratos menores de sus áreas se adjudicaron entre 12.000 y 15.000 € (banda pre-umbral; 13% en el conjunto municipal) — n demasiado pequeño para publicar, revisar cuando crezca el corpus; Transportes Carlos Arce SL acumula 2 adjudicaciones con un solo licitador (52.481 €) en el sector transporte — sin vínculo nominal ni documental con el concejal, solo coincidencia sectorial. DECLARACIÓN OFICIAL 2026-07-30: localizada y contrastada la declaración de actividades y bienes de la toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010, con CSV verificable en oficinavirtual.ribarroja.es): única actividad declarada = la concejalía (desde 15/06/2019), sin actividad empresarial; activo 41.300 € (inmuebles 37.500 por valor catastral + otros 3.800), pasivo 4.400 € — de los más bajos de la corporación. Integrada como filas financial (declared-assets + business negativo) y narrativa «Patrimonio y actividades declaradas»; FINANCIAL_SOURCE_ALLOW ampliado con el portal municipal (fuente estatutaria primaria). La hipótesis de vínculos empresariales queda contrastada con el documento oficial: negativa. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta).",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-30 (previa a la promoción): el cese en la Junta de Gobierno Local verificado contra el acta íntegra de la sesión extraordinaria del 07-07-2023 (transcripción 16ujrlm): resolución de Alcaldía ex art. 23.1 Ley 7/1985, cese de Gómez Sánchez y nombramiento de Rafael Folgado Navarro, con la composición renovada de la Junta transcrita literalmente; se añadió la aclaración de que el registro municipal vigente le sigue atribuyendo sus delegaciones. Cita de identidad corregida al CV (src-002, «15 ENERO 1976 VALÈNCIA»); añadido el mandato en curso (2023–, officials + dedicaciones); cronología ampliada a 4 hitos datados con fuente. 4 de las 5 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-023/src-025 SÍ constan en el registro y respaldan literalmente el cese, la cita y la arista de relaciones). El barrido web devolvió mayoritariamente homónimos (Sandokán de Córdoba, Gomez Group Metering, homónimos académicos) — ninguno citado; el registro publicado queda reducido a las fuentes citadas y el propio agente detectó y omitió una fuga de CV homónimo (fila en «Lagunas detectadas»). AMPLIACIÓN 2026-07-30 (revisión del operador): el bloque «Resultados electorales» solo recitaba porcentajes de partido; sustituido por «Elección y nombramiento» con la cadena de acceso al cargo verificada contra las actas — proclamación como electo y toma de posesión (sesión constitutiva 17-06-2023), formación del grupo socialista (11/21 concejales) y decreto de delegación de áreas del alcalde (sesión 07-07-2023), con ventanas literales de las transcripciones como fuentes nuevas. AMPLIACIÓN 2026-07-30 (revisión del operador, bloque Relaciones): añadidas las conexiones administrativas documentadas (pertenencia a la JGL hasta el cese de 07-2023, delegación de áreas por el alcalde, grupo municipal) y una narrativa de comprobaciones con resultados honestos — barridos nominales sobre 804 contratos (58 de transporte, su sector previo; 46 de deportes, su área) sin coincidencia alguna; asociaciones y BDNS no publican nombres; Registro Mercantil no consultable con fiabilidad por homonimia. Ninguna asociación sin documento se publica; la hipótesis de vínculos personales queda declarada como límite, no como insinuación. VIGILANCIA (señal débil en seguimiento; muestra insuficiente para publicarla como hallazgo): 6 de los 20 contratos menores de sus áreas se adjudicaron entre 12.000 y 15.000 € (banda pre-umbral; 13% en el conjunto municipal) — n demasiado pequeño para publicar, revisar cuando crezca el corpus; Transportes Carlos Arce SL acumula 2 adjudicaciones con un solo licitador (52.481 €) en el sector transporte — sin vínculo nominal ni documental con el concejal, solo coincidencia sectorial. DECLARACIÓN OFICIAL 2026-07-30: localizada y contrastada la declaración de actividades y bienes de la toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010, con CSV verificable en oficinavirtual.ribarroja.es): única actividad declarada = la concejalía (desde 15/06/2019), sin actividad empresarial; activo 41.300 € (inmuebles 37.500 por valor catastral + otros 3.800), pasivo 4.400 € — de los más bajos de la corporación. Integrada como filas financial (declared-assets + business negativo) y narrativa «Patrimonio y actividades declaradas»; FINANCIAL_SOURCE_ALLOW ampliado con el portal municipal (fuente estatutaria primaria). La hipótesis de vínculos empresariales queda contrastada con el documento oficial: negativa. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). CORROBORACIÓN INDEPENDIENTE 2026-07-31: BOP n.º 79/2015 (candidato, puesto 7, sin acta — su implicación política empieza al menos en 2015), BOP n.º 82/2019 (puesto 9) y acta de organización de 25-06-2019 (Cuarto Teniente de Alcalde 2019-2023, cargo que su CV no recogía) integrados.",
   "corrections": [],
   "response": null
 }
