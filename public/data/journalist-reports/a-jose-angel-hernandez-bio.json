@@ -97,10 +97,11 @@
       "kind": "narrative",
       "payload": {
         "heading": "Patrimonio y actividades declaradas",
-        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge una única actividad: la concejalía, con inicio consignado el 14 de junio de 2019. No declara ninguna actividad empresarial vigente.\n\nEn el apartado de bienes declara un activo de 40.333,43 euros —18.898,55 euros en bienes inmuebles por valor catastral y 21.434,88 euros en otros bienes— y un pasivo de 53.201,23 euros, que supera al activo declarado. Es uno de los patrimonios más bajos declarados en la corporación.",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge una única actividad: la concejalía, con inicio consignado el 14 de junio de 2019. No declara ninguna actividad empresarial vigente.\n\nEn el apartado de bienes declara un activo de 40.333,43 euros —18.898,55 euros en bienes inmuebles por valor catastral y 21.434,88 euros en otros bienes— y un pasivo de 53.201,23 euros, que supera al activo declarado. Es uno de los patrimonios más bajos declarados en la corporación. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
         "sourceIds": [
           "src-073",
-          "src-074"
+          "src-074",
+          "src-080"
         ]
       }
     },
@@ -649,6 +650,16 @@
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
       "localPath": "public/data/tenders.json",
       "trust": "high"
+    },
+    {
+      "id": "src-080",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:05:04.220Z",
+      "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+      "trust": "high"
     }
   ],
   "warnings": [
@@ -658,7 +669,7 @@
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-31T07:45:50.673Z",
-  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV SÍ existe con el nombre de archivo corrupto por acentos (…HERNA769NDEZ.pdf) — descargada, verificada e integrada manualmente (nacido 22-09-1971 en Valencia; FPII Administración y Finanzas + Escuela de Negocios Lluís Vives; Vilarsal SL, Carpintería Moreno SL, Grupo Serratable SL y ADMINISTRADOR SOLIDARIO de Nexo Nivel SL 2008-2015). La afirmación «concejal en 2010» del borrador VERIFICADA contra el acta íntegra del pleno de 10-03-2010: figura en la lista de CONCEJALES ASISTENTES de la corporación 2007-2011 (alcalde Francisco Tarazona) — constancia INDEPENDIENTE, no autodeclarada; laguna honesta para el tramo 2011-2019. Cadena de nombramiento con ventanas literales: electo+posesión, número cuatro y portavoz suplente, Tercera Tenencia, tercer miembro de la JGL, punto 4 del decreto de áreas; la incorporación posterior de Comercio (que el decreto asignaba al Segundo Teniente) cruza con la variación documentada en el informe de Ramos March. Declaración estatutaria: activo 40.333,43 € (de los más bajos) con pasivo 53.201,23 € superior al activo; sin actividad empresarial vigente. COMPROBACIÓN CLAVE (su delegación incluye Compra Pública): ninguna de las cuatro sociedades de su CV consta como adjudicataria ni licitadora en los 804 contratos; 0 adjudicatarios con sus apellidos. 9 de las 11 advertencias del verificador eliminadas por comprobablemente falsas (los extractos SÍ constan; «1985» es el año de la Ley 7/1985); citas literales sustituidas por el decreto verbatim (una era transcripción con errores de Whisper: «Edifican Heredado» por «Pla Edificant»).",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV SÍ existe con el nombre de archivo corrupto por acentos (…HERNA769NDEZ.pdf) — descargada, verificada e integrada manualmente (nacido 22-09-1971 en Valencia; FPII Administración y Finanzas + Escuela de Negocios Lluís Vives; Vilarsal SL, Carpintería Moreno SL, Grupo Serratable SL y ADMINISTRADOR SOLIDARIO de Nexo Nivel SL 2008-2015). La afirmación «concejal en 2010» del borrador VERIFICADA contra el acta íntegra del pleno de 10-03-2010: figura en la lista de CONCEJALES ASISTENTES de la corporación 2007-2011 (alcalde Francisco Tarazona) — constancia INDEPENDIENTE, no autodeclarada; laguna honesta para el tramo 2011-2019. Cadena de nombramiento con ventanas literales: electo+posesión, número cuatro y portavoz suplente, Tercera Tenencia, tercer miembro de la JGL, punto 4 del decreto de áreas; la incorporación posterior de Comercio (que el decreto asignaba al Segundo Teniente) cruza con la variación documentada en el informe de Ramos March. Declaración estatutaria: activo 40.333,43 € (de los más bajos) con pasivo 53.201,23 € superior al activo; sin actividad empresarial vigente. COMPROBACIÓN CLAVE (su delegación incluye Compra Pública): ninguna de las cuatro sociedades de su CV consta como adjudicataria ni licitadora en los 804 contratos; 0 adjudicatarios con sus apellidos. 9 de las 11 advertencias del verificador eliminadas por comprobablemente falsas (los extractos SÍ constan; «1985» es el año de la Ley 7/1985); citas literales sustituidas por el decreto verbatim (una era transcripción con errores de Whisper: «Edifican Heredado» por «Pla Edificant»). CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta).",
   "corrections": [
     {
       "field": "narrative.Actividad plenaria.bodyMarkdown",

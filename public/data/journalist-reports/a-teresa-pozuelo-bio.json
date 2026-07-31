@@ -87,11 +87,12 @@
       "kind": "narrative",
       "payload": {
         "heading": "Patrimonio y actividades declaradas",
-        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge una única actividad: la concejalía, con inicio consignado el 15 de junio de 2019. No declara ninguna otra actividad, empleo ni participación empresarial.\n\nEn el apartado de bienes declara un activo de 394.118,84 euros —308.049,90 euros en bienes inmuebles por valor catastral y 86.068,94 euros en otros bienes— y un pasivo de 90.759,21 euros: el tercer activo más alto declarado en la corporación.\n\nEl inicio consignado en esa declaración (2019) difiere del que recoge su currículum, que sitúa su etapa de regidora desde 2015; ambos documentos proceden de la propia concejala y la discrepancia queda señalada en «Lagunas detectadas».",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge una única actividad: la concejalía, con inicio consignado el 15 de junio de 2019. No declara ninguna otra actividad, empleo ni participación empresarial.\n\nEn el apartado de bienes declara un activo de 394.118,84 euros —308.049,90 euros en bienes inmuebles por valor catastral y 86.068,94 euros en otros bienes— y un pasivo de 90.759,21 euros: el tercer activo más alto declarado en la corporación.\n\nEl inicio consignado en esa declaración (2019) difiere del que recoge su currículum, que sitúa su etapa de regidora desde 2015; ambos documentos proceden de la propia concejala y la discrepancia queda señalada en «Lagunas detectadas». La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
         "sourceIds": [
           "src-071",
           "src-072",
-          "src-061"
+          "src-061",
+          "src-080"
         ]
       }
     },
@@ -595,6 +596,16 @@
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Pozuelo», y sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (urbanismo, vivienda, obra pública, industriales, cementerio): 77 de 282; un solo licitador 34/77 (44%) frente a 156/282 (55%) del conjunto; contratos menores 18/77 (23%) frente a 57/282 (20%).",
       "localPath": "public/data/tenders.json",
       "trust": "high"
+    },
+    {
+      "id": "src-080",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:05:04.220Z",
+      "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+      "trust": "high"
     }
   ],
   "warnings": [
@@ -605,7 +616,7 @@
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-30T22:36:09.719Z",
-  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV en PDF SÍ existe en el portal con patrón de nombre nuevo (20250817-CV-TERESA-POZUELO.pdf) que el agente no localizó — descargada, verificada e integrada manualmente (identidad, formación en edificación/arquitectura técnica UPV, trayectoria en Grupo Tremon SA y Pavituria SL, regidora desde 2015). Cadena de nombramiento verificada contra las actas íntegras: proclamada electa y toma de posesión (9jatoj, 17-06-2023, con intervención como representante del PSOE), portavoz del grupo, Primera Tenencia de Alcaldía, primera integrante de la JGL y delegación del punto 2 del decreto de áreas (16ujrlm, 07-07-2023, ventanas literales). Declaración estatutaria integrada (activo 394.118,84 €, el tercero más alto de la corporación; pasivo 90.759,21 €; sin actividad empresarial). DISCREPANCIA publicada sin resolver: regidora desde 2015 según su CV, 15/06/2019 según su declaración — ambos autodeclarados. Comprobaciones: 0 de 804 contratos con su apellido; sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL — sector construcción, coincidente con sus áreas de Urbanismo y Obra Pública) NO constan como adjudicatarios municipales; indicadores de competencia de sus áreas mejores que la media (44% licitador único frente a 55%). Retiradas por homonimia las secciones de LinkedIn (coincidencia solo nominal) y press-sparkline (una novela de ficción); 9 advertencias del verificador reducidas a 3 reales.",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV en PDF SÍ existe en el portal con patrón de nombre nuevo (20250817-CV-TERESA-POZUELO.pdf) que el agente no localizó — descargada, verificada e integrada manualmente (identidad, formación en edificación/arquitectura técnica UPV, trayectoria en Grupo Tremon SA y Pavituria SL, regidora desde 2015). Cadena de nombramiento verificada contra las actas íntegras: proclamada electa y toma de posesión (9jatoj, 17-06-2023, con intervención como representante del PSOE), portavoz del grupo, Primera Tenencia de Alcaldía, primera integrante de la JGL y delegación del punto 2 del decreto de áreas (16ujrlm, 07-07-2023, ventanas literales). Declaración estatutaria integrada (activo 394.118,84 €, el tercero más alto de la corporación; pasivo 90.759,21 €; sin actividad empresarial). DISCREPANCIA publicada sin resolver: regidora desde 2015 según su CV, 15/06/2019 según su declaración — ambos autodeclarados. Comprobaciones: 0 de 804 contratos con su apellido; sus antiguos empleadores declarados (Grupo Tremon SA, Pavituria SL — sector construcción, coincidente con sus áreas de Urbanismo y Obra Pública) NO constan como adjudicatarios municipales; indicadores de competencia de sus áreas mejores que la media (44% licitador único frente a 55%). Retiradas por homonimia las secciones de LinkedIn (coincidencia solo nominal) y press-sparkline (una novela de ficción); 9 advertencias del verificador reducidas a 3 reales. CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta).",
   "corrections": [],
   "response": null
 }

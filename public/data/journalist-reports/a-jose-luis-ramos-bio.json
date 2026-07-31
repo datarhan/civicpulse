@@ -94,10 +94,11 @@
       "kind": "narrative",
       "payload": {
         "heading": "Patrimonio y actividades declaradas",
-        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge como actividad la condición de pensionista, sin ninguna actividad empresarial, empleo ni cargo privado.\n\nEn el apartado de bienes declara un activo de 523.135,68 euros —265.175,68 euros en bienes inmuebles por valor catastral y 257.960,00 euros en otros bienes— y un pasivo de 0,00 euros: el segundo activo más alto declarado en la corporación.",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge como actividad la condición de pensionista, sin ninguna actividad empresarial, empleo ni cargo privado.\n\nEn el apartado de bienes declara un activo de 523.135,68 euros —265.175,68 euros en bienes inmuebles por valor catastral y 257.960,00 euros en otros bienes— y un pasivo de 0,00 euros: el segundo activo más alto declarado en la corporación. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
         "sourceIds": [
           "src-070",
-          "src-071"
+          "src-071",
+          "src-080"
         ]
       }
     },
@@ -257,6 +258,14 @@
             "sourceIds": [
               "src-071",
               "src-072"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva a los órganos — 221,82 € por sesión del Pleno y 162,31 € por sesión de la Junta de Gobierno Local, según el régimen fijado por el acuerdo de 07-07-2023. El número de sesiones asistidas y el total anual percibido no constan en los snapshots consultados.",
+            "sourceIds": [
+              "src-081"
             ]
           }
         ]
@@ -428,7 +437,7 @@
           },
           {
             "field": "Retribución efectiva",
-            "reason": "No figura entre las dedicaciones exclusivas del acuerdo de régimen económico; el detalle de asistencias e indemnizaciones efectivamente percibidas no consta en los snapshots consultados."
+            "reason": "El régimen consta ahora con sus tarifas: asistencias de 221,82 € por Pleno y 162,31 € por Junta de Gobierno Local (acuerdo de 07-07-2023, transcrito en el acta). Sigue sin constar en los snapshots el número de sesiones efectivamente asistidas y el total anual percibido."
           },
           {
             "field": "Vínculos societarios y personales",
@@ -667,6 +676,25 @@
       "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Ramos March», y sus antiguos empleadores declarados del sector bancario (Cajamar, Caja Campo, Banco de València) no constan como adjudicatarios. Contratos en materias de sus áreas desde julio de 2023 (agricultura, edificios públicos, energía y clima, comercio, fondos europeos): 34 de 282; un solo licitador 13/34 (38%) frente a 156/282 (55%) del conjunto; contratos menores 7/34 (21%).",
       "localPath": "public/data/tenders.json",
       "trust": "high"
+    },
+    {
+      "id": "src-080",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T08:05:04.220Z",
+      "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+      "trust": "high"
+    },
+    {
+      "id": "src-081",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · régimen de indemnizaciones y asistencias",
+      "retrievedAt": "2026-07-31T08:05:04.220Z",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias: - Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este importe los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni parcial). - Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán percibir este importe los miembros de la Corporación que formen parte de la misma que",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
     }
   ],
   "warnings": [
@@ -676,7 +704,7 @@
   "legalSensitivity": "medium",
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-31T07:25:52.967Z",
-  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): cita de identidad corregida al CV (PSOE-Jose-Luis-Ramos.pdf, «19 DICIEMBRE 1960 RIBA-ROJA DE TÚRIA»); fila de mandato única y ambigua dividida en 2019-2023 (literal del CV) y 2023-actual. Cadena de nombramiento verificada contra las actas íntegras con ventanas literales: proclamado electo y posesión (9jatoj, con la dación de las declaraciones de intereses ex art. 75.7), número tres y portavoz suplente del grupo, Segunda Tenencia, segundo miembro de la JGL y punto 3 del decreto de áreas; documentada la VARIACIÓN de delegaciones durante el mandato (Comercio en 07-2023 → Actividades y Edificios públicos en el registro vigente). Declaración estatutaria integrada: activo 523.135,68 € (el segundo más alto de la corporación), pasivo 0, condición de pensionista sin actividad empresarial; NO figura entre las 7 dedicaciones exclusivas — sección financial nueva y laguna sobre la retribución efectiva. Comprobaciones: 0/804 contratos con sus apellidos; sus antiguas entidades bancarias empleadoras (Banco de València, Caja Campo, Cajamar) no constan como adjudicatarias; competencia de sus áreas mejor que la media (38% licitador único frente a 55%). 5 de las 7 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-024/026-029 SÍ constan y respaldan las afirmaciones; las ventanas de tenencia y delegación añadidas completan la de la Segunda Tenencia).",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): cita de identidad corregida al CV (PSOE-Jose-Luis-Ramos.pdf, «19 DICIEMBRE 1960 RIBA-ROJA DE TÚRIA»); fila de mandato única y ambigua dividida en 2019-2023 (literal del CV) y 2023-actual. Cadena de nombramiento verificada contra las actas íntegras con ventanas literales: proclamado electo y posesión (9jatoj, con la dación de las declaraciones de intereses ex art. 75.7), número tres y portavoz suplente del grupo, Segunda Tenencia, segundo miembro de la JGL y punto 3 del decreto de áreas; documentada la VARIACIÓN de delegaciones durante el mandato (Comercio en 07-2023 → Actividades y Edificios públicos en el registro vigente). Declaración estatutaria integrada: activo 523.135,68 € (el segundo más alto de la corporación), pasivo 0, condición de pensionista sin actividad empresarial; NO figura entre las 7 dedicaciones exclusivas — sección financial nueva y laguna sobre la retribución efectiva. Comprobaciones: 0/804 contratos con sus apellidos; sus antiguas entidades bancarias empleadoras (Banco de València, Caja Campo, Cajamar) no constan como adjudicatarias; competencia de sus áreas mejor que la media (38% licitador único frente a 55%). 5 de las 7 advertencias del verificador eliminadas por comprobablemente falsas (los extractos de src-024/026-029 SÍ constan y respaldan las afirmaciones; las ventanas de tenencia y delegación añadidas completan la de la Segunda Tenencia). CORROBORACIÓN 2026-07-31 (revisión del operador sobre lagunas recurrentes): localizado y verificado el anuncio del BOP de València n.º 180 (15-09-2023, 2023/12011) que publica las declaraciones de actividades y bienes de la legislatura — los cinco sujetos constan en su texto; añadido como fuente y citado en la narrativa de patrimonio (la naturaleza autodeclarada del contenido no cambia; la publicación oficial en boletín queda ahora acreditada con identificadores de gaceta). La laguna «Retribución efectiva» se estrecha: tarifas de asistencias localizadas literalmente en la misma acta de organización (221,82 €/Pleno, 162,31 €/JGL) e integradas como fila financiera y fuente; queda pendiente solo el total efectivamente percibido.",
   "corrections": [],
   "response": null
 }

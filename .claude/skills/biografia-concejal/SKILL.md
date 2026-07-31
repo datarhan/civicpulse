@@ -98,6 +98,24 @@ are in it — slice the subject's rows:
 Publish as: `financial` rows (`declared-assets` with amount, `business` with description) + a
 «Patrimonio y actividades declaradas» narrative + `official-doc` sources with verbatim windows.
 `FINANCIAL_SOURCE_ALLOW` already admits ribarroja.es for these.
+The declarations are ALSO gazette-published — **BOP de València n.º 180, 15-09-2023, anuncio
+2023/12011** (PDF `20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf` on the same portal
+page) — cite it alongside for gazette-grade identifiers.
+Members WITHOUT dedicación: the asistencias tariffs are verbatim in `16ujrlm.txt` ~L1287-1300
+(221,82 €/Pleno · 162,31 €/JGL and comisiones · 119,03 €/Junta de Portavoces).
+
+**B2. Corroboration avenues for the recurring lagunas** (attempt when relevant; log honestly):
+- Mandate starts pre-2023: historic actas exist as `/files/migrate/<node>/filesGroup/*.pdf`
+  (the 10-03-2010 acta proved two subjects' 2007-2011 concejalías) but are NOT search-indexed —
+  find them via other actas' node ids or Wayback. The «Corporación 2019-2023» declaraciones
+  node currently returns HTTP 500 (retry Wayback when not rate-limited).
+- List positions per election: BOP de València candidaturas issues (~late April of 2015/2019/
+  2023) at bop.dival.es — one issue proves positions for ALL councillors of that election.
+- Administratorships: BORME (boe.es; the old buscar/borme.php form is 404 — find the current
+  endpoint; libreborme.net is Cloudflare-walled; search engines don't reach BORME depth).
+- Títulos: professional-college rosters are public by law (Ley 25/2009) — e.g. CAATIE Valencia
+  (caatvalencia.es) for aparejadores/arquitectos técnicos; needs form navigation.
+- Birth dates and family: NO lawful public source — these stay honest gaps, never «covered».
 
 **C. Comprobaciones (conflict checks — contracts-first, NEVER social-graph-first).**
 - Nominal sweep: subject surnames vs all contract assignees in `tenders.json`.
