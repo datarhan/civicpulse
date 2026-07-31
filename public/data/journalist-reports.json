@@ -1,10 +1,626 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T12:25:04.103Z",
+  "generatedAt": "2026-07-31T12:40:04.002Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-raquel-pamblanco-bio-2026-07-31",
+      "assignmentId": "a-raquel-pamblanco-bio",
+      "generatedAt": "2026-07-31T12:37:08.022Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "raquel-pamblanco-paredes",
+            "photoPath": "/data/photos/raquel-pamblanco-paredes.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Seguridad y emergencias",
+              "Igualdad",
+              "Comunicación e información",
+              "Protocolo y Bienestar Animal"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1992-03-10",
+            "birthplace": "Riba-roja de Túria",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Grado en Comunicación Audiovisual",
+                "institution": "Universidad CEU Cardenal Herrera",
+                "endYear": 2014,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Máster en Dirección de Marketing",
+                "institution": "Universidad Internacional de València (VIU)",
+                "endYear": 2021,
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejala delegada — Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-001",
+                  "src-067",
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Locutora de radio (informativo diario, salud e inglés)",
+                "org": "Radio Riba-roja",
+                "startYear": 2018,
+                "endYear": 2018,
+                "sourceIds": [
+                  "src-064"
+                ]
+              },
+              {
+                "role": "Consultora de marketing digital",
+                "org": "Opt-Media Marketing Solutions",
+                "startYear": 2019,
+                "endYear": 2020,
+                "sourceIds": [
+                  "src-063"
+                ]
+              },
+              {
+                "role": "Comunicación (estrategia, contenidos y protocolo para el grupo socialista)",
+                "org": "FVMP — Federació Valenciana de Municipis i Províncies",
+                "startYear": 2021,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-062"
+                ]
+              },
+              {
+                "role": "Sales manager (coordinación de equipo de ventas)",
+                "org": "Vorwerk",
+                "startYear": 2023,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo",
+            "bodyMarkdown": "Raquel Pamblanco Paredes es concejala del Ayuntamiento de Riba-roja de Túria (Valencia) por el PSOE (PSPV-PSOE). Según el registro oficial de cargos municipales, ostenta las delegaciones de Seguridad y emergencias, Igualdad, Comunicación e información, y Protocolo y Bienestar Animal.",
+            "sourceIds": [
+              "src-001"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Formación y trayectoria previa",
+            "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, Raquel Pamblanco Paredes nació el 10 de marzo de 1992 en Riba-roja de Túria, es graduada en Comunicación Audiovisual por la Universidad CEU Cardenal Herrera (2014) y máster en Dirección de Marketing por la VIU (2021).\n\nEl mismo currículum autodeclarado recoge una trayectoria en comunicación y marketing: locutora de Radio Riba-roja (2018), consultora de marketing digital en Opt-Media (2019-2020), responsable de comunicación para el grupo socialista de la FVMP (2021-2023) y sales manager de Vorwerk (2023).",
+            "sourceIds": [
+              "src-060",
+              "src-061",
+              "src-062",
+              "src-063",
+              "src-064"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y nombramiento",
+            "bodyMarkdown": "Raquel Pamblanco Paredes fue proclamada concejala electa en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nSu acceso al cargo culmina una trayectoria de candidaturas documentada en el boletín provincial: concurrió como independiente en el puesto 12 de la lista del PSOE en 2015 (BOP de València n.º 79) y en el puesto 16 en 2019 (n.º 82), en ambos casos sin obtener acta.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número nueve del grupo municipal socialista, y el punto 9 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal». El registro municipal vigente añade hoy Protocolo. El acuerdo de régimen económico de la misma sesión fijó su dedicación exclusiva en 38.891,66 euros anuales.",
+            "sourceIds": [
+              "src-065",
+              "src-066",
+              "src-006",
+              "src-072",
+              "src-073",
+              "src-067",
+              "src-068",
+              "src-001",
+              "src-005"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Retribución y régimen de dedicación",
+            "bodyMarkdown": "Como concejala delegada de Seguridad, Igualdad y Comunicación, Pamblanco percibe una retribución en régimen de dedicación exclusiva de 38.891,66 euros anuales, fijada por acuerdo del Pleno de 7 de julio de 2023 sobre el régimen económico de los concejales (expediente 4533/2023/GEN). El expediente incorpora el informe de la función interventora (informe 218/2023), elaborado conforme al Real Decreto 424/2017, que regula el control interno de las entidades del sector público local.",
+            "sourceIds": [
+              "src-005",
+              "src-031"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Responsabilidades de gestión",
+            "bodyMarkdown": "En la planificación estratégica municipal, Pamblanco figura como responsable política ('líder') de las líneas de actuación vinculadas a la Policía Local, en coordinación con el intendente Fernando Tejera como responsable técnico, así como de la línea de Mujer e Igualdad, en consonancia con sus delegaciones de Seguridad y de Igualdad.",
+            "sourceIds": [
+              "src-022",
+              "src-023"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Patrimonio y actividades declaradas",
+            "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) consigna como actividades «FVMP y autónoma VORWERK KOBOLD». Su CV sitúa la etapa en la FVMP en 2021-2023 y la de Vorwerk en 2023; el acuerdo de la misma legislatura le asigna dedicación exclusiva, y en los snapshots consultados no consta resolución sobre la compatibilidad ni fechas de cese — la cuestión queda señalada en «Lagunas detectadas», sin que este medio afirme irregularidad alguna.\n\nEn el apartado de bienes declara un activo de 10.000,00 euros —íntegramente en otros bienes, sin inmuebles— y un pasivo de 0,00 euros: uno de los patrimonios más bajos declarados en la corporación. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
+            "sourceIds": [
+              "src-069",
+              "src-070",
+              "src-062",
+              "src-005",
+              "src-071"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Las conexiones de Raquel Pamblanco Paredes que constan en documentos públicos son de naturaleza político-administrativa: número nueve del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga, además de las actividades consignadas en su propia declaración (FVMP y Vorwerk). En la documentación de programas presupuestarios figura como responsable política de los programas de Policía Local —cuyo responsable técnico es el intendente— y de Mujer e Igualdad.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con su apellido, y ni Vorwerk, ni la FVMP, ni Opt-Media constan como adjudicatarias municipales.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+            "sourceIds": [
+              "src-074",
+              "src-062",
+              "src-070"
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "salary",
+                "amountEuros": 38891.66,
+                "description": "Concejala delegada de Seguridad, Igualdad y Comunicación — dedicación exclusiva (Acuerdo del Pleno de 07/07/2023, Expediente 4533/2023/GEN)",
+                "sourceIds": [
+                  "src-005"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 10000,
+                "description": "Activo declarado al tomar posesión (2023): 0,00 € en bienes inmuebles + 10.000,00 € en otros bienes; pasivo declarado: 0,00 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN) — uno de los patrimonios más bajos declarados en la corporación.",
+                "sourceIds": [
+                  "src-069"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Actividades declaradas: «FVMP y autónoma VORWERK KOBOLD», según su declaración estatutaria de 2023. Su CV sitúa la etapa en la FVMP en 2021-2023 y la de Vorwerk en 2023. El acuerdo de 07-07-2023 le asigna dedicación exclusiva; en los snapshots consultados no consta resolución sobre la compatibilidad ni fechas de cese de esas actividades.",
+                "sourceIds": [
+                  "src-070",
+                  "src-062"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1992-03-10",
+                "label": "Nace en Riba-roja de Túria (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2015-05-24",
+                "label": "Elecciones municipales de 2015: concurre como independiente en el puesto 12 de la lista del PSOE, sin obtener acta",
+                "sourceIds": [
+                  "src-072"
+                ]
+              },
+              {
+                "date": "2019-05-26",
+                "label": "Elecciones municipales de 2019: concurre en el puesto 16 de la lista del PSOE, sin obtener acta",
+                "sourceIds": [
+                  "src-073"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamada concejala electa; toma posesión en la sesión constitutiva",
+                "sourceIds": [
+                  "src-065",
+                  "src-066"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Acuerdo del Pleno fija su retribución como concejala delegada de Seguridad, Igualdad y Comunicación en régimen de dedicación exclusiva (expediente 4533/2023/GEN)",
+                "sourceIds": [
+                  "src-005"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "El decreto de áreas le delega Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal",
+                "sourceIds": [
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Raquel Pamblanco Paredes",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "PSOE (PSPV-PSOE)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Fernando Tejera",
+                "tone": "neutral",
+                "kind": "person"
+              },
+              {
+                "id": "n5",
+                "label": "Roberto Raga (alcalde)",
+                "tone": "civic",
+                "kind": "person"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "Concejala del grupo municipal",
+                "sourceIds": [
+                  "src-001"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "responsable técnico (intendente) del programa de Policía Local que ella lidera, según la documentación de programas",
+                "sourceIds": [
+                  "src-022"
+                ]
+              },
+              {
+                "from": "n5",
+                "to": "n1",
+                "relation": "le delegó Seguridad, Igualdad, Comunicación y Bienestar Animal (07-07-2023)",
+                "sourceIds": [
+                  "src-068"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-presupuesto-2026-46m",
+              "psoe-refugios-climaticos-2026",
+              "psoe-reconstruccion-dana-9-5m",
+              "psoe-vivienda-900-hogares",
+              "psoe-construccion-vivienda-2026-2029",
+              "psoe-pasarelas-parc-natural-turia",
+              "psoe-espai-obert-presupuesto",
+              "psoe-alumbrado-led-680k",
+              "psoe-metro-l9-agosto",
+              "psoe-respuesta-quejas-sector-14-48h",
+              "psoe-reduce-concejales-dedicacion-exclusiva",
+              "ac-psoe-1cbkzxt",
+              "ac-psoe-1v0679f",
+              "ac-psoe-jfg7bc",
+              "ac-psoe-1ah9zqk",
+              "ac-psoe-pl3lsq",
+              "ac-psoe-ppa53a",
+              "ac-psoe-1m04lfw",
+              "ac-psoe-sysee8"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le corresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal.",
+            "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria",
+            "date": "2023-07-07",
+            "sourceId": "src-068"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Identidad y formación",
+                "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+              },
+              {
+                "field": "Actividades declaradas y compatibilidad",
+                "reason": "Su declaración estatutaria (2023) consigna «FVMP y autónoma VORWERK KOBOLD» junto a la dedicación exclusiva fijada el 07-07-2023. En los snapshots consultados no consta resolución de compatibilidad ni fechas de cese; este medio no afirma irregularidad — señala la ausencia de datos."
+              },
+              {
+                "field": "Vínculos societarios y personales",
+                "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Raquel Pamblanco Paredes",
+          "retrievedAt": "2026-07-31T12:30:32.232Z",
+          "excerpt": "role: concejal · party: PSOE · portfolios: Seguridad y emergencias, Igualdad, Comunicación e información, Protocolo y Bienestar Animal",
+          "localPath": "public/data/officials.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-005",
+          "kind": "local-snapshot",
+          "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+          "retrievedAt": "2026-07-31T12:30:34.539Z",
+          "excerpt": "Concejala delegada · Seguridad, Igualdad y Comunicación: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+          "localPath": "public/data/dedicaciones.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-006",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-31T12:30:34.540Z",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+          "localPath": "public/data/elections.json",
+          "trust": "high"
+        },
+        {
+          "id": "src-022",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T12:30:38.462Z",
+          "excerpt": "[0.0 → 0.0] Líder: Raquel Pamblanco Paredes. Concejala delegada [0.0 → 0.0] Persona empleada pública responsable: Fernando Tejera, [0.0 → 0.0] Intendente de la Policía Local. [0.0 → 0.0] C/Carretera de Villamarchante, 11",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-023",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T12:30:38.462Z",
+          "excerpt": "[0.0 → 0.0] I.CPS.2.3: Nº de espectáculos y recitales abiertos al público/ realizados. [0.0 → 0.0] Perspectiva ODS: ODS 4, 5, 10 y 11 [0.0 → 0.0] 11. MUJER E IGUALDAD (MUJ) [0.0 → 0.0] Líder: Raquel Pamblanco Paredes, Co",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-031",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T12:30:39.029Z",
+          "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+          "title": "CV autodeclarado (ficha oficial de transparencia) — Raquel Pamblanco Paredes · identidad",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "PRESENTACIÓN 10 de marzo de 1992 Riba-roja de Túria rpamblanco@ribarroja.es",
+          "trust": "high"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+          "title": "CV autodeclarado — formación (CEU UCH, VIU)",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "FORMACIÓN MÁSTER EN DIRECCIÓN DE MARKETING• VIU INTERNACIONAL • 2021 GRADO EN COMUNICACIÓN AUDIOVISUAL• CEU UCH• 2010-2014 OTROS CERTIFICADOS • • Inglés Nivel B1 Universidad CEU UCH • INICIATIVA EMPRENDEDORA: Escuela de Organización Industrial • MARKETING DIGITAL: Google Actívate",
+          "trust": "high"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+          "title": "CV autodeclarado — experiencia (Vorwerk 2023, FVMP 2021-2023)",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "SALES MANAGER• VORWERK • 2023 Coordinación de equipo de ventas, objetivos y KPIS. Gestión de contratos y atención al cliente. COMUNICACIÓN• FVMP • 2021 - 2023 Planificación y creación de nuevas estrategias comunicativas para grupo socialista FVMP. Redacción de contenidos. Gestión de Redes Sociales. Grabación y edición de videos. Diseño gráfico.",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+          "title": "CV autodeclarado — experiencia (Opt-Media 2019-2020)",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "CONSULTORA MARKETING DIGITAL• OPT-MEDIA MARKETING SOLUTIONS • 2019 - 2020 Planificación de estrategia full funnel para empresas, organizaciones y entidades. Asesoramiento sobre la optimización y solución para una mejor visualización online, a través del marketing digital: SEO, SEM, Newsletter, Mailing, Social Adds, Google My Business, Online Review Reputation, Identidad Corporativa y Auditoría web.",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Raquel-Pamblanco-Paredes.pdf",
+          "title": "CV autodeclarado — experiencia (Radio Riba-roja 2018)",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "LOCUTORA DE RADIO• RADIO RIBA-ROJA • 2018 Locución programa informativo diario, programa de salud y programa de inglés. Cobertura ruedas de prensa y declaraciones políticas. Diseño de cartelería",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · proclamación de electos",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · toma de posesión (lista con la sujeto)",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "- Raquel Pamblanco Paredes - Jose Manuel Vila Oltra - Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March",
+          "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista (n.º 9)",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente) 6. Don Rafael Gómez Sánchez 7. Doña Maria Esther Gómez Laredo 8. Don José Manuel Vila Oltra (Independiente) 9. Doña Raquel Pamblanco Paredes",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 9)",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le corresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y Bienestar Animal.",
+          "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "Concejala RAQUEL PAMBLANCO PAREDES 0,00 10.000,00 10.000,00 0,00 Concejal ALFREDO PLA GIMENEZ 158.924,00 0,00 158.924,00 0,00",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades (FVMP y autónoma Vorwerk Kobold)",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "JOSE MANUEL VILA OLTRA Cajamar RAQUEL PAMBLANCO PAREDES FVMP y autónoma VORWERK KOBOLD ALFREDO PLA GIMENEZ Autónomo Alfredo Pla Gimenez 01/01/1986",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+          "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=28/04/2015",
+          "title": "BOP de València n.º 79, 28-04-2015 — candidaturas, Riba-roja de Túria (lista del PSOE, puesto 12, independiente)",
+          "publisher": "Boletín Oficial de la Provincia de València",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "7. Don RAFAEL GOMEZ SANCHEZ 8. Doña CONCEPCION NAVARRO NAVARRO (Independiente) 9. Don FRANCISCO JAVIER GARCIA ESCUDERO (Independiente) 10. Doña RAQUEL ORELLANO GOMEZ 11. Don EMILIO GUARDIOLA SANANTONIO 12. Doña RAQUEL PAMBLANCO PAREDES (Independiente)",
+          "trust": "high"
+        },
+        {
+          "id": "src-073",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidaturas, Riba-roja de Túria (lista del PSOE, puesto 16)",
+          "publisher": "Boletín Oficial de la Provincia de València",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO 11. FRANCISCO JAVIER GARCIA ESCUDERO 12. NURIA COBALEDA ARNAU 13. ALFREDO PLA GIMENEZ 14. CONCEPCION NAVARRO NAVARRO 15. DAVID BARBANCHO MARTINEZ 16. RAQUEL PAMBLANCO PAREDES",
+          "trust": "high"
+        },
+        {
+          "id": "src-074",
+          "kind": "local-snapshot",
+          "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+          "retrievedAt": "2026-07-31T12:40:03.553Z",
+          "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Pamblanco», ni con sus empleadoras declaradas (Vorwerk, FVMP, Opt-Media Marketing Solutions). Candidata en 2015 (puesto 12, como independiente, BOP n.º 79) y 2019 (puesto 16, n.º 82) sin obtener acta; electa en 2023.",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+        "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Seguridad, Igualdad, Comunicación y Bienestar Animal; el registro vigente añade Protocolo.",
+        "Su declaración estatutaria consigna las actividades «FVMP y autónoma VORWERK KOBOLD» junto a la dedicación exclusiva de 07-2023; los snapshots consultados no recogen resolución de compatibilidad ni fechas de cese — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas»."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T12:40:03.995Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): CV descargado directamente — nacida 10-03-1992 en Riba-roja (sujeto más joven de la serie), graduada en Comunicación Audiovisual (CEU 2014), máster en Marketing (VIU 2021); trayectoria en comunicación: Radio Riba-roja (2018), Opt-Media (2019-20), comunicación del grupo socialista de la FVMP (2021-23) y sales manager de Vorwerk (2023). PERSISTENCIA DOCUMENTADA: candidata n.º 12 en 2015 (como INDEPENDIENTE, BOP n.º 79) y n.º 16 en 2019 (n.º 82) sin acta — verificado dentro de los bloques de la circunscripción de Riba-roja (los primeros greps devolvieron Pamblancos homónimos de otros municipios); electa en 2023. Actividades declaradas «FVMP y autónoma VORWERK KOBOLD» junto a la dedicación EXCLUSIVA de 07-2023: hechos fechados, laguna y advertencia por ausencia de resolución de compatibilidad, sin afirmar irregularidad. Los programas-líder (Policía Local con el intendente como responsable técnico; Mujer e Igualdad) VERIFICADOS verbatim contra el acta del 15-04-2024 — las advertencias del verificador eran falsas; la arista Tejera reescrita al encuadre literal del documento. Declaración: activo 10.000 € (de los más bajos), pasivo 0. Comprobaciones: 0/804 con su apellido ni con Vorwerk/FVMP/Opt-Media.",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-jose-vila-bio-2026-07-31",
       "assignmentId": "a-jose-vila-bio",
