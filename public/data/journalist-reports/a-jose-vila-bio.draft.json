@@ -1,0 +1,1073 @@
+{
+  "id": "r-jose-vila-bio-2026-07-31",
+  "assignmentId": "a-jose-vila-bio",
+  "generatedAt": "2026-07-31T12:21:40.615Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "jose-manuel-vila-oltra",
+        "photoPath": "/data/photos/jose-manuel-vila-oltra.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Arte y Cultura"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1960-09-08",
+        "birthplace": "Riba-roja de Túria",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Grado en Lengua y Literatura Españolas",
+            "institution": "Facultad de Filología",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Estudios de Ciencias Económicas",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Especialización en Literatura Española Contemporánea (cursos)",
+            "institution": "UIMP y UNED",
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejal delegado — Arte y Cultura (independiente en el grupo socialista)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-001",
+              "src-070",
+              "src-071"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Empleado y directivo de banca (botones, cajero, interventor, director de sucursal y director de zona)",
+            "org": "Caja Rural Valencia / Ruralcaja",
+            "startYear": 1976,
+            "endYear": 2012,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Director territorial de inmuebles Levante Interior y Murcia",
+            "org": "Cimenta2 Gestión e Inversiones (Grupo Cajamar)",
+            "startYear": 2013,
+            "endYear": 2014,
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "role": "Director del equipo minorista Comunidad Valenciana y Baleares",
+            "org": "Haya Real Estate",
+            "startYear": 2015,
+            "endYear": 2020,
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo municipal",
+        "bodyMarkdown": "José Manuel Vila Oltra ejerce como concejal del Ayuntamiento de Riba-roja de Túria, adscrito al PSOE (PSPV-PSOE), con la delegación de Arte y Cultura, según el registro público de cargos municipales. El PSPV-PSOE fue la fuerza más votada en Riba-roja de Túria en las elecciones municipales de 2023, con el 49,69% de los votos, y también en 2019, con el 45,92%, según los resultados electorales del Institut Cartogràfic Valencià / ARGOS.",
+        "sourceIds": [
+          "src-001",
+          "src-002"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Formación y trayectoria previa",
+        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, José Manuel Vila Oltra nació el 8 de septiembre de 1960 en Riba-roja de Túria, cursó estudios de Ciencias Económicas y es graduado en Lengua y Literatura Españolas por la Facultad de Filología, con especialización en literatura española contemporánea a través de cursos en la UIMP y la UNED.\n\nEl mismo currículum autodeclarado recoge una trayectoria de casi cuatro décadas en la banca y el sector inmobiliario: empleado y directivo de Caja Rural Valencia/Ruralcaja entre 1976 y 2012 —de botones a director de zona—, director territorial de inmuebles en Cimenta2 (Grupo Cajamar) en 2013-2014 y director del equipo minorista de la Comunidad Valenciana y Baleares en Haya Real Estate entre 2015 y 2020.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "José Manuel Vila Oltra fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —su primera candidatura: no figura en las listas de 2015 (BOP de València n.º 79) ni de 2019 (n.º 82)— y tuvo un papel singular en la sesión constitutiva del 17 de junio de 2023: como electo de mayor edad presidió la Mesa de Edad («asumiendo la Presidencia el primero de ellos», recoge el acta), comprobó las credenciales de los electos, declaró constituido el Ayuntamiento y, tras la investidura, entregó la vara de mando al alcalde electo.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número ocho del grupo municipal socialista con la condición de independiente; consta entre los integrantes de la Junta de Gobierno Local; y el punto 8 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Arte y Cultura».\n\nNo figura entre las dedicaciones exclusivas del acuerdo de régimen económico: como miembro sin dedicación percibe asistencias por concurrencia efectiva (221,82 € por Pleno; 162,31 € por Junta de Gobierno y comisiones).",
+        "sourceIds": [
+          "src-064",
+          "src-065",
+          "src-066",
+          "src-067",
+          "src-068",
+          "src-069",
+          "src-002",
+          "src-077",
+          "src-070",
+          "src-071",
+          "src-072",
+          "src-073"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) consigna en su tabla de actividades la entidad «Cajamar», sin cargo ni fechas en las columnas correspondientes. Su CV sitúa su carrera en Caja Rural Valencia/Ruralcaja entre 1976 y 2012 y en Cimenta2 (Grupo Cajamar) en 2013-2014; la naturaleza vigente de esa relación no queda precisada en los documentos y se señala en «Lagunas detectadas», sin que este medio afirme actividad irregular alguna.\n\nEn el apartado de bienes declara un activo de 151.130,75 euros —67.967,50 euros en bienes inmuebles por valor catastral y 83.163,25 euros en otros bienes— y un pasivo de 13.860,30 euros. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
+        "sourceIds": [
+          "src-074",
+          "src-075",
+          "src-062",
+          "src-063",
+          "src-076"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Las conexiones de José Manuel Vila Oltra que constan en documentos públicos son de naturaleza político-administrativa: número ocho y uno de los independientes del grupo municipal socialista, integrante de la Junta de Gobierno Local y titular del área que le delegó el decreto del alcalde Roberto Raga, además de la entidad «Cajamar» consignada en su propia declaración de actividades.\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Cajamar/Ruralcaja, ni Cimenta2, ni Haya Real Estate constan como adjudicatarias municipales. En el ámbito cultural de su delegación se identifican 12 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con el concejal.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "sourceIds": [
+          "src-077",
+          "src-062",
+          "src-063",
+          "src-075"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Responsabilidades delegadas en programas municipales",
+        "bodyMarkdown": "La documentación de programas presupuestarios vinculada al acta de la sesión ordinaria del Ayuntamiento Pleno del 15 de abril de 2024 identifica a José Manuel Vila como \"Líder\" (responsable político) del programa de Educación y Cultura, señalando a Ana Huertas como técnica municipal responsable del área. La misma documentación lo señala también como responsable político del programa del Auditorio Municipal, cuyo técnico responsable es Vicente Moreno, director del equipamiento.",
+        "sourceIds": [
+          "src-018",
+          "src-020",
+          "src-024",
+          "src-025"
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 151130.75,
+            "description": "Activo declarado al tomar posesión (2023): 67.967,50 € en bienes inmuebles (valor catastral) + 83.163,25 € en otros bienes; pasivo declarado: 13.860,30 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN).",
+            "sourceIds": [
+              "src-074"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Su declaración estatutaria consigna la entidad «Cajamar» en la tabla de actividades, sin cargo ni fechas en las columnas correspondientes. Su CV sitúa su etapa en Caja Rural Valencia/Ruralcaja en 1976-2012 y en Cimenta2 (Grupo Cajamar) en 2013-2014; la naturaleza vigente de la relación con la entidad no queda precisada en los documentos — véase «Lagunas detectadas». No consta actividad empresarial propia.",
+            "sourceIds": [
+              "src-075",
+              "src-062",
+              "src-063"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por sesión de la Junta de Gobierno Local y de las comisiones informativas (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-073"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1960-09-08",
+            "label": "Nace en Riba-roja de Túria (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "2023-05-28",
+            "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Preside la Mesa de Edad de la sesión constitutiva, declara constituido el Ayuntamiento y entrega la vara de mando al alcalde electo; toma posesión como concejal",
+            "sourceIds": [
+              "src-065",
+              "src-068",
+              "src-069",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "El decreto de áreas le delega Arte y Cultura; consta entre los integrantes de la Junta de Gobierno Local",
+            "sourceIds": [
+              "src-071",
+              "src-072"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "José Manuel Vila Oltra",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "PSOE (PSPV-PSOE)",
+            "tone": "neutral",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Ayuntamiento de Riba-roja de Túria",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n4",
+            "label": "Junta de Gobierno Local",
+            "tone": "neutral",
+            "kind": "entity"
+          },
+          {
+            "id": "n5",
+            "label": "Roberto Raga (alcalde)",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n6",
+            "label": "Cajamar",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal adscrito al grupo municipal",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "concejal delegado de Arte y Cultura",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "integrante de su composición",
+            "sourceIds": [
+              "src-072"
+            ]
+          },
+          {
+            "from": "n5",
+            "to": "n1",
+            "relation": "le delegó Arte y Cultura (07-07-2023)",
+            "sourceIds": [
+              "src-071"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n6",
+            "relation": "entidad consignada en su declaración de actividades (sin cargo ni fechas)",
+            "sourceIds": [
+              "src-075"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-refugios-climaticos-2026",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-espai-obert-presupuesto",
+          "psoe-alumbrado-led-680k",
+          "psoe-metro-l9-agosto",
+          "psoe-respuesta-quejas-sector-14-48h",
+          "psoe-reduce-concejales-dedicacion-exclusiva",
+          "ac-psoe-1cbkzxt",
+          "ac-psoe-1v0679f",
+          "ac-psoe-jfg7bc",
+          "ac-psoe-1ah9zqk",
+          "ac-psoe-pl3lsq",
+          "ac-psoe-ppa53a",
+          "ac-psoe-1m04lfw",
+          "ac-psoe-sysee8"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Interviene la Sr. Jose Manuel Vila Oltra manifestando que queda constituido el Ayuntamiento de RIBA-ROJA DE TURIA, a continuación se procederá a la elección del Alcalde/sa",
+        "attributedTo": "José Manuel Vila Oltra, presidiendo la Mesa de Edad — acta de la sesión constitutiva",
+        "date": "2023-06-17",
+        "sourceId": "src-068"
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delegan en el Concejal D. José Manuel Vila, las competencias que al Alcalde le corresponden en materia de Arte y Cultura.",
+        "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria",
+        "date": "2023-07-07",
+        "sourceId": "src-071"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Identidad y formación",
+            "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Relación vigente con Cajamar",
+            "reason": "Su declaración estatutaria consigna la entidad «Cajamar» sin cargo ni fechas; su CV sitúa sus etapas en el grupo entre 1976-2012 y 2013-2014. Los documentos no precisan si existe relación vigente (empleo, pensión u otra) — se señala la ambigüedad sin afirmar irregularidad."
+          },
+          {
+            "field": "Vínculos societarios y personales",
+            "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus empleadoras declaradas) no arrojaron coincidencia alguna."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — José Manuel Vila Oltra",
+      "retrievedAt": "2026-07-31T12:18:00.271Z",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Arte y Cultura",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-002",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T12:18:02.364Z",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+      "localPath": "public/data/elections.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-003",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T12:18:02.977Z",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://olelibros.com/autores/coleccion-imaginal,poesia/jose-manuel-vila-oltra/",
+      "title": "José Manuel Vila Oltra - Olelibros",
+      "retrievedAt": "2026-07-31T12:18:02.977Z",
+      "excerpt": "José Manuel Vila Oltra nace el año 1960 en Riba-roja de Túria (Valencia).",
+      "trust": "low"
+    },
+    {
+      "id": "src-005",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "José (patriarca) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T12:18:02.977Z",
+      "excerpt": "Sus hijos Efraín y Manasés, nacidos de la egipcia Asenat, constituyeron dos de las doce tribus de Israel, conocidas como Casa de …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T12:18:02.978Z",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+      "trust": "medium"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T12:18:02.978Z",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+      "trust": "medium"
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T12:18:02.978Z",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+      "trust": "low"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://www.colombiaplease.com/coffee/the-best-colombian-coffee-brands/",
+      "title": "10 Best Colombian Coffee Brands You Must Try (2026 Guide)",
+      "retrievedAt": "2026-07-31T12:18:03.426Z",
+      "excerpt": "In this article, we will embark on a journey through the world of Colombian coffee and explore 10 brands we personally tried in 2023. …",
+      "trust": "low"
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://elevencoffees.com/what-is-colombian-coffee/",
+      "title": "The Complete Guide to Colombian Coffee (The World's Best)",
+      "retrievedAt": "2026-07-31T12:18:03.426Z",
+      "excerpt": "Explore our guide to Colombian coffee and discover its unique qualities, superior Arabica beans, and rich flavors.",
+      "trust": "low"
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://www.craftcoffeeguru.com/colombia-coffee-guide/",
+      "title": "A Guide to Colombian Coffee: Its History, Flavors, and Culture",
+      "retrievedAt": "2026-07-31T12:18:03.426Z",
+      "excerpt": "In this guide, we’ll explore why Colombian coffee is celebrated as the gold standard, diving into its origins, unique characteristics, and …",
+      "trust": "low"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://outlook.live.com/mail/oauthRedirect.html",
+      "title": "Outlook – free personal email and calendar from Microsoft",
+      "retrievedAt": "2026-07-31T12:18:03.702Z",
+      "excerpt": "Access free Outlook email and calendar, plus Office Online apps like Word, Excel, and PowerPoint.",
+      "trust": "low"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://outlook.live.com/mail/LaunchDomainConnectNextStep.html",
+      "title": "Outlook – free personal email and calendar from Microsoft",
+      "retrievedAt": "2026-07-31T12:18:03.702Z",
+      "excerpt": "MicrosoftのOutlookは、個人用のメールとカレンダーを無料で提供します。",
+      "trust": "low"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://outlook.live.com/owa/calendar/00000000-0000-0000-0000-000000000000/1c1ee4a7-d892-4fd0-b8c8-b352b69252e2/cid-28AE8AF386B2C019/index.html",
+      "title": "Outlook",
+      "retrievedAt": "2026-07-31T12:18:03.703Z",
+      "excerpt": "JavaScript must be enabled. tttt",
+      "trust": "low"
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://support.google.com/websearch/answer/464?hl=en",
+      "title": "Make Google your default search engine",
+      "retrievedAt": "2026-07-31T12:18:04.154Z",
+      "excerpt": "Make Google your default search engine To get results from Google each time you search, you can make Google your default search engine. Set Google as your default on your browser If your browser …",
+      "trust": "low"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://support.google.com/youtube/?hl=en",
+      "title": "YouTube Help",
+      "retrievedAt": "2026-07-31T12:18:04.154Z",
+      "excerpt": "Official YouTube Help Center where you can find tips and tutorials on using YouTube and other answers to frequently asked questions.",
+      "trust": "low"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://support.google.com/analytics/answer/9304153?hl=en",
+      "title": "Set up Analytics for a website and/or app - Google Help",
+      "retrievedAt": "2026-07-31T12:18:04.154Z",
+      "excerpt": "Discover how to set up Google Analytics for your website or app by creating a Google Analytics property, adding a data stream, and adding your Google Analytics code.Note: The previous link …",
+      "trust": "low"
+    },
+    {
+      "id": "src-018",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:05.921Z",
+      "excerpt": "[0.0 → 0.0] Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Ana Huertas Técnica de [0.0 → 0.0] Educación y Cultura. [0.0 → 0.0] Carrer Mercat, 9-2º piso, 46190 Riba-roja de Tú",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-019",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:05.921Z",
+      "excerpt": "[0.0 → 0.0] VIDEO: http://videople.es/6434 [0.0 → 0.0] 8.- 10/2024/PGRU, DECLARACIÓN INSTITUCIONAL DE FELICITACIÓN DEPORTISTAS [0.0 → 0.0] LOCALES [0.0 → 0.0] Desde la Corporación Municipal queremos reconocer a todos los",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-020",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:05.921Z",
+      "excerpt": "[0.0 → 0.0] Líder: Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Vicente Moreno, Director [0.0 → 0.0] Auditorio Municipal [0.0 → 0.0] C/Mayor, 135, 46190 Riba-roja de Túria,",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:05.921Z",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] ",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:06.286Z",
+      "excerpt": "[0.0 → 0.0] David Barbancho Martínez [0.0 → 0.0] VOX ESQUERRA UNIDA – UNIDES COMPROMÍS PER [0.0 → 0.0] PODEM PER RIBA-ROJA RIBA-ROJA: ACORD [0.0 → 0.0] (EUPV-PODEM: UNIDAS) PER GUANYAR [0.0 → 0.0] (ACORD PER [0.0 → 0.0] ",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:06.286Z",
+      "excerpt": "[9120.0 → 9150.0] o un chalet de chacoté. ¿Vale? Pasemos a la votación de este punto. Si os parece, por favor. Vale. Os queda aprobado. ¿Perdéis que votéis a favor? ¿Votéis en contra? ¿Con su lista? A favor. Partido Popu",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:06.286Z",
+      "excerpt": "[0.0 → 0.0] ACTA SESIÓN ORDINARIA CELEBRADA POR EL [0.0 → 0.0] AYUNTAMIENTO PLENO EL DÍA 15 DE ABRIL DE 2024 [0.0 → 0.0] Lugar: Salón de Actos del Ayuntamiento [0.0 → 0.0] Fecha: 15 de abril de 2024 [0.0 → 0.0] Hora: 17:",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:06.593Z",
+      "excerpt": "[0.0 → 0.0] Líder: José Manuel Vila, Concejal delegado [0.0 → 0.0] Persona empleada pública responsable: Ana Huertas Técnica de [0.0 → 0.0] Educación y Cultura. [0.0 → 0.0] Carrer Mercat, 9-2º piso, 46190 Riba-roja de Tú",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:06.594Z",
+      "excerpt": "[0.0 → 0.0] acuerda: [0.0 → 0.0] Felicitar a Vicente Contelles, por la consecución del subcampeonato nacional en el Cto. España [0.0 → 0.0] de Atletismo de pista cubierta categoría Master 40, en la prueba de 200 mts liso",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:06.594Z",
+      "excerpt": "[0.0 → 0.0] representación, PSOE-PSPV, Partido Popular, Vox, EUPV - PODEM: UNIDA, Compromís, de [0.0 → 0.0] acuerdo con lo previsto en la Ley 7/1985, de 2 de abril, Reguladora de las Bases del Régimen [0.0 → 0.0] Local y",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-034-afi-199709 · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-029",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-616b80 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-099-cit-8a1dc7 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-103-acu-92ea5a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "Efectivamente, en el Pacto del Botánico no se hizo absolutamente nada.",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-104-acu-107c02 · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "en el Pacto del Botánico no se hizo absolutamente nada. Si no se degradó, creo, lo que es el sistema educativo valenciano.",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-034",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-209-afi-c6e9ef · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "en el 24, votaremos a favor porque es una moción",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-035",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-277-acu-401b6a · 2026-07-06 · acusacion_publica",
+      "retrievedAt": "2026-07-31T12:18:07.203Z",
+      "excerpt": "como no hemos tenido una buena recogida de residuos, no imputable al ayuntamiento, imputable a una empresa que no va a cumplir sus obligaciones",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-036",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T12:18:07.206Z",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+      "trust": "high"
+    },
+    {
+      "id": "src-037",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T12:18:08.589Z",
+      "excerpt": "jose-manuel-vila-oltra · José Manuel Vila Oltra · Sr. · concejal · PSOE · Arte y Cultura · alcaldia@ribarroja.es · /data/photos/jose-manuel-vila-oltra.jpg · https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/psp",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-038",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T12:18:08.589Z",
+      "excerpt": "11025xk-061-cit-bf75ee · 11025xk · 2026-06-01 · 61 · cita_obra ·  · Beto Orell me ha presentado la estación allí, al costado del instituto. · Por cierto, Beto Orell me ha presentado la estación allí, al costado del instituto. Va a poner la ",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-039",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-claims-suggestions.json · items",
+      "retrievedAt": "2026-07-31T12:18:08.589Z",
+      "excerpt": "11025xk-061-pro-ac378b · 11025xk · 2026-06-01 · 61 · promesa ·  · Va a poner la primera piedra y todo, el señor Beto Orell. El alcalde de Vilamarxant. Va a poner la piedra allí, de Vilamarxant. · Por cierto, Beto Orell me ha presentado la e",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-040",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:08.589Z",
+      "excerpt": "[0.0 → 0.0] càrrecs públics. [0.0 → 0.0] 8.- L'Ajuntament de Riba-roja de Túria insta a la Mesa de les Corts Valencianes i a la Generalitat [0.0 → 0.0] Valenciana a fer complir la Llei de Transparència i Bon Govern als p",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-041",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:08.589Z",
+      "excerpt": "[0.0 → 0.0] recuperació de cossos per que els seus familiars puguen donar digna sepultura i la memòria [0.0 → 0.0] democràtica durant la Segona República i de la resistència democràtica durant el franquisme. [0.0 → 0.0] ",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-042",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T12:18:08.589Z",
+      "excerpt": "[0.0 → 0.0] i controlar els continguts de la televisió pública, donar major impunitat als polítics que cometen [0.0 → 0.0] corrupteles i fer opaques les activitats dels dirigents polítics per que seguisquen fent negoci a",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-043",
+      "kind": "web",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/Renta.html",
+      "title": "Campaña de Renta 2025 - Agencia Tributaria",
+      "retrievedAt": "2026-07-31T12:18:09.410Z",
+      "excerpt": "¿Tienes dudas sobre tu declaración de Renta? Mediante el Asistente virtual de Renta podrás formular tus preguntas sobre este …",
+      "trust": "high"
+    },
+    {
+      "id": "src-044",
+      "kind": "web",
+      "url": "http://www.ribarroja.es/es/ayuntamiento/portal_de_transparencia",
+      "title": "Portal de transparencia | Ayuntamiento de Riba-roja de Túria",
+      "retrievedAt": "2026-07-31T12:18:09.410Z",
+      "excerpt": "En el Portal de Transparencia del Ayuntamiento de Riba-roja es donde publicamos todos esos contenidos de forma actualizada, estructurada y clara.",
+      "trust": "high"
+    },
+    {
+      "id": "src-045",
+      "kind": "web",
+      "url": "https://sede.agenciatributaria.gob.es/",
+      "title": "Agencia Tributaria: Inicio",
+      "retrievedAt": "2026-07-31T12:18:09.410Z",
+      "excerpt": "Hace 2 días · Información y gestiones IRPF Te informamos sobre el impuesto y te ayudamos en la confección y presentación de la …",
+      "trust": "high"
+    },
+    {
+      "id": "src-046",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T12:18:11.923Z",
+      "excerpt": "José (en hebreo: יוֹסֵף, romanizado: Yosef) es un nombre propio masculino. 1 Se ha extendido en la cultura occidental debido a la …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-047",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "José (patriarca) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T12:18:11.923Z",
+      "excerpt": "Sus hijos Efraín y Manasés, nacidos de la egipcia Asenat, constituyeron dos de las doce tribus de Israel, conocidas como Casa de …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-048",
+      "kind": "web",
+      "url": "https://en.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "José - Wikipedia",
+      "retrievedAt": "2026-07-31T12:18:11.924Z",
+      "excerpt": "French vernacular form The French given name José, pronounced [ʒoze], is an old vernacular form of the French name Joseph, and …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-049",
+      "kind": "web",
+      "url": "https://dle.rae.es/jos%C3%A9",
+      "title": "José | Definición | Diccionario de la lengua española | RAE - ASALE",
+      "retrievedAt": "2026-07-31T12:18:11.924Z",
+      "excerpt": "Responsable: Real Academia Española. Finalidades: Gestionar su suscripción al boletín mensual de la RAE. Derechos: Tiene …",
+      "trust": "low"
+    },
+    {
+      "id": "src-050",
+      "kind": "web",
+      "url": "https://www.serpadres.es/bebe/44971.html",
+      "title": "Significado del nombre José: origen e historia - Nombres de niño",
+      "retrievedAt": "2026-07-31T12:18:11.924Z",
+      "excerpt": "2 de ago de 2023 · En la tradición cristiana, José es una figura central, conocido como el esposo de la Virgen María y el padre …",
+      "trust": "low"
+    },
+    {
+      "id": "src-051",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T12:18:11.925Z",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+      "trust": "high"
+    },
+    {
+      "id": "src-052",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "archiveUrl": "http://web.archive.org/web/20260721153703/https://es.wikipedia.org/wiki/Jos%C3%A9",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T12:18:11.926Z",
+      "excerpt": "José - Wikipedia, la enciclopedia libre </",
+      "trust": "high"
+    },
+    {
+      "id": "src-053",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "archiveUrl": "http://web.archive.org/web/20260114012026/https://es.wikipedia.org/wiki/Jos%C3%A9_(patriarca)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T12:18:11.926Z",
+      "excerpt": "José (patriarca) - Wikipedia, la enciclopedia libre <meta property=\"og:title\" content=\"José (patriarca) - Wikipedi",
+      "trust": "high"
+    },
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Manuel-Vila-Oltra.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — José Manuel Vila Oltra · identidad",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "PRESENTACIÓN 8 SEPTIEMBRE 1960 RIBA-ROJA DE TÚRIA jmvila@ribarroja.es",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Manuel-Vila-Oltra.pdf",
+      "title": "CV autodeclarado — formación (Filología, Económicas, UIMP/UNED)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "FORMACIÓN Cursa estudios de Ciencias Económicas, posteriormente obtiene el Grado en Lengua y Literatura Españolas de la Facultad de Filología, especializándose en Literatura Española Contemporánea mediante diversos cursos en la UIMP y en la UNED.",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Manuel-Vila-Oltra.pdf",
+      "title": "CV autodeclarado — experiencia (Haya Real Estate, Cimenta2/Grupo Cajamar)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "HAYA REAL ESTATE • 2015 - 2020• Director del Equipo Minorista Comunidad Valenciana y Baleares. CIMENTA2 GESTIÓN E INVERSIONES • 2013 - 2014• GRUPO CAJAMAR Director Territorial de Inmuebles Levante Interior y Murcia.",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Jose-Manuel-Vila-Oltra.pdf",
+      "title": "CV autodeclarado — experiencia (Caja Rural Valencia/Ruralcaja 1976-2012)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "CAJA RURAL VALENCIA RURALCAJA • 1976 - 2012• Botones, Cajero, Interventor Sucursal, Responsable de Departamento Servicios Centrales, Director de Sucursal y Director de Zona.",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · proclamación de electos",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · Mesa de Edad («asumiendo la Presidencia el primero»)",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Acto seguido se procede a formar la Mesa de Edad para lo cual se invita que suban al estrado los Sres. D. Jose Manuel Vila Oltra y Dª. Paula Navarro Sanfeliu, asumiendo la Presidencia el primero de ellos, previa formulación de juramento o promesa a los efectos de tomar posesión de sus cargos de Concejales.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · comprobación de credenciales por Vila Oltra",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Interviene D. Jose Manuel Vila Oltra manifestando que comprobadas las credenciales de todos los Concejales/as electos/as, si existe algún Concejal/a a quien afecte alguna de las causas de incompatibilidad previstas por la LOREG en sus arts. 177 y 178 u otra legislación concordante, que lo",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · toma de posesión (lista con el sujeto)",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "- Raquel Pamblanco Paredes - Jose Manuel Vila Oltra - Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · declaración de constitución del Ayuntamiento",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Interviene la Sr. Jose Manuel Vila Oltra manifestando que queda constituido el Ayuntamiento de RIBA-ROJA DE TURIA, a continuación se procederá a la elección del Alcalde/sa, por lo que la Secretaria tiene la palabra para explicar el procedimiento de elección.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · entrega de la vara de mando al alcalde",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "A continuación procede D. Roberto Raga Gadea a formular promesa de su cargo de Alcalde tomando en consecuencia posesión del mismo. El Sr Jose Manuel Vila Oltra manifiesta que puede ocupar usted la Presidencia, y en ese momento la mesa le hace entrega de la vara de mando.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-070",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista (n.º 8, independiente)",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente) 6. Don Rafael Gómez Sánchez 7. Doña Maria Esther Gómez Laredo 8. Don José Manuel Vila Oltra (Independiente)",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-071",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 8)",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "8. Se delegan en el Concejal D. José Manuel Vila, las competencias que al Alcalde le corresponden en materia de Arte y Cultura.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-072",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · composición de la Junta de Gobierno Local",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "1. Dª Mª Teresa Pozuelo Martín. 2. D. José Luis Ramos March. 3. D. José Ángel Hernández Carrizosa. 4. Dª Eva Lara Catalá. 5. D. Rafael Gómez Sánchez. 6. Dª José Manuel Vila Oltra. 7. D. Alfredo Pla Giménez.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-073",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · régimen de indemnizaciones y asistencias",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias: - Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este importe los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni parcial). - Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán percibir este importe los miembros de la Corporación que formen parte de la misma que",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-074",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Concejal JOSE MANUEL VILA OLTRA 67.967,50 83.163,25 151.130,75 13.860,30 Concejala RAQUEL PAMBLANCO PAREDES 0,00 10.000,00 10.000,00 0,00",
+      "trust": "high"
+    },
+    {
+      "id": "src-075",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades (entidad «Cajamar»)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "EVA LARA CATALÁ Profesora IES el Quint 00/09/2008 JOSE MANUEL VILA OLTRA Cajamar RAQUEL PAMBLANCO PAREDES FVMP y autónoma VORWERK KOBOLD",
+      "trust": "high"
+    },
+    {
+      "id": "src-076",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+      "trust": "high"
+    },
+    {
+      "id": "src-077",
+      "kind": "local-snapshot",
+      "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+      "retrievedAt": "2026-07-31T12:25:02.891Z",
+      "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Vila Oltra», ni con sus empleadoras declaradas (Cajamar/Ruralcaja, Cimenta2, Haya Real Estate). Contratos del ámbito cultural desde 07-2023: 12 — muestra demasiado pequeña para comparar. Ausente de las candidaturas de 2015 (BOP n.º 79) y 2019 (n.º 82): la de 2023 es su primera lista.",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado del propio concejal publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "Su declaración de actividades consigna «Cajamar» sin cargo ni fechas; la naturaleza vigente de esa relación no queda precisada en los documentos — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas»."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

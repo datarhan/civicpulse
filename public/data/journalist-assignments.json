@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T10:34:38.109Z",
+  "generatedAt": "2026-07-31T12:25:04.108Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -141,6 +141,20 @@
       "createdAt": "2026-07-31T10:24:13.739Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T10:30:33.846Z"
+    },
+    {
+      "id": "a-jose-vila-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "jose-manuel-vila-oltra",
+        "name": "José Manuel Vila Oltra",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de José Manuel Vila Oltra, concejal (independiente en el grupo del PSOE) de Arte y Cultura en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T12:16:56.838Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T12:21:40.617Z"
     }
   ]
 }
