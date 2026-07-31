@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T12:40:03.553Z",
+  "generatedAt": "2026-07-31T12:47:59.884Z",
   "items": [
     {
       "id": "r-robert-raga-bio-2026-05-23",
@@ -11137,6 +11137,1083 @@
         "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
         "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Seguridad, Igualdad, Comunicación y Bienestar Animal; el registro vigente añade Protocolo.",
         "Su declaración estatutaria consigna las actividades «FVMP y autónoma VORWERK KOBOLD» junto a la dedicación exclusiva de 07-2023; los snapshots consultados no recogen resolución de compatibilidad ni fechas de cese — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas»."
+      ],
+      "legalSensitivity": "medium",
+      "requiresHumanApproval": true
+    },
+    {
+      "id": "r-alfredo-pla-bio-2026-07-31",
+      "assignmentId": "a-alfredo-pla-bio",
+      "generatedAt": "2026-07-31T12:47:59.868Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "alfredo-pla-gimenez",
+            "photoPath": "/data/photos/alfredo-pla-gimenez.jpg",
+            "partyTone": "civic",
+            "portfolios": [
+              "Fallas",
+              "Fiestas y Tradiciones"
+            ],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1963-03-15",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Grado Superior de Peluquería (homologado por el Ministerio de Educación y Ciencia en 1982)",
+                "institution": "Academia de Peluquería y Estética Dani de Valencia",
+                "sourceIds": [
+                  "src-060"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Candidato n.º 13 de la lista del PSPV-PSOE (sin obtener escaño)",
+                "org": "Elecciones municipales de Riba-roja de Túria",
+                "startYear": 2019,
+                "endYear": 2019,
+                "sourceIds": [
+                  "src-070"
+                ]
+              },
+              {
+                "role": "Concejal delegado — Fallas, Fiestas y Tradiciones · miembro de la Junta de Gobierno Local",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-001",
+                  "src-064",
+                  "src-065"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Peluquero en diferentes salones",
+                "org": "Salones de peluquería (varios)",
+                "startYear": 1982,
+                "endYear": 1986,
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "role": "Gerente de la peluquería (autónomo bajo su propio nombre desde el 01-01-1986)",
+                "org": "FREDI&STILISTAS",
+                "startYear": 1986,
+                "sourceIds": [
+                  "src-060",
+                  "src-069"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 158924,
+                "description": "Activo declarado al tomar posesión (2023): 158.924,00 € en bienes inmuebles, sin otros bienes consignados; pasivo declarado: 0,00 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-068",
+                  "src-071"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Actividad declarada: «Autónomo Alfredo Pla Gimenez», con fecha de inicio 01-01-1986 — coincide con la gerencia de la peluquería FREDI&STILISTAS que consigna su CV desde marzo de 1986. Ejerce como autónomo bajo su propio nombre; no consta forma societaria.",
+                "sourceIds": [
+                  "src-069",
+                  "src-060"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: no figura en el acuerdo retributivo de 07-07-2023 y percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por sesión de la Junta de Gobierno Local y de las comisiones informativas. El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-066"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad y cargo público",
+            "bodyMarkdown": "Alfredo Pla Giménez ejerce como concejal del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE). Según el registro oficial de cargos del consistorio, tiene asignadas las delegaciones de Fallas, Fiestas y Tradiciones.",
+            "sourceIds": [
+              "src-001"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Formación y trayectoria previa",
+            "bodyMarkdown": "Según el CV que publica el portal municipal — un documento autodeclarado y notablemente escueto —, Pla Giménez (nacido el 15 de marzo de 1963) se formó como peluquero: Grado Superior de Peluquería en la Academia de Peluquería y Estética Dani de Valencia, homologado por el Ministerio de Educación y Ciencia en 1982.\n\nSu trayectoria profesional es la más lineal de la corporación: trabajó en diferentes salones entre 1982 y 1986 y desde el 1 de marzo de 1986 es **gerente de su propia peluquería, FREDI&STILISTAS** — cuatro décadas al frente del mismo negocio. Su declaración estatutaria de actividades es coherente con ese relato: consigna una única actividad, «Autónomo Alfredo Pla Gimenez», iniciada el 01-01-1986, sin forma societaria.\n\nNo consta en los documentos públicos consultados experiencia previa en gestión pública ni cargos institucionales anteriores a 2023; su perfil es el del pequeño empresario local de larga trayectoria que llega a la concejalía de Fallas, Fiestas y Tradiciones — un área de gestión festiva enraizada en el tejido asociativo — en su segundo intento electoral.",
+            "sourceIds": [
+              "src-060",
+              "src-069",
+              "src-070"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Elección y nombramiento",
+            "bodyMarkdown": "La primera candidatura documentada de Alfredo Pla Giménez es de 2019: ocupó el **puesto n.º 13** de la lista del PSPV-PSOE por Riba-roja de Túria (BOP de València n.º 82, 30-04-2019) y no llegó a integrarse en la corporación 2019-2023 — no figura en el acta de organización de aquel mandato. En 2015 su nombre no aparece en las candidaturas de la circunscripción publicadas en el BOP n.º 79.\n\nEn las municipales de 2023 sí obtuvo acta: la sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona, presta juramento o promesa con el resto de la corporación y queda adscrito al **Grupo Municipal Socialista** (puesto 10 del grupo, acta de organización de 07-07-2023).\n\nSu cargo ejecutivo nace por **delegación del alcalde**: el punto 10 del decreto de delegaciones le atribuye «las competencias que al Alcalde le corresponden en materia de **Fallas, Fiestas y Tradiciones**». El mismo pleno de organización lo integra como vocal de la **Junta de Gobierno Local** y como titular en cuatro comisiones informativas, entre ellas la de Educación, Cultura, Deportes y Fiestas — el órgano que dictamina los asuntos de su área.\n\nA diferencia de siete miembros del equipo de gobierno, **no tiene dedicación exclusiva ni parcial**: no figura en el acuerdo retributivo de 07-07-2023 y percibe **asistencias** por sesión efectiva (221,82 € por Pleno; 162,31 € por Junta de Gobierno Local y comisiones), el régimen que el propio acuerdo reserva a los cargos sin dedicación.",
+            "sourceIds": [
+              "src-070",
+              "src-061",
+              "src-062",
+              "src-063",
+              "src-064",
+              "src-065",
+              "src-067",
+              "src-066"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Patrimonio y actividades declaradas",
+            "bodyMarkdown": "Su declaración de bienes al tomar posesión (septiembre de 2023, expte. 3971/2023/GEN conforme al Decreto 191/2010 del Consell, publicada en el BOP n.º 180 de 15-09-2023) consigna un **activo de 158.924,00 €**, íntegramente en bienes inmuebles, y un **pasivo de 0,00 €** — sin deudas declaradas.\n\nEn la tabla de actividades declara únicamente su condición de **autónomo bajo su propio nombre desde el 01-01-1986**, la peluquería FREDI&STILISTAS de la que su CV le sitúa como gerente. Al no tener dedicación exclusiva ni parcial en el Ayuntamiento, su caso no plantea la tensión entre exclusividad retributiva y actividad privada que sí concurre en otros miembros del equipo de gobierno: el acuerdo de 07-07-2023 le sitúa en el régimen de asistencias por sesión, compatible por diseño con el ejercicio de su actividad profesional.",
+            "sourceIds": [
+              "src-068",
+              "src-069",
+              "src-066",
+              "src-060",
+              "src-071"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Este medio ha ejecutado su comprobación determinista estándar sobre la contratación municipal: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para sus apellidos y **0** para «FREDI», el rótulo de su peluquería. Ni el concejal ni su negocio constan como adjudicatarios del Ayuntamiento.\n\nEn su área delegada, la búsqueda por palabras clave festivas (fallas, fiestas, pirotecnia, verbenas…) localiza apenas **2 adjudicaciones tituladas desde julio de 2023** — derivados de un mismo acuerdo marco (SDA) de servicios de fiestas — frente a 282 adjudicaciones del corpus en el mismo periodo. La lectura honesta es estructural, no personal: el gasto festivo municipal se articula mayoritariamente por contratos menores u otros vehículos que el título de la licitación no identifica, un ángulo muerto de trazabilidad que este medio ya ha documentado en otras áreas.\n\nLímites declarados de estas comprobaciones: el Registro Mercantil no ofrece una vía estructurada gratuita para descartar homonimias societarias (aunque su declaración no consigna forma societaria alguna), y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento que las acredite.",
+            "sourceIds": [
+              "src-072",
+              "src-069"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Alfredo Pla Giménez",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Socialista (PSPV-PSOE)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Robert Raga Gadea (alcalde)",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n4",
+                "label": "Junta de Gobierno Local",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n5",
+                "label": "Comisión Informativa de Educación, Cultura, Deportes y Fiestas",
+                "tone": "neutral",
+                "kind": "entity"
+              },
+              {
+                "id": "n6",
+                "label": "FREDI&STILISTAS (peluquería propia)",
+                "tone": "intel",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal del grupo (puesto 10, acta 07-07-2023)",
+                "sourceIds": [
+                  "src-063"
+                ]
+              },
+              {
+                "from": "n3",
+                "to": "n1",
+                "relation": "delegación de Fallas, Fiestas y Tradiciones (decreto, punto 10)",
+                "sourceIds": [
+                  "src-064"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "vocal de la JGL bajo presidencia de la Alcaldía",
+                "sourceIds": [
+                  "src-065"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n5",
+                "relation": "titular de la comisión que dictamina su área",
+                "sourceIds": [
+                  "src-067"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n6",
+                "relation": "gerente y autónomo titular desde 1986 (declaración de actividades)",
+                "sourceIds": [
+                  "src-060",
+                  "src-069"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "press-sparkline",
+          "payload": {
+            "points": [
+              {
+                "date": "2026-02-19",
+                "count": 1
+              },
+              {
+                "date": "2026-05-18",
+                "count": 1
+              },
+              {
+                "date": "2026-06-17",
+                "count": 1
+              },
+              {
+                "date": "2026-07-03",
+                "count": 1
+              },
+              {
+                "date": "2026-07-07",
+                "count": 1
+              },
+              {
+                "date": "2026-07-27",
+                "count": 1
+              }
+            ],
+            "headlines": [
+              {
+                "title": "Riba-roja ultima la colocación de lonas y plantación en once hectáreas del Turia",
+                "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPWHJDTTl5YjNEc1hXYzJkNHdXSWlqWDlUWUpjTEM2TGxVbXhndTM5NVR5U2hTRnlHM21WbFg1RkotYy1Fc0gxSFRBMFdJMjkxNHV2c2tPeDFDOEVyX01zaVpmYXZyQmNBUWFCZXB0YTg5LUMwTjFzUEczV0dfSUk2aGFESi0xaHF6a0xRLWllQmpMZEdDWlAwTUc5OFFrNTFnYXZpZmU2UTV4VG43OG1WODN5UFNyaXdtbmxickNn0gHDAUFVX3lxTE44eF9fRG05a2pmYWxzd3RyQjNpVlFIckctMjZoYk1MMFZVS3NpZE1QQThPbVJETExIUTdVUmxEck5haGp0dURpLXg5ZWhMOVhkUk82dTdMSk5Halh5SFJXTXpNSi1RYjRKRXdKU3VBdmY1ZmIxTzF1MjZvME1RMTVPS0I3V3ExTkxrTVk3Q0hack82Si03ck1TTlZZS2hIWTlJM3ZPNzcwSnR5MDFzRVRWek11R28wMk13SG81UjJlN0xUZw?oc=5",
+                "date": "2026-02-19"
+              },
+              {
+                "title": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+                "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+                "date": "2026-05-18"
+              },
+              {
+                "title": "Riba-roja de Túria mejora la accesibilidad universal en los yacimientos visigodos de València la Vella y Pla de Nadal",
+                "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPMzNHcEloUG0wSmlpMHd1eWdSb1Z4UEVYa2xrY1Z1c1dRWVE5SDk4ZXBVdGNFODB6N3RramVnSVpZSV9fOGVLd3dybXZVdU5WcEw0UjZDVjhha2oyNTkzSjg1dURHa00wWEMxY0t2X1h3dWZnYzhNcmt1NkhVV3M2OTBtQmVVSG04ZmhkdFFFT2ZOLS1INEZpdGN0TWtrQTZuRjNuRk4yR0VObHU3RGh5QWJ6QmlNekx5bExhakpZM0w2OEozN3JEVno4WUpjeDFBeVQ00gHYAUFVX3lxTE1HT1BSa0xHWEJTaFJpdmFKVDBfU2pZaXpzUzd3X2lkWVc3bk9ncHl2SUp3ME1EbmdSS1YyWHl2WTBhMTZDcW4tTm4zYndlSVdGa29udHB1X2VxUUNvQ2FXSHh5b01Ob013RVVabmtyS05tRnlCMkJrbXdMa2RUNUl1Vmk5U2o0aHVjVnUtLTNBYjA2cElnVmJveTdNZS1XendUWGlVT3lUQVlZM2U4WUFROGE2M29oa2NTZldONzhVUDdBel91NmF0LTk5cWxSVnFlQnBBZXc0aw?oc=5",
+                "date": "2026-06-17"
+              },
+              {
+                "title": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
+                "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
+                "date": "2026-07-03"
+              },
+              {
+                "title": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
+                "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
+                "date": "2026-07-07"
+              },
+              {
+                "title": "Riba-roja invertirà 61.000 euros en una programació d'arts escèniques amb el programa PLATEA",
+                "url": "https://www.infoturia.com/riba-roja-de-turia/85118-riba-roja-invertira-61-000-euros-en-una-programacio-darts-esceniques-amb-el-programa-platea.html",
+                "date": "2026-07-27"
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "psoe-presupuesto-2026-46m",
+              "psoe-refugios-climaticos-2026",
+              "psoe-reconstruccion-dana-9-5m",
+              "psoe-vivienda-900-hogares",
+              "psoe-construccion-vivienda-2026-2029",
+              "psoe-pasarelas-parc-natural-turia",
+              "psoe-espai-obert-presupuesto",
+              "psoe-alumbrado-led-680k",
+              "psoe-metro-l9-agosto",
+              "psoe-respuesta-quejas-sector-14-48h",
+              "psoe-reduce-concejales-dedicacion-exclusiva",
+              "ac-psoe-1cbkzxt",
+              "ac-psoe-1v0679f",
+              "ac-psoe-jfg7bc",
+              "ac-psoe-1ah9zqk",
+              "ac-psoe-pl3lsq",
+              "ac-psoe-ppa53a",
+              "ac-psoe-1m04lfw",
+              "ac-psoe-sysee8"
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1963-03-15",
+                "label": "Nacimiento de Alfredo Pla Giménez (dato de su CV autodeclarado; el documento no consigna lugar)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "1982-06-05",
+                "label": "Grado Superior de Peluquería homologado; comienza a trabajar en salones",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "1986-03-01",
+                "label": "Gerente de su propia peluquería FREDI&STILISTAS; alta declarada como autónomo desde el 01-01-1986",
+                "sourceIds": [
+                  "src-060",
+                  "src-069"
+                ]
+              },
+              {
+                "date": "2019-04-30",
+                "label": "Candidato n.º 13 del PSPV-PSOE (BOP n.º 82) — sin escaño en 2019-2023",
+                "sourceIds": [
+                  "src-070"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamado concejal electo y juramento en la sesión constitutiva",
+                "sourceIds": [
+                  "src-061",
+                  "src-062"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Delegación de Fallas, Fiestas y Tradiciones (punto 10) + vocal de la JGL y titular en 4 comisiones; sin dedicación (régimen de asistencias)",
+                "sourceIds": [
+                  "src-064",
+                  "src-065",
+                  "src-067",
+                  "src-066"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 158.924,00 € (inmuebles) · pasivo 0,00 € · actividad de autónomo desde 1986 (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-068",
+                  "src-069",
+                  "src-071"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Se delegan en el Concejal D. Alfredo Plá, las competencias que al Alcalde le corresponden en materia de Fallas, Fiestas y Tradiciones.",
+            "attributedTo": "Decreto de delegaciones de la Alcaldía (punto 10), acta del pleno de organización de 07-07-2023",
+            "sourceId": "src-064",
+            "date": "2023-07-07"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Datos biográficos autodeclarados",
+                "reason": "El CV del portal municipal es el más escueto de la corporación (una página): fecha de nacimiento, un título y dos etapas laborales. No consigna lugar de nacimiento, y ningún registro público accesible permite verificar de forma independiente los datos biográficos básicos (el Registro Civil no es de acceso público). Se publican como autodeclarados."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Al carecer de dedicación, su retribución depende de las sesiones a las que asiste efectivamente (Pleno, JGL, comisiones). Los importes por sesión constan en el acuerdo de 07-07-2023, pero el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal — el coste público real de su cargo no es reconstruible con los datos disponibles."
+              },
+              {
+                "field": "Gasto festivo por contratos menores",
+                "reason": "Su área delegada apenas deja rastro en la contratación titulada (2 adjudicaciones desde 2023): el gasto de Fallas y fiestas se articula por contratos menores u otros vehículos que los datos abiertos municipales no permiten atribuir por área. La ejecución presupuestaria del programa festivo no es trazable contrato a contrato con las fuentes publicadas."
+              },
+              {
+                "field": "Vida anterior a 1982",
+                "reason": "Ningún documento público consultado cubre su formación básica ni actividad anterior al título de peluquería de 1982. Familia y relaciones personales: sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-001",
+          "kind": "local-snapshot",
+          "title": "Officials snapshot — Alfredo Plá Gimenez",
+          "retrievedAt": "2026-07-31T12:41:55.847Z",
+          "localPath": "public/data/officials.json",
+          "trust": "high",
+          "excerpt": "role: concejal · party: PSOE · portfolios: Fallas, Fiestas y Tradiciones"
+        },
+        {
+          "id": "src-002",
+          "kind": "local-snapshot",
+          "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+          "retrievedAt": "2026-07-31T12:42:02.656Z",
+          "localPath": "public/data/elections.json",
+          "trust": "high",
+          "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%"
+        },
+        {
+          "id": "src-003",
+          "kind": "web",
+          "url": "https://alfredo.pt/",
+          "title": "Alfredo AI",
+          "retrievedAt": "2026-07-31T12:42:03.091Z",
+          "trust": "low",
+          "excerpt": "Avaliações imobiliárias com IA, dados de mercado e automação para profissionais que querem fechar mais negócios, mais rápido."
+        },
+        {
+          "id": "src-004",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Alfredo_(nombre)",
+          "title": "Alfredo (nombre) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T12:42:03.091Z",
+          "trust": "medium",
+          "excerpt": "Alfredo es la forma en español (también en portugués e italiano) del nombre inglés Alfred, que a su vez deriva del anglosajón …"
+        },
+        {
+          "id": "src-005",
+          "kind": "web",
+          "url": "https://www.youtube.com/channel/UC1bZ17RdXYpjsgDKWxaYCYA",
+          "title": "Alfredo Olivas - YouTube",
+          "retrievedAt": "2026-07-31T12:42:03.091Z",
+          "trust": "low",
+          "excerpt": "Alfredo Olivas - Así Se Usa En Los Ranchos (Audio) Alfredo Olivas 395K views • 1 year ago"
+        },
+        {
+          "id": "src-006",
+          "kind": "web",
+          "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+          "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+          "retrievedAt": "2026-07-31T12:42:03.092Z",
+          "trust": "medium",
+          "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ..."
+        },
+        {
+          "id": "src-007",
+          "kind": "web",
+          "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+          "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+          "retrievedAt": "2026-07-31T12:42:03.092Z",
+          "trust": "medium",
+          "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS."
+        },
+        {
+          "id": "src-008",
+          "kind": "web",
+          "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+          "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+          "retrievedAt": "2026-07-31T12:42:03.092Z",
+          "trust": "low",
+          "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria"
+        },
+        {
+          "id": "src-009",
+          "kind": "web",
+          "url": "https://play.google.com/",
+          "title": "Google Play",
+          "retrievedAt": "2026-07-31T12:42:03.904Z",
+          "trust": "low",
+          "excerpt": "Discover millions of Android apps, games, music, movies, TV shows, books, and more on Google Play for all your devices."
+        },
+        {
+          "id": "src-010",
+          "kind": "web",
+          "url": "https://pla.es/",
+          "title": "Empresa - PLA",
+          "retrievedAt": "2026-07-31T12:42:03.904Z",
+          "trust": "low",
+          "excerpt": "Fundada en 1970 en Albaida (Valencia, España), Pla Albert SL nació con la misión de proporcionar productos para la mejor limpieza, tanto en el ámbito doméstico como en el profesional."
+        },
+        {
+          "id": "src-011",
+          "kind": "web",
+          "url": "https://www.sindicatopla.es/",
+          "title": "Sindicato de Policía Local Asociada - Sindicato de Policía P.L.A",
+          "retrievedAt": "2026-07-31T12:42:03.904Z",
+          "trust": "low",
+          "excerpt": "🎢 ¡VENTAJA EXCLUSIVA PARA AFILAD@S! 🎢 Gracias al CLUB CSLA-VIP DISTRIC, disponemos de un **50% de descuento en PortAventura World** para todos los afiliados al sindicato P.L.A. 📅 …"
+        },
+        {
+          "id": "src-012",
+          "kind": "web",
+          "url": "https://play.google.com/",
+          "title": "Google Play",
+          "retrievedAt": "2026-07-31T12:42:04.404Z",
+          "trust": "low",
+          "excerpt": "Discover millions of Android apps, games, music, movies, TV shows, books, and more on Google Play for all your devices."
+        },
+        {
+          "id": "src-013",
+          "kind": "web",
+          "url": "https://pla.es/",
+          "title": "Empresa - PLA",
+          "retrievedAt": "2026-07-31T12:42:04.405Z",
+          "trust": "low",
+          "excerpt": "Fundada en 1970 en Albaida (Valencia, España), Pla Albert SL nació con la misión de proporcionar productos para la mejor limpieza, tanto en el ámbito doméstico como en el profesional."
+        },
+        {
+          "id": "src-014",
+          "kind": "web",
+          "url": "https://www.sindicatopla.es/",
+          "title": "Sindicato de Policía Local Asociada - Sindicato de Policía P.L.A",
+          "retrievedAt": "2026-07-31T12:42:04.405Z",
+          "trust": "low",
+          "excerpt": "🎢 ¡VENTAJA EXCLUSIVA PARA AFILAD@S! 🎢 Gracias al CLUB CSLA-VIP DISTRIC, disponemos de un **50% de descuento en PortAventura World** para todos los afiliados al sindicato P.L.A. 📅 …"
+        },
+        {
+          "id": "src-015",
+          "kind": "web",
+          "url": "https://play.google.com/",
+          "title": "Google Play",
+          "retrievedAt": "2026-07-31T12:42:04.834Z",
+          "trust": "low",
+          "excerpt": "Discover millions of Android apps, games, music, movies, TV shows, books, and more on Google Play for all your devices."
+        },
+        {
+          "id": "src-016",
+          "kind": "web",
+          "url": "https://pla.es/",
+          "title": "Empresa - PLA",
+          "retrievedAt": "2026-07-31T12:42:04.834Z",
+          "trust": "low",
+          "excerpt": "Fundada en 1970 en Albaida (Valencia, España), Pla Albert SL nació con la misión de proporcionar productos para la mejor limpieza, tanto en el ámbito doméstico como en el profesional."
+        },
+        {
+          "id": "src-017",
+          "kind": "web",
+          "url": "https://www.sindicatopla.es/",
+          "title": "Sindicato de Policía Local Asociada - Sindicato de Policía P.L.A",
+          "retrievedAt": "2026-07-31T12:42:04.834Z",
+          "trust": "low",
+          "excerpt": "🎢 ¡VENTAJA EXCLUSIVA PARA AFILAD@S! 🎢 Gracias al CLUB CSLA-VIP DISTRIC, disponemos de un **50% de descuento en PortAventura World** para todos los afiliados al sindicato P.L.A. 📅 …"
+        },
+        {
+          "id": "src-018",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.536Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[10950.0 → 10980.0] Plan, bueno, pues realmente no es positivo desde el punto de vista de intervención. Habla de que han habido medidas que se van a poner en este Plan Corrector que no se han cumplido. Habla, bueno, del "
+        },
+        {
+          "id": "src-019",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.536Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[10920.0 → 10950.0] y siete veces a la oposición. No, ya, era un comentario. Venga, si va, venga. Ah, vale. Que crea que no... Yo voy a hablar de este punto, lo que sea. Por lo que sea. Eh... No, voy a hablar del punto d"
+        },
+        {
+          "id": "src-020",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.536Z",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 0.0] de la actividad económico-financiera controlada y al Presidente de la Entidad Local, así como, al [0.0 → 0.0] Pleno para su conocimiento. [0.0 → 0.0] En los mismos términos se pronuncia el Plan Anual de Contr"
+        },
+        {
+          "id": "src-021",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.536Z",
+          "localPath": "public/data/pleno-transcripts/11025xk.txt",
+          "trust": "high",
+          "excerpt": "[5430.0 → 5460.0] y habré ahí si realmente confirma lo que me estás diciendo tú, que están diciendo que no, etc. Pero yo quiero acotar así que excusas de mal pagado a mí no me valen. O sea, el metro en Valencia pasa por "
+        },
+        {
+          "id": "src-022",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/11025xk.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.841Z",
+          "localPath": "public/data/pleno-transcripts/11025xk.txt",
+          "trust": "high",
+          "excerpt": "[3630.0 → 3660.0] Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, señor presidente. Gracias, seño"
+        },
+        {
+          "id": "src-023",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.842Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 30.0] Música [30.0 → 60.0] Música [60.0 → 90.0] Música [90.0 → 120.0] Música [120.0 → 150.0] Música [150.0 → 180.0] Música [180.0 → 210.0] Música [210.0 → 240.0] Música [240.0 → 270.0] Música [270.0 → 300.0] Músic"
+        },
+        {
+          "id": "src-024",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:05.842Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[10530.0 → 10560.0] ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un solo año, ni un so"
+        },
+        {
+          "id": "src-025",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:06.111Z",
+          "localPath": "public/data/pleno-transcripts/10yl550.txt",
+          "trust": "high",
+          "excerpt": "[5280.0 → 5310.0] a pleno, a la propuesta de acuerdo se transformaran en uno en el que pasáramos a decir vamos a crear una comisión entendemos que la junta de portavoces podría ser suficiente, pero si entendéis que vuest"
+        },
+        {
+          "id": "src-026",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:06.111Z",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 0.0] OBLIGACIONES ECONÓMICAS derivadas (indemnización). Debe ser competencia del [0.0 → 0.0] Pleno, además de que el REC, propuesto es una competencia plenaria, corresponderá al [0.0 → 0.0] Pleno la resolución de "
+        },
+        {
+          "id": "src-027",
+          "kind": "local-snapshot",
+          "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+          "retrievedAt": "2026-07-31T12:42:06.111Z",
+          "localPath": "public/data/pleno-transcripts/1080zow.txt",
+          "trust": "high",
+          "excerpt": "[0.0 → 0.0] PINTADO 659X160X268C\" por importe total de 150.000€ más IVA; así como [0.0 → 0.0] AUTORIZAR, DISPONER Y RECONOCER LAS OBLIGACIONES ECONÓMICAS [0.0 → 0.0] derivadas (indemnización) con cargo a la aplicación 15"
+        },
+        {
+          "id": "src-028",
+          "kind": "web",
+          "url": "https://www.infoturia.com/riba-roja-de-turia/85118-riba-roja-invertira-61-000-euros-en-una-programacio-darts-esceniques-amb-el-programa-platea.html",
+          "title": "Riba-roja invertirà 61.000 euros en una programació d’arts escèniques amb el programa PLATEA",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "trust": "medium",
+          "publisher": "Periòdic del Camp de Túria",
+          "publishedAt": "2026-07-27"
+        },
+        {
+          "id": "src-029",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMimwJBVV95cUxPc25BRk9VWjh2T1dzeEgtRzhaU0hYbUg1ejRWanh5MlRfdWRLa2tZZDQ1VzRZTFRLcElEcEc4VFdCN2EyUGt1a0FaTGJyTUkwUWE3REtjemdPbWtFcWZneGo3WF9rcGpzamx5WFZoakJuM2xNZU9NLW9UZjE2UVlKSGptU0FPY2NBTTEtMkJNWWxjZG9ISkc4VkNhdGRoS3VuUDMtcmZfQ0FlOU5ESmVkdEJ3dzRyRTcyYmJRV1plbkxBZ2dWb2w2M0xmaXRMaTlSWG5mX3RrVmJwVS1yc2tVa0xLY1BERkEwWGNQd0VkRldPYTdaNUJ1YUlveVJFZFVFd193R0xSVHBmWjR3TjlIYlU2SElZU1VWb0pj?oc=5",
+          "title": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "trust": "low",
+          "publisher": "València Extra",
+          "publishedAt": "2026-07-07"
+        },
+        {
+          "id": "src-030",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxNX0NZVU5CeU5jNzRhR0ZfTkV1ZnZtcFhYbFZCZDA5UFBrUHBpdUh2dGdqWi0teDZKa2c4aEo3ZDNMUl9VUzBmQVZmWlpCUlctbFdjMUROSVd0NVZzMWt5MnYwZ0hnbXhaejBSa1N6UHRxVmduQmdqaUp5b2ktNWZ2TzFxQ2Y4NXlIcnVjQnVpQmdabGlVenpQS1BsRW52SVIxYkROdmJZTDRzMzlwbmFuVm1JVTBnYkFVSm9WdEpiYXNZNHBxZkFYUy1XSVMzYTR4TEU5ZmlWNlZ4N1haWUc3dVoxNVlrTkpuX0h3THBiTmZqU3luVHFINWxhMFdfR0Vuc2p5cEtJdXMzanJnZjBMS0JiVmdhbEZLU2dBTEdXTFl0bkllXzhDejQxb3FnTTQyUGlhcVpBZVkta0RVSXpGeDhod2xIX28?oc=5",
+          "title": "Riba-roja aprueba el Plan Territorial Municipal de Emergencias para proteger a la población frente a las olas de calor, los incendios, las inundaciones o los temporales",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "trust": "low",
+          "publisher": "Valencia Plaza",
+          "publishedAt": "2026-07-03"
+        },
+        {
+          "id": "src-031",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPMzNHcEloUG0wSmlpMHd1eWdSb1Z4UEVYa2xrY1Z1c1dRWVE5SDk4ZXBVdGNFODB6N3RramVnSVpZSV9fOGVLd3dybXZVdU5WcEw0UjZDVjhha2oyNTkzSjg1dURHa00wWEMxY0t2X1h3dWZnYzhNcmt1NkhVV3M2OTBtQmVVSG04ZmhkdFFFT2ZOLS1INEZpdGN0TWtrQTZuRjNuRk4yR0VObHU3RGh5QWJ6QmlNekx5bExhakpZM0w2OEozN3JEVno4WUpjeDFBeVQ00gHYAUFVX3lxTE1HT1BSa0xHWEJTaFJpdmFKVDBfU2pZaXpzUzd3X2lkWVc3bk9ncHl2SUp3ME1EbmdSS1YyWHl2WTBhMTZDcW4tTm4zYndlSVdGa29udHB1X2VxUUNvQ2FXSHh5b01Ob013RVVabmtyS05tRnlCMkJrbXdMa2RUNUl1Vmk5U2o0aHVjVnUtLTNBYjA2cElnVmJveTdNZS1XendUWGlVT3lUQVlZM2U4WUFROGE2M29oa2NTZldONzhVUDdBel91NmF0LTk5cWxSVnFlQnBBZXc0aw?oc=5",
+          "title": "Riba-roja de Túria mejora la accesibilidad universal en los yacimientos visigodos de València la Vella y Pla de Nadal",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "trust": "low",
+          "publisher": "Levante-EMV",
+          "publishedAt": "2026-06-17"
+        },
+        {
+          "id": "src-032",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQUDZUUXF2WnBXR0l3cmpJZE1rUExhMWExNUtGSkFuZWhJaXBzNmVJdGgwN19uWHZacVZ2MTlYTTRqLWQ0Z0JPRmpZbW0xZkpvY3lqVUJ3Q3NNWFI3QjJSNUxwa196YkxEcXhCWk5FdTktMU5PUk1waVBkbHhXVUZtbDFtQjJtWUpRZ18xZFIxdTlqMEh6LTJlVDVoSEx3aDE2UEhlQ1h3bFRZNW96cm5HV2JaSmRMdmFTeVZKcWoya1B6bTdHSlJzSVM2SC1rbjRtckY2eERWWlVKbFNKMFBLdmVuNkt6SXh6d1BCQ0g3aXQ3Smljb3gtWVV5c19hN0Q0ME9GSzJ0Yw?oc=5",
+          "title": "La Generalitat y Riba-roja de Túria acuerdan la construcción de 36 viviendas protegidas en el marco del Plan Vive Dana",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "trust": "low",
+          "publisher": "Valencia Plaza",
+          "publishedAt": "2026-05-18"
+        },
+        {
+          "id": "src-033",
+          "kind": "web",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPWHJDTTl5YjNEc1hXYzJkNHdXSWlqWDlUWUpjTEM2TGxVbXhndTM5NVR5U2hTRnlHM21WbFg1RkotYy1Fc0gxSFRBMFdJMjkxNHV2c2tPeDFDOEVyX01zaVpmYXZyQmNBUWFCZXB0YTg5LUMwTjFzUEczV0dfSUk2aGFESi0xaHF6a0xRLWllQmpMZEdDWlAwTUc5OFFrNTFnYXZpZmU2UTV4VG43OG1WODN5UFNyaXdtbmxickNn0gHDAUFVX3lxTE44eF9fRG05a2pmYWxzd3RyQjNpVlFIckctMjZoYk1MMFZVS3NpZE1QQThPbVJETExIUTdVUmxEck5haGp0dURpLXg5ZWhMOVhkUk82dTdMSk5Halh5SFJXTXpNSi1RYjRKRXdKU3VBdmY1ZmIxTzF1MjZvME1RMTVPS0I3V3ExTkxrTVk3Q0hack82Si03ck1TTlZZS2hIWTlJM3ZPNzcwSnR5MDFzRVRWek11R28wMk13SG81UjJlN0xUZw?oc=5",
+          "title": "Riba-roja ultima la colocación de lonas y plantación en once hectáreas del Turia",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "trust": "low",
+          "publisher": "Las Provincias",
+          "publishedAt": "2026-02-19"
+        },
+        {
+          "id": "src-034",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-010-cit-2f8642 · 2026-07-06 · cita_obra",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "expediente 342, sobre el acuerdo relativo a la aprobación del tercer plan de igualdad de la Ciudadanía de Rivarrocha."
+        },
+        {
+          "id": "src-035",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-010-cit-864741 · 2026-07-06 · cita_obra",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "hoy traemos a aprobación el tercer plan de igualdad del Ayuntamiento de Rivarrocha,"
+        },
+        {
+          "id": "src-036",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-013-afi-82a5a6 · 2026-07-06 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "El plan se articula en nueve grandes áreas de actuación,"
+        },
+        {
+          "id": "src-037",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-013-afi-45bb2c · 2026-07-06 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "acordándose las acciones que se desarrollarán durante los próximos cuatro años."
+        },
+        {
+          "id": "src-038",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-017-cit-b1e46a · 2026-07-06 · cita_obra",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "Hemos aprobado el plan de igualdad"
+        },
+        {
+          "id": "src-039",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-017-afi-4e0678 · 2026-07-06 · afirmacion_numerica",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "el 70% de la plantilla no conoce informació"
+        },
+        {
+          "id": "src-040",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-016-cit-93fad6 · 2026-07-06 · cita_obra",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "aprobar el tercer plan de igualdad del Ayuntamiento de Hervarocha,"
+        },
+        {
+          "id": "src-041",
+          "kind": "local-snapshot",
+          "title": "Pleno claim brxx5g-020-pro-07ad18 · 2026-07-06 · promesa",
+          "retrievedAt": "2026-07-31T12:42:06.511Z",
+          "localPath": "public/data/pleno-claims-suggestions.json",
+          "trust": "high",
+          "excerpt": "Nosotros votaremos a favor de este plan de igualdad."
+        },
+        {
+          "id": "src-042",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Fuente oficial: www.ribarroja.es",
+          "retrievedAt": "2026-07-31T12:42:06.513Z",
+          "trust": "high",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-043",
+          "kind": "web",
+          "url": "https://alfredo.pt/",
+          "title": "Alfredo AI",
+          "retrievedAt": "2026-07-31T12:42:08.312Z",
+          "trust": "low",
+          "excerpt": "Avaliações imobiliárias com IA, dados de mercado e automação para profissionais que querem fechar mais negócios, mais rápido."
+        },
+        {
+          "id": "src-044",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Alfredo_(nombre)",
+          "title": "Alfredo (nombre) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T12:42:08.312Z",
+          "trust": "medium",
+          "excerpt": "Alfredo es la forma en español (también en portugués e italiano) del nombre inglés Alfred, que a su vez deriva del anglosajón Ælfræd, formado por las palabras ælf (que significa ' elfo ') y ræd (que se …"
+        },
+        {
+          "id": "src-045",
+          "kind": "web",
+          "url": "https://www.youtube.com/channel/UC1bZ17RdXYpjsgDKWxaYCYA",
+          "title": "Alfredo Olivas - YouTube",
+          "retrievedAt": "2026-07-31T12:42:08.312Z",
+          "trust": "low",
+          "excerpt": "Alfredo Olivas - Así Se Usa En Los Ranchos (Audio) Alfredo Olivas 395K views • 1 year ago"
+        },
+        {
+          "id": "src-046",
+          "kind": "web",
+          "url": "https://alfredo.pt/",
+          "title": "Alfredo AI",
+          "retrievedAt": "2026-07-31T12:42:09.955Z",
+          "trust": "low",
+          "excerpt": "Avaliações imobiliárias com IA, dados de mercado e automação para profissionais que querem fechar mais negócios, mais rápido."
+        },
+        {
+          "id": "src-047",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Alfredo_(nombre)",
+          "title": "Alfredo (nombre) - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T12:42:09.955Z",
+          "trust": "medium",
+          "excerpt": "Alfredo es la forma en español (también en portugués e italiano) del nombre inglés Alfred, que a su vez deriva del anglosajón …"
+        },
+        {
+          "id": "src-048",
+          "kind": "web",
+          "url": "https://www.youtube.com/channel/UC1bZ17RdXYpjsgDKWxaYCYA",
+          "title": "Alfredo Olivas - YouTube",
+          "retrievedAt": "2026-07-31T12:42:09.955Z",
+          "trust": "low",
+          "excerpt": "Alfredo Olivas - Así Se Usa En Los Ranchos (Audio) Alfredo Olivas 395K views • 1 year ago"
+        },
+        {
+          "id": "src-049",
+          "kind": "web",
+          "url": "https://www.timeout.pt/lisboa/pt/restaurantes/alfredo",
+          "title": "Alfredo | Restaurantes | Beato, Lisboa - Time Out Lisboa",
+          "retrievedAt": "2026-07-31T12:42:09.955Z",
+          "trust": "low",
+          "excerpt": "17 de jul de 2025 · O Arroz do Alfredo, o mais nutritivo dos pratos, é enriquecido com bochecha de porco e chouriço e pode ser …"
+        },
+        {
+          "id": "src-050",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Alfredo_el_Grande",
+          "title": "Alfredo el Grande - Wikipedia, la enciclopedia libre",
+          "retrievedAt": "2026-07-31T12:42:09.955Z",
+          "trust": "medium",
+          "excerpt": "Alfredo el Grande (también llamado Ælfred, del anglosajón Ælfrēd; 849-26 de octubre de 899), o San Alfredo el Grande, fue rey de …"
+        },
+        {
+          "id": "src-051",
+          "kind": "web",
+          "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+          "title": "Texto completo: ribarroja.es",
+          "retrievedAt": "2026-07-31T12:42:12.436Z",
+          "trust": "high",
+          "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr"
+        },
+        {
+          "id": "src-052",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Alfredo_(nombre)",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-31T12:42:12.438Z",
+          "trust": "high",
+          "excerpt": "<body class=\"skin--responsive skin-vector skin-vector-search-vue mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-s",
+          "archiveUrl": "http://web.archive.org/web/20250906180654/https://es.wikipedia.org/wiki/Alfredo_(nombre)"
+        },
+        {
+          "id": "src-053",
+          "kind": "web",
+          "url": "https://es.wikipedia.org/wiki/Alfredo_el_Grande",
+          "title": "Texto completo: es.wikipedia.org",
+          "retrievedAt": "2026-07-31T12:42:12.439Z",
+          "trust": "high",
+          "excerpt": "Alfredo el Grande - Wikipedia, la enciclopedia libre <m",
+          "archiveUrl": "http://web.archive.org/web/20260312144712/https://es.wikipedia.org/wiki/Alfredo_el_Grande"
+        },
+        {
+          "id": "src-060",
+          "retrievedAt": "2026-07-31T12:59:29.942Z",
+          "kind": "official-doc",
+          "trust": "medium",
+          "title": "CV publicado en el portal municipal — Alfredo Pla Giménez (autodeclarado)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Alfredo-Pla-Gimenez.pdf",
+          "excerpt": "SN\nFORMACIÓN\nGRADO SUPERIOR DE PELUQUERÍA • ACADEMIA DE PELUQUERÍA Y\nESTÉTICA DANI DE VALENCIA •\nHomologada por el ministerio de educación y ciencia en 1982\nEXPERIENCIA PROFESIONAL\nTRABAJO EN DIFERENTES SALONES DE PELUQUERÍA • 05/06/82 –\n01/03/86•\nFREDI&STILISTAS • 01/03/86 - ACTUAL•\nGerente de la peluquería\nPRESENTACIÓN\n15 de Marzo 1963\napla@ribarroja.es"
+        },
+        {
+          "id": "src-061",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "excerpt": "Maria Teresa Pozuelo Martin\nJose Luis Ramos March\nJose Angel Hernandez Carrizosa\nEva Lara Catalá\nRafael Gomez Sanchez\nMaria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez"
+        },
+        {
+          "id": "src-062",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo"
+        },
+        {
+          "id": "src-063",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Socialista (Pla, puesto 10)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son:\n1. Don Roberto Pascual Raga Gadea\n2. Doña Maria Teresa Pozuelo Martín\n3. Don José Luis Ramos March\n4. Don José Ángel Hernández Carrizosa\n5. Doña Eva Lara Catalá (Independiente)\n6. Don Rafael Gómez Sánchez\n7. Doña Maria Esther Gómez Laredo\n8. Don José Manuel Vila Oltra (Independiente)\n9. Doña Raquel Pamblanco Paredes\n10. Don Alfredo Plá Giménez\n11. Don David Barbancho Martínez"
+        },
+        {
+          "id": "src-064",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta organización 07-07-2023 — decreto de delegaciones, punto 10 (Fallas, Fiestas y Tradiciones)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "excerpt": "9. Se delegan en la Concejal Dª Raquel Pamblanco, las competencias que al Alcalde le\ncorresponden en materia de Seguridad y emergencias, Igualdad, Comunicación e información y\nBienestar Animal.\n10. Se delegan en el Concejal D. Alfredo Plá, las competencias que al Alcalde le\ncorresponden en materia de Fallas, Fiestas y Tradiciones.\n11. Se delegan en el Concejal D. David Barbancho las competencias en materia de Acción\nsocial y políticas inclusivas, Mayores, Juventud y Servicios Jurídicos."
+        },
+        {
+          "id": "src-065",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta organización 07-07-2023 — composición de la Junta de Gobierno Local",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "excerpt": "PRIMERO.- Nombrar miembros de la Junta de Gobierno Local a los siguientes concejales:\nEl Alcalde: D. Roberto-Pascual Raga Gadea.\n1. Dª Mª Teresa Pozuelo Martín.\n2. D. José Luis Ramos March.\n3. D. José Ángel Hernández Carrizosa.\n4. Dª Eva Lara Catalá.\n5. D. Rafael Gómez Sánchez.\n6. Dª José Manuel Vila Oltra.\n7. D. Alfredo Pla Giménez.\nSEGUNDO.- Corresponderá a la Junta de Gobierno, así integrada, y bajo la presidencia de esta Alcaldía:"
+        },
+        {
+          "id": "src-066",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial)."
+        },
+        {
+          "id": "src-067",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas (titular)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "excerpt": "4. Comisión Informativa de Educación, Cultura, Deportes y Fiestas\nQue englobará las siguientes materias: Educación, Cultura, Arte, Patrimonio, Deportes, Fiestas,\nTradiciones, ECA, Fallas, Conservatorio, EEII, Juventud, Infancia, Adolescencia y Memoria histórica.\n32\nComposición:\nGrupo Municipal Socialista de Riba-roja\nTitular: Dª Eva Lara Catalá\nTitular: D. José Manuel Vila Oltra\nTitular: D. David Barbancho Martínez\nTitular: D. Rafael Gómez Sánchez\nTitular: D. Alfredo Plá Giménez"
+        },
+        {
+          "id": "src-068",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "excerpt": "ALFREDO PLA GIMENEZ 158.924,00 0,00 158.924,00 0,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]"
+        },
+        {
+          "id": "src-069",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "excerpt": "Autónomo Alfredo Pla Gimenez 01/01/1986 — [tabla de actividades: cargo/entidad · fecha de inicio]"
+        },
+        {
+          "id": "src-070",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidaturas, circunscripción Riba-roja de Túria (PSOE, puesto 13)",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "excerpt": "CANDIDATURA NÚM. 1:\nPARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.)\nTITULARES\n1. ROBERTO PASCUAL RAGA GADEA\n2. MARIA TERESA POZUELO MARTIN\n3. JOSE LUIS RAMOS MARCH\n4. ZAFIRA PEREZ PACHECO\n5. JOSE ANGEL HERNANDEZ CARRIZOSA\n6. MARIA DOLORES VERDEGUER ROYO\n7. JOSE LUIS LOPEZ GALDON\n8. ANA CRISTINA FOLGADO MORALES\n9. RAFAEL GOMEZ SANCHEZ\n10. MARIA ESTHER GOMEZ LAREDO\n11. FRANCISCO JAVIER GARCIA ESCUDERO\n12. NURIA COBALEDA ARNAU\n13. ALFREDO PLA GIMENEZ"
+        },
+        {
+          "id": "src-071",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "official-doc",
+          "trust": "high",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN)."
+        },
+        {
+          "id": "src-072",
+          "retrievedAt": "2026-07-31T12:59:29.943Z",
+          "kind": "local-snapshot",
+          "trust": "high",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "localPath": "public/data/tenders.json",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (Gobierto/PLACSP): 0 coincidencias para «PLA GIMENEZ» y 0 para «FREDI». Área Fallas/Fiestas desde 2023-07: solo 2 adjudicaciones tituladas con palabras clave festivas (derivados de un SDA de fiestas), frente a 282 del corpus en el mismo periodo — el gasto festivo se articula mayoritariamente por contratos menores u otros vehículos no capturados por título."
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos (nacimiento, formación, trayectoria en salones) proceden del CV autodeclarado que publica el portal municipal y no han podido verificarse en registros independientes; se señala en «Lagunas detectadas».",
+        "La cobertura de prensa local citada en la evolución de titulares es del municipio en general; Pla Giménez apenas aparece nombrado personalmente en la prensa indexada."
       ],
       "legalSensitivity": "medium",
       "requiresHumanApproval": true

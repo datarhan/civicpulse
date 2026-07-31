@@ -1,4 +1,3 @@
-// @ts-check
 // Feature flags shared by the router (App.jsx) and page components — kept in
 // a leaf module so pages and hooks can read them without importing the
 // router (circular-import hazard).
