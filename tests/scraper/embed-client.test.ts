@@ -162,3 +162,64 @@ describe('embedTexts', () => {
     )
   })
 })
+
+// ─── Quota fallback: openai → gemini (2026-07-31 operator directive) ───────
+
+import { afterEach, beforeEach, vi } from 'vitest'
+import { _resetEmbedQuotaStateForTests, selectBackend } from '../../src/scraper/embed-client'
+
+function routedFetch(): typeof fetch {
+  return (async (url: RequestInfo | URL) => {
+    const u = String(url)
+    if (u.includes('api.openai.com')) {
+      return new Response(JSON.stringify({ error: { message: 'insufficient_quota' } }), {
+        status: 429,
+      })
+    }
+    if (u.includes('generativelanguage.googleapis.com')) {
+      return new Response(
+        JSON.stringify({ embeddings: [{ values: new Array(768).fill(0.1) }] }),
+        { status: 200, headers: { 'content-type': 'application/json' } },
+      )
+    }
+    return new Response('unexpected host', { status: 500 })
+  }) as unknown as typeof fetch
+}
+
+describe('openai→gemini quota fallback', () => {
+  beforeEach(() => {
+    _resetEmbedQuotaStateForTests()
+    vi.stubEnv('OPENAI_API_KEY', 'sk-dead')
+    vi.stubEnv('GEMINI_API_KEY', 'g-live')
+    vi.stubEnv('EMBED_BACKEND', '')
+  })
+  afterEach(() => {
+    vi.unstubAllEnvs()
+    _resetEmbedQuotaStateForTests()
+  })
+
+  it('re-embeds the whole input via gemini when openai reports insufficient_quota', async () => {
+    const vecs = await embedTexts(['hola'], { fetchImpl: routedFetch(), sleep: async () => {} })
+    expect(vecs).toHaveLength(1)
+    expect(vecs[0]).toHaveLength(768)
+    // The latch now redirects auto-selection for the rest of the process…
+    expect(selectBackend()).toBe('gemini')
+    // …including an env-pinned openai (the pin blocks ollama, not gemini).
+    vi.stubEnv('EMBED_BACKEND', 'openai')
+    expect(selectBackend()).toBe('gemini')
+  })
+
+  it('does NOT fall back for callers pinning their own key (back-compat/test path)', async () => {
+    await expect(
+      embedTexts(['hola'], { apiKey: 'sk-explicit', fetchImpl: routedFetch(), sleep: async () => {} }),
+    ).rejects.toThrow(/insufficient_quota/)
+    expect(selectBackend()).toBe('openai')
+  })
+
+  it('does NOT fall back when GEMINI_API_KEY is absent', async () => {
+    vi.stubEnv('GEMINI_API_KEY', '')
+    await expect(
+      embedTexts(['hola'], { fetchImpl: routedFetch(), sleep: async () => {} }),
+    ).rejects.toThrow(/insufficient_quota/)
+  })
+})

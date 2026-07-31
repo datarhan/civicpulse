@@ -96,19 +96,11 @@ let defaultEmbedFn: ((text: string) => Promise<number[]>) | null = null
 function getDefaultEmbedFn(): (text: string) => Promise<number[]> {
   if (!defaultEmbedFn) {
     defaultEmbedFn = async (text: string) => {
-      const backend =
-        (process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined) ??
-        (process.env.OPENAI_API_KEY ? 'openai' : process.env.GEMINI_API_KEY ? 'gemini' : 'ollama')
-      const apiKey =
-        backend === 'ollama'
-          ? undefined
-          : backend === 'gemini'
-            ? process.env.GEMINI_API_KEY
-            : process.env.OPENAI_API_KEY
-      const [vec] = await embedTexts(
-        [text],
-        backend === 'ollama' ? { backend } : { backend, apiKey },
-      )
+      // Let the client resolve the backend (env/auto) so the
+      // insufficient_quota → gemini latch applies at query time; only an
+      // explicitly env-pinned ollama stays pinned.
+      const backend = process.env.EMBED_BACKEND as 'openai' | 'gemini' | 'ollama' | undefined
+      const [vec] = await embedTexts([text], backend === 'ollama' ? { backend } : {})
       return vec
     }
   }

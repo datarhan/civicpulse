@@ -169,9 +169,12 @@ fi
 # (gitignored, local to this Mac — exactly where the journalist agent
 # runs). Sha-keyed incremental: a no-change night embeds nothing and
 # costs nothing; a new transcript adds ~200 chunks (~fractions of a
-# cent). EMBED_BACKEND is PINNED to openai to match the corpus's
-# 1536-dim build — an accidental ollama fallback would append 768-dim
-# rows into a 1536-dim corpus (mixed dims = junk ranking). No key /
+# cent). EMBED_BACKEND is PINNED to openai to block an accidental
+# ollama fallback (mixed dims = junk ranking). Since 2026-07-31 the
+# embed client auto-falls openai→gemini on insufficient_quota (latch),
+# and the corpus script probes the active dimensionality first and
+# FULL-REBUILDS the cache on a dim change — so a quota-dead OpenAI key
+# no longer strands semantic search, and dims can never mix. No key /
 # API down → warn only; the agent degrades to lexical-only search.
 log "embed:agent-corpus (incremental, openai-pinned)…"
 EMBED_BACKEND=openai npm run embed:agent-corpus \

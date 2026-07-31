@@ -39,9 +39,28 @@
 
 export type EmbedBackend = 'openai' | 'gemini' | 'ollama'
 
+// Process-wide latch: once OpenAI reports insufficient_quota (a permanent
+// condition until the account is topped up), every later env/auto-selected
+// openai call in this process re-routes to gemini instead of failing —
+// 2026-07-31 operator directive after a journalist run lost semantic recall
+// to a dead OpenAI key. Never auto-falls to ollama (local-model policy).
+// Explicit `opts.backend`/`opts.apiKey` callers (tests, deliberate pins
+// with their own key) are NOT redirected.
+let openaiQuotaExhausted = false
+
+/** Test hook: clear the quota latch between test cases. */
+export function _resetEmbedQuotaStateForTests(): void {
+  openaiQuotaExhausted = false
+}
+
 const OPENAI_MODEL = 'text-embedding-3-small'
 const OPENAI_DIM = 1536
-const GEMINI_MODEL = 'text-embedding-004'
+// text-embedding-004 was retired by Google (404 as of 2026-07); the stable
+// replacement is gemini-embedding-001, whose native dim is 3072 — we request
+// outputDimensionality=768 to keep the corpus contract, and L2-normalize
+// in-client because truncated-dim vectors come back UN-normalized
+// (measured L2≈0.57 at 768).
+const GEMINI_MODEL = 'gemini-embedding-001'
 const GEMINI_DIM = 768
 const OLLAMA_MODEL = 'nomic-embed-text'
 const OLLAMA_DEFAULT_HOST = 'http://localhost:11434'
@@ -91,14 +110,24 @@ export interface EmbedOptions {
 export function selectBackend(opts: EmbedOptions = {}): EmbedBackend {
   if (opts.backend) return opts.backend
   const envBackend = process.env.EMBED_BACKEND as EmbedBackend | undefined
-  if (envBackend === 'openai' || envBackend === 'gemini' || envBackend === 'ollama')
+  if (envBackend === 'openai' || envBackend === 'gemini' || envBackend === 'ollama') {
+    // The env pin's job is stopping accidental local-model (ollama) mixing,
+    // not refusing a working paid→free fallback: a quota-dead openai pin
+    // re-routes to gemini too.
+    if (envBackend === 'openai' && openaiQuotaExhausted && process.env.GEMINI_API_KEY)
+      return 'gemini'
     return envBackend
+  }
   // Back-compat: callers (and tests) that pass `opts.apiKey` directly
   // were written for the OpenAI-only era. Treat `apiKey` without an
   // explicit backend as openai. This keeps the test suite + existing
   // scripts happy without forcing every callsite to add `backend:'openai'`.
   if (opts.apiKey) return 'openai'
-  if (process.env.OPENAI_API_KEY) return 'openai'
+  if (process.env.OPENAI_API_KEY) {
+    // Quota latch: a dead OpenAI key re-routes to gemini when available.
+    if (openaiQuotaExhausted && process.env.GEMINI_API_KEY) return 'gemini'
+    return 'openai'
+  }
   if (process.env.GEMINI_API_KEY) return 'gemini'
   return 'ollama' // no key, no env override — assume local Ollama; the
   // call will throw a clear "ollama unreachable" if the daemon is down.
@@ -202,10 +231,34 @@ export async function embedTexts(texts: string[], opts: EmbedOptions = {}): Prom
   const model = opts.model ?? DEFAULT_MODEL
   const dim = opts.dim ?? DEFAULT_DIM
   const out: number[][] = []
-  for (let start = 0; start < texts.length; start += MAX_INPUTS_PER_CALL) {
-    const slice = texts.slice(start, start + MAX_INPUTS_PER_CALL)
-    const batchEmbeds = await callEmbeddings(slice, { apiKey, model, dim, fetchImpl, sleep })
-    for (const e of batchEmbeds) out.push(e)
+  try {
+    for (let start = 0; start < texts.length; start += MAX_INPUTS_PER_CALL) {
+      const slice = texts.slice(start, start + MAX_INPUTS_PER_CALL)
+      const batchEmbeds = await callEmbeddings(slice, { apiKey, model, dim, fetchImpl, sleep })
+      for (const e of batchEmbeds) out.push(e)
+    }
+  } catch (err) {
+    // Quota fallback: insufficient_quota is permanent for this key, so
+    // retrying openai is pointless. When gemini is available (and the
+    // caller didn't pin its own key/backend), latch the process onto
+    // gemini and re-embed the WHOLE input there — never partially, so a
+    // single call can't return mixed-dimension vectors.
+    if (
+      err instanceof EmbedError &&
+      err.permanent &&
+      /insufficient_quota/i.test(err.message) &&
+      !opts.apiKey &&
+      !opts.backend &&
+      process.env.GEMINI_API_KEY
+    ) {
+      openaiQuotaExhausted = true
+      console.warn(
+        '[embed-client] OpenAI quota exhausted → falling back to gemini (768 dims) for the rest of this process. ' +
+          'Caches built with openai (1536 dims) must be rebuilt before semantic search works again.',
+      )
+      return embedTexts(texts, { backend: 'gemini', fetchImpl: opts.fetchImpl, sleep: opts.sleep })
+    }
+    throw err
   }
   return out
 }
@@ -328,6 +381,7 @@ async function callGeminiEmbeddings(
     requests: inputs.map((text) => ({
       model: `models/${opts.model}`,
       content: { parts: [{ text }] },
+      outputDimensionality: opts.dim,
     })),
   })
 
@@ -362,7 +416,11 @@ async function callGeminiEmbeddings(
               { permanent: true },
             )
           }
-          ordered.push(v)
+          // gemini-embedding-001 returns UN-normalized vectors at truncated
+          // dims; normalize so cosine/dot behave identically across
+          // backends and consumers.
+          const norm = Math.sqrt(v.reduce((s, x) => s + x * x, 0))
+          ordered.push(norm > 0 ? v.map((x) => x / norm) : v)
         }
         return ordered
       }

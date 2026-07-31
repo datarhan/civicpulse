@@ -173,6 +173,28 @@ async function main() {
     return
   }
 
+  // Dimension safety: probe ONE embedding first so any quota fallback in
+  // the client (openai→gemini) latches before batching, then force a full
+  // rebuild when the cache was built at another dimensionality — appending
+  // 768-dim rows to a 1536-dim cache silently corrupts cosine search.
+  let runDim: number
+  try {
+    const probe = await embedTexts(['dimensional probe'], backend === 'ollama' ? { backend } : {})
+    runDim = probe[0].length
+  } catch (err) {
+    process.stderr.write(`[embed-agent] probe failed: ${(err as Error).message}\n`)
+    process.exit(2)
+  }
+  const cachedDim = keptRows[0]?.embedding.length
+  if (cachedDim !== undefined && cachedDim !== runDim) {
+    process.stdout.write(
+      `[embed-agent] cache dim ${cachedDim} ≠ active dim ${runDim} (backend switch or quota fallback) → full rebuild\n`,
+    )
+    keptRows.length = 0
+    toEmbed.length = 0
+    for (const p of pending) toEmbed.push(p)
+  }
+
   writeCache(keptRows)
   let flushed = 0
   let sigintReceived = false
@@ -188,20 +210,45 @@ async function main() {
   for (let i = 0; i < toEmbed.length; i += BATCH_SIZE) {
     if (sigintReceived) break
     const batch = toEmbed.slice(i, i + BATCH_SIZE)
-    let embeddings: number[][]
-    try {
-      embeddings = await embedTexts(
-        batch.map((b) => b.text),
-        backend === 'ollama' ? { backend } : { backend, apiKey: apiKey as string },
-      )
-    } catch (err) {
-      if (err instanceof EmbedError && err.permanent) {
-        process.stderr.write(`[embed-agent] permanent error: ${err.message}\n`)
-        process.exit(2)
+    let embeddings: number[][] | null = null
+    // Free-tier RESOURCE_EXHAUSTED is usually a per-minute token/request
+    // ceiling, not a dead key: pace instead of dying. Up to 12 waits of
+    // 70 s per batch; only then treat it as the daily cap and stop (the
+    // per-batch appendToCache means progress is never lost).
+    for (let quotaWait = 0; quotaWait <= 12; quotaWait++) {
+      try {
+        // Let the client resolve openai/gemini itself (env/auto) so the
+        // insufficient_quota → gemini latch applies; only ollama stays an
+        // explicit pin (the client never auto-selects a local model here).
+        embeddings = await embedTexts(
+          batch.map((b) => b.text),
+          backend === 'ollama' ? { backend } : {},
+        )
+        break
+      } catch (err) {
+        const rateQuota =
+          err instanceof EmbedError && err.permanent && /RESOURCE_EXHAUSTED/i.test(err.message)
+        if (rateQuota && quotaWait < 12) {
+          process.stderr.write(
+            `[embed-agent] gemini quota ceiling on batch ${i / BATCH_SIZE + 1} — pausing 70 s (wait ${quotaWait + 1}/12)\n`,
+          )
+          await new Promise((r) => setTimeout(r, 70_000))
+          continue
+        }
+        if (err instanceof EmbedError && err.permanent) {
+          process.stderr.write(
+            `[embed-agent] permanent error (progress kept, re-run to resume): ${err.message}\n`,
+          )
+          process.exit(2)
+        }
+        process.stderr.write(
+          `[embed-agent] batch ${i / BATCH_SIZE + 1} failed: ${(err as Error).message}\n`,
+        )
+        process.exit(1)
       }
-      process.stderr.write(
-        `[embed-agent] batch ${i / BATCH_SIZE + 1} failed: ${(err as Error).message}\n`,
-      )
+    }
+    if (!embeddings) {
+      process.stderr.write('[embed-agent] unreachable: batch loop ended without result\n')
       process.exit(1)
     }
     const now = new Date().toISOString()
