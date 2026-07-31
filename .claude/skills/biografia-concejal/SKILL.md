@@ -11,6 +11,11 @@ editorial value and libel safety live — never skip it, never promote a raw dra
 
 **Input:** the councillor's name or slug (`$ARGUMENTS`). Resolve against
 `public/data/officials.json` first — get exact `slug`, `name`, `party`, `portfolios`.
+NEVER pattern-guess the slug from the acta name: officials slugs drop middle names
+(`alberto-gimeno-calvo`, not `alberto-jose-gimeno-calvo`) and a wrong `--subject-slug`
+silently breaks BOTH the agent's officials enrichment and the /cargos bioReportRoutes
+join (2026-07-31: Gimeno run had to be killed, the assignment slug-fixed via one-shot
+script, the stale draft purged, and the run relaunched).
 
 ## Phase 0 — Prerequisites
 
