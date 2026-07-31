@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T17:45:41.705Z",
+  "generatedAt": "2026-07-31T18:15:15.309Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -239,6 +239,20 @@
       "createdAt": "2026-07-31T17:35:03.856Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T17:42:07.307Z"
+    },
+    {
+      "id": "a-salvador-ferrer-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "salvador-evaristo-ferrer-cortina",
+        "name": "Salvador Evaristo Ferrer Cortina",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de Salvador Evaristo Ferrer Cortina, concejal (PP) en la oposición del Ayuntamiento de Riba-roja de Túria: identidad y formación, trayectoria previa (administración de fincas), elección (candidatura y toma de posesión), papel en la oposición (grupo municipal y comisiones), retribución por asistencias, patrimonio declarado y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T17:46:47.099Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T17:53:22.536Z"
     }
   ]
 }

@@ -1,10 +1,532 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T17:45:41.700Z",
+  "generatedAt": "2026-07-31T18:15:15.305Z",
   "legalNotice": "Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público en github.com/datarhan/civicpulse.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
+    {
+      "id": "r-salvador-ferrer-bio-2026-07-31",
+      "assignmentId": "a-salvador-ferrer-bio",
+      "generatedAt": "2026-07-31T17:53:22.535Z",
+      "agentVersion": "journalist-v1",
+      "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+      "budgetTokens": 0,
+      "costUSD": 0,
+      "sections": [
+        {
+          "kind": "portrait",
+          "payload": {
+            "officialSlug": "salvador-evaristo-ferrer-cortina",
+            "photoPath": "/data/photos/salvador-evaristo-ferrer-cortina.jpg",
+            "partyTone": "intel",
+            "portfolios": [],
+            "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+          }
+        },
+        {
+          "kind": "identity",
+          "payload": {
+            "dateOfBirth": "1985-07-11",
+            "birthplace": "VALENCIA",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Identidad, formación y trayectoria profesional",
+            "bodyMarkdown": "Salvador Evaristo Ferrer Cortina (Valencia, 11 de julio de 1985) es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura registrado como **«(Independiente)»**. Según el CV que publica el portal municipal, es **licenciado en Ciencias Empresariales** por la Universidad de Valencia (2006-2011), **administrador de fincas colegiado** desde 2012 (Colegio de Administradores de Fincas de Valencia y Castellón) y cursa el grado en Derecho a distancia.\n\nSu trayectoria profesional gira en torno a las finanzas y la propiedad: responsable contable en una empresa de transporte (Conver Trade, 2006-2007), asesor hipotecario en UCI/Banco Santander (2007-2011) y, desde 2011, **gerente de su propio despacho de administración de fincas, SF Administradores** — la actividad que consigna, a su nombre, su declaración estatutaria (inicio 01-01-2012).",
+            "sourceIds": [
+              "src-060",
+              "src-073",
+              "src-061",
+              "src-070"
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "De Ciudadanos al Partido Popular: dos mandatos y un cambio de siglas",
+            "bodyMarkdown": "Ferrer es el **único concejal de la oposición con experiencia previa en la corporación**, y su trayectoria cruza dos partidos. En 2019 fue **cabeza de la lista de Ciudadanos (CS)** en Riba-roja (BOP de València n.º 82, 30-04-2019) y, tras las elecciones, la sesión de organización de 25-06-2019 lo constituyó como concejal y **portavoz del Grupo Municipal Ciudadanos** durante el mandato 2019-2023.\n\nEn 2023, sin candidatura de Ciudadanos con representación en el municipio — Cs no figura entre los grupos de la corporación 2023-2027 —, concurrió en el **puesto n.º 4 de la lista del Partido Popular**, registrado como «Independiente», como cinco de los siete miembros del grupo. La sesión constitutiva de 17-06-2023 lo proclamó concejal electo con las credenciales de la Junta Electoral de Zona y prestó juramento o promesa.\n\nEn el mandato actual es titular por su grupo en comisiones informativas — entre ellas la de Gestión Municipal y Gobierno Abierto — y, sin dedicación exclusiva ni parcial, percibe **asistencias** (221,82 € por Pleno; 162,31 € por comisión). Las votaciones plenarias constan a nivel de grupo y las transcripciones no identifican hablantes con fiabilidad, por lo que este medio no le atribuye sentidos de voto individuales.",
+            "sourceIds": [
+              "src-068",
+              "src-067",
+              "src-064",
+              "src-062",
+              "src-063",
+              "src-065",
+              "src-066"
+            ]
+          }
+        },
+        {
+          "kind": "education",
+          "payload": {
+            "items": [
+              {
+                "degree": "Grado en Derecho",
+                "institution": "Universidad a Distancia",
+                "startYear": 2014,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Administrador de Fincas",
+                "institution": "Colegio de Administradores de Fincas de Valencia y Castellón",
+                "endYear": 2012,
+                "sourceIds": [
+                  "src-061"
+                ]
+              },
+              {
+                "degree": "Licenciatura en Ciencias Empresariales",
+                "institution": "Universidad de Valencia",
+                "startYear": 2006,
+                "endYear": 2011,
+                "sourceIds": [
+                  "src-061"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-political",
+          "payload": {
+            "items": [
+              {
+                "role": "Concejal y portavoz del Grupo Municipal Ciudadanos (CS) — cabeza de lista",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2019,
+                "endYear": 2023,
+                "sourceIds": [
+                  "src-068",
+                  "src-067"
+                ]
+              },
+              {
+                "role": "Concejal, n.º 4 de la lista del Grupo Municipal Popular («Independiente»)",
+                "org": "Ayuntamiento de Riba-roja de Túria",
+                "startYear": 2023,
+                "sourceIds": [
+                  "src-062",
+                  "src-063",
+                  "src-064"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "career-professional",
+          "payload": {
+            "items": [
+              {
+                "role": "Administrador de Fincas / Gerente",
+                "org": "SF Administradores",
+                "startYear": 2011,
+                "sourceIds": [
+                  "src-073"
+                ]
+              },
+              {
+                "role": "Asesor Hipotecario",
+                "org": "UCI S.A. - Banco Santander S.A.",
+                "startYear": 2007,
+                "endYear": 2011,
+                "sourceIds": [
+                  "src-073"
+                ]
+              },
+              {
+                "role": "Responsable Contable",
+                "org": "Conver Trade S.L.",
+                "startYear": 2006,
+                "endYear": 2007,
+                "sourceIds": [
+                  "src-073"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "financial",
+          "payload": {
+            "items": [
+              {
+                "year": 2023,
+                "metric": "declared-assets",
+                "amountEuros": 281740,
+                "description": "Activo declarado al tomar posesión (2023): 250.000,00 € en bienes inmuebles + 31.740,00 € en otros bienes = 281.740,00 €; pasivo declarado: 71.000,00 €. Declaración conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+                "sourceIds": [
+                  "src-069",
+                  "src-071"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "business",
+                "description": "Actividad declarada: administrador de fincas por cuenta propia, a su propio nombre («Salvador Ferrer Cortina»), con inicio el 01-01-2012 — el despacho SF Administradores de su CV. Es la única actividad privada de un concejal de la oposición basada en un despacho profesional propio. Sin dedicación municipal, la actividad es compatible con el régimen de asistencias.",
+                "sourceIds": [
+                  "src-070",
+                  "src-073"
+                ]
+              },
+              {
+                "year": 2023,
+                "metric": "salary",
+                "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+                "sourceIds": [
+                  "src-066"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "timeline",
+          "payload": {
+            "events": [
+              {
+                "date": "1985-07-11",
+                "label": "Nace en Valencia (dato de su CV autodeclarado)",
+                "sourceIds": [
+                  "src-060"
+                ]
+              },
+              {
+                "date": "2011-06-30",
+                "label": "Licenciatura en Ciencias Empresariales (Universidad de Valencia, 2006-2011); inicia su despacho SF Administradores",
+                "sourceIds": [
+                  "src-061",
+                  "src-073"
+                ]
+              },
+              {
+                "date": "2012-01-01",
+                "label": "Título de administrador de fincas (Colegio de Valencia y Castellón); alta de su actividad a nombre propio",
+                "sourceIds": [
+                  "src-061",
+                  "src-070"
+                ]
+              },
+              {
+                "date": "2019-04-30",
+                "label": "Cabeza de la lista de Ciudadanos (CS) por Riba-roja (BOP n.º 82)",
+                "sourceIds": [
+                  "src-068"
+                ]
+              },
+              {
+                "date": "2019-06-25",
+                "label": "Constituido concejal y portavoz del Grupo Municipal Ciudadanos (mandato 2019-2023)",
+                "sourceIds": [
+                  "src-067"
+                ]
+              },
+              {
+                "date": "2023-06-17",
+                "label": "Proclamado concejal electo por la lista del PP (n.º 4, «Independiente») y juramento en la sesión constitutiva",
+                "sourceIds": [
+                  "src-062",
+                  "src-063"
+                ]
+              },
+              {
+                "date": "2023-07-07",
+                "label": "Integrado en el Grupo Municipal Popular; titular en comisiones informativas; sin dedicación (asistencias)",
+                "sourceIds": [
+                  "src-064",
+                  "src-065",
+                  "src-066"
+                ]
+              },
+              {
+                "date": "2023-09-05",
+                "label": "Declaración de bienes: activo 281.740,00 € · pasivo 71.000,00 € · actividad de administrador de fincas (BOP n.º 180, 15-09-2023)",
+                "sourceIds": [
+                  "src-069",
+                  "src-070",
+                  "src-071"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "narrative",
+          "payload": {
+            "heading": "Conexiones documentadas y comprobaciones de este medio",
+            "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «FERRER CORTINA» y **0** para «SF Administradores», el despacho de administración de fincas de su actividad declarada. Ni el concejal ni su despacho constan como adjudicatarios del Ayuntamiento.\n\nLímites declarados: la administración de fincas es una actividad privada entre particulares (comunidades de propietarios) que no deja rastro en los registros de contratación pública, de modo que su cartera de clientes no es —ni tiene por qué ser— pública; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+            "sourceIds": [
+              "src-072",
+              "src-070"
+            ]
+          }
+        },
+        {
+          "kind": "relationships",
+          "payload": {
+            "nodes": [
+              {
+                "id": "n1",
+                "label": "Salvador Ferrer Cortina",
+                "tone": "civic",
+                "kind": "person"
+              },
+              {
+                "id": "n2",
+                "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+                "tone": "civic",
+                "kind": "party"
+              },
+              {
+                "id": "n3",
+                "label": "Ciudadanos (CS) — grupo 2019-2023",
+                "tone": "neutral",
+                "kind": "party"
+              },
+              {
+                "id": "n4",
+                "label": "SF Administradores (despacho propio de administración de fincas)",
+                "tone": "intel",
+                "kind": "entity"
+              },
+              {
+                "id": "n5",
+                "label": "Comisión Informativa de Gestión Municipal y Gobierno Abierto",
+                "tone": "neutral",
+                "kind": "entity"
+              }
+            ],
+            "edges": [
+              {
+                "from": "n1",
+                "to": "n3",
+                "relation": "cabeza de lista y portavoz de Ciudadanos, mandato 2019-2023",
+                "sourceIds": [
+                  "src-068",
+                  "src-067"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n2",
+                "relation": "concejal n.º 4 del grupo, registrado «(Independiente)», desde 2023",
+                "sourceIds": [
+                  "src-064"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n4",
+                "relation": "gerente y administrador de fincas a nombre propio desde 2012 (declaración + CV)",
+                "sourceIds": [
+                  "src-070",
+                  "src-073"
+                ]
+              },
+              {
+                "from": "n1",
+                "to": "n5",
+                "relation": "titular por su grupo de la comisión",
+                "sourceIds": [
+                  "src-065"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "kind": "promise-board",
+          "payload": {
+            "promiseIds": [
+              "pp-voto-contra-fondos-dana",
+              "pp-gasto-innecesario-pacadar",
+              "pp-critica-gestion-socialista"
+            ]
+          }
+        },
+        {
+          "kind": "quote-card",
+          "payload": {
+            "verbatim": "Por el Grupo político municipal con la denominación de Ciudadanos Partido de la Ciudadanía (CS)... Siendo su Portavoz: Salvador Evaristo Ferrer Cortina.",
+            "attributedTo": "Acta de la sesión de organización de 25-06-2019 (constitución del Grupo Municipal Ciudadanos)",
+            "date": "2019-06-25",
+            "sourceId": "src-067"
+          }
+        },
+        {
+          "kind": "gaps-detected",
+          "payload": {
+            "missing": [
+              {
+                "field": "Cartera de la administración de fincas",
+                "reason": "Su actividad privada (administrador de fincas, SF Administradores) gestiona comunidades de propietarios: una relación entre particulares que no consta en registros públicos ni deja rastro en la contratación municipal (0 coincidencias en el barrido). Su cartera de clientes no es pública ni tiene por qué serlo."
+              },
+              {
+                "field": "Motivo del cambio de Ciudadanos al PP",
+                "reason": "Los documentos acreditan que fue portavoz de Ciudadanos (2019-2023) y que en 2023 concurrió en la lista del PP como independiente, pero no consta un documento que explique la decisión; Ciudadanos no obtuvo representación en el municipio en 2023, coherente con su declive nacional, pero este medio no atribuye motivación sin fuente."
+              },
+              {
+                "field": "Ingresos por asistencias",
+                "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+              },
+              {
+                "field": "Familia y relaciones personales",
+                "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+              }
+            ]
+          }
+        }
+      ],
+      "sources": [
+        {
+          "id": "src-060",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
+          "title": "CV publicado en el portal municipal — presentación (nacimiento y contacto) (autodeclarado)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "PRESENTACIÓN \n \n11 julio 1985 \nVALENCIA \nsalva@sfadministradores.com",
+          "trust": "medium"
+        },
+        {
+          "id": "src-073",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
+          "title": "CV publicado en el portal municipal — experiencia profesional (SF Administradores, UCI/Santander, Conver Trade) (autodeclarado)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "EXPERIENCIA PROFESIONAL \n \nADMINISTRADOR DE FINCAS • 2011 - ACTUAL• SF ADMINISTRADORES \nGerente en SF administradores, despacho profesional dedicado a la \nadministración de fincas. \n \nASESOR HIPOTECARIO• 2007-2011 • UCI S.A.- BANCO SANTANDER S.A \nAsesoramiento y tramitación de hipotecas en establecimiento \nfinanciero de crédito. Banco Santander y BNP. \n \nRESPONSABLE CONTABLE• 2006-2007 • CONVER TRADE S.L. \nGestión administrativa en empresa de transporte.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-061",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PP-Salvador-Ferrer-Cortina.pdf",
+          "title": "CV publicado en el portal municipal — formación (autodeclarado)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "FORMACIÓN \n \nGRADO • DERECHO • 2014-ACTUAL \nCursando grado en derecho en la Universidad a Distancia. \n \n \nTÍTULO • ADMINISTRADOR DE FINCAS • 2012 \nColegio de administradores de fincas de Valencia y Castellón. \n \n \nLICENCIATURA • CIENCIAS EMPRESARIALES • 2006-2011 \nLicenciatura en la Universidad de Valencia.",
+          "trust": "medium"
+        },
+        {
+          "id": "src-062",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Maria Esther Gomez Laredo\nJose Manuel Vila Oltra\nRaquel Pamblanco Paredes\nAlfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina",
+          "trust": "high"
+        },
+        {
+          "id": "src-063",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+          "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado\n- Alberto Jose Gimeno Calvo\n- David Barbancho Martínez\n- Alfredo Pla Gimenez\n- Raquel Pamblanco Paredes\n- Jose Manuel Vila Oltra\n- Maria Esther Gomez Laredo",
+          "trust": "high"
+        },
+        {
+          "id": "src-064",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Ferrer n.º 4, «(Independiente)»)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+          "trust": "high"
+        },
+        {
+          "id": "src-065",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — Comisión Informativa de Gestión Municipal y Gobierno Abierto: titulares del Grupo Popular",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Soraya Trejo Delgado\nTitular: Dª Mª José Pradas Ramo\n30\nTitular: D. Salvador Evaristo Ferrer Cortina\nSuplente: Cualquier otro Concejal de su grupo político",
+          "trust": "high"
+        },
+        {
+          "id": "src-066",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+          "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+          "trust": "high"
+        },
+        {
+          "id": "src-067",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/6845364/filesGroup/20190625-EXTRA-09-P---INICIO-LEGISLATURA.pdf",
+          "title": "Acta sesión de organización 25-06-2019 — constitución del Grupo Ciudadanos (CS): Ferrer, portavoz",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Por el Grupo político municipal con la denominación de Ciudadanos Partido de la Ciudadanía (CS), son: Salvador Evaristo Ferrer Cortina Mª Teresa Ruiz Vendrell Siendo su Portavoz: Salvador Evaristo Ferrer Cortina Portavoz suplente: Mª Teresa Ruiz Vendrell",
+          "trust": "high"
+        },
+        {
+          "id": "src-068",
+          "kind": "official-doc",
+          "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+          "title": "BOP de València n.º 82, 30-04-2019 — candidatura de Ciudadanos por Riba-roja: Ferrer, cabeza de lista",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "CANDIDATURA NÚM. 5:\nCIUDADANOS-PARTIDO DE LA CIUDADANIA (CS)\nTITULARES\n1. SALVADOR EVARISTO FERRER CORTINA\n2. MARIA TERESA RUIZ VENDRELL\n3. ROSARIO ÍÑIGUEZ POLIT\n4. JOSÉ RUBÉN BALLESTER ARLANDIS\n5. SARA TOLA COLÁS (INDEPENDIENTE)",
+          "trust": "high"
+        },
+        {
+          "id": "src-069",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "SALVADOR EVARISTO FERRER CORTINA 250.000,00 31.740,00 281.740,00 71.000,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+          "trust": "high"
+        },
+        {
+          "id": "src-070",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+          "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "SALVADOR EVARISTO FERRER CORTINA | Administrador de fincas · Salvador Ferrer Cortina · 01/01/2012 — [tabla de actividades por columnas: cargo · entidad (a nombre propio) · fecha de inicio]",
+          "trust": "high"
+        },
+        {
+          "id": "src-071",
+          "kind": "official-doc",
+          "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+          "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+          "trust": "high"
+        },
+        {
+          "id": "src-072",
+          "kind": "local-snapshot",
+          "url": "https://www.civicpulse.es/data/tenders.json",
+          "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+          "retrievedAt": "2026-07-31T18:14:46.881Z",
+          "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «FERRER CORTINA» y 0 para «SF ADMINISTRADORES» (el despacho de su actividad declarada de administración de fincas).",
+          "localPath": "public/data/tenders.json",
+          "trust": "high"
+        }
+      ],
+      "warnings": [
+        "Los datos biográficos y profesionales (nacimiento, titulaciones, despacho SF Administradores) proceden del CV autodeclarado del portal municipal; la declaración estatutaria corrobora la actividad de administrador de fincas (inicio 01-01-2012).",
+        "El paso de Ciudadanos al PP se documenta con hechos (portavoz de Cs 2019-2023 por acta; n.º 4 del PP en 2023 por acta y BOP); este medio no atribuye motivación a esa decisión.",
+        "Las votaciones plenarias constan a nivel de grupo y las transcripciones no identifican hablantes con fiabilidad: este perfil no atribuye al concejal sentidos de voto ni intervenciones individuales."
+      ],
+      "legalSensitivity": "medium",
+      "promotedBy": "Sergei Lutchenko",
+      "promotedAt": "2026-07-31T18:15:15.297Z",
+      "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente (11 secciones) sometido al pase forense. CV primario parseado (nacido 11-07-1985 València; Lic. Ciencias Empresariales UV 2006-2011; administrador de fincas colegiado 2012; grado Derecho a distancia en curso; SF Administradores gerente 2011-actual; asesor hipotecario UCI/Santander 2007-2011; responsable contable Conver Trade 2006-2007). ARCO POLÍTICO CENTRAL VERIFICADO en dos mandatos: en 2019 cabeza de lista de CIUDADANOS (BOP n.º 82, bloque de Riba-roja) → concejal y PORTAVOZ del Grupo Ciudadanos 2019-2023 (acta organización 25-06-2019, ventana verbatim del bloque CS + «Siendo su Portavoz: Salvador Evaristo Ferrer Cortina»); en 2023 concurre n.º 4 de la lista del PP «(Independiente)» (Cs sin grupo en la corporación 2023-2027) → electo + juramento + comisión de Gestión Municipal + asistencias. Único concejal de la oposición con experiencia previa. Declaración verificada contra PDF + render: activo 281.740,00 € (250.000 inmuebles + 31.740 otros), pasivo 71.000 €; actividad de administrador de fincas a NOMBRE PROPIO («Salvador Ferrer Cortina», 01/01/2012). Barrido: 0 «FERRER CORTINA» y 0 «SF Administradores» en adjudicatarios; laguna honesta sobre la cartera privada de comunidades (relación entre particulares, no pública). Advertencias del verificador adjudicadas: identity/career repuntadas al CV real en disco (dividido en presentación src-060 + experiencia src-073 por el tope de 500 char); quote-card «Salvador Ferrer. A favor.» (src-031, sin excerpt) SUSTITUIDA por el verbatim de la constitución del grupo Cs 2019; «en la oposición inferido» documentado. NO se menciona a Mª Inmaculada Ferrer Cortina (suplente Cs 2019, misma coincidencia de apellidos): adyacencia de apellido ≠ parentesco, sin documento no se publica.",
+      "corrections": [],
+      "response": null
+    },
     {
       "id": "r-mjose-pradas-bio-2026-07-31",
       "assignmentId": "a-mjose-pradas-bio",
