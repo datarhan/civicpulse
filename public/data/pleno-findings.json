@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-30T08:04:54.557Z",
+  "generatedAt": "2026-07-31T08:10:07.938Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -3090,6 +3090,63 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-30",
+      "response": null
+    },
+    {
+      "id": "f-2025-07-31-acu-144947",
+      "plenoId": "rmtyr",
+      "plenoDate": "2025-07-31",
+      "title": "Debate fiscal en el pleno del 2025-07-31: el PP y Compromís señalan discrepancias sobre el presupuesto de 2024",
+      "summary": "En la sesión del 2025-07-31, el PP señala retrasos en la aprobación del presupuesto y afirma haber recurrido a entidades provinciales para reclamar fondos de 2024. Por su parte, Compromís manifiesta que sus propuestas presupuestarias para dicho ejercicio no fueron atendidas. El debate coincide con gestiones provinciales reflejadas en el contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Conso.",
+      "severity": "informational",
+      "sourceClaimIds": [
+        "rmtyr-141-acu-144947",
+        "rmtyr-021-acu-e0e848",
+        "rmtyr-189-acu-61aa87"
+      ],
+      "quotes": [
+        {
+          "text": "les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo.",
+          "speakerGroup": "PP",
+          "sourceClaimId": "rmtyr-141-acu-144947"
+        },
+        {
+          "text": "hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024",
+          "speakerGroup": "PP",
+          "sourceClaimId": "rmtyr-021-acu-e0e848"
+        },
+        {
+          "text": "nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024",
+          "speakerGroup": "Compromís",
+          "sourceClaimId": "rmtyr-189-acu-61aa87"
+        }
+      ],
+      "corroboration": [
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
+          "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adh…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
+          "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relati…"
+        },
+        {
+          "kind": "tender",
+          "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
+          "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de…"
+        },
+        {
+          "kind": "pleno-video",
+          "ref": "https://www.youtube.com/watch?v=hiZ6YplwNzA",
+          "snippet": "Vídeo del pleno 2025-07-31 · YouTube"
+        }
+      ],
+      "contradiction": [],
+      "relatedPromiseIds": [],
+      "curatorName": "auto-curation-v1",
+      "publishedAt": "2026-07-31",
       "response": null
     }
   ]
