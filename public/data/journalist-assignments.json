@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T07:25:52.974Z",
+  "generatedAt": "2026-07-31T07:45:50.681Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -99,6 +99,20 @@
       "createdAt": "2026-07-31T07:12:41.806Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T07:21:29.166Z"
+    },
+    {
+      "id": "a-jose-angel-hernandez-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "jose-angel-hernandez-carrizosa",
+        "name": "José Ángel Hernández Carrizosa",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de José Ángel Hernández Carrizosa, concejal (PSOE) de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento y Comercio, Tercer Teniente de Alcalde en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T07:32:54.145Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T07:41:40.871Z"
     }
   ]
 }

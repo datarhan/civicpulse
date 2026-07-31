@@ -1,0 +1,664 @@
+{
+  "id": "r-jose-angel-hernandez-bio-2026-07-31",
+  "assignmentId": "a-jose-angel-hernandez-bio",
+  "generatedAt": "2026-07-31T07:41:40.871Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "jose-angel-hernandez-carrizosa",
+        "photoPath": "/data/photos/jose-angel-hernandez-carrizosa.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Administración y Servicios Generales",
+          "Compra Pública",
+          "Recursos Humanos",
+          "Finanzas públicas y recaudación",
+          "Fomento económico",
+          "Empleo y Emprendimiento",
+          "y Comercio"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1971-09-22",
+        "birthplace": "València",
+        "sourceIds": [
+          "src-061"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y trayectoria pública",
+        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, José Ángel Hernández Carrizosa nació el 22 de septiembre de 1971 en Valencia y reside en Riba-roja de Túria. El mismo currículum autodeclarado recoge su formación en administración y finanzas (Grado Superior, FPII) y en dirección y gestión económico-financiera (Escuela de Negocios Lluís Vives de la Cámara de Comercio de Valencia), y una trayectoria profesional en el sector privado: auxiliar y administrativo en Vilarsal SL (1990-1999), administrativo en Artículos de Carpintería Moreno SL (1999-2005), controller financiero en Grupo Serratable SL (2005-2009) y administrador solidario de Nexo Nivel SL (2008-2015).\n\nSu vinculación política municipal cuenta además con constancia documental independiente: el acta del pleno ordinario del 10 de marzo de 2010 lo recoge entre los concejales asistentes de la corporación 2007-2011, presidida por Francisco Tarazona.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063",
+          "src-064"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "José Ángel Hernández Carrizosa fue proclamado concejal electo en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número cuatro del grupo municipal socialista y portavoz suplente; una resolución de Alcaldía lo nombró Tercer Teniente de Alcalde y consta como tercer miembro de la Junta de Gobierno Local; y el punto 4 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación y Fomento económico y emprendimiento». El registro municipal vigente añade hoy Comercio a sus áreas — la misma área que el decreto de 2023 asignaba al Segundo Teniente de Alcalde, reflejo de la variación de delegaciones durante el mandato. El acuerdo de régimen económico de la misma sesión fijó su dedicación exclusiva en 43.067,36 euros anuales.",
+        "sourceIds": [
+          "src-065",
+          "src-066",
+          "src-067",
+          "src-006",
+          "src-068",
+          "src-069",
+          "src-070",
+          "src-071",
+          "src-072",
+          "src-001",
+          "src-005"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Cargos, portafolios y retribución",
+        "bodyMarkdown": "Hernández Carrizosa ostenta las concejalías de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio, además del cargo de Tercer Teniente de Alcalde. El Pleno del Ayuntamiento, en el acuerdo de fijación del régimen económico de los concejales de 7 de julio de 2023 (Expediente 4533/2023/GEN), fijó su dedicación exclusiva en 43.067,36 euros anuales para el desempeño de dicho cargo.",
+        "sourceIds": [
+          "src-001",
+          "src-005"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Actividad plenaria",
+        "bodyMarkdown": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal y sobre el plan de rehabilitación de vivienda conocido como 'Edifican Heredado'.",
+        "sourceIds": [
+          "src-022",
+          "src-024",
+          "src-032",
+          "src-033"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge una única actividad: la concejalía, con inicio consignado el 14 de junio de 2019. No declara ninguna actividad empresarial vigente.\n\nEn el apartado de bienes declara un activo de 40.333,43 euros —18.898,55 euros en bienes inmuebles por valor catastral y 21.434,88 euros en otros bienes— y un pasivo de 53.201,23 euros, que supera al activo declarado. Es uno de los patrimonios más bajos declarados en la corporación.",
+        "sourceIds": [
+          "src-073",
+          "src-074"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Las conexiones de José Ángel Hernández Carrizosa que constan en documentos públicos son de naturaleza político-administrativa: número cuatro y portavoz suplente del grupo municipal socialista, Tercer Teniente de Alcalde, tercer miembro de la Junta de Gobierno Local y titular de las áreas que le delegó el decreto del alcalde Roberto Raga — entre ellas, la propia Compra Pública municipal.\n\nPrecisamente por esa responsabilidad, esta redacción ha cruzado sus apellidos y las cuatro sociedades donde trabajó según su CV con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Nexo Nivel SL —de la que fue administrador solidario hasta 2015—, ni Grupo Serratable SL, ni Artículos de Carpintería Moreno SL, ni Vilarsal SL constan como adjudicatarias ni licitadoras.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "sourceIds": [
+          "src-075",
+          "src-062",
+          "src-063"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Grado Superior de Administración y Finanzas (FPII Administrativa y Comercial)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "degree": "Dirección y Gestión Económico-Financiera",
+            "institution": "Escuela de Negocios Lluís Vives — Cámara Oficial de Comercio de Valencia",
+            "sourceIds": [
+              "src-060"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejal — consta en el acta del pleno de 10-03-2010 (corporación 2007-2011)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2010,
+            "endYear": 2010,
+            "sourceIds": [
+              "src-064"
+            ]
+          },
+          {
+            "role": "Concejal (inicio consignado en su declaración estatutaria: 14/06/2019)",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2019,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-074"
+            ]
+          },
+          {
+            "role": "Concejal · Tercer Teniente de Alcalde — Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento y Comercio",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-001",
+              "src-070",
+              "src-071"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Auxiliar administrativo y administrativo",
+            "org": "Vilarsal SL",
+            "startYear": 1990,
+            "endYear": 1999,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Administrativo",
+            "org": "Artículos de Carpintería Moreno SL",
+            "startYear": 1999,
+            "endYear": 2005,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Controller financiero",
+            "org": "Grupo Serratable SL",
+            "startYear": 2005,
+            "endYear": 2009,
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "role": "Administrador solidario",
+            "org": "Nexo Nivel SL",
+            "startYear": 2008,
+            "endYear": 2015,
+            "sourceIds": [
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "salary",
+            "amountEuros": 43067.36,
+            "description": "3er Teniente de Alcalde (Administración, RR. HH., Hacienda y Fomento) — dedicación exclusiva, retribución anual fijada por Acuerdo del Pleno de 07/07/2023 (Expediente 4533/2023/GEN)",
+            "sourceIds": [
+              "src-005"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 40333.43,
+            "description": "Activo declarado al tomar posesión (2023): 18.898,55 € en bienes inmuebles (valor catastral) + 21.434,88 € en otros bienes; pasivo declarado: 53.201,23 € — el pasivo declarado supera al activo. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN).",
+            "sourceIds": [
+              "src-073"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial vigente declarada: su declaración de 2023 recoge únicamente la concejalía (inicio consignado el 14/06/2019). Según su CV, su administración solidaria de Nexo Nivel SL concluyó en 2015.",
+            "sourceIds": [
+              "src-074",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1971-09-22",
+            "label": "Nace en Valencia (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "date": "2010-03-10",
+            "label": "Consta como concejal del Ayuntamiento de Riba-roja de Túria en acta de pleno ordinario",
+            "sourceIds": [
+              "src-007",
+              "src-064"
+            ]
+          },
+          {
+            "date": "2023-05-28",
+            "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+            "sourceIds": [
+              "src-006"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo; toma posesión en la sesión constitutiva de la corporación",
+            "sourceIds": [
+              "src-065",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "El Pleno fija su dedicación exclusiva como 3er Teniente de Alcalde en 43.067,36 €/año (Expte. 4533/2023/GEN)",
+            "sourceIds": [
+              "src-005"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Nombrado Tercer Teniente de Alcalde y portavoz suplente; el decreto de áreas le delega Administración, Compra Pública, RR. HH., Finanzas y Fomento",
+            "sourceIds": [
+              "src-069",
+              "src-070",
+              "src-071"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "José Ángel Hernández Carrizosa",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "PSOE",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Roberto Raga Gadea",
+            "tone": "neutral",
+            "kind": "person"
+          },
+          {
+            "id": "n4",
+            "label": "Junta de Gobierno Local",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal por",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "tercer miembro de su composición",
+            "sourceIds": [
+              "src-072"
+            ]
+          },
+          {
+            "from": "n3",
+            "to": "n1",
+            "relation": "lo nombró Tercer Teniente de Alcalde y le delegó sus áreas (07-07-2023)",
+            "sourceIds": [
+              "src-070",
+              "src-071"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "portavoz suplente del grupo municipal",
+            "sourceIds": [
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-refugios-climaticos-2026",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-espai-obert-presupuesto",
+          "psoe-alumbrado-led-680k",
+          "psoe-metro-l9-agosto",
+          "psoe-respuesta-quejas-sector-14-48h",
+          "psoe-reduce-concejales-dedicacion-exclusiva",
+          "ac-psoe-1cbkzxt",
+          "ac-psoe-1v0679f",
+          "ac-psoe-jfg7bc",
+          "ac-psoe-1ah9zqk",
+          "ac-psoe-pl3lsq",
+          "ac-psoe-ppa53a",
+          "ac-psoe-1m04lfw",
+          "ac-psoe-sysee8"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delega en el Tercer Teniente de Alcalde, D. José Ángel Hernández Carrizosa, las competencias que al Alcalde le corresponden en materia de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación y Fomento económico y emprendimiento.",
+        "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria",
+        "date": "2023-07-07",
+        "sourceId": "src-071"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Identidad y formación",
+            "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Trayectoria profesional declarada",
+            "reason": "Las etapas en Vilarsal SL, Artículos de Carpintería Moreno SL, Grupo Serratable SL y Nexo Nivel SL proceden solo de su CV autodeclarado; el Registro Mercantil no se ha consultado de forma independiente."
+          },
+          {
+            "field": "Trayectoria política 2011-2019",
+            "reason": "Consta como concejal en 2010 (acta independiente) y desde el 14/06/2019 (declaración estatutaria); las fuentes consultadas no permiten determinar su actividad política entre ambos hitos."
+          },
+          {
+            "field": "Vínculos societarios y personales",
+            "reason": "Su declaración de 2023 no recoge actividad empresarial vigente. Las comprobaciones nominales (804 contratos, incluidas las cuatro sociedades de su CV) no arrojaron coincidencia alguna; las relaciones personales no constan en fuentes públicas."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — José Ángel Hernández Carrizosa",
+      "retrievedAt": "2026-07-31T07:34:06.576Z",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación, Fomento económico, Empleo y Emprendimiento, y Comercio",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-005",
+      "kind": "local-snapshot",
+      "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+      "retrievedAt": "2026-07-31T07:34:12.679Z",
+      "excerpt": "3er Teniente de Alcalde · Administración, RR. HH., Hacienda y Fomento: dedicación exclusiva, 43.067,36 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+      "localPath": "public/data/dedicaciones.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-006",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T07:34:12.680Z",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+      "localPath": "public/data/elections.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7238980/filesGroup/Pleno20100310.pdf",
+      "title": "acta sesion ordinaria celebrada por el ayuntamiento pleno",
+      "retrievedAt": "2026-07-31T07:34:13.378Z",
+      "excerpt": "10 mar 2010 ... Don JOSE ANGEL HERNÁNDEZ CARRIZOSA. Doña ANA LUJAN. Doña CARMEN ... Atienza por sus 29 años de trayectoria musical, llevando su música y el nombre ...",
+      "trust": "high"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/qz6weg.txt · semantic",
+      "retrievedAt": "2026-07-31T07:34:16.519Z",
+      "excerpt": "[11670.0 → 11700.0] Así se están trabajando todos los días, y trabajan para ser autónomos, para ser autónomos en los que hacemos el buen comercio, en los planes que hacemos, en el voto en contra del Partido Popular. Que ",
+      "localPath": "public/data/pleno-transcripts/qz6weg.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1qi8axv.txt · semantic",
+      "retrievedAt": "2026-07-31T07:34:16.519Z",
+      "excerpt": "[3900.0 → 3930.0] Gracias Gracias José Ángel Bueno, decir que creo que ha explicado perfectamente José Ángel los puntos el llevarlo ahora creo que también ha quedado claro para que no distorsionar aquellos vecinos que no",
+      "localPath": "public/data/pleno-transcripts/1qi8axv.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-034-afi-199709 · 2026-07-06 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T07:34:17.305Z",
+      "excerpt": "En un incremento de 130.000 euros, Seguridad Social incluida",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T07:34:17.305Z",
+      "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250818-CURRICULUM-JOSE769-A769NGEL-HERNA769NDEZ.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — José Ángel Hernández Carrizosa · formación",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "FORMACIÓN Grado Superior de Administración y Finanzas (Anterior Técnico Especialista FPII Administrativa y Comercial). Dirección y Gestión Económico Financiera en la Escuela de Negocios Lluís Vives de la Cámara Oficial de Comercio de Valencia.",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250818-CURRICULUM-JOSE769-A769NGEL-HERNA769NDEZ.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — José Ángel Hernández Carrizosa · identidad",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "PRESENTACIÓN 22 septiembre 1971 Valencia RIBA-ROJA DE TÚRIA jahernandez@ribarroja.es",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250818-CURRICULUM-JOSE769-A769NGEL-HERNA769NDEZ.pdf",
+      "title": "CV autodeclarado — experiencia (Nexo Nivel SL, Grupo Serratable SL)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "EXPERIENCIA PROFESIONAL Nexo Nivel, S.L. Administrador solidario de la Sociedad entre 2008 – 2015 Grupo Serratable, S.L. Controller Financiero 2005 - 2009",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/20250818-CURRICULUM-JOSE769-A769NGEL-HERNA769NDEZ.pdf",
+      "title": "CV autodeclarado — experiencia (Carpintería Moreno SL, Vilarsal SL)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "Artículos de Carpintería Moreno, S.L. Administrativo 1999 – 2005 Vilarsal, S.L. Auxiliar Administrativo, Administrativo 1990 - 1999",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/7238980/filesGroup/Pleno20100310.pdf",
+      "title": "Acta del pleno ordinario de 10-03-2010 · concejales asistentes (corporación 2007-2011)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "CONCEJALES ASISTENTES: Don SALVADOR SILVESTRE LARREA Don JAVIER MORENO COLL Doña MARÍA CRISTINA VÁZQUEZ TARAZONA Doña MARÍA JOSE RUIZ ESTEBAN Doña MARÍA DOLORES RODRÍGUEZ ROMERO. Don JOSE VICENTE TARAZONA CAMPOS Doña BEÁTRIZ CÓRCOLES NAVARRO Don JOSE LUIS FOLGADO CORREA Doña RAQUEL ARGÁNDOÑA LOPEZ Don ROBERTO PASCUAL RAGA GADEA Doña MARÍA ANGELES ROSA ROMERO Doña SILVIA GUERRERO CANOVAS Don JOSE ANGEL HERNÁNDEZ CARRIZOSA.",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · proclamación de electos",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · juramento o promesa",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva · toma de posesión (lista con el sujeto)",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "- Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March - Maria Teresa Pozuelo Martin - Roberto Pascual Raga Gadea",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente)",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · portavoz y suplentes del grupo",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "Siendo su Portavoz: Doña María Teresa Pozuelo Martín Portavoz suplente: José Ángel Hernández Carrizosa Portavoz suplente: Don José Luis Ramos March",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-070",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · tenencias de alcaldía",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "6 PRIMERO.- Nombrar como titulares de las Tenencias de Alcaldía a los siguientes concejales: Primer Teniente de Alcalde: Teresa Pozuelo Martín. Segundo Teniente de Alcalde: José Luis Ramos March. Tercer Teniente de Alcalde: José Ángel Hernández Carrizosa.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-071",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 4)",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "4. Se delega en el Tercer Teniente de Alcalde, D. José Ángel Hernández Carrizosa, las competencias que al Alcalde le corresponden en materia de Administración y Servicios Generales, Compra Pública, Recursos Humanos, Finanzas públicas y recaudación y Fomento económico y emprendimiento.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-072",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · composición de la Junta de Gobierno Local",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "TERCERO.- En virtud de lo anteriormente dispuesto la composición de la Junta queda conformada por los siguientes miembros: Alcalde-Presidente: D. Roberto Pascual Raga Gadea. 1. Dª Mª Teresa Pozuelo Martín 21 2. D. José Luís Ramos March 3. D. José Ángel Hernández Carrizosa",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-073",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "ConcejaL JOSE LUIS RAMOS MARCH 265.175,68 257.960,00 523.135,68 0,00 Concejal JOSE ANGEL HERNANDEZ CARRIZOSA 18.898,55 21.434,88 40.333,43 53.201,23",
+      "trust": "high"
+    },
+    {
+      "id": "src-074",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "JOSE LUIS RAMOS MARCH Pensionista Pensionista JOSE ANGEL HERNANDEZ CARRIZOSA Concejal Ayuntamiento Riba-roja de Túria 14/06/2019 EVA LARA CATALÁ Profesora IES el Quint 00/09/2008",
+      "trust": "high"
+    },
+    {
+      "id": "src-075",
+      "kind": "local-snapshot",
+      "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+      "retrievedAt": "2026-07-31T07:45:31.798Z",
+      "excerpt": "804 contratos adjudicados examinados: ningún adjudicatario coincide con «Hernández Carrizosa». Las cuatro sociedades donde trabajó según su CV — Nexo Nivel SL (administrador solidario 2008-2015), Grupo Serratable SL, Artículos de Carpintería Moreno SL y Vilarsal SL — no constan como adjudicatarias ni licitadoras. Corpus completo desde julio de 2023 (su delegación incluye Compra Pública): 282 contratos, 55% con un solo licitador, 20% menores.",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "Los datos de identidad, formación y trayectoria profesional proceden del CV autodeclarado del propio concejal publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "La ficha CV en PDF existe en el portal con el nombre de archivo corrupto por la codificación de acentos (…HERNA769NDEZ.pdf), que el agente no localizó automáticamente; fue verificada e integrada manualmente por el curador."
+  ],
+  "legalSensitivity": "medium",
+  "promotedBy": "Sergei Lutchenko",
+  "promotedAt": "2026-07-31T07:45:50.673Z",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV SÍ existe con el nombre de archivo corrupto por acentos (…HERNA769NDEZ.pdf) — descargada, verificada e integrada manualmente (nacido 22-09-1971 en Valencia; FPII Administración y Finanzas + Escuela de Negocios Lluís Vives; Vilarsal SL, Carpintería Moreno SL, Grupo Serratable SL y ADMINISTRADOR SOLIDARIO de Nexo Nivel SL 2008-2015). La afirmación «concejal en 2010» del borrador VERIFICADA contra el acta íntegra del pleno de 10-03-2010: figura en la lista de CONCEJALES ASISTENTES de la corporación 2007-2011 (alcalde Francisco Tarazona) — constancia INDEPENDIENTE, no autodeclarada; laguna honesta para el tramo 2011-2019. Cadena de nombramiento con ventanas literales: electo+posesión, número cuatro y portavoz suplente, Tercera Tenencia, tercer miembro de la JGL, punto 4 del decreto de áreas; la incorporación posterior de Comercio (que el decreto asignaba al Segundo Teniente) cruza con la variación documentada en el informe de Ramos March. Declaración estatutaria: activo 40.333,43 € (de los más bajos) con pasivo 53.201,23 € superior al activo; sin actividad empresarial vigente. COMPROBACIÓN CLAVE (su delegación incluye Compra Pública): ninguna de las cuatro sociedades de su CV consta como adjudicataria ni licitadora en los 804 contratos; 0 adjudicatarios con sus apellidos. 9 de las 11 advertencias del verificador eliminadas por comprobablemente falsas (los extractos SÍ constan; «1985» es el año de la Ley 7/1985); citas literales sustituidas por el decreto verbatim (una era transcripción con errores de Whisper: «Edifican Heredado» por «Pla Edificant»).",
+  "corrections": [],
+  "response": null
+}
