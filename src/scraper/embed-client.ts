@@ -53,6 +53,28 @@ export function _resetEmbedQuotaStateForTests(): void {
   openaiQuotaExhausted = false
 }
 
+/**
+ * Resolved embedder identity for cache compatibility markers. Equal
+ * dimensionality does NOT imply comparable vectors (nomic-768 and
+ * gemini-768 are different spaces), so corpus caches must be keyed by
+ * backend:model:dim, not dim alone.
+ */
+export function describeActiveEmbedder(opts: EmbedOptions = {}): {
+  backend: EmbedBackend
+  model: string
+  dim: number
+} {
+  const backend = selectBackend(opts)
+  if (backend === 'gemini') return { backend, model: GEMINI_MODEL, dim: GEMINI_DIM }
+  if (backend === 'ollama')
+    return {
+      backend,
+      model: process.env.OLLAMA_EMBED_MODEL ?? OLLAMA_MODEL,
+      dim: 0, // discovered at call time
+    }
+  return { backend, model: OPENAI_MODEL, dim: OPENAI_DIM }
+}
+
 const OPENAI_MODEL = 'text-embedding-3-small'
 const OPENAI_DIM = 1536
 // text-embedding-004 was retired by Google (404 as of 2026-07); the stable

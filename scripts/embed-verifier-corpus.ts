@@ -39,7 +39,7 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { dirname, resolve } from 'node:path'
-import { embedTexts, EmbedError } from '../src/scraper/embed-client'
+import { describeActiveEmbedder, embedTexts, EmbedError } from '../src/scraper/embed-client'
 import type { CorpusRow } from '../src/scraper/semantic-shortlist'
 
 const DATA_DIR = resolve('public/data')
@@ -328,15 +328,27 @@ async function main() {
     process.stderr.write(`[embed] probe failed: ${(err as Error).message}\n`)
     process.exit(2)
   }
+  // Model-identity marker: equal dims do NOT imply comparable vectors
+  // (nomic-768 vs gemini-768 are different spaces) — key the cache by
+  // backend:model:dim; any mismatch or a legacy no-marker cache forces a
+  // full rebuild.
+  const active = describeActiveEmbedder(backend === 'ollama' ? { backend } : {})
+  const marker = `${active.backend}:${active.model}:${runDim}`
+  const markerFile = `${CACHE_FILE}.model`
+  const prevMarker = existsSync(markerFile) ? readFileSync(markerFile, 'utf8').trim() : null
   const cachedDim = keptRows[0]?.embedding.length
-  if (cachedDim !== undefined && cachedDim !== runDim) {
+  const dimMismatch = cachedDim !== undefined && cachedDim !== runDim
+  const modelMismatch = keptRows.length > 0 && prevMarker !== marker
+  if (dimMismatch || modelMismatch) {
     process.stdout.write(
-      `[embed] cache dim ${cachedDim} ≠ active dim ${runDim} (backend switch or quota fallback) → full rebuild\n`,
+      `[embed] cache marker «${prevMarker ?? 'none'}» ≠ active «${marker}» → full rebuild\n`,
     )
     keptRows.length = 0
     toEmbed.length = 0
     for (const p of pending) toEmbed.push(p)
   }
+  mkdirSync(CACHE_DIR, { recursive: true })
+  writeFileSync(markerFile, `${marker}\n`, 'utf8')
 
   // Re-write cache with kept rows, then append new embeddings as we go.
   writeCache(keptRows)

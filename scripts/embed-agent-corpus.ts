@@ -28,7 +28,7 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
-import { embedTexts, EmbedError } from '../src/scraper/embed-client'
+import { describeActiveEmbedder, embedTexts, EmbedError } from '../src/scraper/embed-client'
 import {
   buildAgentCorpusTexts,
   loadAgentCorpus,
@@ -185,15 +185,27 @@ async function main() {
     process.stderr.write(`[embed-agent] probe failed: ${(err as Error).message}\n`)
     process.exit(2)
   }
+  // Model-identity marker: equal dims do NOT imply comparable vectors
+  // (nomic-768 vs gemini-768 are different spaces), so the cache is keyed
+  // by backend:model:dim in a sidecar; any mismatch — or a legacy cache
+  // without a marker — forces a full rebuild.
+  const active = describeActiveEmbedder(backend === 'ollama' ? { backend } : {})
+  const marker = `${active.backend}:${active.model}:${runDim}`
+  const markerFile = `${CACHE_FILE}.model`
+  const prevMarker = existsSync(markerFile) ? readFileSync(markerFile, 'utf8').trim() : null
   const cachedDim = keptRows[0]?.embedding.length
-  if (cachedDim !== undefined && cachedDim !== runDim) {
+  const dimMismatch = cachedDim !== undefined && cachedDim !== runDim
+  const modelMismatch = keptRows.length > 0 && prevMarker !== marker
+  if (dimMismatch || modelMismatch) {
     process.stdout.write(
-      `[embed-agent] cache dim ${cachedDim} ≠ active dim ${runDim} (backend switch or quota fallback) → full rebuild\n`,
+      `[embed-agent] cache marker «${prevMarker ?? 'none'}» ≠ active «${marker}» → full rebuild\n`,
     )
     keptRows.length = 0
     toEmbed.length = 0
     for (const p of pending) toEmbed.push(p)
   }
+  mkdirSync(dirname(CACHE_FILE), { recursive: true })
+  writeFileSync(markerFile, `${marker}\n`, 'utf8')
 
   writeCache(keptRows)
   let flushed = 0
