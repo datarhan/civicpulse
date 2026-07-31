@@ -84,7 +84,7 @@
       "kind": "narrative",
       "payload": {
         "heading": "Actividad plenaria",
-        "bodyMarkdown": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal y sobre el plan de rehabilitación de vivienda conocido como 'Edifican Heredado'.",
+        "bodyMarkdown": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal, con la presidencia dándole la palabra de forma nominal en la transcripción.",
         "sourceIds": [
           "src-022",
           "src-024",
@@ -659,6 +659,15 @@
   "promotedBy": "Sergei Lutchenko",
   "promotedAt": "2026-07-31T07:45:50.673Z",
   "curatorNotes": "REVISIÓN DE CURADURÍA 2026-07-31 (previa a la promoción): la ficha CV SÍ existe con el nombre de archivo corrupto por acentos (…HERNA769NDEZ.pdf) — descargada, verificada e integrada manualmente (nacido 22-09-1971 en Valencia; FPII Administración y Finanzas + Escuela de Negocios Lluís Vives; Vilarsal SL, Carpintería Moreno SL, Grupo Serratable SL y ADMINISTRADOR SOLIDARIO de Nexo Nivel SL 2008-2015). La afirmación «concejal en 2010» del borrador VERIFICADA contra el acta íntegra del pleno de 10-03-2010: figura en la lista de CONCEJALES ASISTENTES de la corporación 2007-2011 (alcalde Francisco Tarazona) — constancia INDEPENDIENTE, no autodeclarada; laguna honesta para el tramo 2011-2019. Cadena de nombramiento con ventanas literales: electo+posesión, número cuatro y portavoz suplente, Tercera Tenencia, tercer miembro de la JGL, punto 4 del decreto de áreas; la incorporación posterior de Comercio (que el decreto asignaba al Segundo Teniente) cruza con la variación documentada en el informe de Ramos March. Declaración estatutaria: activo 40.333,43 € (de los más bajos) con pasivo 53.201,23 € superior al activo; sin actividad empresarial vigente. COMPROBACIÓN CLAVE (su delegación incluye Compra Pública): ninguna de las cuatro sociedades de su CV consta como adjudicataria ni licitadora en los 804 contratos; 0 adjudicatarios con sus apellidos. 9 de las 11 advertencias del verificador eliminadas por comprobablemente falsas (los extractos SÍ constan; «1985» es el año de la Ley 7/1985); citas literales sustituidas por el decreto verbatim (una era transcripción con errores de Whisper: «Edifican Heredado» por «Pla Edificant»).",
-  "corrections": [],
+  "corrections": [
+    {
+      "field": "narrative.Actividad plenaria.bodyMarkdown",
+      "original": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal y sobre el plan de rehabilitación de vivienda conocido como 'Edifican Heredado'.",
+      "corrected": "En su ámbito de responsabilidad sobre Fomento económico, Empleo y Comercio, Hernández Carrizosa ha intervenido en debates plenarios sobre políticas de apoyo al comercio local y a los autónomos. Otros concejales han hecho referencia en sesión plenaria a sus intervenciones explicativas sobre puntos del orden del día. En sesiones recientes se han registrado intervenciones suyas sobre cuestiones presupuestarias de personal, con la presidencia dándole la palabra de forma nominal en la transcripción.",
+      "reason": "La cláusula sobre el «plan de rehabilitación de vivienda conocido como 'Edifican Heredado'» se retira: «Edifican Heredado» es un error de la transcripción automática por «Pla Edificant», que además no es un plan de vivienda sino el programa autonómico de infraestructuras educativas (así lo recoge la propia transcripción citada), y la atribución de esa intervención al concejal no queda acreditada en la ventana citada.",
+      "editor": "Sergei Lutchenko",
+      "correctedAt": "2026-07-31"
+    }
+  ],
   "response": null
 }
