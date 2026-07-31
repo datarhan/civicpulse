@@ -1,0 +1,1058 @@
+{
+  "id": "r-esther-gomez-bio-2026-07-31",
+  "assignmentId": "a-esther-gomez-bio",
+  "generatedAt": "2026-07-31T10:30:33.844Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "maria-esther-gomez-laredo",
+        "photoPath": "/data/photos/maria-esther-gomez-laredo.jpg",
+        "partyTone": "civic",
+        "portfolios": [
+          "Participación y transparencia",
+          "Atención a la ciudadanía",
+          "Turismo y patrimonio histórico",
+          "Promoción de la Salud e Infraestructuras sanitarias"
+        ],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "identity",
+      "payload": {
+        "dateOfBirth": "1965-03-24",
+        "birthplace": "València",
+        "sourceIds": [
+          "src-060"
+        ]
+      }
+    },
+    {
+      "kind": "education",
+      "payload": {
+        "items": [
+          {
+            "degree": "Licenciatura en Informática de Gestión",
+            "institution": "Universidad de Deusto",
+            "endYear": 1988,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Máster European Investment Practitioner (EIP)",
+            "institution": "Universidad Internacional de València",
+            "endYear": 2018,
+            "sourceIds": [
+              "src-061"
+            ]
+          },
+          {
+            "degree": "Formación aseguradora (OBS, módulos general y específicos)",
+            "institution": "CECAS",
+            "endYear": 2017,
+            "sourceIds": [
+              "src-061"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "career-professional",
+      "payload": {
+        "items": [
+          {
+            "role": "Consultora/ingeniera de sistemas",
+            "org": "SENER SA; ERIA SA; IDOM SA",
+            "startYear": 1988,
+            "endYear": 1991,
+            "sourceIds": [
+              "src-064"
+            ]
+          },
+          {
+            "role": "Jefa de equipo (aplicaciones bancarias: Bancaja, CAM, Sabadell, Herrero)",
+            "org": "Indra SSI SA",
+            "startYear": 1998,
+            "endYear": 2001,
+            "sourceIds": [
+              "src-075"
+            ]
+          },
+          {
+            "role": "Jefa de equipo (proyecto factory para Deutsche Bank)",
+            "org": "GFT Iberia Holding SA",
+            "startYear": 2001,
+            "endYear": 2001,
+            "sourceIds": [
+              "src-075"
+            ]
+          },
+          {
+            "role": "Responsable de mantenimiento de aplicaciones (seguros de vida, ahorro y pensiones)",
+            "org": "ASEVAL SA",
+            "startYear": 2001,
+            "endYear": 2006,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Gestora de proyectos (migración de cartera y proyectos IT)",
+            "org": "Aviva Servicios Compartidos",
+            "startYear": 2006,
+            "endYear": 2015,
+            "sourceIds": [
+              "src-063"
+            ]
+          },
+          {
+            "role": "Asesora financiera («family banker»)",
+            "org": "Banco Mediolanum",
+            "startYear": 2017,
+            "sourceIds": [
+              "src-062",
+              "src-071"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo actual",
+        "bodyMarkdown": "María Esther Gómez Laredo ejerce como concejala del Ayuntamiento de Riba-roja de Túria por el PSOE (PSPV-PSOE). Tiene delegadas las áreas de Participación y transparencia, Atención a la ciudadanía, Turismo y patrimonio histórico, y Promoción de la Salud e Infraestructuras sanitarias.",
+        "sourceIds": [
+          "src-001"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Formación y trayectoria previa",
+        "bodyMarkdown": "Según su currículum oficial publicado en la ficha de transparencia del Ayuntamiento, María Esther Gómez Laredo nació el 24 de marzo de 1965 en València y es licenciada en Informática de Gestión por la Universidad de Deusto (1988), con un máster European Investment Practitioner (VIU, 2018) y formación aseguradora (CECAS, 2017).\n\nEl mismo currículum autodeclarado recoge tres décadas de trayectoria en tecnología y finanzas: consultoría en SENER, ERIA e IDOM (1988-1991), jefa de equipo en Indra SSI para aplicaciones bancarias (1998-2001) y en GFT Iberia para Deutsche Bank (2001), responsable de mantenimiento de aplicaciones de seguros en ASEVAL (2001-2006), gestora de proyectos en Aviva Servicios Compartidos (2006-2015) y, desde 2017, asesora financiera («family banker») de Banco Mediolanum.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-075"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección y nombramiento",
+        "bodyMarkdown": "María Esther Gómez Laredo fue proclamada concejala electa en las elecciones municipales del 28 de mayo de 2023 —en las que el PSPV-PSOE obtuvo el 49,69% de los votos— y tomó posesión mediante juramento o promesa en la sesión constitutiva del 17 de junio de 2023. Su entrada en política municipal fue en 2019: concurrió en el puesto 10 de la lista del PSOE (BOP de València n.º 82) y ejerció como regidora en el mandato 2019-2023; no figura en la candidatura de 2015.\n\nEn el pleno de organización del mandato quedó documentado el origen de sus responsabilidades: figura como número siete del grupo municipal socialista, y el punto 7 del decreto de áreas de gestión 2023-2027 le delegó las competencias «en materia de Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico». El registro municipal vigente añade hoy Promoción de la Salud e Infraestructuras sanitarias — las delegaciones han variado durante el mandato. El acuerdo de régimen económico de la misma sesión fijó su dedicación exclusiva en 38.891,66 euros anuales.",
+        "sourceIds": [
+          "src-065",
+          "src-066",
+          "src-067",
+          "src-003",
+          "src-073",
+          "src-068",
+          "src-069",
+          "src-001",
+          "src-002"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Retribución",
+        "bodyMarkdown": "Según el acuerdo del Pleno de Riba-roja de Túria de 7 de julio de 2023 (expediente 4533/2023/GEN), que fija el régimen económico de los concejales, Gómez Laredo percibe una retribución de 38.891,66 euros anuales por su dedicación exclusiva como concejala delegada de Participación, Atención ciudadana y Turismo.",
+        "sourceIds": [
+          "src-002"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Patrimonio y actividades declaradas",
+        "bodyMarkdown": "La declaración estatutaria de actividades y bienes que presentó al tomar posesión en 2023 (expediente 3971/2023/GEN, publicada por el Ayuntamiento conforme al Decreto 191/2010 del Consell) recoge dos actividades: la concejalía (inicio consignado el 15/06/2019) y la de agente financiera de Banco Mediolanum (inicio consignado el 22/09/2017). Su CV oficial recoge esa actividad como «2017 - ACTUAL».\n\nEl acuerdo de régimen económico de 07-07-2023 le asigna dedicación exclusiva; en los snapshots consultados no consta resolución sobre la compatibilidad de ambas dedicaciones ni una eventual fecha de cese de la actividad financiera — la cuestión queda señalada en «Lagunas detectadas», sin que este medio afirme irregularidad alguna.\n\nEn el apartado de bienes declara un activo de 164.461,65 euros —56.346,91 euros en bienes inmuebles por valor catastral y 108.114,74 euros en otros bienes— y un pasivo de 4.681,53 euros. La declaración fue publicada además en el Boletín Oficial de la Provincia de València (n.º 180, de 15 de septiembre de 2023, anuncio 2023/12011).",
+        "sourceIds": [
+          "src-070",
+          "src-071",
+          "src-062",
+          "src-002",
+          "src-072"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Las conexiones de María Esther Gómez Laredo que constan en documentos públicos son de dos tipos: las político-administrativas (número siete del grupo municipal socialista y titular de las áreas que le delegó el decreto del alcalde Roberto Raga) y la actividad financiera privada declarada en sus propios documentos oficiales (Banco Mediolanum).\n\nComo comprobación rutinaria, esta redacción ha cruzado sus apellidos y todas sus empleadoras declaradas con el corpus de contratación municipal: en 804 contratos adjudicados no consta ningún adjudicatario con sus apellidos, y ni Banco Mediolanum, ni Aviva, ni ASEVAL, ni Indra SSI, ni GFT Iberia, ni SENER, ni IDOM o ERIA constan como adjudicatarias municipales. En sus áreas delegadas se identifican 6 contratos desde julio de 2023 — muestra demasiado pequeña para comparar indicadores, y ninguno con vínculo nominal con la concejala.\n\nEl registro municipal de asociaciones no publica directivos y la BDNS no publica beneficiarios nominales; el Registro Mercantil no se ha consultado de forma independiente, y las relaciones estrictamente personales no constan en fuentes públicas y no se publican sin constancia documental.",
+        "sourceIds": [
+          "src-074",
+          "src-062",
+          "src-063",
+          "src-075"
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Regidora — Transparencia, Gobierno Abierto, Participación Ciudadana, Turismo y Patrimonio histórico",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2019,
+            "endYear": 2023,
+            "sourceIds": [
+              "src-062",
+              "src-071",
+              "src-073"
+            ]
+          },
+          {
+            "role": "Concejala delegada (PSOE) de Participación y Transparencia, Atención a la Ciudadanía, Turismo y Patrimonio Histórico, y Promoción de la Salud e Infraestructuras Sanitarias",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-001",
+              "src-002",
+              "src-068",
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "salary",
+            "amountEuros": 38891.66,
+            "description": "Concejala delegada · Participación, Atención ciudadana y Turismo — dedicación exclusiva, según Acuerdo del Pleno de 07/07/2023, fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 164461.65,
+            "description": "Activo declarado al tomar posesión (2023): 56.346,91 € en bienes inmuebles (valor catastral) + 108.114,74 € en otros bienes; pasivo declarado: 4.681,53 €. Declaración de bienes conforme al Decreto 191/2010 del Consell (expte. 3971/2023/GEN).",
+            "sourceIds": [
+              "src-070"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Actividad privada declarada: agente/asesora financiera de Banco Mediolanum, consignada en su declaración estatutaria de 2023 (inicio 22/09/2017) y como «2017 - ACTUAL» en su CV oficial. El acuerdo de 07-07-2023 le asigna dedicación exclusiva como concejala delegada; en los snapshots consultados no consta resolución sobre la compatibilidad ni una eventual fecha de cese de la actividad.",
+            "sourceIds": [
+              "src-071",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "1965-03-24",
+            "label": "Nace en València (dato de su CV autodeclarado)",
+            "sourceIds": [
+              "src-060"
+            ]
+          },
+          {
+            "date": "2019-06-15",
+            "label": "Accede a la concejalía tras concurrir en el puesto 10 de la lista del PSOE (inicio consignado en su declaración estatutaria)",
+            "sourceIds": [
+              "src-073",
+              "src-071"
+            ]
+          },
+          {
+            "date": "2023-05-28",
+            "label": "Elecciones municipales: el PSPV-PSOE gana con el 49,69% de los votos",
+            "sourceIds": [
+              "src-003"
+            ]
+          },
+          {
+            "date": "2023-06-17",
+            "label": "Proclamada concejala electa; toma posesión en la sesión constitutiva",
+            "sourceIds": [
+              "src-065",
+              "src-067"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Acuerdo del Pleno fija el régimen económico de los concejales; Gómez Laredo consta como concejala delegada con dedicación exclusiva (38.891,66 €/año)",
+            "sourceIds": [
+              "src-002"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "El decreto de áreas le delega Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico",
+            "sourceIds": [
+              "src-069"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "María Esther Gómez Laredo",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "PSOE (PSPV-PSOE)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Roberto Raga (alcalde)",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n4",
+            "label": "Banco Mediolanum",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejala del grupo municipal",
+            "sourceIds": [
+              "src-001"
+            ]
+          },
+          {
+            "from": "n3",
+            "to": "n1",
+            "relation": "le delegó Participación, Atención a la ciudadanía y Turismo (07-07-2023)",
+            "sourceIds": [
+              "src-069"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n4",
+            "relation": "agente financiera declarada (desde 2017, según su declaración y su CV)",
+            "sourceIds": [
+              "src-071",
+              "src-062"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "promise-board",
+      "payload": {
+        "promiseIds": [
+          "psoe-presupuesto-2026-46m",
+          "psoe-refugios-climaticos-2026",
+          "psoe-reconstruccion-dana-9-5m",
+          "psoe-vivienda-900-hogares",
+          "psoe-construccion-vivienda-2026-2029",
+          "psoe-pasarelas-parc-natural-turia",
+          "psoe-espai-obert-presupuesto",
+          "psoe-alumbrado-led-680k",
+          "psoe-metro-l9-agosto",
+          "psoe-respuesta-quejas-sector-14-48h",
+          "psoe-reduce-concejales-dedicacion-exclusiva",
+          "ac-psoe-1cbkzxt",
+          "ac-psoe-1v0679f",
+          "ac-psoe-jfg7bc",
+          "ac-psoe-1ah9zqk",
+          "ac-psoe-pl3lsq",
+          "ac-psoe-ppa53a",
+          "ac-psoe-1m04lfw",
+          "ac-psoe-sysee8"
+        ]
+      }
+    },
+    {
+      "kind": "quote-card",
+      "payload": {
+        "verbatim": "Se delegan en la Concejal D ªEsther Gómez, las competencias que al Alcalde le corresponden en materia de Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico.",
+        "attributedTo": "Decreto de áreas de gestión 2023-2027 — Alcaldía de Riba-roja de Túria (el acta escribe «D ªEsther»)",
+        "date": "2023-07-07",
+        "sourceId": "src-069"
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "Identidad y formación",
+            "reason": "La fecha y el lugar de nacimiento y los estudios declarados constan únicamente en el CV autodeclarado publicado en la ficha de transparencia; sin corroboración independiente localizada."
+          },
+          {
+            "field": "Actividad financiera privada y compatibilidad",
+            "reason": "Su declaración estatutaria (2023) y su CV recogen la actividad de agente financiera de Banco Mediolanum (desde 2017) junto a la dedicación exclusiva fijada el 07-07-2023. En los snapshots consultados no consta resolución de compatibilidad ni fecha de cese de la actividad; este medio no afirma irregularidad — señala la ausencia de datos."
+          },
+          {
+            "field": "Vínculos societarios y personales",
+            "reason": "El Registro Mercantil no se ha consultado de forma independiente y las relaciones personales no constan en fuentes públicas. Las comprobaciones nominales (804 contratos, incluidas sus ocho empleadoras declaradas) no arrojaron coincidencia alguna."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-001",
+      "kind": "local-snapshot",
+      "title": "Officials snapshot — María Esther Gómez Laredo",
+      "retrievedAt": "2026-07-31T10:24:48.788Z",
+      "excerpt": "role: concejal · party: PSOE · portfolios: Participación y transparencia, Atención a la ciudadanía, Turismo y patrimonio histórico, Promoción de la Salud e Infraestructuras sanitarias",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-002",
+      "kind": "local-snapshot",
+      "title": "Retribución del cargo — acuerdo de pleno (dedicaciones)",
+      "retrievedAt": "2026-07-31T10:24:50.819Z",
+      "excerpt": "Concejala delegada · Participación, Atención ciudadana y Turismo: dedicación exclusiva, 38.891,66 €/año. Fuente: Acuerdo del Pleno de 07/07/2023 — fijación del régimen económico de los concejales (Expediente 4533/2023/GEN)",
+      "localPath": "public/data/dedicaciones.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-003",
+      "kind": "local-snapshot",
+      "title": "Resultados electorales municipales — Generalitat Valenciana · Institut Cartogràfic Valencià / ARGOS",
+      "retrievedAt": "2026-07-31T10:24:50.819Z",
+      "excerpt": "Municipales 2023: PSPV-PSOE 49.69%, PP 30.91%, VOX 7.9%, Podem 5.77%, Compromís 5.73% · abstención 30.31% · Municipales 2019: PSPV-PSOE 45.92%, PP 18.88%, Ciudadanos 11.52%, Compromís 7.22%, EUPV 5.71%, Podem 5.46%, VOX 5.13% · abstención 33.25%",
+      "localPath": "public/data/elections.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-004",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(madre_de_Jes%C3%BAs)",
+      "title": "María (madre de Jesús) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:24:52.169Z",
+      "excerpt": "Tanto Μαρία como Μαριάμ aparecen en el Nuevo Testamento. María es un nombre conocido en el Tanaj judío (el Antiguo …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-005",
+      "kind": "web",
+      "url": "https://www.bibliaon.com/es/maria/",
+      "title": "La historia de María (madre de Jesús) - Biblia",
+      "retrievedAt": "2026-07-31T10:24:52.169Z",
+      "excerpt": "María fue una joven virgen de Nazaret, elegida por Dios para concebir a Jesús por medio del Espíritu Santo. Ella jugó un papel …",
+      "trust": "low"
+    },
+    {
+      "id": "src-006",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "title": "María (nombre) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:24:52.169Z",
+      "excerpt": "María (en hebreo: מרים, romanizado: Mīryam, Mīryām, en arameo: ܡܪܝܡ, romanizado: Maryam, en griego: Μαριάμ, romanizado: …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-007",
+      "kind": "web",
+      "url": "https://resultados-elecciones.rtve.es/municipales/2023/comunitat-valenciana/valencia-valencia/riba-roja-de-turia/",
+      "title": "Riba-roja de Túria: Resultados Elecciones Municipales 2023 | 28M",
+      "retrievedAt": "2026-07-31T10:24:52.169Z",
+      "excerpt": "Resultados municipales en Riba-roja de Túria · P.S.O.E. 11 45,71% · PP 4 18,79% · Cs 2 11,46% · COMPROMÍS MUNICIPAL 1 7,19% · EUPV-ERPV:SE 1 5,69% · PODEMOSRIBA- ...",
+      "trust": "medium"
+    },
+    {
+      "id": "src-008",
+      "kind": "web",
+      "url": "https://elpais.com/espana/elecciones/municipales/17/46/214/",
+      "title": "Resultados Electorales en Riba-roja de Túria: Elecciones Municipales",
+      "retrievedAt": "2026-07-31T10:24:52.169Z",
+      "excerpt": "26 de may de 2023 · Todos los resultados de las elecciones municipales en Riba-roja de Túria: número de votos y escaños por partidos por comunidades, provincias y localidades con EL PAÍS.",
+      "trust": "medium"
+    },
+    {
+      "id": "src-009",
+      "kind": "web",
+      "url": "https://www.datoselecciones.com/elecciones-municipales-2023/comunidad-valenciana/valencia/riba-roja-de-turia",
+      "title": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València ...",
+      "retrievedAt": "2026-07-31T10:24:52.169Z",
+      "excerpt": "Elecciones Municipales 2023: Comunidad Valenciana / Valencia/València / Riba-roja de Túria",
+      "trust": "low"
+    },
+    {
+      "id": "src-010",
+      "kind": "web",
+      "url": "https://www.gomezgroupmetering.com/",
+      "title": "Gomez Group Metering - Lectura e Instalación de Contadores",
+      "retrievedAt": "2026-07-31T10:24:52.517Z",
+      "excerpt": "REPARTIDORES DE COSTES Con este pequeño dispositivo electrónico de fácil instalación controlará, en todo momento, su …",
+      "trust": "low"
+    },
+    {
+      "id": "src-011",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/G%C3%B3mez",
+      "title": "Gómez - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:24:52.517Z",
+      "excerpt": "Gómez es un apellido patronímico español muy común en España, Filipinas, e Hispanoamérica. Deriva del nombre de \"Gome\" más …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-012",
+      "kind": "web",
+      "url": "https://ov.gomezgroupmetering.com/preLogin",
+      "title": "Gomez Group Metering - Acceso a Oficina Virtual",
+      "retrievedAt": "2026-07-31T10:24:52.517Z",
+      "excerpt": "Indícanos tu correo electrónico y te enviaremos los datos para que puedas acceder a tu Área de Propietarios.",
+      "trust": "low"
+    },
+    {
+      "id": "src-013",
+      "kind": "web",
+      "url": "https://www.gomezgroupmetering.com/",
+      "title": "Gomez Group Metering - Lectura e Instalación de Contadores",
+      "retrievedAt": "2026-07-31T10:24:52.787Z",
+      "excerpt": "REPARTIDORES DE COSTES Con este pequeño dispositivo electrónico de fácil instalación controlará, en todo momento, su …",
+      "trust": "low"
+    },
+    {
+      "id": "src-014",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/G%C3%B3mez",
+      "title": "Gómez - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:24:52.787Z",
+      "excerpt": "Gómez es un apellido patronímico español muy común en España, Filipinas, e Hispanoamérica. Deriva del nombre de \"Gome\" más …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-015",
+      "kind": "web",
+      "url": "https://ov.gomezgroupmetering.com/preLogin",
+      "title": "Gomez Group Metering - Acceso a Oficina Virtual",
+      "retrievedAt": "2026-07-31T10:24:52.787Z",
+      "excerpt": "Indícanos tu correo electrónico y te enviaremos los datos para que puedas acceder a tu Área de Propietarios.",
+      "trust": "low"
+    },
+    {
+      "id": "src-016",
+      "kind": "web",
+      "url": "https://www.gomezgroupmetering.com/",
+      "title": "Gomez Group Metering - Lectura e Instalación de Contadores",
+      "retrievedAt": "2026-07-31T10:24:53.116Z",
+      "excerpt": "REPARTIDORES DE COSTES Con este pequeño dispositivo electrónico de fácil instalación controlará, en todo momento, su …",
+      "trust": "low"
+    },
+    {
+      "id": "src-017",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/G%C3%B3mez",
+      "title": "Gómez - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:24:53.116Z",
+      "excerpt": "Gómez es un apellido patronímico español muy común en España, Filipinas, e Hispanoamérica. Deriva del nombre de \"Gome\" más …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-018",
+      "kind": "web",
+      "url": "https://ov.gomezgroupmetering.com/preLogin",
+      "title": "Gomez Group Metering - Acceso a Oficina Virtual",
+      "retrievedAt": "2026-07-31T10:24:53.116Z",
+      "excerpt": "Indícanos tu correo electrónico y te enviaremos los datos para que puedas acceder a tu Área de Propietarios.",
+      "trust": "low"
+    },
+    {
+      "id": "src-019",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:53.849Z",
+      "excerpt": "[840.0 → 870.0] La Lucha de los Malditos [870.0 → 900.0] La Lucha de los Malditos [900.0 → 930.0] La Lucha de los Malditos [930.0 → 960.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Luc",
+      "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-020",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:53.849Z",
+      "excerpt": "[720.0 → 750.0] La Lucha de los Malditos [750.0 → 780.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de l",
+      "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-021",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:53.849Z",
+      "excerpt": "[780.0 → 810.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La L",
+      "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-022",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:53.849Z",
+      "excerpt": "[660.0 → 690.0] La Lucha de los Malditos [690.0 → 720.0] La Lucha de los Malditos [720.0 → 750.0] La Lucha de los Malditos [750.0 → 780.0] La Lucha de los Malditos La Lucha de los Malditos La Lucha de los Malditos La Luc",
+      "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-023",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:54.123Z",
+      "excerpt": "[0.0 → 30.0] Música [30.0 → 60.0] Música [60.0 → 90.0] Música [90.0 → 120.0] Música [120.0 → 150.0] Música [150.0 → 180.0] Música [180.0 → 210.0] Música [210.0 → 240.0] Música [240.0 → 270.0] Música [270.0 → 300.0] Músic",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-024",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:54.123Z",
+      "excerpt": "[330.0 → 360.0] Música [360.0 → 390.0] Música Música Música Música Música Música Música Música Música Música Música Música Música Música Música [390.0 → 420.0] Buenas tardes a todos. Vamos a comenzar por lo ordinario. Ya",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-025",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:54.123Z",
+      "excerpt": "[360.0 → 390.0] Música Música Música Música Música Música Música Música Música Música Música Música Música Música Música [390.0 → 420.0] Buenas tardes a todos. Vamos a comenzar por lo ordinario. Ya sé que hoy nos acompañ",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-026",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:54.409Z",
+      "excerpt": "[0.0 → 0.0] /20243 e informe 218/2023 de la función interventora de conformidad con lo establecido en el [0.0 → 0.0] TRLRHL, el RD 424/2017, de 28 de abril, por el que se regula el régimen jurídico del control [0.0 → 0.0",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-027",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:54.409Z",
+      "excerpt": "[6480.0 → 6510.0] no veáis pero ahora me ha creado la comisión y ahí ya me ha debatido todo y vamos a poner todo en el tinter igual la CAB ni habla a partir de esa comisión pero vamos a poner todo y para la portaveu y ya",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-028",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/10yl550.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:54.409Z",
+      "excerpt": "[5340.0 → 5370.0] cada uno llevemos esos puntos aquellos que pueda ser por decisión propia los compartamos y aquellos que por mucha decisión o predisposición que tengamos que jurídicamente no sean porque si no se asesore",
+      "localPath": "public/data/pleno-transcripts/10yl550.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-029",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-1fcecb · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "Con respecto al plan Edifican Heredado, tan necesario en nuestro pueblo",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-030",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-098-cit-616b80 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "hace cinco meses recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-031",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-099-cit-8a1dc7 · 2026-07-06 · cita_obra",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "recibimos la visita del director general de infraestructuras educativas, José María Larena Berrocal, quien visitó el Cid Cervantes",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-032",
+      "kind": "local-snapshot",
+      "title": "Pleno claim brxx5g-128-cit-3f9a51 · 2026-07-06 · cita_convenio",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "Los millones, que son casi 7 millones, los que teníamos aprobados, pendientes de la gestión de competencias, para hacer el colache infantil y mejorar el de primaria de Cervantes",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-033",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 11025xk-085-acu-14fdaf · 2026-06-01 · acusacion_publica",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "Nos ha costado casi tres años que nos hagan caso",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-034",
+      "kind": "local-snapshot",
+      "title": "Pleno claim 10yl550-255-pro-653043 · 2026-05-11 · promesa",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "le garantizo que en las siguientes tendremos mayoría absoluta.",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-035",
+      "kind": "local-snapshot",
+      "title": "Pleno claim k4olcs-112-afi-72b643 · 2026-04-20 · afirmacion_numerica",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "un remanente de tesorería total de 29 millones y medio",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-036",
+      "kind": "local-snapshot",
+      "title": "Pleno claim ma87e0-197-acu-438337 · 2026-03-16 · acusacion_publica",
+      "retrievedAt": "2026-07-31T10:24:54.806Z",
+      "excerpt": "La directora le daba al regidor, el del PP, venía, ya 21 millones de euros.",
+      "localPath": "public/data/pleno-claims-suggestions.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-037",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Fuente oficial: www.ribarroja.es",
+      "retrievedAt": "2026-07-31T10:24:54.811Z",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+      "trust": "high"
+    },
+    {
+      "id": "src-038",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T10:24:55.279Z",
+      "excerpt": "rafael-gomez-sanchez · Rafael Gómez Sánchez · Sr. · concejal · PSOE · Servicios públicos municipales · Urbanizaciones · barrios y diseminados · Movilidad y Deportes · alcaldia@ribarroja.es · /data/photos/rafael-gomez-sanchez.jpg · https://w",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-039",
+      "kind": "local-snapshot",
+      "title": "public/data/officials.json · officials",
+      "retrievedAt": "2026-07-31T10:24:55.279Z",
+      "excerpt": "maria-esther-gomez-laredo · María Esther Gómez Laredo · Sra. · concejal · PSOE · Participación y transparencia · Atención a la ciudadanía · Turismo y patrimonio histórico · Promoción de la Salud e Infraestructuras sanitarias · alcaldia@riba",
+      "localPath": "public/data/officials.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-040",
+      "kind": "local-snapshot",
+      "title": "public/data/press.json · items",
+      "retrievedAt": "2026-07-31T10:24:55.279Z",
+      "excerpt": "1frgix3 · El patrimonio de Riba-roja crece hasta los 321 millones en los últimos diez años tras actualizar el inventario · https://news.google.com/rss/articles/CBMi_AFBVV95cUxOejJsTVFsVVNqbFdJSWZVMGl4UmhGT1M2U2FHZ1YyV1pRMEJhR0k3Vm9RLThtOVhL",
+      "localPath": "public/data/press.json",
+      "trust": "high"
+    },
+    {
+      "id": "src-041",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1237hbp.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:55.279Z",
+      "excerpt": "[5190.0 → 5220.0] pero en realidad es una tasa de la que se va a pagar y que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con un precio que es el que se va a pagar con",
+      "localPath": "public/data/pleno-transcripts/1237hbp.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-042",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:55.279Z",
+      "excerpt": "[0.0 → 0.0] cobro y los fondos líquidos a 31 de diciembre configurarán el remanente de tesorería y que su [0.0 → 0.0] cuantificación deberá realizarse teniendo en cuenta los posibles ingresos afectados y minorando [0.0 →",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-043",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/1080zow.txt · semantic",
+      "retrievedAt": "2026-07-31T10:24:55.279Z",
+      "excerpt": "[0.0 → 0.0] \"Considerando que el artículo 191.1 del Real Decreto Legislativo 2/2004, de 5 de marzo, por el [0.0 → 0.0] que se aprueba el texto refundido de la Ley Reguladora de las Haciendas Locales. (TRLRHL), [0.0 → 0.0",
+      "localPath": "public/data/pleno-transcripts/1080zow.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-044",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(madre_de_Jes%C3%BAs)",
+      "title": "María (madre de Jesús) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:25:00.674Z",
+      "excerpt": "Tanto Μαρία como Μαριάμ aparecen en el Nuevo Testamento. María es un nombre conocido en el Tanaj judío (el Antiguo …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-045",
+      "kind": "web",
+      "url": "https://www.bibliaon.com/es/maria/",
+      "title": "La historia de María (madre de Jesús) - Biblia",
+      "retrievedAt": "2026-07-31T10:25:00.674Z",
+      "excerpt": "María fue una joven virgen de Nazaret, elegida por Dios para concebir a Jesús por medio del Espíritu Santo. Ella jugó un papel …",
+      "trust": "low"
+    },
+    {
+      "id": "src-046",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "title": "María (nombre) - Wikipedia, la enciclopedia libre",
+      "retrievedAt": "2026-07-31T10:25:00.674Z",
+      "excerpt": "María (en hebreo: מרים, romanizado: Mīryam, Mīryām, en arameo: ܡܪܝܡ, romanizado: Maryam, en griego: Μαριάμ, romanizado: …",
+      "trust": "medium"
+    },
+    {
+      "id": "src-047",
+      "kind": "web",
+      "url": "https://www.elsantorosario.es/",
+      "title": "El Santo Rosario en Radio María - El Santo Rosario",
+      "retrievedAt": "2026-07-31T10:25:00.674Z",
+      "excerpt": "El Santo Rosario y Radio María Uno de los aspectos esenciales del carisma de Radio María es el amor filial por la Madre de Dios y …",
+      "trust": "low"
+    },
+    {
+      "id": "src-048",
+      "kind": "web",
+      "url": "https://radiomaria.es/",
+      "title": "Radio María España - Una Radio que cambia vidas",
+      "retrievedAt": "2026-07-31T10:25:00.674Z",
+      "excerpt": "Desde Radio María nos unimos en acción de gracias por la visita del Sucesor de Pedro y oramos por la fecundidad de este …",
+      "trust": "low"
+    },
+    {
+      "id": "src-049",
+      "kind": "web",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Texto completo: ribarroja.es",
+      "retrievedAt": "2026-07-31T10:25:02.624Z",
+      "excerpt": "Datos biográficos del Alcalde/sa y concejales | Ayuntamiento de Riba-roja de Túria <link rel=\"stylesheet\" media=\"all\" hr",
+      "trust": "high"
+    },
+    {
+      "id": "src-050",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(madre_de_Jes%C3%BAs)",
+      "archiveUrl": "http://web.archive.org/web/20260726091412/https://es.wikipedia.org/wiki/Mar%C3%ADa_%28madre_de_Jes%C3%BAs%29",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T10:25:02.625Z",
+      "excerpt": "María (madre de Jesús) - Wikipedia, la enciclopedia libre <link rel=\"stylesheet\" href=\"/w/load.php?lang=es&amp",
+      "trust": "high"
+    },
+    {
+      "id": "src-051",
+      "kind": "web",
+      "url": "https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "archiveUrl": "http://web.archive.org/web/20251105114150/https://es.wikipedia.org/wiki/Mar%C3%ADa_(nombre)",
+      "title": "Texto completo: es.wikipedia.org",
+      "retrievedAt": "2026-07-31T10:25:02.625Z",
+      "excerpt": "María (nombre) - Wikipedia, la enciclopedia libre <link rel=\"license\" href=\"https://creativecommons.org",
+      "trust": "high"
+    },
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "title": "CV autodeclarado (ficha oficial de transparencia) — María Esther Gómez Laredo · identidad",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "PRESENTACIÓN 24 MARZO 1965 VALÈNCIA egomez@ribarroja.es",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "title": "CV autodeclarado — formación (Deusto, VIU, CECAS)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "FORMACIÓN MÁSTER • UNIVERSIDAD INTERNACIONAL DE VALÈNCIA• 2018 European Investment Practitioner (EIP) FORMACIÓN • CECAS • 2017 OBS, módulo general y específicos LICENCIATURA • UNIVESIDAD DE DEUSTO • 1983-1988 Licenciatura informática de gestión OTROS: Idiomas extranjeros: inglés (medio/alto) Certificado MCER Intermediate Level B1 (E.O.I.)",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "title": "CV autodeclarado — experiencia (Banco Mediolanum «2017 - ACTUAL», regidora 2019-2023)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "ASESORA FINANCIERA • 2017 - ACTUAL• BANCO MEDIOLANUM Family banker, asesora financiera REGIDORA • 2019 - 2023• AYUNTAMIENTO RIBA-ROJA DE TÚRIA Transparencia, Gobierno Abierto, Participación Ciudadana, Turismo y Patrimonio histórico",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "title": "CV autodeclarado — experiencia (Aviva, ASEVAL)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "GESTORA PROYECTOS• 2006-2015 • AVIVA SERVICIOS COMPARTIDOS Gestor Proyectos Migración Cartera Clientes Nueva Plataforma Tecnológica ONE / Gestor de proyectos IT del Plan Anual Unidades de Negocio y Entidades Financieras RESPONSABLE MANTENIMIENTO APP• 2001-2006 • ASEVAL S.A.",
+      "trust": "high"
+    },
+    {
+      "id": "src-075",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "title": "CV autodeclarado — experiencia (GFT Iberia, Indra SSI)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "JEFA DE EQUIPO• 2001• GFT IBERIA HOLDING S.A. Gestión Equipo Proyecto Factory para DEUTSCHE BANK en Valencia JEFA DE EQUIPO• 1998 - 2001• INDRA SSI S.A. implantación de aplicaciones de internet, cartera, etc.... para Bancaja, CAM, Banco Sabadell y Banco Herrero",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/864708/filesGroup/PSOE-Esther-Gmez-Laredo.pdf",
+      "title": "CV autodeclarado — otras compañías (ERIA, IDOM, SENER)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "OTRAS COMPANÍAS PARA LAS QUE HA TRABAJADO ERIA S.A. (1990-1991) IDOM S.A. (1990-1991) SENER S.A. (1988-1989)",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · proclamación de electos",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "Maria Jose Pradas Ramo Salvador Evaristo Ferrer Cortina Laura Guzman Bruno Juan Boix Martínez Paula Navarro Sanfeliu Jose Luis Fernández Santamaria Jose Manuel Gallardo Martínez Rafael Folgado Navarro Los cuales han sido proclamados concejales/as electos/as en las elecciones locales celebradas el pasado día 28 de mayo de 2023.",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · juramento o promesa",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "Proceden a formular juramento o promesa tomando posesión de sus cargos de Concejal/la por el siguiente orden: - Rafael Folgado Navarro - Jose Manuel Gallardo Martínez - Jose Luis Fernández Santamaria - Paula Navarro Sanfeliu - Juan Boix Martínez - Laura Guzman Bruno - Salvador Evaristo Ferrer Cortina",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/9jatoj.txt · acta constitutiva 17-06-2023 · toma de posesión (lista con la sujeto)",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "- Raquel Pamblanco Paredes - Jose Manuel Vila Oltra - Maria Esther Gomez Laredo - Rafael Gomez Sanchez - Eva Lara Catalá - Jose Angel Hernandez Carrizosa - Jose Luis Ramos March",
+      "localPath": "public/data/pleno-transcripts/9jatoj.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · grupo municipal socialista (n.º 7)",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "Por el Grupo político municipal con la denominación de Grupo Municipal Socialista de Riba-roja, son: 1. Don Roberto Pascual Raga Gadea 2. Doña Maria Teresa Pozuelo Martín 3. Don José Luis Ramos March 4. Don José Ángel Hernández Carrizosa 5. Doña Eva Lara Catalá (Independiente) 6. Don Rafael Gómez Sánchez 7. Doña Maria Esther Gómez Laredo",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "title": "public/data/pleno-transcripts/16ujrlm.txt · acta 07-07-2023 · delegación de competencias (punto 7)",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "7. Se delegan en la Concejal D ªEsther Gómez, las competencias que al Alcalde le corresponden en materia de Participación y transparencia, Atención a la ciudadanía y Turismo y patrimonio histórico.",
+      "localPath": "public/data/pleno-transcripts/16ujrlm.txt",
+      "trust": "high"
+    },
+    {
+      "id": "src-070",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de bienes",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "Concejala MARIA ESTHER GOMEZ LAREDO 56.346,91 108.114,74 164.461,65 4.681,53 Concejal JOSE MANUEL VILA OLTRA 67.967,50 83.163,25 151.130,75 13.860,30",
+      "trust": "high"
+    },
+    {
+      "id": "src-071",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades y bienes · Corporación 2023-2027 (expte. 3971/2023/GEN) · tabla de actividades (concejalía + Banco Mediolanum)",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "MARIA ESTHER GOMEZ LAREDO Concejala y Agente Financiera Ayuntamiento Riba-roja de Túria y Banco Mediolanum 15/06/2019 22/09/2017",
+      "trust": "high"
+    },
+    {
+      "id": "src-072",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — declaración de actividades y bienes, legislatura 2023-2027",
+      "publisher": "Ayuntamiento de Riba-roja de Túria — Portal de Transparencia",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "Núm. 180 Pàg. 15-9-20231 M U N I C I P I S Ajuntament de Riba-roja de Túria 2023/12011Anunci de l'Ajuntament de Riba-roja de Túria sobre la declaració d'activitats i béns dels regidors que prenen possessió, legislatura 2023-2027.",
+      "trust": "high"
+    },
+    {
+      "id": "src-073",
+      "kind": "official-doc",
+      "url": "https://bop.dival.es/bop/downloads?boletinFecha=30/04/2019",
+      "title": "BOP de València n.º 82, 30-04-2019 — candidaturas, Riba-roja de Túria (lista del PSOE, puesto 10)",
+      "publisher": "Boletín Oficial de la Provincia de València",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "CIRCUNSCRIPCIÓN ELECTORAL RIBA-ROJA DE TÚRIA CANDIDATURA NÚM. 1: PARTIDO SOCIALISTA OBRERO ESPAÑOL (P.S.O.E.) TITULARES 1. ROBERTO PASCUAL RAGA GADEA 2. MARIA TERESA POZUELO MARTIN 3. JOSE LUIS RAMOS MARCH 4. ZAFIRA PEREZ PACHECO 5. JOSE ANGEL HERNANDEZ CARRIZOSA 6. MARIA DOLORES VERDEGUER ROYO 7. JOSE LUIS LOPEZ GALDON 8. ANA CRISTINA FOLGADO MORALES 9. RAFAEL GOMEZ SANCHEZ 10. MARIA ESTHER GOMEZ LAREDO",
+      "trust": "high"
+    },
+    {
+      "id": "src-074",
+      "kind": "local-snapshot",
+      "title": "public/data/tenders.json · comprobación nominal sobre el corpus de contratación",
+      "retrievedAt": "2026-07-31T10:34:18.162Z",
+      "excerpt": "804 contratos examinados: ningún adjudicatario coincide con «Gómez Laredo», y ninguna de sus empleadoras declaradas (Banco Mediolanum, Aviva, ASEVAL, Indra SSI, GFT Iberia, SENER, IDOM, ERIA) consta como adjudicataria. Contratos de sus áreas desde 07-2023: 6 — muestra demasiado pequeña para comparar. Ausente de la candidatura de 2015 (BOP n.º 79); en 2019 concurrió en el puesto 10 (BOP n.º 82).",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "Los datos de identidad, formación y trayectoria previa proceden del CV autodeclarado de la propia concejala publicado por el Ayuntamiento — véase el bloque «Lagunas detectadas».",
+    "Las delegaciones han variado durante el mandato: el decreto de 07-2023 recogía Participación, Atención a la ciudadanía y Turismo; el registro vigente añade Promoción de la Salud e Infraestructuras sanitarias.",
+    "Su declaración estatutaria y su CV recogen una actividad financiera privada (Banco Mediolanum, desde 2017) junto a la dedicación exclusiva de 07-2023; los snapshots consultados no recogen resolución de compatibilidad ni fecha de cese — véanse «Patrimonio y actividades declaradas» y «Lagunas detectadas»."
+  ],
+  "legalSensitivity": "medium",
+  "requiresHumanApproval": true
+}

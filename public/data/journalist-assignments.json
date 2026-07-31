@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T08:54:38.624Z",
+  "generatedAt": "2026-07-31T10:34:38.109Z",
   "items": [
     {
       "id": "a-robert-raga-bio",
@@ -127,6 +127,20 @@
       "createdAt": "2026-07-31T08:42:12.458Z",
       "status": "promoted",
       "lastRunAt": "2026-07-31T08:51:19.500Z"
+    },
+    {
+      "id": "a-esther-gomez-bio",
+      "kind": "biography",
+      "subject": {
+        "slug": "maria-esther-gomez-laredo",
+        "name": "María Esther Gómez Laredo",
+        "kind": "official"
+      },
+      "brief": "Biografía de registro público de María Esther Gómez Laredo, concejala (PSOE) de Participación y transparencia, Atención a la ciudadanía, Turismo y patrimonio histórico y Promoción de la Salud e Infraestructuras sanitarias en Riba-roja de Túria: identidad y formación, trayectoria previa, elección y nombramiento, retribución, patrimonio declarado, actividad plenaria y menciones en boletines oficiales.",
+      "createdBy": "civicpulse-curator",
+      "createdAt": "2026-07-31T10:24:13.739Z",
+      "status": "promoted",
+      "lastRunAt": "2026-07-31T10:30:33.846Z"
     }
   ]
 }
