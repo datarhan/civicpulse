@@ -162,6 +162,13 @@ npm run promote-report -- a-<id> --curator "Sergei Lutchenko" \
 - `legalSensitivity=high` requires `--ack-legal-review` — only after genuinely reviewing the
   judicial material against primary documents.
 - Promote auto-prunes uncited ledger rows (published contract = cited sources).
+- **`curatorNotes` RENDER PUBLICLY** in the `/laboratorio/agentes` CuratorNotesBlock expander
+  (any note opening with `REVISIÓN DE CURADURÍA` / `CORRECCIÓN` / `AMPLIACIÓN` / `VIGILANCIA` …).
+  So describe the verification substance, but NEVER enumerate the specific junk/homonym search
+  hits by name — write «se retiró ruido web de baja confianza por homonimia», not «(Australian
+  Open, ninite, hijas de Zapatero…)» (2026-07-31: those strings landed on Guzmán's live page via
+  the note and had to be scrubbed). Naming a genuine disambiguation subject (e.g. «Salomé Pradas,
+  persona distinta») is fine and useful; listing absurd search noise is not.
 - Post-promotion edits to a PUBLISHED report: narrative/quote-attribution via
   `npm run correct-journalist-report` (public bitácora); other payloads via a validated one-shot
   script + dated curatorNotes entry (both write snapshot + chunk).
