@@ -179,6 +179,12 @@ fi
 log "embed:agent-corpus (incremental, openai-pinned)…"
 EMBED_BACKEND=openai npm run embed:agent-corpus \
   || log "warn: embed:agent-corpus non-zero — semantic corpus stale; agent falls back to lexical"
+# The verifier corpus rides the same daily slot (same latch/marker/pacing
+# machinery): best-effort — the verifier's hybrid shortlist degrades to
+# lexical when stale, never crashes.
+log "embed:verifier-corpus (incremental, openai-pinned)…"
+EMBED_BACKEND=openai npm run embed:verifier-corpus \
+  || log "warn: embed:verifier-corpus non-zero — verifier shortlist falls back to lexical"
 
 # ---- promote (libel-safe gates; no-op under LOREG freeze) -------------
 # The CURATOR stage must never silently go metered (project policy: never
