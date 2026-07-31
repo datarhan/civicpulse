@@ -1,0 +1,311 @@
+{
+  "id": "r-juan-boix-bio-2026-07-31",
+  "assignmentId": "a-juan-boix-bio",
+  "generatedAt": "2026-07-31T18:31:51.161Z",
+  "agentVersion": "journalist-v1",
+  "promptVersion": "plan=journalist-plan-v3;bio=journalist-bio-v6;synth=journalist-synth-v6;verify=journalist-verify-v2",
+  "budgetTokens": 0,
+  "costUSD": 0,
+  "sections": [
+    {
+      "kind": "portrait",
+      "payload": {
+        "officialSlug": "juan-boix-martinez",
+        "photoPath": "/data/photos/juan-boix-martinez.jpg",
+        "partyTone": "intel",
+        "portfolios": [],
+        "cvUrl": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919"
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Identidad y cargo municipal",
+        "bodyMarkdown": "Juan Boix Martínez es concejal del Ayuntamiento de Riba-roja de Túria por la lista del Partido Popular, en la que figura en el **puesto n.º 5** y registrado como **«(Independiente)»** — como cinco de los siete miembros del grupo. El portal de transparencia municipal no publica CV suyo (sí lo hace de 17 miembros de la corporación), por lo que este perfil se limita a lo que consta en actas, boletines y su declaración estatutaria.",
+        "sourceIds": [
+          "src-062",
+          "src-068"
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Elección, cargo y patrimonio",
+        "bodyMarkdown": "La de 2023 es su **primera candidatura documentada**: no aparece en las candidaturas de la circunscripción de Riba-roja publicadas en el BOP ni en 2015 ni en 2019. La sesión constitutiva de 17-06-2023 lo proclama concejal electo con las credenciales de la Junta Electoral de Zona y presta juramento o promesa con el resto de la corporación.\n\nEn el pleno de organización de 07-07-2023 queda adscrito al Grupo Municipal Popular y es **titular por su grupo en tres comisiones informativas** (Innovación, Proyectos Europeos e Integridad; Educación, Cultura, Deportes y Fiestas; e Inclusión Social) — de los concejales del grupo, uno de los de mayor presencia en comisiones. Sin dedicación exclusiva ni parcial, su retribución municipal es por **asistencias** (221,82 € por Pleno; 162,31 € por comisión).\n\nSu declaración estatutaria consigna una única condición — **prejubilado** — y el **mayor patrimonio declarado de toda la corporación**: 329.314,73 € de activo (149.606,82 € en inmuebles y 179.707,91 € en otros bienes) frente a apenas 3.626,00 € de pasivo. Es, en los números que él mismo declara, el concejal con la posición patrimonial más holgada del pleno.",
+        "sourceIds": [
+          "src-060",
+          "src-061",
+          "src-062",
+          "src-063",
+          "src-064",
+          "src-065",
+          "src-066"
+        ]
+      }
+    },
+    {
+      "kind": "career-political",
+      "payload": {
+        "items": [
+          {
+            "role": "Concejal, n.º 5 del Grupo Municipal Popular («Independiente»); titular en tres comisiones informativas",
+            "org": "Ayuntamiento de Riba-roja de Túria",
+            "startYear": 2023,
+            "sourceIds": [
+              "src-060",
+              "src-062",
+              "src-063"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "financial",
+      "payload": {
+        "items": [
+          {
+            "year": 2023,
+            "metric": "declared-assets",
+            "amountEuros": 329314.73,
+            "description": "Activo declarado al tomar posesión (2023): 149.606,82 € en bienes inmuebles + 179.707,91 € en otros bienes = 329.314,73 €; pasivo declarado: 3.626,00 €. Es el mayor activo total declarado de la corporación 2023, con un endeudamiento casi nulo. Declaración conforme al Decreto 191/2010 (expte. 3971/2023/GEN), publicada en el BOP n.º 180 de 15-09-2023.",
+            "sourceIds": [
+              "src-065",
+              "src-067"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "business",
+            "description": "Sin actividad empresarial ni laboral en activo: su declaración de actividades consigna únicamente la condición de «prejubilado», sin entidad ni fechas. No consta actividad privada que plantee incompatibilidad con el cargo.",
+            "sourceIds": [
+              "src-066"
+            ]
+          },
+          {
+            "year": 2023,
+            "metric": "salary",
+            "description": "Sin dedicación exclusiva ni parcial: percibe asistencias por concurrencia efectiva — 221,82 € por sesión del Pleno y 162,31 € por comisiones (acuerdo de 07-07-2023). El total anual percibido no consta en los snapshots consultados.",
+            "sourceIds": [
+              "src-064"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "narrative",
+      "payload": {
+        "heading": "Conexiones documentadas y comprobaciones de este medio",
+        "bodyMarkdown": "Comprobaciones deterministas sobre los datos abiertos municipales: el barrido nominal de la totalidad de adjudicatarios registrados (contratos y licitaciones del mirror Gobierto/PLACSP) devuelve **0 coincidencias** para «Boix Martínez». No consta como adjudicatario del Ayuntamiento ni figura actividad privada en su declaración que pudiera relacionarlo con la contratación municipal.\n\nLímites declarados: al no publicar el portal municipal CV suyo, no consta formación ni trayectoria profesional previa a la prejubilación; el origen de los «otros bienes» declarados (179.707,91 €) no se detalla en la declaración; y las relaciones personales no dejan rastro en fuentes públicas — este medio no publica asociaciones sin documento.",
+        "sourceIds": [
+          "src-069",
+          "src-066"
+        ]
+      }
+    },
+    {
+      "kind": "relationships",
+      "payload": {
+        "nodes": [
+          {
+            "id": "n1",
+            "label": "Juan Boix Martínez",
+            "tone": "civic",
+            "kind": "person"
+          },
+          {
+            "id": "n2",
+            "label": "Grupo Municipal Popular (5/7 «Independiente»)",
+            "tone": "civic",
+            "kind": "party"
+          },
+          {
+            "id": "n3",
+            "label": "Comisiones informativas (Innovación · Educación · Inclusión)",
+            "tone": "neutral",
+            "kind": "entity"
+          }
+        ],
+        "edges": [
+          {
+            "from": "n1",
+            "to": "n2",
+            "relation": "concejal n.º 5 del grupo, registrado «(Independiente)» (acta 07-07-2023)",
+            "sourceIds": [
+              "src-062"
+            ]
+          },
+          {
+            "from": "n1",
+            "to": "n3",
+            "relation": "titular por su grupo en tres comisiones informativas",
+            "sourceIds": [
+              "src-063"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "timeline",
+      "payload": {
+        "events": [
+          {
+            "date": "2023-06-17",
+            "label": "Proclamado concejal electo y juramento en la sesión constitutiva (n.º 5 del PP, «Independiente»); primera candidatura documentada",
+            "sourceIds": [
+              "src-060",
+              "src-061"
+            ]
+          },
+          {
+            "date": "2023-07-07",
+            "label": "Integrado en el Grupo Municipal Popular; titular en tres comisiones informativas; sin dedicación (régimen de asistencias)",
+            "sourceIds": [
+              "src-062",
+              "src-063",
+              "src-064"
+            ]
+          },
+          {
+            "date": "2023-09-05",
+            "label": "Declaración de bienes: activo 329.314,73 € (el mayor de la corporación) · pasivo 3.626,00 € · condición de prejubilado (BOP n.º 180, 15-09-2023)",
+            "sourceIds": [
+              "src-065",
+              "src-066",
+              "src-067"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "kind": "gaps-detected",
+      "payload": {
+        "missing": [
+          {
+            "field": "CV no publicado en el portal municipal",
+            "reason": "El portal de transparencia publica CV de 17 miembros de la corporación pero no de Boix (ni de Trejo, Guzmán o Navarro Sanfeliu). Sin CV, no consta fecha de nacimiento, formación ni la profesión ejercida antes de la prejubilación."
+          },
+          {
+            "field": "Origen de los «otros bienes» declarados (179.707,91 €)",
+            "reason": "La declaración consigna la cifra pero no su naturaleza (ahorro, inversiones, participaciones…). Sin el detalle, se publica el importe sin interpretación."
+          },
+          {
+            "field": "Ingresos por asistencias",
+            "reason": "Su retribución municipal depende de las sesiones a las que asiste; el Ayuntamiento no publica el total anual liquidado por asistencias a cada concejal."
+          },
+          {
+            "field": "Familia y relaciones personales",
+            "reason": "Sin fuente pública lícita; este medio no las investiga ni publica."
+          }
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "id": "src-060",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "title": "Acta sesión constitutiva 17-06-2023 — proclamación de electos (credenciales JEZ)",
+      "retrievedAt": "2026-07-31T18:34:52.031Z",
+      "excerpt": "Alfredo Pla Gimenez\nDavid Barbancho Martínez\nAlberto Jose Gimeno Calvo\nSoraya Trejo Delgado\nMaria Jose Pradas Ramo\nSalvador Evaristo Ferrer Cortina\nLaura Guzman Bruno\nJuan Boix Martínez",
+      "trust": "high"
+    },
+    {
+      "id": "src-061",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2017-06-2023.pdf",
+      "title": "Acta sesión constitutiva 17-06-2023 — juramento/promesa de los concejales",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "- Jose Manuel Gallardo Martínez\n- Jose Luis Fernández Santamaria\n- Paula Navarro Sanfeliu\n- Juan Boix Martínez\n- Laura Guzman Bruno\n- Salvador Evaristo Ferrer Cortina\n- Maria Jose Pradas Ramo\n2\n- Soraya Trejo Delgado",
+      "trust": "high"
+    },
+    {
+      "id": "src-062",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "title": "Acta organización 07-07-2023 — Grupo Municipal Popular (Boix n.º 5, «(Independiente)»)",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "Túria, son:\n1. Don Alberto José Gimeno Calvo (Independiente)\n2. Doña Soraya Trejo Delgado (Independiente)\n3. Doña Maria José Pradas Ramo (Independiente)\n4. Don Salvador Evaristo Ferrer Cortina (Independiente)\n5. Don Juan Boix Martínez (Independiente)\n6. Doña Laura Guzmán Bruno\n7. Paula Navarro Sanfeliu\nSiendo su Portavoz: Don Alberto José Gimeno Calvo\nPortavoz suplente: Doña Soraya Trejo Delgado\nPor el Grupo político municipal con la denominación de Grupo Municipal Vox Riba roja de Túria, es:",
+      "trust": "high"
+    },
+    {
+      "id": "src-063",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "title": "Acta organización 07-07-2023 — Comisión Informativa de Educación, Cultura, Deportes y Fiestas: titulares del Grupo Popular (incl. Boix)",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "Grupo Municipal Partido Popular Riba-roja de Túria\nTitular: D. Alberto José Gimeno Calvo\nTitular: Dª Mª José Pradas Ramo\nTitular: D. Juan Boix Martínez\nTitular: Dª Paula Navarro Sanfeliu",
+      "trust": "high"
+    },
+    {
+      "id": "src-064",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/2023-09/ACTA%20PLENO%2007-07-2023.pdf",
+      "title": "Acta organización 07-07-2023 — régimen de asistencias (miembros sin dedicación)",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "TERCERO. Fijar el siguiente régimen de indemnizaciones y asistencias:\n- Por asistencia a sesiones del Pleno: 221,82 euros por sesión (solo podrán percibir este\nimporte los miembros de la Corporación que desempeñen sus cargos sin dedicación exclusiva ni\nparcial).\n- Por asistencia a sesiones de la Junta de Gobierno Local: 162,31 €/sesión (solo podrán\npercibir este importe los miembros de la Corporación que formen parte de la misma que\ndesempeñen sus cargos sin dedicación exclusiva ni parcial).",
+      "trust": "high"
+    },
+    {
+      "id": "src-065",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de bienes patrimoniales — toma de posesión 2023 (expte. 3971/2023/GEN, Decreto 191/2010)",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "JUAN BOIX MARTÍNEZ 149.606,82 179.707,91 329.314,73 3.626,00 — [columnas: bienes inmuebles · otros bienes · total activo · pasivo]",
+      "trust": "high"
+    },
+    {
+      "id": "src-066",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-20230905-BIEN-ACTIV-CONCEJALES---TOMA-POSESIN---ANUNC-1.pdf",
+      "title": "Declaración de actividades — toma de posesión 2023 (expte. 3971/2023/GEN)",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "JUAN BOIX MARTÍNEZ | Prejubilado — [tabla de actividades: única condición declarada, sin entidad ni fechas]",
+      "trust": "high"
+    },
+    {
+      "id": "src-067",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/4549352/filesGroup/20231017-2023_12011_VA-Anuncio-BOP-Toma-posesion.pdf",
+      "title": "BOP de València n.º 180, 15-09-2023 (anuncio 2023/12011) — publicación de las declaraciones tras la toma de posesión",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre publicación de las declaraciones de bienes y actividades de los miembros de la Corporación con motivo de la toma de posesión (expediente 3971/2023/GEN).",
+      "trust": "high"
+    },
+    {
+      "id": "src-068",
+      "kind": "official-doc",
+      "url": "https://www.ribarroja.es/es/portal_de_transparencia/informacion_sobre_la_corporacion_municipal/datos_biograficos_del_alcalde_sa_y_concejales/contenidos/864708/0835919",
+      "title": "Portal de transparencia — listado de datos biográficos: sin CV publicado de Boix",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "PDF publicados en la ficha de datos biográficos (extracto de nombres de archivo): CV_DAVID_BARRANCHO · CV-TERESA-POZUELO · CURRICULUM-JOSE-ANGEL-HERNANDEZ · Datos-biogrficos-Alberto-J-Gimeno-Calvo · Compromis-Rafael-Folgado-Navarro · EU_UP-Jose-Manuel-Gallardo · PP-M-Jose-Pradas-Ramo · PP-Salvador-Ferrer-Cortina · PSOE-… (9) · VOX-Jose-Luis-Fernandez-Santamaria. No figura ningún archivo de Juan Boix Martínez (ni de Trejo, Guzmán o Navarro Sanfeliu).",
+      "trust": "high"
+    },
+    {
+      "id": "src-069",
+      "kind": "local-snapshot",
+      "url": "https://www.civicpulse.es/data/tenders.json",
+      "title": "Barrido determinista de adjudicatarios en tenders.json (comprobación de este medio)",
+      "retrievedAt": "2026-07-31T18:34:52.032Z",
+      "excerpt": "Barrido nominal sobre todos los adjudicatarios registrados (contratos + licitaciones Gobierto/PLACSP): 0 coincidencias para «Boix Martínez». No consta como adjudicatario del Ayuntamiento.",
+      "localPath": "public/data/tenders.json",
+      "trust": "high"
+    }
+  ],
+  "warnings": [
+    "El portal municipal no publica CV del concejal: los datos biográficos básicos (nacimiento, formación, profesión previa) no constan en ninguna fuente pública verificable y este perfil no los suple con fuentes no documentales.",
+    "El patrimonio declarado se transcribe de la declaración estatutaria (sworn); su composición interna (naturaleza de los «otros bienes») no se detalla en el documento."
+  ],
+  "legalSensitivity": "medium",
+  "promotedBy": "Sergei Lutchenko",
+  "promotedAt": "2026-07-31T18:35:11.894Z",
+  "curatorNotes": "REVISIÓN DE CURADURÍA 31-07-2026: draft del agente mínimo (6 secciones), sin CV publicado (patrón Trejo/Guzmán). El agente auto-estampó legalSensitivity=high por tokens judiciales en fuentes de transcripción semántica (src-021/027) que se eliminan en la reconstrucción; recalculado a medium (0 tokens judiciales, cargo electo vivo). Perfil sobre primarios: actas (electo+juramento 17-06-2023; grupo PP n.º 5 «Independiente»; titular en TRES comisiones informativas —Innovación/Proyectos Europeos/Integridad, Educación, Inclusión Social—; asistencias), BOP (0 en candidaturas 2015 y 2019 → primera candidatura 2023) y declaración verificada contra PDF + render p2: activo 329.314,73 € (149.606,82 inmuebles + 179.707,91 otros) — el MAYOR patrimonio total de toda la corporación — con pasivo casi nulo (3.626 €); actividad única: «prejubilado». Eliminada la sección promise-board (nivel de partido). Barrido de adjudicatarios: 0 «Boix Martínez». Lagunas honestas: sin CV (nacimiento/formación/profesión previa), y el origen de los «otros bienes» (179.707,91 €) no se detalla en la declaración.",
+  "corrections": [],
+  "response": null
+}
