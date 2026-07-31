@@ -164,11 +164,16 @@ npm run promote-report -- a-<id> --curator "Sergei Lutchenko" \
 - Promote auto-prunes uncited ledger rows (published contract = cited sources).
 - **`curatorNotes` RENDER PUBLICLY** in the `/laboratorio/agentes` CuratorNotesBlock expander
   (any note opening with `REVISIÓN DE CURADURÍA` / `CORRECCIÓN` / `AMPLIACIÓN` / `VIGILANCIA` …).
-  So describe the verification substance, but NEVER enumerate the specific junk/homonym search
-  hits by name — write «se retiró ruido web de baja confianza por homonimia», not «(Australian
-  Open, ninite, hijas de Zapatero…)» (2026-07-31: those strings landed on Guzmán's live page via
-  the note and had to be scrubbed). Naming a genuine disambiguation subject (e.g. «Salomé Pradas,
-  persona distinta») is fine and useful; listing absurd search noise is not.
+  So describe what you DID, but **NEVER quote back the content you EXCLUDED** — not homonym
+  search noise (`Australian Open`, `ninite`, `hijas de Zapatero`), not removed ASR floor-quotes
+  (`Pacto del Botánico`, `recogida de residuos`), not accusatory exchanges you dropped
+  (`25-N / NIT Violeta`). Write «se retiraron citas de floor ASR no verificables» / «ruido web de
+  baja confianza por homonimia» / «un intercambio de tono acusatorio», NOT the strings themselves.
+  This recurred THREE times on 2026-07-31 (Guzmán, Navarro, Fernández) — each landed the excluded
+  text on the live page via the note and had to be scrubbed with a follow-up commit. Naming a
+  genuine disambiguation subject that STAYS in the profile (e.g. «Salomé Pradas, persona distinta»)
+  is fine; echoing anything you removed is not. Sanity check before promote:
+  `grep -iE 'australian|ninite|zapatero|botánico|nit violeta' the note`.
 - Post-promotion edits to a PUBLISHED report: narrative/quote-attribution via
   `npm run correct-journalist-report` (public bitácora); other payloads via a validated one-shot
   script + dated curatorNotes entry (both write snapshot + chunk).
