@@ -111,6 +111,7 @@
     "transcribe-file": "npx tsx scripts/transcribe-file.ts",
     "refine-transcript": "npx tsx scripts/refine-transcript.ts",
     "enroll-voice": "npx tsx scripts/enroll-voice.ts",
+    "propose-voice-refs": "npx tsx scripts/propose-voice-references.ts",
     "delete-voiceprint": "npx tsx scripts/delete-voiceprint.ts",
     "identify-pleno-speakers": "npx tsx scripts/identify-pleno-speakers.ts",
     "override-speaker-assignment": "npx tsx scripts/override-speaker-assignment.ts",
