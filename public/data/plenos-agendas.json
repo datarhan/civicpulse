@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T16:37:15.583Z",
+  "generatedAt": "2026-08-01T19:28:39.851Z",
   "source": {
     "baseUrl": "https://regmeet.com",
     "description": "Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto."
@@ -8,74 +8,74 @@
     "plenosFetched": 37,
     "agendaItemsTotal": 377,
     "plenosWithRuegos": 6,
-    "uniqueDepartments": 16,
+    "uniqueDepartments": 21,
     "sessionsTotal": 61,
     "sessionsWithAgenda": 37,
-    "refreshedThisRun": 2,
-    "carriedForward": 35,
-    "recoveredFromArchive": 2,
+    "refreshedThisRun": 1,
+    "carriedForward": 36,
+    "recoveredFromArchive": 1,
     "plazosVencidosCount": 0,
     "deptCoverage": 26
   },
   "topDepartments": [
     {
-      "department": "Cultura",
+      "department": "hacienda",
+      "count": 16,
+      "departmentSlug": "hacienda"
+    },
+    {
+      "department": "comercio",
+      "count": 13,
+      "departmentSlug": "comercio"
+    },
+    {
+      "department": "contratacion",
+      "count": 13,
+      "departmentSlug": "contratacion"
+    },
+    {
+      "department": "recursos-humanos",
+      "count": 8,
+      "departmentSlug": "recursos-humanos"
+    },
+    {
+      "department": "servicios-generales",
+      "count": 7,
+      "departmentSlug": "servicios-generales"
+    },
+    {
+      "department": "cultura",
       "count": 6,
       "departmentSlug": "cultura"
     },
     {
-      "department": "Contratación",
+      "department": "medio-ambiente",
       "count": 5,
-      "departmentSlug": "contratacion"
+      "departmentSlug": "medio-ambiente"
     },
     {
-      "department": "Servicios generales",
+      "department": "alcaldia",
+      "count": 5,
+      "departmentSlug": "alcaldia"
+    },
+    {
+      "department": "urbanismo",
       "count": 4,
-      "departmentSlug": "servicios-generales"
+      "departmentSlug": "urbanismo"
     },
     {
-      "department": "Hacienda",
-      "count": 3,
-      "departmentSlug": "hacienda"
-    },
-    {
-      "department": "Comercio",
-      "count": 3,
-      "departmentSlug": "comercio"
-    },
-    {
-      "department": "Seguridad",
+      "department": "seguridad",
       "count": 3,
       "departmentSlug": "seguridad"
     },
     {
-      "department": "Medio ambiente",
+      "department": "servicios-sociales",
       "count": 3,
-      "departmentSlug": "medio-ambiente"
+      "departmentSlug": "servicios-sociales"
     },
     {
-      "department": "Alcaldía",
-      "count": 2,
-      "departmentSlug": "alcaldia"
-    },
-    {
-      "department": "Transparencia",
-      "count": 2,
-      "departmentSlug": "transparencia"
-    },
-    {
-      "department": "Vivienda",
-      "count": 1,
-      "departmentSlug": "vivienda"
-    },
-    {
-      "department": "Educación",
-      "count": 1,
-      "departmentSlug": "educacion"
-    },
-    {
-      "department": "Movilidad",
-      "count": 1,
+      "department": "movilidad",
+      "count": 3,
       "departmentSlug": "movilidad"
     }
   ],
@@ -322,10 +322,10 @@
       ],
       "agendaCount": 15,
       "departments": [
-        "Cultura",
-        "Vivienda",
-        "Hacienda",
-        "Comercio"
+        "cultura",
+        "vivienda",
+        "comercio",
+        "hacienda"
       ],
       "hasRuegos": true
     },
@@ -435,8 +435,8 @@
       ],
       "agendaCount": 12,
       "departments": [
-        "Educación",
-        "Contratación"
+        "educacion",
+        "contratacion"
       ],
       "hasRuegos": false
     },
@@ -473,7 +473,9 @@
         }
       ],
       "agendaCount": 3,
-      "departments": [],
+      "departments": [
+        "recursos-humanos"
+      ],
       "hasRuegos": false
     },
     {
@@ -560,7 +562,7 @@
           "title": "Moción del Grupo Municipal Popular Riba-roja de Túria para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)",
           "section": "resolutiva",
           "department": null,
-          "departmentSlug": "empleo-economia",
+          "departmentSlug": null,
           "expediente": "08/2026/PGRU"
         },
         {
@@ -606,9 +608,10 @@
       ],
       "agendaCount": 15,
       "departments": [
-        "Seguridad",
-        "Medio ambiente",
-        "Contratación"
+        "seguridad",
+        "medio-ambiente",
+        "comercio",
+        "contratacion"
       ],
       "hasRuegos": true
     },
@@ -825,7 +828,9 @@
         }
       ],
       "agendaCount": 10,
-      "departments": [],
+      "departments": [
+        "contratacion"
+      ],
       "hasRuegos": false
     },
     {
@@ -848,7 +853,7 @@
           "title": "Expedient 615/2025/GEN: Elevació a definitiva penalitat imposada al contractista per incompliment de l'adscripció de mitjans personals i materials compromesos des de l'inici del contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi; inicie resolució del contracte per continuar l'incompliment del contracte; i desestimació de sol·licitud de successió en la posició de contractista del contracte de contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi (Expedient 136/2025), en virtut d'operació de transmissió de branca d'activitat mitjançant absorció de l'empresa contractista Garbialdi, S. a. per la mercantil ISS Facility Services, S.A.O., en el marc de l'article 98 de la Llei 9/2017, de 8 de novembre, de Contractes del Sector Públic",
           "section": "resolutiva",
           "department": null,
-          "departmentSlug": "recursos-humanos",
+          "departmentSlug": null,
           "expediente": null
         }
       ],
@@ -912,7 +917,7 @@
           "title": "Expedient 615/2025/GEN: Proposta d'acord d'inici d'expedient d'imposició de penalitats al contractista per incompliment de l'adscripció de mitjans personals i materials compromesos des de l'inici del contracte (lot 1) per a la prestació del servici “Servici de recollida de residus sòlids urbans, poda i voluminosos del municipi (Expedient 136/2025)”",
           "section": "resolutiva",
           "department": null,
-          "departmentSlug": "recursos-humanos",
+          "departmentSlug": null,
           "expediente": null
         },
         {
@@ -949,7 +954,9 @@
         }
       ],
       "agendaCount": 7,
-      "departments": [],
+      "departments": [
+        "hacienda"
+      ],
       "hasRuegos": false
     },
     {
@@ -1106,8 +1113,10 @@
       ],
       "agendaCount": 18,
       "departments": [
-        "Cultura",
-        "Servicios generales"
+        "cultura",
+        "hacienda",
+        "servicios-generales",
+        "comercio"
       ],
       "hasRuegos": false
     },
@@ -1233,7 +1242,7 @@
       ],
       "agendaCount": 14,
       "departments": [
-        "Cultura"
+        "cultura"
       ],
       "hasRuegos": false
     },
@@ -1343,7 +1352,11 @@
       ],
       "agendaCount": 12,
       "departments": [
-        "Servicios generales"
+        "comercio",
+        "innovacion",
+        "servicios-sociales",
+        "servicios-generales",
+        "hacienda"
       ],
       "hasRuegos": false
     },
@@ -1484,7 +1497,9 @@
         }
       ],
       "agendaCount": 16,
-      "departments": [],
+      "departments": [
+        "comercio"
+      ],
       "hasRuegos": false
     },
     {
@@ -1645,8 +1660,10 @@
       ],
       "agendaCount": 14,
       "departments": [
-        "Cultura",
-        "Seguridad"
+        "comercio",
+        "contratacion",
+        "cultura",
+        "seguridad"
       ],
       "hasRuegos": false
     },
@@ -1827,7 +1844,9 @@
         }
       ],
       "agendaCount": 21,
-      "departments": [],
+      "departments": [
+        "contratacion"
+      ],
       "hasRuegos": false
     },
     {
@@ -1920,7 +1939,8 @@
       ],
       "agendaCount": 10,
       "departments": [
-        "Contratación"
+        "contratacion",
+        "comercio"
       ],
       "hasRuegos": true
     },
@@ -2046,7 +2066,9 @@
       ],
       "agendaCount": 14,
       "departments": [
-        "Alcaldía"
+        "juventud",
+        "hacienda",
+        "alcaldia"
       ],
       "hasRuegos": false
     },
@@ -2228,10 +2250,11 @@
       ],
       "agendaCount": 21,
       "departments": [
-        "Medio ambiente",
-        "Movilidad",
-        "Hacienda",
-        "Contratación"
+        "medio-ambiente",
+        "movilidad",
+        "hacienda",
+        "comercio",
+        "contratacion"
       ],
       "hasRuegos": true
     },
@@ -2457,7 +2480,10 @@
       ],
       "agendaCount": 14,
       "departments": [
-        "Medio ambiente"
+        "recursos-humanos",
+        "medio-ambiente",
+        "servicios-generales",
+        "hacienda"
       ],
       "hasRuegos": false
     },
@@ -2542,7 +2568,10 @@
         }
       ],
       "agendaCount": 9,
-      "departments": [],
+      "departments": [
+        "contratacion",
+        "hacienda"
+      ],
       "hasRuegos": false
     },
     {
@@ -2562,7 +2591,9 @@
         }
       ],
       "agendaCount": 1,
-      "departments": [],
+      "departments": [
+        "hacienda"
+      ],
       "hasRuegos": false
     },
     {
@@ -2706,7 +2737,10 @@
         }
       ],
       "agendaCount": 11,
-      "departments": [],
+      "departments": [
+        "salud",
+        "comercio"
+      ],
       "hasRuegos": true
     },
     {
@@ -2878,7 +2912,9 @@
         }
       ],
       "agendaCount": 11,
-      "departments": [],
+      "departments": [
+        "hacienda"
+      ],
       "hasRuegos": false
     },
     {
@@ -3027,8 +3063,15 @@
       ],
       "agendaCount": 17,
       "departments": [
-        "Servicios generales",
-        "Cultura"
+        "urbanismo",
+        "empleo-economia",
+        "servicios-generales",
+        "medio-ambiente",
+        "cultura",
+        "bienestar-animal",
+        "contratacion",
+        "comercio",
+        "innovacion"
       ],
       "hasRuegos": false
     },
@@ -3057,7 +3100,9 @@
         }
       ],
       "agendaCount": 2,
-      "departments": [],
+      "departments": [
+        "recursos-humanos"
+      ],
       "hasRuegos": false
     },
     {
@@ -3218,9 +3263,11 @@
       ],
       "agendaCount": 16,
       "departments": [
-        "Transparencia",
-        "Servicios sociales",
-        "Comercio"
+        "transparencia",
+        "servicios-sociales",
+        "movilidad",
+        "comercio",
+        "hacienda"
       ],
       "hasRuegos": false
     },
@@ -3338,9 +3385,13 @@
       ],
       "agendaCount": 13,
       "departments": [
-        "Cultura",
-        "Seguridad",
-        "Recursos humanos"
+        "cultura",
+        "urbanismo",
+        "seguridad",
+        "igualdad",
+        "medio-ambiente",
+        "educacion",
+        "recursos-humanos"
       ],
       "hasRuegos": false
     },
@@ -3474,13 +3525,13 @@
       ],
       "agendaCount": 15,
       "departments": [
-        "Transparencia",
-        "Hacienda",
-        "Urbanismo",
-        "Contratación",
-        "Comercio",
-        "Servicios generales",
-        "Juventud"
+        "transparencia",
+        "hacienda",
+        "urbanismo",
+        "contratacion",
+        "comercio",
+        "servicios-generales",
+        "juventud"
       ],
       "hasRuegos": false
     },
@@ -3590,7 +3641,8 @@
       ],
       "agendaCount": 12,
       "departments": [
-        "Alcaldía"
+        "alcaldia",
+        "recursos-humanos"
       ],
       "hasRuegos": false
     }

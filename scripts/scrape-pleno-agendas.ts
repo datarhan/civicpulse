@@ -194,8 +194,13 @@ async function main() {
         if (slug) rederived += 1
       }
     }
+    // Built from the CANONICAL slug, not the raw `department` string. 57 of
+    // 377 items carry a departmentSlug re-derived from their title while
+    // `department` stays null, and keying on the raw field dropped every one of
+    // them here — so an item counted as a councillor's council business on
+    // /cargos/:slug appeared in no department on the session page.
     p.departments = Array.from(
-      new Set(p.agenda.map((a) => a.department).filter(Boolean) as string[]),
+      new Set(p.agenda.map((a) => a.departmentSlug || a.department).filter(Boolean) as string[]),
     )
   }
   if (rederived > 0) console.log(`[pleno-agendas] re-derived ${rederived} department tag(s)`)
@@ -212,8 +217,14 @@ async function main() {
   if (fetchFailures > 0) {
     console.warn(`[pleno-agendas] ${fetchFailures}/${targets.length} session pages unavailable`)
   }
+  // Count ITEMS, not sessions. This incremented once per session, so
+  // "Contratación · 5" sat directly under a header reading "377 puntos" while
+  // meaning 5 sessions — Contratación appears in 7 items across 5 sessions.
   for (const r of merged) {
-    for (const d of r.departments) deptCount[d] = (deptCount[d] || 0) + 1
+    for (const a of r.agenda) {
+      const d = a.departmentSlug || a.department
+      if (d) deptCount[d] = (deptCount[d] || 0) + 1
+    }
   }
   const topDepartments = Object.entries(deptCount)
     .sort((a, b) => b[1] - a[1])

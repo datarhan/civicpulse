@@ -97,7 +97,7 @@ export const DEPARTMENT_LABEL: Record<DepartmentSlug, DepartmentLabel> = {
 // Keyword → slug rules. Evaluated in order, first match wins. Keys are
 // already normalized (stripDiacritics + toLowerCase) so the rule engine
 // can do plain substring tests. Multi-word keys let us match phrases.
-const RULES: Array<{ match: string; slug: DepartmentSlug }> = [
+const RULES: Array<{ match: string; slug: DepartmentSlug; whole?: boolean }> = [
   // ── Valencian ────────────────────────────────────────────────────────────
   // The corporation holds its plenos in Valencian, so agenda items arrive as
   // "MEDI AMBIENT, Expedient 4297/2024/GEN – …" while this table was
@@ -131,7 +131,11 @@ const RULES: Array<{ match: string; slug: DepartmentSlug }> = [
   { match: 'educacio', slug: 'educacion' },
   { match: 'esports', slug: 'deportes' },
   { match: 'comerc', slug: 'comercio' },
-  { match: 'ocupacio', slug: 'empleo-economia' },
+  // Whole-word: diacritics are stripped before matching, so Valencian
+  // "ocupació" folds to `ocupacio` while Spanish "ocupación" folds to
+  // `ocupacion` — and a substring test matches both. The second is squatting,
+  // not employment, and it filed a Xarxa MAO motion under Empleo y economía.
+  { match: 'ocupacio', slug: 'empleo-economia', whole: true },
   { match: 'foment economic', slug: 'empleo-economia' },
   { match: 'festes', slug: 'fiestas' },
   { match: 'turisme', slug: 'turismo' },
@@ -141,7 +145,10 @@ const RULES: Array<{ match: string; slug: DepartmentSlug }> = [
   { match: 'mobilitat', slug: 'movilidad' },
   { match: 'majors', slug: 'mayores' },
   { match: 'comunicacio', slug: 'comunicacion' },
-  { match: 'personal', slug: 'recursos-humanos' },
+  // Whole-word: "mitjans personals i materials" / "medios personales" are the
+  // contractor's means of performance, not staffing. Two contract-penalty
+  // items were filed under Recursos Humanos because of it.
+  { match: 'personal', slug: 'recursos-humanos', whole: true },
   { match: 'secretaria', slug: 'servicios-generales' },
   { match: 'sanitat', slug: 'salud' },
   { match: 'agricultura', slug: 'agricultura' },
@@ -242,10 +249,29 @@ export function canonicalizeDepartment(raw: string | null | undefined): Departme
   if (!raw) return null
   const key = normalizeKey(raw)
   if (!key) return null
+  // Longest matching needle wins, NOT first-in-list.
+  //
+  // With first-match-wins the table's ORDER decided the answer, and the
+  // Valencian block sits above the Spanish one — so the 6-character stem
+  // `comerc` (comerç) beat the exact rule `tesoreria` inside the same string,
+  // and eight quarterly "Período Medio de Pago a proveedores" reports were
+  // filed under Comercio because they mention "deuda comercial". One of them
+  // literally begins «TESORERIA, Expedient: 4929/2023/GEN». Same failure put a
+  // motion about squatting (`ocupación`) under Empleo y economía and two
+  // contract-penalty items (`medios personales`) under Recursos Humanos.
+  //
+  // Those items are not cosmetic: /cargos/:slug lists them as that
+  // councillor's council business and /departamentos counts them as the área's
+  // activity. Specificity, not table position, has to decide.
+  let best: { match: string; slug: DepartmentSlug } | null = null
   for (const rule of RULES) {
-    if (key.includes(rule.match)) return rule.slug
+    const hit = rule.whole
+      ? new RegExp(`(?:^|[^a-z0-9])${rule.match}(?:[^a-z0-9]|$)`).test(key)
+      : key.includes(rule.match)
+    if (!hit) continue
+    if (best === null || rule.match.length > best.match.length) best = rule
   }
-  return null
+  return best ? best.slug : null
 }
 
 export interface OfficialLike {

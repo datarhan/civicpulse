@@ -1,5 +1,21 @@
 import { Pill } from '../Primitives'
 import { SECTION_LABEL, SECTION_TONE } from '../../hooks/usePlenoAgendas'
+import { DEPARTMENT_LABEL } from '../../scraper/departments'
+
+/**
+ * The department chip used to read `item.department`, the raw upstream string.
+ * 57 of 377 items have a `departmentSlug` re-derived from their title while
+ * `department` stays null — so those items showed no chip here, yet counted as
+ * that councillor's council business on /cargos/:slug and as the área's
+ * activity on /departamentos. Three surfaces, three different answers about
+ * the same item. The canonical slug is the one they all agree on.
+ */
+function deptChip(item) {
+  if (item.departmentSlug && DEPARTMENT_LABEL[item.departmentSlug]) {
+    return DEPARTMENT_LABEL[item.departmentSlug].es
+  }
+  return item.department || null
+}
 
 export function AgendaRow({ item }) {
   return (
@@ -18,7 +34,7 @@ export function AgendaRow({ item }) {
       </div>
       <div style={{ minWidth: 0 }}>
         <div style={{ display: 'flex', gap: 6, alignItems: 'baseline', flexWrap: 'wrap' }}>
-          {item.department && (
+          {deptChip(item) && (
             <span
               className="mono"
               style={{
@@ -29,7 +45,7 @@ export function AgendaRow({ item }) {
                 fontWeight: 700,
               }}
             >
-              {item.department}
+              {deptChip(item)}
             </span>
           )}
           {item.expediente && (

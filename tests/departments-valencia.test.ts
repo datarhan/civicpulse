@@ -57,3 +57,36 @@ describe('departments — Valencian department names', () => {
     expect(canonicalizeDepartment('MEDI AMBIENT, Expedient 4297/2024/GEN')).toBe('medio-ambiente')
   })
 })
+
+describe('canonicalizeDepartment — specificity beats table order', () => {
+  it('files a treasury payment-period report under hacienda, not comercio', () => {
+    // Real agenda item. The Valencian stem `comerc` (comerç) matched "deuda
+    // comercial" and, sitting higher in the table under first-match-wins, beat
+    // the exact `tesoreria` rule in the very same string.
+    expect(
+      canonicalizeDepartment(
+        'TESORERIA, Expedient: 4929/2023/GEN, Informe sobre el Período Medio de Pago a proveedores y seguimiento de deuda comercial',
+      ),
+    ).toBe('hacienda')
+  })
+
+  it('does not file a squatting motion under empleo y economía', () => {
+    // `ocupacio` (Valencian for employment) matched the Spanish "ocupación",
+    // which here means squatting.
+    expect(
+      canonicalizeDepartment(
+        'Moción del Grupo Municipal Popular para adherirse a la Red de municipios afectados por la ocupación (Xarxa MAO)',
+      ),
+    ).not.toBe('empleo-economia')
+  })
+
+  it('does not file a contract penalty under recursos humanos', () => {
+    // `personal` matched "mitjans personals i materials" — means of
+    // performance, not staffing.
+    expect(
+      canonicalizeDepartment(
+        "Penalitat imposada al contractista per incompliment de l'adscripció de mitjans personals i materials",
+      ),
+    ).not.toBe('recursos-humanos')
+  })
+})

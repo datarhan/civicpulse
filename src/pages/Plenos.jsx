@@ -10,6 +10,17 @@ import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { summarizeSessions } from '../lib/pleno-summary'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
+import { DEPARTMENT_LABEL } from '../scraper/departments'
+
+/**
+ * `department` now holds the canonical slug (the counts are keyed on it so the
+ * 57 items with a slug but no raw department name are included), so render the
+ * human label rather than the slug itself.
+ */
+function deptName(d) {
+  const label = d.departmentSlug && DEPARTMENT_LABEL[d.departmentSlug]
+  return label ? label.es : d.department
+}
 
 function TopDepartmentsCard({ agendas }) {
   if (!agendas?.topDepartments?.length) return null
@@ -17,7 +28,7 @@ function TopDepartmentsCard({ agendas }) {
     <Card style={{ marginBottom: 14 }}>
       <SectionHead
         eyebrow={`Plenos analizados · ${agendas.stats.plenosFetched} sesiones · ${agendas.stats.agendaItemsTotal} puntos`}
-        title="Departamentos con más presencia en el pleno"
+        title="Departamentos con más puntos en el orden del día"
         right={
           <Link
             to="/departamentos"
@@ -43,7 +54,7 @@ function TopDepartmentsCard({ agendas }) {
               textDecoration: 'none',
             }}
           >
-            {d.department}
+            {deptName(d)}
             <span style={{ marginLeft: 5, color: 'var(--ink60)' }}>· {d.count}</span>
           </Link>
         ))}
