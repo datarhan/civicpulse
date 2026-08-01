@@ -348,18 +348,40 @@ describe('claimsSummary cross-tab path', () => {
 })
 
 describe('computeDepartmentStats — contratación por concejalía', () => {
+  // A contract counts as spent money when it names a WINNER and has not been
+  // revoked. Gobierto leaves `status` as "unknown" on 413 of 804 real rows —
+  // complete with assignee, awardDate and amount — so trusting that field
+  // discarded most of the money (€138M of mapped spend collapsed to €15M).
   const tenders = {
     contracts: [
-      // construction → obras-publicas
-      { id: 'c1', categoryTitle: 'construction', status: 'awarded', finalAmount: 100000 },
-      { id: 'c2', categoryTitle: 'construction', status: 'awarded', initialAmount: 50000 },
-      // environment → medio-ambiente
-      { id: 'c3', categoryTitle: 'environment', status: 'awarded', finalAmount: 25000 },
-      // ambiguous — must reach no department rather than guess an owner
-      { id: 'c4', categoryTitle: 'other', status: 'awarded', finalAmount: 999999 },
-      { id: 'c5', categoryTitle: 'legal', status: 'awarded', finalAmount: 888888 },
-      // not awarded yet — no money has moved, so it must not count as spend
-      { id: 'c6', categoryTitle: 'construction', status: 'pending', finalAmount: 777777 },
+      { id: 'c1', categoryTitle: 'construction', assignee: 'ACME SL', finalAmount: 100000 },
+      {
+        id: 'c2',
+        categoryTitle: 'construction',
+        assignee: 'ACME SL',
+        status: 'unknown',
+        initialAmount: 50000,
+      },
+      {
+        id: 'c3',
+        categoryTitle: 'environment',
+        assignee: 'ECO SA',
+        status: 'awarded',
+        finalAmount: 25000,
+      },
+      // ambiguous category — must reach no department rather than guess an owner
+      { id: 'c4', categoryTitle: 'other', assignee: 'X SL', finalAmount: 999999 },
+      { id: 'c5', categoryTitle: 'legal', assignee: 'Y SL', finalAmount: 888888 },
+      // revoked — the award was undone, so it is not spend
+      {
+        id: 'c6',
+        categoryTitle: 'construction',
+        assignee: 'Z SL',
+        status: 'revoked',
+        finalAmount: 777777,
+      },
+      // no winner named — nothing has been awarded yet
+      { id: 'c7', categoryTitle: 'construction', finalAmount: 666666 },
     ],
   }
 
@@ -386,7 +408,7 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
       tenders,
     })
     const total = list.reduce((s, d) => s + d.contratacion.contratos, 0)
-    expect(total).toBe(3) // c1, c2, c3 — never c4/c5 (ambiguous) or c6 (unawarded)
+    expect(total).toBe(3) // c1, c2, c3 — never c4/c5 (ambiguous), c6 (revoked) or c7 (no winner)
   })
 
   it('reports zero contratación when no tenders snapshot is supplied', () => {

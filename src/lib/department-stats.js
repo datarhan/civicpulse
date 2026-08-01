@@ -230,7 +230,12 @@ export function computeDepartmentStats({
   // money — and only unambiguous categories, so the number under-states
   // instead of putting a wrong owner on a spending figure.
   for (const c of tenders?.contracts ?? []) {
-    if (c.status !== 'awarded') continue
+    // Count a contract as spent money when it names a WINNER and was not
+    // revoked — not when `status === 'awarded'`. Gobierto leaves status as
+    // "unknown" on 413 of 804 rows that plainly are awarded (assignee,
+    // awardDate and amount all present), so trusting that field reported
+    // €15M of €138M attributable spend.
+    if (!c.assignee || c.status === 'revoked') continue
     const slug = departmentForTenderCategory(c.categoryTitle)
     if (!slug || !buckets[slug]) continue
     buckets[slug].contratacion.contratos += 1
