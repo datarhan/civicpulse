@@ -24,6 +24,7 @@ import { resolve } from 'node:path'
 
 const FINDINGS = resolve('public/data/pleno-findings.json')
 const TRANSCRIPTS = resolve('public/data/pleno-transcripts')
+const SUPERSEDED = resolve('public/data/pleno-transcripts/superseded')
 
 /**
  * Normalise for comparison: transcripts carry `[12.3 → 15.6] (SPEAKER_00)`
@@ -73,7 +74,23 @@ function main() {
     return cache.get(plenoId) ?? null
   }
 
+  // The transcript that was published when the quote was lifted, kept whenever
+  // a session is re-transcribed. Re-transcription is an improvement, but it
+  // rewrites punctuation, proper nouns and segmentation, so a perfectly honest
+  // quote stops matching the current file. Without this, that is
+  // indistinguishable from a fabrication — which is the thing this script
+  // exists to find.
+  const oldCache = new Map<string, string | null>()
+  const readSuperseded = (plenoId: string) => {
+    if (!oldCache.has(plenoId)) {
+      const p = `${SUPERSEDED}/${plenoId}.txt`
+      oldCache.set(plenoId, existsSync(p) ? readFileSync(p, 'utf8') : null)
+    }
+    return oldCache.get(plenoId) ?? null
+  }
+
   const drifted: Array<Record<string, string>> = []
+  const supersededOnly: Array<Record<string, string>> = []
   let checked = 0
   let ok = 0
   let noTranscript = 0
@@ -88,21 +105,35 @@ function main() {
         noTranscript += 1
         continue
       }
+      const row = {
+        findingId: f.id,
+        plenoId: f.plenoId,
+        title: f.title,
+        quote: text.slice(0, 120),
+        sourceClaimId: q.sourceClaimId ?? '',
+      }
+      const old = readSuperseded(f.plenoId)
       if (quoteAppearsIn(text, t)) ok += 1
-      else
-        drifted.push({
-          findingId: f.id,
-          plenoId: f.plenoId,
-          title: f.title,
-          quote: text.slice(0, 120),
-          sourceClaimId: q.sourceClaimId ?? '',
-        })
+      else if (old && quoteAppearsIn(text, old)) supersededOnly.push(row)
+      else drifted.push(row)
     }
   }
 
   if (asJson) {
     console.log(
-      JSON.stringify({ checked, ok, driftedCount: drifted.length, noTranscript, drifted }, null, 2),
+      JSON.stringify(
+        {
+          checked,
+          ok,
+          supersededOnlyCount: supersededOnly.length,
+          driftedCount: drifted.length,
+          noTranscript,
+          supersededOnly,
+          drifted,
+        },
+        null,
+        2,
+      ),
     )
     return
   }
@@ -110,12 +141,20 @@ function main() {
   console.log(
     `[finding-quotes] ${checked} quote(s) across ${findings.length} published finding(s)\n` +
       `  traceable to transcript : ${ok}\n` +
-      `  NOT found               : ${drifted.length}\n` +
+      `  only in the superseded  : ${supersededOnly.length}\n` +
+      `  NOT found anywhere      : ${drifted.length}\n` +
       `  transcript missing      : ${noTranscript}\n`,
   )
   for (const d of drifted) {
     console.log(`  ✗ ${d.plenoId}  ${d.findingId}`)
     console.log(`      “${d.quote}”`)
+  }
+  if (supersededOnly.length > 0) {
+    console.log(
+      `${supersededOnly.length} quote(s) match the transcript they were LIFTED from but not the\n` +
+        `current one — the session was re-transcribed. The citation is sound; the finding\n` +
+        `should be refreshed against the better text when a curator next touches it.\n`,
+    )
   }
   if (drifted.length > 0) {
     // Non-zero so a caller (scrape-all, CI) can actually notice. This script

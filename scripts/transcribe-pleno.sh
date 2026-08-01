@@ -352,6 +352,15 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
       exit 1
     fi
   fi
+  # Keep what we are replacing. Published findings quote councillors verbatim
+  # from whatever transcript was current when the quote was lifted, and a
+  # re-transcription rewrites punctuation, proper nouns and segmentation — so
+  # an honest citation stops matching the file it came from. Without the old
+  # text, `check:finding-quotes` cannot tell that apart from a fabrication.
+  if [ -f "$OUT_PATH" ]; then
+    mkdir -p "$(dirname "$OUT_PATH")/superseded"
+    cp "$OUT_PATH" "$(dirname "$OUT_PATH")/superseded/$(basename "$OUT_PATH")"
+  fi
   # Only now does the transcript become visible to the backlog detector.
   mv "$TMP_TXT" "$OUT_PATH"
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
