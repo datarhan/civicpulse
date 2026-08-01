@@ -29,6 +29,8 @@ export interface TenderTedRow {
   contractNature: string[]
   /** ISO publication date. */
   publicationDate: string
+  /** True when the day is unknown and only the year could be recovered. */
+  dateApproximate?: boolean
   /** Award amount in euros, when present on the notice. */
   totalValueEur: number | null
   currency: string
@@ -69,6 +71,42 @@ function pickLang(map: Record<string, string[]> | undefined, langs: string[]): s
     if (Array.isArray(v) && v.length > 0 && typeof v[0] === 'string') return v[0]
   }
   return ''
+}
+
+/**
+ * TED publication numbers are "<sequence>-<year>", e.g. "66594-2018".
+ * That year is the only date signal on most of this buyer's notices.
+ */
+export function yearFromPublicationNumber(pubNum: string | undefined): number | null {
+  const m = /-(\d{4})$/.exec((pubNum ?? '').trim())
+  if (!m) return null
+  const y = Number(m[1])
+  return y >= 1990 && y <= 2100 ? y : null
+}
+
+/**
+ * Best available date for a notice.
+ *
+ * TED omits `publication-date` on most notices for this buyer — 54 of 56 real
+ * rows — and the old fallback was `new Date(0)`, so the snapshot claimed every
+ * one of them was published on 1 January 1970. That is worse than no date: it
+ * sorts wrongly and reads as fact. Recover the year from the publication
+ * number instead and mark it approximate, so a surface can say "2018" without
+ * inventing a day.
+ */
+export function resolveTedDate(
+  raw: string | undefined,
+  pubNum: string | undefined,
+): { date: string | null; approximate: boolean } {
+  if (raw) {
+    const d = new Date(raw)
+    if (Number.isFinite(d.getTime()) && d.getTime() > 0) {
+      return { date: d.toISOString(), approximate: false }
+    }
+  }
+  const y = yearFromPublicationNumber(pubNum)
+  if (y == null) return { date: null, approximate: true }
+  return { date: `${y}-01-01T00:00:00.000Z`, approximate: true }
 }
 
 function safeDate(raw: string | undefined): string {
@@ -113,7 +151,10 @@ export function parseTedResponse(pages: ApiResponse[]): TenderTedRow[] {
         title,
         buyerName: buyer,
         contractNature: Array.isArray(n['contract-nature']) ? n['contract-nature'] : [],
-        publicationDate: safeDate(n['publication-date']),
+        ...(() => {
+          const r = resolveTedDate(n['publication-date'], pubNum)
+          return { publicationDate: r.date ?? '', dateApproximate: r.approximate }
+        })(),
         totalValueEur: currency === 'EUR' ? amount : null,
         currency,
         pdfUrl,

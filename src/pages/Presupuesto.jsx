@@ -6,6 +6,7 @@ import { useObras } from '../hooks/useObras'
 import { useBdns } from '../hooks/useBdns'
 import { fmtDateShort, fmtDateLong } from '../lib/formatters'
 import GastoDashboard from '../components/Presupuesto/GastoDashboard'
+import { TedNotices } from '../components/Presupuesto/TedNotices'
 
 function ChapterRow({ label, amount, total, color }) {
   const pct = total > 0 ? (amount / total) * 100 : 0
@@ -571,6 +572,7 @@ export default function Presupuesto() {
       <ObrasEnCursoSection />
       <div style={{ marginBottom: 16 }}>
         <GastoDashboard />
+        <TedNotices />
       </div>
       <BudgetCharts />
       <div style={{ marginBottom: 16 }}>

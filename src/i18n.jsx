@@ -271,6 +271,18 @@ const CATALOGUE = {
     'cargos.detalle.actividad.votos': 'votaciones',
     'cargos.detalle.actividad.declaraciones': 'declaraciones con evidencia',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
+    'datos.boe.eyebrow': 'Boletín Oficial del Estado',
+    'datos.boe.intro':
+      'Actos del Estado que nombran a Riba-roja: convenios, expropiaciones, resoluciones de personal o subvenciones nominativas que ninguna fuente municipal publica.',
+    'datos.boe.empty':
+      'Sin entradas en los últimos 30 días. El rastreo cubre solo ese periodo, así que esto significa "nada publicado este mes", no "nada nunca".',
+    'presupuesto.ted.eyebrow': 'Contratos sobre el umbral europeo · TED',
+    'presupuesto.ted.notices': 'anuncios',
+    'presupuesto.ted.valued': 'con importe declarado',
+    'presupuesto.ted.intro':
+      'Anuncios del Ayuntamiento en el Diario Oficial de la UE: los contratos que superan el umbral europeo, entre ellos líneas NextGenerationEU y de reconstrucción por la DANA. Complementa el feed de PLACSP, que a veces los publica más tarde.',
+    'presupuesto.ted.note':
+      'TED no publica título descriptivo para estos anuncios —el número ES el identificador—, así que cada fila enlaza al original. El símbolo ≈ marca los anuncios sin fecha exacta: el año se recupera del número de publicación y no se inventa un día.',
     'cargos.detalle.ficha.eyebrow': 'Portal de transparencia',
     'cargos.detalle.ficha.title': 'Su ficha biográfica oficial',
     'cargos.detalle.ficha.note':
@@ -587,6 +599,18 @@ const CATALOGUE = {
     'cargos.detalle.actividad.votos': 'votacions',
     'cargos.detalle.actividad.declaraciones': 'declaracions amb evidència',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
+    'datos.boe.eyebrow': "Butlletí Oficial de l'Estat",
+    'datos.boe.intro':
+      "Actes de l'Estat que anomenen Riba-roja: convenis, expropiacions, resolucions de personal o subvencions nominatives que cap font municipal publica.",
+    'datos.boe.empty':
+      'Sense entrades en els últims 30 dies. El rastreig cobrix només eixe període, així que això significa "res publicat este mes", no "res mai".',
+    'presupuesto.ted.eyebrow': 'Contractes sobre el llindar europeu · TED',
+    'presupuesto.ted.notices': 'anuncis',
+    'presupuesto.ted.valued': 'amb import declarat',
+    'presupuesto.ted.intro':
+      "Anuncis de l'Ajuntament al Diari Oficial de la UE: els contractes que superen el llindar europeu, entre ells línies NextGenerationEU i de reconstrucció per la DANA. Complementa el feed de PLACSP, que de vegades els publica més tard.",
+    'presupuesto.ted.note':
+      "TED no publica títol descriptiu per a estos anuncis —el número ÉS l'identificador—, així que cada fila enllaça a l'original. El símbol ≈ marca els anuncis sense data exacta: l'any es recupera del número de publicació i no s'inventa un dia.",
     'cargos.detalle.ficha.eyebrow': 'Portal de transparència',
     'cargos.detalle.ficha.title': 'La seua fitxa biogràfica oficial',
     'cargos.detalle.ficha.note':

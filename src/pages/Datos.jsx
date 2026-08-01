@@ -1,4 +1,5 @@
 import { Card, Pill, SectionHead, ExtLink } from '../components/Primitives'
+import { BoeCard } from '../components/BoeCard'
 import { Ic } from '../components/Icons'
 import { usePadron } from '../hooks/usePadron'
 import { useWikidata } from '../hooks/useWikidata'
@@ -715,6 +716,7 @@ export default function Datos() {
 
       <div style={{ marginBottom: 16 }}>
         <WikidataCard />
+        <BoeCard />
       </div>
 
       <div style={{ marginBottom: 18 }}>
