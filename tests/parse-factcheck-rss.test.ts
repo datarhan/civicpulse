@@ -23,7 +23,7 @@ const mockMalditaXml = `<?xml version="1.0" encoding="utf-8"?>
       <category><![CDATA[Política]]></category>
     </item>
     <item>
-      <title>Falso que el Ayuntamiento de Riba-roja haya cancelado el suministro de agua</title>
+      <title>Falso que el Ayuntamiento de Riba-roja de Túria haya cancelado el suministro de agua</title>
       <link>https://maldita.es/malditobulo/20260515/riba-roja-agua/</link>
       <pubDate>Thu, 15 May 2026 14:00:00 +0200</pubDate>
       <description><![CDATA[Una publicación viral afirma que el consistorio de Ribarroja ha suspendido…]]></description>
@@ -97,7 +97,7 @@ describe('parseFactcheckRss', () => {
 
   it('falls back to "unknown" when no category maps cleanly', () => {
     const xml = `<rss><channel><item>
-      <title>Algo confuso sobre Riba-roja</title>
+      <title>Algo confuso sobre Riba-roja de Túria</title>
       <link>https://example.com/raro</link>
       <pubDate>Mon, 01 Jan 2026 00:00:00 +0000</pubDate>
       <category><![CDATA[Curiosidades]]></category>
@@ -111,13 +111,13 @@ describe('parseFactcheckRss', () => {
   it('deduplicates by reviewUrl within a single feed', () => {
     const xml = `<rss><channel>
       <item>
-        <title>Riba-roja noticia</title>
+        <title>Riba-roja de Túria noticia</title>
         <link>https://example.com/x</link>
         <pubDate>Mon, 01 Jan 2026 00:00:00 +0000</pubDate>
         <category>Falso</category>
       </item>
       <item>
-        <title>Riba-roja noticia (dup)</title>
+        <title>Riba-roja de Túria noticia (dup)</title>
         <link>https://example.com/x</link>
         <pubDate>Mon, 01 Jan 2026 00:00:00 +0000</pubDate>
         <category>Falso</category>

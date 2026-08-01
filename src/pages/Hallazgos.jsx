@@ -447,10 +447,11 @@ export default function Hallazgos() {
             lineHeight: 1.55,
           }}
         >
-          Cada hallazgo es una nota editorial curada por una persona que toma una o más afirmaciones
-          literales de un pleno y las sitúa en su contexto documental (contratos, subvenciones,
-          presupuesto, promesas). Incluye corroboración, contradicción y derecho de réplica literal
-          para el grupo afectado.
+          Cada hallazgo toma una o más afirmaciones literales de un pleno y las sitúa en su contexto
+          documental (contratos, subvenciones, presupuesto, promesas). La mayoría los redacta un
+          proceso automático bajo reglas fijas; el pie de cada ficha dice quién la editó, y un
+          nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Incluye
+          corroboración, contradicción y derecho de réplica literal para el grupo afectado.
         </p>
         <div style={{ marginTop: 10 }}>
           <DataAsOf iso={data?.generatedAt} label="Hallazgos" />

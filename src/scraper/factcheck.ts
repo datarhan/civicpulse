@@ -150,6 +150,10 @@ export function parseFactCheckResponse(pages: ApiResponse[]): FactCheckRow[] {
         if (!url) continue
         if (seen.has(url)) continue
         seen.add(url)
+        // The API is queried with "Riba-roja de Túria" but matches fuzzily and
+        // returns dam stories; it never had a municipality filter of its own.
+        const haystack = `${claimText} ${r.title ?? ''}`
+        if (!mentionsRibaRojaDeTuria(haystack)) continue
         const verdict = (r.textualRating ?? '').trim()
         rows.push({
           id: sha256(url),
@@ -180,7 +184,30 @@ export function parseFactCheckResponse(pages: ApiResponse[]): FactCheckRow[] {
 // that maps to a verdict ("Falso", "Engañoso", "Fakes", …). Parsing the
 // RSS gives us a fallback path so we're not 100% dependent on the API.
 
-const FEED_MATCH_RE = /\b(riba[\s-]?roja|ribarroja|ribaroja)\b/i
+const TOWN_RE = /\b(riba[\s-]?roja|ribarroja|ribaroja)\b/i
+/**
+ * The disambiguator. "Riba-roja" alone is also the Ebro-river dam in
+ * Aragón/Catalunya, and Spanish fact-checkers write about that dam far more
+ * often than about this town of 24,600.
+ */
+const TURIA_RE = /\bt[uú]ria\b/i
+
+/**
+ * Is this fact-check about Riba-roja de Túria specifically?
+ *
+ * Requires BOTH the town name and the Túria/Turia qualifier, the same rule
+ * `ctbg.ts` already applies via RIBA_ROJA_ALIASES. Without it the snapshot's
+ * single published item was a Maldita.es debunk of a DANA chain letter about
+ * the **embalse de Forata** and the Júcar-basin dams — a different province,
+ * a different river, and no connection to this municipality, rendered on
+ * /laboratorio as a red "Bulo" pill under the heading "Observatorio de medios ·
+ * Riba-roja de Túria". Deliberately strict: a fact-check that never names the
+ * town in full is not confidently about the town, and a false attribution to a
+ * named outlet is worse than an empty widget.
+ */
+export function mentionsRibaRojaDeTuria(text: string): boolean {
+  return TOWN_RE.test(text) && TURIA_RE.test(text)
+}
 
 function pickTag(xml: string, tag: string): string | null {
   const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'i')
@@ -256,7 +283,7 @@ export function parseFactcheckRss(xml: string, opts: ParseFactcheckRssOptions): 
     if (seen.has(link)) continue
     seen.add(link)
     const haystack = `${title} ${description}`
-    if (filter && !FEED_MATCH_RE.test(haystack)) continue
+    if (filter && !mentionsRibaRojaDeTuria(haystack)) continue
     const categories = pickAllTags(item, 'category')
     const verdict = categoriesToVerdict(categories)
     rows.push({

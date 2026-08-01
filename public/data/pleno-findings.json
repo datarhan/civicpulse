@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "generatedAt": "2026-08-01T18:55:19.853Z",
-  "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
+  "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
   "items": [
@@ -1393,7 +1393,7 @@
       "corroboration": [],
       "contradiction": [],
       "relatedPromiseIds": [],
-      "curatorName": "ejemplo-curador",
+      "curatorName": "civicpulse-curator",
       "publishedAt": "2026-04-23",
       "response": null,
       "corrections": [

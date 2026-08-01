@@ -259,7 +259,9 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
               marginTop: 12,
             }}
           >
-            Síntesis automática · revisada por curaduría
+            {/* No curator reads these before publication — the pipeline writes
+                and commits them unattended, so claiming review was false. */}
+            Síntesis automática · sin revisión humana
           </div>
           <p
             style={{

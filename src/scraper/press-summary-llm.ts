@@ -20,6 +20,9 @@ import {
 } from '../llm/prompts'
 import { PressSummaryResponseSchema } from '../llm/schemas'
 
+/** Shortest body we will summarise. Below this there is nothing to compress. */
+export const MIN_BODY_CHARS = 400
+
 export interface PressSummaryInput {
   articleId: string
   fingerprint: string
@@ -45,6 +48,23 @@ export async function summarizePressArticle(
   input: PressSummaryInput,
   options: SummarizeOptions = {},
 ): Promise<PressSummaryResult | null> {
+  // Fail closed without an article body.
+  //
+  // press.json carries only {title, link, source, date} — RSS gives us no body
+  // — so every summary written so far was a 150-500 character elaboration of a
+  // headline, and the model filled the gap the only way it could: by inventing.
+  // Published examples: a Valencia Plaza headline about a park became "El
+  // Ayuntamiento … ha presentado" (the headline attributes it to nobody); an
+  // unemployment headline gained "se enmarca en las iniciativas locales para
+  // fomentar el empleo y la formación" (invented framing, invented source); an
+  // ice-cream sales figure gained "durante la temporada estival" (invented
+  // period). All 7 were rendered under the outlet's own name and labelled
+  // "revisada por curaduría".
+  //
+  // The length floor is what makes this a real gate rather than a formality:
+  // a headline echoed into the body field would otherwise pass.
+  if (!input.body || input.body.trim().length < MIN_BODY_CHARS) return null
+
   const caller = options.caller ?? callLLM
   const response = await caller({
     systemPrompt: buildPressSummarySystemPrompt(),

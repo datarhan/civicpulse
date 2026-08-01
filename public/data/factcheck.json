@@ -1,31 +1,14 @@
 {
-  "generatedAt": "2026-08-01T08:15:09.671Z",
+  "generatedAt": "2026-08-01T18:59:12.548Z",
   "source": {
     "url": "https://factchecktools.googleapis.com/v1alpha1/claims:search",
     "query": "\"Riba-roja de Túria\"",
-    "description": "Indexed third-party reviews · Google Fact Check Tools API"
+    "description": "No sources active (API key missing AND RSS feeds returned nothing)"
   },
   "stats": {
-    "total": 1,
-    "reviewers": 1,
-    "byVerdict": {
-      "contradicho": 1
-    }
+    "total": 0,
+    "reviewers": 0,
+    "byVerdict": {}
   },
-  "items": [
-    {
-      "id": "edf5ddad406a",
-      "claim": "La presa de Ribaroja está a punto de reventar y se va a desbordar el embalse de Forata",
-      "claimant": null,
-      "claimDate": null,
-      "reviewerName": "Maldita.es",
-      "reviewerSite": null,
-      "reviewTitle": "Cuidado, no se ha roto la “presa de Turís” y cuidado con esta alerta sobre una apertura del embalse de Forata por la DANA dice el 112 que no es real *",
-      "reviewUrl": "https://maldita.es/malditobulo/20241030/alerta-dana-embalse-forata-valencia/",
-      "reviewDate": "2024-10-30T08:39:02.000Z",
-      "verdict": "Bulo",
-      "normalizedVerdict": "contradicho",
-      "languageCode": "es"
-    }
-  ]
+  "items": []
 }

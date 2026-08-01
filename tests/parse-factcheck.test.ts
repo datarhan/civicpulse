@@ -9,7 +9,7 @@ import {
 const FAKE_REVIEW = {
   publisher: { name: 'Newtral', site: 'https://www.newtral.es' },
   url: 'https://www.newtral.es/riba-roja-fake-claim/20260201/',
-  title: 'No es cierto que Riba-roja invertirá 50 millones en el parque',
+  title: 'No es cierto que Riba-roja de Túria invertirá 50 millones en el parque',
   reviewDate: '2026-02-01',
   textualRating: 'Falso',
   languageCode: 'es',
@@ -57,7 +57,7 @@ describe('factcheck — parseFactCheckResponse', () => {
             claimReview: [FAKE_REVIEW],
           },
           {
-            text: 'A different claim, also reviewed by Newtral',
+            text: 'Otra afirmación sobre Riba-roja de Túria, revisada por Newtral',
             claimReview: [
               {
                 ...FAKE_REVIEW,
@@ -70,7 +70,7 @@ describe('factcheck — parseFactCheckResponse', () => {
           },
           // Duplicate review URL — should collapse.
           {
-            text: 'Repeated claim',
+            text: 'Afirmación repetida sobre Riba-roja de Túria',
             claimReview: [FAKE_REVIEW],
           },
         ],
@@ -84,6 +84,24 @@ describe('factcheck — parseFactCheckResponse', () => {
     expect(rows[1].reviewerSite).toBe('newtral.es')
     expect(rows[1].claim).toMatch(/Riba-roja invertirá/)
     expect(rows[1].claimant).toBe('Anonymous source')
+  })
+
+  it('drops reviews that never name the municipality', () => {
+    // The API matches fuzzily on "Riba-roja" and returns stories about the
+    // Ebro-river dam of the same name. One shipped: a Maldita debunk of a DANA
+    // chain letter about the embalse de Forata, published on /laboratorio as
+    // this town's only external fact-check.
+    const rows = parseFactCheckResponse([
+      {
+        claims: [
+          {
+            text: 'La presa de Ribaroja está a punto de reventar y se desbordará Forata',
+            claimReview: [{ ...FAKE_REVIEW, title: 'Bulo sobre la presa' }],
+          },
+        ],
+      },
+    ])
+    expect(rows).toEqual([])
   })
 
   it('strips empty claimReview entries safely', () => {
@@ -123,7 +141,7 @@ describe('factcheck — matchFactChecks', () => {
       claimDate: null,
       reviewerName: 'Newtral',
       reviewerSite: 'newtral.es',
-      reviewTitle: 'No es cierto que Riba-roja invertirá 50 millones',
+      reviewTitle: 'No es cierto que Riba-roja de Túria invertirá 50 millones',
       reviewUrl: 'https://www.newtral.es/riba-roja-fake-claim/20260201/',
       reviewDate: '2026-02-01',
       verdict: 'Falso',
@@ -148,7 +166,7 @@ describe('factcheck — matchFactChecks', () => {
 
   it('matches by token overlap with a score', () => {
     const matches = matchFactChecks(
-      { claimVerbatim: 'Riba-roja invertirá 50 millones en el parque municipal' },
+      { claimVerbatim: 'Riba-roja de Túria invertirá 50 millones en el parque municipal' },
       factchecks,
     )
     expect(matches.length).toBe(1)

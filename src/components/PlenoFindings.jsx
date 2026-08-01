@@ -168,10 +168,12 @@ export function PlenoFindingsSection() {
           lineHeight: 1.5,
         }}
       >
-        Un hallazgo es una nota editorial curada por una persona que toma una o más declaraciones
-        automáticamente extraídas del pleno y las sitúa en su contexto documental (contratos,
-        subvenciones, presupuesto, promesas). Cada hallazgo cita literales verbatim, referencias de
-        corroboración y de contradicción, y permite réplica literal de los grupos afectados.
+        Un hallazgo toma una o más declaraciones extraídas automáticamente del pleno y las sitúa en
+        su contexto documental (contratos, subvenciones, presupuesto, promesas). La mayoría los
+        redacta un proceso automático bajo reglas fijas; el pie de cada ficha dice quién la editó, y
+        un nombre como «auto-curation-v1» significa que el texto lo escribió una máquina. Cada
+        hallazgo cita literales verbatim, referencias de corroboración y de contradicción, y permite
+        réplica literal de los grupos afectados.
       </p>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
         {items.map((f) => (
