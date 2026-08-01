@@ -129,6 +129,42 @@ export function proposeFromSegments(
   return out
 }
 
+/**
+ * The audio window the EVIDENCE actually covers: the speaker's turn starting at
+ * `at`, extended through their contiguous following segments, capped at 8 s.
+ *
+ * Clips used to be cut from `longestRunFor` — the cluster's longest segment
+ * anywhere in the session. The quote only proves who held the floor at `at`, so
+ * whenever the diarizer's label was noisy the clip captured somebody else. An
+ * embedding cross-check on session 15uvjew exposed it: two clips proposed as
+ * the same councillor scored 0.21 cosine (same speaker ≈ 0.85), and clips of
+ * two DIFFERENT councillors scored 0.61. Enrolling those would have poisoned
+ * every later attribution.
+ */
+export function clipWindowAt(
+  segments: DiarSegment[],
+  cluster: string,
+  at: number,
+  maxSeconds = 8,
+): { start: number; duration: number } | null {
+  const ordered = [...segments].sort((a, b) => a.start - b.start)
+  const i = ordered.findIndex((s) => s.speaker === cluster && Math.abs(s.start - at) < 0.01)
+  if (i === -1) return null
+  const start = ordered[i].start
+  let end = ordered[i].end
+  for (let j = i + 1; j < ordered.length; j++) {
+    // Stop at a speaker change; bleeding into the next voice is the whole
+    // failure mode we are fixing.
+    if (ordered[j].speaker !== cluster) break
+    if (ordered[j].start > end + 0.5) break // a gap means a different turn
+    end = ordered[j].end
+  }
+  const duration = Math.min(end - start, maxSeconds)
+  // ECAPA needs real speech; the API's own reference floor is 1.2 s.
+  if (duration < 1.5) return null
+  return { start, duration }
+}
+
 /** Longest contiguous run of a cluster — the best place to cut a clean clip. */
 export function longestRunFor(segments: DiarSegment[], cluster: string): DiarSegment | null {
   let best: DiarSegment | null = null
@@ -357,9 +393,8 @@ async function main() {
 
   // Cut an 8-second clip per proposed cluster so the curator can listen.
   for (const p of proposals) {
-    const run = longestRunFor(segments, p.cluster)
-    if (!run) continue
-    const mid = Math.max(0, (run.start + run.end) / 2 - 4)
+    const win = clipWindowAt(segments, p.cluster, p.at)
+    if (!win) continue
     // Include the cluster: the same councillor is often proposed from several
     // chunks, and a slug-only filename made each one overwrite the last, so the
     // curator would have reviewed one clip while approving a different
@@ -372,9 +407,9 @@ async function main() {
       'error',
       '-y',
       '-ss',
-      String(mid),
+      String(win.start),
       '-t',
-      '8',
+      String(win.duration),
       '-i',
       audio,
       '-ac',

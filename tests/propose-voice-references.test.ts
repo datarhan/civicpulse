@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import {
+  clipWindowAt,
   matchAnnouncedOfficial,
   proposeFromSegments,
   longestRunFor,
@@ -163,5 +164,47 @@ describe('propose-voice-references — longestRunFor', () => {
 
   it('returns null for a cluster with no segments', () => {
     expect(longestRunFor([seg(0, 3, 'B', 'x')], 'ZZZ')).toBeNull()
+  })
+})
+
+describe('propose-voice-references — clipWindowAt', () => {
+  const segs = [
+    seg(0, 5, 'Robert Raga Gadea', 'Té la paraula, Laura.'),
+    seg(5, 9, 'B', 'Bon dia a tots'),
+    seg(9, 14, 'B', 'i moltes gràcies'),
+    seg(14, 40, 'C', 'una altra veu completament distinta'),
+    seg(200, 260, 'B', 'molt més tard, el mateix clúster'),
+  ]
+
+  it('cuts from the segment the evidence points at, not the longest run', () => {
+    // The bug this pins: the clip used to come from the cluster's longest
+    // segment anywhere in the session (here t=200), while the quote proves
+    // only who spoke at t=5. When the diarizer's label is noisy those are
+    // different people, which is exactly what the embedding cross-check
+    // caught — two clips of "Alberto" scored 0.21 against each other.
+    const w = clipWindowAt(segs, 'B', 5)
+    expect(w).not.toBeNull()
+    expect(w!.start).toBe(5)
+  })
+
+  it('extends across contiguous segments of the same speaker', () => {
+    const w = clipWindowAt(segs, 'B', 5)
+    // 5→9 and 9→14 are the same speaker back to back: 9 s available, capped at 8.
+    expect(w!.duration).toBeCloseTo(8, 1)
+  })
+
+  it('stops at a speaker change rather than bleeding into the next voice', () => {
+    const short = [seg(0, 3, 'B', 'corto'), seg(3, 30, 'C', 'otra persona')]
+    const w = clipWindowAt(short, 'B', 0)
+    expect(w!.duration).toBeCloseTo(3, 1)
+  })
+
+  it('returns null when the window would be too short to embed', () => {
+    const tiny = [seg(0, 0.8, 'B', 'sí'), seg(0.8, 30, 'C', 'otra')]
+    expect(clipWindowAt(tiny, 'B', 0)).toBeNull()
+  })
+
+  it('returns null when no segment of that speaker starts there', () => {
+    expect(clipWindowAt(segs, 'ZZZ', 5)).toBeNull()
   })
 })
