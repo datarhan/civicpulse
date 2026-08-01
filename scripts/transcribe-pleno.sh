@@ -216,14 +216,33 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
       # 3h pleno takes ~5-15 min; 30 min is generous). `|| true` keeps the
       # -w %{http_code} output (curl prints 000 itself on connect failure —
       # the old `|| echo 000` double-appended it as "000000").
+      # gpt-4o-transcribe-diarize, NOT whisper-1. Benchmarked on a real pleno
+      # 2026-08-01: whisper-1 invented speaker headers ("SEÑOR PRESIDENTE DE
+      # LA ASAMBLEA DE EXTREMADURA" in a Riba-roja session), garbled the
+      # contractor Hidraqua into "hidracoa", wrote "Riva Roja", and flattened
+      # the bilingual chamber into Spanish. Those transcripts feed the claim
+      # extractor, so a fabricated speaker header is a fabricated attribution.
+      #
+      # BOTH language hints matter. With a single `language=` the model
+      # normalises the session into one tongue; with ca+es it follows the
+      # speakers' real mid-sentence code-switching, which is how this council
+      # actually talks.
+      #
+      # NO known_speaker_references. Enrolling a subset of speakers from this
+      # same room made the API dump 90%+ of a session onto them — the chair's
+      # own "Passem a la votació" landed on another councillor. Anonymous
+      # clusters are honest; naming waits for a reference set that does not
+      # over-match. See the voice-id channel-bias note.
       HTTP_CODE=$(curl -sS -o "$RESP_JSON" -w "%{http_code}" \
         --connect-timeout 30 --max-time 1800 \
         https://api.openai.com/v1/audio/transcriptions \
         -H "Authorization: Bearer $OPENAI_API_KEY" \
         -F file="@$CHUNK" \
-        -F model="whisper-1" \
-        -F language="es" \
-        -F response_format="verbose_json" 2>/dev/null || true)
+        -F model="${OPENAI_TRANSCRIBE_MODEL:-gpt-4o-transcribe-diarize}" \
+        -F "language[]=ca" \
+        -F "language[]=es" \
+        -F chunking_strategy="auto" \
+        -F response_format="diarized_json" 2>/dev/null || true)
       if [ "$HTTP_CODE" = "200" ]; then
         break
       fi
@@ -240,10 +259,29 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
       const data = JSON.parse(fs.readFileSync(process.env.RESP_JSON, "utf8"))
       const segs = data.segments || []
       const offset = Number(process.env.OFFSET_S)
+      const chunkIdx = Number(process.env.CHUNK_IDX)
       const out = fs.createWriteStream(process.env.OUT_PATH, { flags: "a" })
-      for (const s of segs) out.write(`[${(s.start + offset).toFixed(1)} → ${(s.end + offset).toFixed(1)}] ${s.text.trim()}\n`)
+      // Speaker labels are CHUNK-LOCAL: "A" in chunk 2 is not "A" in chunk 1,
+      // because each upload is diarized independently. Offsetting the numbering
+      // per chunk keeps two different people from being silently merged into
+      // one speaker across a session.
+      //
+      // The SPEAKER_NN spelling is required, not cosmetic: voice-id.ts parses
+      // transcripts with /\((SPEAKER_\d+|UNKNOWN)\)/ and would silently match
+      // zero lines against any other label. The tag stays anonymous — nothing
+      // here claims to know who any of these speakers are.
+      const order = []
+      const label = (sp) => {
+        if (!sp) return "UNKNOWN"
+        if (!order.includes(sp)) order.push(sp)
+        return `SPEAKER_${String(chunkIdx * 20 + order.indexOf(sp)).padStart(2, "0")}`
+      }
+      for (const s of segs) {
+        out.write(`[${(s.start + offset).toFixed(1)} → ${(s.end + offset).toFixed(1)}] (${label(s.speaker)}) ${String(s.text).trim()}\n`)
+      }
       out.end()
-      console.error(`[transcribe]   chunk ${Number(process.env.CHUNK_IDX) + 1}/${process.env.N_CHUNKS}: ${segs.length} segs · +${offset}s offset · lang=${data.language || "n/a"}`)
+      const speakers = [...new Set(segs.map((s) => s.speaker).filter(Boolean))]
+      console.error(`[transcribe]   chunk ${chunkIdx + 1}/${process.env.N_CHUNKS}: ${segs.length} segs · +${offset}s offset · ${speakers.length} speaker cluster(s)`)
     '
     IDX=$(( IDX + 1 ))
   done
