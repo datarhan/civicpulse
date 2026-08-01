@@ -77,6 +77,23 @@ export interface AutoCurateResult {
 export function selectBundles(
   items: VerifiedPressItem[],
   options: AutoCurateOptions = {},
+  /**
+   * articleId → a key shared by every article telling the same story.
+   *
+   * Without it, bundles are keyed on `articleFingerprint`, and two outlets can
+   * NEVER share one: press.ts fingerprints the first six significant words of
+   * the title and drops the second outlet on a collision. So the
+   * `attributedOutlets.length >= 2` path below — one of only two ways a bundle
+   * can qualify — was unreachable, and with the other one (`verificado >= 1`)
+   * unreachable too while the verifier could not read tender amounts,
+   * press-findings.json held 0 items in all 34 commits since 2026-05-21. The
+   * whole findings card, and with it the corrections log that IFCN pillar #5
+   * rests on, had never rendered.
+   *
+   * The CLI builds this from the same title-similarity clustering
+   * /laboratorio already uses for triangulation.
+   */
+  storyKeyByArticleId?: Map<string, string>,
 ): AutoCurateResult {
   const opts: Required<AutoCurateOptions> = {
     minConfidence: options.minConfidence ?? 0.65,
@@ -98,7 +115,7 @@ export function selectBundles(
 
   const byFp = new Map<string, VerifiedPressItem[]>()
   for (const it of filtered) {
-    const fp = it.claim.articleFingerprint
+    const fp = storyKeyByArticleId?.get(it.claim.articleId) ?? it.claim.articleFingerprint
     const arr = byFp.get(fp)
     if (arr) arr.push(it)
     else byFp.set(fp, [it])

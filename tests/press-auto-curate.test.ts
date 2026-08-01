@@ -47,14 +47,40 @@ function makeItem(overrides: Partial<VerifiedPressItem['claim']> = {}): Verified
 }
 
 describe('press-auto-curate — selectBundles', () => {
-  it('groups by fingerprint and elevates 2+ outlet bundles', () => {
+  it('groups two outlets covering the same story and elevates the bundle', () => {
+    // DISTINCT fingerprints, as production always produces them, plus the
+    // story map the CLI now builds. The previous version of this test passed
+    // `articleFingerprint: 'shared'` to both rows — a shape the pipeline
+    // cannot emit, since press.ts drops the second outlet on a hash collision.
+    // That is why press-findings.json held 0 items in all 34 commits while
+    // this test stayed green.
     const items = [
-      makeItem({ id: 'a-1-0', articleId: 'a-1', articleFingerprint: 'shared', articleSource: 'A' }),
-      makeItem({ id: 'a-2-0', articleId: 'a-2', articleFingerprint: 'shared', articleSource: 'B' }),
+      makeItem({ id: 'a-1-0', articleId: 'a-1', articleFingerprint: 'fp-a', articleSource: 'A' }),
+      makeItem({ id: 'a-2-0', articleId: 'a-2', articleFingerprint: 'fp-b', articleSource: 'B' }),
     ]
-    const r = selectBundles(items)
+    const storyKey = new Map([
+      ['a-1', 'a-1+a-2'],
+      ['a-2', 'a-1+a-2'],
+    ])
+    const r = selectBundles(items, {}, storyKey)
     expect(r.eligible.length).toBe(1)
     expect(r.eligible[0].attributedOutlets).toEqual(['A', 'B'])
+  })
+
+  it('does not merge two outlets covering DIFFERENT stories', () => {
+    // Each still qualifies on its own `verificado`; what must not happen is
+    // the two being presented as one story corroborated across outlets.
+    const items = [
+      makeItem({ id: 'a-1-0', articleId: 'a-1', articleFingerprint: 'fp-a', articleSource: 'A' }),
+      makeItem({ id: 'a-2-0', articleId: 'a-2', articleFingerprint: 'fp-b', articleSource: 'B' }),
+    ]
+    const storyKey = new Map([
+      ['a-1', 'a-1'],
+      ['a-2', 'a-2'],
+    ])
+    const r = selectBundles(items, {}, storyKey)
+    expect(r.eligible.length).toBe(2)
+    for (const b of r.eligible) expect(b.attributedOutlets).toHaveLength(1)
   })
 
   it('quarantines any bundle containing ≥1 contradicho', () => {

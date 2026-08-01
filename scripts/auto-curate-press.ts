@@ -28,6 +28,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import { clusterArticlesByStory } from '../src/scraper/press-analytics'
+import type { PressArticleLite } from '../src/scraper/press-analytics'
 import {
   selectBundles,
   composeFinding,
@@ -42,6 +44,7 @@ const PROJECT_ROOT = join(__dirname, '..')
 
 const PATHS = {
   verified: join(PROJECT_ROOT, 'public/data/press-claims-verified.json'),
+  press: join(PROJECT_ROOT, 'public/data/press.json'),
   promises: join(PROJECT_ROOT, 'public/data/promises.json'),
   findings: join(PROJECT_ROOT, 'public/data/press-findings.json'),
   queue: join(PROJECT_ROOT, 'editorial/press-auto-curation-queue.md'),
@@ -93,7 +96,22 @@ async function main() {
   }
   const frozenUntil = promises.frozenUntil ?? null
 
-  const result = selectBundles(verifiedSnap.items, { maxFindings: max, frozenUntil })
+  // Group by STORY, not by title hash — see selectBundles' third parameter.
+  const pressSnap = (await readJson(PATHS.press)) as { items?: PressArticleLite[] } | null
+  const storyKeyByArticleId = new Map<string, string>()
+  for (const group of clusterArticlesByStory(pressSnap?.items ?? []).values()) {
+    const key = group
+      .map((a) => a.id)
+      .sort()
+      .join('+')
+    for (const a of group) storyKeyByArticleId.set(a.id, key)
+  }
+
+  const result = selectBundles(
+    verifiedSnap.items,
+    { maxFindings: max, frozenUntil },
+    storyKeyByArticleId,
+  )
 
   if (result.frozen) {
     console.log(
