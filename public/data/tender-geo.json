@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-07-30T07:20:25.876Z",
+  "generatedAt": "2026-08-01T06:51:56.875Z",
   "source": {
-    "tenders": "2026-07-30T07:09:33.923Z",
-    "geo": "2026-07-30T07:12:45.611Z"
+    "tenders": "2026-08-01T06:45:35.070Z",
+    "geo": "2026-08-01T06:46:45.727Z"
   },
   "universe": {
     "totalContracts": 382,
@@ -559,7 +559,7 @@
       "name": "Parc Municipal Maldonado",
       "kind": "poi",
       "point": [
-        39.5477533,
+        39.5477716,
         -0.5797717
       ],
       "contractCount": 1,
@@ -691,8 +691,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "contractCount": 1,
       "amount": 7336,
@@ -1151,8 +1151,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ],
       "place": {
         "kind": "street",
@@ -2324,7 +2324,7 @@
       "contractType": "construction",
       "categoryTitle": "construction",
       "point": [
-        39.5477533,
+        39.5477716,
         -0.5797717
       ],
       "place": {

@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-30T07:10:51.946Z",
+  "generatedAt": "2026-08-01T06:46:23.727Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
     "note": "Last 30 days · anuncios del Ayuntamiento de Riba-roja de Túria"
   },
   "stats": {
-    "total": 10,
-    "daysCovered": 22,
+    "total": 8,
+    "daysCovered": 21,
     "latestDate": "2026-07-27"
   },
   "anuncios": [
@@ -90,26 +90,6 @@
       "bulletinDate": "03/07/2026",
       "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08211",
       "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=03%2F07%2F2026"
-    },
-    {
-      "id": "995585fa72f1",
-      "regNumber": "2026/08113",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación definitiva de la transferencia de crédito para cambio de destino PMS 2022 dentro del mismo proyecto con distinta área de gasto 15/2026 PMS expropiaciones",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-07-02",
-      "bulletinDate": "02/07/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08113",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=02%2F07%2F2026"
-    },
-    {
-      "id": "e45f321f58aa",
-      "regNumber": "2026/08021",
-      "title": "Anuncio del Ayuntamiento de Riba-roja de Túria sobre el nombramiento como funcionaria de carrera, auxiliar administrativa",
-      "entity": "Ayuntamiento de Riba-roja de Túria",
-      "date": "2026-07-01",
-      "bulletinDate": "01/07/2026",
-      "pdfUrl": "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08021",
-      "bulletinUrl": "https://bop.dival.es/bop/downloads?boletinFecha=01%2F07%2F2026"
     }
   ]
 }

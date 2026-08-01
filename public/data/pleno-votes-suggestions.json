@@ -1,19 +1,17 @@
 {
-  "generatedAt": "2026-07-31T08:08:49.264Z",
+  "generatedAt": "2026-08-01T06:51:39.040Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 4,
+    "total": 2,
     "byEngine": {
-      "regex": 2,
-      "llm": 2
+      "regex": 2
     },
     "byPleno": {
       "rx4hb4": 1,
-      "c8kr44": 2,
-      "rmtyr": 1
+      "c8kr44": 1
     }
   },
   "items": [
@@ -68,58 +66,6 @@
       "confidence": 0.7,
       "requiresHumanApproval": true,
       "engine": "regex",
-      "regmeetCheck": {
-        "regmeetOutcome": null,
-        "status": "no-regmeet"
-      }
-    },
-    {
-      "plenoId": "c8kr44",
-      "plenoDate": "2025-09-08",
-      "itemNumber": 5,
-      "excerpt": "Bien, aquí vamos a votar esta propuesta, ¿vale? Punto 4, ¿eh? Este es el 4. Vale, pues ya hay 12 puntos a favor... Se aprueba por 12 votos a favor, 7 en contra y una abstención. Grupo Socialista. A favor. Partido Popular. A contra. Diputados, ¿compromiso? A favor. Vale, correcto, mi señor, efectivamente. Además, el siguiente punto que es el de contractación, que es, bueno, es la adjudicación, el fin, ¿vale? del tema de unos temas importantes, que es el tema de la arrepiar de residuos orgánicos y también un otro contrato de una asistencia técnica para controlar y para fiscalizar también",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor"
-        },
-        {
-          "bloc": "PP",
-          "direction": "en_contra"
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "a_favor"
-        }
-      ],
-      "confidence": 0.9,
-      "requiresHumanApproval": true,
-      "engine": "llm",
-      "regmeetCheck": {
-        "regmeetOutcome": null,
-        "status": "no-regmeet"
-      }
-    },
-    {
-      "plenoId": "rmtyr",
-      "plenoDate": "2025-07-31",
-      "itemNumber": 3,
-      "excerpt": "Invitamos al Partido Popular, que ahora va a votar en contra, a pesar de todas las medidas que tenemos, a que se sientan como los otros partidos y a abstenerse o a votar a favor. Así que queda en plaza esta propuesta para el futuro. Vamos a votar el 15 de abril del presupuesto. Pues que ha aprobado por 10 puntos a favor y 2 votos a favor, 7 en contra y 3 abstención. Socialista, Partido Popular, Vox, Esquerra Republicana y Compromiso.",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor"
-        },
-        {
-          "bloc": "PP",
-          "direction": "en_contra"
-        }
-      ],
-      "confidence": 0.9,
-      "requiresHumanApproval": true,
-      "engine": "llm",
       "regmeetCheck": {
         "regmeetOutcome": null,
         "status": "no-regmeet"

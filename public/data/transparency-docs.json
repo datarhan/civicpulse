@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-29T07:11:00.372Z",
+  "generatedAt": "2026-08-01T06:44:39.383Z",
   "source": {
     "name": "Portal de Transparencia · Ayuntamiento de Riba-roja de Túria"
   },
@@ -9,7 +9,7 @@
       "label": "Relación de puestos de trabajo (RPT) y plantilla",
       "url": "https://www.ribarroja.es/es/portal_de_transparencia/1_transparencia_activa_e_informacion_sobre_la_corporacion_municipal/relacion_de_puesto_de_trabajo_del_ayuntamiento/contenidos/7559961/0835919",
       "ok": true,
-      "count": 9
+      "count": 11
     },
     {
       "category": "cv",
@@ -20,10 +20,10 @@
     }
   ],
   "stats": {
-    "total": 26,
+    "total": 28,
     "byCategory": {
       "cv": 17,
-      "rpt": 9
+      "rpt": 11
     }
   },
   "docs": [
@@ -162,6 +162,22 @@
       "category": "cv",
       "categoryLabel": "Datos biográficos / CV de los cargos",
       "year": null
+    },
+    {
+      "id": "829becba21bb",
+      "title": "Relació llocs de treball i plantilla personal 2026",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260729%2020260420%20BOP%20Plantilla%20de%20personal%202026.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2026
+    },
+    {
+      "id": "1794922bed56",
+      "title": "Relació llocs de treball i plantilla personal 2025",
+      "url": "https://www.ribarroja.es/sites/www.ribarroja.es/files/20260729%2020250827%20BOP%20plantilla%20de%20personal%202025.pdf",
+      "category": "rpt",
+      "categoryLabel": "Relación de puestos de trabajo (RPT) y plantilla",
+      "year": 2025
     },
     {
       "id": "ac1ef482dc42",

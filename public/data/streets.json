@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-30T07:14:30.152Z",
+  "generatedAt": "2026-08-01T06:47:09.001Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -1052,8 +1052,8 @@
       "slug": "carrer-cor-de-jesus",
       "kind": "calle",
       "point": [
-        39.546246,
-        -0.5684624
+        39.5462453,
+        -0.5684481
       ]
     },
     {
@@ -2007,13 +2007,13 @@
       ]
     },
     {
-      "id": "way-39527983",
+      "id": "way-20021656",
       "name": "Carrer de la Senyera",
       "slug": "carrer-de-la-senyera",
       "kind": "calle",
       "point": [
-        39.5434087,
-        -0.5594436
+        39.5439984,
+        -0.5617921
       ]
     },
     {
@@ -2632,8 +2632,8 @@
       "slug": "carrer-de-sant-antoni",
       "kind": "calle",
       "point": [
-        39.546246,
-        -0.5684624
+        39.5462453,
+        -0.5684481
       ]
     },
     {
@@ -3278,12 +3278,12 @@
     },
     {
       "id": "way-696236867",
-      "name": "Carrer del Nou d'OCtubre",
+      "name": "Carrer del Nou d'Octubre",
       "slug": "carrer-del-nou-d-octubre",
       "kind": "calle",
       "point": [
-        39.5456425,
-        -0.5694483
+        39.5456305,
+        -0.5694729
       ]
     },
     {
@@ -4232,8 +4232,8 @@
       "slug": "carrer-joan-de-joanes",
       "kind": "calle",
       "point": [
-        39.5462423,
-        -0.5696348
+        39.5464636,
+        -0.5695645
       ]
     },
     {
@@ -4282,8 +4282,8 @@
       "slug": "carrer-jose-iturbi",
       "kind": "calle",
       "point": [
-        39.5535769,
-        -0.5404596
+        39.5529425,
+        -0.5407852
       ]
     },
     {
@@ -4472,8 +4472,8 @@
       "slug": "carrer-mariano-benlliure",
       "kind": "calle",
       "point": [
-        39.5548706,
-        -0.5438117
+        39.5545414,
+        -0.542861
       ]
     },
     {
@@ -5222,8 +5222,8 @@
       "slug": "carretera-de-vilamarxant",
       "kind": "carretera",
       "point": [
-        39.5490165,
-        -0.5824119
+        39.5484923,
+        -0.5816335
       ]
     },
     {
