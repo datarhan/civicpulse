@@ -208,3 +208,55 @@ describe('propose-voice-references — clipWindowAt', () => {
     expect(clipWindowAt(segs, 'ZZZ', 5)).toBeNull()
   })
 })
+
+describe('propose-voice-references — false positives from session brxx5g', () => {
+  it('ignores a lowercase common word that happens to be a surname', () => {
+    // "d'eixe pla," — "pla" is Valencian for "plan". It is followed by a comma,
+    // so the punctuation rule alone accepted it. Case is the discriminator the
+    // transcript already carries: the surname Plá is capitalised, the noun is
+    // not.
+    const roster = [{ slug: 'alfredo-pla-gimenez', name: 'Alfredo Plá Gimenez' }]
+    expect(
+      matchAnnouncedOfficial(
+        "l'actual govern intenta vendre com a pròpies obres que són fruit precisament d'eixe pla,",
+        roster,
+      ),
+    ).toBeNull()
+  })
+
+  it('ignores a name that opens a long speech instead of closing a handover', () => {
+    // "'Eva, i la reivindicació…" — the speaker addresses Eva and keeps going
+    // for another 140 characters. Whoever speaks next is not being given the
+    // floor here.
+    const roster = [{ slug: 'eva-lara-catala', name: 'Eva Lara Catalá' }]
+    expect(
+      matchAnnouncedOfficial(
+        "Eva, i la reivindicació que hem viscut a nivell educatiu sí ha sigut històrica, ha sigut una reivindicació del professorat, de l'estudiantat i de les famílies.",
+        roster,
+      ),
+    ).toBeNull()
+  })
+
+  it('still accepts a short utterance that is entirely the handover', () => {
+    const roster = [{ slug: 'teresa-pozuelo-martin', name: 'Teresa Pozuelo Martín' }]
+    expect(matchAnnouncedOfficial('Sí, Teresa, solo una puntualización.', roster)?.slug).toBe(
+      'teresa-pozuelo-martin',
+    )
+  })
+
+  it('drops a cluster claimed by two different councillors', () => {
+    // Both brxx5g proposals landed on cluster c4-A. One voice cannot be two
+    // people, so neither claim can be trusted.
+    const segs = [
+      seg(0, 5, 'Robert Raga Gadea', 'Endavant, Laura.'),
+      seg(5, 40, 'c4-A', 'primera intervenció'),
+      seg(40, 45, 'Robert Raga Gadea', 'Gràcies, Juan.'),
+      seg(45, 80, 'c4-A', 'segona intervenció'),
+    ]
+    const roster = [
+      { slug: 'laura-guzman-bruno', name: 'Laura Guzman Bruno' },
+      { slug: 'juan-boix-martinez', name: 'Juan Boix Martínez' },
+    ]
+    expect(proposeFromSegments(segs, roster, new Set(['Robert Raga Gadea']))).toEqual([])
+  })
+})

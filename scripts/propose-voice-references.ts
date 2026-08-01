@@ -51,6 +51,8 @@ interface DiarSegment {
  * given name + something else, or a distinctive surname — a lone "José" in a
  * council of several Josés identifies nobody.
  */
+const TAIL = 44
+
 export function matchAnnouncedOfficial(text: string, officials: Official[]): Official | null {
   const t = fold(text)
   // Every way a councillor might be addressed: full name, leading prefixes
@@ -88,7 +90,22 @@ export function matchAnnouncedOfficial(text: string, officials: Official[]): Off
       // a closing comma/stop rejects both while keeping every real handover.
       // Token-bounded on the left so "Raga" cannot fire inside another word.
       const esc = f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-      if (!new RegExp(`(^|[^\\p{L}])${esc}\\s*([,.;:!?¿¡]|$)`, 'u').test(t)) continue
+      const m = new RegExp(`(^|[^\\p{L}])${esc}\\s*([,.;:!?¿¡]|$)`, 'u').exec(t)
+      if (!m) continue
+
+      // Handing over happens at the END of the utterance. "Eva, i la
+      // reivindicació…" addresses Eva and then talks for another 140
+      // characters — whoever speaks next is not being given the floor.
+      const at = m.index + m[1].length
+      if (t.length > TAIL && at < t.length - TAIL) continue
+
+      // A single word must be capitalised in the ORIGINAL text. "d'eixe pla,"
+      // is Valencian for "that plan" and passed every other rule; the surname
+      // Plá is capitalised and the common noun is not, and the transcript
+      // already carries that distinction.
+      if (!f.includes(' ') && !new RegExp(`(^|[^\\p{L}])\\p{Lu}${esc.slice(1)}`, 'u').test(text))
+        continue
+
       if (!best || f.length > best.len) best = { o, len: f.length }
     }
   }
@@ -126,7 +143,15 @@ export function proposeFromSegments(
       at: next.start,
     })
   }
-  return out
+  // One voice cannot be two people. Session brxx5g proposed BOTH Eva Lara and
+  // Alfredo Plá for cluster c4-A, so neither claim can be trusted; drop the
+  // whole cluster rather than guess which announcement was real.
+  const claims = new Map<string, Set<string>>()
+  for (const p of out) {
+    if (!claims.has(p.cluster)) claims.set(p.cluster, new Set())
+    claims.get(p.cluster)!.add(p.slug)
+  }
+  return out.filter((p) => claims.get(p.cluster)!.size === 1)
 }
 
 /**
