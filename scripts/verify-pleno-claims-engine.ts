@@ -97,14 +97,33 @@ async function main() {
     )
   }
 
-  const ctx = await loadVerifierContext({ withCorpus: false })
-  const engine = makeEngineVerifier({ consistency: false })
+  // `withCorpus` was hardcoded false, which silently disabled the semantic
+  // half of VERIFIER_SHORTLIST=hybrid — and the lexical half only retrieves via
+  // a euro figure, so 813 of the 1017 `--base` targets had NO candidates at
+  // all. Load it when the mode asks for it; loadVerifierContext degrades to
+  // lexical on its own if the corpus file is missing.
+  const wantsCorpus = ['hybrid', 'semantic'].includes(process.env.VERIFIER_SHORTLIST ?? 'hybrid')
+  const ctx = await loadVerifierContext({ withCorpus: wantsCorpus })
+  // `--base` re-judges verdicts the DETERMINISTIC pass asserted, so the engine
+  // must not short-circuit on "deterministic already decided".
+  const skippedIds = new Set<string>()
+  const engine = makeEngineVerifier({
+    consistency: false,
+    always: args.base,
+    onSkip: (id) => skippedIds.add(id),
+  })
 
   const pending: ApplyEntry[] = []
   let done = 0
   let retracted = 0
   let kept = 0
   let skipped = 0
+  // Claims the model was never actually ASKED about — no retrieval candidates,
+  // or an opinion-accusation the LLM path skips by policy. Folding these into
+  // `kept` made "the model agreed with everything" and "the model was never
+  // called" print identically, which is exactly what happened: a run reported
+  // `re-judged 1017 · kept 1017` having made zero LLM calls.
+  let unjudged = 0
 
   const flush = () => {
     if (args.dryRun || pending.length === 0) return
@@ -146,6 +165,8 @@ async function main() {
         editor: `verdict-engine:${MODEL}`,
       })
       retracted++
+    } else if (skippedIds.has(id)) {
+      unjudged++
     } else {
       kept++
     }
@@ -154,9 +175,21 @@ async function main() {
     if (pending.length >= CHECKPOINT_EVERY) flush()
   }
   flush()
+  if (done > 0 && retracted + kept === 0) {
+    process.stderr.write(
+      `[verify-engine] WARNING: ${done} claim(s) processed and the model was consulted for NONE ` +
+        `of them. Check the shortlist (VERIFIER_SHORTLIST=${process.env.VERIFIER_SHORTLIST ?? 'hybrid'}, ` +
+        `corpus ${wantsCorpus ? 'requested' : 'disabled'}) and the backend — a run like this looks ` +
+        `identical to "the model agreed with everything".\n`,
+    )
+    process.exitCode = 1
+  }
 
   process.stderr.write(
-    `[verify-engine] DONE: re-judged ${done} · retracted ${retracted} → sin-datos · kept ${kept} · skipped ${skipped}${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
+    `[verify-engine] DONE: seen ${done} · JUDGED ${retracted + kept} ` +
+      `(retracted ${retracted} → sin-datos · kept ${kept}) · ` +
+      `never asked ${unjudged} · skipped ${skipped}` +
+      `${args.dryRun ? ' (DRY-RUN, nothing written)' : ''}\n`,
   )
 }
 

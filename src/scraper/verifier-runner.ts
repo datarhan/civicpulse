@@ -136,7 +136,33 @@ export const nliVerifier: VerifierFn = makeNliVerifier()
  * optional PCC consistency gate (argue-both-sides → mDeBERTa contradiction).
  * Never emits contradicho. Set LLM_BACKEND=ollama + OLLAMA_MODEL=qwen2.5:14b-instruct.
  */
-export function makeEngineVerifier(opts: { consistency?: boolean } = {}): VerifierFn {
+export function makeEngineVerifier(
+  opts: {
+    consistency?: boolean
+    /**
+     * Judge every claim, instead of only those the deterministic pass gave up
+     * on.
+     *
+     * The default short-circuits on `det.verdict !== 'sin-datos'`, which is
+     * right for the engine's original job (re-deriving LLM over-claims, where
+     * the deterministic verdict is sin-datos by construction) but makes the
+     * `--base` retraction pass a no-op: its targets are precisely the claims
+     * where deterministic said verificado/parcial, so every one returned early
+     * and the run reported "re-judged 1017 · kept 1017" having made ZERO LLM
+     * calls. Deterministic assertions are the least trustworthy thing we
+     * publish — 33% precision on verificado, 22% on parcial against the gold
+     * set — so they are exactly what needs re-judging.
+     */
+    always?: boolean
+    /**
+     * Called when the engine returns WITHOUT consulting the model — no
+     * retrieval candidates, or the claim is one the LLM path skips by policy.
+     * Callers need this to report coverage honestly; without it a
+     * never-asked claim is indistinguishable from an agreed-with one.
+     */
+    onSkip?: (claimId: string, reason: 'no-candidates' | 'not-attempted') => void
+  } = {},
+): VerifierFn {
   const deps: EngineDeps = {
     reasonFn: async (claim, candidates) => {
       const r = await callLLM({
@@ -191,14 +217,21 @@ export function makeEngineVerifier(opts: { consistency?: boolean } = {}): Verifi
   }
   return async (claim, ctx) => {
     const det = verifyClaim(inputsFor(claim, ctx))
-    if (det.verdict !== 'sin-datos') return det
+    if (!opts.always && det.verdict !== 'sin-datos') {
+      opts.onSkip?.(claim.id, 'not-attempted')
+      return det
+    }
     const shortlist = await getShortlist(
       inputsFor(claim, ctx),
       8,
       ctx.corpus ? { corpus: ctx.corpus } : {},
     )
-    if (shortlist.length === 0) return det
+    if (shortlist.length === 0) {
+      opts.onSkip?.(claim.id, 'no-candidates')
+      return det
+    }
     const r = await verifyClaimWithEngine({ claim, candidates: shortlist }, deps)
+    if (r === null) opts.onSkip?.(claim.id, 'not-attempted')
     return r?.upgraded ? r.verification : det
   }
 }
