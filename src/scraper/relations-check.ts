@@ -22,7 +22,7 @@ import { ALLOWED_DEPARTMENT_SLUGS } from './departments'
 import { normalizeCompanyKey } from './entities'
 
 export type CheckLevel = 'error' | 'warn'
-export type CheckStatus = 'ok' | 'broken' | 'skipped'
+export type CheckStatus = 'ok' | 'broken' | 'empty' | 'skipped'
 
 export interface RelationCheckResult {
   name: string
@@ -52,7 +52,18 @@ export interface RelationsCheckInputs {
   agendas?: { plenos?: Array<{ id?: string; agenda?: Array<{ number?: number }> }> } | null
   promises?: { items?: Array<{ id?: string; departmentSlug?: string | null }> } | null
   promiseSuggestions?: { suggestions?: Array<{ promiseId?: string }> } | null
-  quejas?: { items?: Array<{ service_request_id?: string }> } | null
+  quejas?: {
+    items?: Array<{ service_request_id?: string; concejal_slug?: string }>
+    stats?: { byConcejal?: Record<string, unknown> }
+  } | null
+  /** Curator-promoted social accounts (officials-social.json). */
+  social?: { accounts?: Array<{ slug?: string; platform?: string }> } | null
+  /** Journalist assignments — subject.slug points at an official. */
+  assignments?: {
+    items?: Array<{ id?: string; subject?: { slug?: string; kind?: string } }>
+  } | null
+  /** Canonical entity registry — people[] mirrors the roster. */
+  entitiesPeople?: { people?: Array<{ slug?: string }> } | null
   tenders?: {
     contracts?: Array<{ id?: string | number }>
     tenders?: Array<{ id?: string | number }>
@@ -86,10 +97,14 @@ function check(
 ): RelationCheckResult {
   if (!available) return { name, level, status: 'skipped', checked: 0, broken: [] }
   const { checked, broken } = run()
+  // A check with zero refs verified NOTHING, but reported [ok] — three of the
+  // thirteen were permanently in that state, so a green summary implied
+  // coverage that did not exist. `empty` keeps them non-failing while making
+  // the difference legible.
   return {
     name,
     level,
-    status: broken.length > 0 ? 'broken' : 'ok',
+    status: broken.length > 0 ? 'broken' : checked === 0 ? 'empty' : 'ok',
     checked,
     broken: broken.slice(0, CAP),
   }
@@ -115,6 +130,8 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
     officials,
     entities,
     entityOverrides,
+    social,
+    assignments,
   } = inputs
 
   const verifiedIds = new Set(
@@ -296,6 +313,49 @@ export function runRelationsChecks(inputs: RelationsCheckInputs): RelationCheckR
         if (!agendaKeys.has(`${v.plenoId}|${v.itemNumber}`)) {
           broken.push(`${v?.id ?? '?'} has no agenda item ${v.plenoId}|${v.itemNumber}`)
         }
+      }
+      return { checked, broken }
+    }),
+
+    // ── officials hub ────────────────────────────────────────────────────
+    // The project treats the elected official as its central entity, yet none
+    // of the joins that make that true were verified: a renamed or removed slug
+    // would silently empty a councillor's page with every check still green.
+    check('quejas-officials', 'error', quejas != null && officials != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const q of quejas?.items ?? []) {
+        if (!q?.concejal_slug) continue
+        checked += 1
+        if (!officialSlugs.has(q.concejal_slug))
+          broken.push(`${q.service_request_id ?? '?'} routed to unknown ${q.concejal_slug}`)
+      }
+      for (const slug of Object.keys(quejas?.stats?.byConcejal ?? {})) {
+        checked += 1
+        if (!officialSlugs.has(slug)) broken.push(`stats.byConcejal has unknown ${slug}`)
+      }
+      return { checked, broken }
+    }),
+
+    check('social-officials', 'error', social != null && officials != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const a of social?.accounts ?? []) {
+        checked += 1
+        if (!a?.slug || !officialSlugs.has(a.slug))
+          broken.push(`${a?.platform ?? '?'} account filed under unknown ${a?.slug ?? '?'}`)
+      }
+      return { checked, broken }
+    }),
+
+    check('assignments-officials', 'error', assignments != null && officials != null, () => {
+      let checked = 0
+      const broken: string[] = []
+      for (const a of assignments?.items ?? []) {
+        if (a?.subject?.kind !== 'official' || !a?.subject?.slug) continue
+        checked += 1
+        if (!officialSlugs.has(a.subject.slug))
+          broken.push(`${a?.id ?? '?'} profiles unknown official ${a.subject.slug}`)
       }
       return { checked, broken }
     }),

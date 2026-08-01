@@ -55,6 +55,8 @@ function main() {
     approvedRelations: readJson('queja-contract-relations-approved.json'),
     dedicaciones: readJson('dedicaciones.json'),
     officials: readJson('officials.json'),
+    social: readJson('officials-social.json'),
+    assignments: readJson('journalist-assignments.json'),
     entities: readJson('entities.json'),
     entityOverrides: readJson('entity-overrides.json'),
   }
@@ -71,9 +73,10 @@ function main() {
   }
 
   const ok = results.filter((r) => r.status === 'ok').length
+  const empty = results.filter((r) => r.status === 'empty').length
   const skipped = results.filter((r) => r.status === 'skipped').length
   console.log(
-    `\n[check-relations] ${ok} ok · ${errorBroken} broken (error) · ${warnBroken} broken (warn) · ${skipped} skipped`,
+    `\n[check-relations] ${ok} ok · ${empty} empty · ${errorBroken} broken (error) · ${warnBroken} broken (warn) · ${skipped} skipped`,
   )
   if (errorBroken > 0 && !SOFT) {
     console.error('[check-relations] FAILING (strict mode) — error-level referential breakage')
@@ -87,6 +90,12 @@ function main() {
 function printResult(r: RelationCheckResult) {
   if (r.status === 'skipped') {
     console.log(`  [skip]        ${r.name} — input file(s) absent`)
+    return
+  }
+  if (r.status === 'empty') {
+    // Verified nothing — there were no references to check. Not a failure, but
+    // not evidence of integrity either.
+    console.log(`  [empty]       ${r.name} — nothing to check (0 refs)`)
     return
   }
   if (r.status === 'ok') {

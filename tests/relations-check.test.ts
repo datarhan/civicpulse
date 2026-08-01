@@ -232,3 +232,51 @@ describe('entity registry checks', () => {
     expect(rs['entity-overrides-keys'].broken[0]).toContain('ghost co')
   })
 })
+
+describe('relations-check — officials hub', () => {
+  const officials = { officials: [{ slug: 'robert-raga-gadea' }] }
+
+  it('flags a queja routed to a councillor who does not exist', () => {
+    const r = runRelationsChecks({
+      officials,
+      quejas: { items: [{ service_request_id: 'Q-1', concejal_slug: 'ghost-slug' }] },
+    } as never).find((x) => x.name === 'quejas-officials')
+    expect(r?.status).toBe('broken')
+    expect(r?.broken[0]).toContain('ghost-slug')
+  })
+
+  it('flags a social account filed under an unknown slug', () => {
+    const r = runRelationsChecks({
+      officials,
+      social: { accounts: [{ slug: 'ghost-slug', platform: 'instagram' }] },
+    } as never).find((x) => x.name === 'social-officials')
+    expect(r?.status).toBe('broken')
+  })
+
+  it('flags a biography assignment for a non-existent official', () => {
+    const r = runRelationsChecks({
+      officials,
+      assignments: { items: [{ id: 'a-1', subject: { slug: 'ghost-slug', kind: 'official' } }] },
+    } as never).find((x) => x.name === 'assignments-officials')
+    expect(r?.status).toBe('broken')
+  })
+
+  it('passes when every slug resolves', () => {
+    const res = runRelationsChecks({
+      officials,
+      quejas: { items: [{ service_request_id: 'Q-1', concejal_slug: 'robert-raga-gadea' }] },
+      social: { accounts: [{ slug: 'robert-raga-gadea', platform: 'x' }] },
+    } as never)
+    expect(res.find((x) => x.name === 'quejas-officials')?.status).toBe('ok')
+    expect(res.find((x) => x.name === 'social-officials')?.status).toBe('ok')
+  })
+
+  it('reports a check with no references as empty, not ok', () => {
+    // Three checks sat permanently at 0 refs while printing [ok], so a green
+    // summary implied coverage that did not exist.
+    const r = runRelationsChecks({ officials, social: { accounts: [] } } as never).find(
+      (x) => x.name === 'social-officials',
+    )
+    expect(r?.status).toBe('empty')
+  })
+})
