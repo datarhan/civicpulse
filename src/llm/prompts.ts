@@ -351,7 +351,7 @@ Emite el JSON con la correlación (o \`{"correlation": null}\`).
 
 // ─── Phase 5 · Claim verifier second-pass (LLM) ─────────────────────────────
 
-export const CLAIM_VERIFIER_PROMPT_VERSION = 'claim-verifier-v2'
+export const CLAIM_VERIFIER_PROMPT_VERSION = 'claim-verifier-v3'
 
 export interface ClaimVerifierCandidate {
   /** kind:tender|bdns|budget|promise + ref like 'tender:12345' or 'promise:psoe-2023-002' */
@@ -409,9 +409,9 @@ ABSOLUTE RULES (libel safety):
      \`kind\` (tender / bdns / budget / promise / prior-claim) and the
      value MUST be a literal substring of the candidate's snippet — NOT a
      paraphrase or rounded number. Example:
-       \`tender[3].award_amount_eur=482000 · matches the speaker's €480k claim\`
+       \`tender[3].finalAmount=482000 · matches the speaker's €480k claim\`
        \`promise[1].status=documentada · same quote stem as PSOE-2024-007\`
-       \`bdns[0].importe=125000 · subvención del mismo programa cultural\`
+       \`bdns[0].description=Subvenciones cultura 2025 · mismo programa\`
      The runner verifies the cited value appears in the candidate snippet
      verbatim. If you cannot tie the verdict to a literal value from the
      candidate, return verdict:sin-datos with evidence:[]. A snippet

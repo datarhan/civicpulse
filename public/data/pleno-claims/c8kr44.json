@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T08:09:47.869Z",
+  "generatedAt": "2026-08-01T19:08:13.891Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -32,9 +32,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -64,14 +62,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -103,9 +94,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -138,9 +127,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -168,14 +155,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -202,14 +182,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -236,14 +209,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -270,14 +236,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -302,19 +261,24 @@
       },
       "verification": {
         "claimId": "c8kr44-014-afi-69d9bd",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=p%2FN4VhcVFNUBPRBxZ4nJ%2Fg%3D%3D",
+            "snippet": "servicio de asesoramiento jurídico en materia de contratación con el fin de poner en marcha los Sistemas Dinámicos de Adquisición. · Ayuntamiento de Riba-roja de Túria · PINTOS SANTIAGO, JAIME · other · 14.500 €",
+            "similarity": 0.6
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -344,9 +308,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -372,19 +334,24 @@
       },
       "verification": {
         "claimId": "c8kr44-015-afi-84682e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DvfzF%2Fh0EmMXhk1FZxEyvw%3D%3D",
+            "snippet": "Contrato de suministro de uniformidad, calzado y complementos de vestuario para la Policía Local por precio unitario, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición de ejecución de carácter social, medioambiental y técnico/específico, sujeto a regulación armonizada. (Ctto. 79/2025). · Ayuntamiento de Riba-roja de Túria · security · 270.000 €",
+            "similarity": 0.73
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -410,14 +377,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -444,14 +404,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -486,14 +439,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -528,14 +474,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -566,18 +505,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY S.L. · architecture · estado: unknown",
+            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY S.L. · architecture · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -605,14 +537,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -639,14 +564,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -673,14 +591,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -707,14 +618,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -742,14 +646,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -784,14 +681,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -819,14 +709,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -854,14 +737,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -888,14 +764,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -923,12 +792,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -957,12 +821,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -993,14 +852,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1027,14 +879,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1066,9 +911,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -1101,9 +944,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -1128,19 +969,24 @@
       },
       "verification": {
         "claimId": "c8kr44-045-afi-5af5f7",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=iAX0flihInamq21uxhbaVQ%3D%3D",
+            "snippet": "Sistema dinámico de adquisición para la ejecución de OBRAS de adecuación y reurbanización de viales y parques y jardines del término municipal de Riba-roja de Túria con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 y ODS 15. ( SDA 2/2020 OMN) · Ayuntamiento de Riba-roja de Túria · construction · 720.000 €",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1167,14 +1013,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1199,19 +1038,24 @@
       },
       "verification": {
         "claimId": "c8kr44-045-afi-8e7181",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA SL · environment · 161.000 €",
+            "similarity": 0.81
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1241,9 +1085,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -1269,19 +1111,24 @@
       },
       "verification": {
         "claimId": "c8kr44-046-afi-367a4b",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4P2hVfTdex%2BXQV0WE7lYPw%3D%3D",
+            "snippet": "Contrato de servicio de control de acceso y atención a los usuarios en la sala de lectura del edificio municipal BOTAIA, durante determinados periodos extraordinarios debidos a periodos de exámenes, fuera del horario normal del servicio realizado por el personal municipal, por procedimiento abierto súper-simplificado, mejor relación calidad-precio, varios criterios de adjudicación de carácter socio-laboral, con condición de ejecución de carácter social reservado a Centros Especiales de Empleo de iniciativa social, contribuyendo al cumplimiento del ODS 8 relativo a lograr trabajo decente. · Ayuntamiento de Riba-roja de Túria · COMPAÑÍA ESPECIAL EMPLEO E INTEGRACIÓN, S.L. · culture · 10.972 €",
+            "similarity": 0.68
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -1313,14 +1160,7 @@
             "similarity": 0.6
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1347,14 +1187,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1383,14 +1216,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1418,12 +1244,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -1452,12 +1273,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -1486,12 +1302,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -1520,12 +1331,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -1554,12 +1360,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -1590,18 +1391,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · F INICIATIVAS ESPAÑA I MAS D MAS I SLU · legal · estado: unknown",
+            "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · F INICIATIVAS ESPAÑA I MAS D MAS I SLU · legal · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1629,12 +1423,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -1669,14 +1458,7 @@
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1710,14 +1492,7 @@
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1747,18 +1522,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fSAyhRzwiqWmq21uxhbaVQ%3D%3D",
-            "snippet": "Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · it · estado: unknown",
+            "snippet": "Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · it · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1792,14 +1560,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1829,18 +1590,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5%2F8urkwlgL8kJPJS%2BPS9vg%3D%3D",
-            "snippet": "Inicio, aprobación del expediente y adjudicación del contrato para el suministro de energía eléctrica, mediante contrato basado en acuerdo marco para el suministro de energía eléctrica para los organismos adheridos a la Central de Compras de la Diputación Provincial de Valencia, a favor de Iberdrola Clientes S.A.U. con CIF nº A95758389 _Ctto.183-2025. · Ayuntamiento de Riba-roja de Túria · IBERDROLA CLIENTES S.A. · energy · estado: unknown",
+            "snippet": "Inicio, aprobación del expediente y adjudicación del contrato para el suministro de energía eléctrica, mediante contrato basado en acuerdo marco para el suministro de energía eléctrica para los organismos adheridos a la Central de Compras de la Diputación Provincial de Valencia, a favor de Iberdrola Clientes S.A.U. con CIF nº A95758389 _Ctto.183-2025. · Ayuntamiento de Riba-roja de Túria · IBERDROLA CLIENTES S.A. · energy · estado: formalized",
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1869,14 +1623,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -1906,18 +1653,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · F INICIATIVAS ESPAÑA I MAS D MAS I SLU · legal · estado: unknown",
+            "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · F INICIATIVAS ESPAÑA I MAS D MAS I SLU · legal · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1951,14 +1691,7 @@
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -1987,14 +1720,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2024,18 +1750,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA SL · environment · estado: unknown",
+            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA SL · environment · estado: formalized",
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2062,14 +1781,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2097,14 +1809,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2132,14 +1837,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2167,14 +1865,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2203,14 +1894,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2239,14 +1923,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2273,14 +1950,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2314,14 +1984,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2349,14 +2012,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2383,14 +2039,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2419,14 +2068,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2454,14 +2096,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2490,14 +2125,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2528,18 +2156,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GzZ8vbrGk5o7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: unknown",
+            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: formalized",
             "similarity": 0.6
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2574,14 +2195,7 @@
             "similarity": 0.8
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2611,18 +2225,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GzZ8vbrGk5o7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: unknown",
+            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: formalized",
             "similarity": 0.6
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2657,14 +2264,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2694,18 +2294,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=00nKUKuSmc97h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de suministro por renting de vehículo tractor destinado al departamento de obras y servicios, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterio medioambiental, con condición de ejecución de carácter social, contribuyendo al cumplimiento del ODS 7 energía asequible y no contaminante. · Ayuntamiento de Riba-roja de Túria · CATRON INTERNACIONAL, S.A. · industry · estado: unknown",
+            "snippet": "Contrato de suministro por renting de vehículo tractor destinado al departamento de obras y servicios, por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación con criterio medioambiental, con condición de ejecución de carácter social, contribuyendo al cumplimiento del ODS 7 energía asequible y no contaminante. · Ayuntamiento de Riba-roja de Túria · CATRON INTERNACIONAL, S.A. · industry · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2734,14 +2327,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2768,14 +2354,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2802,14 +2381,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2843,14 +2415,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -2878,12 +2443,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -2913,14 +2473,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2949,14 +2502,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -2985,14 +2531,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3024,9 +2563,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -3054,14 +2591,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3088,14 +2618,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3131,14 +2654,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3168,12 +2684,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -3208,14 +2719,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3242,14 +2746,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3276,14 +2773,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3317,14 +2807,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3353,14 +2836,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3389,14 +2865,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3423,14 +2892,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3459,14 +2921,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3495,14 +2950,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3531,14 +2979,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3565,14 +3006,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3599,14 +3033,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3635,14 +3062,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3672,18 +3092,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EPfBoyapDZkQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · UNIVERSITAT DE VALÈNCIA · legal · estado: unknown",
+            "snippet": "Redacción del plan estratégico territorial sostenible, integrado y participado del municipio de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · UNIVERSITAT DE VALÈNCIA · legal · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3717,14 +3130,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3752,12 +3158,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -3788,18 +3189,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tefWSQ%2FAAQaiEJrVRqloyA%3D%3D",
-            "snippet": "contrato de obras de reurbanización y mejora de zonas verdes en los polígonos industriales de la zona sur de Riba-roja de Túria., por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental. · Ayuntamiento de Riba-roja de Túria · VIVERS CENTRE VERD · construction · estado: unknown",
+            "snippet": "contrato de obras de reurbanización y mejora de zonas verdes en los polígonos industriales de la zona sur de Riba-roja de Túria., por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental. · Ayuntamiento de Riba-roja de Túria · VIVERS CENTRE VERD · construction · estado: formalized",
             "similarity": 0.6
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3826,14 +3220,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3867,14 +3254,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3903,14 +3283,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -3940,18 +3313,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TX%2BFGG9n8SDnSoTX3z%2F7wA%3D%3D",
-            "snippet": "contrato mediante tramitación anticipada de servicio de limpieza CEIP Cervantes, por proc. abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud. y con CEE de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato contrib. al cumplim. del ODS 8.8, ODS 5.1 y ODS 12.2. SARA · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: unknown",
+            "snippet": "contrato mediante tramitación anticipada de servicio de limpieza CEIP Cervantes, por proc. abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud. y con CEE de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato contrib. al cumplim. del ODS 8.8, ODS 5.1 y ODS 12.2. SARA · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -3979,12 +3345,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -4012,14 +3373,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4049,18 +3403,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TX%2BFGG9n8SDnSoTX3z%2F7wA%3D%3D",
-            "snippet": "contrato mediante tramitación anticipada de servicio de limpieza CEIP Cervantes, por proc. abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud. y con CEE de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato contrib. al cumplim. del ODS 8.8, ODS 5.1 y ODS 12.2. SARA · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: unknown",
+            "snippet": "contrato mediante tramitación anticipada de servicio de limpieza CEIP Cervantes, por proc. abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud. y con CEE de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato contrib. al cumplim. del ODS 8.8, ODS 5.1 y ODS 12.2. SARA · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -4090,18 +3437,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · construction · estado: unknown",
+            "snippet": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · construction · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -4133,9 +3473,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4168,9 +3506,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4203,9 +3539,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4238,9 +3572,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4273,9 +3605,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4305,14 +3635,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4336,19 +3659,24 @@
       },
       "verification": {
         "claimId": "c8kr44-127-afi-a7e5b5",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "",
+            "snippet": "Anuncio TED 560011-2023 · 1.706.074 €",
+            "similarity": 0.92
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4374,12 +3702,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -4412,9 +3735,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4444,14 +3765,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4478,14 +3792,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4512,14 +3819,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4548,14 +3848,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4582,14 +3875,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4623,14 +3909,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -4662,9 +3941,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -4691,19 +3968,24 @@
       },
       "verification": {
         "claimId": "c8kr44-142-cit-e68b18",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ZDLv1lEzZyjnSoTX3z%2F7wA%3D%3D",
+            "snippet": "Contrato de obras de modificación de núcleos de comunicación y mejora de accesibilidad en el CEIP Eres Altes por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · construction · 159.303 €",
+            "similarity": 0.99
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4731,8 +4013,8 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=PAA4ouM3mNjnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato de servicios de mantenimiento de las zonas verdes de la CV-370 y el carril bici de Riba-roja de Túria, por procedimiento abierto simplificado, mejor relación calidad-precio, único criterio de adjudicación y condición especial de ejecución de carácter social y medioambiental reservado a Centros Especiales de Empleo de iniciativa social contribuyendo al cumplimiento del ODS 8 relativo a la promoción del crecimiento económico inclusivo · Ayuntamiento de Riba-roja de Túria · COMPAÑÍA ESPECIAL EMPLEO E INTEGRACIÓN, S.L. · agriculture · estado: unknown",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · construction · 269.143 €",
             "similarity": 0.67
           }
         ],
@@ -4740,9 +4022,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "shown"
@@ -4770,19 +4050,24 @@
       },
       "verification": {
         "claimId": "c8kr44-143-afi-e4636b",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · construction · 269.143 €",
+            "similarity": 0.67
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4809,14 +4094,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4850,14 +4128,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -4887,18 +4158,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=M3B12MCygtyiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato para el suministro, adquisición de jardineras para separar el carril para paso de vehículos en calle Vilamarxant, del carril peatonal, derivado del sistema dinámico de adquisición (SDA) de suministro de material de jardinería (Ctto 59/2022 – SDA 1/2020). · Ayuntamiento de Riba-roja de Túria · SANCHEZ SORIANO REQUENARIO S.L. · industry · estado: unknown",
+            "snippet": "Contrato para el suministro, adquisición de jardineras para separar el carril para paso de vehículos en calle Vilamarxant, del carril peatonal, derivado del sistema dinámico de adquisición (SDA) de suministro de material de jardinería (Ctto 59/2022 – SDA 1/2020). · Ayuntamiento de Riba-roja de Túria · SANCHEZ SORIANO REQUENARIO S.L. · industry · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -4926,14 +4190,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -4967,14 +4224,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -5002,12 +4252,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -5038,18 +4283,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=IoNf54xXFLXnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato privado de arrendamiento de bien inmueble para dotar de plazas de estacionamiento la zona de ctra. Villamarchante por concurso · Ayuntamiento de Riba-roja de Túria · Francisca Tarin Cava · real_estate · estado: unknown",
+            "snippet": "Contrato privado de arrendamiento de bien inmueble para dotar de plazas de estacionamiento la zona de ctra. Villamarchante por concurso · Ayuntamiento de Riba-roja de Túria · Francisca Tarin Cava · real_estate · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -5079,18 +4317,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA SOCIEDAD LIMITADA · culture · estado: unknown",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA SOCIEDAD LIMITADA · culture · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -5117,14 +4348,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5154,18 +4378,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=JMTkgha0kaB7h85%2Fpmmsfw%3D%3D",
-            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020. · Ayuntamiento de Riba-roja de Túria · COLIN BUCHANAN CONSULTORES, S.A.U. · architecture · estado: unknown",
+            "snippet": "El objeto del contrato es la elaboración y redacción del Plan de Movilidad Urbana Sostenible (PMUS) de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación y mejoras como criterio de adjudicación y con condición especial de ejecución de carácter perspectiva de genero, de conformidad con lo dispuesto en el Pliego de cláusulas administrativas particulares y en el Pliego de prescripciones técnicas.  \nEsta actuación es susceptible de ser cofinanciada al 50 % por la Unión Europea a través del Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de la Comunidad Valenciana 2014-2020. · Ayuntamiento de Riba-roja de Túria · COLIN BUCHANAN CONSULTORES, S.A.U. · architecture · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -5192,14 +4409,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5227,12 +4437,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -5263,18 +4468,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: unknown",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -5302,12 +4500,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -5337,14 +4530,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5373,14 +4559,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5409,14 +4588,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5444,14 +4616,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5479,14 +4644,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5514,14 +4672,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5548,14 +4699,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5582,14 +4726,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5616,19 +4753,24 @@
       },
       "verification": {
         "claimId": "c8kr44-163-afi-09b55a",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 €",
+            "similarity": 0.78
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5656,12 +4798,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -5687,19 +4824,24 @@
       },
       "verification": {
         "claimId": "c8kr44-164-afi-8cb344",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 €",
+            "similarity": 0.78
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5722,19 +4864,24 @@
       },
       "verification": {
         "claimId": "c8kr44-164-afi-63bfda",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
+            "snippet": "Cambio de juegos y suelo de protección Parque La Pedrera · Ayuntamiento de Riba-roja de Túria · JUEGOS KOMPAN, S.A. · culture · 37.960 €",
+            "similarity": 0.74
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -5762,18 +4909,16 @@
         "evidence": [
           {
             "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: unknown",
-            "similarity": 0.5
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 €",
+            "similarity": 0.78
           }
         ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "shown"
@@ -5801,14 +4946,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -5838,160 +4976,13 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E%2BOr0JaUVkecCF8sV%2BqtYA%3D%3D",
-            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: unknown",
+            "snippet": "Obras  ejecución del proyecto: “Mejora del carril bici y la ejecución o mejora de refugios climáticos”, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de la agenda 2030, en el marco del Plan de Recuperación, Transformación y Resilencia financiado por la U.E. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "c8kr44-171-cit-ab4a59",
-        "plenoId": "c8kr44",
-        "plenoDate": "2025-09-08",
-        "segmentIndex": 171,
-        "type": "cita_convenio",
-        "speakerGroup": null,
-        "verbatim": "más de 100 millones de euros se han traído en subvenciones",
-        "context": "Por lo tanto, así lo que hemos trabajado es muchísimo desde el 15 para obtener fondos y subvenciones, desde el primer gobierno hasta el último. Más de 100 millones de euros, repito la cifra, más de 100 millones de euros se han traído en subvenciones",
-        "topic": "other",
-        "entities": {
-          "amountEuros": 100000000,
-          "referencedEntity": "subvenciones"
-        },
-        "confidence": 1,
-        "reasoning": "Se puede verificar la cuantía acumulada de subvenciones y fondos recibidos por el ayuntamiento en la Cuenta General o el portal de transparencia municipal desde el año 2015.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "c8kr44-171-cit-ab4a59",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "c8kr44-172-afi-877903",
-        "plenoId": "c8kr44",
-        "plenoDate": "2025-09-08",
-        "segmentIndex": 172,
-        "type": "afirmacion_numerica",
-        "speakerGroup": "PSOE",
-        "verbatim": "tenemos 87 millones más de euros de patrimonio que en el año 2014",
-        "context": "vamos a hacer un inventario y tenemos 87 millones más de euros de patrimonio que en el año 2014, pero eso no ha caído del cielo,",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 87000000,
-          "referencedEntity": "patrimonio"
-        },
-        "confidence": 0.95,
-        "reasoning": "Es verificable contrastando el valor del inventario de bienes municipal actual frente a la Cuenta General o el inventario consolidado del ejercicio 2014.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "c8kr44-172-afi-877903",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "c8kr44-172-cit-b1b4d4",
-        "plenoId": "c8kr44",
-        "plenoDate": "2025-09-08",
-        "segmentIndex": 172,
-        "type": "cita_convenio",
-        "speakerGroup": "PSOE",
-        "verbatim": "más de 100 millones de euros se han traído en subvenciones",
-        "context": "Por lo tanto, así lo que hemos trabajado es muchísimo desde el 15 para obtener fondos y subvenciones, desde el primer gobierno hasta el último. Más de 100 millones de euros, repito la cifra, más de 100 millones de euros se han traído en subvenciones",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 100000000,
-          "referencedEntity": "subvenciones"
-        },
-        "confidence": 0.95,
-        "reasoning": "Es verificable consultando los presupuestos anuales y las liquidaciones de cuentas del ayuntamiento desde 2015 para sumar las subvenciones concedidas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "c8kr44-172-cit-b1b4d4",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
-      },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "c8kr44-176-afi-c67249",
-        "plenoId": "c8kr44",
-        "plenoDate": "2025-09-08",
-        "segmentIndex": 176,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "emos empujado el capítulo 2 a 17 millones de euros,",
-        "context": "emos empujado el capítulo 2 a 17 millones de euros,\n[6582.2 → 6584.6] para arrepegar mejor, para dar mejor servicio,",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 17000000,
-          "referencedEntity": "capítulo 2"
-        },
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar en los presupuestos municipales si la partida correspondiente al Capítulo 2 asciende a 17 millones de euros.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "c8kr44-176-afi-c67249",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
-      },
-      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6021,9 +5012,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -6056,9 +5045,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -6087,14 +5074,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6123,14 +5103,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6159,14 +5132,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6194,12 +5160,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -6228,14 +5189,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6262,14 +5216,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6297,14 +5244,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6331,14 +5271,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6370,9 +5303,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -6400,14 +5331,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6436,14 +5360,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6471,12 +5388,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -6504,14 +5416,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6539,12 +5444,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -6573,14 +5473,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6604,19 +5497,24 @@
       },
       "verification": {
         "claimId": "c8kr44-202-afi-0dc394",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
+            "snippet": "Servicio de limpieza viaria del municipio de Riba-roja · Ayuntamiento de Riba-roja de Túria · environment · 3.940.645 €",
+            "similarity": 0.99
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6638,54 +5536,24 @@
       },
       "verification": {
         "claimId": "c8kr44-202-afi-988c8e",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TO7sKuaZmazpxJFXpLZ%2B2A%3D%3D",
+            "snippet": "Contrato de servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo. · Ayuntamiento de Riba-roja de Túria · environment · 11.172.861 €",
+            "similarity": 0.72
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "c8kr44-203-afi-42a7b6",
-        "plenoId": "c8kr44",
-        "plenoDate": "2025-09-08",
-        "segmentIndex": 203,
-        "type": "afirmacion_numerica",
-        "speakerGroup": null,
-        "verbatim": "La dana está repercutiendo en 1,2 millones de euros.",
-        "context": "Una, tenemos la dana, efectivamente. La dana está repercutiendo en 1,2 millones de euros. ¿Por qué?",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 1200000,
-          "referencedEntity": "dana"
-        },
-        "confidence": 0.9,
-        "reasoning": "Comprueba en las cuentas o informes de gastos de la DANA si el coste repercutido asciende a 1,2 millones de euros.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "c8kr44-203-afi-42a7b6",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
-      },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6718,14 +5586,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -6760,14 +5621,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -6793,19 +5647,24 @@
       },
       "verification": {
         "claimId": "c8kr44-205-afi-03f5b7",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jFiGXyTf980uf4aBO%2BvQlQ%3D%3D",
+            "snippet": "Enajenación de la parcela M7-2.2 de la IIª fase del parque Logístico, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución · Ayuntamiento de Riba-roja de Túria · real_estate · 640.831 €",
+            "similarity": 0.98
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6830,14 +5689,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6869,9 +5721,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -6898,19 +5748,24 @@
       },
       "verification": {
         "claimId": "c8kr44-207-afi-ba9e77",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ivAidx1aujcQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Servicio de catering social y reparto y entrega del catering social · Ayuntamiento de Riba-roja de Túria · Gil Folgado Catering, S.L. · catering · 898.498 €",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -6935,14 +5790,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -6966,19 +5814,24 @@
       },
       "verification": {
         "claimId": "c8kr44-208-afi-ef2612",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ivAidx1aujcQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Servicio de catering social y reparto y entrega del catering social · Ayuntamiento de Riba-roja de Túria · Gil Folgado Catering, S.L. · catering · 898.498 €",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7008,9 +5861,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -7043,9 +5894,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -7075,14 +5924,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7110,14 +5952,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7141,19 +5976,24 @@
       },
       "verification": {
         "claimId": "c8kr44-211-afi-28bc2d",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
+            "snippet": "Servicio de limpieza viaria del municipio de Riba-roja · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE AGRICULTORES DE LA VEGA (SAV) · environment · 3.418.773 €",
+            "similarity": 0.99
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7179,14 +6019,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7217,18 +6050,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XIU8UqvIpdyiEJrVRqloyA%3D%3D",
-            "snippet": "Suministro mediante renting de seis vehículos policiales por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental y pago directo a subcontratistas. · Ayuntamiento de Riba-roja de Túria · ANDACAR 2000, S.A. · transportation · estado: unknown",
+            "snippet": "Suministro mediante renting de seis vehículos policiales por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental y pago directo a subcontratistas. · Ayuntamiento de Riba-roja de Túria · ANDACAR 2000, S.A. · transportation · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7257,14 +6083,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7296,9 +6115,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -7324,19 +6141,24 @@
       },
       "verification": {
         "claimId": "c8kr44-221-cit-d49134",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de la Presidencia del Consejo Superior de Deportes, por la que se concede una subvención al   ayuntamiento de Riba-Roja D´Ebre para obras de restaura · importe no publicado",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7361,14 +6183,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7397,14 +6212,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7429,19 +6237,24 @@
       },
       "verification": {
         "claimId": "c8kr44-228-cit-ce920d",
-        "verdict": "sin-datos",
-        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
-        "evidence": [],
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Solicitud Subvención nominativa Ayuntamiento de Riba-roja de Turia, \"Jaciment València la Vella: campanya consolidació i posada en valor\" 2025 · LOCAL · DIPUTAC · importe no publicado",
+            "similarity": 1
+          }
+        ],
         "checkedAgainst": [
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -7466,14 +6279,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7505,9 +6311,7 @@
           "tenders",
           "tenders-ted",
           "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -7538,18 +6342,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: unknown",
+            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7579,18 +6376,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA SOCIEDAD LIMITADA · culture · estado: unknown",
+            "snippet": "Renovación de los juegos y suelo de protección Plaza Juez Heliodoro Gimeno · Ayuntamiento de Riba-roja de Túria · URBEADAPTA SOCIEDAD LIMITADA · culture · estado: formalized",
             "similarity": 0.75
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7620,18 +6410,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: unknown",
+            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7667,14 +6450,7 @@
             "similarity": 0.6
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7704,18 +6480,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0sQ%2BhGrxuvbjHF5qKI4aaw%3D%3D",
-            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · Ayuntamiento de Riba-roja de Túria · JUEGOS KOMPAN, S.A. · culture · estado: unknown",
+            "snippet": "Cambio de juegos y suelo de protección Parque Molinet · Ayuntamiento de Riba-roja de Túria · JUEGOS KOMPAN, S.A. · culture · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7746,18 +6515,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: unknown",
+            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7788,18 +6550,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: unknown",
+            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7834,14 +6589,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -7869,12 +6617,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -7903,12 +6646,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -7936,14 +6674,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -7975,18 +6706,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HiIEfDk2s9mTylGzYmBF9Q%3D%3D",
-            "snippet": "Servicio mantenimiento instalaciones térmicas deportes. · Ayuntamiento de Riba-roja de Túria · ECOSIONA FACILITY SERVICES SOCIEDAD LIMITADA · maintenance · estado: unknown",
+            "snippet": "Servicio mantenimiento instalaciones térmicas deportes. · Ayuntamiento de Riba-roja de Túria · ECOSIONA FACILITY SERVICES SOCIEDAD LIMITADA · maintenance · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8016,18 +6740,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=z9Rkh6a2Oj8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Mantenimiento de las instalaciones contraincendios en edificios municipales · Ayuntamiento de Riba-roja de Túria · SOLER PREVENCIÓN Y SEGURIDAD SA · security · estado: unknown",
+            "snippet": "Mantenimiento de las instalaciones contraincendios en edificios municipales · Ayuntamiento de Riba-roja de Túria · SOLER PREVENCIÓN Y SEGURIDAD SA · security · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8056,14 +6773,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8090,14 +6800,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8131,14 +6834,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8165,14 +6861,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8206,14 +6895,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8247,14 +6929,7 @@
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8281,14 +6956,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8315,14 +6983,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8356,14 +7017,7 @@
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8393,18 +7047,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=O83XFzEeamkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Servicio de transporte de diversa índole en el municipio de Riba-roja pro procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con criterios ambientales en los vehículos, el personal conductor y la gestión cotidiana para minimizar los impactos negativos durante el transcurso del contrato y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · AUTOBUSES DURA, S.L · transportation · estado: unknown",
+            "snippet": "Servicio de transporte de diversa índole en el municipio de Riba-roja pro procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con criterios ambientales en los vehículos, el personal conductor y la gestión cotidiana para minimizar los impactos negativos durante el transcurso del contrato y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · AUTOBUSES DURA, S.L · transportation · estado: formalized",
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8431,14 +7078,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8465,14 +7105,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8506,14 +7139,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8547,14 +7173,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8581,14 +7200,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8622,14 +7234,7 @@
             "similarity": 1
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8656,14 +7261,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8690,14 +7288,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8724,14 +7315,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8760,14 +7344,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8801,14 +7378,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8842,14 +7412,7 @@
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8884,14 +7447,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8919,14 +7475,7 @@
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "toggle"
     },
@@ -8960,14 +7509,7 @@
             "similarity": 0.5
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     },
@@ -8995,12 +7537,7 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
+          "promises"
         ]
       },
       "visibility": "toggle"
@@ -9032,18 +7569,11 @@
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=KUffDmiZ4Odq1DdmE7eaXg%3D%3D",
-            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: unknown",
+            "snippet": "Obras de Cubierta Pistas de Pádel de Riba-roja de Túria, por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 de “Ciudades y comunidades sostenibles” · Ayuntamiento de Riba-roja de Túria · INVESTIGACION Y GESTION EN RESIDUOS SA · construction · estado: formalized",
             "similarity": 0.67
           }
         ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "promises",
-          "budget",
-          "priorClaims"
-        ]
+        "checkedAgainst": []
       },
       "visibility": "shown"
     }

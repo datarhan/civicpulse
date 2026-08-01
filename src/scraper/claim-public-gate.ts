@@ -6,7 +6,8 @@
  *
  * Policy (see
  * docs/superpowers/specs/2026-06-21-plenos-claim-ledger-editorial-gate-design.md):
- *   hidden  — any acusacion_publica that is opinativa OR not data-grounded
+ *   hidden  — any acusacion_publica that is opinativa OR not data-grounded;
+ *             any machine-assigned `contradicho` (see below)
  *   toggle  — non-accusation claims that are not data-grounded (sin-datos)
  *   shown   — data-grounded claims of any type (incl. data-backed accusations)
  *
@@ -25,10 +26,34 @@ export const DATA_GROUNDED_VERDICTS: ReadonlySet<string> = new Set([
   'promesa-repetida',
 ])
 
+/**
+ * `contradicho` says "this councillor stated something the municipal record
+ * contradicts". It is the most accusatory verdict the machine can assign and
+ * the one the deterministic matcher is worst at, because it fires on a strong
+ * NAME match with a mismatched amount — which is also what an unrelated
+ * contract looks like.
+ *
+ * Real example from the run that prompted this gate: a councillor said the
+ * Generalitat would approve «2.364 millones para la dana». The matcher scored
+ * the entity hint "dana" against a municipal contract for clearing rubble and
+ * published `contradicho` — a €2.36bn regional budget line "refuted" by a
+ * town rubble-removal job. The claim is not even about municipal spending.
+ *
+ * So a machine `contradicho` is a lead for a curator, not a publishable
+ * verdict. It stays in the snapshot (the CLIs and /curator read it) and is
+ * withheld from the public ledger. A curator publishes it by promoting the
+ * claim into a finding, which is where the human judgement already lives.
+ */
+function isCuratorPromoted(item: Pick<VerifiedClaimItem, 'verification'>): boolean {
+  const src = (item?.verification as { source?: string } | undefined)?.source
+  return src === 'curator' || src === 'curator-downgrade'
+}
+
 export function classifyClaimVisibility(
   item: Pick<VerifiedClaimItem, 'claim' | 'verification'>,
 ): ClaimVisibility {
   const verdict = item?.verification?.verdict
+  if (verdict === 'contradicho' && !isCuratorPromoted(item)) return 'hidden'
   const grounded = typeof verdict === 'string' && DATA_GROUNDED_VERDICTS.has(verdict)
   if (item?.claim?.type === 'acusacion_publica') {
     const subtype = item.claim.accusationSubtype ?? 'opinativa' // safe default

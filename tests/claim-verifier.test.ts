@@ -21,6 +21,11 @@ function baseClaim(partial: Partial<PlenoClaim> = {}): PlenoClaim {
   }
 }
 
+// NOTE: these fixtures build tender rows with `finalAmount`, the field the
+// scraper actually writes. They used to say `award_amount_eur`, which exists on
+// zero of the 1,231 real rows — so the verifier's amount matcher was tested
+// exclusively against a shape that cannot occur, and stayed green while the
+// production cross-reference matched nothing at all.
 describe('verifyClaim — sin-datos when no datasets provided', () => {
   it('emits sin-datos with checkedAgainst=[]', () => {
     const v = verifyClaim({ claim: baseClaim() })
@@ -45,7 +50,7 @@ describe('verifyClaim — verificado on tender exact match', () => {
           {
             permalink: 'https://contrataciones.example/r01',
             title: 'Reconstrucción post-DANA fase 1',
-            award_amount_eur: 9_500_000,
+            finalAmount: 9_500_000,
           },
         ],
       },
@@ -75,7 +80,7 @@ describe('verifyClaim — parcial on near-match', () => {
             // so the tender registers as evidence, but combined with a 1.0
             // entity text-sim yields 0.72 — above the 0.6 weak threshold
             // (parcial) yet below the 0.8 strong threshold (verificado).
-            award_amount_eur: 7_000_000,
+            finalAmount: 7_000_000,
           },
         ],
       },
@@ -122,7 +127,7 @@ describe('verifyClaim — acusacion_publica opinativa stays sin-datos', () => {
         accusationSubtype: 'opinativa',
         verbatim: 'el equipo de gobierno nunca escucha a los vecinos',
       }),
-      tenders: { contracts: [{ title: 'cualquier cosa', award_amount_eur: 46_000_000 }] },
+      tenders: { contracts: [{ title: 'cualquier cosa', finalAmount: 46_000_000 }] },
     })
     expect(v.verdict).toBe('sin-datos')
     expect(v.summary).toContain('carácter')
@@ -157,7 +162,7 @@ describe('verifyClaim — acusacion_publica factual is verified against data', (
           {
             permalink: 'https://contrataciones.example/r01',
             title: 'Reconstrucción post-DANA fase 1',
-            award_amount_eur: 9_500_000,
+            finalAmount: 9_500_000,
           },
         ],
       },
@@ -183,7 +188,7 @@ describe('verifyClaim — contradicho on amount mismatch with same entity', () =
           {
             permalink: 'https://contrataciones.example/r02',
             title: 'Reconstrucción post-DANA fase 1',
-            award_amount_eur: 9_500_000,
+            finalAmount: 9_500_000,
           },
         ],
       },

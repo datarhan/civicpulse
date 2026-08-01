@@ -31,7 +31,10 @@ describe('classifyClaimVisibility', () => {
     ).toBe('hidden')
   })
   it('shows data-grounded factual/contra-datos accusations', () => {
-    expect(classifyClaimVisibility(item('acusacion_publica', 'contradicho', 'factual') as never)).toBe(
+    // `contradicho` is now curator-gated on its own (see the machine-contradicho
+    // block below), so a data-grounded accusation is exercised here with
+    // `parcial` — the strongest verdict the machine may publish unaided.
+    expect(classifyClaimVisibility(item('acusacion_publica', 'parcial', 'factual') as never)).toBe(
       'shown',
     )
     expect(
@@ -45,7 +48,7 @@ describe('classifyClaimVisibility', () => {
   })
   it('shows data-grounded non-accusation claims', () => {
     expect(classifyClaimVisibility(item('afirmacion_numerica', 'verificado') as never)).toBe('shown')
-    expect(classifyClaimVisibility(item('cita_obra', 'contradicho') as never)).toBe('shown')
+    expect(classifyClaimVisibility(item('cita_obra', 'parcial') as never)).toBe('shown')
     expect(classifyClaimVisibility(item('promesa', 'promesa-repetida') as never)).toBe('shown')
   })
   it('puts non-grounded non-accusation claims behind the toggle', () => {
@@ -70,5 +73,28 @@ describe('gateItemsForPublic', () => {
     ])
     expect(out).toHaveLength(2)
     expect(out.map((x) => x.visibility)).toEqual(['shown', 'toggle'])
+  })
+})
+
+describe('claim-public-gate — machine contradicho', () => {
+  it('hides a contradicho the machine assigned', () => {
+    // The matcher fires on a strong name match with a mismatched amount, which
+    // is indistinguishable from an unrelated contract. It published a €2.36bn
+    // regional DANA figure as "refuted" by a municipal rubble-clearing job.
+    expect(
+      classifyClaimVisibility({
+        claim: { type: 'afirmacion_numerica' },
+        verification: { verdict: 'contradicho' },
+      }),
+    ).toBe('hidden')
+  })
+
+  it('shows a contradicho a curator stands behind', () => {
+    expect(
+      classifyClaimVisibility({
+        claim: { type: 'afirmacion_numerica' },
+        verification: { verdict: 'contradicho', source: 'curator' },
+      }),
+    ).toBe('shown')
   })
 })

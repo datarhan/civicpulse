@@ -285,8 +285,37 @@ function readTenders(data: unknown): TenderRow[] {
   return [...(obj.contracts ?? []), ...(obj.tenders ?? []), ...(obj.items ?? [])]
 }
 
+/**
+ * The awarded/estimated figure for a tender row, sin IVA where available.
+ *
+ * The three names this used to read — `award_amount_eur`, `awarded_amount`,
+ * `amount` — exist on ZERO of the 1,231 rows the scraper writes. Gobierto's
+ * projection calls them `finalAmount` / `initialAmount` (plus the `NoTaxes`
+ * variants), and TED rows carry `totalValueEur`. So `tenderAmount` returned
+ * null for every row, the amount loop `continue`d on all of them, and the
+ * entire tender cross-reference produced nothing — on the press side that
+ * surfaced as a published "0% de verificación" next to named outlets, which
+ * reads as a finding about the outlets rather than about our reader.
+ */
 function tenderAmount(r: TenderRow): number | null {
-  return r.award_amount_eur ?? r.awarded_amount ?? r.amount ?? null
+  const r2 = r as TenderRow & {
+    finalAmountNoTaxes?: number
+    initialAmountNoTaxes?: number
+    finalAmount?: number
+    initialAmount?: number
+    totalValueEur?: number
+  }
+  const v =
+    r2.finalAmountNoTaxes ??
+    r2.initialAmountNoTaxes ??
+    r2.finalAmount ??
+    r2.initialAmount ??
+    r2.totalValueEur ??
+    r.award_amount_eur ??
+    r.awarded_amount ??
+    r.amount
+  const n = Number(v)
+  return Number.isFinite(n) && n > 0 ? n : null
 }
 
 function tenderTitle(r: TenderRow): string {
@@ -306,8 +335,24 @@ function readBdns(data: unknown): BdnsRow[] {
   return obj.items ?? obj.convocatorias ?? []
 }
 
+/**
+ * BDNS convocatorias in this snapshot carry NO amount: the scraper writes
+ * {bdnsCode, date, description, direction, id, level1, level2, organ,
+ * sourceUrl} and nothing else. `importe` and `amount` are absent on all 172
+ * rows, so amount-based grant matching cannot work and never could. Kept for
+ * the day the scraper starts capturing the figure; until then it honestly
+ * returns null and the caller falls back to text matching.
+ */
 function bdnsAmount(r: BdnsRow): number | null {
-  return r.importe ?? r.amount ?? null
+  const v = r.importe ?? r.amount
+  const n = Number(v)
+  return Number.isFinite(n) && n > 0 ? n : null
+}
+
+/** Searchable text for a grant row — `titulo`/`organo` are not its field names. */
+function bdnsText(r: BdnsRow): string {
+  const r2 = r as BdnsRow & { description?: string; organ?: string }
+  return [r2.description, r2.organ, r.titulo, r.organo].filter(Boolean).join(' · ')
 }
 
 function readPromises(data: unknown): PromiseRow[] {
@@ -343,24 +388,29 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
   const checked: string[] = []
   const evidence: ClaimEvidence[] = []
 
-  const localTenders = inputs.tenders ? (checked.push('tenders'), readTenders(inputs.tenders)) : []
+  // `checkedAgainst` is a claim about our own work — it appears in the
+  // published snapshot and feeds the "artículos auditados" counters. It used to
+  // be filled at READ time, so every row asserted that PLACSP, TED, BDNS, the
+  // promise tracker and the budget had been consulted, when the loops that
+  // consult them are gated on the claim carrying a euro figure (2 of 10 press
+  // claims) or being a promesa (2 of 10). Record a source when its matcher
+  // actually runs, not when its file happens to be loaded.
+  const note = (source: string) => {
+    if (!checked.includes(source)) checked.push(source)
+  }
+  const localTenders = inputs.tenders ? readTenders(inputs.tenders) : []
   // TED rows have the same projected shape (see tenders-ted.ts:asTenderRow);
   // merging here means the existing amount + entity-overlap paths fire for
   // both PLACSP and EU notices without further changes downstream.
-  const tedTenders = inputs.tendersTed
-    ? (checked.push('tenders-ted'), readTenders(inputs.tendersTed))
-    : []
+  const tedTenders = inputs.tendersTed ? readTenders(inputs.tendersTed) : []
   const tenderList = [...localTenders, ...tedTenders]
-  const bdnsList = inputs.bdns ? (checked.push('bdns'), readBdns(inputs.bdns)) : []
-  const promiseList = inputs.promises
-    ? (checked.push('promises'), readPromises(inputs.promises))
-    : []
-  if (inputs.budget) checked.push('budget')
-  if (inputs.priorClaims?.length) checked.push('priorClaims')
+  const bdnsList = inputs.bdns ? readBdns(inputs.bdns) : []
+  const promiseList = inputs.promises ? readPromises(inputs.promises) : []
 
   // 1. Promesa-repetida detection (cheap first pass — pure string overlap
   //    plus topic + party equality).
   if (claim.type === 'promesa') {
+    if (promiseList.length > 0) note('promises')
     for (const p of promiseList) {
       if (!p || !p.quote) continue
       if (p.party && claim.speakerGroup && p.party !== claim.speakerGroup) continue
@@ -405,6 +455,8 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
 
     // Tenders lookup (cita_obra or numeric with entity hint)
     if (tenderList.length > 0) {
+      if (localTenders.length > 0) note('tenders')
+      if (tedTenders.length > 0) note('tenders-ted')
       let best: { row: TenderRow; sim: number } | null = null
       // Also look for strong-entity / weak-amount matches → potential contradicho
       let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
@@ -463,15 +515,17 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
 
     // BDNS grants lookup
     if (bdnsList.length > 0) {
+      note('bdns')
       let best: { row: BdnsRow; sim: number } | null = null
       for (const b of bdnsList) {
         const bAmount = bdnsAmount(b)
-        if (bAmount == null) continue
-        const amountSim = similarAmount(amount, bAmount)
-        if (amountSim < 0.5) continue
-        const textSim = entity ? overlapScore(entity, String(b.titulo ?? '')) : 1
-        const combined = amountSim * 0.6 + textSim * 0.4
-        if (combined >= 0.6 && (best === null || combined > best.sim)) {
+        const textSim = entity ? overlapScore(entity, bdnsText(b)) : 0
+        // With no amount on the row, the name has to carry the whole match, so
+        // the bar is higher than the blended amount+text score.
+        const combined =
+          bAmount == null ? textSim : similarAmount(amount, bAmount) * 0.6 + textSim * 0.4
+        const floor = bAmount == null ? 0.75 : 0.6
+        if (combined >= floor && (best === null || combined > best.sim)) {
           best = { row: b, sim: combined }
         }
       }
@@ -479,9 +533,12 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
         evidence.push({
           kind: 'bdns',
           ref: best.row.url ?? `bdns:${best.row.convocatoriaId ?? ''}`,
-          snippet: `${best.row.titulo ?? ''} · ${Math.round(bdnsAmount(best.row)!).toLocaleString(
-            'es-ES',
-          )} €`,
+          snippet: (() => {
+            const amt = bdnsAmount(best.row)
+            const money =
+              amt == null ? 'importe no publicado' : `${Math.round(amt).toLocaleString('es-ES')} €`
+            return `${bdnsText(best.row).slice(0, 160)} · ${money}`
+          })(),
           similarity: Math.round(best.sim * 100) / 100,
         })
       }
@@ -491,6 +548,7 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
     // chapter totals?")
     const budget = (inputs.budget as BudgetSnapshot | undefined)?.snapshot
     if (budget && (budget.totalExpense ?? 0) > 0) {
+      note('budget')
       const hints = TOPIC_TO_BUDGET_HINTS[claim.topic] ?? []
       const chapters = [
         ...(budget.expenseByProgram ?? []),

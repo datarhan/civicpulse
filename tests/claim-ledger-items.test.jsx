@@ -31,12 +31,15 @@ describe('ClaimLedger items prop', () => {
     render(
       <MemoryRouter>
         <ClaimLedger
-          items={[item('verificado', 'cifra verificada'), item('contradicho', 'obra contradicha')]}
+          // `parcial`, not `contradicho`: a machine-assigned contradicho is now
+          // withheld from the public ledger until a curator promotes it, so it
+          // would (correctly) be dropped by the gate here.
+          items={[item('verificado', 'cifra verificada'), item('parcial', 'obra parcial')]}
         />
       </MemoryRouter>,
     )
     await waitFor(() => expect(screen.getByText(/cifra verificada/)).toBeTruthy())
-    expect(screen.getByText(/obra contradicha/)).toBeTruthy()
+    expect(screen.getByText(/obra parcial/)).toBeTruthy()
   })
 
   it('drops a hidden item even if passed in', async () => {
