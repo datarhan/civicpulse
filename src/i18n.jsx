@@ -260,6 +260,17 @@ const CATALOGUE = {
     // Departamentos — per-concejalía accountability dashboard
     // Cargo (per-concejal) detail
     'cargos.detalle.notFound': 'Concejal no encontrado.',
+    'cargos.detalle.pago.eyebrow': 'Retribución · acuerdo plenario',
+    'cargos.detalle.pago.title': 'Qué cobra por el cargo',
+    'cargos.detalle.pago.sinDedicacion':
+      'Sin dedicación retribuida en el acuerdo de la corporación. Percibe, en su caso, asistencias por sesión, que no constan en esta fuente.',
+    'cargos.detalle.pago.fuente': 'Fuente: acuerdo plenario de retribuciones.',
+    'cargos.detalle.area.eyebrow': 'Contratación de sus áreas',
+    'cargos.detalle.area.title': 'Dinero adjudicado en las concejalías que dirige',
+    'cargos.detalle.area.intro':
+      'Importes adjudicados por las áreas de las que es responsable. Es gasto de la concejalía, no de la persona: los contratos los adjudica el órgano de contratación del Ayuntamiento.',
+    'cargos.detalle.area.note':
+      'Solo contratos ya adjudicados y de categoría atribuible a un área; la cifra se queda corta antes que asignar un responsable equivocado.',
     'cargos.detalle.stat.portfolios': 'Concejalías',
     'cargos.detalle.stat.partyPromises': 'Promesas · grupo',
     'cargos.detalle.stat.agendaItems': 'Puntos en pleno',
@@ -543,6 +554,17 @@ const CATALOGUE = {
     'cambios.title': 'Novetats',
 
     'cargos.detalle.notFound': 'Regidor/a no trobat/da.',
+    'cargos.detalle.pago.eyebrow': 'Retribució · acord plenari',
+    'cargos.detalle.pago.title': 'Què cobra pel càrrec',
+    'cargos.detalle.pago.sinDedicacion':
+      "Sense dedicació retribuïda en l'acord de la corporació. Percep, si escau, assistències per sessió, que no consten en esta font.",
+    'cargos.detalle.pago.fuente': 'Font: acord plenari de retribucions.',
+    'cargos.detalle.area.eyebrow': 'Contractació de les seues àrees',
+    'cargos.detalle.area.title': 'Diners adjudicats a les regidories que dirigeix',
+    'cargos.detalle.area.intro':
+      "Imports adjudicats per les àrees de què és responsable. És despesa de la regidoria, no de la persona: els contractes els adjudica l'òrgan de contractació de l'Ajuntament.",
+    'cargos.detalle.area.note':
+      'Només contractes ja adjudicats i de categoria atribuïble a una àrea; la xifra es queda curta abans que assignar un responsable equivocat.',
     'cargos.detalle.stat.portfolios': 'Regidories',
     'cargos.detalle.stat.partyPromises': 'Promeses · grup',
     'cargos.detalle.stat.agendaItems': 'Punts al ple',

@@ -5,6 +5,8 @@ import { usePromises, STATUS_LABEL, STATUS_TONE } from '../hooks/usePromises'
 import { usePlenoAgendas } from '../hooks/usePlenoAgendas'
 import { useQuejas } from '../hooks/useQuejas'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
+import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
+import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT, useLocale } from '../i18n'
 
@@ -30,6 +32,125 @@ function portfolioSlugs(official) {
     }
   }
   return out
+}
+
+/**
+ * Money the ÁREA awarded — never framed as the person's own spending.
+ *
+ * A concejal does not personally award a contract; the department they head
+ * does, under a mesa de contratación. The same distinction the project keeps
+ * between `speakerGroup` (bloc) and an individual applies to euros, so this
+ * block names the concejalía in its own heading and its own sub-labels.
+ *
+ * The figure UNDER-states: only contracts whose Gobierto category maps
+ * unambiguously to a department are attributed (see departmentForTenderCategory),
+ * so a zero means "nothing attributable", never "spent nothing".
+ */
+function AreaSpend({ slugs }) {
+  const t = useT()
+  const { locale } = useLocale()
+  const { data } = useDepartmentStats()
+  if (!data || slugs.length === 0) return null
+  const rows = slugs
+    .map((sl) => data.bySlug?.[sl])
+    .filter((b) => b && b.contratacion.contratos > 0)
+    .sort((a, b) => b.contratacion.importeEur - a.contratacion.importeEur)
+  if (rows.length === 0) return null
+  const totalEur = rows.reduce((n, b) => n + b.contratacion.importeEur, 0)
+  const totalN = rows.reduce((n, b) => n + b.contratacion.contratos, 0)
+  return (
+    <section style={{ marginBottom: 28 }}>
+      <SectionHead
+        eyebrow={t('cargos.detalle.area.eyebrow')}
+        title={t('cargos.detalle.area.title')}
+      />
+      <Card>
+        <div style={{ fontSize: 12.5, color: 'var(--ink70)', marginBottom: 12, lineHeight: 1.5 }}>
+          {t('cargos.detalle.area.intro')}
+        </div>
+        {rows.map((b) => (
+          <div
+            key={b.slug}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'baseline',
+              padding: '7px 0',
+              borderTop: '1px solid var(--border2)',
+              fontSize: 13,
+            }}
+          >
+            <Link
+              to={`/departamentos/${b.slug}`}
+              style={{ color: 'var(--civic)', textDecoration: 'none' }}
+            >
+              {locale === 'ca' ? b.labelCa : b.labelEs}
+            </Link>
+            <span>
+              <span className="mono" style={{ fontWeight: 600 }}>
+                {(b.contratacion.importeEur / 1e6).toFixed(2).replace('.', ',')} M€
+              </span>
+              <span style={{ color: 'var(--ink50)', fontSize: 11, marginLeft: 8 }}>
+                {b.contratacion.contratos} {t('departamentos.card.contratos')}
+              </span>
+            </span>
+          </div>
+        ))}
+        <div
+          style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 10, lineHeight: 1.5 }}
+          className="mono"
+        >
+          {t('cargos.detalle.area.note')} · {totalN} ·{' '}
+          {(totalEur / 1e6).toFixed(2).replace('.', ',')} M€
+        </div>
+      </Card>
+    </section>
+  )
+}
+
+/**
+ * What this person is paid, from the curated pleno acuerdo. A DIRECT
+ * slug-keyed fact about the individual — unlike the área blocks — so it
+ * belongs on their own page. It was previously visible only on the /cargos
+ * index card, which meant the detail page held strictly less than the summary.
+ *
+ * 14 of 21 councillors hold no paid dedication; that renders as an explicit
+ * "sin dedicación" rather than a blank, because a missing salary row and a
+ * salary of zero are different claims.
+ */
+function Retribucion({ slug }) {
+  const t = useT()
+  const { data } = useDedicaciones()
+  if (!data) return null
+  const d = dedicacionForSlug(data, slug)
+  return (
+    <section style={{ marginBottom: 28 }}>
+      <SectionHead
+        eyebrow={t('cargos.detalle.pago.eyebrow')}
+        title={t('cargos.detalle.pago.title')}
+      />
+      <Card>
+        {d ? (
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+            <span className="mono" style={{ fontSize: 22, fontWeight: 700 }}>
+              {d.amountEuros.toLocaleString('es-ES')} €
+            </span>
+            <Pill tone="neutral" size="xs">
+              {d.dedicacion}
+            </Pill>
+            <span style={{ fontSize: 12, color: 'var(--ink60)' }}>{d.role}</span>
+          </div>
+        ) : (
+          <div style={{ fontSize: 13, color: 'var(--ink60)' }}>
+            {t('cargos.detalle.pago.sinDedicacion')}
+          </div>
+        )}
+        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 10 }}>
+          {data.source?.note || data.note || t('cargos.detalle.pago.fuente')}
+        </div>
+      </Card>
+    </section>
+  )
 }
 
 function MiniStat({ label, value, tone }) {
@@ -251,6 +372,9 @@ export default function CargoDetalle() {
           tone={quejaStats.silencios > 0 ? 'crit' : undefined}
         />
       </div>
+
+      <Retribucion slug={official.slug} />
+      <AreaSpend slugs={slugs} />
 
       {/* Portfolio department chips */}
       {slugs.length > 0 && (
