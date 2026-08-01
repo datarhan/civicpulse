@@ -83,14 +83,46 @@ describe('press-analytics — computeTrustIndicators', () => {
     expect(report.articles[0].indicators.localCoverage).toBe(true)
   })
 
-  it('marks corroboratedAcrossOutlets=true when ≥2 outlets share the fingerprint', () => {
+  it('marks corroboratedAcrossOutlets=true when two outlets tell the same story', () => {
+    // DISTINCT fingerprints, as production always produces them: press.ts
+    // hashes the first six significant words and drops the second outlet on a
+    // collision, so two outlets can never share one. This test used to pass
+    // `fingerprint: 'shared'` — a shape the pipeline cannot emit — and stayed
+    // green while the indicator was false on all 68 real articles.
     const press = [
-      makePress({ id: 'a-1', source: 'Outlet A', sourceHost: 'a.test', fingerprint: 'shared' }),
-      makePress({ id: 'a-2', source: 'Outlet B', sourceHost: 'b.test', fingerprint: 'shared' }),
+      makePress({
+        id: 'a-1',
+        title: 'Riba-roja invierte 61.000 euros en el circuito PLATEA de artes escénicas',
+        source: 'Outlet A',
+        sourceHost: 'a.test',
+        fingerprint: 'fp-a',
+      }),
+      makePress({
+        id: 'a-2',
+        title: 'El Ayuntamiento destina 61.000 euros al circuito PLATEA de artes escénicas',
+        source: 'Outlet B',
+        sourceHost: 'b.test',
+        fingerprint: 'fp-b',
+      }),
     ]
     const report = computeTrustIndicators({ press, verified: [], now: NOW })
     expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(true)
     expect(report.articles[1].indicators.corroboratedAcrossOutlets).toBe(true)
+  })
+
+  it('does not mark a lone article as corroborated', () => {
+    const press = [makePress({ id: 'a-1', source: 'Outlet A', sourceHost: 'a.test' })]
+    const report = computeTrustIndicators({ press, verified: [], now: NOW })
+    expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(false)
+  })
+
+  it('does not count a same-outlet echo as cross-outlet corroboration', () => {
+    const press = [
+      makePress({ id: 'a-1', title: 'Riba-roja aprueba el presupuesto municipal de 2026' }),
+      makePress({ id: 'a-2', title: 'Riba-roja aprueba el presupuesto municipal para 2026', fingerprint: 'fp-2' }),
+    ]
+    const report = computeTrustIndicators({ press, verified: [], now: NOW })
+    expect(report.articles[0].indicators.corroboratedAcrossOutlets).toBe(false)
   })
 
   it('outletScorecard aggregates verdictCounts across an outlet', () => {

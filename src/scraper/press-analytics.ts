@@ -124,11 +124,12 @@ export function computeTrustIndicators(opts: {
     else claimsByArticle.set(row.claim.articleId, [row])
   }
 
-  const outletsByFingerprint = new Map<string, Set<string>>()
-  for (const p of press) {
-    const set = outletsByFingerprint.get(p.fingerprint)
-    if (set) set.add(p.source)
-    else outletsByFingerprint.set(p.fingerprint, new Set([p.source]))
+  // Same-story clustering as triangulation — see clusterArticlesByStory for
+  // why exact fingerprint identity can never answer this.
+  const outletsByArticleId = new Map<string, number>()
+  for (const group of clusterArticlesByStory(press).values()) {
+    const outlets = new Set(group.map((a) => a.source)).size
+    for (const a of group) outletsByArticleId.set(a.id, outlets)
   }
 
   const articles: ArticleTrustRow[] = press.map((p) => {
@@ -146,7 +147,7 @@ export function computeTrustIndicators(opts: {
         LOCAL_SOURCE_HINTS.some((h) => p.source.toLowerCase().includes(h)),
       datedArticle: !!p.date && !Number.isNaN(new Date(p.date).getTime()),
       municipalSourceMatch,
-      corroboratedAcrossOutlets: (outletsByFingerprint.get(p.fingerprint)?.size ?? 0) >= 2,
+      corroboratedAcrossOutlets: (outletsByArticleId.get(p.id) ?? 0) >= 2,
       factualClaimsPresent: claims.some((c) => c.claim.confidence >= 0.5),
       opinionFraction,
     }
@@ -273,21 +274,27 @@ function titlesSameStory(a: Set<string>, b: Set<string>): boolean {
   return union > 0 && shared / union >= TRIANGULATION_MIN_JACCARD
 }
 
-export function computeTriangulation(opts: {
-  press: PressArticleLite[]
-  verified: VerifiedClaimRow[]
-  windowDays?: number
-  now?: Date
-}): TriangulationReport {
-  const now = opts.now ?? new Date()
-  const windowDays = opts.windowDays ?? 30
-  const cutoff = new Date(now.getTime() - windowDays * 24 * 60 * 60 * 1000).toISOString()
-  const recent = opts.press.filter((p) => p.date >= cutoff)
-
-  // Connected-components clustering (union-find) over title-token similarity.
-  // O(n²) similarity scan is fine at feed scale (≤ a few hundred articles).
-  const tokenSets = recent.map((p) => new Set(tokenise(p.title)))
-  const parent = recent.map((_, i) => i)
+/**
+ * Group articles that tell the same story, by title-token similarity.
+ *
+ * Connected components (union-find). O(n²) similarity scan is fine at feed
+ * scale (≤ a few hundred articles).
+ *
+ * Shared deliberately. `computeTrustIndicators` used to answer the same
+ * question — "did another outlet cover this?" — by comparing exact
+ * `fingerprint` hashes, which cannot ever be true: press.ts fingerprints the
+ * first six significant words of the title and DROPS the second outlet on a
+ * collision, so cross-outlet coverage arrives as distinct fingerprints by
+ * construction. The result was measurable nonsense inside one pipeline run —
+ * triangulation reported 5 cross-outlet clusters spanning 13 articles while
+ * the trust table reported 0 corroborated articles, silently docking every
+ * article one of its six trust points.
+ */
+export function clusterArticlesByStory(
+  articles: PressArticleLite[],
+): Map<number, PressArticleLite[]> {
+  const tokenSets = articles.map((p) => new Set(tokenise(p.title)))
+  const parent = articles.map((_, i) => i)
   const find = (i: number): number => {
     while (parent[i] !== i) {
       parent[i] = parent[parent[i]]
@@ -300,18 +307,33 @@ export function computeTriangulation(opts: {
     const rj = find(j)
     if (ri !== rj) parent[Math.max(ri, rj)] = Math.min(ri, rj)
   }
-  for (let i = 0; i < recent.length; i++) {
-    for (let j = i + 1; j < recent.length; j++) {
+  for (let i = 0; i < articles.length; i++) {
+    for (let j = i + 1; j < articles.length; j++) {
       if (titlesSameStory(tokenSets[i], tokenSets[j])) union(i, j)
     }
   }
   const components = new Map<number, PressArticleLite[]>()
-  for (let i = 0; i < recent.length; i++) {
+  for (let i = 0; i < articles.length; i++) {
     const root = find(i)
     const arr = components.get(root)
-    if (arr) arr.push(recent[i])
-    else components.set(root, [recent[i]])
+    if (arr) arr.push(articles[i])
+    else components.set(root, [articles[i]])
   }
+  return components
+}
+
+export function computeTriangulation(opts: {
+  press: PressArticleLite[]
+  verified: VerifiedClaimRow[]
+  windowDays?: number
+  now?: Date
+}): TriangulationReport {
+  const now = opts.now ?? new Date()
+  const windowDays = opts.windowDays ?? 30
+  const cutoff = new Date(now.getTime() - windowDays * 24 * 60 * 60 * 1000).toISOString()
+  const recent = opts.press.filter((p) => p.date >= cutoff)
+
+  const components = clusterArticlesByStory(recent)
 
   const verByArticle = new Map<string, VerifiedClaimRow[]>()
   for (const v of opts.verified) {
@@ -396,6 +418,12 @@ export interface CoverageGapsReport {
   stats: {
     plenoItemsUncovered: number
     promisesUncovered: number
+    /**
+     * How many pleno items + promises fell inside the window at all. Zero
+     * means "nothing to check", which the UI must not render as "the press
+     * covered everything".
+     */
+    candidatesExamined: number
   }
 }
 
@@ -423,6 +451,9 @@ export function computeCoverageGaps(opts: {
   const windowDays = opts.windowDays ?? 14
   const now = opts.now ?? new Date()
   const cutoff = new Date(now.getTime() - windowDays * 24 * 60 * 60 * 1000).toISOString()
+  // Agenda + promise dates are YYYY-MM-DD; comparing them against a full ISO
+  // timestamp excluded anything dated ON the cutoff day.
+  const cutoffDay = cutoff.slice(0, 10)
 
   const recentPress = opts.press.filter((p) => p.date >= cutoff)
   const pressTokens = new Set<string>()
@@ -432,9 +463,19 @@ export function computeCoverageGaps(opts: {
 
   const agendas = opts.agendas?.plenos ?? []
   let plenoItemsUncovered = 0
+  // How many things we actually looked at. Without this the report cannot
+  // tell "the press covered everything" apart from "nothing happened inside
+  // the window", and the page asserted the first while meaning the second:
+  // the newest pleno was 2026-07-03 and the newest promise 2026-07-02, both
+  // outside a 14-day window ending 2026-08-01, so every candidate was skipped
+  // by `continue` and the card still read "Sin lagunas detectadas".
+  let candidatesExamined = 0
   for (const session of agendas) {
-    if (session.date < cutoff) continue
+    // Compare date-to-date: `session.date` is YYYY-MM-DD and `cutoff` is a full
+    // ISO timestamp, so a session ON the cutoff day sorted as "before" it.
+    if (session.date < cutoffDay) continue
     for (const item of session.agenda ?? []) {
+      candidatesExamined += 1
       const tokens = tokenise(item.title)
       const keyword = tokens.find((t) => pressTokens.has(t)) ?? ''
       if (!keyword) {
@@ -452,7 +493,8 @@ export function computeCoverageGaps(opts: {
 
   let promisesUncovered = 0
   for (const promise of opts.promises?.items ?? []) {
-    if (promise.madeAt < cutoff) continue
+    if (promise.madeAt < cutoffDay) continue
+    candidatesExamined += 1
     const tokens = tokenise(promise.title)
     const keyword = tokens.find((t) => pressTokens.has(t)) ?? ''
     if (!keyword) {
@@ -476,6 +518,7 @@ export function computeCoverageGaps(opts: {
     stats: {
       plenoItemsUncovered,
       promisesUncovered,
+      candidatesExamined,
     },
   }
 }

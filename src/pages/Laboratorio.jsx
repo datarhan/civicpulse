@@ -228,6 +228,26 @@ function LabPressCard({ article, summary, claims, trust, triangulation, linkRot 
         >
           {article.source}
         </span>
+        {/* 32 of the 67 cards on this page are the Ayuntamiento's own press
+            releases. The landing feed badges them; this page did not, so the
+            audited institution's PR was indistinguishable from Levante-EMV in
+            the observatory that audits it. */}
+        {article.official && (
+          <span
+            className="mono"
+            style={{
+              fontSize: 9.5,
+              padding: '1px 5px',
+              borderRadius: 3,
+              background: 'var(--warn-soft)',
+              color: 'var(--warn-ink)',
+              letterSpacing: '.06em',
+            }}
+            title="Nota de prensa del propio Ayuntamiento, no cobertura periodística independiente"
+          >
+            OFICIAL
+          </span>
+        )}
         <span className="mono" style={{ fontSize: 10.5, color: 'var(--ink80)' }}>
           {fmtDate(article.date)}
         </span>
@@ -373,7 +393,21 @@ function OutletScoreboard({ outlets }) {
       <tbody>
         {outlets.slice(0, 10).map((o) => (
           <tr key={o.outlet} style={{ borderTop: '1px solid var(--border2)' }}>
-            <td style={{ padding: '4px 0' }}>{o.outlet}</td>
+            <td style={{ padding: '4px 0' }}>
+              {o.outlet}
+              {/* The largest "medio" in this table is the audited institution
+                  itself. Ranking its own PR for reliability alongside
+                  newsrooms, unlabelled, is the wrong comparison to invite. */}
+              {isOfficialOutlet(o.outlet) && (
+                <span
+                  className="mono"
+                  style={{ marginLeft: 6, fontSize: 9.5, color: 'var(--warn-ink)' }}
+                  title="Fuente institucional: notas de prensa del propio Ayuntamiento"
+                >
+                  OFICIAL
+                </span>
+              )}
+            </td>
             <td style={{ padding: '4px 0', textAlign: 'right' }} className="mono">
               {o.articleCount}
             </td>
@@ -394,6 +428,11 @@ function OutletScoreboard({ outlets }) {
       </tbody>
     </table>
   )
+}
+
+/** Is this "outlet" the town hall's own newsroom rather than a newspaper? */
+function isOfficialOutlet(name) {
+  return /ajuntament|ayuntamiento/i.test(name || '')
 }
 
 function FactCheckRail({ factcheck }) {
@@ -448,11 +487,18 @@ function FactCheckRail({ factcheck }) {
   )
 }
 
-function CoverageGaps({ items }) {
+function CoverageGaps({ items, stats }) {
   if (!items || items.length === 0) {
+    // "No gaps" and "nothing to compare" look identical from the item list
+    // alone, and the second was being published as the first: with the newest
+    // pleno and the newest promise both older than the 14-day window, every
+    // candidate was skipped and the card still congratulated the local press.
+    const examined = stats?.candidatesExamined
     return (
       <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
-        Sin lagunas detectadas en los últimos 14 días.
+        {examined === 0
+          ? 'No hubo plenos ni promesas nuevas en los últimos 14 días, así que no hay nada que comparar con la cobertura.'
+          : 'Sin lagunas detectadas en los últimos 14 días.'}
       </div>
     )
   }
@@ -781,7 +827,7 @@ export default function Laboratorio() {
               title="Lo que la prensa local no está siguiendo"
             />
             <div style={{ marginTop: 8 }}>
-              <CoverageGaps items={lab.gaps?.items ?? []} />
+              <CoverageGaps items={lab.gaps?.items ?? []} stats={lab.gaps?.stats} />
             </div>
           </Card>
 

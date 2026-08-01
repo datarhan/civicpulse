@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T08:55:15.274Z",
+  "generatedAt": "2026-08-01T19:41:01.197Z",
   "windowDays": 30,
   "articles": [
     {
@@ -183,11 +183,11 @@
         "localCoverage": false,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 2
     },
     {
       "articleId": "se650n",
@@ -200,11 +200,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "j1s6zk",
@@ -217,11 +217,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "1k7skyg",
@@ -557,11 +557,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "v9agr0",
@@ -574,11 +574,11 @@
         "localCoverage": false,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 3
+      "score": 4
     },
     {
       "articleId": "1rhb90n",
@@ -591,11 +591,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "7znoj0",
@@ -727,11 +727,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "rsig4c",
@@ -744,11 +744,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": true,
         "opinionFraction": 0
       },
-      "score": 4
+      "score": 5
     },
     {
       "articleId": "2c5kl0",
@@ -897,11 +897,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "1rkr37w",
@@ -948,11 +948,11 @@
         "localCoverage": false,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 2
     },
     {
       "articleId": "1c1wf4o",
@@ -982,11 +982,11 @@
         "localCoverage": false,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 1
+      "score": 2
     },
     {
       "articleId": "1vv0ta0",
@@ -999,11 +999,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "17amonc",
@@ -1016,11 +1016,11 @@
         "localCoverage": true,
         "datedArticle": true,
         "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
+        "corroboratedAcrossOutlets": true,
         "factualClaimsPresent": false,
         "opinionFraction": 0
       },
-      "score": 2
+      "score": 3
     },
     {
       "articleId": "168zi44",
@@ -1140,30 +1140,13 @@
         "opinionFraction": 0
       },
       "score": 1
-    },
-    {
-      "articleId": "1j5axb6",
-      "articleFingerprint": "nu7ye8",
-      "outlet": "Ayuntamiento de Riba-roja de Túria",
-      "outletHost": "ribarroja.es",
-      "url": "https://www.ribarroja.es/es/noticia/ribajazz-2026",
-      "date": "2026-07-02T10:39:08.000Z",
-      "indicators": {
-        "localCoverage": true,
-        "datedArticle": true,
-        "municipalSourceMatch": false,
-        "corroboratedAcrossOutlets": false,
-        "factualClaimsPresent": false,
-        "opinionFraction": 0
-      },
-      "score": 2
     }
   ],
   "outlets": [
     {
       "outlet": "Ayuntamiento de Riba-roja de Túria",
       "outletHost": "ribarroja.es",
-      "articleCount": 33,
+      "articleCount": 32,
       "verdictCounts": {
         "verificado": 0,
         "parcial": 0,
@@ -1171,7 +1154,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2,
+      "meanTrustScore": 2.13,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1201,7 +1184,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2,
+      "meanTrustScore": 2.38,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1216,7 +1199,7 @@
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 1.5,
+      "meanTrustScore": 2.25,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1231,7 +1214,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 2,
+      "meanTrustScore": 2.33,
       "verifiedRatio": null,
       "contradictedRatio": null
     },
@@ -1276,7 +1259,7 @@
         "sin-datos": 1,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 3,
+      "meanTrustScore": 3.5,
       "verifiedRatio": 0,
       "contradictedRatio": 0
     },
@@ -1351,7 +1334,7 @@
         "sin-datos": 0,
         "promesa-repetida": 0
       },
-      "meanTrustScore": 1,
+      "meanTrustScore": 2,
       "verifiedRatio": null,
       "contradictedRatio": null
     }
