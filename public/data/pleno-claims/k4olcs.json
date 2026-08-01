@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "k4olcs",
   "plenoDate": "2026-04-20",
@@ -3488,6 +3488,46 @@
     },
     {
       "claim": {
+        "id": "k4olcs-063-cit-25e6ea",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 63,
+        "type": "cita_obra",
+        "speakerGroup": "PSOE",
+        "verbatim": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
+        "context": "una de las políticas más importantes del botánico en materia educativa, el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas. En lugar de continuar este esfuerzo, lo que se ha producido es una retallada de 121 millones de euros en 2024 y el bloqueo o revocación de actua",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 1700000000,
+          "referencedEntity": "plan edificant"
+        },
+        "confidence": 0.92,
+        "reasoning": "Menciona un plan de infraestructuras educativas y una cuantía asociada; puede verificarse en presupuestos, expedientes y documentación del plan.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-063-cit-25e6ea",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bLZD2lEN68VvYnTkQN0%2FZA%3D%3D",
+            "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant ) · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · estado: formalized",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "k4olcs-064-acu-670b74",
         "plenoId": "k4olcs",
         "plenoDate": "2026-04-20",
@@ -3521,6 +3561,39 @@
         "checkedAgainst": []
       },
       "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "k4olcs-064-afi-7e8a96",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 64,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas",
+        "context": "una de las políticas más importantes del botánico en materia educativa, el plan edificante, que había movilizado hasta 1.700 millones de euros para la construcción y mejora de infraestructuras educativas.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 1700000000,
+          "referencedEntity": "plan edificant"
+        },
+        "confidence": 0.93,
+        "reasoning": "Es una cifra concreta atribuida a un plan público; puede verificarse en presupuestos, expedientes o balances oficiales del programa Edificant.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-064-afi-7e8a96",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6247,6 +6320,72 @@
     },
     {
       "claim": {
+        "id": "k4olcs-112-cit-a93417",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 112,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "el efecto de ayudas DANA sobre la capacidad de financiación es de 13.669.000 euros",
+        "context": "la capacidad de financiación es de 17.160.000 euros. A ello hay que tener en cuenta que el efecto de ayudas DANA sobre la capacidad de financiación es de 13.669.000 euros. Por lo tanto, sin el efecto de las ayudas",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 13669000,
+          "referencedEntity": "ayudas dana"
+        },
+        "confidence": 0.96,
+        "reasoning": "Menciona ayudas DANA con importe concreto; puede verificarse en expedientes de subvención o ayudas recibidas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-112-cit-a93417",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "k4olcs-113-afi-d4da8e",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 113,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el efecto de las ayudas DANA sobre la capacidad de financiación es de 13.669.000 euros",
+        "context": "A ello hay que tener en cuenta que el efecto de ayudas DANA sobre la capacidad de financiación es de 13.669.000 euros. Por lo tanto, sin el efecto de las ayudas, la capacidad de financiación sería positiva en 3.492.000 euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 13669000,
+          "referencedEntity": "ayudas dana"
+        },
+        "confidence": 0.98,
+        "reasoning": "Es un importe específico asociado a ayudas DANA y debería aparecer en la documentación económica o presupuestaria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-113-afi-d4da8e",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
         "id": "k4olcs-113-afi-142b27",
         "plenoId": "k4olcs",
         "plenoDate": "2026-04-20",
@@ -6684,6 +6823,93 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2RZHIgcWJEKqb7rCcv76BA%3D%3D",
             "snippet": "Contrato administrativo de obras proyecto de “finalización del Centro Polivalente Cultural en Riba-roja de Túria”, mediante procedimiento abierto, varios criterios de adjudicación, con condición de ejecución de carácter medioambiental, contribuyendo al cumplimiento del ODS 11 “Edificios sostenibles y resilientes”, mediante tramitación anticipada y gastos con financiación afectada. · Ayuntamiento de Riba-roja de Túria · construction · 4.746.840 €",
             "similarity": 0.62
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "k4olcs-125-acu-8e6b15",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 125,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "la Generalitat hoy tiene un deute vivo de 63.000 millones de euros",
+        "context": "Y por otra parte, y me parece muy grave, pero tengo que decirlo porque es en China. Es decir, cuentaos que la Generalitat hoy tiene un deute vivo de 63.000 millones de euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 63000000000,
+          "referencedEntity": "generalitat"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.95,
+        "reasoning": "Atribuye a la Generalitat una deuda viva concreta y verificable; puede contrastarse con datos oficiales de deuda pública.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-125-acu-8e6b15",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
+            "similarity": 1
+          },
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
+            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "k4olcs-126-afi-9db5ca",
+        "plenoId": "k4olcs",
+        "plenoDate": "2026-04-20",
+        "segmentIndex": 126,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "la Generalitat hoy tiene un deute vivo de 63.000 millones de euros",
+        "context": "me parece muy grave, pero tengo que decirlo porque es en China. Es decir, cuentaos que la Generalitat hoy tiene un deute vivo de 63.000 millones de euros.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 63000000000,
+          "referencedEntity": "generalitat"
+        },
+        "confidence": 0.93,
+        "reasoning": "Afirma una cuantía económica verificable sobre la deuda viva de la Generalitat; puede contrastarse con datos oficiales de deuda pública.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "k4olcs-126-afi-9db5ca",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
+            "similarity": 1
           }
         ],
         "checkedAgainst": [

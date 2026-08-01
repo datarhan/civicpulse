@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "1qi8axv",
   "plenoDate": "2025-12-23",
@@ -1310,6 +1310,39 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1qi8axv-029-afi-fd06e9",
+        "plenoId": "1qi8axv",
+        "plenoDate": "2025-12-23",
+        "segmentIndex": 29,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "era un contrato de unos 45.000 euros que con la ampliación que se hizo estaba a 53.500 euros mensuales",
+        "context": "...Estamos en estos momentos en unos, era un contrato de unos 45.000 euros que con la ampliación que se hizo estaba a 53.500 euros mensuales y en estos momentos es un contrato de más de 94.000 euros mensuales lo que se está pagando.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 53500,
+          "referencedEntity": "ampliación del contrato"
+        },
+        "confidence": 0.95,
+        "reasoning": "Da importes concretos del contrato y su ampliación; deberían contrastarse con el expediente de contratación y las certificaciones mensuales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1qi8axv-029-afi-fd06e9",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3601,6 +3634,39 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1qi8axv-092-afi-0774b6",
+        "plenoId": "1qi8axv",
+        "plenoDate": "2025-12-23",
+        "segmentIndex": 92,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "de los más de dos millones de euros que tuvimos que hacer en contrato de emergencia",
+        "context": "la situación de la dana, y lo voy a decir ahora ya, canso de decir eso, de los más de dos millones de euros que tuvimos que hacer en contrato de emergencia, la morosidad, etcétera, pues provocó una liquidación negativa",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 2000000,
+          "referencedEntity": "contrato de emergencia por la dana"
+        },
+        "confidence": 0.9,
+        "reasoning": "Afirma un importe superior a dos millones de euros asociado a un contrato de emergencia; debería verificarse en la contratación de emergencia vinculada a la DANA.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1qi8axv-092-afi-0774b6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "c8kr44",
   "plenoDate": "2025-09-08",
@@ -4986,6 +4986,152 @@
     },
     {
       "claim": {
+        "id": "c8kr44-171-cit-ab4a59",
+        "plenoId": "c8kr44",
+        "plenoDate": "2025-09-08",
+        "segmentIndex": 171,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "más de 100 millones de euros se han traído en subvenciones",
+        "context": "Por lo tanto, así lo que hemos trabajado es muchísimo desde el 15 para obtener fondos y subvenciones, desde el primer gobierno hasta el último. Más de 100 millones de euros, repito la cifra, más de 100 millones de euros se han traído en subvenciones",
+        "topic": "other",
+        "entities": {
+          "amountEuros": 100000000,
+          "referencedEntity": "subvenciones"
+        },
+        "confidence": 1,
+        "reasoning": "Se puede verificar la cuantía acumulada de subvenciones y fondos recibidos por el ayuntamiento en la Cuenta General o el portal de transparencia municipal desde el año 2015.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "c8kr44-171-cit-ab4a59",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "c8kr44-172-afi-877903",
+        "plenoId": "c8kr44",
+        "plenoDate": "2025-09-08",
+        "segmentIndex": 172,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "tenemos 87 millones más de euros de patrimonio que en el año 2014",
+        "context": "vamos a hacer un inventario y tenemos 87 millones más de euros de patrimonio que en el año 2014, pero eso no ha caído del cielo,",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 87000000,
+          "referencedEntity": "patrimonio"
+        },
+        "confidence": 0.95,
+        "reasoning": "Es verificable contrastando el valor del inventario de bienes municipal actual frente a la Cuenta General o el inventario consolidado del ejercicio 2014.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "c8kr44-172-afi-877903",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "c8kr44-172-cit-b1b4d4",
+        "plenoId": "c8kr44",
+        "plenoDate": "2025-09-08",
+        "segmentIndex": 172,
+        "type": "cita_convenio",
+        "speakerGroup": "PSOE",
+        "verbatim": "más de 100 millones de euros se han traído en subvenciones",
+        "context": "Por lo tanto, así lo que hemos trabajado es muchísimo desde el 15 para obtener fondos y subvenciones, desde el primer gobierno hasta el último. Más de 100 millones de euros, repito la cifra, más de 100 millones de euros se han traído en subvenciones",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 100000000,
+          "referencedEntity": "subvenciones"
+        },
+        "confidence": 0.95,
+        "reasoning": "Es verificable consultando los presupuestos anuales y las liquidaciones de cuentas del ayuntamiento desde 2015 para sumar las subvenciones concedidas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "c8kr44-172-cit-b1b4d4",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "c8kr44-176-afi-c67249",
+        "plenoId": "c8kr44",
+        "plenoDate": "2025-09-08",
+        "segmentIndex": 176,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "emos empujado el capítulo 2 a 17 millones de euros,",
+        "context": "emos empujado el capítulo 2 a 17 millones de euros,\n[6582.2 → 6584.6] para arrepegar mejor, para dar mejor servicio,",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 17000000,
+          "referencedEntity": "capítulo 2"
+        },
+        "confidence": 0.9,
+        "reasoning": "Se puede verificar en los presupuestos municipales si la partida correspondiente al Capítulo 2 asciende a 17 millones de euros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "c8kr44-176-afi-c67249",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
         "id": "c8kr44-176-cit-257342",
         "plenoId": "c8kr44",
         "plenoDate": "2025-09-08",
@@ -5544,6 +5690,46 @@
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TO7sKuaZmazpxJFXpLZ%2B2A%3D%3D",
             "snippet": "Contrato de servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo. · Ayuntamiento de Riba-roja de Túria · environment · 11.172.861 €",
             "similarity": 0.72
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "c8kr44-203-afi-42a7b6",
+        "plenoId": "c8kr44",
+        "plenoDate": "2025-09-08",
+        "segmentIndex": 203,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "La dana está repercutiendo en 1,2 millones de euros.",
+        "context": "Una, tenemos la dana, efectivamente. La dana está repercutiendo en 1,2 millones de euros. ¿Por qué?",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 1200000,
+          "referencedEntity": "dana"
+        },
+        "confidence": 0.9,
+        "reasoning": "Comprueba en las cuentas o informes de gastos de la DANA si el coste repercutido asciende a 1,2 millones de euros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "c8kr44-203-afi-42a7b6",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA  · importe no publicado",
+            "similarity": 1
           }
         ],
         "checkedAgainst": [

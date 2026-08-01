@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "brxx5g",
   "plenoDate": "2026-07-06",
@@ -1616,6 +1616,46 @@
     },
     {
       "claim": {
+        "id": "brxx5g-092-afi-e7cdd3",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 92,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Una vez que veamos en los presupuestos, reflejados esos 3,3 m",
+        "context": "De hecho, los presupuestos aún no están definitivamente aprobados. Una vez que veamos en los presupuestos, reflejados esos 3,3 m",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 3300000,
+          "referencedEntity": "presupuestos"
+        },
+        "confidence": 0.8,
+        "reasoning": "Alude a una cuantía de 3,3 millones en el presupuesto, verificable en los documentos de previsión de gastos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-092-afi-e7cdd3",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "brxx5g-093-cit-5910ae",
         "plenoId": "brxx5g",
         "plenoDate": "2026-07-06",
@@ -1640,6 +1680,46 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "brxx5g-093-cit-b809a5",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 93,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Una vez que veamos en los presupuestos, reflejados esos 3,3 millones que nos han prometido",
+        "context": "De hecho, los presupuestos aún no están definitivamente aprobados. Una vez que veamos en los presupuestos, reflejados esos 3,3 millones que nos han prometido, ya veremos.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 3300000,
+          "referencedEntity": "presupuestos"
+        },
+        "confidence": 0.95,
+        "reasoning": "Cita una cifra de 3,3 millones de euros prometidos que deben reflejarse en los presupuestos, lo cual es verificable en los presupuestos locales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-093-cit-b809a5",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2126,6 +2206,88 @@
     },
     {
       "claim": {
+        "id": "brxx5g-104-afi-28894b",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 104,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "las propuestas iniciales rebasan en más de 1.000 millones lo que las exigencias iniciales tuvieron.",
+        "context": "Y ahora, con este Gobierno, datos de la Agencia EFE, las propuestas iniciales rebasan en más de 1.000 millones lo que las exigencias iniciales tuvieron. Con una inversión de 3.386 millones de euros.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 1000000000,
+          "referencedEntity": "agencia efe"
+        },
+        "confidence": 0.85,
+        "reasoning": "El orador cita una diferencia de más de 1.000 millones de euros en las propuestas presupuestarias iniciales frente a exigencias previas.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-104-afi-28894b",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "brxx5g-104-afi-8654de",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 104,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "como he comentado antes, 7.742 nuevas plazas docentes, en los presupuestos del 26, 22 millones para empezar su vida salarial.",
+        "context": "Con una inversión de 3.386 millones de euros. como he comentado antes, 7.742 nuevas plazas docentes, en los presupuestos del 26, 22 millones para empezar su vida salarial. Y un dato, 78.500 docentes,",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 22000000,
+          "count": 7742,
+          "countUnit": "plazas docentes",
+          "referencedEntity": "presupuestos del 26"
+        },
+        "confidence": 0.9,
+        "reasoning": "Cita de datos específicos del presupuesto de 2026: 7.742 nuevas plazas docentes y una dotación de 22 millones de euros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-104-afi-8654de",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "brxx5g-104-afi-387bd9",
         "plenoId": "brxx5g",
         "plenoDate": "2026-07-06",
@@ -2152,6 +2314,47 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "brxx5g-105-afi-3392f1",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 105,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "22 millones para empezar su vida salarial.",
+        "context": "como he comentado antes, 7.742 nuevas plazas docentes, en los presupuestos del 26, 22 millones para empezar su vida salarial. Y un dato, 78.500 docentes",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 22000000,
+          "date": "2026-01-01",
+          "referencedEntity": "presupuestos del 26"
+        },
+        "confidence": 0.9,
+        "reasoning": "Menciona una asignación específica de 22 millones de euros para salarios docentes en el presupuesto de 2026.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-105-afi-3392f1",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -2367,6 +2570,39 @@
         "checkedAgainst": []
       },
       "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "brxx5g-122-afi-68e44d",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 122,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "hacer una inversión de 486.000 euros",
+        "context": "Y fue el edificante, no solo cambiar las ventanas, sino, en definitiva, aparte de cambiar las ventanas, hacer una inversión de 486.000 euros.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 486000,
+          "referencedEntity": "pla edificant"
+        },
+        "confidence": 0.95,
+        "reasoning": "Se afirma una inversión de 486.000 euros en el colegio a través del plan Edificant, verificable en los expedientes de contratación.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-122-afi-68e44d",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2591,6 +2827,39 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "brxx5g-128-cit-3f9a51",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 128,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Los millones, que son casi 7 millones, los que teníamos aprobados, pendientes de la gestión de competencias, para hacer el colache infantil y mejorar el de primaria de Cervantes",
+        "context": "Ahora falta el colache, que ya duele mucho tiempo. Y confiamos en que efectivamente los presupuestos de 2027 o estos, perdón, de 2026 aparezcan. Los millones, que son casi 7 millones, los que teníamos aprobados, pendientes de la gestión de competencias, para hacer el colache infantil y mejorar el de primaria de Cervantes, que ya saben que les hace falta.",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 7000000,
+          "referencedEntity": "pla edificant"
+        },
+        "confidence": 0.85,
+        "reasoning": "Verificar la existencia de una delegación de competencias aprobada del Plan Edificant para la construcción del aulario infantil y mejora de primaria del CEIP Cervantes por valor de casi 7 millones de euros.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-128-cit-3f9a51",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -5735,6 +6004,39 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "brxx5g-251-cit-773dba",
+        "plenoId": "brxx5g",
+        "plenoDate": "2026-07-06",
+        "segmentIndex": 251,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "el contrato programa de servicios sociales de dos millones de euros que se paga al año.",
+        "context": "Pongamos un ejemplo, el contrato programa de servicios sociales de dos millones de euros que se paga al año. Pongamos como ejemplo la",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 2000000,
+          "referencedEntity": "contrato programa de servicios sociales"
+        },
+        "confidence": 1,
+        "reasoning": "Se puede contrastar el importe anual asignado al contrato programa de servicios sociales en los convenios interadministrativos firmados con la Generalitat.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "brxx5g-251-cit-773dba",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },

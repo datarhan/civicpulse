@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -1201,6 +1201,40 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "ma87e0-111-afi-083d71",
+        "plenoId": "ma87e0",
+        "plenoDate": "2026-03-16",
+        "segmentIndex": 111,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "con 70.000 euros, el presupuesto para este 2026 de las actividades que se van a realizar allí",
+        "context": "Tras citar los 30.000 € de constitución, el interviniente señala que el presupuesto municipal 2026 contempla 70.000 euros para actividades en la Fundación ECA, argumentando que 'no hay nada que esconder' ya que figura explícitamente en el documento presupuestario.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 70000,
+          "date": "2026-01-01",
+          "referencedEntity": "fundación eca"
+        },
+        "confidence": 0.87,
+        "reasoning": "Los 70.000 € para actividades de la Fundación ECA en 2026 son directamente contrastables en el presupuesto municipal aprobado (Capítulo II o IV según naturaleza); el verificador puede cruzar esta cifra con budget.json y el CONPREL.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "ma87e0-111-afi-083d71",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },

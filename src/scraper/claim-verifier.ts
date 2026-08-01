@@ -271,6 +271,65 @@ function overlapScore(a: string, b: string): number {
   return hit / Math.min(aw.size, bw.size)
 }
 
+/**
+ * Is this tender plausibly THE thing the claim is talking about?
+ *
+ * Used only for the `contradicho` path — the verdict that says "a councillor
+ * stated something the municipal record refutes". Corroboration keeps the
+ * looser `overlapScore`, because a weak name match that AGREES on the amount is
+ * self-limiting; a weak name match that DISAGREES is an accusation.
+ *
+ * `overlapScore` divides by `min(|entity|, |title|)`, so a single-token entity
+ * appearing anywhere in a long contract title scores a perfect 1.0. That is how
+ * all 49 contradicho verdicts on this corpus were produced, every one of them
+ * wrong:
+ *
+ *   · a councillor quoting residential rents (€640-880/month, entity
+ *     "alquiler") was refuted by a contract to rent a REFUSE TRUCK;
+ *   · «la Generalitat tiene un deute viu de 63.000 millones» was refuted by a
+ *     €32.591 extension of a local park named *parque Generalitat*;
+ *   · «2.364 millones para la dana» was refuted by a rubble-clearing job.
+ *
+ * The pattern is always the same: a claim about REGIONAL or STATE money,
+ * compared against a municipal contract that happens to share one common word.
+ * Three requirements, all of which those failures miss:
+ *
+ *   1. the entity must be specific enough to name something (≥2 distinctive
+ *      tokens), and ≥2 of them must appear in the title;
+ *   2. the overlap must be mutual — Jaccard, not containment — so a short
+ *      entity cannot ride a long title;
+ *   3. the figure must be within municipal reach. A town whose largest
+ *      contract ever is €55.7M cannot refute a €63.000M regional debt figure
+ *      with any contract at all; the comparison is a category error, not
+ *      evidence.
+ */
+function tenderCouldRefute(
+  entity: string,
+  title: string,
+  amount: number,
+  maxContract: number,
+): boolean {
+  const filt = (t: string) => t.length >= 4 && !STOPWORDS.has(t)
+  const a = new Set(norm(entity).split(' ').filter(filt))
+  const b = new Set(norm(title).split(' ').filter(filt))
+  if (a.size < 2) return false
+  let shared = 0
+  for (const w of a) if (b.has(w)) shared += 1
+  if (shared < 2) return false
+  const union = new Set([...a, ...b]).size
+  if (union === 0 || shared / union < 0.34) return false
+  // Deliberately loose headroom over the largest contract we know of. The
+  // mutual-overlap test above already rejects all 49 real failures on its own;
+  // this exists for the case overlap CANNOT catch — a claim about a regional
+  // PROGRAMME whose name appears verbatim in a municipal contract. «El Plan
+  // Edificant movilizó 1.700 millones» versus a €486k energy-efficiency job at
+  // one school shares "plan" and "edificant" mutually, but a single school
+  // contract does not refute a regional programme's total. At 10× the largest
+  // municipal contract (€55.7M → €557M) that figure is out by three orders,
+  // while genuine municipal disparities stay comfortably inside.
+  return amount <= maxContract * 10
+}
+
 function similarAmount(claimed: number, found: number): number {
   if (claimed <= 0 || found <= 0) return 0
   const ratio = Math.min(claimed, found) / Math.max(claimed, found)
@@ -460,14 +519,25 @@ export function verifyClaim(inputs: VerifierInputs): ClaimVerification {
       let best: { row: TenderRow; sim: number } | null = null
       // Also look for strong-entity / weak-amount matches → potential contradicho
       let entityMatchMismatchedAmount: { row: TenderRow; textSim: number } | null = null
+      // The ceiling for "could a municipal contract plausibly be about this
+      // figure at all" — computed from the corpus so it tracks reality.
+      let maxContract = 0
+      for (const t of tenderList) {
+        const a = tenderAmount(t)
+        if (a != null && a > maxContract) maxContract = a
+      }
       for (const t of tenderList) {
         const tAmount = tenderAmount(t)
         if (tAmount == null) continue
         const textSim = entity ? overlapScore(entity, tenderTitle(t)) : 1
         const amountSim = similarAmount(amount, tAmount)
-        // contradicho-candidate: the entity matches strongly but the amount
+        // contradicho-candidate: the entity names this contract AND the amount
         // cited is materially different (<0.3 sim ≈ 2× disparity)
-        if (entity && textSim >= 0.7 && amountSim < 0.3) {
+        if (
+          entity &&
+          amountSim < 0.3 &&
+          tenderCouldRefute(entity, tenderTitle(t), amount, maxContract)
+        ) {
           if (
             entityMatchMismatchedAmount === null ||
             textSim > entityMatchMismatchedAmount.textSim

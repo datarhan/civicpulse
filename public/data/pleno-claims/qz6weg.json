@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "qz6weg",
   "plenoDate": "2025-12-01",
@@ -1024,6 +1024,39 @@
     },
     {
       "claim": {
+        "id": "qz6weg-023-cit-aae985",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 23,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "eso también venía supeditado a que ellos asumían el personal del Conservatorio de Danza",
+        "context": "uno que sí que se ha cumplido, que es esa aportación de casi tres millones de euros, pero eso también venía supeditado a que ellos asumían el personal del Conservatorio de Danza. El asumir ellos el Conservatorio de Danza suponía, si no estoy confundida, de casi un millón y medio anual",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 1500000,
+          "referencedEntity": "conservatorio de danza"
+        },
+        "confidence": 0.78,
+        "reasoning": "Es una condición/convenio sobre quién asume el personal del Conservatorio de Danza y el coste anual asociado; puede contrastarse con acuerdos y documentación presupuestaria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-023-cit-aae985",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
         "id": "qz6weg-023-cit-7e169e",
         "plenoId": "qz6weg",
         "plenoDate": "2025-12-01",
@@ -1119,6 +1152,39 @@
       },
       "verification": {
         "claimId": "qz6weg-023-afi-475bc6",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "qz6weg-024-afi-d25154",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 24,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "de casi un millón y medio anual, uno o doscientos creo que, ¿no? Uno o doscientos. Uno o doscientos cincuenta, sí.",
+        "context": "El asumir ellos el Conservatorio de Danza suponía, si no estoy confundida, de casi un millón y medio anual, uno o doscientos creo que, ¿no? Uno o doscientos. Uno o doscientos cincuenta, sí.",
+        "topic": "cultura",
+        "entities": {
+          "amountEuros": 1500000,
+          "referencedEntity": "conservatorio de danza"
+        },
+        "confidence": 0.72,
+        "reasoning": "Es una cifra concreta atribuida al coste anual de asumir el Conservatorio de Danza; debería poder contrastarse con presupuestos, convenios o expedientes del proyecto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-024-afi-d25154",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
@@ -1484,6 +1550,39 @@
         "evidence": [],
         "checkedAgainst": [
           "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "qz6weg-037-afi-eab2ff",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 37,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el esfuerzo que supone de dos millones y medio lanzarlos a un edificio",
+        "context": "que también quiero que sepan los vecinos y que también quiero que sepan el esfuerzo que supone de dos millones y medio lanzarlos a un edificio que ahora mismo pues es un esqueleto estructural",
+        "topic": "educacion",
+        "entities": {
+          "amountEuros": 2500000,
+          "referencedEntity": "edificio del conservatorio"
+        },
+        "confidence": 0.93,
+        "reasoning": "Cita una cuantía económica concreta de dos millones y medio asociada a un edificio; es verificable en presupuestos, contratos o certificaciones de obra.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-037-afi-eab2ff",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -6018,6 +6117,40 @@
     },
     {
       "claim": {
+        "id": "qz6weg-135-afi-2ea7e3",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 135,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "Otro",
+        "verbatim": "el saldo que van a conseguir en las licitaciones que superará el mismo millón de euros en el año 2024",
+        "context": "Y si también queréis otro dato importante es el saldo que van a conseguir en las licitaciones que superará el mismo millón de euros en el año 2024.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 1000000,
+          "date": "2024-01-01",
+          "referencedEntity": "licitaciones"
+        },
+        "confidence": 0.84,
+        "reasoning": "Es una previsión/cifra concreta sobre el importe de licitaciones en 2024; puede verificarse en datos de contratación o liquidación anual.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-135-afi-2ea7e3",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
         "id": "qz6weg-136-afi-0ec1de",
         "plenoId": "qz6weg",
         "plenoDate": "2025-12-01",
@@ -7114,6 +7247,39 @@
     },
     {
       "claim": {
+        "id": "qz6weg-161-cit-5e9204",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 161,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "El gobierno de España ha destinado a Valencia más de 16.600 millones de euros.",
+        "context": "Por cierto, el Gobierno de España ha destinado a los autónomos que se reincorporan a la actividad,\n[8940.0 → 8970.0] El gobierno de España ha destinado a Valencia más de 16.600 millones de euros. Y mirando las noticias, revisándolo, 3.064 los ha destinado, las ha transferido a la Generalitat, de los cuales, en una de las transferencias de 2.364 millones de euros, la Generalitat no ha usado el 74% de dichos fondos todavía.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 16600000000,
+          "referencedEntity": "destinado a valencia"
+        },
+        "confidence": 0.95,
+        "reasoning": "Es una cifra agregada de fondos destinados a Valencia; puede contrastarse con transferencias, inversiones o ejecución presupuestaria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-161-cit-5e9204",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
         "id": "qz6weg-161-afi-b069f7",
         "plenoId": "qz6weg",
         "plenoDate": "2025-12-01",
@@ -7146,6 +7312,86 @@
         ]
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "qz6weg-162-afi-41adc7",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 162,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "Otro",
+        "verbatim": "stinado a Valencia más de 16.600 millones de euros.",
+        "context": "stinado a Valencia más de 16.600 millones de euros. Y mirando las noticias, revisándolo, 3.064 los ha destinado, las ha transferido a la Generalitat",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 16600000000,
+          "referencedEntity": "valencia"
+        },
+        "confidence": 0.78,
+        "reasoning": "Es una cifra concreta atribuida a una actuación pública; puede contrastarse con transferencias o ejecución presupuestaria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-162-afi-41adc7",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Solicitud Subvención nominativa Ayuntamiento de Riba-roja de Turia, \"Jaciment València la Vella: campanya consolidació i posada en valor\" 2025 · LOCAL · DIPUTAC · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "qz6weg-162-afi-55a6fc",
+        "plenoId": "qz6weg",
+        "plenoDate": "2025-12-01",
+        "segmentIndex": 162,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "Otro",
+        "verbatim": "3.064 los ha destinado, las ha transferido a la Generalitat",
+        "context": "Y mirando las noticias, revisándolo, 3.064 los ha destinado, las ha transferido a la Generalitat, de los cuales, en una de las transferencias de 2.364 millones de euros",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 3064000000,
+          "referencedEntity": "generalitat"
+        },
+        "confidence": 0.74,
+        "reasoning": "Afirma un importe transferido a la Generalitat; es verificable en registros de transferencias o ejecución presupuestaria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "qz6weg-162-afi-55a6fc",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {

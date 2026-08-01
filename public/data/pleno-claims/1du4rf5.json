@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -6479,6 +6479,46 @@
           }
         ],
         "checkedAgainst": []
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1du4rf5-152-afi-130662",
+        "plenoId": "1du4rf5",
+        "plenoDate": "2025-11-03",
+        "segmentIndex": 152,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "el ejecutivo de Mazón y de Vox, porque Vox es el que controla, va a aprobar concretamente 2.364 millones para la dana, desde faunales.",
+        "context": "Mire, el ejecutivo de Mazón y de Vox, porque Vox es el que controla, va a aprobar concretamente 2.364 millones para la dana, desde faunales. El 75% no ni se ha ejecutado.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 2364000000,
+          "referencedEntity": "dana"
+        },
+        "confidence": 0.9,
+        "reasoning": "Se puede verificar si el ejecutivo de Mazón y Vox aprobó esa cantidad para la DANA. La palabra 'faunales' parece un error de transcripción.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1du4rf5-152-afi-130662",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA  · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "shown"
     },

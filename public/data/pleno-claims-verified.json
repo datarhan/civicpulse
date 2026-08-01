@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:06:27.403Z",
+  "generatedAt": "2026-08-01T20:22:21.273Z",
   "source": {
     "description": "Fact-check verdicts for every pleno-claims-suggestions.json entry. Cross-references against tenders / BDNS / budget / promises. Pure deterministic — no LLM judgement.",
     "contract": "Machine-written verdicts; a curator reviews before surfacing contradicho or promesa-repetida editorially."
@@ -7,10 +7,10 @@
   "stats": {
     "total": 6359,
     "byVerdict": {
-      "verificado": 299,
+      "verificado": 319,
       "parcial": 845,
-      "contradicho": 49,
-      "sin-datos": 5166,
+      "contradicho": 0,
+      "sin-datos": 5195,
       "promesa-repetida": 0
     }
   },
@@ -2445,19 +2445,21 @@
       },
       "verification": {
         "claimId": "brxx5g-092-afi-e7cdd3",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 3.300.000 € para «presupuestos», pero el contrato más parecido en la BD municipal registra 110.696 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · 110.696 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -2616,19 +2618,21 @@
       },
       "verification": {
         "claimId": "brxx5g-093-cit-b809a5",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 3.300.000 € para «presupuestos», pero el contrato más parecido en la BD municipal registra 110.696 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · 110.696 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -3150,19 +3154,21 @@
       },
       "verification": {
         "claimId": "brxx5g-104-afi-28894b",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.000.000.000 € para «agencia efe», pero el contrato más parecido en la BD municipal registra 21.015 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HmEg%2BJs8Z%2BKrz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato Menor de las obras de acondicionamiento de áreas de sombraje en explanada CIJ del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · CADENA GLOBAL AGENCIA DE COMUNICACION Y SERVICIOS SOCIEDAD LIMITADA · other · 21.015 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -3189,19 +3195,21 @@
       },
       "verification": {
         "claimId": "brxx5g-104-afi-8654de",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 22.000.000 € para «presupuestos del 26», pero el contrato más parecido en la BD municipal registra 110.696 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · 110.696 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -3343,19 +3351,21 @@
       },
       "verification": {
         "claimId": "brxx5g-105-afi-3392f1",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 22.000.000 € para «presupuestos del 26», pero el contrato más parecido en la BD municipal registra 110.696 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · 110.696 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Subvención nominativa a Ayuntamiento de Riba-roja de Túria Ley Presupuestos Generalitat 2016 · AUTONOMICA · COMUNITAT VALENCIANA · AGÈNCIA VALENCIANA DEL TURISM · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -3830,19 +3840,14 @@
       },
       "verification": {
         "claimId": "brxx5g-122-afi-68e44d",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 486.000 € para «pla edificant», pero el contrato más parecido en la BD municipal registra 68.486 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bLZD2lEN68VvYnTkQN0%2FZA%3D%3D",
-            "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant ) · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · 68.486 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -4171,19 +4176,14 @@
       },
       "verification": {
         "claimId": "brxx5g-128-cit-3f9a51",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 7.000.000 € para «pla edificant», pero el contrato más parecido en la BD municipal registra 68.486 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bLZD2lEN68VvYnTkQN0%2FZA%3D%3D",
-            "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant ) · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · 68.486 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -7486,19 +7486,14 @@
       },
       "verification": {
         "claimId": "brxx5g-251-cit-773dba",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 2.000.000 € para «contrato programa de servicios sociales», pero el contrato más parecido en la BD municipal registra 30.700 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · 30.700 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -19972,19 +19967,14 @@
       },
       "verification": {
         "claimId": "10yl550-063-cit-07f957",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.000.000 € para «pasarela», pero el contrato más parecido en la BD municipal registra 30.450 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mOujohKbDmBt5r0ngvMetA%3D%3D",
-            "snippet": "Contrato menor de OBRAS en el PROYECTO: Reparación pasarela provisional en Barranc dels moros de Riba-roja de Túria. (Ctto. 246M/2023). · Ayuntamiento de Riba-roja de Túria · SARBEL VERTICAL, S.L. · construction · 30.450 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -24238,19 +24228,14 @@
       },
       "verification": {
         "claimId": "10yl550-190-afi-aae75a",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 640 € para «alquiler», pero el contrato más parecido en la BD municipal registra 42.261 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mHlpFLcxT2DkY6rls5tG9A%3D%3D",
-            "snippet": "Contrato de suministro de compra de 75 contendores RSU y de alquiler de un camión recolector de RSU como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de SAV AGRICULTORES DE LA VEGA con CIF A46027660 · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE AGRICULTORES DE LA VEGA (SAV) · transportation · 42.261 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -24278,19 +24263,14 @@
       },
       "verification": {
         "claimId": "10yl550-190-afi-6f5430",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 736 € para «alquiler», pero el contrato más parecido en la BD municipal registra 42.261 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mHlpFLcxT2DkY6rls5tG9A%3D%3D",
-            "snippet": "Contrato de suministro de compra de 75 contendores RSU y de alquiler de un camión recolector de RSU como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de SAV AGRICULTORES DE LA VEGA con CIF A46027660 · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE AGRICULTORES DE LA VEGA (SAV) · transportation · 42.261 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -24318,19 +24298,14 @@
       },
       "verification": {
         "claimId": "10yl550-190-afi-5f2f3d",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 840 € para «alquiler», pero el contrato más parecido en la BD municipal registra 42.261 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mHlpFLcxT2DkY6rls5tG9A%3D%3D",
-            "snippet": "Contrato de suministro de compra de 75 contendores RSU y de alquiler de un camión recolector de RSU como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de SAV AGRICULTORES DE LA VEGA con CIF A46027660 · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE AGRICULTORES DE LA VEGA (SAV) · transportation · 42.261 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -24358,19 +24333,14 @@
       },
       "verification": {
         "claimId": "10yl550-190-afi-472b33",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 880 € para «alquiler», pero el contrato más parecido en la BD municipal registra 42.261 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mHlpFLcxT2DkY6rls5tG9A%3D%3D",
-            "snippet": "Contrato de suministro de compra de 75 contendores RSU y de alquiler de un camión recolector de RSU como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de SAV AGRICULTORES DE LA VEGA con CIF A46027660 · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE AGRICULTORES DE LA VEGA (SAV) · transportation · 42.261 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -30030,19 +30000,21 @@
       },
       "verification": {
         "claimId": "10yl550-353-afi-10d3cb",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 10.000.000 € para «dana», pero el contrato más parecido en la BD municipal registra 5706 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · 5706 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA  · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -30067,19 +30039,14 @@
       },
       "verification": {
         "claimId": "10yl550-351-afi-5dd974",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 10.000.000 € para «iberdrola», pero el contrato más parecido en la BD municipal registra 717.623 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ap8AAui4itVvYnTkQN0%2FZA%3D%3D",
-            "snippet": "contrato derivado Acuerdo marco sobre suministro de energía eléctrica. · Ayuntamiento de Riba-roja de Túria · IBERDROLA CLIENTES S.A. · energy · 717.623 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -34738,19 +34705,14 @@
       },
       "verification": {
         "claimId": "k4olcs-064-afi-7e8a96",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.700.000.000 € para «plan edificant», pero el contrato más parecido en la BD municipal registra 68.486 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bLZD2lEN68VvYnTkQN0%2FZA%3D%3D",
-            "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant ) · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · 68.486 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -35077,19 +35039,21 @@
       },
       "verification": {
         "claimId": "k4olcs-063-cit-25e6ea",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.700.000.000 € para «plan edificant», pero el contrato más parecido en la BD municipal registra 68.486 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bLZD2lEN68VvYnTkQN0%2FZA%3D%3D",
-            "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant ) · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · 68.486 € (no coincide con el importe citado)",
+            "snippet": "contrato de obras de mejora de la eficiencia energética en C.E.I.P Eres Altes por procedimiento abierto súper simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas socio-laborales como criterio de adjudicación y con condiciones especiales de ejecución de carácter medioambiental. ( Plan Edificant ) · Ayuntamiento de Riba-roja de Túria · Assistacasa S.L · construction · estado: formalized",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -38880,19 +38844,14 @@
       },
       "verification": {
         "claimId": "k4olcs-113-afi-d4da8e",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 13.669.000 € para «ayudas dana», pero el contrato más parecido en la BD municipal registra 8500 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY S.L. · architecture · 8500 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -39229,19 +39188,14 @@
       },
       "verification": {
         "claimId": "k4olcs-112-cit-a93417",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 13.669.000 € para «ayudas dana», pero el contrato más parecido en la BD municipal registra 8500 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zObCw4gxc5XgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de consultoría para solicitud ayudas FEDER para actuaciones de las entidades locales especialmente afectadas por la DANA través de contrato derivado del Sistema Dinámico de Adquisición de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales. (Ctto. 146/2025 – ESDA1/2025). · Ayuntamiento de Riba-roja de Túria · TECHFRIENDLY S.L. · architecture · 8500 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -39697,19 +39651,27 @@
       },
       "verification": {
         "claimId": "k4olcs-125-acu-8e6b15",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 63.000.000.000 € para «generalitat», pero el contrato más parecido en la BD municipal registra 32.591 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
+            "similarity": 1
+          },
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 € (no coincide con el importe citado)",
+            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · estado: awarded",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -39819,19 +39781,21 @@
       },
       "verification": {
         "claimId": "k4olcs-126-afi-9db5ca",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 63.000.000.000 € para «generalitat», pero el contrato más parecido en la BD municipal registra 32.591 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -44671,19 +44635,14 @@
       },
       "verification": {
         "claimId": "ma87e0-111-afi-083d71",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 70.000 € para «fundación eca», pero el contrato más parecido en la BD municipal registra 175.352 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
-            "snippet": "Programa municipal personas con diversidad funcional intelectual · Ayuntamiento de Riba-roja de Túria · FUNDACION DE LA COMUNITAT VALENCIANA JUAN I. MUÑOZ BASTIDE · health · 175.352 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -55367,19 +55326,14 @@
       },
       "verification": {
         "claimId": "19gax3o-003-afi-7bb0da",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 8.842.000 € para «plan de contratación 2026», pero el contrato más parecido en la BD municipal registra 1742 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=czdZT44wsgAtm4eBPtV6eQ%3D%3D",
-            "snippet": "Contratación servicio dirección obra y dirección ejecución material, coordinación en seguridad y salud para el proyecto obras Instalación de pérgolas con vegetación autóctona como refugio climático en Riba-roja de Túria (Valencia), derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales (Ctto94/2026). · Ayuntamiento de Riba-roja de Túria · José Luis Moreno Delgado · architecture · 1742 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -73284,19 +73238,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-029-afi-fd06e9",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 53.500 € para «ampliación del contrato», pero el contrato más parecido en la BD municipal registra 14.800 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Hw2gcujM7WkSugstABGr5A%3D%3D",
-            "snippet": "Contrato Menor de  Servicio de Trabajos de Redacción de Proyecto de Expropiación de terrenos para la Ejecución de camino de conexión de emergencia entre las áreas industriales de El Oliveral y Casanova, fase I y las Obras de saneamiento y depuración de El Oliveral (ampliación de la EDAR de SETRECE). · Ayuntamiento de Riba-roja de Túria · LUIS ESTELLES NOGUERAS · architecture · 14.800 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -77467,19 +77416,14 @@
       },
       "verification": {
         "claimId": "1qi8axv-092-afi-0774b6",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 2.000.000 € para «contrato de emergencia por la dana», pero el contrato más parecido en la BD municipal registra 5706 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · 5706 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -80651,19 +80595,14 @@
       },
       "verification": {
         "claimId": "qz6weg-024-afi-d25154",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.500.000 € para «conservatorio de danza», pero el contrato más parecido en la BD municipal registra 12.304 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, S.L. · real_estate · 12.304 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -80877,19 +80816,14 @@
       },
       "verification": {
         "claimId": "qz6weg-023-cit-aae985",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.500.000 € para «conservatorio de danza», pero el contrato más parecido en la BD municipal registra 12.304 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BXRNnYuo8hkBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, S.L. · real_estate · 12.304 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -81474,19 +81408,14 @@
       },
       "verification": {
         "claimId": "qz6weg-037-afi-eab2ff",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 2.500.000 € para «edificio del conservatorio», pero el contrato más parecido en la BD municipal registra 39.900 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5ELLOtridrPzAq95uGTrDQ%3D%3D",
-            "snippet": "Contrato de obras, de carácter menor, de habilitación de tres espacios para el conservatorio profesional municipal en el edificio Casa de la Cultura. · Ayuntamiento de Riba-roja de Túria · Licitaciones y Obras Hambit, S.L. · construction · 39.900 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -89131,19 +89060,14 @@
       },
       "verification": {
         "claimId": "qz6weg-135-afi-2ea7e3",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.000.000 € para «licitaciones», pero el contrato más parecido en la BD municipal registra 37.890 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=VMA7sp5IUu4QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obra de redistribución del edificio principal del Ayuntamiento de Riba-roja · Ayuntamiento de Riba-roja de Túria · Licitaciones y Obras Hambit, S.L. · other · 37.890 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -90687,19 +90611,14 @@
       },
       "verification": {
         "claimId": "qz6weg-161-cit-5e9204",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 16.600.000.000 € para «destinado a valencia», pero el contrato más parecido en la BD municipal registra 21.820 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=7t0981qTMJ0uf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato de suministro de paneles individuales de acceso para el yacimiento arqueológico de Valencia la vella destinado al departamento de Turismo, por procedimiento abierto súper simplificado, mejor relación calidad-precio, un único criterio de adjudicación, con condición especial de ejecución de carácter medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a lograr que las ciudades sean sostenibles. (Ctto 58-2021) · Ayuntamiento de Riba-roja de Túria · CM PLASTIK RECYCLING, S.L. · construction · 21.820 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -90930,19 +90849,21 @@
       },
       "verification": {
         "claimId": "qz6weg-162-afi-41adc7",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 16.600.000.000 € para «valencia», pero el contrato más parecido en la BD municipal registra 14.966 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=1xEZUcxb4%2BQ7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato Menor:Realización de pruebas de carga en cada uno de los forjados y análisis estructural de la madera (determinación de resistencia, presencia de agentes xilófagos…) en la Casa del Abogado sita en calle Garelli y Pastor, 10. 46190, Riba-roja de Túria, València. · Ayuntamiento de Riba-roja de Túria · MAESTRAT GLOBAL · architecture · 14.966 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Solicitud Subvención nominativa Ayuntamiento de Riba-roja de Turia, \"Jaciment València la Vella: campanya consolidació i posada en valor\" 2025 · LOCAL · DIPUTAC · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -90967,19 +90888,21 @@
       },
       "verification": {
         "claimId": "qz6weg-162-afi-55a6fc",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 3.064.000.000 € para «generalitat», pero el contrato más parecido en la BD municipal registra 32.591 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -110989,19 +110912,21 @@
       },
       "verification": {
         "claimId": "1du4rf5-152-afi-130662",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 2.364.000.000 € para «dana», pero el contrato más parecido en la BD municipal registra 5706 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · 5706 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA  · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -137132,19 +137057,14 @@
       },
       "verification": {
         "claimId": "c8kr44-172-afi-877903",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 87.000.000 € para «patrimonio», pero el contrato más parecido en la BD municipal registra 6612 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pwDbdKlLknEaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Servicio de creación y diseño del proyecto de accesibilidad universal en patrimonio y turismo local “callejero, rutas y yacimiento visigodo ilustrado y accesible” en Riba-roja de Túria, en el marco del Plan de Sostenibilidad Turística en Destino (PSTD/22), financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia · Ayuntamiento de Riba-roja de Túria · HORIZONTES ACCESIBLES S.L. · legal · 6612 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -137169,19 +137089,21 @@
       },
       "verification": {
         "claimId": "c8kr44-171-cit-ab4a59",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 100.000.000 € para «subvenciones», pero el contrato más parecido en la BD municipal registra 54.900 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
-            "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un punto directo de atención a las cuestiones diarias de las empresas que se plantean en relación al Ayuntamiento de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · ASEDER INTEGRA S.L. · legal · 54.900 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -137206,19 +137128,21 @@
       },
       "verification": {
         "claimId": "c8kr44-172-cit-b1b4d4",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 100.000.000 € para «subvenciones», pero el contrato más parecido en la BD municipal registra 54.900 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
-            "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un punto directo de atención a las cuestiones diarias de las empresas que se plantean en relación al Ayuntamiento de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · ASEDER INTEGRA S.L. · legal · 54.900 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -137243,19 +137167,14 @@
       },
       "verification": {
         "claimId": "c8kr44-176-afi-c67249",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 17.000.000 € para «capítulo 2», pero el contrato más parecido en la BD municipal registra 110.696 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · 110.696 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -137886,19 +137805,21 @@
       },
       "verification": {
         "claimId": "c8kr44-203-afi-42a7b6",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.200.000 € para «dana», pero el contrato más parecido en la BD municipal registra 5706 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · 5706 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE MIVAU Y AYUNTAMIENTO DE RIBA-ROJA DE TÚRIA, POR EL QUE SE ADOPTAN MEDIDAS URGENTES DE RESPUESTA ANTE LOS DAÑOS CAUSADOS POR LA DEPRESIÓN AISLADA  · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -140339,19 +140260,14 @@
       },
       "verification": {
         "claimId": "rmtyr-016-afi-7dc919",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 20.000.000 € para «capítulo 1», pero el contrato más parecido en la BD municipal registra 110.696 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · 110.696 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -141402,19 +141318,14 @@
       },
       "verification": {
         "claimId": "rmtyr-037-cit-c6eb5f",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 2.300.000 € para «inversiones de la diputación de valencia», pero el contrato más parecido en la BD municipal registra 165.289 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ig2hivipy%2FJ6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato obras, proyectos Reasfaltado casco urbano calles Furs del Regne, Luis Santagel, Doctor Freming, Lepanto, Av Camp de Turia, Perpinyanet y Pl Germanies y Asfaltado camino rural Enllaç Llidona-Potros, de Riba-roja de Túria, incluidas en el Plan de Inversiones 2022-2023 de Diputación de Valencia, dividido en dos lotes. · Ayuntamiento de Riba-roja de Túria · construction · 165.289 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -142556,19 +142467,21 @@
       },
       "verification": {
         "claimId": "rmtyr-074-afi-66111b",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 9680 € para «pp de igualdad», pero el contrato más parecido en la BD municipal registra 5083 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4p9f7N%2FQJB0tm4eBPtV6eQ%3D%3D",
-            "snippet": "Servicio técnico en eventos de igualdad mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 86/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · LACSEN MONTAJES ELECTRICOS S.L · health · 5083 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Acuerdo de 7 de febrero de 2018 de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria, por el que se convoca el concurso de fotografía promovido  · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -143160,19 +143073,21 @@
       },
       "verification": {
         "claimId": "rmtyr-263-cit-11b14e",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 100.000.000 € para «subvenciones», pero el contrato más parecido en la BD municipal registra 54.900 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=y1ffHTdiBUTnSoTX3z%2F7wA%3D%3D",
-            "snippet": "El objeto del contrato es la prestación de un servicio de de atención directa en las áreas industriales que implique más información al empresariado, en cuanto a gestiones administrativas municipales, subvenciones de entes públicos y un punto directo de atención a las cuestiones diarias de las empresas que se plantean en relación al Ayuntamiento de Riba-roja de Túria, por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental y social. · Ayuntamiento de Riba-roja de Túria · ASEDER INTEGRA S.L. · legal · 54.900 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -143199,19 +143114,14 @@
       },
       "verification": {
         "claimId": "rmtyr-092-afi-056cdb",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 87.000.000 € para «patrimonio», pero el contrato más parecido en la BD municipal registra 6612 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pwDbdKlLknEaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Servicio de creación y diseño del proyecto de accesibilidad universal en patrimonio y turismo local “callejero, rutas y yacimiento visigodo ilustrado y accesible” en Riba-roja de Túria, en el marco del Plan de Sostenibilidad Turística en Destino (PSTD/22), financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia · Ayuntamiento de Riba-roja de Túria · HORIZONTES ACCESIBLES S.L. · legal · 6612 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -143318,19 +143228,14 @@
       },
       "verification": {
         "claimId": "rmtyr-093-afi-e11ac0",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 87.000.000 € para «patrimonio», pero el contrato más parecido en la BD municipal registra 6612 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pwDbdKlLknEaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Servicio de creación y diseño del proyecto de accesibilidad universal en patrimonio y turismo local “callejero, rutas y yacimiento visigodo ilustrado y accesible” en Riba-roja de Túria, en el marco del Plan de Sostenibilidad Turística en Destino (PSTD/22), financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia · Ayuntamiento de Riba-roja de Túria · HORIZONTES ACCESIBLES S.L. · legal · 6612 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -144332,19 +144237,14 @@
       },
       "verification": {
         "claimId": "rmtyr-116-cit-607c4b",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 1.696.000 € para «contrato programa de servicios sociales», pero el contrato más parecido en la BD municipal registra 30.700 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · 30.700 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -147544,19 +147444,21 @@
       },
       "verification": {
         "claimId": "rmtyr-190-afi-c155b2",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 5.000.000 € para «generalitat», pero el contrato más parecido en la BD municipal registra 32.591 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=zvNzYLVZyKp7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Amplicación parque Generalitat · Ayuntamiento de Riba-roja de Túria · Llop Proyectos Integrales SL · other · 32.591 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -147911,19 +147813,14 @@
       },
       "verification": {
         "claimId": "rmtyr-202-cit-b196ee",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 2.500.000 € para «ivace», pero el contrato más parecido en la BD municipal registra 125.021 €. Discrepancia material — revisión editorial.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GzZ8vbrGk5o7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · 125.021 € (no coincide con el importe citado)",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -149249,19 +149146,21 @@
       },
       "verification": {
         "claimId": "rmtyr-254-cit-969acf",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 300.000 € para «diputación», pero el contrato más parecido en la BD municipal registra 6500 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
-            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · Sociedad Estatal Correos y Telégrafos S.A. S.M.E. · telecom · 6500 € (no coincide con el importe citado)",
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Solicitud Subvención nominativa Ayuntamiento de Riba-roja de Turia, \"Jaciment València la Vella: campanya consolidació i posada en valor\" 2025 · LOCAL · DIPUTAC · importe no publicado",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },
@@ -179026,19 +178925,21 @@
       },
       "verification": {
         "claimId": "1tgd1h4-367-acu-f1a48f",
-        "verdict": "contradicho",
-        "summary": "La afirmación cita 25.117.784 € para «pai mas de porxinos», pero el contrato más parecido en la BD municipal registra 60.000 €. Discrepancia material — revisión editorial.",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
         "evidence": [
           {
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8mT2MBthkfMQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Defensa en juicio en los procedimientos judiciales instados contra el Ayuntamiento que traigan causa de la anulación del PAI Porxinos · Ayuntamiento de Riba-roja de Túria · JOSE MARIA BAñO LEON ABOGADOS SLP · legal · 60.000 € (no coincide con el importe citado)",
+            "snippet": "Defensa en juicio en los procedimientos judiciales instados contra el Ayuntamiento que traigan causa de la anulación del PAI Porxinos · Ayuntamiento de Riba-roja de Túria · JOSE MARIA BAñO LEON ABOGADOS SLP · legal · estado: formalized",
             "similarity": 1
           }
         ],
         "checkedAgainst": [
           "tenders",
-          "tenders-ted"
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       }
     },

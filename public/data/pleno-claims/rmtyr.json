@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -278,6 +278,39 @@
         "evidence": [],
         "checkedAgainst": [
           "promises"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "rmtyr-016-afi-7dc919",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 16,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Este es el conjunto del presupuesto del capítulo 1, de 20 millones de euros.",
+        "context": "Con lo cual, de cara a septiembre, una vez tengamos estas fichas, ya podremos dar paso para estos incrementos de niveles y de factores. Este es el conjunto del presupuesto del capítulo 1, de 20 millones de euros. Todos sabemos que cuando un ayuntamiento quiere dar servicios, necesita personal.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 20000000,
+          "referencedEntity": "capítulo 1"
+        },
+        "confidence": 0.95,
+        "reasoning": "El orador cita una cifra específica de 20 millones de euros para el presupuesto del Capítulo 1 (personal), lo cual es directamente verificable en el expediente de aprobación de los presupuestos municipales de Riba-roja de Túria.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-016-afi-7dc919",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
         ]
       },
       "visibility": "toggle"
@@ -962,6 +995,39 @@
         ]
       },
       "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "rmtyr-037-cit-c6eb5f",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 37,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "inversiones de la Diputación de 2,3 millones",
+        "context": "Es cierto que, como me has comentado, están los Generations de 2,2 millones o inversiones de la Diputación de 2,3 millones,",
+        "topic": "other",
+        "entities": {
+          "amountEuros": 2300000,
+          "referencedEntity": "inversiones de la diputación de valencia"
+        },
+        "confidence": 1,
+        "reasoning": "Menciona inversiones procedentes de la Diputación por 2,3 millones de euros, verificable en los planes provinciales de obras y servicios.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-037-cit-c6eb5f",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2143,6 +2209,46 @@
     },
     {
       "claim": {
+        "id": "rmtyr-074-afi-66111b",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 74,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "Las partidas relevantes como la PP de igualdad de 9.680 euros",
+        "context": "Las partidas relevantes como la PP de igualdad de 9.680 euros, unas actividades de igualdad de 12.000 euros que me gustaría tener el detalle",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 9680,
+          "referencedEntity": "pp de igualdad"
+        },
+        "confidence": 0.9,
+        "reasoning": "Se cita una cantidad presupuestaria concreta de 9.680 euros para la partida de igualdad.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-074-afi-66111b",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Acuerdo de 7 de febrero de 2018 de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria, por el que se convoca el concurso de fotografía promovido  · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "rmtyr-074-afi-5f59f1",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -2516,6 +2622,41 @@
     },
     {
       "claim": {
+        "id": "rmtyr-092-afi-056cdb",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 92,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "Por eso hemos crecido el patrimonio en más de 87 millones de euros en 10 años",
+        "context": "Porque este gobierno ha buscado subvenciones hasta más de 100 millones de euros en subvenciones Por eso hemos crecido el patrimonio en más de 87 millones de euros en 10 años Y aquí parte es el capítulo 1",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 87000000,
+          "count": 10,
+          "countUnit": "años",
+          "referencedEntity": "patrimonio"
+        },
+        "confidence": 0.9,
+        "reasoning": "Verificable a través de los balances e inventarios municipales de bienes del Ayuntamiento correspondientes a la última década.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-092-afi-056cdb",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
         "id": "rmtyr-092-cit-444616",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -2538,6 +2679,39 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "rmtyr-093-afi-e11ac0",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 93,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "PSOE",
+        "verbatim": "Por eso hemos crecido el patrimonio en más de 87 millones de euros en 10 años",
+        "context": "Porque este gobierno ha buscado subvenciones hasta más de 100 millones de euros en subvenciones. Por eso hemos crecido el patrimonio en más de 87 millones de euros en 10 años. Y aquí parte es el capítulo 1",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 87000000,
+          "referencedEntity": "patrimonio"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificar en el inventario o balance de bienes del Ayuntamiento si el patrimonio neto municipal ha aumentado en más de 87 millones de euros en la última década.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-093-afi-e11ac0",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -3437,6 +3611,39 @@
       },
       "verification": {
         "claimId": "rmtyr-116-afi-a9a2a3",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "rmtyr-116-cit-607c4b",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 116,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "contrato programa de servicios sociales de la anualidad, por un\n[5036.6 → 5043.6] importe de 1.696.000 euros",
+        "context": "[5033.2 → 5036.6] También hablamos del contrato programa de servicios sociales de la anualidad, por un\n[5036.6 → 5043.6] importe de 1.696.000 euros. Gran parte de ella va para las nóminas, como ha dicho el\n[5043.6 → 5048.3] señor alcalde",
+        "topic": "social",
+        "entities": {
+          "amountEuros": 1696000,
+          "referencedEntity": "contrato programa de servicios sociales"
+        },
+        "confidence": 1,
+        "reasoning": "Menciona el importe del contrato programa de servicios sociales, verificable en las partidas de convenios o ingresos del presupuesto.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-116-cit-607c4b",
         "verdict": "sin-datos",
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
@@ -6352,6 +6559,46 @@
     },
     {
       "claim": {
+        "id": "rmtyr-190-afi-c155b2",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 190,
+        "type": "afirmacion_numerica",
+        "speakerGroup": "Compromís",
+        "verbatim": "han bajado los impuestos a las personas más ricas, han dejado de ingresar 5 o 6 millones de euros",
+        "context": "Por ejemplo, tenemos la Generalitat que han bajado los impuestos a las personas más ricas, han dejado de ingresar 5 o 6 millones de euros y después quieren que se mantengan los servicios.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 5000000,
+          "referencedEntity": "generalitat"
+        },
+        "confidence": 0.95,
+        "reasoning": "Se cita una pérdida de ingresos de 5 o 6 millones de euros de la Generalitat por bajadas de impuestos, contrastable en informes de recaudación autonómicos.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-190-afi-c155b2",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "rmtyr-191-afi-326afb",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -6658,6 +6905,39 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "rmtyr-202-cit-b196ee",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 202,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "si metemos el IVACE en un gobierno comunista, como el de Chimo Puig, que puso en marcha lo de la modernización de los polígonos industriales, y del crecimiento industrial, del tejido industrial de la Comunidad Valenciana, hay años que hasta de 2 y 2 millones y medio de euros,",
+        "context": "desde que estamos nosotros, no baja del millón de euros, no baja del millón de euros, solo hay, en eso, y hay años, si metemos el IVACE en un gobierno comunista, como el de Chimo Puig, que puso en marcha lo de la modernización de los polígonos industriales, y del crecimiento industrial, del tejido industrial de la Comunidad Valenciana, hay años que hasta de 2 y 2 millones y medio de euros, por decir una cosa.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 2500000,
+          "referencedEntity": "ivace"
+        },
+        "confidence": 0.9,
+        "reasoning": "Comprobar si las subvenciones recibidas del IVACE para polígonos industriales de Riba-roja de Túria bajo el mandato autonómico de Ximo Puig alcanzaron los 2 y 2,5 millones de euros en determinados ejercicios.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-202-cit-b196ee",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },
@@ -8263,6 +8543,46 @@
     },
     {
       "claim": {
+        "id": "rmtyr-254-cit-969acf",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 254,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "En cuanto a Diputación, aproximadamente destina unos 300.000 euros, y además la recuperación, por supuesto, del puente de conexión con la zona norte.",
+        "context": "En cuanto a Diputación, aproximadamente destina unos 300.000 euros, y además la recuperación, por supuesto, del puente de conexión con la zona norte.",
+        "topic": "movilidad",
+        "entities": {
+          "amountEuros": 300000,
+          "referencedEntity": "diputación"
+        },
+        "confidence": 0.95,
+        "reasoning": "Verificable a través de las subvenciones o planes de obras provinciales de la Diputación de Valencia asignados al puente norte.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-254-cit-969acf",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Solicitud Subvención nominativa Ayuntamiento de Riba-roja de Turia, \"Jaciment València la Vella: campanya consolidació i posada en valor\" 2025 · LOCAL · DIPUTAC · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
         "id": "rmtyr-254-cit-4440f4",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -8369,6 +8689,46 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "rmtyr-263-cit-11b14e",
+        "plenoId": "rmtyr",
+        "plenoDate": "2025-07-31",
+        "segmentIndex": 263,
+        "type": "cita_convenio",
+        "speakerGroup": null,
+        "verbatim": "Hemos traído más de 100 millones de euros de subvenciones, europeas, ministeriales, de consejerías, de diputaciones, más de 100 millones de euros,",
+        "context": "Hemos traído más de 100 millones de euros de subvenciones, europeas, ministeriales, de consejerías, de diputaciones, más de 100 millones de euros, sin tocar los impuestos a nadie hasta la última hora.",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 100000000,
+          "referencedEntity": "subvenciones"
+        },
+        "confidence": 0.95,
+        "reasoning": "El importe total de subvenciones recibidas de otras administraciones públicas se puede verificar en la cuenta de liquidación del presupuesto del Ayuntamiento.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "rmtyr-263-cit-11b14e",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "bdns",
+            "ref": "bdns:",
+            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {

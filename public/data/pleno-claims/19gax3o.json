@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "19gax3o",
   "plenoDate": "2026-01-19",
@@ -30,6 +30,42 @@
         "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
         "evidence": [],
         "checkedAgainst": []
+      },
+      "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "19gax3o-003-afi-7bb0da",
+        "plenoId": "19gax3o",
+        "plenoDate": "2026-01-19",
+        "segmentIndex": 3,
+        "type": "afirmacion_numerica",
+        "speakerGroup": null,
+        "verbatim": "El importe de estos 85 contratos para 2026 asciende a 8.842.000 euros",
+        "context": "...El importe de estos 85 contratos para 2026 asciende a 8.842.000 euros y como muchos de ellos son plurianuales...",
+        "topic": "fiscal",
+        "entities": {
+          "amountEuros": 8842000,
+          "count": 85,
+          "countUnit": "contratos",
+          "date": "2026-01-01",
+          "referencedEntity": "plan de contratación 2026"
+        },
+        "confidence": 0.99,
+        "reasoning": "Indica un importe presupuestado para 2026 asociado a 85 contratos; debería contrastarse con el plan de contratación o expediente económico.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "19gax3o-003-afi-7bb0da",
+        "verdict": "sin-datos",
+        "summary": "No se encontró registro en tenders / BDNS / presupuesto. El claim puede ser cierto pero no está atestiguado por los datos abiertos publicados.",
+        "evidence": [],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "toggle"
     },

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T19:08:13.891Z",
+  "generatedAt": "2026-08-01T20:22:21.411Z",
   "version": "1",
   "plenoId": "1tgd1h4",
   "plenoDate": "2024-07-29",
@@ -27719,6 +27719,47 @@
           }
         ],
         "checkedAgainst": []
+      },
+      "visibility": "shown"
+    },
+    {
+      "claim": {
+        "id": "1tgd1h4-367-acu-f1a48f",
+        "plenoId": "1tgd1h4",
+        "plenoDate": "2024-07-29",
+        "segmentIndex": 367,
+        "type": "acusacion_publica",
+        "speakerGroup": null,
+        "verbatim": "reclamaba el pago de una cantidad equivalente a 25.117.783,68€ incrementada con los intereses de demora que correspondiesen.",
+        "context": "...derivada de la nulidad del mismo a raíz de la nulidad del PAI Mas de Porxinos; y en consecuencia, reclamaba el pago de una cantidad equivalente a 25.117.783,68€ incrementada con los intereses de demora que correspondiesen.",
+        "topic": "urbanismo",
+        "entities": {
+          "amountEuros": 25117783.68,
+          "referencedEntity": "pai mas de porxinos"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.98,
+        "reasoning": "La cuantía reclamada es un dato objetivo y contrastable en la sentencia o en el recurso judicial citado.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1tgd1h4-367-acu-f1a48f",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8mT2MBthkfMQK2TEfXGy%2BA%3D%3D",
+            "snippet": "Defensa en juicio en los procedimientos judiciales instados contra el Ayuntamiento que traigan causa de la anulación del PAI Porxinos · Ayuntamiento de Riba-roja de Túria · JOSE MARIA BAñO LEON ABOGADOS SLP · legal · estado: formalized",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
       },
       "visibility": "shown"
     },
