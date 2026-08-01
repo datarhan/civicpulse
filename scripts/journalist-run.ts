@@ -5,7 +5,7 @@
  *   npm run journalist:run -- <assignmentId> [--token-budget N] [--dry-run] [--stop-after plan|research|synth|verify]
  *
  * The draft is also written as a chunk under
- *   public/data/journalist-reports/<assignmentId>.draft.json
+ *   editorial/journalist-drafts/<assignmentId>.draft.json  (NOT web-served)
  * so the curator dashboard can preview a single assignment without
  * loading the whole suggestions snapshot.
  *
@@ -27,8 +27,15 @@ import { runJournalistAgent, JournalistAgentError } from '../src/scraper/journal
 import { describeWebSearchBackend } from '../src/scraper/journalist-tools'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
-const DRAFTS = resolve('public/data/journalist-reports-suggestions.json')
+const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
+// Promoted reports are public; DRAFTS ARE NOT. An unreviewed draft is a
+// machine's first pass over a named living councillor — the Rafael Gómez draft
+// carried four sources about a different man of the same name, including a
+// 2006 Caso Malaya arrest, which the curator removed before publishing. Those
+// drafts were being served from public/ at a guessable URL, so the promote
+// gate was decorative: anyone could fetch the pre-curation version.
 const CHUNK_DIR = resolve('public/data/journalist-reports')
+const DRAFT_DIR = resolve('editorial/journalist-drafts')
 
 function usage(): never {
   process.stderr.write(
@@ -87,7 +94,7 @@ function loadDrafts(): JournalistDraftsSnapshot {
 }
 
 function writeDraftChunk(draft: JournalistReportDraft): string {
-  return writeJsonChunk(CHUNK_DIR, `${draft.assignmentId}.draft.json`, draft)
+  return writeJsonChunk(DRAFT_DIR, `${draft.assignmentId}.draft.json`, draft)
 }
 
 async function main(): Promise<void> {

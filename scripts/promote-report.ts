@@ -36,9 +36,16 @@ import {
 import { pruneUncitedSources } from '../src/scraper/journalist-agent/builders'
 
 const ASSIGNMENTS = resolve('public/data/journalist-assignments.json')
-const DRAFTS = resolve('public/data/journalist-reports-suggestions.json')
+const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestions.json')
 const REPORTS = resolve('public/data/journalist-reports.json')
+// Promoted reports are public; DRAFTS ARE NOT. An unreviewed draft is a
+// machine's first pass over a named living councillor — the Rafael Gómez draft
+// carried four sources about a different man of the same name, including a
+// 2006 Caso Malaya arrest, which the curator removed before publishing. Those
+// drafts were being served from public/ at a guessable URL, so the promote
+// gate was decorative: anyone could fetch the pre-curation version.
 const CHUNK_DIR = resolve('public/data/journalist-reports')
+const DRAFT_DIR = resolve('editorial/journalist-drafts')
 
 const DEFAULT_LEGAL_NOTICE =
   'Informes periodísticos elaborados por un agente automático y revisados por curación humana antes de su publicación. Cada afirmación incluye cita verbatim, enlace de archivo cuando procede y derecho de réplica abierto vía formulario público.'
