@@ -55,6 +55,10 @@ export interface BoeSnapshot {
   stats: {
     daysFetched: number
     daysWithMatches: number
+    /** Network-level failures. Absent on snapshots written before 2026-08. */
+    daysFailed?: number
+    /** Window size, so daysFetched has a denominator. */
+    daysRequested?: number
     total: number
     byDepartamento: Record<string, number>
   }

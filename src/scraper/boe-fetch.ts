@@ -44,6 +44,10 @@ export async function fetchBoeRows(opts: FetchOptions = {}): Promise<{
   rows: BoeRow[]
   daysFetched: number
   daysWithMatches: number
+  /** Days whose fetch failed at the network level — NOT the same as a 404 on a Sunday. */
+  daysFailed: number
+  /** Size of the requested window, so `daysFetched` has a denominator. */
+  daysRequested: number
 }> {
   const fetchImpl = opts.fetchImpl ?? fetch
   const days = opts.days ?? 30
@@ -93,5 +97,8 @@ export async function fetchBoeRows(opts: FetchOptions = {}): Promise<{
     console.warn(`[boe] ${daysFailed}/${days} days failed at the network level`)
   }
   rows.sort((a, b) => b.publicacionDate.localeCompare(a.publicacionDate))
-  return { rows, daysFetched, daysWithMatches }
+  // `daysFailed` is returned, not just logged. A real BOE outage otherwise
+  // showed up only as a lower `daysFetched`, indistinguishable from the
+  // Sundays and festivos when the BOE legitimately publishes nothing.
+  return { rows, daysFetched, daysWithMatches, daysFailed, daysRequested: days }
 }

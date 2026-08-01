@@ -98,9 +98,21 @@ async function main() {
   let art218:
     | (Art218Row & { ejercicio: number | null; sourceUrl: string; sourceTitle: string })
     | null = null
-  const ciEell = all.find((r) =>
-    /control interno (en|de) las entidades|ejercicio del control interno/i.test(r.title),
-  )
+  // Pick the NEWEST, not the first the search happens to return. The card
+  // labels this box "art. 218 · lo más reciente", and `find` returns whatever
+  // order the Sindicatura's result table is in — so the day it lists an older
+  // control-interno report first, the page asserts an older ejercicio is the
+  // latest. The year is in the URL, which is the only place it is reliable.
+  const ciEellYear = (r: { url: string }) => {
+    const m =
+      r.url.match(/(?:EELL|entidades[_ ]locales)[_ ]?(\d{4})/i) || r.url.match(/_(\d{4})_cas/)
+    return m ? parseInt(m[1], 10) : 0
+  }
+  const ciEell = all
+    .filter((r) =>
+      /control interno (en|de) las entidades|ejercicio del control interno/i.test(r.title),
+    )
+    .sort((a, b) => ciEellYear(b) - ciEellYear(a))[0]
   if (ciEell) {
     const row = await fetchArt218(ciEell.url)
     if (row) {

@@ -34,7 +34,9 @@ function getFlag(name: string): string | null {
 async function main() {
   const days = Number(getFlag('--days')) || 30
   console.log(`[scrape:boe] walking last ${days} day(s) of BOE for Riba-roja matches`)
-  const { rows, daysFetched, daysWithMatches } = await fetchBoeRows({ days })
+  const { rows, daysFetched, daysWithMatches, daysFailed, daysRequested } = await fetchBoeRows({
+    days,
+  })
 
   const byDepartamento: Record<string, number> = {}
   for (const r of rows) {
@@ -53,6 +55,8 @@ async function main() {
     stats: {
       daysFetched,
       daysWithMatches,
+      daysFailed,
+      daysRequested,
       total: rows.length,
       byDepartamento,
     },

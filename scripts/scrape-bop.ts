@@ -82,7 +82,17 @@ async function main() {
       home: 'https://bop.dival.es/bop/',
       note: `Last ${DAYS} days · anuncios del Ayuntamiento de Riba-roja de Túria`,
     },
-    stats: { total: anuncios.length, daysCovered, latestDate: anuncios[0]?.date ?? null },
+    stats: {
+      total: anuncios.length,
+      daysCovered,
+      // Persisted so a partial outage is visible in the snapshot. It was
+      // counted and then thrown away, so 21 of 30 days loaded looked exactly
+      // like 30 of 30 to anyone reading the file — or the card, which says
+      // "en los últimos 30 días".
+      daysRequested: DAYS,
+      fetchFailures,
+      latestDate: anuncios[0]?.date ?? null,
+    },
     anuncios,
   }
 

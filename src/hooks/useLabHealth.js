@@ -23,6 +23,11 @@ export const LAB_SOURCES = [
   { path: '/data/tenders-ted.json', label: 'Contratos · EU TED', group: 'core' },
   { path: '/data/bdns.json', label: 'Subvenciones · BDNS', group: 'core' },
   { path: '/data/boe.json', label: 'BOE', group: 'core' },
+  // These three are rendered on /quejas, /datos and /cargos/:slug but had no
+  // health row, so a stale or broken snapshot behind them was invisible here.
+  { path: '/data/bop.json', label: 'BOP València', group: 'core' },
+  { path: '/data/sindicatura.json', label: 'Sindicatura de Comptes', group: 'core' },
+  { path: '/data/transparency-docs.json', label: 'Portal de Transparencia', group: 'core' },
   { path: '/data/padron.json', label: 'Padrón · INE', group: 'core' },
   { path: '/data/paro.json', label: 'Paro · SEPE', group: 'core' },
   { path: '/data/plenos.json', label: 'Plenos · sesiones', group: 'core' },
@@ -75,6 +80,14 @@ function countOf(blob) {
   if (Array.isArray(blob.suggestions)) return blob.suggestions.length
   if (blob.stats && typeof blob.stats.total === 'number') return blob.stats.total
   if (blob.totals && typeof blob.totals.items === 'number') return blob.totals.items
+  // ctbg.json and consell-cv.json expose `matched[]` + stats.matchedEntries;
+  // without these two the dashboard showed "—" for both, which reads as
+  // "could not load" rather than "loaded, nothing matched".
+  if (Array.isArray(blob.matched)) return blob.matched.length
+  if (blob.stats && typeof blob.stats.matchedEntries === 'number') return blob.stats.matchedEntries
+  if (Array.isArray(blob.docs)) return blob.docs.length
+  if (Array.isArray(blob.dedicated) || Array.isArray(blob.sectoral))
+    return (blob.dedicated?.length ?? 0) + (blob.sectoral?.length ?? 0)
   if (blob.snapshot && typeof blob.snapshot === 'object') return 1
   return null
 }

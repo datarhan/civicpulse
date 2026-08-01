@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T06:46:23.727Z",
+  "generatedAt": "2026-08-01T19:50:20.478Z",
   "source": {
     "name": "Boletín Oficial de la Provincia de València",
     "home": "https://bop.dival.es/bop/",
@@ -8,6 +8,8 @@
   "stats": {
     "total": 8,
     "daysCovered": 21,
+    "daysRequested": 30,
+    "fetchFailures": 0,
     "latestDate": "2026-07-27"
   },
   "anuncios": [

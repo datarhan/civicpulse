@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T06:46:04.293Z",
+  "generatedAt": "2026-08-01T19:50:06.465Z",
   "source": {
     "url": "https://www.boe.es/datosabiertos/api/boe/sumario/{YYYYMMDD}",
     "matchPattern": "riba-roja | ribarroja | ribaroja (case-insensitive)",
@@ -8,6 +8,8 @@
   "stats": {
     "daysFetched": 27,
     "daysWithMatches": 4,
+    "daysFailed": 0,
+    "daysRequested": 30,
     "total": 4,
     "byDepartamento": {
       "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE": 1,

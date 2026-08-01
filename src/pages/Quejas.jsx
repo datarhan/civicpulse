@@ -309,6 +309,17 @@ function SindicaturaCard() {
                 {sectoral.map((r) => (
                   <Report key={r.id} r={r} dedicatedRow={false} />
                 ))}
+                {/* The snapshot caps the list; the count above is the full
+                    total. Saying "28" and listing 15 without a word reads as a
+                    rendering bug or a silent omission. */}
+                {st.sectoralRelevant > sectoral.length && (
+                  <div
+                    className="mono"
+                    style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 6 }}
+                  >
+                    Mostrando los {sectoral.length} más recientes de {st.sectoralRelevant}.
+                  </div>
+                )}
               </div>
             </details>
           )}
@@ -886,6 +897,8 @@ function BopCard() {
   const { data } = useBop()
   if (!data) return null
   const anuncios = (data.anuncios || []).slice(0, 6)
+  const covered = data.stats?.daysCovered ?? null
+  const requested = data.stats?.daysRequested ?? null
   const when = fmtDateShort(data.generatedAt)
   return (
     <Card style={{ marginTop: 14 }}>
@@ -895,7 +908,12 @@ function BopCard() {
       />
       {anuncios.length === 0 ? (
         <div style={{ marginTop: 10, fontSize: 13, color: 'var(--ink50)' }}>
-          Sin anuncios del Ayuntamiento en el BOP en los últimos 30 días.
+          {/* The window we ASKED for and the window we actually read are not the
+              same number — 21 of 30 bulletins loaded on the current snapshot —
+              and saying "in the last 30 days" implies we looked at all 30. */}
+          {covered != null && requested != null && covered < requested
+            ? `Sin anuncios del Ayuntamiento en los ${covered} boletines del BOP que hemos podido leer (ventana de ${requested} días).`
+            : 'Sin anuncios del Ayuntamiento en el BOP en los últimos 30 días.'}
         </div>
       ) : (
         <div style={{ marginTop: 10 }}>

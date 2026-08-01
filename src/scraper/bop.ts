@@ -35,7 +35,15 @@ export interface BopAnuncio {
 export interface BopSnapshot {
   generatedAt: string
   source: { name: string; home: string; note: string }
-  stats: { total: number; daysCovered: number; latestDate: string | null }
+  stats: {
+    total: number
+    daysCovered: number
+    /** Window size, so daysCovered has a denominator. Absent before 2026-08. */
+    daysRequested?: number
+    /** Bulletins whose fetch failed. Absent before 2026-08. */
+    fetchFailures?: number
+    latestDate: string | null
+  }
   anuncios: BopAnuncio[]
 }
 
