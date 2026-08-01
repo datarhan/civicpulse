@@ -199,13 +199,19 @@ export function computeDepartmentStats({
   const quejaList = quejas?.items ?? []
   const CLOSED_STATES = new Set(['resuelta', 'cerrada_no_registrada'])
   for (const q of quejaList) {
-    // Quejas are categorized by `category` (snake_case) which canonicalizes
-    // directly via departments.ts rules.
-    const slug = canonicalizeDepartment(q.category)
+    // quejas.json is an Open311 GeoReport payload (bot/src/services/snapshot.ts),
+    // so the category is `service_code` and the lifecycle is `status`. This read
+    // `q.category` / `q.state` — names no published snapshot has ever carried —
+    // so canonicalizeDepartment(undefined) returned null and EVERY queja was
+    // skipped for EVERY department. The unit fixture used the same invented
+    // shape, so the suite stayed green while /departamentos showed zero citizen
+    // complaints. The fallbacks keep the older hand-written shape working.
+    const slug = canonicalizeDepartment(q.service_code ?? q.category)
     if (!slug || !buckets[slug]) continue
+    const status = q.status ?? q.state
     buckets[slug].quejas.total += 1
-    if (!CLOSED_STATES.has(q.state)) buckets[slug].quejas.abiertas += 1
-    if (q.state === 'silencio_negativo') buckets[slug].quejas.silencios += 1
+    if (!CLOSED_STATES.has(status)) buckets[slug].quejas.abiertas += 1
+    if (status === 'silencio_negativo') buckets[slug].quejas.silencios += 1
   }
 
   // Verified claims (deterministic + LLM second-pass). Each claim's topic

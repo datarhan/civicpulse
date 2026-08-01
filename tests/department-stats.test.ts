@@ -115,11 +115,15 @@ const votes = {
   ],
 }
 
+// Open311 field names, exactly as bot/src/services/snapshot.ts emits them into
+// public/data/quejas.json. The previous fixture used {category, state}, which
+// no real snapshot has ever carried — so this suite passed while production
+// bucketed every queja into nothing.
 const quejas = {
   items: [
-    { id: 'q1', category: 'urbanismo', state: 'en_tramite' },
-    { id: 'q2', category: 'urbanismo', state: 'silencio_negativo' },
-    { id: 'q3', category: 'medio_ambiente', state: 'resuelta' },
+    { service_request_id: 'q1', service_code: 'urbanismo', status: 'en_tramite' },
+    { service_request_id: 'q2', service_code: 'urbanismo', status: 'silencio_negativo' },
+    { service_request_id: 'q3', service_code: 'medio_ambiente', status: 'resuelta' },
   ],
 }
 
@@ -333,7 +337,9 @@ describe('claimsSummary cross-tab path', () => {
 
   it('claimsSummary takes precedence over claims when both are present', () => {
     const viaBoth = computeDepartmentStats({
-      claims: { items: [{ claim: { topic: 'urbanismo' }, verification: { verdict: 'verificado' } }] },
+      claims: {
+        items: [{ claim: { topic: 'urbanismo' }, verification: { verdict: 'verificado' } }],
+      },
       claimsSummary: {},
     })
     const anyDecl = Object.values(viaBoth.bySlug).some((b) => b.declaraciones.total > 0)

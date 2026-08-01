@@ -1,52 +1,19 @@
 {
-  "generatedAt": "2026-08-01T14:41:41.524Z",
+  "generatedAt": "2026-08-01T15:21:21.099Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 2,
+    "total": 1,
     "byEngine": {
-      "regex": 2
+      "regex": 1
     },
     "byPleno": {
-      "rx4hb4": 1,
       "c8kr44": 1
     }
   },
   "items": [
-    {
-      "plenoId": "rx4hb4",
-      "plenoDate": "2026-02-09",
-      "itemNumber": null,
-      "excerpt": "caso\n[14288.4 → 14290.4] y los otros compañeros en otros casos\n[14290.4 → 14292.4] trabajar, trabajar y trabajar\n[14292.4 → 14294.4] así que vamos a pasar a la votación de este punto\n[14294.4 → 14296.4] es un punto importante pero me ha quedado muy desagradable\n[14296.4 → 14298.4] lo que ha pasado, vamos a votar por favor\n[14298.4 → 14301.3] voto a favor, abstención\n[14301.3 → 14303.3] voto en con",
-      "outcome": "aprobado",
-      "votes": [
-        {
-          "bloc": "PSOE",
-          "direction": "a_favor"
-        },
-        {
-          "bloc": "PP",
-          "direction": "en_contra"
-        },
-        {
-          "bloc": "VOX",
-          "direction": "abstencion"
-        },
-        {
-          "bloc": "Compromís",
-          "direction": "abstencion"
-        }
-      ],
-      "confidence": 0.7,
-      "requiresHumanApproval": true,
-      "engine": "regex",
-      "regmeetCheck": {
-        "regmeetOutcome": null,
-        "status": "no-regmeet"
-      }
-    },
     {
       "plenoId": "c8kr44",
       "plenoDate": "2025-09-08",
