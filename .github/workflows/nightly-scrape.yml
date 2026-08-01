@@ -12,7 +12,7 @@ on:
 
 concurrency:
   group: scrape
-  cancel-in-progress: false  # guard against overlapping runs
+  cancel-in-progress: false # guard against overlapping runs
 
 jobs:
   scrape:
@@ -32,6 +32,11 @@ jobs:
         uses: actions/checkout@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          # Full history: the Commit step rebases onto origin/main when a
+          # local push races this run, and rebasing inside the default
+          # depth-1 shallow clone is unreliable. ~105 MB / 900 commits —
+          # a few seconds against a ~10-minute scrape.
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v5
@@ -143,7 +148,44 @@ jobs:
               -m "Pipelines: $ADAPTERS" \
               -m "Triggered: $EVENT_NAME" \
               -m "Scrape rc: ${SCRAPE_RC:-step-timeout} (partial refresh commits the adapters that succeeded)"
-            git push origin HEAD
+
+            # A bare `git push` loses the ENTIRE night's data whenever main
+            # moves during the ~10-min run: the push is rejected
+            # non-fast-forward and the commit dies with the runner. That is
+            # not hypothetical — 2026-07-31 lost a clean refresh (oficial=50)
+            # because a local `data(journalist)` commit landed at 07:26Z,
+            # between this job's 07:19Z checkout and its 07:29Z push. Local
+            # cron pipelines (hallazgos 09:30, press-lab 10:15 Madrid) push
+            # into exactly this window every day, so rebase and retry.
+            #
+            # Rebase is safe here: this job only ever stages scraper-owned
+            # files under public/data, and the curated snapshots the local
+            # crons touch (journalist-reports, pleno-findings, promises…)
+            # are never written by scrapers, so the two sets don't overlap.
+            # A genuine conflict therefore means an assumption broke — abort
+            # and fail loudly rather than clobber curated editorial work.
+            pushed=false
+            for attempt in 1 2 3 4 5; do
+              if git push origin HEAD; then
+                pushed=true
+                break
+              fi
+              echo "::warning::push attempt $attempt rejected — rebasing onto origin/${GITHUB_REF_NAME} and retrying"
+              git fetch origin "$GITHUB_REF_NAME"
+              if ! git rebase "origin/${GITHUB_REF_NAME}"; then
+                git rebase --abort || true
+                echo "::error::Rebase conflict against origin/${GITHUB_REF_NAME} — a curated file collided with a scraper output. Refusing to force-push over editorial work; this night's data was NOT committed."
+                echo "changed=false" >> "$GITHUB_OUTPUT"
+                exit 1
+              fi
+              sleep $((attempt * 5))
+            done
+
+            if [ "$pushed" != true ]; then
+              echo "::error::Could not push refreshed data after 5 attempts — main is moving faster than the retry window."
+              echo "changed=false" >> "$GITHUB_OUTPUT"
+              exit 1
+            fi
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
