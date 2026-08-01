@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url'
 import { verifyPressClaimsBatch } from '../src/scraper/press-verifier'
 import type { PressClaim } from '../src/scraper/press-claim'
 import { asTenderRow, type TenderTedRow } from '../src/scraper/tenders-ted'
+import { classifyClaimVisibility } from '../src/scraper/claim-public-gate'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -43,7 +44,10 @@ async function readJson<T = unknown>(path: string): Promise<T | null> {
 }
 
 async function main() {
-  const claimsSnap = (await readJson(PATHS.claims)) as { items?: PressClaim[] } | null
+  const claimsSnap = (await readJson(PATHS.claims)) as {
+    items?: PressClaim[]
+    generatedAt?: string
+  } | null
   if (!claimsSnap || !Array.isArray(claimsSnap.items)) {
     throw new Error(
       `[verify:press-claims] press-claims-suggestions.json missing or invalid. Run npm run extract:press-claims first.`,
@@ -94,6 +98,35 @@ async function main() {
     factchecks,
     boe,
   })
+
+  // Apply the SAME editorial gate the pleno ledger uses, at WRITE time.
+  //
+  // The pleno monoliths are kept out of the deploy entirely (.vercelignore) so
+  // ungated accusation verbatim is never fetchable; the SPA reads pre-gated
+  // chunks instead. /laboratorio has no chunk layer — it fetches this file
+  // directly — and it was neither excluded nor gated, while
+  // ALLOWED_PRESS_CLAIM_TYPES includes `acusacion_publica` with an `opinativa`
+  // subtype. Latent only because the extractor has emitted zero accusations so
+  // far; the first one would have published an ungated opinion-accusation
+  // naming a person, verbatim.
+  const kept = snap.items.filter((it) => classifyClaimVisibility(it as never) !== 'hidden')
+  const dropped = snap.items.length - kept.length
+  if (dropped > 0) {
+    console.warn(
+      `[verify:press-claims] withheld ${dropped} claim(s) from the public file ` +
+        `(opinion accusations / ungrounded accusations)`,
+    )
+  }
+  snap.items = kept
+  // Where the CLAIMS came from, alongside when we last re-verified them.
+  // `verifyPressClaimsBatch` stamps `generatedAt` with "now" unconditionally,
+  // so on 2026-08-01 the extraction step timed out (exit 124, every LLM
+  // backend exhausted), the verifier ran anyway over the previous day's
+  // suggestions, and the page's freshness chip read "hoy" over 1-day-old
+  // claims with nothing in the snapshot recording that the upstream step had
+  // failed.
+  ;(snap as unknown as { sourceGeneratedAt?: string | null }).sourceGeneratedAt =
+    (claimsSnap as { generatedAt?: string }).generatedAt ?? null
 
   await mkdir(dirname(PATHS.out), { recursive: true })
   await writeFile(PATHS.out, JSON.stringify(snap, null, 2) + '\n')

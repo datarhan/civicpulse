@@ -55,7 +55,15 @@ export function usePressLab() {
       // editorially leans on (verifier output + curated findings).
       // Worst-case wins so the chip doesn't claim a fresher snapshot
       // than the verifier actually ran.
-      const stamps = [verified?.generatedAt, findings?.generatedAt].filter(Boolean)
+      // `sourceGeneratedAt` is when the CLAIMS were extracted; `generatedAt` is
+      // when we last re-verified them. The verifier re-stamps itself on every
+      // run even when the extraction step failed, so taking the oldest of the
+      // three is the only one of them that cannot overstate freshness.
+      const stamps = [
+        verified?.sourceGeneratedAt,
+        verified?.generatedAt,
+        findings?.generatedAt,
+      ].filter(Boolean)
       const generatedAt = stamps.length > 0 ? stamps.sort()[0] : null
       setState({
         loading: false,

@@ -250,8 +250,15 @@ function applyFactCheckCrossRef(
 
 // ─── BOE cross-reference ───────────────────────────────────────────────────
 
-const BOE_TRIGGER_RE =
-  /\b(ordenanza|decreto|resoluci[óo]n|reglamento|convenio|expropiaci[óo]n|sanci[óo]n|plan general|subvenci[óo]n)\b/i
+// Both languages. 8 of the 10 extracted claims come from the Periòdic del Camp
+// de Túria, which publishes in Valencian, and none of the Spanish-only
+// alternations below matched their forms — `ordenança`, `decret`, `resolució`,
+// `conveni`, `expropiació`, `sanció`, `subvenció`. Measured on the live
+// snapshot: 0 of 10 claims cleared this gate, so `applyBoeCrossRef` returned
+// early on every one and the BOE corroboration documented in CLAUDE.md had
+// never produced a single evidence row.
+export const _BOE_TRIGGER_RE =
+  /(?<!\p{L})(ordenan[zç]a|decret(?:o|s)?|resoluci[óo]n?|reglament(?:o|s)?|conveni(?:o|s)?|expropiaci[óo]n?|sanci[óo]n?|pla(?:n)? general|subvenci[óo]n?)(?!\p{L})/iu
 
 function tokenise(s: string): Set<string> {
   return new Set(
@@ -315,7 +322,7 @@ function applyBoeCrossRef(
   boe: BoeRow[],
 ): ClaimVerification {
   if (boe.length === 0) return inner
-  if (!BOE_TRIGGER_RE.test(claim.verbatim)) return inner
+  if (!_BOE_TRIGGER_RE.test(claim.verbatim)) return inner
   const matches = matchBoe(claim, boe)
   if (matches.length === 0) return inner
 
