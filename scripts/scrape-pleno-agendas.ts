@@ -176,6 +176,29 @@ async function main() {
   // walk can neither erase a good agenda nor publish a session as having
   // zero points (the f4fa424 incident).
   const { plenos: merged, carriedForward, refreshed } = mergeAgendaPlenos(existing, results)
+
+  // Re-derive the department of EVERY stored item from its own title, not just
+  // the ones fetched this run. departmentSlug is stamped at parse time, so a
+  // rule improvement used to reach only sessions that happened to be refetched
+  // — and with regmeet down that is almost none. Adding the Valencian
+  // department names (the corporation debates in Valencian; the table was
+  // Spanish-only) moved attribution from 34/362 to a real figure only once
+  // history was re-derived. Titles are stored, so this costs nothing and is
+  // idempotent.
+  let rederived = 0
+  for (const p of merged) {
+    for (const it of p.agenda) {
+      const slug = canonicalizeDepartment(it.department || it.title)
+      if (slug !== it.departmentSlug) {
+        it.departmentSlug = slug
+        if (slug) rederived += 1
+      }
+    }
+    p.departments = Array.from(
+      new Set(p.agenda.map((a) => a.department).filter(Boolean) as string[]),
+    )
+  }
+  if (rederived > 0) console.log(`[pleno-agendas] re-derived ${rederived} department tag(s)`)
   const deptCount: Record<string, number> = {}
   const itemCount = merged.reduce((s, r) => s + r.agendaCount, 0)
 

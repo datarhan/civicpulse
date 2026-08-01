@@ -98,6 +98,55 @@ export const DEPARTMENT_LABEL: Record<DepartmentSlug, DepartmentLabel> = {
 // already normalized (stripDiacritics + toLowerCase) so the rule engine
 // can do plain substring tests. Multi-word keys let us match phrases.
 const RULES: Array<{ match: string; slug: DepartmentSlug }> = [
+  // ── Valencian ────────────────────────────────────────────────────────────
+  // The corporation holds its plenos in Valencian, so agenda items arrive as
+  // "MEDI AMBIENT, Expedient 4297/2024/GEN – …" while this table was
+  // Spanish-only: 2 of 24 real department names resolved, leaving 328 of 362
+  // agenda items with no concejalía and 91% of council business invisible per
+  // official. These are the exact names the ayuntamiento writes, not fuzzy
+  // inference. Listed first, and most-specific-first within the block, because
+  // matching is first-wins.
+  { match: 'servicis juridics', slug: 'servicios-generales' },
+  { match: 'serveis juridics', slug: 'servicios-generales' },
+  { match: 'servicis socials', slug: 'servicios-sociales' },
+  { match: 'serveis socials', slug: 'servicios-sociales' },
+  { match: 'servicis generals', slug: 'servicios-generales' },
+  { match: 'serveis generals', slug: 'servicios-generales' },
+  { match: 'benestar animal', slug: 'bienestar-animal' },
+  { match: 'seguretat ciutadana', slug: 'seguridad' },
+  { match: 'obres publiques', slug: 'obras-publicas' },
+  { match: 'medi ambient', slug: 'medio-ambiente' },
+  { match: 'emergencia climatica', slug: 'medio-ambiente' },
+  { match: 'parcs i jardins', slug: 'medio-ambiente' },
+  { match: 'urbanisme', slug: 'urbanismo' },
+  { match: 'activitats', slug: 'urbanismo' },
+  { match: 'joventut', slug: 'juventud' },
+  { match: 'igualtat', slug: 'igualdad' },
+  { match: 'contractacio', slug: 'contratacion' },
+  // Intervención is the comptroller — the hacienda area in this corporation.
+  { match: 'intervencio', slug: 'hacienda' },
+  { match: 'hisenda', slug: 'hacienda' },
+  { match: 'tresoreria', slug: 'hacienda' },
+  { match: 'innovacio', slug: 'innovacion' },
+  { match: 'educacio', slug: 'educacion' },
+  { match: 'esports', slug: 'deportes' },
+  { match: 'comerc', slug: 'comercio' },
+  { match: 'ocupacio', slug: 'empleo-economia' },
+  { match: 'foment economic', slug: 'empleo-economia' },
+  { match: 'festes', slug: 'fiestas' },
+  { match: 'turisme', slug: 'turismo' },
+  { match: 'habitatge', slug: 'vivienda' },
+  { match: 'participacio', slug: 'transparencia' },
+  { match: 'transparencia', slug: 'transparencia' },
+  { match: 'mobilitat', slug: 'movilidad' },
+  { match: 'majors', slug: 'mayores' },
+  { match: 'comunicacio', slug: 'comunicacion' },
+  { match: 'personal', slug: 'recursos-humanos' },
+  { match: 'secretaria', slug: 'servicios-generales' },
+  { match: 'sanitat', slug: 'salud' },
+  { match: 'agricultura', slug: 'agricultura' },
+  { match: 'cultura', slug: 'cultura' },
+  // ── Spanish ──────────────────────────────────────────────────────────────
   // Most specific first — "servicios juridicos" must match before "servicios"
   { match: 'bienestar animal', slug: 'bienestar-animal' },
   { match: 'protocolo y bienestar', slug: 'bienestar-animal' },
