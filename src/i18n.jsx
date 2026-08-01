@@ -260,6 +260,17 @@ const CATALOGUE = {
     // Departamentos — per-concejalía accountability dashboard
     // Cargo (per-concejal) detail
     'cargos.detalle.notFound': 'Concejal no encontrado.',
+    'hallazgos.area.filtered': 'Filtrado por área',
+    'hallazgos.area.clear': 'ver todos',
+    'hallazgos.area.note':
+      'Hallazgos cuyas declaraciones se clasifican en esta área. La atribución de cada hallazgo es al GRUPO político que habló, nunca a una persona concreta.',
+    'cargos.detalle.actividad.eyebrow': 'Actividad de sus áreas',
+    'cargos.detalle.actividad.title': 'Qué se ha debatido y verificado en sus concejalías',
+    'cargos.detalle.actividad.intro':
+      'Cifras de las áreas que dirige, no de la persona. Las votaciones se registran por grupo político y las declaraciones se atribuyen al grupo que habló, nunca a un concejal concreto: por eso se enlazan aquí en lugar de mostrarse bajo su ficha.',
+    'cargos.detalle.actividad.votos': 'votaciones',
+    'cargos.detalle.actividad.declaraciones': 'declaraciones con evidencia',
+    'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
     'cargos.detalle.pago.eyebrow': 'Retribución · acuerdo plenario',
     'cargos.detalle.pago.title': 'Qué cobra por el cargo',
     'cargos.detalle.pago.sinDedicacion':
@@ -554,6 +565,17 @@ const CATALOGUE = {
     'cambios.title': 'Novetats',
 
     'cargos.detalle.notFound': 'Regidor/a no trobat/da.',
+    'hallazgos.area.filtered': 'Filtrat per àrea',
+    'hallazgos.area.clear': 'veure tots',
+    'hallazgos.area.note':
+      "Troballes les declaracions de les quals es classifiquen en esta àrea. L'atribució de cada troballa és al GRUP polític que va parlar, mai a una persona concreta.",
+    'cargos.detalle.actividad.eyebrow': 'Activitat de les seues àrees',
+    'cargos.detalle.actividad.title': "Què s'ha debatut i verificat a les seues regidories",
+    'cargos.detalle.actividad.intro':
+      "Xifres de les àrees que dirigeix, no de la persona. Les votacions es registren per grup polític i les declaracions s'atribueixen al grup que va parlar, mai a un regidor concret: per això s'enllacen ací en lloc de mostrar-se sota la seua fitxa.",
+    'cargos.detalle.actividad.votos': 'votacions',
+    'cargos.detalle.actividad.declaraciones': 'declaracions amb evidència',
+    'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
     'cargos.detalle.pago.eyebrow': 'Retribució · acord plenari',
     'cargos.detalle.pago.title': 'Què cobra pel càrrec',
     'cargos.detalle.pago.sinDedicacion':

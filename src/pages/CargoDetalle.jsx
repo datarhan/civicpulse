@@ -153,6 +153,72 @@ function Retribucion({ slug }) {
   )
 }
 
+/**
+ * Doorway to the group-level record, deliberately NOT a display of it.
+ *
+ * Votes, declarations and findings are bloc-level in the source data:
+ * `pleno-votes` records per-party tallies rather than individual ballots, and
+ * `speakerGroup` is a political group by explicit design. Rendering any of
+ * their CONTENT under a person's photograph would manufacture individual
+ * attribution the data cannot support. Counts of the área's activity, labelled
+ * as the área's and linking to pages whose framing is already correct, carry
+ * the reader across without making the claim here.
+ */
+function AreaActivity({ slugs }) {
+  const t = useT()
+  const { locale } = useLocale()
+  const { data } = useDepartmentStats()
+  if (!data || slugs.length === 0) return null
+  const rows = slugs.map((sl) => data.bySlug?.[sl]).filter(Boolean)
+  if (rows.length === 0) return null
+  return (
+    <section style={{ marginBottom: 28 }}>
+      <SectionHead
+        eyebrow={t('cargos.detalle.actividad.eyebrow')}
+        title={t('cargos.detalle.actividad.title')}
+      />
+      <Card>
+        <div style={{ fontSize: 12.5, color: 'var(--ink70)', marginBottom: 12, lineHeight: 1.5 }}>
+          {t('cargos.detalle.actividad.intro')}
+        </div>
+        {rows.map((b) => (
+          <div
+            key={b.slug}
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'baseline',
+              gap: 10,
+              flexWrap: 'wrap',
+              padding: '8px 0',
+              borderTop: '1px solid var(--border2)',
+              fontSize: 13,
+            }}
+          >
+            <Link
+              to={`/departamentos/${b.slug}`}
+              style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+            >
+              {locale === 'ca' ? b.labelCa : b.labelEs} →
+            </Link>
+            <span style={{ fontSize: 11.5, color: 'var(--ink60)' }}>
+              <span className="mono">{b.plenoVotes.total}</span>{' '}
+              {t('cargos.detalle.actividad.votos')}
+              {' · '}
+              <span className="mono">{b.declaraciones.conEvidencia}</span>{' '}
+              {t('cargos.detalle.actividad.declaraciones')}
+              {' · '}
+              <Link to={`/hallazgos?area=${b.slug}`} style={{ color: 'var(--civic)' }}>
+                {t('cargos.detalle.actividad.hallazgos')}
+              </Link>
+            </span>
+          </div>
+        ))}
+      </Card>
+    </section>
+  )
+}
+
 function MiniStat({ label, value, tone }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
@@ -375,6 +441,7 @@ export default function CargoDetalle() {
 
       <Retribucion slug={official.slug} />
       <AreaSpend slugs={slugs} />
+      <AreaActivity slugs={slugs} />
 
       {/* Portfolio department chips */}
       {slugs.length > 0 && (

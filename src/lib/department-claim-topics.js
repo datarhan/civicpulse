@@ -13,7 +13,15 @@
  * filter on ClaimLedger). Keeping a single map prevents drift.
  */
 export const DEPT_TO_CLAIM_TOPICS = Object.freeze({
-  alcaldia: ['other'],
+  // Alcaldía and Innovación used to claim the `other` topic, which is the
+  // classifier's "could not determine" bucket, not a subject area. The effect
+  // was visible on /departamentos: both showed 439 declaraciones — the same
+  // number, because both were fed solely by the catch-all — telling readers
+  // that 439 contrastable statements belonged to those areas when in fact
+  // nobody knew what they were about. The file's own comment below already
+  // said `'other' → unrouted`; the map disagreed with it. Unrouted now, so
+  // both honestly report zero until a real topic maps to them.
+  alcaldia: [],
   urbanismo: ['urbanismo', 'vivienda'],
   'obras-publicas': ['urbanismo', 'movilidad'],
   'medio-ambiente': ['medio-ambiente'],
@@ -39,7 +47,7 @@ export const DEPT_TO_CLAIM_TOPICS = Object.freeze({
   'recursos-humanos': ['fiscal'],
   'servicios-generales': ['transparencia'],
   'bienestar-animal': ['medio-ambiente'],
-  innovacion: ['other'],
+  innovacion: [],
   comunicacion: ['transparencia'],
 })
 

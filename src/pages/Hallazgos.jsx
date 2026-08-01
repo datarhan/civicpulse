@@ -1,10 +1,13 @@
 import { useMemo, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { Card, Pill, ExtLink } from '../components/Primitives'
 import ClaimReviewJsonLd from '../components/ClaimReviewJsonLd'
 import DataAsOf from '../components/DataAsOf'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
 import { PARTY_TONE } from '../hooks/usePromises'
+import { usePlenoClaims } from '../hooks/usePlenoClaims'
+import { findingMatchesArea } from '../lib/finding-area'
+import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT } from '../i18n'
 
 function MiniStat({ label, value, tone }) {
@@ -338,6 +341,12 @@ export default function Hallazgos() {
   const [severityFilter, setSeverityFilter] = useState(null)
   const [speakerFilter, setSpeakerFilter] = useState(null)
   const [plenoFilter, setPlenoFilter] = useState(null)
+  // Área arrives in the URL so a councillor's page can deep-link here. The
+  // findings themselves carry no department: the link runs
+  // finding → sourceClaimIds → claim.topic → department, reusing the same
+  // mapping /departamentos uses, so both surfaces agree on what an área means.
+  const areaFilter = new URLSearchParams(location.search).get('area')
+  const { data: claimsForArea } = usePlenoClaims()
 
   const items = useMemo(() => data?.items ?? [], [data])
 
@@ -364,9 +373,10 @@ export default function Hallazgos() {
         if (!speakers.has(speakerFilter)) return false
       }
       if (plenoFilter && f.plenoDate !== plenoFilter) return false
+      if (!findingMatchesArea(f, areaFilter, claimsForArea)) return false
       return true
     })
-  }, [items, severityFilter, speakerFilter, plenoFilter])
+  }, [items, severityFilter, speakerFilter, plenoFilter, areaFilter, claimsForArea])
 
   // Group by pleno date
   const groups = useMemo(() => {
@@ -389,6 +399,29 @@ export default function Hallazgos() {
 
   return (
     <div style={{ padding: '28px 28px 48px', maxWidth: 1000, margin: '0 auto' }}>
+      {/* Deep-linked from a councillor's page. Says plainly that the filter is
+          an ÁREA, not a person — findings name political groups, never
+          individuals, and arriving here from someone's profile must not blur
+          that. */}
+      {areaFilter && DEPARTMENT_LABEL[areaFilter] && (
+        <Card style={{ marginBottom: 16, background: 'var(--soft)' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap' }}>
+            <span
+              className="mono"
+              style={{ fontSize: 10.5, color: 'var(--ink50)', letterSpacing: '.06em' }}
+            >
+              {t('hallazgos.area.filtered')}
+            </span>
+            <strong style={{ fontSize: 14 }}>{DEPARTMENT_LABEL[areaFilter].es}</strong>
+            <Link to="/hallazgos" style={{ fontSize: 12, color: 'var(--civic)' }}>
+              {t('hallazgos.area.clear')}
+            </Link>
+          </div>
+          <div style={{ fontSize: 11.5, color: 'var(--ink60)', marginTop: 6, lineHeight: 1.5 }}>
+            {t('hallazgos.area.note')}
+          </div>
+        </Card>
+      )}
       <div style={{ marginBottom: 18 }}>
         <div
           className="mono"
