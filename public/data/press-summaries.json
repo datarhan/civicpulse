@@ -1,61 +1,55 @@
 {
-  "generatedAt": "2026-07-31T08:15:10.934Z",
+  "generatedAt": "2026-08-01T08:55:14.665Z",
   "source": {
     "description": "Neutral editorial summaries for press articles audited by the lab",
     "contract": "src/scraper/press-summary-llm.ts"
   },
   "stats": {
-    "total": 8,
-    "requested": 8
+    "total": 7,
+    "requested": 7
   },
   "items": [
     {
       "articleId": "gqglxs",
       "fingerprint": "1jggbak",
       "summary": "El Ayuntamiento de Riba-roja de Túria destinará 61.000 euros a una programación de artes escénicas a través del programa PLATEA. Esta inversión busca fomentar la cultura y el acceso a las artes en la localidad.",
-      "generatedAt": "2026-07-31T08:15:10.930Z"
+      "generatedAt": "2026-08-01T08:55:14.660Z"
     },
     {
       "articleId": "8ka1c8",
       "fingerprint": "y7xc58",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha dado un paso adelante en la construcción de un nuevo centro de salud. Este proyecto busca mejorar la atención sanitaria en la localidad y se enmarca dentro de las iniciativas para modernizar los servicios públicos en la zona.",
-      "generatedAt": "2026-07-31T08:15:10.932Z"
+      "generatedAt": "2026-08-01T08:55:14.661Z"
     },
     {
       "articleId": "15xyao0",
       "fingerprint": "1948dow",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha reconocido a 31 deportistas y 18 clubes durante la celebración de la Nit de l'Esport 2026. Este evento tiene como objetivo destacar los logros y contribuciones al deporte local.",
-      "generatedAt": "2026-07-31T08:15:10.932Z"
+      "generatedAt": "2026-08-01T08:55:14.662Z"
     },
     {
       "articleId": "v9agr0",
       "fingerprint": "qjvz8u",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha celebrado la Nit de l'Esport 2026, donde se han premiado a 31 deportistas y 18 clubes por sus logros en diversas disciplinas. Este evento busca reconocer el esfuerzo y dedicación de los atletas locales y fomentar el deporte en la comunidad.",
-      "generatedAt": "2026-07-31T08:15:10.933Z"
+      "generatedAt": "2026-08-01T08:55:14.663Z"
     },
     {
       "articleId": "pcyu6o",
       "fingerprint": "11xy7us",
       "summary": "La empresa Helados Estiu ha reportado la venta de 46 millones de litros de gelato durante la temporada estival. Esta cifra refleja el volumen de producción y distribución alcanzado en el mercado local. La actividad de la empresa contribuye a la economía de la región.",
-      "generatedAt": "2026-07-31T08:15:10.933Z"
+      "generatedAt": "2026-08-01T08:55:14.663Z"
     },
     {
       "articleId": "rsig4c",
       "fingerprint": "7ufsj8",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha presentado el 'Pacadar 360', un nuevo parque urbano que ocupará 5 hectáreas. Este espacio verde ha sido diseñado para adaptarse al nuevo contexto climático, buscando mejorar la calidad de vida de los ciudadanos y fomentar la sostenibilidad en la localidad.",
-      "generatedAt": "2026-07-31T08:15:10.934Z"
+      "generatedAt": "2026-08-01T08:55:14.664Z"
     },
     {
       "articleId": "hwjyxk",
       "fingerprint": "oun6xw",
       "summary": "El Ayuntamiento de Riba-roja de Túria ha informado que el número de desempleados en la localidad ha disminuido en casi 100 personas desde junio del año pasado. Esta reducción en la tasa de desempleo se enmarca en las iniciativas locales para fomentar el empleo y la formación en la zona.",
-      "generatedAt": "2026-07-31T08:15:10.934Z"
-    },
-    {
-      "articleId": "1jxa9ng",
-      "fingerprint": "r7hnyw",
-      "summary": "El Consell ha anunciado una inversión de 23,6 millones de euros para la ampliación de la depuradora en Riba-roja de Túria. Esta obra tiene como objetivo mejorar la capacidad de tratamiento de aguas residuales en la localidad, beneficiando así a la población y al medio ambiente.",
-      "generatedAt": "2026-07-31T08:15:10.934Z"
+      "generatedAt": "2026-08-01T08:55:14.665Z"
     }
   ]
 }
