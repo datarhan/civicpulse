@@ -231,6 +231,12 @@ export default function PlenoDetalle() {
   )
 
   const agendaItems = agenda?.agenda ?? []
+  // No record in plenos-agendas.json means the orden del día was never
+  // ingested — regmeet blocks CI and goes down for stretches, so a session
+  // can sit unfetched for weeks. That is NOT the same as a session that met
+  // and resolved nothing, and rendering it as "0 puntos" asserted exactly
+  // that about a real council meeting.
+  const agendaKnown = agenda !== undefined
   const claimItems = useMemo(() => chunk?.items ?? [], [chunk])
   const groundedCount = useMemo(
     () => claimItems.filter((it) => GROUNDED.has(it.verification?.verdict)).length,
@@ -254,7 +260,11 @@ export default function PlenoDetalle() {
 
   const TABS = [
     { key: 'resumen', label: t('plenoDetail.summary'), count: null },
-    { key: 'agenda', label: t('plenoDetail.agenda'), count: agendaItems.length },
+    {
+      key: 'agenda',
+      label: t('plenoDetail.agenda'),
+      count: agendaKnown ? agendaItems.length : null,
+    },
     { key: 'votos', label: t('plenoDetail.votes'), count: votes.length },
     { key: 'declaraciones', label: t('plenoDetail.declarations'), count: groundedCount || null },
     { key: 'hallazgos', label: t('plenoDetail.findings'), count: findings.length },
@@ -304,7 +314,11 @@ export default function PlenoDetalle() {
           marginTop: 16,
         }}
       >
-        <Tile label={t('plenoDetail.agenda')} value={agendaItems.length} />
+        <Tile
+          label={t('plenoDetail.agenda')}
+          value={agendaKnown ? agendaItems.length : '—'}
+          sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
+        />
         <Tile
           label={t('plenoDetail.votes')}
           value={votes.length}
@@ -381,8 +395,14 @@ export default function PlenoDetalle() {
       {tab === 'resumen' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
           <div style={{ fontSize: 13.5, color: 'var(--ink70)', lineHeight: 1.55 }}>
-            <strong style={{ color: 'var(--ink)' }}>{agendaItems.length}</strong> puntos en el orden
-            del día
+            {agendaKnown ? (
+              <>
+                <strong style={{ color: 'var(--ink)' }}>{agendaItems.length}</strong> puntos en el
+                orden del día
+              </>
+            ) : (
+              <span>{t('plenoDetail.agendaPendingLong')}</span>
+            )}
             {votes.length > 0 && (
               <>
                 {' · '}
@@ -461,8 +481,9 @@ export default function PlenoDetalle() {
 
           {votes.length === 0 && claimItems.length === 0 && findings.length === 0 && (
             <EmptyNote>
-              Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni
-              hallazgos para esta sesión.
+              {agendaKnown
+                ? t('plenoDetail.empty.summary')
+                : t('plenoDetail.empty.summaryNoAgenda')}
             </EmptyNote>
           )}
         </div>
@@ -476,7 +497,9 @@ export default function PlenoDetalle() {
             ))}
           </Card>
         ) : (
-          <EmptyNote>{t('plenoDetail.empty.agenda')}</EmptyNote>
+          <EmptyNote>
+            {agendaKnown ? t('plenoDetail.empty.agenda') : t('plenoDetail.empty.agendaPending')}
+          </EmptyNote>
         ))}
 
       {tab === 'votos' &&

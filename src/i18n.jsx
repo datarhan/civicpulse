@@ -238,6 +238,16 @@ const CATALOGUE = {
     'plenoDetail.empty.agenda': 'Sin orden del día publicado para esta sesión.',
     'plenoDetail.empty.votes': 'Sin votaciones transcritas del acta para esta sesión.',
     'plenoDetail.empty.findings': 'Sin hallazgos editoriales para esta sesión.',
+    // "Todavía no lo hemos recogido" ≠ "no hubo puntos". La sesión se celebró;
+    // lo que falta es nuestra ingesta, no el orden del día.
+    'plenoDetail.agendaPending': 'sin recoger',
+    'plenoDetail.agendaPendingLong': 'Orden del día aún no recogido para esta sesión',
+    'plenoDetail.empty.agendaPending':
+      'Todavía no hemos podido recoger el orden del día de esta sesión desde la sede de plenos. La sesión se celebró; el dato falta por nuestra parte, no por la del Ayuntamiento.',
+    'plenoDetail.empty.summary':
+      'Sesión registrada. Aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos para esta sesión.',
+    'plenoDetail.empty.summaryNoAgenda':
+      'Sesión registrada. Todavía no hemos recogido su orden del día, y aún no hay votaciones transcritas, declaraciones contrastables ni hallazgos.',
 
     // Quejas empty state
     'quejas.empty.title': 'El canal de quejas ciudadanas ya está abierto — no hay datos todavía',
@@ -515,6 +525,14 @@ const CATALOGUE = {
     'plenoDetail.empty.agenda': 'Sense ordre del dia publicat per a aquesta sessió.',
     'plenoDetail.empty.votes': "Sense votacions transcrites de l'acta per a aquesta sessió.",
     'plenoDetail.empty.findings': 'Sense troballes editorials per a aquesta sessió.',
+    'plenoDetail.agendaPending': 'sense recollir',
+    'plenoDetail.agendaPendingLong': 'Ordre del dia encara no recollit per a aquesta sessió',
+    'plenoDetail.empty.agendaPending':
+      "Encara no hem pogut recollir l'ordre del dia d'aquesta sessió des de la seu de plens. La sessió es va celebrar; la dada falta per la nostra banda, no per la de l'Ajuntament.",
+    'plenoDetail.empty.summary':
+      'Sessió registrada. Encara no hi ha votacions transcrites, declaracions contrastables ni troballes per a aquesta sessió.',
+    'plenoDetail.empty.summaryNoAgenda':
+      'Sessió registrada. Encara no hem recollit el seu ordre del dia, i encara no hi ha votacions transcrites, declaracions contrastables ni troballes.',
 
     'quejas.empty.title': 'El canal de queixes ciutadanes ja està obert — encara no hi ha dades',
     'dashboard.empty.title': 'El canal està obert, encara no hi ha queixes',
