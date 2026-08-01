@@ -1,31 +1,22 @@
 // @ts-check
 import { useJsonFetch } from './useJsonFetch'
 
-// Missing suggestions file is expected before any transcription has run;
-// resolve to an empty snapshot on 404 rather than an error. Module-level
-// constant so the effect deps in useJsonFetch stay stable.
-const EMPTY_VOTE_SUGGESTIONS = { items: [], stats: { total: 0 } }
-
-export const KIND_LABEL = {
-  ordinario: 'Ordinario',
-  extraordinario: 'Extraordinario',
-  urgente: 'Urgente',
-  otro: 'Otro',
-}
-
-export const KIND_TONE = {
-  ordinario: 'civic',
-  extraordinario: 'intel',
-  urgente: 'warn',
-  otro: 'neutral',
-}
+// Removed 2026-08-01, all unused with zero importers anywhere in src/:
+//
+//   · KIND_LABEL / KIND_TONE — PlenoDetalle renders only `video.url` and
+//     `video.title`, so a video's `kind` reaches no surface. Which is just as
+//     well: the classifier misses the upstream typo "Ple extrordinari" and
+//     disagrees with plenos.json on two records.
+//   · usePlenoVoteSuggestions — pleno-votes-suggestions.json is regenerated
+//     daily by the pipeline and rendered nowhere. The curator vote queue reads
+//     it server-side, not through this hook. (It also lived in the wrong
+//     module: votes are not videos.)
+//
+// Dead exports are worse than no exports here — they read as "this surface
+// exists", and the next person wires a page to a hook nothing feeds.
 
 export function usePlenoVideos() {
   return useJsonFetch('/data/pleno-videos.json')
-}
-
-export function usePlenoVoteSuggestions() {
-  return useJsonFetch('/data/pleno-votes-suggestions.json', EMPTY_VOTE_SUGGESTIONS)
 }
 
 /** Build a Map<plenoId, videoEntry> for O(1) lookups in render. */
