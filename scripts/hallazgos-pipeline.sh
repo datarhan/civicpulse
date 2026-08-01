@@ -131,8 +131,16 @@ if [ -n "$TARGETS" ]; then
       if WHISPER_BATCH_SIZE=1 bash scripts/transcribe-pleno.sh "$id"; then ok=1; fi
     fi
     if [ "$ok" = 1 ]; then
-      log "extracting claims from $id (agy/$AGY_MODEL)…"
-      if npm run extract:pleno-claims -- "$id"; then
+      log "extracting claims from $id (agy/$AGY_MODEL · \$0 backends only)…"
+      # Same $0 policy the auto-curate step below already enforces. The
+      # transcription step above legitimately needs OPENAI_API_KEY, so the key
+      # is present in this shell — which meant the extractor's backend chain
+      # could walk agy → claude-code → openai and bill silently whenever the
+      # $0 backends were throttled. (Exactly how the press-lab pipeline leaked
+      # on 2026-08-01; there it was masked only by the account being out of
+      # credits.) Strip the metered keys for THIS command only, so a throttled
+      # $0 backend defers the extraction instead of paying for it.
+      if env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY npm run extract:pleno-claims -- "$id"; then
         NEW=$((NEW+1)); log "✓ $id claims extracted"
       else
         log "warn: claim extract failed for $id — transcript kept, claims incomplete"

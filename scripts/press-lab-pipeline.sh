@@ -101,6 +101,28 @@ step() {
     RESULTS="${RESULTS}  ❌ ${label} (exit ${rc})\n"; log "✗ ${label} FAILED (exit ${rc})"
   fi
 }
+# Same $0 policy as auto-curate-press, applied to EVERY LLM step.
+#
+# Until now only auto-curate-press was guarded, so when the claude-code probe
+# failed the client's fallback chain walked claude-code → openai → gemini and
+# reached metered OpenAI unsupervised. On 2026-08-01 that leak was invisible
+# purely because the account was out of credits ("You have no credits
+# remaining" in the log); the moment credits were topped up the next run would
+# have billed press extraction against them silently.
+#
+# gemini stays reachable (free tier is $0 and is an approved backend); only the
+# metered keys are stripped. A deferred step beats a metered one. Runs in a
+# SUBSHELL because `step`/`bounded` are shell functions that `env` cannot exec,
+# and so the unset stays scoped to this step.
+free_step() {
+  local label="$1"; shift
+  if ( unset OPENAI_API_KEY ANTHROPIC_API_KEY; "$@" ); then
+    RESULTS="${RESULTS}  ✅ ${label}\n"; log "✓ ${label}"
+  else
+    local rc=$?
+    RESULTS="${RESULTS}  ❌ ${label} (exit ${rc})\n"; log "✗ ${label} FAILED (exit ${rc}) — \$0 backends unavailable, NOT falling back to metered"
+  fi
+}
 # Run a command under the hard LLM_TIMEOUT wall-clock cap (perl: macOS lacks
 # `timeout`). SIGALRM survives exec, so the tsx child is killed if it hangs.
 bounded() {
@@ -117,9 +139,9 @@ bounded() {
 
 # factcheck first so the verifier can cross-reference Newtral/Maldita/EFE.
 step "scrape:factcheck"        npx tsx scripts/scrape-factcheck.ts
-step "extract:press-claims"    bounded npx tsx scripts/extract-press-claims.ts --max "$MAX_EXTRACT"
-step "verify:press-claims"     npx tsx scripts/verify-press-claims.ts
-step "summarize:press"         bounded npx tsx scripts/summarize-press.ts --max "$MAX_SUMMARIZE"
+free_step "extract:press-claims"    bounded npx tsx scripts/extract-press-claims.ts --max "$MAX_EXTRACT"
+step      "verify:press-claims"     npx tsx scripts/verify-press-claims.ts
+free_step "summarize:press"         bounded npx tsx scripts/summarize-press.ts --max "$MAX_SUMMARIZE"
 step "compute:press-analytics" npx tsx scripts/compute-press-analytics.ts
 
 # auto-curate-press must NEVER go metered (project policy: $0 backends only).
