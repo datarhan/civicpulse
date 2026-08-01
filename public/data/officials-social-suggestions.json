@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-08-01T11:52:16.796Z",
+  "municipality": "Riba-roja de Túria",
+  "method": "Role-scoped web search via the repo dispatcher (SearXNG first). Candidates survive only when the result text names the person AND their office. No username enumeration.",
+  "requiresHumanApproval": true,
+  "suggestions": [
+    {
+      "slug": "robert-raga-gadea",
+      "platform": "instagram",
+      "handle": "robertalcalde",
+      "url": "https://www.instagram.com/robertalcalde",
+      "evidence": "Robert Raga (@robertalcalde) • Instagram photos and videos — 4,383 Followers, 1,952 Following, 479 Posts - Robert Raga (@robertalcalde) on Instagram: \"🌹 Alcalde de Riba-roja de Túria\"",
+      "evidenceUrl": "https://www.instagram.com/robertalcalde/",
+      "addedAt": "2026-08-01",
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "query": "\"Robert Raga\" instagram alcalde Riba-roja"
+    },
+    {
+      "slug": "robert-raga-gadea",
+      "platform": "facebook",
+      "handle": "ambrobert",
+      "url": "https://www.facebook.com/ambrobert",
+      "evidence": "Robert Raga Alcalde de Riba-roja de Túria | RIBA-ROJA DE TURIA — Robert Raga Alcalde de Riba-roja de Túria, RIBA-ROJA DE TURIA. 3,148 likes · 151 talking about this · 92 were here. Pàgina oficial de Robert Raga....",
+      "evidenceUrl": "https://www.facebook.com/ambrobert/",
+      "addedAt": "2026-08-01",
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "query": "\"Robert Raga\" instagram alcalde Riba-roja"
+    },
+    {
+      "slug": "robert-raga-gadea",
+      "platform": "x",
+      "handle": "RobertRaga",
+      "url": "https://x.com/RobertRaga",
+      "evidence": "Robert Raga (@RobertRaga) / Posts / X — 28 de dic de 2011 · ️ La delegada y @RobertRaga visitan las obras del Gobierno de reparación del Túria en Riba-roja. También, el proyecto anti incendios Guardian. 👉 Riba-roja optarà a fons europeus …",
+      "evidenceUrl": "https://x.com/RobertRaga",
+      "addedAt": "2026-08-01",
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "query": "\"Robert Raga\" instagram alcalde Riba-roja"
+    }
+  ]
+}
