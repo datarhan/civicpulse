@@ -24,15 +24,16 @@
  *
  * Usage: npm run scrape:press
  */
-import { mkdir, writeFile } from 'node:fs/promises'
+import { mkdir, writeFile, readFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import {
   parseGoogleNewsRss,
   parseStandardRss,
   parseOfficialNewsRss,
-  mergeNewsItems,
+  mergeWithCarryForward,
   type NewsItem,
+  type FeedOutcome,
 } from '../src/scraper/press'
 import { withRetry, isTransientFetchError } from '../src/scraper/retry'
 
@@ -68,6 +69,34 @@ async function fetchXml(url: string, ua: string = UA): Promise<string> {
   return res.text()
 }
 
+/**
+ * The ribarroja.es WAF answers 403 (not a 5xx) when it dislikes a caller's
+ * IP reputation — which is how a GitHub runner gets turned away while the
+ * same request from a laptop succeeds. `isTransientFetchError` classes 4xx
+ * as permanent and skips the retry, so a WAF block used to burn the feed on
+ * the first attempt. Gateway-block statuses are worth one more try.
+ */
+function isTransientOrBlocked(err: unknown): boolean {
+  if (err instanceof Error) {
+    const code = Number(err.message.match(/HTTP (\d{3})/)?.[1])
+    if (code === 401 || code === 403 || code === 451) return true
+  }
+  return isTransientFetchError(err)
+}
+
+/**
+ * Last published snapshot, used to carry a failed feed forward. A missing or
+ * corrupt file is not fatal — it just means nothing to recover.
+ */
+async function readPreviousItems(): Promise<NewsItem[]> {
+  try {
+    const prev = JSON.parse(await readFile(OUT, 'utf8')) as { items?: unknown }
+    return Array.isArray(prev.items) ? (prev.items as NewsItem[]) : []
+  } catch {
+    return []
+  }
+}
+
 async function safeFetch(label: string, url: string, ua: string = UA): Promise<string | null> {
   try {
     console.log(`[press] fetching ${label}: ${url}`)
@@ -76,7 +105,7 @@ async function safeFetch(label: string, url: string, ua: string = UA): Promise<s
     // retried (isTransientFetchError).
     return await withRetry(() => fetchXml(url, ua), {
       retries: 2,
-      shouldRetry: isTransientFetchError,
+      shouldRetry: isTransientOrBlocked,
       onRetry: (err, attempt) =>
         console.warn(
           `[press] ${label} attempt ${attempt + 1} failed (${(err as Error).message}) — retrying…`,
@@ -91,61 +120,67 @@ async function safeFetch(label: string, url: string, ua: string = UA): Promise<s
 }
 
 async function main() {
-  const feedsMeta: Array<{ url: string; platform: string; ok: boolean; items: number }> = []
+  const previousItems = await readPreviousItems()
 
-  let gnewsItems: NewsItem[] = []
   const gnewsXml = await safeFetch('Google News', GOOGLE_URL)
-  if (gnewsXml) {
-    gnewsItems = parseGoogleNewsRss(gnewsXml)
-    feedsMeta.push({
-      url: GOOGLE_URL,
-      platform: 'Google News RSS',
-      ok: true,
-      items: gnewsItems.length,
-    })
-  } else {
-    feedsMeta.push({ url: GOOGLE_URL, platform: 'Google News RSS', ok: false, items: 0 })
-  }
-
-  let infoturiaItems: NewsItem[] = []
   const infoturiaXml = await safeFetch('infoturia.com', INFOTURIA_URL)
-  if (infoturiaXml) {
-    infoturiaItems = parseStandardRss(infoturiaXml, {
-      defaultSource: 'Periòdic del Camp de Túria',
-      defaultHost: 'infoturia.com',
-    })
-    feedsMeta.push({
-      url: INFOTURIA_URL,
-      platform: 'WordPress RSS',
-      ok: true,
-      items: infoturiaItems.length,
-    })
-  } else {
-    feedsMeta.push({ url: INFOTURIA_URL, platform: 'WordPress RSS', ok: false, items: 0 })
-  }
-
   // The Ayuntamiento's OWN news feed (Drupal). Primary source — stamped
   // official:true + a Sección taxonomy by parseOfficialNewsRss. Needs the
   // Mozilla UA to clear the ribarroja.es WAF.
-  let officialItems: NewsItem[] = []
   const officialXml = await safeFetch('ribarroja.es (oficial)', OFICIAL_URL, MOZILLA_UA)
-  if (officialXml) {
-    officialItems = parseOfficialNewsRss(officialXml)
-    feedsMeta.push({
+
+  // Ordered by trust: official first (the town hall's primary-source voice),
+  // then infoturia (direct local outlet), then Google News aggregation — so
+  // the higher-trust attribution wins on a fingerprint collision.
+  //
+  // `owns` locates each feed's rows in the PREVIOUS snapshot, which is what
+  // lets a failed fetch carry forward instead of deleting published items.
+  // The predicates must stay mutually exclusive and cover every row.
+  const feeds: Array<FeedOutcome & { url: string; platform: string }> = [
+    {
       url: OFICIAL_URL,
       platform: 'Drupal RSS (oficial)',
-      ok: true,
-      items: officialItems.length,
-    })
-  } else {
-    feedsMeta.push({ url: OFICIAL_URL, platform: 'Drupal RSS (oficial)', ok: false, items: 0 })
-  }
+      ok: officialXml !== null,
+      items: officialXml ? parseOfficialNewsRss(officialXml) : [],
+      owns: (i) => i.official === true,
+    },
+    {
+      url: INFOTURIA_URL,
+      platform: 'WordPress RSS',
+      ok: infoturiaXml !== null,
+      items: infoturiaXml
+        ? parseStandardRss(infoturiaXml, {
+            defaultSource: 'Periòdic del Camp de Túria',
+            defaultHost: 'infoturia.com',
+          })
+        : [],
+      owns: (i) => i.official !== true && i.sourceHost === 'infoturia.com',
+    },
+    {
+      url: GOOGLE_URL,
+      platform: 'Google News RSS',
+      ok: gnewsXml !== null,
+      items: gnewsXml ? parseGoogleNewsRss(gnewsXml) : [],
+      owns: (i) => i.official !== true && i.sourceHost !== 'infoturia.com',
+    },
+  ]
 
-  // Merge official first (the town hall's primary-source voice), then
-  // infoturia (direct local outlet), then Google News aggregation — so the
-  // higher-trust attribution wins on a fingerprint collision (first-wins).
-  const items = mergeNewsItems(officialItems, infoturiaItems, gnewsItems)
+  const { items, carriedForward } = mergeWithCarryForward(feeds, previousItems)
   const sources = Array.from(new Set(items.map((i) => i.source))).sort()
+
+  // Feed health stays honest: a carried-forward feed still reports ok:false,
+  // and `carriedForward` says how many rows are being held over rather than
+  // freshly fetched.
+  const feedsMeta = feeds.map((f) => {
+    const recovered = f.ok ? 0 : previousItems.filter(f.owns).length
+    return {
+      url: f.url,
+      platform: f.platform,
+      ok: f.ok,
+      items: f.ok ? f.items.length : recovered,
+      ...(f.ok ? {} : { carriedForward: recovered }),
+    }
+  })
 
   const payload = {
     generatedAt: new Date().toISOString(),
@@ -154,6 +189,7 @@ async function main() {
       total: items.length,
       sources: sources.length,
       latestDate: items[0]?.date ?? null,
+      carriedForward,
     },
     sources,
     items,
@@ -164,8 +200,16 @@ async function main() {
   console.log(`[press] wrote ${OUT}`)
   console.log(
     `[press] ${items.length} items from ${sources.length} sources ` +
-      `(oficial=${officialItems.length}, infoturia=${infoturiaItems.length}, google=${gnewsItems.length})`,
+      feedsMeta.map((f) => `${f.platform.split(' ')[0]}=${f.items}`).join(', '),
   )
+  for (const f of feedsMeta) {
+    if (!f.ok) {
+      console.warn(
+        `[press] WARN ${f.platform} unreachable — carried ${f.carriedForward} item(s) ` +
+          `forward from the previous snapshot instead of dropping them.`,
+      )
+    }
+  }
 }
 
 main().catch((err) => {

@@ -223,6 +223,46 @@ export function mergeNewsItems(...lists: NewsItem[][]): NewsItem[] {
   return out
 }
 
+/** One feed's result for a single scrape run. */
+export interface FeedOutcome {
+  /** Items parsed this run (empty when the fetch failed). */
+  items: NewsItem[]
+  /** Did the fetch succeed? `false` means "unknown", NOT "nothing published". */
+  ok: boolean
+  /** Identifies this feed's rows inside a previous snapshot. */
+  owns: (item: NewsItem) => boolean
+}
+
+/**
+ * Merge this run's feeds, substituting the previous snapshot's rows for any
+ * feed that FAILED to fetch.
+ *
+ * Why: a failed fetch is missing information, not evidence that a source
+ * published nothing — but the old code treated the two identically and wrote
+ * the snapshot regardless. On 2026-07-30 the ribarroja.es WAF blocked the
+ * runner, the official feed recorded `ok:false, items:0`, and all 50
+ * town-hall articles were erased from the live site; the town hall's stream
+ * stayed blank for two days even though it never stopped publishing.
+ *
+ * A source going legitimately quiet (`ok:true`, zero items) is still
+ * published as zero — only unknowns are carried forward. Feed order is
+ * preserved, so the higher-trust attribution keeps winning the fingerprint
+ * dedup in `mergeNewsItems`.
+ */
+export function mergeWithCarryForward(
+  outcomes: FeedOutcome[],
+  previousItems: NewsItem[],
+): { items: NewsItem[]; carriedForward: number } {
+  let carriedForward = 0
+  const lists = outcomes.map((o) => {
+    if (o.ok) return o.items
+    const recovered = previousItems.filter(o.owns)
+    carriedForward += recovered.length
+    return recovered
+  })
+  return { items: mergeNewsItems(...lists), carriedForward }
+}
+
 export function parseGoogleNewsRss(xml: string): NewsItem[] {
   const items: NewsItem[] = []
   const seen = new Set<string>()
