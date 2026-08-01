@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-13T17:11:44.392Z",
+  "generatedAt": "2026-08-01T07:49:10.577Z",
   "source": {
     "portal": "https://conselltransparencia.gva.es",
     "platform": "Consell de Transparència, Accés a la Informació Pública i Bon Govern · Comunitat Valenciana",
     "tables": [
       {
         "year": 2026,
-        "url": "https://conselltransparencia.gva.es/documents/163244115/178037184/TABLA+RELACI%C3%93N+RESOLUCIONES+RECLAMACIONES+2026/ef19184b-d40f-49a0-8182-3484d29a78cc"
+        "url": "https://conselltransparencia.gva.es/documents/d/consell-de-transparencia/tabla-relacion-resoluciones-reclamaciones-2026-1"
       },
       {
         "year": 2025,
@@ -16,13 +16,39 @@
   },
   "query": "Riba-roja de Túria | Riba-roja del Turia | Ribarroja de Túria | Ribarroja del Turia",
   "stats": {
-    "totalEntries": 311,
-    "matchedEntries": 0,
+    "totalEntries": 465,
+    "matchedEntries": 2,
     "years": [
-      2025
+      2025,
+      2026
     ],
-    "bySentido": {},
-    "byMateria": {}
+    "bySentido": {
+      "Inadmisión": 2
+    },
+    "byMateria": {
+      "Función Pública": 2
+    }
   },
-  "matched": []
+  "matched": [
+    {
+      "year": 2026,
+      "numero": "99/2026",
+      "fecha": "2026-04-09",
+      "expediente": "GESOC/RE/2026/186",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "motivo": "Falta de respuesta",
+      "materia": "Función Pública",
+      "sentido": "Inadmisión"
+    },
+    {
+      "year": 2026,
+      "numero": "100/2026",
+      "fecha": "2026-04-09",
+      "expediente": "GESOC/RE/2026/187",
+      "administracion": "Ayuntamiento de Riba-roja de Túria",
+      "motivo": "Falta de respuesta",
+      "materia": "Función Pública",
+      "sentido": "Inadmisión"
+    }
+  ]
 }

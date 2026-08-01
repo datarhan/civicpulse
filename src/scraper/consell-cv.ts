@@ -25,8 +25,12 @@ import { normalizeAlphanumeric, RIBA_ROJA_ALIASES } from './normalize'
 // maintain the list here. Add the new URL each January.
 export const CONSELL_CV_TABLES: Array<{ year: number; url: string }> = [
   {
+    // The GVA re-published the 2026 table under Liferay's newer
+    // /documents/d/<site>/<slug> scheme; the old numeric-id + UUID URL has
+    // 404'd since at least 2026-06 and silently cost us every 2026
+    // resolución (the scraper degraded an HTTP error to "zero rows").
     year: 2026,
-    url: 'https://conselltransparencia.gva.es/documents/163244115/178037184/TABLA+RELACI%C3%93N+RESOLUCIONES+RECLAMACIONES+2026/ef19184b-d40f-49a0-8182-3484d29a78cc',
+    url: 'https://conselltransparencia.gva.es/documents/d/consell-de-transparencia/tabla-relacion-resoluciones-reclamaciones-2026-1',
   },
   {
     year: 2025,
@@ -144,6 +148,16 @@ export function parseConsellTable(buffer: Buffer | ArrayBuffer, year: number): C
     raw: false,
     defval: null,
   })
+  // Formatted values ("4/9/26") lose which half is the month, and the table
+  // is rendered month-first, so reading only `raw:false` turned resolución
+  // 99/2026 of 9 April into a not-yet-happened "2026-09-04". The parallel
+  // raw pass keeps the underlying Excel serial, which is unambiguous; text
+  // dates are untouched and still take the string path below.
+  const rawRows: unknown[][] = XLSX.utils.sheet_to_json(sheet, {
+    header: 1,
+    raw: true,
+    defval: null,
+  })
   if (rows.length === 0) return []
 
   // Find the header row in the first 3 rows (title row + optional gap).
@@ -167,7 +181,7 @@ export function parseConsellTable(buffer: Buffer | ArrayBuffer, year: number): C
     out.push({
       year,
       numero,
-      fecha: normaliseFecha(r[1]),
+      fecha: normaliseFecha(typeof rawRows[i]?.[1] === 'number' ? rawRows[i][1] : r[1]),
       expediente: clean(r[2]),
       administracion: clean(r[3]),
       motivo: clean(r[4]),
