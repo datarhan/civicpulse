@@ -1,4 +1,4 @@
-import { Card, Pill, ExtLink } from '../Primitives'
+import { Card, ExtLink } from '../Primitives'
 import { useTendersTed } from '../../hooks/useTendersTed'
 import { useT } from '../../i18n'
 

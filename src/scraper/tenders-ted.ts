@@ -109,12 +109,6 @@ export function resolveTedDate(
   return { date: `${y}-01-01T00:00:00.000Z`, approximate: true }
 }
 
-function safeDate(raw: string | undefined): string {
-  if (!raw) return new Date(0).toISOString()
-  const d = new Date(raw)
-  return Number.isFinite(d.getTime()) ? d.toISOString() : new Date(0).toISOString()
-}
-
 function projectAmount(v: ApiNotice['total-value']): { amount: number | null; currency: string } {
   if (v == null) return { amount: null, currency: 'EUR' }
   if (typeof v === 'number') return { amount: v, currency: 'EUR' }
