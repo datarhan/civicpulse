@@ -52,6 +52,8 @@ REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 VIDEOS_JSON="$REPO_ROOT/public/data/pleno-videos.json"
 TRANSCRIPT_DIR="$REPO_ROOT/public/data/pleno-transcripts"
 WORKDIR="$(mktemp -d -t civicpulse-pleno-XXXXXX)"
+CURL_AUTH_CONF="$WORKDIR/curl-auth.conf"
+(umask 077; : > "$CURL_AUTH_CONF")
 trap 'rm -rf "$WORKDIR"' EXIT
 
 mkdir -p "$TRANSCRIPT_DIR"
@@ -152,6 +154,10 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     echo "[transcribe] OPENAI_API_KEY not set — export it or add to .env" >&2
     exit 1
   fi
+  # Written once per run, mode 0600, inside the per-run temp dir the script's
+  # trap removes. `printf %s` (not echo) so a key containing a backslash or a
+  # leading dash survives verbatim.
+  printf 'header = "Authorization: Bearer %s"\n' "$OPENAI_API_KEY" > "$CURL_AUTH_CONF"
 
   # ── Chunked upload (duration-based) ──────────────────────────────────────
   # POSTMORTEM 2026-07-29: whisper-1 given ONE multi-hour request reliably
@@ -247,10 +253,14 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
       # own "Passem a la votació" landed on another councillor. Anonymous
       # clusters are honest; naming waits for a reference set that does not
       # over-match. See the voice-id channel-bias note.
+      # The key goes in a 0600 config file, not on the command line: curl's
+      # argv is world-readable in the process table, so `ps ax` on this machine
+      # printed the full OPENAI_API_KEY for the entire duration of every upload
+      # — and a pleno upload runs for tens of minutes.
       HTTP_CODE=$(curl -sS -o "$RESP_JSON" -w "%{http_code}" \
+        --config "$CURL_AUTH_CONF" \
         --connect-timeout 30 --max-time 1800 \
         https://api.openai.com/v1/audio/transcriptions \
-        -H "Authorization: Bearer $OPENAI_API_KEY" \
         -F file="@$CHUNK" \
         -F model="${OPENAI_TRANSCRIBE_MODEL:-gpt-4o-transcribe-diarize}" \
         -F "language[]=ca" \

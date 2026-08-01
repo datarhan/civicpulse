@@ -13,6 +13,7 @@ import { usePlenoVideos, indexVideosByPleno } from '../hooks/usePlenoVideos'
 import { usePlenoFindings } from '../hooks/usePlenoFindings'
 import { fmtDateLong, fmtDateShort } from '../lib/formatters'
 import { useT } from '../i18n'
+import { transcriptKind } from '../lib/transcript-kind.js'
 
 const GROUNDED = new Set(['verificado', 'parcial', 'contradicho'])
 
@@ -82,23 +83,44 @@ function TranscriptPanel({ plenoId }) {
   }, [plenoId])
   if (state.loading) return <EmptyNote>{t('plenoDetail.transcriptLoading')}</EmptyNote>
   if (state.missing) return <EmptyNote>{t('plenoDetail.transcriptMissing')}</EmptyNote>
+  const kind = transcriptKind(state.text)
   return (
-    <pre
-      style={{
-        whiteSpace: 'pre-wrap',
-        fontSize: 12,
-        lineHeight: 1.6,
-        color: 'var(--ink70)',
-        background: 'var(--soft)',
-        padding: 14,
-        borderRadius: 10,
-        maxHeight: '64vh',
-        overflow: 'auto',
-        margin: 0,
-      }}
-    >
-      {state.text}
-    </pre>
+    <>
+      {/* 23 of 42 files here are acta text, not audio. Identical extension,
+          identical line shape, identical tab — and a "verbatim" taken from an
+          acta quotes the secretary's already-condensed minutes, not what a
+          councillor said. Say which one the reader is looking at. */}
+      <div
+        style={{
+          fontSize: 11.5,
+          color: 'var(--ink60)',
+          marginBottom: 8,
+          lineHeight: 1.5,
+        }}
+      >
+        {kind === 'acta'
+          ? 'Texto del acta oficial, no del audio. Las marcas de tiempo son sintéticas: el acta es un resumen ya redactado por secretaría, así que una cita literal de aquí cita el acta, no la intervención.'
+          : kind === 'audio'
+            ? 'Transcripción automática del audio de la sesión. Puede contener errores de reconocimiento; el acta oficial prevalece.'
+            : null}
+      </div>
+      <pre
+        style={{
+          whiteSpace: 'pre-wrap',
+          fontSize: 12,
+          lineHeight: 1.6,
+          color: 'var(--ink70)',
+          background: 'var(--soft)',
+          padding: 14,
+          borderRadius: 10,
+          maxHeight: '64vh',
+          overflow: 'auto',
+          margin: 0,
+        }}
+      >
+        {state.text}
+      </pre>
+    </>
   )
 }
 
@@ -319,10 +341,14 @@ export default function PlenoDetalle() {
           value={agendaKnown ? agendaItems.length : '—'}
           sub={agendaKnown ? undefined : t('plenoDetail.agendaPending')}
         />
+        {/* `—`, not 0, when nothing is transcribed. Votes are curated by hand
+            from the acta and only 7 of 61 sessions have any, so "0" asserted
+            that an ordinario held no votes at all — which it certainly did.
+            The agenda tile beside it already made this distinction. */}
         <Tile
           label={t('plenoDetail.votes')}
-          value={votes.length}
-          sub={votes.length ? `${aprobados} aprob.` : undefined}
+          value={votes.length > 0 ? votes.length : '—'}
+          sub={votes.length ? `${aprobados} aprob.` : t('plenoDetail.votesPending')}
         />
         <Tile label={t('plenoDetail.declarations')} value={groundedCount} sub="con evidencia" />
         <Tile

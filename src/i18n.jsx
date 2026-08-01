@@ -236,7 +236,9 @@ const CATALOGUE = {
     'plenoDetail.transcriptMissing': 'Transcripción no disponible para esta sesión.',
     'plenoDetail.video': '▸ Ver vídeo',
     'plenoDetail.empty.agenda': 'Sin orden del día publicado para esta sesión.',
-    'plenoDetail.empty.votes': 'Sin votaciones transcritas del acta para esta sesión.',
+    'plenoDetail.empty.votes':
+      'Todavía no hemos transcrito las votaciones del acta de esta sesión. No significa que no las hubiera.',
+    'plenoDetail.votesPending': 'sin transcribir',
     'plenoDetail.empty.findings': 'Sin hallazgos editoriales para esta sesión.',
     // "Todavía no lo hemos recogido" ≠ "no hubo puntos". La sesión se celebró;
     // lo que falta es nuestra ingesta, no el orden del día.
@@ -570,7 +572,9 @@ const CATALOGUE = {
     'plenoDetail.transcriptMissing': 'Transcripció no disponible per a aquesta sessió.',
     'plenoDetail.video': '▸ Veure vídeo',
     'plenoDetail.empty.agenda': 'Sense ordre del dia publicat per a aquesta sessió.',
-    'plenoDetail.empty.votes': "Sense votacions transcrites de l'acta per a aquesta sessió.",
+    'plenoDetail.empty.votes':
+      "Encara no hem transcrit les votacions de l'acta d'aquesta sessió. No vol dir que no n'hi haguera.",
+    'plenoDetail.votesPending': 'sense transcriure',
     'plenoDetail.empty.findings': 'Sense troballes editorials per a aquesta sessió.',
     'plenoDetail.agendaPending': 'sense recollir',
     'plenoDetail.agendaPendingLong': 'Ordre del dia encara no recollit per a aquesta sessió',
