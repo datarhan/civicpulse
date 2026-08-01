@@ -271,6 +271,12 @@ const CATALOGUE = {
     'cargos.detalle.actividad.votos': 'votaciones',
     'cargos.detalle.actividad.declaraciones': 'declaraciones con evidencia',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
+    'cargos.detalle.mandato.eyebrow': 'Respaldo electoral',
+    'cargos.detalle.mandato.title': 'Con cuántos votos llegó su lista',
+    'cargos.detalle.mandato.municipales': 'municipales',
+    'cargos.detalle.mandato.note':
+      'Porcentaje de la candidatura, no de la persona: en las municipales se vota lista cerrada.',
+    'cargos.detalle.mandato.abstencion': 'abstención',
     'cargos.detalle.pago.eyebrow': 'Retribución · acuerdo plenario',
     'cargos.detalle.pago.title': 'Qué cobra por el cargo',
     'cargos.detalle.pago.sinDedicacion':
@@ -577,6 +583,12 @@ const CATALOGUE = {
     'cargos.detalle.actividad.votos': 'votacions',
     'cargos.detalle.actividad.declaraciones': 'declaracions amb evidència',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
+    'cargos.detalle.mandato.eyebrow': 'Suport electoral',
+    'cargos.detalle.mandato.title': 'Amb quants vots va arribar la seua llista',
+    'cargos.detalle.mandato.municipales': 'municipals',
+    'cargos.detalle.mandato.note':
+      'Percentatge de la candidatura, no de la persona: a les municipals es vota llista tancada.',
+    'cargos.detalle.mandato.abstencion': 'abstenció',
     'cargos.detalle.pago.eyebrow': 'Retribució · acord plenari',
     'cargos.detalle.pago.title': 'Què cobra pel càrrec',
     'cargos.detalle.pago.sinDedicacion':

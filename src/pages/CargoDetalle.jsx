@@ -7,6 +7,8 @@ import { useQuejas } from '../hooks/useQuejas'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
+import { useElections } from '../hooks/useElections'
+import { latestVoteShare } from '../lib/party-alias'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT, useLocale } from '../i18n'
 
@@ -214,6 +216,45 @@ function AreaActivity({ slugs }) {
             </span>
           </div>
         ))}
+      </Card>
+    </section>
+  )
+}
+
+/**
+ * The mandate this councillor's list actually won.
+ *
+ * A party-level fact, labelled as such: it is the group's vote share, not a
+ * personal score. Shown because "who put them there" is the first thing a
+ * citizen checking a councillor wants, and because elections.json was scraped
+ * nightly for months while reaching no page at all.
+ */
+function Mandato({ party }) {
+  const t = useT()
+  const { data } = useElections()
+  const share = latestVoteShare(data, party)
+  if (!share) return null
+  return (
+    <section style={{ marginBottom: 28 }}>
+      <SectionHead
+        eyebrow={t('cargos.detalle.mandato.eyebrow')}
+        title={t('cargos.detalle.mandato.title')}
+      />
+      <Card>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, flexWrap: 'wrap' }}>
+          <span className="mono" style={{ fontSize: 22, fontWeight: 700 }}>
+            {String(share.pct).replace('.', ',')} %
+          </span>
+          <span style={{ fontSize: 13, color: 'var(--ink70)' }}>
+            {share.ballotLabel} · {t('cargos.detalle.mandato.municipales')} {share.year}
+          </span>
+        </div>
+        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+          {t('cargos.detalle.mandato.note')}
+          {share.abstencionPct
+            ? ` · ${t('cargos.detalle.mandato.abstencion')} ${String(share.abstencionPct).replace('.', ',')} %`
+            : ''}
+        </div>
       </Card>
     </section>
   )
@@ -439,6 +480,7 @@ export default function CargoDetalle() {
         />
       </div>
 
+      <Mandato party={official.party} />
       <Retribucion slug={official.slug} />
       <AreaSpend slugs={slugs} />
       <AreaActivity slugs={slugs} />
