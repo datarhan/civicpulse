@@ -42,10 +42,22 @@ function pct(x: number): string {
   return (x * 100).toFixed(1) + '%'
 }
 
+/**
+ * Backends billed by SUBSCRIPTION, not per call. Their telemetry `costUSD` is
+ * the API-equivalent price the CLI reports for awareness — the actual bill is
+ * zero. Summing it into the same column as OpenAI/Anthropic made a day on which
+ * nothing was spent read as "$0.90", which is precisely the number an operator
+ * checks to confirm a run was free.
+ */
+const SUBSCRIPTION_BACKENDS = new Set(['claude-code', 'agy', 'gemini', 'ollama'])
+
 interface Agg {
   calls: number
   tokens: number
+  /** Money actually billed. Subscription backends contribute 0. */
   costUSD: number
+  /** What the same calls would have cost on a metered API. Never billed. */
+  notionalUSD: number
   latencyMsTotal: number
   retriesTotal: number
   hitCount: number // entries where result !== null
@@ -57,6 +69,7 @@ function newAgg(): Agg {
     calls: 0,
     tokens: 0,
     costUSD: 0,
+    notionalUSD: 0,
     latencyMsTotal: 0,
     retriesTotal: 0,
     hitCount: 0,
@@ -67,7 +80,9 @@ function newAgg(): Agg {
 function addEntry(agg: Agg, e: CacheEntry) {
   agg.calls += 1
   agg.tokens += e.tokenCount ?? 0
-  agg.costUSD += e.costUSD ?? 0
+  const c = e.costUSD ?? 0
+  if (SUBSCRIPTION_BACKENDS.has(e.backend)) agg.notionalUSD += c
+  else agg.costUSD += c
   agg.latencyMsTotal += e.latencyMs ?? 0
   agg.retriesTotal += e.retryCount ?? 0
   if (e.result === null) agg.nullCount += 1
@@ -174,7 +189,11 @@ async function main() {
   console.log(`Cache dir: ${cacheDir}`)
   if (sinceDays !== null) console.log(`Window: last ${sinceDays} day(s)`)
   console.log(
-    `Totals: ${total.tokens.toLocaleString('en-US')} tokens · ${euro(total.costUSD)} · ` +
+    `Totals: ${total.tokens.toLocaleString('en-US')} tokens · ${euro(total.costUSD)} billed` +
+      (total.notionalUSD > 0
+        ? ` (+${euro(total.notionalUSD)} on subscription plans — not billed)`
+        : '') +
+      ` · ` +
       `hit-rate ${pct(total.hitCount / total.calls)} · ` +
       `avg latency ${Math.round(total.latencyMsTotal / total.calls)}ms`,
   )
@@ -194,7 +213,8 @@ async function main() {
         backend: k,
         calls: v.calls,
         tokens: v.tokens.toLocaleString('en-US'),
-        '$ cost': euro(v.costUSD),
+        '$ billed': euro(v.costUSD),
+        'subs (not billed)': v.notionalUSD > 0 ? euro(v.notionalUSD) : '—',
         hits: `${v.hitCount} (${pct(v.hitCount / v.calls)})`,
         'avg ms': Math.round(v.latencyMsTotal / v.calls),
       })),
@@ -208,7 +228,8 @@ async function main() {
         model: k,
         calls: v.calls,
         tokens: v.tokens.toLocaleString('en-US'),
-        '$ cost': euro(v.costUSD),
+        '$ billed': euro(v.costUSD),
+        'subs (not billed)': v.notionalUSD > 0 ? euro(v.notionalUSD) : '—',
         'hit %': pct(v.hitCount / v.calls),
       })),
   )
@@ -233,7 +254,8 @@ async function main() {
       day: k,
       calls: v.calls,
       tokens: v.tokens.toLocaleString('en-US'),
-      '$ cost': euro(v.costUSD),
+      '$ billed': euro(v.costUSD),
+      'subs (not billed)': v.notionalUSD > 0 ? euro(v.notionalUSD) : '—',
       'hits (%)': `${v.hitCount} (${pct(v.hitCount / v.calls)})`,
     })),
   )
