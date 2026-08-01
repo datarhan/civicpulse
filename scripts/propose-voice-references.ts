@@ -53,19 +53,41 @@ interface DiarSegment {
  */
 export function matchAnnouncedOfficial(text: string, officials: Official[]): Official | null {
   const t = fold(text)
+  // Every way a councillor might be addressed: full name, leading prefixes
+  // ("José Ángel"), the surname pair, and each name alone.
+  const formsFor = (o: Official) => {
+    const p = fold(o.name).split(/\s+/).filter(Boolean)
+    const forms = new Set<string>([p.join(' '), ...p])
+    for (let n = 2; n < p.length; n++) forms.add(p.slice(0, n).join(' '))
+    if (p.length >= 2) forms.add(p.slice(-2).join(' '))
+    return [...forms].filter(Boolean)
+  }
+
+  // A form is only usable if it resolves to exactly ONE councillor across the
+  // whole roster. That — not word count — is the safety property: "Alfredo"
+  // names exactly one person here, while "José Luis" names two and so names
+  // nobody. Requiring multi-word forms instead found 1 of 18 on a real
+  // session, because the chair announces by first name.
+  const owners = new Map<string, Set<string>>()
+  for (const o of officials)
+    for (const f of formsFor(o)) {
+      if (!owners.has(f)) owners.set(f, new Set())
+      owners.get(f)!.add(o.slug)
+    }
+
   let best: { o: Official; len: number } | null = null
   for (const o of officials) {
-    const parts = fold(o.name).split(/\s+/).filter(Boolean)
-    if (parts.length < 2) continue
-    // Try progressively shorter prefixes of the full name, plus surname pairs.
-    const forms = [
-      parts.join(' '),
-      parts.slice(0, 3).join(' '),
-      parts.slice(0, 2).join(' '),
-      parts.slice(-2).join(' '),
-    ].filter((f) => f.split(' ').length >= 2)
-    for (const f of forms) {
-      if (t.includes(f) && (!best || f.length > best.len)) best = { o, len: f.length }
+    for (const f of formsFor(o)) {
+      if (owners.get(f)!.size > 1) continue // ambiguous — identifies nobody
+      // Token-bounded so "Raga" doesn't fire inside another word.
+      if (
+        !new RegExp(
+          `(^|[^\\p{L}])${f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\p{L}]|$)`,
+          'u',
+        ).test(t)
+      )
+        continue
+      if (!best || f.length > best.len) best = { o, len: f.length }
     }
   }
   return best?.o ?? null
@@ -229,7 +251,20 @@ async function main() {
   const wanted = officials.filter((o) => !enrolled.some((e) => e.slug === o.slug)).length
   const found = new Set<string>()
 
-  for (let c = 0; c * CHUNK < 1e9; c++) {
+  // Diarization is the only paid part, so its raw output is cached. Tuning the
+  // name matcher afterwards is then free — the first sweep of this session cost
+  // ~$0.90 and surfaced 1 councillor because the matcher was too strict, and
+  // re-running the whole session just to retry the matching would have cost the
+  // same again.
+  const segCache = resolve(work, 'segments.json')
+  let fromCache = false
+  if (process.argv.includes('--reanalyze') && existsSync(segCache)) {
+    segments.push(...JSON.parse(readFileSync(segCache, 'utf8')))
+    fromCache = true
+    console.log(`[voice-refs] re-analysing ${segments.length} cached segment(s) — no API calls`)
+  }
+
+  for (let c = 0; !fromCache && c * CHUNK < 1e9; c++) {
     const offset = c * CHUNK
     const part = resolve(work, `part-${c}.ogg`)
     execFileSync('ffmpeg', [
@@ -309,6 +344,7 @@ async function main() {
     for (const p of proposeFromSegments(segments, officials, new Set(enrolled.map((e) => e.name))))
       found.add(p.slug)
     console.log(`${part_segs.length} segs · ${found.size}/${wanted} councillors proposed so far`)
+    writeFileSync(segCache, JSON.stringify(segments)) // survive a mid-sweep abort
     if (found.size >= wanted) break
   }
   const knownSpeakers = new Set(enrolled.map((e) => e.name))

@@ -43,6 +43,36 @@ describe('propose-voice-references — matchAnnouncedOfficial', () => {
     expect(matchAnnouncedOfficial('Passem la paraula a José.', OFFICIALS)).toBeNull()
   })
 
+  it('accepts a bare given name when it is unique on the roster', () => {
+    // The chair almost always announces by first name only. Rejecting every
+    // bare given name found just 1 of 18 councillors on a real session; the
+    // safety property that matters is uniqueness, not how many words are said.
+    expect(matchAnnouncedOfficial('Endavant, Laura.', OFFICIALS)?.slug).toBe('laura-guzman-bruno')
+  })
+
+  it('resolves an ambiguous given name once a second name disambiguates it', () => {
+    expect(matchAnnouncedOfficial('Ara, José Ángel.', OFFICIALS)?.slug).toBe(
+      'jose-angel-hernandez-carrizosa',
+    )
+  })
+
+  it('still refuses a two-part form that remains ambiguous', () => {
+    const roster = [
+      { slug: 'jose-luis-ramos-march', name: 'José Luis Ramos March' },
+      { slug: 'jose-luis-fernandez-santamaria', name: 'José Luis Fernández Santamaría' },
+    ]
+    // Two José Luis on the roster — the pair identifies neither.
+    expect(matchAnnouncedOfficial('Té la paraula José Luis.', roster)).toBeNull()
+    // ...but the full name does.
+    expect(matchAnnouncedOfficial('Té la paraula José Luis Ramos March.', roster)?.slug).toBe(
+      'jose-luis-ramos-march',
+    )
+  })
+
+  it('matches a distinctive surname on its own', () => {
+    expect(matchAnnouncedOfficial('Gràcies, Guzman.', OFFICIALS)?.slug).toBe('laura-guzman-bruno')
+  })
+
   it('prefers the longest matching name form', () => {
     const hit = matchAnnouncedOfficial('José Ángel Hernández Carrizosa, endavant.', OFFICIALS)
     expect(hit?.slug).toBe('jose-angel-hernandez-carrizosa')
