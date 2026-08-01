@@ -8,6 +8,7 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { isCommittedContract } from '../src/lib/contract-status.js'
 import {
   parseRibalicitaContracts,
   parseRibalicitaTenders,
@@ -46,7 +47,7 @@ function topOpenTenders(list: Tender[], n: number): Tender[] {
 
 function topRecentAwardedContracts(list: Contract[], n: number): Contract[] {
   return [...list]
-    .filter((c) => c.status === 'awarded' && c.finalAmount > 0)
+    .filter((c) => isCommittedContract(c) && c.finalAmount > 0)
     .sort((a, b) => {
       const ad = a.awardDate ? new Date(a.awardDate).getTime() : 0
       const bd = b.awardDate ? new Date(b.awardDate).getTime() : 0
@@ -68,7 +69,7 @@ async function main() {
   // tax-excluded figure) and Spanish valor-estimado convention. Falls back to
   // the tax-included finalAmount only when a row lacks the sin-IVA value.
   const awardedTotal = contracts
-    .filter((c) => c.status === 'awarded')
+    .filter((c) => isCommittedContract(c))
     .reduce((s, c) => s + (c.finalAmountNoTaxes > 0 ? c.finalAmountNoTaxes : c.finalAmount || 0), 0)
 
   const payload = {
@@ -82,7 +83,7 @@ async function main() {
     stats: {
       totalContracts: contracts.length,
       totalTenders: tenders.length,
-      awardedContracts: contracts.filter((c) => c.status === 'awarded').length,
+      awardedContracts: contracts.filter((c) => isCommittedContract(c)).length,
       openTenders: tenders.filter((t) => t.status === 'open').length,
       awardedTotalEuros: awardedTotal,
     },

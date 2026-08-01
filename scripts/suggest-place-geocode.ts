@@ -24,6 +24,7 @@ import { ZONE_ALIASES } from '../src/scraper/tender-geo'
 import { geocodeContractsWithLlm, type GeocodeContract } from '../src/scraper/place-geocode-llm'
 import { validatePlaceSuggestions } from '../src/scraper/place-suggestion'
 import { PLACE_GEOCODE_PROMPT_VERSION } from '../src/llm/prompts'
+import { isCommittedContract } from '../src/lib/contract-status.js'
 
 const DATA = resolve('public/data')
 const OUT = resolve(DATA, 'place-suggestions.json')
@@ -84,7 +85,7 @@ async function main() {
     (tgeo.assignments || []).filter((a: any) => a.point).map((a: any) => a.id),
   )
   const candidates: GeocodeContract[] = (tenders.contracts || [])
-    .filter((c: any) => c.status === 'awarded' && amountOf(c) > 0 && !situated.has(c.id))
+    .filter((c: any) => isCommittedContract(c) && amountOf(c) > 0 && !situated.has(c.id))
     .map((c: any) => ({ id: c.id, title: c.title, amount: amountOf(c), date: dateOf(c) }))
 
   console.log(

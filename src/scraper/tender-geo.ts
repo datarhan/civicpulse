@@ -1,4 +1,5 @@
 import { stripDiacritics } from './normalize'
+import { isCommittedContract } from '../lib/contract-status.js'
 import {
   resolvePlace,
   resolveDistinctPlaces,
@@ -148,7 +149,7 @@ function amountOf(c: ContractInput): { amount: number; kind: 'final' | 'initial'
   // in-progress) are excluded entirely. Prefers the tax-excluded figure; falls
   // back to the tax-included finalAmount only when a row lacks the sin-IVA
   // value (none do today — defensive).
-  if (c.status !== 'awarded') return null
+  if (!isCommittedContract(c)) return null
   if (typeof c.finalAmountNoTaxes === 'number' && c.finalAmountNoTaxes > 0)
     return { amount: c.finalAmountNoTaxes, kind: 'final' }
   if (typeof c.finalAmount === 'number' && c.finalAmount > 0)

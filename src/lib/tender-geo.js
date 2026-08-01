@@ -3,6 +3,7 @@
  * Pure client helpers over a tender-geo snapshot. No React, no fetch — shared
  * by the dashboard components and unit-tested in isolation.
  */
+import { isCommittedContract } from './contract-status.js'
 
 /**
  * Canonical euro figure to DISPLAY and AGGREGATE for a contract — SIN IVA, to
@@ -100,8 +101,8 @@ export function moneyRadiusMeters(amount) {
 export function topContractors(contracts, n = 15, resolver = null) {
   const m = new Map()
   for (const c of contracts || []) {
-    // Awarded money only — "who received the awarded money". Sin IVA (PLACSP).
-    if (c.status !== 'awarded') continue
+    // Committed money only — "who received the money". Sin IVA (PLACSP).
+    if (!isCommittedContract(c)) continue
     const amount = contractAmount(c)
     if (!(amount > 0)) continue
     const name = c.assignee

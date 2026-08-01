@@ -34,7 +34,6 @@ const DRAFTS = resolve('editorial/journalist-drafts/journalist-reports-suggestio
 // 2006 Caso Malaya arrest, which the curator removed before publishing. Those
 // drafts were being served from public/ at a guessable URL, so the promote
 // gate was decorative: anyone could fetch the pre-curation version.
-const CHUNK_DIR = resolve('public/data/journalist-reports')
 const DRAFT_DIR = resolve('editorial/journalist-drafts')
 
 function usage(): never {

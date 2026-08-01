@@ -1,7 +1,12 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseRibalicitaContracts, parseRibalicitaTenders } from '../src/scraper/tenders'
+import {
+  parseRibalicitaContracts,
+  parseRibalicitaTenders,
+  CONTRACT_STATUS,
+  TENDER_STATUS,
+} from '../src/scraper/tenders'
 import { isScoreArtifactAmount } from '../src/lib/tenders'
 
 const CONTRACTS_CSV = join(__dirname, 'fixtures', 'ribalicita_contratos_2026-04-19.csv')
@@ -36,20 +41,22 @@ describe('scraper/tenders — parseRibalicitaContracts', () => {
   })
 
   it('status is one of the known enum values', () => {
-    const allowed = new Set([
-      'awarded',
-      'revoked',
-      'in_progress',
-      'open',
-      'finalized',
-      'draft',
-      'pending',
-      'closed',
-      'unknown',
-    ])
+    // Imports the real allow-set rather than restating it. The hand-written
+    // copy this replaces listed `finalized`, which the source never emits —
+    // Gobierto says `formalized` — so every signed contract was coerced to
+    // `unknown`, and because `unknown` was also in the copied list the test
+    // stayed green while 298 of 730 contracts lost their status.
     for (const c of contracts) {
-      expect(allowed.has(c.status)).toBe(true)
+      expect(CONTRACT_STATUS.has(c.status)).toBe(true)
     }
+  })
+
+  it('does not coerce the bulk of the corpus to unknown', () => {
+    // The guard the enum check alone cannot give: a status the parser does not
+    // recognise still lands in the allow-set as `unknown`, so only a share
+    // ceiling catches the next vocabulary drift.
+    const unknown = contracts.filter((c) => c.status === 'unknown').length
+    expect(unknown / contracts.length).toBeLessThan(0.1)
   })
 
   it('produces a stable slug and unique id per contract', () => {
@@ -147,21 +154,13 @@ describe('scraper/tenders — parseRibalicitaTenders', () => {
   })
 
   it('status enum is respected', () => {
-    const allowed = new Set([
-      'awarded',
-      'open',
-      'evaluation',
-      'revoked',
-      'finalized',
-      'draft',
-      'closed',
-      'unknown',
-      'withdrawn',
-    ])
+    // Same reason as the contract-side check: import the allow-set, never
+    // restate it, or a vocabulary drift hides behind the `unknown` fallback.
     for (const t of tenders) {
-      expect(allowed.has(t.status)).toBe(true)
+      expect(TENDER_STATUS.has(t.status)).toBe(true)
     }
   })
+
 
   it('sorts newest-first when sortByDateDesc', () => {
     // The adapter exposes tenders sorted newest-first by submission/open date.

@@ -21,6 +21,7 @@ import { buildRelations } from '../src/scraper/queja-contract-relations'
 import type { RelQueja, RelContract } from '../src/scraper/queja-contract-relations'
 import { canonicalizeDepartment } from '../src/scraper/departments'
 import { validatePromisesSnapshot, isFrozen } from '../src/scraper/promises'
+import { isCommittedContract } from '../src/lib/contract-status.js'
 
 const QUEJAS = resolve('public/data/quejas.json')
 const TENDERS = resolve('public/data/tenders.json')
@@ -85,7 +86,7 @@ export function buildRelContracts(
     geoById.set(id, e)
   }
   return contracts
-    .filter((c) => s(c.status) === 'awarded')
+    .filter((c) => isCommittedContract(c))
     .map((c) => {
       const id = s(c.id)
       const g = geoById.get(id) ?? { places: [], zones: [] }

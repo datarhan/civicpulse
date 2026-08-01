@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { contractAmount } from '../../lib/tender-geo'
+import { isCommittedContract } from '../../lib/contract-status.js'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -31,7 +32,7 @@ export default function SpendingTypeBreakdown({ contracts, snapshot }) {
     const m = new Map()
     let sum = 0
     for (const c of contracts || []) {
-      const amt = c.status === 'awarded' ? contractAmount(c) : 0
+      const amt = isCommittedContract(c) ? contractAmount(c) : 0
       if (amt <= 0) continue
       const k = c.contractType || 'other'
       m.set(k, (m.get(k) || 0) + amt)

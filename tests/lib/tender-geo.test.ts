@@ -47,7 +47,10 @@ describe('lib/tender-geo', () => {
       { status: 'awarded', assignee: 'VARESER 96, S.L.', finalAmountNoTaxes: 1000 },
       { status: 'awarded', assignee: 'VARESER 96 SL', finalAmountNoTaxes: 500 },
       { status: 'awarded', assignee: 'INSDAGAR SL', finalAmountNoTaxes: 700 },
-      { status: 'in-tender', assignee: 'VARESER 96 SL', finalAmountNoTaxes: 9999 },
+      // `open`, not the invented `in-tender` this used to say — Gobierto's
+      // vocabulary has no hyphenated statuses, so the row was testing a shape
+      // that cannot occur.
+      { status: 'open', assignee: 'VARESER 96 SL', finalAmountNoTaxes: 9999 },
     ]
     const resolver = (raw: string) =>
       raw.startsWith('VARESER') ? { key: 'vareser 96 sl', canonicalName: 'VARESER 96, S.L.' } : null

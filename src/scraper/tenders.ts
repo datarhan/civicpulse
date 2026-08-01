@@ -4,8 +4,20 @@ import { isScoreArtifactAmount } from '../lib/tenders'
 // ---------------------------------------------------------------------------
 // Status normalisation
 // ---------------------------------------------------------------------------
-const CONTRACT_STATUS = new Set<ContractStatus>([
+// `formalized` is what Gobierto actually emits for a SIGNED contract — 298 of
+// 730 rows in the committed fixture. The list said `finalized`, one letter
+// apart, so normStatus() coerced every one of them to `unknown`, and since all
+// awarded totals are computed as `status === 'awarded'`, €53.5M across 314
+// signed contracts disappeared from the KPI strip, the money map, the
+// contractor leaderboard and the entity registry. `void`/`abandoned` are added
+// for the same reason: a cancelled contract must be distinguishable from a
+// signed one, not share the `unknown` bucket with it.
+export const CONTRACT_STATUS = new Set<ContractStatus>([
   'awarded',
+  'formalized',
+  'void',
+  'abandoned',
+  'provisionally_awarded',
   'revoked',
   'in_progress',
   'open',
@@ -16,8 +28,12 @@ const CONTRACT_STATUS = new Set<ContractStatus>([
   'unknown',
 ])
 
-const TENDER_STATUS = new Set<TenderStatus>([
+export const TENDER_STATUS = new Set<TenderStatus>([
   'awarded',
+  'formalized',
+  'void',
+  'abandoned',
+  'provisionally_awarded',
   'open',
   'evaluation',
   'revoked',
@@ -65,6 +81,10 @@ function csvRows(text: string): Record<string, string>[] {
 // ---------------------------------------------------------------------------
 export type ContractStatus =
   | 'awarded'
+  | 'formalized'
+  | 'void'
+  | 'abandoned'
+  | 'provisionally_awarded'
   | 'revoked'
   | 'in_progress'
   | 'open'
@@ -76,6 +96,10 @@ export type ContractStatus =
 
 export type TenderStatus =
   | 'awarded'
+  | 'formalized'
+  | 'void'
+  | 'abandoned'
+  | 'provisionally_awarded'
   | 'open'
   | 'evaluation'
   | 'revoked'

@@ -24,6 +24,7 @@
 
 import { fnv32 } from './hash'
 import { stripDiacritics } from './normalize'
+import { isCommittedContract } from '../lib/contract-status.js'
 
 // Longest-first within each shadowing group; matched repeatedly against
 // the END of the token list. The FAMILY survives as a canonical token in
@@ -273,7 +274,7 @@ export function buildEntityRegistry(input: {
     acc.variantCounts.set(raw, (acc.variantCounts.get(raw) ?? 0) + 1)
     acc.contractIds.push(String(row.id))
     contractRefs += 1
-    if (row.status === 'awarded') {
+    if (isCommittedContract(row)) {
       acc.awardedTotalEur += amountOf(row)
       const d = typeof row.awardDate === 'string' ? row.awardDate : null
       if (d) {

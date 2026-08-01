@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { topContractors, contractAmount } from '../../lib/tender-geo'
 import { useEntities } from '../../hooks/useEntities'
+import { isCommittedContract } from '../../lib/contract-status.js'
 
 const fmtEur = (n) =>
   new Intl.NumberFormat('es-ES', {
@@ -30,7 +31,7 @@ export default function ContractorLeaderboard({ contracts }) {
     const m = new Map()
     for (const c of contracts || []) {
       if (!c.assignee) continue
-      if (!(c.status === 'awarded' && contractAmount(c) > 0)) continue
+      if (!(isCommittedContract(c) && contractAmount(c) > 0)) continue
       // Key the drill-down by the same display name the row uses, so a
       // merged company lists the contracts of every razón social variant.
       const display = resolver?.(c.assignee)?.canonicalName ?? c.assignee
