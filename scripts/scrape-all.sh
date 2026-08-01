@@ -82,7 +82,21 @@ SCRAPERS=(
 #     geo/streets/civic-poi gazetteer for pin placement. A ficha layout change,
 #     a missing gazetteer, or either listing 404ing must not red the whole run;
 #     the prior obras snapshot stays valid meanwhile.
+#   - scrape:pleno-agendas — regmeet.com (the council's session platform)
+#     blackholes GitHub-runner IPs: every convocatoria fetch dies with a
+#     bare `fetch failed` from CI while the same URLs answer fine from a
+#     laptop. That red every single night from 2026-07-21 onward, and since
+#     the deploy hook only fires on a green run it quietly disabled the
+#     nightly deploy path. The adapter's own circuit breaker already refuses
+#     to publish a truncated agenda set, so a soft failure costs nothing but
+#     freshness — the prior agendas snapshot stays valid meanwhile.
+#   - scrape:consell-cv — two near-static yearly GVA tables. The adapter now
+#     refuses to write a partial snapshot when a year is unreachable (that
+#     would delete the missing year's resoluciones), so an upstream blip
+#     should hold yesterday's file rather than red the run.
 BEST_EFFORT=(
+  scrape:pleno-agendas
+  scrape:consell-cv
   scrape:elections
   scrape:metro-network
   scrape:empleo
