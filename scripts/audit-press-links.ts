@@ -34,6 +34,11 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 const PROJECT_ROOT = join(__dirname, '..')
 const IN = join(PROJECT_ROOT, 'public/data/press-claims-suggestions.json')
+// Every article /laboratorio renders, not only the handful the extractor has
+// audited. Auditing 8 URLs out of 156 meant that for 60 of the 67 cards on the
+// page `linkRot` was null, and a dead link rendered as a perfectly normal one:
+// the red ⚠︎ only appears when a row exists and says `dead`.
+const PRESS_IN = join(PROJECT_ROOT, 'public/data/press.json')
 const OUT = join(PROJECT_ROOT, 'public/data/press-link-rot.json')
 
 const HEAD_TIMEOUT_MS = 12_000
@@ -144,9 +149,19 @@ async function main() {
   const claims = (JSON.parse(claimsRaw) as PressClaimsSnapshot).items ?? []
 
   const urls = new Map<string, string | null>()
+  // Claim-bearing articles first: those are the ones we quote, so if a limit
+  // truncates the run they are the ones that must be checked.
   for (const c of claims) {
     if (c.articleUrl && !urls.has(c.articleUrl)) {
       urls.set(c.articleUrl, c.articleSource ?? null)
+    }
+  }
+  const pressRaw = await readFile(PRESS_IN, 'utf8').catch(() => null)
+  if (pressRaw) {
+    const press =
+      (JSON.parse(pressRaw) as { items?: Array<{ link?: string; source?: string }> }).items ?? []
+    for (const a of press) {
+      if (a.link && !urls.has(a.link)) urls.set(a.link, a.source ?? null)
     }
   }
   const allUrls = Array.from(urls.entries())

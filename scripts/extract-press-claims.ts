@@ -83,6 +83,11 @@ async function main() {
         it.source.toLowerCase().includes(needle),
     )
   }
+  // How many were in scope BEFORE the sliding window cut it down. The window
+  // is 25 items over a date-desc feed and the snapshot is overwritten whole,
+  // so cumulative coverage is 8 of 156 articles — and nothing in the file said
+  // so.
+  const allItemsCount = items.length
   items = items.slice(0, max)
 
   console.log(
@@ -131,6 +136,11 @@ async function main() {
       bySource,
       byTopic: byTopic as never,
       byAttributedSource: byAttributedSource as never,
+      articlesProcessed: result.stats.total,
+      articlesAvailable: allItemsCount,
+      llmUnavailable: result.stats.llmUnavailable,
+      windowFrom: items[items.length - 1]?.date ?? null,
+      windowTo: items[0]?.date ?? null,
     },
     items: result.claims,
   }

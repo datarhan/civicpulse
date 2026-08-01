@@ -203,6 +203,18 @@ export interface PressClaimsSnapshot {
     byTopic: Record<ClaimTopic, number>
     byAttributedSource?: Record<AttributedSource, number>
     byAccusationSubtype?: Record<AccusationSubtype, number>
+    /**
+     * Provenance of the RUN, not of the claims. Without these, "10 claims"
+     * from a healthy pass over 25 articles and "10 stale claims from a pass
+     * where every LLM call failed" are the same file. The pipeline's own log
+     * knew the difference; the snapshot did not, and the snapshot is what
+     * /laboratorio and /lab-health read.
+     */
+    articlesProcessed?: number
+    articlesAvailable?: number
+    llmUnavailable?: number
+    windowFrom?: string | null
+    windowTo?: string | null
   }
   items: PressClaim[]
 }

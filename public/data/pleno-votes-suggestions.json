@@ -1,16 +1,17 @@
 {
-  "generatedAt": "2026-08-01T19:15:31.485Z",
+  "generatedAt": "2026-08-01T19:56:03.999Z",
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 2,
+    "total": 3,
     "byEngine": {
-      "regex": 2
+      "regex": 3
     },
     "byPleno": {
       "10yl550": 1,
+      "k4olcs": 1,
       "c8kr44": 1
     }
   },
@@ -36,6 +37,34 @@
         }
       ],
       "confidence": 0.8,
+      "requiresHumanApproval": true,
+      "engine": "regex"
+    },
+    {
+      "plenoId": "k4olcs",
+      "plenoDate": "2026-04-20",
+      "itemNumber": null,
+      "excerpt": "4) que incorporé más o,\n[1669.2 → 1677.0] (SPEAKER_24) y que desde el 2015 fins ahora hemos incrementado el inventario en más de 87 millones de euros,\n[1677.1 → 1679.1] (SPEAKER_24) que es para resaltar. Gracias.\n[1680.7 → 1681.8] (SPEAKER_21) Alguna cuestión més?\n[1682.0 → 1683.6] (SPEAKER_21) Va, passem a la votació d'este punt.\n[1700.3 → 1704.6] (SPEAKER_21) S'aprova per 38 a favor i 8 extensio",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PP",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "Compromís",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.7,
       "requiresHumanApproval": true,
       "engine": "regex"
     },
