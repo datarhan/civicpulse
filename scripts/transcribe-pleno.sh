@@ -189,6 +189,20 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     CHUNK_SECS=0  # marker: single chunk, no time offset needed
   fi
   N_CHUNKS=$(ls "$CHUNK_DIR"/chunk-*.ogg | wc -l | tr -d ' ')
+  # A partial download decodes to far less audio than its container header
+  # claims, and ffmpeg then emits correspondingly fewer segments without
+  # failing. That is exactly how session rx4hb4 was published covering 17.5
+  # minutes of a 4h21m pleno: DUR_S said 15650, the segmenter produced ONE
+  # chunk, every upload returned 200, and 44 claims were extracted from 7% of
+  # the session. Comparing the two numbers costs nothing and catches it.
+  if [ "$CHUNK_SECS" -gt 0 ]; then
+    EXPECTED_CHUNKS=$(( (DUR_S + CHUNK_SECS - 1) / CHUNK_SECS ))
+    if [ "$N_CHUNKS" -lt "$EXPECTED_CHUNKS" ]; then
+      echo "[transcribe] FATAL: ${DUR_S}s of audio should split into ${EXPECTED_CHUNKS} chunk(s), got ${N_CHUNKS}." >&2
+      echo "[transcribe] The download is truncated or corrupt. Refusing to publish a partial transcript." >&2
+      exit 1
+    fi
+  fi
   echo "[transcribe] uploading ${N_CHUNKS} chunk(s) to OpenAI…"
 
   # Post each chunk and collect verbose_json responses. Chunk index → file.
@@ -285,8 +299,50 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     '
     IDX=$(( IDX + 1 ))
   done
-  # Every chunk succeeded — only now does the transcript become visible to
-  # the pipeline's backlog detector.
+  # Every chunk succeeded — but "succeeded" only means every HTTP call
+  # returned 200. Coverage is the thing that matters and nothing upstream
+  # measures it, so check it here, against two references.
+  #
+  # `check:transcripts` cannot do this job: it sees only the finished file,
+  # where a 91-line transcript of a 4-hour session looks identical to a
+  # 91-line transcript of a 15-minute one. Duration is knowable only here.
+  COVERAGE_MSG=$(DUR_S="$DUR_S" NEW="$TMP_TXT" OLD="$OUT_PATH" node -e '
+    const fs = require("fs")
+    const lastTs = (p) => {
+      if (!p || !fs.existsSync(p)) return null
+      let last = 0
+      for (const line of fs.readFileSync(p, "utf8").split("\n")) {
+        const m = line.match(/^\[\s*[\d.]+\s*→\s*([\d.]+)\s*\]/)
+        if (m) last = Math.max(last, Number(m[1]))
+      }
+      return last
+    }
+    const dur = Number(process.env.DUR_S)
+    const now = lastTs(process.env.NEW)
+    const prev = lastTs(process.env.OLD)
+    const pct = (n) => (dur > 0 ? ((n / dur) * 100).toFixed(1) : "?")
+    // Sessions genuinely end with silence or music, so the floor is loose.
+    // It is here to catch losing most of a session, not to police minutes.
+    if (now !== null && dur > 0 && now < dur * 0.6)
+      console.log(`FAIL covers ${(now/60).toFixed(1)} min of ${(dur/60).toFixed(1)} min (${pct(now)}%)`)
+    // A shorter re-transcription is the batch-regression case: the published
+    // file is evidence that more of this session is reachable.
+    else if (prev !== null && now !== null && prev > 0 && now < prev * 0.7)
+      console.log(`FAIL shrank from ${(prev/60).toFixed(1)} min to ${(now/60).toFixed(1)} min`)
+    else console.log("OK")
+  ')
+  if [ "${COVERAGE_MSG#FAIL}" != "$COVERAGE_MSG" ]; then
+    if [ "${TRANSCRIBE_ALLOW_SHRINK:-0}" = "1" ]; then
+      echo "[transcribe] coverage check ${COVERAGE_MSG} — overridden by TRANSCRIBE_ALLOW_SHRINK=1" >&2
+    else
+      mv "$TMP_TXT" "$OUT_PATH.rejected"
+      echo "[transcribe] REJECTED: ${COVERAGE_MSG}" >&2
+      echo "[transcribe] candidate kept at $OUT_PATH.rejected; the published transcript is untouched." >&2
+      echo "[transcribe] Re-run, or set TRANSCRIBE_ALLOW_SHRINK=1 if the shorter one is genuinely correct." >&2
+      exit 1
+    fi
+  fi
+  # Only now does the transcript become visible to the backlog detector.
   mv "$TMP_TXT" "$OUT_PATH"
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
   # ── Apple Neural Engine (lightning-whisper-mlx) branch ───────────────────

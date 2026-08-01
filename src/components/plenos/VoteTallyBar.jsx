@@ -1,7 +1,7 @@
 import { DIRECTION_LABEL } from '../../hooks/usePlenoVotes'
 
 // Current corporación seat counts — fallback when a tally row omits `seats`.
-const SEATS = { PSOE: 11, PP: 7, VOX: 1, Compromís: 1, Otro: 1 }
+const SEATS = { PSOE: 11, PP: 7, VOX: 1, Compromís: 1, 'EU-Podem': 1 }
 const DIR_COLOR = {
   a_favor: 'var(--ok)',
   en_contra: 'var(--crit)',

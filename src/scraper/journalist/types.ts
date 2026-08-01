@@ -141,6 +141,7 @@ export const RESPONSE_BLOCS = [
   'VOX',
   'Compromís',
   'Ciudadanos',
+  'EU-Podem',
   'Otro',
   'person',
 ] as const

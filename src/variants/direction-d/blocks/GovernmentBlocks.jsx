@@ -7,7 +7,7 @@ import { SectionHeader } from '../SectionHeader'
 export function CoalitionRing() {
   const { loading, error, data } = useOfficials()
   if (loading || error || !data) return null
-  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro']
+  const order = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro']
   const items = order.filter((p) => data.composition[p]).map((p) => ({ p, n: data.composition[p] }))
   return (
     <div style={{ marginBottom: 16 }}>

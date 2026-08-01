@@ -12,6 +12,7 @@ import {
 import { usePlenos } from '../hooks/usePlenos'
 import { PARTY_TONE } from '../hooks/usePromises'
 import { useT } from '../i18n'
+import { blocLabel } from '../lib/party-label.js'
 
 const PAGE_SIZE = 50
 
@@ -123,7 +124,7 @@ function ClaimRow({ item, plenoTitle }) {
             letterSpacing: '.04em',
           }}
         >
-          {c.speakerGroup ?? 'sin atribuir'}
+          {c.speakerGroup ? blocLabel(c.speakerGroup) : 'sin atribuir'}
         </span>
         <span style={{ fontSize: 11, color: 'var(--ink50)' }}>· {c.topic}</span>
         <span style={{ flex: 1 }} />
@@ -185,7 +186,7 @@ function ClaimRow({ item, plenoTitle }) {
 }
 
 const ALL_VERDICTS = ['verificado', 'parcial', 'contradicho', 'promesa-repetida', 'sin-datos']
-const ALL_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Otro', null]
+const ALL_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem', 'Otro', null]
 
 export default function Declaraciones() {
   const t = useT()
@@ -208,7 +209,7 @@ export default function Declaraciones() {
       'sin-datos': 0,
       'promesa-repetida': 0,
     }
-    const byBloc = { PSOE: 0, PP: 0, VOX: 0, Compromís: 0, Otro: 0, null: 0 }
+    const byBloc = { PSOE: 0, PP: 0, VOX: 0, Compromís: 0, 'EU-Podem': 0, Otro: 0, null: 0 }
     const topics = new Set()
     for (const it of items) {
       byVerdict[it.verification.verdict] = (byVerdict[it.verification.verdict] ?? 0) + 1

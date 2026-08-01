@@ -31,8 +31,14 @@ describe('party-alias', () => {
   })
 
   it('maps the left coalition to the group it sits under', () => {
-    expect(normalizeParty('Podem')).toBe('Otro')
-    expect(normalizeParty('EUPV')).toBe('Otro')
+    // The acta de organización of 07-07-2023 constitutes this as "Grupo
+    // Municipal Esquerra Unida-Podem". Both ballot labels map to it; neither
+    // maps to the `Otro` fallback any more, because a group with a name
+    // should never be published under a placeholder that identifies its lone
+    // councillor by elimination.
+    expect(normalizeParty('Podem')).toBe('EU-Podem')
+    expect(normalizeParty('EUPV')).toBe('EU-Podem')
+    expect(normalizeParty('Esquerra Unida')).toBe('EU-Podem')
   })
 
   it('refuses an unrecognised ballot label rather than guessing', () => {

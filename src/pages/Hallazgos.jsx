@@ -9,6 +9,7 @@ import { usePlenoClaims } from '../hooks/usePlenoClaims'
 import { findingMatchesArea } from '../lib/finding-area'
 import { DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT } from '../i18n'
+import { blocLabel } from '../lib/party-label.js'
 
 function MiniStat({ label, value, tone }) {
   const color =
@@ -176,7 +177,7 @@ function FindingDetailCard({ f, permalink }) {
                     fontWeight: 700,
                   }}
                 >
-                  {q.speakerGroup}
+                  {blocLabel(q.speakerGroup)}
                 </span>
               )}
             </blockquote>

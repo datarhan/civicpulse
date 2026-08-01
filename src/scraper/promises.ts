@@ -20,7 +20,7 @@
  * (public/data/promise-suggestions.json) and never touches this one.
  */
 
-export const ALLOWED_PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'Otro'] as const
+export const ALLOWED_PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'EU-Podem', 'Otro'] as const
 export type Party = (typeof ALLOWED_PARTIES)[number]
 
 export const ALLOWED_STATUSES = [

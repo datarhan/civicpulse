@@ -24,13 +24,13 @@ const ALIASES = {
   compromis: 'Compromís',
   'coalicio compromis': 'Compromís',
   bloc: 'Compromís',
-  // Esquerra Unida / Podem sits as "Otro" on this corporation's roster.
-  podem: 'Otro',
-  'unides podem': 'Otro',
-  eupv: 'Otro',
-  'esquerra unida': 'Otro',
-  'eu-podem': 'Otro',
-  'izquierda unida': 'Otro',
+  // Grupo Municipal Esquerra Unida-Podem (acta de organización, 07-07-2023).
+  podem: 'EU-Podem',
+  'unides podem': 'EU-Podem',
+  eupv: 'EU-Podem',
+  'esquerra unida': 'EU-Podem',
+  'eu-podem': 'EU-Podem',
+  'izquierda unida': 'EU-Podem',
 }
 
 const fold = (s) =>

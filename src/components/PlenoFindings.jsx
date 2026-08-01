@@ -1,5 +1,6 @@
 import { Card, Pill, SectionHead, ExtLink } from './Primitives'
 import { usePlenoFindings, SEVERITY_LABEL, SEVERITY_TONE } from '../hooks/usePlenoFindings'
+import { blocLabel } from '../lib/party-label.js'
 
 function RefList({ refs, kind }) {
   if (!refs || refs.length === 0) return null
@@ -106,7 +107,7 @@ export function FindingCard({ f }) {
                     marginLeft: 6,
                   }}
                 >
-                  {q.speakerGroup}
+                  {blocLabel(q.speakerGroup)}
                 </span>
               )}
             </blockquote>

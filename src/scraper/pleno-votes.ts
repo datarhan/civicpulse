@@ -16,7 +16,7 @@
  * new party must be added there first so the UI can render it.
  */
 
-export type VoteBloc = 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
+export type VoteBloc = 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro'
 
 export type VoteDirection = 'a_favor' | 'en_contra' | 'abstencion' | 'ausente'
 
@@ -96,6 +96,7 @@ export const ALLOWED_BLOCS: readonly VoteBloc[] = [
   'VOX',
   'Compromís',
   'Ciudadanos',
+  'EU-Podem',
   'Otro',
 ]
 

@@ -16,6 +16,7 @@
  * Google docs: https://developers.google.com/search/docs/appearance/structured-data/factcheck
  */
 import React from 'react'
+import { isRealBloc } from '../lib/party-label.js'
 
 const SITE_URL = 'https://civicpulse.es'
 
@@ -79,10 +80,28 @@ function buildPayload(finding) {
 function buildPlenoPayload(finding) {
   const rating = SEVERITY_TO_RATING[finding.severity] ?? SEVERITY_TO_RATING.informational
   const findingUrl = `${SITE_URL}/hallazgos#${finding.id}`
-  const plenoUrl = `${SITE_URL}/plenos#${finding.plenoId}`
+  // `/plenos` renders no element with an id, so the old `#${plenoId}` fragment
+  // resolved nowhere. `/plenos/:id` is the real route for a session.
+  const plenoUrl = `${SITE_URL}/plenos/${finding.plenoId}`
   const claimQuote = finding.quotes?.[0]?.text ?? finding.title
-  const author =
-    finding.individualSpeaker?.name ?? finding.quotes?.[0]?.speakerGroup ?? 'Pleno municipal'
+
+  // Who is asserted to have made the claim, in the payload Google's Fact Check
+  // Tools API indexes. Three cases, and the distinction is legally material:
+  //
+  // 1. A curator promoted an individual attribution → a real Person.
+  // 2. Only bloc-level attribution → an Organization. A political group is not
+  //    a person, and typing it `Person` published `{"@type":"Person","name":
+  //    "PSOE"}` — and worse, `{"@type":"Person","name":"Otro"}` on 15 findings,
+  //    where `Otro` was the extractor's "cannot tell" sentinel AND the label of
+  //    a one-seat group, so it named that councillor by elimination.
+  // 3. Neither → the council itself. Never a fabricated party name.
+  const individual = finding.individualSpeaker?.name
+  const bloc = finding.quotes?.[0]?.speakerGroup
+  const claimAuthor = individual
+    ? { '@type': 'Person', name: individual }
+    : isRealBloc(bloc)
+      ? { '@type': 'Organization', name: `Grupo Municipal ${bloc}` }
+      : { '@type': 'Organization', name: 'Pleno municipal de Riba-roja de Túria' }
 
   return {
     '@context': 'https://schema.org',
@@ -97,7 +116,7 @@ function buildPlenoPayload(finding) {
     },
     itemReviewed: {
       '@type': 'Claim',
-      author: { '@type': 'Person', name: author },
+      author: claimAuthor,
       datePublished: finding.plenoDate,
       appearance: [
         {

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-07-31T08:10:07.938Z",
+  "generatedAt": "2026-08-01T18:55:19.853Z",
   "legalNotice": "Este registro recoge hallazgos editoriales verificados manualmente sobre las intervenciones de los plenos. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican literalmente a través del campo `response`.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -9,8 +9,8 @@
       "id": "f-2026-07-03-cit-1e90e0",
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
-      "title": "03-07-2026: Otro grupo señala uso de contrato emergencia con FCC tras lluvias",
-      "summary": "El grupo Otro afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
+      "title": "03-07-2026: un grupo no identificado señala uso de contrato emergencia con FCC tras lluvias",
+      "summary": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-006-cit-1e90e0",
@@ -67,14 +67,31 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "original": "03-07-2026: Otro grupo señala uso de contrato emergencia con FCC tras lluvias",
+          "corrected": "03-07-2026: un grupo no identificado señala uso de contrato emergencia con FCC tras lluvias",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:08.524Z"
+        },
+        {
+          "field": "summary",
+          "original": "El grupo Otro afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
+          "corrected": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:08.862Z"
+        }
+      ]
     },
     {
       "id": "f-2026-07-03-cit-df8455",
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "Pleno 2026-07-03: debate sobre contenedores y contrato de recogida de RSU",
-      "summary": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. El grupo Otro expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+      "summary": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-004-cit-df8455",
@@ -131,14 +148,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. El grupo Otro expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "corrected": "Compromís afirma que el Ayuntamiento dispone de herramientas para rescindir el contrato con la empresa licitadora que, según señala, no cumplía, y manifiesta que la compra de contenedores se hará con recursos propios. Un grupo no identificado expresa su satisfacción con la adjudicación y el PP señala que ya en diciembre se advertía del deterioro. El registro municipal incluye el «Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU».",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:09.196Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-acu-a870a4",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del 11 de mayo de 2026: Debate sobre movilidad",
-      "summary": "Durante la sesión del pleno del 11 de mayo de 2026, el grupo PP afirmó que en mayo de 2024 habían exigido a la consellería información sobre la pasarela prometida a la ciudadanía de Riba Roja, señalando que nadie había solicitado nada. Por su parte, el grupo Otro destacó que 'la barrera está funcionando muy bien'. Esta discusión se relaciona con el contrato de obras de la Pasarela en Barranco Mandor, según el registro del tender correspondiente.",
+      "summary": "Durante la sesión del pleno del 11 de mayo de 2026, el grupo PP afirmó que en mayo de 2024 habían exigido a la consellería información sobre la pasarela prometida a la ciudadanía de Riba Roja, señalando que nadie había solicitado nada. Por su parte, un grupo no identificado destacó que 'la barrera está funcionando muy bien'. Esta discusión se relaciona con el contrato de obras de la Pasarela en Barranco Mandor, según el registro del tender correspondiente.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-045-acu-a870a4",
@@ -190,7 +216,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión del pleno del 11 de mayo de 2026, el grupo PP afirmó que en mayo de 2024 habían exigido a la consellería información sobre la pasarela prometida a la ciudadanía de Riba Roja, señalando que nadie había solicitado nada. Por su parte, el grupo Otro destacó que 'la barrera está funcionando muy bien'. Esta discusión se relaciona con el contrato de obras de la Pasarela en Barranco Mandor, según el registro del tender correspondiente.",
+          "corrected": "Durante la sesión del pleno del 11 de mayo de 2026, el grupo PP afirmó que en mayo de 2024 habían exigido a la consellería información sobre la pasarela prometida a la ciudadanía de Riba Roja, señalando que nadie había solicitado nada. Por su parte, un grupo no identificado destacó que 'la barrera está funcionando muy bien'. Esta discusión se relaciona con el contrato de obras de la Pasarela en Barranco Mandor, según el registro del tender correspondiente.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:09.530Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-acu-1adbf3",
@@ -266,7 +301,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno del 11 de mayo de 2026: Debate sobre la Feria de Comercio",
-      "summary": "Durante la sesión del pleno, el grupo Otro afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que Otro menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo. Esta información se corrobora con el registro titulado 'Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas'.",
+      "summary": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo. Esta información se corrobora con el registro titulado 'Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas'.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-270-cit-bb5f00",
@@ -313,14 +348,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión del pleno, el grupo Otro afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que Otro menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo. Esta información se corrobora con el registro titulado 'Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas'.",
+          "corrected": "Durante la sesión del pleno, un grupo no identificado afirma que han decidido reinventar la feria y renovarla. El PSOE señala que la feria no se realizó en 2025 por mandato expreso de los comercios, mientras que un grupo no identificado menciona las fechas de la Feria de Comercio, que se celebrará los días 8, 9 y 10 de mayo. Esta información se corrobora con el registro titulado 'Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas'.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:09.865Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-cit-73d3cf",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
-      "title": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y Otro",
-      "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, el grupo Otro afirma que la vivienda construida en los últimos años en el municipio es para uso particular. El consistorio cuenta con el \"contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicac\".",
+      "title": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y un grupo no identificado",
+      "summary": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular. El consistorio cuenta con el \"contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicac\".",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-158-cit-73d3cf",
@@ -377,14 +421,31 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "original": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y Otro",
+          "corrected": "Debate sobre vivienda en el pleno del 2026-05-11 entre los grupos PSOE y un grupo no identificado",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:10.213Z"
+        },
+        {
+          "field": "summary",
+          "original": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, el grupo Otro afirma que la vivienda construida en los últimos años en el municipio es para uso particular. El consistorio cuenta con el \"contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicac\".",
+          "corrected": "Durante el pleno, el grupo PSOE señala la figura de las zonas de mercado residencial tensionado y manifiesta que oponerse a la prórroga del alquiler encarecerá los precios para las familias. Por su parte, un grupo no identificado afirma que la vivienda construida en los últimos años en el municipio es para uso particular. El consistorio cuenta con el \"contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicac\".",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:10.554Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-cit-0907e6",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate de educación en el pleno del 2026-05-11 e infraestructuras de formación en Riba-roja de Túria",
-      "summary": "Durante la sesión, el grupo Otro señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
+      "summary": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-325-cit-0907e6",
@@ -446,14 +507,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión, el grupo Otro señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
+          "corrected": "Durante la sesión, un grupo no identificado señala dificultades con la entrega del conservatorio. Por su parte, el PSOE manifiesta que se deniega al municipio contar con un centro de formación. En relación con estas cuestiones, el registro municipal incluye la licitación del \"Contrato privado de arrendamiento bien inmueble para dotar de aulas adicionales para el Conservatorio de Música y Danza · Ayuntamiento de Riba-roja de Túria · Construcciones Bodí, \".",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:10.892Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-cit-7f7619",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre movilidad y accesos peatonales en el pleno del 2026-05-11",
-      "summary": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto, mientras que el grupo Otro manifiesta la necesidad de ampliar la pasarela del puente principal. Por su parte, el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana. Estos asuntos coinciden con el registro del Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término.",
+      "summary": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto, mientras que un grupo no identificado manifiesta la necesidad de ampliar la pasarela del puente principal. Por su parte, el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana. Estos asuntos coinciden con el registro del Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-032-cit-7f7619",
@@ -515,14 +585,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto, mientras que el grupo Otro manifiesta la necesidad de ampliar la pasarela del puente principal. Por su parte, el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana. Estos asuntos coinciden con el registro del Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término.",
+          "corrected": "El grupo PP señala la falta de acceso peatonal en la calle de la Beto, mientras que un grupo no identificado manifiesta la necesidad de ampliar la pasarela del puente principal. Por su parte, el grupo PSOE afirma que la competencia sobre esta infraestructura es de la Generalitat Valenciana. Estos asuntos coinciden con el registro del Contrato de suministro de adquisición de 2 ascensores de  en  puente-pasarela  que  conecta  la  urbanización  REVA  con  el  término municipal de Loriguilla ubicados en el término.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:11.239Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-cit-a0a379",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre la Fira de Comercio en el pleno del 2026-05-11",
-      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, el grupo Otro defendió el impacto positivo de la campaña de 2024. El registro municipal incluye el «Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y».",
+      "summary": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024. El registro municipal incluye el «Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y».",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-263-cit-a0a379",
@@ -579,14 +658,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, el grupo Otro defendió el impacto positivo de la campaña de 2024. El registro municipal incluye el «Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y».",
+          "corrected": "Durante el pleno del 2026-05-11, el grupo PP afirmó que el gobierno afectó la Fira de Comercio, mientras que el PSOE señaló las críticas de la oposición sobre la no realización de la edición de 2025. Por su parte, un grupo no identificado defendió el impacto positivo de la campaña de 2024. El registro municipal incluye el «Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y».",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:11.585Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-acu-ea9d47",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Debate sobre seguridad en Riba-roja de Túria en el pleno del 2026-05-11",
-      "summary": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y señala el desvío de partidas para trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y el grupo Otro menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+      "summary": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y señala el desvío de partidas para trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y un grupo no identificado menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-092-acu-ea9d47",
@@ -643,7 +731,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y señala el desvío de partidas para trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y el grupo Otro menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "corrected": "Durante la sesión, el PSOE manifiesta discrepancias en torno a los fondos de protección civil y señala el desvío de partidas para trabajos técnicos policiales. Por su parte, el PP se refiere a la creación de una policía de urbanización en el municipio, y un grupo no identificado menciona infraestructuras en zonas inundables. En el registro municipal de contratación consta la licitación bajo el título \"Un vehículo protección civil.\".",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:11.928Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-acu-7c65c5",
@@ -713,8 +810,8 @@
       "id": "f-2026-05-11-acu-1e1bfa",
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
-      "title": "Pleno 2026-05-11: Otro señala informes técnicos sin respuesta del equipo de gobierno",
-      "summary": "En el pleno del 11 de mayo de 2026, el grupo Otro denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
+      "title": "Pleno 2026-05-11: un grupo no identificado señala informes técnicos sin respuesta del equipo de gobierno",
+      "summary": "En el pleno del 11 de mayo de 2026, un grupo no identificado denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-096-acu-1e1bfa",
@@ -765,7 +862,24 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "original": "Pleno 2026-05-11: Otro señala informes técnicos sin respuesta del equipo de gobierno",
+          "corrected": "Pleno 2026-05-11: un grupo no identificado señala informes técnicos sin respuesta del equipo de gobierno",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:12.272Z"
+        },
+        {
+          "field": "summary",
+          "original": "En el pleno del 11 de mayo de 2026, el grupo Otro denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
+          "corrected": "En el pleno del 11 de mayo de 2026, un grupo no identificado denuncia que el informe sobre las necesidades del Departamento de Tesorería, ya planteadas el año anterior, sigue sin respuesta por parte del equipo de gobierno, y señala que la valoración técnica de este Plan no es positiva, en referencia al registro «Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria». VOX, por su parte, centra su intervención en criticar al gobierno central en materia de transportes, desviando parte del debate hacia la política nacional.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:12.617Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-acu-da7902",
@@ -825,7 +939,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Pleno ordinario 2026-04-20: Debates sobre transparencia y sistemas de control",
-      "summary": "El grupo Otro afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+      "summary": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-b9b013",
@@ -882,7 +996,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo Otro afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+          "corrected": "Un grupo no identificado afirma que se implementará un sistema de debate y grabación de vídeo en el salón de plenos, mientras que PSOE señala que las licitaciones estarán disponibles públicamente en la web. Ambos grupos mencionan la importancia de la transparencia, con PSOE destacando adaptaciones a la Carta de Servicios municipal.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:12.956Z"
+        }
+      ]
     },
     {
       "id": "f-2026-04-20-cit-25e6ea",
@@ -1016,7 +1139,7 @@
       "plenoId": "k4olcs",
       "plenoDate": "2026-04-20",
       "title": "Debate sobre transparencia y el sistema del salón de plenos en Riba-roja de Túria (2026-04-20)",
-      "summary": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, la formación Otro manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+      "summary": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
       "severity": "informational",
       "sourceClaimIds": [
         "k4olcs-019-cit-947479",
@@ -1078,7 +1201,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, la formación Otro manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+          "corrected": "En la sesión, el grupo PP señaló que los informes técnicos de la intervención son desfavorables. Por su parte, una formación no identificada manifestó que la alcaldía no estaba obligada a dar cuenta de dicho informe en el debate sobre la cartelería digital y el «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam». El debate sobre la adjudicación del sistema concluyó con la abstención de varios grupos municipales.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:13.303Z"
+        }
+      ]
     },
     {
       "id": "f-2026-03-16-cit-377216",
@@ -1339,7 +1471,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno ordinario 2026-01-19: Debate sobre transparencia en contratación",
-      "summary": "El grupo Otro afirma que se ha discutido la necesidad de controlar el grado de cumplimiento del plan estratégico participado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que Otro señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+      "summary": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento del plan estratégico participado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que un grupo no identificado señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-025-afi-5b06c8",
@@ -1400,14 +1532,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo Otro afirma que se ha discutido la necesidad de controlar el grado de cumplimiento del plan estratégico participado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que Otro señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "corrected": "Un grupo no identificado afirma que se ha discutido la necesidad de controlar el grado de cumplimiento del plan estratégico participado. El PSOE menciona la aprobación de una guía para sistemas dinámicos de adquisición, mientras que un grupo no identificado señala la ausencia de contratos de mantenimiento con empresas grandes como Ecnor. El registro municipal incluye varios contratos relacionados con seguimiento y control, asesoramiento jurídico en contratación y servicios de mantenimiento.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:13.645Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-cit-3fd230",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre infraestructuras deportivas en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, el grupo Otro manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
+      "summary": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-149-cit-3fd230",
@@ -1459,14 +1600,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, el grupo Otro manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
+          "corrected": "El PSOE señala que la construcción de la piscina municipal se inició en 2005 y se inauguró en diciembre de 2012. Por su parte, un grupo no identificado manifiesta que el pabellón deportivo es una instalación relevante sobre la cual se emitieron votos en contra en años anteriores. Este debate coincide con registros oficiales como el \"Servicio de limpieza de piscina cubierta y demás dependencias del C.D. La Mallá\".",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:13.987Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-acu-2c074a",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre transparencia y contratación en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "Durante la sesión, el grupo municipal Otro señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
+      "summary": "Durante la sesión, el grupo municipal no identificado señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-008-acu-2c074a",
@@ -1528,14 +1678,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión, el grupo municipal Otro señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
+          "corrected": "Durante la sesión, el grupo municipal no identificado señala que se realizaron contrataciones de manera verbal y por emergencia. Esta declaración se relaciona con el expediente titulado \"Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del tempora\". Además, el mismo grupo manifiesta que existen contratos reiterados entre 2024 y 2026 cuya necesidad debería replantearse.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:14.332Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-cit-cc8758",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno del 2026-01-19: Debate sobre urbanismo",
-      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, el grupo Otro señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+      "summary": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-016-cit-cc8758",
@@ -1592,14 +1751,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, el grupo Otro señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+          "corrected": "En la sesión del pleno del 19 de enero de 2026, el grupo PSOE afirmó que «la parte de la reconstrucción, aunque los contratos no se hacen así, sino a través de trazas». Por su parte, un grupo no identificado señaló que se basan en fondos europeos para la reconstrucción tras la DANA, mientras que el PP mencionó la necesidad de subsanar problemas en el pabellón y el complejo esportivo. VOX, en cambio, denunció la falta de una agenda de reconstrucción en Riba Roja.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:14.679Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-cit-c80e68",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre urbanismo y mantenimiento de infraestructuras en el pleno del 2026-01-19",
-      "summary": "Durante la sesión, el grupo Otro señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+      "summary": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-051-cit-c80e68",
@@ -1656,7 +1824,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión, el grupo Otro señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+          "corrected": "Durante la sesión, un grupo no identificado señala deficiencias y reparaciones en el complejo la malla desde su inicio en 2006. En relación con este debate, el registro municipal incluye el contrato 'Servicio mantenimiento instalaciones en complejo deportivo La Malla. · Ayuntamiento de Riba-roja de Túria · estado: unknown'. Por su parte, el grupo VOX señala la ausencia de una agenda de reconstrucción local en el municipio.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:15.019Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-cit-8b29a9",
@@ -1726,8 +1903,8 @@
       "id": "f-2026-01-19-afi-5238db",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
-      "title": "Debate de los grupos PP, Compromís y Otro en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, el grupo Otro manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
+      "title": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
+      "summary": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-114-afi-5238db",
@@ -1799,14 +1976,31 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "original": "Debate de los grupos PP, Compromís y Otro en el pleno de Riba-roja de Túria del 2026-01-19",
+          "corrected": "Debate de los grupos PP, Compromís y un grupo no identificado en el pleno de Riba-roja de Túria del 2026-01-19",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:15.367Z"
+        },
+        {
+          "field": "summary",
+          "original": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, el grupo Otro manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
+          "corrected": "En la sesión del 19 de enero de 2026, el grupo PP afirma que votará a favor de la modificación de crédito y el grupo Compromís señala su apoyo al plan de contratación de 2026. Por su parte, un grupo no identificado manifiesta que existieron críticas políticas previas y una auditoría realizada entre 2006 y 2012. El registro municipal incluye en este periodo expedientes de contratación como el Contrato de carácter menor de obras para la ejecución del proyecto de modificación de instalación de ACS con mezcladores para duchas en pabellón deportivo municipal.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:15.716Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-cit-543cc1",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Pleno de Riba-roja de Túria: 2026-01-19 - Urbanismo y Mantenimiento",
-      "summary": "El grupo Otro afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+      "summary": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-119-cit-543cc1",
@@ -1863,14 +2057,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo Otro afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+          "corrected": "Un grupo no identificado afirma que no estaban previstas ciertas actuaciones relacionadas con la instalación de térmicas. El PP señala problemas en el complejo deportivo La Malla, mencionando la necesidad de reparar la malla exterior debido a su deterioro. Estos puntos se reflejan en registros como 'Servicio mantenimiento instalaciones térmicas deportes' y 'Contrato menor de obras de reposición de alumbrado público en zona industrial'.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:16.057Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-acu-d2b7bb",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
-      "title": "Pleno de 2026-01-19: PP niega correos, Otro cita un incumplimiento empresarial en enero",
-      "summary": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. El grupo Otro señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
+      "title": "Pleno de 2026-01-19: PP niega correos, un grupo no identificado cita un incumplimiento empresarial en enero",
+      "summary": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. Un grupo no identificado señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-157-acu-d2b7bb",
@@ -1921,14 +2124,31 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "title",
+          "original": "Pleno de 2026-01-19: PP niega correos, Otro cita un incumplimiento empresarial en enero",
+          "corrected": "Pleno de 2026-01-19: PP niega correos, un grupo no identificado cita un incumplimiento empresarial en enero",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:16.403Z"
+        },
+        {
+          "field": "summary",
+          "original": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. El grupo Otro señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
+          "corrected": "En el debate sobre transparencia del pleno del 19 de enero de 2026, el grupo PP afirma no haber enviado correos electrónicos a su interlocutor, mientras el grupo PSOE pregunta por un presunto cambio de voto de abstención a favor. Un grupo no identificado señala, por su parte, un incumplimiento empresarial calificado de grave ocurrido en enero. El registro municipal incluye el expediente de contrato menor «Migración e implantación del correo corporativo en la plataforma Microsoft 365», que corrobora la referencia a la gestión del correo electrónico municipal.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:16.743Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-acu-b1a13f",
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate sobre la recogida de residuos y el contrato de emergencia (pleno 2026-01-19)",
-      "summary": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras el grupo Otro pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
+      "summary": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras un grupo no identificado pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-161-acu-b1a13f",
@@ -1974,14 +2194,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras el grupo Otro pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
+          "corrected": "El grupo PP señala que, según la técnica municipal, actualmente solo Garbialdi —empresa contratada— trabajaba en la recogida de residuos, mientras un grupo no identificado pregunta si FCC también intervenía bajo un contrato de emergencia. El registro municipal incluye el «Contrato de servicio público de recogida de residuos sólidos urbanos del municipio», adjudicado a GARBIALDI, S.A. La sesión documenta el debate sin adjudicar su veracidad.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:17.086Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-23-acu-a1ba00",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Sesión urgente sobre incumplimiento del contrato de recogida de residuos",
-      "summary": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según Otro (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+      "summary": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-068-acu-a1ba00",
@@ -2017,14 +2246,23 @@
       "curatorName": "civicpulse-curator",
       "publishedAt": "2026-04-24",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según Otro (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+          "corrected": "El pleno urgente de 23 de diciembre de 2025 fue convocado, según un grupo no identificado (grupo no mayoritario) y Compromís, por un presunto incumplimiento del contrato municipal de recogida de residuos. La oposición atribuye al equipo de gobierno responsabilidad política además de la contractual de la empresa adjudicataria; PSOE replica que la responsabilidad recae exclusivamente en la empresa. Los datos municipales publicados (PLACSP, BDNS, presupuesto) aún no incluyen expediente de fiscalización del incumplimiento; la finding queda pendiente del informe técnico municipal y de la réplica formal de los grupos implicados.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:17.430Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-23-cit-c905c3",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente 2025-12-23: Medio ambiente",
-      "summary": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. Otro grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
+      "summary": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. un grupo no identificado grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-052-cit-c905c3",
@@ -2081,14 +2319,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. Otro grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
+          "corrected": "El PSOE afirma que un contrato para la elaboración del plan local de residuos se aprobó en línea con las directrices establecidas. un grupo no identificado grupo menciona la necesidad de mejorar la recogida diaria de basura hasta el 100%. El registro municipal incluye el Contrato menor de servicio para la elaboración del plan local de residuos.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:17.777Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-23-afi-3eebaf",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Pleno extraordinario y urgente de Riba-roja de Túria, 2025-12-23: Debates sobre transparencia y accesibilidad a informes",
-      "summary": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que Otro señala la inclusión de nuevas condiciones en el actual contrato.",
+      "summary": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado señala la inclusión de nuevas condiciones en el actual contrato.",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-122-afi-3eebaf",
@@ -2144,14 +2391,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que Otro señala la inclusión de nuevas condiciones en el actual contrato.",
+          "corrected": "VOX afirma que no es necesario desplazarse al ayuntamiento para acceder a los informes. Compromís menciona un contrato para asistencia técnica y supervisión de prestaciones, mientras que un grupo no identificado señala la inclusión de nuevas condiciones en el actual contrato.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:18.120Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-23-acu-cd77e9",
       "plenoId": "1qi8axv",
       "plenoDate": "2025-12-23",
       "title": "Debate sobre transparencia y adjudicaciones en el pleno municipal del 2025-12-23",
-      "summary": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que el grupo Otro explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
+      "summary": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
       "severity": "informational",
       "sourceClaimIds": [
         "1qi8axv-060-acu-cd77e9",
@@ -2213,7 +2469,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-04",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que el grupo Otro explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
+          "corrected": "Durante la sesión del 2025-12-23, el PSOE señala que la empresa no ha cumplido con lo acordado. El grupo PP manifiesta su negativa, mientras que un grupo no identificado explica su abstención y afirma que ninguna empresa competidora impugnó la adjudicación. El debate se enmarca en la documentación del «Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntam».",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:18.463Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-01-cit-d89862",
@@ -2274,7 +2539,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Pleno ordinario de Riba-roja de Túria, 2025-12-01: Debates sobre sistemas dinámicos de adquisición y bolsa de autónomos",
-      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. Otro grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+      "summary": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. un grupo no identificado grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-185-cit-66cd62",
@@ -2320,14 +2585,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-04-27",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. Otro grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "corrected": "El PSOE afirma que los sistemas dinámicos de adquisición aprobados recientemente incluyen la cesión de una bolsa de autónomos a otros ayuntamientos. Además, menciona un plan de rehabilitación por más de 900.000 euros para apoyar a autónomos y pequeñas empresas locales. un grupo no identificado grupo señala que esta iniciativa se extiende a varios municipios como parte de una campaña para el comercio local.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:18.809Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-01-cit-66709b",
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Debate sobre transparencia en el pleno de Riba-roja de Túria del 2025-12-01",
-      "summary": "Durante la sesión, el grupo Otro señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
+      "summary": "Durante la sesión, un grupo no identificado señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-058-cit-66709b",
@@ -2389,7 +2663,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-03",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Durante la sesión, el grupo Otro señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
+          "corrected": "Durante la sesión, un grupo no identificado señala la necesidad de publicar el convenio en el portal de transparencia municipal. Por su parte, el PSOE manifiesta que la propuesta de acuerdo a debate parte de una demanda ciudadana. Este debate se relaciona con el registro titulado \"Servicio para la desarrollo, implantación y mantenimiento de un Portal de Transparencia, por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio\".",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:19.159Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-01-cit-bef239",
@@ -2465,7 +2748,7 @@
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "01-12-2025: Pleno debate sobre pagos a proveedores y ley de contratación",
-      "summary": "El grupo Otro afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+      "summary": "Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-220-acu-34560f",
@@ -2527,14 +2810,23 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El grupo Otro afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+          "corrected": "Un grupo no identificado afirma que la Generalitat no está cumpliendo con sus pagos y advierte sobre el incumplimiento del artículo 198 de la ley de contratación, que establece intereses por retrasos en los pagos. Además, se menciona el incremento de cuotas de Seguridad Social sin exenciones.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:19.505Z"
+        }
+      ]
     },
     {
       "id": "f-2025-12-01-acu-51aaa3",
       "plenoId": "qz6weg",
       "plenoDate": "2025-12-01",
       "title": "Salvoconductos a trabajadores tras la DANA a debate en el pleno 2025-12-01",
-      "summary": "Según el registro del pleno, los grupos PSOE y Otro manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
+      "summary": "Según el registro del pleno, los grupos PSOE y un grupo no identificado manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
       "severity": "informational",
       "sourceClaimIds": [
         "qz6weg-179-acu-51aaa3",
@@ -2580,7 +2872,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "Según el registro del pleno, los grupos PSOE y Otro manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
+          "corrected": "Según el registro del pleno, los grupos PSOE y un grupo no identificado manifiestan que el consistorio habría emitido salvoconductos para que trabajadores y trabajadoras acudieran a sus puestos durante la alerta roja posterior a la DANA. El debate queda documentado junto al contrato verbal de servicio para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) derivado del temporal.",
+          "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-01T18:55:19.852Z"
+        }
+      ]
     },
     {
       "id": "f-2025-11-03-acu-431140",
@@ -3022,7 +3323,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-30",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-09-08-acu-70a34f",
@@ -3090,7 +3392,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-30",
-      "response": null
+      "response": null,
+      "corrections": []
     },
     {
       "id": "f-2025-07-31-acu-144947",
@@ -3147,7 +3450,8 @@
       "relatedPromiseIds": [],
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-31",
-      "response": null
+      "response": null,
+      "corrections": []
     }
   ]
 }

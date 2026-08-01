@@ -22,6 +22,7 @@ export const PARTY_COLORS = {
   VOX: '#3A8018',
   Compromís: '#A06116',
   Ciudadanos: '#B05A10',
+  'EU-Podem': '#8C1A2B',
   Otro: '#64748B',
 }
 

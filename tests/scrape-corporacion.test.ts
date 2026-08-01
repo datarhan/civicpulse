@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseCorporacion, canonicalCvUrl } from '../src/scraper/corporacion'
+import { parseCorporacion, canonicalCvUrl, PARTIES } from '../src/scraper/corporacion'
 
 const FIXTURE = join(__dirname, 'fixtures', 'corporacion_2026-04-19.html')
 
@@ -77,10 +77,17 @@ describe('scraper/corporacion — parseCorporacion', () => {
   })
 
   it('every official has a recognised party code', () => {
-    const allowed = new Set(['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'])
     for (const o of officials) {
-      expect(allowed.has(o.party)).toBe(true)
+      expect(PARTIES).toContain(o.party)
     }
+  })
+
+  it('no councillor sits under the unnamed "Otro" fallback', () => {
+    // `Otro` doubles as the LLM's "cannot tell which group is speaking"
+    // sentinel downstream, and this corporación had exactly one councillor
+    // under it — so publishing «el grupo Otro» named him by elimination.
+    // Every seat here belongs to a group the acta de organización names.
+    expect(officials.filter((o) => o.party === 'Otro')).toEqual([])
   })
 
   it('council composition matches the 2023 election outcome (10 PSOE / 7 PP / 1 VOX / 1 Compromís)', () => {

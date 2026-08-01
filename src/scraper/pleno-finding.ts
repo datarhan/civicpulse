@@ -44,7 +44,7 @@ export interface FindingQuote {
    * Speaker group (bloc-level only, never personal). Null when the
    * curator can't be certain from the transcript.
    */
-  speakerGroup: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro' | null
+  speakerGroup: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro' | null
   /** The claim id this quote came from (for audit trail). */
   sourceClaimId: string
 }
@@ -109,10 +109,10 @@ export interface PlenoFinding {
   individualSpeaker?: {
     slug: string
     name: string
-    party: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
+    party: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro'
   } | null
   response?: {
-    from: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
+    from: 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'EU-Podem' | 'Otro'
     quote: string
     sourceUrl?: string
     respondedAt: string
@@ -176,7 +176,7 @@ export class FindingValidationError extends Error {
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}/
 const URL_RE = /^https?:\/\/\S+$/
-const ALLOWED_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'Otro'] as const
+const ALLOWED_BLOCS = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro'] as const
 
 function must(cond: unknown, msg: string): asserts cond {
   if (!cond) throw new FindingValidationError(msg)

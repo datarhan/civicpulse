@@ -133,16 +133,34 @@ describe('ClaimReviewJsonLd._buildPlenoPayload', () => {
     expect(payload['@type']).toBe('ClaimReview')
     expect(payload.url).toContain('/hallazgos#PF-2026-001')
     expect(payload.itemReviewed.appearance).toHaveLength(1)
-    expect(payload.itemReviewed.appearance[0].url).toContain('/plenos#2026-04')
+    // `/plenos/:id`, not `/plenos#id` — the index page renders no anchors, so
+    // the fragment form resolved nowhere and this was the payload's only
+    // provenance link.
+    expect(payload.itemReviewed.appearance[0].url).toContain('/plenos/2026-04')
     expect(payload.itemReviewed.appearance[0].publisher.name).toBe(
       'Ajuntament de Riba-roja de Túria',
     )
   })
 
-  it('uses the bloc name as itemReviewed.author when no individualSpeaker is promoted', () => {
+  it('types a bloc attribution as an Organization, never a Person', () => {
+    // This test previously asserted `Person` + the bare bloc name, which is
+    // what shipped: 48 of 52 findings declared a political group to be a human
+    // being in the payload Google indexes.
     const payload = _buildPlenoPayload(basePlenoFinding)
-    expect(payload.itemReviewed.author['@type']).toBe('Person')
-    expect(payload.itemReviewed.author.name).toBe('PP')
+    expect(payload.itemReviewed.author['@type']).toBe('Organization')
+    expect(payload.itemReviewed.author.name).toBe('Grupo Municipal PP')
+  })
+
+  it('never publishes the "Otro" sentinel as an author', () => {
+    // `Otro` is the extractor's "cannot tell which group is speaking" value.
+    // It is not a group, and in this corporación it identified one councillor
+    // by elimination.
+    const payload = _buildPlenoPayload({
+      ...basePlenoFinding,
+      quotes: [{ ...basePlenoFinding.quotes[0], speakerGroup: 'Otro' }],
+    })
+    expect(JSON.stringify(payload)).not.toContain('Otro')
+    expect(payload.itemReviewed.author['@type']).toBe('Organization')
   })
 
   it('prefers the individualSpeaker name when present (curator promoted)', () => {
@@ -153,9 +171,10 @@ describe('ClaimReviewJsonLd._buildPlenoPayload', () => {
     expect(payload.itemReviewed.author.name).toBe('Jane Doe')
   })
 
-  it('falls back to "Pleno municipal" when no speaker is recorded', () => {
+  it('falls back to the council itself when no speaker is recorded', () => {
     const payload = _buildPlenoPayload({ ...basePlenoFinding, quotes: [] })
-    expect(payload.itemReviewed.author.name).toBe('Pleno municipal')
+    expect(payload.itemReviewed.author['@type']).toBe('Organization')
+    expect(payload.itemReviewed.author.name).toBe('Pleno municipal de Riba-roja de Túria')
   })
 
   it('maps severity onto a rating between 1 and 5', () => {

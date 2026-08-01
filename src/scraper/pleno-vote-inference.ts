@@ -84,6 +84,10 @@ const BLOC_ALIASES: Record<VoteBloc, RegExp> = {
   // Compromís has Valencian/Castilian spelling variants + common accent-less Whisper output.
   Compromís: /\bcompromís\b|\bcompromis\b/i,
   Ciudadanos: /\bCiudadanos\b|\bC['’]s\b|\bciutadans\b/i,
+  // Grupo Municipal Esquerra Unida-Podem — the acta writes it in full, the
+  // chair usually says "Esquerra Unida" or "Unides Podem".
+  'EU-Podem':
+    /\besquerra unida\b|\bunides podem\b|\bpodem\b|\bEUPV\b|\bEU-Podem\b|\bizquierda unida\b/i,
   Otro: /\bNo adscrito\b|\bno adscrit\b|\bgrupo mixto\b|\bgrup mixt\b/i,
 }
 

@@ -25,7 +25,7 @@ IMPORTANT SAFETY RULES — apply to every response:
 
 // ─── Phase 1 · Pleno vote extraction ────────────────────────────────────────
 
-export const PLENO_VOTE_PROMPT_VERSION = 'pleno-vote-v3'
+export const PLENO_VOTE_PROMPT_VERSION = 'pleno-vote-v4'
 
 export interface AgendaItemHint {
   number: number
@@ -71,7 +71,7 @@ Tu tarea: decidir si el segmento describe UNA votación concreta de un punto del
 - itemNumber: nº del punto del orden del día oficial que se está votando (entero). Úsalo ACTIVAMENTE: el orden del día es la fuente autoritativa, no hace falta que Whisper lo dicte literalmente. Devuelve null sólo si ninguno encaja.
 - outcome: "aprobado" | "rechazado" | "retirado" | "aplazado", o null si poco claro
 - votes: array de { bloc, direction } para cada grupo mencionado
-    - bloc ∈ PSOE, PP, VOX, Compromís, Ciudadanos, Otro (sólo los de la composición arriba)
+    - bloc ∈ PSOE, PP, VOX, Compromís, Ciudadanos, EU-Podem, Otro (sólo los de la composición arriba)
     - direction ∈ a_favor, en_contra, abstencion, ausente
     - Seats opcional, si el texto lo menciona ("11 votos a favor" de PSOE con 11 escaños)
 - excerpt: cita textual del fragmento (máx 600 chars)
@@ -101,7 +101,7 @@ export function buildPlenoVoteUserPrompt(segment: string): string {
 
 // ─── Phase 1b · Pleno claim extraction ──────────────────────────────────────
 
-export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v3'
+export const PLENO_CLAIM_PROMPT_VERSION = 'pleno-claim-v4'
 
 export interface AllowedSpeaker {
   /** kebab-case slug from public/data/officials.json. */
@@ -167,7 +167,8 @@ Te daré un fragmento de ~900 caracteres del pleno. Extrae TODAS las afirmacione
 
 Para cada afirmación extrae:
 - type: una de las cinco categorías
-- speakerGroup: PSOE | PP | VOX | Compromís | Ciudadanos | Otro, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
+- speakerGroup: PSOE | PP | VOX | Compromís | Ciudadanos | EU-Podem, SOLO si el fragmento deja claro qué grupo habla. NUNCA un nombre propio. null si dudas.
+  NO uses «Otro». Existe en el esquema por compatibilidad con datos antiguos, pero no nombra a ningún grupo: el grupo de Esquerra Unida-Podem se escribe EU-Podem. Si no puedes determinar el grupo, la respuesta es null.
 - speakerSlug: slug del concejal SI Y SOLO SI la línea de la transcripción ya viene rotulada por el sistema de voz (ver bloque "IDENTIFICACIÓN POR VOZ" arriba). null en cualquier otro caso. Esta es una atribución secundaria — el speakerGroup sigue siendo la atribución primaria.
 - verbatim: cita literal (≥20 caracteres, máx 500), tal y como aparece en la transcripción aunque Whisper la haya degradado. Esta es la responsabilidad legal — no la parafrasees.
 - context: el párrafo breve (≥20 caracteres) alrededor de la verbatim para que el curador humano pueda juzgar.
@@ -561,7 +562,7 @@ export function buildEngineArgueAgainstPrompt(
 
 // ─── Phase 6 · Auto-curation prompts ────────────────────────────────────────
 
-export const AUTO_CURATE_PROMPT_VERSION = 'auto-curate-v1'
+export const AUTO_CURATE_PROMPT_VERSION = 'auto-curate-v2'
 
 export interface AutoCurateBundle {
   plenoId: string
@@ -594,7 +595,10 @@ budget). Defamation risk is real.
 ABSOLUTE RULES (libel safety):
 
   1. Cite each speaker by their PARTY/BLOC ONLY — PSOE, PP, VOX,
-     Compromís, Otro. NEVER name an individual concejal. Whisper has
+     Compromís, EU-Podem. NEVER name an individual concejal, and never
+     write "Otro": it names no group, and the one-seat groups here are
+     identified by elimination the moment a placeholder is published.
+     Use null when the group is unclear. Whisper has
      ~5-10% WER on proper nouns and individual misattribution is the
      biggest libel exposure we have.
 

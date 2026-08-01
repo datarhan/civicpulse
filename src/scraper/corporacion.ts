@@ -2,7 +2,8 @@ import { load, type CheerioAPI } from 'cheerio'
 import type { AnyNode } from 'domhandler'
 import { slugify } from './normalize'
 
-export type Party = 'PSOE' | 'PP' | 'VOX' | 'Compromís' | 'Ciudadanos' | 'Otro'
+export const PARTIES = ['PSOE', 'PP', 'VOX', 'Compromís', 'Ciudadanos', 'EU-Podem', 'Otro'] as const
+export type Party = (typeof PARTIES)[number]
 export type Role = 'alcalde' | 'concejal'
 
 export interface Official {
@@ -32,7 +33,13 @@ function partyFromLogo($img: AnyNode, $: CheerioAPI): Party {
   const el = $($img as unknown as AnyNode)
   const alt = (el.attr('alt') || '').toLowerCase()
   const src = el.attr('src') || ''
-  const idMatch = src.match(/id=(\d+)/)
+  // The numeric image id used to live in the src query string
+  // (`?id=11569`). Drupal's file migration moved it into the alt text as
+  // `(id: 11569)` and left the src as a plain path, which silently killed
+  // every id-based rule below — the EU-Podem logo carries NO other
+  // distinguishing text (its alt is literally `(id: 11569)`), so its
+  // councillor fell through to the `Otro` fallback. Read both forms.
+  const idMatch = src.match(/id=(\d+)/) || alt.match(/\(id:\s*(\d+)\)/)
   const imgId = idMatch ? idMatch[1] : ''
 
   if (alt.includes('psoe') || imgId === '1967') return 'PSOE'
@@ -40,6 +47,21 @@ function partyFromLogo($img: AnyNode, $: CheerioAPI): Party {
   if (alt.includes('vox') || imgId === '10576') return 'VOX'
   if (alt.includes('compromis') || alt.includes('compromís') || imgId === '1970') return 'Compromís'
   if (alt.includes('ciudadanos') || alt.includes('ciutadans')) return 'Ciudadanos'
+  // Logo 11569 is the group the acta de organización of 07-07-2023 names
+  // "Grupo Municipal Esquerra Unida-Podem". It used to fall through to the
+  // 'Otro' fallback, which the site then printed as if it were a party name —
+  // and since this group holds exactly one seat, "Otro" identified its single
+  // councillor by elimination while the extractor believed it was publishing
+  // bloc-level attribution only.
+  if (
+    imgId === '11569' ||
+    /logo-eu-up/i.test(src) ||
+    alt.includes('esquerra unida') ||
+    alt.includes('eupv') ||
+    alt.includes('podem') ||
+    alt.includes('izquierda unida')
+  )
+    return 'EU-Podem'
   return 'Otro'
 }
 

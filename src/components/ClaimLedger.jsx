@@ -10,6 +10,7 @@ import {
   VERDICT_TONE,
 } from '../hooks/usePlenoClaims'
 import { gateForDisplay, sortSignalFirst } from '../lib/claim-ledger'
+import { blocLabel } from '../lib/party-label.js'
 
 function formatEuros(n) {
   if (typeof n !== 'number' || !Number.isFinite(n)) return ''
@@ -90,7 +91,7 @@ function ClaimCard({ item }) {
                   textTransform: 'uppercase',
                 }}
               >
-                {claim.speakerGroup}
+                {blocLabel(claim.speakerGroup)}
               </span>
             )}
             <span className="mono" style={{ fontSize: 10, color: 'var(--ink50)' }}>

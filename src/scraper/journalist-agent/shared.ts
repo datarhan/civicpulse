@@ -25,6 +25,7 @@ export const PARTY_TONE: Record<string, string> = {
   VOX: 'warn',
   Compromís: 'ok',
   Ciudadanos: 'neutral',
+  'EU-Podem': 'civic',
   Otro: 'neutral',
 }
 
