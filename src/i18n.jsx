@@ -271,6 +271,10 @@ const CATALOGUE = {
     'cargos.detalle.actividad.votos': 'votaciones',
     'cargos.detalle.actividad.declaraciones': 'declaraciones con evidencia',
     'cargos.detalle.actividad.hallazgos': 'hallazgos del área →',
+    'cargos.detalle.ficha.eyebrow': 'Portal de transparencia',
+    'cargos.detalle.ficha.title': 'Su ficha biográfica oficial',
+    'cargos.detalle.ficha.note':
+      'Documento publicado por el propio Ayuntamiento. Cinco concejales no tienen ficha publicada; en esos casos no se muestra nada antes que enlazar la de otra persona.',
     'cargos.detalle.mandato.eyebrow': 'Respaldo electoral',
     'cargos.detalle.mandato.title': 'Con cuántos votos llegó su lista',
     'cargos.detalle.mandato.municipales': 'municipales',
@@ -583,6 +587,10 @@ const CATALOGUE = {
     'cargos.detalle.actividad.votos': 'votacions',
     'cargos.detalle.actividad.declaraciones': 'declaracions amb evidència',
     'cargos.detalle.actividad.hallazgos': "troballes de l'àrea →",
+    'cargos.detalle.ficha.eyebrow': 'Portal de transparència',
+    'cargos.detalle.ficha.title': 'La seua fitxa biogràfica oficial',
+    'cargos.detalle.ficha.note':
+      "Document publicat pel mateix Ajuntament. Cinc regidors no tenen fitxa publicada; en eixos casos no es mostra res abans que enllaçar la d'una altra persona.",
     'cargos.detalle.mandato.eyebrow': 'Suport electoral',
     'cargos.detalle.mandato.title': 'Amb quants vots va arribar la seua llista',
     'cargos.detalle.mandato.municipales': 'municipals',

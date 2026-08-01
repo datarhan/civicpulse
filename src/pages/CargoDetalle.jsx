@@ -8,6 +8,8 @@ import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { useElections } from '../hooks/useElections'
+import { useTransparencyDocs } from '../hooks/useTransparencyDocs'
+import { cvDocForOfficial } from '../lib/official-cv'
 import { latestVoteShare } from '../lib/party-alias'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { useT, useLocale } from '../i18n'
@@ -260,6 +262,38 @@ function Mandato({ party }) {
   )
 }
 
+/**
+ * The councillor's own biographic PDF from the transparency portal.
+ *
+ * `officials[].cvUrl` is byte-identical for all 21 — a single generic landing
+ * page — while the portal publishes a per-person document for most of them.
+ * This links the real one. Matching is strict and refuses on ambiguity (see
+ * lib/official-cv), so 5 councillors with no published document simply show
+ * nothing rather than inheriting somebody else's CV.
+ */
+function FichaOficial({ official, roster }) {
+  const t = useT()
+  const { data } = useTransparencyDocs()
+  const doc = cvDocForOfficial(data, official, roster)
+  if (!doc) return null
+  return (
+    <section style={{ marginBottom: 28 }}>
+      <SectionHead
+        eyebrow={t('cargos.detalle.ficha.eyebrow')}
+        title={t('cargos.detalle.ficha.title')}
+      />
+      <Card>
+        <ExtLink href={doc.url} style={{ color: 'var(--civic)', fontWeight: 500, fontSize: 13.5 }}>
+          {doc.title} ↗
+        </ExtLink>
+        <div className="mono" style={{ fontSize: 10.5, color: 'var(--ink50)', marginTop: 8 }}>
+          {t('cargos.detalle.ficha.note')}
+        </div>
+      </Card>
+    </section>
+  )
+}
+
 function MiniStat({ label, value, tone }) {
   const color =
     tone === 'warn' ? 'var(--warn-ink)' : tone === 'crit' ? 'var(--crit-ink)' : 'var(--ink)'
@@ -305,7 +339,8 @@ export default function CargoDetalle() {
     )
   }
 
-  const official = officialsSnap.data?.officials?.find((o) => o.slug === slug)
+  const officialsList = officialsSnap.data?.officials ?? []
+  const official = officialsList.find((o) => o.slug === slug)
   if (!official) {
     return (
       <div style={{ padding: '28px 28px 48px', maxWidth: 920, margin: '0 auto' }}>
@@ -480,6 +515,7 @@ export default function CargoDetalle() {
         />
       </div>
 
+      <FichaOficial official={official} roster={officialsList} />
       <Mandato party={official.party} />
       <Retribucion slug={official.slug} />
       <AreaSpend slugs={slugs} />
