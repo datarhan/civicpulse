@@ -212,7 +212,13 @@ function AreaActivity({ slugs }) {
               <span className="mono">{b.declaraciones.conEvidencia}</span>{' '}
               {t('cargos.detalle.actividad.declaraciones')}
               {' · '}
-              <Link to={`/hallazgos?area=${b.slug}`} style={{ color: 'var(--civic)' }}>
+              {/* Underlined, not just recoloured: this link sits mid-sentence
+                  after the declaraciones count, and colour alone fails
+                  WCAG 1.4.1 (axe: link-in-text-block). */}
+              <Link
+                to={`/hallazgos?area=${b.slug}`}
+                style={{ color: 'var(--civic)', textDecoration: 'underline' }}
+              >
                 {t('cargos.detalle.actividad.hallazgos')}
               </Link>
             </span>
@@ -466,11 +472,14 @@ export default function CargoDetalle() {
               {official.portfolios.join(' · ')}
             </div>
           )}
+          {/* Both links sit inside a run of text, so colour alone cannot
+              distinguish them (axe: link-in-text-block, WCAG 1.4.1). The email
+              is rendered in the body ink to begin with. Underline them. */}
           <div style={{ display: 'flex', gap: 14, marginTop: 8, fontSize: 12 }}>
             <a
               href={`mailto:${official.email || 'alcaldia@ribarroja.es'}`}
               className="mono"
-              style={{ color: 'var(--ink80)', textDecoration: 'none' }}
+              style={{ color: 'var(--ink80)', textDecoration: 'underline' }}
             >
               {official.email || 'alcaldia@ribarroja.es'}
             </a>
@@ -478,7 +487,7 @@ export default function CargoDetalle() {
               <Link
                 to={bioRoutes.get(official.slug)}
                 title="Informe biográfico del agente periodista de CivicPulse"
-                style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+                style={{ color: 'var(--civic)', textDecoration: 'underline', fontWeight: 500 }}
               >
                 Biografía →
               </Link>
@@ -486,7 +495,7 @@ export default function CargoDetalle() {
               official.cvUrl && (
                 <ExtLink
                   href={official.cvUrl}
-                  style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+                  style={{ color: 'var(--civic)', textDecoration: 'underline', fontWeight: 500 }}
                 >
                   Biografía →
                 </ExtLink>
