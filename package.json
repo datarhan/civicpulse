@@ -138,7 +138,9 @@
     "prepare": "husky || true",
     "calibrate:reground": "npx tsx scripts/calibrate-reground.ts",
     "apply-gold-downgrades": "npx tsx scripts/apply-gold-downgrades.ts",
-    "verify:pleno-claims:engine": "npx tsx scripts/verify-pleno-claims-engine.ts"
+    "verify:pleno-claims:engine": "npx tsx scripts/verify-pleno-claims-engine.ts",
+    "suggest:officials-social": "npx tsx scripts/suggest-officials-social.ts",
+    "promote-social": "npx tsx scripts/promote-official-social.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

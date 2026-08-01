@@ -7,9 +7,54 @@ import { useDedicaciones, dedicacionForSlug } from '../hooks/useDedicaciones'
 import { useJsonFetch } from '../hooks/useJsonFetch'
 import { useBioReportRoutes } from '../hooks/useBioReportRoutes'
 import { useQuejas } from '../hooks/useQuejas'
+import { useSocialFor, SOCIAL_PLATFORM_META } from '../hooks/useOfficialsSocial'
 import { canonicalizeDepartment, DEPARTMENT_LABEL } from '../scraper/departments'
 import { fmtDateLong } from '../lib/formatters'
 import { useT, useLocale } from '../i18n'
+
+/**
+ * Verified public accounts for this official.
+ *
+ * Renders ONLY curator-promoted rows (public/data/officials-social.json); the
+ * machine suggestions are never fetched by the app. Nothing renders when an
+ * official has no verified account — an absent row means "not verified", not
+ * "no presence", and an honest blank beats a guess on a named person's card.
+ */
+function SocialLinks({ slug }) {
+  const { accounts } = useSocialFor(slug)
+  if (accounts.length === 0) return null
+  return (
+    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
+      {accounts.map((a) => {
+        const meta = SOCIAL_PLATFORM_META[a.platform] ?? { label: a.platform, glyph: '↗' }
+        return (
+          <ExtLink
+            key={a.platform}
+            href={a.url}
+            title={`${meta.label}: @${a.handle} — verificado por ${a.curator ?? 'curación'}`}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 5,
+              padding: '3px 8px',
+              borderRadius: 999,
+              border: '1px solid var(--border2)',
+              background: 'var(--soft)',
+              color: 'var(--ink70)',
+              fontSize: 11,
+              textDecoration: 'none',
+            }}
+          >
+            <span aria-hidden="true" className="mono">
+              {meta.glyph}
+            </span>
+            <span>{meta.label}</span>
+          </ExtLink>
+        )
+      })}
+    </div>
+  )
+}
 
 function QuejaBadge({ slug }) {
   const { data } = useQuejas()
@@ -492,6 +537,7 @@ function OfficialCard({ o, big = false, bioRoute }) {
           )
         )}
       </div>
+      <SocialLinks slug={o.slug} />
       <RetribucionBadge official={o} />
       <SalaryGrowth official={o} />
       <DepartmentLinks portfolios={o.portfolios} />
