@@ -346,3 +346,51 @@ describe('claimsSummary cross-tab path', () => {
     expect(anyDecl).toBe(false)
   })
 })
+
+describe('computeDepartmentStats — contratación por concejalía', () => {
+  const tenders = {
+    contracts: [
+      // construction → obras-publicas
+      { id: 'c1', categoryTitle: 'construction', status: 'awarded', finalAmount: 100000 },
+      { id: 'c2', categoryTitle: 'construction', status: 'awarded', initialAmount: 50000 },
+      // environment → medio-ambiente
+      { id: 'c3', categoryTitle: 'environment', status: 'awarded', finalAmount: 25000 },
+      // ambiguous — must reach no department rather than guess an owner
+      { id: 'c4', categoryTitle: 'other', status: 'awarded', finalAmount: 999999 },
+      { id: 'c5', categoryTitle: 'legal', status: 'awarded', finalAmount: 888888 },
+      // not awarded yet — no money has moved, so it must not count as spend
+      { id: 'c6', categoryTitle: 'construction', status: 'pending', finalAmount: 777777 },
+    ],
+  }
+
+  it('attributes awarded spend to the department that owns the category', () => {
+    const { bySlug } = computeDepartmentStats({
+      officials,
+      promises,
+      agendas,
+      votes,
+      quejas,
+      tenders,
+    })
+    expect(bySlug['obras-publicas'].contratacion).toEqual({ contratos: 2, importeEur: 150000 })
+    expect(bySlug['medio-ambiente'].contratacion).toEqual({ contratos: 1, importeEur: 25000 })
+  })
+
+  it('leaves ambiguous categories unattributed rather than guessing', () => {
+    const { list } = computeDepartmentStats({
+      officials,
+      promises,
+      agendas,
+      votes,
+      quejas,
+      tenders,
+    })
+    const total = list.reduce((s, d) => s + d.contratacion.contratos, 0)
+    expect(total).toBe(3) // c1, c2, c3 — never c4/c5 (ambiguous) or c6 (unawarded)
+  })
+
+  it('reports zero contratación when no tenders snapshot is supplied', () => {
+    const { bySlug } = computeDepartmentStats({ officials, promises, agendas, votes, quejas })
+    expect(bySlug['obras-publicas'].contratacion).toEqual({ contratos: 0, importeEur: 0 })
+  })
+})

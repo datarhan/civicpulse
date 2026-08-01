@@ -5,6 +5,14 @@ import { useDepartmentStats } from '../hooks/useDepartmentStats'
 import { usePromises, isPromiseFrozen, PARTY_TONE } from '../hooks/usePromises'
 import { useT, useLocale } from '../i18n'
 
+/** Compact euros for a card stat: 61.262.695 € reads as "61,3 M€". */
+function formatEurosCompact(eur) {
+  if (!eur) return '—'
+  if (eur >= 1e6) return `${(eur / 1e6).toFixed(1).replace('.', ',')} M€`
+  if (eur >= 1e3) return `${Math.round(eur / 1e3)} k€`
+  return `${Math.round(eur)} €`
+}
+
 function DepartmentCard({ bucket, frozen }) {
   const t = useT()
   const { locale } = useLocale()
@@ -29,6 +37,10 @@ function DepartmentCard({ bucket, frozen }) {
               {label}
             </div>
             {official ? (
+              // The graph used to be one-directional: /cargos linked out to
+              // /departamentos, but the responsible official was rendered here
+              // as plain text, so a reader who arrived at a concejalía could not
+              // reach the person accountable for it.
               <div style={{ fontSize: 12, color: 'var(--ink60)' }}>
                 <span
                   className="mono"
@@ -36,7 +48,7 @@ function DepartmentCard({ bucket, frozen }) {
                 >
                   {official.party}
                 </span>
-                {official.name}
+                <span style={{ color: 'var(--civic)' }}>{official.name}</span>
               </div>
             ) : (
               <div
@@ -73,6 +85,23 @@ function DepartmentCard({ bucket, frozen }) {
             label={t('departamentos.card.promesas')}
             value={bucket.promesas.total}
             muted={bucket.promesas.total === 0}
+          />
+          {/* Awarded spend this concejalía owns. Under-states by design: only
+              contracts whose category maps unambiguously to a department are
+              counted, so a blank means "not attributable", never "spent zero". */}
+          <Stat
+            label={t('departamentos.card.contratacion')}
+            value={
+              bucket.contratacion.contratos > 0
+                ? formatEurosCompact(bucket.contratacion.importeEur)
+                : '—'
+            }
+            muted={bucket.contratacion.contratos === 0}
+            sub={
+              bucket.contratacion.contratos > 0
+                ? `${bucket.contratacion.contratos} ${t('departamentos.card.contratos')}`
+                : undefined
+            }
           />
           <Stat
             label={t('departamentos.card.quejas')}

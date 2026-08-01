@@ -17,6 +17,7 @@ import {
   DEPARTMENT_LABEL,
   canonicalizeDepartment,
   resolveResponsibleOfficial,
+  departmentForTenderCategory,
 } from '../scraper/departments'
 import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
 
@@ -30,6 +31,7 @@ import { topicToDeptSlugs, promiseDeptSlug } from './department-claim-topics'
  * @property {object} plenoAgendas { total, sinVoto }
  * @property {object} promesas  { total, docs, enProgreso, plazosVencidos }
  * @property {object} quejas  { abiertas, silencios, total }
+ * @property {object} contratacion  { contratos, importeEur } — awarded spend owned by this concejalía
  * @property {object} declaraciones  { total, verificado, parcial, contradicho, promesaRepetida, sinDatos, conEvidencia }
  */
 
@@ -50,6 +52,10 @@ function emptyBucket(slug) {
     plenoAgendas: { total: 0, sinVoto: 0 },
     promesas: { total: 0, docs: 0, enProgreso: 0, plazosVencidos: 0 },
     quejas: { abiertas: 0, silencios: 0, total: 0 },
+    /** Awarded public spending owned by this concejalía. Only contracts whose
+     *  Gobierto category maps unambiguously to a department are counted, so the
+     *  figure UNDER-states rather than mis-attributes. */
+    contratacion: { contratos: 0, importeEur: 0 },
     /** Claims surfaced from the verifier (deterministic + LLM-second-pass).
      *  conEvidencia = verificado + parcial + contradicho — the editorially
      *  meaningful number. sinDatos is excluded; promesa-repetida tracked
@@ -123,6 +129,8 @@ function addDeclaraciones(d, verdict, count) {
  * @param {any} [input.agendas]
  * @param {any} [input.votes]
  * @param {any} [input.quejas]
+ * @param {any} [input.tenders]  contracts snapshot; awarded rows are attributed
+ *   to the concejalía that owns their category (unambiguous ones only)
  * @param {any} [input.claims]
  * @param {any} [input.claimsSummary]  topic→verdict→count cross-tab (the chunk
  *   manifest's totals.byTopicVerdict); when present it is used INSTEAD of
@@ -135,6 +143,7 @@ export function computeDepartmentStats({
   agendas,
   votes,
   quejas,
+  tenders,
   claims,
   claimsSummary,
   now = new Date(),
@@ -212,6 +221,20 @@ export function computeDepartmentStats({
     buckets[slug].quejas.total += 1
     if (!CLOSED_STATES.has(status)) buckets[slug].quejas.abiertas += 1
     if (status === 'silencio_negativo') buckets[slug].quejas.silencios += 1
+  }
+
+  // Contratación. The largest money dataset had no owner at all: Gobierto
+  // labels each contract with an English `categoryTitle`, which the Spanish
+  // keyword rules never matched, so all 804 awarded contracts reached no
+  // concejalía. Only awarded rows count — a tender still open has moved no
+  // money — and only unambiguous categories, so the number under-states
+  // instead of putting a wrong owner on a spending figure.
+  for (const c of tenders?.contracts ?? []) {
+    if (c.status !== 'awarded') continue
+    const slug = departmentForTenderCategory(c.categoryTitle)
+    if (!slug || !buckets[slug]) continue
+    buckets[slug].contratacion.contratos += 1
+    buckets[slug].contratacion.importeEur += Number(c.finalAmount || c.initialAmount || 0)
   }
 
   // Verified claims (deterministic + LLM second-pass). Each claim's topic

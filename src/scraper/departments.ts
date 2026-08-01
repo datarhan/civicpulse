@@ -228,3 +228,48 @@ export function resolveResponsibleOfficial<T extends OfficialLike>(
 }
 
 export { slugify }
+
+/**
+ * Gobierto ships each contract with an English `categoryTitle`, so the Spanish
+ * keyword rules in `canonicalizeDepartment` returned null for all 804 awarded
+ * contracts + 427 tenders — the biggest money dataset in the project reached no
+ * concejalía at all.
+ *
+ * Only unambiguous categories are mapped. "other" (85 rows), "legal" (29),
+ * "catering" (16), "textile" (14), "industry" (13) and "electrical" (3) can each
+ * sit in several areas, and putting a wrong owner on a spending figure is worse
+ * than leaving it blank — the same under-match discipline the tender
+ * place-resolver applies to place names. That leaves ~80% of contracts
+ * attributed and the remainder honestly unassigned.
+ */
+export const TENDER_CATEGORY_DEPARTMENT: Record<string, DepartmentSlug> = {
+  construction: 'obras-publicas',
+  architecture: 'urbanismo',
+  real_estate: 'vivienda',
+  environment: 'medio-ambiente',
+  transportation: 'movilidad',
+  health: 'salud',
+  education: 'educacion',
+  culture: 'cultura',
+  security: 'seguridad',
+  agriculture: 'agricultura',
+  finance: 'hacienda',
+  it: 'innovacion',
+  software: 'innovacion',
+  telecom: 'innovacion',
+  audiovisual: 'comunicacion',
+  print: 'comunicacion',
+  // Facility upkeep and supplies for municipal buildings.
+  maintenance: 'servicios-generales',
+  furniture: 'servicios-generales',
+  energy: 'servicios-generales',
+  public_services: 'servicios-generales',
+}
+
+/** Department that owns a contract's spending area, or null when ambiguous. */
+export function departmentForTenderCategory(
+  categoryTitle: string | null | undefined,
+): DepartmentSlug | null {
+  if (!categoryTitle) return null
+  return TENDER_CATEGORY_DEPARTMENT[categoryTitle.trim().toLowerCase()] ?? null
+}

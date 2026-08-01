@@ -5,6 +5,7 @@ import { usePromises } from './usePromises'
 import { usePlenoAgendas } from './usePlenoAgendas'
 import { usePlenoVotes } from './usePlenoVotes'
 import { useQuejas } from './useQuejas'
+import { useTenders } from './useTenders'
 import { usePlenoClaimsManifest } from './usePlenoClaims'
 import { computeDepartmentStats } from '../lib/department-stats'
 
@@ -33,6 +34,7 @@ export function useDepartmentStats() {
   const agendas = usePlenoAgendas()
   const votes = usePlenoVotes()
   const quejas = useQuejas()
+  const tenders = useTenders()
   const manifest = usePlenoClaimsManifest()
 
   // Required sources gate the loading state. Claims are best-effort —
@@ -50,6 +52,8 @@ export function useDepartmentStats() {
       agendas: agendas.data,
       votes: votes.data,
       quejas: quejas.data,
+      // Best-effort like claims: contracts enrich the page but must not gate it.
+      tenders: tenders.error ? null : tenders.data,
       claimsSummary: manifest.error ? null : (manifest.data?.totals?.byTopicVerdict ?? null),
     })
   }, [
@@ -60,6 +64,8 @@ export function useDepartmentStats() {
     agendas.data,
     votes.data,
     quejas.data,
+    tenders.data,
+    tenders.error,
     manifest.data,
     manifest.error,
   ])
