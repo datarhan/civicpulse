@@ -32,6 +32,8 @@ export interface TranscriptSanityReport {
   topLineCount: number
   /** Total characters across the DISTINCT content lines. */
   uniqueContentChars: number
+  /** Lines matching a known Whisper hallucination marker. */
+  hallucinatedLines: number
 }
 
 /** A real pleno session never yields fewer content lines than this. */
@@ -45,6 +47,29 @@ const TOP_LINE_COUNT_FLOOR = 20
 /** Distinct content below this many chars can't be a session (catches all-dots). */
 const MIN_UNIQUE_CONTENT_CHARS = 800
 
+/**
+ * Text Whisper emits from its training data, not from the audio: YouTube
+ * sign-offs, subtitle credits, and ads that belong to whatever corpus the
+ * model memorised. All of these are present in the published corpus today —
+ * `1du4rf5` carries 110 lines of "Más información www.alimmenta.com" (a
+ * nutrition site) and `1237hbp` a line about the Church of Jesus Christ of
+ * Latter-day Saints. Between them those two files supply 293 and 294
+ * published claims.
+ *
+ * A handful of such lines does not make a transcript worthless, so this is
+ * counted, not fatal on sight — the gate trips when they are a real share of
+ * the file, or when a single marker repeats like a stuck loop.
+ */
+const HALLUCINATION_MARKERS: RegExp[] = [
+  /alimmenta\.com/i,
+  /suscr[ií]bete al canal/i,
+  /gracias por ver el v[ií]deo/i,
+  /subt[ií]tulos (?:realizados|por la comunidad)/i,
+  /amara\.org/i,
+  /iglesia de jesucristo de los santos/i,
+  /junta de extremadura/i,
+]
+
 const TIMESTAMP_PREFIX = /^\[[^\]]*\]\s*/
 
 export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
@@ -55,6 +80,11 @@ export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
 
   const counts = new Map<string, number>()
   for (const line of contentLines) counts.set(line, (counts.get(line) ?? 0) + 1)
+
+  let hallucinatedLines = 0
+  for (const line of contentLines) {
+    if (HALLUCINATION_MARKERS.some((re) => re.test(line))) hallucinatedLines += 1
+  }
 
   const lines = contentLines.length
   const uniqueLines = counts.size
@@ -74,6 +104,9 @@ export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
     reasons.push('dominant-line')
   if (lines >= MIN_LINES && uniqueContentChars < MIN_UNIQUE_CONTENT_CHARS)
     reasons.push('no-content')
+  // Either a meaningful share of the file, or an absolute wall of it.
+  if (lines > 0 && (hallucinatedLines / lines > 0.02 || hallucinatedLines >= 25))
+    reasons.push('hallucination-markers')
 
   return {
     ok: reasons.length === 0,
@@ -84,5 +117,6 @@ export function assessTranscriptSanity(raw: string): TranscriptSanityReport {
     topLineShare,
     topLineCount,
     uniqueContentChars,
+    hallucinatedLines,
   }
 }

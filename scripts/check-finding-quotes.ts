@@ -118,6 +118,10 @@ function main() {
     console.log(`      “${d.quote}”`)
   }
   if (drifted.length > 0) {
+    // Non-zero so a caller (scrape-all, CI) can actually notice. This script
+    // reported drift to nobody for months because it always exited 0 AND had
+    // no caller.
+    process.exitCode = 1
     console.log(
       `\nA quote that no longer appears is NOT automatically wrong — the curator decides\n` +
         `whether it was transcriber invention (log a correction with\n` +

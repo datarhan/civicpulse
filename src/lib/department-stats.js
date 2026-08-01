@@ -161,8 +161,19 @@ export function computeDepartmentStats({
   // Pleno votes (primary commitment source)
   const voteList = votes?.items ?? []
   const voteIndex = new Map() // plenoId + itemNumber → vote (for join with agendas)
+  // Counted independently of the department buckets. `department` is optional
+  // on a curated vote and 16 of 19 records omit it, so anything summed from the
+  // buckets alone silently drops those — including the ONLY vote in the file
+  // that carries a `dueBy`. That is why the landing page published "0 plazos
+  // vencidos" while a commitment approved with a verbatim deadline from the
+  // acta was five months overdue: not because nothing was overdue, but because
+  // the one overdue record had no bucket to land in.
+  let unbucketedOverdueVotes = 0
   for (const v of voteList) {
     const slug = canonicalizeDepartment(v.department)
+    if (!slug || !buckets[slug]) {
+      if (v.outcome === 'aprobado' && isOverdue(v.dueBy, now)) unbucketedOverdueVotes += 1
+    }
     if (slug && buckets[slug]) {
       const bucket = buckets[slug].plenoVotes
       bucket.total += 1
@@ -281,10 +292,10 @@ export function computeDepartmentStats({
   const list = ALLOWED_DEPARTMENT_SLUGS.map((s) => buckets[s])
 
   // Top-level scalar: total plazos vencidos across all dept + source.
-  let plazosVencidosCount = 0
+  let plazosVencidosCount = unbucketedOverdueVotes
   for (const b of list) {
     plazosVencidosCount += b.plenoVotes.plazosVencidos + b.promesas.plazosVencidos
   }
 
-  return { bySlug: buckets, list, plazosVencidosCount }
+  return { bySlug: buckets, list, plazosVencidosCount, unbucketedOverdueVotes }
 }

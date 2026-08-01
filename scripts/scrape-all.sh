@@ -203,6 +203,28 @@ fi
 
 echo ""
 echo "================================================================"
+echo "[scrape-all] running: check:transcripts + check:finding-quotes (report-only)"
+echo "================================================================"
+# Both of these existed for months with NO caller anywhere — not in a
+# workflow, not in a pipeline script — while finding real problems: 25 of 180
+# published finding quotes no longer appear in the transcript they cite, and
+# the transcript sanity gate is the only thing standing between a degenerate
+# Whisper run and a published "verbatim". A check nobody runs is a check that
+# does not exist.
+#
+# Report-only for the same reason as check:relations: a partial scrape night
+# must not block the commit. They are loud in the log and in the summary.
+if ! npm run check:transcripts; then
+  echo "[scrape-all] SOFT-FAILED: check:transcripts — quarantined transcript(s) detected"
+  soft_failures+=("check:transcripts")
+fi
+if ! npm run check:finding-quotes; then
+  echo "[scrape-all] SOFT-FAILED: check:finding-quotes — published quote(s) not traceable"
+  soft_failures+=("check:finding-quotes")
+fi
+
+echo ""
+echo "================================================================"
 echo "[scrape-all] summary"
 echo "================================================================"
 if [ ${#soft_failures[@]} -gt 0 ]; then

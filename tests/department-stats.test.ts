@@ -416,3 +416,36 @@ describe('computeDepartmentStats — contratación por concejalía', () => {
     expect(bySlug['obras-publicas'].contratacion).toEqual({ contratos: 0, importeEur: 0 })
   })
 })
+
+describe('department-stats — overdue votes without a department', () => {
+  it('counts an overdue commitment that belongs to no bucket', () => {
+    // 16 of 19 curated votes carry no `department`, and the only record with a
+    // `dueBy` is one of them. Summing over buckets alone made the landing
+    // page's "plazos vencidos" KPI structurally 0.
+    const votes = {
+      items: [
+        {
+          plenoId: 'p1',
+          itemNumber: 11,
+          outcome: 'aprobado',
+          dueBy: '2020-01-01',
+          dueBySource: 'en el plazo de tres meses desde la aprobación',
+          blocs: [],
+        },
+      ],
+    }
+    const out = computeDepartmentStats({ votes, now: new Date('2026-08-01') })
+    expect(out.unbucketedOverdueVotes).toBe(1)
+    expect(out.plazosVencidosCount).toBe(1)
+  })
+
+  it('does not count one that is not yet due', () => {
+    const votes = {
+      items: [
+        { plenoId: 'p1', itemNumber: 11, outcome: 'aprobado', dueBy: '2030-01-01', blocs: [] },
+      ],
+    }
+    const out = computeDepartmentStats({ votes, now: new Date('2026-08-01') })
+    expect(out.plazosVencidosCount).toBe(0)
+  })
+})
