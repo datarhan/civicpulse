@@ -73,6 +73,31 @@ describe('propose-voice-references — matchAnnouncedOfficial', () => {
     expect(matchAnnouncedOfficial('Gràcies, Guzman.', OFFICIALS)?.slug).toBe('laura-guzman-bruno')
   })
 
+  it('ignores a surname that is really part of a place name', () => {
+    // Real false positive from session 15uvjew: "Pla de Tochar" is a local
+    // area, not councillor Alfredo Plá. Handing over the floor ends with the
+    // person's name; a toponym mid-sentence does not.
+    const roster = [{ slug: 'alfredo-pla-gimenez', name: 'Alfredo Plá Gimenez' }]
+    expect(
+      matchAnnouncedOfficial('en este caso en la zona de diseminados del Pla de Tochar.', roster),
+    ).toBeNull()
+    expect(matchAnnouncedOfficial('Té la paraula, Alfredo.', roster)?.slug).toBe(
+      'alfredo-pla-gimenez',
+    )
+  })
+
+  it('ignores a name mentioned in passing rather than given the floor', () => {
+    // Also real: "…facilitar a Manel, a Paula i a Diana, …" mentions Paula
+    // mid-list. Whoever speaks next is not necessarily her.
+    const roster = [{ slug: 'paula-navarro-sanfeliu', name: 'Paula Navarro Sanfeliu' }]
+    expect(
+      matchAnnouncedOfficial(
+        'Aquest és el pressupost que anem a facilitar a Manel, a Paula i a Diana, i que recull...',
+        roster,
+      ),
+    ).toBeNull()
+  })
+
   it('prefers the longest matching name form', () => {
     const hit = matchAnnouncedOfficial('José Ángel Hernández Carrizosa, endavant.', OFFICIALS)
     expect(hit?.slug).toBe('jose-angel-hernandez-carrizosa')

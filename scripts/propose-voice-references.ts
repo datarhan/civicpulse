@@ -79,14 +79,16 @@ export function matchAnnouncedOfficial(text: string, officials: Official[]): Off
   for (const o of officials) {
     for (const f of formsFor(o)) {
       if (owners.get(f)!.size > 1) continue // ambiguous — identifies nobody
-      // Token-bounded so "Raga" doesn't fire inside another word.
-      if (
-        !new RegExp(
-          `(^|[^\\p{L}])${f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}([^\\p{L}]|$)`,
-          'u',
-        ).test(t)
-      )
-        continue
+      // Addressing someone CLOSES on punctuation — "…, Teresa." or "José
+      // Ángel, un minuto." A name that runs straight on into more words is
+      // doing a different job. Session 15uvjew produced exactly two false
+      // positives and both are this shape: "…del Pla de Tochar" is a local
+      // place, not councillor Alfredo Plá, and "…a Manel, a Paula i a Diana"
+      // mentions Paula in a list rather than giving her the floor. Requiring
+      // a closing comma/stop rejects both while keeping every real handover.
+      // Token-bounded on the left so "Raga" cannot fire inside another word.
+      const esc = f.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      if (!new RegExp(`(^|[^\\p{L}])${esc}\\s*([,.;:!?¿¡]|$)`, 'u').test(t)) continue
       if (!best || f.length > best.len) best = { o, len: f.length }
     }
   }
@@ -358,7 +360,12 @@ async function main() {
     const run = longestRunFor(segments, p.cluster)
     if (!run) continue
     const mid = Math.max(0, (run.start + run.end) / 2 - 4)
-    const clip = resolve(work, `candidate-${p.slug}.wav`)
+    // Include the cluster: the same councillor is often proposed from several
+    // chunks, and a slug-only filename made each one overwrite the last, so the
+    // curator would have reviewed one clip while approving a different
+    // proposal. Separate files also let repeated proposals corroborate each
+    // other by ear.
+    const clip = resolve(work, `candidate-${p.slug}-${p.cluster}.wav`)
     execFileSync('ffmpeg', [
       '-hide_banner',
       '-loglevel',
