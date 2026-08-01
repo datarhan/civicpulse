@@ -6,6 +6,7 @@
  * Usage: npm run scrape:participa
  */
 import { mkdir, writeFile } from 'node:fs/promises'
+import { readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parseParticipaPosts } from '../src/scraper/participa'
@@ -81,6 +82,25 @@ main().catch((err) => {
         'If the participation platform moved, repoint BASE in this script. Detail: ' +
         msg,
     )
+    // Keeping the last good snapshot is right, but silently serving it is not:
+    // the page rendered posts from 2026-05-14 as if they were current for 79
+    // days. Stamp the retirement onto the file (additive, idempotent) so the UI
+    // can say the source is gone instead of implying it is live.
+    try {
+      const existing = JSON.parse(readFileSync(OUT, 'utf8'))
+      existing.upstream = {
+        status: 'retired',
+        detectedAt: new Date().toISOString(),
+        lastGoodAt: existing.generatedAt ?? null,
+        reason:
+          'participa.ribarroja.es fue dado de baja: el host sirve el portal municipal con un certificado de otro dominio.',
+        successorUrl: 'https://www.ribarroja.es/es/seccion/participacion-y-transparencia',
+      }
+      writeFileSync(OUT, JSON.stringify(existing, null, 2) + '\n')
+      console.error('[participa] snapshot stamped as retired for the UI')
+    } catch (e) {
+      console.error('[participa] could not stamp retirement:', (e as Error).message)
+    }
   } else {
     console.error('[participa] failed:', err)
   }

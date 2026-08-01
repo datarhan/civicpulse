@@ -419,7 +419,18 @@ function LiveDetails({ section, weather, wmoLabel, emoji, air, aqi, metro, onClo
     )
   } else if (section === 'metro' && metro) {
     title = `Metro L9 · ${metro.stationName}`
-    source = `Horario transcrito de fgv.es · válido hasta ${metro.scheduleValidUntil}`
+    // "válido hasta 2025-12-31" printed in August 2026 reads as a guarantee of
+    // a timetable that lapsed seven months ago. FGV has not republished the
+    // GTFS feed, so the departures are a REFERENCE, not a promise — say so
+    // instead of quoting a date already in the past. The map popup already
+    // applied this rule; the topbar chip did not.
+    {
+      const vu = metro.scheduleValidUntil
+      const lapsed = vu && new Date(vu).getTime() < Date.now()
+      source = lapsed
+        ? `Horario de referencia FGV (${String(vu).slice(0, 4)}) · FGV no ha republicado; confirma en fgv.es`
+        : `Horario transcrito de fgv.es · válido hasta ${vu}`
+    }
     body = (
       <>
         <DetailRow

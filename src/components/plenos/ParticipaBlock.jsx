@@ -29,6 +29,33 @@ export function ParticipaBlock() {
           {generated}
         </div>
       </div>
+      {/* The platform was decommissioned; the scraper keeps the last good
+          snapshot rather than blanking the section, which is right — but
+          rendering 2026-05-14 posts with no marker implied a live feed for
+          79 days. Say plainly that the source is gone and where it moved. */}
+      {data.upstream?.status === 'retired' && (
+        <div
+          style={{
+            padding: '9px 12px',
+            marginBottom: 10,
+            borderRadius: 8,
+            background: 'var(--warn-soft)',
+            border: '1px solid var(--border2)',
+            fontSize: 11.5,
+            color: 'var(--ink70)',
+            lineHeight: 1.5,
+          }}
+        >
+          <strong>Fuente retirada.</strong> El portal participa.ribarroja.es fue dado de baja; lo
+          que se muestra es el último volcado ({fmtDateLong(data.upstream.lastGoodAt)}) y no se
+          actualiza.{' '}
+          {data.upstream.successorUrl && (
+            <ExtLink href={data.upstream.successorUrl} style={{ color: 'var(--civic)' }}>
+              Participación en el portal municipal ↗
+            </ExtLink>
+          )}
+        </div>
+      )}
       <div
         style={{
           display: 'grid',
