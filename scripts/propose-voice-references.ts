@@ -252,17 +252,46 @@ async function main() {
   for (const e of enrolled) {
     const clip = resolve(work, `ref-${e.slug}.wav`)
     const uri = resolve(work, `ref-${e.slug}.uri`)
+    const src = `${VOICEPRINTS}/audio/${e.slug}.16k.wav`
+    // The API demands every reference be 1.2–10 s, and ONE bad reference fails
+    // the whole request — which silently cost three whole sessions: a fixed
+    // `-ss 2` against Teresa's 3.09 s voiceprint left 1.09 s, just under the
+    // floor, so every chunk of every sweep errored out. Fit the window to the
+    // source instead of assuming it is long.
+    const srcDur = Number(
+      execFileSync('ffprobe', [
+        '-v',
+        'error',
+        '-show_entries',
+        'format=duration',
+        '-of',
+        'default=nw=1:nk=1',
+        src,
+      ])
+        .toString()
+        .trim() || '0',
+    )
+    if (srcDur < 1.4) {
+      console.warn(
+        `[voice-refs] skipping reference ${e.slug}: only ${srcDur.toFixed(2)}s enrolled ` +
+          `(API needs ≥1.2s) — re-enrol from a longer clip to use it`,
+      )
+      continue
+    }
+    // Skip a lead-in only when there is room to spare.
+    const offset = srcDur > 10 ? 2 : 0
+    const take = Math.min(8, srcDur - offset - 0.05)
     execFileSync('ffmpeg', [
       '-hide_banner',
       '-loglevel',
       'error',
       '-y',
       '-ss',
-      '2',
+      String(offset),
       '-t',
-      '8',
+      String(take),
       '-i',
-      `${VOICEPRINTS}/audio/${e.slug}.16k.wav`,
+      src,
       '-ac',
       '1',
       '-ar',
