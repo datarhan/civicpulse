@@ -299,3 +299,49 @@ export function parsePlenoAgenda(input: Buffer | string): PlenoAgenda | null {
   items.sort((a, b) => a.number - b.number)
   return { raw, items }
 }
+
+/** A pleno from the index, enriched with its parsed orden del día. */
+export interface EnrichedPleno {
+  id: string
+  date: string
+  title: string
+  kind: string
+  link: string
+  agenda: PlenoAgendaItem[]
+  agendaCount: number
+  departments: string[]
+  hasRuegos: boolean
+}
+
+/**
+ * Merge this run's fetched agendas over the stored snapshot.
+ *
+ * The snapshot used to be rebuilt from the 30 most-recent sessions, which
+ * left 29 of 61 pleno pages with no orden del día and silently dropped the
+ * oldest covered sessions each time the window slid. Merging means a session
+ * keeps its agenda once fetched, so coverage only ever grows.
+ *
+ * Two guards, both from the f4fa424 incident (a dead upstream served shell
+ * pages that parsed to zero items and blanked every department dashboard):
+ * an empty fetch never overwrites a stored agenda, and an empty fetch for an
+ * unknown session is dropped rather than published — a stored
+ * `agendaCount: 0` reads on the page as "this session had no agenda points",
+ * which is a claim we cannot support when the truth is that we never got it.
+ */
+export function mergeAgendaPlenos(
+  existing: EnrichedPleno[],
+  fetched: EnrichedPleno[],
+): { plenos: EnrichedPleno[]; carriedForward: number; refreshed: number } {
+  const byId = new Map<string, EnrichedPleno>()
+  for (const p of existing) byId.set(p.id, p)
+
+  let refreshed = 0
+  for (const f of fetched) {
+    if (f.agendaCount === 0) continue // never let an empty walk erase or assert
+    byId.set(f.id, f)
+    refreshed += 1
+  }
+
+  const plenos = [...byId.values()].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
+  return { plenos, carriedForward: plenos.length - refreshed, refreshed }
+}

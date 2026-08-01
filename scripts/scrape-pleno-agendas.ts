@@ -11,7 +11,12 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { parsePlenoAgenda, type PlenoAgendaItem } from '../src/scraper/pleno-agenda'
+import {
+  parsePlenoAgenda,
+  mergeAgendaPlenos,
+  type PlenoAgendaItem,
+  type EnrichedPleno,
+} from '../src/scraper/pleno-agenda'
 import { canonicalizeDepartment } from '../src/scraper/departments'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -48,58 +53,111 @@ async function fetchPage(url: string): Promise<Buffer | null> {
   }
 }
 
-interface EnrichedPleno {
-  id: string
-  date: string
-  title: string
-  kind: string
-  link: string
-  agenda: PlenoAgendaItem[]
-  agendaCount: number
-  departments: string[]
-  hasRuegos: boolean
+/**
+ * Archived fallback. regmeet blackholes GitHub-runner IPs and goes fully
+ * unreachable for stretches (2026-08-01: connection refused from three
+ * independent networks while answering ping), so the live fetch alone leaves
+ * permanent holes. The Wayback Machine has ~120 of these session pages and
+ * they parse identically — `id_` returns the raw capture with no toolbar.
+ */
+async function fetchArchived(url: string): Promise<Buffer | null> {
+  const base = url.split('?')[0]
+  try {
+    const cdx = await fetch(
+      `https://web.archive.org/cdx/search/cdx?url=${encodeURIComponent(base)}*` +
+        `&output=text&fl=timestamp,original&filter=statuscode:200&limit=-3`,
+      { signal: AbortSignal.timeout(30_000) },
+    )
+    if (!cdx.ok) return null
+    const rows = (await cdx.text())
+      .trim()
+      .split('\n')
+      .filter(Boolean)
+      .map((l) => l.split(' '))
+    if (rows.length === 0) return null
+    // limit=-3 returns the newest captures last; take the newest.
+    const [timestamp, original] = rows[rows.length - 1]
+    const res = await fetch(`https://web.archive.org/web/${timestamp}id_/${original}`, {
+      signal: AbortSignal.timeout(60_000),
+    })
+    if (!res.ok) return null
+    return Buffer.from(await res.arrayBuffer())
+  } catch (err) {
+    console.warn(`\n[pleno-agendas] archive lookup failed: ${(err as Error).message}`)
+    return null
+  }
+}
+
+/** Sessions this recent are always re-fetched — a convocatoria can be edited. */
+const REFRESH_NEWEST = 6
+
+async function readExisting(): Promise<EnrichedPleno[]> {
+  try {
+    const prev = JSON.parse(await readFile(OUT, 'utf8')) as { plenos?: EnrichedPleno[] }
+    return Array.isArray(prev.plenos) ? prev.plenos : []
+  } catch {
+    return []
+  }
 }
 
 async function main() {
   const index = JSON.parse(await readFile(PLENOS, 'utf8'))
-  const plenos: any[] = index.items || []
-  const take = Math.min(30, plenos.length) // cap first run to 30 most-recent
+  const plenos: any[] = [...(index.items || [])].sort((a, b) => (a.date < b.date ? 1 : -1))
+  const existing = await readExisting()
+  const storedCount = new Map(existing.map((p) => [p.id, p.agendaCount]))
 
-  console.log(`[pleno-agendas] fetching ${take} plenos (of ${plenos.length})`)
+  // Walk EVERY session, not the 30 most-recent. The old cap left 29 of 61
+  // pleno pages with no orden del día, and because the snapshot was rebuilt
+  // rather than merged, each slide of the window silently dropped the oldest
+  // covered sessions. Already-known agendas are skipped so the nightly still
+  // only makes a handful of requests.
+  const targets = plenos.filter((p, i) => i < REFRESH_NEWEST || !(storedCount.get(p.id) > 0))
+  console.log(
+    `[pleno-agendas] ${plenos.length} sessions · ${existing.length} already stored · ` +
+      `${targets.length} to fetch (${REFRESH_NEWEST} newest always refreshed)`,
+  )
+
   const results: EnrichedPleno[] = []
   let fetchFailures = 0
-  // Circuit breaker: N consecutive pages failing to fetch means regmeet.com
-  // is down or blocking this IP range (it blackholes GitHub-runner IPs since
-  // 2026-07-11) — walking the remaining plenos at ~15 s timeout + 1.5 s
-  // sleep each only burns the nightly's time budget. Keep yesterday's
-  // snapshot (writing a walk full of empty agendas would zero the department
-  // dashboards — the f4fa424 incident) and red the run instead.
+  let fromArchive = 0
+  // The live host is either up or it isn't; after N consecutive failures stop
+  // paying its 15 s timeout on every remaining session and run archive-only.
+  // Aborting outright (the old behaviour) meant a regmeet outage blocked the
+  // backfill entirely, even for sessions the Wayback Machine could serve.
   const MAX_CONSECUTIVE_FETCH_FAILURES = 3
   let consecutiveFetchFailures = 0
-  for (let i = 0; i < take; i++) {
-    const p = plenos[i]
-    process.stdout.write(`[${i + 1}/${take}] ${p.date} ${p.title.slice(0, 50)} … `)
-    const buf = await fetchPage(p.link)
+  let liveDown = false
+
+  for (let i = 0; i < targets.length; i++) {
+    const p = targets[i]
+    process.stdout.write(`[${i + 1}/${targets.length}] ${p.date} ${p.title.slice(0, 46)} … `)
+
+    let buf: Buffer | null = null
+    let archived = false
+    if (!liveDown) {
+      buf = await fetchPage(p.link)
+      consecutiveFetchFailures = buf ? 0 : consecutiveFetchFailures + 1
+      if (!buf && consecutiveFetchFailures >= MAX_CONSECUTIVE_FETCH_FAILURES && !liveDown) {
+        liveDown = true
+        console.warn(
+          `\n[pleno-agendas] ${consecutiveFetchFailures} consecutive live pages unreachable — ` +
+            `upstream down or blocking this IP range; falling back to the Wayback Machine ` +
+            `for the remaining ${targets.length - i - 1} session(s)`,
+        )
+      }
+    }
+    if (!buf) {
+      buf = await fetchArchived(p.link)
+      archived = buf !== null
+    }
     if (!buf) fetchFailures += 1
-    consecutiveFetchFailures = buf ? 0 : consecutiveFetchFailures + 1
-    if (consecutiveFetchFailures >= MAX_CONSECUTIVE_FETCH_FAILURES) {
-      console.error(
-        `\n[pleno-agendas] ${consecutiveFetchFailures} consecutive pages unreachable — ` +
-          `upstream down or blocking this IP range; aborting early ` +
-          `(existing snapshot left untouched)`,
-      )
-      process.exit(1)
-    }
-    let agenda: PlenoAgendaItem[] = []
-    if (buf) {
-      const parsed = parsePlenoAgenda(buf)
-      agenda = parsed?.items ?? []
-    }
+
+    const agenda: PlenoAgendaItem[] = buf ? (parsePlenoAgenda(buf)?.items ?? []) : []
     const departments = Array.from(
       new Set(agenda.map((a) => a.department).filter(Boolean) as string[]),
     )
-    const hasRuegos = agenda.some((a) => a.section === 'ruegos')
-    console.log(`${agenda.length} items`)
+    if (archived && agenda.length > 0) fromArchive += 1
+    console.log(`${agenda.length} items${archived ? ' (archivo)' : ''}`)
     results.push({
       id: p.id,
       date: p.date,
@@ -109,28 +167,29 @@ async function main() {
       agenda,
       agendaCount: agenda.length,
       departments,
-      hasRuegos,
+      hasRuegos: agenda.some((a) => a.section === 'ruegos'),
     })
     await sleep(1500)
   }
 
-  // Rank department frequency for quick dashboards.
+  // Merge over the stored snapshot: coverage only ever grows, and an empty
+  // walk can neither erase a good agenda nor publish a session as having
+  // zero points (the f4fa424 incident).
+  const { plenos: merged, carriedForward, refreshed } = mergeAgendaPlenos(existing, results)
   const deptCount: Record<string, number> = {}
-  const itemCount = results.reduce((s, r) => s + r.agendaCount, 0)
+  const itemCount = merged.reduce((s, r) => s + r.agendaCount, 0)
 
-  // All-zero across an active council is never real (this exact state was
-  // the f4fa424 incident: a dead upstream silently zeroed every department
-  // dashboard). Keep yesterday's snapshot and fail the run instead.
-  if (take > 0 && itemCount === 0) {
+  if (itemCount === 0) {
     console.error(
-      `[pleno-agendas] 0 agenda items across ${take} plenos (${fetchFailures} fetch failures) — leaving the existing snapshot untouched`,
+      `[pleno-agendas] 0 agenda items across ${targets.length} sessions ` +
+        `(${fetchFailures} fetch failures) — leaving the existing snapshot untouched`,
     )
     process.exit(1)
   }
   if (fetchFailures > 0) {
-    console.warn(`[pleno-agendas] ${fetchFailures}/${take} pleno pages failed to fetch`)
+    console.warn(`[pleno-agendas] ${fetchFailures}/${targets.length} session pages unavailable`)
   }
-  for (const r of results) {
+  for (const r of merged) {
     for (const d of r.departments) deptCount[d] = (deptCount[d] || 0) + 1
   }
   const topDepartments = Object.entries(deptCount)
@@ -150,20 +209,35 @@ async function main() {
         'Ayuntamiento de Riba-roja de Túria — sesiones plenarias en regmeet.com (aytoribarroja); cada página individual publica el orden del día en la tabla #tableOrdenDia. El departamento se infiere del título del punto.',
     },
     stats: {
-      plenosFetched: results.length,
+      plenosFetched: merged.length,
       agendaItemsTotal: itemCount,
-      plenosWithRuegos: results.filter((r) => r.hasRuegos).length,
+      plenosWithRuegos: merged.filter((r) => r.hasRuegos).length,
       uniqueDepartments: Object.keys(deptCount).length,
+      // Coverage is published so the UI can tell "this session has no agenda
+      // yet" apart from "this session had no agenda points".
+      sessionsTotal: plenos.length,
+      sessionsWithAgenda: merged.length,
+      refreshedThisRun: refreshed,
+      carriedForward,
+      recoveredFromArchive: fromArchive,
     },
     topDepartments,
-    plenos: results,
+    plenos: merged,
   }
 
   await mkdir(dirname(OUT), { recursive: true })
   await writeFile(OUT, JSON.stringify(payload, null, 2) + '\n')
   console.log(
-    `[pleno-agendas] wrote ${OUT} — ${results.length} plenos · ${itemCount} items · ${Object.keys(deptCount).length} departamentos`,
+    `[pleno-agendas] wrote ${OUT} — ${merged.length}/${plenos.length} sessions · ${itemCount} items · ` +
+      `${Object.keys(deptCount).length} departamentos (refrescadas ${refreshed}, de archivo ${fromArchive})`,
   )
+
+  // Live upstream down AND nothing new recovered: report it so scrape-all
+  // soft-fails and the staleness is visible, without discarding the merge.
+  if (liveDown && refreshed === 0) {
+    console.error('[pleno-agendas] live upstream unreachable and no session recovered this run')
+    process.exit(1)
+  }
 }
 
 main().catch((err) => {
