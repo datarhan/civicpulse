@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Refresh the adapters GitHub runners CANNOT reach.
 #
-# ribarroja.es (WAF) and regmeet.com blackhole GitHub's IP ranges, so these six
-# fail every night on CI. They are marked best-effort there, which keeps the
+# ribarroja.es (WAF), regmeet.com and SEPE blackhole GitHub's IP ranges, so these
+# seven fail every night on CI. They are marked best-effort there, which keeps the
 # nightly green — and that is the trap: the run goes green, nobody looks, and
 # the data quietly ages with NO working refresh path anywhere. All six pass
 # from a residential IP.
@@ -14,6 +14,7 @@ cd "$(dirname "$0")/.."
 mkdir -p scripts/logs
 
 ADAPTERS=(
+  scrape:paro
   scrape:pleno-agendas
   scrape:consell-cv
   scrape:procesos-selectivos
@@ -34,7 +35,7 @@ fi
 
 # Commit only these snapshots — never `git add -A`, so an in-progress working
 # tree is not swept into an unattended commit.
-git add public/data/plenos-agendas.json public/data/consell-cv.json \
+git add public/data/paro.json public/data/plenos-agendas.json public/data/consell-cv.json \
         public/data/procesos-selectivos.json public/data/asociaciones.json \
         public/data/obras.json public/data/sindicatura.json 2>/dev/null || true
 if git diff --cached --quiet; then

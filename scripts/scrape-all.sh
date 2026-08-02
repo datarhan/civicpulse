@@ -95,6 +95,11 @@ SCRAPERS=(
 #     would delete the missing year's resoluciones), so an upstream blip
 #     should hold yesterday's file rather than red the run.
 BEST_EFFORT=(
+  # SEPE blackholes GitHub runner IPs the same way ribarroja.es and regmeet do.
+  # It was the last critical failure keeping the nightly red — and it works
+  # first time from a residential IP, so it belongs with the other six in
+  # scripts/scrape-ci-blocked.sh, not in the gate.
+  scrape:paro
   scrape:pleno-agendas
   scrape:consell-cv
   scrape:elections
