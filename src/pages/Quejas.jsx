@@ -702,6 +702,12 @@ function DashboardView({ data }) {
     (stats.byState.en_tramite || 0)
   const resolucionPct = stats.total > 0 ? Math.round((resueltas / stats.total) * 100) : 0
 
+  // The LPACAP clock only starts once a queja is registered in sede. Until then
+  // "silencios: 0" is arithmetic, not municipal performance — it cannot be
+  // anything else — yet it reads as "nobody has been left unanswered". Show the
+  // metric only when at least one queja could actually have breached the plazo.
+  const conRelojEnMarcha = items.filter((q) => q.registered_at).length
+
   const sortedCats = Object.entries(stats.byCategory || {})
     .sort((a, b) => b[1] - a[1])
     .slice(0, 8)
@@ -734,7 +740,16 @@ function DashboardView({ data }) {
           tone="civic"
           sub="capturadas + en trámite"
         />
-        <StatCard label="Silencios + escaladas" value={silencios} tone="warn" sub=">plazo LPACAP" />
+        <StatCard
+          label="Silencios + escaladas"
+          value={conRelojEnMarcha === 0 ? '—' : silencios}
+          tone={conRelojEnMarcha === 0 ? 'ghost' : 'warn'}
+          sub={
+            conRelojEnMarcha === 0
+              ? 'ninguna queja registrada en sede todavía'
+              : `>plazo LPACAP · sobre ${conRelojEnMarcha} registrada${conRelojEnMarcha === 1 ? '' : 's'}`
+          }
+        />
       </div>
 
       <QuejasSpendOverlap />

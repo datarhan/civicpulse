@@ -27,7 +27,13 @@ function TopDepartmentsCard({ agendas }) {
   return (
     <Card style={{ marginBottom: 14 }}>
       <SectionHead
-        eyebrow={`Plenos analizados · ${agendas.stats.plenosFetched} sesiones · ${agendas.stats.agendaItemsTotal} puntos`}
+        // "Plenos analizados · 37 sesiones" read, right under the page title, as
+        // if the town had held 37 — while the list below says 61. The 377 points
+        // come from the 37 whose orden del día we could extract; the other 24
+        // happened and are simply not broken down. Naming the denominator is the
+        // difference between a coverage figure and a 40% undercount of plenary
+        // activity.
+        eyebrow={`Orden del día extraído de ${agendas.stats.sessionsWithAgenda ?? agendas.stats.plenosFetched} de ${agendas.stats.sessionsTotal ?? '—'} sesiones · ${agendas.stats.agendaItemsTotal} puntos`}
         title="Departamentos con más puntos en el orden del día"
         right={
           <Link

@@ -145,6 +145,14 @@ function resetCircuit(threshold = 10) {
   currentCircuit = { consecutiveFailures: 0, threshold, tripped: false }
 }
 function notifyResult(ok: boolean): void {
+  // Self-arm rather than no-op. This used to return early when nothing had
+  // called resetBudget(), which made the breaker inert for any caller that
+  // forgot — and one did: the verdict engine, the heaviest LLM consumer here,
+  // ground through 190 consecutive calls to a backend that had stopped
+  // answering (zero tokens, zero cost, zero duration per call) with no guard
+  // running at all. A safety mechanism that is off by default protects nothing;
+  // opting IN to protection is the wrong direction for the default.
+  if (!currentCircuit) resetCircuit(Number(process.env.LLM_CIRCUIT_THRESHOLD || 10))
   if (!currentCircuit) return
   if (ok) {
     currentCircuit.consecutiveFailures = 0
@@ -157,6 +165,19 @@ function notifyResult(ok: boolean): void {
 }
 export function getCircuitState(): CircuitBreakerState | null {
   return currentCircuit
+}
+
+/**
+ * Test-only hooks. They exist so a test can simulate a COLD module — no
+ * resetBudget() ever called — which is the exact state the verdict engine ran
+ * in while the breaker sat inert through 190 dead calls. Reproducing that
+ * needs the un-armed starting point, and nothing else can produce it.
+ */
+export function __resetCircuitForTest(): void {
+  currentCircuit = null
+}
+export function __notifyResultForTest(ok: boolean): void {
+  notifyResult(ok)
 }
 
 // ─── Config ────────────────────────────────────────────────────────────────

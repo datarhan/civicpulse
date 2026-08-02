@@ -14,6 +14,9 @@ import {
   gatherCacheStats,
   loadConfigFromEnv,
   resetBudget,
+  getCircuitState,
+  __resetCircuitForTest,
+  __notifyResultForTest,
   isReasoningModel,
   extractJsonPayload,
   claudeEnvelopeToRaw,
@@ -534,4 +537,29 @@ describe('claudeEnvelopeToRaw (salvage result when structured_output is absent)'
     expect(claudeEnvelopeToRaw({})).toBeNull()
     expect(claudeEnvelopeToRaw({ result: '' })).toBeNull()
   })
+
+describe('circuit breaker is armed by default', () => {
+  it('trips without anyone calling resetBudget first', async () => {
+    // The regression. resetCircuit was reachable only through resetBudget, so a
+    // script that never called it ran with NO breaker: the verdict engine made
+    // 190 consecutive calls to a dead backend, each reporting zero tokens and
+    // zero cost, and nothing stopped it. A guard that must be opted into is not
+    // a guard. Simulate a cold module: no resetBudget, all calls failing.
+    __resetCircuitForTest()
+    expect(getCircuitState()).toBeNull()
+    for (let i = 0; i < 10; i += 1) __notifyResultForTest(false)
+    const st = getCircuitState()
+    expect(st).not.toBeNull()
+    expect(st?.tripped).toBe(true)
+  })
+
+  it('a success resets the streak', () => {
+    __resetCircuitForTest()
+    for (let i = 0; i < 9; i += 1) __notifyResultForTest(false)
+    __notifyResultForTest(true)
+    expect(getCircuitState()?.tripped).toBe(false)
+    for (let i = 0; i < 9; i += 1) __notifyResultForTest(false)
+    expect(getCircuitState()?.tripped).toBe(false)
+  })
+})
 })

@@ -480,6 +480,11 @@ export default function QuejasDashboard() {
   }
   const resueltas = stats.byState.resuelta || 0
   const silencios = (stats.byState.silencio_negativo || 0) + (stats.byState.escalada_sindic || 0)
+  // See the same guard on /quejas. The LPACAP clock starts at registration in
+  // sede, so with nothing registered this counter is pinned at 0 by arithmetic.
+  // Worse here than there: the tile painted that 0 GREEN, turning "we have not
+  // measured anything yet" into a clean bill of health for the Ayuntamiento.
+  const conRelojEnMarcha = items.filter((q) => q.registered_at).length
   const pendientes =
     (stats.byState.capturada || 0) +
     (stats.byState.apoyada_verificada || 0) +
@@ -569,9 +574,13 @@ export default function QuejasDashboard() {
             />
             <StatTile
               label="Silencios + escaladas"
-              value={silencios}
-              tone={silencios > 0 ? 'crit' : 'ok'}
-              sub=">plazo LPACAP"
+              value={conRelojEnMarcha === 0 ? '—' : silencios}
+              tone={conRelojEnMarcha === 0 ? 'ghost' : silencios > 0 ? 'crit' : 'ok'}
+              sub={
+                conRelojEnMarcha === 0
+                  ? 'ninguna queja registrada en sede todavía'
+                  : `>plazo LPACAP · sobre ${conRelojEnMarcha} registrada${conRelojEnMarcha === 1 ? '' : 's'}`
+              }
             />
           </div>
 

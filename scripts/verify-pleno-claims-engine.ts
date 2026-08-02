@@ -21,6 +21,7 @@ import { resolve } from 'node:path'
 import type { PlenoClaim } from '../src/scraper/pleno-claim'
 import type { ClaimVerification, ClaimVerdict } from '../src/scraper/claim-verifier'
 import { makeEngineVerifier, loadVerifierContext } from '../src/scraper/verifier-runner'
+import { resetBudget } from '../src/llm/client'
 import { loadOverlay, rebuildVerified, OVERLAY } from './verified-rebuild'
 import { applyOverlayEntries, type ApplyEntry, type Overlay } from '../src/scraper/verified-merge'
 
@@ -55,6 +56,17 @@ function parseArgs(argv: string[]): Args {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2))
+  // Arms the circuit breaker (and the token budget). Without this call
+  // `currentCircuit` stays null and `notifyResult` returns early, so the
+  // breaker is INERT — which is how a run once made 190 consecutive calls to a
+  // backend that had stopped answering. The telemetry is unmistakable in
+  // hindsight: after one genuine failure, every subsequent envelope reported
+  // duration_api_ms 0, input_tokens 0, output_tokens 0, cost 0. No request was
+  // being made at all, and nothing stopped the loop.
+  //
+  // This is the heaviest LLM consumer in the repo (it walks every claim), and
+  // it was the one script of eighteen that never armed the guard.
+  resetBudget()
   if (!existsSync(VERIFIED)) {
     process.stderr.write('[verify-engine] verified.json missing — run verify:pleno-claims first\n')
     process.exit(1)

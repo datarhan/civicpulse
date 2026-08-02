@@ -12,11 +12,25 @@ export default function CoverageMeter({ universe, zones, onSelectZone }) {
   const pct = total > 0 ? (located / total) * 100 : 0
   const top = (zones || []).slice(0, 5)
   const maxAmt = top.length ? top[0].amount : 1
+  // The span these contracts cover. Without it the figure sits on the same page
+  // as "GASTOS TOTALES 41.578.252 €" — one municipal year — and the two invite a
+  // comparison that is false: a reader concludes the town awards more in
+  // contracts than it spends in a year, when this is nearly a decade of awards.
+  const yearMin = (universe?.dateMin || '').slice(0, 4)
+  const yearMax = (universe?.dateMax || '').slice(0, 4)
+  const span = yearMin && yearMax ? `${yearMin}–${yearMax}` : null
   return (
     <div>
       <div style={{ fontSize: 12.5, lineHeight: 1.4 }}>
-        De <strong>{fmtEur(total)}</strong> adjudicados en contratos (sin IVA),{' '}
-        <strong>{fmtEur(located)}</strong> ({pct.toFixed(0)}%) se pueden situar en el mapa.
+        De <strong>{fmtEur(total)}</strong> adjudicados en contratos (sin IVA)
+        {span ? (
+          <>
+            {' '}
+            <strong>a lo largo de {span}</strong> —suma acumulada de {yearMax - yearMin + 1}{' '}
+            ejercicios, no de un año—
+          </>
+        ) : null}
+        , <strong>{fmtEur(located)}</strong> ({pct.toFixed(0)}%) se pueden situar en el mapa.
       </div>
       <div
         style={{
