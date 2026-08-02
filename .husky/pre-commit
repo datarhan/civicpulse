@@ -4,3 +4,8 @@ cd "$(git rev-parse --show-toplevel)"
 npm run lint --silent
 # Keep Prettier formatting from drifting (run `npm run format` to auto-fix).
 npm run format:check --silent
+
+# Refuse to commit an unparseable snapshot or a merge-conflict marker.
+# Nightly would catch it, but a day later and already on main — which is exactly
+# what happened to pleno-votes-suggestions.json (ffab006). Milliseconds.
+npm run check:json --silent

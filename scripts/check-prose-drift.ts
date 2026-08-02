@@ -8,8 +8,8 @@
  * QUESTION for a curator, not a defect: reportaje figures are frozen on purpose.
  * What it must never do is edit published prose — see the corrections flow.
  */
-import { readFileSync, existsSync } from 'node:fs'
-import { resolve } from 'node:path'
+import { readFileSync, existsSync, readdirSync } from 'node:fs'
+import { resolve, basename } from 'node:path'
 import { detectDrift, type FrozenFigure, type LiveAnchor } from '../src/scraper/prose-drift'
 
 const DATA = resolve('public/data')
@@ -66,6 +66,32 @@ function main() {
   const rows = detectDrift(frozen, anchors)
   const bad = rows.filter((r) => r.severity === 'drifted')
   console.log(`[drift] ${rows.length} tracked figure(s) · ${bad.length} drifted\n`)
+
+  // Report COVERAGE, not just findings.
+  //
+  // The frozen list above is deliberately explicit, which is right — but it
+  // means a published piece nobody added to it is indistinguishable from one
+  // with nothing to track. `inteligencia-turistica` was published on
+  // 2026-07-15 with headline figures (51.787 €, ≈1,56 M€) derived from the
+  // contract registry and NOTHING watching them; the check reported "2 tracked
+  // figures · 0 drifted" and looked entirely healthy. A guard has to say what
+  // it is not looking at, or its silence gets read as an all-clear.
+  const tracked = new Set(frozen.map((f) => f.where.split('.')[0]))
+  const uncovered: string[] = []
+  for (const file of readdirSync(resolve(DATA, 'reportajes')).filter((f) => f.endsWith('.json'))) {
+    const slug = basename(file, '.json')
+    const piece = read(`reportajes/${file}`)
+    if (piece?.meta?.estado !== 'publicado') continue
+    if (!tracked.has(slug)) uncovered.push(slug)
+  }
+  if (uncovered.length > 0) {
+    console.log(
+      `  ⓘ ${uncovered.length} pieza(s) publicada(s) SIN ninguna cifra vigilada: ${uncovered.join(', ')}\n` +
+        `      Sus cifras congeladas pueden divergir sin que nada lo note. Añádelas a\n` +
+        `      \`frozen\` en scripts/check-prose-drift.ts, o deja constancia de por qué no\n` +
+        `      son anclables (p. ej. proceden de una fuente externa, no de nuestros datos).\n`,
+    )
+  }
   for (const r of bad) {
     const pct = Math.round((r.live / r.frozen) * 10) / 10
     console.log(`  ⚠︎ ${r.where}`)

@@ -212,6 +212,17 @@ if ! npm run check:relations -- --soft; then
   soft_failures+=("check:relations")
 fi
 
+# The most basic invariant, and nothing was checking it: is every published
+# snapshot actually a JSON document? `pleno-votes-suggestions.json` sat in main
+# for a day with literal `<<<<<<< Updated upstream` markers from an unresolved
+# stash pop. Every semantic check in this file validates MEANING — do the ids
+# resolve, do the quotes trace — and not one asked whether the bytes parse.
+# Milliseconds, no network, no keys.
+if ! npm run check:json; then
+  echo "[scrape-all] SOFT-FAILED: check:json — unparseable snapshot or conflict markers"
+  soft_failures+=("check:json")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] running: check:transcripts + check:finding-quotes (report-only)"
@@ -288,6 +299,15 @@ fi
 if ! npm run check:finding-entities; then
   echo "[scrape-all] SOFT-FAILED: check:finding-entities — unreviewed company name in a published finding"
   soft_failures+=("check:finding-entities")
+fi
+
+# What still runs unattended, and what quietly stopped. A measurement ageing out
+# past MEASUREMENT_MAX_AGE_DAYS demotes its class back to curator-only WITHOUT
+# any other signal: the pipeline keeps running, drafts keep being written, and
+# publication just stops. Nothing else would report that.
+if ! npm run check:automation; then
+  echo "[scrape-all] SOFT-FAILED: check:automation — a measurement expired; a class reverted to curator-only"
+  soft_failures+=("check:automation")
 fi
 
 echo ""

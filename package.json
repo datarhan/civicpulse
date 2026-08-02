@@ -154,7 +154,8 @@
     "check:finding-entities": "npx tsx scripts/check-finding-entities.ts",
     "eval:extractor": "npx tsx scripts/eval-extractor.ts",
     "apply-curation": "npx tsx scripts/apply-curation.ts",
-    "push-curation-queue": "npx tsx scripts/push-curation-queue.ts"
+    "push-curation-queue": "npx tsx scripts/push-curation-queue.ts",
+    "check:json": "npx tsx scripts/check-json.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
