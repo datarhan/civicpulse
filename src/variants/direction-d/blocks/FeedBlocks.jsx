@@ -8,6 +8,7 @@ import { useEmpleo } from '../../../hooks/useEmpleo'
 import { PALETTE } from '../tokens'
 import { SectionHeader } from '../SectionHeader'
 import { ExtLink } from '../../../components/Primitives'
+import { RetiredSourceNote } from '../../../components/RetiredSourceNote'
 
 export function EmpleoBlockD() {
   const { loading, error, data } = useEmpleo()
@@ -139,6 +140,7 @@ export function ParticipaBlockD() {
   return (
     <div style={{ marginBottom: 18 }}>
       <SectionHeader tone="participa" title="Participación ciudadana" meta={data.stats.total} />
+      <RetiredSourceNote upstream={data.upstream} />
       {items.map((it, i) => (
         <div
           key={it.id}

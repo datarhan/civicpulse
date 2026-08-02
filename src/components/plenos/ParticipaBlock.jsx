@@ -1,6 +1,7 @@
 import { Card, Pill, ExtLink } from '../Primitives'
 import { useParticipa, KIND_ICON, KIND_LABEL } from '../../hooks/useParticipa'
 import { fmtDateLong, fmtDateShort } from '../../lib/formatters'
+import { RetiredSourceNote } from '../RetiredSourceNote'
 
 export function ParticipaBlock() {
   const { loading, error, data } = useParticipa()
@@ -12,6 +13,7 @@ export function ParticipaBlock() {
 
   return (
     <div style={{ marginTop: 28 }}>
+      <RetiredSourceNote upstream={data.upstream} />
       <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, marginBottom: 8 }}>
         <div
           className="mono"
