@@ -6,6 +6,7 @@ import {
   PUBLISH_MIN_PRECISION,
   PUBLISH_MIN_SAMPLE,
   MEASUREMENT_MAX_AGE_DAYS,
+  wilsonLowerBound,
   type Measurement,
 } from '../src/scraper/automation-policy'
 
@@ -17,10 +18,17 @@ function daysAgo(n: number): string {
   return new Date(NOW.getTime() - n * 86_400_000).toISOString()
 }
 
+/**
+ * A measurement that genuinely clears the bar. Note the sample: since the gate
+ * compares the Wilson LOWER BOUND, a precision exactly at the bar can never
+ * clear it at any n, and one near it needs a large n. `PUBLISH_MIN_SAMPLE` is
+ * only the floor below which a figure is not evidence at all — it is not
+ * sufficient on its own.
+ */
 const GOOD: Measurement = {
   key: 'finding.informational.bloc',
-  precision: PUBLISH_MIN_PRECISION,
-  sample: PUBLISH_MIN_SAMPLE,
+  precision: 0.98,
+  sample: 2000,
   measuredAt: daysAgo(1),
 }
 
@@ -120,7 +128,12 @@ describe('Tier B — measurement is the unlock, and the default is gated', () =>
   it('gates on precision just below the bar', () => {
     const d = decideAutomation(base, [{ ...GOOD, precision: PUBLISH_MIN_PRECISION - 0.001 }], NOW)
     expect(d.allow).toBe(false)
-    expect(d.reason).toContain('below')
+    expect(d.bar).toBe(PUBLISH_MIN_PRECISION)
+  })
+
+  it('gates a precision exactly AT the bar — a bound can never clear its own centre', () => {
+    const d = decideAutomation(base, [{ ...GOOD, precision: PUBLISH_MIN_PRECISION }], NOW)
+    expect(d.allow).toBe(false)
   })
 
   it('gates on too small a sample, however high the precision', () => {
@@ -210,6 +223,64 @@ describe('the bar scales with editorial exposure', () => {
     )
     expect(d.allow).toBe(false)
     expect(d.reason).toContain(String(PUBLISH_MIN_PRECISION))
+  })
+})
+
+describe('the gate compares the confidence bound, not the point estimate', () => {
+  it('refuses the real 48/52 audit: 0.923 measured, but the bar is inside the interval', () => {
+    const d = decideAutomation(
+      {
+        kind: 'publish-finding',
+        reversible: true,
+        severity: 'informational',
+        measurementKey: GOOD.key,
+      },
+      [{ ...GOOD, precision: 48 / 52, sample: 52 }],
+      NOW,
+    )
+    expect(d.allow).toBe(false)
+    expect(d.reason).toContain('lower bound')
+  })
+
+  it('accepts the same precision once the sample is large enough to resolve it', () => {
+    const d = decideAutomation(
+      {
+        kind: 'publish-finding',
+        reversible: true,
+        severity: 'informational',
+        measurementKey: GOOD.key,
+      },
+      [{ ...GOOD, precision: 48 / 52, sample: 800 }],
+      NOW,
+    )
+    expect(d.allow).toBe(true)
+  })
+
+  it('accepts a small sample when the precision is far above the bar', () => {
+    // The floor is self-scaling: measure well above the bar and you need less.
+    const d = decideAutomation(
+      {
+        kind: 'publish-finding',
+        reversible: true,
+        severity: 'informational',
+        measurementKey: GOOD.key,
+      },
+      [{ ...GOOD, precision: 1, sample: 60 }],
+      NOW,
+    )
+    expect(d.allow).toBe(true)
+  })
+
+  it('wilsonLowerBound stays below the point estimate and inside [0,1]', () => {
+    expect(wilsonLowerBound(48, 52)).toBeLessThan(48 / 52)
+    expect(wilsonLowerBound(48, 52)).toBeGreaterThan(0.8)
+    expect(wilsonLowerBound(0, 10)).toBe(0)
+    expect(wilsonLowerBound(10, 10)).toBeLessThan(1)
+    expect(wilsonLowerBound(1, 0)).toBe(0)
+  })
+
+  it('tightens as the sample grows, for a fixed proportion', () => {
+    expect(wilsonLowerBound(90, 100)).toBeLessThan(wilsonLowerBound(900, 1000))
   })
 })
 

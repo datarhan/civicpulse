@@ -1,21 +1,15 @@
 {
-  "generatedAt": "2026-08-02T14:40:00.000Z",
-  "_comment": [
-    "Measured precision per action class. Read by src/scraper/automation-policy.ts;",
-    "an action class with no row here CANNOT publish unattended. Committed on",
-    "purpose — a gitignored file would regenerate empty in CI and the gate would",
-    "silently become permanent.",
-    "",
-    "Write via `npm run record-measurement`, never by hand: the CLI re-validates",
-    "the whole set, and a precision typed as 95 instead of 0.95 is dropped rather",
-    "than treated as clearing the bar.",
-    "",
-    "Note what is NOT here: no additive publication class has been measured yet,",
-    "so findings, promise status changes and reports all still require a curator.",
-    "That is the honest state, not an oversight — see `npm run check:automation`",
-    "for the list of measurements that would unlock each one."
-  ],
+  "_comment": "Measured precision per action class. Read by src/scraper/automation-policy.ts.\nA class with no row here CANNOT publish unattended.\n\nThe gate compares the WILSON LOWER BOUND of the proportion against the bar, not\nthe raw precision: a point estimate from a small sample cannot say which side of\nthe bar it is on. So a precision AT the bar never clears it, and one near it needs\na large sample. Raising `sample` honestly is the way through; there is no other.\n\nWrite via `npm run record-measurement`, never by hand — the CLI re-validates the\nwhole set, and a precision typed as 95 instead of 0.95 is dropped rather than\ntreated as clearing the bar.",
+  "generatedAt": "2026-08-02T15:13:35.558Z",
   "measurements": [
+    {
+      "key": "finding.informational.bloc",
+      "precision": 0.923,
+      "sample": 52,
+      "measuredAt": "2026-08-02T15:13:35.553Z",
+      "against": "auto-curate v1 (LLM title+summary), findings published to 2026-08-02",
+      "method": "Auditoria completa de los 52 hallazgos publicados, verificacion directa contra los datos fuente: existencia de empresas nombradas en las 1231 filas de contratacion, correspondencia de cada afirmacion documental con los expedientes citados, integridad referencial, fidelidad de las 180 citas y consistencia de atribucion por bloc. 4 defectos hallados y corregidos. NO cubre fidelidad de parafrasis en matiz, que sigue sin medir."
+    },
     {
       "key": "verdict.deterministic.parcial",
       "precision": 0.22,

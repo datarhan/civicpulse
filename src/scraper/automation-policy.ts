@@ -101,6 +101,34 @@ export function precisionBarFor(severity?: string): number {
 export const PUBLISH_MIN_SAMPLE = 50
 
 /**
+ * Lower bound of the Wilson score interval for a binomial proportion.
+ *
+ * The gate compares this, NOT the raw precision, against the bar — because a
+ * point estimate from a small sample cannot tell you which side of the bar you
+ * are on. The real case: an audit of all 52 published findings found 4 defects,
+ * giving 92.3%, comfortably over the 0.90 informational bar. But 48/52 has a
+ * 95% interval of roughly 81–98%: the bar sits INSIDE it, so the measurement is
+ * equally consistent with a true precision of 0.85. Publishing unattended on
+ * that is a coin-flip dressed as evidence.
+ *
+ * Wilson rather than the normal approximation because the latter misbehaves
+ * badly exactly where we live — small n, proportions near 1.
+ *
+ * The practical effect is that the sample floor becomes self-scaling: a class
+ * measured near the bar needs far more items than one measured well above it,
+ * which is the correct incentive and needs no second threshold to tune.
+ */
+export function wilsonLowerBound(successes: number, total: number, z = 1.96): number {
+  if (total <= 0) return 0
+  const p = successes / total
+  const z2 = z * z
+  const denom = 1 + z2 / total
+  const centre = p + z2 / (2 * total)
+  const margin = z * Math.sqrt((p * (1 - p) + z2 / (4 * total)) / total)
+  return Math.max(0, (centre - margin) / denom)
+}
+
+/**
  * Prompts, models and corpora all move. A precision measured against a prompt
  * version that no longer runs is a historical fact, not a current guarantee.
  */
@@ -254,13 +282,20 @@ export function decideAutomation(
   }
 
   const bar = precisionBarFor(ctx.severity)
-  if (m.precision < bar) {
+  // Compare the LOWER CONFIDENCE BOUND, not the point estimate. See
+  // wilsonLowerBound: 48/52 reads as 0.923 and cannot be distinguished from
+  // 0.85 at that sample size.
+  const lower = wilsonLowerBound(Math.round(m.precision * m.sample), m.sample)
+  if (lower < bar) {
     return {
       allow: false,
       tier: 'human',
       reason:
-        `${ctx.measurementKey} precision ${m.precision.toFixed(3)} is below ` +
-        `${bar}${ctx.severity ? ` (bar for severity=${ctx.severity})` : ''} — publishes only with a curator`,
+        `${ctx.measurementKey} measured ${m.precision.toFixed(3)} on ${m.sample} items, but the ` +
+        `95% lower bound is ${lower.toFixed(3)}, under the ${bar} bar` +
+        `${ctx.severity ? ` for severity=${ctx.severity}` : ''} — the sample cannot tell which ` +
+        `side of the bar this class is on. More judged items, or a higher measured precision.`,
+      bar,
     }
   }
 
@@ -268,9 +303,10 @@ export function decideAutomation(
     allow: true,
     tier: 'measured',
     reason:
-      `${ctx.measurementKey} measured at precision ${m.precision.toFixed(3)} ` +
-      `on ${m.sample} items — clears the ${bar} bar` +
+      `${ctx.measurementKey} measured ${m.precision.toFixed(3)} on ${m.sample} items ` +
+      `(95% lower bound ${lower.toFixed(3)}) — clears the ${bar} bar` +
       `${ctx.severity ? ` for severity=${ctx.severity}` : ''}`,
+    bar,
   }
 }
 
@@ -293,6 +329,21 @@ export function explainMissingMeasurement(d: Decision): string | null {
  * and the gate would silently become permanent.
  */
 export const MEASUREMENTS_PATH = '.automation-measurements.json'
+
+/** Rewritten on every save, so the file explains itself to whoever opens it next. */
+export const MEASUREMENTS_FILE_COMMENT = [
+  'Measured precision per action class. Read by src/scraper/automation-policy.ts.',
+  'A class with no row here CANNOT publish unattended.',
+  '',
+  'The gate compares the WILSON LOWER BOUND of the proportion against the bar, not',
+  'the raw precision: a point estimate from a small sample cannot say which side of',
+  'the bar it is on. So a precision AT the bar never clears it, and one near it needs',
+  'a large sample. Raising `sample` honestly is the way through; there is no other.',
+  '',
+  'Write via `npm run record-measurement`, never by hand — the CLI re-validates the',
+  'whole set, and a precision typed as 95 instead of 0.95 is dropped rather than',
+  'treated as clearing the bar.',
+].join('\n')
 
 export function loadMeasurements(path = MEASUREMENTS_PATH): Measurement[] {
   const abs = resolve(path)
@@ -320,7 +371,15 @@ export function saveMeasurement(m: Measurement, path = MEASUREMENTS_PATH): Measu
   next.sort((a, b) => a.key.localeCompare(b.key))
   writeFileSync(
     resolve(path),
-    JSON.stringify({ generatedAt: new Date().toISOString(), measurements: next }, null, 2) + '\n',
+    JSON.stringify(
+      {
+        _comment: MEASUREMENTS_FILE_COMMENT,
+        generatedAt: new Date().toISOString(),
+        measurements: next,
+      },
+      null,
+      2,
+    ) + '\n',
   )
   return next
 }

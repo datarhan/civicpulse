@@ -361,7 +361,13 @@ export default function Metodologia() {
               precisión medida y registrada (≥0,90 para hallazgos informativos, ≥0,95 para los
               notables), sobre al menos 50 casos y medida en los últimos 90 días. Una categoría{' '}
               <strong>sin medición se trata como no fiable</strong>: el camino para automatizar algo
-              es medirlo, no afirmar que funciona.
+              es medirlo, no afirmar que funciona. Lo que se compara con el umbral no es la cifra
+              medida sino el <strong>límite inferior de su intervalo de confianza al 95 %</strong>,
+              porque una muestra pequeña no permite saber de qué lado del umbral está. La auditoría
+              de agosto de 2026 revisó los 52 hallazgos publicados y encontró 4 defectos —un 92,3 %
+              de acierto, por encima del 0,90—, pero con 52 casos ese 92,3 % es compatible con un 81
+              % real, así que la publicación automática sigue cerrada hasta que haya más casos
+              revisados.
             </li>
             <li>
               <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
