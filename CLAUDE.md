@@ -844,6 +844,37 @@ their rows by, so never fork a local copy).
 surface reads real JSON. Queja capture streams come from the Telegram
 bot, not a simulator.
 
+### Data integrity — read `docs/DATA_INTEGRITY.md` before writing an adapter
+
+That document is the output of a 2026-08-02 audit that found ~30 real defects
+across every pipeline here. It lists the fourteen failure modes actually
+observed, each with the case that produced it, plus a five-level evaluation
+ladder. The four rules that would have prevented the most damage:
+
+1. **Export the enum; never restate it in a test.** Six tests hand-copied a
+   shape and stayed green while production matched nothing. The costliest: the
+   allow-set said `finalized`, the source emits `formalized`, 298 contracts
+   coerced to `unknown` — and because `unknown` was ALSO in the copied list, the
+   test could not fail. €53.5M vanished from the published site.
+   Always pair an enum assertion with a fallback ceiling
+   (`unknown / total < 0.1`).
+2. **A run must prove it did work.** Report attempted / done / **never
+   attempted** / skipped-with-reason separately. Folding "never attempted" into
+   "unchanged" is what let a verdict pass report `re-judged 1017` having made
+   zero LLM calls, through three layers.
+3. **A sentinel is never a value.** `Otro` meant both "a party" and "cannot
+   tell"; with one councillor under it, publishing it named him by elimination.
+   Name the thing or return `null`.
+4. **Nothing automatic rewrites published prose.** Automated verdicts may only
+   go DOWN (retract), never up. Corrections go through the corrections CLIs so
+   they leave a record.
+
+Checks that enforce this, all wired into `scrape-all` (report-only):
+`check:relations`, `check:cadence`, `check:corpus`, `check:drift`,
+`check:vocabulary`. Their baselines (`.vocabulary-census.json`,
+`.transcript-check-baseline.json`) are COMMITTED on purpose — gitignored, CI
+would write a fresh one each night and report "no change" forever.
+
 ### Legal / ethical guardrails
 
 All 20 automated sources are public-sector / ODbL / CC-BY open data

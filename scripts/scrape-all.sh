@@ -238,6 +238,15 @@ if ! npm run check:drift; then
   soft_failures+=("check:drift")
 fi
 
+# Has an upstream changed the words it uses? A field where a large share of rows
+# falls back to `unknown` means the parser is misreading the source — that is
+# how `formalized` cost €53.5M for months. New values only warn: a source adding
+# a word is normal, not noticing is not.
+if ! npm run check:vocabulary; then
+  echo "[scrape-all] SOFT-FAILED: check:vocabulary — upstream vocabulary drifted"
+  soft_failures+=("check:vocabulary")
+fi
+
 # Which snapshots have quietly stopped refreshing. Distinct from a scraper
 # FAILING: six adapters are unreachable from GitHub runners and marked
 # best-effort, so the nightly goes green while their data ages with no working

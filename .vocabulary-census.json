@@ -1,0 +1,404 @@
+[
+  {
+    "path": "boe.items.departamento",
+    "values": {
+      "MINISTERIO DE TRANSPORTES Y MOVILIDAD SOSTENIBLE": 1,
+      "ADMINISTRACIÓN LOCAL": 2,
+      "SERVICIOS COMUNES PROCESALES": 1
+    }
+  },
+  {
+    "path": "boe.items.epigrafe",
+    "values": {
+      "": 2,
+      "Personal funcionario y laboral": 2
+    }
+  },
+  {
+    "path": "boe.items.id",
+    "values": {
+      "92cc00b10c5b": 1,
+      "260535632517": 1,
+      "c0fc27881caa": 1,
+      "8293fbe3bdf7": 1
+    }
+  },
+  {
+    "path": "boe.items.identificador",
+    "values": {
+      "BOE-B-2026-25651": 1,
+      "BOE-A-2026-16060": 1,
+      "BOE-B-2026-24558": 1,
+      "BOE-A-2026-15077": 1
+    }
+  },
+  {
+    "path": "boe.items.publicacionDate",
+    "values": {
+      "2026-07-30T00:00:00.000Z": 1,
+      "2026-07-23T00:00:00.000Z": 1,
+      "2026-07-18T00:00:00.000Z": 1,
+      "2026-07-10T00:00:00.000Z": 1
+    }
+  },
+  {
+    "path": "boe.items.seccion",
+    "values": {
+      "V. Anuncios. - A. Contratación del Sector Público": 1,
+      "II. Autoridades y personal. - B. Oposiciones y concursos": 2,
+      "IV. Administración de Justicia": 1
+    }
+  },
+  {
+    "path": "boe.items.titulo",
+    "values": {
+      "Anuncio de licitación de: Dirección General de Carreteras. Objeto: 30.599/26; RE-V-26002 Proyecto de trazado y construcción: Mejoras Funcionales y de seguridad vial y medidas de integración ambiental. Conexión entre la A-3 Y LA A-7 (BY-PASS). TT.MM. De Chiva, Cheste, Loriguilla, Riba-Roja De Túria y Manises. Provincia de Valencia. Expediente: B30264626002.": 1,
+      "Resolución de 17 de julio de 2026, del Ayuntamiento de Riba-roja de Túria (Valencia/València), referente a la convocatoria para proveer una plaza.": 1,
+      "RIBARROJA TURIA": 1,
+      "Resolución de 2 de julio de 2026, del Ayuntamiento de Riba-roja de Túria (Valencia/València), referente a la convocatoria para proveer varias plazas.": 1
+    }
+  },
+  {
+    "path": "boe.items.urlHtml",
+    "values": {
+      "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-25651": 1,
+      "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-16060": 1,
+      "https://www.boe.es/diario_boe/txt.php?id=BOE-B-2026-24558": 1,
+      "https://www.boe.es/diario_boe/txt.php?id=BOE-A-2026-15077": 1
+    }
+  },
+  {
+    "path": "boe.items.urlPdf",
+    "values": {
+      "https://www.boe.es/boe/dias/2026/07/30/pdfs/BOE-B-2026-25651.pdf": 1,
+      "https://www.boe.es/boe/dias/2026/07/23/pdfs/BOE-A-2026-16060.pdf": 1,
+      "https://www.boe.es/boe/dias/2026/07/18/pdfs/BOE-B-2026-24558.pdf": 1,
+      "https://www.boe.es/boe/dias/2026/07/10/pdfs/BOE-A-2026-15077.pdf": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.bulletinDate",
+    "values": {
+      "27/07/2026": 1,
+      "24/07/2026": 1,
+      "21/07/2026": 1,
+      "17/07/2026": 1,
+      "16/07/2026": 1,
+      "10/07/2026": 1,
+      "07/07/2026": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.bulletinUrl",
+    "values": {
+      "https://bop.dival.es/bop/downloads?boletinFecha=27%2F07%2F2026": 1,
+      "https://bop.dival.es/bop/downloads?boletinFecha=24%2F07%2F2026": 1,
+      "https://bop.dival.es/bop/downloads?boletinFecha=21%2F07%2F2026": 1,
+      "https://bop.dival.es/bop/downloads?boletinFecha=17%2F07%2F2026": 1,
+      "https://bop.dival.es/bop/downloads?boletinFecha=16%2F07%2F2026": 1,
+      "https://bop.dival.es/bop/downloads?boletinFecha=10%2F07%2F2026": 1,
+      "https://bop.dival.es/bop/downloads?boletinFecha=07%2F07%2F2026": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.date",
+    "values": {
+      "2026-07-27": 1,
+      "2026-07-24": 1,
+      "2026-07-21": 1,
+      "2026-07-17": 1,
+      "2026-07-16": 1,
+      "2026-07-10": 1,
+      "2026-07-07": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.id",
+    "values": {
+      "86d812579a45": 1,
+      "2a44938c5e2e": 1,
+      "f560c197d5c9": 1,
+      "13dee094df2e": 1,
+      "64b8231cdace": 1,
+      "b21f45d56796": 1,
+      "4c4963d2aae1": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.pdfUrl",
+    "values": {
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F09240": 1,
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F09171": 1,
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F09022": 1,
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08918": 1,
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08872": 1,
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08534": 1,
+      "https://bop.dival.es/bop/downloads?anuncioNumReg=2026%2F08326": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.regNumber",
+    "values": {
+      "2026/09240": 1,
+      "2026/09171": 1,
+      "2026/09022": 1,
+      "2026/08918": 1,
+      "2026/08872": 1,
+      "2026/08534": 1,
+      "2026/08326": 1
+    }
+  },
+  {
+    "path": "bop.anuncios.title",
+    "values": {
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación de las bases para la creación de una bolsa de trabajo para la plaza de técnico de administración general de las áreas de Urbanismo y Actividades, mediante oposición": 1,
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la modificación de las bases de ejecución del presupuesto 2026": 1,
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación de la relación definitiva de personas admitidas y excluidas, órgano técnico de selección y fecha del primer ejercicio del proceso selectivo para la constitución de una bolsa de empleo de ingeniero/a técnico/a del Ayuntamiento": 1,
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación de las bases para la provisión en propiedad de una plaza de administrativo/a de administración general, grupo C1, mediante promoción interna restringida": 1,
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del III Plan de Igualdad": 1,
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la aprobación del padrón relativo a la tasa por utilización privativa o aprovechamiento especial del dominio público local, por los puestos fijos de venta sitos en el mercado municipal y puestos de mercado ambulante, correspondientes al segundo trimestre del ejercicio 2026": 1,
+      "Anuncio del Ayuntamiento de Riba-roja de Túria sobre la delegación de competencias para la celebración de matrimonios civiles": 1
+    }
+  },
+  {
+    "path": "officials.officials.email",
+    "values": {
+      "rraga@ribarroja.es": 1,
+      "tpozuelo@ribarroja.es": 1,
+      "jlramos@ribarroja.es": 1,
+      "alcaldia@ribarroja.es": 11,
+      "popularesribarroja@gmail.com": 7
+    }
+  },
+  {
+    "path": "officials.officials.honorific",
+    "values": {
+      "Sr.": 13,
+      "Sra.": 8
+    }
+  },
+  {
+    "path": "officials.officials.party",
+    "values": {
+      "PSOE": 11,
+      "PP": 7,
+      "VOX": 1,
+      "EU-Podem": 1,
+      "Compromís": 1
+    }
+  },
+  {
+    "path": "officials.officials.partyLogoUrl",
+    "values": {
+      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/pspvpsoe76x38.jpg": 11,
+      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/Logo-PP.jpg": 7,
+      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/Vox-Web.jpg": 1,
+      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/20230619-logo-EU-UP-40.png": 1,
+      "https://www.ribarroja.es/sites/www.ribarroja.es/files/migrate/body_images/40756/coaliciocompromis76x38.jpg": 1
+    }
+  },
+  {
+    "path": "officials.officials.role",
+    "values": {
+      "alcalde": 1,
+      "concejal": 20
+    }
+  },
+  {
+    "path": "pleno-votes.items.department",
+    "values": {
+      "Cultura": 2,
+      "Medio ambiente": 1
+    }
+  },
+  {
+    "path": "pleno-votes.items.expediente",
+    "values": {
+      "11/2026/PGRU": 1,
+      "10/2026/PGRU": 1,
+      "13/2019/GEN": 1,
+      "1038/2026/GEN": 1,
+      "07/2026/PGRU": 1,
+      "09/2026/PGRU": 1,
+      "615/2025/GEN": 1,
+      "6/2026/PGRU": 1,
+      "31/2025/PGRU": 1,
+      "30/2025/PGRU": 1,
+      "27/2025/PGRU": 1
+    }
+  },
+  {
+    "path": "pleno-votes.items.outcome",
+    "values": {
+      "aprobado": 18,
+      "rechazado": 1
+    }
+  },
+  {
+    "path": "pleno-votes.items.plenoDate",
+    "values": {
+      "2026-05-11": 1,
+      "2026-04-20": 2,
+      "2026-03-09": 5,
+      "2026-02-09": 3,
+      "2025-12-23": 2,
+      "2025-12-01": 3,
+      "2025-11-03": 3
+    }
+  },
+  {
+    "path": "pleno-votes.items.plenoId",
+    "values": {
+      "10yl550": 1,
+      "k4olcs": 2,
+      "1sqj7is": 5,
+      "rx4hb4": 3,
+      "1qi8axv": 2,
+      "qz6weg": 3,
+      "1du4rf5": 3
+    }
+  },
+  {
+    "path": "pleno-votes.items.retrievedAt",
+    "values": {
+      "2026-07-03": 1,
+      "2026-06-24": 18
+    }
+  },
+  {
+    "path": "pleno-votes.items.sourceUrl",
+    "values": {
+      "https://regmeet.com/aytoribarroja/participaciones/74791edf1f8e8b8289a5067737630874?idioma=castellano": 1,
+      "https://regmeet.com/aytoribarroja/participaciones/1d2a48c55f6f10010887cc7d849469a1?idioma=castellano": 2,
+      "https://regmeet.com/aytoribarroja/participaciones/895daa408f494ad58006c47a30f51c1f?idioma=castellano": 5,
+      "https://regmeet.com/aytoribarroja/participaciones/c5b270a763686e776039618cc709f3a6?idioma=castellano": 3,
+      "https://regmeet.com/aytoribarroja/participaciones/69f357fcc8e6d119f3d95f33cedb5915?idioma=castellano": 2,
+      "https://regmeet.com/aytoribarroja/participaciones/5481b2f34a74e427a2818014b8e103b0?idioma=castellano": 3,
+      "https://regmeet.com/aytoribarroja/participaciones/db98dc0dbafde48e8f74c0de001d35e4?idioma=castellano": 3
+    }
+  },
+  {
+    "path": "plenos.items.kind",
+    "values": {
+      "ordinario": 42,
+      "extraordinario": 12,
+      "urgente": 7
+    }
+  },
+  {
+    "path": "promises.items.createdAt",
+    "values": {
+      "2026-04-20": 16,
+      "2026-07-03": 2,
+      "2026-07-04": 6
+    }
+  },
+  {
+    "path": "promises.items.kind",
+    "values": {
+      "anuncio-gobierno": 17,
+      "compromiso-investidura": 1,
+      "enmienda-pleno": 4,
+      "programa-electoral": 1,
+      "pacto-coalicion": 1
+    }
+  },
+  {
+    "path": "promises.items.party",
+    "values": {
+      "PSOE": 19,
+      "PP": 3,
+      "VOX": 1,
+      "Compromís": 1
+    }
+  },
+  {
+    "path": "promises.items.status",
+    "values": {
+      "documentada": 16,
+      "en-progreso": 7,
+      "en-verificacion": 1
+    }
+  },
+  {
+    "path": "promises.items.topic",
+    "values": {
+      "fiscal": 6,
+      "medio-ambiente": 5,
+      "urbanismo": 3,
+      "vivienda": 2,
+      "participacion": 2,
+      "movilidad": 2,
+      "transparencia": 1,
+      "cultura": 2,
+      "deporte": 1
+    }
+  },
+  {
+    "path": "tenders.contracts.contractType",
+    "values": {
+      "services": 418,
+      "other": 14,
+      "construction": 197,
+      "supplies": 165,
+      "patrimonial": 6,
+      "public_services_management": 4
+    }
+  },
+  {
+    "path": "tenders.contracts.processType",
+    "values": {
+      "restricted": 83,
+      "minor_contract": 188,
+      "open": 201,
+      "open_simplified": 224,
+      "negotiated_without_publicity": 103,
+      "based_on_agreement": 5
+    }
+  },
+  {
+    "path": "tenders.contracts.status",
+    "values": {
+      "awarded": 384,
+      "formalized": 314,
+      "unknown": 42,
+      "void": 48,
+      "revoked": 7,
+      "abandoned": 9
+    }
+  },
+  {
+    "path": "tenders.tenders.contractType",
+    "values": {
+      "services": 218,
+      "supplies": 75,
+      "construction": 111,
+      "patrimonial": 9,
+      "other": 11,
+      "public_services_management": 2,
+      "special_administrative": 1
+    }
+  },
+  {
+    "path": "tenders.tenders.processType",
+    "values": {
+      "restricted": 17,
+      "open_simplified": 179,
+      "open": 127,
+      "negotiated_without_publicity": 103,
+      "based_on_agreement": 1
+    }
+  },
+  {
+    "path": "tenders.tenders.status",
+    "values": {
+      "abandoned": 6,
+      "provisionally_awarded": 27,
+      "void": 6,
+      "revoked": 112,
+      "awarded": 273,
+      "formalized": 2,
+      "unknown": 1
+    }
+  }
+]
