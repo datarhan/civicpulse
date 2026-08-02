@@ -231,7 +231,18 @@ export function makeEngineVerifier(
       return det
     }
     const r = await verifyClaimWithEngine({ claim, candidates: shortlist }, deps)
-    if (r === null) opts.onSkip?.(claim.id, 'not-attempted')
+    if (r === null) {
+      opts.onSkip?.(claim.id, 'not-attempted')
+      return det
+    }
+    // `upgraded` means "the engine found support where the deterministic pass
+    // found none" — the engine's original job. It is FALSE for a sin-datos
+    // verdict by definition, so the retraction pass, whose entire purpose is to
+    // act on sin-datos, had its one trusted signal (~92% precision on the gold
+    // set) discarded here before the caller could ever see it. Every claim came
+    // back as the deterministic verdict and was counted "kept": a second run
+    // that judged ~90 claims and retracted 0.
+    if (opts.always) return r.verification
     return r?.upgraded ? r.verification : det
   }
 }
