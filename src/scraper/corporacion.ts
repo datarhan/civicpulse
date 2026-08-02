@@ -117,6 +117,46 @@ function extractPortfolios(text: string): string[] {
   return parts
 }
 
+/**
+ * Domains that are one keystroke from a major provider. Publishing a `mailto:`
+ * to one of these sends a citizen's message to a typosquat.
+ */
+const DOMAIN_TYPOS: Record<string, string> = {
+  'gmai.com': 'gmail.com',
+  'gmial.com': 'gmail.com',
+  'gmail.co': 'gmail.com',
+  'hotmial.com': 'hotmail.com',
+  'hotmai.com': 'hotmail.com',
+  'outlok.com': 'outlook.com',
+  'yahooo.com': 'yahoo.com',
+}
+
+/**
+ * Correct an obvious provider typo, but ONLY when the corrected address is
+ * itself published on the same page.
+ *
+ * The corporación page carries `popularesribarroja@gmai.com` twice and
+ * `popularesribarroja@gmail.com` twelve times — the same mailbox, spelled both
+ * ways, and the scraper happened to pick the broken one for that councillor's
+ * contact link. We are not inventing an address here: the evidence that the
+ * real one exists is on the page we already fetched.
+ *
+ * When the corrected form is NOT present, the raw value is kept untouched.
+ * Guessing at someone's contact details is worse than publishing what the
+ * source says.
+ */
+export function preferCorrectlySpelledEmail(email: string | null, pageText: string): string | null {
+  if (!email) return email
+  const at = email.lastIndexOf('@')
+  if (at < 0) return email
+  const local = email.slice(0, at)
+  const domain = email.slice(at + 1).toLowerCase()
+  const fixed = DOMAIN_TYPOS[domain]
+  if (!fixed) return email
+  const corrected = `${local}@${fixed}`
+  return pageText.toLowerCase().includes(corrected.toLowerCase()) ? corrected : email
+}
+
 function extractEmail($td: ReturnType<CheerioAPI>): string | null {
   // Prefer the mailto: link because the visible text sometimes shows the shared
   // alcaldia@ribarroja.es while the actual link points to the councillor's
@@ -201,7 +241,9 @@ export function parseCorporacion(html: string, opts: ParseOptions = {}): Officia
     const portfolios = extractPortfolios(infoCell.text().replace(/\u00a0/g, ' '))
 
     // Email
-    const email = extractEmail(infoCell)
+    // Same page, same mailbox, spelled both ways — prefer the spelling that
+    // actually resolves. See preferCorrectlySpelledEmail.
+    const email = preferCorrectlySpelledEmail(extractEmail(infoCell), $.html())
 
     // Photo + party — from the second data cell (images col). Fall back to any
     // <img> inside the row if the layout differs.

@@ -24,7 +24,15 @@ import type { QuejaCategory } from './queja-router'
 // pleno-agenda bridge (queja dept ↔ agenda item expediente ↔ contract). A queja
 // carries no expediente of its own, so a direct field match is not possible in
 // D1 — Tier A here is strictly place + department.
-export type RelationLabel = 'misma zona y materia' | 'misma zona' | 'misma materia'
+export type RelationLabel =
+  | 'misma zona y materia'
+  | 'misma zona'
+  /**
+   * Department + temporal proximity. Plain 'misma materia' (department alone)
+   * was retired: it linked one queja to 37% of every contract the town has
+   * signed, which made the review queue unusable.
+   */
+  | 'misma materia y fechas próximas'
 
 export interface RelQueja {
   id: string
@@ -151,15 +159,24 @@ export function scoreRelation(q: RelQueja, c: RelContract): RelationLink | null 
       relationLabel: 'misma zona',
       requiresHumanApproval: true,
     }
-  if (dept)
+  // Department ALONE is a category, not a relation. On real data it linked one
+  // queja to 259 of 698 contracts — 37% of everything the town has signed —
+  // because `urbanismo` covers most municipal work. A reviewer handed 259
+  // "possibly related" contracts for a single complaint cannot use the queue at
+  // all, so the gate that was meant to protect them instead buried them.
+  //
+  // A shared subject AND a shared moment is a lead worth a look; a shared
+  // subject on its own is just the department's caseload.
+  if (dept && temporal)
     return {
       ...base,
       tier: 'B',
       score: 0.55,
-      relationLabel: 'misma materia',
+      relationLabel: 'misma materia y fechas próximas',
       requiresHumanApproval: true,
     }
-  return null // temporal alone (or nothing) never links
+  // department alone, temporal alone, or nothing — never links
+  return null
 }
 
 export interface RelContext {

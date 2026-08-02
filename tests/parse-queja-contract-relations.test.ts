@@ -99,14 +99,27 @@ describe('scoreRelation — tiering + honesty gates', () => {
     expect(r.tier).toBe('A')
     expect(r.relationLabel).toBe('misma zona y materia')
   })
-  it('Tier B: department/theme only → requiresHumanApproval', () => {
+  it('Tier B: department + temporal proximity → requiresHumanApproval', () => {
     const r = scoreRelation(
       q({ placeSlug: null, department: 'urbanismo' }),
       c({ department: 'urbanismo' }),
     )!
     expect(r.tier).toBe('B')
     expect(r.requiresHumanApproval).toBe(true)
-    expect(r.relationLabel).toBe('misma materia')
+    expect(r.relationLabel).toBe('misma materia y fechas próximas')
+  })
+
+  it('GATE: department alone, with no shared moment, does NOT link', () => {
+    // This is the gate that makes the queue usable. Department alone linked one
+    // real queja to 259 of 698 contracts — 37% of everything the town has
+    // signed — because `urbanismo` covers most municipal work. A reviewer given
+    // 259 "possibly related" contracts for one complaint cannot review at all.
+    const r = scoreRelation(
+      q({ placeSlug: null, department: 'urbanismo', createdAt: '2025-01-01' }),
+      // Awarded five years before the complaint: same subject, unrelated moment.
+      c({ department: 'urbanismo', awardDate: '2020-01-01' }),
+    )
+    expect(r).toBeNull()
   })
   it('GATE: department/theme alone never becomes Tier A', () => {
     const r = scoreRelation(q({ placeSlug: null }), c({ department: q().department }))
