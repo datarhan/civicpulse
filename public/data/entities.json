@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T18:44:28.309Z",
+  "generatedAt": "2026-08-02T07:20:50.407Z",
   "source": "derived: tenders.json assignees + officials.json · overrides: entity-overrides.json",
   "stats": {
     "companies": 372,
@@ -6035,7 +6035,7 @@
     {
       "slug": "jose-manuel-gallardo-martinez",
       "name": "José Manuel Gallardo Martínez",
-      "party": "Otro",
+      "party": "EU-Podem",
       "role": "concejal"
     },
     {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T06:51:37.473Z",
+  "generatedAt": "2026-08-02T07:20:34.384Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -143,7 +143,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -194,18 +194,18 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "dana",
             "tras"
           ]
         },
         {
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxNdzJsZVRna3VWTWE1OTNRdk40VGZkaG92eW9Zc2Vaam4wcVhMdzJTanc0WXREbXZzaHJyQ1g5RFZ3M2lUTFJiSVA1QTVseGh5Q2hGdnhhRHhwVTRWVW9EcS1WVUxiYVJVUldQajNjNXY0RjE5Z21xRFRSNEUyOGRMNHZVQW8xT01SU0ZhVTdHZUdGeUkyN3phZktzYkVjY1lwRnVEV2dvTG80ZnFSVVdzTkxzZ0dzWlhhOUVfNVNQejJGNGl5MDU3TXduZDFBSWlQOVdWVzFkNmpha1VoNUlV?oc=5",
           "date": "2026-07-07",
-          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
+          "quote": "El Ejército desmonta el puente militar de Riba-roja tras 19 meses de servicio después de la dana",
           "kind": "press",
-          "publisher": "Levante-EMV",
+          "publisher": "El Periódico de Aquí",
           "matchedKeywords": [
             "dana",
             "tras"
@@ -213,7 +213,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -225,7 +225,7 @@
           "date": "2026-07-07",
           "quote": "Riba-roja de Túria recupera terreno: la Generalitat y el Ayuntamiento planifican suelo seguro para industrias y viviendas tras la DANA",
           "kind": "press",
-          "publisher": "València Extra",
+          "publisher": "valenciaextra.com",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -237,17 +237,6 @@
           "quote": "La Generalitat y el Ayuntamiento de Riba-roja colaboran para desarrollar suelo para viviendas e industrias en zonas seguras",
           "kind": "press",
           "publisher": "Ayuntamiento de Riba-roja de Túria",
-          "matchedKeywords": [
-            "suelo",
-            "vivienda"
-          ]
-        },
-        {
-          "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxQYjhkbEJKbGZKZFlKWW0tWGdFd19DUEY1S0FSbHZJUG9veUZ5QjY5YlpNS21MOHd4NW0zM1pWNU5rV3ZIOGNISmtWckgzRHg1RUJkdFN2TjdRMjZpME9zcEx6YUM4ZHRCYW9PUkZkUkZLOWdnSThlWG9uNDdrenZyeG1CMEpvR2VQdERQbzZqcXN4V2hYMm9yUHVrX0VTWF9MV1hla1hfVXFOOTZKS2xZdEZCazNyNWNrRXhjUVRJcWZFX3ZWWUVtTXhWUTNkMzZadXhrVUItMkVxTTZSYWVtR3BEV19hZlh00gHuAUFVX3lxTE1rbVplVFBQU1lwZ216Ny1zRlRBd1VxRDFQeHR0SkRuWjFNWk1tRk51aVZWT1QwWmVMVXNqZzdoazV4OEFpMm9DMTRfVnVMbmlsNEFHeTBHYVBQWUJNaVBwVUM5dzdXc0x6TXQ5VkduNFpvakt0RjgxY1pLLXNOVUViRXVPeTFCSVNXbGVEMk9jYl9CcUV2bkhWWWRWekEwZng4QzZiZGoyRmZ3WkdtSUZpRnNIWlNiTlMtb2Z1NXBmSUhsdUxSWTdzZlpyMlk1ZWExd1ByZUE1aWVqbk5oN01vWmFjb21lYnZpeVAwb1E?oc=5",
-          "date": "2026-07-07",
-          "quote": "La Generalitat y Riba-roja impulsan suelo seguro para viviendas e industrias tras la dana",
-          "kind": "press",
-          "publisher": "Levante-EMV",
           "matchedKeywords": [
             "suelo",
             "vivienda"
@@ -266,7 +255,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -339,7 +328,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -363,7 +352,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -412,7 +401,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-alumbrado-led-680k",
@@ -443,7 +432,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -451,7 +440,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -459,7 +448,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -523,7 +512,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -554,7 +543,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -594,7 +583,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -638,7 +627,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -682,7 +671,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -712,7 +701,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -747,7 +736,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -792,7 +781,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -800,7 +789,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -819,7 +808,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -850,7 +839,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -910,7 +899,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -922,7 +911,7 @@
           "date": "2026-07-30",
           "quote": "Fiestas Patronales de Agosto de Riba-roja de Túria 2026: programa completo de actos y conciertos gratuitos",
           "kind": "press",
-          "publisher": "valenciabonita.es",
+          "publisher": "Valenciabonita",
           "matchedKeywords": [
             "gratuito",
             "agosto"
@@ -952,7 +941,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -994,7 +983,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-01T06:51:37.361Z"
+      "generatedAt": "2026-08-02T07:20:34.257Z"
     }
   ],
   "llmEvidence": [],
