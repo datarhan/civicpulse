@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T13:12:52.182Z",
+  "generatedAt": "2026-08-02T14:12:06.686Z",
   "version": "1",
   "plenoId": "rmtyr",
   "plenoDate": "2025-07-31",
@@ -24,24 +24,15 @@
       },
       "verification": {
         "claimId": "rmtyr-008-afi-19e19b",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes (Ctto 136/2025) · Ayuntamiento de Riba-roja de Túria · environment · 16.632.795 €",
-            "similarity": 0.8
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el presupuesto del capítulo 1 para 2025 de 20.338.000 euros. Los documentos listados se refieren a subvenciones y ayudas económicas para diferentes propósitos, pero no mencionan específicamente el presupuesto del capítul",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -63,24 +54,15 @@
       },
       "verification": {
         "claimId": "rmtyr-008-afi-a5ddb3",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes (Ctto 136/2025) · Ayuntamiento de Riba-roja de Túria · environment · 16.632.795 €",
-            "similarity": 0.83
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre el presupuesto del capítulo 1 para 2025 y su incremento del 3,5% respecto al ejercicio 2024. Los documentos listados se refieren a ayudas, contratos y subvenciones, pero no contienen información específica sobre el monto",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -346,42 +328,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-019-acu-0f77e4",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 19,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Estos presupuestos legalmente deberían estar tancados antes de que finalice el año 2024",
-        "context": "Estos presupuestos legalmente deberían estar tancados antes de que finalice el año 2024, pasa la dana, por supuesto, pero la dana sigue el día 29 de octubre",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2024-12-31",
-          "referencedEntity": "presupuesto municipal 2025"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.95,
-        "reasoning": "Se puede contrastar con los plazos de aprobación presupuestaria fijados por la Ley Reguladora de las Haciendas Locales.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-019-acu-0f77e4",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-020-afi-85e2b7",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -462,114 +408,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-021-acu-e0e848",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 21,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024",
-        "context": "Y una muestra de que esto no existe es que en 48 horas, ustedes y nosotros, el plenario, vamos a durar lo que durante 200 días se hubiera podido decir duro, si tenemos en cuenta la dana o lo que hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024. Ya respecto al capítulo 1",
-        "topic": "fiscal",
-        "entities": {
-          "count": 200,
-          "countUnit": "días",
-          "date": "2024-12-31",
-          "referencedEntity": "presupuesto 2025"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.95,
-        "reasoning": "El orador afirma que el presupuesto de 2025 lleva un retraso de más de 200 días y que debió ser aprobado antes de que finalizara el año 2024. Esto se puede verificar contrastando la fecha límite legal (31 de diciembre de 2024) con la fecha del pleno actual (31 de julio de 2025).",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-021-acu-e0e848",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-022-acu-3f89c0",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 22,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Hace referencia a la creación de plazas de auxiliar administrativo y líneas después dice que existían auxiliares administrativos.",
-        "context": "Hace referencia al apartado que en ese documento no existía. Hace referencia a la creación de plazas de auxiliar administrativo y líneas después dice que existían auxiliares administrativos. Hace referencia a técnicos de transparencia que no existen pero que están haciendo funciones en el Departamento de Transparencia.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "informe del técnico"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Es verificable contrastando el informe técnico de la RPT para ver si contiene dicha contradicción sobre la creación y existencia de plazas de auxiliar administrativo.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-022-acu-3f89c0",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Servicio de apoyo técnico en el diagnóstico de igualdad y en la realización del Plan de Igualdad del Ayuntamiento de Riba-roja de Túria, contrato derivado del SDA de servicios de arquitectura e ingeniería, consultoría y asistencia técnica a las diferentes áreas municipales · Ayuntamiento de Riba-roja de Túria · EQUALITY MOMENTUM SL · architecture · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-023-acu-248590",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 23,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Hace referencia a técnicos de transparencia que no existen pero que están haciendo funciones en el Departamento de Transparencia.",
-        "context": "Hace referencia a la creación de plazas de auxiliar administrativo y líneas después dice que existían auxiliares administrativos. Hace referencia a técnicos de transparencia que no existen pero que están haciendo funciones en el Departamento de Transparencia. Hace referencia a las seis plazas de ADL de Puigcerd y los complementos de destino, pero no hay seis ADL en teoría.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "departamento de transparencia"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Es verificable contrastando la relación de puestos de trabajo (RPT) del ayuntamiento con el personal asignado físicamente al Departamento de Transparencia.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-023-acu-248590",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -713,19 +551,15 @@
       },
       "verification": {
         "claimId": "rmtyr-031-cit-a84268",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un \"resto\" destinado a mejorar el \"parque mal donado\", pero no proporciona cifras específicas ni detalles sobre el contrato de jardinería de 948.000 euros anuales. Los candidatos listados no presentan información que confirme directamente la existencia de un resto específico p",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -747,19 +581,15 @@
       },
       "verification": {
         "claimId": "rmtyr-032-cit-0c4f9a",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XflAkMBxmpeFQ%2FlhRK79lA%3D%3D",
-            "snippet": "Contrato derivado del SDA de obras, para la realización de las obras necesarias para mejorar la accesibilidad al parque Montealcedo mediante la realización de vados de peatones en las C/ Mariano Benlliure, C/ Maestro Serrano, C/ José Iturbi y C/ Cáceres. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · construction · estado: awarded",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un \"resto\" destinado a mejorar el \"parque mal donado\", pero no proporciona cifras específicas ni detalles sobre el contrato de jardinería de 948.000 euros anuales. Los candidatos listados se refieren a contratos relacionados con el mantenimiento y mejora de parques, pero no ha",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -782,24 +612,15 @@
       },
       "verification": {
         "claimId": "rmtyr-033-afi-9f4734",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=6IrJ3E4hheMuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Servicio de mantenimiento viales y zonas verdes de las áreas industriales de Riba-roja · Ayuntamiento de Riba-roja de Túria · environment · 1.160.688 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el control de 948.000 euros. Aunque se mencionan varios contratos relacionados con el mantenimiento y conservación de jardines y zonas verdes, no hay evidencia de que alguno de estos contratos esté directamente vinculado a ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -822,30 +643,15 @@
       },
       "verification": {
         "claimId": "rmtyr-033-afi-219148",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=q5NGr88hyeE7u6%2B%2FR7DUoA%3D%3D",
-            "snippet": "Contrato para la prestación del servicio de actividades de ocio sociocultural y educativo _RIBAJOVE 2023_ a desarrollar durante el mes de DICIEMBRE 2023, para el periodo previsto del 26 al 30 (5 días) del mismo mes, derivado del sistema dinámico de adquisición para la contratación de servicios de diversa índole de uso recurrente por parte de las diferentes áreas municipales. Ctto151/2023. · Ayuntamiento de Riba-roja de Túria · Grup A Riure, S.L.U. · health · 24.975 €",
-            "similarity": 1
-          },
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "CONVOCATORIA DE LAS AYUDAS RIBACTIVA EMPREN IV PARA APOYAR ECONOMICAMENTE A NUEVAS ACTIVIDADES EMPRENDEDORAS EN EL AMBITO DEL COMERCIO MINORISTA Y PEQUEÑOS NEGO · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la partida de 25.000 euros. Todos los contratos y subvenciones listados tienen montos significativamente inferiores a los 25.000 euros mencionados en la afirmación, lo que indica que no hay coincidencia en el importe. Ademá",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -868,24 +674,15 @@
       },
       "verification": {
         "claimId": "rmtyr-034-afi-ffb9e9",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BIqG1AMdjwnVGIpKDxgsAQ%3D%3D",
-            "snippet": "Contrato de suministro de adquisición de tractor municipal como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024. · Ayuntamiento de Riba-roja de Túria · CATRON INTERNACIONAL, S.A. · industry · 25.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente una partida de 25.000 euros que ha sido reducida. Sin embargo, ninguno de los candidatos listados presenta una subvención o partida que coincida exactamente con esta cifra. Las subvenciones mencionadas en los registros son de diferentes importes y no se especif",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -908,24 +705,15 @@
       },
       "verification": {
         "claimId": "rmtyr-034-afi-eb3414",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Sn3tl1a79p4uf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Contrato Menor de consultoría y asistencia jurídica especializada en relación al contrato de servicio de gestión integral del agua y los procedimientos judiciales que le afectan. · Ayuntamiento de Riba-roja de Túria · JOSE MARIA BAñO LEON ABOGADOS SLP · legal · 14.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente un monto de 14.000 euros relacionado con el tema de Riballaz. Sin embargo, los registros de los candidatos no presentan ninguna referencia directa a este monto específico ni a la actividad o programa denominado Riballaz. La Resolución 1220/2020 menciona ayudas ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -977,24 +765,15 @@
       },
       "verification": {
         "claimId": "rmtyr-034-afi-496c79",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Acuerdo de 20 de noviembre de 2017 de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria, por la que se convocan las subvenciones a entidades/aso · importe no publicado",
-            "similarity": 0.75
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona una inversión total de 1.325.991,95 euros en subvenciones, pero los documentos proporcionados no contienen cifras que coincidan exactamente con este monto. Aunque hay varias bases y acuerdos relacionados con subvenciones en Riba-roja de Túria, ninguno de ellos especifica un im",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1050,94 +829,15 @@
       },
       "verification": {
         "claimId": "rmtyr-037-afi-9fa74b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TX%2BFGG9n8SDnSoTX3z%2F7wA%3D%3D",
-            "snippet": "contrato mediante tramitación anticipada de servicio de limpieza CEIP Cervantes, por proc. abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjud. y con CEE de carácter social y medioambiental, y mejoras vinculadas al objeto del contrato contrib. al cumplim. del ODS 8.8, ODS 5.1 y ODS 12.2. SARA · Ayuntamiento de Riba-roja de Túria · environment · 207.126 €",
-            "similarity": 0.66
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que se trata de 215.000 euros. Los contratos listados tienen montos significativamente inferiores, siendo el más alto de 95.565,8 euros, lo que no coincide con la cifra mencionada. Además, no hay evidencia de que estos contrat",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-039-acu-8a0afd",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 39,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "los trabajadores del ayuntamiento que tienen un trabajo extraordinario y que actualmente no están cobrando",
-        "context": "y creo que en este punto, antes de hablar de lo que habla el punto, creo que es esencial reiterar la nueva intervención pública para hablar de los trabajadores del ayuntamiento que tienen un trabajo extraordinario y que actualmente no están cobrando. Creo que es importante porque este presupuesto habla también de la productividad",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "personal del ayuntamiento de riba-roja"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "La afirmación sobre el impago a empleados municipales es verificable mediante los registros de personal, nóminas y órdenes de pago de la tesorería municipal.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-039-acu-8a0afd",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Dqmv5hWokzt4zIRvjBVCSw%3D%3D",
-            "snippet": "Contrato de servicio de puesta a disposición de personal para la ejecución de los trabajos de montaje y desmontaje de las carpas que se instalan con motivo de la celebración de la Feria del Comercio organizada por el Ayuntamiento de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole (Ctto. 96/2026 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · health · estado: void",
-            "similarity": 1
-          }
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-040-acu-508d10",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 40,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "trabajadores del ayuntamiento que tienen un trabajo extraordinario y que actualmente no están cobrando.",
-        "context": "para hablar de los trabajadores del ayuntamiento que tienen un trabajo extraordinario y que actualmente no están cobrando. Creo que es importante porque este presupuesto habla también de la productividad y hay una realidad",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "trabajadores del ayuntamiento"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Verificar si existen atrasos o productividades pendientes de pago a los empleados del Ayuntamiento de Riba-roja de Túria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-040-acu-508d10",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WzpHq1tTBfcQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Vida y Accidentes para los trabajadores del Ayuntamiento · Ayuntamiento de Riba-roja de Túria · Zurich Vida, Compañía de Seguros y Reaseguros, S.A. · finance · estado: formalized",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1192,41 +892,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-044-acu-25e010",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 44,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Y lo que tenemos en el texto de la propuesta y en el expediente, es que se afirma que no se han producido modificaciones en el personal eventual.",
-        "context": "En las dades extraídas por el presupuesto, lo que tenemos es que ha habido un aumento en la partida presupuestaria de un 14,7% en lo que tiene que ver con los cargos de confianza. Y lo que tenemos en el texto de la propuesta y en el expediente, es que se afirma que no se han producido modificaciones en el personal eventual.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "expediente de presupuesto y rpt"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar el texto de la propuesta en el expediente municipal para ver si indica que no se han producido modificaciones en el personal eventual.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-044-acu-25e010",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -1426,111 +1091,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-049-acu-52bbbf",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 49,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en las nuevas plazas que se creen aparece un técnico en medio de comunicaciones externas que en el expediente nos dice que es por decisión de la alcaldía",
-        "context": "A banda de que en las nuevas plazas que se creen aparece un técnico en medio de comunicaciones externas que en el expediente nos dice que es por decisión de la alcaldía, por la carga de trabajo.",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "expediente 3947/2025/gen"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Afirma un hecho específico sobre la RPT (la creación de una plaza por decisión de alcaldía) contrastable en el expediente 3947/2025/GEN.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-049-acu-52bbbf",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=5%2F8urkwlgL8kJPJS%2BPS9vg%3D%3D",
-            "snippet": "Inicio, aprobación del expediente y adjudicación del contrato para el suministro de energía eléctrica, mediante contrato basado en acuerdo marco para el suministro de energía eléctrica para los organismos adheridos a la Central de Compras de la Diputación Provincial de Valencia, a favor de Iberdrola Clientes S.A.U. con CIF nº A95758389 _Ctto.183-2025. · Ayuntamiento de Riba-roja de Túria · IBERDROLA CLIENTES S.A. · energy · estado: formalized",
-            "similarity": 0.67
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-050-acu-95d8c2",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 50,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "está patiendo retrasos en los pagos a ciertos trabajadores",
-        "context": "pero lo que nos parece que no es apropiado para un ayuntamiento que está patiendo retrasos en los pagos a ciertos trabajadores pues el personal eventual se incremente",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "pagos a trabajadores"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar la existencia de retrasos en los pagos a empleados públicos mediante informes de intervención o tesorería sobre el periodo medio de pago o nóminas pendientes.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-050-acu-95d8c2",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2BBaI2vC%2FxTLIx6q1oPaMg%3D%3D",
-            "snippet": "Contrato menor reparación asfalto en Camino els Pagos en Riba-roja de Turia. · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · construction · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-050-acu-19a51b",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 50,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "trabajadores y trabajadoras que porten ya desde el año pasado sin cobrar algunas retribuciones",
-        "context": "Sí que es cierto que convenía el compañero de Esquerra Unida respecto a los trabajadores y trabajadoras que porten ya desde el año pasado sin cobrar algunas retribuciones de trabajos que se han hecho",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "retribuciones de trabajadores"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar en los registros contables y de personal del ayuntamiento si existen retribuciones del ejercicio anterior pendientes de pago.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-050-acu-19a51b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=WzpHq1tTBfcQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Seguro de Vida y Accidentes para los trabajadores del Ayuntamiento · Ayuntamiento de Riba-roja de Túria · Zurich Vida, Compañía de Seguros y Reaseguros, S.A. · finance · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -1954,43 +1514,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-065-acu-0d2cca",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 65,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "según el informe del capítulo 1, no se sabe si los funcionarios trabajan 37 y medio, 36, y ahí lo van a comentar, o 35.",
-        "context": "Otra banda, según el informe del capítulo 1, no se sabe si los funcionarios trabajan 37 y medio, 36, y ahí lo van a comentar, o 35. Los tres cómputes semanales horarios existen en el informe, es tres.",
-        "topic": "empleo",
-        "entities": {
-          "count": 3,
-          "countUnit": "cómputos semanales horarios",
-          "referencedEntity": "informe del capítulo 1"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.95,
-        "reasoning": "Afirma que el informe contiene tres cifras diferentes para la jornada semanal de los funcionarios (37.5, 36 y 35 horas), verificable examinando la documentación del expediente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-065-acu-0d2cca",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3BC53PQiZWg%2B1TMyIiZmzw%3D%3D",
-            "snippet": "Contrato administrativo mixto de suministro y servicios para la migracion del entorno cliente servidor actual al entorno cloud, e incorporacion del módulo de relación de puestos de trabajo y el modulo de presupuestos del capitulo I, por procedimiento abierto, mejor relacion calidad-precio, varios criterios de adjudicacion, con condicion de ejecucion de caracter social, medioambiental y tecnico. · Ayuntamiento de Riba-roja de Túria · Soluciones Avanzadas en Informática Aplicada S.L. · software · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-069-afi-887918",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -2018,41 +1541,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-072-acu-19d2cd",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 72,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "muchos viajes, hacen que la nómina se tenga que retrasar,",
-        "context": "y que los problemas económicos que acarrea el ayuntamiento, muchos viajes, hacen que la nómina se tenga que retrasar, que los saldos en los cuentos corrientes",
-        "topic": "empleo",
-        "entities": {
-          "referencedEntity": "pago de nóminas"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.7,
-        "reasoning": "Afirma que el pago de la nómina de los empleados municipales sufre retrasos, un hecho contrastable mediante la fecha de los apuntes bancarios de las transferencias.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-072-acu-19d2cd",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=XIU8UqvIpdyiEJrVRqloyA%3D%3D",
-            "snippet": "Suministro mediante renting de seis vehículos policiales por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter social y medioambiental y pago directo a subcontratistas. · Ayuntamiento de Riba-roja de Túria · ANDACAR 2000, S.A. · transportation · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-073-afi-da4c2e",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -2071,24 +1559,15 @@
       },
       "verification": {
         "claimId": "rmtyr-073-afi-da4c2e",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oMKhKpHO144QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de clase de impartición clases de inglés en CIJ cursos escolares 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · Nas Vision Works, S.L. · education · 9688 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la \"PP de igualdad de 9.680 euros\". Aunque hay menciones a contratos y subvenciones relacionadas con actividades sociales y de igualdad, no se encuentra un documento que indique específicamente una par",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2110,24 +1589,15 @@
       },
       "verification": {
         "claimId": "rmtyr-073-afi-635f9d",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POdrVQknDHEBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de carácter menor, relativo al servicio de trabajos selvícolas interfaz Masia de Traver. · Ayuntamiento de Riba-roja de Túria · ION SAMSOM, TALAS EN ALTURA DE ÁRBOLES Y PALMERAS · other · 12.000 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las \"actividades de igualdad de 12.000 euros\". Aunque hay menciones a contratos relacionados con servicios y actividades, no hay evidencia concreta que vincule a un candidato con el monto específico de 12.000 euros ni co",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2149,24 +1619,15 @@
       },
       "verification": {
         "claimId": "rmtyr-073-afi-23005f",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BF0Lj6QFI3kBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "obras de\nejecución de aseo adaptado en “La Cebera” por procedimiento abierto súper simplificado,\nmejor relación calidad-precio, único criterio de adjudicación y con condición especial de\nejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo\ndecente para todos. · Ayuntamiento de Riba-roja de Túria · construction · 8264 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre el monto de 8.275 euros destinado a actividades LGTBI. Aunque se mencionan subvenciones a asociaciones en general, no hay un registro específico que indique que se haya asignado esa cantidad exacta par",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2188,24 +1649,15 @@
       },
       "verification": {
         "claimId": "rmtyr-073-afi-6ba495",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sCcudNlMjpSiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de publicidad institucional en medios digitales y/o impresos · Ayuntamiento de Riba-roja de Túria · FEDERICO DOMENECH SA · other · 4500 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las subvenciones a asociaciones feministas y LGTBI por un monto de 4.500 euros. Todos los registros se refieren a subvenciones para asociaciones de vecinos o actos festivos, pero no hay evidencia concreta que vincule a e",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2228,24 +1680,15 @@
       },
       "verification": {
         "claimId": "rmtyr-074-afi-66111b",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Acuerdo de 7 de febrero de 2018 de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria, por el que se convoca el concurso de fotografía promovido  · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre la partida de igualdad de 9.680 euros. Aunque hay menciones a contratos y servicios relacionados con la ejecución de carácter social, no se especifica ninguna cifra que coincida con el monto mencionado",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2268,24 +1711,15 @@
       },
       "verification": {
         "claimId": "rmtyr-074-afi-5f59f1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oFx8mZ5HrBbLIx6q1oPaMg%3D%3D",
-            "snippet": "El objeto del presente contrato es disponer la gestión de actividades deportivas; programas “Calistenia, Ribasaludable y Esport Actiu” con el objetivo de ampliar la oferta deportiva municipal, incorporando actividades deportivas al aire libre. · Ayuntamiento de Riba-roja de Túria · culture · 11.212 €",
-            "similarity": 0.72
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre las \"actividades de igualdad de 12.000 euros\". Aunque hay menciones a contratos relacionados con servicios de carácter social, no se especifica un monto de 12.000 euros ni se relacionan directamente con actividades de igual",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2308,24 +1742,15 @@
       },
       "verification": {
         "claimId": "rmtyr-074-afi-945ce1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=AjL5GAsJ1%2B8QK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de impartición clases de repaso en CIJ curso escolar 2017-18 y 2018-19 · Ayuntamiento de Riba-roja de Túria · Ribamon. Actividades lúdicas de ocio y tiempo libre · education · 8983 €",
-            "similarity": 0.71
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las actividades LGTBI por un monto de 8.275 euros. Los registros se centran en subvenciones para asociaciones de vecinos y actividades deportivas, pero no hay evidencia concreta que vincule a un candidato con la cifra es",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2348,24 +1773,15 @@
       },
       "verification": {
         "claimId": "rmtyr-074-afi-f7e677",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sCcudNlMjpSiEJrVRqloyA%3D%3D",
-            "snippet": "Servicio de publicidad institucional en medios digitales y/o impresos · Ayuntamiento de Riba-roja de Túria · FEDERICO DOMENECH SA · other · 4500 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las subvenciones a asociaciones feministas y LGTBI por un monto de 4.500 euros. Los registros se centran en subvenciones a asociaciones de vecinos, comisiones falleras y ayudas de emergencia, pero no hay evidencia de que",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2852,19 +2268,15 @@
       },
       "verification": {
         "claimId": "rmtyr-097-cit-1167b2",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · Victor Tormo S.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un edificio que estuvo parado durante 20 años, pero ninguno de los contratos presentados por los candidatos se refiere a un edificio específico que haya estado inactivo durante ese tiempo. Los contratos listados se centran en obras de mantenimiento, reparaciones y adquisicione",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2886,19 +2298,15 @@
       },
       "verification": {
         "claimId": "rmtyr-098-cit-03a590",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pwDbdKlLknEaF6cS8TCh%2FA%3D%3D",
-            "snippet": "Servicio de creación y diseño del proyecto de accesibilidad universal en patrimonio y turismo local “callejero, rutas y yacimiento visigodo ilustrado y accesible” en Riba-roja de Túria, en el marco del Plan de Sostenibilidad Turística en Destino (PSTD/22), financiado por la Unión Europea – NextGenerationEU en el marco del Plan de Recuperación, Transformación y Resiliencia · Ayuntamiento de Riba-roja de Túria · HORIZONTES ACCESIBLES S.L. · legal · estado: awarded",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona que el turismo estaba externalizado y que era gestionado por una empresa privada, lo que implica que el servicio no era público. Sin embargo, los contratos presentados no proporcionan evidencia directa de que el turismo en Riba-roja de Túria haya sido previamente externalizado",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2949,24 +2357,15 @@
       },
       "verification": {
         "claimId": "rmtyr-099-afi-afe9b3",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GnDxX3XymI0uf4aBO%2BvQlQ%3D%3D",
-            "snippet": "obras de acondicionamiento de Sala y Cubierta de televisión del Ayuntamiento de Riba- Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Licitaciones y Obras Hambit, S.L. · other · 14.311 €",
-            "similarity": 0.9
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un monto específico de 13.000 euros relacionado con un servicio de televisión y sugiere que este costo podría cubrir el capítulo de personal de comunicación. Sin embargo, ninguno de los contratos presentados por los candidatos menciona un importe de 13.000 euros ni se relacion",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2989,24 +2388,15 @@
       },
       "verification": {
         "claimId": "rmtyr-100-afi-06461d",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GnDxX3XymI0uf4aBO%2BvQlQ%3D%3D",
-            "snippet": "obras de acondicionamiento de Sala y Cubierta de televisión del Ayuntamiento de Riba- Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Licitaciones y Obras Hambit, S.L. · other · 14.311 €",
-            "similarity": 0.9
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los contratos presentados respalda la afirmación de que \"sale la televisión, vale 13.000 euros\". El único monto que se acerca a la cifra mencionada es el de €10.739,15, pero no coincide con el importe exacto de €13.000. Además, los contratos listados se refieren a suministros y obras que ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3029,24 +2419,15 @@
       },
       "verification": {
         "claimId": "rmtyr-100-afi-25572e",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria · Irispress Social Media, S.L. · culture · 50.000 €",
-            "similarity": 0.8
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona que \"la que tenemos nosotros no vale ni 50.000 euros\", lo que implica que el valor de la entidad en cuestión es inferior a esa cifra. Sin embargo, los contratos presentados no respaldan esta afirmación de manera directa. El contrato más cercano es el de €47.025,55, que aunque ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3068,24 +2449,15 @@
       },
       "verification": {
         "claimId": "rmtyr-101-afi-11178c",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Ej1RCt%2B7HEsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Grabación, imagen, comunicación social y mantenimiento de las redes sociales · Ayuntamiento de Riba-roja de Túria · Irispress Social Media, S.L. · culture · 50.000 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un monto específico de 50.000 euros, indicando que \"la que tenemos nosotros no vale ni 50.000 euros\". Sin embargo, los registros de los candidatos no presentan ninguna cifra que coincida con este monto. El contrato menor de servicios a favor de IT AND PEOPLE, S.L. es de 9.922 ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3808,19 +3180,15 @@
       },
       "verification": {
         "claimId": "rmtyr-119-cit-381d0e",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio. · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · estado: formalized",
-            "similarity": 0.8
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona \"presupuestos sobre el nuevo servicio de recogida de residuos sólidos urbanos\". El candidato [1] presenta un contrato formalizado para el \"servicio público de recogida de residuos sólidos urbanos\" con un importe de €15.803.597,04, lo que se alinea directamente con el tema de l",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3842,24 +3210,15 @@
       },
       "verification": {
         "claimId": "rmtyr-120-afi-0bf406",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Contrato de servicio público de recogida de residuos sólidos urbanos del municipio. · Ayuntamiento de Riba-roja de Túria · GARBIALDI, S.A. · environment · 15.803.597 €",
-            "similarity": 0.99
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un monto específico de 16 millones de euros destinados a servicios que se prestan a la ciudadanía, pero ninguno de los candidatos presenta información que confirme esta cifra exacta o su relación directa con el monto mencionado. Los contratos listados se refieren a servicios e",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3948,24 +3307,15 @@
       },
       "verification": {
         "claimId": "rmtyr-121-afi-0b52a5",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
-            "snippet": "Contrato administrativo de SERVICIO DE AYUDA A DOMICILIO MUNICIPAL, dividido en dos lotes, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social, contribuyendo al ODS 8 de la Agenda 2030; sujeto a regulación armonizada, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · health · 1.575.256 €",
-            "similarity": 0.66
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda de manera genuina la afirmación sobre la asignación de 1.632.000 euros a subvenciones al tejido económico y social de Rivarrocha de Turia. Aunque hay varias resoluciones y convocatorias de subvenciones, no se menciona específicamente el monto de 1.632.0",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4021,24 +3371,15 @@
       },
       "verification": {
         "claimId": "rmtyr-121-afi-308674",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Fyy%2BTlMZfRsadbH3CysQuQ%3D%3D",
-            "snippet": "Contrato administrativo para la contratación de la plataforma para la gestión de la sensorización de contenedores e información del servicio de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria, incluido en el marco de ayudas del Plan de Recuperación, Transformación y Resiliencia financiado por la Unión Europea, Next Generation UE (Ctto.138/2025) · Ayuntamiento de Riba-roja de Túria · DISTROMEL S A · it · 148.760 €",
-            "similarity": 0.61
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo y concreto a la afirmación sobre la dotación de 132.000 euros para la vuelta al cole. Aunque hay resoluciones relacionadas con ayudas escolares, como la Resolución de la Alcaldía número 1484 de 2017 y la número 2088/2020, no se menciona específi",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4061,24 +3402,15 @@
       },
       "verification": {
         "claimId": "rmtyr-121-afi-756014",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BxX%2F0h%2BKVBsQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de comunicaciones para organismos adheridos a la Central de Servicios Innovadores y Sostenibles de la Diputación de Valencia · Ayuntamiento de Riba-roja de Túria · telecom · 120.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona una dotación específica de 120.000 euros para la infancia, pero ninguno de los candidatos presenta un respaldo directo a esta cifra exacta. Aunque hay referencias a ayudas escolares y gastos relacionados con la actividad escolar, como en el Acuerdo de 18 de mayo de 2021, no se",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4167,24 +3499,15 @@
       },
       "verification": {
         "claimId": "rmtyr-122-afi-64131b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
-            "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · construction · 239.489 €",
-            "similarity": 0.64
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación de que se destinan 246.000 euros a ayudas para la rehabilitación de fachadas, accesibilidad y movilidad. Aunque hay varios registros relacionados con ayudas económicas para la rehabilitación de fachadas en Riba-roja de Túria, no ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4239,24 +3562,15 @@
       },
       "verification": {
         "claimId": "rmtyr-123-afi-31882d",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qNwTPlXJjH2rz3GQd5r6SQ%3D%3D",
-            "snippet": "Enajenación parcela 1-10 sito en el Sector Industrial Casanova por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y condición especial de ejecución. · Ayuntamiento de Riba-roja de Túria · Audibe Distribuciones, S.A.U. · real_estate · 1.664.000 €",
-            "similarity": 0.98
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un total de 1.632.000 euros directos a la ciudadanía, pero los registros de los candidatos no presentan ninguna subvención o contrato que coincida exactamente con esta cifra. Aunque hay varias subvenciones relacionadas con asociaciones festivas en Riba-roja de Túria, ninguna d",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4279,24 +3593,15 @@
       },
       "verification": {
         "claimId": "rmtyr-123-afi-8a83b1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=h4tiCELtfEdxseVhcqrkhw%3D%3D",
-            "snippet": "Contrato administrativo de obras para el proyecto de “Asfaltado y reasfaltado de viales urbanos y caminos rurales de Riba-roja de Túria” Plan RENOVE , dividido en 6 lotes. · Ayuntamiento de Riba-roja de Túria · construction · 239.489 €",
-            "similarity": 0.64
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo directo a la afirmación sobre la asignación de 246.000 euros para ayudas a la rehabilitación de fachadas, accesibilidad y movilidad. Aunque hay varios registros relacionados con ayudas económicas para la rehabilitación de fachadas en Riba-roja de Túria,",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4510,19 +3815,15 @@
       },
       "verification": {
         "claimId": "rmtyr-124-cit-a8696c",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=Uo%2BoIzDrnlA36J9Lctlsuw%3D%3D",
-            "snippet": "Contrato de servicio de transporte viajeros de las urbanizaciones de la zona Norte como consecuencia del temporal de lluvias producido el pasado 29 de octubre de 2024. · Ayuntamiento de Riba-roja de Túria · TAXIS MOTA · transportation · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente un \"carril ciclopeatonal en la zona norte\" y se refiere a gastos derivados de la DANA para inversiones en obras. El candidato [0] presenta un contrato de obras para la ejecución del \"CARRIL CICLOPEATONAL ZONA NORTE\", lo que coincide directamente con la afirmaci",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4577,19 +3878,15 @@
       },
       "verification": {
         "claimId": "rmtyr-125-cit-5655cc",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cS4ztb1d3v07%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Obras para la ejecución del proyecto de “recuperación y puesta en valor de la Casa del Abogado de Riba-roja de Túria” por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 “Ciudades y comunidades sostenibles” (Ctto. 21/2024). · Ayuntamiento de Riba-roja de Túria · CYPSA CONSTRUCCIONES Y REHABILITACIÓN S,L · construction · estado: formalized",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente la \"Casa del Abogado\" como una de las inversiones que se están realizando. Los candidatos 1 y 2 están directamente relacionados con la Casa del Abogado, ya que el primero se refiere a las obras para su recuperación y el segundo a la dirección de dichas obras. A",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4672,24 +3969,15 @@
       },
       "verification": {
         "claimId": "rmtyr-126-afi-f068f7",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BNVBpfbsTAamq21uxhbaVQ%3D%3D",
-            "snippet": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS DE DIVERSA ÍNDOLE de uso recurrente por parte de las diferentes áreas municipales con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (SDA 2/2022) · Ayuntamiento de Riba-roja de Túria · health · 788.000 €",
-            "similarity": 0.72
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre los 800.000 euros que aporta el Ayuntamiento para la DANA. Todos los contratos listados se refieren a montos significativamente menores y están relacionados con servicios o suministros específicos derivados de la DANA, pero",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4744,19 +4032,15 @@
       },
       "verification": {
         "claimId": "rmtyr-126-cit-5e0fc7",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=cS4ztb1d3v07%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Obras para la ejecución del proyecto de “recuperación y puesta en valor de la Casa del Abogado de Riba-roja de Túria” por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 “Ciudades y comunidades sostenibles” (Ctto. 21/2024). · Ayuntamiento de Riba-roja de Túria · CYPSA CONSTRUCCIONES Y REHABILITACIÓN S,L · construction · estado: formalized",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente la \"Casa del Abogado\" como una inversión que ya se está realizando. El candidato [1] tiene un contrato para el servicio de dirección de obras de recuperación y puesta en valor de la Casa del Abogado, con un importe de €18.029, lo que indica que efectivamente ha",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4844,41 +4128,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-128-acu-7234c0",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 128,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "el año pasado ustedes presentaron el mismo mes el presupuesto del 2024",
-        "context": "Pero el julio del 2024, ¿cuál fue la urgencia? Porque el año pasado ustedes presentaron el mismo mes el presupuesto del 2024. ¿Casualidad o modus operandi?",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto del 2024"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Comprobar si el presupuesto del Ayuntamiento de Riba-roja de Túria para 2024 se presentó en julio de 2024.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-128-acu-7234c0",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -5068,41 +4317,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-129-acu-8b37b3",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 129,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en el 2025 ustedes presentan el presupuesto en la misma fecha que el 2024",
-        "context": "Pero vamos, quiero decir que justificar el retraso cuando en el 2025 ustedes presentan el presupuesto en la misma fecha que el 2024, pues quizá todo no sea dana.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presentación de presupuestos de riba-roja de túria"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Comparar las fechas de registro de presentación de los presupuestos de Riba-roja de Túria para 2024 y 2025.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-129-acu-8b37b3",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Suministro módulos elaboración de presupuestos y RPT. · Ayuntamiento de Riba-roja de Túria · it · estado: void",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -5308,41 +4522,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-137-acu-a6d9b8",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 137,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "En el año 2023 gastaron bastante más de lo que ingresaron",
-        "context": "llevamos arrastrando esto desde 2019. Y ustedes lo saben. En el año 2023 gastaron bastante más de lo que ingresaron, pero en los",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "ejecución presupuestaria 2023"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verificar en la liquidación del presupuesto de 2023 si el total de gastos reales superó al de ingresos reales de ese año.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-137-acu-a6d9b8",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G65cfHQLe%2FVJ8Trn0ZPzLw%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición (SDA) de obras, para la instalación e cuatro elementos exentos de juegos infantiles en la Urbanización Gallipont de Riba-roja de Túria. (Ctto. 216/2023). · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-139-afi-6026fc",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -5398,76 +4577,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-141-acu-144947",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 141,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo.",
-        "context": "Ahora dirán que no tenemos propuestas, que no colaboramos, que criticamos. Les tendimos la mano, les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo. Les pedimos los listados de los que se debía.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "diputación, generalitat"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Acusación sobre una supuesta deuda pendiente de cobrar de la Diputación y Generalitat de 2024 y la inacción del gobierno local.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-141-acu-144947",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
-            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · Sociedad Estatal Correos y Telégrafos S.A. S.M.E. · telecom · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-142-acu-423f7c",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 142,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Les tendimos la mano, les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo. Les pedimos los listados de los que se debía. Aún estamos esperándolo.",
-        "context": "criticamos. Les tendimos la mano, les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo. Les pedimos los listados de los que se debía. Aún estamos esperándolo. Nuestra propuesta para este",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "diputación, generalitat"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Afirma la existencia de deudas de 2024 de la Diputación y Generalitat, y la solicitud de los listados de las deudas sin respuesta, lo cual es verificable administrativamente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-142-acu-423f7c",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
-            "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Locales Adheridas a la Central de Compras de la Diputación Provincial de Valencia. _Ctto.115-2026. · Ayuntamiento de Riba-roja de Túria · Sociedad Estatal Correos y Telégrafos S.A. S.M.E. · telecom · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-143-afi-0b4deb",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -5501,41 +4610,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-143-acu-5736dd",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 143,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Desde el 2019 hasta aquí, gastan más de lo que ingresan",
-        "context": "También vamos que tenemos que endeudarnos si vemos la evolución. Desde el 2019 hasta aquí, gastan más de lo que ingresan. Les falta dinero.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "cuentas generales de riba-roja de túria"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Contrastar las liquidaciones de los presupuestos municipales de Riba-roja de Túria desde 2019 para comprobar si el gasto consolidado superó a los ingresos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-143-acu-5736dd",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EO0XBZvZpMd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Suministro de combustible y carburantes vehículos policiales y varios servicios generales, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental; contribuyendo al ODS 8 “Trabajo decente y crecimiento económico” y 11 “Ciudades y comunidades sostenibles”; siendo su tramitación ordinaria. (Ctto. 04/2022). · Ayuntamiento de Riba-roja de Túria · INDUSTRIAL GIL FOLGADO SL · energy · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-144-afi-545dc8",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -5555,24 +4629,15 @@
       },
       "verification": {
         "claimId": "rmtyr-144-afi-545dc8",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=OfwKr1utJq3gL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato de para la adquisición del inmueble situado en Calle Canal nº4 (Referencia Catastral 9204806YJ0890C0001QJ) por adquisición directa mediante procedimiento negociado sin publicidad (Exp GP 3/2023). · Ayuntamiento de Riba-roja de Túria · MIGUEL CEREZO GADEA · other · 85.000 €",
-            "similarity": 0.7
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que hay 77,500 euros en partidas del presupuesto en publicidad. El contrato más relevante menciona un servicio de publicidad institucional por un importe de 5,445 euros, que es significativamente menor que la cifra mencionada.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5630,24 +4695,15 @@
       },
       "verification": {
         "claimId": "rmtyr-145-afi-b53053",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=F7CR9iYgmjGXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato de OBRAS\nObras de SANEAMIENTO POLIGONO INDUSTRIAL MASIA BALO, por procedimiento abierto\nsimplificado, un solo criterio de adjudicación, con condición de ejecución de carácter social\ny medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para\ntodos · Ayuntamiento de Riba-roja de Túria · construction · 197.801 €",
-            "similarity": 0.67
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un monto que coincida con la afirmación de \"partida de más de doscientos mil\" euros. Los importes de los contratos listados son significativamente menores, con el mayor siendo de €79.900.000, pero este no se relaciona directamente con la afirmación, ya que no se es",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5703,24 +4759,15 @@
       },
       "verification": {
         "claimId": "rmtyr-146-afi-2cfadc",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Resolución de la Presidencia del Consejo Superior de Deportes, por la que se concede una subvención al   ayuntamiento de Riba-Roja D´Ebre para obras de restaura · importe no publicado",
-            "similarity": 0.75
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente un monto de 1,6 millones de euros destinado a la mejora de un pabellón deportivo. Sin embargo, los registros de los candidatos no presentan ninguna subvención o contrato que coincida exactamente con esta cifra. La única referencia a una subvención en el context",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5743,65 +4790,15 @@
       },
       "verification": {
         "claimId": "rmtyr-147-cit-6e24ea",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LpLlPuv%2FsTemq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato de obras de mejora de accesibilidad y adecuación de instalaciones en urbanización Entrenaranjos en Riba-roja de Túria, por procedimiento abierto simplificado de tramitación anticipada, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental, contribuyendo al cumplimiento del ODS 11 edificios sostenibles y resilientes. · Ayuntamiento de Riba-roja de Túria · construction · 1.413.223 €",
-            "similarity": 0.67
-          },
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Resolución de la Presidencia del Consejo Superior de Deportes, por la que se concede una subvención al   ayuntamiento de Riba-Roja D´Ebre para obras de restaura · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la mejora del pabellón municipal de Riva Roja por un monto de 1,6 millones de euros. La única referencia a subvenciones se encuentra en la Resolución del Consejo Superior de Deportes, pero no se especifica el importe de 1,6",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-147-acu-3616f8",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 147,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Porque ustedes, viene el 23, prometen, departamento de comunicación, trabajando hasta las nueve de la noche, notas de prensa, primera página, el levante, y después no cumplen",
-        "context": "Señores, ¿hablamos de esos 1,6 millones con el club de gimnasia, con el de cárate? ¿Con quién hablamos? ¿Estas son las inversiones que ustedes prometen para el 2025? ¿Es esto? No lo sé. Yo pregunto. Porque ustedes, viene el 23, prometen, departamento de comunicación, trabajando hasta las nueve de la noche, notas de prensa, primera página, el levante, y después no cumplen.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "mejora del pabellón municipal"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Verificar el estado de ejecución y cumplimiento del proyecto de mejora del pabellón municipal de 1,6 millones de euros prometido en 2023.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-147-acu-3616f8",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FA0Z31Bn4hWrz3GQd5r6SQ%3D%3D",
-            "snippet": "Pavimentación del aparcamiento en C/ Pobla Vallbona y C/ Velázquez por procedimiento abierto súper simplificado, mejora relación calidad-precio, varios criterios de adjudicación con cláusulas medioambientales como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5824,30 +4821,15 @@
       },
       "verification": {
         "claimId": "rmtyr-148-afi-f0a19b",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=LpLlPuv%2FsTemq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato de obras de mejora de accesibilidad y adecuación de instalaciones en urbanización Entrenaranjos en Riba-roja de Túria, por procedimiento abierto simplificado de tramitación anticipada, varios criterios de adjudicación, con condición especial de ejecución de carácter medioambiental, contribuyendo al cumplimiento del ODS 11 edificios sostenibles y resilientes. · Ayuntamiento de Riba-roja de Túria · construction · 1.413.223 €",
-            "similarity": 0.67
-          },
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Resolución de la Presidencia del Consejo Superior de Deportes, por la que se concede una subvención al   ayuntamiento de Riba-Roja D´Ebre para obras de restaura · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente una inversión de 1,6 millones de euros en mejoras para el año 2023, pero ninguno de los candidatos presenta un respaldo directo a esta cifra o a este monto específico. Los documentos listados se refieren a subvenciones y contratos relacionados con actividades d",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -5909,41 +4891,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-149-acu-460912",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 149,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "decir que van a recaudar 43 y recaudar 35",
-        "context": "Es decir, no estamos dispuestos a dar vía libre a su peculiar gestión de los presupuestos, a más promesas incumplidas, a decir que van a recaudar 43 y recaudar 35",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "recaudación de presupuestos"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Acusación de presupuestar una recaudación de 43 y finalmente recaudar 35, verificable mediante la comparación entre la previsión presupuestaria y la liquidación de cuentas.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-149-acu-460912",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
-            "snippet": "Suministro módulos elaboración de presupuestos y RPT. · Ayuntamiento de Riba-roja de Túria · it · estado: void",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-150-afi-bfbaab",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -5968,82 +4915,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-150-acu-a861f1",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 150,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "un ayuntamiento del PSOE que contrató al amigo de Ábalos y Cuauhtémoc, a José Vicen",
-        "context": "Está en boca de todos un ayuntamiento del PSOE que contrató al amigo de Ábalos y Cuauhtémoc, a José Vicen",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "adjudicación o contrato a josé vicente"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Es verificable mediante la consulta del perfil del contratante del Ayuntamiento y la Plataforma de Contratación del Sector Público.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-150-acu-a861f1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RzXc%2FudzhPMBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · Vicente Chisvert Ribera · real_estate · estado: formalized",
-            "similarity": 0.67
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-151-acu-7a852d",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 151,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "un ayuntamiento del PSOE que contrató al amigo de Ábalos y Cuauhtémoc, a José Vicente Berlaga, 200.000 euros en una empresa que no tenía ninguna experiencia",
-        "context": "Está en boca de todos un ayuntamiento del PSOE que contrató al amigo de Ábalos y Cuauhtémoc, a José Vicente Berlaga, 200.000 euros en una empresa que no tenía ninguna experiencia o otro escándalo que sacude a ese municipio",
-        "topic": "transparencia",
-        "entities": {
-          "amountEuros": 200000,
-          "referencedEntity": "josé vicente berlaga"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se denuncia la adjudicación pública de 200.000 € a un allegado político en una empresa sin experiencia, contrastable en los registros de contratación del Ayuntamiento de Mislata.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-151-acu-7a852d",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RzXc%2FudzhPMBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · Vicente Chisvert Ribera · real_estate · 180.000 €",
-            "similarity": 0.62
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -6375,41 +5246,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-171-acu-93bf9f",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 171,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "de las propuestas que nosotros vamos a hacer ya en octubre o antes del año 2024, muchas de ellas no están reconectadas en este presupuesto",
-        "context": "de las propuestas que nosotros vamos a hacer ya en octubre o antes del año 2024, muchas de ellas no están reconectadas en este presupuesto.",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto 2025"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Se puede verificar cotejando las propuestas presentadas por escrito por la oposición en o antes de octubre de 2024 frente al documento presupuestario aprobado.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-171-acu-93bf9f",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-            "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 166/2025 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · INSDAGAR S.L. · health · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-174-afi-8e32ab",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -6524,41 +5360,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-189-acu-61aa87",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 189,
-        "type": "acusacion_publica",
-        "speakerGroup": "Compromís",
-        "verbatim": "nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024",
-        "context": "Y nos duele un poco que en Montevideo nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024 y creemos que también va a pasar en el 2025,",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto del 2024"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "El orador afirma que las propuestas de Compromís al presupuesto de 2024 no fueron aceptadas o ejecutadas, lo cual es verificable contrastándolo con las actas de enmiendas y el estado de ejecución presupuestaria de 2024.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-189-acu-61aa87",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-190-afi-c155b2",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -6578,24 +5379,15 @@
       },
       "verification": {
         "claimId": "rmtyr-190-afi-c155b2",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona una reducción de ingresos de 5 o 6 millones de euros debido a la bajada de impuestos a las personas más ricas. Sin embargo, los candidatos presentados se refieren a contratos de servicios diversos y no proporcionan información específica sobre cambios en la política fiscal o i",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -6802,47 +5594,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-201-acu-e4886b",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 201,
-        "type": "acusacion_publica",
-        "speakerGroup": "PSOE",
-        "verbatim": "¿saben qué partida había en el 2015? 12.000 euros, el Partido Popular,",
-        "context": "de ahí ya, se le llena la boca el tejido industrial, ¿saben qué partida había en el 2015? 12.000 euros, el Partido Popular, que se le llena la boca de que si la economía y tal,",
-        "topic": "empleo",
-        "entities": {
-          "amountEuros": 12000,
-          "referencedEntity": "partida de tejido industrial bajo gobierno del pp"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verificar si en el presupuesto del ejercicio 2015, gestionado por el Partido Popular, la partida asignada al tejido industrial era de 12.000 euros.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-201-acu-e4886b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=rZqNBbaS18qXQV0WE7lYPw%3D%3D",
-            "snippet": "LOTE 6 : Partida Carasols (Camí del Sequer) · Ayuntamiento de Riba-roja de Túria · ASFALTOS Y CONSTRUCCIONES ELSAN, SA · construction · 11.357 €",
-            "similarity": 0.62
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-201-afi-ec32b6",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -6862,24 +5613,15 @@
       },
       "verification": {
         "claimId": "rmtyr-201-afi-ec32b6",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qNwTPlXJjH2rz3GQd5r6SQ%3D%3D",
-            "snippet": "Enajenación parcela 1-10 sito en el Sector Industrial Casanova por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y condición especial de ejecución. · Ayuntamiento de Riba-roja de Túria · real_estate · 1.079.957 €",
-            "similarity": 0.65
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación de que \"desde que estamos nosotros, no baja del millón de euros\". Todos los montos de los contratos listados son significativamente inferiores a un millón de euros, siendo el más alto de aproximadamente 79,000 euros. Por lo tanto",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7078,41 +5820,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-207-acu-d82d16",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 207,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "en el año 2015 hubo una cosa que se llamó el catastrazo de un tal ministro de Hacienda, que ahora está en boca de todos, un tal Montoro, que hizo el catastrazo con los drones, revisando todos los chalés, casitas y demás, si había piscinas o no",
-        "context": "se olvida usted que en el año 2015 hubo una cosa que se llamó el catastrazo de un tal ministro de Hacienda, que ahora está en boca de todos, un tal Montoro, que hizo el catastrazo con los drones, revisando todos los chalés, casitas y demás, si había piscinas o no. Eso solo es la presión",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "regularización catastral"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verificar si en el año 2015 se realizó la regularización catastral especial mediante drones por el Ministerio de Hacienda de Cristóbal Montoro.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-207-acu-d82d16",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=OfwKr1utJq3gL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato de para la adquisición del inmueble situado en Calle Canal nº4 (Referencia Catastral 9204806YJ0890C0001QJ) por adquisición directa mediante procedimiento negociado sin publicidad (Exp GP 3/2023). · Ayuntamiento de Riba-roja de Túria · MIGUEL CEREZO GADEA · other · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -7333,19 +6040,15 @@
       },
       "verification": {
         "claimId": "rmtyr-214-cit-2da55b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E4xizlZIQMgQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de patrocinio publicitario Campus Multideporte Pascu 2018 · Ayuntamiento de Riba-roja de Túria · Club de Fútbol Sala Ribarroja · legal · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona que se pagó parte del campo de fútbol, pero no especifica un importe ni un contrato concreto que respalde esta afirmación. Los candidatos listados incluyen contratos relacionados con el campo de fútbol, como el asfaltado de acceso y el suministro de césped, pero ninguno de ell",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7367,19 +6070,15 @@
       },
       "verification": {
         "claimId": "rmtyr-215-cit-e3fc2e",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=E4xizlZIQMgQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Servicio de patrocinio publicitario Campus Multideporte Pascu 2018 · Ayuntamiento de Riba-roja de Túria · Club de Fútbol Sala Ribarroja · legal · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona el pago por parte del Ayuntamiento de una parte del campo de fútbol, pero los contratos presentados no hacen referencia a un pago específico relacionado con la construcción o adquisición de terrenos del campo de fútbol. Los contratos listados se centran en obras de asfaltado, ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7401,19 +6100,15 @@
       },
       "verification": {
         "claimId": "rmtyr-215-cit-e39e61",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
-            "snippet": "Lote nº 4: Preparación del terreno. · Ayuntamiento de Riba-roja de Túria · Compostaje y Abonos Desco, S.L. · textile · estado: formalized",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona el pago de una parte del terreno donde está el ayuntamiento, pero ninguno de los candidatos presentados hace referencia a la adquisición o pago de terrenos relacionados con el ayuntamiento. Los contratos listados se centran en obras, servicios y arrendamientos, pero no hay evi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7435,19 +6130,15 @@
       },
       "verification": {
         "claimId": "rmtyr-216-cit-ae7a4c",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RkaNtWp7zg3nSoTX3z%2F7wA%3D%3D",
-            "snippet": "Lote nº 4: Preparación del terreno. · Ayuntamiento de Riba-roja de Túria · Compostaje y Abonos Desco, S.L. · textile · estado: formalized",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona el pago de una parte del terreno donde está el ayuntamiento, pero ninguno de los contratos presentados por los candidatos se refiere a la adquisición o pago de terrenos relacionados con el ayuntamiento. Los contratos listados se centran en obras y servicios específicos, como l",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7575,41 +6266,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-225-acu-472788",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 225,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "las modificaciones presupuestarias que se han hecho del presupuesto del 24 son muchísimas más que en otros ayuntamientos de los presupuestos similares al Ayuntamiento de Rivarrocha",
-        "context": "Y las modificaciones presupuestarias que se han hecho del presupuesto del 24 son muchísimas más que en otros ayuntamientos de los presupuestos similares al Ayuntamiento de Rivarrocha. ¿Qué significa eso?",
-        "topic": "fiscal",
-        "entities": {
-          "referencedEntity": "presupuesto de 2024"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.95,
-        "reasoning": "Se puede verificar el número de modificaciones presupuestarias realizadas sobre el presupuesto de 2024 en Riba-roja y compararlo con otros municipios similares.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-225-acu-472788",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-            "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octubre de 2024 mediante tramitación de emergencia, a favor de Becsa, S.A. con CIF A46041711 · Ayuntamiento de Riba-roja de Túria · BECSA, S.A. · environment · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-231-cit-6de903",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -7664,41 +6320,6 @@
     },
     {
       "claim": {
-        "id": "rmtyr-235-acu-9e9a6a",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 235,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "La promoción de vivienda social en Rivarrocha es ínfima. No hay.",
-        "context": "La población de Rivarrocha, el número de habitantes en Rivarrocha ha disminuido. La vivienda tan importante para los jóvenes no existe. La promoción de vivienda social en Rivarrocha es ínfima. No hay. ¿Cómo van a venir a vivir en",
-        "topic": "vivienda",
-        "entities": {
-          "referencedEntity": "promoción de vivienda social"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede contrastar con los registros de vivienda pública promovida, licitaciones o convenios de vivienda social de Riba-roja de Túria.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-235-acu-9e9a6a",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=05AJhpHeBL57h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato de servicio “Programa del mayor: actividades formativas, culturales, lúdicas y de promoción de la salud física y mental para el colectivo de mayores” por procedimiento abierto, simplificado mejor relación calidad-precio, varios criterios de adjudicación con cláusulas sociales como criterio de adjudicación y con condición especial de ejecución de carácter social. · Ayuntamiento de Riba-roja de Túria · SERGEVAMA, S.L. · culture · estado: formalized",
-            "similarity": 0.67
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "rmtyr-236-cit-79ac5d",
         "plenoId": "rmtyr",
         "plenoDate": "2025-07-31",
@@ -7717,19 +6338,15 @@
       },
       "verification": {
         "claimId": "rmtyr-236-cit-79ac5d",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
-            "snippet": "Servicio Dirección Facultativa de las obras de finalización del Centro Polivalente Cultural en Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona \"las grandes inversiones, el centro de salud\", pero ninguno de los contratos presentados se refiere específicamente a un centro de salud ni a inversiones en salud. Los contratos listados se centran en obras de reurbanización, mantenimiento de edificios culturales y sociales, y",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -7753,19 +6370,15 @@
       },
       "verification": {
         "claimId": "rmtyr-236-cit-b5fc2e",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=fbYtF1%2F5DmDgL1BHd3qjQA%3D%3D",
-            "snippet": "Contrato verbal de emergencia, del servicio de transporte en autobús para la evacuación de personas, el pasado 30 de octubre de 2024, tras incomunicación por efectos de la DANA en polígonos industriales del municipio y viviendas inundadas en la urbanización La Reva de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · AUTOBUSES DURA, S.L · transportation · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presentados respalda genuinamente la afirmación sobre las \"dos viviendas que estaban proyectadas para quedar\". Los contratos listados se refieren a obras de infraestructura y servicios públicos, como la adecuación de sendas, colocación de centros culturales y reparaciones d",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8012,24 +6625,15 @@
       },
       "verification": {
         "claimId": "rmtyr-247-cit-1acaa6",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Acuerdo de la Junta de Gobierno Local del Ayuntamiento de Riba-roja de Túria, de fecha 6 de octubre de 2020, por el que se convocan las ayudas RIBACTIVA COL•LAB · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre el monto de 560.000 euros relacionado con empleo. Todos los contratos listados son de importes significativamente menores y no están relacionados con el tema de empleo, sino con servicios de alumbrado navideño, adquisicione",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8079,24 +6683,15 @@
       },
       "verification": {
         "claimId": "rmtyr-248-afi-b64687",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=yXyLiiB3MKYSugstABGr5A%3D%3D",
-            "snippet": "Servicio de colaboración en la gestión tributaria, censal, inspectora y recaudatoria del Ayuntamiento por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición especial de ejecución de carácter social y medioambiental, sujeto a regulación armonizada contribuyendo al cumplimiento del ODS 11. · Ayuntamiento de Riba-roja de Túria · COORDINADORA DE GESTIÓN DE INGRESOS SA · legal · 469.902 €",
-            "similarity": 0.62
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un monto que coincida con los 560.000 euros mencionados en la afirmación. Todos los importes de los contratos y ayudas listados son significativamente menores, oscilando entre 8.000 y 84.000 euros. Por lo tanto, no hay respaldo genuino a la afirmación, ya que no se",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8350,24 +6945,15 @@
       },
       "verification": {
         "claimId": "rmtyr-253-cit-4b0249",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=g6EbCcr%2F73IeIBJRHQiPkQ%3D%3D",
-            "snippet": "Contrato administrativo de SERVICIO DE AYUDA A DOMICILIO MUNICIPAL, dividido en dos lotes, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con mejoras vinculadas al objeto del contrato y condición de ejecución de carácter social, contribuyendo al ODS 8 de la Agenda 2030; sujeto a regulación armonizada, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · health · 1.575.256 €",
-            "similarity": 0.66
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta información que respalde genuinamente la afirmación sobre el monto de 1.471.000 euros del Ministerio de Inclusión Social. Los contratos y resoluciones mencionados se refieren a servicios y subvenciones de menor cuantía y no están relacionados con la cifra específic",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8522,24 +7108,15 @@
       },
       "verification": {
         "claimId": "rmtyr-254-cit-899ce0",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025) · Ayuntamiento de Riba-roja de Túria · architecture · 3.000.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la concesión de tres millones de euros a Hidroacua para el alcantarillado. Aunque hay contratos relacionados con el servicio de agua y alcantarillado, no se menciona el monto específico de tres millones de euros ni se estab",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8562,24 +7139,15 @@
       },
       "verification": {
         "claimId": "rmtyr-254-cit-969acf",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Solicitud Subvención nominativa Ayuntamiento de Riba-roja de Turia, \"Jaciment València la Vella: campanya consolidació i posada en valor\" 2025 · LOCAL · DIPUTAC · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta un respaldo genuino a la afirmación sobre la Diputación destinando aproximadamente 300.000 euros para movilidad. Aunque hay contratos relacionados con obras y accesibilidad, como el de la adecuación del carril ciclopeatonal en la zona norte por un importe de 262.81",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8602,66 +7170,15 @@
       },
       "verification": {
         "claimId": "rmtyr-254-cit-4440f4",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
-            "snippet": "Programa municipal personas con diversidad funcional intelectual · Ayuntamiento de Riba-roja de Túria · FUNDACION DE LA COMUNITAT VALENCIANA JUAN I. MUÑOZ BASTIDE · health · 175.352 €",
-            "similarity": 0.66
-          },
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "CONVENIO ENTRE LA GENERALITAT, A TRAVÉS DE LA PRESIDENCIA, Y EL AYTO. DE RIBA-ROJA DE TÚRIA, POR EL CUAL SE REGULA E INSTRUMENTA LA SUBV. NOMINAT. PREVISTA EN L · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona una aportación de 200.000 euros de la Generalitat Valenciana al Ayuntamiento de Riba-roja. Sin embargo, ninguno de los candidatos presenta un registro que confirme específicamente esta cifra exacta de 200.000 euros. Aunque hay menciones de subvenciones y convenios entre la Gen",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "rmtyr-257-acu-a2b616",
-        "plenoId": "rmtyr",
-        "plenoDate": "2025-07-31",
-        "segmentIndex": 257,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "presupuesto que aprobará el 22 de diciembre, pero que se va a aprobar en el voto del que ha criticado el presupuesto, que es el voto de Ciudadanos, que era el anterior partido del que está ahí. Va a votar a favor del presupuesto del año 23.",
-        "context": "Lo que sí he consultado es la nota de prensa que ha traído un regidor del PP, que efectivamente es de un presupuesto que aprobará el 22 de diciembre, pero que se va a aprobar en el voto del que ha criticado el presupuesto, que es el voto de Ciudadanos, que era el anterior partido del que está ahí. Va a votar a favor del presupuesto del año 23. Digo para que también se sapiga, porque eso se lo va a ocultar, no lo ha dicho.",
-        "topic": "fiscal",
-        "entities": {
-          "date": "2022-12-22",
-          "referencedEntity": "presupuesto del año 2023"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar en las actas oficiales del pleno de Riba-roja de Túria si el presupuesto de 2023 se aprobó el 22 de diciembre de 2022 y si el concejal de Ciudadanos votó a favor.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "rmtyr-257-acu-a2b616",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=G65cfHQLe%2FVJ8Trn0ZPzLw%3D%3D",
-            "snippet": "Contrato derivado del sistema dinámico de adquisición (SDA) de obras, para la instalación e cuatro elementos exentos de juegos infantiles en la Urbanización Gallipont de Riba-roja de Túria. (Ctto. 216/2023). · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: awarded",
-            "similarity": 0.5
-          }
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -8711,24 +7228,15 @@
       },
       "verification": {
         "claimId": "rmtyr-263-cit-11b14e",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente un monto de 100 millones de euros en subvenciones, pero los registros de los candidatos no presentan ninguna cifra que se acerque a esta cantidad. Las subvenciones listadas son de montos y contextos muy distintos, y no hay evidencia de que sumen o respalden la ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9012,19 +7520,15 @@
       },
       "verification": {
         "claimId": "rmtyr-267-cit-f63cc8",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4SHbaq5ifysBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de obras INSTALACION ALUMBRADO PUBLICO CARRIL BICI ESCOTO, ROTONDA ENTREVIAS Y ACCESO VALENCIA LA VELLA por procedimiento abierto súper simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ELECNOR SERVICIOS Y PROYECTOS. S.A.U. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente la \"rotonda de la Reba\" y su estado de estar \"plenamente parada\", lo que sugiere un problema de movilidad en esa ubicación. Sin embargo, los candidatos listados se refieren a obras de mejora en diferentes lugares y tipos de proyectos, como pavimentación, accesi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9080,24 +7584,15 @@
       },
       "verification": {
         "claimId": "rmtyr-269-afi-5249c5",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dr3HxYdH3ffnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del ODS 9 relativo a desarrollar de infraestructuras fiables, sostenibles, resilientes y de calidad, promover una industrialización inclusiva y sostenible, aumentar el acceso de las pequeñas industrias y otras empresas y de aquí a 2030, modernizar la infraestructura y reconvertir las industrias para que sean sostenibles. (Ctto. 60/2022) · Ayuntamiento de Riba-roja de Túria · OPROYECTS IBERICA, S.L. · construction · 450.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona un gasto específico de 450.000 euros relacionado con la Fronta Vetera, pero ninguno de los candidatos presenta un registro que coincida con esta cifra o con el evento mencionado. Los registros de subvenciones y contratos que se presentan están relacionados con servicios de esp",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9119,19 +7614,15 @@
       },
       "verification": {
         "claimId": "rmtyr-273-cit-a6cbb1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GiIKdYj72RgBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de suministro e instalación de malla para impermeabilización lago de parque municipal , por procedimiento abierto súper simplificado, mejor relación calidad-precio, único criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8.8 relativo a lograr trabajo decente y ODS 11.3 proporcionando acceso universal a zonas verdes y espacios públicos seguros, inclusivos y accesibles. · Ayuntamiento de Riba-roja de Túria · RANDE-AIC, S.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación se refiere a la necesidad de ayudar al parque Montalcío, pero ninguno de los candidatos presenta información que respalde directamente esta afirmación. Aunque hay menciones a la conservación y mantenimiento de parques y zonas verdes, como en el candidato 3, no hay un vínculo específico",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9210,24 +7701,15 @@
       },
       "verification": {
         "claimId": "rmtyr-275-afi-98414e",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "bdns",
-            "ref": "bdns:",
-            "snippet": "AYUDAS ECONÓMICAS DESTINADAS A LA REHABILITACIÓN DE FACHADAS DE VIVIENDAS EN EN RIBA-ROJA DE TURIA 2024/2025 · LOCAL · RIBA-ROJA DE TÚRIA · AYUNTAMIENTO DE RIBA · importe no publicado",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos presenta información que respalde de manera concreta la afirmación sobre las 200 viviendas y el monto de 700.000 euros. Aunque hay varios acuerdos relacionados con ayudas económicas para la rehabilitación de fachadas en Riba-roja de Túria, no se especifica que se hayan dest",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -9393,24 +7875,15 @@
       },
       "verification": {
         "claimId": "rmtyr-282-afi-61b682",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025) · Ayuntamiento de Riba-roja de Túria · architecture · 3.000.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "La afirmación menciona específicamente un monto de tres millones de euros destinados a emergencias, pero los registros de los candidatos no presentan ninguna referencia a esta cifra exacta. Los acuerdos y contratos listados se refieren a ayudas económicas de emergencia y otros contratos relacionados",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

@@ -147,6 +147,8 @@
     "check:drift": "npx tsx scripts/check-prose-drift.ts",
     "check:vocabulary": "npx tsx scripts/check-vocabulary.ts",
     "check:runs": "npx tsx scripts/check-runs.ts",
+    "check:automation": "npx tsx scripts/check-automation.ts",
+    "record-measurement": "npx tsx scripts/record-measurement.ts",
     "check:retrieval": "npx tsx scripts/check-retrieval.ts",
     "review:surfaces": "npx tsx scripts/review-surfaces.ts"
   },

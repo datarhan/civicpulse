@@ -32,6 +32,9 @@ import type { RunStats } from '../llm/client'
 
 export const MANIFEST_DIR = '.run-manifests'
 
+/** Backends whose reported cost is an API-equivalent estimate, not money spent. */
+const SUBSCRIPTION_BACKENDS: ReadonlySet<string> = new Set(['claude-code', 'gemini', 'agy'])
+
 export interface RunManifest {
   /** npm script / CLI name, e.g. `verify-pleno-claims-engine`. */
   script: string
@@ -179,7 +182,11 @@ export function formatManifest(m: RunManifest): string {
     outcome ? `  outcome: ${outcome}` : '',
     `  llm: ${m.llm.calls} calls (${m.llm.ok} ok, ${m.llm.failed} failed, ` +
       `${m.llm.zeroTokenFailures} zero-token) · ${m.llm.cacheHits} cache hits · ` +
-      `${m.llm.tokens.toLocaleString('en-US')} tokens · $${m.llm.costUSD.toFixed(4)}`,
+      `${m.llm.tokens.toLocaleString('en-US')} tokens · ` +
+      // claude-code on a Max plan bills nothing; its reported cost is an
+      // API-equivalent estimate. Printing it as money once made a $0 night read
+      // as $16.51.
+      `${SUBSCRIPTION_BACKENDS.has(m.backend ?? '') ? `~$${m.llm.costUSD.toFixed(4)} est. (subscription, not billed)` : `$${m.llm.costUSD.toFixed(4)}`}`,
   ]
     .filter(Boolean)
     .join('\n')

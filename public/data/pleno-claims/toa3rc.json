@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T13:12:52.182Z",
+  "generatedAt": "2026-08-02T14:12:06.686Z",
   "version": "1",
   "plenoId": "toa3rc",
   "plenoDate": "2025-12-26",
@@ -204,41 +204,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "toa3rc-010-acu-97ab6f",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 10,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "convocar un ple porque dos rechidores no vienen es atentar contra la igualdad en este ple",
-        "context": "que convocar un ple porque dos rechidores no vienen es atentar contra la igualdad en este ple y eso ya es, vamos, si había visto cosas durante 10 años",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "grupo popular"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.95,
-        "reasoning": "Atribuye al portavoz del Grupo Popular haber afirmado que convocar un pleno por la ausencia de dos concejales atenta contra la igualdad, lo cual es contrastable con las actas de la sesión.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-010-acu-97ab6f",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=tSwMOlAy0wKLAncw3qdZkA%3D%3D",
-            "snippet": "Contrato servicio de alquiler grupo electrógeno, durante el desarrollo de la campaña de promoción y dinamización del comercio local en la Feria del Comercio de Riba-roja de Túria, contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · health · estado: void",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

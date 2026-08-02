@@ -1,0 +1,44 @@
+{
+  "generatedAt": "2026-08-02T14:40:00.000Z",
+  "_comment": [
+    "Measured precision per action class. Read by src/scraper/automation-policy.ts;",
+    "an action class with no row here CANNOT publish unattended. Committed on",
+    "purpose — a gitignored file would regenerate empty in CI and the gate would",
+    "silently become permanent.",
+    "",
+    "Write via `npm run record-measurement`, never by hand: the CLI re-validates",
+    "the whole set, and a precision typed as 95 instead of 0.95 is dropped rather",
+    "than treated as clearing the bar.",
+    "",
+    "Note what is NOT here: no additive publication class has been measured yet,",
+    "so findings, promise status changes and reports all still require a curator.",
+    "That is the honest state, not an oversight — see `npm run check:automation`",
+    "for the list of measurements that would unlock each one."
+  ],
+  "measurements": [
+    {
+      "key": "verdict.deterministic.parcial",
+      "precision": 0.22,
+      "sample": 64,
+      "measuredAt": "2026-06-24T00:00:00.000Z",
+      "against": "deterministic verifyClaim (no model)",
+      "method": "eval:verifier against tests/fixtures/verifier-gold.json (64 rows, ai-opus-4.8 reviewed)"
+    },
+    {
+      "key": "verdict.deterministic.verificado",
+      "precision": 0.33,
+      "sample": 64,
+      "measuredAt": "2026-06-24T00:00:00.000Z",
+      "against": "deterministic verifyClaim (no model)",
+      "method": "eval:verifier against tests/fixtures/verifier-gold.json (64 rows, ai-opus-4.8 reviewed). This is why the --base retraction pass exists: two thirds of what the deterministic pass called verificado did not hold up."
+    },
+    {
+      "key": "verdict.engine.sin-datos",
+      "precision": 0.92,
+      "sample": 64,
+      "measuredAt": "2026-06-24T00:00:00.000Z",
+      "against": "verdict engine, gpt-5.4-mini",
+      "method": "eval:verifier against tests/fixtures/verifier-gold.json. Recorded for the audit trail; retraction is Tier A and does not depend on it."
+    }
+  ]
+}

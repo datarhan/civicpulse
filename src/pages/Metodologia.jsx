@@ -329,6 +329,59 @@ export default function Metodologia() {
         </ul>
       </Card>
 
+      <Card style={{ marginTop: 14 }} id="politica-automatizacion">
+        <SectionHead
+          eyebrow="Qué se publica sin revisión humana"
+          title="Política de automatización"
+        />
+        <div style={{ padding: '0 14px 14px', fontSize: 13, lineHeight: 1.6 }}>
+          <p style={{ marginTop: 0 }}>
+            Hasta agosto de 2026 casi todo lo que escribía una máquina esperaba aprobación humana.
+            Esa regla parecía prudente y funcionaba como una cola: los borradores se acumulaban sin
+            que nadie tuviera capacidad de revisarlos, mientras el mayor origen de veredictos
+            equivocados publicados aquí no era ningún modelo de lenguaje, sino el{' '}
+            <strong>verificador determinista</strong> — código escrito a mano que llegó a publicar
+            744 veredictos que nadie había revisado, 176 de ellos como «verificado», incluidos
+            juicios de valor y fragmentos de conversación sin ningún dato comprobable.
+          </p>
+          <p>
+            El eje, por tanto, no es «humano contra máquina» ni «determinista contra IA». Es{' '}
+            <strong>medido o no medido</strong>, y <strong>reversible o no</strong>:
+          </p>
+          <ul style={{ paddingLeft: 18 }}>
+            <li>
+              <strong>Automático, sin puerta.</strong> Todo lo que <em>retira o suaviza</em> una
+              afirmación ya publicada: retractar un veredicto, bajar la gravedad, despublicar. Es
+              reversible y equivocarse significa decir <em>menos</em> de lo que podríamos, que es el
+              error seguro para un observatorio.
+            </li>
+            <li>
+              <strong>Automático sólo con medición.</strong> Publicar algo nuevo que no nombra a
+              ninguna persona concreta se hace sin curador únicamente si esa categoría tiene una
+              precisión medida y registrada (≥0,90 para hallazgos informativos, ≥0,95 para los
+              notables), sobre al menos 50 casos y medida en los últimos 90 días. Una categoría{' '}
+              <strong>sin medición se trata como no fiable</strong>: el camino para automatizar algo
+              es medirlo, no afirmar que funciona.
+            </li>
+            <li>
+              <strong>Siempre con firma humana.</strong> Nombrar a una persona concreta, cualquier
+              hallazgo de gravedad crítica (que es una acusación), los informes marcados como
+              jurídicamente sensibles, y todo lo irreversible o dirigido al exterior — registrar una
+              queja en sede, publicar en el canal. No porque una persona acierte más, sino porque la
+              responsabilidad legal necesita una firma.
+            </li>
+          </ul>
+          <p style={{ marginBottom: 0 }}>
+            La suspensión electoral (LOREG art. 50) prevalece sobre todo lo anterior: con{' '}
+            <code>frozenUntil</code> activo no se publica ni se retracta nada de forma automática.
+            Las mediciones vigentes son públicas en el repositorio (
+            <code>.automation-measurements.json</code>) y caducan a los 90 días, porque una
+            precisión medida contra un modelo que ya no se usa es un dato histórico, no una
+            garantía.
+          </p>
+        </div>
+      </Card>
+
       <Card style={{ marginTop: 14 }} id="verificacion-declaraciones">
         <SectionHead
           eyebrow="Verificación de declaraciones de pleno"

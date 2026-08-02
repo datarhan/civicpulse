@@ -52,6 +52,20 @@ import {
 } from '../src/scraper/auto-curate'
 import { generateTitleAndSummary } from '../src/llm/auto-curate-llm'
 import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
+import {
+  decideAutomation,
+  explainMissingMeasurement,
+  loadMeasurements,
+} from '../src/scraper/automation-policy'
+
+/**
+ * Measurement key governing unattended publication of auto-curated findings.
+ * Recorded via `npm run record-measurement`; see `npm run check:automation`.
+ */
+const FINDING_MEASUREMENT_KEY = 'finding.informational.bloc'
+
+/** Set when the automation policy refuses publication; drafts still get written. */
+let policyBlocked: string | null = null
 
 const VERIFIED = resolve('public/data/pleno-claims-verified.json')
 const FINDINGS = resolve('public/data/pleno-findings.json')
@@ -187,6 +201,38 @@ async function main() {
     process.exit(0)
   }
 
+  // Automation policy: this class publishes unattended only on recorded
+  // evidence that it is accurate enough to.
+  //
+  // Auto-publish was switched on by operator decision without that evidence
+  // ever existing, which is the same shape as the deterministic verifier that
+  // just had 744 unreviewed verdicts retracted — confident, automated, and
+  // never measured. The remedy is to MEASURE the class, not to trust it or to
+  // abandon it: `npm run check:automation` prints exactly what is missing, and
+  // `npm run record-measurement` is the only thing that lifts this gate.
+  //
+  // Severity is hard-coded `informational` here, so this reads the
+  // informational bar, the most permissive one.
+  const decision = decideAutomation(
+    {
+      kind: 'publish-finding',
+      reversible: true,
+      severity: 'informational',
+      measurementKey: FINDING_MEASUREMENT_KEY,
+      frozen: false,
+    },
+    loadMeasurements(),
+  )
+  if (!decision.allow) {
+    process.stderr.write(
+      `[auto-curate] automation policy: ${decision.reason}\n` +
+        `[auto-curate] ${explainMissingMeasurement(decision) ?? 'record a qualifying measurement to enable unattended publication'}\n`,
+    )
+    policyBlocked = decision.reason
+  } else {
+    process.stdout.write(`[auto-curate] automation policy: ${decision.reason}\n`)
+  }
+
   const cited = citedClaimIds(findings)
   const { eligible, quarantine } = selectBundles(verified, cited, {
     minScore: opts.minScore,
@@ -312,11 +358,20 @@ async function main() {
     process.exit(1)
   }
 
-  if (opts.dryRun) {
-    const previewPath = `/tmp/auto-curate-preview-${Date.now()}.json`
+  // A policy block does everything a run normally does EXCEPT publish: the
+  // drafts are composed, validated and written where a curator can act on them.
+  // Gating must not also destroy the work — that is what turned the old
+  // blanket approval gate into a queue nobody could drain.
+  if (opts.dryRun || policyBlocked) {
+    const previewPath = policyBlocked
+      ? resolve('editorial/auto-curation-queue-pending-measurement.json')
+      : `/tmp/auto-curate-preview-${Date.now()}.json`
+    mkdirSync(resolve('editorial'), { recursive: true })
     writeFileSync(previewPath, JSON.stringify({ accepted, rejected }, null, 2) + '\n')
     process.stdout.write(
-      `[auto-curate] DRY RUN — wrote ${accepted.length} accepted finding(s) to ${previewPath} (no persistence).\n`,
+      policyBlocked
+        ? `[auto-curate] NOT PUBLISHED (${policyBlocked}) — ${accepted.length} draft(s) written to ${previewPath} for curator review.\n`
+        : `[auto-curate] DRY RUN — wrote ${accepted.length} accepted finding(s) to ${previewPath} (no persistence).\n`,
     )
     return
   }

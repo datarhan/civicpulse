@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T13:12:52.182Z",
+  "generatedAt": "2026-08-02T14:12:06.686Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -124,47 +124,6 @@
     },
     {
       "claim": {
-        "id": "1sqj7is-002-acu-662224",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 2,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "entendemos que estos gastos sí que tenían partida presupuestaria y nos extraña el verlos como extrajudiciales.",
-        "context": "Tras revisar el expediente del reconocimiento extrajudicial nº 5/2026, el concejal afirma que los gastos incluidos contaban con dotación presupuestaria ordinaria, por lo que su tramitación como extrajudicial resulta irregular.",
-        "topic": "fiscal",
-        "entities": {
-          "amountEuros": 242000,
-          "referencedEntity": "reconocimiento extrajudicial nº 5/2026 (campaña de navidad)"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.76,
-        "reasoning": "Acusación verificable: si las partidas presupuestarias para la campaña de Navidad estaban consignadas en el CONPREL 2025, la tramitación extrajudicial sería procesal e irregularmente justificada; contrasta contra budget.json y el expediente.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-002-acu-662224",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "",
-            "snippet": "Anuncio TED 216035-2026 · 257.730 €",
-            "similarity": 0.66
-          }
-        ],
-        "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1sqj7is-003-afi-a3f445",
         "plenoId": "1sqj7is",
         "plenoDate": "2026-03-09",
@@ -240,24 +199,15 @@
       },
       "verification": {
         "claimId": "1sqj7is-006-afi-99b7f0",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "",
-            "snippet": "Anuncio TED 216035-2026 · 257.730 €",
-            "similarity": 0.65
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre 240.000€ en reconocimientos extrajudiciales repetitivos. Ningún candidato coincide en cifra (los más cercanos son 18.137,9€ y 60.000€, órdenes de magnitud distintos), ni en tipo de gasto (son contratos de defensa jurídica, suministro de sistema d",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -452,76 +402,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-018-acu-235203",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 18,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "que se ha finalizado un contrato que continúa",
-        "context": "de informes técnicos que hablan que se hacen acciones sin crédito, sin partida presupuestaria, o que se ha finalizado un contrato que continúa o incluso despeses que no se justifiquen de una manera correcta. Eso es lo que se dice desde los informes.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "contrato municipal vencido en ejecución (posible expte. 136/2025 lote 1 rsu)"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.68,
-        "reasoning": "Afirmación verificable contra tenders.json (fechas de vigencia y estado de contratos); el punto 11 del mismo pleno trata la resolución del contrato de RSU por incumplimiento, lo que podría ser el contrato referenciado por los informes técnicos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-018-acu-235203",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
-            "snippet": "Lote 2 - Accesibilidad Web · Ayuntamiento de Riba-roja de Túria · it · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1sqj7is-019-acu-0e6ed2",
-        "plenoId": "1sqj7is",
-        "plenoDate": "2026-03-09",
-        "segmentIndex": 19,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "se ha finalizado un contrato que continúa",
-        "context": "de informes técnicos que hablan que se hacen acciones sin crédito, sin partida presupuestaria, o que se ha finalizado un contrato que continúa o incluso despeses que no se justifiquen de una manera correcta.",
-        "topic": "other",
-        "entities": {
-          "referencedEntity": "contrato servicio recogida residuos sólidos urbanos (expte. 136/2025 lote 1)"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.7,
-        "reasoning": "Afirmación verificable: describe un contrato extinguido que siguió ejecutándose, lo que cuadra directamente con el asunto de urgencia (punto 11) sobre la resolución definitiva del contrato de recogida de RSU por incumplimiento culpable. Contrastable contra el expediente 615/2025/GEN y el pliego de tenders.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1sqj7is-019-acu-0e6ed2",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2F34pTr%2F3b9WLAncw3qdZkA%3D%3D",
-            "snippet": "Lote 2 - Accesibilidad Web · Ayuntamiento de Riba-roja de Túria · it · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -2097,19 +1977,15 @@
       },
       "verification": {
         "claimId": "1sqj7is-077-cit-39a7e5",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "UE casco 5 · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre un informe conjunto de Secretaría municipal de fecha 24/02/2026 relativo a un Plan de Reforma Interior. Ninguno coincide en fecha, naturaleza documental (informe de Secretaría vs. contratos/bases de subvención) ni sujeto exacto. El más cercano te",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

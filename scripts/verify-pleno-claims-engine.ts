@@ -126,11 +126,21 @@ async function main() {
   const ctx = await loadVerifierContext({ withCorpus: wantsCorpus })
   // `--base` re-judges verdicts the DETERMINISTIC pass asserted, so the engine
   // must not short-circuit on "deterministic already decided".
+  // Keep the two skip reasons APART. `not-attempted` means the deterministic
+  // pass already reached a verdict, which in default mode is the design and
+  // not a gap; `no-candidates` means retrieval returned nothing, which always
+  // is one. Folding them together made the manifest report a healthy default
+  // run as 67% "never reached the model" — the same conflation that let
+  // "never attempted" hide inside "unchanged" elsewhere in this repo.
   const skippedIds = new Set<string>()
+  const skipReason = new Map<string, 'no-candidates' | 'not-attempted'>()
   const engine = makeEngineVerifier({
     consistency: false,
     always: args.base,
-    onSkip: (id) => skippedIds.add(id),
+    onSkip: (id, reason) => {
+      skippedIds.add(id)
+      skipReason.set(id, reason)
+    },
   })
 
   const pending: ApplyEntry[] = []
@@ -192,7 +202,8 @@ async function main() {
       run.record('retracted')
     } else if (skippedIds.has(id)) {
       unjudged++
-      run.neverAttempt()
+      if (skipReason.get(id) === 'not-attempted') run.skip('deterministic already decided')
+      else run.neverAttempt()
     } else {
       kept++
       run.judge()
