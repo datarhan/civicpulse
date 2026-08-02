@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T05:28:52.035Z",
+  "generatedAt": "2026-08-02T05:47:20.710Z",
   "version": "1",
   "plenoId": "toa3rc",
   "plenoDate": "2025-12-26",
@@ -119,43 +119,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "toa3rc-002-acu-ed0a9e",
-        "plenoId": "toa3rc",
-        "plenoDate": "2025-12-26",
-        "segmentIndex": 2,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "estas dos mujeres han tenido que abandonar el puesto de trabajo para acudir a una convocatoria que se ha hecho en menos de cuatro horas de antelación.",
-        "context": "ustedes son las que van a favor de la mujer, del mundo laboral, de la conciliación familiar y laboral y estas dos mujeres han tenido que abandonar el puesto de trabajo para acudir a una convocatoria que se ha hecho en menos de cuatro horas de antelación.",
-        "topic": "transparencia",
-        "entities": {
-          "count": 4,
-          "countUnit": "horas",
-          "referencedEntity": "convocatoria de pleno"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "La antelación con la que se convocó la sesión urgente es un dato objetivo verificable mediante el registro de salida de la convocatoria oficial.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "toa3rc-002-acu-ed0a9e",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GzZ8vbrGk5o7%2B9FIQYNjeQ%3D%3D",
-            "snippet": "Contrato administrativo Servicio de redacción de los proyectos y dirección de obras incluidas en la subvención para áreas industriales del IVACE convocatoria 2023, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 9 industria innovación e infraestructura, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · PLANIFICA INGENIEROS Y ARQUITECTOS COOP.V. · architecture · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {

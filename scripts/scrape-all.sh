@@ -223,6 +223,15 @@ if ! npm run check:finding-quotes; then
   soft_failures+=("check:finding-quotes")
 fi
 
+# Which snapshots have quietly stopped refreshing. Distinct from a scraper
+# FAILING: six adapters are unreachable from GitHub runners and marked
+# best-effort, so the nightly goes green while their data ages with no working
+# refresh path. That is what this catches.
+if ! npm run check:freshness; then
+  echo "[scrape-all] SOFT-FAILED: check:freshness — dataset(s) past their expected cadence"
+  soft_failures+=("check:freshness")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] summary"
