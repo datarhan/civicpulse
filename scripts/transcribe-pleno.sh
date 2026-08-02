@@ -331,9 +331,13 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     const now = lastTs(process.env.NEW)
     const prev = lastTs(process.env.OLD)
     const pct = (n) => (dur > 0 ? ((n / dur) * 100).toFixed(1) : "?")
-    // Sessions genuinely end with silence or music, so the floor is loose.
-    // It is here to catch losing most of a session, not to police minutes.
-    if (now !== null && dur > 0 && now < dur * 0.6)
+    // Calibrated on the 2026-08 re-transcription batch: ten healthy sessions
+    // landed at 98.8-99.6% coverage, a very tight cluster — trailing silence
+    // and music cost seconds, not minutes. The original 0.6 floor was set by
+    // guesswork and would have PASSED `15uvjew` at 66.3% (106.8 of 160.9 min,
+    // 54 minutes missing). 0.85 leaves a wide margin under every genuine run
+    // while catching a loss that size.
+    if (now !== null && dur > 0 && now < dur * 0.85)
       console.log(`FAIL covers ${(now/60).toFixed(1)} min of ${(dur/60).toFixed(1)} min (${pct(now)}%)`)
     // A shorter re-transcription is the batch-regression case: the published
     // file is evidence that more of this session is reachable.
