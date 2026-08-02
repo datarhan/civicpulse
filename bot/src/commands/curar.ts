@@ -41,6 +41,14 @@ function queuePath(): string {
   return resolve(process.cwd(), '..', 'editorial', 'auto-curation-queue-pending-measurement.json')
 }
 
+/**
+ * Rejecting DISCARDS a machine draft: nobody is harmed and nothing is
+ * published, so the friction should be near zero. Approving is the direction
+ * that needs justification, and it has its own, longer requirement. Three
+ * characters only excludes an accidental keystroke.
+ */
+const MIN_REJECT_REASON = 3
+
 function parseAdmins(): Set<number> {
   const ids = new Set<number>()
   for (const s of (process.env.ADMIN_USER_IDS ?? '').split(',')) {
@@ -145,8 +153,18 @@ export function registerCurarCommand(bot: Bot<MyContext>, db: Db) {
     if (!isAdmin(ctx)) return void (await ctx.reply(denied))
     const [ref, ...rest] = (ctx.match ?? '').toString().trim().split(/\s+/)
     const motivo = rest.join(' ').trim()
-    if (!ref || motivo.length < 5) {
-      await ctx.reply('Uso: /curar_no <ref> <motivo>. El motivo queda en el registro.')
+    // Two DIFFERENT failures used to print one message, so a too-short reason
+    // read as a syntax error and the curator retyped the command instead of
+    // lengthening the reason. Say which one it is.
+    if (!ref) {
+      await ctx.reply('Falta la referencia.\nUso: /curar_no <ref> <motivo>')
+      return
+    }
+    if (motivo.length < MIN_REJECT_REASON) {
+      await ctx.reply(
+        `Falta el motivo (tiene ${motivo.length} carácter(es), hacen falta ${MIN_REJECT_REASON}).\n` +
+          `Uso: /curar_no ${ref} <motivo>`,
+      )
       return
     }
     recordDecision(db as unknown as never, {
