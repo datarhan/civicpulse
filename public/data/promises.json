@@ -19,16 +19,7 @@
       "topic": "fiscal",
       "kind": "anuncio-gobierno",
       "status": "documentada",
-      "evidence": [
-        {
-          "date": "2026-03-17",
-          "url": "https://civicpulse.es/data/budget.json",
-          "quote": "CivicPulse: snapshot CONPREL MinHac confirma presupuesto 2026 de €46,047,149 ingresos / €41,578,252 gastos — superávit inicial €1.94M",
-          "publisher": "CivicPulse / MinHac CONPREL",
-          "kind": "budget",
-          "addedBy": "civicpulse-bot"
-        }
-      ],
+      "evidence": [],
       "createdAt": "2026-04-20",
       "response": null,
       "autoPublished": null
@@ -191,33 +182,6 @@
       "kind": "anuncio-gobierno",
       "status": "documentada",
       "evidence": [],
-      "createdAt": "2026-04-20",
-      "response": null,
-      "autoPublished": null
-    },
-    {
-      "id": "psoe-alumbrado-led-680k",
-      "party": "PSOE",
-      "title": "Contrato de alumbrado LED por 680.000 €",
-      "quote": "El contrato de alumbrado LED (€680k) se adjudica a la misma empresa por sexta vez",
-      "source": {
-        "url": "https://civicpulse.es/data/tenders.json",
-        "publisher": "CivicPulse / Gobierto · Ribalicita"
-      },
-      "madeAt": "2026-02-15",
-      "topic": "urbanismo",
-      "kind": "anuncio-gobierno",
-      "status": "documentada",
-      "evidence": [
-        {
-          "date": "2026-02-15",
-          "url": "https://ribalicita.ribarroja.es/visualizaciones/contratos",
-          "quote": "Contrato de alumbrado ornamental LED publicado en la plataforma municipal de contratos; trazable desde Ribalicita (Gobierto).",
-          "publisher": "Gobierto · Ribalicita",
-          "kind": "ayuntamiento",
-          "addedBy": "civicpulse-bot"
-        }
-      ],
       "createdAt": "2026-04-20",
       "response": null,
       "autoPublished": null

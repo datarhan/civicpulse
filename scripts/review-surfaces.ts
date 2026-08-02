@@ -30,7 +30,10 @@ import {
 } from '../src/llm/prompts'
 import { ReaderReviewSchema } from '../src/llm/schemas'
 
-const BASE = process.env.REVIEW_BASE_URL || 'http://127.0.0.1:4173'
+// `localhost`, not `127.0.0.1`: vite preview binds IPv6 by default, so the
+// literal v4 address refuses the connection and every route fails to render —
+// which this script would report as "nothing to review" rather than as a fault.
+const BASE = process.env.REVIEW_BASE_URL || 'http://localhost:4173'
 
 /**
  * route → hash of the rendered text last reviewed.
