@@ -4,7 +4,7 @@ import { Card, Pill } from '../components/Primitives'
 import DataAsOf from '../components/DataAsOf'
 import EmpleoStats from '../components/empleo/EmpleoStats'
 import EmpleoFilters from '../components/empleo/EmpleoFilters'
-import { useEmpleo, deadlineInfo, OFERTA_STATUS_TONE } from '../hooks/useEmpleo'
+import { useEmpleo, deadlineInfo, effectiveStatus } from '../hooks/useEmpleo'
 import {
   EMPTY_FILTERS,
   PER_PAGE,
@@ -62,9 +62,16 @@ function OfferRow({ o, t }) {
       >
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 14, fontWeight: 600, letterSpacing: '-.01em' }}>{o.titulo}</span>
-          <Pill tone={OFERTA_STATUS_TONE[o.status] || o.statusTone || 'neutral'} size="xs">
-            {o.status}
-          </Pill>
+          {(() => {
+            // Never show the portal's "Abierta" on an offer whose closing date
+            // has passed — it rendered right beside a "cerrada" chip.
+            const st = effectiveStatus(o)
+            return (
+              <Pill tone={st.tone} size="xs">
+                {st.label}
+              </Pill>
+            )
+          })()}
           <DeadlinePill deadline={o.deadline} t={t} />
         </div>
 
