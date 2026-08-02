@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T20:22:21.411Z",
+  "generatedAt": "2026-08-02T04:59:27.116Z",
   "version": "1",
   "plenoId": "11025xk",
   "plenoDate": "2026-06-01",
@@ -309,19 +309,15 @@
       },
       "verification": {
         "claimId": "11025xk-016-cit-072c8c",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del ODS 9 relativo a desarrollar de infraestructuras fiables, sostenibles, resilientes y de calidad, promover una industrialización inclusiva y sostenible, aumentar el acceso de las pequeñas industrias y otras empresas y de aquí a 2030, modernizar la infraestructura y reconvertir las industrias para que sean sostenibles. (Ctto. 60/2022) · Ayuntamiento de Riba-roja de Túria · construction · estado: void",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "El candidato [0] es un contrato de obra de \"adecuación barranco de la Monjas\" por €74.380,16, adjudicado, con similitud léxica baja (0.25). La afirmación describe un hecho muy específico de 2019: retirada de un talud e instalación de una pasarela provisional en un barranco. El candidato solo compart",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -344,19 +340,15 @@
       },
       "verification": {
         "claimId": "11025xk-016-cit-6bf419",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-            "snippet": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis. · Ayuntamiento de Riba-roja de Túria · EQUALITY MOMENTUM SL · architecture · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "No se aporta la fecha de adjudicación/entrega de ninguno de los tres contratos candidatos, por lo que no puede confirmarse que alguno coincida con el 31/12/2022 citado en la afirmación; la coincidencia con la afirmación es solo en el título genérico \"Estudio de viabilidad\". Además, hay tres contrato",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -409,19 +401,15 @@
       },
       "verification": {
         "claimId": "11025xk-017-cit-3f0c5d",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-            "snippet": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis. · Ayuntamiento de Riba-roja de Túria · EQUALITY MOMENTUM SL · architecture · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible: un contrato de \"Servicio para la implantación y mantenimiento del Portal del Empleado en el Ayuntamiento de Riba-roja\", categorizado como tender con similitud sim=0.20. La afirmación trata sobre un estudio de viabilidad técnica con tres opciones de trazado para",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -606,19 +594,15 @@
       },
       "verification": {
         "claimId": "11025xk-020-cit-f82882",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=DeNuLJF4hrOiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato de obras de ejecución del CARRIL CICLOPEATONAL ZONA NORTE: ADECUACIÓN SENDA MOLINET, ALUMBRADO Y CONEXIÓN CON CASCO URBANO por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · MOVIMIENTOS DE TIERRA SUBIELA SL · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Se pidió razonar en español sobre si el candidato respalda la afirmación, sin emitir veredicto final. Respondí con el análisis solicitado.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -884,19 +868,15 @@
       },
       "verification": {
         "claimId": "11025xk-029-cit-02b1ff",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "UE vella 6 · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible: un contrato de redacción de proyecto (no ejecución) de una pasarela peatonal en Riba-roja de Túria por €14.500. La afirmación habla de la prolongación de la línea 9 de Metro Valencia junto con la construcción de una pasarela, en el contexto de un voto favorable",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1026,19 +1006,15 @@
       },
       "verification": {
         "claimId": "11025xk-035-cit-4c11d8",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=0RsapOP9EIiP66GS%2BONYvQ%3D%3D",
-            "snippet": "Contrato de servicio de taller de pilates y suelo pélvico mediante contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. (Ctto. 25/2026 – ESDA 2/2022). · Ayuntamiento de Riba-roja de Túria · EVA MARIA RUIZ · health · estado: awarded",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Se completó el razonamiento en español evaluando escépticamente los tres candidatos frente a la afirmación sobre movilidad/metro, concluyendo que ninguno guarda relación temática, de sujeto o de importe con la cesión de suelo del patrimonio municipal para el metro.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1439,19 +1415,15 @@
       },
       "verification": {
         "claimId": "11025xk-046-cit-e27649",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (cita sobre la obra de \"la pasada de Valencia la Bella\" y el \"metro al centro del pueblo\", tema movilidad) contra los 4 candidatos aportados: [0] carpa para Centro de Salud, [1] reparación centro de transformación del auditorio, [2] portal del empleado (IT), [3] servicio de com",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1641,19 +1613,15 @@
       },
       "verification": {
         "claimId": "11025xk-050-cit-0ef3a1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. Los tres registros de \"Estudio de viabilidad, servicios de asesoramiento\" (CPV 71241000, candidatos 2, 3 y 6) sólo coinciden léxicamente con la frase \"estudio de viabilidad\" del verbatim, pero no especifican que el estudio se refiera a la parada ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1911,59 +1879,15 @@
       },
       "verification": {
         "claimId": "11025xk-055-afi-e3691f",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "",
-            "snippet": "Anuncio TED 398454-2026 · 2.100.341 €",
-            "similarity": 0.94
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about whether candidates support the claim, concluding no genuine support due to magnitude mismatch (€20,205 vs ~€2,000,000) and different nature of expenditure (emergency DANA lighting repair vs urban development/land purchase project).",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "11025xk-056-acu-c78e87",
-        "plenoId": "11025xk",
-        "plenoDate": "2026-06-01",
-        "segmentIndex": 56,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "manipular el voto de una moción que es más atrevido, porque es mentira al ciudadano. Se va a clarificar en datos y correcciones claras, pero no se importa, por qué votaron en contra",
-        "context": "Una, y vuelvo a decir, la ignorancia, Juan, es muy atrevida, muy atrevida, y no documentarse es más atrevido, pero manipular el voto de una moción que es más atrevido, porque es mentira al ciudadano. Se va a clarificar en datos y correcciones claras, pero no se importa, por qué votaron en contra.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "voto de una moción"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Acusa a la oposición de mentir sobre el sentido de su voto en una moción, lo cual es verificable mediante las actas y registros oficiales de votación del ayuntamiento.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "11025xk-056-acu-c78e87",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qDjb9WdwTN3jHF5qKI4aaw%3D%3D",
-            "snippet": "Contrato mixto suministro y servicio implantación de un sistema de debate, voto electrónico, captura, distribución, grabación de video y control para el salón de plenos del ayuntamiento de Riba-roja de Turia, por procedimiento abierto simplificado sumario, mejora relación calidad precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · AMARA MEGAFONIA CCTV VOZ-DATOS, SL · it · estado: formalized",
-            "similarity": 0.5
-          }
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1985,19 +1909,15 @@
       },
       "verification": {
         "claimId": "11025xk-056-cit-69bafc",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "El enunciado es una acusación/opinión política dentro de un debate plenario sobre la viabilidad técnica y la redacción de una moción de la oposición relativa a una \"pasarela\". No contiene cifras, fechas ni sujetos concretos verificables, solo juicios de valor (\"no tenía viabilidad\", \"estaba mal reda",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2019,19 +1939,15 @@
       },
       "verification": {
         "claimId": "11025xk-057-cit-10a265",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La cita es una opinión política sobre la falta de viabilidad técnica y la mala redacción de una \"moción\" presentada en el pleno —un juicio de valor sobre un debate político, no un hecho verificable mediante contratos, subvenciones o presupuestos—",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2081,19 +1997,15 @@
       },
       "verification": {
         "claimId": "11025xk-058-cit-7ce8a9",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Análisis completado: la afirmación es una declaración política no verificable (sin cifras/fechas/sujeto concreto) sobre el motivo de un voto en contra de una moción en el pleno. El candidato [0] solo comparte la palabra \"pasarela\" y \"redacción\" pero se refiere a un contrato técnico distinto (redacci",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2205,19 +2117,15 @@
       },
       "verification": {
         "claimId": "11025xk-064-cit-c8095a",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "UE vella 6 · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine backing exists — only thematic overlap (same CPV category \"estudio de viabilidad\") without matching subject (Valenciana la Bella / Cascurla) or dates. No verdict was decided, per instructions.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2309,41 +2217,6 @@
         ]
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "11025xk-065-acu-2106bb",
-        "plenoId": "11025xk",
-        "plenoDate": "2026-06-01",
-        "segmentIndex": 65,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "Pero como pactaron los que no quieren la agenda 2030, que no la quieren, en el pacto de Sevilleta, se cargaron los proyectos europeos de movilidad, entre otros.",
-        "context": "ahora va a haber un presupuesto para la pasarela. No, es que teníamos una dotación de Europa. Pero como pactaron los que no quieren la agenda 2030, que no la quieren, en el pacto de Sevilleta, se cargaron los proyectos europeos de movilidad, entre otros. Nosotros hemos tenido varias reuniones.",
-        "topic": "movilidad",
-        "entities": {
-          "referencedEntity": "proyectos europeos de movilidad"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Cita la cancelación de proyectos europeos de movilidad debido a un pacto político concreto (pacto de Sevilleta), lo cual puede ser verificado en acuerdos de gobierno o prensa.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "11025xk-065-acu-2106bb",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=qV2bpiHdzkAQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Redacción y dirección del proyecto de obras de movilidad vial de Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · CPS INFRAESTRUCTURAS MOVILIDAD Y MEDIO AMBIENTE, S.L. · other · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -2624,19 +2497,15 @@
       },
       "verification": {
         "claimId": "11025xk-071-cit-ec5a49",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=H7ClfDjddvCrz3GQd5r6SQ%3D%3D",
-            "snippet": "Servicio de redacción de proyecto de obra para la construcción de una pasarela peatonal · Ayuntamiento de Riba-roja de Túria · Guillermo Prat García · other · estado: awarded",
-            "similarity": 0.6
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé los tres candidatos frente a la afirmación sobre la pasarela a Valencia la Bella. Ninguno coincide en sujeto concreto (localización \"Valencia la Bella\"). El candidato [0] comparte tema (pasarela peatonal) pero es solo la redacción del proyecto, sin confirmar que sea la misma obra ni el mismo",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2753,19 +2622,15 @@
       },
       "verification": {
         "claimId": "11025xk-073-cit-c35dfd",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=SWowCY8dnwmcCF8sV%2BqtYA%3D%3D",
-            "snippet": "UE vella 6 · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación es una declaración personal sobre una reunión futura (\"tengo una reunión con la directora general\") referida a un proyecto llamado \"Valencia de la Bella\" y a la llegada del metro al centro del Casco Urbano; es un plan/promesa no verificable mediante contratos o presupuestos, sin cifra,",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2841,19 +2706,15 @@
       },
       "verification": {
         "claimId": "11025xk-075-cit-dcc267",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=e18%2FPP3l84B%2FR5QFTlaM4A%3D%3D",
-            "snippet": "71241000-Estudio de viabilidad, servicios de asesoramiento, análisis. · Ayuntamiento de Riba-roja de Túria · EQUALITY MOMENTUM SL · architecture · estado: awarded",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "Los candidatos [0], [1] y [3] son contratos reales de \"Estudio de viabilidad, servicios de asesoramiento, análisis\" del mismo Ayuntamiento, coincidiendo temáticamente con la mención de un \"estudio de viabilidad\" como documento público. Sin embargo, la afirmación no aporta importe, fecha ni materia c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3005,41 +2866,6 @@
             "kind": "tender",
             "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dUGFcdEbjniiEJrVRqloyA%3D%3D",
             "snippet": "Contrato Menor de Suministro de dos perros para la Unidad Canina del Cuerpo de Policía Local del Ayuntamiento de Riba-Roja de Túria. · Ayuntamiento de Riba-roja de Túria · Megafor SAnta Security, s.l. · catering · estado: awarded",
-            "similarity": 0.67
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "11025xk-088-acu-ecdf68",
-        "plenoId": "11025xk",
-        "plenoDate": "2026-06-01",
-        "segmentIndex": 88,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "En Masía Traver tenemos un vehículo, te lo comenté, le habéis puesto pegatinas, las han quitado, las han vuelto",
-        "context": "Y otra cosa va dirigida a la concejala de Seguridad, Raquel Panblanco. Mire, es curioso. En Masía Traver tenemos un vehículo, te lo comenté, le habéis puesto pegatinas, las han quitado, las han vuelto",
-        "topic": "seguridad",
-        "entities": {
-          "referencedEntity": "vehículo en masía traver"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se afirma la existencia de un coche en la urbanización Masía Traver que ha sido marcado con pegatinas de aviso por la policía local.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "11025xk-088-acu-ecdf68",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=POdrVQknDHEBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "Contrato de carácter menor, relativo al servicio de trabajos selvícolas interfaz Masia de Traver. · Ayuntamiento de Riba-roja de Túria · ION SAMSOM, TALAS EN ALTURA DE ÁRBOLES Y PALMERAS · other · estado: awarded",
             "similarity": 0.67
           }
         ],
@@ -3451,19 +3277,15 @@
       },
       "verification": {
         "claimId": "11025xk-104-cit-b69072",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=FT%2F4AEnO7oVvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Contrato de obras de Pasarela en Barranco Mandor de Riba-roja de Túria por procedimiento abierto simplificado, varios criterios de adjudicación, con condición de ejecución de carácter ambiental contribuyendo al cumplimiento del ODS 9 relativo a desarrollar de infraestructuras fiables, sostenibles, resilientes y de calidad, promover una industrialización inclusiva y sostenible, aumentar el acceso de las pequeñas industrias y otras empresas y de aquí a 2030, modernizar la infraestructura y reconvertir las industrias para que sean sostenibles. (Ctto. 60/2022) · Ayuntamiento de Riba-roja de Túria · construction · estado: void",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Análisis completado: razoné en español sobre la falta de respaldo genuino entre la afirmación y los candidatos ofrecidos, siguiendo el enfoque escéptico solicitado, sin emitir veredicto final.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3487,19 +3309,15 @@
       },
       "verification": {
         "claimId": "11025xk-105-cit-04498b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonar (no verificar con herramientas) sobre si los candidatos respaldan la afirmación. Analicé el contenido de la afirmación (una \"payadera\" para movilidad/metro/universidad conseguida hace menos de ocho años) frente a los dos candidatos de contratos, concluyendo que ninguno coincide e",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3583,19 +3401,15 @@
       },
       "verification": {
         "claimId": "11025xk-106-cit-ee29c3",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=sOt%2BY8QGKwx6nTs9LZ9RhQ%3D%3D",
-            "snippet": "Contrato administrativo obras para la ejecución del proyecto Área de esparcimiento en zona verde de Valencia la Vella en el T. M. de Riba-roja de Túria (Valencia) - Ctto.39/2026 · Ayuntamiento de Riba-roja de Túria · GEOCIVIL, S.A. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences plus brief lead-in) analyzing whether any candidate genuinely supports the claim about meetings demanding the \"pasarela de Valencia de la Bella\" and the metro reaching the town center under the current (2023) government. Conclusi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3644,19 +3458,15 @@
       },
       "verification": {
         "claimId": "11025xk-110-cit-795633",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UbuxqfPm57hvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Obra de adecuación barranco de la Monjas · Ayuntamiento de Riba-roja de Túria · Raser servicios electrotécnicos, S.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los dos candidatos respalda genuinamente la afirmación. El candidato [0] trata sobre un barranco distinto (\"de las Monjas\" vs \"asoriano\") y es una obra de adecuación, no una compra de terreno para un parking, por lo que no hay coincidencia de sujeto ni de acción concreta. El candidato [1]",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

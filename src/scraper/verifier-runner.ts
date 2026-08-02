@@ -182,7 +182,21 @@ export function makeEngineVerifier(
         schema: EngineExtractSchema,
         input: { claimId: claim.id, reasoning },
       })
-      return r ?? { verdict: 'sin-datos', cites: [] }
+      // A failed extract is NOT a judgement of sin-datos.
+      //
+      // Defaulting to sin-datos here made a parse failure indistinguishable
+      // from "the model looked and found no support" — and since the retraction
+      // pass acts on sin-datos, ~7% of retractions were the model failing to
+      // return structured output, recorded in the audit trail as
+      // "verdict-engine re-judged verificado→sin-datos". The ~92% precision the
+      // engine is trusted for was measured on real judgements, not on parse
+      // failures, so folding these in overstates it.
+      //
+      // Throwing surfaces it as a skip, and skipped claims keep their verdict
+      // and are retried on the next run (only claims with an overlay entry are
+      // resumed past).
+      if (!r) throw new Error('engine extract returned no verdict')
+      return r
     },
     consistencyFn:
       opts.consistency === false

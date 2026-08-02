@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T20:22:21.411Z",
+  "generatedAt": "2026-08-02T04:59:27.116Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -53,19 +53,15 @@
       },
       "verification": {
         "claimId": "1237hbp-004-cit-df8455",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ydq0aOmEzXd7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Contrato por tramitación anticipada de servicio de limpieza C.D. La Mallá por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con cláusulas medioambientales y sociales como criterio de adjudicación y con CEE de carácter social y medioambiental, con mejoras vinculadas al objeto del contrato, y contribuyendo al cumplimiento del ODS 8.8. SARA · Ayuntamiento de Riba-roja de Túria · VARESER 96, S.L. · environment · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Task was a Spanish fact-checking reasoning exercise (not a coding task), so no development skill applied. I provided skeptical reasoning in Spanish (no verdict) comparing the vague claim about a company award at a Sept 8 plenary session against three PAVASAL road-improvement tender records that lack",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -171,55 +167,15 @@
       },
       "verification": {
         "claimId": "1237hbp-006-cit-1e90e0",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé el candidato [0] frente a la afirmación. El candidato es un contrato de TI (Portal del Empleado) sin relación temática, de entidad adjudicataria, fecha o importe con la afirmación sobre un contrato de emergencia medioambiental con FCC el 12 de marzo tras resolución con Garbiardi el día 9. No",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-007-acu-e6f066",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
-        "context": "abéis tenido, un informe técnico y jurídico donde resolvemos con el anterior contrato, con Garbiardi. Resolvemos el día 9 y somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
-        "topic": "transparencia",
-        "entities": {
-          "date": "2026-07-12",
-          "referencedEntity": "contrato de emergencia con fcc"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Se menciona una fecha específica y un hecho relacionado con la contratación de una empresa, lo que permite verificar la existencia de dicho contrato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-007-acu-e6f066",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -405,19 +361,15 @@
       },
       "verification": {
         "claimId": "1237hbp-023-cit-a6246f",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
-            "snippet": "Servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del contrato de recogida de RSU, poda y voluminosos en el municipio de Riba-roja de Túria. · Ayuntamiento de Riba-roja de Túria · AUDITESA SL · environment · estado: formalized",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (una opinión no verificable sobre que la situación de recogida de voluminosos \"no se puede evitar\") frente a los tres candidatos (contratos administrativos de Riba-roja de Túria sobre RSU/poda/voluminosos). Concluí que ningún candidato respalda genuinamente la afirmación: son c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -500,19 +452,15 @@
       },
       "verification": {
         "claimId": "1237hbp-030-cit-eea251",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=N%2B2T11NdqTUBPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato de OBRAS DE CANALIZACIÓN DE ALIVIADERO DE BALSA DE RECOGIDA DE PLUVIALES EN POLÍGONO INDUSTRIAL por procedimiento abierto súper simplificado, un criterio de adjudicación, con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 8 relativo al trabajo decente para todos. · Ayuntamiento de Riba-roja de Túria · ASFALTOS VILAR S.A. · construction · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los cuatro candidatos guarda relación real con la afirmación. Todos pertenecen al Ayuntamiento de Riba-roja de Túria y versan sobre asuntos distintos (módulos prefabricados, visor de transparencia, asfaltados urbanos, portal del empleado), sin ninguna conexión con recogida de basura ni co",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -668,41 +616,6 @@
     },
     {
       "claim": {
-        "id": "1237hbp-043-acu-d76e72",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 43,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "Si la responsabilidad es el gobierno de España gobernado por el PSOE, no es necesario pedir responsabilidades políticas.",
-        "context": "Lo que está claro es que ustedes, las responsabilidades políticas, dependen del tipo de administración. Si la administración es Chineita Valenciana gobernada por el Partido Popular, hay que pedir responsabilidades políticas. Se exigen. Si la responsabilidad es el gobierno de España gobernado por el PSOE, no es necesario pedir responsabilidades políticas.",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "gobierno de españa"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.7,
-        "reasoning": "Se hace una afirmación sobre la necesidad de pedir responsabilidades políticas dependiendo del gobierno, lo cual puede ser contrastado con hechos políticos.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-043-acu-d76e72",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=pf57K5DzK64BPRBxZ4nJ%2Fg%3D%3D",
-            "snippet": "contrato de servicio de asistencia técnica al Ayuntamiento de Riba-roja de Túria en el seno del proyecto Guardian, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación con condición especial de ejecución de carácter social y medioambiental. · Ayuntamiento de Riba-roja de Túria · F INICIATIVAS ESPAÑA I MAS D MAS I SLU · legal · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
         "id": "1237hbp-043-pro-fc1c87",
         "plenoId": "1237hbp",
         "plenoDate": "2026-07-03",
@@ -831,19 +744,15 @@
       },
       "verification": {
         "claimId": "1237hbp-046-cit-df61b1",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2FkoZxcCnpDnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato Menor de obras de eliminación de Isleta en C/Mas de Montes en P.I. Mas de Balo. · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: awarded",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "Se proporcionó el razonamiento en español en el cuerpo de la respuesta, evaluando escépticamente los 6 candidatos frente a la afirmación sobre un contrato con FCC del 12/03/2026 que sustituía a Garbialdi. Ningún candidato menciona a FCC ni coincide en fecha; todos muestran a Garbialdi como adjudicat",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1534,24 +1443,15 @@
       },
       "verification": {
         "claimId": "1237hbp-091-afi-a7c5f4",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aToX2uafgoyiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor servicio de acceso a base de datos en materia de contratación pública (Gobierto Contratación) · Ayuntamiento de Riba-roja de Túria · Populate Tools S.L. · other · 4000 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "He analizado la afirmación sobre el contrato de la basura (fondos propios de 4-6 mil euros) frente al único candidato disponible, que es un contrato de servicios para el Portal del Empleado por €25.794. No hay coincidencia de entidad/tema (basura vs portal del empleado), ni de importe, ni de sujeto ",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1856,19 +1756,15 @@
       },
       "verification": {
         "claimId": "1237hbp-103-cit-4bf2c1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (ampliación de una declaración de emergencia medioambiental, buscando fórmulas legales) frente al candidato (contrato de redacción de proyecto de expropiación para un camino de conexión de emergencia entre polígonos industriales). Concluí que es una coincidencia léxica de la pa",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
