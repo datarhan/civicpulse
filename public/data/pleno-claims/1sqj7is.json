@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T12:31:20.524Z",
+  "generatedAt": "2026-08-02T13:12:52.182Z",
   "version": "1",
   "plenoId": "1sqj7is",
   "plenoDate": "2026-03-09",
@@ -55,24 +55,15 @@
       },
       "verification": {
         "claimId": "1sqj7is-001-afi-a1e446",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "",
-            "snippet": "Anuncio TED 216035-2026 · 257.730 €",
-            "similarity": 0.66
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación sobre el reconocimiento extrajudicial de créditos de 242.255€ frente a los 8 candidatos. Ninguno coincide en importe exacto ni en concepto (reconocimiento extrajudicial). Los candidatos son subvenciones y contratos de naturaleza distinta, con importes de otro orden de magnitud.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -121,19 +112,15 @@
       },
       "verification": {
         "claimId": "1sqj7is-002-cit-559af1",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2gB%2B3A9KcJqKeVWTb9Scog%3D%3D",
-            "snippet": "Contrato servicio alquiler de vallas de seguridad, destinadas a la correcta organización, señalización y delimitación de espacios durante el desarrollo de la campaña de promoción y dinamización del comercio local, con motivo de la celebración de la Feria del Comercio de Riba-roja de Túria, mediante contrato derivado del SDA de servicios de diversa índole. · Ayuntamiento de Riba-roja de Túria · health · estado: void",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación y los 8 candidatos proporcionados. La afirmación cita textualmente lo que dijo un concejal sobre el expediente de reconocimiento extrajudicial nº 5/2026, indicando que casi todos los gastos ahí incluidos son de la campaña de Navidad. Ningún candidato es el expediente de reconoc",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

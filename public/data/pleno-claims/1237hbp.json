@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T12:31:20.524Z",
+  "generatedAt": "2026-08-02T13:12:52.182Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -176,42 +176,6 @@
         "confidence": 0.2
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-007-acu-e6f066",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 7,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
-        "context": "abéis tenido, un informe técnico y jurídico donde resolvemos con el anterior contrato, con Garbiardi. Resolvemos el día 9 y somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
-        "topic": "transparencia",
-        "entities": {
-          "date": "2026-07-12",
-          "referencedEntity": "contrato de emergencia con fcc"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Se menciona una fecha específica y un hecho relacionado con la contratación de una empresa, lo que permite verificar la existencia de dicho contrato.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-007-acu-e6f066",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
-            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
-            "similarity": 1
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -454,19 +418,15 @@
       },
       "verification": {
         "claimId": "1237hbp-029-cit-0d2047",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TyXr4k8N77%2BXQV0WE7lYPw%3D%3D",
-            "snippet": "Contrato de servicios para la realización del PROYECTO DE CONSTRUCCIÓN “ACTUALIZACIÓN DEL PROYECTO DE CONSTRUCCIÓN DE “NUEVO ACCESO A LA A-3 (ENLACE GODELLETA)”, por procedimiento abierto simplificado, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter medioambiental, contribuyendo al cumplimiento del ODS 9 relativo construir infraestructuras resilientes, promover la industrialización inclusiva y sostenible y fomentar la innovación, siendo su tramitación ordinaria. · Ayuntamiento de Riba-roja de Túria · VIELCA INGENIEROS S.A. · architecture · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "La afirmación es de naturaleza procedimental (orden de trámite: comisión de contratación antes que el pleno), no una cifra, fecha o hecho verificable a partir de un registro de contrato/subvención/presupuesto. Los candidatos [0] y [2] coinciden temáticamente con \"contrato de basura\" (recogida de res",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -543,19 +503,15 @@
       },
       "verification": {
         "claimId": "1237hbp-034-cit-2c142d",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=3u5MceicW%2FxvYnTkQN0%2FZA%3D%3D",
-            "snippet": "Servicio de asistencia técnica para el impulso y la gestión de la compra pública de innovación en el Ayuntamiento de Riba-roja de Túria dentro del marco estratégico de Missions Valencia 2030 (Plan estratégico de innovación orientado a Riba-roja de Túria), por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación, con condición de ejecución de carácter social y medioambiental, contribuyendo al cumplimiento del ODS 11 relativo a lograr que las ciudades sean más inclusivas, seguras, resilientes y sostenible, con mejoras vinculadas al objeto del contrato, siendo su tramitación ordinaria (Ctto. 14/2022). · Ayuntamiento de Riba-roja de Túria · UTE TECHFRIENDLY -LEXLAB INNOVACION LEGAL S.L.. · legal · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Se analizó la afirmación (declaración prospectiva sobre financiar la compra de contenedores \"en recursos propios\") frente a los 8 candidatos. Ninguno respalda genuinamente la afirmación: el candidato [0] es temáticamente el más cercano (compra de 320 contenedores de carga lateral, €505.296) pero es ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -583,42 +539,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1237hbp-041-acu-3157f8",
-        "plenoId": "1237hbp",
-        "plenoDate": "2026-07-03",
-        "segmentIndex": 41,
-        "type": "acusacion_publica",
-        "speakerGroup": "PP",
-        "verbatim": "el alcalde en su discurso, en sus comparecencias, ya hablaba de que había que cambiar los contenedores en diciembre. En diciembre. Que ya estaban muy deteriorados.",
-        "context": "el alcalde en su discurso, en sus comparecencias, ya hablaba de que había que cambiar los contenedores en diciembre. En diciembre. Que ya estaban muy deteriorados.",
-        "topic": "medio-ambiente",
-        "entities": {
-          "date": "2025-12-01",
-          "referencedEntity": "contenedores deteriorados"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.8,
-        "reasoning": "Se menciona una afirmación del alcalde sobre la necesidad de cambiar los contenedores en diciembre, lo cual puede ser verificado en las actas de las comparecencias.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1237hbp-041-acu-3157f8",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=4QmhBpFpLekuf4aBO%2BvQlQ%3D%3D",
-            "snippet": "Obras de reposición de asfaltado en los tramos más deteriorados del camino de la Llobatera. · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: awarded",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -780,19 +700,15 @@
       },
       "verification": {
         "claimId": "1237hbp-046-cit-df61b1",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2FkoZxcCnpDnSoTX3z%2F7wA%3D%3D",
-            "snippet": "Contrato Menor de obras de eliminación de Isleta en C/Mas de Montes en P.I. Mas de Balo. · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: awarded",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "Se proporcionó el razonamiento en español en el cuerpo de la respuesta, evaluando escépticamente los 6 candidatos frente a la afirmación sobre un contrato con FCC del 12/03/2026 que sustituía a Garbialdi. Ningún candidato menciona a FCC ni coincide en fecha; todos muestran a Garbialdi como adjudicat",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -1595,24 +1511,15 @@
       },
       "verification": {
         "claimId": "1237hbp-093-afi-8e84d6",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aToX2uafgoyiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor servicio de acceso a base de datos en materia de contratación pública (Gobierto Contratación) · Ayuntamiento de Riba-roja de Túria · Populate Tools S.L. · other · 4000 €",
-            "similarity": 1
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Se proporcionó el razonamiento en español evaluando los 8 candidatos frente a la afirmación sobre los 4000 euros. Conclusión del razonamiento (sin veredicto final, según instrucciones): ningún candidato coincide simultáneamente en importe exacto y en sujeto/tema. El candidato [2] coincide en cifra e",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

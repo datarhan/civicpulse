@@ -1,0 +1,1215 @@
+[545.2 → 545.6] (SPEAKER_00) Bon vespre.
+[547.9 → 549.3] (SPEAKER_00) Bona vesprada. Bones.
+[549.3 → 549.8] (SPEAKER_01) Hi!
+[555.3 → 556.4] (SPEAKER_00) Deu-vos començar el ple.
+[562.5 → 563.6] (SPEAKER_00) Està més o menys el ple.
+[564.8 → 568.2] (SPEAKER_00) Primer punt d'ordre del dia, aprovació dels actes anteriors, segons la posició dels actes.
+[570.4 → 572.1] (SPEAKER_00) Passem als 100 punts, aprovem per unanimitat.
+[573.0 → 580.7] (SPEAKER_02) Presentarse un punto de fomento económico acorde pleno relativo a las festividades laborales de carácter local del año 2027,
+[580.8 → 581.4] (SPEAKER_02) José Ángel.
+[581.9 → 589.2] (SPEAKER_00) Hola, buena vesprada. Bueno, se trata de aprobar las dos festividades laborales locales para el 2027, que como sabemos son las de siempre,
+[589.3 → 595.7] (SPEAKER_00) son el 5 de abril San Vicente y el 14 de septiembre Santísimo Cristo de los Aprecidos.
+[596.1 → 597.5] (SPEAKER_00) Una decisión, ese punto.
+[598.2 → 599.2] (SPEAKER_02) Pasemos a votar.
+[608.4 → 609.6] (SPEAKER_02) Se aprueba una inimitad.
+[610.2 → 611.3] (SPEAKER_02) Pasemos al siguiente punto.
+[611.6 → 613.6] (SPEAKER_02) Contractación, adjudicación del contrato de concesión del
+[613.6 → 613.7] (SPEAKER_03) No,
+[613.7 → 613.9] (SPEAKER_02) servicio público.
+[613.9 → 614.5] (SPEAKER_03) hay uno atrás.
+[616.3 → 616.5] (SPEAKER_02) No.
+[618.0 → 618.6] (SPEAKER_02) Ha sí,
+[618.7 → 620.0] (SPEAKER_02) correcto. Es de fondo de fomento económico.
+[620.2 → 620.4] (SPEAKER_02) Es dos.
+[620.8 → 622.0] (SPEAKER_02) El punto tercer,
+[622.1 → 626.1] (SPEAKER_02) con relativo a la declaración del 25 de octubre con día del comercio.
+[629.8 → 642.7] (SPEAKER_00) Sí, en este caso lo que hacemos es que igual que en el pleno del Consejo de la Generalitat hacemos en el 2021 e y en colaboración y en el apoyo económico que hacemos desde el Ayuntamiento a la Asociación de Comerciantes Agrupa,
+[642.8 → 650.2] (SPEAKER_00) es declarar institucionalmente desde el Ayuntamiento de Rivarrocha el 25 de octubre como día que sea el comercio local de Rivarrocha.
+[650.9 → 652.8] (SPEAKER_04) Des de l'Ajuntament de Riba-roja,
+[652.9 → 660.0] (SPEAKER_04) doncs conservem recolzem en tot el que podem i al màxim el comerç local i també l'hostaleria i la restauració.
+[661.7 → 663.4] (SPEAKER_04) I vist el tema,
+[663.5 → 674.5] (SPEAKER_04) podem dir que en guany són més de 150.000 euros el que va destinar aquest ajuntament en inversions destinades a fomentar el consum dels nostres comerços, hostaleria.
+[675.0 → 684.3] (SPEAKER_04) i restauració de Ribarrocha. I per tant sempre estarem ahí recolzant tant a l'associació Agrupa com a la resta de comerciants del municipi. Gràcies.
+[685.0 → 686.1] (SPEAKER_02) Paraules, Alberto.
+[687.8 → 688.8] (SPEAKER_00) Hola, bona vesprada.
+[689.2 → 690.3] (SPEAKER_00) Gràcies, senyor alcalde.
+[691.1 → 693.3] (SPEAKER_02) Res, una cosa que era una pregunta.
+[693.4 → 702.2] (SPEAKER_02) Això s'ha fet en acord de l'associació de comerciants de Europa o només s'ha valgut traslladar? Sé que estan en conversacions en ells per lo de la figura de comerç i tal,
+[702.3 → 708.9] (SPEAKER_02) però saber si està la instauració d'aquest dia, que ja se celebra d'alguna forma tant en el poble com en la comunitat autonòmica,
+[709.3 → 715.2] (SPEAKER_02) si estava consensuat en ells o si sols es van a transmetre que s'ha de fer aquest dia.
+[715.5 → 716.2] (SPEAKER_02) Sols és això.
+[716.5 → 716.5] (SPEAKER_04) ¿Sí?
+[716.5 → 716.9] (SPEAKER_02) ¿Les?
+[718.1 → 718.9] (SPEAKER_02) Pues ángel.
+[720.0 → 743.4] (SPEAKER_04) Si en les reunions que mantenim constantment tenéis se les comentaren que seria bo que desde forma institucional s'institucionalitzara el dia 25 d'octubre com dia del comerç local ja que ells fa ja tres quatre anys que estan celebren el 25 d'octubre i ja dic en col·laboració i en el recolzament econòmic del propi ajuntament en la subvenció que li dona.
+[743.5 → 745.6] (SPEAKER_04) Llavors és una manera d'inclus.
+[746.6 → 750.9] (SPEAKER_04) donar-li més importància de cara de forma institucional a ICDIA 25.
+[751.3 → 756.1] (SPEAKER_04) Les conversacions que mantenim en ells és que anàvem a fer aquesta proposta i ells estaven d'acord.
+[757.2 → 757.7] (SPEAKER_04) Gràcies.
+[757.9 → 759.7] (SPEAKER_02) Això és la mateixa pròxima votació.
+[773.7 → 779.6] (SPEAKER_02) Ara sí, el punt 4, contractació, adjudicació del contracte de concessió del servei públic de moviment d'aigua,
+[779.6 → 780.9] (SPEAKER_02) José Ángel.
+[782.4 → 787.9] (SPEAKER_04) Sí, bueno, pues sí, adjudíqueme el contracte de concesió del servei públic de aigua potable al cantaria.
+[789.0 → 792.0] (SPEAKER_04) el control de vertidos y depuración del municipio de Ribaroja.
+[792.4 → 793.9] (SPEAKER_04) Por contextualizar el tema,
+[794.0 → 795.6] (SPEAKER_04) porque esto lleva tela,
+[796.0 → 801.9] (SPEAKER_04) venimos de una sentencia del año 2016 en la que anula el contrato aprobado en el año 2012.
+[803.0 → 812.3] (SPEAKER_04) Con los informes perceptivos inicia una nueva licitación una vez recibida esa sentencia y como resultado de la nueva licitación en que se presentan siete empresas,
+[812.7 → 816.1] (SPEAKER_04) es decir siete ofertas, ya en el 2020 se clasifican las ofertas,
+[816.1 → 821.3] (SPEAKER_04) siendo la mejor oferta de calidad precio la presentada por la mercantil Hidraqua Gestión Integral de Aguas.
+[822.4 → 828.8] (SPEAKER_04) Este resultado es impugnado en el juzgado y se dicta suspensión de la adjudicación por parte del juzgado.
+[829.4 → 835.6] (SPEAKER_04) En el pleno de febrero del 21 se acuerda la suspensión del procedimiento de contratación del servicio dada la sentencia.
+[836.0 → 837.2] (SPEAKER_04) Tras los recursos,
+[837.4 → 855.5] (SPEAKER_04) ya el 23 de febrero del 2026, la sala de lo contencioso administrativo del Tribunal Supremo dicta sentencia contra el recurso de casación de la Mercantil Global Omnion y confirma íntegramente la sentencia del Tribunal Superior de Justicia de la Comunidad Valenciana a favor del Ayuntamiento de Riva Roja.
+[856.0 → 864.9] (SPEAKER_04) A partir de ahí, la mesa de contratación ratifica el informe de valoración realizado por los servicios técnicos con la puntuación final de las siete ofertas,
+[865.4 → 868.3] (SPEAKER_04) siendo la propuesta de IDRACUA la mejor clasificada.
+[868.7 → 873.1] (SPEAKER_04) Y siendo aprobada la clasificación en sesión plenaria del 20 de abril de este año.
+[873.7 → 878.0] (SPEAKER_04) Y ya con todos los informes técnicos, jurídicos y de fiscalización favorables,
+[878.4 → 882.9] (SPEAKER_04) proponemos hoy al Pleno adjudicar el contrato de concesión del servicio público de agua potable,
+[883.2 → 883.9] (SPEAKER_04) alcantarillado,
+[884.0 → 890.4] (SPEAKER_04) control de vertidos y depuración del municipio de Ribarrocha a la mercantil Hidraqua Gestión Integral de Aguas de Levante S.A.
+[891.4 → 895.5] (SPEAKER_04) Con las características de la oferta que dio como resultado ser la mejor oferta,
+[896.3 → 914.3] (SPEAKER_04) el valor estimado del contrato es de 55.685.000 euros más IVA, duración 17 años, requerir a la mercantil que en el plazo entre el presente acuerdo y la formalización del contrato proceda al abono a favor del Ayuntamiento de Ribarrocha de la cantidad de 2,3 millones de euros en concepto de canon,
+[914.8 → 918.2] (SPEAKER_04) además de requerir a la mercantil a ejecución de las obras comprometidas en el plazo
+[918.2 → 918.3] (SPEAKER_05) de 5 años.
+[917.9 → 922.3] (SPEAKER_04) ...idas en el contrato, dentro de los tres primeros años de prestación del servicio.
+[922.8 → 938.7] (SPEAKER_04) En este caso, como el Ayuntamiento ya realizó una de las obras comprometidas, que en la urbanización de Entre Naranjos la mercantil deberá abonar al Ayuntamiento el coste previsto de dicha obra valorada en más de 1,2 millones de euros, que se sumarían a los 2,3 millones de cannon.
+[940.0 → 943.0] (SPEAKER_04) por lo que es de gran importancia y trascendencia el presente acuerdo,
+[943.1 → 953.9] (SPEAKER_04) que cierra una etapa de seis años desde los litigios, pero de diez desde que la sentencia anuló el contrato del 2012,
+[954.0 → 966.4] (SPEAKER_04) y que por fin se da la razón al Ayuntamiento y puede formalizar el contrato del servicio de agua potable e ingresar el canon por importe de 2,3 millones de euros más el 1,2 millones de euros sobre la obra realizada.
+[966.2 → 967.1] (SPEAKER_04) realizada en entre el año.
+[967.2 → 968.1] (SPEAKER_04) Muchas gracias.
+[968.8 → 973.9] (SPEAKER_02) Palabras, palabras de San Jorge.
+[977.4 → 979.1] (SPEAKER_04) Va a echarse el curso. Bueno,
+[979.2 → 988.6] (SPEAKER_04) esta lo que debemos cuidar al ple pues es de transcendencia y muy importante para el Ayuntamiento de Riba Rocha y todos los vecinos.
+[988.9 → 992.4] (SPEAKER_04) Desde el 2007 al 2026, 10 años.
+[993.2 → 1000.3] (SPEAKER_04) Desde que se anuló el otro contrato y desde que se inició el nuestro ya en el 2019,
+[1000.5 → 1011.7] (SPEAKER_04) pues hasta ahora y por fin el ayuntamiento ya ha dado la razón y por fin el ayuntamiento de Riva Rocha y los veíns van a tener un contrato con Toca sobre el servicio de agua potable.
+[1011.7 → 1012.1] (SPEAKER_04) Gracias.
+[1013.3 → 1016.9] (SPEAKER_02) Alguna palabra más en su intervención, Rafa.
+[1019.0 → 1019.7] (SPEAKER_06) Gràcies.
+[1019.9 → 1022.5] (SPEAKER_02) Gràcies, senyor alcalde. Bona vesprada a totes i a tots.
+[1022.7 → 1029.3] (SPEAKER_02) Bé, dir que aquest contracte, l'aprovació d'aquest contracte que suposo que serà avui,
+[1029.5 → 1031.4] (SPEAKER_02) fa un mes llarg que un dia sense pa.
+[1033.0 → 1034.4] (SPEAKER_02) Recordo el 2007,
+[1034.7 → 1037.8] (SPEAKER_02) l'equip de govern que formàvem el Partit Socialista,
+[1037.9 → 1039.7] (SPEAKER_02) Compromís Esquerra Unida,
+[1039.8 → 1042.7] (SPEAKER_02) ens arriba la sentència.
+[1043.4 → 1065.8] (SPEAKER_02) y bueno pues seguiremos peleando durante casi tres años para presentar un nuevo contracte ilusionante que anaba a mejorar todo el sistema de abastecimiento de agua y hacer las obras que tenían previstas para mejorar también ese suministramiento.
+[1066.4 → 1075.8] (SPEAKER_02) Però es trobarem en la cruda realitat que tenen les grans empreses que no estan mai d'acord quan els toca d'isla loteria.
+[1077.5 → 1080.9] (SPEAKER_02) Evidentment, i per sort, hem tingut.
+[1081.3 → 1094.5] (SPEAKER_00) Eh, una sentencia favorable y UIP definitivamente podremos aprobar este contracte que, como he dicho, el rechidor porta rodant desde el 2007 inicialmente y desde el 2010 cuando aprobamos este ple,
+[1094.5 → 1096.6] (SPEAKER_00) por algunos partidos no por todos. Gracias.
+[1099.0 → 1099.8] (SPEAKER_02) Alguna palabra més?
+[1102.5 → 1103.9] (SPEAKER_02) Esta ha pasado una situación,
+[1104.2 → 1106.6] (SPEAKER_02) pero bueno, tienes ahí dos minutos.
+[1107.0 → 1108.7] (SPEAKER_02) Si hubo alguna más en esta segunda intervención, que pase.
+[1113.4 → 1115.7] (SPEAKER_00) Gracias, alcalde, y disculpe.
+[1116.2 → 1116.9] (SPEAKER_00) A ver,
+[1116.9 → 1122.5] (SPEAKER_00) en este tipo de contrato en el que nosotros nos vamos a abstener,
+[1122.6 → 1125.2] (SPEAKER_00) lo que sí que hemos detectado en...
+[1125.4 → 1150.6] (SPEAKER_00) En lo que son las cláusulas es que hay algunos componentes ideológicos como riesgos, como ejecuciones de carácter sociales y ambientales que entendemos que son criterios políticos y esto lo que puede hacer a lo mejor es un riesgo de encarecimiento para el ciudadano. Desde luego nosotros defendemos unos servicios públicos que se tienen que gestionar con austeridad y con competencia.
+[1151.1 → 1156.8] (SPEAKER_07) No como laboratorios de políticas sociales o ecológicas. Es cierto que se tiene que firmar ese contrato,
+[1156.8 → 1159.6] (SPEAKER_07) pero es lo que entendemos.
+[1159.7 → 1160.3] (SPEAKER_00) Estos son los expertos
+[1160.3 → 1175.8] (SPEAKER_07) Y aunque es un procedimiento abierto y desde luego por una mejor relación calidad-precio, la multitud de esos criterios subjetivos abre la puerta a interpretaciones discrecionales.
+[1176.4 → 1182.7] (SPEAKER_07) Eh, resumiendo, em este contrato puede parecer algo como
+[1182.7 → 1182.9] (SPEAKER_00) Mm-hmm.
+[1182.9 → 1184.8] (SPEAKER_07) un contrato ideológico
+[1185.1 → 1185.1] (SPEAKER_00) and
+[1185.1 → 1187.2] (SPEAKER_07) and y puede in interfere in the
+[1187.2 → 1187.3] (SPEAKER_00) public's
+[1187.3 → 1187.3] (SPEAKER_07) contract.
+[1187.3 → 1187.7] (SPEAKER_00) 
+[1187.8 → 1199.9] (SPEAKER_07) public contract. We will not have because it's not a it's a type of um um um it's a contract that you have to sign, but for what
+[1200.0 → 1210.8] (SPEAKER_20) Que declara la postura de Vox en cuanto a lo que los contratos públicos deben ser estrictamente técnicos y económicos. Gracias.
+[1213.0 → 1214.1] (SPEAKER_21) ¿Alguna intervención más?
+[1214.6 → 1215.8] (SPEAKER_21) ¿Un minuto, José?
+[1217.2 → 1219.0] (SPEAKER_22) Sí, para clarificar.
+[1219.5 → 1220.7] (SPEAKER_21) Porque cuando se habla,
+[1220.8 → 1226.2] (SPEAKER_21) hombre, desde este Gobierno siempre en los contratos el carácter social va a estar.
+[1226.4 → 1232.3] (SPEAKER_21) Ese carácter social significa a lo mejor contratación a personas de más de 45 años que lo tienen complicado encontrar trabajo.
+[1232.5 → 1234.7] (SPEAKER_21) Creo que en eso deberíamos estar todos de acuerdo,
+[1234.8 → 1245.7] (SPEAKER_21) la búsqueda de oportunidades para aquellas personas que están desempleadas. Pero bueno, cada partido tiene sus diferencias y nosotros siempre vamos a buscar.
+[1245.5 → 1250.9] (SPEAKER_20) a buscar las oportunidades para que aquella persona que esté desempleada pueda encontrar un empleo. Pero bueno,
+[1251.0 → 1252.2] (SPEAKER_20) viéndolo aquí,
+[1252.2 → 1252.5] (SPEAKER_20) por si,
+[1252.6 → 1258.9] (SPEAKER_20) para que no haya mayores dudas de lo que significa condiciones especiales de ejecución de carácter sociales,
+[1259.1 → 1264.2] (SPEAKER_20) garantía de seguridad y salud en el trabajo. No sé si eso a alguien le perjudica.
+[1264.8 → 1267.3] (SPEAKER_22) uso no sexista del lenguaje. Igual eso a lo mejor,
+[1267.4 → 1268.6] (SPEAKER_22) pero la educación siempre.
+[1269.2 → 1275.7] (SPEAKER_22) Cumplimiento íntegro de la propuesta técnica presentada por los criterios de adjudicación. Cumplimiento de las obligaciones sobre subcontratación.
+[1275.9 → 1276.8] (SPEAKER_22) Muy importante,
+[1277.0 → 1281.2] (SPEAKER_22) para que no venga un pirata y esta empresa subcontrate a un pirata.
+[1281.3 → 1282.9] (SPEAKER_22) Todos sabemos lo que significa eso.
+[1283.6 → 1287.2] (SPEAKER_22) Adscripción efectiva de los medios personales y materiales comprometidos en la oferta.
+[1287.6 → 1291.4] (SPEAKER_22) Pago puntual de salarios, retención de IRPF y abono de las...
+[1291.2 → 1304.3] (SPEAKER_22) Uno de los frutos de la seguridad social y cumplimiento de las obligaciones medioambientales, sociales y laborales derivadas del derecho español, de la Unión Europea y del derecho internacional suscrito por la Unión Europea.
+[1304.7 → 1305.8] (SPEAKER_22) Nada más y nada menos.
+[1306.0 → 1309.0] (SPEAKER_22) Esos son los criterios sociales que llevaría para planificarlo. Gracias.
+[1311.4 → 1311.9] (SPEAKER_21) Bueno.
+[1312.5 → 1319.5] (SPEAKER_21) Yo creo que, yo agradezco la intervención de Vox, en el sentido que ha hecho honor a sus posiciones políticas,
+[1319.6 → 1323.0] (SPEAKER_21) que son claras, negacionistas, muy bien, cada uno considera lo que tiene que decir,
+[1323.1 → 1331.8] (SPEAKER_21) y en contra de la lucha de cambio climático y de las políticas de la Agenda 2030 que están pactadas en Europa por los grandes partidos y apoyadas por otros que no son grandes.
+[1332.0 → 1334.2] (SPEAKER_21) Por tanto ha sido honesto y, pues dando un sentido,
+[1334.3 → 1337.7] (SPEAKER_21) estamos a años luz. Yo creo que ustedes...
+[1338.2 → 1340.6] (SPEAKER_21) Sinceramente, políticamente es un peligro para la sociedad,
+[1340.8 → 1341.6] (SPEAKER_21) lo considero así,
+[1341.7 → 1345.8] (SPEAKER_21) pero por lo menos lo ha expresado, pero igual pasa por ahí y no dice nada.
+[1346.0 → 1347.1] (SPEAKER_21) Pero sí, es verdad,
+[1347.2 → 1351.0] (SPEAKER_21) hay cosas que sí que estamos orgullosos de que este contrato tenga.
+[1351.6 → 1356.2] (SPEAKER_21) Estamos orgullosos que haya pasado todos los filtros jurídicos de los tribunales de España.
+[1357.0 → 1357.3] (SPEAKER_21) A ver,
+[1357.4 → 1360.0] (SPEAKER_21) que hemos ido a casación del Supremo, por tanto,
+[1360.1 → 1370.8] (SPEAKER_21) nada que objetar y la posición de este Gobierno que agradece el trabajo técnico del área técnica y área de contratación ha sido exquisito.
+[1371.0 → 1377.8] (SPEAKER_21) Con transparencia, citaré solo por decir que es un contrato de nada menos que 55 millones de euros.
+[1378.8 → 1387.6] (SPEAKER_21) el más importante del ámbito municipal que tenemos y que se han presentado siete empresas y que el año 2012 se presentó una empresa.
+[1388.6 → 1392.6] (SPEAKER_21) Por tanto el nivel de competencia con pocas palabras lo puedo dejar aquí.
+[1393.0 → 1395.1] (SPEAKER_21) El contrato se ha mejorado muchísimo.
+[1396.5 → 1398.4] (SPEAKER_21) a lo que habíamos adjudicado en 2012,
+[1398.6 → 1399.2] (SPEAKER_21) pero mucho,
+[1399.3 → 1399.8] (SPEAKER_21) mucho, mucho,
+[1399.8 → 1408.7] (SPEAKER_21) y creo que hay tres cosas estratégicas muy importantes en este contrato que no pueden pasar desapercibido, bueno, para los grupos que hagan lo que quieran, pero sobre todo para la ciudadanía,
+[1408.8 → 1417.1] (SPEAKER_21) para los empresarios y para los comercios y aquellos que necesitan del agua o bien para vivir o bien como bien económico.
+[1417.6 → 1421.5] (SPEAKER_21) El contrato lleva unas infraestructuras históricas para nuestro municipio.
+[1422.1 → 1423.3] (SPEAKER_21) del siglo XXI,
+[1423.3 → 1429.2] (SPEAKER_21) una infraestructura que desgraciadamente hemos tardado mucho porque había cuestiones legales que teníamos que adjudicar,
+[1429.3 → 1432.7] (SPEAKER_21) que significa una mejora de la gestión del aula.
+[1433.3 → 1437.8] (SPEAKER_21) No solo la eficiencia y eficacia de lo que trasladamos en nuestras redes,
+[1437.9 → 1438.8] (SPEAKER_21) que es muy importante,
+[1438.9 → 1459.5] (SPEAKER_21) sino que más una nueva infraestructura que hará un anillo circular prácticamente único en los municipios y ese anillo circular hará que tanto las áreas de urbanizaciones como nuestras áreas industriales y nuestros diseminados en un futuro tengan agua constante salvo que se agotaran los pozos de donde absorbemos.
+[1460.1 → 1462.0] (SPEAKER_21) Cosa que no pasará y después diré por qué.
+[1462.6 → 1474.1] (SPEAKER_21) Por tanto, aseguramos para muchas décadas el agua en Rivarrocho de Turia, tanto para el bien del consumo propio como para la gestión económica de la propia agua.
+[1474.7 → 1482.6] (SPEAKER_21) Añar la infraestructura que ahora tienen que redactar el proyecto será uno de los avances más importantes estratégicos de Rivarrocho de Turia.
+[1483.0 → 1484.4] (SPEAKER_21) Dará seguridad a las empresas.
+[1485.4 → 1498.9] (SPEAKER_21) calidad a los usuarios y los costes están bien distribuidos sin ningún incremento alguno respecto a lo que teníamos más allá de lo que va subiendo el IPC y algunos ajustes que como todo el mundo sabe se tienen que hacer.
+[1499.2 → 1501.6] (SPEAKER_21) Por tanto es un contrato muy muy importante.
+[1502.2 → 1503.2] (SPEAKER_21) Por otra parte,
+[1503.3 → 1508.1] (SPEAKER_21) es un contrato que ingresan las arcadas municipales casi cuatro millones de euros.
+[1510.1 → 1511.6] (SPEAKER_21) Contrato que ya tenía que ver.
+[1512.1 → 1538.0] (SPEAKER_21) teníamos que haber ingresado hace mucho tiempo y que tensionó nuestra tesorería a fechas cerca de unas elecciones que era entrenar a ojos hacer una obra importantísima importantísima donde los vecinos no se podían prácticamente ni duchar lo asumió el ayuntamiento lo gestionó el ayuntamiento y ahí está el resultado de esa diríamos inversión que algunos votaron en contra y esto muy importante
+[1539.3 → 1541.0] (SPEAKER_21) Por eso se puede llenar la boca de muchas cosas,
+[1541.1 → 1547.0] (SPEAKER_21) pero la realidad es cuando viene y vota exactamente una infraestructura o la vota en contra o se extiende.
+[1547.4 → 1548.2] (SPEAKER_21) Por tanto,
+[1548.2 → 1549.5] (SPEAKER_21) ese pilar también es muy importante.
+[1549.9 → 1552.1] (SPEAKER_21) Más liquidez al Ayuntamiento, que es lógico,
+[1552.2 → 1555.6] (SPEAKER_21) y recobrar lo que estaba en el contrato inicial,
+[1555.8 → 1558.0] (SPEAKER_21) que era una obra estratégica como la de Entrenajos.
+[1558.6 → 1564.8] (SPEAKER_21) Por otra parte, informar también a la ciudadanía que no obstante nosotros tenemos un derecho de una toma de agua con el EMSI.
+[1565.5 → 1571.1] (SPEAKER_21) entidad metropolitana del área metropolitana de Valencia que conectamos con la presa.
+[1571.2 → 1571.7] (SPEAKER_21) Es decir,
+[1571.9 → 1586.2] (SPEAKER_21) si en caso nuestros pozos tuvieran algún problema tendríamos en ese anillo circular cogeríamos agua del turia, de la presa, que no hemos renunciado y algunos nos aconsejaban que renunciáramos. Nosotros consideramos este gobierno que no teníamos que renunciar.
+[1586.3 → 1588.1] (SPEAKER_21) Por tanto es un tema muy importante,
+[1588.3 → 1589.5] (SPEAKER_21) como es la basura.
+[1590.2 → 1593.5] (SPEAKER_21) Son dos de los temas estrella en la gestión de un gobierno,
+[1593.7 → 1594.0] (SPEAKER_21) ¿vale?
+[1594.4 → 1598.5] (SPEAKER_21) Quiere decir en esto que, bueno, puede haber algún recurso, puede haberlo,
+[1598.6 → 1605.0] (SPEAKER_21) pero estamos convencidos de que el Supremo ha sentado sentencia con una contundencia brutal,
+[1605.0 → 1608.2] (SPEAKER_21) ha despejado cualquier duda sobre este gobierno,
+[1608.3 → 1616.0] (SPEAKER_21) los técnicos y cómo se ha ejecutado este proceso con transparencia. La secretaria estuvo al tanto y amplió varias veces la información.
+[1616.3 → 1621.4] (SPEAKER_21) a todas las empresas para que tengan la máxima inflación posible para poder competir en las mismas condiciones.
+[1621.6 → 1623.4] (SPEAKER_21) Y esto es un orgullo para este gobierno,
+[1623.6 → 1625.7] (SPEAKER_21) a diferencia de otros,
+[1625.7 → 1626.8] (SPEAKER_21) para que quede claro.
+[1627.0 → 1628.0] (SPEAKER_21) Nos cuesta mucho,
+[1628.1 → 1630.0] (SPEAKER_21) porque las cosas cuestan más, con transparencia,
+[1630.2 → 1632.0] (SPEAKER_21) con buenos informes cuesta mucho más,
+[1632.0 → 1633.6] (SPEAKER_21) como nos está gastando la basura,
+[1633.6 → 1640.4] (SPEAKER_21) pero que también será cuando antes de terminar esta legislatura el mejor contrato o uno de los mejores de la comunidad valenciana para gestionar los residuos.
+[1640.8 → 1641.8] (SPEAKER_21) Y, por otra parte,
+[1641.8 → 1642.8] (SPEAKER_21) quería decir también...
+[1643.6 → 1648.9] (SPEAKER_21) que y por último que yo creo que es muy importante decir que la empresa ha estado a la altura.
+[1650.1 → 1650.7] (SPEAKER_21) Por tanto,
+[1650.8 → 1657.3] (SPEAKER_21) si cuestionamos que sólo se presentará una empresa porque no era lógico en un mercado donde todos compiten,
+[1657.4 → 1659.3] (SPEAKER_21) que un contrato de 55 millones,
+[1659.6 → 1662.6] (SPEAKER_21) yo invito a los ciudadanos que sumen por pesetas,
+[1662.7 → 1664.7] (SPEAKER_21) porque a veces se nos pierde la cuantía,
+[1664.7 → 1666.9] (SPEAKER_21) pero que sumen por pesetas lo que vale.
+[1667.1 → 1670.9] (SPEAKER_21) Presentarse sólo una empresa en 2012 nos parecía un poco más que bochornoso,
+[1671.0 → 1672.2] (SPEAKER_21) más que bochornoso.
+[1672.3 → 1674.3] (SPEAKER_21) Han competido, ha ganado la mejor,
+[1674.5 → 1676.2] (SPEAKER_21) quien mejora arriba rocha de Turia.
+[1676.3 → 1687.7] (SPEAKER_21) no la empresa y por tanto vamos a tener un contrato de primera magnitud diríamos en la gestión y por último sí en la lucha contra el cambio climático cómo ha sido Guardian con esta empresa también
+[1688.4 → 1694.8] (SPEAKER_21) y con la Universidad Politécnica y con la Universidad de Valencia y con Medi 21 que está siendo el ejemplo, hoy nos ha llamado la COPE,
+[1694.9 → 1715.0] (SPEAKER_21) cómo a través de innovación e inversión en la lucha contra el cambio climático y la agenda 20-30 se hacen buenas políticas que defienden a nuestros vecinos, que salvan vidas ante los incendios, que previenen los incendios y eso es realmente la ciencia y por tanto el Ribarracha respira que está dentro del contrato si lo leéis
+[1715.1 → 1732.3] (SPEAKER_21) significa nada más y nada menos que una aportación para que todas nuestras áreas verdes tengan una gestión adecuada con plantación de árboles que serán sustituidos esos árboles que eliminarán parte del CO2 que emiten las empresas que compensaremos con las empresas.
+[1733.6 → 1736.7] (SPEAKER_21) por las directivas europeas, como bien ha dicho José Ángel,
+[1736.8 → 1747.8] (SPEAKER_21) y que haremos un pueblo más verde y un pueblo más eficaz y eficiente en la lucha contra el cambio climático, con la competitividad de nuestras empresas, porque se beneficiarán de eso en concreto que Vox no está de acuerdo,
+[1747.9 → 1749.3] (SPEAKER_21) y espero que los otros sí,
+[1749.4 → 1750.8] (SPEAKER_21) estoy convencido que,
+[1750.9 → 1751.6] (SPEAKER_21) por supuesto,
+[1751.8 → 1753.9] (SPEAKER_21) Escarro y la Podemos y Compromís sí lo están,
+[1754.0 → 1756.3] (SPEAKER_21) otros tengo dudas. Por tanto, en ese sentido,
+[1756.4 → 1757.9] (SPEAKER_21) agradecer el trabajo de todos y todas.
+[1758.3 → 1759.3] (SPEAKER_21) Hoy es un día importante,
+[1759.4 → 1760.3] (SPEAKER_21) muy importante.
+[1760.3 → 1765.0] (SPEAKER_21) importante en el principal contrato que tiene arriba la cerratura y que nos ha costado muchísimo pelearlo.
+[1765.3 → 1765.7] (SPEAKER_21) ¿Vale?
+[1765.9 → 1767.0] (SPEAKER_21) Vamos a pasar a votación.
+[1780.9 → 1784.6] (SPEAKER_21) Queda aprobada, pero con voto a favor y una abstención. Un rusoista,
+[1784.7 → 1785.3] (SPEAKER_23) a favor
+[1785.3 → 1786.0] (SPEAKER_21) Partido Popular.
+[1789.1 → 1790.4] (SPEAKER_21) Espereu atents a que vos sentiu.
+[1790.7 → 1791.8] (SPEAKER_24) Hi ha un problema de fer-ho bé.
+[1795.4 → 1796.7] (SPEAKER_21) Abstenció. Esquerra Republicana, podem?
+[1797.8 → 1798.4] (SPEAKER_21) Compromís?
+[1799.6 → 1801.1] (SPEAKER_21) Pasem al següent punt de l'ordre del dia,
+[1801.2 → 1802.5] (SPEAKER_21) el punt 5,
+[1802.7 → 1806.6] (SPEAKER_21) proposta d'acord relativa a l'expedient d'administració d'impacte territorial,
+[1807.4 → 1808.8] (SPEAKER_21) referència catastral Teresa.
+[1811.7 → 1821.6] (SPEAKER_25) Sí, buenas tardes. Traemos nuevamente una propuesta, una solicitud de minimización individualizada, en este caso en la zona de diseminados del Pla de Tochar.
+[1822.4 → 1829.3] (SPEAKER_25) Se trata de una vivienda unifamiliar de primera residencia. No consta en el Ayuntamiento expediente alguno de restauración de la legalidad.
+[1830.0 → 1838.0] (SPEAKER_25) Cumple las tres premisas que sabéis que son los primeros condicionantes que se miran cuando alguien viene a solicitarlo, que es densidad inferior a tres viviendas por hectárea,
+[1838.7 → 1844.8] (SPEAKER_25) legalizar la obra únicamente que existe como tal y siempre obra posterior al 2014,
+[1845.2 → 1847.0] (SPEAKER_25) perdón, anterior al 2014,
+[1847.2 → 1853.4] (SPEAKER_25) y el uso residencial y la edificación ha de haber sido finalizada, como os he comentado antes, del 20 de agosto de 2014.
+[1853.7 → 1856.6] (SPEAKER_25) En el documento que nos aporta el solicitante.
+[1856.7 → 1860.2] (SPEAKER_25) queda acreditado precisamente el cumplimiento de esas tres condiciones.
+[1860.9 → 1865.7] (SPEAKER_25) Al no estar afectado por zona inundable, no precisa de informe previo vinculante.
+[1865.8 → 1872.8] (SPEAKER_25) Esto es una condición que se ha puesto con el tema de las inundaciones para unos informes concretos si es que estuviese en esa zona,
+[1872.9 → 1874.9] (SPEAKER_25) pero en este caso no es así.
+[1875.2 → 1885.3] (SPEAKER_25) Vistos los informes tanto de la arquitecta municipal como del vicesecretario con fecha 1 de julio, proponemos al pleno en primer lugar declarar la situación individualizada de la minimización.
+[1885.7 → 1890.2] (SPEAKER_25) En segundo requeriría ante delegado para que realice la solicitud de licencia de minimización de impacto.
+[1890.6 → 1899.1] (SPEAKER_25) En tercero las condiciones edificatorias hasta que debe ajustarse la posterior licencia de legalización serán las indicadas en el punto tres que vienen aquí en la propuesta.
+[1899.4 → 1909.8] (SPEAKER_25) En el cuarto dar traslado del presente acuerdo al Departamento de Secretaría y Urbanismo a los efectos oportunos. En quinto la presente declaración se otorga dejando a salvo el derecho de propiedad y sin perjuicios a terceros.
+[1910.1 → 1912.6] (SPEAKER_25) En sexto lugar notificar a los interesados el acuerdo.
+[1912.5 → 1923.3] (SPEAKER_25) acuerdo así como del informe técnico haciendo el sostenimiento del recurso potestativo de reposición y séptimo facultar al alcalde para la firma de cuantos actos sean precisos para la efectividad de este acuerdo. Nada más.
+[1924.5 → 1925.0] (SPEAKER_21) ¿Palabras?
+[1927.2 → 1928.4] (SPEAKER_21) Una palabra. Teresa.
+[1929.9 → 1933.6] (SPEAKER_25) Bueno, pues como siempre digo en el caso de que ya tenemos una minimización,
+[1933.7 → 1936.3] (SPEAKER_25) está creo que ya la que hace quince,
+[1936.4 → 1937.2] (SPEAKER_25) catorce o quince.
+[1937.9 → 1950.0] (SPEAKER_25) Somos verdaderos fans de esta ley, de conseguir la minimización para las zonas de diseminados. También quiero poner en valor el esfuerzo que se hace desde el Departamento de Urbanismo y Secretaría,
+[1950.1 → 1954.4] (SPEAKER_25) porque en otros ayuntamientos, y quiero que lo sepan también nuestros vecinos,
+[1954.6 → 1960.8] (SPEAKER_25) en otros ayuntamientos se les tira la puerta cuando van a preguntar por la propuesta de minimización, o sea, no quieren ni oírlo.
+[1961.0 → 1962.1] (SPEAKER_25) Sin embargo, aquí,
+[1962.2 → 1964.9] (SPEAKER_25) y quiero aprovechar el pleno para decirles a todos los...
+[1964.7 → 1991.7] (SPEAKER_25) a todos en a todos en la minimización a todos los que vienen diseminados que la el departamento de urbanismo está abierto para todas las consultas que tengan que hacer a este respecto es una oportunidad muy importante que tienen de hecho en el espacio verde que hacemos en todos los diseminados así lo hacemos saber también es verdad que después esos espacios verdes siempre tenemos consultas al respecto y es una manera de no mirar al lado de lado a una situación que aparece en todos los municipios
+[1991.4 → 1996.3] (SPEAKER_25) municipios y es una forma de dignificar la vivienda y el estado en el que viven las personas, nada más.
+[1997.4 → 1998.5] (SPEAKER_21) Una palabra más.
+[1998.8 → 2000.0] (SPEAKER_21) Pasemos a la votación.
+[2000.1 → 2001.0] (SPEAKER_21) Es de prudencia.
+[2012.8 → 2013.4] (SPEAKER_21) Falta uno.
+[2013.8 → 2014.6] (SPEAKER_21) Falta uno,
+[2014.7 → 2015.0] (SPEAKER_21) ¿no?
+[2015.0 → 2015.4] (SPEAKER_21) No.
+[2015.4 → 2015.8] (SPEAKER_21) Vale.
+[2016.1 → 2017.5] (SPEAKER_21) El Grupo Socialista, Partido
+[2017.5 → 2018.2] (SPEAKER_25) A favor.
+[2018.2 → 2018.9] (SPEAKER_21) Popular,
+[2019.6 → 2024.5] (SPEAKER_21) Partido Vox, Esquerra Republicana Podem y Compromís.
+[2026.4 → 2028.0] (SPEAKER_21) Pasemos al impugnador del día,
+[2028.1 → 2029.0] (SPEAKER_21) que
+[2030.6 → 2037.0] (SPEAKER_21) es el punto 6E, felicitación de la Corporación Municipal de Alumnado del Conservatorio Profesional Municipal de Música de Río Rocha de Turia.
+[2039.8 → 2042.0] (SPEAKER_21) Estabinar. Primero votamos la dicterminación
+[2042.0 → 2043.4] (SPEAKER_25) La inclusión, la inclusión, sí,
+[2043.4 → 2043.5] (SPEAKER_21) por
+[2043.5 → 2043.6] (SPEAKER_25) que sí,
+[2043.6 → 2043.7] (SPEAKER_21) la
+[2043.7 → 2043.7] (SPEAKER_25) primero
+[2043.7 → 2043.9] (SPEAKER_21) inclusión.
+[2043.9 → 2046.5] (SPEAKER_25) la inclusión del día, la inclusión normal del día porque no ha pasado por comisión informativa.
+[2046.5 → 2049.2] (SPEAKER_21) Van a votar la inclusión del orden del día de este punto.
+[2049.6 → 2050.6] (SPEAKER_21) Voto a favor.
+[2050.8 → 2051.5] (SPEAKER_21) Bueno, votan.
+[2053.0 → 2055.1] (SPEAKER_25) No sé si caminando entonces es obligatorio que si caminamos.
+[2055.1 → 2056.9] (SPEAKER_21) Votemos. Vamos a votar de este punto.
+[2057.5 → 2058.5] (SPEAKER_21) Votemos increíble.
+[2058.5 → 2060.2] (SPEAKER_25) Ah, perdón, perdón, que a lo mejor no lo he puesto,
+[2060.2 → 2060.4] (SPEAKER_21) Ah,
+[2060.4 → 2060.6] (SPEAKER_25) perdón.
+[2060.6 → 2060.8] (SPEAKER_21) ya está.
+[2065.2 → 2065.2] (SPEAKER_22) Ja.
+[2065.2 → 2065.7] (SPEAKER_21) Temotan,
+[2065.7 → 2065.7] (SPEAKER_22) 
+[2074.6 → 2075.5] (SPEAKER_21) Pato Mbot,
+[2075.8 → 2076.7] (SPEAKER_21) a
+[2080.9 → 2085.0] (SPEAKER_21) favor i una abstenció, Vox Socialista,
+[2085.0 → 2085.5] (SPEAKER_25) A favor.
+[2085.5 → 2086.3] (SPEAKER_21) Partit Popular,
+[2086.6 → 2088.9] (SPEAKER_21) Vox, és que podem,
+[2089.3 → 2090.6] (SPEAKER_21) compromís.
+[2091.2 → 2092.7] (SPEAKER_21) ¿Pasemos a los impugnadores del día?
+[2092.7 → 2093.8] (SPEAKER_21) Ah, no, en el matiz punto.
+[2093.9 → 2094.5] (SPEAKER_21) Matiz punto.
+[2094.7 → 2095.4] (SPEAKER_25) Además, por favor.
+[2095.4 → 2096.7] (SPEAKER_21) Pero bueno, vamos a debatirlo.
+[2097.6 → 2098.5] (SPEAKER_21) Eva, por favor.
+[2107.3 → 2118.4] (SPEAKER_26) Bé, primer de tot disculpeu que vaig a sense dictaminar. Són notícies que vas veure durant cada setmana. Després vas parlar en Juanjo, el director del conservatori, i el prepararen sobretot entre diumenge i dilluns,
+[2118.4 → 2121.0] (SPEAKER_26) i ja no va entrar a més comissions.
+[2121.5 → 2125.9] (SPEAKER_26) Però me va resultar interessant i agradable dur la proposta en este ple,
+[2126.0 → 2134.1] (SPEAKER_26) perquè si no ja per a setembre se demorava molt en el temps i li llevava un poquet de força al fet que estos alumnes han sigut guardonats en...
+[2134.0 → 2135.7] (SPEAKER_26) en este moment avançades estiu.
+[2136.7 → 2137.2] (SPEAKER_26) Doncs això,
+[2137.2 → 2141.3] (SPEAKER_26) des de la corporació, bueno, si òbviament si la proposta és acceptada per tots,
+[2141.4 → 2161.5] (SPEAKER_26) la idea és reconèixer l'alumnat del Conservatori Professional Municipal de Música de Ribarrotxa de Turia, reconèixer els seus esforços, dedicació i talent i tots els resultats destacats que estan aconseguint en l'àmbit autonòmic, estatal, inclús internacional. I sobretot destacar que els tres alumnes que han sigut guardonats són també veïns i veïnes de Ribarrotxa de Turia.
+[2161.5 → 2161.7] (SPEAKER_26) història.
+[2162.3 → 2166.1] (SPEAKER_26) Sobretot aquests èxits donen ressaltar que són fruit del talent,
+[2166.2 → 2181.6] (SPEAKER_26) del compromís de les famílies, del professorat, però també del compromís polític de comptar amb un conservatori propi amb 36 cursos escolars ja de trajectòria que contribuï sobremanera a dinamitzar la vida sociocultural del nostre municipi mitjançant concerts,
+[2182.1 → 2186.8] (SPEAKER_26) audicions i nombroses col·laboracions no solament dins del municipi sinó en la seua...
+[2186.6 → 2190.9] (SPEAKER_26) seva projecció exterior que li donen identitat a Riba Roja,
+[2191.3 → 2197.6] (SPEAKER_26) que esta és força, esta trajectòria ha sigut possible gràcies a l'esforç contingut de la...
+[2198.1 → 2202.9] (SPEAKER_26) del que governa en este cas, però de les altres corporacions municipals que han passat al llarg dels anys,
+[2203.5 → 2208.1] (SPEAKER_26) i per tot això es proposa primer felicitar Ariadna Rosselló Sánchez,
+[2208.5 → 2215.6] (SPEAKER_26) alumna del Conservatori Professional Municipal de Música, per haver aconseguit el segon premi al concurs internacional d'Orbetello,
+[2215.7 → 2216.2] (SPEAKER_26) Itàlia,
+[2216.5 → 2224.7] (SPEAKER_26) primer premi al concurs internacional Franz Liszt, categoria en línia, primer premi absolut al concurs de Joves Valors Valencians, que fem així a Riba Rocha.
+[2224.6 → 2228.0] (SPEAKER_26) Primer premi al concurs internacional Gonzalo Soriano,
+[2228.1 → 2228.7] (SPEAKER_26) categoria C,
+[2228.8 → 2229.8] (SPEAKER_26) San Joan de la Cano.
+[2230.1 → 2234.8] (SPEAKER_26) Segon felicitar Paula Martí Pérez, alumna de conservatori professional de música,
+[2235.1 → 2239.4] (SPEAKER_26) per haver aconseguit primer premi absolut al concurs de joves valors valencians,
+[2239.4 → 2240.3] (SPEAKER_26) rebarrocha de Turia.
+[2240.6 → 2244.7] (SPEAKER_26) Tercer premi al concurs nacional de piano de Carlet, València.
+[2246.0 → 2252.0] (SPEAKER_26) En tercer lloc, felicitar Manel Belda Agustí, alumne del Conservatori Professional de Música de Riba Rocha,
+[2252.1 → 2256.7] (SPEAKER_26) per haver aconseguit primer premi al concurs de Joves Valors Valencians de la Rocha de Túria,
+[2257.1 → 2260.2] (SPEAKER_26) segon premi al concurs internacional de piano Sant Joan de la Can.
+[2261.2 → 2269.2] (SPEAKER_26) Felicitar el professorat del Conservatori Professional Municipal per aconseguir o contribuir a aquesta excel·lència educativa i musical.
+[2270.0 → 2273.7] (SPEAKER_26) Felicitar les famílies, d'Ariadna, de Paola i de Manel pel suport,
+[2273.8 → 2277.0] (SPEAKER_26) la dedicació i el compromís a la formació de seus fills i filles.
+[2277.5 → 2280.5] (SPEAKER_26) I per últim, manifestar el desig que aquest èxit,
+[2280.5 → 2299.2] (SPEAKER_26) reflex del talent de la nostra joventut i de la qualitat dels nostres conservatoris, tinguen continuïtat en el temps i reiterar el nostre compromís en el manteniment del conservatori propi que continuï oferint formació de qualitat i siga un referent educatiu i cultural a la comarca autonòmica, inclús, com hem dit,
+[2299.4 → 2299.8] (SPEAKER_26) internacional.
+[2302.3 → 2304.2] (SPEAKER_21) Gràcies, paraules, Ernesto.
+[2305.9 → 2306.7] (SPEAKER_20) Gràcies.
+[2306.8 → 2326.8] (SPEAKER_20) A vosaltres pressupost que anem a felicitar a Manel, a Paola i a Ariadna, però en la proposta d'acord no sabem si és una errata o no, però el primer premi absolut per dos alumnes o és que és en diferent any o és que pots tindre diversos primers premis absoluts.
+[2328.5 → 2339.0] (SPEAKER_20) I per exemple en Manel i Paula sabem que és piano perquè han guanyat un concurs internacional de piano els dos però també estaria bé que sabérem Ariadna quin instrument toca.
+[2339.7 → 2340.4] (SPEAKER_26) Sí, piano.
+[2340.5 → 2341.3] (SPEAKER_26) Ariadna és piano.
+[2341.5 → 2342.6] (SPEAKER_21) Un momentet, que ho tenim escrit.
+[2342.6 → 2343.1] (SPEAKER_26) Ah, perdó.
+[2344.1 → 2344.7] (SPEAKER_21) Ja s'ha acabat?
+[2345.1 → 2353.9] (SPEAKER_20) No, i i la feta si són del 2026 els concursos, 2025 eh no sé, un referent acadèmic mola que estiga
+[2354.6 → 2355.4] (SPEAKER_20) Primer premi,
+[2355.5 → 2357.1] (SPEAKER_20) concurs internacional 2025,
+[2357.3 → 2359.5] (SPEAKER_20) Sant Joan de Alacant, 2026.
+[2359.7 → 2361.4] (SPEAKER_20) Però bé, que per la nostra banda,
+[2362.4 → 2364.8] (SPEAKER_20) un aplaudiment per ells, pais tres,
+[2365.0 → 2368.2] (SPEAKER_20) per les famílies que ho suporten i pel conservatori, tots els que treballen en ell.
+[2368.8 → 2369.1] (SPEAKER_20) Però bé,
+[2369.2 → 2376.4] (SPEAKER_20) tenim en falta que no sabem si és una errada que dos alumnes tinguin el mateix primer premi o és de diferents anys,
+[2376.6 → 2379.3] (SPEAKER_20) o és possible que sigui el mateix premi.
+[2381.2 → 2386.1] (SPEAKER_20) El Instrumento que toquen y el año de las premisas conseguidas.
+[2386.3 → 2386.6] (SPEAKER_20) Gracias.
+[2387.9 → 2389.0] (SPEAKER_21) Mis palabras.
+[2389.6 → 2390.1] (SPEAKER_21) Eva.
+[2394.5 → 2395.9] (SPEAKER_26) Como habréu echado un poquito,
+[2396.0 → 2397.0] (SPEAKER_26) perdón, son de piano,
+[2397.1 → 2399.9] (SPEAKER_26) que tenían el primer párrafo de desarrollar y son desde el...
+[2400.0 → 2401.2] (SPEAKER_40) del dos mil veintiséis.
+[2401.7 → 2403.8] (SPEAKER_40) Y el premio absoluto es que son categorías diferentes.
+[2407.4 → 2407.7] (SPEAKER_40) Ya.
+[2410.2 → 2411.0] (SPEAKER_41) Pues queda por contestar.
+[2413.8 → 2420.7] (SPEAKER_41) Queda per contestar ja. De tota manera els recordeu-se que les comissions informatives, que van en dimissions, el president... Ah, que no estava menjó, que no estava dictaminat.
+[2420.7 → 2421.3] (SPEAKER_40) No, que no estaba.
+[2421.3 → 2422.6] (SPEAKER_41) Una putada.
+[2423.0 → 2423.5] (SPEAKER_41) Bueno,
+[2423.5 → 2423.6] (SPEAKER_40) ¿Una
+[2423.6 → 2423.9] (SPEAKER_41) pues no
+[2423.9 → 2424.7] (SPEAKER_40) de ellas o de ellas?
+[2424.7 → 2426.0] (SPEAKER_41) pasa res lo que pueden hacer,
+[2426.1 → 2426.7] (SPEAKER_41) claro,
+[2426.9 → 2427.5] (SPEAKER_41) no pasa res.
+[2427.6 → 2429.2] (SPEAKER_41) Si hay alguna cuestión que podemos hacer,
+[2429.3 → 2431.0] (SPEAKER_41) se fechilla hasta la felicitación, ¿vale?
+[2431.3 → 2434.1] (SPEAKER_41) Que haya rapeada la propuesta de Alberto y si hay alguna cuestión,
+[2434.2 → 2436.1] (SPEAKER_41) pues se fechilla y se clarifica, ¿vale?
+[2436.3 → 2437.6] (SPEAKER_41) Pasemos a la votación a este punto.
+[2464.2 → 2467.9] (SPEAKER_41) A ver, que a nivel de las comisiones, y disculpe, estaba hablando de la secretaria,
+[2468.0 → 2469.8] (SPEAKER_41) cuando os arriben las mociones,
+[2470.0 → 2472.2] (SPEAKER_41) lo he dicho, lo digo porque podría venir rectificado ya,
+[2472.3 → 2473.5] (SPEAKER_41) en vez de decirlo al pleno, oye,
+[2473.6 → 2474.6] (SPEAKER_41) vale,
+[2474.7 → 2478.4] (SPEAKER_41) lo que habría de decir es que dona temps,
+[2478.5 → 2480.5] (SPEAKER_41) abans, para que si no ya lo hubiéramos todo disaproado cuando toca,
+[2480.6 → 2481.9] (SPEAKER_41) simplemente quería decir eso, vale.
+[2482.3 → 2484.7] (SPEAKER_41) Pasemos al 100 puntos del orden del día, se aprueba por unanimidad,
+[2484.8 → 2485.7] (SPEAKER_41) gracias,
+[2485.9 → 2490.1] (SPEAKER_41) sobre todo por el esfuerzo del conservatorio y mis tres alumnes premiados.
+[2490.5 → 2495.1] (SPEAKER_41) i familiars. Passem a següent punt que se té,
+[2496.5 → 2498.3] (SPEAKER_41) que és assumptes d'urgència,
+[2498.4 → 2498.8] (SPEAKER_41) no?
+[2499.1 → 2499.5] (SPEAKER_41) Correcte?
+[2499.5 → 2499.9] (SPEAKER_40) Sí.
+[2500.0 → 2506.8] (SPEAKER_41) Vale, tenim tres punts d'urgència que tenim que votar, crec que el regidor ja ha separat el fons del que vosaltres,
+[2506.9 → 2508.4] (SPEAKER_41) el que duu algun punt,
+[2508.5 → 2515.7] (SPEAKER_41) però anem a votar-los primer votarem el punt d'urbanisme que és modificació de les bases d'execució del pressupost base número 32.
+[2516.5 → 2517.4] (SPEAKER_41) Pues justo, ¿no?
+[2517.7 → 2518.3] (SPEAKER_42) Sí.
+[2523.9 → 2524.2] (SPEAKER_40) Otra.
+[2524.8 → 2536.5] (SPEAKER_43) Pero... Vale, sí, bueno, la urgencia es que había que hacer la modificación y en las bases de ejecución presupuestaria y con que se tenga que publicar pues antes se apruebe, pues antes estará ya a replegar en el presupuesto y se pueda donar la subvención.
+[2537.6 → 2538.8] (SPEAKER_41) Vale, ¿alguna cuestión a este punto?
+[2539.6 → 2539.9] (SPEAKER_40) Otra.
+[2540.9 → 2541.9] (SPEAKER_40) África, exaurencia no?
+[2541.9 → 2542.0] (SPEAKER_40) Sí.
+[2542.0 → 2545.5] (SPEAKER_41) Sí, la urgencia. No, pues si no, si volía dir alguna cosa, la urgencia.
+[2545.7 → 2547.0] (SPEAKER_41) Va a ser votada la urgencia.
+[2554.6 → 2556.7] (SPEAKER_41) Vale, pues queda aprobada, perdón, voto a favor.
+[2557.1 → 2558.1] (SPEAKER_41) Y tres ascensión,
+[2558.2 → 2558.8] (SPEAKER_41) Rousselista.
+[2558.8 → 2559.4] (SPEAKER_40) A favor.
+[2559.4 → 2560.2] (SPEAKER_41) Partido Popular,
+[2560.5 → 2561.2] (SPEAKER_40) A favor.
+[2561.2 → 2561.6] (SPEAKER_41) Vox,
+[2562.0 → 2564.6] (SPEAKER_41) Esquerra Unida Podem, Compromís.
+[2565.9 → 2567.0] (SPEAKER_41) Pasemos a desarrollar el punto.
+[2567.5 → 2568.3] (SPEAKER_41) José Ángel.
+[2570.1 → 2570.6] (SPEAKER_43) Sí, bueno,
+[2570.6 → 2594.4] (SPEAKER_43) se trata como habéis visto en el informe y como ya os comenté que en las bases en el presupuesto en sí, sí que está incluida la subvención a la parroquia a la Asunción de Nuestra Señora sobre lo que es la rehabilitación del campanario, pero no se había replegado per error en las bases de ejecución. Lo que tenemos que hacer es incorporarla en las bases de ejecución y así que pueda ser efectiva la subvención cuantas antes a la parroquia. Gracias.
+[2595.3 → 2596.8] (SPEAKER_41) ¿Una cuestión a este punto?
+[2597.5 → 2598.2] (SPEAKER_41) ¿Alguna cuestión, Alberto?
+[2601.7 → 2612.2] (SPEAKER_44) Yo supose que els grups que donaren el vot a favor en el pressupost, ara esta modificació pressupostària o de les bases d'execució també donen el vot a favor.
+[2613.2 → 2617.2] (SPEAKER_44) Perquè, vamos, si votaren a favor del conjunt, suposa que estaran a favor de tot.
+[2617.7 → 2618.7] (SPEAKER_44) Soles és això. Gràcies.
+[2619.3 → 2620.2] (SPEAKER_41) ¿Alguna palabra más?
+[2621.0 → 2622.2] (SPEAKER_41) Compromís Tofa.
+[2626.3 → 2632.3] (SPEAKER_44) explicar un poc el nostre vot. El nostre vot va ser una abstenció.
+[2632.7 → 2636.0] (SPEAKER_44) I li vaig a contestar al portaveu del Partit Popular,
+[2636.8 → 2638.8] (SPEAKER_44) i crec que també...
+[2641.5 → 2661.7] (SPEAKER_44) També podria contestar-li al senyor alcalde quan fa les afirmacions de que no has aprovat el pressupost o sí que l'has aprovat el pressupost i que haurien nosaltres aprovar en el pressupost en el seu conjunt perquè en la majoria de les partides pressupostàries estarem d'acord.
+[2661.8 → 2665.4] (SPEAKER_44) Evidentment, si estiguérem plenament d'acord,
+[2666.1 → 2669.5] (SPEAKER_44) Jo no estaria en compromís, estaria en el Partit Socialista,
+[2669.6 → 2671.2] (SPEAKER_44) i nosaltres,
+[2671.5 → 2674.6] (SPEAKER_44) encara que m'he deixat cap el portador de Vox,
+[2674.6 → 2682.5] (SPEAKER_44) nosaltres sempre sospesem lo millor per als nostres veïns i veïnes, és a dir,
+[2682.7 → 2685.2] (SPEAKER_44) si en el conjunt del pressupost
+[2685.4 → 2693.6] (SPEAKER_44) Ni han més beneficis per a nosotros, o sigui, per a nosotros, que creguem nosaltres que beneficien els nostres veïns i veïnes, votarem a favor.
+[2694.5 → 2695.2] (SPEAKER_44) Si no,
+[2695.3 → 2696.4] (SPEAKER_44) el votarem en contra.
+[2696.8 → 2710.5] (SPEAKER_44) Però ara, assenyalem-nos, perquè hem aprovat un pressupost i ara anem a votar una abstenció o en contra, me té igual lo que siga d'este punt en concret.
+[2711.2 → 2712.0] (SPEAKER_45) Por la verdad,
+[2712.2 → 2718.0] (SPEAKER_45) es que me provoca la risa. Gracias.
+[2718.7 → 2722.3] (SPEAKER_41) Me pararé usted su intervención dos minutos.
+[2727.6 → 2732.7] (SPEAKER_43) No, sols dir una qüestió al respecte. Així poden haver diversos punts de vista.
+[2732.8 → 2741.7] (SPEAKER_43) Un pot veure'l des d'un punt de vista religiós i un altre des del propi patrimoni del propi poble, del propi municipi de Ribarocha.
+[2741.9 → 2745.3] (SPEAKER_43) Algú pot veure l'església com un centre religiós.
+[2746.8 → 2756.3] (SPEAKER_43) catòlic i un altre pobolelo com un edifici històric de patrimoni del nostre municipi i que n'hi ha que valorar-lo i rehabilitar-lo si fa falta.
+[2756.5 → 2759.9] (SPEAKER_43) I cadascú que ho veja des del punt de vista que ho veja,
+[2760.0 → 2770.8] (SPEAKER_43) però nosaltres sempre estarem a favor de rehabilitar aquells edificis que fan créixer arriba rotxa i li donen importància com és un edifici com és la Iglesia del nostre municipi.
+[2770.5 → 2771.6] (SPEAKER_43) que no esté ocurriendo. Gracias.
+[2772.1 → 2773.3] (SPEAKER_41) Alguna palabra más?
+[2774.6 → 2775.9] (SPEAKER_41) Se ha un intervencionado, Alberto.
+[2776.9 → 2781.2] (SPEAKER_44) És més atros en la mateixa tesis que compromís,
+[2781.9 → 2789.2] (SPEAKER_44) com no estarem a favor de tot, votarem abstenció, que se suposa que padeixer estar en abstenció quan estàs ni a favor ni en contra.
+[2789.9 → 2792.4] (SPEAKER_44) En aquest cas, és una ajuda.
+[2793.1 → 2796.0] (SPEAKER_44) La patrimoni és una ajuda al campanar i de l'Església,
+[2796.0 → 2799.6] (SPEAKER_44) un bé públic de tots els riberrotxeros i votarem a favor,
+[2799.7 → 2800.2] (SPEAKER_44) sola és això.
+[2800.6 → 2803.9] (SPEAKER_44) Però no ho dirà en ningun sentit per ficar mal,
+[2804.0 → 2807.5] (SPEAKER_44) és perquè siguem coerents tots en la nostra votació.
+[2809.2 → 2810.1] (SPEAKER_41) Más palabras.
+[2811.8 → 2812.3] (SPEAKER_41) Vox.
+[2814.0 → 2818.7] (SPEAKER_45) Me ha parecido muy coherente la explicación que ha dado y nuestro voto va a ser a favor.
+[2820.1 → 2821.4] (SPEAKER_41) Mis palabras,
+[2821.4 → 2823.4] (SPEAKER_41) es que ahora ya podemos.
+[2825.8 → 2830.2] (SPEAKER_43) I ara no vaig intervindre, però aprofitant-vos intervindre per a passar-vos per la
+[2830.2 → 2834.7] (SPEAKER_46) pedra.
+[2834.7 → 2839.7] (SPEAKER_43) Que a veure, jo crec que és important saber lo que estem votant. I és, lo que estem votant és que...
+[2840.0 → 2847.6] (SPEAKER_45) Ha hagut un fallo, no es va incorporar esta qüestió a la base d'execució. Ara sí que s'hi vol incloure,
+[2847.7 → 2848.4] (SPEAKER_45) per tant,
+[2848.5 → 2853.0] (SPEAKER_45) com a tal no estem votant si això va a algor religion o no.
+[2853.3 → 2854.0] (SPEAKER_45) És a dir,
+[2854.6 → 2865.9] (SPEAKER_45) el tema no dic perquè entenc que la intervenció has vingut per aquesta qüestió, però el que està clar és que en el pressupost, en el conjunt del pressupost,
+[2865.9 → 2866.1] (SPEAKER_46) no hi ha cap qüestió que s'hi incloure.
+[2865.6 → 2874.9] (SPEAKER_44) perquè, suposat, hi havia una subvenció de 40.000 euros per a la parròquia Nostra Senyora de l'Assumpció, d'acord? Ara s'està votant una qüestió que té a veure.
+[2875.5 → 2901.6] (SPEAKER_45) per un fallo que ara es té que incloure i que a més de per urgència, cosa que també podria haver sigut d'altra forma perquè qüestions polítiques i a més per tant el vot que avui se vota sí no és tant la subvenció sinó també tot el conjunt de esta pràctica política per tant abordar esta qüestió en el pressupost o en la magnitud que té un pressupost crec que és un error polític. Ho dic per al portaveu del Partit Popular.
+[2903.2 → 2905.2] (SPEAKER_41) més paraules, vull que intervisió un minut,
+[2905.4 → 2906.8] (SPEAKER_41) em pensava que vindria tant de debat
+[2907.9 → 2910.5] (SPEAKER_43) Això no és una puntualització al Partit Popular,
+[2910.6 → 2918.0] (SPEAKER_43) o igualment abans ja ho veig, però al Partit Popular el pressupost és votar en contra, votar no i no votar abstenció, sigui un no.
+[2920.5 → 2925.4] (SPEAKER_41) bé i està tot el sentit, jo també quedo un poc que paràdic, no ho sé, cada un interpreta el bo com vol
+[2926.2 → 2928.9] (SPEAKER_41) Però era un no, i bueno, no passa res,
+[2929.1 → 2930.5] (SPEAKER_41) se vota que no al pressupost,
+[2930.6 → 2936.4] (SPEAKER_41) hi ha una sèrie de partides i en general pots estar a favor d'alguna qüestió en cas que estiguis en contra,
+[2936.6 → 2941.5] (SPEAKER_41) ja sé que t'has equivocat perquè és el no, crec que no ha votat ningú.
+[2942.6 → 2943.2] (SPEAKER_44) Además de sentirse
+[2943.2 → 2943.4] (SPEAKER_41) Sí,
+[2943.4 → 2943.6] (SPEAKER_44) comprometido.
+[2943.6 → 2943.8] (SPEAKER_41) sí,
+[2943.8 → 2943.9] (SPEAKER_44) 
+[2943.9 → 2945.5] (SPEAKER_41) estoy hablando yo, Alberto,
+[2945.6 → 2946.5] (SPEAKER_41) estoy hablando yo, venga.
+[2946.8 → 2953.9] (SPEAKER_41) Creo que hoy a dir, lo importante de todo eso es que efectivamente el presupuesto ya es votado y lo que no hay un acuerdo plenario,
+[2954.0 → 2956.5] (SPEAKER_41) no va a entrar aquí votar que sí y que no, porque no vea el caso,
+[2956.7 → 2957.8] (SPEAKER_41) sin un acuerdo plenario,
+[2957.8 → 2968.9] (SPEAKER_41) dice presupuesto que hay que haber una gran mayoría aprobada en el sentido de que hay una partida presupuestaria para ayudar a la restauración de unos campanaris de nuestra iglesia prestará.
+[2968.9 → 2976.6] (SPEAKER_41) en francada dificultades i això va a parar el ple en sentit que cadascú té el seu vot i és important per al poble,
+[2976.7 → 2981.1] (SPEAKER_41) de debò són discussions que mantenen respectant cadascú el que diu,
+[2981.1 → 2981.7] (SPEAKER_41) lògicament,
+[2981.8 → 2987.8] (SPEAKER_41) l'important és que per a fer efectiu efectivament aquests diners tenim que modificar la base del que estem votant ara
+[2989.6 → 2991.3] (SPEAKER_41) L'important és que votem ara tots,
+[2991.4 → 2993.3] (SPEAKER_41) per a mi, aquells que anaven com a alcalde,
+[2993.4 → 3003.3] (SPEAKER_41) que s'arreglin els campanars ajudant també a nosaltres i que tinguem una església ben bonica i l'Ajuntament que també hem de reformar en breu però està allà una pincelleta també.
+[3003.5 → 3005.3] (SPEAKER_41) Així que anem a votar. Vinga.
+[3017.3 → 3022.2] (SPEAKER_41) Pues queda aprobado per de no vacha favor y dos abstinions. El Grupo Socialista,
+[3022.3 → 3022.6] (SPEAKER_41) Partido
+[3022.6 → 3023.1] (SPEAKER_40) A favor.
+[3023.1 → 3023.9] (SPEAKER_41) Popular,
+[3024.1 → 3024.9] (SPEAKER_41) Vox,
+[3025.0 → 3026.7] (SPEAKER_41) Esquerra y Podemos,
+[3026.7 → 3030.2] (SPEAKER_41) Compromís, pasemos al siguiente punto del día,
+[3031.0 → 3032.7] (SPEAKER_41) que es el punto de secretaría,
+[3032.8 → 3034.2] (SPEAKER_41) aprobación inicial de la sesión.
+[3035.7 → 3036.2] (SPEAKER_41) A veure, sí,
+[3036.3 → 3037.7] (SPEAKER_41) però és l'urgència.
+[3038.0 → 3039.9] (SPEAKER_41) Passem al 100 punts per l'urgència, perdó.
+[3040.1 → 3042.1] (SPEAKER_41) M'he tocat l'urgència primer,
+[3042.2 → 3044.2] (SPEAKER_41) però és el 100 punts. A aprovació inicial,
+[3044.4 → 3044.8] (SPEAKER_41) bueno,
+[3044.8 → 3060.6] (SPEAKER_41) dintre del punt del segon apartat, per ser més exactes, a aprovació inicial de la sessió gratuïta de parcel·la a la Generalitat Valenciana per entrar dins del pla VIVEC, crec que és, no?, de construcció de vivendes de protecció pública. Té la paraula la regidora urbanisme, Teresa.
+[3062.3 → 3065.4] (SPEAKER_40) Sí, bueno, como ya os comenté en la comisión informativa,
+[3065.5 → 3072.3] (SPEAKER_40) la idea había sido poderlo llevar, no pudimos porque llevaba unos trámites de informes, que ya habréis visto en la propuesta de acuerdo,
+[3072.4 → 3073.8] (SPEAKER_40) por todos los departamentos.
+[3074.1 → 3075.8] (SPEAKER_40) Pero bueno, la vivienda es un tema importante,
+[3075.9 → 3085.6] (SPEAKER_40) que creo que no tiene discusión alguna aquí en el Pleno, y sí que queríamos un poco avanzar para los periodos de exposición al público, posibles alegaciones y demás,
+[3085.7 → 3089.3] (SPEAKER_40) con el objetivo de poder poner en marcha esta actuación lo antes posible.
+[3089.2 → 3090.8] (SPEAKER_47) Sí, una colaboración con la consellería.
+[3091.7 → 3092.1] (SPEAKER_41) Gràcies.
+[3092.6 → 3093.8] (SPEAKER_41) Bé, més paraules? No.
+[3093.9 → 3094.7] (SPEAKER_47) Ah, perdón.
+[3094.7 → 3095.2] (SPEAKER_40) És urgència.
+[3095.2 → 3095.4] (SPEAKER_41) Sí.
+[3095.4 → 3096.3] (SPEAKER_47) Es urgencia.
+[3096.3 → 3097.8] (SPEAKER_41) Bé, urgència, votant la urgència.
+[3098.3 → 3099.0] (SPEAKER_41) Votant la urgència.
+[3099.7 → 3100.5] (SPEAKER_41) El punt.
+[3107.6 → 3108.2] (SPEAKER_41) Falta un vot.
+[3108.5 → 3108.9] (SPEAKER_41) Vale.
+[3109.1 → 3110.0] (SPEAKER_41) Ja no vaig a favor.
+[3110.1 → 3110.7] (SPEAKER_41) Dos ascensions.
+[3110.8 → 3111.6] (SPEAKER_41) Curs socialista.
+[3111.6 → 3112.0] (SPEAKER_40) A favor.
+[3112.0 → 3112.6] (SPEAKER_41) Partir popular.
+[3113.2 → 3113.6] (SPEAKER_41) Vox.
+[3114.1 → 3118.8] (SPEAKER_41) Esquerra Unida podem compromís passem a desenvolupar el punt 3.
+[3120.3 → 3136.5] (SPEAKER_47) Vale, pues en la aprobación inicial de cesión gratuita de parcela que llevamos, se trata de una parcela edificable situada en la calle Hernán Cortés número 2, para situarnos a los vecinos que nos están escuchando, es una parcela que hay al lado del cole Candeluria.
+[3137.7 → 3161.5] (SPEAKER_47) Esta parcela está clasificada como suelo urbano residencial. Ya en el pleno celebrado el 3 de junio del 2024 acordamos la adhesión al convenio marco de colaboración entre la Generalitat, la CEM y los municipios para el impulso de la promoción de viviendas de protección pública en suelo en las administraciones locales. Sabéis que hicimos una primera propuesta de este mismo suelo dentro del plan vive,
+[3161.7 → 3163.4] (SPEAKER_47) pero sí que es verdad que...
+[3163.9 → 3167.1] (SPEAKER_47) Hay como un apartado, que es lo que os comenté, dentro del Plan Vive,
+[3167.1 → 3170.8] (SPEAKER_47) que es la plan de reconstrucción local para municipios exclusivos de Dana.
+[3171.5 → 3195.0] (SPEAKER_47) ¿Qué diferencia hay? Pues en la primera propuesta que ofrecíamos ese suelo entrábamos para una construcción público-privada en la que eran los promotores externos los que ven los suelos y a partir de ahí optan a que entra en esa actuación de ejecutar esas viviendas de alquiler asequible con una concesión que tienen de 25 años aproximadamente pues para amortizar esa inversión y después pasaría a los ayuntamientos.
+[3195.1 → 3198.5] (SPEAKER_47) Y en esta opción que nos presentó la consellería que fue en la reunión que estuvimos con la Dirección de
+[3198.5 → 3198.9] (SPEAKER_46) Salud.
+[3198.3 → 3202.8] (SPEAKER_47) la directora general del EVA en el 18 de mayo de este año,
+[3202.9 → 3217.7] (SPEAKER_47) pues al estar dentro del Pueblo de Odana, esa actuación ya no se hace por esa relación público-privada, sino que es la propia consellería la que promociona la ejecución. En este caso hablaríamos de que ejecuta el proyecto y ejecuta las obras.
+[3217.8 → 3219.9] (SPEAKER_47) Y hablamos de viviendas industrializadas.
+[3219.9 → 3222.1] (SPEAKER_47) En este caso la propuesta que nos han presentado,
+[3222.2 → 3223.9] (SPEAKER_47) si todo encaja bien…
+[3223.7 → 3228.5] (SPEAKER_47) hablaríamos de 36 viviendas de dos habitaciones y 24 plazas de aparcamiento.
+[3228.5 → 3246.2] (SPEAKER_47) Así que hay como una serie de acuerdo entre consellería y en este caso ayuntamientos pues un poco para la flexibilización que tienen los planes generales para intentar optimizar el máximo el suelo y potenciar al máximo el poder tener el máximo de viviendas. En este caso serían estas 36 que os he comentado si no pasa nada. Sé que están,
+[3246.4 → 3248.8] (SPEAKER_47) lo que traemos aquí sería un poco la parte jurídica.
+[3248.8 → 3262.5] (SPEAKER_47) técnica, la parte técnica tanto de nuestro equipo de urbanismo como desde consellería están viendo las posibilidades que hay, si pueden ser más de treinta y seis mejor, but como mínimo la opción que ellos han valorado que es rentable y que tienen planteada serían des de treinta y seis viviendas.
+[3262.4 → 3269.3] (SPEAKER_47) Habréis visto que constan todos los expedientes que tienen que figurar, tanto de urbanismo como secretaría como de intervención,
+[3269.4 → 3271.2] (SPEAKER_47) que aparece en el inventario municipal,
+[3271.6 → 3276.5] (SPEAKER_47) el tema de la segregación que no es necesario porque será cuando cedamos ese suelo.
+[3276.6 → 3279.5] (SPEAKER_47) Y sí quiero decir que ese compromiso es para 30 años,
+[3279.6 → 3283.0] (SPEAKER_47) o sea, el compromiso de la Generalitat es que en 30 años, como mínimo,
+[3283.1 → 3287.7] (SPEAKER_47) ese suelo va a ser para viviendas equiles, después pasaría al ayuntamiento. Creemos que es una oportunidad.
+[3288.3 → 3312.7] (SPEAKER_47) fenomenal que no podemos desestimar y por eso un poco también ha sido la urgencia porque cuanto antes lo llevemos nuestro objetivo sería pues como hemos llegado ahora ahora en el pleno de julio traer la aprobación inicial el periodo de alegaciones si todo va bien el definitivo sería en septiembre y la consellería podría licitar la obra y adjudicarla para final de año vale esos son un poco los plazos que que venimos trabajando con la consellería
+[3313.0 → 3315.1] (SPEAKER_47) Y bueno, en esos serían los puntos de acuerdo,
+[3315.2 → 3316.5] (SPEAKER_47) serían los que se comentamos.
+[3319.4 → 3320.8] (SPEAKER_44) Sí, gracias señora alcalde.
+[3321.1 → 3322.2] (SPEAKER_44) Una duda,
+[3322.3 → 3340.1] (SPEAKER_44) yo entendía que los 30 años es para el propietario de la vivienda, a partir de los 30 años puedes vender la vivienda a quien quieras, como quieras y de la forma que quieras. O sea, la vivienda vuelve a ser del Ayuntamiento de Riva Roja y estas viviendas no salen a la venta, las cede el Ayuntamiento.
+[3342.1 → 3349.7] (SPEAKER_44) Eso es una consulta. ¿Y sobre el solar en el plan Casa 47 del Gobierno de España,
+[3349.9 → 3354.5] (SPEAKER_44) este solar estaba creo que también incluido en ese plan de vivienda?
+[3356.7 → 3360.8] (SPEAKER_44) ¿Se notifica al Gobierno de España que ya no pertenece a ese plano?
+[3360.9 → 3362.7] (SPEAKER_44) ¿Cómo funciona la cosa?
+[3362.8 → 3363.3] (SPEAKER_44) Gracias.
+[3363.9 → 3365.3] (SPEAKER_41) ¿Quería box?
+[3368.9 → 3373.2] (SPEAKER_44) Muchas gracias alcalde. Teresa gracias por la explicación que me diste el otro día.
+[3375.3 → 3391.3] (SPEAKER_44) Para mí desde luego y creo que para todos nosotros la vivienda es importantísima y aquí en este en esta sesión porque al final es una una sesión de las 36 viviendas y las 24 plazas de aparcamiento desde luego jurídicamente nada que decir está
+[3392.5 → 3393.6] (SPEAKER_45) Yo creo que todo ok,
+[3393.7 → 3394.7] (SPEAKER_45) va a salir ok.
+[3395.0 → 3400.8] (SPEAKER_45) La parte técnica tampoco creo que resulte excesivamente complicada y puede salir ok.
+[3401.3 → 3401.7] (SPEAKER_45) Ahora,
+[3401.8 → 3406.8] (SPEAKER_45) en la parte económica, y corrígeme si me equivoco,
+[3406.9 → 3411.1] (SPEAKER_45) ¿va a soportar ese coste económico la Generalitat Valenciana?
+[3413.5 → 3433.7] (SPEAKER_44) Claro, estuvimos viendo en Torrent porque parece que están haciendo unos módulos y unos paneles similares para construcción de edificio, pero cuanto antes empecemos a solicitar a la Generalitat que liciten, antes tendremos la posibilidad de que esos fondos existan y terminemos.
+[3435.9 → 3440.4] (SPEAKER_44) Esto además se tiene que hacer según el reglamento.
+[3440.2 → 3452.0] (SPEAKER_44) el Reglamento de Bienes de Entidades Locales en el artículo 111, que hace referencia también en la petición, la cesión...
+[3452.8 → 3455.2] (SPEAKER_45) Tiene que llevarse a cabo en los cinco años.
+[3455.4 → 3468.6] (SPEAKER_45) Los cinco años es un tiempo larguísimo, pero además a los 30 años revierte directamente al municipio. O sea, durante 30 años se tienen que destinar a...
+[3470.1 → 3483.7] (SPEAKER_45) Debe mantenerse el destino de vivienda pública durante 30 años y luego la totalidad del patrimonio recae otra vez en el ayuntamiento, cosa que es, vamos, ojalá hubiera más así.
+[3484.1 → 3490.2] (SPEAKER_45) Ahora, la cuestión económica de quién va a soportar esa construcción...
+[3491.2 → 3510.8] (SPEAKER_48) Es lo que a ver si entre todos apoyamos y y puede salir. Porque es muy important ya que una promoción, y además a ver, no es que sea una promoción muy grande, but son treinta y seis viviendas y muy vienticuatro plazas de garaje. Que es uh it's dinero. Entonces consume un capital enorme. Así que por supuesto nuestro voto va a ser a favor. Gracias.
+[3511.8 → 3512.4] (SPEAKER_44) És prou net.
+[3519.0 → 3520.8] (SPEAKER_41) Les paraules, Teresa.
+[3521.4 → 3522.3] (SPEAKER_47) Sí, bueno,
+[3522.4 → 3523.2] (SPEAKER_47) pues en primer lugar,
+[3523.2 → 3525.3] (SPEAKER_47) ¿quién soporta el tema económico Europa?
+[3526.1 → 3535.5] (SPEAKER_47) Estamos añadiendo a España una inyección de fondos europeos para la vivienda impresionante en las conversaciones que tenemos tanto con consellería como con casa 47,
+[3535.6 → 3541.3] (SPEAKER_47) o sea, la apuesta de Europa por España a nivel de vivienda es total y absoluta. La inyección es enorme de dinero.
+[3541.9 → 3551.9] (SPEAKER_47) Sí que un poco la prisa detrás de esto por urgencias era porque tú dices precisamente por eso, por los plazos que llevamos, porque la ejecución de la obra, según nos ha dicho consellería, ellos están...
+[3551.7 → 3553.7] (SPEAKER_47) Ellos estiman que en un año la tienen,
+[3553.8 → 3557.6] (SPEAKER_47) porque también son unos plazos en los que hay que cumplir esa subvención europea para ayudas a vivienda.
+[3557.8 → 3566.5] (SPEAKER_47) Por eso un poco el planning de julio, septiembre la definitiva, que les dé tiempo a licitar la obra y 12 meses aproximadamente sería la ejecución de la obra.
+[3567.0 → 3570.6] (SPEAKER_47) Contestándote Alberto lo que has dicho con respecto a la parcela.
+[3571.1 → 3576.0] (SPEAKER_47) O sea, las viviendas son viviendas de alquiler asequible y hay dos condicionantes. No aparece aquí,
+[3576.5 → 3579.5] (SPEAKER_47) si habéis visto en el informe del técnico, sí.
+[3579.7 → 3588.1] (SPEAKER_47) O sea, si en esos 30 años la consellería dejara de que ese edificio tuviese la condición de vivienda asequible de alquiler,
+[3588.6 → 3589.4] (SPEAKER_47) revertiría a nosotros.
+[3589.6 → 3593.8] (SPEAKER_47) Y si en cinco años eso no se pone en funcionamiento, también revertiría el suelo a nosotros,
+[3593.8 → 3594.0] (SPEAKER_47) ¿vale?
+[3594.1 → 3598.0] (SPEAKER_47) Esos dos condicionantes están tanto en el informe que han dicho como luego en el acuerdo que se firmaría.
+[3597.8 → 3597.9] (SPEAKER_47) María.
+[3600.0 → 3601.4] (SPEAKER_60) Con respecto a lo de Casa 47,
+[3601.6 → 3604.6] (SPEAKER_60) esta parcela, este suelo nosotros lo ofrecimos ya en el 2022,
+[3604.8 → 3615.0] (SPEAKER_60) o sea, antes de que se llamara Plan Vive ya estaba esta opción de esta relación público-privada. Luego, en el 2023 esto se paquetizó dentro del Plan Vive y había que utilizar una plataforma,
+[3615.1 → 3622.8] (SPEAKER_60) por eso lo trajimos a pleno, pero sí que es verdad que en las reuniones que hemos tenido precisamente en consejería cuando nos hablaban de esto,
+[3622.9 → 3626.9] (SPEAKER_60) nuestro suelo podía no ser lo apetecible que quisieran.
+[3626.7 → 3641.3] (SPEAKER_60) que quisieran porque los promotores van a promociones de 100-200 viviendas para que esto les salga rentable qué pasó sin dejar de lado el estar en la opción de plan vive nos surgió el plan de casa 47 y en la primera convocatoria que hubo nos presentamos
+[3642.1 → 3646.4] (SPEAKER_60) No cumplíamos uno de los requisitos, o sea, cumplíamos todos excepto uno,
+[3646.5 → 3651.5] (SPEAKER_60) que era tener la parcela que fuese como mínimo de 2.500 metros cuadrados. La nuestra tiene mil y poco,
+[3651.6 → 3664.4] (SPEAKER_60) pero aún así lo presentamos porque dentro de las reuniones que se tenían con Casa 47 antes de esta primera convocatoria no éramos el único municipio, o sea, es muy raro que un municipio tenga un suelo urbano de 2.500 metros,
+[3664.6 → 3669.0] (SPEAKER_60) francamente. ¿Qué ha pasado? Nosotros en Casa 47 nos han desestimado en esta primera convocatoria.
+[3668.8 → 3672.5] (SPEAKER_60) Primera convocatoria porque no cumplimos esa premisa de los 2.500.
+[3672.7 → 3674.9] (SPEAKER_60) De hecho, en esta segunda convocatoria que han lanzado,
+[3674.9 → 3676.4] (SPEAKER_60) ese condicionante ya no está.
+[3676.7 → 3687.8] (SPEAKER_60) O sea, teniendo dos condicionantes, uno que era de los 2.500 que ha desaparecido y otro condicionante que era de más de 30 viviendas que nosotros en la propuesta de Casa 47 pusimos 32 y ahora lo habían bajado a 25.
+[3688.3 → 3693.4] (SPEAKER_60) Por eso nosotros no hemos querido, hemos jugado con ese suelo en ambas opciones.
+[3693.9 → 3695.5] (SPEAKER_60) Afortunadamente dentro del plan vive.
+[3695.5 → 3721.4] (SPEAKER_60) a ese puebloana tenemos unas condiciones óptimas para poder estar ahí pero no descartamos casa 47 casa 47 estamos por una parte que si lo habréis visto hemos hecho publicidad para la el edificio que nos íbamos a quedar el ayuntamiento dentro de las ayudas del planada que al final lo absorbió el ministerio de vivienda para ponerlo a disposición primero de la gente afectada por la dana y después que lo ha sacado ahora en alquiler
+[3722.1 → 3733.2] (SPEAKER_60) Ha salido ya una aprobación provisional y en esta semana nos han contestado que saldrá la definitiva de esas 22 viviendas, pero seguimos ahí tanto para suelo como para viviendas que puedan haber.
+[3733.3 → 3734.8] (SPEAKER_60) O sea, no descartamos Alberto,
+[3735.0 → 3736.4] (SPEAKER_60) por lo que tú comentas de Casa 47,
+[3736.7 → 3740.2] (SPEAKER_60) este se ha desbancado porque no cumplíamos ese objetivo de los metros,
+[3740.4 → 3747.2] (SPEAKER_60) pero no se encaja por Plan Vive y estamos viendo opciones encima de la mesa con Casa 47 para alternativas.
+[3747.3 → 3748.5] (SPEAKER_60) Y más que también podamos ir por ahí,
+[3748.6 → 3751.0] (SPEAKER_60) porque tanto Plan Vive como Casa 47,
+[3751.2 → 3755.5] (SPEAKER_60) los fondos son europeos de esa inyección que están dando España para el tema de la vivienda.
+[3757.0 → 3759.0] (SPEAKER_61) Ni palabras a Bertu.
+[3759.5 → 3761.8] (SPEAKER_61) Si Teresa, solo una puntualización.
+[3762.2 → 3765.2] (SPEAKER_61) Este, entiendo, si están viendo más opciones,
+[3765.2 → 3766.2] (SPEAKER_61) no era el único solar.
+[3766.9 → 3772.8] (SPEAKER_61) donado o con posibilidad de donarse el suelo a Casa 47 y al Plan Vive.
+[3772.9 → 3774.5] (SPEAKER_61) Entiendo que hay más solares,
+[3774.6 → 3776.6] (SPEAKER_61) porque si estamos viendo otras cosas,
+[3776.7 → 3781.1] (SPEAKER_61) ¿cuáles son esos solares o ese suelo? Gracias.
+[3782.1 → 3783.2] (SPEAKER_61) ¿Alguna cuestión más?
+[3783.9 → 3784.6] (SPEAKER_61) Última intervención
+[3784.6 → 3784.8] (SPEAKER_60) Sí.
+[3784.8 → 3785.3] (SPEAKER_61) antes de terminar.
+[3785.3 → 3788.0] (SPEAKER_60) Dentro de Casa 47 es que ha tenido varias opciones.
+[3788.1 → 3791.0] (SPEAKER_60) Si entráis en la página web, que además es muy intuitiva,
+[3791.1 → 3796.4] (SPEAKER_60) primero estaba lo de poder optar a ofertas al sorteo de viviendas que tenían.
+[3796.9 → 3807.9] (SPEAKER_60) Otra alternativa que tenían es que cualquier empresa privada que tuviese suelo podía ofertarlo a Casa 47 y a precio de mercado Casa 47 se lo iba a comprar. Tanto suelo como posibilidad de...
+[3809.6 → 3822.8] (SPEAKER_60) de viviendas o sea existían las dos alternativas que cualquier particular podía ofrecer a esa casa 47 ahora tenemos también una alternativa que estamos barajando con ellos de suelos que sean tanto suelos dotacionales que posee población dana
+[3823.4 → 3842.2] (SPEAKER_60) del sistema general podríamos ofrecerlos que antes no teníamos esa alternativa hoy tenemos este suelo dotacional que para vivienda de alquiler podría podría ser optativo y en esa línea estamos sí que tenemos otros suelos pero tenemos suelos que podrían ser podrían convertirse en viviendas pero eran en zonas
+[3843.6 → 3850.2] (SPEAKER_60) en urbanizaciones, en zonas residenciales que no son potenciales. Uno puede plantear un edificio, pues no sé, en Traver o en Valencia la Bella.
+[3850.4 → 3853.2] (SPEAKER_60) O sea, como suelo óptimo, el que teníamos era este.
+[3853.4 → 3862.3] (SPEAKER_60) Ahora en estas segundas convocatorias están dando otras alternativas y por eso estamos viendo con ellos posibles opciones que podamos barajar para entrar ahí.
+[3865.0 → 3867.8] (SPEAKER_61) Ya queda explicada la pasada votación de este punto.
+[3872.8 → 3873.3] (SPEAKER_61) Sí.
+[3879.0 → 3879.5] (SPEAKER_61) Pues si a palabra,
+[3879.6 → 3881.4] (SPEAKER_61) prioridad máxima de las 5 puntos del día.
+[3882.5 → 3884.6] (SPEAKER_61) No, primero, estemos en el matiz punto, pero en otro punto,
+[3884.6 → 3892.8] (SPEAKER_61) en otra propuesta de emergencia, de urgencia perdón, de intervención, propuesta de acuerdo, modificación del plan de inversiones.
+[3894.4 → 3895.4] (SPEAKER_61) José Ángel te da la palabra.
+[3896.3 → 3897.8] (SPEAKER_61) La justificación de la emergencia.
+[3897.9 → 3921.8] (SPEAKER_62) Gracias, alcalde. Bueno, en este caso la urgencia también como anteriormente viene dado a que es una modificación presupuestaria y por tanto tiene que publicarse y por tanto cuanto antes se realice la propuesta se apruebe la propuesta se publique pues antes entrará en vigor y como sabréis una de las la razón de la raíz de toda esta modificación que son la compra de los contenedores.
+[3921.7 → 3925.3] (SPEAKER_62) o se podrá ejecutar el pago de los mismos. Gracias.
+[3926.7 → 3930.8] (SPEAKER_61) Para la urgencia, pasemos al punto.
+[3931.1 → 3932.0] (SPEAKER_61) ¿Votar este punto?
+[3932.3 → 3933.6] (SPEAKER_61) ¿Votar la urgencia?
+[3936.8 → 3937.9] (SPEAKER_61) Votamos la urgencia.
+[3941.5 → 3942.5] (SPEAKER_61) Falta votar.
+[3945.3 → 3946.9] (SPEAKER_61) On si pot a favor de l'abstenció,
+[3947.1 → 3947.8] (SPEAKER_61) socialista,
+[3947.8 → 3948.2] (SPEAKER_60) A favor.
+[3948.2 → 3949.0] (SPEAKER_61) particular,
+[3949.6 → 3950.7] (SPEAKER_61) Vox,
+[3950.8 → 3956.2] (SPEAKER_61) Esquerra Unió Podemos i compromís, passem a desvallar el punt.
+[3959.0 → 3960.0] (SPEAKER_62) Sí, gracias.
+[3961.1 → 3961.6] (SPEAKER_62) Bueno,
+[3961.7 → 3970.6] (SPEAKER_62) pues todos sabemos que el 16 de marzo aprobamos el presupuesto para este ejercicio en el que se incluía el plan de inversiones por valor de 5.956.000 euros.
+[3971.0 → 3978.3] (SPEAKER_62) Una parte de estas inversiones, su fuente de financiación es el préstamo, concretamente para 1.780.000 euros.
+[3978.8 → 3984.6] (SPEAKER_62) En este caso lo que traemos es una modificación del plan de inversiones de la parte financiada por préstamo.
+[3984.8 → 3986.3] (SPEAKER_62) Y el motivo de esta modificación,
+[3986.4 → 3994.1] (SPEAKER_62) como he comentado en la en el argumento de la de la urgencia, es sobre todo por la compra de los contenedores.
+[3994.5 → 4001.6] (SPEAKER_62) Compra de contenedores que todos sabemos y hemos debatido aquí que es necesario era necesario y es necesario cambiarlos cuanto antes.
+[4002.3 → 4006.6] (SPEAKER_62) Esta compra equivalen a 505.000 euros de inversión,
+[4006.7 → 4023.5] (SPEAKER_62) con lo cual teníamos que hacer sí o sí una modificación dentro del propio presupuesto para financiar el pago de la adquisición de estos contenedores. Estos contenedores que es un problema que viene del propio contrato de la RSU,
+[4023.6 → 4026.9] (SPEAKER_62) cuando la empresa adjudicataria no cumplió ni con el servicio,
+[4027.0 → 4027.9] (SPEAKER_62) servicio pésimo.
+[4027.9 → 4033.9] (SPEAKER_62) pero además tampoco cumplió con el cambio de los contenedores de RSU que estaban incluidos en el propio pliego
+[4034.6 → 4059.8] (SPEAKER_62) y que sin duda ahí van a mejorar el propio el servicio de de recogida. Bueno, pues una de las maneras de financiar la adquisición de esos contenedores que que sabéis que se han hecho con por a través de la emergencia de un contrato de emergencia y que durante el mes de septiembre y octubre se podrán ya se veremos la el cambio de esos contenedores de los contenedores viejos por los nuevos, but esos contenedores hay que pagarlos.
+[4060.3 → 4063.6] (SPEAKER_62) Y la forma de pago es a través de una inversión como la que se va a realizar,
+[4063.6 → 4066.0] (SPEAKER_62) una inversión tan importante de 505.000 euros.
+[4066.6 → 4075.9] (SPEAKER_62) Inversión importante económicamente, pero inversión también importante por la necesidad imperiosa de cambiar lo que hay y por mejorar el servicio que tenemos.
+[4076.1 → 4082.0] (SPEAKER_62) Como he dicho, por culpa del pésimo servicio y el incumplimiento de la empresa adjudicataria.
+[4082.3 → 4086.4] (SPEAKER_62) Con lo cual, lo que realizamos en esta modificación del plan de inversiones.
+[4086.3 → 4101.1] (SPEAKER_62) La base fundamentalmente la base es el cambio del plan de inversiones por la compra de los contenedores con un importe de 505.000 euros, pero también hay una serie de condicionantes. Al hacer ese cambio también nos obliga a hacer otros cambios dentro del plan de inversiones,
+[4101.2 → 4102.7] (SPEAKER_62) porque efectivamente,
+[4102.8 → 4103.0] (SPEAKER_62) claro,
+[4103.2 → 4112.7] (SPEAKER_62) si tienes 1.780.000 euros de límite, tienes que reducir en el plan de inversiones en algunas de las aplicaciones presupuestarias. Esas reducciones de las aplicaciones presupuestarias
+[4112.8 → 4123.9] (SPEAKER_62) suponían incluso no poder hacerlo, no poder realizar una aplicación como los caminos rurales, dejarlo en 25.000 euros cuando la necesidad es 75.000 euros.
+[4124.0 → 4127.6] (SPEAKER_62) Y a la vez, transcurridos estos meses,
+[4127.6 → 4128.4] (SPEAKER_62) por ejemplo,
+[4128.5 → 4136.9] (SPEAKER_62) pongo como ejemplo la inversión en los caminos rurales, esta inversión se liquidará en el ejercicio 2027, con lo cual no tenía razón estar en esta.
+[4137.0 → 4138.2] (SPEAKER_62) Por poner un ejemplo.
+[4138.4 → 4144.9] (SPEAKER_62) Entonces, dentro de estas modificaciones también incluimos, además de la compra de los contenedores,
+[4145.2 → 4149.2] (SPEAKER_62) la adecuación del Centro Social Santa Mónica por un importe de 36.000 euros,
+[4149.3 → 4155.8] (SPEAKER_62) el incremento en la inversión en seguridad con los sistemas de vigilancia en urbanizaciones con un total de 45.000 euros,
+[4156.2 → 4159.6] (SPEAKER_62) adecuación acceso a carretera por zona norte con 50.000 euros,
+[4159.7 → 4164.3] (SPEAKER_62) inversión en iluminación para zonas de diseminados con otros 50.000 euros.
+[4164.5 → 4174.0] (SPEAKER_62) y la inversión en la eliminación de los contenedores soterrados que también estaban incluidos en el pliego del contrato de resegu con una dotación de 42.000 euros.
+[4174.2 → 4178.5] (SPEAKER_62) En cuanto a aquellas inversiones que han sufrido cambios,
+[4179.2 → 4182.6] (SPEAKER_62) estas inversiones se van a realizar a través de fondos propios.
+[4183.2 → 4189.2] (SPEAKER_62) Con otras modificaciones presupuestarias o incluyéndolas en el próximo presupuesto del ejercicio 2027,
+[4189.4 → 4193.3] (SPEAKER_62) como pueden ser los propios caminos rurales.
+[4193.9 → 4198.1] (SPEAKER_62) Incluso en algunas partidas las aumentaremos de lo que había inicialmente.
+[4199.3 → 4208.5] (SPEAKER_62) Con lo cual esta modificación viene a financiar la compra de los contenedores que tanta necesidad tenemos de cambiarlos.
+[4208.5 → 4209.1] (SPEAKER_61) Gracias.
+[4211.1 → 4211.6] (SPEAKER_61) Pues,
+[4211.8 → 4215.1] (SPEAKER_61) salva. Gracias.
+[4215.6 → 4216.4] (SPEAKER_61) Bien, aquí,
+[4216.5 → 4219.5] (SPEAKER_61) como bien comentado con el concejal de Hacienda,
+[4219.6 → 4229.8] (SPEAKER_61) una de las partidas del plan de inversiones que ese ayuntamiento lo iba a pagar a través de financiación, es decir, a través de un préstamo, se reduce.
+[4230.8 → 4238.7] (SPEAKER_61) en varias partidas que el concejal tampoco quizá ha profundizado en exceso, y a nosotros nos nos interesa estas partidas.
+[4239.4 → 4243.3] (SPEAKER_61) Por un lado, para poder comprar esos contenedores,
+[4243.3 → 4244.2] (SPEAKER_61) entre otras cosas.
+[4244.4 → 4254.6] (SPEAKER_61) Pero claro, estamos hablando de una reducción de elementos de transporte de 12.000 euros, la unidad de drones desaparece totalmente,
+[4255.0 → 4260.5] (SPEAKER_61) de 36.000. Usted hablaba de mejorar la videovigilancia en las urbanizaciones,
+[4260.5 → 4266.4] (SPEAKER_61) pero el sistema de drones desaparece. La inversión en vías públicas y obras asfaltadas...
+[4266.2 → 4269.3] (SPEAKER_61) asfaltados y demás 100.000 euros también desaparecen.
+[4269.9 → 4275.2] (SPEAKER_61) Edificios como por ejemplo el cementerio, tenía una partida de 50.000 euros,
+[4275.4 → 4276.5] (SPEAKER_61) también desaparece.
+[4277.3 → 4285.8] (SPEAKER_61) Mantenimiento y conservación de espacios degradados, 50.000 euros desaparece. Caminos rurales desaparece, 75.000 euros asfaltado.
+[4286.1 → 4289.2] (SPEAKER_61) En servicios sociales una de las partidas...
+[4289.7 → 4291.8] (SPEAKER_61) que más nos llama la atención,
+[4292.0 → 4296.1] (SPEAKER_61) reposición de inversiones en servicios sociales menos 50.000,
+[4296.6 → 4297.9] (SPEAKER_61) escuelas infantiles,
+[4298.0 → 4302.4] (SPEAKER_61) maquinaria e instalación, yo creo que no sé si fue este pleno o el anterior,
+[4302.5 → 4314.7] (SPEAKER_61) ustedes lucían camisetas contra las inversiones o a favor de mejorar las inversiones, escuelas sociales en colegios y ahora desaparecen 60.000 euros en maquinaria e instalaciones.
+[4315.2 → 4328.4] (SPEAKER_61) Sí que es verdad que no detalla qué maquinaria y instalaciones y usted habla de 2027. No sé si estas maquinarias son lo suficientemente importantes o no para no esperar al año que viene.
+[4328.7 → 4330.6] (SPEAKER_61) Nos habla del auditorio.
+[4331.3 → 4333.5] (SPEAKER_61) Habla del centro de salud,
+[4333.5 → 4334.5] (SPEAKER_61) 40.000 euros,
+[4334.7 → 4338.5] (SPEAKER_61) centro de salud antiguo, centro de salud que todo el mundo sabemos las necesidades,
+[4338.6 → 4344.4] (SPEAKER_61) incluso el alcalde ha hablado de hacer aquí un asombrace o no sé qué, de repente eso desaparece.
+[4346.2 → 4351.0] (SPEAKER_61) Reducimos en deportes, reducimos en el edificio polivalente de la gente mayor,
+[4351.1 → 4354.2] (SPEAKER_61) que continúa teniendo una partida pero se reduce en 86.000 euros,
+[4354.3 → 4355.1] (SPEAKER_61) quiere decir.
+[4355.7 → 4356.7] (SPEAKER_61) Reducimos en cultura,
+[4356.9 → 4358.1] (SPEAKER_61) reducimos en sanidad,
+[4358.3 → 4359.4] (SPEAKER_61) reducimos en educación,
+[4359.6 → 4362.1] (SPEAKER_61) reducimos en deporte, reducimos en gente mayor.
+[4363.6 → 4366.4] (SPEAKER_61) Entendemos que hay que cambiar los contenedores, por supuesto,
+[4366.4 → 4368.1] (SPEAKER_61) porque son un desastre,
+[4368.3 → 4369.8] (SPEAKER_61) pero esto viene de lo que viene,
+[4369.8 → 4378.4] (SPEAKER_61) viene de un contrato que dio el resultado que dio y unas gestiones posteriores que no fueron correctas por parte del equipo de gobierno.
+[4379.4 → 4386.0] (SPEAKER_61) I d'ahir la necessitat de pedir un plenario extraordinari per saber què passava amb tot això,
+[4386.1 → 4394.0] (SPEAKER_61) perquè en unes declaracions en aquest pleno del senyor alcalde va dir que no ens costarà ni un euro,
+[4394.1 → 4400.8] (SPEAKER_61) no us preocupeu, no pagarem de més, a l'Ajuntament no li ha de costar cap euro la basura,
+[4400.9 → 4403.7] (SPEAKER_61) de moment 500.000 euros.
+[4404.9 → 4410.2] (SPEAKER_61) y es 500.000 euros más los intereses, porque este dinero lo sacamos de un préstamo,
+[4410.3 → 4419.1] (SPEAKER_61) o sea, hemos pasado de no nos va a costar nada a cogemos dinero de un préstamo para comprar los contenedores, lícito,
+[4419.2 → 4419.6] (SPEAKER_61) legal,
+[4419.8 → 4425.3] (SPEAKER_61) pero entendemos que quizá hay que dar un poco más las explicaciones o dejarlo claro,
+[4425.4 → 4428.7] (SPEAKER_61) que ustedes van a recortar en ciertas partidas.
+[4429.3 → 4430.7] (SPEAKER_61) que ustedes han elegido,
+[4430.7 → 4432.3] (SPEAKER_61) como servicios sociales,
+[4432.7 → 4436.6] (SPEAKER_61) como maquinaria infantil en las escuelas infantiles
+[4436.8 → 4437.9] (SPEAKER_61) para comprar contenedores.
+[4438.4 → 4450.2] (SPEAKER_61) Y usted ha dicho que había partidas como los caminos rurales que no se podían quedar a medias, pero añade nuevas partidas como videovigilancia, iluminación móvil...
+[4450.6 → 4459.4] (SPEAKER_61) De repente tenemos también aquí un centro social que no estaba previsto, entendemos que hay que recortar para los contenedores,
+[4459.4 → 4461.5] (SPEAKER_61) pero añadimos otras cosas y dejamos otras de lado,
+[4461.6 → 4461.8] (SPEAKER_61) no sé.
+[4462.0 → 4462.8] (SPEAKER_61) Al final,
+[4462.8 → 4464.8] (SPEAKER_61) sí,
+[4464.9 → 4465.2] (SPEAKER_61) me voy,
+[4465.3 → 4466.3] (SPEAKER_61) vale,
+[4466.4 → 4466.9] (SPEAKER_61) termino.
+[4467.3 → 4473.9] (SPEAKER_61) Al final, saber por qué deja de ser tan necesario el asfaltado, por qué deja de ser tan necesario las escuelas infantiles,
+[4474.0 → 4475.4] (SPEAKER_61) la equipación de los servicios sociales.
+[4476.7 → 4483.1] (SPEAKER_61) Porque al final los vecinos están pagando doble. Están pagando la basura, que está bien cobrada,
+[4483.1 → 4489.9] (SPEAKER_61) y aparte la partida que ustedes están eliminando de las inversiones.
+[4490.1 → 4495.7] (SPEAKER_61) Por tanto, doble carga para el vecino y menos dinero para inversiones. Gracias.
+[4497.3 → 4498.2] (SPEAKER_61) Mis palabras,
+[4498.3 → 4498.7] (SPEAKER_61) Vox.
+[4499.7 → 4501.0] (SPEAKER_61) Muchas gracias, alcalde.
+[4501.7 → 4521.7] (SPEAKER_61) Por bueno esta modificación de anexo a inversiones no pudiendo estar más de acuerdo con la intervención de Salvador refleja algo que es una falta de gestión en una intervención hoy a nosotros nos ha llamado el alcalde peligro de la sociedad.
+[4522.6 → 4527.0] (SPEAKER_61) Yo creo que la gestión que tienen ustedes sí que es un peligro de la sociedad.
+[4527.4 → 4530.1] (SPEAKER_61) Se ha visto en los contratos de basuras,
+[4530.2 → 4545.9] (SPEAKER_61) se ha visto en la gestión de mantenimiento de adiv en los trenes, donde la falta de gestión del Partido Socialista lo que hace es provocar muertes, pactan con los filuetarras, indultan a golpistas, empobrecen a la población,
+[4546.5 → 4548.5] (SPEAKER_61) la vivienda es inaccesible.
+[4548.5 → 4565.3] (SPEAKER_61) y además internacionalmente lo que hacen es unirse a extremas izquierdas y a narcotraficantes desde luego si estamos en las antípodas ideológicas por lo que comenta pero este punto de hoy que es el que estamos hablando sobre
+[4566.5 → 4570.8] (SPEAKER_61) que a los ciudadanos y ahí le corrijo no son 500 son 500 5000
+[4571.8 → 4575.4] (SPEAKER_61) 505.500 euros,
+[4575.5 → 4577.1] (SPEAKER_61) o sea, es todavía un poquito más.
+[4577.3 → 4589.6] (SPEAKER_61) Pues desde luego tienen que ser conscientes los ciudadanos que con un equipo de gestión de gobierno como el Partido Socialista y los satélites de la extrema izquierda, pues pasa lo que pasa. Gracias.
+[4593.6 → 4594.5] (SPEAKER_61) Mis palabras,
+[4594.8 → 4596.4] (SPEAKER_61) es que ha reunido Podemos.
+[4598.4 → 4599.4] (SPEAKER_61) ¿Es que ahora ya podemos?
+[4599.4 → 4600.4] (SPEAKER_61) Ah, vale, si usted toca.
+[4601.9 → 4607.5] (SPEAKER_63) Ara jo vaig a centrar-me i parlar en este punt que és important.
+[4608.5 → 4609.1] (SPEAKER_63) A veure,
+[4609.3 → 4623.2] (SPEAKER_63) nosaltres en este punt el que és clar és que hi ha una modificació, que ho hem parlat amb José Ángel i és veritat que se li dona financiació a unes accions, a unes actuacions en detriment d'unes altres.
+[4623.9 → 4631.2] (SPEAKER_63) I és veritat que totes les afirmacions que ha fet el regidor del Partit Popular són certes i a un detriment en altres actuacions.
+[4631.5 → 4636.3] (SPEAKER_63) És veritat que algunes passen l'any que ve per raons obligatories.
+[4637.2 → 4655.0] (SPEAKER_63) Però és cert que el que està clar és que per poder fer eixa compra de contenidors, que és la causa d'esta modificació, s'ha de reduir altres actuacions que considerem importants. Jo vaig a dir una que no ha dit el regidor del partit popular,
+[4655.3 → 4661.2] (SPEAKER_63) que no sé si és per... no se l'ha oblidat, però parla del pla de refugis climàtics.
+[4662.3 → 4684.5] (SPEAKER_63) Eixa passa de 50.000 euros a cero, al igual que la resta. Aleshores, jo, òbviament, vaig a criticar esta postura perquè no estic d'acord i no aprove estes modificacions, no coincidís en la pràctica que ha fet el Partit Socialista o en eixa elecció.
+[4685.3 → 4697.1] (SPEAKER_63) Aleshores jo el que ja he parlat amb Josep Ángel, el que demana i el que vaig a demanar avui públicament és que se pronuncien públicament i que asseguren que totes les actuacions que avui estan deixant a zero,
+[4697.2 → 4701.5] (SPEAKER_63) que les fiquen obligatoriament en el pressupost de l'any 2027, perquè,
+[4701.5 → 4703.6] (SPEAKER_63) com ha dit el regidor del Partit Popular,
+[4703.7 → 4707.0] (SPEAKER_63) totes les accions que ha comentat se queden a zero.
+[4707.8 → 4722.5] (SPEAKER_63) I destaca altra volta el pla de refugis climàtics, que a més és una de les qüestions que vàrem abordar a l'hora de la negociació dels pressupostos amb Esquerra Unida Podem, de fet contestant també al Partit Popular,
+[4722.6 → 4732.5] (SPEAKER_63) per lo que comentava abans que vàrem votar a favor del pressupost, també vàrem votar a favor del pressupost pel pla de refugis climàtics que ara se té que anar l'any que ve.
+[4732.8 → 4739.0] (SPEAKER_63) Per tant també aprofitant el vot a favor que tenim per part d'Esquerra Unida podem,
+[4739.1 → 4747.4] (SPEAKER_63) el que demanem és que això se faça, siga una realitat que s'haguera fet ja i perquè jo crec que aquest punt té dos errors.
+[4747.5 → 4749.3] (SPEAKER_63) Uno, que no s'ha fet i dos,
+[4749.4 → 4757.4] (SPEAKER_63) que ara que no s'ha fet lo que fa és esa inversió se queda a zero. Però em crec que és un error, crec que sí que afecta al final.
+[4757.7 → 4764.6] (SPEAKER_63) lo que ha pasado en los contenedores, el contrato de residuos afecta directamente a actuaciones y cree que...
+[4765.8 → 4788.6] (SPEAKER_63) que s'ha d'explicar i, per supost, nosaltres no anem a votar a favor d'esta proposta perquè no coincidim en lo que ha elegit el Partit Socialista. Crec que han hagut actuacions que s'han quedat i que haurien de, que s'han llevat i haurien de quedar-se, i per tant nosaltres avui no votarem a favor i lo que preguem és que totes estes accions estiguin dins de l presupost de l'any 2027 que és com haurien d'estar. Gràcies.
+[4789.9 → 4790.7] (SPEAKER_61) Compromís.
+[4794.5 → 4795.8] (SPEAKER_63) Gràcies, alcalde.
+[4796.9 → 4799.8] (SPEAKER_63) Aneu a veure avui per què en per urgència.
+[4800.1 → 4820.2] (SPEAKER_80) Esta modificación que ve donada d'una necessitat, i això crec que tots i totes som conscients que tenim aquesta necessitat que també ve donada per un contracte que l'empresa adjudicatària no va complir.
+[4821.9 → 4832.9] (SPEAKER_80) resultarà concatenació de actuacions i de situacions que hui mos porten a fer esta modificació de crèdit en les inversions per a
+[4834.1 → 4848.9] (SPEAKER_80) poder comprar uns contenidors que són necessaris per a la població, perquè si férem una enquesta als nostres veïns i veïnes evidentment estarien la majoria a favor de canviar el contenidor.
+[4849.7 → 4850.4] (SPEAKER_80) Árabe.
+[4852.4 → 4861.3] (SPEAKER_80) Fuera de las demagogias políticas que yo creo que han habido por parte de algunos partidos de este plenario,
+[4862.4 → 4869.2] (SPEAKER_80) una la ha aclarado prou bien el compañero de Esquerra Unida Unides Podem,
+[4870.2 → 4875.6] (SPEAKER_80) que han hablado de las inversiones que se llevaban, pero sólo están dichas una.
+[4876.3 → 4880.2] (SPEAKER_80) Queda la del pla de refugis climàtics.
+[4880.5 → 4891.4] (SPEAKER_80) Amigo, el pla de refugis climàtics. Clar, com són uns vereders negacionistes del canvi climàtic,
+[4891.5 → 4893.5] (SPEAKER_80) doncs clar, per això...
+[4894.8 → 4898.5] (SPEAKER_80) Se carreguen la Unitat Emergencial o Unitat Valenciana d'Emergència,
+[4898.6 → 4904.7] (SPEAKER_80) que segons ells no fea res i eren col·locats del Partit Socialista de Compromís,
+[4905.2 → 4908.6] (SPEAKER_80) però se n'ha anat per l'aire la Serra d'Espadà.
+[4909.6 → 4919.7] (SPEAKER_80) Jo no sé si vostè coneixent la Serra d'Espadà, però és que l'han visitat i l'han pogut veure i disfrutar, però a nosaltres és un crim.
+[4920.5 → 4923.6] (SPEAKER_80) Pero no siempre pasa así en esta comunidad en la que manen vostés.
+[4924.0 → 4929.2] (SPEAKER_80) Es que pasa en Castilla-La Mancha. Es que pasa en lo de Madrid ya es, vamos,
+[4929.7 → 4930.7] (SPEAKER_80) clama al cielo.
+[4931.5 → 4942.2] (SPEAKER_80) Es que el alcalde Aguadí son un peligro, pero son más peligrosos que un talibán en una bomba, señor mío.
+[4942.2 → 4943.7] (SPEAKER_81) No digas eso, papá, eh.
+[4943.8 → 4944.2] (SPEAKER_80) Por favor.
+[4944.2 → 4945.6] (SPEAKER_81) No me digas, señor, un momento.
+[4949.6 → 4950.7] (SPEAKER_81) Totxes plenos,
+[4950.8 → 4953.8] (SPEAKER_81) totxes plenos interrompixes quan paren els companys.
+[4953.9 → 4955.6] (SPEAKER_81) Dona ja el partit que siga.
+[4956.5 → 4960.4] (SPEAKER_81) Per tant, habituat a respectar la paraula cadascú i després tindràs un torn.
+[4960.9 → 4963.6] (SPEAKER_81) No, Totxes Plenos. Abans ha parlat l'alcalde, ara interromp.
+[4964.0 → 4965.3] (SPEAKER_81) Parla no sé qui,
+[4965.3 → 4966.3] (SPEAKER_81) a fer un vis-à-vis.
+[4966.4 → 4966.9] (SPEAKER_81) Per favor,
+[4967.1 → 4968.1] (SPEAKER_81) seguís Rafa.
+[4971.3 → 4972.3] (SPEAKER_81) Pero a Nueva Obre,
+[4972.3 → 4974.7] (SPEAKER_81) el que no puede hablar es tú, sin demandar a hablar primero.
+[4975.0 → 4976.4] (SPEAKER_81) Que lo que haces tú ya esperemos.
+[4977.1 → 5002.2] (SPEAKER_81) y podrán decir lo que consideren que tienen que decir y si pues y dirán lo que creen en libertad en la seva libertad perdid y después se tendrá que rectificar o hacer operaciones lo tengan que hacer o vas a censurar tú ahora también cualquier intervención de cualquier rechidor hasta cosas que compartimos o no lo que digan y que sea motivo de alguna reproche de cualquier ámbito civil o penal pero no seas tú quien limite la libertad de un rechidor así por supuesto
+[5002.4 → 5004.1] (SPEAKER_81) I lo que tens que fer és demanar primer la paraula.
+[5004.2 → 5005.0] (SPEAKER_81) És lo que tens que fer.
+[5009.2 → 5011.3] (SPEAKER_82) Ara, senyor dictari, van en una bomba a la mà
+[5011.3 → 5011.3] (SPEAKER_81) Però
+[5011.3 → 5011.8] (SPEAKER_82) a
+[5011.8 → 5012.5] (SPEAKER_81) tu de que no
+[5012.5 → 5012.6] (SPEAKER_82) donar.
+[5012.6 → 5015.2] (SPEAKER_81) veus que no tens la paraula?
+[5015.8 → 5017.1] (SPEAKER_81) No ves que no te la paraula?
+[5017.4 → 5022.3] (SPEAKER_81) ¿No ves que está callada la persona que está agullida y eres tú el que estás diciendo?
+[5022.8 → 5024.4] (SPEAKER_81) ¿No ves que interrumpís todos los plenos?
+[5024.4 → 5025.1] (SPEAKER_82) No me lo voy a permitir.
+[5025.1 → 5026.6] (SPEAKER_81) ¿No ves que no tienes que ni hablar?
+[5026.8 → 5033.3] (SPEAKER_81) Tienes que atenderme y prender nota y demandar la palabra. Señor alcalde, espera ilusiones, voy a hablar o espero que siga.
+[5033.4 → 5035.0] (SPEAKER_81) Y no interrumpes cuando se me haces.
+[5035.3 → 5036.0] (SPEAKER_81) Por favor.
+[5036.6 → 5038.6] (SPEAKER_81) Rafa, acaba la intervención, por favor.
+[5039.2 → 5040.5] (SPEAKER_81) Y gracias por la presencia.
+[5041.4 → 5048.4] (SPEAKER_80) Gràcies, senyor alcalde, la presència i el respecte, que no és en doble sentit.
+[5048.7 → 5049.5] (SPEAKER_80) Però, bueno,
+[5049.6 → 5052.0] (SPEAKER_80) jo tan sols he fet una comparació.
+[5052.4 → 5056.4] (SPEAKER_80) Cada u pot agarrar-ho com vulgui.
+[5057.0 → 5066.0] (SPEAKER_80) Evidentment, a los hechos me remito, estén mirando las noticias día darrere día y estén mirando cómo se está cremando el nostre país.
+[5066.9 → 5069.5] (SPEAKER_81) I no només dic el País Valencià, sinó l'Estat espanyol.
+[5070.2 → 5073.4] (SPEAKER_81) Però la veritat i tornant a aquest punt,
+[5074.2 → 5086.8] (SPEAKER_81) perquè jo normalment sols respectar quan algú pren la paraula, crec que en tot això és que portaré de residència mai m'ha tingut que cridar l'atenció el senyor alcalde, mai.
+[5087.7 → 5092.1] (SPEAKER_81) I jo sols espere que des de més facin el mateix quan jo intervingui.
+[5093.7 → 5096.5] (SPEAKER_80) Comentant el que estava comentant sobre aquest punt,
+[5096.6 → 5105.7] (SPEAKER_80) la necessitat de aquesta adquisició de contenidors, evidentment, el Partit Socialista, l'equip de govern,
+[5105.8 → 5116.4] (SPEAKER_80) ha decidit fer aquestes modificacions. Jo, per exemple, compromís, haurem fet unes altres, però està clar que ells tenen el vot,
+[5116.7 → 5120.1] (SPEAKER_80) tenen la majoria i decideixen en què.
+[5121.0 → 5123.4] (SPEAKER_80) Tenen que modificar.
+[5123.6 → 5131.5] (SPEAKER_80) Jo espere que quan se porte el pressupost del 2027,
+[5133.1 → 5137.4] (SPEAKER_80) aquestes accions que nosaltres hem reclamat,
+[5137.5 → 5144.3] (SPEAKER_80) que van sempre en contra o a favorir que no vagi més ese canvi climàtic.
+[5144.8 → 5154.2] (SPEAKER_80) que estiguin més bloquejades i se puguen portar i que no passi el que avui va passar.
+[5154.5 → 5155.1] (SPEAKER_80) Gràcies.
+[5155.8 → 5157.8] (SPEAKER_81) Segueix la intervenció de 2008, Josep.
+[5159.7 → 5160.1] (SPEAKER_82) Bé,
+[5160.1 → 5162.2] (SPEAKER_82) bueno,
+[5162.3 → 5164.0] (SPEAKER_82) voy a empezar por Vox.
+[5164.9 → 5167.5] (SPEAKER_82) Porque es que echáis de menos a ETA, tío.
+[5167.6 → 5171.7] (SPEAKER_82) No sé, 15 años sin ETA fue un gobierno socialista el que acabó con ETA.
+[5171.8 → 5174.6] (SPEAKER_82) No sé si creéis que hemos negociado los contenedores en Biarritz.
+[5175.0 → 5175.5] (SPEAKER_82) Pero vamos,
+[5175.7 → 5176.2] (SPEAKER_82) y ya,
+[5176.3 → 5176.8] (SPEAKER_82) lo dejo ahí.
+[5176.9 → 5179.1] (SPEAKER_82) Me voy a la parte importante,
+[5179.2 → 5180.0] (SPEAKER_82) al Partido Popular,
+[5180.2 → 5181.5] (SPEAKER_82) bueno,
+[5181.6 → 5182.4] (SPEAKER_82) y al resto de partidos.
+[5182.5 → 5189.1] (SPEAKER_82) Lo he dicho en mi intervención y creo que estará recogido en acta que aquellas impulsiones que han sufrido cambios...
+[5190.2 → 5191.9] (SPEAKER_82) bajas, anulaciones, etc.
+[5192.2 → 5202.6] (SPEAKER_82) Estas inversiones se realizarán a través de fondos propios con otras modificaciones presupuestarias o incluyéndolas en el presupuesto del 2027, incluso aumentando el presupuesto inicial,
+[5202.9 → 5209.8] (SPEAKER_82) dígase como el plan de refugios climáticos, como he comentado con José Manuel esta misma mañana,
+[5209.9 → 5210.8] (SPEAKER_82) que iba a ser así.
+[5211.6 → 5212.5] (SPEAKER_82) Pero voy más,
+[5212.5 → 5216.4] (SPEAKER_82) porque es que uno lleva el discurso ya preparadito y no pregunta,
+[5216.4 → 5227.5] (SPEAKER_82) porque si se llama por teléfono se averiguará que resulta que la parte de cultura hemos conseguido una subvención de 39.000 euros para hacer esas inversiones que íbamos a hacer.
+[5227.6 → 5234.3] (SPEAKER_82) Si preguntara sabría que en intervención hay una modificación de crédito de 60.000 euros para las inversiones en educación.
+[5235.4 → 5243.9] (SPEAKER_82) Si preguntarás abrían que lo que son los caminos rurales los licita la origilla a través de un convenio y se pagarán el año que viene,
+[5244.0 → 5253.7] (SPEAKER_82) etcétera, etcétera, etcétera. Al igual que los drones, como tuvimos en el polígono allí con la universidad, se hizo allí una demostración al respecto.
+[5254.2 → 5255.6] (SPEAKER_82) Pero es que yo, claro,
+[5255.7 → 5255.9] (SPEAKER_82) digo,
+[5256.0 → 5259.7] (SPEAKER_82) no, no, estoy un poco alucinando con el Partido Popular.
+[5260.9 → 5264.0] (SPEAKER_82) Porque no solo es que escucha lo que yo he dicho,
+[5264.1 → 5264.9] (SPEAKER_82) sino es que además,
+[5265.1 → 5269.9] (SPEAKER_82) o sea, venimos el día 16 de marzo y traemos un presupuesto.
+[5271.2 → 5273.3] (SPEAKER_82) ¿Con eso qué ha venido usted a defenderlo, vamos?
+[5273.7 → 5279.3] (SPEAKER_82) Como el adalid y abanderando esas inversiones que retiramos. Pero si las votaron ustedes en contra.
+[5280.5 → 5281.5] (SPEAKER_82) Si votaron no.
+[5282.8 → 5284.5] (SPEAKER_82) No a servicios sociales,
+[5284.6 → 5285.7] (SPEAKER_82) no a educación,
+[5286.2 → 5287.1] (SPEAKER_82) no a cultura,
+[5287.4 → 5291.5] (SPEAKER_82) no a las cámaras de vigilancia en las urbanizaciones, no a los drones,
+[5291.6 → 5294.1] (SPEAKER_82) no al edificio polivalente de los abuelos.
+[5294.7 → 5296.4] (SPEAKER_82) Sí, y luego ya,
+[5296.5 → 5297.0] (SPEAKER_82) bueno,
+[5297.2 → 5305.3] (SPEAKER_82) el centro de salud antiguo y hace un mezcladillo como si para enredar a la gente y hacer ruido como si el centro de salud fuera el centro de salud actual,
+[5305.4 → 5309.8] (SPEAKER_82) porque no es antiguo, es que es el ridículo de centro de salud que ustedes invirtieron e hicieron ahí.
+[5310.1 → 5312.8] (SPEAKER_82) Estamos hablando del edificio de la calle Galería y Pastor,
+[5313.0 → 5319.9] (SPEAKER_82) que efectivamente era el edificio antiguo del centro de salud y que va a ser, que lo ha comprado el Ayuntamiento para instalaciones del Ayuntamiento.
+[5320.5 → 5323.5] (SPEAKER_82) y que se realizará el próximo año como he dicho.
+[5323.6 → 5324.2] (SPEAKER_82) Pero vamos,
+[5324.3 → 5327.2] (SPEAKER_82) vienen ustedes y votan el día 16.
+[5327.4 → 5329.6] (SPEAKER_82) No, a esas inversiones que ahora vamos,
+[5329.7 → 5332.0] (SPEAKER_82) para ustedes son importantísimas y votaron no.
+[5332.5 → 5338.9] (SPEAKER_82) Y ahora venimos con la intención de solucionar un problema que vienen ustedes a hacer un pleno aquí,
+[5339.4 → 5341.5] (SPEAKER_82) que era hacer el cuento y el teatrito,
+[5341.6 → 5343.7] (SPEAKER_82) que no traían ninguna propuesta igual que hoy,
+[5343.7 → 5344.6] (SPEAKER_82) no traéis propuestas,
+[5344.7 → 5347.3] (SPEAKER_82) y resulta que venimos con una solución.
+[5348.0 → 5353.6] (SPEAKER_82) Una solución a ojo de todo vecino para evitar eso que hay, ese problema que tenemos en la calle,
+[5353.7 → 5355.8] (SPEAKER_82) y resulta que claro,
+[5355.9 → 5357.3] (SPEAKER_82) eso tampoco están de acuerdo.
+[5357.4 → 5358.2] (SPEAKER_82) No,
+[5358.4 → 5361.7] (SPEAKER_82) eso es como la viñeta de Forbes que decía no,
+[5361.8 → 5362.5] (SPEAKER_82) y ¿por qué no?
+[5362.6 → 5365.9] (SPEAKER_82) Porque no, pues ustedes siguen ese argumento de no,
+[5366.0 → 5366.5] (SPEAKER_82) porque no.
+[5367.2 → 5368.5] (SPEAKER_82) A esquerda unida,
+[5368.5 → 5371.5] (SPEAKER_82) pois, Jose Manuel, mira que eu digo, mira,
+[5371.6 → 5373.1] (SPEAKER_82) isto é unha crítica constructiva,
+[5373.2 → 5374.2] (SPEAKER_82) porque realmente,
+[5374.5 → 5381.2] (SPEAKER_82) se tú vienes e vosotros aprobasteis o presupuesto, e aí van unha serie de cuestiones en las que acordamos.
+[5381.9 → 5382.6] (SPEAKER_82) E eu digo,
+[5382.8 → 5390.0] (SPEAKER_82) non van, temos que quitarlas porque temos que invertir en los contenedores, porque non hai máis remedio, todos lo vemos,
+[5390.2 → 5392.2] (SPEAKER_82) porque é unha necesidade imperante.
+[5393.2 → 5395.0] (SPEAKER_82) Y resulta que digo lo mismo,
+[5395.1 → 5408.6] (SPEAKER_82) que van a ir con modificaciones presupuestarias o en el próximo presupuesto de 2027, digo, bueno, y recogemos nosotros el guante de lo que dices y efectivamente lo vamos a hacer, pero es que luego dices que no votas a favor,
+[5408.7 → 5413.0] (SPEAKER_82) con lo cual estás diciendo no voto a favor a la compra de contenedores que tanta necesidad hace.
+[5413.2 → 5413.7] (SPEAKER_82) Entonces,
+[5413.7 → 5414.2] (SPEAKER_82) en fin,
+[5414.2 → 5417.7] (SPEAKER_82) no llego a entenderlo claramente.
+[5418.3 → 5421.3] (SPEAKER_82) És sobre el tema de Rafa,
+[5421.4 → 5423.7] (SPEAKER_82) efectivament no és el vot com anar,
+[5423.9 → 5434.6] (SPEAKER_82) si d'una direcció o una altra, però que les modificacions tampoc són tantes modificacions per canviar. El marge de maniobra en la part de financiar en préstamo tampoc és molt gran.
+[5434.9 → 5438.6] (SPEAKER_82) I n'hi havia que agarrar aquelles que poden ser modificades,
+[5438.6 → 5443.7] (SPEAKER_82) que se poden canviar dins del propi pressupost, en fondos propis o que se poden traslladar al 2027.
+[5443.7 → 5447.4] (SPEAKER_82) O sea, lo importante así es la adquisición de contenedores. Gracias.
+[5448.2 → 5450.5] (SPEAKER_81) Según intervención, salva dos minutos.
+[5451.8 → 5452.3] (SPEAKER_82) Gracias.
+[5452.8 → 5458.7] (SPEAKER_82) En este caso el concejal de Hacienda nos dice que ¿por qué no llamamos? Hombre, si lo hemos recibido a las 11.
+[5459.3 → 5460.5] (SPEAKER_82) Hoy a las 11.
+[5460.6 → 5465.2] (SPEAKER_82) La solución de los contenedores ha llegado hoy a las 11.
+[5467.0 → 5468.7] (SPEAKER_82) No sé, podría haber llegado antes,
+[5468.8 → 5469.2] (SPEAKER_82) quizá.
+[5470.2 → 5475.6] (SPEAKER_82) Respecto al plan de refugios climáticos que tanto le preocupa a la izquierda,
+[5475.7 → 5481.4] (SPEAKER_82) lo he dejado de esta manera porque sabía que ambos iban a entrar y no han fallado,
+[5481.5 → 5482.3] (SPEAKER_82) oye, no han fallado.
+[5482.4 → 5484.1] (SPEAKER_82) La izquierda nunca falla en estas cosas.
+[5485.1 → 5492.5] (SPEAKER_82) Simplemente recordarles que en el último pleno nosotros presentamos una moción para poner en marcha estos puntos de agua,
+[5492.8 → 5494.3] (SPEAKER_82) puntos de sombraje.
+[5495.0 → 5496.9] (SPEAKER_82) y finalmente una moción que no salió.
+[5497.1 → 5504.7] (SPEAKER_82) Hace escasos meses también solicitamos que se hiciera el estudio de realizar una zona de sombraje en el CIF,
+[5504.8 → 5511.1] (SPEAKER_82) estudio que parece ser que tenemos que preguntar, según el concejal de Hacienda hay que preguntarlo todo,
+[5511.2 → 5512.1] (SPEAKER_82) no se nos informa.
+[5512.6 → 5515.2] (SPEAKER_82) Primero nos dicen que son muy transparentes y no se informan.
+[5515.2 → 5516.4] (SPEAKER_82) Después que hay que preguntarlo todo.
+[5516.4 → 5518.4] (SPEAKER_82) Pues bueno, preguntaremos dónde está el estudio.
+[5518.5 → 5520.6] (SPEAKER_82) Pero ustedes, especialmente Rafa,
+[5520.7 → 5530.2] (SPEAKER_82) fiel escudero del Partido Socialista que siempre dice que ha estado en gobierno y fiel seguidor a las publicaciones del Partido Socialista,
+[5530.3 → 5537.2] (SPEAKER_82) usted vería hace escasas semanas cómo el señor alcalde junto con algunos de los concejales daba publicidad.
+[5537.4 → 5539.9] (SPEAKER_82) ¿Ha habido refugios climáticos que se han creado?
+[5540.4 → 5541.1] (SPEAKER_82) Entonces,
+[5541.2 → 5544.5] (SPEAKER_82) usted que ha estado en gobierno y sabe cómo funcionan las partidas presupuestarias,
+[5544.9 → 5555.8] (SPEAKER_82) ¿cómo puede ser que el Partido Socialista publique que están en marcha los refugios climáticos, pero a la vez la partida de refugios climáticos vaya a cero?
+[5556.3 → 5558.6] (SPEAKER_82) O no lo pagan o lo pagan de otro sitio.
+[5558.7 → 5559.5] (SPEAKER_82) Dígamelo usted,
+[5559.6 → 5561.3] (SPEAKER_82) que está en gobierno, o se lo pregunto a ellos,
+[5561.4 → 5563.1] (SPEAKER_82) o usted se lo pregunta a ellos, como prefiera.
+[5563.7 → 5565.7] (SPEAKER_82) En esas reuniones que hacen semanalmente,
+[5565.8 → 5566.8] (SPEAKER_82) usted lo pregunta.
+[5567.1 → 5574.4] (SPEAKER_82) ¿Cómo puede ser que ustedes quiten 50.000 euros del plan de refugios climáticos pero hace dos semanas lo pusieran en marcha?
+[5575.3 → 5578.1] (SPEAKER_82) Me lo dicen sin bombas.
+[5578.2 → 5579.5] (SPEAKER_82) Nosotros respetamos,
+[5579.6 → 5580.4] (SPEAKER_82) debatimos.
+[5581.3 → 5583.4] (SPEAKER_82) Porque entiendo, bueno entiendo,
+[5583.5 → 5592.4] (SPEAKER_82) que usted debería saber lo que es la diferencia entre tener libertad de expresión y respetar. Usted podrá criticar las ideas, las proposiciones.
+[5593.6 → 5595.6] (SPEAKER_82) Podemos opinar de manera distinta,
+[5595.6 → 5596.4] (SPEAKER_82) pero vamos,
+[5596.4 → 5598.5] (SPEAKER_82) que usted insulte a un compañero,
+[5598.6 → 5600.0] (SPEAKER_82) sea de un partido, sea de otro,
+[5601.8 → 5605.4] (SPEAKER_82) equiparándolo a un asesino o a un...
+[5605.8 → 5630.7] (SPEAKER_82) terrorista pues creo que ahí se ha pasado de frenada porque estábamos hablando de refugios climáticos en cualquier caso parece ser de que el señor concejal quiere que le llamemos y le pidamos explicaciones de todo que él no nos la puede dar oye pues si había una modificación de para para las escuelas infantiles pues también nos podrían haber dicho oiga esto está así pero es que sin tiempo de reacción
+[5631.4 → 5634.5] (SPEAKER_82) presentando las cosas a las 11 del mediodía con un pleno a las 5,
+[5634.6 → 5635.8] (SPEAKER_82) pues poca capacidad.
+[5636.1 → 5636.6] (SPEAKER_82) Y sí,
+[5636.6 → 5638.1] (SPEAKER_82) nuestro voto fue que no al presupuesto,
+[5638.1 → 5647.9] (SPEAKER_82) pero no al presupuesto de este Ayuntamiento, fue no a la gestión del Partido Socialista, a cómo gestionan ustedes los presupuestos, a las modificaciones que hacen,
+[5648.0 → 5649.1] (SPEAKER_82) a la falta de pago,
+[5649.2 → 5650.4] (SPEAKER_82) a la subida de impuestos,
+[5650.6 → 5652.7] (SPEAKER_82) a eso votamos que no. Gracias.
+[5655.0 → 5655.8] (SPEAKER_81) Pablo es Vox.
+[5659.2 → 5659.8] (SPEAKER_81) Muchas gracias.
+[5660.5 → 5684.7] (SPEAKER_82) La falta de educación y respeto que además el alcalde consiente por parte de intervenciones de la extrema izquierda, comparándome a mí con un talibán con bombas, que tengo más peligro, o sea, no con un talibán, sino más peligro todavía que un talibán con bombas, además de un componente del equipo de gobierno indicándome que echo de menos a la ETA,
+[5684.7 → 5687.4] (SPEAKER_82) esto ha quedado grabado. No suelo hacer juicio.
+[5687.2 → 5700.0] (SPEAKER_82) Los juicios de valor y desde luego no lo voy a hacer. Y lo que sí que no voy a hacer es insultar a ningún miembro de esta corporación como hacen los componentes de la izquierda y que el alcalde además no corta.
+[5700.9 → 5703.6] (SPEAKER_82) Además pactando, lo dice alguien,
+[5703.7 → 5712.0] (SPEAKER_82) que en Pamplona le han dado la alcaldía a los Bilotarras y me dice que yo los echo de menos.
+[5712.5 → 5715.6] (SPEAKER_82) Estamos hablando de un tema de contenedores de basura, es verdad,
+[5715.7 → 5721.0] (SPEAKER_82) pero al final ha salido el tema del medio ambiente y en este minuto...
+[5722.1 → 5747.6] (SPEAKER_82) que me queda voy a tratar de explicar lo que pensamos sobre los incendios. Los incendios son provocados principalmente por el fanatismo climático de la agenda 2030 y evidentemente hay un calentamiento global lo digo otra vez a pesar de que digan que hay una negación por nuestra parte pero no se permite la limpieza, el aprovechamiento y la gestión forestal.
+[5747.5 → 5756.1] (SPEAKER_82) con pastoreo, silvicultura, agricultura de montaña, cortafuegos pequeños, pequeñas presas y remansos de agua.
+[5756.2 → 5763.3] (SPEAKER_82) Pero es que además esto no solamente pasa en España, estamos viendo que en Francia el incendio es todavía mayor en la zona de Bordeos. ¿Por qué?
+[5763.4 → 5774.5] (SPEAKER_82) Porque ese fanatismo climático de la Unión Europea está acabando con nuestros montes. Así que todo mi respeto a las personas que están trabajando en estos incendios.
+[5774.2 → 5783.2] (SPEAKER_82) incendios y por favor tengan en cuenta que la prevención y la limpieza de los montes es lo que evita los incendios para el futuro gracias
+[5786.9 → 5787.7] (SPEAKER_81) Perfecto, preparamos.
+[5787.9 → 5788.3] (SPEAKER_81) Más palabras.
+[5792.2 → 5797.1] (SPEAKER_83) Yo centrarme en este punt per contestar a José Ángel.
+[5797.8 → 5806.2] (SPEAKER_83) A vore, e nosaltres vàrem votar a favor de de de aquestes inversions també, vàrem votar a favor del pressupost, aleshores
+[5806.4 → 5807.0] (SPEAKER_83) eh um
+[5808.7 → 5808.8] (SPEAKER_83) si
+[5810.1 → 5815.5] (SPEAKER_83) Una de les parts ha fallat en això, no és obvio, en este cas és l'equip de govern. Per tant,
+[5816.2 → 5824.4] (SPEAKER_83) qui ha faltat a estes inversions o al acord que nosaltres havíem tingut o vàrem parlar ha sigut l'equip de govern.
+[5824.8 → 5832.1] (SPEAKER_83) Jo puc tindre la paraula que el Partit Socialista va tindre estes partides en el pressupost del 27 perfecte.
+[5832.8 → 5856.8] (SPEAKER_83) estic molt orgullós d'aixes paraules i de que siga una realitat, però eh quan estiguen, pues a lo millor ja votarem a favor o no, en este sentit nosaltres no podem votar a favor d'allò que no sabem, perquè de fet qui ha fallat a estes inversions no sou jo, és el Partit Socialista. A més, si el Partit Socialista també vot el vot favorable, en este cas, del dels espais polítics que jo represente,
+[5857.0 → 5859.1] (SPEAKER_83) eh també reitere la la
+[5859.9 → 5872.6] (SPEAKER_83) El tema de la documentació ha arribat molt tard, és a dir, no hi ha temps, ja no per a llegir el document sinó per a negociar el document o per a parlar-lo detingudament perquè al final nosaltres no hem decidit.
+[5873.3 → 5893.7] (SPEAKER_83) El que les el que diversos partides o inversions eh se'n vagen fora o a decidir el Partit Socialista per les seues qüestions o per lo que siga però eh jo crec que és totalment lícit que nosaltres ens tinguem d'acord en diverses qüestions i per això anem a donar suport a este a esta proposta encara que se diga que van a estar en un pressupost del 27.
+[5894.3 → 5903.5] (SPEAKER_83) No ho sé si van a estar. Això qui té l'oportunitat de que estiguin o la responsabilitat és tot l'espai polític del Partit Socialista i tot l'equip de govern.
+[5903.7 → 5905.3] (SPEAKER_83) Per tant, quan estiga i siga una realitat,
+[5905.6 → 5908.6] (SPEAKER_83) votarem a favor si és així i si és veritat.
+[5909.0 → 5913.5] (SPEAKER_83) I sí que pregue que si se vol un vot a favor del nostre grup municipal,
+[5913.9 → 5920.5] (SPEAKER_83) doncs les coses crec que s'han de fer diferents en el sentit que arribem molt més prontes als punts d'acord perquè ha arribat a les 11.
+[5920.5 → 5922.0] (SPEAKER_83) dels quatre del dia d'avui,
+[5922.1 → 5935.6] (SPEAKER_83) és un esforç tindre que enterar-se bé de lo que estem parlant per a que a més se mos existisca que votem a favor d'este punt quan qui ha faltat a les inversions no soc jo, és el PSC. Gràcies.
+[5936.5 → 5937.4] (SPEAKER_81) Més paraules?
+[5937.6 → 5938.8] (SPEAKER_81) Dos minuts. Compromís.
+[5943.0 → 5944.3] (SPEAKER_80) Gràcies, senyor alcalde.
+[5944.5 → 5945.0] (SPEAKER_80) Anem a veure.
+[5947.6 → 5950.4] (SPEAKER_80) Diverses. Varies qüestions. Lo primer,
+[5950.5 → 5953.8] (SPEAKER_80) la intervenció del representant del Partit Popular,
+[5954.9 → 5956.3] (SPEAKER_80) faltant de la veritat,
+[5956.5 → 5963.5] (SPEAKER_80) jo crec que deuria de ser digne de menció i ho vaig a mencionar.
+[5963.6 → 5964.9] (SPEAKER_80) En un moment...
+[5965.5 → 5973.7] (SPEAKER_80) A comentar que yo vengo a reunirme, vengo a las reuniones del partido socialista, en el equipo de gobierno,
+[5974.0 → 5975.5] (SPEAKER_80) yo no sé de dónde se ha atrevido,
+[5975.5 → 5977.5] (SPEAKER_80) pero eso es una falacia.
+[5978.0 → 5987.6] (SPEAKER_80) Yo vengo a este ayuntamiento cuando necesita información y vengo a preguntar o vea regidores o vea trabajadores o técnicos de esta casa.
+[5989.0 → 5999.8] (SPEAKER_80) Me voy a ir en algún ple y autornea repetir que a mí se me acuse de que yo venga así a estar en connivencia en el Partido Socialista, me pareis.
+[6000.0 → 6007.6] (SPEAKER_100) que es una falta de respeto a compromiso y al rechidor que representa.
+[6009.7 → 6012.8] (SPEAKER_100) Después, yo he hecho una comparación, he dicho antes,
+[6013.0 → 6018.3] (SPEAKER_100) yo desde el 2023 hasta ahora he estado aguantando.
+[6019.1 → 6031.9] (SPEAKER_100) Que tanto el Compay de Esquerra Unida, Unidas Podemos y a mí se mostrase de filoetarra, de narcotraficante hace un momento o acompañante narcotraficante, yo no sé,
+[6032.0 → 6037.1] (SPEAKER_100) o estaba diciendo pero estaba mirando al Partido Popular o mirando a vosotros, no sé,
+[6037.2 → 6037.8] (SPEAKER_100) ¿vale?
+[6037.9 → 6039.5] (SPEAKER_100) Es la duda que se me ha quedado.
+[6039.9 → 6040.3] (SPEAKER_100) Eh,
+[6040.6 → 6042.3] (SPEAKER_100) mos han tratat, vamos,
+[6042.5 → 6044.5] (SPEAKER_100) de tota sí en este plenari.
+[6044.7 → 6046.7] (SPEAKER_100) Desde el 2023 que está vostè.
+[6047.2 → 6048.4] (SPEAKER_100) Desde el 2023.
+[6048.7 → 6050.7] (SPEAKER_100) La extrema derecha radical,
+[6051.0 → 6055.0] (SPEAKER_100) no sé qué, ni sé... Pero si és que està gravat. I total,
+[6055.2 → 6058.3] (SPEAKER_100) hui, hui, després de tres anys,
+[6059.1 → 6062.6] (SPEAKER_100) faig una comparació i se rasquen les vestidures.
+[6063.5 → 6064.8] (SPEAKER_100) Tenen la prima al final,
+[6064.9 → 6066.0] (SPEAKER_100) per lo que volen, clar.
+[6067.2 → 6067.6] (SPEAKER_100) Gracias.
+[6069.0 → 6070.7] (SPEAKER_101) Última intervención, José Ángel Minuto.
+[6079.1 → 6082.3] (SPEAKER_102) Sí, no voy a entrar porque en el tema de... Mira,
+[6082.4 → 6095.8] (SPEAKER_102) votaron en contra, al presupuesto el 16 de marzo y hoy, por lo que veo, votarán en contra también a las inversiones en la compra de los contenedores que a ojo de cualquier vecino de este municipio sabe que hacen falta.
+[6096.5 → 6103.0] (SPEAKER_102) Creo que han perdido el norte y entiendo que ha sido así porque algún partido está...
+[6104.3 → 6117.5] (SPEAKER_102) Está poniendo el punto de atención en lo que hemos quitado y repito que vamos a incorporarlo vía modificaciones, vía subvenciones o vía presupuesto del año que viene lo vamos a incorporar pero es que el punto central de aquí son los contenedores,
+[6117.5 → 6118.6] (SPEAKER_102) pero bueno.
+[6119.2 → 6121.6] (SPEAKER_102) Si es que creo que es lo más importante en estos momentos,
+[6121.6 → 6127.1] (SPEAKER_102) y prioritario para la ciudadanía, y creo que nosotros somos los representantes de la ciudadanía. Si no lo tenemos claro,
+[6127.2 → 6128.2] (SPEAKER_102) pues en fin,
+[6128.3 → 6129.6] (SPEAKER_102) apaga y vámonos.
+[6129.9 → 6130.7] (SPEAKER_102) Con lo cual,
+[6130.7 → 6133.2] (SPEAKER_102) es el peso, y claro,
+[6133.3 → 6136.7] (SPEAKER_102) yo a Esquerra Unida nos vamos a lo que hemos quitado,
+[6136.8 → 6137.5] (SPEAKER_102) pero hombre,
+[6137.6 → 6138.6] (SPEAKER_102) es que hay un motivo de peso,
+[6138.7 → 6145.2] (SPEAKER_102) hay un motivo muy importante el tener que haber hecho esa modificación. A cualquiera no le gusta venir aquí y de lo que digo, digo Diego, Diego.
+[6145.3 → 6154.0] (SPEAKER_102) Luego viene aquí con un motivo de peso que es nada menos que invertir medio millón de euros en contenedores porque hacen falta para tus ciudadanos, para tus vecinos.
+[6154.2 → 6158.5] (SPEAKER_102) Y que lo otro además se va a financiar de otra manera o se va a incorporar en el presupuesto.
+[6158.6 → 6159.7] (SPEAKER_102) Pero bueno, allá ustedes.
+[6160.6 → 6169.3] (SPEAKER_102) Pero lo que está claro y que quede claro para toda la ciudadanía es que lo que traemos hoy aquí sirve para comprar los contenedores que tanta falta hacen en este municipio.
+[6170.0 → 6182.1] (SPEAKER_102) con lo cual el voto a favor es el voto a favor de la compra de contenedores y el voto en contra pues es el voto de ir luego a hacer política y decir mira qué mal está todo pero hay soluciones pues aquí está el gobierno para dar soluciones gracias
+[6187.6 → 6189.5] (SPEAKER_101) Jo vaig ser un poc de tot.
+[6190.6 → 6193.0] (SPEAKER_101) de les interrupcions del Partit Popular,
+[6193.1 → 6193.7] (SPEAKER_101) que són constants.
+[6193.9 → 6195.6] (SPEAKER_101) Bé, la portaveu, perquè les altres se porten bé.
+[6196.2 → 6201.4] (SPEAKER_101) Però també dels pincellades grosses que digueu que som molt grosses.
+[6202.0 → 6205.3] (SPEAKER_101) I les pincellades grosses, de vegades, han de ser més fines.
+[6206.4 → 6210.7] (SPEAKER_101) Jo pensava que era el punt que duen avui molt important.
+[6211.4 → 6215.4] (SPEAKER_101) Jo estic convençut que sóc l'alcalde i nosaltres governem. Altres no governen.
+[6215.7 → 6217.9] (SPEAKER_101) Nosaltres tenim la responsabilitat de governar.
+[6218.9 → 6221.9] (SPEAKER_101) I l'acceptem absolutament, per al govern i per al regidor.
+[6222.1 → 6225.6] (SPEAKER_101) I sabem que avui, si n'hi ha alguna cosa que falta en aquest ajuntament,
+[6225.8 → 6232.3] (SPEAKER_101) és la millora de tot el servei que es presta en residus urbans, RCU,
+[6232.8 → 6240.1] (SPEAKER_101) compra de contenidors i, com ja estem treballant, un nou contracte que doni compliment a l'obligació que té aquest ajuntament,
+[6240.2 → 6241.8] (SPEAKER_101) que ho dia ADEs.
+[6242.5 → 6248.5] (SPEAKER_101) en el contrato de la vía. Si el Ayuntamiento tiene algo de competencia pura, es la vía potable,
+[6248.6 → 6250.9] (SPEAKER_101) el canterillat, el alumbrat,
+[6251.1 → 6252.6] (SPEAKER_101) los residuos y,
+[6252.7 → 6253.4] (SPEAKER_101) por eso digo más así,
+[6253.5 → 6255.2] (SPEAKER_101) por la responsabilidad que tenemos.
+[6255.9 → 6257.3] (SPEAKER_101) Y lo han hecho, ya lo saben,
+[6257.3 → 6259.6] (SPEAKER_101) porque tienen una comisión de contratación.
+[6260.6 → 6276.5] (SPEAKER_101) Desconcén un contraerte de emergencia que en fet que es algo únic i pràcticament històric i que vull agrair com amagat d'una forma legal un contraerte d'emergència que és algo molt singular per a solventar un problema dels nostres veïns que no ha generat este govern
+[6277.2 → 6281.5] (SPEAKER_101) que ha generat una empresa que no ha complit en el projecte que tenia este govern.
+[6283.4 → 6290.9] (SPEAKER_101) I, per tant, han de ser responsables i en base a aquest incompliment a anar prenent decisions importants. Primer,
+[6290.9 → 6293.7] (SPEAKER_101) el contracte d'emergència en l'empresa que és el més urgent,
+[6293.9 → 6295.7] (SPEAKER_101) llevar els residus tots els dies.
+[6296.4 → 6309.9] (SPEAKER_101) O prácticamente 8 días. Segundo, conforme a los contenedores deteriorarse per el moment en la replegada, es decir,
+[6310.0 → 6311.6] (SPEAKER_101) quan van començar a replegar,
+[6311.7 → 6313.0] (SPEAKER_101) los contenedores no estaban en China,
+[6313.2 → 6317.7] (SPEAKER_101) pero han atrincado en la ejecución del propio contracte y han tenido que actuar.
+[6318.3 → 6320.9] (SPEAKER_101) Però això no te mantenien allò que haurien de fer.
+[6321.0 → 6322.0] (SPEAKER_101) Ja ho sabeu tots,
+[6322.0 → 6328.6] (SPEAKER_101) però això és una comissió de contratació que no té ningun ajuntament, ningú,
+[6328.7 → 6334.8] (SPEAKER_101) i que tots els portaveus esteu tots els mesos reunits en aquesta comissió per parlar del que hauríeu de contractar.
+[6334.9 → 6338.6] (SPEAKER_101) I el contracte, el contracte que s'ha passat a la basura,
+[6338.7 → 6344.4] (SPEAKER_101) han sigut rapidíssims. I ho han fet no perquè l'alcalde no interessa, perquè tenim bons tècnics.
+[6345.6 → 6348.9] (SPEAKER_101) Perquè tenim molts tècnics de medi ambient,
+[6349.1 → 6357.0] (SPEAKER_101) d'activitats o de secretaria, però això han aconseguit en dos mesos resoldre un contracte de 10 milions d'euros que estava adjudicat a una empresa.
+[6359.3 → 6364.5] (SPEAKER_101) I els contenidors, perquè hem canviat i hem decidit comprar-los en fons de l'Ajuntament.
+[6365.7 → 6371.0] (SPEAKER_101) Per quedar-te a manera, se venen pagats, però no saps què paga la contrata, perquè tot ho paga el veí, eh?
+[6371.2 → 6373.3] (SPEAKER_101) A veure si... així no... ho paga tot el veí.
+[6373.4 → 6376.0] (SPEAKER_101) O ho ve fraccionat perquè és una contrata o com ara,
+[6376.1 → 6381.9] (SPEAKER_101) que per emergència, contracte d'emergència, considerem que els contenidors, conforme estan,
+[6382.0 → 6382.6] (SPEAKER_101) no poden estar.
+[6382.8 → 6384.1] (SPEAKER_101) I és el punt clau d'ara.
+[6385.0 → 6387.5] (SPEAKER_101) Caduca interpretant com vulgueu, dic per a tots els partits.
+[6387.6 → 6388.7] (SPEAKER_101) El punt clau és,
+[6388.8 → 6389.8] (SPEAKER_101) si tenim...
+[6390.1 → 6392.2] (SPEAKER_101) És diners per a comprar els contenidors o no?
+[6393.6 → 6398.6] (SPEAKER_101) Si podem pagar-los quan aconseguim factures i per això fem la modificació.
+[6398.8 → 6401.5] (SPEAKER_101) Si nosaltres ara no votarem a favor,
+[6401.8 → 6405.9] (SPEAKER_101) ho dic perquè esteu parlant del Partit Popular i no m'ateneu, el portador...
