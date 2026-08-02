@@ -38,3 +38,12 @@ public/data/pleno-claims-verified-base.json
 # `npm run reground:verdicts`. A curator working file, not committed.
 public/data/pleno-claims-regrounding-flags.json
 .review-cache.json
+
+# macOS/iCloud duplicate-file artifacts ("foo 2.ts", "index 2").
+# This repo lives under ~/Documents; the sync service periodically clones files
+# with a " 2" suffix. One such clone landed in .git/refs and broke every push
+# until it was found, and a duplicate of a script was committed before anyone
+# noticed. No legitimate file here has " 2" in its name — verified against
+# `git ls-files` — so ignoring the pattern is safe and stops the next one.
+*\ 2
+*\ 2.*
