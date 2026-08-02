@@ -79,6 +79,19 @@ export const SELF_SIM_FLOOR = 0.98
  *  arrive at L2 ≈ 0.57 and needed client-side normalisation to fix. */
 export const NORM_BAND: [number, number] = [0.9, 1.1]
 
+/**
+ * Cosine differences below this are provider noise, not ordering.
+ *
+ * Embedding APIs are not bit-deterministic: the same text submitted twice comes
+ * back with vectors whose cosine is 0.999999774 rather than exactly 1. Measured
+ * on a real duplicate pair in the agent corpus, the gap was 2.3e-7. Strict
+ * `>` ranking turned that into a rank-2 "miss" and reported healthy retrieval
+ * as broken. Set well above the observed noise and far below any difference
+ * that could carry meaning — semantically distinct chunks differ by 1e-2 or
+ * more, five orders of magnitude away.
+ */
+export const TIE_EPSILON = 1e-6
+
 export function l2Norm(v: number[]): number {
   let s = 0
   for (const x of v) s += x * x
@@ -211,11 +224,22 @@ export function assessSelfRetrieval(probes: ProbeOutcome[]): HealthFinding[] {
 /**
  * Rank each probe's own row among its search results.
  *
- * Lives here rather than in the CLI because the interesting judgement is the
- * `s <= 0` clause: a similarity of exactly 0 is what a width mismatch produces
- * for EVERY row, and `Array.sort` will still hand back a first element. Without
- * this clause a totally dead corpus reports whichever row happened to sort
- * first as a rank-1 hit, and the check passes while retrieval is broken.
+ * Lives here rather than in the CLI because two judgements are easy to get
+ * wrong and neither is visible from a passing run.
+ *
+ * 1. A similarity of exactly 0 is what a width mismatch produces for EVERY row,
+ *    and `Array.sort` still hands back a first element. Without the `s > 0`
+ *    clause a totally dead corpus reports whichever row sorted first as a
+ *    rank-1 hit and the check passes while retrieval is broken.
+ *
+ * 2. Ranking is COMPETITION ranking — one plus the number of rows scoring
+ *    strictly higher — so ties share a rank. Transcript chunks are overlapping
+ *    line windows and a repeated passage produces byte-identical text at two
+ *    different line ranges; those embed identically, score exactly 1.0 for each
+ *    other, and their order is arbitrary. Positional ranking called that a
+ *    rank-2 miss. A byte-identical duplicate IS the probe's text, so retrieval
+ *    succeeded. Both rows are kept in the corpus deliberately: they are
+ *    different citations, even though they are the same words.
  */
 export function computeProbeOutcomes(
   probes: { sourceId: string; query: number[] }[],
@@ -223,16 +247,11 @@ export function computeProbeOutcomes(
   cosine: (a: number[], b: number[]) => number,
 ): ProbeOutcome[] {
   return probes.map((p) => {
-    const scored = rows
-      .map((r) => ({ id: r.sourceId, s: cosine(p.query, r.embedding) }))
-      .sort((a, b) => b.s - a.s)
-    const at = scored.findIndex((x) => x.id === p.sourceId)
-    const found = at >= 0 && scored[at].s > 0
-    return {
-      sourceId: p.sourceId,
-      rank: found ? at + 1 : 0,
-      selfSimilarity: at >= 0 ? scored[at].s : 0,
-    }
+    const scored = rows.map((r) => ({ id: r.sourceId, s: cosine(p.query, r.embedding) }))
+    const self = scored.find((x) => x.id === p.sourceId)
+    if (!self || self.s <= 0) return { sourceId: p.sourceId, rank: 0, selfSimilarity: self?.s ?? 0 }
+    const better = scored.reduce((n, x) => (x.s > self.s + TIE_EPSILON ? n + 1 : n), 0)
+    return { sourceId: p.sourceId, rank: better + 1, selfSimilarity: self.s }
   })
 }
 

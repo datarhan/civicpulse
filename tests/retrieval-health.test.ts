@@ -8,6 +8,7 @@ import {
   median,
   SELF_SIM_FLOOR,
   NORM_BAND,
+  TIE_EPSILON,
   type ShapeRow,
   type ProbeOutcome,
 } from '../src/scraper/retrieval-health'
@@ -149,6 +150,68 @@ describe('computeProbeOutcomes — the end-to-end assertion', () => {
     const out = computeProbeOutcomes(probes, corpus, cos)
     expect(out.map((o) => o.rank)).toEqual([0, 0, 0])
     expect(codes(assessSelfRetrieval(out))).toEqual(['retrieval-dead'])
+  })
+
+  it('ties when the gap is provider noise, but not when it is real', () => {
+    // Measured on a real duplicate pair: identical text, embeddings differing
+    // by 2.3e-7 in cosine. That must tie. A gap an order of magnitude above
+    // TIE_EPSILON must still rank.
+    const corpus: ShapeRow[] = [
+      { sourceId: 'probe', embedding: [1] },
+      { sourceId: 'other', embedding: [2] },
+    ]
+    // cosine is injected, so drive the gap directly: `other` scores 1, `probe`
+    // scores 1 - gap.
+    const cosWithGap = (gap: number) => (_q: number[], e: number[]) => (e[0] === 1 ? 1 - gap : 1)
+
+    const noise = computeProbeOutcomes(
+      [{ sourceId: 'probe', query: [0] }],
+      corpus,
+      cosWithGap(2.3e-7),
+    )
+    expect(noise[0].rank).toBe(1)
+
+    const real = computeProbeOutcomes(
+      [{ sourceId: 'probe', query: [0] }],
+      corpus,
+      cosWithGap(TIE_EPSILON * 10),
+    )
+    expect(real[0].rank).toBe(2)
+  })
+
+  it('treats a byte-identical duplicate as a tie, not a miss', () => {
+    // Real case: transcript line-windows overlap, so a repeated passage yields
+    // two rows with identical text at different line ranges. They embed
+    // identically and score exactly 1.0 for each other; positional ranking
+    // called the second one a rank-2 failure.
+    const shared = unit(8, 42)
+    const corpus: ShapeRow[] = [
+      { sourceId: 'chunk#L1029-L1040', embedding: shared },
+      { sourceId: 'chunk#L1803-L1814', embedding: shared },
+      ...rows(10),
+    ]
+    const out = computeProbeOutcomes(
+      [{ sourceId: 'chunk#L1803-L1814', query: shared }],
+      corpus,
+      cos,
+    )
+    expect(out[0].rank).toBe(1)
+    expect(assessSelfRetrieval(out)).toEqual([])
+  })
+
+  it('still counts a genuinely better-scoring row as outranking the probe', () => {
+    // Explicit vectors so the similarities are controlled: querying with `near`
+    // scores it 1.0 and `probe` 0.707 — positive, so it IS retrieved, just
+    // second. A tie-aware rank must not collapse that into rank 1.
+    const probe = [1, 0, 0]
+    const near = [Math.SQRT1_2, Math.SQRT1_2, 0]
+    const corpus: ShapeRow[] = [
+      { sourceId: 'probe', embedding: probe },
+      { sourceId: 'near', embedding: near },
+    ]
+    const out = computeProbeOutcomes([{ sourceId: 'probe', query: near }], corpus, cos)
+    expect(out[0].rank).toBe(2)
+    expect(out[0].selfSimilarity).toBeCloseTo(Math.SQRT1_2, 6)
   })
 
   it('reports rank 0 for a row that is absent from the corpus', () => {
