@@ -8,9 +8,9 @@
 #   → for each pleno that HAS a video but NO transcript (newest first,
 #     capped at MAX_PLENOS per run):
 #         transcribe             Whisper mlx · $0 · ~20 min/pleno · local
-#         extract:pleno-claims   agy · gemini-3.5-flash · $0
+#         extract:pleno-claims   claude-code · sonnet · $0 (Max plan)
 #   → verify:pleno-claims        overlay-safe deterministic re-verify
-#   → auto-curate                agy · gemini-3.5-flash · libel-safe gates
+#   → auto-curate                claude-code · sonnet · libel-safe gates
 #   → commit + push              deploy-vercel.yml redeploys on push-to-main
 #
 # Safe to run unattended:
@@ -27,7 +27,7 @@
 #   · One pleno failing (yt-dlp hiccup, quota) is logged + skipped; the
 #     batch continues. The extract checkpoint preserves completed plenos.
 #
-# Host-only: agy is an arm64 macOS CLI (can't containerize). (Whisper now
+# Host-only: the claude CLI needs an interactive login (can't containerize). (Whisper now
 # defaults to the OpenAI API; the mlx/ANE path remains as an env override.)
 # macOS TCC: cron needs Full Disk Access on
 # /usr/sbin/cron + node + git, and origin must be SSH — same gauntlet as the
@@ -70,18 +70,38 @@ trap 'rmdir "$LOCK_DIR" 2>/dev/null || true' EXIT
 
 # ---- env --------------------------------------------------------------
 if [ -f "$REPO_DIR/.env" ]; then set -a; . "$REPO_DIR/.env"; set +a; fi
-export LLM_BACKEND=agy
-# agy renamed its slugs (2026-07): bare "gemini-3.5-flash" became invalid —
-# every call errored, so the whole chain silently drained to metered openai.
-# Slugs now carry the effort tier; -medium matches the old default behavior.
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"
+# Claim extraction runs on claude-code/sonnet (operator decision 2026-08-02),
+# not agy/gemini-flash. Measured with `npm run eval:extractor` on a diarized
+# pleno: sonnet reproduced 100% of extracted quotes verbatim against the
+# transcript, haiku only 97% — one reworded councillor sentence out of 33. The
+# published contract of /declaraciones is that a quote is what was SAID, so a
+# model that paraphrases is unusable at any price. gemini-flash was never
+# measured at all, and it produced every one of the 6,359 claims on disk.
+#
+# agy also fails in the worst possible way: with its daily Google quota spent it
+# prints "Individual quota reached" to stdout and exits **0**, so nothing
+# downstream can tell success from exhaustion by return code. Quota observed
+# spent 2026-08-02 with a 62-hour reset.
+export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
+export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
+export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read if LLM_BACKEND=agy
+
+# Preflight, same as press-lab-pipeline: if the chosen backend cannot answer a
+# one-word prompt, defer the whole run rather than let per-call failures drain
+# the chain to a metered fallback. Cheap, and it turns a silent leak into a
+# skipped night.
+if [ "$LLM_BACKEND" = claude-code ] &&
+   ! claude -p "ok" --strict-mcp-config --model "$CLAUDE_CODE_MODEL" >/dev/null 2>&1; then
+  log "claude-code unavailable (quota or auth) — deferring this run rather than falling back to metered"
+  exit 0
+fi
 # openai (API, metered ~$0.006/min ≈ $0.72 per 2h pleno) replaced mlx as the
 # default on 2026-07-07: MLX large-v3 pinned the local GPU for ~30 min/run and
 # tripped the Metal watchdog on long sessions. Requires OPENAI_API_KEY (from
 # .env above). Override via env for a local run: WHISPER_ENGINE=mlx.
 export WHISPER_ENGINE="${WHISPER_ENGINE:-openai}"
 
-log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/$AGY_MODEL · whisper=$WHISPER_ENGINE · blocklist=[${TRANSCRIBE_BLOCKLIST:-none}]"
+log "starting · MAX_PLENOS=$MAX_PLENOS · llm=$LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · whisper=$WHISPER_ENGINE · blocklist=[${TRANSCRIBE_BLOCKLIST:-none}]"
 
 # ---- always start from origin -----------------------------------------
 git pull --rebase --autostash origin main || { log "git pull failed — aborting before LLM work"; exit 1; }
@@ -131,7 +151,7 @@ if [ -n "$TARGETS" ]; then
       if WHISPER_BATCH_SIZE=1 bash scripts/transcribe-pleno.sh "$id"; then ok=1; fi
     fi
     if [ "$ok" = 1 ]; then
-      log "extracting claims from $id (agy/$AGY_MODEL · \$0 backends only)…"
+      log "extracting claims from $id ($LLM_BACKEND/${CLAUDE_CODE_MODEL:-$AGY_MODEL} · \$0 backends only)…"
       # Same $0 policy the auto-curate step below already enforces. The
       # transcription step above legitimately needs OPENAI_API_KEY, so the key
       # is present in this shell — which meant the extractor's backend chain
@@ -227,7 +247,7 @@ git commit -m "$(cat <<EOF
 data: /hallazgos pipeline · ${NEW} pleno(s) transcribed · ${NEW_FINDINGS} new finding(s)
 
 Automated by scripts/hallazgos-pipeline.sh (weekly cron).
-transcribe(mlx) → extract(agy/${AGY_MODEL}) → verify(overlay-safe) → auto-curate.
+transcribe(${WHISPER_ENGINE}) → extract(${LLM_BACKEND}/${CLAUDE_CODE_MODEL:-$AGY_MODEL}) → verify(overlay-safe) → auto-curate.
 All findings tagged \`curatorName: "auto-curation-v1"\`.
 EOF
 )"

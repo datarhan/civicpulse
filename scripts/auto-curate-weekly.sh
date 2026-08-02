@@ -45,13 +45,21 @@ git pull --rebase --autostash origin main
 # scripts/hallazgos-pipeline.sh (daily cron: transcribe→extract→verify→
 # auto-curate→push). It stays only as a manual promote-only fallback.
 #
-# Default backend: agy · gemini-3.5-flash ($0, Google subscription) —
-# the same headless backend the promises cron uses. Switched OFF
-# claude-code/sonnet: claude-code STALLS headlessly under cron/launchd
-# (no interactive session to attach to) and burns the shared Max quota;
-# sonnet also violates the opus-or-fable model policy. agy runs headless.
-export LLM_BACKEND="${LLM_BACKEND:-agy}"
-export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"
+# Default backend: claude-code · sonnet ($0, Max plan) — operator decision
+# 2026-08-02, aligning with hallazgos-pipeline and press-lab-pipeline.
+#
+# The previous comment here justified agy on two grounds that are both stale:
+#   · "claude-code STALLS headlessly under cron" — it did, but the cause was
+#     global MCP init, fixed in client.ts with --strict-mcp-config (5f687f5).
+#     press-lab-pipeline has run claude-code under cron since.
+#   · "sonnet violates the opus-or-fable model policy" — that policy governs
+#     SUBAGENTS, not the LLM backend for data work.
+# Meanwhile agy exits **0** with "Individual quota reached" on stdout when its
+# daily Google quota is spent, so callers cannot detect exhaustion by return
+# code. Observed spent 2026-08-02, 62-hour reset.
+export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
+export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
+export AGY_MODEL="${AGY_MODEL:-gemini-3.5-flash-medium}"  # only read if LLM_BACKEND=agy
 # Gemini stays as a fallback target. GOOGLE_GENAI_USE_GCA=true so the
 # chain can switch to Pro plan auth if claude-code hits a quota wall.
 # gemini-2.5-pro is the highest tier the gemini CLI Pro subscription

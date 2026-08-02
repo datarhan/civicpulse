@@ -38,7 +38,7 @@ echo "          plist:  $DEST"
 echo "          logs:   $(cd "$(dirname "$0")" && pwd)/logs/auto-curate-promises.{out,err}.log"
 echo
 echo "Schedule: daily at 08:30 local time."
-echo "Backend:  LLM_BACKEND=agy · rollout-safe --no-auto-publish default (nothing published)."
+echo "Backend:  LLM_BACKEND=claude-code/sonnet · rollout-safe --no-auto-publish default (nothing published)."
 echo "Manual run anytime:  bash scripts/auto-curate-promises-daily.sh"
 echo "Inspect status:      launchctl list | grep $LABEL"
 echo "Uninstall:           bash scripts/launchd-install-auto-curate-promises.sh uninstall"
