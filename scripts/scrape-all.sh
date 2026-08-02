@@ -228,6 +228,16 @@ if ! npm run check:corpus; then
   soft_failures+=("check:corpus")
 fi
 
+# Published figures that no longer match the data they came from. Pure
+# arithmetic — a frozen reportaje total against its live counterpart — so it
+# cannot invent a drift. Report-only: freezing is intentional, and the answer to
+# a drift is a curator deciding whether it needs a correction note, never an
+# automatic edit of published prose.
+if ! npm run check:drift; then
+  echo "[scrape-all] SOFT-FAILED: check:drift — published figure(s) diverged from live data"
+  soft_failures+=("check:drift")
+fi
+
 # Which snapshots have quietly stopped refreshing. Distinct from a scraper
 # FAILING: six adapters are unreachable from GitHub runners and marked
 # best-effort, so the nightly goes green while their data ages with no working

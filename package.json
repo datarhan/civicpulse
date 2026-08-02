@@ -143,7 +143,8 @@
     "promote-social": "npx tsx scripts/promote-official-social.ts",
     "check:finding-quotes": "npx tsx scripts/check-finding-quotes.ts",
     "check:cadence": "npx tsx scripts/check-snapshot-cadence.ts",
-    "check:corpus": "bash scripts/verify-transcript-corpus.sh"
+    "check:corpus": "bash scripts/verify-transcript-corpus.sh",
+    "check:drift": "npx tsx scripts/check-prose-drift.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
