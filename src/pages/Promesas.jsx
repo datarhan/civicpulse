@@ -12,6 +12,7 @@ import {
 } from '../hooks/usePromises'
 import { fmtDateLong } from '../lib/formatters'
 import { useT } from '../i18n'
+import { useCitationHealth, citationStatus, citationArchive } from '../hooks/useCitationHealth'
 
 function FreezeBanner({ snap }) {
   if (!isPromiseFrozen(snap)) return null
@@ -132,6 +133,7 @@ function CompositionBar({ items }) {
 }
 
 function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
+  const citations = useCitationHealth()
   const color = PARTY_TONE[p.party] || '#64748B'
   const fmt = fmtDateLong
   const showSuggestion = suggestion && !frozen && suggestion.reasoning.length > 0
@@ -188,12 +190,37 @@ function PromiseCard({ p, suggestion, llmEvidence, frozen }) {
       <div
         style={{ display: 'flex', gap: 10, alignItems: 'center', marginBottom: 6, fontSize: 11.5 }}
       >
+        {/* A promise attributes a verbatim quote to a named party, so a citation
+            that no longer resolves is not cosmetic: it is the evidence half of
+            the record going missing, and the right-of-reply flow assumes the
+            affected party can read what they are said to have said. */}
         <ExtLink
           href={p.source.url}
-          style={{ color: 'var(--civic)', textDecoration: 'none', fontWeight: 500 }}
+          style={{
+            color:
+              citationStatus(citations, p.source.url) === 'dead'
+                ? 'var(--crit-ink)'
+                : 'var(--civic)',
+            textDecoration: 'none',
+            fontWeight: 500,
+          }}
         >
-          Fuente: {p.source.publisher} →
+          {citationStatus(citations, p.source.url) === 'dead' ? '⚠︎ ' : ''}Fuente:{' '}
+          {p.source.publisher} →
         </ExtLink>
+        {citationStatus(citations, p.source.url) === 'dead' &&
+          (citationArchive(citations, p.source.url) ? (
+            <ExtLink
+              href={citationArchive(citations, p.source.url)}
+              style={{ color: 'var(--warn-ink)', fontSize: 11, textDecoration: 'underline' }}
+            >
+              copia archivada ↗
+            </ExtLink>
+          ) : (
+            <span style={{ color: 'var(--crit-ink)', fontSize: 11 }}>
+              enlace roto · sin copia archivada
+            </span>
+          ))}
         <Pill tone={STATUS_TONE[p.status] || 'ghost'} size="xs">
           {STATUS_LABEL[p.status] || p.status}
         </Pill>

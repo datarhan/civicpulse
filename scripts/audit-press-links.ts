@@ -39,6 +39,14 @@ const IN = join(PROJECT_ROOT, 'public/data/press-claims-suggestions.json')
 // page `linkRot` was null, and a dead link rendered as a perfectly normal one:
 // the red ⚠︎ only appears when a row exists and says `dead`.
 const PRESS_IN = join(PROJECT_ROOT, 'public/data/press.json')
+// The promise tracker's citations. These are the most legally material links in
+// the project: each is the verbatim quote attributed to a named party, and 12 of
+// the 24 promises cite a `news.google.com` RSS redirector — an opaque token that
+// resolves today and is known to expire. When one dies, the quote becomes
+// unverifiable, and the right-of-reply flow depends on the affected party being
+// able to check what they are said to have said. The press lab has had Wayback
+// archival for months; /promesas had none.
+const PROMISES_IN = join(PROJECT_ROOT, 'public/data/promises.json')
 const OUT = join(PROJECT_ROOT, 'public/data/press-link-rot.json')
 
 const HEAD_TIMEOUT_MS = 12_000
@@ -156,6 +164,26 @@ async function main() {
       urls.set(c.articleUrl, c.articleSource ?? null)
     }
   }
+  const promisesRaw = await readFile(PROMISES_IN, 'utf8').catch(() => null)
+  if (promisesRaw) {
+    const promises =
+      (
+        JSON.parse(promisesRaw) as {
+          items?: Array<{
+            source?: { url?: string; publisher?: string }
+            evidence?: Array<{ url?: string }>
+          }>
+        }
+      ).items ?? []
+    for (const p of promises) {
+      const u = p.source?.url
+      if (u && !urls.has(u)) urls.set(u, p.source?.publisher ?? null)
+      for (const e of p.evidence ?? []) {
+        if (e.url && !urls.has(e.url)) urls.set(e.url, p.source?.publisher ?? null)
+      }
+    }
+  }
+
   const pressRaw = await readFile(PRESS_IN, 'utf8').catch(() => null)
   if (pressRaw) {
     const press =
