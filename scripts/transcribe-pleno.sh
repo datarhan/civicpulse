@@ -591,9 +591,24 @@ if [ "${WHISPER_IDENTIFY:-0}" = "1" ]; then
   fi
 fi
 
+# Vote inference is a BONUS pass over a transcript that is already published and
+# has already passed the sanity gate. It must never decide whether the
+# transcription succeeded.
+#
+# It did, until now. On 1du4rf5 the transcript landed clean — 3.106 lines, 261,8
+# minutes, sanity gate OK — and then the extractor hit `FATAL: Expected property
+# name or '}' in JSON` on a malformed LLM reply. The script exited non-zero, the
+# batch driver recorded the session as FAILED, and it never reached the
+# done-list — so the next run would re-download and re-transcribe 4,4 hours of
+# audio, about $1,60, to redo work that was already finished and correct.
+#
+# The cost of a failed inference is a missing vote suggestion. The cost of
+# letting it set the exit code is paying twice for the expensive half.
 echo "[transcribe] running vote inference…"
 
 cd "$REPO_ROOT"
-npx tsx scripts/extract-pleno-votes.ts "$PLENO_ID"
+if ! npx tsx scripts/extract-pleno-votes.ts "$PLENO_ID"; then
+  echo "[transcribe] WARN: la inferencia de votos falló para $PLENO_ID — la transcripción SÍ está publicada y es válida; solo faltan sugerencias de voto." >&2
+fi
 
 echo "[transcribe] done."
