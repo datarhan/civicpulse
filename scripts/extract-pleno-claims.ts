@@ -22,7 +22,8 @@ import type {
 } from '../src/scraper/pleno-claim'
 import { ALLOWED_CLAIM_TYPES, ALLOWED_CLAIM_TOPICS } from '../src/scraper/pleno-claim'
 import { assessTranscript } from '../src/scraper/transcript-quality'
-import { resetBudget, loadConfigFromEnv } from '../src/llm/client'
+import { resetBudget, loadConfigFromEnv, getRunStats } from '../src/llm/client'
+import { startRun, formatManifest } from '../src/scraper/run-manifest'
 
 const OUT_PATH = resolve('public/data/pleno-claims-suggestions.json')
 const TRANSCRIPT_DIR = resolve('public/data/pleno-transcripts')
@@ -288,6 +289,16 @@ async function main() {
 
   const currentSeats = loadCurrentSeats()
   resetBudget()
+  // Counts recorded here, LLM traffic measured in the client. On 2026-08-02
+  // this script walked 25 plenos, produced 3 claims, and printed
+  // "done — 6362 claim(s) total" — every call had failed with
+  // input_tokens 0 / output_tokens 0 (the backend refusing instantly), the
+  // circuit breaker tripped after 10, and the remaining 24 plenos silently
+  // short-circuited to nothing. Nothing in the output said so.
+  const run = startRun('extract-pleno-claims', {
+    getStats: getRunStats,
+    model: process.env.CLAUDE_CODE_MODEL ?? process.env.AGY_MODEL ?? null,
+  })
   const config = loadConfigFromEnv()
   process.stdout.write(
     `[extract·claims] backend=${config.backend} · seats=${currentSeats.map((s) => `${s.bloc}:${s.seats}`).join(',')} · concurrency=${concurrency}\n`,
@@ -445,6 +456,16 @@ async function main() {
         }
       }
       accumulated.push(...fresh)
+      run.attempt()
+      if (fresh.length > 0) {
+        run.judge()
+        run.record('claims', fresh.length)
+      } else {
+        // A pleno that yields nothing is either a genuinely empty session or a
+        // dead backend. The manifest separates it from a successful one so the
+        // difference is visible.
+        run.neverAttempt()
+      }
       completed += 1
       const total = writeSnapshot()
       process.stdout.write(
@@ -463,6 +484,20 @@ async function main() {
 
   const total = writeSnapshot()
   process.stdout.write(`[extract·claims] done — ${total} claim(s) total → ${OUT_PATH}\n`)
+
+  const { manifest, findings } = run.finish()
+  process.stdout.write(`\n${formatManifest(manifest)}\n`)
+  for (const f of findings) {
+    process.stdout.write(`  ${f.level.toUpperCase()} [${f.code}] ${f.message}\n`)
+  }
+  if (findings.some((f) => f.level === 'error')) {
+    process.stdout.write(
+      `[extract·claims] This run did not do the work it was asked to do. The snapshot on disk\n` +
+        `[extract·claims] is intact (existing plenos preserved), so re-running once the backend\n` +
+        `[extract·claims] recovers will pick up exactly where this left off.\n`,
+    )
+    process.exitCode = 1
+  }
   if (guardSkipped.length > 0) {
     process.stdout.write(
       `[extract·claims] preservation guard preserved ${guardSkipped.length} pleno(s):\n`,
