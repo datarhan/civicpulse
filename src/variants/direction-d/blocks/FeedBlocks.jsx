@@ -84,7 +84,12 @@ export function LiveContracts() {
       <SectionHeader
         tone="contratos"
         title="Contratos adjudicados"
-        meta={`${data.stats.totalContracts} · ${fmtEur(data.stats.awardedTotalEuros)}`}
+        // awardedContracts, not totalContracts. Under a heading that says
+        // ADJUDICADOS this paired the count of ALL 804 contracts — void,
+        // abandoned and revoked included — with the money of only the 698
+        // committed ones, while the same screen showed 698 elsewhere. Found by
+        // the reader-review agent, on a page a human had already audited.
+        meta={`${data.stats.awardedContracts} · ${fmtEur(data.stats.awardedTotalEuros)}`}
       />
       {recent.map((c, i) => (
         <div

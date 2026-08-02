@@ -660,3 +660,17 @@ export const PlaceGeocodeResponseSchema = z.object({
   reasoning: z.string().min(5).max(400),
 })
 export type PlaceGeocodeResponse = z.infer<typeof PlaceGeocodeResponseSchema>
+
+/** Findings from the reader-review pass. Empty is the expected answer. */
+export const ReaderReviewSchema = z.object({
+  findings: z
+    .array(
+      z.object({
+        quote: z.string().min(12),
+        inference: z.string().min(10),
+        contradictedBy: z.string().min(5),
+        severity: z.enum(['misleading', 'unclear']),
+      }),
+    )
+    .max(8),
+})

@@ -145,7 +145,8 @@
     "check:cadence": "npx tsx scripts/check-snapshot-cadence.ts",
     "check:corpus": "bash scripts/verify-transcript-corpus.sh",
     "check:drift": "npx tsx scripts/check-prose-drift.ts",
-    "check:vocabulary": "npx tsx scripts/check-vocabulary.ts"
+    "check:vocabulary": "npx tsx scripts/check-vocabulary.ts",
+    "review:surfaces": "npx tsx scripts/review-surfaces.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

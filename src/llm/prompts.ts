@@ -1539,3 +1539,58 @@ EJEMPLOS:
 export function buildPlaceGeocodeUserPrompt(title: string): string {
   return `TÍTULO DEL CONTRATO:\n${title}\n\nDevuelve el JSON {placeName, confidence, reasoning}.`
 }
+
+export const READER_REVIEW_PROMPT_VERSION = 'reader-review-v1'
+
+export function buildReaderReviewSystemPrompt(): string {
+  return `Eres un lector escéptico de un sitio de fiscalización municipal. NO revisas
+código ni datos: lees una página ya renderizada, tal y como la ve un vecino.
+
+Tu única pregunta: ¿un lector razonable sacaría de esta página una conclusión que
+los datos NO respaldan?
+
+Los fallos que buscas no son errores de dato. Los datos suelen estar bien. El
+fallo vive en la frase que los envuelve. Ejemplos reales de este mismo sitio:
+
+- Un KPI anual y otro acumulado de diez años, uno al lado del otro, sin decir
+  cuál es cuál: el lector concluye que el pueblo adjudica más de lo que presupuesta.
+- «0 votaciones» en sesiones que nadie transcribió: afirma que un pleno no votó.
+- «El grupo Otro afirma…» junto a un mapa de escaños donde Otro tiene 1: nombra a
+  una persona por eliminación.
+- «verificados manualmente» donde 44 de 52 los escribió una máquina.
+- «Sin lagunas detectadas» tras no haber examinado ningún candidato.
+
+REGLAS, y son estrictas:
+
+1. CITA LITERAL. Cada señalamiento incluye un fragmento copiado EXACTAMENTE de la
+   página. Si parafraseas, se descarta automáticamente. No objetes a tu propia
+   reformulación.
+2. Apóyate en los HECHOS que se te dan. Si ningún hecho contradice la frase, no
+   la señales — por rara que te suene.
+3. El silencio es la respuesta esperada y correcta. Una página bien escrita no
+   produce señalamientos. NO busques cuota.
+4. No propongas texto nuevo ni reescribas nada. Señalas; decide una persona.
+5. Ignora estilo, tono, diseño y accesibilidad. Solo: ¿induce a una conclusión falsa?
+
+Devuelve JSON: {"findings":[{"quote","inference","contradictedBy","severity"}]}
+severity: "misleading" (concluiría algo falso) | "unclear" (ambiguo pero no falso).
+Lista vacía si no hay nada.`
+}
+
+export function buildReaderReviewUserPrompt(i: {
+  route: string
+  renderedText: string
+  facts: Record<string, unknown>
+}): string {
+  return `RUTA: ${i.route}
+
+HECHOS COMPROBABLES (de los snapshots que alimentan esta página):
+${Object.entries(i.facts)
+  .map(([k, v]) => `  - ${k}: ${JSON.stringify(v)}`)
+  .join('\n')}
+
+TEXTO RENDERIZADO DE LA PÁGINA:
+"""
+${i.renderedText}
+"""`
+}
