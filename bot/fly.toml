@@ -10,7 +10,7 @@
 #                 --copy-config --no-deploy
 #
 #   # Persistent volume for SQLite:
-#   flyctl volumes create botdata --size 1 --region mad --app munigraph-ribarroja
+#   flyctl volumes create botdata --size 1 --region cdg --app munigraph-ribarroja
 #
 #   # Secrets (paste the values you need; leave out what you don't use yet):
 #   flyctl secrets set --app munigraph-ribarroja \
@@ -32,11 +32,22 @@
 #   gh secret   set BOT_EXPORT_TOKEN --body <same value you set for EXPORT_TOKEN>
 
 app = "munigraph-ribarroja"
-primary_region = "mad"
+# Paris. Madrid (`mad`) is no longer offered by Fly — the EU options are ams,
+# fra, cdg and lhr. cdg is the closest of those to València, and squarely
+# EU/EEA. London is deliberately NOT used: post-Brexit UK sits outside the EEA,
+# and quejas carry complaint text plus Telegram user IDs, i.e. personal data of
+# residents. Keeping it inside the EEA avoids an adequacy discussion entirely.
+primary_region = "cdg"
 
 [build]
-  dockerfile = "bot/Dockerfile"
-  ignorefile = "bot/.dockerignore"
+  # Resolved relative to THIS file (bot/), not to the working directory —
+  # "bot/Dockerfile" here becomes bot/bot/Dockerfile and the deploy fails.
+  # The build CONTEXT is separate: pass the repo root as the positional
+  # working directory, because the Dockerfile copies ../src and
+  # ../public/data:
+  #     flyctl deploy . --config bot/fly.toml
+  dockerfile = "Dockerfile"
+  ignorefile = ".dockerignore"
 
 [env]
   PORT = "3000"

@@ -1,17 +1,22 @@
 {
+<<<<<<< Updated upstream
   "generatedAt": "2026-08-02T07:20:36.033Z",
+=======
+  "generatedAt": "2026-08-02T06:32:27.333Z",
+>>>>>>> Stashed changes
   "source": {
     "description": "Vote suggestions inferred automatically from YouTube-derived pleno transcripts. Every record carries requiresHumanApproval:true and MUST be reviewed by a curator before promotion to pleno-votes.json via `npm run pleno-vote`.",
     "contract": "Machine-written; never substitutes for the published human-verified record."
   },
   "stats": {
-    "total": 3,
+    "total": 5,
     "byEngine": {
-      "regex": 3
+      "regex": 5
     },
     "byPleno": {
       "10yl550": 1,
       "k4olcs": 1,
+      "19gax3o": 2,
       "c8kr44": 1
     }
   },
@@ -62,6 +67,62 @@
         {
           "bloc": "EU-Podem",
           "direction": "abstencion"
+        }
+      ],
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "engine": "regex"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": null,
+      "excerpt": "] (SPEAKER_41) Y en eso quiero que se quede claro.\n[2911.1 → 2912.1] (SPEAKER_41) del nostre company,\n[2912.1 → 2915.0] (SPEAKER_41) responsable de contactació, li s'ha de no refustre.\n[2915.7 → 2919.3] (SPEAKER_41) És una extensió benèvola, diríem, dels companys, no?\n[2919.9 → 2923.4] (SPEAKER_41) Passem a la votació d'aquest punt.\n[2923.5 → 2924.2] (SPEAKER_41) Passem a la votació.\n[2934.4 → 293",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
+        }
+      ],
+      "confidence": 0.7,
+      "requiresHumanApproval": true,
+      "engine": "regex"
+    },
+    {
+      "plenoId": "19gax3o",
+      "plenoDate": "2026-01-19",
+      "itemNumber": null,
+      "excerpt": "1] (SPEAKER_41) del nostre company,\n[2912.1 → 2915.0] (SPEAKER_41) responsable de contactació, li s'ha de no refustre.\n[2915.7 → 2919.3] (SPEAKER_41) És una extensió benèvola, diríem, dels companys, no?\n[2919.9 → 2923.4] (SPEAKER_41) Passem a la votació d'aquest punt.\n[2923.5 → 2924.2] (SPEAKER_41) Passem a la votació.\n[2934.4 → 2939.4] (SPEAKER_41) Pues queda aprobada la PDI 2884 y no abstención ",
+      "outcome": "aprobado",
+      "votes": [
+        {
+          "bloc": "PSOE",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "PP",
+          "direction": "a_favor"
+        },
+        {
+          "bloc": "VOX",
+          "direction": "abstencion"
+        },
+        {
+          "bloc": "EU-Podem",
+          "direction": "a_favor"
         }
       ],
       "confidence": 0.7,

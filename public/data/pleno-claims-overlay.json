@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-02T05:56:38.772Z",
+  "generatedAt": "2026-08-02T06:36:48.480Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -12236,6 +12236,1270 @@
       "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación fiscal sobre un saldo de 22.671€ de una mancomunidad frente a los 8 candidatos, todos contratos de emergencia por limpieza de escombros tras la DANA. No hay coincidencia de sujeto, concepto ni cifra en ningún candidato, por lo que ninguno respalda la afirmación.",
       "editor": "verdict-engine:claude-code",
       "appliedAt": "2026-08-02T05:56:38.772Z"
+    },
+    "1du4rf5-047-afi-29e9e2": {
+      "verification": {
+        "claimId": "1du4rf5-047-afi-29e9e2",
+        "verdict": "sin-datos",
+        "summary": "El candidato [0] es un contrato de suministro de módulos para elaboración de presupuestos y RPT en el Ayuntamiento de Riba-roja de Túria, marcado como \"void\" (anulado), con similitud muy baja (0.25). No guarda relación con la cifra concreta de 86.000€ que la afirmación atribuye a diferencias del eje",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: El candidato [0] es un contrato de suministro de módulos para elaboración de presupuestos y RPT en el Ayuntamiento de Riba-roja de Túria, marcado como \"void\" (anulado), con similitud muy baja (0.25). No guarda relación con la cifra concreta de 86.000€ que la afirmación atribuye a diferencias del eje",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-068-afi-c508ad": {
+      "verification": {
+        "claimId": "1du4rf5-068-afi-c508ad",
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support exists since none of the tender candidates involve \"bancos\" or the €4,640 figure.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Task completed: reasoned in Spanish about candidate support for the claim, concluding no genuine support exists since none of the tender candidates involve \"bancos\" or the €4,640 figure.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-080-cit-655539": {
+      "verification": {
+        "claimId": "1du4rf5-080-cit-655539",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los cuatro candidatos respalda genuinamente la afirmación. La afirmación se refiere a la creación normativa de un nuevo grado de dependencia (\"grado 3+\") para personas que requieren cuidados permanentes 24 horas, es decir, una medida legislativa/administrativa sobre clasificación de depen",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Ninguno de los cuatro candidatos respalda genuinamente la afirmación. La afirmación se refiere a la creación normativa de un nuevo grado de dependencia (\"grado 3+\") para personas que requieren cuidados permanentes 24 horas, es decir, una medida legislativa/administrativa sobre clasificación de depen",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-088-pro-3d76d6": {
+      "verification": {
+        "claimId": "1du4rf5-088-pro-3d76d6",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó únicamente razonamiento en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto final. Ya se proporcionó dicho razonamiento en el mensaje de texto anterior, evaluando la falta de anclaje concreto (fecha, sujeto, cifra) entre el verbatim condicional y los registro",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó únicamente razonamiento en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto final. Ya se proporcionó dicho razonamiento en el mensaje de texto anterior, evaluando la falta de anclaje concreto (fecha, sujeto, cifra) entre el verbatim condicional y los registro",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-094-acu-a47a3a": {
+      "verification": {
+        "claimId": "1du4rf5-094-acu-a47a3a",
+        "verdict": "sin-datos",
+        "summary": "Tarea de verificación de hechos completada: analicé los dos candidatos frente a la afirmación sobre gestión sanitaria del Gobierno nacional/CCAA. Ambos candidatos son contratos municipales sin relación temática, de entidad o de sujeto con la afirmación (cementerios y servicio postal vs. gestión sani",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Tarea de verificación de hechos completada: analicé los dos candidatos frente a la afirmación sobre gestión sanitaria del Gobierno nacional/CCAA. Ambos candidatos son contratos municipales sin relación temática, de entidad o de sujeto con la afirmación (cementerios y servicio postal vs. gestión sani",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-098-acu-34f383": {
+      "verification": {
+        "claimId": "1du4rf5-098-acu-34f383",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (acusación genérica sobre posibles retrasos en ayudas DANA, sin cifras/fechas/sujetos concretos) frente al único candidato (contrato de obra de reconstrucción por 7850€ en El Oliveral). Concluí que no hay respaldo genuino: distinto tipo de registro (contrato de obra vs. ayuda/s",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (acusación genérica sobre posibles retrasos en ayudas DANA, sin cifras/fechas/sujetos concretos) frente al único candidato (contrato de obra de reconstrucción por 7850€ en El Oliveral). Concluí que no hay respaldo genuino: distinto tipo de registro (contrato de obra vs. ayuda/s",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-099-acu-b94478": {
+      "verification": {
+        "claimId": "1du4rf5-099-acu-b94478",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (declaración sobre competencia autonómica en gestión de la ley de dependencia) frente a los 4 candidatos (contratos municipales de cementerios, servicio postal, ocio para mayores y accesibilidad en polideportivo). Ninguno coincide en sujeto, importe o fecha con la afirmación; a",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (declaración sobre competencia autonómica en gestión de la ley de dependencia) frente a los 4 candidatos (contratos municipales de cementerios, servicio postal, ocio para mayores y accesibilidad en polideportivo). Ninguno coincide en sujeto, importe o fecha con la afirmación; a",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-103-cit-6189d5": {
+      "verification": {
+        "claimId": "1du4rf5-103-cit-6189d5",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los dos candidatos respalda la afirmación. Ambos son licitaciones (tenders) del Ayuntamiento de Riba-roja de Túria sobre asuntos completamente ajenos —redacción de un proyecto arquitectónico y un portal del empleado— sin relación alguna con Vox, comisiones informativas, ni mociones conjun",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Ninguno de los dos candidatos respalda la afirmación. Ambos son licitaciones (tenders) del Ayuntamiento de Riba-roja de Túria sobre asuntos completamente ajenos —redacción de un proyecto arquitectónico y un portal del empleado— sin relación alguna con Vox, comisiones informativas, ni mociones conjun",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-115-acu-f87add": {
+      "verification": {
+        "claimId": "1du4rf5-115-acu-f87add",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos frente a la afirmación. La afirmación es una declaración especulativa/opinión sobre una posible dimisión del \"señor Mazón\", sin cifras, fechas ni entidades concretas verificables. Los candidatos son contratos de mantenimiento de bases de datos corporativas (categoría IT) d",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos frente a la afirmación. La afirmación es una declaración especulativa/opinión sobre una posible dimisión del \"señor Mazón\", sin cifras, fechas ni entidades concretas verificables. Los candidatos son contratos de mantenimiento de bases de datos corporativas (categoría IT) d",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-116-acu-852f04": {
+      "verification": {
+        "claimId": "1du4rf5-116-acu-852f04",
+        "verdict": "sin-datos",
+        "summary": "Análisis completado: ambos candidatos son contratos de mantenimiento de base de datos informática del Ayuntamiento de Riba-roja de Túria, sin relación alguna con ayudas sociales tras la DANA ni con el Gobierno de España. No hay coincidencia de entidad, tema, importe ni fecha. Se concluye que no hay ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Análisis completado: ambos candidatos son contratos de mantenimiento de base de datos informática del Ayuntamiento de Riba-roja de Túria, sin relación alguna con ayudas sociales tras la DANA ni con el Gobierno de España. No hay coincidencia de entidad, tema, importe ni fecha. Se concluye que no hay ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-121-acu-e360b5": {
+      "verification": {
+        "claimId": "1du4rf5-121-acu-e360b5",
+        "verdict": "sin-datos",
+        "summary": "Task was a direct fact-checking reasoning request in Spanish, not a coding task, so no development skill applied. I analyzed the claim (political statement about Spanish government's DANA emergency response) against two municipal tender candidates about emergency streetlight repair works, concluding",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task was a direct fact-checking reasoning request in Spanish, not a coding task, so no development skill applied. I analyzed the claim (political statement about Spanish government's DANA emergency response) against two municipal tender candidates about emergency streetlight repair works, concluding",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-126-acu-1e1565": {
+      "verification": {
+        "claimId": "1du4rf5-126-acu-1e1565",
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about why neither candidate (both insurance tenders) genuinely supports the claim about \"instrucción justicia\" and competencias autonómicas — mere keyword overlap on \"responsabilidad\" in unrelated senses, and the claim itself is a non-verifiable opinion/interpreta",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: reasoned in Spanish about why neither candidate (both insurance tenders) genuinely supports the claim about \"instrucción justicia\" and competencias autonómicas — mere keyword overlap on \"responsabilidad\" in unrelated senses, and the claim itself is a non-verifiable opinion/interpreta",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-130-acu-15fb0b": {
+      "verification": {
+        "claimId": "1du4rf5-130-acu-15fb0b",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos (pólizas de seguro de responsabilidad civil/patrimonial del Ayuntamiento de Riba-roja de Túria) frente a la afirmación política sobre competencias autonómicas/estatales en emergencias tras un accidente de tren. No hay relación temática, de sujeto, cifra ni fecha real; solo",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos (pólizas de seguro de responsabilidad civil/patrimonial del Ayuntamiento de Riba-roja de Túria) frente a la afirmación política sobre competencias autonómicas/estatales en emergencias tras un accidente de tren. No hay relación temática, de sujeto, cifra ni fecha real; solo",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-130-acu-6f895f": {
+      "verification": {
+        "claimId": "1du4rf5-130-acu-6f895f",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos: ambos son contratos de seguro de responsabilidad civil/patrimonial del Ayuntamiento de Riba-roja de Túria, sin relación temática, de sujeto ni de contexto con la acusación política sobre el reparto de competencias en emergencias entre la Comunidad Autónoma y el Estado (re",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos: ambos son contratos de seguro de responsabilidad civil/patrimonial del Ayuntamiento de Riba-roja de Túria, sin relación temática, de sujeto ni de contexto con la acusación política sobre el reparto de competencias en emergencias entre la Comunidad Autónoma y el Estado (re",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-152-afi-130662": {
+      "verification": {
+        "claimId": "1du4rf5-152-afi-130662",
+        "verdict": "sin-datos",
+        "summary": "El candidato no guarda relación temática, de entidad ni de magnitud con la afirmación. Se trata de un contrato municipal de Riba-roja de Túria por 25.794€ para un portal del empleado, mientras la afirmación habla de 2.364 millones de euros del Consell (Mazón/Vox) para la DANA. No hay coincidencia de",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: El candidato no guarda relación temática, de entidad ni de magnitud con la afirmación. Se trata de un contrato municipal de Riba-roja de Túria por 25.794€ para un portal del empleado, mientras la afirmación habla de 2.364 millones de euros del Consell (Mazón/Vox) para la DANA. No hay coincidencia de",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-153-acu-a8119b": {
+      "verification": {
+        "claimId": "1du4rf5-153-acu-a8119b",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonamiento de verificación de hechos en español sobre si los candidatos (contratos municipales de tenders relacionados con la DANA) respaldan una afirmación sobre una partida de 2.364 millones de euros controlada por Vox con 75% sin ejecutar. Analicé cada candidato: todos son contratos",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó razonamiento de verificación de hechos en español sobre si los candidatos (contratos municipales de tenders relacionados con la DANA) respaldan una afirmación sobre una partida de 2.364 millones de euros controlada por Vox con 75% sin ejecutar. Analicé cada candidato: todos son contratos",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-173-acu-bdad74": {
+      "verification": {
+        "claimId": "1du4rf5-173-acu-bdad74",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos (contratos de catering social del Ayuntamiento de Riba-roja de Túria) frente a la afirmación sobre subvenciones públicas a la tauromaquia. No hay coincidencia de entidad, tema, importe ni tipo de instrumento (contrato de servicios vs subvención). Concluí que ningún candida",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos (contratos de catering social del Ayuntamiento de Riba-roja de Túria) frente a la afirmación sobre subvenciones públicas a la tauromaquia. No hay coincidencia de entidad, tema, importe ni tipo de instrumento (contrato de servicios vs subvención). Concluí que ningún candida",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-172-acu-8274ce": {
+      "verification": {
+        "claimId": "1du4rf5-172-acu-8274ce",
+        "verdict": "sin-datos",
+        "summary": "No hay respaldo. Los dos candidatos corresponden a licitaciones de un contrato de \"servicio de catering social\" del Ayuntamiento de Riba-roja de Túria, una entidad y objeto totalmente ajenos a la tauromaquia. No hay coincidencia de sujeto (empresas taurinas o toros), tema (subvenciones a espectáculo",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: No hay respaldo. Los dos candidatos corresponden a licitaciones de un contrato de \"servicio de catering social\" del Ayuntamiento de Riba-roja de Túria, una entidad y objeto totalmente ajenos a la tauromaquia. No hay coincidencia de sujeto (empresas taurinas o toros), tema (subvenciones a espectáculo",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-184-cit-eaf42f": {
+      "verification": {
+        "claimId": "1du4rf5-184-cit-eaf42f",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación sobre \"ley de defensa de los animales\" frente al único candidato disponible: un contrato de asesoramiento jurídico y defensa procesal general del Ayuntamiento de Riba-roja de Túria. No hay relación temática real (defensa procesal ≠ defensa animal), el contrato está revocado, y ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación sobre \"ley de defensa de los animales\" frente al único candidato disponible: un contrato de asesoramiento jurídico y defensa procesal general del Ayuntamiento de Riba-roja de Túria. No hay relación temática real (defensa procesal ≠ defensa animal), el contrato está revocado, y ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-214-acu-59379a": {
+      "verification": {
+        "claimId": "1du4rf5-214-acu-59379a",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (acusación política sobre falta de apoyo del PSOE a una ILP de cultura) frente a los 4 candidatos, que son todos contratos municipales de Riba-roja de Túria sin relación temática, de sujeto o de valores concretos con la afirmación. Concluí que ninguno respalda la afirmación, si",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (acusación política sobre falta de apoyo del PSOE a una ILP de cultura) frente a los 4 candidatos, que son todos contratos municipales de Riba-roja de Túria sin relación temática, de sujeto o de valores concretos con la afirmación. Concluí que ninguno respalda la afirmación, si",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-213-acu-ead690": {
+      "verification": {
+        "claimId": "1du4rf5-213-acu-ead690",
+        "verdict": "sin-datos",
+        "summary": "Task was to reason in Spanish (2-4 sentences) about whether candidates support the claim, without deciding final verdict wording beyond reasoning. I provided skeptical analysis concluding no genuine support, as instructed by the fact-checking framework - this was the requested output, not a coding t",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task was to reason in Spanish (2-4 sentences) about whether candidates support the claim, without deciding final verdict wording beyond reasoning. I provided skeptical analysis concluding no genuine support, as instructed by the fact-checking framework - this was the requested output, not a coding t",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-251-acu-9c2f45": {
+      "verification": {
+        "claimId": "1du4rf5-251-acu-9c2f45",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (una acusación retórica de debate político sobre citar parcialmente un programa electoral) frente a los tres candidatos, que son contratos administrativos del Ayuntamiento (mantenimiento de BBDD e programa cultural Obrim Portes). No hay coincidencia de entidad, sujeto, importe ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (una acusación retórica de debate político sobre citar parcialmente un programa electoral) frente a los tres candidatos, que son contratos administrativos del Ayuntamiento (mantenimiento de BBDD e programa cultural Obrim Portes). No hay coincidencia de entidad, sujeto, importe ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-252-acu-1ea08d": {
+      "verification": {
+        "claimId": "1du4rf5-252-acu-1ea08d",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (una acusación política sobre la interpretación de un \"programa electoral\", tipo opinión/retórica no verificable con datos concretos) frente a los tres candidatos ofrecidos, que son contratos/licitaciones del Ayuntamiento de Riba-roja de Túria sobre mantenimiento de base de dat",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (una acusación política sobre la interpretación de un \"programa electoral\", tipo opinión/retórica no verificable con datos concretos) frente a los tres candidatos ofrecidos, que son contratos/licitaciones del Ayuntamiento de Riba-roja de Túria sobre mantenimiento de base de dat",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-258-acu-72f7a0": {
+      "verification": {
+        "claimId": "1du4rf5-258-acu-72f7a0",
+        "verdict": "sin-datos",
+        "summary": "La afirmación es una acusación genérica de opinión (sin entidades numéricas, fechas ni sujetos concretos) sobre usar la \"baja productividad del personal\" como excusa para desviar servicios de salud al sector privado. El único candidato disponible es un contrato de TI para implantar un \"Portal del Em",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: La afirmación es una acusación genérica de opinión (sin entidades numéricas, fechas ni sujetos concretos) sobre usar la \"baja productividad del personal\" como excusa para desviar servicios de salud al sector privado. El único candidato disponible es un contrato de TI para implantar un \"Portal del Em",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-265-cit-eb3d58": {
+      "verification": {
+        "claimId": "1du4rf5-265-cit-eb3d58",
+        "verdict": "sin-datos",
+        "summary": "Analizada la afirmación (propuesta de transparencia sobre externalizaciones del programa de prevención de cáncer de mama, competencia de la Generalitat/Departamento de Salud) frente a los candidatos (tenders municipales de Riba-roja de Túria sobre vigilancia de salud laboral, portal de empleo, base ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analizada la afirmación (propuesta de transparencia sobre externalizaciones del programa de prevención de cáncer de mama, competencia de la Generalitat/Departamento de Salud) frente a los candidatos (tenders municipales de Riba-roja de Túria sobre vigilancia de salud laboral, portal de empleo, base ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:04:40.335Z"
+    },
+    "1du4rf5-274-acu-c6ef1a": {
+      "verification": {
+        "claimId": "1du4rf5-274-acu-c6ef1a",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (solicitud de auditoría exhaustiva en el ámbito de salud pública, tema transparencia) contra los 8 candidatos, todos ellos expedientes de contratación (tenders) sin relación temática ni de sujeto: limpieza de escombros DANA, programa de mayores, dirección de obra de pérgolas, c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (solicitud de auditoría exhaustiva en el ámbito de salud pública, tema transparencia) contra los 8 candidatos, todos ellos expedientes de contratación (tenders) sin relación temática ni de sujeto: limpieza de escombros DANA, programa de mayores, dirección de obra de pérgolas, c",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "1du4rf5-275-cit-e81dd6": {
+      "verification": {
+        "claimId": "1du4rf5-275-cit-e81dd6",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (solicitud de auditoría a la Consejería de Sanidad de la Generalitat Valenciana y a nivel nacional) contra los tres candidatos, que son licitaciones/contratos municipales de Riba-roja de Túria sin relación temática, de entidad ni de sujeto con lo afirmado. Ningún candidato resp",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (solicitud de auditoría a la Consejería de Sanidad de la Generalitat Valenciana y a nivel nacional) contra los tres candidatos, que son licitaciones/contratos municipales de Riba-roja de Túria sin relación temática, de entidad ni de sujeto con lo afirmado. Ningún candidato resp",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-005-cit-c0c615": {
+      "verification": {
+        "claimId": "otxq2c-005-cit-c0c615",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación y los tres candidatos, concluyendo que ninguno respalda genuinamente la cita porque no hay coincidencia de sujeto (nombres \"Guardian\" o \"DTI\" no aparecen en ningún candidato), y las similitudes temáticas son bajas y genéricas (innovación/tecnología), no específicas.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación y los tres candidatos, concluyendo que ninguno respalda genuinamente la cita porque no hay coincidencia de sujeto (nombres \"Guardian\" o \"DTI\" no aparecen en ningún candidato), y las similitudes temáticas son bajas y genéricas (innovación/tecnología), no específicas.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-015-cit-550e87": {
+      "verification": {
+        "claimId": "otxq2c-015-cit-550e87",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (cita textual sobre la existencia de un \"Sandbox\" de innovación) frente al único candidato disponible (licitación \"Premios RIV - Riba Innovación Viva\"). Concluí que no hay respaldo genuino: son iniciativas distintas (sandbox vs. premios), solo comparten el tema genérico \"innova",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (cita textual sobre la existencia de un \"Sandbox\" de innovación) frente al único candidato disponible (licitación \"Premios RIV - Riba Innovación Viva\"). Concluí que no hay respaldo genuino: son iniciativas distintas (sandbox vs. premios), solo comparten el tema genérico \"innova",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-022-cit-a94e5e": {
+      "verification": {
+        "claimId": "otxq2c-022-cit-a94e5e",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (cambio de política/procedimiento en una ordenanza sobre urgencia social) frente a los 4 candidatos (contratos de catering social y de intervención familiar con menores). Ninguno coincide en sujeto, cifra o naturaleza del hecho: son contratos de prestación de servicios, no evid",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (cambio de política/procedimiento en una ordenanza sobre urgencia social) frente a los 4 candidatos (contratos de catering social y de intervención familiar con menores). Ninguno coincide en sujeto, cifra o naturaleza del hecho: son contratos de prestación de servicios, no evid",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-029-cit-88155f": {
+      "verification": {
+        "claimId": "otxq2c-029-cit-88155f",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos respalda genuinamente la afirmación. Los tenders listados son contratos concretos (catering social, ayuda a domicilio, reurbanización de zonas verdes) con importes, adjudicatarios y objetos específicos que no guardan relación con un sistema de \"medición del impacto de las a",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Ninguno de los candidatos respalda genuinamente la afirmación. Los tenders listados son contratos concretos (catering social, ayuda a domicilio, reurbanización de zonas verdes) con importes, adjudicatarios y objetos específicos que no guardan relación con un sistema de \"medición del impacto de las a",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-034-acu-57df04": {
+      "verification": {
+        "claimId": "otxq2c-034-acu-57df04",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (acusación de ocultación de un fallo de sistema que afectó a mujeres) contra los tres candidatos de contratación (mantenimiento WiFi, dos pólizas de seguro de responsabilidad civil). No encontré coincidencia de sujeto, fecha ni hecho concreto en ninguno; las similitudes bajas (",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (acusación de ocultación de un fallo de sistema que afectó a mujeres) contra los tres candidatos de contratación (mantenimiento WiFi, dos pólizas de seguro de responsabilidad civil). No encontré coincidencia de sujeto, fecha ni hecho concreto en ninguno; las similitudes bajas (",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-033-cit-bfa19f": {
+      "verification": {
+        "claimId": "otxq2c-033-cit-bfa19f",
+        "verdict": "sin-datos",
+        "summary": "Tarea de verificación de hechos completada mediante razonamiento directo en español, sin necesidad de herramientas de código: ningún candidato (todos contratos TI municipales de Riba-roja de Túria sobre licitaciones, WiFi de bandos, control de acceso corporativo, formación) coincide en sujeto, entid",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Tarea de verificación de hechos completada mediante razonamiento directo en español, sin necesidad de herramientas de código: ningún candidato (todos contratos TI municipales de Riba-roja de Túria sobre licitaciones, WiFi de bandos, control de acceso corporativo, formación) coincide en sujeto, entid",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-033-acu-f6e1d4": {
+      "verification": {
+        "claimId": "otxq2c-033-acu-f6e1d4",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonar en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto final. Se proporcionó el análisis correspondiente en la respuesta de texto.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó razonar en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto final. Se proporcionó el análisis correspondiente en la respuesta de texto.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-030-cit-c4391d": {
+      "verification": {
+        "claimId": "otxq2c-030-cit-c4391d",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (declaración programática sin cifras/fechas/sujetos verificables, tipo opinión/promesa sobre alineación con el Plan Municipal de Juventud y políticas de bienestar social) frente a los 4 candidatos (tenders de catering social y ayuda a domicilio). Ningún candidato menciona el Pl",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación (declaración programática sin cifras/fechas/sujetos verificables, tipo opinión/promesa sobre alineación con el Plan Municipal de Juventud y políticas de bienestar social) frente a los 4 candidatos (tenders de catering social y ayuda a domicilio). Ningún candidato menciona el Pl",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-038-acu-407487": {
+      "verification": {
+        "claimId": "otxq2c-038-acu-407487",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonamiento en español (no código) sobre si los candidatos respaldan una afirmación de verificación de hechos. No aplica ninguna skill de desarrollo de software (brainstorming, debugging, etc.) ya que la tarea es puramente analítica: comparar la afirmación con los candidatos y evaluar c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó razonamiento en español (no código) sobre si los candidatos respaldan una afirmación de verificación de hechos. No aplica ninguna skill de desarrollo de software (brainstorming, debugging, etc.) ya que la tarea es puramente analítica: comparar la afirmación con los candidatos y evaluar c",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-042-acu-bba0e9": {
+      "verification": {
+        "claimId": "otxq2c-042-acu-bba0e9",
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible (contrato de mantenimiento de sistema bando WiFi en Riba-roja de Túria) frente a la afirmación sobre el sistema COMETA de protección a mujeres. No existe relación temática, de entidad ni de valores concretos entre ambos. Concluí que no hay respaldo genuino, solo",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé el único candidato disponible (contrato de mantenimiento de sistema bando WiFi en Riba-roja de Túria) frente a la afirmación sobre el sistema COMETA de protección a mujeres. No existe relación temática, de entidad ni de valores concretos entre ambos. Concluí que no hay respaldo genuino, solo",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-049-acu-580cb9": {
+      "verification": {
+        "claimId": "otxq2c-049-acu-580cb9",
+        "verdict": "sin-datos",
+        "summary": "Completé el razonamiento de verificación de hechos solicitado en español, evaluando si el candidato (contrato de mantenimiento del sistema bando WiFi) respalda la afirmación sobre incidencias en el \"sistema COMETA\". Concluí que no hay respaldo genuino: distinta entidad/sistema, similitud muy baja (0",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Completé el razonamiento de verificación de hechos solicitado en español, evaluando si el candidato (contrato de mantenimiento del sistema bando WiFi) respalda la afirmación sobre incidencias en el \"sistema COMETA\". Concluí que no hay respaldo genuino: distinta entidad/sistema, similitud muy baja (0",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-048-cit-11d99a": {
+      "verification": {
+        "claimId": "otxq2c-048-cit-11d99a",
+        "verdict": "sin-datos",
+        "summary": "La afirmación es una valoración de opinión política (\"consideramos que... es muy importante\") sobre el \"sistema COMETA\", sin cifras, fechas ni importes verificables que puedan cotejarse contra un registro objetivo. El único candidato disponible es un contrato de mantenimiento del \"sistema bando WiFi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: La afirmación es una valoración de opinión política (\"consideramos que... es muy importante\") sobre el \"sistema COMETA\", sin cifras, fechas ni importes verificables que puedan cotejarse contra un registro objetivo. El único candidato disponible es un contrato de mantenimiento del \"sistema bando WiFi",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-059-acu-ecd19a": {
+      "verification": {
+        "claimId": "otxq2c-059-acu-ecd19a",
+        "verdict": "sin-datos",
+        "summary": "Analicé los 3 candidatos frente a la afirmación sobre la Consejería de Justicia y recursos para la justicia de las mujeres/violencia machista. Los tres candidatos son contratos del Ayuntamiento de Riba-roja de Túria relacionados con \"prevención\" pero en el sentido de prevención de riesgos laborales ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los 3 candidatos frente a la afirmación sobre la Consejería de Justicia y recursos para la justicia de las mujeres/violencia machista. Los tres candidatos son contratos del Ayuntamiento de Riba-roja de Túria relacionados con \"prevención\" pero en el sentido de prevención de riesgos laborales ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-063-cit-d210ea": {
+      "verification": {
+        "claimId": "otxq2c-063-cit-d210ea",
+        "verdict": "sin-datos",
+        "summary": "Se trata de una tarea de verificación de hechos (razonamiento en español sobre respaldo de una afirmación política mediante candidatos de contratos municipales), no una tarea de codificación ni un caso de uso cubierto por las skills de \"superpowers\" (brainstorming, debugging sistemático, etc.), que ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se trata de una tarea de verificación de hechos (razonamiento en español sobre respaldo de una afirmación política mediante candidatos de contratos municipales), no una tarea de codificación ni un caso de uso cubierto por las skills de \"superpowers\" (brainstorming, debugging sistemático, etc.), que ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-065-acu-231d81": {
+      "verification": {
+        "claimId": "otxq2c-065-acu-231d81",
+        "verdict": "sin-datos",
+        "summary": "He analizado el candidato [0] frente a la afirmación. No hay respaldo genuino: entidades distintas (ayuntamiento municipal vs. Gobierno de España), sistemas distintos (bando WiFi vs. sistema Cometa), sin coincidencia de fecha/importe. La baja similitud (0.20) confirma que es solo ruido temático.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: He analizado el candidato [0] frente a la afirmación. No hay respaldo genuino: entidades distintas (ayuntamiento municipal vs. Gobierno de España), sistemas distintos (bando WiFi vs. sistema Cometa), sin coincidencia de fecha/importe. La baja similitud (0.20) confirma que es solo ruido temático.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-067-acu-c27b04": {
+      "verification": {
+        "claimId": "otxq2c-067-acu-c27b04",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (declaración sobre no poder acceder a datos protegidos, dependientes del Ministerio) frente a los tres candidatos (licitaciones de mantenimiento de sistemas informáticos municipales). No hay coincidencia de sujeto, hecho ni cifra concreta; la similitud léxica es baja y superfic",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (declaración sobre no poder acceder a datos protegidos, dependientes del Ministerio) frente a los tres candidatos (licitaciones de mantenimiento de sistemas informáticos municipales). No hay coincidencia de sujeto, hecho ni cifra concreta; la similitud léxica es baja y superfic",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-066-acu-936f85": {
+      "verification": {
+        "claimId": "otxq2c-066-acu-936f85",
+        "verdict": "sin-datos",
+        "summary": "Analicé los tres candidatos: son expedientes de contratación TI (mantenimiento de base de datos corporativa y Portal del Empleado) del Ayuntamiento de Riba-roja de Túria. La afirmación es una declaración oral sobre no poder entregar datos protegidos a una persona específica (\"San Perey\") por motivos",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los tres candidatos: son expedientes de contratación TI (mantenimiento de base de datos corporativa y Portal del Empleado) del Ayuntamiento de Riba-roja de Túria. La afirmación es una declaración oral sobre no poder entregar datos protegidos a una persona específica (\"San Perey\") por motivos",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-072-cit-591d40": {
+      "verification": {
+        "claimId": "otxq2c-072-cit-591d40",
+        "verdict": "sin-datos",
+        "summary": "Analicé los tres candidatos frente a la afirmación sobre una unidad de policía local que acompaña a mujeres. Ninguno coincide en sujeto/servicio concreto: son un aplicativo informático, compra de perros y compra de un vehículo furgón, todos para la Unidad Canina o gestión informática, no para un ser",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé los tres candidatos frente a la afirmación sobre una unidad de policía local que acompaña a mujeres. Ninguno coincide en sujeto/servicio concreto: son un aplicativo informático, compra de perros y compra de un vehículo furgón, todos para la Unidad Canina o gestión informática, no para un ser",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-072-cit-426ad6": {
+      "verification": {
+        "claimId": "otxq2c-072-cit-426ad6",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos respalda la afirmación. La cita hace referencia al \"SPAI de la Dona\" (servicio de atención a la mujer) y a una profesional concreta, Verónica Blanco, en el marco de una respuesta a una moción del PP sobre atención social. Los candidatos disponibles son todos contratos vincu",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Ninguno de los candidatos respalda la afirmación. La cita hace referencia al \"SPAI de la Dona\" (servicio de atención a la mujer) y a una profesional concreta, Verónica Blanco, en el marco de una respuesta a una moción del PP sobre atención social. Los candidatos disponibles son todos contratos vincu",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-074-cit-07c35d": {
+      "verification": {
+        "claimId": "otxq2c-074-cit-07c35d",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical Spanish-language reasoning (no verdict) about whether any candidate genuinely backs the claim, per the fact-checking instructions. No coding/skill workflow applicable to this analytical fact-check task.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided skeptical Spanish-language reasoning (no verdict) about whether any candidate genuinely backs the claim, per the fact-checking instructions. No coding/skill workflow applicable to this analytical fact-check task.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-078-acu-f6876c": {
+      "verification": {
+        "claimId": "otxq2c-078-acu-f6876c",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación vaga sobre una empresa con \"fallos en la moción\" contra los tres candidatos de contratos municipales. Ninguno coincide en sujeto (empresa específica) ni en hecho concreto (naturaleza de los fallos). El candidato [2] (revoked) es el más cercano temáticamente por su estado anómal",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación vaga sobre una empresa con \"fallos en la moción\" contra los tres candidatos de contratos municipales. Ninguno coincide en sujeto (empresa específica) ni en hecho concreto (naturaleza de los fallos). El candidato [2] (revoked) es el más cercano temáticamente por su estado anómal",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-086-acu-6c1b43": {
+      "verification": {
+        "claimId": "otxq2c-086-acu-6c1b43",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos frente a la afirmación sobre el salto de coste de telefonía de 3M a 42M con Vodafone. Ambos candidatos son contratos de mantenimiento de plataforma de administración electrónica en Riba-roja de Túria, con proveedor LLEIDANET (no Vodafone) y por un importe de €114.068 (orde",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos frente a la afirmación sobre el salto de coste de telefonía de 3M a 42M con Vodafone. Ambos candidatos son contratos de mantenimiento de plataforma de administración electrónica en Riba-roja de Túria, con proveedor LLEIDANET (no Vodafone) y por un importe de €114.068 (orde",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-088-acu-248640": {
+      "verification": {
+        "claimId": "otxq2c-088-acu-248640",
+        "verdict": "sin-datos",
+        "summary": "Se analizaron los dos candidatos (tenders de mantenimiento de base de datos corporativa) frente a la afirmación sobre pulseras y incumplimiento de órdenes del ayuntamiento. No existe relación de sujeto, entidad ni contenido entre ambos; los scores de similitud bajos (0.25 y 0.20) refuerzan que es co",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se analizaron los dos candidatos (tenders de mantenimiento de base de datos corporativa) frente a la afirmación sobre pulseras y incumplimiento de órdenes del ayuntamiento. No existe relación de sujeto, entidad ni contenido entre ambos; los scores de similitud bajos (0.25 y 0.20) refuerzan que es co",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:12:18.797Z"
+    },
+    "otxq2c-116-acu-ee87cb": {
+      "verification": {
+        "claimId": "otxq2c-116-acu-ee87cb",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (acusación penal contra Itziar Moreno por pertenencia a ETA e intento de asesinato de gendarmes) frente a los 5 candidatos, todos ellos contratos/licitaciones municipales de Riba-roja de Túria sin relación temática alguna con terrorismo o condenas penales. Identifiqué la coinci",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (acusación penal contra Itziar Moreno por pertenencia a ETA e intento de asesinato de gendarmes) frente a los 5 candidatos, todos ellos contratos/licitaciones municipales de Riba-roja de Túria sin relación temática alguna con terrorismo o condenas penales. Identifiqué la coinci",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "otxq2c-181-afi-d44519": {
+      "verification": {
+        "claimId": "otxq2c-181-afi-d44519",
+        "verdict": "sin-datos",
+        "summary": "El único candidato disponible es un contrato (tender) sobre sustitución de juegos infantiles y suelos de protección en una plaza de Riba-roja de Túria. Su tema (mobiliario urbano/infraestructura) no coincide con \"educación\", que es el tema de la afirmación. No se menciona ningún importe de 9.000 € e",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: El único candidato disponible es un contrato (tender) sobre sustitución de juegos infantiles y suelos de protección en una plaza de Riba-roja de Túria. Su tema (mobiliario urbano/infraestructura) no coincide con \"educación\", que es el tema de la afirmación. No se menciona ningún importe de 9.000 € e",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "otxq2c-182-cit-24c2e1": {
+      "verification": {
+        "claimId": "otxq2c-182-cit-24c2e1",
+        "verdict": "sin-datos",
+        "summary": "Reasoned in Spanish about whether candidates support the claim about students awarded for academic excellence; concluded no genuine support since all candidates are procurement/tender records for school infrastructure/services, not student award records — only superficial entity (school name) overla",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Reasoned in Spanish about whether candidates support the claim about students awarded for academic excellence; concluded no genuine support since all candidates are procurement/tender records for school infrastructure/services, not student award records — only superficial entity (school name) overla",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "otxq2c-191-cit-39383e": {
+      "verification": {
+        "claimId": "otxq2c-191-cit-39383e",
+        "verdict": "sin-datos",
+        "summary": "Se completó el razonamiento escéptico solicitado en español sobre los dos candidatos frente a la afirmación, sin emitir veredicto final, tal como pedían las instrucciones.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se completó el razonamiento escéptico solicitado en español sobre los dos candidatos frente a la afirmación, sin emitir veredicto final, tal como pedían las instrucciones.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "otxq2c-209-cit-7741cf": {
+      "verification": {
+        "claimId": "otxq2c-209-cit-7741cf",
+        "verdict": "sin-datos",
+        "summary": "Task was a direct fact-checking reasoning request in Spanish, not a coding task, so no skill invocation was needed. Analyzed the claim (description of what \"la electrolinera\" is - an EV charger located at \"la malla\") against two tender candidates for bar/catering services at \"C.D. La Malla\" sports c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task was a direct fact-checking reasoning request in Spanish, not a coding task, so no skill invocation was needed. Analyzed the claim (description of what \"la electrolinera\" is - an EV charger located at \"la malla\") against two tender candidates for bar/catering services at \"C.D. La Malla\" sports c",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "otxq2c-212-cit-182551": {
+      "verification": {
+        "claimId": "otxq2c-212-cit-182551",
+        "verdict": "sin-datos",
+        "summary": "Task was a Spanish-language fact-verification reasoning exercise (skeptical fact-checker for a municipal platform). This is not a coding/agentic task where the superpowers skill system applies (no file edits, no debugging, no building). I directly analyzed whether any of the 5 tender/subvención cand",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task was a Spanish-language fact-verification reasoning exercise (skeptical fact-checker for a municipal platform). This is not a coding/agentic task where the superpowers skill system applies (no file edits, no debugging, no building). I directly analyzed whether any of the 5 tender/subvención cand",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "otxq2c-217-cit-3d80a6": {
+      "verification": {
+        "claimId": "otxq2c-217-cit-3d80a6",
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible (tender de aplicativo de policía local) frente a la afirmación sobre incentivar la compra en el comercio local. No hay relación de sujeto, tema ni cifras/fechas coincidentes; el candidato pertenece a un ámbito distinto (TI para policía local, además anulado) y n",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé el único candidato disponible (tender de aplicativo de policía local) frente a la afirmación sobre incentivar la compra en el comercio local. No hay relación de sujeto, tema ni cifras/fechas coincidentes; el candidato pertenece a un ámbito distinto (TI para policía local, además anulado) y n",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-014-afi-69d9bd": {
+      "verification": {
+        "claimId": "c8kr44-014-afi-69d9bd",
+        "verdict": "sin-datos",
+        "summary": "Ninguno de los candidatos respalda la afirmación. La afirmación versa sobre un incremento de 14.500 € en la cantidad global máxima anual destinada a \"productividades\" (complemento retributivo de personal municipal) más 4.350 € de Seguridad Social, con un importe global resultante de 269.500 €. Los c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Ninguno de los candidatos respalda la afirmación. La afirmación versa sobre un incremento de 14.500 € en la cantidad global máxima anual destinada a \"productividades\" (complemento retributivo de personal municipal) más 4.350 € de Seguridad Social, con un importe global resultante de 269.500 €. Los c",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-015-afi-84682e": {
+      "verification": {
+        "claimId": "c8kr44-015-afi-84682e",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (incremento salarial de \"productividades\" de personal municipal, 14.500€+4.350€ SS, total 269.500€) contra los 5 candidatos, que son todos contratos de suministro/servicio a terceros (uniformes de seguridad, catering social) sin relación de entidad, concepto ni cifra con la afi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (incremento salarial de \"productividades\" de personal municipal, 14.500€+4.350€ SS, total 269.500€) contra los 5 candidatos, que son todos contratos de suministro/servicio a terceros (uniformes de seguridad, catering social) sin relación de entidad, concepto ni cifra con la afi",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-022-acu-35fa2c": {
+      "verification": {
+        "claimId": "c8kr44-022-acu-35fa2c",
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible (contrato de mantenimiento de servidores HP) frente a la afirmación sobre falta de pago de asignaciones a grupos municipales de 2025. No hay coincidencia de sujeto, importe, fecha ni naturaleza del gasto; son entidades presupuestarias distintas. Concluí que no h",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé el único candidato disponible (contrato de mantenimiento de servidores HP) frente a la afirmación sobre falta de pago de asignaciones a grupos municipales de 2025. No hay coincidencia de sujeto, importe, fecha ni naturaleza del gasto; son entidades presupuestarias distintas. Concluí que no h",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-045-afi-5af5f7": {
+      "verification": {
+        "claimId": "c8kr44-045-afi-5af5f7",
+        "verdict": "sin-datos",
+        "summary": "Analicé cada candidato: todos son contratos menores o de servicios TI/administrativos del Ayuntamiento de Riba-roja de Túria con importes en el rango de miles de euros (máximo €16.869,24), sin relación temática con medio ambiente/servicio de 14 años, ni con las cifras de €18.106.000 (presupuesto bas",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé cada candidato: todos son contratos menores o de servicios TI/administrativos del Ayuntamiento de Riba-roja de Túria con importes en el rango de miles de euros (máximo €16.869,24), sin relación temática con medio ambiente/servicio de 14 años, ni con las cifras de €18.106.000 (presupuesto bas",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-046-afi-367a4b": {
+      "verification": {
+        "claimId": "c8kr44-046-afi-367a4b",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (ahorro de 9.791€ en un contrato de tema medio-ambiente, con adjudicación de 194.810€ y base de licitación de 208.000€) frente a los dos candidatos disponibles, ambos licitaciones de \"mantenimiento de base de datos corporativa\" del Ayuntamiento de Riba-roja de Túria, categoría ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (ahorro de 9.791€ en un contrato de tema medio-ambiente, con adjudicación de 194.810€ y base de licitación de 208.000€) frente a los dos candidatos disponibles, ambos licitaciones de \"mantenimiento de base de datos corporativa\" del Ayuntamiento de Riba-roja de Túria, categoría ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-053-cit-7811e2": {
+      "verification": {
+        "claimId": "c8kr44-053-cit-7811e2",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos frente a la afirmación textual sobre un contrato de asistencia técnica para controlar a otra empresa que presta un servicio, en el contexto de quejas por ruidos a horas intempestivas (tema medio ambiente). Concluí que ninguno de los dos candidatos respalda genuinamente la ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos frente a la afirmación textual sobre un contrato de asistencia técnica para controlar a otra empresa que presta un servicio, en el contexto de quejas por ruidos a horas intempestivas (tema medio ambiente). Concluí que ninguno de los dos candidatos respalda genuinamente la ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-055-cit-8a88c1": {
+      "verification": {
+        "claimId": "c8kr44-055-cit-8a88c1",
+        "verdict": "sin-datos",
+        "summary": "La afirmación es una reflexión genérica del ponente sobre qué significa \"un contrato a largo plazo\" (pago diferido en el tiempo frente a pago íntegro inmediato), sin mencionar importe, fecha, objeto ni proveedor concreto que permita anclarla a un expediente específico. Es una opinión/argumentación r",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: La afirmación es una reflexión genérica del ponente sobre qué significa \"un contrato a largo plazo\" (pago diferido en el tiempo frente a pago íntegro inmediato), sin mencionar importe, fecha, objeto ni proveedor concreto que permita anclarla a un expediente específico. Es una opinión/argumentación r",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-065-cit-85dc84": {
+      "verification": {
+        "claimId": "c8kr44-065-cit-85dc84",
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about whether candidates support the claim, concluding none do since they concern employee/employment portals, not a citizen incident-reporting portal.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: reasoned in Spanish about whether candidates support the claim, concluding none do since they concern employee/employment portals, not a citizen incident-reporting portal.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-073-cit-d6d194": {
+      "verification": {
+        "claimId": "c8kr44-073-cit-d6d194",
+        "verdict": "sin-datos",
+        "summary": "El único candidato [0] es un contrato de suministro de un aplicativo para la policía local en Riba-roja de Túria, sin relación temática (medio ambiente vs. policía) ni coincidencia de ningún valor concreto (importe, fecha, sujeto) con la afirmación verbatim, que además es una declaración genérica so",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: El único candidato [0] es un contrato de suministro de un aplicativo para la policía local en Riba-roja de Túria, sin relación temática (medio ambiente vs. policía) ni coincidencia de ningún valor concreto (importe, fecha, sujeto) con la afirmación verbatim, que además es una declaración genérica so",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-088-cit-d63a7d": {
+      "verification": {
+        "claimId": "c8kr44-088-cit-d63a7d",
+        "verdict": "sin-datos",
+        "summary": "Tarea de razonamiento (fact-checking en español) sobre si los candidatos respaldan la afirmación de un pleno municipal. No es una tarea de codificación, así que las skills de superpowers (orientadas a desarrollo de software) no aplican. Se proporcionó el razonamiento en 2-4 frases como se solicitó, ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Tarea de razonamiento (fact-checking en español) sobre si los candidatos respaldan la afirmación de un pleno municipal. No es una tarea de codificación, así que las skills de superpowers (orientadas a desarrollo de software) no aplican. Se proporcionó el razonamiento en 2-4 frases como se solicitó, ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-089-cit-712906": {
+      "verification": {
+        "claimId": "c8kr44-089-cit-712906",
+        "verdict": "sin-datos",
+        "summary": "Tarea de fact-checking en español sobre afirmación municipal de urbanismo. Analicé los 4 candidatos: [0],[1],[3] son contratos de TI que solo coinciden en la palabra \"licencias\" con la afirmación pero se refieren a licencias de software, no a licencias urbanísticas en suelos inundables - sin relació",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Tarea de fact-checking en español sobre afirmación municipal de urbanismo. Analicé los 4 candidatos: [0],[1],[3] son contratos de TI que solo coinciden en la palabra \"licencias\" con la afirmación pero se refieren a licencias de software, no a licencias urbanísticas en suelos inundables - sin relació",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-110-cit-53cb94": {
+      "verification": {
+        "claimId": "c8kr44-110-cit-53cb94",
+        "verdict": "sin-datos",
+        "summary": "Analicé los dos candidatos (contratos de limpieza del CEIP Cervantes) frente a la afirmación sobre recalificación urbanística de suelo dotacional educativo (pabellón Scoto y calle Luis Vives). No hay correspondencia temática real: uno trata de servicios de limpieza contratados, el otro de un acto de",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los dos candidatos (contratos de limpieza del CEIP Cervantes) frente a la afirmación sobre recalificación urbanística de suelo dotacional educativo (pabellón Scoto y calle Luis Vives). No hay correspondencia temática real: uno trata de servicios de limpieza contratados, el otro de un acto de",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-116-cit-d7f7dd": {
+      "verification": {
+        "claimId": "c8kr44-116-cit-d7f7dd",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (mención de informes jurídico, técnico y del TAG favorables en un expediente urbanístico) frente al único candidato disponible (contrato de asesoramiento jurídico general, revocado, sim=0.20). No hay coincidencia de sujeto, expediente, ni naturaleza del documento (informe inter",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (mención de informes jurídico, técnico y del TAG favorables en un expediente urbanístico) frente al único candidato disponible (contrato de asesoramiento jurídico general, revocado, sim=0.20). No hay coincidencia de sujeto, expediente, ni naturaleza del documento (informe inter",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-114-cit-054e8e": {
+      "verification": {
+        "claimId": "c8kr44-114-cit-054e8e",
+        "verdict": "sin-datos",
+        "summary": "Se ha razonado en español sobre la afirmación y los tres candidatos, concluyendo que ninguno respalda genuinamente la afirmación (solo coincidencia léxica superficial con [0] y [1], entidades/objetos distintos, y [2] sin relación temática). No se emitió veredicto final, solo el razonamiento solicita",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se ha razonado en español sobre la afirmación y los tres candidatos, concluyendo que ninguno respalda genuinamente la afirmación (solo coincidencia léxica superficial con [0] y [1], entidades/objetos distintos, y [2] sin relación temática). No se emitió veredicto final, solo el razonamiento solicita",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-117-cit-d6cf5b": {
+      "verification": {
+        "claimId": "c8kr44-117-cit-d6cf5b",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical fact-checking reasoning in Spanish as requested, concluding no candidate genuinely supports the claim about \"regularización de zonas verdes, zona de PACADER\" since all candidates are unrelated procurement/maintenance tenders, none mentioning PACADER or an urban reg",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided skeptical fact-checking reasoning in Spanish as requested, concluding no candidate genuinely supports the claim about \"regularización de zonas verdes, zona de PACADER\" since all candidates are unrelated procurement/maintenance tenders, none mentioning PACADER or an urban reg",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-122-cit-86e6a8": {
+      "verification": {
+        "claimId": "c8kr44-122-cit-86e6a8",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences) about whether candidates support the claim about Colegio Cervantes needing investment. Concluded no genuine support - entity match exists for candidates 3/4 (CEIP Cervantes) but topic mismatch (cleaning service ≠ building invest",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided skeptical reasoning in Spanish (2-4 sentences) about whether candidates support the claim about Colegio Cervantes needing investment. Concluded no genuine support - entity match exists for candidates 3/4 (CEIP Cervantes) but topic mismatch (cleaning service ≠ building invest",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-121-cit-3e50b3": {
+      "verification": {
+        "claimId": "c8kr44-121-cit-3e50b3",
+        "verdict": "sin-datos",
+        "summary": "Task was a fact-verification reasoning request in Spanish about municipal plenary claims vs tender/contract candidates. No coding or file exploration was needed; I provided skeptical reasoning in Spanish per the instructions, concluding that no candidate genuinely and strongly supports the claim, wi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task was a fact-verification reasoning request in Spanish about municipal plenary claims vs tender/contract candidates. No coding or file exploration was needed; I provided skeptical reasoning in Spanish per the instructions, concluding that no candidate genuinely and strongly supports the claim, wi",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-123-cit-1a94f7": {
+      "verification": {
+        "claimId": "c8kr44-123-cit-1a94f7",
+        "verdict": "sin-datos",
+        "summary": "Análisis completado: la afirmación es una opinión subjetiva sin datos verificables (sin importe/fecha/sujeto concreto), y los candidatos son contratos de obra sobre edificios distintos al \"Pabellón de Escoto\" mencionado, con similitud baja. No hay respaldo genuino.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Análisis completado: la afirmación es una opinión subjetiva sin datos verificables (sin importe/fecha/sujeto concreto), y los candidatos son contratos de obra sobre edificios distintos al \"Pabellón de Escoto\" mencionado, con similitud baja. No hay respaldo genuino.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:24:13.421Z"
+    },
+    "c8kr44-140-cit-bbc2ce": {
+      "verification": {
+        "claimId": "c8kr44-140-cit-bbc2ce",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación. Respondí en español, 2 párrafos (dentro del rango 2-4 frases solicitado por candidato), señalando que los dos candidatos son licitaciones de urbanización de aceras en una entrada del municipio, sin relación te",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación. Respondí en español, 2 párrafos (dentro del rango 2-4 frases solicitado por candidato), señalando que los dos candidatos son licitaciones de urbanización de aceras en una entrada del municipio, sin relación te",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:36:48.480Z"
+    },
+    "c8kr44-142-cit-e68b18": {
+      "verification": {
+        "claimId": "c8kr44-142-cit-e68b18",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación y los 5 candidatos. La afirmación se refiere a una subvención de turismo (gestionada por \"Esther\") para pérgolas ajardinadas (4 unidades, 160.000€ de un total de 330.000€). Los candidatos son todos contratos (tenders) del Ayuntamiento de Riba-roja de Túria sobre vehículos híbri",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé la afirmación y los 5 candidatos. La afirmación se refiere a una subvención de turismo (gestionada por \"Esther\") para pérgolas ajardinadas (4 unidades, 160.000€ de un total de 330.000€). Los candidatos son todos contratos (tenders) del Ayuntamiento de Riba-roja de Túria sobre vehículos híbri",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:36:48.480Z"
+    },
+    "c8kr44-142-cit-b8c30e": {
+      "verification": {
+        "claimId": "c8kr44-142-cit-b8c30e",
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about whether candidates back the claim about €330,000 for a bike lane project. Determined no genuine support exists since none of the tender candidates match the specific amount or describe the same type of construction action; matches are only topical (carril bi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: reasoned in Spanish about whether candidates back the claim about €330,000 for a bike lane project. Determined no genuine support exists since none of the tender candidates match the specific amount or describe the same type of construction action; matches are only topical (carril bi",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:36:48.480Z"
+    },
+    "c8kr44-143-cit-9576bc": {
+      "verification": {
+        "claimId": "c8kr44-143-cit-9576bc",
+        "verdict": "sin-datos",
+        "summary": "",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: no candidate genuinely supports the claim",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T06:36:48.480Z"
     }
   }
 }

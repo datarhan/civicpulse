@@ -1,59 +1,199 @@
 {
-  "generatedAt": "2026-07-31T08:09:58.185Z",
-  "bundleCount": 1,
+  "generatedAt": "2026-08-02T08:32:16.465Z",
+  "bundleCount": 3,
   "archivedCount": 0,
   "contract": "Eligible bundles (no contradicho, all gates passed) that have not yet been promoted. The weekly auto-curate cron promotes the top 5 by score; the rest are listed here for the curator dashboard.",
   "bundles": [
     {
-      "plenoId": "rmtyr",
-      "plenoDate": "2025-07-31",
-      "plenoTitle": "Sesión de fecha 31 de julio de 2025",
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
       "topic": "fiscal",
       "blocs": [
-        "PP",
-        "Compromís"
+        "PSOE",
+        "Otro",
+        "PP"
       ],
-      "score": 6.7,
+      "score": 19.85,
       "quotes": [
         {
-          "claimId": "rmtyr-141-acu-144947",
-          "speakerGroup": "PP",
-          "verdict": "parcial",
-          "confidence": 1,
-          "verbatim": "les ofrecimos ir a Diputación, ir a Generalitat, a que nos pagaran lo que era nuestro del 2024. Aún estamos esperándolo.",
-          "evidence": [
-            {
-              "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RA3UtS1JvGqkU02jNGj1Fw%3D%3D",
-              "snippet": "contrato basado en acuerdo marco para servicios Postales de Carta Certificada y ordinaria, envíos publicitarios y paquetes postales a la Diputación Provincial de Valencia, al Consorcio Provincial de Bomberos y a las Entidades Loca"
-            }
-          ]
-        },
-        {
-          "claimId": "rmtyr-021-acu-e0e848",
-          "speakerGroup": "PP",
-          "verdict": "parcial",
+          "claimId": "10yl550-009-afi-826b4f",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
           "confidence": 0.95,
-          "verbatim": "hace más de 200 días tendría que haber sido aprobado antes de que finalizara el año 2024",
+          "verbatim": "hemos llegado a pagar un millón de euros en extrajudiciales",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=%2B4nob%2F1X3tzIGlsa0Wad%2Bw%3D%3D",
-              "snippet": "Contrato de servicio alumbrado ornamental navideño año 2025-2026 a través del contrato derivado del SDA de servicios de diversa índole, con condición especial de ejecución de carácter social contribuyendo al cumplimiento del ODS 8"
+              "ref": "",
+              "snippet": "Anuncio TED 80568-2023 · 1.016.665 €"
             }
           ]
         },
         {
-          "claimId": "rmtyr-189-acu-61aa87",
-          "speakerGroup": "Compromís",
+          "claimId": "10yl550-260-afi-4aaf07",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "la capacidad de financiación subía 17 millones 160 mil euros",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=oE58TiRVCfAZDGvgaZEVxQ%3D%3D",
+              "snippet": "Contrato servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo, dividido en dos lotes (Ctto 136/2025) · Ayuntamiento de "
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-260-afi-02c43b",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "la capacidad de financiación seguía siendo positiva en nada menos que tres millones y medio de euros",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
+              "snippet": "Servicio de limpieza viaria del municipio de Riba-roja · Ayuntamiento de Riba-roja de Túria · SOCIEDAD DE AGRICULTORES DE LA VEGA (SAV) · environment · 3.418.773 €"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-288-afi-4017bd",
+          "speakerGroup": "PP",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "30.000 euros en las actuaciones.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=48O%2BFjg6Mdkuf4aBO%2BvQlQ%3D%3D",
+              "snippet": "Servicio para la realización de programas de embarazo, parto y crianza en el Espai de la Dona · Ayuntamiento de Riba-roja de Túria · Asociación Astarte · health · 30.000 €"
+            }
+          ]
+        }
+      ],
+      "itemCount": 8
+    },
+    {
+      "plenoId": "c8kr44",
+      "plenoDate": "2025-09-08",
+      "plenoTitle": "Sesión de fecha 08 de septiembre de 2025",
+      "topic": "fiscal",
+      "blocs": [
+        "PSOE"
+      ],
+      "score": 10.4,
+      "quotes": [
+        {
+          "claimId": "c8kr44-172-cit-b1b4d4",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.95,
+          "verbatim": "más de 100 millones de euros se han traído en subvenciones",
+          "evidence": [
+            {
+              "kind": "bdns",
+              "ref": "bdns:",
+              "snippet": "Resolución de Alcaldía núm. 135/2026, de fecha 16 de enero por la que se aprueba la Convocatoria 2026 para subvenciones destinadas a las prestaciones económicas · importe no publicado"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-202-afi-0dc394",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "este Ayuntamiento pagará 3.975.000 euros en el 2024.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=bWCiPeMjwnKmq21uxhbaVQ%3D%3D",
+              "snippet": "Servicio de limpieza viaria del municipio de Riba-roja · Ayuntamiento de Riba-roja de Túria · environment · 3.940.645 €"
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-205-afi-03f5b7",
+          "speakerGroup": "PSOE",
+          "verdict": "verificado",
+          "confidence": 0.85,
+          "verbatim": "Y también se encuentra que 649.000 euros, que son el equivalente a 101 factores, que están pendientes de que los proveedores nos envíen la ficha de mantenimiento.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=jFiGXyTf980uf4aBO%2BvQlQ%3D%3D",
+              "snippet": "Enajenación de la parcela M7-2.2 de la IIª fase del parque Logístico, por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición especial de ejecución · Ayuntamiento de Riba-roja de "
+            }
+          ]
+        },
+        {
+          "claimId": "c8kr44-202-afi-988c8e",
+          "speakerGroup": "PSOE",
           "verdict": "parcial",
           "confidence": 0.9,
-          "verbatim": "nuestras propuestas se han quedado en el caixón. Así ha pasado en el presupuesto del 2024",
+          "verbatim": "En el mismo periodo, primer trimestre y segundo trimestre del 2025, hemos pagado 8.167.000 euros.",
           "evidence": [
             {
               "kind": "tender",
-              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=dukyIWQ3V8T%2Fa9DgO%2BoYKQ%3D%3D",
-              "snippet": "Contrato verbal de servicio de oficiales con maquinaria para limpiar y recoger escombro en la vía pública (Els Pous, c/ Ànimes y Pedanía del Oliveral) como consecuencia del temporal de lluvias (DANA) producido el pasado 29 de octu"
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TO7sKuaZmazpxJFXpLZ%2B2A%3D%3D",
+              "snippet": "Contrato de servicio de recogida de residuos sólidos urbanos del municipio y servicio de asistencia técnica y apoyo para el control y supervisión sobre la prestación del mismo. · Ayuntamiento de Riba-roja de Túria · environment · "
+            }
+          ]
+        }
+      ],
+      "itemCount": 4
+    },
+    {
+      "plenoId": "10yl550",
+      "plenoDate": "2026-05-11",
+      "plenoTitle": "Sesión de fecha 11 de mayo de 2026",
+      "topic": "empleo",
+      "blocs": [
+        "PSOE",
+        "Otro"
+      ],
+      "score": 7.9,
+      "quotes": [
+        {
+          "claimId": "10yl550-267-afi-22d7e4",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.9,
+          "verbatim": "el año pasado se dotaron 443.000 euros que se invirtieron de forma directa al comercio.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=UvprY5alXHlt5r0ngvMetA%3D%3D",
+              "snippet": "Obras Reconstrucción vallados de parcelas en los polígonos industriales tras los daños sufridos tras la DANA · Ayuntamiento de Riba-roja de Túria · CONSTRUCCIONES RAFAEL ZARZOSO S.L. · construction · 445.313 €"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-321-afi-ca48b5",
+          "speakerGroup": "Otro",
+          "verdict": "verificado",
+          "confidence": 0.8,
+          "verbatim": "se dotó el año pasado y se ha vuelto a dotar en un año esos dos mil euros.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=eO5j98RA9t9vYnTkQN0%2FZA%3D%3D",
+              "snippet": "Mantenimiento sistema inteligente de gestión de esperas y colas. · Ayuntamiento de Riba-roja de Túria · IDM Sistemas de Comunicación, S.L. · it · 2015 €"
+            }
+          ]
+        },
+        {
+          "claimId": "10yl550-025-acu-2980a7",
+          "speakerGroup": "PSOE",
+          "verdict": "parcial",
+          "confidence": 0.9,
+          "verbatim": "el gobierno de Mazón y de Juan Pérez de Yorca ha denegado ese centro de formación integral para Riva Rocha.",
+          "evidence": [
+            {
+              "kind": "tender",
+              "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BovN8EEsl1H%2B3JAijKO%2Bkg%3D%3D",
+              "snippet": "Contrato para la prestación del servicio de catering y monitoras/es de comedor escuela infantil Riu Túria de Riba-roja de Túria, dividido en dos lotes. (Ctto44/2024bis) · Ayuntamiento de Riba-roja de Túria · education · 600.625 €"
             }
           ]
         }
