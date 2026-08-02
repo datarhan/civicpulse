@@ -36,3 +36,4 @@ public/data/pleno-claims-verified-base.json
 # P2 re-grounding review queue — derived/threshold-dependent; regenerate via
 # `npm run reground:verdicts`. A curator working file, not committed.
 public/data/pleno-claims-regrounding-flags.json
+.review-cache.json

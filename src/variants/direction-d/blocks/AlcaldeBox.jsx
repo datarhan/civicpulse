@@ -224,11 +224,18 @@ export function AlcaldeBox() {
               <a
                 href="/presupuesto"
                 style={{ color: PALETTE.ink80, textDecoration: 'none' }}
-                title="Contratos adjudicados por el Ayuntamiento durante el mandato"
+                // NOT "durante el mandato": the figure is every award in the
+                // registry, 2017-2026. It also sits beside an ANNUAL budget
+                // under a "Gobierno municipal · 2025" heading, so without the
+                // period a reader concludes the town awards more than it
+                // budgets. Flagged by the reader-review agent after a human
+                // had already fixed the same confusion in the KPI strip and
+                // missed this copy of it.
+                title="Contratos adjudicados registrados (acumulado 2017-2026, no solo este mandato)"
               >
                 <span style={{ fontWeight: 700 }}>{tendersAwarded}</span>{' '}
                 <span style={{ color: PALETTE.ink50 }}>
-                  contratos
+                  contratos acum.
                   {tendersEuros ? ` · ${formatBudgetEuros(tendersEuros)}` : ''}
                 </span>
               </a>

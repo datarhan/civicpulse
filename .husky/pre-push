@@ -1,0 +1,39 @@
+# Read the pages as a visitor before they reach production.
+#
+# Event-shaped, not time-shaped: it runs only when the push actually touches the
+# data or the copy that a page renders. A nightly cron re-reading unchanged prose
+# is how this kind of check earns a reputation for crying wolf and gets muted.
+#
+# NEVER blocks. A probabilistic check that can block a push teaches everyone to
+# type --no-verify, and then it protects nothing. It prints and gets out of the
+# way; you decide.
+cd "$(git rev-parse --show-toplevel)"
+
+# What is actually being pushed?
+RANGE="origin/main..HEAD"
+git rev-parse --verify origin/main >/dev/null 2>&1 || RANGE="HEAD"
+CHANGED=$(git diff --name-only "$RANGE" 2>/dev/null)
+
+echo "$CHANGED" | grep -qE '^public/data/.*\.json$|^src/(pages|variants|components)/|^src/i18n\.jsx$' || exit 0
+
+# Needs a $0 backend. If claude-code is not usable, say so and move on rather
+# than silently skipping — a check nobody knows was skipped is worse than none.
+if ! command -v claude >/dev/null 2>&1; then
+  echo "[pre-push] revisar-superficies: claude CLI ausente — revisión omitida."
+  exit 0
+fi
+
+echo "[pre-push] datos o copy modificados — leyendo las páginas como un lector…"
+npm run build >/dev/null 2>&1 || { echo "[pre-push] build falló; se omite la revisión."; exit 0; }
+npx vite preview --host 127.0.0.1 --port 4173 --strictPort >/dev/null 2>&1 &
+PREVIEW=$!
+trap 'kill $PREVIEW 2>/dev/null' EXIT
+sleep 5
+
+set -a; [ -f .env ] && . ./.env >/dev/null 2>&1; set +a
+env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY \
+    GEMINI_BIN=/nonexistent-disabled AGY_BIN=/nonexistent-disabled \
+    LLM_BACKEND=claude-code LLM_CONCURRENCY=1 \
+    npm run --silent review:surfaces || true
+
+echo "[pre-push] revisión informativa — el push continúa."
