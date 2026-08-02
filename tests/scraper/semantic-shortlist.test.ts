@@ -14,6 +14,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   type Corpus,
+  assertQueryDimMatchesCorpus,
   cosineSimilarity,
   loadCorpus,
   mergeShortlists,
@@ -363,5 +364,46 @@ describe('embed-cache hash-keyed dedup', () => {
       return cached.get(k)?.textSha256 !== p.textSha256
     })
     expect(toEmbed.map((p) => p.sourceId)).toEqual(['t-2'])
+  })
+})
+
+describe('embedding width mismatch', () => {
+  const corpus: Corpus = {
+    rows: [
+      {
+        kind: 'tender',
+        sourceId: 't1',
+        text: 'x',
+        textSha256: 'a',
+        embedding: [0.1, 0.2, 0.3],
+        snippet: 's',
+        ref: 'tenders[0]',
+      },
+    ],
+    sourcePath: '.embed-cache/verifier-corpus.jsonl',
+    model: 'gemini:gemini-embedding-001:768',
+  }
+
+  it('throws rather than letting every row score 0', () => {
+    // cosineSimilarity returns 0 on a width mismatch, so every row falls under
+    // minSimilarity and the run reports "no candidates" — indistinguishable
+    // from a corpus that genuinely holds nothing relevant. Hundreds of
+    // published verdicts went unreviewed exactly that way: on one 25-claim
+    // batch, 18 were "never asked" against a gemini/768 corpus queried by an
+    // openai/1536 embedder, and 0 once the backends matched.
+    expect(() => assertQueryDimMatchesCorpus(1536, corpus)).toThrow(/width mismatch/i)
+  })
+
+  it('names the backend that built the corpus and the remedy', () => {
+    expect(() => assertQueryDimMatchesCorpus(1536, corpus)).toThrow(/gemini-embedding-001/)
+    expect(() => assertQueryDimMatchesCorpus(1536, corpus)).toThrow(/EMBED_BACKEND/)
+  })
+
+  it('passes when the widths agree', () => {
+    expect(() => assertQueryDimMatchesCorpus(3, corpus)).not.toThrow()
+  })
+
+  it('stays quiet on an empty corpus — nothing to compare against', () => {
+    expect(() => assertQueryDimMatchesCorpus(1536, { rows: [], sourcePath: 'x' })).not.toThrow()
   })
 })

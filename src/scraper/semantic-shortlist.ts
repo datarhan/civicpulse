@@ -43,6 +43,12 @@ export interface Corpus {
   rows: CorpusRow[]
   /** Path the corpus was loaded from, for diagnostics. */
   sourcePath: string
+  /**
+   * Contents of the `<path>.model` sidecar, e.g. `gemini:gemini-embedding-001:768`.
+   * Written at build time; read here so a width mismatch can name the backend
+   * that produced the corpus instead of just the number.
+   */
+  model?: string
 }
 
 export class CorpusLoadError extends Error {
@@ -81,7 +87,9 @@ export function loadCorpus(path: string): Corpus {
     }
     rows.push(parsed)
   }
-  return { rows, sourcePath: path }
+  const modelPath = `${path}.model`
+  const model = existsSync(modelPath) ? readFileSync(modelPath, 'utf8').trim() : undefined
+  return { rows, sourcePath: path, model }
 }
 
 function isCorpusRow(o: unknown): o is CorpusRow {
@@ -144,6 +152,37 @@ export interface SemanticShortlistOptions {
  *   · prior-claim rows are surfaced for any claim type — used by the
  *     promesa-repetida detection path too.
  */
+/**
+ * Refuse to compare vectors of different widths.
+ *
+ * `cosineSimilarity` returns 0 when the dimensions differ, which is
+ * mathematically reasonable and operationally awful: every row scores 0, every
+ * row falls under `minSimilarity`, and the pipeline reports "no candidates
+ * found" — indistinguishable from "the corpus genuinely has nothing relevant".
+ *
+ * That is not hypothetical. The verifier corpus here was embedded with
+ * gemini/768, but `EMBED_BACKEND` defaults to openai/1536 whenever an
+ * OPENAI_API_KEY is present, so the semantic half of the hybrid shortlist
+ * silently contributed nothing. Measured on the same 25 claims: 7 judged and 18
+ * "never asked" with the mismatch, 25 judged and 0 never asked once the query
+ * backend matched. Hundreds of published verdicts went unreviewed because a
+ * wrong answer looked exactly like an empty one.
+ *
+ * The sidecar written next to the corpus (`<path>.model`) records the backend
+ * and width, so the mismatch is always detectable. Fail loudly with the remedy.
+ */
+export function assertQueryDimMatchesCorpus(queryDim: number, corpus: Corpus): void {
+  const corpusDim = corpus.rows.find((r) => r.embedding.length > 0)?.embedding.length
+  if (!corpusDim || queryDim === corpusDim) return
+  const tag = corpus.model ? ` (built with ${corpus.model})` : ''
+  throw new CorpusLoadError(
+    `embedding width mismatch: query is ${queryDim}-dim but ${corpus.sourcePath} is ${corpusDim}-dim${tag}. ` +
+      `Set EMBED_BACKEND to the backend that built the corpus, or rebuild it with ` +
+      `\`npm run embed:verifier-corpus -- --rebuild\`. Refusing to score, because every ` +
+      `comparison would silently return 0 and the run would report "no candidates".`,
+  )
+}
+
 export async function semanticShortlist(
   claim: PlenoClaim,
   corpus: Corpus,
@@ -158,6 +197,8 @@ export async function semanticShortlist(
 
   const claimEmbedding = await embedFn(queryText)
   if (!Array.isArray(claimEmbedding) || claimEmbedding.length === 0) return []
+
+  assertQueryDimMatchesCorpus(claimEmbedding.length, corpus)
 
   const scored: Array<{ row: CorpusRow; similarity: number }> = []
   for (const row of corpus.rows) {

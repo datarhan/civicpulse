@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-08-02T06:36:48.480Z",
+  "generatedAt": "2026-08-02T12:31:20.429Z",
   "entries": {
     "k4olcs-005-acu-7c0edd": {
       "verification": {
@@ -13500,6 +13500,406 @@
       "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: no candidate genuinely supports the claim",
       "editor": "verdict-engine:claude-code",
       "appliedAt": "2026-08-02T06:36:48.480Z"
+    },
+    "brxx5g-040-afi-3b0ebe": {
+      "verification": {
+        "claimId": "brxx5g-040-afi-3b0ebe",
+        "verdict": "sin-datos",
+        "summary": "Se proporcionó el razonamiento en español en el cuerpo de la respuesta, sin emitir veredicto final, tal como se solicitó.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Se proporcionó el razonamiento en español en el cuerpo de la respuesta, sin emitir veredicto final, tal como se solicitó.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:25:19.195Z"
+    },
+    "brxx5g-087-afi-d20584": {
+      "verification": {
+        "claimId": "brxx5g-087-afi-d20584",
+        "verdict": "sin-datos",
+        "summary": "Se completó el razonamiento de verificación de hechos solicitado en español, evaluando escépticamente los 8 candidatos frente a la afirmación sobre 65 millones de euros y tres años de paralización en 15 colegios/institutos, concluyendo que ninguno respalda genuinamente la cifra ni el marco temporal,",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Se completó el razonamiento de verificación de hechos solicitado en español, evaluando escépticamente los 8 candidatos frente a la afirmación sobre 65 millones de euros y tres años de paralización en 15 colegios/institutos, concluyendo que ninguno respalda genuinamente la cifra ni el marco temporal,",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:25:19.195Z"
+    },
+    "brxx5g-087-cit-9db17c": {
+      "verification": {
+        "claimId": "brxx5g-087-cit-9db17c",
+        "verdict": "sin-datos",
+        "summary": "Se proporcionó el razonamiento en español en el cuerpo de la respuesta, evaluando candidato por candidato sin emitir veredicto final, tal como se solicitó.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se proporcionó el razonamiento en español en el cuerpo de la respuesta, evaluando candidato por candidato sin emitir veredicto final, tal como se solicitó.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:25:19.195Z"
+    },
+    "brxx5g-087-cit-1896a2": {
+      "verification": {
+        "claimId": "brxx5g-087-cit-1896a2",
+        "verdict": "sin-datos",
+        "summary": "Se completó el razonamiento en español sobre los candidatos que respaldan la afirmación \"el Pabellón del Más de Escoto\", identificando [3] y [4] como coincidencias genuinas de entidad (Pabellón Deportivo Cubierto en CEIP Mas d'Escoto) y descartando el resto por coincidencias superficiales de palabra",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se completó el razonamiento en español sobre los candidatos que respaldan la afirmación \"el Pabellón del Más de Escoto\", identificando [3] y [4] como coincidencias genuinas de entidad (Pabellón Deportivo Cubierto en CEIP Mas d'Escoto) y descartando el resto por coincidencias superficiales de palabra",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:25:19.195Z"
+    },
+    "brxx5g-131-cit-78561b": {
+      "verification": {
+        "claimId": "brxx5g-131-cit-78561b",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonar (no verificar con herramientas) sobre si los candidatos respaldan la afirmación. Ya proporcioné el razonamiento en español en 2-4 frases como se pidió, concluyendo que ningún candidato coincide en objeto concreto (climatización, delegación de competencias, pabellón nuevo) con la ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó razonar (no verificar con herramientas) sobre si los candidatos respaldan la afirmación. Ya proporcioné el razonamiento en español en 2-4 frases como se pidió, concluyendo que ningún candidato coincide en objeto concreto (climatización, delegación de competencias, pabellón nuevo) con la ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:25:19.195Z"
+    },
+    "brxx5g-187-cit-94922e": {
+      "verification": {
+        "claimId": "brxx5g-187-cit-94922e",
+        "verdict": "sin-datos",
+        "summary": "Se proporcionó el razonamiento en español sobre la falta de respaldo genuino del candidato respecto a la afirmación, siguiendo las instrucciones del sistema de ser escéptico y no emitir veredicto final.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se proporcionó el razonamiento en español sobre la falta de respaldo genuino del candidato respecto a la afirmación, siguiendo las instrucciones del sistema de ser escéptico y no emitir veredicto final.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:25:19.195Z"
+    },
+    "brxx5g-016-cit-93fad6": {
+      "verification": {
+        "claimId": "brxx5g-016-cit-93fad6",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonamiento en español sobre si algún candidato respalda la afirmación de un pleno aprobando el tercer plan de igualdad del Ayuntamiento de Hervarocha. Analicé los 8 candidatos: todos pertenecen al Ayuntamiento de Riba-roja de Túria, entidad distinta a Hervarocha, lo que invalida cualqu",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó razonamiento en español sobre si algún candidato respalda la afirmación de un pleno aprobando el tercer plan de igualdad del Ayuntamiento de Hervarocha. Analicé los 8 candidatos: todos pertenecen al Ayuntamiento de Riba-roja de Túria, entidad distinta a Hervarocha, lo que invalida cualqu",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-024-cit-318e1d": {
+      "verification": {
+        "claimId": "brxx5g-024-cit-318e1d",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (opinión cualitativa sobre alto % de ejecución del plan de igualdad anterior) contra los 8 candidatos. Ninguno aporta una cifra de porcentaje de ejecución de un plan de igualdad previo; el más cercano temáticamente [0] es sobre la realización de un nuevo plan, no la ejecución d",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (opinión cualitativa sobre alto % de ejecución del plan de igualdad anterior) contra los 8 candidatos. Ninguno aporta una cifra de porcentaje de ejecución de un plan de igualdad previo; el más cercano temáticamente [0] es sobre la realización de un nuevo plan, no la ejecución d",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-066-acu-9203f6": {
+      "verification": {
+        "claimId": "brxx5g-066-acu-9203f6",
+        "verdict": "sin-datos",
+        "summary": "Se trata de una tarea de verificación de hechos en español sobre una afirmación política retórica (acusación de intencionalidad política en una moción) frente a candidatos de contratación pública sin relación temática, temporal o de sujeto. Respondí directamente con el razonamiento solicitado en 2-4",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se trata de una tarea de verificación de hechos en español sobre una afirmación política retórica (acusación de intencionalidad política en una moción) frente a candidatos de contratación pública sin relación temática, temporal o de sujeto. Respondí directamente con el razonamiento solicitado en 2-4",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-070-cit-c82b2a": {
+      "verification": {
+        "claimId": "brxx5g-070-cit-c82b2a",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided the requested Spanish-language skeptical reasoning (2-4 sentences) evaluating whether any candidate record backs the claim about unstarted works at \"centros\" in Riba-Roja. Concluded none of the 8 candidates match — they involve different subjects (paving, rural roads, ravine",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided the requested Spanish-language skeptical reasoning (2-4 sentences) evaluating whether any candidate record backs the claim about unstarted works at \"centros\" in Riba-Roja. Concluded none of the 8 candidates match — they involve different subjects (paving, rural roads, ravine",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-123-cit-fd0f86": {
+      "verification": {
+        "claimId": "brxx5g-123-cit-fd0f86",
+        "verdict": "sin-datos",
+        "summary": "Respondí directamente en texto libre en español razonando sobre los candidatos, como pedía el prompt del verificador de hechos. No se requería ninguna herramienta de código ni skill de desarrollo software: la tarea es puramente de razonamiento/análisis textual sobre datos ya proporcionados en el pro",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Respondí directamente en texto libre en español razonando sobre los candidatos, como pedía el prompt del verificador de hechos. No se requería ninguna herramienta de código ni skill de desarrollo software: la tarea es puramente de razonamiento/análisis textual sobre datos ya proporcionados en el pro",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-124-afi-4be583": {
+      "verification": {
+        "claimId": "brxx5g-124-afi-4be583",
+        "verdict": "sin-datos",
+        "summary": "Analicé los 8 candidatos comparando el monto de €254.000 citado en la afirmación con los importes de los tenders relacionados con CEIP Camp de Túria. Ningún candidato individual coincide (van de €6.776 a €99.825). La suma de los tenders temáticamente más relevantes (mejora de confort térmico: proyec",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé los 8 candidatos comparando el monto de €254.000 citado en la afirmación con los importes de los tenders relacionados con CEIP Camp de Túria. Ningún candidato individual coincide (van de €6.776 a €99.825). La suma de los tenders temáticamente más relevantes (mejora de confort térmico: proyec",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-127-cit-dbf210": {
+      "verification": {
+        "claimId": "brxx5g-127-cit-dbf210",
+        "verdict": "sin-datos",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre \"Camp de Turias\" como espacio de aclimatización botánica. Todos los candidatos son contratos de obras/servicios del CEIP Camp de Túria (colegio), sin relación temática con aclimatización de plantas ni con un botánico. Es una coincidencia de nombr",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Analicé los 8 candidatos frente a la afirmación sobre \"Camp de Turias\" como espacio de aclimatización botánica. Todos los candidatos son contratos de obras/servicios del CEIP Camp de Túria (colegio), sin relación temática con aclimatización de plantas ni con un botánico. Es una coincidencia de nombr",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-130-acu-065969": {
+      "verification": {
+        "claimId": "brxx5g-130-acu-065969",
+        "verdict": "sin-datos",
+        "summary": "Task completed: reasoned in Spanish about candidate support for the claim, per instructions, without issuing a verdict.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: reasoned in Spanish about candidate support for the claim, per instructions, without issuing a verdict.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-157-cit-0d90c3": {
+      "verification": {
+        "claimId": "brxx5g-157-cit-0d90c3",
+        "verdict": "sin-datos",
+        "summary": "Análisis de respaldo completado: ningún candidato confirma genuinamente la afirmación. El candidato [0] solo muestra la existencia de un contrato/proyecto de obras que incluye refugios climáticos, pero no evidencia un \"plan\" con zonas pendientes de cobertura, que es la parte central y valorativa de ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Análisis de respaldo completado: ningún candidato confirma genuinamente la afirmación. El candidato [0] solo muestra la existencia de un contrato/proyecto de obras que incluye refugios climáticos, pero no evidencia un \"plan\" con zonas pendientes de cobertura, que es la parte central y valorativa de ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-165-cit-c5bec4": {
+      "verification": {
+        "claimId": "brxx5g-165-cit-c5bec4",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical Spanish-language reasoning (no verdict) about whether any candidate genuinely backs the claim about planting \"moreros\" along the itinerary near Plaza Manises. Concluded no genuine match: candidate [3] is a false lexical match (barranco de los moros ≠ moreros trees)",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided skeptical Spanish-language reasoning (no verdict) about whether any candidate genuinely backs the claim about planting \"moreros\" along the itinerary near Plaza Manises. Concluded no genuine match: candidate [3] is a false lexical match (barranco de los moros ≠ moreros trees)",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-168-acu-92e632": {
+      "verification": {
+        "claimId": "brxx5g-168-acu-92e632",
+        "verdict": "sin-datos",
+        "summary": "Analicé los candidatos frente a la afirmación sobre una decisión de abrir la piscina viernes y sábado tomada \"hace 3 días\". Todos los candidatos son expedientes de contratación pública (limpieza, mantenimiento de agua, socorrismo, bar de piscina) sin relación directa con una decisión puntual de aper",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los candidatos frente a la afirmación sobre una decisión de abrir la piscina viernes y sábado tomada \"hace 3 días\". Todos los candidatos son expedientes de contratación pública (limpieza, mantenimiento de agua, socorrismo, bar de piscina) sin relación directa con una decisión puntual de aper",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-184-cit-83a6bc": {
+      "verification": {
+        "claimId": "brxx5g-184-cit-83a6bc",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación y los candidatos; ningún tender nombra la plaza \"Sagoros\" o su antiguo nombre \"Azco Vorela\". El más próximo por tema es la Plaza Lavadero, pero es una entidad distinta. Concluyo que no hay respaldo genuino, solo similitud temática superficial (todas son obras de urbanismo). No ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación y los candidatos; ningún tender nombra la plaza \"Sagoros\" o su antiguo nombre \"Azco Vorela\". El más próximo por tema es la Plaza Lavadero, pero es una entidad distinta. Concluyo que no hay respaldo genuino, solo similitud temática superficial (todas son obras de urbanismo). No ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-188-cit-13e2c4": {
+      "verification": {
+        "claimId": "brxx5g-188-cit-13e2c4",
+        "verdict": "sin-datos",
+        "summary": "Se completó el análisis de escepticismo solicitado en español, evaluando cada candidato contra la afirmación temporal específica sobre refugios climáticos \"el año pasado\" vs \"el anterior\". Ninguno aporta evidencia fechada que respalde la secuencia temporal concreta alegada; sólo hay coincidencia tem",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: Se completó el análisis de escepticismo solicitado en español, evaluando cada candidato contra la afirmación temporal específica sobre refugios climáticos \"el año pasado\" vs \"el anterior\". Ninguno aporta evidencia fechada que respalde la secuencia temporal concreta alegada; sólo hay coincidencia tem",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-188-cit-3376a0": {
+      "verification": {
+        "claimId": "brxx5g-188-cit-3376a0",
+        "verdict": "sin-datos",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre un lugar que era escombrera y ahora tiene árboles y sombra. Ningún candidato menciona explícitamente \"escombrera\" ni confirma esa transformación concreta. El candidato [0] (obras de adecuación paisajística en un barranco, fase II) es el más plaus",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé los 8 candidatos frente a la afirmación sobre un lugar que era escombrera y ahora tiene árboles y sombra. Ningún candidato menciona explícitamente \"escombrera\" ni confirma esa transformación concreta. El candidato [0] (obras de adecuación paisajística en un barranco, fase II) es el más plaus",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-189-acu-fe454a": {
+      "verification": {
+        "claimId": "brxx5g-189-acu-fe454a",
+        "verdict": "sin-datos",
+        "summary": "Se solicitó únicamente razonamiento en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto. Respondí directamente con el análisis solicitado en el formato pedido (2-4 frases), evaluando cada candidato: [0] y [1] son contratos de obra de pérgolas para resiliencia climática, ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Se solicitó únicamente razonamiento en español sobre si los candidatos respaldan la afirmación, sin emitir veredicto. Respondí directamente con el análisis solicitado en el formato pedido (2-4 frases), evaluando cada candidato: [0] y [1] son contratos de obra de pérgolas para resiliencia climática, ",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-195-acu-e4adf0": {
+      "verification": {
+        "claimId": "brxx5g-195-acu-e4adf0",
+        "verdict": "sin-datos",
+        "summary": "La afirmación es una acusación sobre el historial de votos de una persona concreta en un pleno (haber votado a favor de un plan de igualdad tras haberlo criticado antes). Esto requiere un acta de votación o declaración pública verificable sobre ese voto específico, no expedientes de contratación. Lo",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: La afirmación es una acusación sobre el historial de votos de una persona concreta en un pleno (haber votado a favor de un plan de igualdad tras haberlo criticado antes). Esto requiere un acta de votación o declaración pública verificable sobre ese voto específico, no expedientes de contratación. Lo",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-232-acu-c02d45": {
+      "verification": {
+        "claimId": "brxx5g-232-acu-c02d45",
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (una cita atribuida a la Sra. Montes sobre pactar con turoperadores ingleses/americanos para turismo de bajo coste) frente a los 8 candidatos, todos expedientes municipales (contratos, tenders) sin relación temática real con negociar acuerdos comerciales con turoperadores extra",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Analicé la afirmación (una cita atribuida a la Sra. Montes sobre pactar con turoperadores ingleses/americanos para turismo de bajo coste) frente a los 8 candidatos, todos expedientes municipales (contratos, tenders) sin relación temática real con negociar acuerdos comerciales con turoperadores extra",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-258-acu-341a6c": {
+      "verification": {
+        "claimId": "brxx5g-258-acu-341a6c",
+        "verdict": "sin-datos",
+        "summary": "La afirmación (\"esperemos que la Generalitat mejore su forma de pago y no tarde un año en liquidar sus obligaciones\") es una expresión de deseo/opinión sobre plazos de pago, no un hecho puntual verificable con una cifra o fecha concreta. Los candidatos [0],[1],[2],[3],[5],[6],[7] son contratos de ob",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged verificado→sin-datos: La afirmación (\"esperemos que la Generalitat mejore su forma de pago y no tarde un año en liquidar sus obligaciones\") es una expresión de deseo/opinión sobre plazos de pago, no un hecho puntual verificable con una cifra o fecha concreta. Los candidatos [0],[1],[2],[3],[5],[6],[7] son contratos de ob",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
+    },
+    "brxx5g-259-acu-c7dfd1": {
+      "verification": {
+        "claimId": "brxx5g-259-acu-c7dfd1",
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided the requested Spanish-language skeptical reasoning (2-4 sentences) about whether any candidate genuinely supports the claim, without issuing a final verdict, as instructed.",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
+        ],
+        "confidence": 0.2
+      },
+      "source": "verdict-engine",
+      "reason": "verdict-engine (claude-code) re-judged parcial→sin-datos: Task completed: provided the requested Spanish-language skeptical reasoning (2-4 sentences) about whether any candidate genuinely supports the claim, without issuing a final verdict, as instructed.",
+      "editor": "verdict-engine:claude-code",
+      "appliedAt": "2026-08-02T12:31:20.429Z"
     }
   }
 }
