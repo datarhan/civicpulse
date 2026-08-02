@@ -52,7 +52,13 @@ echo "[$(date '+%F %T')] auto-curate-promises-daily starting"
 # before the LLM run so we don't waste a call.
 git pull --rebase --autostash origin main
 
+# Mirror the env the press-lab wrapper uses — it is the one cron job on
+# claude-code that has kept working. This one set neither the model nor the
+# concurrency cap and produced 25 straight days of empty digests.
+export PATH="/usr/local/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 export LLM_BACKEND="${LLM_BACKEND:-claude-code}"
+export CLAUDE_CODE_MODEL="${CLAUDE_CODE_MODEL:-claude-sonnet-5}"
+export LLM_CONCURRENCY="${LLM_CONCURRENCY:-1}"   # Max plan is burst-rate limited
 export AGY_MODEL="${AGY_MODEL:-gemini-2.5-pro}"  # only read when LLM_BACKEND=agy
 
 # AUTO-PUBLISH ENABLED: grounded, high-confidence en-progreso status changes +
@@ -65,7 +71,10 @@ echo "[$(date '+%F %T')] invoking auto-curate-promises (--max 10 --phase both ·
 # a metered auto-publish. A skipped promotion beats a metered one.
 if ! env -u OPENAI_API_KEY -u ANTHROPIC_API_KEY GEMINI_BIN=/nonexistent-disabled \
      npm run auto-curate-promises -- --max 10 --phase both; then
-  echo "[$(date '+%F %T')] warn: auto-curate-promises non-zero (no \$0 backend reachable) — deferred to next run"
+  # LOUD: this used to be a one-line warning inside a 196 KB log while the
+  # digest reported a clean 0/0/0. A failed run must look different from a
+  # quiet one.
+  echo "[$(date '+%F %T')] ERROR: auto-curate-promises FAILED (no \$0 backend reachable, or the model did not answer) — candidates were retrieved and dropped"
 fi
 
 echo "[$(date '+%F %T')] auto-curate-promises-daily done · queue refreshed"

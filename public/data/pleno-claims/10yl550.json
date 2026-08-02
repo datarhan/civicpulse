@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T04:59:27.116Z",
+  "generatedAt": "2026-08-02T05:28:52.035Z",
   "version": "1",
   "plenoId": "10yl550",
   "plenoDate": "2026-05-11",
@@ -705,6 +705,49 @@
         "confidence": 0.2
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "10yl550-025-acu-2980a7",
+        "plenoId": "10yl550",
+        "plenoDate": "2026-05-11",
+        "segmentIndex": 25,
+        "type": "acusacion_publica",
+        "speakerGroup": "PSOE",
+        "verbatim": "el gobierno de Mazón y de Juan Pérez de Yorca ha denegado ese centro de formación integral para Riva Rocha.",
+        "context": "Y el gobierno de Mazón y de Juan Pérez de Yorca ha denegado ese centro de formación integral para Riva Rocha. Un centro que iba a dar formación para la ocupación de los desocupados de Riva Rocha y la resta de la comarca.",
+        "topic": "empleo",
+        "entities": {
+          "amountEuros": 600000,
+          "count": 1,
+          "countUnit": "centro de formación",
+          "referencedEntity": "centro de formación integral para riva rocha"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.9,
+        "reasoning": "Se menciona que el gobierno de Mazón y Juan Pérez de Yorca ha denegado un centro de formación, lo cual puede ser verificado a través de actas o comunicados oficiales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "10yl550-025-acu-2980a7",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=BovN8EEsl1H%2B3JAijKO%2Bkg%3D%3D",
+            "snippet": "Contrato para la prestación del servicio de catering y monitoras/es de comedor escuela infantil Riu Túria de Riba-roja de Túria, dividido en dos lotes. (Ctto44/2024bis) · Ayuntamiento de Riba-roja de Túria · education · 600.625 €",
+            "similarity": 0.67
+          }
+        ],
+        "checkedAgainst": [
+          "tenders",
+          "tenders-ted",
+          "bdns",
+          "budget"
+        ]
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -4724,6 +4767,41 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "10yl550-220-acu-0101aa",
+        "plenoId": "10yl550",
+        "plenoDate": "2026-05-11",
+        "segmentIndex": 220,
+        "type": "acusacion_publica",
+        "speakerGroup": "PSOE",
+        "verbatim": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional.",
+        "context": "La norma, la ley del vivienda estatal no es inconstitucional. Es un satombat, no hay ningún recurso. Es constitucional. Lo que digo por las soluciones que has hecho, es verdad, es que la constitución no la cumplía.",
+        "topic": "vivienda",
+        "entities": {
+          "referencedEntity": "ley del vivienda estatal"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.85,
+        "reasoning": "Se hace una afirmación sobre la constitucionalidad de la ley de vivienda estatal, lo que puede ser verificado a través de documentos legales.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "10yl550-220-acu-0101aa",
+        "verdict": "parcial",
+        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=RzXc%2FudzhPMBPRBxZ4nJ%2Fg%3D%3D",
+            "snippet": "contrato privado de adquisición bien inmueble para para la implantación de vivienda tutelada por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación. · Ayuntamiento de Riba-roja de Túria · Vicente Chisvert Ribera · real_estate · estado: formalized",
+            "similarity": 0.5
+          }
+        ],
+        "checkedAgainst": []
+      },
+      "visibility": "shown"
     },
     {
       "claim": {

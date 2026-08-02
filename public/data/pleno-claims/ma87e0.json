@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T04:59:27.116Z",
+  "generatedAt": "2026-08-02T05:28:52.035Z",
   "version": "1",
   "plenoId": "ma87e0",
   "plenoDate": "2026-03-16",
@@ -546,24 +546,15 @@
       },
       "verification": {
         "claimId": "ma87e0-102-afi-c93bb9",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=2N0awhGNBRR%2FR5QFTlaM4A%3D%3D",
-            "snippet": "Sistema Dinámico de Adquisición para la contratación de SERVICIOS de ARQUITECTURA E INGENIERIA, CONSULTORIA Y ASISTENCIA TÉCNICA a las diferentes áreas municipales abierto a otras entidades públicas mediante el sistema de compra conjunta esporádica con condición especial de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 (ESDA1/2025) · Ayuntamiento de Riba-roja de Túria · architecture · 3.000.000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Analicé los tres candidatos (contratos de prevención de riesgos laborales) frente a la afirmación sobre prevención fiscal/presupuestaria de 3M€ por canon del agua y PIE. Concluí que no hay respaldo genuino: coincidencia léxica en \"prevención\" pero entidades, temas e importes completamente distintos.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -626,24 +617,15 @@
       },
       "verification": {
         "claimId": "ma87e0-102-afi-f7650b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=aToX2uafgoyiEJrVRqloyA%3D%3D",
-            "snippet": "Contrato menor servicio de acceso a base de datos en materia de contratación pública (Gobierto Contratación) · Ayuntamiento de Riba-roja de Túria · Populate Tools S.L. · other · 4000 €",
-            "similarity": 0.6
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "El candidato [0] es un contrato de suministro de módulos informáticos para elaboración de presupuestos y RPT del Ayuntamiento de Riba-roja de Túria. No contiene ninguna cifra de diferencia entre ingresos y gastos, ni datos de legislaturas anteriores, ni información sobre cumplimiento normativo de su",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -887,19 +869,15 @@
       },
       "verification": {
         "claimId": "ma87e0-104-cit-528973",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ngqf58oaRxQQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Control microbiológico y físico-químico de las instalaciones deportivas mples. · Ayuntamiento de Riba-roja de Túria · COMPAÑIA DE TRATAMIENTOS LEVANTE SL (CTL) · environment · estado: formalized",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Task completed: provided skeptical reasoning in Spanish (2-4 sentences plus brief elaboration) evaluating whether any candidate genuinely supports the claim, without issuing a verdict. Concluded none of the tender candidates (all routine maintenance contracts) substantively match the vague, unquanti",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2610,19 +2588,15 @@
       },
       "verification": {
         "claimId": "ma87e0-143-cit-adb382",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GKCMUcHeIyYUqXM96WStVA%3D%3D",
-            "snippet": "Contrato administrativo de servicios para llevar a cabo el Programa Municipal y Escuela de Verano para personas con diversidad funcional intelectual por procedimiento abierto, mejor relación calidad-precio, varios criterios de adjudicación y con condición de ejecución de carácter social, dividido en 2 lotes, sujeto a regulación armonizada (Ctto69/2025) · Ayuntamiento de Riba-roja de Túria · health · estado: awarded",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé los 8 candidatos frente a la afirmación sobre el \"Plan Conviviente\" 2022 que preveía residencia+centro de día para mayores dependientes y residencia+centro de día para diversidad funcional en Riba-roja de Túria. Ningún candidato es un plan aprobado en 2022 ni menciona residencias; son contra",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -2785,19 +2759,15 @@
       },
       "verification": {
         "claimId": "ma87e0-151-cit-75b31f",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=EcwQUWMyQ4mmq21uxhbaVQ%3D%3D",
-            "snippet": "Obras instalación pista deportiva en barrio Ciudad Jardín · Ayuntamiento de Riba-roja de Túria · JUEGOS KOMPAN, S.A. · other · estado: awarded",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Task was a direct Spanish-language fact-checking reasoning exercise with explicit instructions already provided in the prompt (act as skeptical fact-checker, reason in free text, don't decide verdict). No coding or file/tool work was needed; I analyzed the three candidates against the claim's specif",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3426,19 +3396,15 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-4e23e7",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · Victor Tormo S.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Ningún candidato respalda genuinamente la afirmación. La afirmación cita específicamente el edificio \"La Granota\" como beneficiario de mejoras e inversiones en el presupuesto 2026. Los cuatro candidatos son contratos (tenders) sobre entidades distintas: [0] Antiguo Hogar del Jubilado para EPA, [1] c",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3487,19 +3453,15 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-092d3e",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=YlgG3XJA7Vh7h85%2Fpmmsfw%3D%3D",
-            "snippet": "Obras de impermeabilización cubierta Edificio Polivalente así como el fomento de la estabilidad en el empleo y la protección del medio ambiente, debido a  que “El contrato consta de una única obra y por tanto no cabe la división en lotes de la misma”, por procedimiento abierto supersimplificado, mejor relación calidad-precio, varios criterios de adjudicación con cláusula socio-laboral como criterio de adjudicación y con condición especial de ejecución de carácter medioambiental · Ayuntamiento de Riba-roja de Túria · MARSAN PEDRALBA SOCIEDAD LIMITADA · construction · estado: awarded",
-            "similarity": 0.67
-          }
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonar (no emitir veredicto) sobre si los candidatos respaldan la afirmación de que el proyecto y construcción del edificio polivalente \"Chemachor\" está incluido en el presupuesto 2026. Análisis: ningún candidato menciona \"Chemachor\". El candidato [1] comparte el término genérico \"Edifi",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -3521,19 +3483,15 @@
       },
       "verification": {
         "claimId": "ma87e0-162-cit-3acc3b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=ynRrSWT4VOoQK2TEfXGy%2BA%3D%3D",
-            "snippet": "Obras de habilitación edificio la Botaya Fases II y III · Ayuntamiento de Riba-roja de Túria · Victor Tormo S.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé el único candidato disponible: un contrato de mantenimiento de servidores HP en CPD's municipales de Riba-roja de Túria, categoría \"it\". La afirmación trata sobre mejoras al equipamiento cultural \"La Severa\" en el presupuesto 2026. No hay coincidencia de entidad/sujeto (servidores informátic",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -4740,19 +4698,15 @@
       },
       "verification": {
         "claimId": "ma87e0-195-cit-56214f",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=GWSKX9oF1nmFQ%2FlhRK79lA%3D%3D",
-            "snippet": "Servicio Dirección Facultativa de las obras de finalización del Centro Polivalente Cultural en Riba-roja de Túria · Ayuntamiento de Riba-roja de Túria · architecture · estado: unknown",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Se solicitó razonar (no veredicto) sobre si los candidatos respaldan la afirmación de que el municipio no tiene Centro de Salud. Concluí que ninguno guarda relación genuina: los candidatos [0] y [1] son seguros de responsabilidad civil del Ayuntamiento (finance), sin relación temática; el candidato ",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

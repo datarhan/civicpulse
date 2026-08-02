@@ -30,6 +30,23 @@ LOCK_DIR="$BOT_DIR/data/.export.lock"
 
 mkdir -p "$LOG_DIR"
 
+# Rotate the cron log. This script runs EVERY MINUTE and appends unconditionally
+# — 1,440 entries a day — with nothing trimming it. Found at 16 MB after a
+# month, on course for ~200 MB a year, on a laptop. Keep one previous
+# generation and start fresh past the cap; losing old lines matters far less
+# than an unbounded file nobody watches.
+CRON_LOG="$LOG_DIR/cron-quejas-export.log"
+LOG_MAX_BYTES=${LOG_MAX_BYTES:-5242880}   # 5 MB
+if [ -f "$CRON_LOG" ]; then
+  size=$(stat -f%z "$CRON_LOG" 2>/dev/null || stat -c%s "$CRON_LOG" 2>/dev/null || echo 0)
+  if [ "${size:-0}" -gt "$LOG_MAX_BYTES" ]; then
+    mv -f "$CRON_LOG" "$CRON_LOG.1"
+    # cron holds the original fd open, so truncate rather than relying on the
+    # rename alone — otherwise it keeps writing to the rotated inode.
+    : > "$CRON_LOG"
+  fi
+fi
+
 # ── Lock. Steal a stale lock left by a crashed run (>10 min old). ──────────
 if ! mkdir "$LOCK_DIR" 2>/dev/null; then
   if [ -n "$(find "$LOCK_DIR" -maxdepth 0 -mmin +10 2>/dev/null)" ]; then

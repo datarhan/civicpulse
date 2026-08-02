@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T04:59:27.116Z",
+  "generatedAt": "2026-08-02T05:28:52.035Z",
   "version": "1",
   "plenoId": "rx4hb4",
   "plenoDate": "2026-02-09",
@@ -1305,19 +1305,15 @@
       },
       "verification": {
         "claimId": "rx4hb4-461-cit-811afb",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=nUWpz06cpumFlFRHfEzEaw%3D%3D",
-            "snippet": "Contrato administrativo servicio de mantenimiento de las instalaciones de protección contraincendios en edificios municipales del Ayuntamiento de Riba-roja de Túria, por procedimiento abierto, aplicando el precio como único criterio de adjudicación, con condición de ejecución de carácter social, medioambiental y técnico, contribuyendo al cumplimiento ODS 9 de la agenda 2030. · Ayuntamiento de Riba-roja de Túria · FERMALUX SEGURIDAD Y SISTEMAS, S.L · maintenance · estado: formalized",
-            "similarity": 0.5
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (enumeración de objetivos formales de la agenda urbana: ordenar el territorio, evitar dispersión urbana, mitigar cambio climático) frente al único candidato disponible (contrato de obra de reconstrucción de vallados en polígonos industriales tras la DANA). Concluí que no hay re",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

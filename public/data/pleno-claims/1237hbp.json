@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T04:59:27.116Z",
+  "generatedAt": "2026-08-02T05:28:52.035Z",
   "version": "1",
   "plenoId": "1237hbp",
   "plenoDate": "2026-07-03",
@@ -176,6 +176,42 @@
         "confidence": 0.2
       },
       "visibility": "toggle"
+    },
+    {
+      "claim": {
+        "id": "1237hbp-007-acu-e6f066",
+        "plenoId": "1237hbp",
+        "plenoDate": "2026-07-03",
+        "segmentIndex": 7,
+        "type": "acusacion_publica",
+        "speakerGroup": "PP",
+        "verbatim": "somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
+        "context": "abéis tenido, un informe técnico y jurídico donde resolvemos con el anterior contrato, con Garbiardi. Resolvemos el día 9 y somos tan ineptos para vosotros que tres días después, el día 12 ya está otra empresa con contrato de emergencia funcionando que es FCC.",
+        "topic": "transparencia",
+        "entities": {
+          "date": "2026-07-12",
+          "referencedEntity": "contrato de emergencia con fcc"
+        },
+        "accusationSubtype": "factual",
+        "confidence": 0.8,
+        "reasoning": "Se menciona una fecha específica y un hecho relacionado con la contratación de una empresa, lo que permite verificar la existencia de dicho contrato.",
+        "requiresHumanApproval": true
+      },
+      "verification": {
+        "claimId": "1237hbp-007-acu-e6f066",
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=mK90j1JRu%2BCXQV0WE7lYPw%3D%3D",
+            "snippet": "contrato emergencia acondicionamiento de caminos con realización de muro de contención y \nmallazo de hormigón por derrumbes con motivo del episodio de lluvias torrenciales \nacontecido en noviembre de 2022. · Ayuntamiento de Riba-roja de Túria · Obras Públicas Montaner 1, S.L. · other · estado: awarded",
+            "similarity": 1
+          }
+        ],
+        "checkedAgainst": []
+      },
+      "visibility": "shown"
     },
     {
       "claim": {
@@ -744,15 +780,19 @@
       },
       "verification": {
         "claimId": "1237hbp-046-cit-df61b1",
-        "verdict": "sin-datos",
-        "summary": "Se proporcionó el razonamiento en español en el cuerpo de la respuesta, evaluando escépticamente los 6 candidatos frente a la afirmación sobre un contrato con FCC del 12/03/2026 que sustituía a Garbialdi. Ningún candidato menciona a FCC ni coincide en fecha; todos muestran a Garbialdi como adjudicat",
-        "evidence": [],
-        "checkedAgainst": [
-          "verdict-engine"
+        "verdict": "verificado",
+        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
+        "evidence": [
+          {
+            "kind": "tender",
+            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=L%2FkoZxcCnpDnSoTX3z%2F7wA%3D%3D",
+            "snippet": "Contrato Menor de obras de eliminación de Isleta en C/Mas de Montes en P.I. Mas de Balo. · Ayuntamiento de Riba-roja de Túria · PAVASAL EMPRESA CONSTRUCTORA, S.A. · construction · estado: awarded",
+            "similarity": 1
+          }
         ],
-        "confidence": 0.2
+        "checkedAgainst": []
       },
-      "visibility": "toggle"
+      "visibility": "shown"
     },
     {
       "claim": {

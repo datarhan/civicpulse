@@ -386,6 +386,29 @@ async function main() {
       `[auto-curate-promises] status: ${statusCandidates.length} candidate(s) · retrieved=${minerStats.retrieved} emitted=${minerStats.emitted} rejected(cite=${minerStats.hallucinatedCite}, conf=${minerStats.belowConfidence}, id=${minerStats.idMismatch})\n`,
     )
 
+    // Retrieval found work and the model emitted NOTHING and rejected NOTHING:
+    // that is not a quiet day, it is the model never having answered. A day
+    // where it ran and was merely conservative still shows rejections.
+    //
+    // This ran unnoticed for 25 consecutive days: 371 candidates retrieved
+    // every morning, `auto-published: 0 · queued: 0 · skipped: 0` written to
+    // the digest, and the wrapper exiting 0. The failure was visible only as
+    // one `[llm] all backends exhausted` line buried in a 196 KB cron log.
+    const modelNeverAnswered =
+      minerStats.retrieved > 0 &&
+      minerStats.emitted === 0 &&
+      minerStats.hallucinatedCite === 0 &&
+      minerStats.belowConfidence === 0 &&
+      minerStats.idMismatch === 0
+    if (modelNeverAnswered) {
+      process.stderr.write(
+        `[auto-curate-promises] FAILED: ${minerStats.retrieved} candidate(s) retrieved but the model ` +
+          `returned nothing and rejected nothing — the LLM backend did not answer. ` +
+          `This is a broken run, not an empty one.\n`,
+      )
+      process.exitCode = 1
+    }
+
     const seenTransitions = new Set<string>([
       ...snap.items.map((p) => statusTransitionKey(p.id, p.status)),
       ...existingQueue.drafts
