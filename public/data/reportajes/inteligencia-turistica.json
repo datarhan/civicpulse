@@ -7,7 +7,13 @@
     "subtitulo": "El Ayuntamiento celebra una «innovadora plataforma» que analiza el comportamiento de los visitantes. El expediente de contratación permite reconstruir qué se compró exactamente, a quién, con qué calendario — y qué queda para el municipio cuando los contratos terminan.",
     "estado": "publicado",
     "publicadoEl": "15 de julio de 2026",
-    "fechaDatos": "15 de julio de 2026"
+    "fechaDatos": "15 de julio de 2026",
+    "correcciones": [
+      {
+        "fecha": "2026-08-02",
+        "texto": "Toda cifra de esta pieza obtenida del registro de contratación municipal es un SUELO, no un total. Nuestro lector de contratos daba por «desconocido» el estado `formalized` —así marca Gobierto un contrato FIRMADO— y lo dejaba fuera de cualquier suma. De los 15 contratos del registro que responden al vocabulario del plan turístico, 7 estaban en ese estado: el dinero localizable pasa de 229.584 € a 545.617 € al contarlos. No reescribimos el «≈1,56 M€ localizado» del cuerpo porque no podemos reproducir con exactitud la consulta con la que se calculó; lo honesto es advertir que se computó sobre un registro que ocultaba contratos firmados, así que la parte del plan que aparece en contratación es mayor de la que publicamos, no menor. La brecha entre el plan (2,11 M€) y lo localizado —que es el argumento de la pieza— se estrecha en consecuencia."
+      }
+    ]
   },
   "kpis": [
     {

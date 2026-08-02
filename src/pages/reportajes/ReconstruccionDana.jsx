@@ -1,5 +1,6 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import { Card, SectionHead } from '../../components/Primitives'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 
 const SERIF = "'Fraunces', Georgia, serif"
 const MES = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
@@ -430,29 +431,7 @@ export default function ReconstruccionDana() {
         {m.subtitulo}
       </p>
 
-      {/* Corrections, above the fold and before the figures they concern.
-          The piece's numbers stay frozen — that is how it was published, and
-          silently rewriting a published investigation is worse than being
-          wrong in public. What a correction owes the reader is to appear
-          before they read the figure, not in a footnote after it. */}
-      {(m.correcciones ?? []).map((c) => (
-        <div
-          key={c.fecha}
-          style={{
-            border: '1px solid var(--border2)',
-            borderLeft: '3px solid var(--crit)',
-            background: 'var(--crit-soft)',
-            borderRadius: 10,
-            padding: '12px 14px',
-            margin: '0 0 26px',
-            fontSize: 13.5,
-            lineHeight: 1.6,
-            color: 'var(--ink80)',
-          }}
-        >
-          <strong style={{ color: 'var(--crit-ink)' }}>Corrección · {c.fecha}.</strong> {c.texto}
-        </div>
-      ))}
+      <CorrectionNote correcciones={m.correcciones} />
 
       {/* KPIs */}
       <div

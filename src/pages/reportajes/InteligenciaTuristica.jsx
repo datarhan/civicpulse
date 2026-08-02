@@ -1,5 +1,6 @@
 import { useReportaje } from '../../hooks/useReportaje'
 import { Card } from '../../components/Primitives'
+import { CorrectionNote } from '../../components/reportajes/CorrectionNote'
 
 const SERIF = "'Fraunces', Georgia, serif"
 
@@ -219,6 +220,8 @@ export default function InteligenciaTuristica() {
       <p style={{ fontSize: 18, color: 'var(--ink60)', lineHeight: 1.5, margin: '0 0 26px' }}>
         {m.subtitulo}
       </p>
+
+      <CorrectionNote correcciones={m.correcciones} />
 
       {/* KPIs */}
       <div
