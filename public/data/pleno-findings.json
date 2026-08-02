@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-02T14:47:44.234Z",
+  "generatedAt": "2026-08-02T14:51:20.688Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -3210,7 +3210,7 @@
       "plenoId": "otxq2c",
       "plenoDate": "2025-10-06",
       "title": "Debate de seguridad en el pleno 2025-10-06: videovigilancia y sistema COMETA",
-      "summary": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. Según el registro municipal, consta el «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que documenta la actividad municipal en este ámbito.",
+      "summary": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
       "severity": "informational",
       "sourceClaimIds": [
         "otxq2c-078-acu-b00839",
@@ -3272,7 +3272,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-07",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. Según el registro municipal, consta el «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que documenta la actividad municipal en este ámbito.",
+          "corrected": "En la sesión plenaria del 06-10-2025, VOX manifiesta que considera esencial el sistema COMETA en materia de seguridad, PSOE señala que denuncia ante la Consejería determinadas ampliaciones y PP apunta dudas sobre el cumplimiento de ciertas órdenes. En la contratación municipal publicada consta un «Contrato mixto de suministro y servicio para la instalación del sistema de videovigilancia en el polígono industrial Masía Baló», que se refiere a videovigilancia en suelo industrial y no documenta el sistema COMETA ni las demás cuestiones debatidas.",
+          "reason": "El sumario citaba un contrato de videovigilancia en el polígono Masía Baló como algo que «documenta la actividad municipal en este ámbito» a propósito del sistema COMETA. COMETA es el sistema estatal de seguimiento telemático de medidas de alejamiento; un contrato de cámaras en suelo industrial no lo documenta. Los dos asuntos se enlazaron sólo por la palabra «seguridad». Se mantiene la cita del contrato pero se explicita que no respalda lo debatido.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-02T14:51:20.688Z"
+        }
+      ]
     },
     {
       "id": "f-2025-09-08-cit-d6d194",

@@ -1,0 +1,8 @@
+{
+  "_comment": "Organisation names asserted in published finding prose that do not appear in our data, and that a human has REVIEWED and accepted. Committed on purpose: a gitignored baseline would regenerate empty and the check would flag the same rows forever. Add a name here only after confirming the finding is accurate — usually because it reports someone asking about or alleging something, rather than asserting it as record.",
+  "updatedAt": "2026-08-02T14:53:41.981Z",
+  "reviewed": [
+    "COMETA",
+    "FCC"
+  ]
+}

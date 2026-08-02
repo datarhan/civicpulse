@@ -274,6 +274,16 @@ if ! npm run check:retrieval -- --offline; then
   soft_failures+=("check:retrieval")
 fi
 
+# Companies named in published finding prose that appear in none of our data.
+# Catches a spoken allegation written up as documentary fact — a finding once
+# told readers "según el registro municipal ... la empresa FCC" when FCC
+# appeared in zero of 1,231 contract rows. Baseline-compared, so it reports only
+# names nobody has reviewed yet.
+if ! npm run check:finding-entities; then
+  echo "[scrape-all] SOFT-FAILED: check:finding-entities — unreviewed company name in a published finding"
+  soft_failures+=("check:finding-entities")
+fi
+
 echo ""
 echo "================================================================"
 echo "[scrape-all] summary"
