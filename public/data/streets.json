@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:23:19.402Z",
+  "generatedAt": "2026-08-02T16:00:46.777Z",
   "source": {
     "platform": "OSM Overpass API",
     "endpoint": "https://overpass-api.de/api/interpreter",
@@ -212,8 +212,8 @@
       "slug": "avinguda-del-poliesportiu",
       "kind": "avenida",
       "point": [
-        39.5481546,
-        -0.5819859
+        39.5482137,
+        -0.5820194
       ]
     },
     {
@@ -1052,8 +1052,8 @@
       "slug": "carrer-cor-de-jesus",
       "kind": "calle",
       "point": [
-        39.5462453,
-        -0.5684481
+        39.546246,
+        -0.5684624
       ]
     },
     {
@@ -1162,8 +1162,8 @@
       "slug": "carrer-d-ausias-march",
       "kind": "calle",
       "point": [
-        39.5479281,
-        -0.578358
+        39.5483025,
+        -0.5781625
       ]
     },
     {
@@ -2632,8 +2632,8 @@
       "slug": "carrer-de-sant-antoni",
       "kind": "calle",
       "point": [
-        39.5462453,
-        -0.5684481
+        39.546246,
+        -0.5684624
       ]
     },
     {
@@ -3278,12 +3278,12 @@
     },
     {
       "id": "way-696236867",
-      "name": "Carrer del Nou d'Octubre",
+      "name": "Carrer del Nou d'OCtubre",
       "slug": "carrer-del-nou-d-octubre",
       "kind": "calle",
       "point": [
-        39.5456305,
-        -0.5694729
+        39.5456425,
+        -0.5694483
       ]
     },
     {
@@ -4232,8 +4232,8 @@
       "slug": "carrer-joan-de-joanes",
       "kind": "calle",
       "point": [
-        39.5464636,
-        -0.5695645
+        39.5462423,
+        -0.5696348
       ]
     },
     {
@@ -4282,8 +4282,8 @@
       "slug": "carrer-jose-iturbi",
       "kind": "calle",
       "point": [
-        39.5529425,
-        -0.5407852
+        39.5535769,
+        -0.5404596
       ]
     },
     {
@@ -4412,8 +4412,8 @@
       "slug": "carrer-lozoya",
       "kind": "calle",
       "point": [
-        39.5379528,
-        -0.5410775
+        39.5382122,
+        -0.5405755
       ]
     },
     {
@@ -4472,8 +4472,8 @@
       "slug": "carrer-mariano-benlliure",
       "kind": "calle",
       "point": [
-        39.5545414,
-        -0.542861
+        39.5548706,
+        -0.5438117
       ]
     },
     {
@@ -5222,8 +5222,8 @@
       "slug": "carretera-de-vilamarxant",
       "kind": "carretera",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ]
     },
     {
@@ -5258,12 +5258,12 @@
     },
     {
       "id": "way-30824595",
-      "name": "Carretera Riba-roja – Vilamarxant",
-      "slug": "carretera-riba-roja-vilamarxant",
+      "name": "Carretera Ribarroja - Villamarchante",
+      "slug": "carretera-ribarroja-villamarchante",
       "kind": "carretera",
       "point": [
-        39.5629989,
-        -0.6005896
+        39.5629132,
+        -0.5987138
       ]
     },
     {

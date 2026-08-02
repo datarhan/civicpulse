@@ -1,8 +1,8 @@
 {
-  "generatedAt": "2026-08-02T15:36:43.653Z",
+  "generatedAt": "2026-08-02T16:10:35.691Z",
   "source": {
-    "tenders": "2026-08-02T15:21:19.428Z",
-    "geo": "2026-08-02T15:22:43.343Z"
+    "tenders": "2026-08-02T15:55:35.991Z",
+    "geo": "2026-08-02T15:56:42.667Z"
   },
   "universe": {
     "totalContracts": 693,
@@ -722,8 +722,8 @@
       "name": "Carretera de Vilamarxant",
       "kind": "street",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "contractCount": 2,
       "amount": 19537,
@@ -1258,8 +1258,8 @@
       "contractType": "supplies",
       "categoryTitle": "industry",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "place": {
         "kind": "street",
@@ -1635,8 +1635,8 @@
       "contractType": "construction",
       "categoryTitle": "other",
       "point": [
-        39.5484923,
-        -0.5816335
+        39.5492186,
+        -0.5827079
       ],
       "place": {
         "kind": "street",

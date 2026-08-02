@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:36:26.271Z",
+  "generatedAt": "2026-08-02T16:10:21.585Z",
   "frozen": false,
   "frozenUntil": null,
   "notice": "Sugerencias generadas automáticamente. Requieren aprobación humana antes de aplicarse al estado de cada promesa.",
@@ -59,7 +59,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -78,7 +78,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-refugios-climaticos-2026",
@@ -90,7 +90,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "inversion",
             "millon",
@@ -143,7 +143,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-reconstruccion-dana-9-5m",
@@ -213,7 +213,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-vivienda-900-hogares",
@@ -255,7 +255,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-construccion-vivienda-2026-2029",
@@ -342,7 +342,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-pasarelas-parc-natural-turia",
@@ -366,7 +366,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-espai-obert-presupuesto",
@@ -415,7 +415,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-metro-l9-agosto",
@@ -423,7 +423,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-respuesta-quejas-sector-14-48h",
@@ -431,7 +431,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "pp-voto-contra-fondos-dana",
@@ -487,7 +487,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "millon",
             "euro"
@@ -495,7 +495,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "pp-gasto-innecesario-pacadar",
@@ -518,7 +518,7 @@
           "date": "2026-04-08",
           "quote": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
           "kind": "press",
-          "publisher": "comunica.gva.es",
+          "publisher": "Comunica GVA",
           "matchedKeywords": [
             "avanza",
             "inversion"
@@ -526,7 +526,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "pp-critica-gestion-socialista",
@@ -566,7 +566,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "vox-abstencion-pacadar",
@@ -610,7 +610,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "compromis-apoyo-pacadar-coalicion",
@@ -654,7 +654,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "psoe-reduce-concejales-dedicacion-exclusiva",
@@ -684,7 +684,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-1cbkzxt",
@@ -719,7 +719,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-1v0679f",
@@ -752,7 +752,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-jfg7bc",
@@ -760,7 +760,7 @@
       "confidence": 0,
       "reasoning": [],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-1ah9zqk",
@@ -779,7 +779,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-pl3lsq",
@@ -810,7 +810,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-ppa53a",
@@ -870,7 +870,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-1m04lfw",
@@ -901,7 +901,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     },
     {
       "promiseId": "ac-psoe-sysee8",
@@ -943,7 +943,7 @@
         }
       ],
       "requiresHumanApproval": true,
-      "generatedAt": "2026-08-02T15:36:26.143Z"
+      "generatedAt": "2026-08-02T16:10:21.460Z"
     }
   ],
   "llmEvidence": [],

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T15:22:22.689Z",
+  "generatedAt": "2026-08-02T15:56:29.369Z",
   "feeds": [
     {
       "url": "https://www.ribarroja.es/es/noticias/rss.xml",
@@ -29,6 +29,7 @@
   "sources": [
     "Ayuntamiento de Riba-roja de Túria",
     "Cadena SER",
+    "Comunica GVA",
     "El Periódico de Aquí",
     "Expansión",
     "Fotocasa",
@@ -43,7 +44,6 @@
     "Valencia Plaza",
     "Valenciabonita",
     "València Extra",
-    "comunica.gva.es",
     "elperiodic.com",
     "rfet.es"
   ],
@@ -626,15 +626,6 @@
       "section": "Seguridad ciudadana"
     },
     {
-      "id": "2crdrk",
-      "title": "El PSPV de Riba-roja acusa al PP de convocar un pleno extraordinario \"tres días antes del ordinario\"",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOSC01MWI5UE1hMlRpMG5lTDVZTU1JbGtHU1pxRlJNYUNVTHEwaGZ5U0x6VE9LMVBfbFFpZHYwTHo1MG9xaGxydVBPWlNPSXBTMmRwTldnVUFmYm02VXAtcEhJZmRlVnZIWnNlRUFXdHpEMHN6QnpXaWZEalJ0bUNnNDlleXdmLUkxWVNtaWxReXZMeXdfMEdtRjZjR0FVZ0ZjQ0E3MmVYaTNqZnFmZWFGNHlVN0ZlekdFZGE4ckt1OFI0dGV0RGd0X1RuTTA5cEQ4WnhB0gHYAUFVX3lxTFBueGVabnRFNWdCbkxCbDVNay1QVjdMMXUtdjR5WWtlVlVHakxDRk5KeUd6cmhiZTYyTWkySTVuclV0a19idmxiOUJmRU10cHozTDZFZHZFNGVfcjhGTHBOelJmUy1xLVJPWDhnWGRVTXhNdDNCWkd5LWY4Q3dJZ2NwNHZnZlVIaXVmSXVIWkJTQUV1cERmajhjeko4WGpFMVk4bDF1QTdIeXp5eFpKRi1HVUtLQWNDSGhaSzRaSG9VZXRnUWV5YWNfSDNwQUtyZ016bmVPQUlwaQ?oc=5",
-      "source": "Levante-EMV",
-      "sourceHost": "levante-emv.com",
-      "date": "2026-07-03T07:00:00.000Z",
-      "fingerprint": "1lwm8g4"
-    },
-    {
       "id": "1np6bdi",
       "title": "Desmontan el puente militar de Riba-roja que mantuvo la conexión del municipio tras la Dana",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSWlLN1hwMGlBNXR3ZmpnNnU5OFhiU3l6dlI3a3loNldUVS1hcktKZk9RVHBWclRLUDFRdWgzRkx5Ny1rQW9icl9nOGJvcGlncF8xT3VsUkMzS0ItQUgwTlZJT1FRRWstOHZiRlBmdUxnRDFyQXh1QzRhYWZxdE1ETzN5ZTZZOFdGc21kNmJ4TElBN21YWXdfeUQ5cElveGNIeXA2X1pqZGsyQ0J6ekc5YXVLOFFUcGFXY1g4enRPMEdNZHpsQld0amVRa0VrUktjbUJGM21wcGVvM2EyWFhGWEwwRQ?oc=5",
@@ -642,6 +633,15 @@
       "sourceHost": "valenciaplaza.com",
       "date": "2026-07-03T07:00:00.000Z",
       "fingerprint": "s8264k"
+    },
+    {
+      "id": "2crdrk",
+      "title": "El PSPV de Riba-roja acusa al PP de convocar un pleno extraordinario \"tres días antes del ordinario\"",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOSC01MWI5UE1hMlRpMG5lTDVZTU1JbGtHU1pxRlJNYUNVTHEwaGZ5U0x6VE9LMVBfbFFpZHYwTHo1MG9xaGxydVBPWlNPSXBTMmRwTldnVUFmYm02VXAtcEhJZmRlVnZIWnNlRUFXdHpEMHN6QnpXaWZEalJ0bUNnNDlleXdmLUkxWVNtaWxReXZMeXdfMEdtRjZjR0FVZ0ZjQ0E3MmVYaTNqZnFmZWFGNHlVN0ZlekdFZGE4ckt1OFI0dGV0RGd0X1RuTTA5cEQ4WnhB0gHYAUFVX3lxTFBueGVabnRFNWdCbkxCbDVNay1QVjdMMXUtdjR5WWtlVlVHakxDRk5KeUd6cmhiZTYyTWkySTVuclV0a19idmxiOUJmRU10cHozTDZFZHZFNGVfcjhGTHBOelJmUy1xLVJPWDhnWGRVTXhNdDNCWkd5LWY4Q3dJZ2NwNHZnZlVIaXVmSXVIWkJTQUV1cERmajhjeko4WGpFMVk4bDF1QTdIeXp5eFpKRi1HVUtLQWNDSGhaSzRaSG9VZXRnUWV5YWNfSDNwQUtyZ016bmVPQUlwaQ?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-07-03T07:00:00.000Z",
+      "fingerprint": "1lwm8g4"
     },
     {
       "id": "1pug9g7",
@@ -1121,15 +1121,6 @@
       "fingerprint": "1muc9rk"
     },
     {
-      "id": "3eypho",
-      "title": "VÍDEO: Alumnos de FP de Riba-roja ayudan a recuperar el Turia tras la dana",
-      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQNjZxWkdhUW1BdmFoM2hGbUxVYkt2cjJJZ3A1LWV1eDVSb0JUeWs3aDVDZXk0TXZtWnVSWUc5UjIwR0VpREtCXy1ZN2JvUmtvVktzWFlIZXpSaEJwckNHYktPSkJVUXJIY3U0VUpGLW54WlNQYjhsdUxPSVVZMUVpWTZNcW1VMXdxZVRMM1NNVVVEekpxcFZGSU56bzRjU1BrT19XRzR3SXAzSnQwNGNIcF82QUkxMmttS1JlWkVn?oc=5",
-      "source": "El Periódico de Aquí",
-      "sourceHost": "elperiodicodeaqui.com",
-      "date": "2026-05-12T07:00:00.000Z",
-      "fingerprint": "sb3k3c"
-    },
-    {
       "id": "3na6u0",
       "title": "Iberdrola invierte más de 10 millones en Riba-roja de Túria para reforzar su red eléctrica tras la dana",
       "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxQd1UxVjZrYVA3VS1Ua1NyaktPSF8wYlRqM1lhcnl0SFgyRlE5MS1ERUEzTC1VQzB5QUtmVnpWY1VTXzViYTM3Q0w2SjM1Q1RZN1Q3U0N6cnRMbnVGX3oyYjdoYmdSVm9jSXU1cTJyQklhRmktTjlYY2x1YzhfR1VaOWNaRjAzSldYS0c1OWFMX0tXUTlQRU16TjhOQjQ3a3ZQSTdDaDV2TUtJaGt4MExROWtBRzFsazRhdHhiYlY3LW5GQzlmV2NDT21kWDFoeW_SAdQBQVVfeXFMUGwxa280Ti1MMHFTaW1IWW9GN3REUlFoZnJkVzV4YzFlQm52T2ItdmZ6b21wb2FaYWFSMloxQWJuZmpCbl95TkpIcXpfMko2cXNRTmRHQ0U4Y1R1aHJnR3k2akRVNDVfUi1yS3JtbW9ibEh5MGIyUWd0Y0Jnamdmc3JfbzcySXVqM1JUWTQtVXdWSVptaERlMnd3UF9zcVZJb0lycTBWVjFZbEhhb0ZPNTlleU51c3Rfb2FZSTJtVlVFWk90VFpSLXNndkE1WlRsVEluVFQ?oc=5",
@@ -1178,7 +1169,7 @@
       "id": "1haw1fw",
       "title": "La Generalitat presenta en el polígono industrial de Riba-roja el proyecto ‘València Comparte Coche’ para promover la movilidad compartida",
       "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE1ldU9LdXpXUHdBWHc4QWVKVWNhZUpuNGt2OFFJUEMwTUtmUmtKT0s5TWVTajRRZFFrcWZlT00wdTRoaVVHYU1RV0pqYXFreVpxSGxMRXFvMzFPNm1nbERDSVEwRDZndmY4ZWRFZ19QUQ?oc=5",
-      "source": "comunica.gva.es",
+      "source": "Comunica GVA",
       "sourceHost": "comunica.gva.es",
       "date": "2026-04-30T07:00:00.000Z",
       "fingerprint": "1o5nrpl"
@@ -1313,7 +1304,7 @@
       "id": "1jh56w4",
       "title": "Sanidad avanza en los trámites para la construcción del nuevo centro de salud de Riba-roja de Túria que contará con una inversión de 8,3 millones de euros",
       "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTFBKQW1yYUJWS3h0TERMb2ozdTgzeWxVTFhLcVZTQ2JOS3FWWGp3RHFqamdtLWEyWS1TZm9vVkVPdV9pbk55LTdDWHJzNVFJVTNJMlJFYkhIb0pSX1ZfSndYOE5MV0k1XzExcEdqYW5tdw?oc=5",
-      "source": "comunica.gva.es",
+      "source": "Comunica GVA",
       "sourceHost": "comunica.gva.es",
       "date": "2026-04-08T07:00:00.000Z",
       "fingerprint": "f6tgvm"
@@ -1362,6 +1353,15 @@
       "sourceHost": "levante-emv.com",
       "date": "2026-03-24T07:00:00.000Z",
       "fingerprint": "1x0anad"
+    },
+    {
+      "id": "f50gbc",
+      "title": "La ruta gastronómica 'Riba-roja és la canya' regresa con tapas y premios del 17 al 19 de abril",
+      "link": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOQVdtaEM0VzVsMHFNak1EVENmWGRKWkt0WnlUVjIzWm1rNm90S05lZUM2SktXMlVSaGNGb25VN2FyaHBQVjBQOEJUWDB3dWdPZWdtQXQ5Umhtc1RuRUpUYzZETWVtTTR3SmtWLTZ6R3l2ajRlcHNHQ1dZVVZISV92SUtrQ25ZLWRscllJZTRiNTVrT1Zmdl9VeFFIM2dEd3Faam9ydnpwWENQUlZYU0EzdTk4Rnk5VGN1RHRvdHprX2c1Z0ZOdkNfQdIBzgFBVV95cUxNN2hqWEotaTFCRzBmNVZBR3JGSHJyQnpRQUhiZ3F3MTVaZXNmVjB6aU4zY1c4ZFhpWEY4ZnRHQUwzQlVwTWRKZEtkWFZua1hVRUFVQVY4OFBLNGhROWt0aFA3MXVOU09USVFQT2JLdlcxcmNKSDZkVTdSTFR6WVZwaE9ON3VLNEljUmVBZDZ5VHY2dnUwejVILXRaZWZiVm42V2drMmxVMTBvYk1qdXQyRExSdEdYUHlObzZRME1DNGdYNUY3Vml3NExrR2REQQ?oc=5",
+      "source": "Levante-EMV",
+      "sourceHost": "levante-emv.com",
+      "date": "2026-03-20T07:00:00.000Z",
+      "fingerprint": "39phcg"
     },
     {
       "id": "1g0d4b4",
