@@ -448,8 +448,11 @@ export default function ReconstruccionDana() {
       >
         {[
           { n: '14,5 M€', l: 'solo del Estado (Orden TMD/101/2025)', tone: 'var(--civic)' },
-          { n: '73', l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
-          { n: '72', l: `geolocalizados · ${eurC(t.situatedAmount)}` },
+          // Counts read from the data, not hardcoded. They were literals ('73',
+          // '72') beside amounts that came from `t`, so correcting the totals
+          // would have left the count saying 73 next to the corrected 2,75 M€.
+          { n: String(t.danaContracts), l: `contratos ref. DANA · ${eurC(t.danaAmount)}` },
+          { n: String(t.situatedContracts), l: `geolocalizados · ${eurC(t.situatedAmount)}` },
           {
             n: '0',
             l: 'órganos que fiscalizan los contratos municipales',

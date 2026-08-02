@@ -1,5 +1,10 @@
 import { describe, it, expect } from 'vitest'
-import { censusFindings, FALLBACK_CEILING, type FieldCensus } from '../src/scraper/vocabulary-census'
+import {
+  censusFindings,
+  FALLBACK_CEILING,
+  MIN_ROWS_FOR_SHARE,
+  type FieldCensus,
+} from '../src/scraper/vocabulary-census'
 
 const base: FieldCensus[] = [
   { path: 'tenders.contracts.status', values: { awarded: 362, formalized: 298, void: 41 } },
@@ -53,5 +58,20 @@ describe('vocabulary census', () => {
   it('keeps the ceiling clear of both the healthy and the broken case', () => {
     expect(FALLBACK_CEILING).toBeGreaterThan(0.06)
     expect(FALLBACK_CEILING).toBeLessThan(0.4)
+  })
+
+  it('does not cry wolf over a tiny sample', () => {
+    // Its own first real run: boe.items.epigrafe at "50% fallback" was 2 empty
+    // values out of 4 rows, in a snapshot that legitimately holds a handful.
+    // A percentage over four rows is noise, and noise is how a check gets muted.
+    const now: FieldCensus[] = [{ path: 'boe.items.epigrafe', values: { '': 2, Personal: 2 } }]
+    const prev: FieldCensus[] = [{ path: 'boe.items.epigrafe', values: { '': 1, Personal: 3 } }]
+    expect(censusFindings(now, prev).filter((x) => x.severity === 'error')).toEqual([])
+  })
+
+  it('keeps the floor well below the bug it exists to catch', () => {
+    // formalized was 298 of 730 rows.
+    expect(MIN_ROWS_FOR_SHARE).toBeLessThan(300)
+    expect(MIN_ROWS_FOR_SHARE).toBeGreaterThan(4)
   })
 })

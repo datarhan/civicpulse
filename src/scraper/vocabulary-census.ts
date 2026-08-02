@@ -64,6 +64,18 @@ export const FALLBACK_CEILING = 0.15
 /** Fields with more distinct values than this are free text, not vocabulary. */
 export const MAX_ENUM_CARDINALITY = 12
 
+/**
+ * Below this many rows, a fallback share means nothing.
+ *
+ * The check's own first real run proved the need: `boe.items.epigrafe` tripped
+ * the error threshold at 50% — which was 2 empty values out of 4 rows, in a
+ * snapshot that legitimately holds a handful of entries, some of which have no
+ * epigrafe at all. A percentage over a four-row sample is noise, and noise is
+ * how a check earns a reputation for crying wolf and gets ignored. The
+ * formalized bug it exists to catch was 298 rows out of 730.
+ */
+export const MIN_ROWS_FOR_SHARE = 30
+
 export function censusFindings(current: FieldCensus[], baseline: FieldCensus[]): CensusFinding[] {
   const out: CensusFinding[] = []
   const base = new Map(baseline.map((b) => [b.path, b]))
@@ -76,7 +88,7 @@ export function censusFindings(current: FieldCensus[], baseline: FieldCensus[]):
       .filter(([v]) => FALLBACK_VALUES.has(v.toLowerCase()))
       .reduce((a, [, n]) => a + n, 0)
     const share = fb / total
-    if (share > FALLBACK_CEILING) {
+    if (share > FALLBACK_CEILING && total >= MIN_ROWS_FOR_SHARE) {
       out.push({
         path: c.path,
         kind: 'fallback-share',

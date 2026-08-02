@@ -2,7 +2,7 @@
   "meta": {
     "slug": "reconstruccion-dana",
     "titulo": "El dinero de la reconstrucción, calle a calle",
-    "subtitulo": "Un análisis de la contratación municipal sitúa 72 contratos por 2,04 M€ tras la DANA; los de emergencia quedan fuera de la fiscalización de la Sindicatura.",
+    "subtitulo": "Un análisis de la contratación municipal sitúa 62 emplazamientos por 6,09 M€ y atribuye 2,75 M€ a 75 contratos con referencia a la DANA; los de emergencia quedan fuera de la fiscalización de la Sindicatura.",
     "seccion": "Reportaje · datos",
     "municipio": "Riba-roja de Túria",
     "fechaDatos": "2026-07-06",
@@ -11,16 +11,17 @@
     "correcciones": [
       {
         "fecha": "2026-08-02",
-        "texto": "Esta pieza omite el mayor contrato de reconstrucción que existe en el registro. Nuestro lector de contratos daba por «desconocido» el estado `formalized` —así marca Gobierto un contrato FIRMADO— y lo dejaba fuera de toda suma y de todo listado. Consecuencias concretas, todas verificadas: (1) el mayor adjudicatario de obra DANA no es OBRAS Y SERVICIOS SERCYOVAL (311.180 €), como publicamos, sino CONSTRUCCIONES RAFAEL ZARZO, con 445.313 € por «Obras Reconstrucción vallados de parcelas en los polígonos industriales tras la DANA», adjudicado el 11-03-2026 — una empresa que no aparece en nuestro listado; (2) el dinero DANA no son 2,24 M€ sobre 73 contratos sino 2,73 M€ sobre 74; (3) el dinero situado sobre el mapa pasa de 2,04 M€ a 6,09 M€; (4) el total de contratación municipal que citamos, 14,05 M€, son en realidad 68,0 M€ sobre 698 contratos. Una corrección anterior de esta misma fecha afirmaba que el análisis de fondo no dependía de esas cifras. Era inexacta y queda sustituida por ésta: cuando el reportaje se titula «El dinero de la reconstrucción, calle a calle» y ordena a las empresas por importe, omitir al primero SÍ afecta al fondo. Las cifras del cuerpo se mantienen congeladas —así se publicaron— y esta nota dice en qué estaban equivocadas. Lo que no cambia es la observación sobre los contratos de emergencia y la fiscalización de la Sindicatura, que no se apoya en importes."
+        "texto": "**Se ha corregido el ranking de empresas de esta pieza.** Publicábamos como mayor adjudicatario de obra DANA a OBRAS Y SERVICIOS SERCYOVAL (311.180 €). El mayor es CONSTRUCCIONES RAFAEL ZARZOSO S.L., con 445.313 € por «Obras Reconstrucción vallados de parcelas en los polígonos industriales tras la DANA», adjudicado el 11-03-2026 — una empresa que no aparecía en el listado. Motivo: nuestro lector de contratos daba por «desconocido» el estado `formalized`, que es como Gobierto marca un contrato FIRMADO, y lo excluía de toda suma y de todo listado. También cambian las cifras: el dinero DANA pasa de 2,24 M€ / 73 contratos a 2,75 M€ / 75; el dinero situado sobre el mapa, de 2,04 M€ a 6,09 M€; y el total de contratación municipal que citábamos, 14,05 M€, son 68,0 M€ sobre 698 contratos. Aquí sí se reescriben las cifras, y no por capricho: congelar una pieza sirve para que no cambie sola cuando cambian los datos, no para dejar en pantalla un ranking que sabemos equivocado. Quien lea por encima vería a la empresa equivocada señalada como primera receptora. Lo publicado originalmente se conserva íntegro en el propio fichero (`totalsPublicadoOriginal`, `contractorsPublicadoOriginal`) y el método del recálculo está documentado en `metodo` — incluido que el método ORIGINAL no se pudo reproducir con exactitud. Una corrección anterior de esta misma fecha decía que el análisis de fondo no dependía de estas cifras. Era inexacta y queda sustituida: cuando un reportaje se titula «El dinero de la reconstrucción» y ordena empresas por importe, omitir al primero afecta al fondo. Lo que sigue en pie es la observación sobre los contratos de emergencia y la fiscalización de la Sindicatura, que no se apoya en importes."
       }
-    ]
+    ],
+    "subtituloPublicadoOriginal": "Un análisis de la contratación municipal sitúa 72 contratos por 2,04 M€ tras la DANA; los de emergencia quedan fuera de la fiscalización de la Sindicatura."
   },
   "totals": {
-    "danaContracts": 73,
-    "danaAmount": 2241265.75,
-    "situatedContracts": 72,
-    "situatedAmount": 2036285.44,
-    "totalAwarded": 14048926.9
+    "danaContracts": 75,
+    "danaAmount": 2752946.2,
+    "situatedContracts": 62,
+    "situatedAmount": 6085027.84,
+    "totalAwarded": 67996704.0
   },
   "timelineFull": [
     {
@@ -116,6 +117,11 @@
   ],
   "contractors": [
     {
+      "name": "CONSTRUCCIONES RAFAEL ZARZOSO S.L.",
+      "amount": 445313.0,
+      "count": 1
+    },
+    {
       "name": "OBRAS Y SERVICIOS SERCYOVAL S.L.",
       "amount": 311179.9,
       "count": 3
@@ -131,7 +137,7 @@
       "count": 2
     },
     {
-      "name": "HIDRAQUA S.A.U",
+      "name": "HIDRAQUA GESTION INTEGRAL DE AGUAS DE LEVANTE S.A.",
       "amount": 121433.99,
       "count": 3
     },
@@ -141,18 +147,13 @@
       "count": 1
     },
     {
+      "name": "Globalia Urbanismo Integral S.L.",
+      "amount": 114211.09,
+      "count": 1
+    },
+    {
       "name": "GARBIALDI, S.A.",
       "amount": 112310.33,
-      "count": 2
-    },
-    {
-      "name": "INSDAGAR S.L.",
-      "amount": 106538.21,
-      "count": 3
-    },
-    {
-      "name": "Obras Públicas Montaner 1, S.L.",
-      "amount": 100089.35,
       "count": 2
     }
   ],
@@ -2512,5 +2513,61 @@
     "west": -0.6067769,
     "north": 39.5666705,
     "east": -0.514079
+  },
+  "contractorsPublicadoOriginal": [
+    {
+      "name": "OBRAS Y SERVICIOS SERCYOVAL S.L.",
+      "amount": 311179.9,
+      "count": 3
+    },
+    {
+      "name": "ARIDOS MIJARES SL",
+      "amount": 242529.81,
+      "count": 2
+    },
+    {
+      "name": "Enrique Desco S.L.",
+      "amount": 180757.43,
+      "count": 2
+    },
+    {
+      "name": "HIDRAQUA S.A.U",
+      "amount": 121433.99,
+      "count": 3
+    },
+    {
+      "name": "PAVASAL EMPRESA CONSTRUCTORA, S.A.",
+      "amount": 116994.16,
+      "count": 1
+    },
+    {
+      "name": "GARBIALDI, S.A.",
+      "amount": 112310.33,
+      "count": 2
+    },
+    {
+      "name": "INSDAGAR S.L.",
+      "amount": 106538.21,
+      "count": 3
+    },
+    {
+      "name": "Obras Públicas Montaner 1, S.L.",
+      "amount": 100089.35,
+      "count": 2
+    }
+  ],
+  "totalsPublicadoOriginal": {
+    "danaContracts": 73,
+    "danaAmount": 2241265.75,
+    "situatedContracts": 72,
+    "situatedAmount": 2036285.44,
+    "totalAwarded": 14048926.9
+  },
+  "metodo": {
+    "recalculadoEl": "2026-08-02",
+    "seleccion": "contratos cuyo TÍTULO contiene «dana» (sin distinguir mayúsculas ni acentos)",
+    "estado": "solo contratos comprometidos: awarded o formalized; se excluyen void/abandoned/revoked; un estado en blanco cuenta si hay adjudicatario",
+    "importe": "sin IVA cuando existe (finalAmountNoTaxes → initialAmountNoTaxes → finalAmount → initialAmount)",
+    "nota": "El método original no se pudo reproducir con exactitud: publicaba 73 contratos y 2.241.265,75 €, y ninguna variante ensayada da esa cifra (la más próxima, 72 y 2.184.922,11 €). Por eso se documenta aquí el método NUEVO en lugar de fingir continuidad, y las cifras originales se conservan en totalsPublicadoOriginal y contractorsPublicadoOriginal."
   }
 }
