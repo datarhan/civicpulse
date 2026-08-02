@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-02T14:51:20.688Z",
+  "generatedAt": "2026-08-02T15:09:37.136Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -755,7 +755,7 @@
       "plenoId": "10yl550",
       "plenoDate": "2026-05-11",
       "title": "Pleno de Riba-roja de Túria 2026-05-11: Debate sobre presupuestos y financiamiento",
-      "summary": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. El registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025.",
+      "summary": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
       "severity": "informational",
       "sourceClaimIds": [
         "10yl550-330-acu-7c65c5",
@@ -812,7 +812,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-06",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. El registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025.",
+          "corrected": "El PP señala que votaron en contra de un presupuesto que incluía 550.000 euros para el comercio local, mientras que el PSOE afirma no recoger al votar en contra de los presupuestos. En el debate se menciona además el seguimiento de un Plan Económico y Financiero; la contratación municipal publicada no recoge ningún expediente de ese seguimiento, por lo que la referencia queda documentada como intervención en el pleno.",
+          "reason": "El sumario afirmaba que «el registro municipal incluye el seguimiento del Plan Económico y Financiero aprobado en 2025». Ninguno de los expedientes citados es ese seguimiento: son un suministro de módulos de presupuestos y RPT, un plan de acción local de 2022 y unas obras de escollera en Paretotes. Además, la intervención de la que procede dice «que aprobaremos en el 2025», en futuro, de modo que se presentaba como registro existente lo que era una intención declarada en el pleno.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-02T15:09:37.135Z"
+        }
+      ]
     },
     {
       "id": "f-2026-05-11-acu-1e1bfa",
