@@ -374,7 +374,15 @@ export default function Metodologia() {
               </li>
               <li>
                 <strong>contradicho</strong> — la base documental registra un importe distinto, o el
-                discurso afirma «obra terminada» cuando la licitación sigue abierta.
+                discurso afirma «obra terminada» cuando la licitación sigue abierta.{' '}
+                <strong>Desde el 2 de agosto de 2026 no se publica de forma automática.</strong> El
+                comparador determinista llegó a emitir 49 y los 49 estaban mal: comparaban dinero
+                autonómico o estatal con un contrato municipal que compartía una palabra suelta. Una
+                concejala citando el precio del alquiler de vivienda quedaba «desmentida» por el
+                alquiler de un camión de basura; los 63.000 millones de deuda de la Generalitat, por
+                una ampliación de 32.591 € del <em>parque Generalitat</em>. Hoy un{' '}
+                <em>contradicho</em> de máquina se retiene y sólo aparece si una persona lo
+                promueve.
               </li>
               <li>
                 <strong>sin-datos</strong> — no hay registro en las bases abiertas. Puede ser
@@ -418,9 +426,15 @@ export default function Metodologia() {
             <strong>Motor de veredictos (re-derivación, sólo a la baja).</strong> Una segunda pasada
             de fundamentación —«razonar y luego formatear» sobre los mismos candidatos del corpus,
             con la regla de <em>no-evidencia por defecto</em> y la misma comprobación de que el
-            valor citado aparezca literalmente en el extracto— vuelve a juzgar los veredictos que la
-            pasada LLM había marcado verificado/parcial. En una muestra de control etiquetada a
-            mano, su veredicto <code>sin-datos</code> acierta ~92&nbsp;%, así que{' '}
+            valor citado aparezca literalmente en el extracto— vuelve a juzgar los veredictos
+            marcados verificado/parcial, tanto los de la pasada LLM como —desde el 2 de agosto de
+            2026— los que había afirmado el comparador determinista. Esa primera pasada sobre la
+            base retractó <strong>229 de 264 veredictos juzgados</strong>, coherente con el conjunto
+            de control: el determinista acierta un 33&nbsp;% en <em>verificado</em> y un 22&nbsp;%
+            en <em>parcial</em>. Quedan 413 declaraciones que el modelo no llegó a ver, porque sin
+            cifra en euros la recuperación léxica no encuentra candidatos; conservan su veredicto
+            determinista hasta que la vía semántica las alcance. En una muestra de control
+            etiquetada a mano, su veredicto <code>sin-datos</code> acierta ~92&nbsp;%, así que{' '}
             <strong>
               sólo aplicamos sus retractaciones a <code>sin-datos</code>
             </strong>{' '}
@@ -429,11 +443,14 @@ export default function Metodologia() {
             en el overlay. Nunca marca <em>contradicho</em>.
           </li>
           <li>
-            <strong>Hallazgos editoriales</strong> curados por una persona. Cuando un veredicto
-            merece contexto, un curador escribe un hallazgo en <code>pleno-findings.json</code> con
-            título, resumen (≥40 caracteres), citas verbatim y referencias explícitas de
-            corroboración o contradicción. Los hallazgos se publican con derecho de réplica literal
-            para el grupo afectado.
+            <strong>Hallazgos editoriales.</strong> La mayoría los redacta un proceso automático
+            bajo reglas fijas, no una persona: de los 52 publicados, 44 los firma{' '}
+            <code>auto-curation-v1</code> y 5 <code>civicpulse-auto</code>. El pie de cada ficha
+            dice quién la editó, y un nombre así significa que el título y el resumen los escribió
+            una máquina. Cuando un veredicto merece contexto se escribe un hallazgo en{' '}
+            <code>pleno-findings.json</code> con título, resumen (≥40 caracteres), citas verbatim y
+            referencias explícitas de corroboración o contradicción. Los hallazgos se publican con
+            derecho de réplica literal para el grupo afectado.
           </li>
         </ol>
         <p style={{ margin: '12px 0 0', color: 'var(--ink70)' }}>
