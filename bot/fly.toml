@@ -42,6 +42,28 @@ primary_region = "mad"
   PORT = "3000"
   NODE_ENV = "production"
 
+  # CRITICAL — without this the database lands on ephemeral container disk.
+  #
+  # `DB_PATH` defaults to './data/bot.db' (src/db/client.ts), and the container
+  # WORKDIR is /app/bot, so it would resolve to /app/bot/data/bot.db — NOT the
+  # volume mounted at /data below. Every queja, apoyo and event would be lost on
+  # the next restart or deploy. docker-compose.yml pins the same value for the
+  # same reason.
+  DB_PATH = "/data/bot.db"
+
+  # Webhook mode, not long-polling. Both work on an always-on machine, but only
+  # the webhook branch mounts /export/quejas.json (src/index.ts) — and that is
+  # the endpoint .github/workflows/pull-quejas.yml fetches to publish the
+  # snapshot. In long-polling mode only /health is served, so the site would
+  # never receive new quejas.
+  #
+  # Must match the app's real hostname. Change it if you rename the app or put a
+  # custom domain in front.
+  WEBHOOK_URL = "https://munigraph-ribarroja.fly.dev"
+
+  # Where the public site lives, used to build links inside bot replies.
+  PUBLIC_BASE_URL = "https://www.civicpulse.es"
+
 [mounts]
   source = "botdata"
   destination = "/data"
