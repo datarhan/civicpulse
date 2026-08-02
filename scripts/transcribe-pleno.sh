@@ -365,6 +365,28 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
     mkdir -p "$(dirname "$OUT_PATH")/superseded"
     cp "$OUT_PATH" "$(dirname "$OUT_PATH")/superseded/$(basename "$OUT_PATH")"
   fi
+  # Record what this cost, so `npm run llm:cost` can see it.
+  #
+  # This script calls the audio API with raw curl and, until now, wrote no
+  # telemetry at all — while the chat client writes a .llm-cache record per
+  # call. So the cost dashboard reported "$0 billed" on days when
+  # transcription was spending real metered money, and the first anyone knew
+  # was `credit_balance_exhausted` mid-batch. A blind spot in the one place
+  # you look to answer "did that run cost anything".
+  #
+  # Estimated, not billed: whisper-1 / gpt-4o-transcribe are priced per minute
+  # of audio (~$0.006), and the response carries no usage figures. Good enough
+  # to make the spend visible, which is the whole point.
+  AUDIO_MIN=$(python3 -c "print(f'{${DUR_S:-0}/60:.2f}')" 2>/dev/null || echo 0)
+  COST=$(python3 -c "print(f'{${DUR_S:-0}/60*0.006:.4f}')" 2>/dev/null || echo 0)
+  mkdir -p "$REPO_ROOT/.llm-cache"
+  printf '{"backend":"openai-audio","model":"%s","promptVersion":"transcribe-v1","tokenCount":0,"costUSD":%s,"latencyMs":0,"retryCount":0,"createdAt":"%s","result":"%s (%s min)"}\n' \
+    "${OPENAI_TRANSCRIBE_MODEL:-gpt-4o-transcribe-diarize}" \
+    "$COST" \
+    "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)" \
+    "$PLENO_ID" "$AUDIO_MIN" \
+    > "$REPO_ROOT/.llm-cache/audio-$PLENO_ID-$(date -u +%s).json"
+
   # Only now does the transcript become visible to the backlog detector.
   mv "$TMP_TXT" "$OUT_PATH"
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
