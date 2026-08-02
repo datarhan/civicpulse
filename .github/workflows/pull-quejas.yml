@@ -28,7 +28,18 @@ jobs:
           else
             curl -fsS "$EXPORT_URL" -o public/data/quejas.json
           fi
-          node -e "JSON.parse(require('fs').readFileSync('public/data/quejas.json'))"
+          # Validate AND re-format. The endpoint serves minified JSON; the
+          # local export used to pretty-print. Committing one enormous line
+          # would make every future diff unreadable — and for this project the
+          # git history IS the audit trail for citizen complaints, so a diff you
+          # cannot read is a real loss. Two spaces, matching every other
+          # snapshot in public/data.
+          node -e "
+            const fs = require('fs');
+            const p = 'public/data/quejas.json';
+            const d = JSON.parse(fs.readFileSync(p, 'utf8'));
+            fs.writeFileSync(p, JSON.stringify(d, null, 2) + '\n');
+          "
           echo "Pulled $(jq '.stats.total' public/data/quejas.json) quejas"
 
       - name: Commit diff (only if changed)
