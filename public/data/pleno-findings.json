@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-08-01T18:55:19.853Z",
+  "generatedAt": "2026-08-02T14:47:44.234Z",
   "legalNotice": "Este registro recoge hallazgos editoriales sobre las intervenciones de los plenos. La mayoría los redacta un proceso automático a partir de declaraciones extraídas de la transcripción, y cada ficha indica quién la editó: un nombre como «auto-curation-v1» significa que el título y el resumen los escribió una máquina, no una persona. Cada hallazgo cita una o más afirmaciones literales (verbatim) del pleno y los documentos municipales que confirman o contradicen cada afirmación. Las réplicas de los grupos políticos se publican íntegras y sin editar.",
   "contactUrl": "https://github.com/datarhan/civicpulse/issues/new/choose",
   "methodologyUrl": "/metodologia",
@@ -10,7 +10,7 @@
       "plenoId": "1237hbp",
       "plenoDate": "2026-07-03",
       "title": "03-07-2026: un grupo no identificado señala uso de contrato emergencia con FCC tras lluvias",
-      "summary": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
+      "summary": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi en servicios relacionados con derrumbes y muro de contención. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
       "severity": "informational",
       "sourceClaimIds": [
         "1237hbp-006-cit-1e90e0",
@@ -83,6 +83,14 @@
           "reason": "\"Otro\" no era el nombre de ningún grupo municipal: era el valor de relleno que el extractor usaba cuando no podía determinar quién hablaba. Publicado como si fuera un grupo, atribuía declaraciones a una formación inexistente. Se sustituye por una descripción neutra; la atribución real sigue sin determinarse.",
           "editor": "civicpulse-curator",
           "correctedAt": "2026-08-01T18:55:08.862Z"
+        },
+        {
+          "field": "summary",
+          "original": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales, la empresa FCC comenzó a operar bajo un contrato de emergencia. Según el registro municipal, se realizó este contrato para suplantar a Garbialdi en servicios relacionados con derrumbes y muro de contención.",
+          "corrected": "Un grupo no identificado afirma que tres días después del episodio de lluvias torrenciales la empresa FCC comenzó a operar bajo un contrato de emergencia y que dicho contrato suplantaba a Garbialdi en servicios relacionados con derrumbes y muro de contención. Ambas afirmaciones proceden de la intervención en el pleno: el registro municipal de contratación publicado no recoge ningún contrato adjudicado a FCC, de modo que la declaración queda documentada como tal, sin corroboración documental.",
+          "reason": "El sumario atribuía al registro municipal una corroboración que no existe: no hay ninguna fila adjudicada a FCC en las 1.231 filas de contratos y licitaciones publicadas. Presentaba como hecho documentado lo que era una acusación verbal en el pleno, nombrando a dos empresas. Se reatribuye la afirmación a quien la hizo y se hace explícita la ausencia de respaldo documental.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-02T14:47:30.995Z"
         }
       ]
     },
@@ -1840,7 +1848,7 @@
       "plenoId": "19gax3o",
       "plenoDate": "2026-01-19",
       "title": "Debate de urbanismo y deportes en el pleno de Riba-roja de Túria del 2026-01-19",
-      "summary": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. Según el registro municipal, estas obras constan en el expediente \"Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón de\". Por su parte, el grupo VOX manifiesta valoraciones sobre la reconstrucción.",
+      "summary": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. El grupo VOX manifiesta valoraciones sobre la reconstrucción. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
       "severity": "informational",
       "sourceClaimIds": [
         "19gax3o-146-cit-8b29a9",
@@ -1897,7 +1905,16 @@
       "curatorName": "auto-curation-v1",
       "publishedAt": "2026-07-05",
       "response": null,
-      "corrections": []
+      "corrections": [
+        {
+          "field": "summary",
+          "original": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. Según el registro municipal, estas obras constan en el expediente \"Contrato basado en el SDA de obras para actuaciones planteadas es la pavimentación del paseo Pacadar uniendo así los dos edificios deportivos, el Complejo La Malla y el Pabellón de\". Por su parte, el grupo VOX manifiesta valoraciones sobre la reconstrucción.",
+          "corrected": "En la sesión, el PP señala la solicitud sobre el Complejo La Malla y el PSOE afirma que se cambiará el parqué. El grupo VOX manifiesta valoraciones sobre la reconstrucción. El expediente citado inicialmente como respaldo corresponde a la pavimentación del paseo Pacadar, una actuación exterior distinta del cambio de parqué; no consta en la contratación publicada ningún expediente que documente esa obra concreta.",
+          "reason": "El sumario presentaba como respaldo del cambio de parqué un contrato del SDA cuyo objeto es la pavimentación del paseo Pacadar: una actuación exterior, no el pavimento interior del Complejo La Malla. Las dos cosas se enlazaron sólo porque ambas mencionan La Malla. Se retira la afirmación de que la obra consta en ese expediente.",
+          "editor": "civicpulse-curator",
+          "correctedAt": "2026-08-02T14:47:44.234Z"
+        }
+      ]
     },
     {
       "id": "f-2026-01-19-afi-5238db",
