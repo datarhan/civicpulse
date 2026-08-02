@@ -49,6 +49,55 @@ import { zodToJsonSchema } from './schemas'
 const FETCH_TIMEOUT_MS = Number(process.env.LLM_FETCH_TIMEOUT_MS || 120_000)
 
 /**
+ * Wall-clock ceiling for a CLI-backed call (`gemini` / `claude` / `agy`).
+ *
+ * HTTP backends have had `AbortSignal.timeout` since the stalled-TLS fix; the
+ * spawned CLIs had NOTHING, and a hung child hangs the whole process. On
+ * 2026-08-01 that cost a full overnight batch: `claude-code` returned exit 1
+ * once, the chain fell back to `gemini`, the `gemini` CLI wedged, and a
+ * 1,017-claim run sat at 10/1017 for six and a half hours without producing a
+ * line of output or a single error. One transient failure, one silent night.
+ *
+ * Generous by default — a long reasoning prompt can legitimately take minutes —
+ * but finite, so the fallback chain can move on instead of deadlocking.
+ */
+/** Read per call, not once at import — a module-level const cannot be
+ * overridden by a long-running process (or a test) that sets the env later. */
+const cliTimeoutMs = () => Number(process.env.LLM_CLI_TIMEOUT_MS || 180_000)
+
+/**
+ * Kill `child` if it outlives the timeout and reject with a clear reason.
+ * Returns a disposer the caller MUST invoke once the child settles, so a
+ * completed call doesn't leave a live timer holding the event loop open.
+ */
+function armCliWatchdog(
+  child: { kill: (signal?: NodeJS.Signals) => boolean },
+  label: string,
+  reject: (err: Error) => void,
+  ms = cliTimeoutMs(),
+): () => void {
+  const timer = setTimeout(() => {
+    // SIGTERM first; a CLI stuck on a socket may ignore it, so follow with
+    // SIGKILL rather than leaving an orphan behind.
+    try {
+      child.kill('SIGTERM')
+      setTimeout(() => {
+        try {
+          child.kill('SIGKILL')
+        } catch {
+          /* already gone */
+        }
+      }, 5_000).unref?.()
+    } catch {
+      /* already gone */
+    }
+    reject(new Error(`${label} timed out after ${Math.round(ms / 1000)}s (no output; killed)`))
+  }, ms)
+  timer.unref?.()
+  return () => clearTimeout(timer)
+}
+
+/**
  * Typed retryable error thrown by backend-specific callers when the server
  * is rate-limiting or overloaded. callLLM's retry loop honors `retryAfterMs`
  * by sleeping before the next attempt, and treats these as the signal to
@@ -613,6 +662,7 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
       stdio: ['ignore', 'pipe', 'pipe'],
       cwd,
     })
+    const disarm = armCliWatchdog(child, 'claude-code', rejectPromise)
     let stdout = ''
     let stderr = ''
     child.stdout.on('data', (d) => {
@@ -621,8 +671,12 @@ async function callClaudeCode(req: RawCall): Promise<RawResult> {
     child.stderr.on('data', (d) => {
       stderr += d.toString()
     })
-    child.on('error', (err) => rejectPromise(err))
+    child.on('error', (err) => {
+      disarm()
+      rejectPromise(err)
+    })
     child.on('close', (code) => {
+      disarm()
       if (code !== 0) {
         return rejectPromise(
           new Error(`claude exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
@@ -781,6 +835,7 @@ async function callGemini(req: RawCall): Promise<RawResult> {
     // pure text-gen; an unapproved tool request fails safe rather than auto-runs.
     const args = ['-p', mergedPrompt, '-m', req.config.geminiModel, '-o', 'json']
     const child = spawn(req.config.geminiBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
+    const disarm = armCliWatchdog(child, 'gemini', rejectPromise)
     let stdout = ''
     let stderr = ''
     child.stdout.on('data', (d) => {
@@ -789,8 +844,12 @@ async function callGemini(req: RawCall): Promise<RawResult> {
     child.stderr.on('data', (d) => {
       stderr += d.toString()
     })
-    child.on('error', (err) => rejectPromise(err))
+    child.on('error', (err) => {
+      disarm()
+      rejectPromise(err)
+    })
     child.on('close', (code) => {
+      disarm()
       if (code !== 0) {
         return rejectPromise(
           new Error(`gemini exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
@@ -895,6 +954,7 @@ async function callAgy(req: RawCall): Promise<RawResult> {
       '--sandbox',
     ]
     const child = spawn(req.config.agyBin, args, { stdio: ['ignore', 'pipe', 'pipe'] })
+    const disarm = armCliWatchdog(child, 'agy', rejectPromise)
     let stdout = ''
     let stderr = ''
     child.stdout.on('data', (d) => {
@@ -903,8 +963,12 @@ async function callAgy(req: RawCall): Promise<RawResult> {
     child.stderr.on('data', (d) => {
       stderr += d.toString()
     })
-    child.on('error', (err) => rejectPromise(err))
+    child.on('error', (err) => {
+      disarm()
+      rejectPromise(err)
+    })
     child.on('close', (code) => {
+      disarm()
       if (code !== 0) {
         return rejectPromise(
           new Error(`agy exit ${code}: ${stderr.slice(0, 400) || stdout.slice(0, 400)}`),
