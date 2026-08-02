@@ -219,13 +219,13 @@ echo "================================================================"
 #
 # Report-only for the same reason as check:relations: a partial scrape night
 # must not block the commit. They are loud in the log and in the summary.
-if ! npm run check:transcripts; then
-  echo "[scrape-all] SOFT-FAILED: check:transcripts — quarantined transcript(s) detected"
-  soft_failures+=("check:transcripts")
-fi
-if ! npm run check:finding-quotes; then
-  echo "[scrape-all] SOFT-FAILED: check:finding-quotes — published quote(s) not traceable"
-  soft_failures+=("check:finding-quotes")
+# One call, because the two are the same question: does the published text still
+# support the published quotes? It reports the DELTA against the last accepted
+# state, so a steady 30 untraceable quotes does not cry wolf every night while a
+# NEW one does.
+if ! npm run check:corpus; then
+  echo "[scrape-all] SOFT-FAILED: check:corpus — quarantined transcript(s) or newly untraceable quote(s)"
+  soft_failures+=("check:corpus")
 fi
 
 # Which snapshots have quietly stopped refreshing. Distinct from a scraper

@@ -389,6 +389,21 @@ if [ "$WHISPER_ENGINE" = "openai" ]; then
 
   # Only now does the transcript become visible to the backlog detector.
   mv "$TMP_TXT" "$OUT_PATH"
+
+  # Re-check the corpus against this new transcript.
+  #
+  # Replacing a transcript can strand a published verbatim: the quote was lifted
+  # from the old text and the new one words it differently. That is not a
+  # failure of THIS run, so it never blocks the transcription (|| true) — but it
+  # is something a curator has to see, and it used to surface only if somebody
+  # happened to run the checks by hand.
+  #
+  # Reports the DELTA, not the totals: "30 untraceable" reads the same whether
+  # it is yesterday's 30 or 30 the run just created.
+  if [ "${SKIP_CORPUS_CHECK:-0}" != "1" ] && [ -x "$REPO_ROOT/scripts/verify-transcript-corpus.sh" ]; then
+    echo "[transcribe] re-checking the transcript corpus…"
+    bash "$REPO_ROOT/scripts/verify-transcript-corpus.sh" || true
+  fi
 elif [ "$WHISPER_ENGINE" = "mlx" ]; then
   # ── Apple Neural Engine (lightning-whisper-mlx) branch ───────────────────
   # 5-10× realtime, \$0, local. Better WER on technical/legal terms than
