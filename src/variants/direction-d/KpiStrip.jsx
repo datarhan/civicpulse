@@ -129,6 +129,19 @@ function KpiStrip() {
   const awardedTotal = tenders?.stats?.awardedTotalEuros
   const awardedCount = tenders?.stats?.awardedContracts
   const awardedValue = awardedTotal ? formatBudgetEuros(awardedTotal, { compact: true }) : '—'
+  // Span of the award dates, so the cumulative total carries its own period.
+  const awardedYears = (() => {
+    const ds = (tenders?.contracts ?? [])
+      .map((c) => c.awardDate)
+      .filter(Boolean)
+      .map((d) => String(d).slice(0, 4))
+      .sort()
+    return ds.length
+      ? ds[0] === ds[ds.length - 1]
+        ? ds[0]
+        : `${ds[0]}–${ds[ds.length - 1]}`
+      : null
+  })()
 
   const nextPleno = (plenos?.items || [])[0]
   const plenoDate = nextPleno
@@ -183,12 +196,19 @@ function KpiStrip() {
         tone="civic"
         sub="Cap.1 económico"
       />
+      {/* The period is not decoration. This sits next to "Presup. 2025 · €41,6M",
+          an ANNUAL figure, while this one is CUMULATIVE over a decade of awards
+          (2017-2026) and includes multi-year concessions like the €15,8M waste
+          contract. Unlabelled, the pair invites the reader to conclude the town
+          awards more in contracts than its entire yearly budget. That inference
+          only became available once the figure was corrected from €14,7M to
+          €68,0M, so the framing had to be corrected with it. */}
       <Kpi
-        label="Contratos adj."
+        label={awardedYears ? `Contratos adj. ${awardedYears}` : 'Contratos adj.'}
         value={awardedValue}
         delta={awardedCount ? '· ' + awardedCount : '—'}
         tone="ok"
-        sub="Gobierto/PLACSP"
+        sub="acumulado · Gobierto/PLACSP"
       />
       <Kpi
         label={paro ? `Paro ${paro.latestPeriod || ''}` : 'Paro'}
