@@ -237,7 +237,9 @@ async function main() {
   }
   if (positional.length !== 1) {
     process.stderr.write(
-      'usage: extract-pleno-claims.ts <plenoId|--all> [--min-confidence 0.5] [--concurrency 3] [--force-orphan-findings]\n',
+      'usage: extract-pleno-claims.ts <plenoId|--all|--pending> [--min-confidence 0.5] [--concurrency 3] [--force-orphan-findings]\n' +
+        '  --all      every transcript on disk, INCLUDING ones already extracted (re-runs the LLM on them)\n' +
+        '  --pending  only transcripts with no claims in the snapshot yet — the usual choice\n',
     )
     process.exit(2)
   }
@@ -252,7 +254,7 @@ async function main() {
 
   const plenos = loadPlenos()
   let ids: string[]
-  if (positional[0] === '--all') {
+  if (positional[0] === '--all' || positional[0] === '--pending') {
     if (!existsSync(TRANSCRIPT_DIR)) {
       process.stderr.write('[extract·claims] no transcripts on disk yet\n')
       process.exit(0)
@@ -260,6 +262,26 @@ async function main() {
     ids = readdirSync(TRANSCRIPT_DIR)
       .filter((f) => f.endsWith('.txt'))
       .map((f) => basename(f, '.txt'))
+    if (positional[0] === '--pending') {
+      // Extraction is the expensive step (~200 LLM calls per pleno) and
+      // re-running it on an already-extracted session buys nothing: the claims
+      // are already on disk, the orphan guard will usually refuse to overwrite
+      // them anyway, and the repo's standing policy is that new sources feed
+      // the deterministic verifier rather than triggering re-extraction.
+      // `--all` walking every transcript made the safe operation the one you
+      // had to remember to spell out by hand.
+      const done = new Set<string>()
+      if (existsSync(OUT_PATH)) {
+        const snap = JSON.parse(readFileSync(OUT_PATH, 'utf8')) as { items?: PlenoClaim[] }
+        for (const c of snap.items ?? []) done.add(c.plenoId)
+      }
+      const before = ids.length
+      ids = ids.filter((id) => !done.has(id))
+      process.stdout.write(
+        `[extract·claims] --pending: ${ids.length} of ${before} transcript(s) have no claims yet ` +
+          `(${before - ids.length} already extracted, skipped)\n`,
+      )
+    }
   } else {
     ids = [positional[0]]
   }
