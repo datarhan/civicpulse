@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T05:47:20.710Z",
+  "generatedAt": "2026-08-02T05:56:38.914Z",
   "version": "1",
   "plenoId": "1du4rf5",
   "plenoDate": "2025-11-03",
@@ -756,19 +756,15 @@
       },
       "verification": {
         "claimId": "1du4rf5-021-cit-be85e8",
-        "verdict": "verificado",
-        "summary": "Cita encontrada con coincidencia fuerte en los datos municipales.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
-            "similarity": 1
-          }
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación (una negación genérica sobre que un expediente no es erróneo, sin cifras, fechas ni identificadores concretos) frente al único candidato disponible (un contrato de servicio del Portal del Empleado en Riba-roja). No hay coincidencia de sujeto, tema ni valores concretos; la simil",
+        "evidence": [],
+        "checkedAgainst": [
+          "verdict-engine"
         ],
-        "checkedAgainst": []
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {
@@ -873,76 +869,6 @@
         "checkedAgainst": []
       },
       "visibility": "toggle"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-024-acu-3b8b4b",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 24,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "yo te pedí en comisiones el expediente urbanístico que hubiera en referencia a esta declaración de minimización",
-        "context": "¿Que yo te pedí en comisiones el expediente urbanístico que hubiera en referencia a esta declaración de minimización? ¿Hay que volver a reunirse para volver a pedírtela? Es que no lo entiendo, si ya la pe",
-        "topic": "transparencia",
-        "entities": {
-          "referencedEntity": "expediente urbanístico"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 1,
-        "reasoning": "Verifiable by checking the official minutes or records of the commissions to confirm if the speaker requested the urbanistic file.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-024-acu-3b8b4b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=HHo%2F5zL%2BijGmq21uxhbaVQ%3D%3D",
-            "snippet": "Contrato privado Expediente de arrendamiento de local habilitar nuevos espacios para los departamentos de Educación, Transparencia y Comunicación por procedimiento de libre concurrencia · Ayuntamiento de Riba-roja de Túria · real_estate · estado: unknown",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
-    },
-    {
-      "claim": {
-        "id": "1du4rf5-025-acu-9dde8b",
-        "plenoId": "1du4rf5",
-        "plenoDate": "2025-11-03",
-        "segmentIndex": 25,
-        "type": "acusacion_publica",
-        "speakerGroup": null,
-        "verbatim": "tú en teoría me envías una información referente a esta edificación porque si me has enviado otra vuelvo a realizar el escrito y me envía referente a esta edificación",
-        "context": "la solicité por escrito para que quedara constancia que la necesitaba y tú en teoría me envías una información referente a esta edificación porque si me has enviado otra vuelvo a realizar el escrito y me envía referente a esta edificación, yo otra edificación ni me consta ni estamos",
-        "topic": "urbanismo",
-        "entities": {
-          "referencedEntity": "esta edificación"
-        },
-        "accusationSubtype": "factual",
-        "confidence": 0.9,
-        "reasoning": "Se puede verificar la información enviada al interviniente y determinar si corresponde al expediente de la edificación específica a la que se refiere.",
-        "requiresHumanApproval": true
-      },
-      "verification": {
-        "claimId": "1du4rf5-025-acu-9dde8b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=8lHYqd7aXqmrz3GQd5r6SQ%3D%3D",
-            "snippet": "Contrato de obras de bloque de nichos en el Cementerio Municipal de Riba-roja de Túria por procedimiento abierto simplificado, un criterio de adjudicación, con condición de ejecución de carácter social y medioambiental contribuyendo al cumplimiento del ODS 9 desarrollar infraestructuras fiables, sostenibles, resilientes y de calidad y del ODS 11 asegurar acceso de todas las personas a servicios básicos adecuados. · Ayuntamiento de Riba-roja de Túria · OBRA CIVIL Y EDIFICACION ESCRIMAR S.L.L. · construction · estado: formalized",
-            "similarity": 0.5
-          }
-        ],
-        "checkedAgainst": []
-      },
-      "visibility": "shown"
     },
     {
       "claim": {
@@ -2196,24 +2122,15 @@
       },
       "verification": {
         "claimId": "1du4rf5-044-afi-f0bf1b",
-        "verdict": "parcial",
-        "summary": "Coincidencia parcial: hay datos relacionados pero no idénticos al claim.",
-        "evidence": [
-          {
-            "kind": "tender",
-            "ref": "https://contrataciondelestado.es/wps/poc?uri=deeplink:detalle_licitacion&idEvl=TC4CjFxVknSFQ%2FlhRK79lA%3D%3D",
-            "snippet": "Contrato verbal de emergencia para trabajos de servicio de limpieza vial, tras daños por los efectos de la DANA del pasado 29 de octubre de 2024, para habilitación de acceso en calles y en polígonos de Riba-roja de Túria, adjudicado a favor la mercantil ARIDOS MIJARES, S.L., con CIF nº B12018008 · Ayuntamiento de Riba-roja de Túria · ARIDOS MIJARES SL · environment · 23.434 €",
-            "similarity": 0.76
-          }
-        ],
+        "verdict": "sin-datos",
+        "summary": "Analicé la afirmación fiscal sobre un saldo de 22.671€ de una mancomunidad frente a los 8 candidatos, todos contratos de emergencia por limpieza de escombros tras la DANA. No hay coincidencia de sujeto, concepto ni cifra en ningún candidato, por lo que ninguno respalda la afirmación.",
+        "evidence": [],
         "checkedAgainst": [
-          "tenders",
-          "tenders-ted",
-          "bdns",
-          "budget"
-        ]
+          "verdict-engine"
+        ],
+        "confidence": 0.2
       },
-      "visibility": "shown"
+      "visibility": "toggle"
     },
     {
       "claim": {

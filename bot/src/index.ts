@@ -24,6 +24,7 @@ import { startDigestCron } from './services/digest.ts'
 import { getQueja } from './db/queries.ts'
 import { routeUsingLocalOfficials } from './services/router.ts'
 import { logger } from './util/log.ts'
+import { buildHealth } from './services/health'
 
 function makeBot() {
   const token = process.env.BOT_TOKEN
@@ -124,7 +125,16 @@ async function main() {
 
       if (req.method === 'GET' && url.pathname === '/health') {
         res.statusCode = 200
-        res.end('ok')
+        res.setHeader('Content-Type', 'application/json')
+        res.end(
+          JSON.stringify(
+            buildHealth(process.env, {
+              mode: 'webhook',
+              uptimeSec: Math.round(process.uptime()),
+              pid: process.pid,
+            }),
+          ),
+        )
         return
       }
 
@@ -232,10 +242,17 @@ async function main() {
     const http = await import('node:http')
     const healthServer = http.createServer((req, res) => {
       if (req.method === 'GET' && (req.url === '/health' || req.url === '/')) {
-        const uptimeSec = Math.round(process.uptime())
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json')
-        res.end(JSON.stringify({ status: 'ok', mode: 'long-polling', uptimeSec, pid: process.pid }))
+        res.end(
+          JSON.stringify(
+            buildHealth(process.env, {
+              mode: 'long-polling',
+              uptimeSec: Math.round(process.uptime()),
+              pid: process.pid,
+            }),
+          ),
+        )
         return
       }
       res.statusCode = 404
