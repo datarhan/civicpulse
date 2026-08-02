@@ -151,7 +151,8 @@
     "record-measurement": "npx tsx scripts/record-measurement.ts",
     "check:retrieval": "npx tsx scripts/check-retrieval.ts",
     "review:surfaces": "npx tsx scripts/review-surfaces.ts",
-    "check:finding-entities": "npx tsx scripts/check-finding-entities.ts"
+    "check:finding-entities": "npx tsx scripts/check-finding-entities.ts",
+    "eval:extractor": "npx tsx scripts/eval-extractor.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",
