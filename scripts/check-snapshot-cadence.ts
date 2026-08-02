@@ -14,7 +14,7 @@ import {
   classifyFreshness,
   DEFAULT_EXPECTATIONS,
   type SnapshotFacts,
-} from '../src/scraper/data-freshness'
+} from '../src/scraper/snapshot-cadence'
 
 const DATA = resolve('public/data')
 

@@ -142,7 +142,7 @@
     "suggest:officials-social": "npx tsx scripts/suggest-officials-social.ts",
     "promote-social": "npx tsx scripts/promote-official-social.ts",
     "check:finding-quotes": "npx tsx scripts/check-finding-quotes.ts",
-    "check:freshness": "npx tsx scripts/check-data-freshness.ts"
+    "check:cadence": "npx tsx scripts/check-snapshot-cadence.ts"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

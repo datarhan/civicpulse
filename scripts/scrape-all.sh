@@ -227,9 +227,9 @@ fi
 # FAILING: six adapters are unreachable from GitHub runners and marked
 # best-effort, so the nightly goes green while their data ages with no working
 # refresh path. That is what this catches.
-if ! npm run check:freshness; then
-  echo "[scrape-all] SOFT-FAILED: check:freshness — dataset(s) past their expected cadence"
-  soft_failures+=("check:freshness")
+if ! npm run check:cadence; then
+  echo "[scrape-all] SOFT-FAILED: check:cadence — dataset(s) past their expected cadence"
+  soft_failures+=("check:cadence")
 fi
 
 echo ""

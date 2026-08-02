@@ -15,6 +15,11 @@
  * draws is between "old because nobody has needed to change it" and "old
  * because the machinery stopped and said nothing".
  *
+ * NOT to be confused with `src/lib/data-freshness.js`, which is the UI-side
+ * helper mapping one `generatedAt` onto a <Pill> tone for the reader. That one
+ * answers "how old is this?"; this one answers "is this dataset behind ITS OWN
+ * expected cadence, and is that because it has no refresh path left?".
+ *
  * Pure — no fs, no clock. The CLI supplies both.
  */
 
