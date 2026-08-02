@@ -184,13 +184,24 @@ export function makeEngineVerifier(
       })
       // A failed extract is NOT a judgement of sin-datos.
       //
-      // Defaulting to sin-datos here made a parse failure indistinguishable
-      // from "the model looked and found no support" — and since the retraction
-      // pass acts on sin-datos, ~7% of retractions were the model failing to
-      // return structured output, recorded in the audit trail as
+      // Returning `{verdict:'sin-datos'}` when the model gave us nothing makes
+      // a transport/parse failure indistinguishable from "the model looked and
+      // found no support" — and since the retraction pass acts on sin-datos,
+      // a silent failure would be recorded in the audit trail as
       // "verdict-engine re-judged verificado→sin-datos". The ~92% precision the
-      // engine is trusted for was measured on real judgements, not on parse
-      // failures, so folding these in overstates it.
+      // engine is trusted for was measured on real judgements, so anything that
+      // is not one must not borrow that credibility.
+      //
+      // CORRECTION (2026-08-02): an earlier version of this comment claimed ~7%
+      // of retractions were parse failures, based on grepping the reason text
+      // for phrases like "Se solicitó razonar". That was wrong. Those rows are
+      // genuine judgements whose summary merely opens by narrating the prompt
+      // before giving its conclusion ("…Concluí que ninguno guarda relación
+      // genuina: los candidatos [0] y [1] son seguros de responsabilidad
+      // civil"). Matching prose with a regex and treating the match as evidence
+      // is the same error as the word-overlap matcher this pipeline already
+      // got burned by. The guard below is still right — a genuine null is not a
+      // verdict — but it fires far more rarely than that claim implied.
       //
       // Throwing surfaces it as a skip, and skipped claims keep their verdict
       // and are retried on the next run (only claims with an overlay entry are
