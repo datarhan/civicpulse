@@ -150,7 +150,8 @@ async function main() {
   const total = all.reduce((n, r) => n + r.findings.length, 0)
   if (!asJson)
     console.log(
-      `\n[review] ${routes.length} ruta(s) · ${total} señalamiento(s) para revisión humana`,
+      `\n[review] ${routes.length} ruta(s) · ${skipped} sin cambios · ` +
+        `${total} señalamiento(s) para revisión humana`,
     )
   if (total > 0) process.exitCode = 1
 }
